@@ -424,6 +424,7 @@ void QEditor::init(bool actions,QDocument *doc)
 	//viewport()->setAttribute(Qt::WA_OpaquePaintEvent, true);
 	viewport()->setAttribute(Qt::WA_KeyCompression, true);
 	viewport()->setAttribute(Qt::WA_InputMethodEnabled, true);
+	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
 
 	verticalScrollBar()->setSingleStep(1);
 	horizontalScrollBar()->setSingleStep(20);
