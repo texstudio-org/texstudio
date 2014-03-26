@@ -8116,11 +8116,11 @@ void Texmaker::readinAllPackageNames(){
 		bool isMiktex = baseDir.contains("miktex", Qt::CaseInsensitive)
 				|| (!baseDir.contains("texlive", Qt::CaseInsensitive) && execCommand(baseDir+"latex.exe --version").contains("miktex", Qt::CaseInsensitive));
 		if (isMiktex)
-			packageListReader = new MiktexPackageScanner(baseDir+"mpm.exe", configManager.configBaseDir, this);
+			packageListReader = new MiktexPackageScanner(quotePath(baseDir+"mpm.exe"), configManager.configBaseDir, this);
 		else
-			packageListReader = new KpathSeaParser(baseDir+"kpsewhich", this); // TeXlive on windows uses kpsewhich
+			packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this); // TeXlive on windows uses kpsewhich
 #else
-		packageListReader = new KpathSeaParser(baseDir+"kpsewhich", this);
+		packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this);
 #endif
 		connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
 		packageListReader->start();

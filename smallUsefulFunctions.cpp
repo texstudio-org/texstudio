@@ -1098,7 +1098,10 @@ QString dequoteStr(const QString &s) {
 	return res;
 }
 
-
+QString quotePath(const QString &s) {
+	if (s.startsWith('"') || !s.contains(' ')) return QString(s);
+	return QString("\"%1\"").arg(s);
+}
 
 QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
 	//copied and modified from texworks
