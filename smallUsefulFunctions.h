@@ -93,6 +93,8 @@ QString formatJsonStringParam(const QString &id, const QString &val, int minIdWi
 QString enquoteStr(const QString &s);
 QString dequoteStr(const QString &s);
 
+QString quotePath(const QString &s);
+
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
 enum {
