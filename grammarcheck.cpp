@@ -21,9 +21,12 @@ void GrammarCheck::init(const LatexParser& lp, const GrammarCheckerConfig& confi
 	this->config = config;
 	if (!backend) {
 		backend = new GrammarCheckLanguageToolSOAP(this);
-		connect(backend,SIGNAL(checked(uint,QList<GrammarError>)),this,SLOT(backendChecked(uint,QList<GrammarError>)));
+		connect(backend,SIGNAL(checked(uint,int,QList<GrammarError>)),this,SLOT(backendChecked(uint,int,QList<GrammarError>)));
 	}
 	backend->init(config);
+
+	if (floatingEnvs.isEmpty())
+		floatingEnvs << "figure" << "table" << "SCfigure" << "wrapfigure" << "subfigure" << "floatbox";
 }
 
 
@@ -39,6 +42,12 @@ QSet<QString> readWordList(const QString& file){
 	return res;
 }
 
+struct TokenizedBlock{
+	QStringList words;
+	QList<int> indices, endindices, lines;
+	//int firstLineNr;
+};
+
 struct CheckRequest{
 	bool pending;
 	QString language;
@@ -46,12 +55,14 @@ struct CheckRequest{
 	QList<LineInfo> inlines;
 	int firstLineNr;
 	uint ticket;
+	int handledBlocks;
 	CheckRequest(const QString& language, const void* doc, const QList<LineInfo> inlines, const int firstLineNr, const int ticket):
-	       pending(true), language(language),doc(const_cast<void*>(doc)),inlines(inlines),firstLineNr(firstLineNr), ticket(ticket){}
+		pending(true), language(language),doc(const_cast<void*>(doc)),inlines(inlines),firstLineNr(firstLineNr), ticket(ticket), handledBlocks(0){}
 
 	QList<int> linesToSkip;
-	QStringList words;
-	QList<int> indices, endindices, lines;
+
+	QList<TokenizedBlock> blocks;
+	QVector<QList<GrammarError> > errors;
 };
 
 void GrammarCheck::check(const QString& language, const void * doc, const QList<LineInfo>& inlines, int firstLineNr){
@@ -125,23 +136,34 @@ void GrammarCheck::process(){
 		
 	//gather words
 	int nonTextIndex = 0;
-	QStringList words;
-	QList<int> indices, endindices, lines;
+	QList<TokenizedBlock> blocks;
+	blocks << TokenizedBlock();
+	//blocks.last().firstLineNr = cr.firstLineNr;
+	int floatingBlocks = 0;
 	int firstLineNr = cr.firstLineNr;
 	for (int l = 0; l < cr.inlines.size(); l++, firstLineNr++) {
+		TokenizedBlock &tb = blocks.last();
 		LatexReader lr(*latexParser, cr.inlines[l].text);
 		int type;
 		while ((type = lr.nextWord(false))) {
-			if (type == LatexReader::NW_ENVIRONMENT) continue;
+			if (type == LatexReader::NW_ENVIRONMENT) {
+				if (lr.word == "figure"){ //config.floatingEnvs.contains(lr.word)) {
+					if (lr.lastCommand == "\\begin") {
+						floatingBlocks ++;
+					} else if (lr.lastCommand == "\\end") {
+						floatingBlocks --;
+					}
+				}
+				continue;
+			};
 
 			if (type == LatexReader::NW_COMMENT) break;
 			if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) {
-				//environment, reference, label, citation
-				if (type == LatexReader::NW_ENVIRONMENT) continue;
-				words << QString("keyxyz%1").arg(nonTextIndex++);
-				indices << lr.wordStartIndex;
-				endindices << lr.index;
-				lines << l;
+				//reference, label, citation
+				tb.words << QString("keyxyz%1").arg(nonTextIndex++);
+				tb.indices << lr.wordStartIndex;
+				tb.endindices << lr.index;
+				tb.lines << l;
 				continue;
 			}
 			
@@ -153,22 +175,22 @@ void GrammarCheck::process(){
 					lr.index = starts.at(j) + temp.at(j).length()-1;
 					if(temp.at(j).startsWith("{")) break;
 				}
-				words << ".";
-				indices << lr.wordStartIndex;
-				endindices << 1;
-				lines << l;
+				tb.words << ".";
+				tb.indices << lr.wordStartIndex;
+				tb.endindices << 1;
+				tb.lines << l;
 				continue;
 			}
 			
 			
-			if (type == LatexReader::NW_TEXT) words << lr.word;
+			if (type == LatexReader::NW_TEXT) tb.words << lr.word;
 			else /*if (type == LatexReader::NW_PUNCTATION) */{
-				if (lr.word == "-" && !words.isEmpty()) {
+				if (lr.word == "-" && !tb.words.isEmpty()) {
 					//- can either mean a word-separator or a sentence -- separator
 					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
-					if (lr.wordStartIndex == endindices.last()) {
-						words.last() += '-';
-						endindices.last()++;
+					if (lr.wordStartIndex == tb.endindices.last()) {
+						tb.words.last() += '-';
+						tb.endindices.last()++;
 						
 						int tempIndex = lr.index;
 						int type = lr.nextWord(false);
@@ -177,70 +199,83 @@ void GrammarCheck::process(){
 							lr.index = tempIndex;
 							continue;
 						}
-						words.last() += lr.word;
-						endindices.last() = lr.index;
+						tb.words.last() += lr.word;
+						tb.endindices.last() = lr.index;
 						continue;
 					}
 				} else if (lr.word == "\"") 
 					lr.word = "'"; //replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
-				words << lr.word;
+				tb.words << lr.word;
 			}
 			
-			indices << lr.wordStartIndex;
-			endindices << lr.index;
-			lines << l;
+			tb.indices << lr.wordStartIndex;
+			tb.endindices << lr.index;
+			tb.lines << l;
 			
 		}
-	}
-	
-	
-	while (!words.isEmpty() && words.first().length() == 1 && uselessPunctation.contains(words.first()[0])) {
-		words.removeFirst();
-		indices.removeFirst();
-		endindices.removeFirst();
-		lines.removeFirst();
-	}
-	
-	cr.words = words;
-	cr.indices = indices;
-	cr.endindices = endindices;
-	cr.lines = lines;
 
+
+		while (floatingBlocks > blocks.size() - 1) blocks << TokenizedBlock();
+		while (floatingBlocks >= 0 && floatingBlocks < blocks.size() - 1)
+			cr.blocks << blocks.takeLast();
+	}
+	while (blocks.size()) cr.blocks << blocks.takeLast();
+	
 	bool backendAvailable = backend->isAvailable();
-	if (words.isEmpty() || !backendAvailable) backendChecked(cr.ticket, QList<GrammarError>(), true);
-	else {
-		QString joined;
-		int expectedLength = 0; foreach (const QString& s, words) expectedLength += s.length();
-		joined.reserve(expectedLength+words.length());
-		for (int i=0;;) {
-			joined += words[i];
-			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i,words);
-			joined += " ";
+
+	for (int b = 0; b < cr.blocks.size(); b++) {
+		TokenizedBlock &tb = cr.blocks[b];
+		while (!tb.words.isEmpty() && tb.words.first().length() == 1 && uselessPunctation.contains(tb.words.first()[0])) {
+			tb.words.removeFirst();
+			tb.indices.removeFirst();
+			tb.endindices.removeFirst();
+			tb.lines.removeFirst();
 		}
-		backend->check(cr.ticket,cr.language, joined); 
-		
+
+		if (tb.words.isEmpty() || !backendAvailable) backendChecked(cr.ticket, b, QList<GrammarError>(), true);
+		else  {
+			QString joined;
+			QStringList & words = tb.words;
+			int expectedLength = 0; foreach (const QString& s, words) expectedLength += s.length();
+			joined.reserve(expectedLength+words.length());
+			for (int i=0;;) {
+				joined += words[i];
+				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i,words);
+				joined += " ";
+			}
+			backend->check(cr.ticket, b, cr.language, joined);
+		}
 	}
 }
 	
-void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& backendErrors, bool directCall){
+void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<GrammarError>& backendErrors, bool directCall){
 	int reqId = -1;
 	for (int i=requests.size()-1;i>=0;i--)
 		if (requests[i].ticket == crticket) reqId = i;
-	REQUIRE(reqId != -1);
+	//REQUIRE(reqId != -1);
+	if (reqId == -1) return;
 	
 	CheckRequest &cr = requests[reqId];
-	
+	REQUIRE(subticket >= 0 && subticket < cr.blocks.size());
+	TokenizedBlock &tb = cr.blocks[subticket];
+
+	cr.handledBlocks++;
 
 	for (int i=0;i<cr.inlines.size();i++){
 		if (cr.linesToSkip.contains(i)) continue;
 		TicketHash::iterator it = tickets.find(cr.inlines[i].line);
 		Q_ASSERT(it != tickets.end());
 		if (it == tickets.end()) continue;
-		it.value().second--;
 		Q_ASSERT(it.value().second >= 0);
-		if (it.value().first != cr.ticket) 
+		bool remove = cr.handledBlocks == cr.blocks.size();
+		if (it.value().first != cr.ticket) {
 			cr.linesToSkip << i;
-		if (it.value().second <= 0) tickets.erase(it);
+			remove = true;
+		}
+		if (remove) {
+			it.value().second--;
+			if (it.value().second <= 0) tickets.erase(it);
+		}
 	}
 	if (cr.linesToSkip.size() == cr.inlines.size()) {
 		requests.removeAt(reqId);
@@ -257,11 +292,10 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	}
 	const LanguageGrammarData& ld = *it;
 	
-
-	QVector<QList<GrammarError> > errors;
-	errors.resize(cr.inlines.size());
+	if (cr.errors.size() != cr.inlines.size())
+		cr.errors.resize(cr.inlines.size());
 	
-	QStringList& words = cr.words;
+	QStringList& words = tb.words;
 	
 	if (config.longRangeRepetitionCheck) {
 		const int MAX_REP_DELTA = config.maxRepetitionDelta;
@@ -280,7 +314,7 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 			if (ld.stopWords.contains(normalized)) {
 				if (checkLastWord) {
 					if (prevSW == normalized) 
-						errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
 					prevSW = normalized;
 				}
 				continue;
@@ -290,9 +324,9 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 				if (lastSeen > -1) {
 					int delta = totalWords - lastSeen;
 					if (delta <= MAX_REP_DELTA) 
-						errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
 					else if (config.maxRepetitionLongRangeDelta > config.maxRepetitionDelta && delta <= config.maxRepetitionLongRangeDelta && normalized.length() >= config.maxRepetitionLongRangeMinWordLength) 
-						errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
 				}
 			}
 			repeatedWordCheck.insert(normalized, totalWords);
@@ -301,9 +335,9 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 	if (config.badWordCheck) {
 		for (int w=0 ;w < words.size(); w++){
 			if (ld.badWords.contains(words[w]))
-				errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w], GET_BAD_WORD, tr("Bad word"), QStringList() << "");
+				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_BAD_WORD, tr("Bad word"), QStringList() << "");
 			else if (words[w].length() > 1 && words[w].endsWith('.') && ld.badWords.contains(words[w].left(words[w].length()-1)))
-				errors[cr.lines[w]] << GrammarError(cr.indices[w], cr.endindices[w]-cr.indices[w]-1, GET_BAD_WORD, tr("Bad word"), QStringList() << "");
+				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w]-1, GET_BAD_WORD, tr("Bad word"), QStringList() << "");
 		}
 
 	}
@@ -319,15 +353,15 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(curWord,words);
 			curOffset++; //space
 		} else { //if (backendErrors[err].offset >= curOffset) {
-			int trueIndex = cr.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
+			int trueIndex = tb.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
 			int trueLength = -1;
 			int offsetEnd = backendErrors[err].offset + backendErrors[err].length;
 			int tempOffset = curOffset;
 			for (int w = curWord; ; ) {
 				tempOffset += words[w].length();
 				if (tempOffset >=  offsetEnd) {
-					if (cr.lines[curWord] == cr.lines[w]) {
-						int trueOffsetEnd = cr.endindices[w] - qMax(0, tempOffset - offsetEnd);
+					if (tb.lines[curWord] == tb.lines[w]) {
+						int trueOffsetEnd = tb.endindices[w] - qMax(0, tempOffset - offsetEnd);
 						trueLength = trueOffsetEnd - trueIndex;
 					}
 					break;
@@ -336,21 +370,25 @@ void GrammarCheck::backendChecked(uint crticket, const QList<GrammarError>& back
 				tempOffset++; //space
 			}
 			if (trueLength == -1)
-				trueLength = cr.inlines[cr.lines[curWord]].text.length() - trueIndex;
-			errors[cr.lines[curWord]] << GrammarError(trueIndex, trueLength, backendErrors[err]);
+				trueLength = cr.inlines[tb.lines[curWord]].text.length() - trueIndex;
+			cr.errors[tb.lines[curWord]] << GrammarError(trueIndex, trueLength, backendErrors[err]);
 			err++;
 		}
 	}
 	
 
-	//notify
-	for (int l=0;l<cr.inlines.size();l++){
-		if (cr.linesToSkip.contains(l)) continue; //too late
-		
-		emit checked(cr.doc, cr.inlines[l].line, cr.firstLineNr+l, errors[l]);
+	if (cr.handledBlocks == cr.blocks.size()) {
+		//notify
+		for (int l=0;l<cr.inlines.size();l++){
+			if (cr.linesToSkip.contains(l)) continue; //too late
+
+			emit checked(cr.doc, cr.inlines[l].line, cr.firstLineNr+l, cr.errors[l]);
+		}
+
+		requests.removeAt(reqId);
 	}
 	
-	requests.removeAt(reqId);
+
 }
 
 
@@ -383,9 +421,10 @@ GrammarCheckBackend::GrammarCheckBackend(QObject* parent):QObject(parent){}
 
 struct CheckRequestBackend{
 	int ticket;
+	int subticket;
 	QString language;
 	QString text;
-	CheckRequestBackend(int ti, const QString& la, const QString& te): ticket(ti), language(la), text(te) {}
+	CheckRequestBackend(int ti, int st, const QString& la, const QString& te): ticket(ti), subticket(st), language(la), text(te) {}
 };
 
 GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0),connectionAvailability(false),triedToStart(false),firstRequest(true){
@@ -467,14 +506,15 @@ void GrammarCheckLanguageToolSOAP::tryToStart(){
 const QNetworkRequest::Attribute AttributeTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User);
 const QNetworkRequest::Attribute AttributeLanguage = (QNetworkRequest::Attribute)(QNetworkRequest::User+2);
 const QNetworkRequest::Attribute AttributeText = (QNetworkRequest::Attribute)(QNetworkRequest::User+3);
+const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User+4);
 
-void GrammarCheckLanguageToolSOAP::check(uint ticket, const QString& language, const QString& text){
+void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString& language, const QString& text){
 	REQUIRE(nam);
 		
 	if (connectionAvailability == 0) {
 		if (firstRequest) firstRequest = false;
 		else {
-			delayedRequests << CheckRequestBackend(ticket, language, text);
+			delayedRequests << CheckRequestBackend(ticket, subticket, language, text);
 			return;
 		}
 	}
@@ -492,6 +532,7 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, const QString& language, c
 	req.setAttribute(AttributeTicket, ticket);
 	req.setAttribute(AttributeLanguage, language);
 	req.setAttribute(AttributeText, text);
+	req.setAttribute(AttributeSubTicket, subticket);
 
 	nam->post(req, post);
 	
@@ -500,6 +541,7 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, const QString& language, c
 
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
+	int subticket = nreply->request().attribute(AttributeSubTicket).toInt();
 	QString text = nreply->request().attribute(AttributeText).toString();
 	QByteArray reply = nreply->readAll();
 	int status = nreply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
@@ -516,7 +558,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 		}
 		//there might be a backend now, but we still don't have the results
 		firstRequest = true;
-		check(ticket, nreply->request().attribute(AttributeLanguage).toString(), text);
+		check(ticket, subticket, nreply->request().attribute(AttributeLanguage).toString(), text);
 		nreply->deleteLater();		
 		return;
 	}
@@ -554,7 +596,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 		//qDebug() << realfrom << len;
 	}
 	
-	emit checked(ticket, results);
+	emit checked(ticket, subticket, results);
 	
 	nreply->deleteLater();
 	
@@ -562,7 +604,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 		QList<CheckRequestBackend> delayedRequestsCopy = delayedRequests;
 		delayedRequests.clear();
 		foreach (const CheckRequestBackend& cr, delayedRequestsCopy)
-			check(cr.ticket, cr.language, cr.text);
+			check(cr.ticket, cr.subticket, cr.language, cr.text);
 	}
 	
 	return;	

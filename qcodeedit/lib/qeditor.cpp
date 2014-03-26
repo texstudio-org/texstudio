@@ -424,6 +424,7 @@ void QEditor::init(bool actions,QDocument *doc)
 	//viewport()->setAttribute(Qt::WA_OpaquePaintEvent, true);
 	viewport()->setAttribute(Qt::WA_KeyCompression, true);
 	viewport()->setAttribute(Qt::WA_InputMethodEnabled, true);
+	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
 
 	verticalScrollBar()->setSingleStep(1);
 	horizontalScrollBar()->setSingleStep(20);
@@ -1134,7 +1135,7 @@ void QEditor::fileChanged(const QString& file)
 	{
 		watcher()->removeWatch(QString(), this); //no duplicated questions
 
-        if(flag(SilentReloadOnExternalChanges)){ // if hidden, just close the editor
+		if(mSilentReloadOnExternalChanges){ // if hidden, just close the editor
             emit requestClose();
             return;
         }
@@ -1164,7 +1165,7 @@ void QEditor::fileChanged(const QString& file)
 		// -> result in undo/redo history loss, still ask confirmation ?
 		bool autoReload = true;
 
-		if ( (canUndo() || canRedo()) && !flag(SilentReloadOnExternalChanges) )
+		if ( (canUndo() || canRedo()) && !mSilentReloadOnExternalChanges )
 		{
 			watcher()->removeWatch(QString(), this); //no duplicated questions
 			
@@ -4182,8 +4183,13 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 
 		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRight, Qt::NoModifier, Qt::Key_Delete);
+	#ifdef Q_OSX
+		addEditOperation(DeleteLeftWord, Qt::AltModifier, Qt::Key_Backspace);
+		addEditOperation(DeleteRightWord, Qt::AltModifier, Qt::Key_Delete);
+	#else
 		addEditOperation(DeleteLeftWord, Qt::ControlModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRightWord, Qt::ControlModifier, Qt::Key_Delete);
+	#endif
 
 		addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Enter);
 		addEditOperation(NewLine, Qt::NoModifier, Qt::Key_Return);
@@ -4194,9 +4200,14 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(CreateMirrorDown, Qt::AltModifier | Qt::ControlModifier, Qt::Key_Down);
 
 		registerEditOperation(NextPlaceHolder);
-		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
 		registerEditOperation(PreviousPlaceHolder);
+	#ifdef Q_OS_MAC
+		registerEditOperation(NextPlaceHolderOrWord);
+		registerEditOperation(PreviousPlaceHolderOrWord);
+	#else
+		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
+	#endif
 
 		addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
 		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
@@ -4591,21 +4602,42 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			for (int i=0; i<text.length(); i++)
 				c.deleteChar();
 		}
-		// remove placeholder when typing closing bracket at the end of a placeholder
-		// e.g. \textbf{[ph]|} and typing '}'
-		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
-			if (m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
-			    m_placeHolders[i].cursor.columnNumber() == c.columnNumber() &&
-			    (text.at(0)=='}' || text.at(0)==']') &&
-			    c.nextChar()==text.at(0))
-			{
-				QChar cc = text.at(0);
-				QChar oc = (cc=='}') ? '{' : '[';
-				if (findOpeningBracket(c.line().text(), c.columnNumber()-1, oc, cc) < m_placeHolders[i].cursor.anchorColumnNumber()) {
-					removePlaceHolder(i);
-					c.deleteChar();
-				}
+		QChar text0 = text.at(0);
+		if (text0 == c.nextChar()) {
+			// special functions for overwriting existing text
+			if (flag(OverwriteClosingBracketFollowingPlaceholder) && (text0=='}' || text0==')')) {
+				// remove placeholder when typing closing bracket at the end of a placeholder
+				// e.g. \textbf{[ph]|} and typing '}'
+				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+					if (m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
+						m_placeHolders[i].cursor.columnNumber() == c.columnNumber()
+						)
+					{
+						QChar openBracket = (text0=='}') ? '{' : '[';
+						if (findOpeningBracket(c.line().text(), c.columnNumber()-1, openBracket, text0) < m_placeHolders[i].cursor.anchorColumnNumber()) {
+							removePlaceHolder(i);
+							c.deleteChar();
+						}
+					}
+			} else if (flag(OverwriteOpeningBracketFollowedByPlaceholder) && (text0=='{' || text0=='[')) {
+				// skip over opening bracket if followed by a placeholder
+				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+					if (m_placeHolders[i].cursor.anchorLineNumber() == c.lineNumber() &&
+						m_placeHolders[i].cursor.anchorColumnNumber() == c.columnNumber() + 1
+						)  // anchor == start of placeholder
+					{
+						setPlaceHolder(i);
+						if (text.length() == 1) {
+							return; // don't insert the bracket because we've just jumped over it
+						} else {
+							QString remainder(text);
+							remainder.remove(0,1);
+							insertText(c, remainder);
+							return;
+						}
+					}
 			}
+		}
 	}
 	
 	//prepare for auto bracket insertion
@@ -5639,7 +5671,7 @@ void QEditor::markChanged(QDocumentLineHandle *l, int mark, bool on)
 	emit markChanged(fileName(), l, mark, on);
 }
 
-bool QEditor::displayModifyTime()
+bool QEditor::displayModifyTime() const
 {
     return mDisplayModifyTime;
 }
