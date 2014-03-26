@@ -218,6 +218,9 @@ QString LatexReference::getPartialText(const QString &command) {
 	if (anchor.end_pos < 0) {
 		anchor.end_pos = m_htmltext.indexOf(endTag, anchor.start_pos+1);
 		if (anchor.end_pos >= 0) anchor.end_pos += endOffset;
+		int hrEnd = m_htmltext.indexOf("<hr>", anchor.start_pos+1);
+		if (hrEnd >= 0 && hrEnd < anchor.end_pos) // don't go further than the next <hr>
+			anchor.end_pos = hrEnd;
 		m_anchors.insert(command, anchor); // save positions for a faster lookup next time
 	}
 	return m_htmltext.mid(anchor.start_pos, anchor.end_pos-anchor.start_pos);

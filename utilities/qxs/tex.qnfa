@@ -139,6 +139,7 @@ environments in smallUsefulFunctions.cpp)
 	<context id="mathmode$" format="numbers" transparency="true">
 		<start parenthesis="math:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</start>
 		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</stop>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="magicComment" >% !TXS fix-highlight:close-$</stop>
 
 		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
 		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>

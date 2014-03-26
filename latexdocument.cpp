@@ -1638,8 +1638,8 @@ void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
         if (edView) {
             QEditor* ed=edView->getEditor();
             if(ed){
-                document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
-                ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+                document->remeberAutoReload=ed->silentReloadOnExternalChanges();
+                ed->setSilentReloadOnExternalChanges(true);
             }
         }
     }else{
@@ -1719,8 +1719,8 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
             if (edView) {
                 QEditor* ed=edView->getEditor();
                 if(ed){
-                    document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
-                    ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+                    document->remeberAutoReload=ed->silentReloadOnExternalChanges();
+                    ed->setSilentReloadOnExternalChanges(true);
                 }
             }
         }else{

@@ -35,6 +35,12 @@ struct LatexLogEntry {
 	void clear();
 };
 
+#define DEBUG_FILE_STACK 0
+#if DEBUG_FILE_STACK
+	#define PRINT_FILE_STACK(operation, file) {qDebug() << operation << file;}
+#else
+	#define PRINT_FILE_STACK(operation, file)
+#endif
 
 /**
  * An object of this class is used to parse the output messages
@@ -110,9 +116,9 @@ class LatexOutputFilter : public OutputFilter
 	//void sendProblems();
 	//void updateInfoLists(const QString &texfilename, int selrow, int docrow);
 
-	enum {Start = 0, FileName, HeuristicSearch, Error, Warning, BadBox, LineNumber,
+	enum {Start = 0, FileName, HeuristicSearch, Error, Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
 		  // the following states are only used in updateFileStackHeuristic2
-		  ExpectingFileName=10, InFileName, InQoutedFileName};
+		  ExpectingFileName=10, InFileName, InQuotedFileName};
 
     protected:
         /**
@@ -144,6 +150,7 @@ class LatexOutputFilter : public OutputFilter
 	bool detectBadBox(const QString & strLine, short &dwCookie);
 	bool detectLaTeXLineNumber(QString & warning, short & dwCookie, int len);
 	bool detectBadBoxLineNumber(QString & strLine, short & dwCookie, int len);
+	static bool isBadBoxTextQuote(const QString & strLine);
 
 	bool fileExists(const QString & name);
 	QString absoluteFileName(const QString & name); //returns "" if the file doesn't exists, uses m_filelookup

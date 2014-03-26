@@ -272,7 +272,7 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 
 	switch (dwCookie) {
 		//we're looking for a filename
-		case Start : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQoutedFileName :
+		case Start : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQuotedFileName :
 			//TeX is opening a file
 			if(strLine.startsWith(":<+ ")) {
 // 				KILE_DEBUG() << "filename detected" << endl;
@@ -284,13 +284,13 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 			}
 			//TeX closed a file
 			else if(strLine.startsWith(":<-")) {
-// 				KILE_DEBUG() << "\tpopping : " << m_stackFile.top().file() << endl;
+				PRINT_FILE_STACK("pop1", m_stackFile.top().file());
 				m_stackFile.pop();
 				dwCookie = Start;
 			}
 			else {
 			//fallback to the heuristic detection of filenames
-				updateFileStackHeuristic(strLine, dwCookie);
+				updateFileStackHeuristic2(strLine, dwCookie);
 			}
 		break;
 
@@ -301,8 +301,13 @@ void LatexOutputFilter::updateFileStack(const QString &strLine, short& dwCookie)
 			if(strLine.startsWith('(') || strLine.startsWith("\\openout")) {
 				//push the filename on the stack and mark it as 'reliable'
 				m_stackFile.push(LOFStackItem(strPartialFileName, true));
-// 				KILE_DEBUG() << "\tpushed : " << strPartialFileName << endl;
+				PRINT_FILE_STACK("pushed", strPartialFileName);
 				strPartialFileName.clear();
+				dwCookie = Start;
+				updateFileStackHeuristic2(strLine, dwCookie);
+			}
+			else if(strLine.startsWith(":<-")) {
+				// nothing to do file was immediately closed again
 				dwCookie = Start;
 			}
 			//The partial filename was followed by an TeX error, meaning the file doesn't exist.
@@ -365,22 +370,22 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 				if (c == '(') { dwCookie = ExpectingFileName; continue; }
 				if (c == ')') {
 					if(m_stackFile.count() >= 1 && !m_stackFile.top().reliable()) {
-						//qDebug() << "pop" << m_stackFile.top().file();
+						PRINT_FILE_STACK("pop2", m_stackFile.top().file());
 						m_stackFile.pop();
 					}
 				}
 				break;
 			case ExpectingFileName:
-				if (c == '"') { dwCookie = InQoutedFileName; fnStart = i+1; continue; }
+				if (c == '"') { dwCookie = InQuotedFileName; fnStart = i+1; continue; }
 				else {
 					dwCookie = InFileName; fnStart = i; continue;
 				}
 				break;
-			case InQoutedFileName:
+			case InQuotedFileName:
 				if (c == '"') {
 					partialFileName += strLine.mid(fnStart, i-fnStart);
 					m_stackFile.push(LOFStackItem(partialFileName));
-					//qDebug() << "push1" << partialFileName;
+					PRINT_FILE_STACK("push1", partialFileName);
 					partialFileName.clear();
 					dwCookie = Start; continue;
 				}
@@ -410,7 +415,7 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 						// The pushed value (even if its false) will only make for a local error, but
 						// is may even be correct since likelyNoFileStart is also just a heuristic.
 						m_stackFile.push(LOFStackItem(partialFileName));
-						//qDebug() << "push2" << partialFileName;
+						PRINT_FILE_STACK("push2", partialFileName);
 						partialFileName.clear();
 						dwCookie = Start; continue;
 					}
@@ -424,11 +429,11 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 			|| fileExists(partialFileName) // or b) if line is full and the file exists: assume at filename end, otherwise continue with next line
 		) {
 			m_stackFile.push(LOFStackItem(partialFileName));
-			//qDebug() << "push3" << partialFileName;
+			PRINT_FILE_STACK("push3", partialFileName);
 			partialFileName.clear();
 			dwCookie = Start;
 		}
-	} else if (dwCookie == InQoutedFileName) {
+	} else if (dwCookie == InQuotedFileName) {
 		partialFileName += strLine.mid(fnStart);
 	}
 }
@@ -446,6 +451,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 	// handle special case (bug fix for 101810)
 	if(expectFileName && strLine.length() > 0 && strLine[0] == ')') {
 		m_stackFile.push(LOFStackItem(strPartialFileName));
+		PRINT_FILE_STACK("push", strPartialFileName);
 		expectFileName = false;
 		dwCookie = Start;
 	}
@@ -486,6 +492,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 			//FIXME: improve these heuristics
 			if((isLastChar && (i < 78)) || nextIsTerminator || fileExists(strPartialFileName)) {
 				m_stackFile.push(LOFStackItem(strPartialFileName));
+				PRINT_FILE_STACK("push 4", strPartialFileName);
 				// KILE_DEBUG() << "\tpushed (i = " << i << " length = " << strLine.length() << "): " << strPartialFileName << endl;
 				expectFileName = false;
 				dwCookie = Start;
@@ -494,6 +501,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 			else if(isLastChar) {
 				if(fileExists(strPartialFileName)) {
 					m_stackFile.push(LOFStackItem(strPartialFileName));
+					PRINT_FILE_STACK("push 5", strPartialFileName);
 					//KILE_DEBUG() << "pushed (i = " << i << " length = " << strLine.length() << "): " << strPartialFileName << endl;
 					expectFileName = false;
 					dwCookie = Start;
@@ -529,6 +537,7 @@ void LatexOutputFilter::updateFileStackHeuristic(const QString &strLine, short &
 			//a ":<-" will follow. This helps in preventing unbalanced ')' from popping filenames
 			//from the stack too soon.
 			if(m_stackFile.count() > 1 && !m_stackFile.top().reliable()) {
+				PRINT_FILE_STACK("pop3", m_stackFile.top().file());
 				m_stackFile.pop();
 			}
 			else {
@@ -545,6 +554,7 @@ void LatexOutputFilter::flushCurrentItem()
 	int nItemType = m_currentItem.type;
 
 	while( m_stackFile.count() > 0 && (!fileExists(m_stackFile.top().file())) && (m_stackFile.count() > 1)) {
+		PRINT_FILE_STACK("pop4", m_stackFile.top().file());
 		m_stackFile.pop();
 	}
 
@@ -554,19 +564,19 @@ void LatexOutputFilter::flushCurrentItem()
 		case LT_ERROR:
 			++m_nErrors;
 			m_infoList.push_back(m_currentItem);
-			//KILE_DEBUG() << "Flushing Error in" << m_currentItem.source() << "@" << m_currentItem.sourceLine() << " reported in line " << m_currentItem.outputLine() <<  endl;
+			//qDebug() << "Flushing Error in" << m_currentItem.file << "@" << m_currentItem.oldline << " reported in line " << m_currentItem.logline <<  endl;
 		break;
 
 		case LT_WARNING:
 			++m_nWarnings;
 			m_infoList.push_back(m_currentItem);
-			//KILE_DEBUG() << "Flushing Warning in " << m_currentItem.source() << "@" << m_currentItem.sourceLine() << " reported in line " << m_currentItem.outputLine() << endl;
+			//qDebug() << "Flushing Warning in " << m_currentItem.file << "@" << m_currentItem.oldline << " reported in line " << m_currentItem.logline << endl;
 		break;
 
 		case LT_BADBOX:
 			++m_nBadBoxes;
 			m_infoList.push_back(m_currentItem);
-			//KILE_DEBUG() << "Flushing BadBox in " << m_currentItem.source() << "@" << m_currentItem.sourceLine() << " reported in line " << m_currentItem.outputLine() << endl;
+			//qDebug() << "Flushing BadBox in " << m_currentItem.file << "@" << m_currentItem.oldline << " reported in line " << m_currentItem.logline << endl;
 		break;
 
 		default: break;
@@ -776,7 +786,7 @@ bool LatexOutputFilter::detectBadBox(const QString & strLine, short & dwCookie)
 		case Start :
 			if(reBadBox.indexIn(strLine) != -1) {
 				found = true;
-				dwCookie = Start;
+				dwCookie = ExpectingBadBoxTextQoute;
 				badbox = strLine;
 				flush = detectBadBoxLineNumber(badbox, dwCookie, strLine.length());
 				m_currentItem.message=(badbox);
@@ -805,6 +815,17 @@ bool LatexOutputFilter::detectBadBox(const QString & strLine, short & dwCookie)
 	return found;
 }
 
+// Badboxes may have and additional line displaying the problematic text:
+//   Underfull \hbox (badness 10000) in paragraph at lines 827--831
+//   \T1/cmr/m/n/12 against it (de-pend-ing
+// We use the font definition pattern at the start to identify the line as such
+//
+bool LatexOutputFilter::isBadBoxTextQuote(const QString &strLine)
+{
+	static QRegExp reBadBoxTextQoute("\\\\\\S+/\\S+/\\S+/\\S+/");
+	return (reBadBoxTextQoute.indexIn(strLine) >= 0);
+}
+
 bool LatexOutputFilter::detectBadBoxLineNumber(QString & strLine, short & dwCookie, int len)
 {
 	//KILE_DEBUG() << "==LatexOutputFilter::detectBadBoxLineNumber(" << strLine.length() << ")================" << endl;
@@ -816,7 +837,7 @@ bool LatexOutputFilter::detectBadBoxLineNumber(QString & strLine, short & dwCook
 	static QRegExp reBadBoxOutput("(.*)has occurred while \\\\output is active^", Qt::CaseInsensitive);
 
 	if(reBadBoxLines.indexIn(strLine) != -1) {
-		dwCookie = Start;
+		dwCookie = ExpectingBadBoxTextQoute;
 		strLine = reBadBoxLines.cap(1);
 		int n1 = reBadBoxLines.cap(2).toInt();
 		int n2 = reBadBoxLines.cap(3).toInt();
@@ -824,14 +845,14 @@ bool LatexOutputFilter::detectBadBoxLineNumber(QString & strLine, short & dwCook
 		return true;
 	}
 	else if(reBadBoxLine.indexIn(strLine) != -1) {
-		dwCookie = Start;
+		dwCookie = ExpectingBadBoxTextQoute;
 		strLine = reBadBoxLine.cap(1);
 		m_currentItem.oldline=(reBadBoxLine.cap(2).toInt());
 		//KILE_DEBUG() << "\tBadBox@" << reBadBoxLine.cap(2) << "." << endl;
 		return true;
 	}
 	else if(reBadBoxOutput.indexIn(strLine) != -1) {
-		dwCookie = Start;
+		dwCookie = ExpectingBadBoxTextQoute;
 		strLine = reBadBoxLines.cap(1);
 		m_currentItem.oldline=(0);
 		return true;
@@ -854,6 +875,15 @@ short LatexOutputFilter::parseLine(const QString & strLine, short dwCookie)
 	//KILE_DEBUG() << "==LatexOutputFilter::parseLine(" << strLine.length() << ")================" << endl;
 
 	switch (dwCookie) {
+
+		case ExpectingBadBoxTextQoute:
+			if (isBadBoxTextQuote(strLine)) {
+				dwCookie = Start;
+				break; // next line
+			} else {
+				dwCookie = Start; // reset and treat currently independently
+			}
+			// fall-through - no break
 		case Start :
 			if(!(detectBadBox(strLine, dwCookie) || detectWarning(strLine, dwCookie) || detectError(strLine, dwCookie))) {
 				updateFileStack(strLine, dwCookie);
@@ -872,7 +902,7 @@ short LatexOutputFilter::parseLine(const QString & strLine, short dwCookie)
 			detectBadBox(strLine, dwCookie);
 		break;
 
-		case FileName : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQoutedFileName :
+		case FileName : case HeuristicSearch : case ExpectingFileName : case InFileName : case InQuotedFileName :
 			updateFileStack(strLine, dwCookie);
 		break;
 
@@ -897,7 +927,9 @@ bool LatexOutputFilter::run(const QTextDocument* log)
 	m_infoList.clear();
 	m_nErrors = m_nWarnings = m_nBadBoxes = m_nParens = 0;
 	m_stackFile.clear();
-	m_stackFile.push(LOFStackItem(QFileInfo(source()).fileName(), true));
+	QString mainfile = QFileInfo(source()).fileName();
+	m_stackFile.push(LOFStackItem(mainfile, true));
+	PRINT_FILE_STACK("push", mainfile);
 
 	return OutputFilter::run(log);
 }
