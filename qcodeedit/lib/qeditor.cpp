@@ -419,6 +419,10 @@ void QEditor::init(bool actions,QDocument *doc)
 	setViewport(new QGLWidget);
 	#endif
 
+	sizeWidget = new QWidget(this);
+	sizeWidget->setCursor(Qt::IBeamCursor);
+	sizeWidget->setParent(viewport());
+
 	viewport()->setCursor(Qt::IBeamCursor);
 	viewport()->setBackgroundRole(QPalette::Base);
 	//viewport()->setAttribute(Qt::WA_OpaquePaintEvent, true);
@@ -2705,7 +2709,7 @@ bool QEditor::event(QEvent *e)
 	bool r = QAbstractScrollArea::event(e);
 
 	if ( (e->type() == QEvent::Resize || e->type() == QEvent::Show) && m_doc )
-		verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewport()->height()) / m_doc->getLineSpacing()));
+		setVerticalScrollBarMaximum(qMax(0, 1 + (m_doc->height() - viewport()->height())));
 
 	if ( e->type() == QEvent::Resize && flag(LineWrap) )
 	{
@@ -2881,6 +2885,19 @@ static int min(const QList<QDocumentCursor>& l)
 
 	return ln;
 }
+
+void QEditor::setVerticalScrollBarMaximum(int max){
+	REQUIRE(m_doc);
+	int ls = m_doc->getLineSpacing();
+	verticalScrollBar()->setMaximum((max+ls-1)/ls);
+	sizeWidget->setFixedHeight(max);
+}
+
+void QEditor::setHorizontalScrollBarMaximum(int max){
+	horizontalScrollBar()->setMaximum(max);
+	sizeWidget->setFixedWidth(max);
+}
+
 
 bool QEditor::protectedCursor(const QDocumentCursor& c) const
 {
@@ -3791,7 +3808,7 @@ void QEditor::resizeEvent(QResizeEvent *)
 	const QSize viewportSize = viewport()->size();
 
 	if ( flag(HardLineWrap)||flag(LineWidthConstraint) ){
-	    horizontalScrollBar()->setMaximum(qMax(0, m_LineWidth - viewportSize.width()));
+	    setHorizontalScrollBarMaximum(qMax(0, m_LineWidth - viewportSize.width()));
 	    horizontalScrollBar()->setPageStep(viewportSize.width());
 	} else if ( flag(LineWrap) )
 	{
@@ -3799,12 +3816,12 @@ void QEditor::resizeEvent(QResizeEvent *)
 
 	    m_doc->setWidthConstraint(wrapWidth());
 	} else {
-	    horizontalScrollBar()->setMaximum(qMax(0, m_doc->width() - viewportSize.width()));
+	    setHorizontalScrollBarMaximum(qMax(0, m_doc->width() - viewportSize.width()));
 	    horizontalScrollBar()->setPageStep(viewportSize.width());
 	}
 
 	const int ls = m_doc->getLineSpacing();
-	verticalScrollBar()->setMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) / ls));
+	setVerticalScrollBarMaximum(qMax(0, 1 + (m_doc->height() - viewportSize.height()) ));
 	verticalScrollBar()->setPageStep(viewportSize.height() / ls);
 
 	emit visibleLinesChanged();
@@ -5463,7 +5480,7 @@ void QEditor::documentWidthChanged(int newWidth)
 {
 	if ( flag(LineWrap)&&!flag(HardLineWrap)&&!flag(LineWidthConstraint) )
 	{
-		horizontalScrollBar()->setMaximum(0);
+		setHorizontalScrollBarMaximum(0);
 		return;
 	}
 
@@ -5474,7 +5491,7 @@ void QEditor::documentWidthChanged(int newWidth)
 	    nv=(qMax(0, m_LineWidth - viewportSize.width()));
 	}
 
-	horizontalScrollBar()->setMaximum(nv);
+	setHorizontalScrollBarMaximum(nv);
 
 	//ensureCursorVisible();
 }
@@ -5494,7 +5511,7 @@ void QEditor::documentHeightChanged(int newHeight)
 		m_doc->setWidthConstraint(wrapWidth());
 	}
 	const int ls = document()->getLineSpacing();
-	verticalScrollBar()->setMaximum(qMax(0, 1 + (newHeight - viewport()->height()) / ls));
+	setVerticalScrollBarMaximum(qMax(0, 1 + (newHeight - viewport()->height())));
 	//ensureCursorVisible();
 }
 
