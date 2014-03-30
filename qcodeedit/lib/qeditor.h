@@ -300,6 +300,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
             return verticalScrollBar()->isVisible() ? verticalScrollBar()->value() * m_doc->getLineSpacing() : 0;
 #endif
         }
+
+		void setVerticalScrollBarMaximum(int max);
+		void setHorizontalScrollBarMaximum(int max);
 		
 		inline QPoint mapToContents(const QPoint &point) const
 		{
@@ -599,6 +602,8 @@ public slots:
 		void lineEndingChanged(int lineEnding);
 		
 	protected:
+		QWidget* sizeWidget;
+
 		enum SaveState
 		{
 			Undefined,
