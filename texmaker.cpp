@@ -772,10 +772,13 @@ void Texmaker::setupMenus() {
 
 	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
 #ifdef Q_OS_WIN32
+#if QT_VERSION < 0x050000
+	// TODO: find replacement for QApplication::keyboardInputLocale() in Qt5
 	// on win ctrl+alt = altGr, hungarian: altGr+F = [
 	// so we should not use this as shortcut in this special case
 	if (QApplication::keyboardInputLocale().language() == QLocale::Hungarian)
 		sc = QKeySequence(Qt::CTRL+Qt::ALT+Qt::SHIFT+Qt::Key_F);
+#endif
 #endif
 	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),sc);
 	
@@ -7248,8 +7251,8 @@ void Texmaker::fileCheckinPdf(QString filename){
 	QString path=fi.path();
 	QString fn=path+"/"+basename+".pdf";
 	SVNSTATUS status=svnStatus(fn);
-	if(status==CheckedIn) return;
-	if(status==Unmanaged)
+	if(status==SVN_CheckedIn) return;
+	if(status==SVN_Unmanaged)
 		svnadd(fn);
 	fileCheckin(fn);
 }
@@ -7510,12 +7513,12 @@ SVNSTATUS Texmaker::svnStatus(QString filename){
 	statusLabelProcess->setText(QString(" svn status "));
 	QString buffer;
 	runCommand(cmd, &buffer);
-	if(buffer.isEmpty()) return CheckedIn;
-	if(buffer.startsWith("?")) return Unmanaged;
-	if(buffer.startsWith("M")) return Modified;
-	if(buffer.startsWith("C")) return InConflict;
-	if(buffer.startsWith("L")) return Locked;
-	return Unknown;
+	if(buffer.isEmpty()) return SVN_CheckedIn;
+	if(buffer.startsWith("?")) return SVN_Unmanaged;
+	if(buffer.startsWith("M")) return SVN_Modified;
+	if(buffer.startsWith("C")) return SVN_InConflict;
+	if(buffer.startsWith("L")) return SVN_Locked;
+	return SVN_Unknown;
 }
 
 void Texmaker::changeToRevision(QString rev,QString old_rev){
@@ -8541,7 +8544,7 @@ bool Texmaker::checkSVNConflicted(bool substituteContents){
 	QFileInfo qf(fn+".mine");
 	if(qf.exists()){
 		SVNSTATUS status=svnStatus(fn);
-		if(status==InConflict){
+		if(status==SVN_InConflict){
 			int ret = QMessageBox::warning(this,
 																		 tr("SVN Conflict!"),
 																		 tr(
