@@ -402,7 +402,7 @@ QString W32_FileAssociation(QString ext) {
 		DWORD buflen=1023;
 		if (assoc(0, ASSOCSTR_COMMAND, ba.data(), "open", &buf[0], &buflen)==S_OK) {
 			buf[buflen]=0;
-			result=QString::fromAscii(buf);
+			result=QString::fromLatin1(buf);
 			result.replace("%1","?am"+ext);
 			//QMessageBox::information(0,result,result,0);
 		};

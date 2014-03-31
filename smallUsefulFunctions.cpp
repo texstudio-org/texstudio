@@ -1367,7 +1367,7 @@ int LatexParser::lineEnd(const QByteArray& data, int index) {
 //search for first \usepackage[.*]{<packageName>} outside of a comment
 // returns the string inside the square brackets
 QString LatexParser::getEncodingFromPackage(const QByteArray& data, int headerSize, const QString &packageName) {
-	QByteArray packageEndToken(QString("]{%1}").arg(packageName).toAscii());
+	QByteArray packageEndToken(QString("]{%1}").arg(packageName).toLatin1());
 	QByteArray packageStartToken("\\usepackage[");
 	int index = data.indexOf(packageEndToken);
 	while (index >= 0 && index < headerSize) {

@@ -1,7 +1,16 @@
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
-CONFIG += qt precompile_header uitools
+greaterThan(QT_MAJOR_VERSION, 4) {
+    message(Building with Qt5)
+    CONFIG += qt
+    !win32: CONFIG += precompile_header # precompiling does not work with Qt5 and mingw
+    win32: CONFIG -= precompile_header
+} else {
+    message(Building with Qt4)
+    CONFIG += qt precompile_header uitools
+}
+
 # allow loading extra config by file for automatic compilations (OBS)
 exists(texstudio.pri):include(texstudio.pri)
 QT += network \
@@ -27,7 +36,7 @@ contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
-PRECOMPILED_HEADER = mostQtHeaders.h
+precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
@@ -489,10 +498,13 @@ debug{
         tests/tablemanipulation_t.h \
         tests/structureview_t.h \
         tests/syntaxcheck_t.h
-# win32:LIBS += -lQtTest4
-win32:LIBS += -lQtTestd4
-#unix:!macx:LIBS += -lQtTest
-macx:LIBS += -framework QtTest
+    !greaterThan(QT_MAJOR_VERSION, 4) {
+        win32:LIBS += -lQtTest4
+    } else {
+        win32:LIBS += -lQt5Test
+    }
+    #unix:!macx:LIBS += -lQtTest
+    macx:LIBS += -framework QtTest
 }
 macx:LIBS += -framework CoreFoundation
 
@@ -520,9 +532,9 @@ isEmpty(NO_POPPLER_PREVIEW) {
             -lz
     }
     win32 {
-	INCLUDEPATH  += ./include_win32
-	LIBS += ./zlib1.dll \
-	    ./libpoppler-qt4.dll \
+       INCLUDEPATH  += ./include_win32
+       LIBS += ./zlib1.dll \
+           ./libpoppler-qt4.dll \
     }
   }else:{ # Qt5
     unix:!macx {
@@ -541,9 +553,9 @@ isEmpty(NO_POPPLER_PREVIEW) {
             -lz
     }
     win32 {
-	INCLUDEPATH  += ./include_win32
-	LIBS += ./zlib1.dll \
-	    ./libpoppler-qt5.dll \
+        INCLUDEPATH  += ./include_win32_qt5
+        LIBS += ./zlib1.dll \
+                ./libpoppler-qt5.dll
     }
   }
 }

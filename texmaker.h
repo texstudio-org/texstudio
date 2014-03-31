@@ -54,12 +54,12 @@ typedef QHash<QString,int> SymbolList;
 typedef QSet<QString> StringSet;
 
 enum SVNSTATUS {
-	Unknown=0,
-	Unmanaged,
-	Modified,
-	Locked,
-	CheckedIn,
-	InConflict
+	SVN_Unknown=0,
+	SVN_Unmanaged,
+	SVN_Modified,
+	SVN_Locked,
+	SVN_CheckedIn,
+	SVN_InConflict
 };
 
 class UserMenuDialog;

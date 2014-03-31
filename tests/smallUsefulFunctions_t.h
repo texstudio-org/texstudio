@@ -362,7 +362,7 @@ private slots:
 		QFETCH(QString, text);
 		QFETCH(int, pos);
 		QFETCH(int, start);
-		QEQUAL(LatexParser::lineStart(text.toAscii(), pos), start);
+		QEQUAL(LatexParser::lineStart(text.toLatin1(), pos), start);
 	}
 	void test_lineEnd_data(){
 		QTest::addColumn<QString>("text");
@@ -381,7 +381,7 @@ private slots:
 		QFETCH(QString, text);
 		QFETCH(int, pos);
 		QFETCH(int, end);
-		QEQUAL(LatexParser::lineEnd(text.toAscii(), pos), end);
+		QEQUAL(LatexParser::lineEnd(text.toLatin1(), pos), end);
 	}
 	void test_getEncodingFromPackage_data() {
 		QTest::addColumn<QString>("text");
@@ -399,7 +399,7 @@ private slots:
 	void test_getEncodingFromPackage() {
 		QFETCH(QString, text);
 		QFETCH(QString, encodingName);
-		QEQUAL(encodingName, LatexParser::getEncodingFromPackage(text.toAscii(), text.length(), "inputenc"));
+		QEQUAL(encodingName, LatexParser::getEncodingFromPackage(text.toLatin1(), text.length(), "inputenc"));
 	}
 	void test_guessEncoding_data() {
 		QTest::addColumn<QString>("text");
@@ -415,7 +415,7 @@ private slots:
 
 		QTextCodec *encoding = 0;
 		int sure = 0;
-		LatexParser::guessEncoding(text.toAscii(), encoding, sure);
+		LatexParser::guessEncoding(text.toLatin1(), encoding, sure);
 		if (encodingName.isEmpty()) {
 			QEQUAL(0, int(encoding));
 		} else {
