@@ -316,6 +316,13 @@ QScriptValue include(QScriptContext *context, QScriptEngine *engine){
 	}
 	if (macro.startsWith("%SCRIPT")) macro.remove(0, strlen("%SCRIPT"));
 	if (macro.isEmpty()) return engine->undefinedValue();
+
+	QScriptContext *currentContext = engine->currentContext();
+	QScriptContext *parentContext = currentContext->parentContext();
+	if (parentContext != 0) {
+		currentContext->setActivationObject(parentContext->activationObject());
+		currentContext->setThisObject(parentContext->thisObject());
+	}
 	return engine->evaluate(macro);
 }
 
