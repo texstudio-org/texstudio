@@ -43,6 +43,7 @@ public:
 
 	bool overwriteOpeningBracketFollowedByPlaceholder;
 	bool overwriteClosingBracketFollowingPlaceholder;
+	int contextMenuKeyboardModifiers;  // actually this is a Qt::KeyboardModifiers flag (but we don't want to import the whole qt namespace here)
 
 
 	void settingsChanged();
