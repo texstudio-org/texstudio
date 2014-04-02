@@ -390,6 +390,10 @@ QString BuildManager::findFileInPath(QString fileName) {
 #ifdef Q_OS_WIN32
 typedef BOOL (* AssocQueryStringAFunc)(DWORD, DWORD, const char*, const char*, char*, DWORD*);
 QString W32_FileAssociation(QString ext) {
+#if QT_VERSION >= 0x050000
+	// TODO: the external function call assoc() crashes under Qt5
+	return "";
+#else
 	if (ext=="") return "";
 	if (ext[0]!=QChar('.')) ext='.'+ext;
 	QString result="";
@@ -409,6 +413,7 @@ QString W32_FileAssociation(QString ext) {
 	}
 	FreeLibrary(mod);
 	return result;
+#endif
 }
 QString addPathDelimeter(const QString& a){
 	return ((a.endsWith("/") || a.endsWith("\\"))?a:(a+"\\"));
