@@ -142,6 +142,7 @@ LatexReference::LatexReference(QObject *parent) : QObject(parent) {}
 
 void LatexReference::setFile(QString filename) {
 	m_filename = filename;
+	if (filename.isEmpty()) return;
 
 	QFile f(filename);
 	if (!f.open(QFile::ReadOnly | QFile::Text)) return;
