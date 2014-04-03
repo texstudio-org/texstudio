@@ -417,7 +417,8 @@ private slots:
 		int sure = 0;
 		LatexParser::guessEncoding(text.toLatin1(), encoding, sure);
 		if (encodingName.isEmpty()) {
-			QEQUAL(0, int(encoding));
+            int b = (encoding==0) ? 0 : 1 ;
+            QEQUAL(0, b);
 		} else {
 			QEQUAL(encodingName, QString(encoding->name()));
 		}
