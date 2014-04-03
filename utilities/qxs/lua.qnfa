@@ -1,0 +1,46 @@
+<!DOCTYPE QNFA>
+<QNFA language="Lua" extensions="lua" defaultLineMark="">
+
+<!-- not needed, as long as this is only used for inclusion in tex.qnfa
+     If we want to have standalone lua files, check if this interferes with 
+	 paranthesis in tex.qnfa and adjust the weight.
+	<sequence parenthesis="round:open" parenthesisWeight="00">\(</sequence>
+	<sequence parenthesis="round:close" parenthesisWeight="00">\)</sequence>
+	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
+	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
+-->
+	
+	<context id="lua/comment" format="lua:comment" stayOnLine="true" >
+		<start>--</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+
+	<!-- ========================= Lua keywords ====================== -->
+
+	<list id="lua/keyword" format="lua:keyword">
+		<word>and</word>
+		<word>break</word>
+		<word>do</word>
+		<word>else</word>
+		<word>elseif</word>
+		<word>end</word>
+		<word>false</word>
+		<word>for</word>
+		<word>function</word>
+		<word>if</word>
+		<word>in</word>
+		<word>local</word>
+		<word>nil</word>
+		<word>not</word>
+		<word>or</word>
+		<word>repeat</word>
+		<word>return</word>
+		<word>then</word>
+		<word>true</word>
+		<word>while</word>
+	</list>
+	
+	
+</QNFA>
+
+
