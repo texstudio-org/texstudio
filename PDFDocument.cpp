@@ -3519,8 +3519,10 @@ void PDFDocument::dropEvent(QDropEvent *event)
 
 void PDFDocument::enterEvent(QEvent *event)
 {
-	Q_UNUSED(event)
-	if (embeddedMode && globalConfig->autoHideToolbars) {
+	if (event->type() == QEvent::Enter
+			&& embeddedMode
+			&& globalConfig->autoHideToolbars
+			&& !toolBar->isVisible()) {
 		QPoint widgetPos = scrollArea->mapToGlobal(QPoint(0, 0));
 		setToolbarsVisible(true);
 		QPoint posChange = scrollArea->mapToGlobal(QPoint(0, 0)) - widgetPos;
@@ -3530,8 +3532,10 @@ void PDFDocument::enterEvent(QEvent *event)
 
 void PDFDocument::leaveEvent(QEvent *event)
 {
-	Q_UNUSED(event)
-	if (embeddedMode && globalConfig->autoHideToolbars) {
+	if (event->type() == QEvent::Leave
+			&& embeddedMode
+			&& globalConfig->autoHideToolbars
+			&& toolBar->isVisible()) {
 		setToolbarsVisible(false);
 		// workaround: the method of checking the change in globalPos of the scrollArea (as in enterEvent)
 		// does not work here (positions are not yet updated after hiding the toolbars)
