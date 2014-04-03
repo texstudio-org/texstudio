@@ -875,7 +875,8 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	//editor
 #ifdef Q_OS_WIN32
 	if (editorConfig->fontFamily.isEmpty()){
-		if (xf.contains("Courier New",Qt::CaseInsensitive)) editorConfig->fontFamily="Courier New";
+		if (xf.contains("Consolas",Qt::CaseInsensitive)) editorConfig->fontFamily="Consolas";
+		else if (xf.contains("Courier New",Qt::CaseInsensitive)) editorConfig->fontFamily="Courier New";
 		else editorConfig->fontFamily=qApp->font().family();
 	}
 	if (editorConfig->fontSize==-1)
