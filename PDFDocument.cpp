@@ -2053,6 +2053,7 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		resize(w,h); //important to first resize then move
 		move(x,y);
 		if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
+		setToolbarsVisible(true);
 	}
 
 	if (embeddedMode && globalConfig->autoHideToolbars) {
@@ -2230,7 +2231,7 @@ void PDFDocument::init(bool embedded)
 	actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
 	actionNew->setIcon(getRealIcon("filenew"));
 	actionFileOpen->setIcon(getRealIcon("fileopen"));
-	actionClose->setIcon(getRealIcon("fileclose"));
+	actionClose->setIcon(getRealIcon("close"));
 	action_Print->setIcon(getRealIcon("fileprint"));
 #ifdef Q_OS_WIN32
 	//action_Print->setVisible(false);
@@ -2291,6 +2292,7 @@ void PDFDocument::init(bool embedded)
 		//comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(zoomFromAction()),"100%");
 		//toolBar->insertWidget(actionZoom_In, comboZoom);
 	}else{
+		toolBar->setIconSize(QSize(16,16));
 		QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 		toolBar->insertWidget(actionClose, spacer);
