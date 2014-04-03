@@ -1684,17 +1684,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			}
 			if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
 				if (lr.word.contains('#')) continue;  // don't highlight cite in definitions e.g. in \newcommand*{\MyCite}[1]{see~\cite{#1}}
-					QStringList citations=lr.word.split(",");
-					int pos=lr.wordStartIndex;
-					foreach ( const QString &cit, citations) {
-						QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
-						//check and highlight
-                        if(document->bibIdValid(rcit))
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
-						else
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
-						pos+=cit.length()+1;
-					}
+				QStringList citations=lr.word.split(",");
+				int pos=lr.wordStartIndex;
+				foreach ( const QString &cit, citations) {
+					QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
+					//check and highlight
+					if(document->bibIdValid(rcit))
+						line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
+					else
+						line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
+					pos+=cit.length()+1;
+				}
 				addedOverlayCitation = true;
 			}
 			if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
