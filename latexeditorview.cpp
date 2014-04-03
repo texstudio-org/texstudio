@@ -1661,6 +1661,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
 				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 				QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
+				if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
 				int cnt=document->countLabels(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
@@ -1682,6 +1683,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				addedOverlayReference = true;
 			}
 			if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
+				if (lr.word.contains('#')) continue;  // don't highlight cite in definitions e.g. in \newcommand*{\MyCite}[1]{see~\cite{#1}}
 					QStringList citations=lr.word.split(",");
 					int pos=lr.wordStartIndex;
 					foreach ( const QString &cit, citations) {
