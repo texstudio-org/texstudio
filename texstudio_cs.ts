@@ -85,7 +85,7 @@
     </message>
     <message>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio používá To Title Case (licence MIT, autorské právo (c) 2013 David Gouch).</translation>
     </message>
 </context>
 <context>
@@ -553,7 +553,7 @@
     </message>
     <message>
         <source>Stop Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit překlad</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@
     </message>
     <message>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro vaše vlastní bezpečí nebudou při úklidu smazány soubory s následujícími příponami:</translation>
     </message>
 </context>
 <context>
@@ -2449,117 +2449,119 @@ vidět jen nejběžnější nastavení.</translation>
     </message>
     <message>
         <source>Spelling Dictionary Directories:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresáře pro pravopisné slovníky:</translation>
     </message>
     <message>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeden nebo více adresářů, v nichž se budou hledat slovníky. Více cest lze oddělit středníkem. Můžete použít zvláštní klíčová slova [txs-settings-dir] a [txs-app-dir],která jsou rozhodnuta podle příslušejících adresářů.</translation>
     </message>
     <message>
         <source>Import Dictionary...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavést slovník...</translation>
     </message>
     <message>
         <source>PDF File</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor PDF</translation>
     </message>
     <message>
         <source>Automatic Encoding Detection:</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatické určení kódování:</translation>
     </message>
     <message>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyzovat LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
     </message>
     <message>
         <source>Analyze Characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyzovat znaky</translation>
     </message>
     <message>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat značky zápisů při klepnutí na položku záznamu</translation>
     </message>
     <message>
         <source>Structure Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Stavební panel</translation>
     </message>
     <message>
         <source>Reference commands in context menu:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkazovat příkazy v související nabídce:</translation>
     </message>
     <message>
         <source>Additional Search Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatečné cesty k prohledání</translation>
     </message>
     <message>
         <source>Bib Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory Bib:</translation>
     </message>
     <message>
         <source>Image Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázkové soubory:</translation>
     </message>
     <message>
         <source>Show Placeholders</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat zástupné znaky</translation>
     </message>
     <message>
         <source>Highlight Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýraznit dobu trvání</translation>
     </message>
     <message>
         <source>Infinite</source>
-        <translation type="unfinished"></translation>
+        <translation>Nekonečná</translation>
     </message>
     <message>
         <source> dpi</source>
-        <translation type="unfinished"></translation>
+        <translation> dpi</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation> px</translation>
     </message>
     <message>
         <source>Highlight Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvýraznit barvu</translation>
     </message>
     <message>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Stanovit jako šestnáctkovou hodnotu RGBA. Je vyžadována průhlednost, protože zvýraznění se kvůli technickým omezením kreslí nahoře textu.</translation>
     </message>
     <message>
         <source>\#HHHHHHHH;_</source>
-        <translation type="unfinished"></translation>
+        <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
         <source>Download additional dictionaries from %1 or %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhnout dodatečné slovníky z %1 nebo %2</translation>
     </message>
     <message>
         <source>Search Path .bib Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohledávaná cesta pro soubory .bib</translation>
     </message>
     <message>
         <source>Search Path for Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Prohledávaná cesta pro obrázky</translation>
     </message>
     <message>
         <source>Images</source>
-        <translation type="unfinished">Obrázky</translation>
+        <translation>Obrázky</translation>
     </message>
     <message>
         <source>Import Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavést slovník</translation>
     </message>
     <message>
         <source>OpenOffice Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Slovník OpenOffice</translation>
     </message>
     <message>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory se slovníky byly zavedeny do
+%1.
+Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?</translation>
     </message>
 </context>
 <context>
@@ -3683,7 +3685,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Images</source>
-        <translation type="unfinished">Obrázky</translation>
+        <translation>Obrázky</translation>
     </message>
 </context>
 <context>
@@ -3937,7 +3939,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Open Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít dokument</translation>
     </message>
 </context>
 <context>
@@ -4023,7 +4025,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor se zápisem je příliš rozsáhlý (%1 MB). Jste si jistý, že jej chcete nahrát?</translation>
     </message>
 </context>
 <context>
@@ -4885,24 +4887,25 @@ Buď je soubor poškozen, nebo se právě vytváří. Můžete to zkusit ještě
     </message>
     <message>
         <source>Focus Editor</source>
-        <translation type="unfinished">Zaměřit editor</translation>
+        <translation>Zaměřit editor</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+šipka vlevo</translation>
     </message>
     <message>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>Opakovat</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Zavřít</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě vytváří. Opakování každé dvě sekundy.</translation>
     </message>
 </context>
 <context>
@@ -6090,7 +6093,7 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     </message>
     <message>
         <source>dtx:commands</source>
-        <translation type="unfinished"></translation>
+        <translation>dtx:příkazy</translation>
     </message>
 </context>
 <context>
@@ -9302,51 +9305,51 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>LilyPond files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory LilyPond</translation>
     </message>
     <message>
         <source>Fifi&amp;x</source>
-        <translation type="unfinished"></translation>
+        <translation>Fifi&amp;x</translation>
     </message>
     <message>
         <source>Save renamed/&amp;moved file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit přejmenovaný/&amp;přesunutý soubor...</translation>
     </message>
     <message>
         <source>Save copied file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit zkopírovaný soubor...</translation>
     </message>
     <message>
         <source>&amp;Delete file</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Smazat soubor</translation>
     </message>
     <message>
         <source>Set &amp;permissions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavit &amp;oprávnění...</translation>
     </message>
     <message>
         <source>&amp;Revert to saved...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vrátit na uložený...</translation>
     </message>
     <message>
         <source>Copy filename to &amp;clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat název souboru do s&amp;chránky</translation>
     </message>
     <message>
         <source>Copy master filename to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovat hlavní název souboru do schránky</translation>
     </message>
     <message>
         <source>&amp;Text Operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Operace s &amp;textem</translation>
     </message>
     <message>
         <source>To Lowercase</source>
-        <translation type="unfinished"></translation>
+        <translation>Na malá písmena</translation>
     </message>
     <message>
         <source>To Uppercase</source>
-        <translation type="unfinished"></translation>
+        <translation>Na velká písmena</translation>
     </message>
     <message>
         <source>To Titlecase</source>
@@ -9354,44 +9357,44 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>Pre&amp;view Selection/Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Náhled výběru/závorek</translation>
     </message>
     <message>
         <source>Stop Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastavit překlad</translation>
     </message>
     <message>
         <source>Show Log Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat značky zápisů</translation>
     </message>
     <message>
         <source>Rename/Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Přejmenovat/Přesunout</translation>
     </message>
     <message>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete smazat soubor &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Opravdu chcete vrátit soubor &quot;%1&quot;?</translation>
     </message>
     <message>
         <source>Numeric permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Oprávnění pro čísla</translation>
     </message>
     <message>
         <source>Verbose permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Podrobná oprávnění</translation>
     </message>
     <message>
         <source>The following files could not be loaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Následující soubory se nepodařilo nahrát:</translation>
     </message>
     <message>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vložit %1 ke štítku</translation>
     </message>
 </context>
 <context>
