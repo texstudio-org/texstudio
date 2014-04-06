@@ -2188,6 +2188,15 @@ void PDFDocument::setupMenus(){
     menuEdit_2->setTitle(QApplication::translate("PDFDocument", "&Edit"));
 }
 
+// the shortcuts will only be triggered if this widget has focus (used in embedded mode)
+void PDFDocument::shortcutOnlyIfFocused(const QList<QAction *> &actions)
+{
+	foreach (QAction *act, actions) {
+		act->setParent(this);
+		act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+	}
+}
+
 void PDFDocument::init(bool embedded)
 {
 	ConfigManagerInterface *conf = ConfigManagerInterface::getInstance();
@@ -2215,13 +2224,12 @@ void PDFDocument::init(bool embedded)
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
-	if (!embedded) {
-		connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
-		connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));
-		// in embedded mode this would lead to an ambigous shortcut overload with forward/back actions of the cursor history
-		// TODO: it might be possible to allow these shortcuts even in embedded mode if use proper shortcut contexts
-		connect((new QShortcut(Qt::ALT | Qt::Key_Left, this)), SIGNAL(activated()), actionBack, SLOT(trigger()));
-		connect((new QShortcut(Qt::ALT | Qt::Key_Right, this)), SIGNAL(activated()), actionForward, SLOT(trigger()));
+
+	if (embedded) {
+		shortcutOnlyIfFocused(QList<QAction *>()
+							  << actionNext_Page
+							  << actionPrevious_Page
+						);
 	}
 	actionZoom_In->setIcon(getRealIcon("zoom-in"));
 	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
@@ -2286,12 +2294,7 @@ void PDFDocument::init(bool embedded)
 
 	comboZoom=0;
 
-	if(!embedded){
-		//QStringList lst;
-		//lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
-		//comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(zoomFromAction()),"100%");
-		//toolBar->insertWidget(actionZoom_In, comboZoom);
-	}else{
+	if(embedded){
 		toolBar->setIconSize(QSize(16,16));
 		QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
@@ -2562,38 +2565,44 @@ void PDFDocument::init(bool embedded)
 	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
 
 	//disable all action shortcuts when embedded
-	if(embedded){
-		actionGo_to_Page->setShortcut(QKeySequence());
-		actionZoom_In->setShortcut(QKeySequence());
-		actionZoom_Out->setShortcut(QKeySequence());
-		actionFit_to_Window->setShortcut(QKeySequence());
-		actionActual_Size->setShortcut(QKeySequence());
-		actionFit_to_Width->setShortcut(QKeySequence());
-		actionFit_to_Text_Width->setShortcut(QKeySequence());
+	if(embedded) {
+		shortcutOnlyIfFocused(QList<QAction *>()
+							  << actionNext_Page
+							  << actionPrevious_Page
+							  << actionLast_Page
+							  << actionFirst_Page
+							  << actionForward
+							  << actionBack
+							  << actionGo_to_Page
+							  << actionZoom_In
+							  << actionZoom_Out
+							  << actionFit_to_Window
+							  << actionActual_Size
+							  << actionFit_to_Width
+							  << actionFit_to_Text_Width
+							  << actionClose
+							  << actionUndo
+							  << actionRedo
+							  << actionCut
+							  << actionCopy
+							  << actionPaste
+							  << actionClear
+							  << actionGo_to_Source
+							  << actionFind
+							  << actionFind_Again
+							  << actionFind_2
+							  << actionFind_again
+							  << action_Print
+						);
 		actionNew->setShortcut(QKeySequence());
 		actionOpen->setShortcut(QKeySequence());
-		actionClose->setShortcut(QKeySequence());
-		actionUndo->setShortcut(QKeySequence());
-		actionRedo->setShortcut(QKeySequence());
-		actionCut->setShortcut(QKeySequence());
-		actionCopy->setShortcut(QKeySequence());
-		actionPaste->setShortcut(QKeySequence());
-		actionClear->setShortcut(QKeySequence());
 		actionTypeset->setShortcut(QKeySequence());
-		actionGo_to_Source->setShortcut(QKeySequence());
 		actionNew_from_Template->setShortcut(QKeySequence());
 		actionFull_Screen->setShortcut(QKeySequence());
 		actionQuit_TeXworks->setShortcut(QKeySequence());
-		actionFind->setShortcut(QKeySequence());
-		actionFind_Again->setShortcut(QKeySequence());
 		actionCloseSomething->setShortcut(QKeySequence());
-		actionFind_2->setShortcut(QKeySequence());
-		actionFind_again->setShortcut(QKeySequence());
 		actionPresentation->setShortcut(QKeySequence());
-		action_Print->setShortcut(QKeySequence());
 		actionFileOpen->setShortcut(QKeySequence());
-		actionLast_Page->setShortcut(QKeySequence());
-		actionFirst_Page->setShortcut(QKeySequence());
 	}
 }
 

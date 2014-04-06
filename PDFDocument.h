@@ -387,6 +387,7 @@ protected:
 	virtual void enterEvent(QEvent *event);
 	virtual void leaveEvent(QEvent *event);
 	void setToolbarsVisible(bool visible);
+	void shortcutOnlyIfFocused(const QList<QAction *> &actions);
 
 public slots:
 	void reload(bool fillCache=true);
