@@ -89,7 +89,7 @@
     <string>&amp;Previous Page</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+PgUp</string>
+    <string notr="true">PgUp</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -100,7 +100,7 @@
     <string>&amp;Next Page</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+PgDown</string>
+    <string notr="true">PgDown</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -709,6 +709,9 @@
    <property name="toolTip">
     <string>Previously shown page</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+Left</string>
+   </property>
   </action>
   <action name="actionForward">
    <property name="text">
@@ -716,6 +719,9 @@
    </property>
    <property name="toolTip">
     <string>Next shown page</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Right</string>
    </property>
   </action>
   <action name="actionToggleEmbedded">
