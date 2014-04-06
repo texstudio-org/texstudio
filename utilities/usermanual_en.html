@@ -1564,19 +1564,33 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 </li>
 </ul>
 <h2 id="CWLDESCRIPTION">4.13 Description of the cwl format</h2>
-<p>
-cwl files are used by the completer to propose possible commands and by the syntax checker to check if a command you wrote actually exists. Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
-<p><code>&lt;command&gt;[#classification]</code><br></p>
-<p>If no classification is given, the command is considered valid at any position in a latex document. The char <code>#</code> cannot be used inside a <code>command</code>, as it has special meaning:</p>
+<p>cwl stands for completion word list and is a file format originally used in Kile to define the commands listed in the completer. TeXstudio uses an extended format of cwls to include additional semantic information and allow for cursor and placeholder placement. It uses them for the following purposes:</p>
 <ul>
-  <li># (at start of line):comment</li>
-  <li># (later):separator for command classifications</li>
+<li>Populating the autocompletion</li>
+<li>Knowledge on the valid commands in the current document (depending on \usepackage statements)</li>
+<li>Semantic information that provide additional context in the editor; e.g. a \ref-like command will check for the existence of the referenced label</li>
 </ul>
-<h3>4.13.1 Command format</h3>
-<p>The command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. New lines can be included in a command by <code>%n</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>).
-Texstudio uses the key-name as hint whether a text is expected as first command-option. If the key-name is "text" or "title", the syntax inside the option is checked, otherwise it is ignored. This works only for the first command element.
+<h3>4.13.1 cwl file format</h3>
+<p>
+Each line of a cwl file defines a command. Comment lines are possible and start with <code>#</code>. The command syntax is</p>
+<p><code>&lt;command&gt;[#classification]</code><br></p>
+<p>If no classification is given, the command is considered valid at any position in a LaTeX document. The char <code>#</code> cannot be used inside a <code>command</code>, as it has special meaning:</p>
+<ul>
+  <li><code>#include:&lt;packagename&gt;</code> (at start of line): also load packagename.cwl. This should be used to indicate that a package depends on other packages.</li>
+  <li><code>#</code> (at start of line with the exception of <code>#include</code>): This line is a comment and will be ignored.</li>
+  <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
+</ul>
+<h3>4.13.2 Command format</h3>
+<p>In its simplest form the command is just a valid LaTeX expression as you find it in the documentation, e.g. <code>\section{title}</code>. By default, every option is treated as a placeholder. Alteratively, you may either just define a stop position for the cursor by <code>%|</code> (Example: <code>\left(%|\right)</code>) or use <code>%< %></code> to mark only part of an option as placeholder (Example: <code>\includegraphics[scale=%<1%>]{file}</code>). New lines can be included in a command by <code>%n</code>.</p>
+<h4>Argument Names</h4>
+<p>The argument names are visible in the completer window and after completion as placeholders in the editor. In general, you are free to name the arguments as you like. We encurage to provide meaningful names e.g. <code>\parbox[position]{width}{text}</code> instead of <code>\parbox[arg1]{arg2}{arg3}</code>.</p>
+<p>There are a few argument names that have special meaning:</p>
+<ul>
+  <li><code>text</code> and <code>title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). This currently works only for the first command element.</li>
+  <li><code>bibid</code>: If used in a command classified as "C". See the classifier description below.</li>
+</ul>
 </p>
-<h3>4.13.2 Classification format</h3>
+<h3>4.13.3 Classification format</h3>
 <p>The follwing classifications are known to TXS:</p>
 <table>
 <tr><th>Classifier</th><th>Meaning</th></tr>
@@ -1599,6 +1613,7 @@ Texstudio uses the key-name as hint whether a text is expected as first command-
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
 </table>
+<p>The classifiers specifying the meaning of arguments (like c or i) always apply to the first non-optional parameter. This is a current limitation of the cwl format and the LaTeX parser in TXS. For example <code>\ref{label}#r</code> and <code>\ref[option]{label}#r</code> will work as expected, but <code>\ref{arg}{label}#r</code> will interpret <code>arg</code> as reference. We recommend not to specify any class in such a case.</p>
 <p>Examples:<br></p>
 <table>
 	<tr><th>Line</th><th>Explanation</th></tr>
@@ -1609,6 +1624,15 @@ Texstudio uses the key-name as hint whether a text is expected as first command-
 	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is valid only in the picture environment</td></tr>
 	<tr><td><code>\begin{align}#\math</code></td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td></tr>
 </table>
+<h3>4.13.4 cwl guidelines</h3>
+<p>Though TeXstudio can automatically create cwls from packages, these autogenerated cwls do not contain meaningful argument names and no classification of commands. Therefore we ship hand-tuned cwls for many packages. We encourage users  to contribute new cwl files. These should have the following attributes:</p>
+<ul>
+  <li><b>package-based:</b> Each cwl should correspond to a package. The exception are some cwls containing fundamental (La)TeX commmands, but we've already written them so you should not have to bother. The cwl should be named like the package so that automatic loading works. If you <code>\usepackage{mypackage}</code> TeXstudio will load mypackage.cwl if available.</li>
+  <li><b>complete:</b> The cwl should contain all commands in the package. If you use a non-specified command in the editor, the syntaxchecker will mark it as unkown.</li>
+  <li><b>specific:</b> The commands should be classified if possible. This allows TeXstudio to give additional context to the command (e.g. warn if a math command is used outside of a math environment or check references and citations.</li>
+  <li><b>priorized:</b> Some packages may specify very many commands. Mark the unusual ones by the *-classifier to prevent the completer from overcrowding with rarely used commands.</li>
+</ul>
+
 <h2 id="TABLETEMPLATE">4.14 Using table templates</h2>
 <p>Texstudio offers the possibility to reformat an existing latex table after a table template.<br>
 For example, you have entered following table into txs:
