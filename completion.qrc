@@ -111,6 +111,7 @@
 <file>completion/pgfcore.cwl</file>
 <file>completion/pgf.cwl</file>
 <file>completion/pgfplots.cwl</file>
+<file>completion/physics.cwl</file>
 <file>completion/pifont.cwl</file>
 <file>completion/psfrag.cwl</file>
 <file>completion/pst-3d.cwl</file>
