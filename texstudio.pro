@@ -499,9 +499,9 @@ debug{
         tests/structureview_t.h \
         tests/syntaxcheck_t.h
     !greaterThan(QT_MAJOR_VERSION, 4) {
-        win32:LIBS += -lQtTest4
+        win32:LIBS += -lQtTestd4
     } else {
-        win32:LIBS += -lQt5Test
+        win32:LIBS += -lQt5Testd
     }
     #unix:!macx:LIBS += -lQtTest
     macx:LIBS += -framework QtTest
