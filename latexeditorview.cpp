@@ -1641,7 +1641,13 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				//line.addOverlay(QFormatRange(lr.wordStartIndex,secName.length(),structureFormat));
 				QStringList result;
 				QList<int> starts;
-				LatexParser::resolveCommandOptions(lineText,lr.wordStartIndex-1,result,&starts);
+
+				int optStart = lr.wordStartIndex-1;
+				QString stopChars = "{["; // find start of option (wordStartIndex is already inside)
+				for (; optStart > 0; optStart--) {
+					if (stopChars.contains(lineText.at(optStart))) break;
+				}
+				LatexParser::resolveCommandOptions(lineText,optStart,result,&starts);
 				for(int j=0;j<starts.count() && j<2;j++){
 					QString text=result.at(j);
 					line.addOverlay(QFormatRange(starts.at(j)+1,text.length()-2,structureFormat));

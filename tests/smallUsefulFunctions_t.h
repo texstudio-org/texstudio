@@ -345,6 +345,33 @@ private slots:
 		QEQUAL(cmd,command);
 		QEQUAL(val,value);
 	}
+	void test_resolveCommandOptions_data(){
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<int>("column");
+		QTest::addColumn<QStringList>("expectedValues");
+		QTest::addColumn<QList<int> >("expectedStarts");
+
+		QTest::newRow("noOption") << "\\begin nothing" << 0 << (QStringList()) << (QList<int>());
+		QTest::newRow("singleOption") << "\\begin{test}" << 0 << (QStringList() << "{test}") << (QList<int>() << 6);
+		QTest::newRow("singleOptionSpace") << "\\begin {test}" << 0 << (QStringList() << "{test}") << (QList<int>() << 7);
+		QTest::newRow("multiOption") << "\\begin{test 1}{test 2}" << 0 << (QStringList() << "{test 1}" << "{test 2}") << (QList<int>() << 6 << 14);
+		QTest::newRow("multiOption2") << "\\begin[test 1]{test 2}" << 0 << (QStringList() << "[test 1]" << "{test 2}") << (QList<int>() << 6 << 14);
+		QTest::newRow("multiOption3") << "\\begin{test 1}[test 2]{test 3}" << 0 << (QStringList() << "{test 1}" << "[test 2]" << "{test 3}") << (QList<int>() << 6 << 14 << 22);
+		QTest::newRow("cmdStart") << "\\section{\\LaTeX rules}" << 0 << (QStringList() << "{\\LaTeX rules}") << (QList<int>() << 8);
+		QTest::newRow("cmdMid") << "\\section{a \\textit{nested} command}" << 0 << (QStringList() << "{a \\textit{nested} command}") << (QList<int>() << 8);
+	}
+	void test_resolveCommandOptions(){
+		QFETCH(QString, line);
+		QFETCH(int, column);
+		QFETCH(QStringList, expectedValues);
+		QFETCH(QList<int>, expectedStarts);
+		QStringList values;
+		QList<int> starts;
+		LatexParser::resolveCommandOptions(line, column, values, &starts);
+		QEQUAL(values.length(), starts.length());
+		QEQUAL(values.join("|"), expectedValues.join("|"));
+		QVERIFY(starts == expectedStarts);
+	}
 	void test_lineStart_data(){
 		QTest::addColumn<QString>("text");
 		QTest::addColumn<int>("pos");
