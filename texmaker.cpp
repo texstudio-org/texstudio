@@ -4482,7 +4482,7 @@ void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	
 	QFileInfo docInfo=currentEditorView()->document->getFileInfo();
 	graphicsDlg->setTexFile(docInfo);
-	if (documents.masterDocument) graphicsDlg->setMasterTexFile(documents.masterDocument->getFileInfo());
+	graphicsDlg->setMasterTexFile(currentEditorView()->document->parent->getCompileFileName());
 	if (!graphicsFile.isNull()) graphicsDlg->setGraphicsFile(graphicsFile);
 	
 	if (graphicsDlg->exec()) {
