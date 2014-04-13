@@ -337,32 +337,10 @@ QString InsertGraphics::getCode() const {
 	QString fname=conf.file;
 	QFileInfo info(fname);
 	if(info.isAbsolute()){
-		QString imgpath=info.absolutePath();
 		QFileInfo texFileInfo = masterTexFile.exists() ? masterTexFile : texFile;
-		QString texpath=texFileInfo.absolutePath();
-		if(imgpath.startsWith(texpath) && !texpath.isEmpty()){
-			// make relative with "./"
-			imgpath=imgpath.mid(texpath.length()+((texpath.endsWith('/') || texpath.endsWith(QDir::separator()))?0:1));
-			if(!imgpath.isEmpty())
-				imgpath="./"+imgpath+"/";
-			fname=imgpath+info.completeBaseName();
-		} else {
-			// try make relative with "../"
-			QDir dir = QDir(texFileInfo.absoluteDir());
-			if (dir.cdUp()) {
-				QString path = dir.absolutePath();
-				if(imgpath.startsWith(path)){
-					fname="../";
-					if (imgpath.length()>path.length())
-						fname+=imgpath.mid(path.length()+((path.endsWith('/') || path.endsWith(QDir::separator())) ?0:1))+"/";
-					fname+=info.completeBaseName();
-				}
-			}
-		}
+		fname = getRelativeBaseNameToPath(info.filePath(), texFileInfo.absolutePath());
+		if (fname.startsWith("./")) fname.remove(0, 2);
 	}
-	info.setFile(fname);
-	fname=info.path();
-	if(!fname.isEmpty()) fname+="/"+info.completeBaseName();
 #ifdef Q_OS_WIN
 	//restore native separators if original filename contains native separators
 	if(conf.file.contains(QDir::separator())){
