@@ -126,7 +126,7 @@ public:
 };
 
 ManhattanStyle::ManhattanStyle(const QString &baseStyleName)
-#if QT_VERSION<0x050000
+#if QT_VERSION<0x040600
     : QWindowsStyle(), d(new ManhattanStylePrivate(baseStyleName))
 #else
     : QProxyStyle(), d(new ManhattanStylePrivate(baseStyleName))
