@@ -408,7 +408,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
 	registerOption("Editor/Weak Indent", &editorConfig->weakindent, true);
-	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false);
+	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false, &pseudoDialog->checkBoxReplaceTabByWhitespace);
 	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
 	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
 	registerOption("Editor/Show Cursor State", &editorConfig->showcursorstate, true, &pseudoDialog->checkBoxState);
@@ -1042,7 +1042,6 @@ bool ConfigManager::execConfigDialog() {
 	if (editorConfig->autoindent && editorConfig->weakindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(1);
 	else if (editorConfig->autoindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(2);
 	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
-	if(confDlg->ui.comboBoxAutoIndent->currentIndex()>0 && editorConfig->indentWithSpaces) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(confDlg->ui.comboBoxAutoIndent->currentIndex()+2);
 	
 	//completion
 	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
@@ -1283,7 +1282,6 @@ bool ConfigManager::execConfigDialog() {
 		//editor
 		editorConfig->autoindent=confDlg->ui.comboBoxAutoIndent->currentIndex()!=0;
 		editorConfig->weakindent=(confDlg->ui.comboBoxAutoIndent->currentIndex()&1)==1;
-		editorConfig->indentWithSpaces=confDlg->ui.comboBoxAutoIndent->currentIndex()>2;
 		switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
 		case 0:
 			editorConfig->showlinemultiples=0;
