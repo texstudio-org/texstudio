@@ -407,7 +407,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Cursor Surrounding Lines", &editorConfig->cursorSurroundLines, 5);
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
-	registerOption("Editor/Weak Indent", &editorConfig->weakindent, true);
+	registerOption("Editor/Weak Indent", &editorConfig->weakindent, false);
 	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false, &pseudoDialog->checkBoxReplaceTabByWhitespace);
 	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
 	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
