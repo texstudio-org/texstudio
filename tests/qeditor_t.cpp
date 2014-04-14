@@ -511,129 +511,171 @@ void QEditorTest::activeFolding(){
 
 void QEditorTest::indentation_data(){
 	editor->setFlag(QEditor::AutoIndent,true);
-	//editor->setFlag(QEditor::WeakIndent,false);
 	editor->setFlag(QEditor::ReplaceTabs,false);
 
 	QTest::addColumn<QString>("baseText");
 	QTest::addColumn<bool>("weak");
 	QTest::addColumn<int>("line");
 	QTest::addColumn<int>("col");
+	QTest::addColumn<int>("anchorLine");
+	QTest::addColumn<int>("anchorCol");
 	QTest::addColumn<QString>("insert");
 	QTest::addColumn<QString>("result");
 
 	QTest::newRow("trivial")
 		<< "hello\nworld\n"
-		<< false << 0 << 5
+		<< false << 0 << 5 << -1 << -1
 		<< "{\na\n}"
 		<< "hello{\n\ta\n}\nworld\n";
 
 	QTest::newRow("trivial weak")
 		<< "hello\nworld\n"
-		<< true << 0 << 5
+		<< true << 0 << 5 << -1 << -1
 		<< "{\na\n}"
 		<< "hello{\na\n}\nworld\n";
 
 	QTest::newRow("trivial + \\t indentation")
 		<< "\thello\nworld\n"
-		<< false << 0 << 6
+		<< false << 0 << 6 << -1 << -1
 		<< "{\na\n}"
 		<< "\thello{\n\t\ta\n\t}\nworld\n";
 
 	QTest::newRow("trivial + \\t indentation weak")
 		<< "\thello\nworld\n"
-		<< true << 0 << 6
+		<< true << 0 << 6 << -1 << -1
 		<< "{\na\n}"
 		<< "\thello{\n\ta\n\t}\nworld\n";
 
 	QTest::newRow("trivial + space indentation")
 		<< "   hello\nworld\n"
-		<< false << 0 << 8
+		<< false << 0 << 8 << -1 << -1
 		<< "{\na\n}"
 		<< "   hello{\n   \ta\n   }\nworld\n";
 
 	QTest::newRow("trivial + space indentation weak")
 		<< "   hello\nworld\n"
-		<< true << 0 << 8
+		<< true << 0 << 8 << -1 << -1
 		<< "{\na\n}"
 		<< "   hello{\n   a\n   }\nworld\n";
 
 	QTest::newRow("trivial + \\t indentation")
 		<< "\thello\nworld\n"
-		<< false << 0 << 6
+		<< false << 0 << 6 << -1 << -1
 		<< "{\na\n}"
 		<< "\thello{\n\t\ta\n\t}\nworld\n";
 
 	QTest::newRow("space test")
 		<< "   \nworld\n"
-		<< false << 0 << 2
+		<< false << 0 << 2 << -1 << -1
 		<< "\n"
 		<< "  \n   \nworld\n";
 
 	QTest::newRow("space test + weak")
 		<< "   \nworld\n"
-		<< true << 0 << 2
+		<< true << 0 << 2 << -1 << -1
 		<< "\n"
 		<< "  \n   \nworld\n";
 
 	QTest::newRow("space test + weak")
 		<< "   \nworld\n"
-		<< true << 0 << 2
+		<< true << 0 << 2 << -1 << -1
 		<< "\n"
 		<< "  \n   \nworld\n";
 
 	QTest::newRow("block indentation")
 		<< "   hello\nworld\n"
-		<< true << 0 << 6
+		<< true << 0 << 6 << -1 << -1
 		<< "  x\n y\n  z"
 		<< "   hel  x\n    y\n     zlo\nworld\n";
 
 	QTest::newRow("block indentation")
 		<< "   hello\nworld\n"
-		<< true << 0 << 6
+		<< true << 0 << 6 << -1 << -1
 		<< "  \\begin{abc}\n    abcdef\n  \\end{abc}"
 		<< "   hel  \\begin{abc}\n       abcdef\n     \\end{abc}lo\nworld\n";
 
 	QTest::newRow("block indentation + 3 space")
 		<< "   hello\nworld\n"
-		<< false << 0 << 6
+		<< false << 0 << 6 << -1 << -1
 		<< "  \\begin{abc}\n             abcdef\n  \\end{abc}"
 		<< "   hel  \\begin{abc}\n   \tabcdef\n   \\end{abc}lo\nworld\n";
 
 	QTest::newRow("block indentation + 4 space")
 		<< "    hello\nworld\n"
-		<< false << 0 << 7
+		<< false << 0 << 7 << -1 << -1
 		<< " \\begin{abc}\n             abcdef\n               \\end{abc}"
 		<< "    hel \\begin{abc}\n    \tabcdef\n    \\end{abc}lo\nworld\n";
 
 	QTest::newRow("block indentation + tabs")
 		<< "\thello\nworld\n"
-		<< true << 0 << 4
+		<< true << 0 << 4 << -1 << -1
 		<< "\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}"
 		<< "\thel\t\\begin{abc}\n\t\t\tabcdef\n\t\t\\end{abc}lo\nworld\n";
 
 	QTest::newRow("block indentation + tabs simple")
 		<< "hello\nworld\n"
-		<< true << 0 << 3
+		<< true << 0 << 3 << -1 << -1
 		<< "\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}"
 		<< "hel\t\\begin{abc}\n\t\tabcdef\n\t\\end{abc}lo\nworld\n";
 
 	QTest::newRow("multi unindent with closing brackets after text")
 		<< "hello\nworld\n"
-		<< false << 0 << 5
+		<< false << 0 << 5 << -1 << -1
 		<< "{{\na\nxx}}\nabc"
 		<< "hello{{\n\t\ta\n\t\txx}}\nabc\nworld\n"; //only unindent the next line
 
 	QTest::newRow("multi unindent with closing brackets after text with pre indentation")
 		<< " hello\n world\n"
-		<< false << 0 << 6
+		<< false << 0 << 6 << -1 << -1
 		<< "{{\na\nxx}}\nabc"
 		<< " hello{{\n \t\ta\n \t\txx}}\n abc\n world\n"; 
 
 	QTest::newRow("no immediate unindent with closing bracket after text")
 		<< "\t\thello\n\t\tworld\n"
-		<< false << 0 << 7
+		<< false << 0 << 7 << -1 << -1
 		<< "}}"
 		<< "\t\thello}}\n\t\tworld\n"; //no prapagation yet
+
+	QTest::newRow("selection block self replacement (line start) weak")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< true << 2 << 0 << 1 << 0
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
+	QTest::newRow("selection block self replacement (line start)")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< false << 2 << 0 << 1 << 0
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
+	QTest::newRow("reversed selection block self replacement (line start) weak")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< true << 1 << 0 << 2 << 0
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
+	QTest::newRow("reversed selection block self replacement (line start)")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< false << 1 << 0 << 2 << 0
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
+	QTest::newRow("selection block self replacement (text start) weak")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< true << 2 << 1 << 1 << 1
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
+	QTest::newRow("selection block self replacement (text start)")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< false << 2 << 1 << 1 << 1
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
+	QTest::newRow("reversed selection block self replacement (text start) weak")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< true << 1 << 1 << 2 << 1
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
+	QTest::newRow("reversed selection block self replacement (text start)")
+			<< "\tAA\n\tBB\n\tCC\n"
+			<< false << 1 << 1 << 2 << 1
+			<< "\tBB\n"
+			<< "\tAA\n\tBB\n\tCC\n";
 
 	/*
   this is broken:
@@ -650,13 +692,15 @@ void QEditorTest::indentation(){
 	QFETCH(bool, weak);
 	QFETCH(int, line);
 	QFETCH(int, col);
+	QFETCH(int, anchorLine);
+	QFETCH(int, anchorCol);
 	QFETCH(QString, insert);
 	QFETCH(QString,	result);
 
-	editor->setFlag(QEditor::WeakIndent,weak);
+	editor->setFlag(QEditor::WeakIndent, weak);
 
 	editor->setText(baseText, false);
-	QDocumentCursor c=editor->document()->cursor(line,col);
+	QDocumentCursor c=editor->document()->cursor(line,col,anchorLine,anchorCol);
 	editor->insertText(c, insert);
 	QEQUAL(editor->document()->text(), result);
 }
