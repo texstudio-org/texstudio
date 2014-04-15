@@ -27,6 +27,7 @@
 <file>completion/cancel.cwl</file>
 <file>completion/caption.cwl</file>
 <file>completion/cases.cwl</file>
+<file>completion/chemstyle.cwl</file>
 <file>completion/class-beamer.cwl</file>
 <file>completion/class-book.cwl</file>
 <file>completion/class-letter.cwl</file>
@@ -36,6 +37,7 @@
 <file>completion/cleveref.cwl</file>
 <file>completion/color.cwl</file>
 <file>completion/colortbl.cwl</file>
+<file>completion/commath.cwl</file>
 <file>completion/coordsys.cwl</file>
 <file>completion/csquotes.cwl</file>
 <file>completion/currvita.cwl</file>
@@ -60,6 +62,7 @@
 <file>completion/float.cwl</file>
 <file>completion/fontspec.cwl</file>
 <file>completion/geometry.cwl</file>
+<file>completion/german.cwl</file>
 <file>completion/glossaries.cwl</file>
 <file>completion/glosstex.cwl</file>
 <file>completion/graphicx.cwl</file>
@@ -103,6 +106,7 @@
 <file>completion/multimedia.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>
+<file>completion/ngerman.cwl</file>
 <file>completion/nicefrac.cwl</file>
 <file>completion/nomencl.cwl</file>
 <file>completion/paracol.cwl</file>
@@ -135,6 +139,7 @@
 <file>completion/setspace.cwl</file>
 <file>completion/siunitx.cwl</file>
 <file>completion/siunitx-special.cwl</file>
+<file>completion/subcaption.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigure.cwl</file>
 <file>completion/supertabular.cwl</file>
@@ -162,6 +167,7 @@
 <file>completion/xetex.cwl</file>
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
+<file>completion/xparse.cwl</file>
 <file>completion/xspace.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xy.cwl</file>

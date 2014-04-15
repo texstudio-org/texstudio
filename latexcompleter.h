@@ -85,7 +85,7 @@ private:
 	QEditor *editor;
 
     QSet<QString> *packageList;
-	
+
 	QWidget *widget;
 	QTabBar *tbBelow,*tbAbove;
 	
@@ -108,7 +108,7 @@ private:
 	bibtexReader *bibReader;
 	
 	void showTooltip(QString topic);
-	
+
 private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);
