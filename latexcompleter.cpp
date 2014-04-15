@@ -950,7 +950,7 @@ void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
 LatexReference * LatexCompleter::latexReference = 0;
 LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false),startedFromTriggerKey(false) {
+LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false),startedFromTriggerKey(false){
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -1005,7 +1005,6 @@ LatexCompleter::~LatexCompleter() {
 		bibReader->quit();
 		bibReader->wait();
 	}
-	//delete list;
 }
 
 void LatexCompleter::changeView(int pos){
