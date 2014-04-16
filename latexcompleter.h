@@ -41,6 +41,7 @@ public:
 	
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
 	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType=CT_COMMANDS);
+    void setKeyValWords(const QString &name,const QSet<QString> &newwords);
 	void updateAbbreviations();
 	
 	static void setLatexReference(LatexReference *ref) {latexReference = ref;}
@@ -85,7 +86,7 @@ private:
 	QEditor *editor;
 
     QSet<QString> *packageList;
-	
+
 	QWidget *widget;
 	QTabBar *tbBelow,*tbAbove;
 	
@@ -108,7 +109,7 @@ private:
 	bibtexReader *bibReader;
 	
 	void showTooltip(QString topic);
-	
+
 private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);

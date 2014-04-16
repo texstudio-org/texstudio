@@ -611,7 +611,26 @@ void CompletionListModel::fetchMore(const QModelIndex &){
 	endInsertRows();
 }
 CompletionWord CompletionListModel::getLastWord(){
-	return mLastWordInList;
+    return mLastWordInList;
+}
+
+void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString> &newwords)
+{
+    QList<CompletionWord> newWordList;
+    acceptedChars.clear();
+    newWordList.clear();
+    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
+        QString str=*i;
+        CompletionWord cw(str);
+        cw.index=0;
+        cw.usageCount=-2;
+        cw.snippetLength=0;
+        newWordList.append(cw);
+        foreach(const QChar& c, str) acceptedChars.insert(c);
+    }
+    qSort(newWordList.begin(), newWordList.end());
+
+    keyValLists.insert(name,newWordList);
 }
 
 
@@ -950,7 +969,7 @@ void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
 LatexReference * LatexCompleter::latexReference = 0;
 LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false),startedFromTriggerKey(false) {
+LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false),startedFromTriggerKey(false){
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -1005,7 +1024,6 @@ LatexCompleter::~LatexCompleter() {
 		bibReader->quit();
 		bibReader->wait();
 	}
-	//delete list;
 }
 
 void LatexCompleter::changeView(int pos){
@@ -1034,7 +1052,12 @@ void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, Completio
 	if (config && completionType==CT_COMMANDS) concated.unite(config->words.toSet());
 	//concated.unite(newwords);
 	listModel->setBaseWords(concated,newwords,completionType);
-	widget->resize(200,200);
+    widget->resize(200,200);
+}
+
+void LatexCompleter::setKeyValWords(const QString &name, const QSet<QString> &newwords)
+{
+    listModel->setKeyValWords(name,newwords);
 }
 
 void LatexCompleter::adjustWidget(){

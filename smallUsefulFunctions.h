@@ -40,6 +40,7 @@ QString getCommonEOW();
 
 //removes special latex characters
 QString latexToPlainWord(const QString& word);
+QString latexToPlainWordwithReplacementList(const QString& word, QMap<QString, QString> &replacementList );
 //closing bracket (opening and closing bracket considered correctly)
 int findClosingBracket(const QString& word,int &start,QChar oc=QChar('{'),QChar cc=QChar('}'));
 //opening bracket (opening and closing bracket considered correctly), start at "start"
@@ -173,6 +174,7 @@ struct LatexReader{
 	LatexReader();
 	LatexReader(const QString& line);
 	LatexReader(const LatexParser& lp, const QString& line);
+    LatexReader(const LatexParser& lp, const QString& line, QMap<QString,QString> &replacementList);
 	
 	/** searches the next token in the line line after/at the index index
 	//there are these possible kind of tokens % (which starts a comment), { or } (as parentheses), \.* (command) or .* (text)
@@ -219,8 +221,10 @@ struct LatexReader{
 	QString word;
 	QString lastCommand;
 	int wordStartIndex;
+
 private:
 	const LatexParser* lp;
+    QMap<QString, QString> mReplacementList;
 };
 
 

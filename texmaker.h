@@ -620,6 +620,8 @@ protected:
 
     findGlobalDialog* findDlg;
 
+    QMap<QString,QString> *mReplacementList;
+
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode& mode = QClipboard::Clipboard) const;

@@ -6299,6 +6299,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	completionBaseCommandsUpdated=false;
 	
 	completer->setAdditionalWords(words,CT_COMMANDS);
+
 	if(edView) edView->viewActivated();
 	
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));

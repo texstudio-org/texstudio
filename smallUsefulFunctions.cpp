@@ -331,6 +331,29 @@ QString latexToPlainWord(const QString& word) {
 	
 	return result;
 }
+QString latexToPlainWordwithReplacementList(const QString& word,QMap<QString,QString> &replacementList ) {
+    QString result;
+    QString w=word;
+    if(replacementList.isEmpty())
+        return word;
+    while(!w.isEmpty()){
+        bool replaced=false;
+        foreach(const QString elem,replacementList.keys()){
+            if(w.startsWith(elem)){
+                result.append(replacementList.value(elem));
+                w=w.mid(elem.length());
+                replaced=true;
+                break;
+            }
+        }
+        if(!replaced){
+            result.append(w.left(1));
+            w=w.mid(1);
+        }
+    }
+    return result;
+}
+
 
 int findClosingBracket(const QString& word,int &start,QChar oc,QChar cc) {
 	int i=0;
@@ -1443,6 +1466,13 @@ LatexReader::LatexReader():lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);}
 LatexReader::LatexReader(const QString& line): lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);setLine(line);}
 LatexReader::LatexReader(const LatexParser& lp, const QString& line):lp(&lp){Q_ASSERT(this->lp);setLine(line);}
 
+LatexReader::LatexReader(const LatexParser &lp, const QString &line, QMap<QString, QString> &replacementList):lp(&lp)
+{
+    Q_ASSERT(this->lp);
+    setLine(line);
+    mReplacementList=replacementList;
+}
+
 
 LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 	int reference=-1;
@@ -1536,7 +1566,8 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 			//if (word.length() == 2 && word[0] == '"' && CommonEOW.contains(word[1]))
 			//	return NW_PUNCTATION; //some quotation mark
 			if (word.length() > 1 && (word.contains('\\')||word.contains('"'))){
-				word=latexToPlainWord(word); //remove special chars			
+                //word=latexToPlainWord(word); //remove special chars
+                word=latexToPlainWordwithReplacementList(word,mReplacementList); //remove special chars
 				if (word.isEmpty()) continue;
 			}
 			if (lp->environmentCommands.contains(lastCommand))
@@ -1591,6 +1622,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	    rxCom.setMinimal(true);
 	    QStringList keywords;
 	    keywords << "text" << "title";
+        QString keyvals;
 	    while (!stream.atEnd()) {
 		line = stream.readLine().trimmed();
 		if(line.startsWith("#include:")){
@@ -1601,6 +1633,27 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 			    package.requiredPackages<<fn+".cwl";
 		    }
 		}
+        if(line.startsWith("#keyvals:")){
+            // start reading keyvals
+            keyvals=line.mid(9);
+            continue;
+        }
+        if(line.startsWith("#endkeyvals")){
+            // end of reading keyvals
+            keyvals.clear();
+            continue;
+        }
+        if(!keyvals.isEmpty()){
+            // read keyval (name stored in "keyvals")
+            package.possibleCommands["key%"+keyvals] << line;
+            continue;
+        }
+        if(line.startsWith("#repl:")){
+            // start reading keyvals
+            package.possibleCommands["%replace"] << line.mid(6);
+            continue;
+        }
+
 		if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
 		    //hints for commands usage (e.g. in mathmode only) are separated by #
 		    int sep=line.indexOf('#');

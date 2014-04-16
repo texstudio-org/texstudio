@@ -136,6 +136,7 @@ public:
         latexPackageList=lst;
     }
 
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -181,6 +182,8 @@ private:
 	QList<QPair<QDocumentLine, QFormatRange> > tempHighlightQueue;
 
 	static QStringList checkedLanguages; // languages for online checking
+
+    QMap<QString,QString> mReplacementList;
 
 	
 private slots:
