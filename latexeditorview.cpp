@@ -657,6 +657,21 @@ void LatexEditorView::updateLtxCommands(bool updateAll){
 
 void LatexEditorView::setLtxCommands(const LatexParser& cmds){
     SynChecker.setLtxCommands(cmds);
+
+    QMap<QString,QString> replacementList;
+    bool differenceExists=false;
+    foreach(QString elem,cmds.possibleCommands["%replace"].values()){
+        int i=elem.indexOf(" ");
+        if(i>0){
+            replacementList.insert(elem.left(i),elem.mid(i+1));
+            if(mReplacementList.value(elem.left(i))!=elem.mid(i+1))
+                differenceExists=true;
+        }
+    }
+    if(differenceExists || replacementList.count()!=mReplacementList.count()){
+        mReplacementList=replacementList;
+        documentContentChanged(0,editor->document()->lines()); //force complete spellcheck
+    }
 }
 
 void LatexEditorView::paste(){
@@ -1632,7 +1647,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		QString lineText = line.text();
 		int status;
 		const LatexParser& lp = LatexParser::getInstance();
-		LatexReader lr(LatexParser::getInstance(), lineText);
+        LatexReader lr(LatexParser::getInstance(), lineText, mReplacementList);
 		while ((status=lr.nextWord(false))){
 			// hack to color the environment given in \begin{environment}...
 			if (lp.structureCommands.contains(lr.lastCommand)){
