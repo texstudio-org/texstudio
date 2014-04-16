@@ -34,6 +34,7 @@ public:
 	virtual bool canFetchMore(const QModelIndex &parent) const;
 	void fetchMore(const QModelIndex &parent);
 	CompletionWord getLastWord();
+    void setKeyValWords(const QString &name,const QSet<QString> &newwords);
 private:
 	friend class LatexCompleter; //TODO: make this unnecessary
 	QList<CompletionWord> words;
@@ -43,6 +44,8 @@ private:
     QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations,wordsCitationCommands;
 	QSet<QChar> acceptedChars;
 	int mostUsedUpdated;
+
+    QMap<QString,QList<CompletionWord> > keyValLists;
 
 	bool mCanFetchMore;
 	QString mLastWord;
