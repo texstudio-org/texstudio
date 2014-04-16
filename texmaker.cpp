@@ -6238,13 +6238,18 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
         edView=currentEditorView();
 	
 	QList<LatexDocument*> docs;
+    LatexParser ltxCommands=LatexParser::getInstance();
+
 	if(edView && edView->document){
 		// determine from which docs data needs to be collected
 		docs=edView->document->getListOfDocs();
+
 		// collect user commands and references
         foreach(LatexDocument* doc,docs){
 			words.unite(doc->userCommandList());
 			words.unite(doc->additionalCommandsList());
+
+            ltxCommands.append(doc->ltxCommands);
 		}
 	}
 	
@@ -6299,6 +6304,16 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	completionBaseCommandsUpdated=false;
 	
 	completer->setAdditionalWords(words,CT_COMMANDS);
+
+    // add keyval completion
+    foreach(const QString &elem,ltxCommands.possibleCommands.keys()){
+        if(elem.startsWith("key")){
+            QString name=elem.mid(4);
+            if(!name.isEmpty()){
+                completer->setKeyValWords(name,ltxCommands.possibleCommands[elem]);
+            }
+        }
+    }
 
 	if(edView) edView->viewActivated();
 	
