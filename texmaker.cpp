@@ -3925,6 +3925,8 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
+    case LatexParser::Keyval:
+        break;
     case LatexParser::Package:
         if(latexParser.possibleCommands["%usepackage"].contains(command)){
             QString preambel;
