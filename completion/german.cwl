@@ -7,4 +7,6 @@
 #repl:"u ü
 #repl:"U Ü
 #repl:"s ß
-
+#repl:"" 
+#repl:"- 
+#repl:"| 

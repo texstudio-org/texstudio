@@ -138,7 +138,14 @@ class SmallUsefulFunctionsTest: public QObject{
 		QFETCH(QString, str);	
 		QFETCH(QList<TestToken>, tokens);	
 		int pos=0; int type;
-		LatexReader lr(str);
+        QMap<QString,QString> replacementList;
+        replacementList.insert("\"o",QString::fromUtf8("ö"));
+        replacementList.insert("\"a",QString::fromUtf8("ä"));
+        replacementList.insert("\"-","");
+        replacementList.insert("\"|","");
+        replacementList.insert("\"\"","");
+        LatexParser &lp=LatexParser::getInstance();
+        LatexReader lr(lp,str,replacementList);
 		while ((type=lr.nextWord(commands))!=LatexReader::NW_NOTHING) {
 			const int& startIndex = lr.wordStartIndex;
 			const QString& token = lr.word;
@@ -190,7 +197,14 @@ private slots:
 		QFETCH(QList<TestToken>, tokens);	
 		
 		int pos=0;
-		LatexReader lr(str);
+        QMap<QString,QString> replacementList;
+        replacementList.insert("\"o",QString::fromUtf8("ö"));
+        replacementList.insert("\"a",QString::fromUtf8("ä"));
+        replacementList.insert("\"-","");
+        replacementList.insert("\"|","");
+        replacementList.insert("\"\"","");
+        LatexParser &lp=LatexParser::getInstance();
+        LatexReader lr(lp,str,replacementList);
 		while (lr.nextTextWord()) {
 			const int& startIndex = lr.wordStartIndex;
 			const QString& token = lr.word;
@@ -252,8 +266,8 @@ private slots:
 		QTest::newRow("sepchar6")  << "?oz\\\"{a}di?" << 1 << false << false << (int)LatexReader::NW_TEXT << 10 << QString("oz%1di").arg(QChar(0xE4)) << 1;
 		QTest::newRow("sepchar7")  << "?oz\\\"adi?" << 1 << false << false << (int)LatexReader::NW_TEXT << 8 << QString("oz%1di").arg(QChar(0xE4)) << 1;
 		QTest::newRow("sepchar8")  << "?oz\"\"adi?" << 1 << false << false << (int)LatexReader::NW_TEXT << 8 << "ozadi" << 1;
-		QTest::newRow("sepchar8")  << "?oz\"yxdi?" << 1 << false << false << (int)LatexReader::NW_TEXT << 8 << "ozyxdi" << 1;
-		QTest::newRow("sepchar8")  << "?oz\"y?" << 1 << false << false << (int)LatexReader::NW_TEXT << 5 << "ozy" << 1;
+        //QTest::newRow("sepchar8")  << "?oz\"yxdi?" << 1 << false << false << (int)LatexReader::NW_TEXT << 8 << "ozyxdi" << 1;  //invalid combinations in german.sty
+        //QTest::newRow("sepchar8")  << "?oz\"y?" << 1 << false << false << (int)LatexReader::NW_TEXT << 5 << "ozy" << 1; //invalid combinations in german.sty
 		QTest::newRow("word end")  << "?no\"<di?" << 1 << false << false << (int)LatexReader::NW_TEXT << 3 << "no" << 1;
 		QTest::newRow("word end")  << "?yi''di?" << 1 << false << false << (int)LatexReader::NW_TEXT << 3 << "yi" << 1;
 		QTest::newRow("umlauts")  << "\"a\"o\"u\"A\"O\"U\\\"{a}\\\"{o}\\\"{u}\\\"{A}\\\"{O}\\\"{U}" << 0 << false << false << (int)LatexReader::NW_TEXT << 42 << (QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))+QString(QChar(0xE4))+QString(QChar(0xF6))+QString(QChar(0xFC))+QString(QChar(0xC4))+QString(QChar(0xD6))+QString(QChar(0xDC))) << 0; //unicode to be independent from c++ character encoding
@@ -268,7 +282,19 @@ private slots:
 		QFETCH(QString, outWord);
 		QFETCH(int, wordStartIndex);
 		
-		LatexReader lr(line);
+        //LatexReader lr(line);
+        QMap<QString,QString> replacementList;
+        replacementList.insert("\"o",QString::fromUtf8("ö"));
+        replacementList.insert("\"a",QString::fromUtf8("ä"));
+        replacementList.insert("\"u",QString::fromUtf8("ü"));
+        replacementList.insert("\"A",QString::fromUtf8("Ä"));
+        replacementList.insert("\"O",QString::fromUtf8("Ö"));
+        replacementList.insert("\"U",QString::fromUtf8("Ü"));
+        replacementList.insert("\"-","");
+        replacementList.insert("\"|","");
+        replacementList.insert("\"\"","");
+        LatexParser &lp=LatexParser::getInstance();
+        LatexReader lr(lp,line,replacementList);
 		lr.index = inIndex;
 		int rs=(int)(lr.nextWord(commands));
 

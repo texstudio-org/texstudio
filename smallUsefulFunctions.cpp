@@ -310,7 +310,7 @@ QString latexToPlainWord(const QString& word) {
 			default:
 				i--; //repeat with current char
 			}
-		} else if (word[i] == '"') {
+        } /* else if (word[i] == '"') {     // replacement from german package is handled extra
 			//decode all meta characters starting with "
 			i++;
 			if (i>=word.length()) break;
@@ -323,19 +323,19 @@ QString latexToPlainWord(const QString& word) {
 			case '"':  //ignore ""
 				break;
 			default:
-				result.append(transformCharacter(word[i], '"'));
+                result.append(transformCharacter(word[i], '"'));
 				
 			}
-		} else result.append(word[i]);
+        }*/ else result.append(word[i]);
 	}
 	
 	return result;
 }
 QString latexToPlainWordwithReplacementList(const QString& word,QMap<QString,QString> &replacementList ) {
     QString result;
-    QString w=word;
+    QString w=latexToPlainWord(word);
     if(replacementList.isEmpty())
-        return word;
+        return w;
     while(!w.isEmpty()){
         bool replaced=false;
         foreach(const QString elem,replacementList.keys()){
