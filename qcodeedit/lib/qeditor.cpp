@@ -4079,28 +4079,20 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
 		addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
 
-        addEditOperation(CursorWordLeft, Qt::AltModifier, Qt::Key_Left);
-        addEditOperation(CursorWordRight, Qt::AltModifier, Qt::Key_Right);
-        addEditOperation(SelectCursorWordLeft, Qt::AltModifier | Qt::ShiftModifier, Qt::Key_Left);
-        addEditOperation(SelectCursorWordRight, Qt::AltModifier | Qt::ShiftModifier, Qt::Key_Right);
+		addEditOperation(CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
+		addEditOperation(CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
+		addEditOperation(SelectCursorWordLeft, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Left);
+		addEditOperation(SelectCursorWordRight, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Right);
 
 		addEditOperation(CursorStartOfLine, Qt::NoModifier, Qt::Key_Home);
 		addEditOperation(CursorEndOfLine, Qt::NoModifier, Qt::Key_End);
 		addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier, Qt::Key_Home);
 		addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier, Qt::Key_End);
-        addEditOperation(CursorStartOfLine, Qt::ControlModifier, Qt::Key_Left);
-        addEditOperation(CursorEndOfLine, Qt::ControlModifier, Qt::Key_Right);
-        addEditOperation(SelectCursorStartOfLine, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Left);
-        addEditOperation(SelectCursorEndOfLine, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Right);
 
 		addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Home);
 		addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_End);
 		addEditOperation(SelectCursorStartOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Home);
 		addEditOperation(SelectCursorEndOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_End);
-        addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Up);
-        addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_Down);
-        addEditOperation(SelectCursorStartOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Up);
-        addEditOperation(SelectCursorEndOfDocument, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Down);
 	#else
 	/*
 		Except for pageup and pagedown, Mac OS X has very different behavior, we
