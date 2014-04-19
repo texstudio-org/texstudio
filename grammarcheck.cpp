@@ -223,8 +223,12 @@ void GrammarCheck::process(){
 	
 	bool backendAvailable = backend->isAvailable();
 
-	for (int b = 0; b < cr.blocks.size(); b++) {
-		TokenizedBlock &tb = cr.blocks[b];
+	QList<TokenizedBlock> crBlocks = cr.blocks; //cr itself might become invalid during the following loop
+	int crTicket = cr.ticket;
+	QString crLanguage = cr.language;
+
+	for (int b = 0; b < crBlocks.size(); b++) {
+		TokenizedBlock &tb = crBlocks[b];
 		while (!tb.words.isEmpty() && tb.words.first().length() == 1 && uselessPunctation.contains(tb.words.first()[0])) {
 			tb.words.removeFirst();
 			tb.indices.removeFirst();
@@ -232,7 +236,7 @@ void GrammarCheck::process(){
 			tb.lines.removeFirst();
 		}
 
-		if (tb.words.isEmpty() || !backendAvailable) backendChecked(cr.ticket, b, QList<GrammarError>(), true);
+		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			QString joined;
 			QStringList & words = tb.words;
@@ -243,7 +247,7 @@ void GrammarCheck::process(){
 				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i,words);
 				joined += " ";
 			}
-			backend->check(cr.ticket, b, cr.language, joined);
+			backend->check(crTicket, b, crLanguage, joined);
 		}
 	}
 }
