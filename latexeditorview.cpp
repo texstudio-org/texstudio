@@ -275,7 +275,7 @@ bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *edi
 }
 
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor) {
-	if (!contextMenu) contextMenu=new QMenu(0);
+    if (!contextMenu) contextMenu=new QMenu(0);
 	contextMenu->clear();
 	QDocumentCursor cursor;
 	if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
@@ -522,6 +522,8 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		curPoint.ry() += editor->document()->getLineSpacing();
 		contextMenu->exec(editor->mapToGlobal(editor->mapFromContents(curPoint)));
 	}
+    event->accept();
+
 	return true;
 }
 
