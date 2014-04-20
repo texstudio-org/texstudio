@@ -202,15 +202,19 @@ void TextAnalysisDialog::needCount() {
 					commentReached=true;
 					commentLines++;
 					//find sentence end characters which belong to the words before the comment start
-					if (respectSentenceEnd) for (int i=lastIndex; i<lr.wordStartIndex; i++)
+                    if (respectSentenceEnd)
+                        for (int i=lastIndex; i<lr.wordStartIndex; i++){
 							if (line.at(i)==QChar('%') && (i==0 || line.at(i-1)!=QChar('\%'))) {
 								lastIndex=i;
 								break;
-							} else if (lastEndCharacters.contains(line.at(i))) {
-								sentenceLengths[0]=0;
-								lastWords[0].clear();
-								break;
+                            } else {
+                                if (lastEndCharacters.contains(line.at(i))) {
+                                    sentenceLengths[0]=0;
+                                    lastWords[0].clear();
+                                    break;
+                                }
 							}
+                        }
 				}
 			} else if (state==LatexReader::NW_COMMAND) {
 				curType=1;

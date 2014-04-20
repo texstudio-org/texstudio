@@ -25,7 +25,7 @@
 \setkeys{Gin}{key val}
 \textcolor{name}{text}
 \textcolor[model]{specification}{text}
-#keyvals:graphicx keys
+#keyvals:\includegraphics
 width
 height
 bb

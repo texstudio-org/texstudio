@@ -10,7 +10,7 @@
  ***************************************************************************/
 
 #ifndef ICONDELEGATE_H
-#define ICONLDELEGATE_H
+#define ICONDELEGATE_H
 
 #include "mostQtHeaders.h"
 

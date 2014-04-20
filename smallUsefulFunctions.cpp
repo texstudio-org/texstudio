@@ -976,20 +976,21 @@ int LatexParser::findContext(QString &line,int &column) const{
 
 LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString& value) const{
 	command=line;
+    int col=column; //remember column
 	int temp=findContext(command,column);
 	QStringList vals;
 	resolveCommandOptions(line,column,vals);
 	value="";
 	if(!vals.isEmpty()){
 		value=vals.takeFirst();
-		if(value.startsWith('[')){
+        if(value.startsWith('[') && temp<3){
 			if(!vals.isEmpty()){
 				value=vals.takeFirst();
 			}
 		}
-		if(value.startsWith('{'))
+        if(value.startsWith('{') || value.startsWith('['))
 			value.remove(0,1);
-		if(value.endsWith('}'))
+        if(value.endsWith('}')||value.endsWith(']'))
 			value.chop(1);
 	}
 	switch (temp) {
@@ -1011,6 +1012,30 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
         else if (possibleCommands["%graphics"].contains(command))
             return Graphics;
 		else return Option;
+    case 3:
+        // find possible commands for keyval completion
+        {
+            QString elem;
+            qDebug()<<possibleCommands.keys();
+            foreach(elem,possibleCommands.keys()){
+                if(elem.startsWith("key%") && elem.mid(4)==command)
+                    break;
+                elem.clear();
+            }
+            if(!elem.isEmpty()){
+                // check that cursor is within keyval
+                bool isKey=false;
+                for(int i=col;col>0;col--){
+                    if(line.at(i-1).isLetter())
+                        continue;
+                    if(line.at(i-1)=='[' || line.at(i-1)==',')
+                        isKey=true;
+                    break;
+                }
+                if(isKey)
+                    return Keyval;
+            }
+        }
 	default: return Unknown;
 	}
 }

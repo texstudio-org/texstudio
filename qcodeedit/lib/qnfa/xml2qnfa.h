@@ -4,7 +4,7 @@
 #include "mostQtHeaders.h"
 
 class QFormatScheme;
-class QNFA;
+struct QNFA;
 class QXml2NFAParser{
 public:
 	QXml2NFAParser(QFormatScheme *formatScheme, QHash<QString, int>& parenthesisIds, QHash<int, int>& parenthesisWeights, QHash<QString, int>& openingParenthesis, QHash<int, QString>& closingParenthesis);

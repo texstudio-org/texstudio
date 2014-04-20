@@ -9,7 +9,8 @@
 #endif
 
 //==============================Database=============================
-struct ThesaurusDatabaseType{
+class ThesaurusDatabaseType{
+public:
 	struct TinyStringRef{
 		int start, length;
 		TinyStringRef(int astart, int alen);

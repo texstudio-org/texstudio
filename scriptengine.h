@@ -10,7 +10,7 @@ class BuildManager;
 class Texmaker;
 class ScriptObject;
 class LatexEditorView;
-struct Macro;
+class Macro;
 class scriptengine : public QObject
 {
 Q_OBJECT

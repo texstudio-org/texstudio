@@ -6903,7 +6903,7 @@ void QDocumentPrivate::setWidth()
 	}
 }
 
-static const int widthCacheSize = 5;
+// static const int widthCacheSize = 5;  // unused ...
 
 void QDocumentPrivate::adjustWidth(int line)
 {
