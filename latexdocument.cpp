@@ -494,7 +494,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			curLine.replace(0,1,' ');
 		}
 		int totalLength=curLine.length();
-        while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
+        QString option;
+        while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart,option)){
 			//update offset
 			//store optional arguments []
 			
@@ -658,12 +659,30 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
 				completerNeedsUpdate=true;
 				QStringList packagesHelper=name.split(",");
-				if(cmd.endsWith("theme")){ // special treatment for  \usetheme
+
+                if(cmd.endsWith("theme")){ // special treatment for  \usetheme
 					QString preambel=cmd;
 					preambel.remove(0,4);
 					preambel.prepend("beamer");
 					packagesHelper.replaceInStrings(QRegExp("^"),preambel);
 				}
+
+                if(cmd=="\\documentclass"){
+                    //special treatment for documentclass, especially for the class options
+                    // at the moment a change here soes not automatically lead to an update of corresponding definitions, here babel
+                    mClassOptions=option;
+                }
+
+                if(name=="babel"){
+                    //special treatment for babel
+                    if(option.isEmpty()){
+                        option=mClassOptions;
+                    }
+                    if(!option.isEmpty()){
+                        packagesHelper << option.split(",");
+                    }
+                }
+
 				QStringList packages;
                 foreach(QString elem,packagesHelper){
                     elem=elem.simplified();
