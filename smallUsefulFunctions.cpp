@@ -575,13 +575,14 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 	return false;
 }
 
-bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart){
+bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &argStart,QString &option){
     // true means that a command is found, with or without arguments ...
     // otherwise a command before the interesting command leads to quiting the loop
 	outName="";
 	outArg = "";
 	remainder="";
-	optionStart=-1;
+    argStart=-1;
+    option="";
 	QRegExp token("\\\\\\w+\\*?");
 	int tagStart=token.indexIn(line);
 	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
@@ -595,6 +596,7 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
             int start=starts.takeFirst();
             if(first.startsWith('[')){ // neglect [] arguments before {}
                 if(values.size()>0){
+                    option=LatexParser::removeOptionBrackets(first);
                     first=values.takeFirst();
                     start=starts.takeFirst();
                     if(first.startsWith('[')){
@@ -606,13 +608,13 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
                     return true;
                 }
             }
-            optionStart=start+1;
+            argStart=start+1;
             remainder=line.mid(start+first.length());
             outName = LatexParser::removeOptionBrackets(first);
             if(values.size()>0){ // if there's something after the firt option (in case of import)
                 first=values.takeFirst();
                 start=starts.takeFirst();
-                optionStart=start+1;
+                argStart=start+1;
                 remainder=line.mid(start+first.length());
                 outArg = LatexParser::removeOptionBrackets(first);
             }

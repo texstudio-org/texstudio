@@ -72,7 +72,7 @@ QString findToken(const QString &line,const QString &token,int &start);
 QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
-bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart);
+bool findCommandWithArg(const QString &line, QString &cmd, QString &outName, QString &outArg, QString &remainder, int &argStart, QString &option);
 
 
 // generate multiple times used regexpression
