@@ -3889,6 +3889,7 @@ void Texmaker::editRemovePlaceHolders(){
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
+    LatexEditorView *view=currentEditorView();
 	// complete text if no command is present
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
@@ -3901,7 +3902,7 @@ void Texmaker::NormalCompletion() {
 	}
 	
 	QString command,value;
-	LatexParser::ContextType ctx=latexParser.findContext(word, c.columnNumber(), command, value);
+    LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
 	switch(ctx){
 	case LatexParser::Command:
         if(mCompleterNeedsUpdate) updateCompleter();
@@ -3926,6 +3927,8 @@ void Texmaker::NormalCompletion() {
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
     case LatexParser::Keyval:
+        completer->setWorkPath(command);
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
         break;
     case LatexParser::Package:
         if(latexParser.possibleCommands["%usepackage"].contains(command)){

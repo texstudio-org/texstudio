@@ -136,6 +136,7 @@ public:
         latexPackageList=lst;
     }
 
+    LatexParser lp;
 
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
@@ -185,7 +186,6 @@ private:
 
     QMap<QString,QString> mReplacementList;
 
-	
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();

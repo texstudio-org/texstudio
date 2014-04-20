@@ -1016,7 +1016,6 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
         // find possible commands for keyval completion
         {
             QString elem;
-            qDebug()<<possibleCommands.keys();
             foreach(elem,possibleCommands.keys()){
                 if(elem.startsWith("key%") && elem.mid(4)==command)
                     break;
@@ -1672,7 +1671,10 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
         }
         if(!keyvals.isEmpty()){
             // read keyval (name stored in "keyvals")
-            package.possibleCommands["key%"+keyvals] << line;
+            QString elem=line;
+            if(!elem.endsWith("="))
+                elem+="=";
+            package.possibleCommands["key%"+keyvals] << elem;
             continue;
         }
         if(line.startsWith("#repl:")){

@@ -33,7 +33,7 @@ class LatexReference;
 class LatexCompleter : public QObject  {
 	Q_OBJECT
 public:
-    enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16, CF_FORCE_CITE = 32, CF_FORCE_PACKAGE = 64};
+    enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16, CF_FORCE_CITE = 32, CF_FORCE_PACKAGE = 64, CF_FORCE_KEYVAL = 128};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag);
 	
 	LatexCompleter(const LatexParser& latexParser, QObject *p = 0);
@@ -102,6 +102,7 @@ private:
 	bool forcedGraphic;
 	bool forcedCite;
     bool forcedPackage;
+    bool forcedKeyval;
     bool startedFromTriggerKey;
 	QString workingDir;
 	

@@ -615,6 +615,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	SynChecker.setLtxCommands(LatexParser::getInstance());
 	SynChecker.start();
     unclosedEnv.id=-1;
+    lp=LatexParser::getInstance();
 	
 	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int)), Qt::QueuedConnection);
 }
@@ -637,24 +638,27 @@ void LatexEditorView::updateLtxCommands(bool updateAll){
 	if(!document->parent)
 		return;
 	
-	LatexParser ltxCommands=LatexParser::getInstance();
+    //LatexParser ltxCommands=LatexParser::getInstance();
+    lp.init();
     QList<LatexDocument *>listOfDocs=document->getListOfDocs();
     foreach(const LatexDocument *elem,listOfDocs){
-		ltxCommands.append(elem->ltxCommands);
+        lp.append(elem->ltxCommands);
 	}
+
 
     if(updateAll){
         foreach(const LatexDocument *elem,listOfDocs){
 
             LatexEditorView *view=elem->getEditorView();
             if(view){
-                view->setLtxCommands(ltxCommands);
+                view->setLtxCommands(lp);
                 view->reCheckSyntax();
             }
         }
     }else{
-        SynChecker.setLtxCommands(ltxCommands);
+        SynChecker.setLtxCommands(lp);
     }
+
 }
 
 void LatexEditorView::setLtxCommands(const LatexParser& cmds){
