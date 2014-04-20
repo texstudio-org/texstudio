@@ -111,7 +111,7 @@ class SmallUsefulFunctionsTest: public QObject{
 		QTest::addColumn<QString >("str");
 		QTest::addColumn<QList<TestToken> >("tokens");
 
-		addRow("simple whitespace", filter,
+        /*addRow("simple whitespace", filter,
 			QList<TestToken>() << "abcde" << "    " << "fghik" << "\t" << "Mice");
 		addRow("simple eow", filter,
                QList<TestToken>() << "abcde" << ";" << ":" << ";" << "fghik" << TestToken("##", NW_IGNORED_TOKEN) << "Mice" << TestToken("///", NW_IGNORED_TOKEN) << "\\\\" << TestToken("+++", NW_IGNORED_TOKEN) );//<< "axy" << TestToken("---", "-", LatexReader::NW_PUNCTATION)); "-" is now added to the word ...
@@ -129,9 +129,9 @@ class SmallUsefulFunctionsTest: public QObject{
 		       QList<TestToken>() << "\\includegraphics" << "[" << option("ab") << TestToken(":", NW_OPTION_PUNCTATION) << "\\linewidth" << "]" << "{" << "\\abc" << " " << option("dfdf") << "\\xyz" << "}" << "continue");
 		addRow("comments", filter, QList<TestToken>() << "hallo" << " " << "welt" <<  "  " << "\\\\" << "normaltext" <<  "  " << TestToken("\\%",NW_IGNORED_TOKEN) << "!" << "!" << "!" << "stillNoComment" << "\\\\" << TestToken("\\%","%",NW_IGNORED_TOKEN) <<"  "<< "none" << "\\\\" << "%" << "comment" << "   " << "more" << " " << "comment");
 		addRow("escaped characters", filter, QList<TestToken>() << "hallo" << TestToken("\\%",NW_IGNORED_TOKEN) << "abc");
-		addRow("escaped characters", filter, QList<TestToken>() << "1234" << TestToken("\\%\\&\\_",NW_IGNORED_TOKEN)  << "567890");
+        addRow("escaped characters", filter, QList<TestToken>() << "1234" << TestToken("\\%\\&\\_",NW_IGNORED_TOKEN)  << "567890");  */
 		addRow("special characters", filter,
-               QList<TestToken>() << QString::fromUtf8("lösbar") << " " << TestToken("l\"osbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << TestToken("l\\\"osbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << TestToken("l\\\"{o}sbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << QString::fromUtf8("örtlich") <<" " <<TestToken("\"ortlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT)<<" " <<TestToken("\\\"ortlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT) );
+               QList<TestToken>() << "lösbar" << " " << TestToken("l\"osbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << TestToken("l\\\"osbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << TestToken("l\\\"{o}sbar",QString::fromUtf8("lösbar"),LatexReader::NW_TEXT) << " " << "örtlich" <<" " <<TestToken("\"ortlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT)<<" " <<TestToken("\\\"ortlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT)<<" " <<TestToken("\\\"{o}rtlich",QString::fromUtf8("örtlich"),LatexReader::NW_TEXT) );
 	}
 	void nextWord_complex_test(bool commands){
 		//get data
@@ -354,9 +354,9 @@ private slots:
 		QTest::newRow("label") << "\\label{test}" << 8 << (int)LatexParser::Label << "\\label" <<"test";
 		QTest::newRow("cite") << "\\cite{test}" << 8 << (int)LatexParser::Citation << "\\cite" <<"test";
 		QTest::newRow("cite") << "\\cite{test}" << 3 << (int)LatexParser::Command << "\\cite" <<"test";
-                QTest::newRow("abcd option") << "\\abcd{test}" << 7 << (int)LatexParser::Option << "\\abcd" <<"test";
-                QTest::newRow("abcd option2") << "\\abcd[abc]{test}" << 12 << (int)LatexParser::Option << "\\abcd" <<"test";
-                QTest::newRow("abcd option3") << "\\abcd[\\abc]{test}" << 12 << (int)LatexParser::Option << "\\abcd" <<"test";
+        QTest::newRow("abcd option") << "\\abcd{test}" << 7 << (int)LatexParser::Option << "\\abcd" <<"test";
+        QTest::newRow("abcd option2") << "\\abcd[abc]{test}" << 12 << (int)LatexParser::Option << "\\abcd" <<"test";
+        QTest::newRow("abcd option3") << "\\abcd[\\abc]{test}" << 12 << (int)LatexParser::Option << "\\abcd" <<"test";
 	}
 	void test_findContext2(){
 		QFETCH(QString, in);
@@ -365,7 +365,7 @@ private slots:
 		QFETCH(QString, command);
 		QFETCH(QString, value);
 		QString cmd;
-		QString val;
+        QString val;
 		LatexParser::ContextType res=LatexParser::getInstance().findContext(in,pos,cmd,val);
 		QEQUAL((int)res,out);
 		QEQUAL(cmd,command);
