@@ -51,7 +51,7 @@ class QDocument;
 class QDocumentLine;
 class QDocumentBuffer;
 class QDocumentPrivate;
-class RenderRange;
+struct RenderRange;
 
 class QCE_EXPORT QDocumentLineHandle
 {

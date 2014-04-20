@@ -521,7 +521,7 @@ void LatexOutputFilterTest::isBadBoxTextQuote_data() {
 	QTest::newRow("empty") << "" << false;
 	QTest::newRow("text") << "foo" << false;
 	QTest::newRow("qoute") << "\\T1/cmr/m/n/12 against it (de-pend-ing" << true;
-	QTest::newRow("qoute2") << "[]\\T1/cmr/m/n/10.95 Fehlermeldung: over-full hbox er-stellt mit fol-gen-dem, lan-gen Satz: Es ist ganz schön schwie-" << true;
+	QTest::newRow("qoute2") << "[]\\T1/cmr/m/n/10.95 Fehlermeldung: over-full hbox er-stellt mit fol-gen-dem, lan-gen Satz: Es ist ganz schÃ¶n schwie-" << true;
 	QTest::newRow("qoute3") << "[]\\LY1/brm/m/n/10 Windows, \\LY1/brm/m/it/10 see" << true;
 }
 

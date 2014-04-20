@@ -2405,7 +2405,7 @@ void ConfigManager::addCommand(){
 	QStringList currentUserCmdIDs;
 	for (int i=0; i<userGridLayout->count(); i++) {
 		QWidget *nameWidget = userGridLayout->itemAt(i)->widget();
-		if (!nameWidget || !nameWidget->property(PROPERTY_WIDGET_TYPE).toInt() == CG_ID) continue;
+        if (!nameWidget || !(nameWidget->property(PROPERTY_WIDGET_TYPE).toInt() == CG_ID)) continue;
 		currentUserCmdIDs << getCmdID(nameWidget);
 	}
 	for (int i=0; i<currentUserCmdIDs.count()+1; i++) {
