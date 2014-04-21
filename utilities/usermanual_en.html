@@ -1577,7 +1577,10 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <p>If no classification is given, the command is considered valid at any position in a LaTeX document. The char <code>#</code> cannot be used inside a <code>command</code>, as it has special meaning:</p>
 <ul>
   <li><code>#include:&lt;packagename&gt;</code> (at start of line): also load packagename.cwl. This should be used to indicate that a package depends on other packages.</li>
-  <li><code>#</code> (at start of line with the exception of <code>#include</code>): This line is a comment and will be ignored.</li>
+  <li><code>#repl:&lt;search&gt; &lt;replacement&gt;</code> (at start of line): define a letter replacement, e.g. "a -> ä for German. Only used for letter replacement in spell checking (babel)</li>
+  <li><code>#keyvals:&lt;command&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphics.cwl in source code</li>
+  <li><code>#endkeyvals</code> (at start of line): end definition of keyvals, see graphics.cwl in source code</li>
+  <li><code>#</code> (at start of line with the exception of <code>#include,#repl,#keyvals or #endkeyvals </code>): This line is a comment and will be ignored.</li>
   <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
 </ul>
 <h3>4.13.2 Command format</h3>
