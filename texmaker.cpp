@@ -805,6 +805,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
 	newManagedAction(menu,"removePlaceHolders",tr("Remove Placeholders"),SLOT(editRemovePlaceHolders()),Qt::CTRL+Qt::SHIFT+Qt::Key_K);
+	newManagedAction(menu,"removeCurrentPlaceHolder",tr("Remove Current Placeholder"),SLOT(editRemoveCurrentPlaceHolder()));
 	
 	//tools
 	
@@ -3884,6 +3885,11 @@ void Texmaker::editRemovePlaceHolders(){
 	for (int i=currentEditor()->placeHolderCount();i>=0;i--)
 		currentEditor()->removePlaceHolder(i);
 	currentEditor()->viewport()->update();
+}
+
+void Texmaker::editRemoveCurrentPlaceHolder() {
+	if (!currentEditor()) return;
+	currentEditor()->removePlaceHolder(currentEditor()->currentPlaceHolder());
 }
 
 //////////TAGS////////////////
