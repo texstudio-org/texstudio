@@ -1005,8 +1005,8 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 				setCursor(Qt::BlankCursor);
 			}
 		}
+		event->accept();
 		break;
-
 	case kScroll:
 		{
 			QPoint delta = event->globalPos() - scrollClickPos;
@@ -1019,12 +1019,11 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 				scrollArea->verticalScrollBar()->setValue(oldY - delta.y());
 			}
 		}
+		event->accept();
 		break;
-		
 	default:
-		break;
+		event->ignore();
 	}
-	event->accept();
 }
 
 void PDFWidget::keyPressEvent(QKeyEvent *event)
@@ -2057,9 +2056,8 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 	}
 
 	if (embeddedMode && globalConfig->autoHideToolbars) {
-		setToolbarsVisible(false);
+		setAutoHideToolbars(true);
 	}
-
 
 	//batch test: 
 	/*QString test = QProcessEnvironment::systemEnvironment().value("TEST");
@@ -2195,6 +2193,11 @@ void PDFDocument::shortcutOnlyIfFocused(const QList<QAction *> &actions)
 		act->setParent(this);
 		act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
 	}
+}
+
+void PDFDocument::reloadSettings()
+{
+	if (embeddedMode) setAutoHideToolbars(globalConfig->autoHideToolbars);
 }
 
 void PDFDocument::init(bool embedded)
@@ -3532,12 +3535,8 @@ void PDFDocument::enterEvent(QEvent *event)
 {
 	if (event->type() == QEvent::Enter
 			&& embeddedMode
-			&& globalConfig->autoHideToolbars
-			&& !toolBar->isVisible()) {
-		QPoint widgetPos = scrollArea->mapToGlobal(QPoint(0, 0));
-		setToolbarsVisible(true);
-		QPoint posChange = scrollArea->mapToGlobal(QPoint(0, 0)) - widgetPos;
-		scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() + posChange.y());
+			&& globalConfig->autoHideToolbars) {
+		showToolbars();
 	}
 }
 
@@ -3545,21 +3544,21 @@ void PDFDocument::leaveEvent(QEvent *event)
 {
 	if (event->type() == QEvent::Leave
 			&& embeddedMode
-			&& globalConfig->autoHideToolbars
-			&& toolBar->isVisible()) {
-		setToolbarsVisible(false);
-		// workaround: the method of checking the change in globalPos of the scrollArea (as in enterEvent)
-		// does not work here (positions are not yet updated after hiding the toolbars)
-		if (!toolBar->isFloating() && toolBar->orientation() == Qt::Horizontal) {
-			scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() - toolBar->height());
-		}
+			&& globalConfig->autoHideToolbars) {
+		hideToolbars();
 	}
 }
 
-void PDFDocument::setToolbarsVisible(bool visible)
+void PDFDocument::mouseMoveEvent(QMouseEvent *event)
 {
-	toolBar->setVisible(visible);
-	statusbar->setVisible(visible);
+	if (embeddedMode && globalConfig->autoHideToolbars) {
+		int h = toolBar->height() + 5;
+		if (event->pos().y() < h || event->pos().y() > this->height() - h) {
+			showToolbars();
+		} else {
+			hideToolbars();
+		}
+	}
 }
 
 void PDFDocument::doFindDialog(const QString command)
@@ -3692,5 +3691,44 @@ void PDFDocument::printPDF(){
 		emit runCommand(command, masterFile, masterFile, 0);
 }
 
+void PDFDocument::setAutoHideToolbars(bool enabled)
+{
+	setToolbarsVisible(!enabled);
+	centralWidget()->setAttribute(Qt::WA_TransparentForMouseEvents);
+	setMouseTracking(enabled);
+}
 
-#endif
+// hide toolbars while preserving the position of the PDF content on screen
+//   we have to compensate the change of scrollArea position by scrolling its content
+void PDFDocument::hideToolbars()
+{
+	if (toolBar->isVisible()) {
+		setToolbarsVisible(false);
+		// workaround: the method of checking the change in globalPos of the scrollArea (as in enterEvent)
+		// does not work here (positions are not yet updated after hiding the toolbars)
+		if (!toolBar->isFloating() && toolBar->orientation() == Qt::Horizontal) {
+			scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() - toolBar->height());
+		}
+	}
+}
+
+// hide toolbars while preserving the position of the PDF content on screen
+//   we have to compensate the change of scrollArea position by scrolling its content
+void PDFDocument::showToolbars()
+{
+	if (!toolBar->isVisible()) {
+		QPoint widgetPos = scrollArea->mapToGlobal(QPoint(0, 0));
+		setToolbarsVisible(true);
+		QPoint posChange = scrollArea->mapToGlobal(QPoint(0, 0)) - widgetPos;
+		scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() + posChange.y());
+	}
+}
+
+void PDFDocument::setToolbarsVisible(bool visible)
+{
+	toolBar->setVisible(visible);
+	statusbar->setVisible(visible);
+}
+
+
+#endif  // ndef NO_POPPLER_PREVIEW

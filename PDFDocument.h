@@ -386,10 +386,12 @@ protected:
 	virtual void dropEvent(QDropEvent *event);
 	virtual void enterEvent(QEvent *event);
 	virtual void leaveEvent(QEvent *event);
+	virtual void mouseMoveEvent(QMouseEvent *event);
 	void setToolbarsVisible(bool visible);
 	void shortcutOnlyIfFocused(const QList<QAction *> &actions);
 
 public slots:
+	void reloadSettings();
 	void reload(bool fillCache=true);
 	void fillRenderCache(int pg=-1);
 	void sideBySide();
@@ -401,6 +403,9 @@ public slots:
 	void syncFromView(const QString& pdfFile, const QFileInfo& masterFile, int page);
 	void loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert = true);
 	void printPDF();
+	void setAutoHideToolbars(bool enabled);
+	void hideToolbars();
+	void showToolbars();
 private slots:
 	void fileOpen();
 	
