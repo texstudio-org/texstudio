@@ -592,7 +592,7 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 
 	static QRegExp reLaTeXError("^! (?:Lua|La)TeX Error(?: \\<\\\\directlua \\>:(?:[0-9]*))?: (.*)$", Qt::CaseInsensitive);
 	static QRegExp rePDFLaTeXError("^Error: (?:lua|pdf)latex (.*)$", Qt::CaseInsensitive);
-	static QRegExp reTeXError("^! (.*)\\.$");
+	static QRegExp reTeXError("^! (.*)$");
 	static QRegExp rePackageError("^! Package (.*) Error:(.*)$", Qt::CaseInsensitive);
     static QRegExp reLineNumber("^(\\.{3} )?l\\.([0-9]+)(.*)");
 
