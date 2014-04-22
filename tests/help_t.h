@@ -17,7 +17,7 @@ private slots:
 		QTest::addColumn<QString>("fileWithoutPath");
 
 		QTest::newRow("fancyhdr") << "fancyhdr" << "fancyhdr.dvi;fancyhdr.pdf";
-		QTest::newRow("color") << "color" << "grfguide.pdf";
+		QTest::newRow("ifthen") << "ifthen" << "ifthen.pdf";
 		QTest::newRow("graphicx") << "graphicx" << "graphicx.pdf;grfguide.pdf";
 		QTest::newRow("fancyref") << "fancyref" << "freftest.dvi;fancyref.pdf";
 	}
