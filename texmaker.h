@@ -361,6 +361,7 @@ protected slots:
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
 	void editRemovePlaceHolders();
+	void editRemoveCurrentPlaceHolder();
 
 	void NormalCompletion();
 	void InsertEnvironmentCompletion();
