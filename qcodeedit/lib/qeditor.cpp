@@ -4605,7 +4605,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		QChar text0 = text.at(0);
 		if (text0 == c.nextChar()) {
 			// special functions for overwriting existing text
-			if (flag(OverwriteClosingBracketFollowingPlaceholder) && (text0=='}' || text0==')')) {
+			if (flag(OverwriteClosingBracketFollowingPlaceholder) && (text0=='}' || text0==']')) {
 				// remove placeholder when typing closing bracket at the end of a placeholder
 				// e.g. \textbf{[ph]|} and typing '}'
 				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
