@@ -743,7 +743,7 @@ void QEditorTest::autoClosing(){
 	QFETCH(QString, insert);
 	QFETCH(QString, result);
 
-
+	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
 	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col);
 	editor->insertText(c, insert);
