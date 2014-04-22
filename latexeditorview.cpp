@@ -1669,7 +1669,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
         LatexReader lr(LatexParser::getInstance(), lineText, mReplacementList);
 		while ((status=lr.nextWord(false))){
 			// hack to color the environment given in \begin{environment}...
-			if (lp.structureCommands.contains(lr.lastCommand)){
+			if (lp.structureCommandLevel(lr.lastCommand) >= 0){
 				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 				//QString secName=extractSectionName(lineText.mid(lr.lr.wordStartIndex),true);
 				//line.addOverlay(QFormatRange(lr.wordStartIndex,secName.length(),structureFormat));

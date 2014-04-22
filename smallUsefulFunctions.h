@@ -148,6 +148,9 @@ public:
 	QSet<QString> customCommands;
     //QSet<QString> graphicsIncludeCommands;
 	QStringList structureCommands;
+	QList<QStringList> structureCommandLists;  // a list for each level. 0:\part,\mypart 1:\chapter,\mychapter 2:\section ... 5:paragraph
+	int structureDepth() { return structureCommandLists.length(); }
+	int structureCommandLevel(const QString &cmd) const;
 	QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
 	QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	// commands used for syntax check (per doc basis)
