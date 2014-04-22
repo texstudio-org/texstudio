@@ -894,6 +894,14 @@ QString LatexParser::removeOptionBrackets(const QString &option) {
 	return option;
 }
 
+int LatexParser::structureCommandLevel(const QString &cmd) const
+{
+	for (int i=0; i<structureCommandLists.length(); i++) {
+		if (structureCommandLists[i].contains(cmd)) return i;
+	}
+	return -1;
+}
+
 int LatexParser::findContext(QString &line,int &column) const{
 	if(line.isEmpty())
 		return 0;

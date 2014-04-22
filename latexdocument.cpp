@@ -237,7 +237,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 
 	LatexParser& latexParser = LatexParser::getInstance();
-	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
+	QVector<StructureEntry*> parent_level(latexParser.structureDepth());
 	
 	QList<StructureEntry*> ls;
 	mergeStructure(baseStructure, parent_level, ls, linenr, 1);
@@ -750,7 +750,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			
 			if (latexParser.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureCommands.count() - 1;
+				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
 				newInclude->title=name;
                 QString fname=findFileName(name);
                 removedIncludes.removeAll(fname);
@@ -772,7 +772,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			
 			if (latexParser.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureCommands.count() - 1;
+				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
                 QFileInfo fi(name,arg);
                 QString file = fi.filePath();
 				newInclude->title = file;
@@ -797,13 +797,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// all sections ////
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
-			int header=latexParser.structureCommands.indexOf(cmd);
-			if (header>-1) {
+			int level = latexParser.structureCommandLevel(cmd);
+			if (level>-1) {
 				StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
 				else newSection->appendix=false;
 				newSection->title=parseTexOrPDFString(name);
-				newSection->level=header;
+				newSection->level=level;
 				newSection->setLine(line(i).handle(), i);
 				newSection->columnNumber = offset;
 				flatStructure << newSection;
@@ -818,7 +818,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
             parent->updateMasterSlaveRelations(this);
         }
 	}//for each line handle
-	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
+	QVector<StructureEntry*> parent_level(latexParser.structureDepth());
     if(!isHidden()){
         mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
 
@@ -1318,10 +1318,12 @@ StructureEntry* StructureEntryIterator::next(){
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
   iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
   iconWarning(getRealIconCached("warning")), m_singleMode(false){
-  mHighlightIndex=QModelIndex();
-  iconSection.resize(LatexParser::getInstance().structureCommands.count());
-  for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-    iconSection[i]=getRealIconCached(LatexParser::getInstance().structureCommands[i].mid(1));
+	mHighlightIndex=QModelIndex();
+
+	QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph";
+	iconSection.resize(structureIconNames.length());
+	for (int i=0; i<structureIconNames.length(); i++)
+		iconSection[i] = getRealIconCached(structureIconNames[i]);
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
@@ -1479,12 +1481,12 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
 	
-	if(entry->level>LatexParser::getInstance().structureCommands.count() || entry->level<0){
+	if(entry->level>LatexParser::getInstance().structureDepth() || entry->level<0){
 		entry->debugPrint("Structure broken!");
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
 	}
-	if(entry->parent->level>LatexParser::getInstance().structureCommands.count() || entry->parent->level<0){
+	if(entry->parent->level>LatexParser::getInstance().structureDepth() || entry->parent->level<0){
 		entry->debugPrint("Structure broken (b)!");
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
@@ -1952,9 +1954,7 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 	return 0;
 }
 void LatexDocuments::settingsRead(){
-	model->iconSection.resize(LatexParser::getInstance().structureCommands.count());
-	for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-        model->iconSection[i]=getRealIcon(LatexParser::getInstance().structureCommands[i].mid(1));
+	return; // currently unused
 }
 bool LatexDocuments::singleMode() const {
 	return !masterDocument;

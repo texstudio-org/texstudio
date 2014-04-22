@@ -167,7 +167,7 @@ void GrammarCheck::process(){
 				continue;
 			}
 			
-			if (latexParser->structureCommands.contains(lr.lastCommand)) {
+			if (latexParser->structureCommandLevel(lr.lastCommand) >= 0) {
 				//don't check captions
 				QStringList temp; QList<int> starts;
 				LatexParser::resolveCommandOptions(lr.line,lr.wordStartIndex-1,temp,&starts);

@@ -3553,16 +3553,23 @@ void Texmaker::ReadSettings(bool reread) {
 	
 	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode",false).toBool());
 	
-	latexParser.structureCommands.clear();
-	if(config->value("Structure/Structure Level 1","").toString()==""){
-		latexParser.structureCommands << "\\part" << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection";
-	}else{
-		int i=0;
-		QString elem;
-		while((elem=config->value("Structure/Structure Level "+QString::number(i+1),"").toString())!=""){
-			if (!elem.startsWith("\\")) elem=elem.prepend("\\");
-			latexParser.structureCommands << elem;
-			i++;
+	QList<QStringList> defaults = QList<QStringList>()
+			<< (QStringList() << "\\part")
+			<< (QStringList() << "\\chapter")
+			<< (QStringList() << "\\section")
+			<< (QStringList() << "\\subsection")
+			<< (QStringList() << "\\subsubsection")
+			<< (QStringList() << "\\paragraph");
+	latexParser.structureCommandLists.clear();
+	for (int level=0; level<defaults.length(); level++) {
+		QStringList cmds = config->value("Structure/Structure Level " + QString::number(level+1)).toStringList();
+		if (!cmds.isEmpty()) {
+			for (int i=0; i<cmds.length(); i++) {
+				if (!cmds[i].startsWith("\\")) cmds[i].prepend("\\");
+			}
+			latexParser.structureCommandLists << cmds;
+		} else {
+			latexParser.structureCommandLists << defaults[level];
 		}
 	}
 	
@@ -4756,20 +4763,18 @@ void Texmaker::createLabelFromAction()
 
 	// find column position after structure command
 	QString lineText = edView->getDocument()->line(lineNr).text();
-	int pos = lineText.indexOf(latexParser.structureCommands[level]);
-	if (pos>=0) {
-		pos += latexParser.structureCommands[level].length();
-		// workaround for starred commands: \section*{Cap}
-		if ((lineText.length() > pos+1) && lineText.at(pos) == '*') pos++;
-	} else {
-		// fallback if structure commands are redefined
-		foreach (const QString &cmd, latexParser.structureCommands) {
-			pos = lineText.indexOf(cmd);
-			if (pos<0) continue;
+	int pos = -1;
+	Q_ASSERT(level < latexParser.structureCommandLists.length());
+	foreach (const QString &cmd, latexParser.structureCommandLists[level]) {
+		pos = lineText.indexOf(cmd);
+		if (pos >= 0) {
 			pos += cmd.length();
+			// workaround for starred commands: \section*{Cap}
+			if ((lineText.length() > pos+1) && lineText.at(pos) == '*') pos++;
+			break;
 		}
-		if (pos<0) return; // could not find associated command
 	}
+	if (pos < 0) return; // could not find associated command
 
 	// advance pos behind options, and use title to guess a label
 	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
