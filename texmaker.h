@@ -552,6 +552,7 @@ protected slots:
 	void moveDocumentToEnd();
 	void moveDocumentToDest(int dest);
 	
+	void updateTexQNFA();
 	void updateHighlighting();
 	
 	void toggleGrammar(int type);
