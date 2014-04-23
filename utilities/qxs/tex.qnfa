@@ -244,7 +244,8 @@ environments in smallUsefulFunctions.cpp)
 
 	<!-- ========================= SECTIONS ====================== -->
 
-	<list id="keywords/block" format="extra-keyword">
+	<list id="keywords/structure" format="extra-keyword">
+	<!-- will be dynamically generated at runtime
 		<word parenthesis="part:boundary@nomatch" parenthesisWeight="8" fold="true">\\part</word>
 		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="7" fold="true">\\chapter</word>
 		<word parenthesis="section:boundary@nomatch" parenthesisWeight="6" fold="true">\\section</word>
@@ -252,6 +253,7 @@ environments in smallUsefulFunctions.cpp)
 		<word parenthesis="subsubsection:boundary@nomatch" parenthesisWeight="4" fold="true">\\subsubsection</word>
 		<word parenthesis="paragraph:boundary@nomatch" parenthesisWeight="3" fold="true" >\\paragraph</word>
 		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="2" fold="true" >\\subparagraph</word>
+	-->	
 	</list>
 	
 	<!-- ========================= GENERAL COMMANDS ====================== -->

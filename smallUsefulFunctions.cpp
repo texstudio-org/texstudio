@@ -824,6 +824,35 @@ void addEnvironmentToDom(QDomDocument& doc,const QString& EnvironName,const QStr
 	root.insertBefore(tag,insertAt);
 }
 
+// adds entries for structure commands to the Dom of a QNFA file
+void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &structureCommandLists) {
+	QDomElement root= doc.documentElement();
+
+	QDomNode parent;
+	for (int i=root.childNodes().size()-1; i>=0; i--) {
+		if (root.childNodes().item(i).attributes().namedItem("id").nodeValue() == "keywords/structure"){
+			parent = root.childNodes().item(i);
+			break;
+		}
+	}
+
+	for (int level=0; level<structureCommandLists.length(); level++) {
+		foreach (const QString &cmd, structureCommandLists[level]) {
+			QDomElement child = doc.createElement("word");
+			QString name = cmd;
+			name.remove('\\');
+			child.setAttribute("parenthesis",QString("%1:boundary@nomatch").arg(name));
+			child.setAttribute("parenthesisWeight", QString("%1").arg(8 - level));
+			child.setAttribute("fold","true");
+			name = cmd;
+			name.replace('\\', "\\\\");  // words are regexps, so we have to escape the slash
+			QDomText dtxt = doc.createTextNode(name);
+			child.appendChild(dtxt);
+			parent.appendChild(child);
+		}
+	}
+}
+
 void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
 	const QString BracketsOpen("[{");
 	const QString BracketsClose("]}");

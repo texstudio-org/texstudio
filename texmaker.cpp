@@ -94,6 +94,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
     recheckLabels=true;
     findDlg=0;
 	recentSessionList = 0;
+	EditorTabs = 0;
 	
 	ReadSettings();
 
@@ -157,23 +158,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	m_languages = new QLanguageFactory(m_formats, this);
 	m_languages->addDefinitionPath(qxsPath);
 	
-	// custom evironments<
-	if(!configManager.customEnvironments.isEmpty()){
-		QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
-		
-		QFile f(findResourceFile("qxs/tex.qnfa"));
-		QDomDocument doc;
-		doc.setContent(&f);
-		
-		QMap<QString, QVariant>::const_iterator i;
-		for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-			QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-			addEnvironmentToDom(doc,i.key(),mode);
-		}
-		QNFADefinition::load(doc,&m_lang,m_formats);
-		
-		m_languages->addLanguage(m_lang);
-	}
+	// custom evironments & structure commands
+	updateTexQNFA();
 	
 	QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
 	QList<QLineMarkType> &marks = QLineMarksInfoCenter::instance()->markTypes();
@@ -5457,6 +5443,7 @@ void Texmaker::HelpAbout() {
 	delete abDlg;
 }
 ////////////// OPTIONS //////////////////////////////////////
+
 void Texmaker::GeneralOptions() {
 	QMap<QString,QVariant> oldCustomEnvironments = configManager.customEnvironments;
 	bool oldModernStyle = modernStyle;
@@ -5560,41 +5547,8 @@ void Texmaker::GeneralOptions() {
 		setupToolBars();
 		// custom evironments
 		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
-		QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
 		if (customEnvironmentChanged){
-			QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
-			
-			oldLaTeX = m_lang.d;
-			Q_ASSERT(oldLaTeX);
-			
-			QFile f(findResourceFile("qxs/tex.qnfa"));
-			QDomDocument doc;
-			doc.setContent(&f);
-			
-			{
-				QMap<QString, QVariant>::const_iterator i;
-				for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-					QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-					addEnvironmentToDom(doc,i.key(),mode);
-				}
-			}
-			//detected math envs
-			{
-				QMap<QString, QString>::const_iterator i;
-				for (i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
-					QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
-                    QString env=i.key();
-                    if(env.contains('*')){
-                        env.replace("*","\\*");
-                    }
-                    addEnvironmentToDom(doc,env,envMode);
-				}
-			}
-			QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
-			m_languages->addLanguage(m_lang);
-			
-			newLaTeX = m_lang.d;
-			Q_ASSERT(oldLaTeX != newLaTeX);
+			updateTexQNFA();
 		}
 		//completion
 		completionBaseCommandsUpdated=true;
@@ -5611,14 +5565,8 @@ void Texmaker::GeneralOptions() {
 		QEditor::setEditOperations(configManager.editorKeys,true);
 		foreach (LatexEditorView *edView, EditorTabs->editors()) {
 			QEditor* ed = edView->editor;
-			//if (customEnvironmentChanged) ed->highlight();
-			if (ed->languageDefinition() == oldLaTeX) {
-				ed->setLanguageDefinition(newLaTeX);
-				ed->highlight();
-			} else {
-				ed->document()->markFormatCacheDirty();
-				ed->update();
-			}
+			ed->document()->markFormatCacheDirty();
+			ed->update();
 		}
 		if (oldModernStyle != modernStyle || oldSystemTheme != useSystemTheme) {
 			setupMenus();
@@ -8190,6 +8138,53 @@ int Texmaker::getVersion() const{
 	return TXSVERSION_NUMERIC;
 }
 
+void Texmaker::updateTexQNFA() {
+	QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
+
+	QFile f(findResourceFile("qxs/tex.qnfa"));
+	QDomDocument doc;
+	doc.setContent(&f);
+
+	for (QMap<QString, QVariant>::const_iterator i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+		QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+		addEnvironmentToDom(doc,i.key(),mode);
+	}
+
+	//detected math envs
+	for (QMap<QString, QString>::const_iterator i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
+		QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
+		QString env=i.key();
+		if(env.contains('*')){
+			env.replace("*","\\*");
+		}
+		addEnvironmentToDom(doc,env,envMode);
+	}
+	// structure commands
+	addStructureCommandsToDom(doc, latexParser.structureCommandLists);
+
+	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
+	oldLaTeX = m_lang.d;
+	Q_ASSERT(oldLaTeX);
+
+	QNFADefinition::load(doc,&m_lang,m_formats);
+	m_languages->addLanguage(m_lang);
+
+	newLaTeX = m_lang.d;
+	Q_ASSERT(oldLaTeX != newLaTeX);
+
+	if (!EditorTabs) return;
+	documents.enablePatch(false);
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		QEditor* ed = edView->editor;
+		if (ed->languageDefinition() == oldLaTeX) {
+			ed->setLanguageDefinition(newLaTeX);
+			ed->highlight();
+		}
+	}
+	documents.enablePatch(true);
+}
+
+/// Updates the highlighting of environments specified via environmentAliases
 void Texmaker::updateHighlighting(){
 	
 	QStringList envList;
@@ -8220,45 +8215,7 @@ void Texmaker::updateHighlighting(){
 	if(!updateNecessary)
 		return;
 	
-	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
-	QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
-	
-	oldLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX);
-	
-	QFile f(findResourceFile("qxs/tex.qnfa"));
-	QDomDocument doc;
-	doc.setContent(&f);
-	
-	for (QMap<QString, QVariant>::const_iterator i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-		QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-		addEnvironmentToDom(doc,i.key(),mode);
-	}
-	//detected math envs
-	for (QMap<QString, QString>::const_iterator i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
-		QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
-        QString env=i.key();
-        if(env.contains('*')){
-            env.replace("*","\\*");
-        }
-        addEnvironmentToDom(doc,env,envMode);
-	}
-	QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
-	m_languages->addLanguage(m_lang);
-	
-	newLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX != newLaTeX);
-    documents.enablePatch(false);
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		QEditor* ed = edView->editor;
-		//if (customEnvironmentChanged) ed->highlight();
-		if (ed->languageDefinition() == oldLaTeX) {
-			ed->setLanguageDefinition(newLaTeX);
-            ed->highlight();
-		}
-	}
-    documents.enablePatch(true);
-
+	updateTexQNFA();
 	updateUserMacros(false); //update macros depending on the language to newLatex
 }
 

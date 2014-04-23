@@ -84,6 +84,7 @@ QList<int> indicesOf(const QString& line, const QRegExp& rx);
 
 // add Environment to QNFA DOM
 void addEnvironmentToDom(QDomDocument &doc,const QString& EnvironName,const QString& EnvironMode);
+void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &structureCommandLists);
 
 QString intListToStr(const QList<int> &ints);
 QList<int> strToIntList(const QString &s);
