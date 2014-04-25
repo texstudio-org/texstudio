@@ -539,9 +539,9 @@ isEmpty(NO_POPPLER_PREVIEW) {
   }else:{ # Qt5
     unix:!macx {
     
-	INCLUDEPATH += /home/sdm/Dokumente/Programmieren/poppler/include/poppler/qt5
+	INCLUDEPATH += /usr/include/poppler/qt5
         LIBS += -L/usr/lib \
-	     -L/home/sdm/Dokumente/Programmieren/poppler/lib \
+	     -L/usr/include/poppler/lib \
             -lpoppler-qt5 \
             -lz
     }
