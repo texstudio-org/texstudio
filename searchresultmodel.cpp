@@ -93,7 +93,9 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	if (!index.isValid()) return QVariant();
 	//if (index.row() >= log.count() || index.row() < 0) return QVariant();
 	if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
-	if (role != Qt::DisplayRole) return QVariant();
+
+    if (role != Qt::DisplayRole && role != Qt::CheckStateRole) return QVariant();
+
 	int i=index.internalId();
 	int searchIndex = (i>>16)-1;
 	if (searchIndex < 0 || searchIndex >= m_searches.size()) return QVariant();
@@ -101,18 +103,82 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	if(i&(1<<15)){
 		if (!search.doc) return QVariant();
 		int lineIndex = index.row();
-		if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()) return "";
+        if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()){
+            if(role==Qt::CheckStateRole)
+                return QVariant();
+            return "";
+        }
+        if(role==Qt::CheckStateRole){
+            qDebug()<<lineIndex << search.checked.value(lineIndex,true);
+            return (search.checked.value(lineIndex,true) ? Qt::Checked : Qt::Unchecked);
+        }
+
 		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
-		if(search.lineNumberHints[lineIndex] < 0) return "";
+        if(search.lineNumberHints[lineIndex] < 0) {
+            return "";
+        }
 		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
 		QString temp=prepareResultText(ln.text());
+
 		return QString("Line %1: ").arg(search.lineNumberHints[lineIndex]+1)+temp;
 	} else {
-		REQUIRE_RET(index.row() == searchIndex, QVariant());
+        if(role==Qt::CheckStateRole){
+            if(search.checked.isEmpty())
+                return QVariant();
+            bool state=search.checked.first();
+            int cnt=search.checked.count(state);
+            if(cnt==search.checked.size()){
+                return state ? Qt::Checked : Qt::Unchecked;
+            }else{
+                return Qt::PartiallyChecked;
+            }
+        }
+        REQUIRE_RET(index.row() == searchIndex, QVariant());
 		return (search.doc?search.doc->getFileName():tr("File closed")) + QString(" (%1)").arg(search.lines.size());
 	}
 }
 
+Qt::ItemFlags SearchResultModel::flags(const QModelIndex &index) const
+{
+    if (!index.isValid())
+        return 0;
+
+    return Qt::ItemIsEnabled | Qt::ItemIsUserCheckable | Qt::ItemIsSelectable ;
+}
+
+bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (role != Qt::CheckStateRole )
+        return false;
+
+    int i=index.internalId();
+    int searchIndex = (i>>16)-1;
+    if (searchIndex < 0 || searchIndex >= m_searches.size()) return false;
+    SearchInfo& search = m_searches[searchIndex];
+    if(i&(1<<15)){
+        if (!search.doc) return false;
+        int lineIndex = index.row();
+        if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()){
+            return false;
+        }
+        if(role==Qt::CheckStateRole){
+            search.checked.replace(lineIndex,(value==Qt::Checked));
+            //m_searches.at(searchIndex).checked.replace(lineIndex,(value==Qt::Checked));
+        }
+         emit dataChanged(index, index);
+    }else{
+        bool state=(value==Qt::Checked);
+        for(int i=0;i<search.checked.size();i++){
+            search.checked.replace(i,state);
+        }
+        int row=search.checked.size()-1;
+        int j=(i&0xFFFF0000)+(1<<15)+row;
+        QModelIndex endIndex=createIndex(row,0,j);
+        emit dataChanged(index,endIndex);
+    }
+
+    return true;
+}
 
 void SearchResultModel::setSearchExpression(const QString &exp,const bool isCaseSensitive,const bool isWord,const bool isRegExp){
 	mExpression=exp;

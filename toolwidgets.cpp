@@ -149,7 +149,7 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	OutputSearchTree= new QTreeView(this);
 	OutputSearchTree->setUniformRowHeights(true);
 	OutputSearchTree->setModel(searchResultModel);
-	OutputSearchTree->setItemDelegate(searchDelegate);
+    OutputSearchTree->setItemDelegate(searchDelegate);
 	connect(OutputSearchTree,SIGNAL(clicked(QModelIndex)),this,SLOT(clickedSearchResult(QModelIndex)));
 
 	appendPage(new TitledPanelPage(OutputSearchTree, SEARCH_RESULT_PAGE, tr("Search Results")));
@@ -254,6 +254,9 @@ void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> lines, QDocument* 
 	SearchInfo search;
 	search.doc = doc;
 	search.lines = lines;
+    for(int i=0;i<lines.count();i++){
+        search.checked << true;
+    }
 	searchResultModel->addSearch(search);
 }
 void OutputViewWidget::clearSearch(){
@@ -309,11 +312,19 @@ void SearchTreeDelegate::paint( QPainter * painter, const QStyleOptionViewItem &
         painter->setPen( option.palette.color(cg, QPalette::Text) );
     }
 
+    QSize size;
+    if(index.data(Qt::CheckStateRole).isValid()){
+        size = check(option, option.rect, Qt::Checked).size();
+        QRect checkboxRect(option.rect.x(),option.rect.y(),size.width(),size.height());
+        QItemDelegate::drawCheck(painter, option, checkboxRect, (Qt::CheckState) index.data(Qt::CheckStateRole).toInt());
+    }
+
     if( index.data().toString().isEmpty() )
         return;
     painter->save();
     QString text=index.data().toString();
     QRect r=option.rect;
+    r.adjust(size.width(),0,0,0);
     QStringList textList=text.split("|");
     for(int i=0;i<textList.size();i++){
         QString temp=textList.at(i);

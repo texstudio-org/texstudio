@@ -33,6 +33,10 @@ QString findGlobalDialog::getSearchWord(){
 	return m_ui->lineEditSearchWord->text();
 }
 
+QString findGlobalDialog::getReplaceWord(){
+    return m_ui->lineEditReplaceWord->text();
+}
+
 bool findGlobalDialog::isWords(){
 	return m_ui->cbWords->isChecked();
 }
