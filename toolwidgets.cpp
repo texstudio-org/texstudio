@@ -152,22 +152,22 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
     QLabel *lbl=new QLabel;
     lbl->setText(tr("Search text:"));
     searchTextEdit=new QLineEdit;
-    searchTextEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    //searchTextEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
     QPushButton *btn=new QPushButton(tr("Search again"));
     connect(btn,SIGNAL(clicked()),this,SLOT(updateSearch()));
     QLabel *lbl2=new QLabel;
     lbl2->setText(tr("Replace by:"));
     replaceTextEdit=new QLineEdit;
-    replaceTextEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    //replaceTextEdit->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Fixed);
     QPushButton *btn2=new QPushButton(tr("Replace all"));
     connect(btn2,SIGNAL(clicked()),this,SLOT(replaceAll()));
 
     horz->addWidget(lbl);
-    horz->addWidget(searchTextEdit,1,Qt::AlignLeft);
-    horz->addWidget(btn,0,Qt::AlignLeft);
+    horz->addWidget(searchTextEdit,1);
+    horz->addWidget(btn);
     horz->addWidget(lbl2);
-    horz->addWidget(replaceTextEdit,1,Qt::AlignLeft);
-    horz->addWidget(btn2,0,Qt::AlignLeft);
+    horz->addWidget(replaceTextEdit,1);
+    horz->addWidget(btn2);
 
 	OutputSearchTree= new QTreeView(this);
     OutputSearchTree->header()->hide();
