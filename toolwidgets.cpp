@@ -202,6 +202,8 @@ void OutputViewWidget::updateSearch(){
 void OutputViewWidget::replaceAll(){
     QList<SearchInfo> searches=searchResultModel->getSearches();
     QString replaceText=replaceTextEdit->text();
+    bool isWord,isCase,isReg;
+    searchResultModel->getSearchConditions(isCase,isWord,isReg);
     foreach(SearchInfo search,searches){
         LatexDocument *doc=qobject_cast<LatexDocument*>(search.doc.data());
         if(!doc)
@@ -215,10 +217,21 @@ void OutputViewWidget::replaceAll(){
                     if(!results.isEmpty()){
                         QPair<int,int> elem;
                         foreach(elem,results){
-                            // for now, simple replacement
-                            int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
-                            cur->select(lineNr,elem.first,lineNr,elem.second);
-                            cur->replaceSelectedText(replaceText);
+                            if(isReg){
+                                QRegExp rx(searchResultModel->searchExpression());
+                                QString txt=dlh->text();
+                                QString newText=txt.replace(rx,replaceText);
+                                int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
+                                cur->select(lineNr,elem.first,lineNr,elem.second);
+                                newText=newText.mid(elem.first);
+                                newText.chop(txt.length()-elem.second-1);
+                                cur->replaceSelectedText(newText);
+                            }else{
+                                // simple replacement
+                                int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
+                                cur->select(lineNr,elem.first,lineNr,elem.second);
+                                cur->replaceSelectedText(replaceText);
+                            }
                         }
                     }
                 }
@@ -230,6 +243,8 @@ void OutputViewWidget::replaceAll(){
 
 void OutputViewWidget::clickedSearchResult(const QModelIndex& index){
 	QDocument* doc = searchResultModel->getDocument(index);
+    if(!searchResultModel->parent(index).isValid())
+        return;
 	if (!doc) return;
 	emit jumpToSearch(doc,searchResultModel->getLineNumber(index));
 }
