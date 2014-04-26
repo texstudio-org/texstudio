@@ -216,9 +216,10 @@ void OutputViewWidget::replaceAll(){
                     QList<QPair<int,int> > results=searchResultModel->getSearchResults(dlh->text());
                     if(!results.isEmpty()){
                         QPair<int,int> elem;
+                        int offset=0;
                         foreach(elem,results){
                             if(isReg){
-                                QRegExp rx(searchResultModel->searchExpression());
+                                QRegExp rx(searchResultModel->searchExpression(),isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);
                                 QString txt=dlh->text();
                                 QString newText=txt.replace(rx,replaceText);
                                 int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
@@ -229,8 +230,9 @@ void OutputViewWidget::replaceAll(){
                             }else{
                                 // simple replacement
                                 int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
-                                cur->select(lineNr,elem.first,lineNr,elem.second);
+                                cur->select(lineNr,elem.first+offset,lineNr,elem.second+offset);
                                 cur->replaceSelectedText(replaceText);
+                                offset+=replaceText.length()-elem.second+elem.first;
                             }
                         }
                     }
@@ -348,7 +350,8 @@ void OutputViewWidget::clearSearch(){
 }
 void OutputViewWidget::setSearchExpression(QString exp,QString replaceText,bool isCase,bool isWord,bool isRegExp){
     replaceTextEdit->setText(replaceText);
-    setSearchExpression(exp,isCase,isWord,isRegExp);
+    searchTextEdit->setText(exp);
+    searchResultModel->setSearchExpression(exp,replaceText,isCase,isWord,isRegExp);
 }
 
 void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp){
