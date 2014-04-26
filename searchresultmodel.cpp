@@ -32,6 +32,10 @@ void SearchResultModel::addSearch(const SearchInfo& search){
 #endif
 }
 
+QList<SearchInfo> SearchResultModel::getSearches(){
+    return m_searches;
+}
+
 void SearchResultModel::clear(){
 #if QT_VERSION<0x050000
 #else

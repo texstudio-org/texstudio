@@ -2,6 +2,7 @@
 #include "math.h"
 #include "smallUsefulFunctions.h"
 #include "qdocument.h"
+#include "latexdocument.h"
 #include "utilsSystem.h"
 
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
@@ -199,7 +200,37 @@ void OutputViewWidget::updateSearch(){
 }
 
 void OutputViewWidget::replaceAll(){
-
+    QList<SearchInfo> searches=searchResultModel->getSearches();
+    QString replaceText=replaceTextEdit->text();
+    foreach(SearchInfo search,searches){
+        LatexDocument *doc=qobject_cast<LatexDocument*>(search.doc.data());
+        if(!doc)
+            continue;
+        /*LatexEditorView *edView=doc->getEditorView();
+        if(!edView)
+            continue;
+        QEditor *editor=edView->getEditor();
+        if(!editor)
+            continue;*/
+        QDocumentCursor *cur=new QDocumentCursor(doc);
+        for(int i=0;i<search.checked.size();i++){
+            if(search.checked.value(i,false)){
+                QDocumentLineHandle *dlh=search.lines.value(i,0);
+                if(dlh){
+                    QList<QPair<int,int> > results=searchResultModel->getSearchResults(dlh->text());
+                    if(!results.isEmpty()){
+                        QPair<int,int> elem;
+                        foreach(elem,results){
+                            // for now, simple replacement
+                            int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
+                            cur->select(lineNr,elem.first,lineNr,elem.second);
+                            cur->replaceSelectedText(replaceText);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 void OutputViewWidget::clickedSearchResult(const QModelIndex& index){

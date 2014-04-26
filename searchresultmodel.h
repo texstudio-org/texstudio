@@ -30,6 +30,7 @@ public:
 	
 	void addSearch(const SearchInfo& search);
 	void removeSearch(const QDocument* doc);
+    QList<SearchInfo> getSearches();
 	void clear();
 	QDocument* getDocument(const QModelIndex &index);
 	int getLineNumber(const QModelIndex &index);
@@ -41,9 +42,9 @@ public:
         isCaseSensitive=mIsCaseSensitive;
         isRegExp=mIsRegExp;
     }
+    QList<QPair<int,int> > getSearchResults(const QString &text) const;
 
 private:
-	QList<QPair<int,int> > getSearchResults(const QString &text) const;
 	QString prepareResultText(const QString& text) const;
 	
 	QList< SearchInfo > m_searches;
