@@ -321,6 +321,7 @@ protected slots:
 	void editInsertRefToNextLabel(bool backward=false);
 	void editInsertRefToPrevLabel();
 	void editFindGlobal();
+    void updateFindGlobal(QList<QEditor *> editors,QString expr,QString repl,bool isWord,bool isCase,bool isReg);
 	
 	void findWordRepetions();
 	void findNextWordRepetion();

@@ -36,6 +36,12 @@ public:
 	void setSearchExpression(const QString &exp,const bool isCaseSensitive,const bool isWord,const bool isRegExp);
 	QString searchExpression() { return mExpression; }
 	int getNextSearchResultColumn(const QString& text,int col);
+    void getSearchConditions(bool &isCaseSensitive,bool &isWord,bool &isRegExp){
+        isWord=mIsWord;
+        isCaseSensitive=mIsCaseSensitive;
+        isRegExp=mIsRegExp;
+    }
+
 private:
 	QList<QPair<int,int> > getSearchResults(const QString &text) const;
 	QString prepareResultText(const QString& text) const;

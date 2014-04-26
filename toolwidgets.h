@@ -12,6 +12,7 @@
 #include "latexlogwidget.h"
 #include "searchresultmodel.h"
 #include "qdocumentsearch.h"
+#include "qeditor.h"
 
 #include <QAbstractTextDocumentLayout>
 
@@ -54,6 +55,7 @@ public:
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
 	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
+    void setSearchExpression(QString exp,QString replaceText,bool isCase,bool isWord,bool isRegExp);
 	QString searchExpression() const;
 	int getNextSearchResultColumn(QString text,int col);
 	bool childHasFocus();
@@ -67,20 +69,29 @@ public slots:
 	void previewLatex(const QPixmap& pixmap);
 	void addSearch(QList<QDocumentLineHandle *> search, QDocument* doc);
 	void clearSearch();
+    void setSearchEditors(QList<QEditor*> editors){
+        mEditors=editors;
+    }
+
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 signals:
 	void jumpToSearch(QDocument* doc,int lineNumber);
+    void updateTheSearch(QList<QEditor*> editors,QString expr,QString repl,bool isCase,bool isWord,bool isReg);
 private:
 	PreviewWidget *previewWidget;
 	LatexLogWidget *logWidget;
 	QTreeView *OutputSearchTree;
+    QLineEdit *searchTextEdit,*replaceTextEdit;
 	LogEditor *OutputMessages;
 	SearchResultModel *searchResultModel;
+    QList<QEditor*> mEditors;
 	
 	void retranslateUi();
 private slots:
 	void clickedSearchResult(const QModelIndex& index);
 	void copySearchResult();
+    void updateSearch();
+    void replaceAll();
 };
 
 class SearchTreeDelegate: public QItemDelegate {

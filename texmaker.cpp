@@ -226,6 +226,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	symbolMostused.clear();
 	setupDockWidgets();
 
+    connect(outputView,SIGNAL(updateTheSearch(QList<QEditor*>,QString,QString,bool,bool,bool)),this,SLOT(updateFindGlobal(QList<QEditor*>,QString,QString,bool,bool,bool)));
+
 	setMenuBar(new DblClickMenuBar());
 	setupMenus();
 	TitledPanelPage *logPage = outputView->pageFromId(outputView->LOG_PAGE);
@@ -7117,26 +7119,31 @@ void Texmaker::editFindGlobal(){
 		default:
 			break;
 		}
-		outputView->clearSearch();
-        outputView->setSearchExpression(findDlg->getSearchWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
-		foreach(QEditor *ed,editors){
-			LatexDocument *doc=qobject_cast<LatexDocument*>(ed->document());
-			if (!doc) continue;
-			QList<QDocumentLineHandle *> lines;
-			for(int l=0;l<doc->lineCount();l++){
-                l=doc->findLineRegExp(findDlg->getSearchWord(),l,findDlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,findDlg->isWords(),findDlg->isRegExp());
-				if(l>-1) lines << doc->line(l).handle();
-				if(l==-1) break;
-			}
-			
-			if(!lines.isEmpty()){ // don't add empty searches
-				if (ed->fileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
-					doc->setTemporaryFileName(buildManager.createTemporaryFileName());
-				outputView->addSearch(lines, doc);
-				outputView->showPage(outputView->SEARCH_RESULT_PAGE);
-			}
-		}
+        updateFindGlobal(editors,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
+        outputView->setSearchEditors(editors);
 	}
+}
+
+void Texmaker::updateFindGlobal(QList<QEditor *> editors,QString expr,QString repl,bool isWord,bool isCase,bool isReg){
+    outputView->clearSearch();
+    outputView->setSearchExpression(expr,repl,isCase,isWord,isReg);
+    foreach(QEditor *ed,editors){
+        LatexDocument *doc=qobject_cast<LatexDocument*>(ed->document());
+        if (!doc) continue;
+        QList<QDocumentLineHandle *> lines;
+        for(int l=0;l<doc->lineCount();l++){
+            l=doc->findLineRegExp(expr,l,isCase ? Qt::CaseSensitive : Qt::CaseInsensitive,isWord,isReg);
+            if(l>-1) lines << doc->line(l).handle();
+            if(l==-1) break;
+        }
+
+        if(!lines.isEmpty()){ // don't add empty searches
+            if (ed->fileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
+                doc->setTemporaryFileName(buildManager.createTemporaryFileName());
+            outputView->addSearch(lines, doc);
+            outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+        }
+    }
 }
 
 // show current cursor position in structure view

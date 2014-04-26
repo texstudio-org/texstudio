@@ -146,17 +146,60 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	searchResultModel = new SearchResultModel(this);
 
 	SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
+
+    QHBoxLayout *horz=new QHBoxLayout;
+    QLabel *lbl=new QLabel;
+    lbl->setText(tr("Search text:"));
+    searchTextEdit=new QLineEdit;
+    searchTextEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    QPushButton *btn=new QPushButton(tr("Search again"));
+    connect(btn,SIGNAL(clicked()),this,SLOT(updateSearch()));
+    QLabel *lbl2=new QLabel;
+    lbl2->setText(tr("Replace by:"));
+    replaceTextEdit=new QLineEdit;
+    replaceTextEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
+    QPushButton *btn2=new QPushButton(tr("Replace all"));
+    connect(btn2,SIGNAL(clicked()),this,SLOT(replaceAll()));
+
+    horz->addWidget(lbl);
+    horz->addWidget(searchTextEdit,1,Qt::AlignLeft);
+    horz->addWidget(btn,0,Qt::AlignLeft);
+    horz->addWidget(lbl2);
+    horz->addWidget(replaceTextEdit,1,Qt::AlignLeft);
+    horz->addWidget(btn2,0,Qt::AlignLeft);
+
 	OutputSearchTree= new QTreeView(this);
+    OutputSearchTree->header()->hide();
 	OutputSearchTree->setUniformRowHeights(true);
 	OutputSearchTree->setModel(searchResultModel);
     OutputSearchTree->setItemDelegate(searchDelegate);
+
+    QVBoxLayout *vert=new QVBoxLayout;
+
+    vert->addLayout(horz);
+    vert->addWidget(OutputSearchTree,1);
+
+    QWidget *wgt=new QWidget;
+    wgt->setLayout(vert);
+
 	connect(OutputSearchTree,SIGNAL(clicked(QModelIndex)),this,SLOT(clickedSearchResult(QModelIndex)));
 
-	appendPage(new TitledPanelPage(OutputSearchTree, SEARCH_RESULT_PAGE, tr("Search Results")));
+    //appendPage(new TitledPanelPage(OutputSearchTree, SEARCH_RESULT_PAGE, tr("Search Results")));
+    appendPage(new TitledPanelPage(wgt, SEARCH_RESULT_PAGE, tr("Search Results")));
 }
 void OutputViewWidget::previewLatex(const QPixmap& pixmap){
 	previewWidget->previewLatex(pixmap);
 	//showPreview();	
+}
+
+void OutputViewWidget::updateSearch(){
+    bool isWord,isCase,isReg;
+    searchResultModel->getSearchConditions(isCase,isWord,isReg);
+    emit updateTheSearch(mEditors,searchTextEdit->text(),replaceTextEdit->text(),isCase,isWord,isReg);
+}
+
+void OutputViewWidget::replaceAll(){
+
 }
 
 void OutputViewWidget::clickedSearchResult(const QModelIndex& index){
@@ -262,8 +305,14 @@ void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> lines, QDocument* 
 void OutputViewWidget::clearSearch(){
 	searchResultModel->clear();
 }
+void OutputViewWidget::setSearchExpression(QString exp,QString replaceText,bool isCase,bool isWord,bool isRegExp){
+    replaceTextEdit->setText(replaceText);
+    setSearchExpression(exp,isCase,isWord,isRegExp);
+}
+
 void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp){
-        searchResultModel->setSearchExpression(exp,isCase,isWord,isRegExp);
+    searchTextEdit->setText(exp);
+    searchResultModel->setSearchExpression(exp,isCase,isWord,isRegExp);
 }
 QString OutputViewWidget::searchExpression() const {
 	return searchResultModel->searchExpression();
