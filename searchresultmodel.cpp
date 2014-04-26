@@ -109,7 +109,6 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
             return "";
         }
         if(role==Qt::CheckStateRole){
-            qDebug()<<lineIndex << search.checked.value(lineIndex,true);
             return (search.checked.value(lineIndex,true) ? Qt::Checked : Qt::Unchecked);
         }
 
