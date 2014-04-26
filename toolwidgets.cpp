@@ -206,12 +206,6 @@ void OutputViewWidget::replaceAll(){
         LatexDocument *doc=qobject_cast<LatexDocument*>(search.doc.data());
         if(!doc)
             continue;
-        /*LatexEditorView *edView=doc->getEditorView();
-        if(!edView)
-            continue;
-        QEditor *editor=edView->getEditor();
-        if(!editor)
-            continue;*/
         QDocumentCursor *cur=new QDocumentCursor(doc);
         for(int i=0;i<search.checked.size();i++){
             if(search.checked.value(i,false)){
@@ -230,6 +224,7 @@ void OutputViewWidget::replaceAll(){
                 }
             }
         }
+        delete cur;
     }
 }
 
