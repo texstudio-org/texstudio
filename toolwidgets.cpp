@@ -158,6 +158,7 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
     QLabel *lbl2=new QLabel;
     lbl2->setText(tr("Replace by:"));
     replaceTextEdit=new QLineEdit;
+    connect(replaceTextEdit,SIGNAL(textChanged(QString)),this,SLOT(replaceTextChanged(QString)));
     //replaceTextEdit->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Fixed);
     QPushButton *btn2=new QPushButton(tr("Replace all"));
     connect(btn2,SIGNAL(clicked()),this,SLOT(replaceAll()));
@@ -191,6 +192,10 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 void OutputViewWidget::previewLatex(const QPixmap& pixmap){
 	previewWidget->previewLatex(pixmap);
 	//showPreview();	
+}
+
+void OutputViewWidget::replaceTextChanged(QString text){
+    searchResultModel->setReplacementText(text);
 }
 
 void OutputViewWidget::updateSearch(){

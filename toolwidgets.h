@@ -73,6 +73,7 @@ public slots:
         mEditors=editors;
     }
 
+
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 signals:
 	void jumpToSearch(QDocument* doc,int lineNumber);
@@ -92,6 +93,7 @@ private slots:
 	void copySearchResult();
     void updateSearch();
     void replaceAll();
+    void replaceTextChanged(QString text);
 };
 
 class SearchTreeDelegate: public QItemDelegate {
