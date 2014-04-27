@@ -183,7 +183,7 @@ bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value,
             search.checked.replace(i,state);
         }
         int row=search.checked.size()-1;
-        int j=(row&0xFFFF0000)+(1<<15)+row;
+        int j=(i&0xFFFF0000)+(1<<15)+row;
         QModelIndex endIndex=createIndex(row,0,j);
         emit dataChanged(index,endIndex);
     }
