@@ -223,10 +223,11 @@ void OutputViewWidget::replaceAll(){
                                 QString txt=dlh->text();
                                 QString newText=txt.replace(rx,replaceText);
                                 int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
-                                cur->select(lineNr,elem.first,lineNr,elem.second);
+                                cur->select(lineNr,elem.first+offset,lineNr,elem.second+offset);
                                 newText=newText.mid(elem.first);
                                 newText.chop(txt.length()-elem.second-1);
                                 cur->replaceSelectedText(newText);
+                                offset+=newText.length()-elem.second+elem.first;
                             }else{
                                 // simple replacement
                                 int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));

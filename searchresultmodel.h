@@ -34,7 +34,8 @@ public:
 	void clear();
 	QDocument* getDocument(const QModelIndex &index);
 	int getLineNumber(const QModelIndex &index);
-	void setSearchExpression(const QString &exp,const bool isCaseSensitive,const bool isWord,const bool isRegExp);
+    void setSearchExpression(const QString &exp,const bool isCaseSensitive,const bool isWord,const bool isRegExp);
+    void setSearchExpression(const QString &exp,const QString &repl,const bool isCaseSensitive,const bool isWord,const bool isRegExp);
 	QString searchExpression() { return mExpression; }
 	int getNextSearchResultColumn(const QString& text,int col);
     void getSearchConditions(bool &isCaseSensitive,bool &isWord,bool &isRegExp){
@@ -46,9 +47,10 @@ public:
 
 private:
 	QString prepareResultText(const QString& text) const;
+    QString prepareReplacedText(const QString& text) const;
 	
 	QList< SearchInfo > m_searches;
-	QString mExpression;
+    QString mExpression,mReplacementText;
 	bool mIsWord,mIsCaseSensitive,mIsRegExp;
 };
 
