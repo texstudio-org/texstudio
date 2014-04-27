@@ -43,6 +43,10 @@ public:
         isCaseSensitive=mIsCaseSensitive;
         isRegExp=mIsRegExp;
     }
+    void setReplacementText(QString text){
+        mReplacementText=text;
+    }
+
     QList<QPair<int,int> > getSearchResults(const QString &text) const;
 
 private:
