@@ -96,9 +96,9 @@ const
 QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	if (!index.isValid()) return QVariant();
 	//if (index.row() >= log.count() || index.row() < 0) return QVariant();
-	if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
+    //if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
 
-    if (role != Qt::DisplayRole && role != Qt::CheckStateRole) return QVariant();
+    if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole) return QVariant();
 
 	int i=index.internalId();
 	int searchIndex = (i>>16)-1;
@@ -121,10 +121,18 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
             return "";
         }
 		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
-		QString temp=prepareResultText(ln.text());
+        QString temp;
+        if(role==Qt::DisplayRole){
+            temp=QString("Line %1: ").arg(search.lineNumberHints[lineIndex]+1)+prepareResultText(ln.text());
+        }else{
+            // tooltip role
+            temp=prepareReplacedText(ln.text());
+        }
 
-		return QString("Line %1: ").arg(search.lineNumberHints[lineIndex]+1)+temp;
+        return temp;
 	} else {
+        if(role==Qt::ToolTipRole)
+            return QVariant();
         if(role==Qt::CheckStateRole){
             if(search.checked.isEmpty())
                 return QVariant();
@@ -175,7 +183,7 @@ bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value,
             search.checked.replace(i,state);
         }
         int row=search.checked.size()-1;
-        int j=(i&0xFFFF0000)+(1<<15)+row;
+        int j=(row&0xFFFF0000)+(1<<15)+row;
         QModelIndex endIndex=createIndex(row,0,j);
         emit dataChanged(index,endIndex);
     }
@@ -183,11 +191,46 @@ bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value,
     return true;
 }
 
+void SearchResultModel::setSearchExpression(const QString &exp,const QString &repl,const bool isCaseSensitive,const bool isWord,const bool isRegExp){
+    mExpression=exp;
+    mReplacementText=repl;
+    mIsCaseSensitive=isCaseSensitive;
+    mIsWord=isWord;
+    mIsRegExp=isRegExp;
+}
+
 void SearchResultModel::setSearchExpression(const QString &exp,const bool isCaseSensitive,const bool isWord,const bool isRegExp){
 	mExpression=exp;
+    mReplacementText.clear();
 	mIsCaseSensitive=isCaseSensitive;
 	mIsWord=isWord;
 	mIsRegExp=isRegExp;
+}
+
+QString SearchResultModel::prepareReplacedText(const QString& text) const{
+    QString result=text;
+    QList<QPair<int,int> > placements=getSearchResults(text);
+    QPair<int,int> elem;
+    int offset=0;
+    foreach(elem,placements){
+        if(mIsRegExp){
+            QRegExp rx(mExpression,mIsCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
+            //QString newText=text.replace(rx,mReplacementText);
+            /*int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
+            cur->select(lineNr,elem.first,lineNr,elem.second);
+            newText=newText.mid(elem.first);
+            newText.chop(txt.length()-elem.second-1);
+            cur->replaceSelectedText(newText);*/
+        }else{
+            // simple replacement
+            /*int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
+            cur->select(lineNr,elem.first,lineNr,elem.second);
+            cur->replaceSelectedText(replaceText);*/
+            result=result.left(elem.first+offset)+"<b>"+mReplacementText+"</b>"+result.mid(elem.second+offset);
+            offset+=mReplacementText.length()-elem.second+elem.first+7;
+        }
+    }
+    return result;
 }
 
 QString SearchResultModel::prepareResultText(const QString& text) const{
