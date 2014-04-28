@@ -201,7 +201,7 @@ void OutputViewWidget::replaceTextChanged(QString text){
 void OutputViewWidget::updateSearch(){
     bool isWord,isCase,isReg;
     searchResultModel->getSearchConditions(isCase,isWord,isReg);
-    emit updateTheSearch(mEditors,searchTextEdit->text(),replaceTextEdit->text(),isCase,isWord,isReg);
+    emit updateTheSearch(mDocs,searchTextEdit->text(),replaceTextEdit->text(),isCase,isWord,isReg);
 }
 
 void OutputViewWidget::replaceAll(){
