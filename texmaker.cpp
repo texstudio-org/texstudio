@@ -226,7 +226,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	symbolMostused.clear();
 	setupDockWidgets();
 
-    connect(outputView,SIGNAL(updateTheSearch(QList<QEditor*>,QString,QString,bool,bool,bool)),this,SLOT(updateFindGlobal(QList<QEditor*>,QString,QString,bool,bool,bool)));
+    connect(outputView,SIGNAL(updateTheSearch(QList<LatexDocument*>,QString,QString,bool,bool,bool)),this,SLOT(updateFindGlobal(QList<LatexDocument*>,QString,QString,bool,bool,bool)));
 
 	setMenuBar(new DblClickMenuBar());
 	setupMenus();
@@ -7105,30 +7105,30 @@ void Texmaker::editFindGlobal(){
         findDlg->setSearchWord(e->cursor().selectedText());
 	}
     if(findDlg->exec()){
-		QList<QEditor *> editors;
+        QList<LatexDocument *> docs;
+        LatexDocument *doc = currentEditorView()->document;
         switch (findDlg->getSearchScope()) {
         case 1:
-			editors << currentEditorView()->editor;
+            docs << doc;
 			break;
         case 0:
-            foreach (LatexDocument *doc, documents.getDocuments()) {
-                if(doc->getEditorView())
-                    editors << doc->getEditorView()->editor;
-			}
+            docs << documents.getDocuments();
 			break;
+        case 2:
+            docs << doc->getListOfDocs();
+            break;
 		default:
 			break;
 		}
-        updateFindGlobal(editors,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
-        outputView->setSearchEditors(editors);
+        updateFindGlobal(docs,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
+        outputView->setSearchEditors(docs);
 	}
 }
 
-void Texmaker::updateFindGlobal(QList<QEditor *> editors,QString expr,QString repl,bool isWord,bool isCase,bool isReg){
+void Texmaker::updateFindGlobal(QList<LatexDocument *> docs,QString expr,QString repl,bool isWord,bool isCase,bool isReg){
     outputView->clearSearch();
     outputView->setSearchExpression(expr,repl,isCase,isWord,isReg);
-    foreach(QEditor *ed,editors){
-        LatexDocument *doc=qobject_cast<LatexDocument*>(ed->document());
+    foreach(LatexDocument *doc,docs){
         if (!doc) continue;
         QList<QDocumentLineHandle *> lines;
         for(int l=0;l<doc->lineCount();l++){
@@ -7138,7 +7138,7 @@ void Texmaker::updateFindGlobal(QList<QEditor *> editors,QString expr,QString re
         }
 
         if(!lines.isEmpty()){ // don't add empty searches
-            if (ed->fileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
+            if (doc->getFileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
                 doc->setTemporaryFileName(buildManager.createTemporaryFileName());
             outputView->addSearch(lines, doc);
             outputView->showPage(outputView->SEARCH_RESULT_PAGE);

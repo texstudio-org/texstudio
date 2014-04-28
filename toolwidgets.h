@@ -12,7 +12,7 @@
 #include "latexlogwidget.h"
 #include "searchresultmodel.h"
 #include "qdocumentsearch.h"
-#include "qeditor.h"
+#include "latexdocument.h"
 
 #include <QAbstractTextDocumentLayout>
 
@@ -69,15 +69,15 @@ public slots:
 	void previewLatex(const QPixmap& pixmap);
 	void addSearch(QList<QDocumentLineHandle *> search, QDocument* doc);
 	void clearSearch();
-    void setSearchEditors(QList<QEditor*> editors){
-        mEditors=editors;
+    void setSearchEditors(QList<LatexDocument *> docs){
+        mDocs=docs;
     }
 
 
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 signals:
 	void jumpToSearch(QDocument* doc,int lineNumber);
-    void updateTheSearch(QList<QEditor*> editors,QString expr,QString repl,bool isCase,bool isWord,bool isReg);
+    void updateTheSearch(QList<LatexDocument*> docs,QString expr,QString repl,bool isCase,bool isWord,bool isReg);
 private:
 	PreviewWidget *previewWidget;
 	LatexLogWidget *logWidget;
@@ -85,7 +85,7 @@ private:
     QLineEdit *searchTextEdit,*replaceTextEdit;
 	LogEditor *OutputMessages;
 	SearchResultModel *searchResultModel;
-    QList<QEditor*> mEditors;
+    QList<LatexDocument*> mDocs;
 	
 	void retranslateUi();
 private slots:
