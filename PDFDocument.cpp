@@ -3694,8 +3694,14 @@ void PDFDocument::printPDF(){
 void PDFDocument::setAutoHideToolbars(bool enabled)
 {
 	setToolbarsVisible(!enabled);
-	centralWidget()->setAttribute(Qt::WA_TransparentForMouseEvents);
-	setMouseTracking(enabled);
+	// since we want to have the MouseMoveEvent down at the pdfWidget (internally e.g. for magnifier) up to
+	// the window (for toolbar hiding) all widgets in between seem to need MouseTracking enabled. Otherwise
+	// they will swallow the move event.
+	QWidget *w = pdfWidget;
+	while (w) {
+		w->setMouseTracking(enabled);
+		w = w->parentWidget();
+	}
 }
 
 // hide toolbars while preserving the position of the PDF content on screen
