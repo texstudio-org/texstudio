@@ -413,7 +413,11 @@ void SearchTreeDelegate::paint( QPainter * painter, const QStyleOptionViewItem &
 
     QSize size;
     if(index.data(Qt::CheckStateRole).isValid()){
+#if QT_VERSION >= 0x050201  /* QItemDelegate::check is an internal function which has been renamed (maybe already in Qt5.2?) */
+		size = doCheck(option, option.rect, Qt::Checked).size();
+#else
         size = check(option, option.rect, Qt::Checked).size();
+#endif
         QRect checkboxRect(option.rect.x(),option.rect.y(),size.width(),size.height());
         QItemDelegate::drawCheck(painter, option, checkboxRect, (Qt::CheckState) index.data(Qt::CheckStateRole).toInt());
     }
