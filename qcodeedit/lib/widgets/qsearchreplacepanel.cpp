@@ -191,7 +191,14 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
 	layoutFindOptions->addWidget(cbSelection, 0, 5, 1, 1);
 
-	gridLayout->addWidget(frameFindOptions, 0, 6, 1, 1);
+    bExtend  = new QToolButton(frameFindOptions);
+    bExtend->setCheckable(true);
+    bExtend->setToolTip(tr("Show results as list as well"));
+    bExtend->setObjectName(("bExtend"));
+    bExtend->setIcon(getRealIconCached("extend"));
+    layoutFindOptions->addWidget(bExtend, 0, 6, 1, 1);
+
+    gridLayout->addWidget(frameFindOptions, 0, 6, 1, 1);
 
 	// replace section
 	cbReplace = new QCheckBox(this);
