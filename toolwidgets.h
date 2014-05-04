@@ -84,7 +84,8 @@ private:
 	PreviewWidget *previewWidget;
 	LatexLogWidget *logWidget;
 	QTreeView *OutputSearchTree;
-    QLabel *searchTextLabel,*replaceTextLabel;
+    QLabel *searchTextLabel;
+    QLineEdit *replaceTextEdit;
     QComboBox *searchScopeBox;
 	LogEditor *OutputMessages;
 	SearchResultModel *searchResultModel;
