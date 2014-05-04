@@ -136,8 +136,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QToolButton *bReplacePrevious;
 		QToolButton *bReplaceAll;
 		QGridLayout *layoutReplaceOptions;
-		QCheckBox *cbPrompt;
-		QCheckBox *cbEscapeSeq;
+        QToolButton *cbPrompt;
+        QToolButton *cbEscapeSeq;
 		
 		bool useLineForSearch, searchOnlyInSelection;
 };
