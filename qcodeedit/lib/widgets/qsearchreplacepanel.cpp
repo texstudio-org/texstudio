@@ -137,45 +137,58 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	layoutFindOptions = new QGridLayout(frameFindOptions);
 	layoutFindOptions->setContentsMargins(0, 0, 0, 0);
 	layoutFindOptions->setVerticalSpacing(0);
-	cbCase = new QCheckBox(frameFindOptions);
+    //cbCase = new QCheckBox();
+    cbCase = new QToolButton(frameFindOptions);
+    cbCase->setCheckable(true);
 	cbCase->setObjectName(("cbCase"));
 	cbCase->setToolTip(tr("Enables case sensitive search."));
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, true, "Search/Case Sensitive", cbCase);
+    cbCase->setIcon(getRealIconCached("case"));
+    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, true, "Search/Case Sensitive", cbCase);
 	layoutFindOptions->addWidget(cbCase, 0, 0, 1, 1);
 
-	cbWords = new QCheckBox(frameFindOptions);
+    cbWords = new QToolButton(frameFindOptions);
+    cbWords->setCheckable(true);
 	cbWords->setToolTip(tr("Only searches for whole words."));
 	cbWords->setObjectName(("cbWords"));
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
+    cbWords->setIcon(getRealIconCached("word"));
+    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
 	layoutFindOptions->addWidget(cbWords, 0, 1, 1, 1);
 
-	cbRegExp = new QCheckBox(frameFindOptions);
+    cbRegExp = new QToolButton(frameFindOptions);
+    cbRegExp->setCheckable(true);
 	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
 	cbRegExp->setObjectName(("cbRegExp"));
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
+    cbRegExp->setIcon(getRealIconCached("regex"));
+    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
 	layoutFindOptions->addWidget(cbRegExp, 0, 2, 1, 1);
 
-	cbHighlight = new QCheckBox(frameFindOptions);
+    cbHighlight = new QToolButton(frameFindOptions);
+    cbHighlight->setCheckable(true);
 	cbHighlight->setObjectName(("cbHighlight"));
 	cbHighlight->setToolTip(tr("Highlights search matches and replaced text."));
+    cbHighlight->setIcon(getRealIconCached("highlight"));
 	QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
 	sizePolicy3.setHorizontalStretch(0);
 	sizePolicy3.setVerticalStretch(0);
 	sizePolicy3.setHeightForWidth(lbFind->sizePolicy().hasHeightForWidth());	sizePolicy3.setHeightForWidth(cbHighlight->sizePolicy().hasHeightForWidth());
 	cbHighlight->setSizePolicy(sizePolicy3);
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
+    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
 	layoutFindOptions->addWidget(cbHighlight, 0, 3, 1, 1);
 
-	cbCursor = new QCheckBox(frameFindOptions);
+    cbCursor = new QToolButton(frameFindOptions);
+    cbCursor->setCheckable(true);
 	cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
 	cbCursor->setObjectName(("cbCursor"));
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
+    cbCursor->setIcon(getRealIconCached("cursor"));
+    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
 	layoutFindOptions->addWidget(cbCursor, 0, 4, 1, 1);
 
-	cbSelection = new QCheckBox(frameFindOptions);
+    cbSelection = new QToolButton(frameFindOptions);
+    cbSelection->setCheckable(true);
 	cbSelection->setToolTip(tr("Only searches in the selected text."));
 	cbSelection->setObjectName(("cbSelection"));
-	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
+    cbSelection->setIcon(getRealIconCached("selection"));
+    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
 	layoutFindOptions->addWidget(cbSelection, 0, 5, 1, 1);
 
 	gridLayout->addWidget(frameFindOptions, 0, 6, 1, 1);
