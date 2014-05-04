@@ -112,6 +112,12 @@ void ManagedProperty::writeToObject(QObject* w) const{
 		checkBox->setChecked(*((bool*)storage));
 		return;
 	}
+    QToolButton* toolButton = qobject_cast<QToolButton*>(w);
+    if (toolButton) {
+        Q_ASSERT(type == PT_BOOL);
+        toolButton->setChecked(*((bool*)storage));
+        return;
+    }
 	QLineEdit* edit = qobject_cast<QLineEdit*>(w);
 	if (edit){
 		Q_ASSERT(type == PT_STRING);

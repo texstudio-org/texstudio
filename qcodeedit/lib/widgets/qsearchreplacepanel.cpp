@@ -143,7 +143,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbCase->setObjectName(("cbCase"));
 	cbCase->setToolTip(tr("Enables case sensitive search."));
     cbCase->setIcon(getRealIconCached("case"));
-    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, true, "Search/Case Sensitive", cbCase);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, true, "Search/Case Sensitive", cbCase);
 	layoutFindOptions->addWidget(cbCase, 0, 0, 1, 1);
 
     cbWords = new QToolButton(frameFindOptions);
@@ -151,7 +151,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbWords->setToolTip(tr("Only searches for whole words."));
 	cbWords->setObjectName(("cbWords"));
     cbWords->setIcon(getRealIconCached("word"));
-    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
 	layoutFindOptions->addWidget(cbWords, 0, 1, 1, 1);
 
     cbRegExp = new QToolButton(frameFindOptions);
@@ -159,7 +159,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
 	cbRegExp->setObjectName(("cbRegExp"));
     cbRegExp->setIcon(getRealIconCached("regex"));
-    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
 	layoutFindOptions->addWidget(cbRegExp, 0, 2, 1, 1);
 
     cbHighlight = new QToolButton(frameFindOptions);
@@ -172,7 +172,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	sizePolicy3.setVerticalStretch(0);
 	sizePolicy3.setHeightForWidth(lbFind->sizePolicy().hasHeightForWidth());	sizePolicy3.setHeightForWidth(cbHighlight->sizePolicy().hasHeightForWidth());
 	cbHighlight->setSizePolicy(sizePolicy3);
-    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
 	layoutFindOptions->addWidget(cbHighlight, 0, 3, 1, 1);
 
     cbCursor = new QToolButton(frameFindOptions);
@@ -180,7 +180,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbCursor->setToolTip(tr("Starts the search from the current cursor position."));
 	cbCursor->setObjectName(("cbCursor"));
     cbCursor->setIcon(getRealIconCached("cursor"));
-    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
 	layoutFindOptions->addWidget(cbCursor, 0, 4, 1, 1);
 
     cbSelection = new QToolButton(frameFindOptions);
@@ -188,7 +188,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbSelection->setToolTip(tr("Only searches in the selected text."));
 	cbSelection->setObjectName(("cbSelection"));
     cbSelection->setIcon(getRealIconCached("selection"));
-    //CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
 	layoutFindOptions->addWidget(cbSelection, 0, 5, 1, 1);
 
 	gridLayout->addWidget(frameFindOptions, 0, 6, 1, 1);
