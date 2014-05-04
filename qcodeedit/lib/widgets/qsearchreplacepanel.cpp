@@ -247,15 +247,19 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	layoutReplaceOptions = new QGridLayout(frameReplaceOptions);
 	layoutReplaceOptions->setContentsMargins(0, 0, 0, 0);
 	layoutReplaceOptions->setVerticalSpacing(0);
-	cbPrompt = new QCheckBox(frameReplaceOptions);
+    cbPrompt = new QToolButton(frameReplaceOptions);
+    cbPrompt->setCheckable(true);
 	cbPrompt->setToolTip(tr("Ask before any match is replaced."));
 	cbPrompt->setObjectName(("cbPrompt"));
+    cbPrompt->setIcon(getRealIconCached("prompt"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, askConfig, false, "Search/Ask before Replace", cbPrompt);
 	layoutReplaceOptions->addWidget(cbPrompt);
 
-	cbEscapeSeq = new QCheckBox(frameReplaceOptions);
+    cbEscapeSeq = new QToolButton(frameReplaceOptions);
+    cbEscapeSeq->setCheckable(true);
 	cbEscapeSeq->setToolTip(tr("Enables the use of escape characters. These are:\n \\n = new line, \\r = carriage return, \\t = tab, \\\\ = \\"));
 	cbEscapeSeq->setObjectName(("cbEscapeSeq"));
+    cbEscapeSeq->setIcon(getRealIconCached("escape"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, escapeConfig, false, "Search/Escape Sequence", cbEscapeSeq);
 	layoutReplaceOptions->addWidget(cbEscapeSeq);
 
