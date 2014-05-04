@@ -149,25 +149,33 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
 
     QHBoxLayout *horz=new QHBoxLayout;
+    searchScopeBox=new QComboBox;
+    searchScopeBox->setEditable(false);
+    searchScopeBox->addItem("current doc");
+    searchScopeBox->addItem("all docs");
+    searchScopeBox->addItem("project");
+
+
     QLabel *lbl=new QLabel;
     lbl->setText(tr("Search text:"));
-    searchTextEdit=new QLineEdit;
+    searchTextLabel=new QLabel;
     //searchTextEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
-    QPushButton *btn=new QPushButton(tr("Search again"));
+    QPushButton *btn=new QPushButton(tr("Update Search"));
     connect(btn,SIGNAL(clicked()),this,SLOT(updateSearch()));
     QLabel *lbl2=new QLabel;
     lbl2->setText(tr("Replace by:"));
-    replaceTextEdit=new QLineEdit;
-    connect(replaceTextEdit,SIGNAL(textChanged(QString)),this,SLOT(replaceTextChanged(QString)));
+    replaceTextLabel=new QLabel;
+    //connect(replaceTextEdit,SIGNAL(textChanged(QString)),this,SLOT(replaceTextChanged(QString)));
     //replaceTextEdit->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Fixed);
     QPushButton *btn2=new QPushButton(tr("Replace all"));
     connect(btn2,SIGNAL(clicked()),this,SLOT(replaceAll()));
 
+    horz->addWidget(searchScopeBox);
     horz->addWidget(lbl);
-    horz->addWidget(searchTextEdit,1);
+    horz->addWidget(searchTextLabel,1);
     horz->addWidget(btn);
     horz->addWidget(lbl2);
-    horz->addWidget(replaceTextEdit,1);
+    horz->addWidget(replaceTextLabel,1);
     horz->addWidget(btn2);
 
 	OutputSearchTree= new QTreeView(this);
@@ -199,14 +207,12 @@ void OutputViewWidget::replaceTextChanged(QString text){
 }
 
 void OutputViewWidget::updateSearch(){
-    bool isWord,isCase,isReg;
-    searchResultModel->getSearchConditions(isCase,isWord,isReg);
-    emit updateTheSearch(mDocs,searchTextEdit->text(),replaceTextEdit->text(),isCase,isWord,isReg);
+    emit updateTheSearch(searchScopeBox->currentIndex());
 }
 
 void OutputViewWidget::replaceAll(){
     QList<SearchInfo> searches=searchResultModel->getSearches();
-    QString replaceText=replaceTextEdit->text();
+    QString replaceText=replaceTextLabel->text();
     bool isWord,isCase,isReg;
     searchResultModel->getSearchConditions(isCase,isWord,isReg);
     foreach(SearchInfo search,searches){
@@ -355,13 +361,13 @@ void OutputViewWidget::clearSearch(){
 	searchResultModel->clear();
 }
 void OutputViewWidget::setSearchExpression(QString exp,QString replaceText,bool isCase,bool isWord,bool isRegExp){
-    replaceTextEdit->setText(replaceText);
-    searchTextEdit->setText(exp);
+    replaceTextLabel->setText(replaceText);
+    searchTextLabel->setText(exp);
     searchResultModel->setSearchExpression(exp,replaceText,isCase,isWord,isRegExp);
 }
 
 void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp){
-    searchTextEdit->setText(exp);
+    searchTextLabel->setText(exp);
     searchResultModel->setSearchExpression(exp,isCase,isWord,isRegExp);
 }
 QString OutputViewWidget::searchExpression() const {
@@ -369,6 +375,9 @@ QString OutputViewWidget::searchExpression() const {
 }
 int OutputViewWidget::getNextSearchResultColumn(QString text,int col){
 	return searchResultModel->getNextSearchResultColumn(text,col);
+}
+int OutputViewWidget::getSearchScope() const {
+    return searchScopeBox->currentIndex();
 }
 bool OutputViewWidget::childHasFocus(){
 	return logWidget->childHasFocus()

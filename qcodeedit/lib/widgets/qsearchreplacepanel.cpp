@@ -197,6 +197,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     bExtend->setObjectName(("bExtend"));
     bExtend->setIcon(getRealIconCached("extend"));
     layoutFindOptions->addWidget(bExtend, 0, 6, 1, 1);
+    connect(bExtend,SIGNAL(toggled(bool)),this,SIGNAL(extendToggled(bool)));
 
     gridLayout->addWidget(frameFindOptions, 0, 6, 1, 1);
 
@@ -227,7 +228,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	conf->linkOptionToObject(&replaceHistory, cReplace, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
 	gridLayout->addWidget(cReplace, 1, 2, 1, 1);
 
-	bReplaceNext = new QToolButton(this);
+    bReplaceNext = new QToolButton(this);
 	bReplaceNext->setObjectName(("bReplaceNext"));
 	bReplaceNext->setMinimumSize(buttonSize);
 	bReplaceNext->setMaximumSize(buttonSize);
@@ -1059,5 +1060,31 @@ void QSearchReplacePanel::cursorPositionChanged()
 				m_search->setCursor(editor()->cursor());
 	}
 }
+
+QString QSearchReplacePanel::getSearchText() const{
+    return cFind->currentText();
+}
+
+QString QSearchReplacePanel::getReplaceText() const
+{
+    return cReplace->currentText();
+}
+
+bool QSearchReplacePanel::getSearchIsCase() const
+{
+    return cbCase->isChecked();
+}
+
+bool QSearchReplacePanel::getSearchIsWords() const
+{
+    return cbWords->isChecked();
+}
+
+bool QSearchReplacePanel::getSearchIsRegExp() const
+{
+    return cbRegExp->isChecked();
+}
+
+
 
 /*! @} */

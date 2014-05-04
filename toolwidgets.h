@@ -57,6 +57,7 @@ public:
 	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
     void setSearchExpression(QString exp,QString replaceText,bool isCase,bool isWord,bool isRegExp);
 	QString searchExpression() const;
+    int getSearchScope() const;
 	int getNextSearchResultColumn(QString text,int col);
 	bool childHasFocus();
 
@@ -75,14 +76,16 @@ public slots:
 
 
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
+
 signals:
 	void jumpToSearch(QDocument* doc,int lineNumber);
-    void updateTheSearch(QList<LatexDocument*> docs,QString expr,QString repl,bool isCase,bool isWord,bool isReg);
+    void updateTheSearch(int);
 private:
 	PreviewWidget *previewWidget;
 	LatexLogWidget *logWidget;
 	QTreeView *OutputSearchTree;
-    QLineEdit *searchTextEdit,*replaceTextEdit;
+    QLabel *searchTextLabel,*replaceTextLabel;
+    QComboBox *searchScopeBox;
 	LogEditor *OutputMessages;
 	SearchResultModel *searchResultModel;
     QList<LatexDocument*> mDocs;

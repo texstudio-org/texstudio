@@ -321,7 +321,7 @@ protected slots:
 	void editInsertRefToNextLabel(bool backward=false);
 	void editInsertRefToPrevLabel();
 	void editFindGlobal();
-    void updateFindGlobal(QList<LatexDocument *> docs,QString expr,QString repl,bool isWord,bool isCase,bool isReg);
+    void updateFindGlobal(int scope);
 	
 	void findWordRepetions();
 	void findNextWordRepetion();
@@ -414,6 +414,8 @@ protected slots:
 	bool checkProgramPermission(const QString& program, const QString& cmdId, LatexDocument* master);
 	void runInternalPdfViewer(const QFileInfo& master, const QString& options);
 	void runBibliographyIfNecessary(const QFileInfo& cmd);
+
+    void searchExtendToggled(bool toggled);
 
 public slots:
 	void connectSubCommand(ProcessX* p, bool showStdoutLocallyDefault);
