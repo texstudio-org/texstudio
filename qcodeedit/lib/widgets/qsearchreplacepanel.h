@@ -123,12 +123,12 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QComboBox *cFind;
 		QToolButton *bNext, *bPrevious, *bCount;
 		QGridLayout *layoutFindOptions;
-		QCheckBox *cbCase;
-		QCheckBox *cbWords;
-		QCheckBox *cbRegExp;
-		QCheckBox *cbHighlight;
-		QCheckBox *cbCursor;
-		QCheckBox *cbSelection;
+        QToolButton *cbCase;
+        QToolButton *cbWords;
+        QToolButton *cbRegExp;
+        QToolButton *cbHighlight;
+        QToolButton *cbCursor;
+        QToolButton *cbSelection;
 		// replace
 		QCheckBox *cbReplace;
 		QComboBox *cReplace;

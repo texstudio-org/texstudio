@@ -1,179 +1,185 @@
 <RCC>
-    <qresource prefix="/">
-        <file>images-ng/acroread.svg</file>
-        <file>images-ng/addCol.svg</file>
-        <file>images-ng/addRow.svg</file>
-        <file>images-ng/alignCols.svgz</file>
-        <file>images-ng/application-exit.svgz</file>
-        <file>images-ng/asymptote.svg</file>
-        <file>images-ng/back.svg</file>
-        <file>images-ng/badbox.svg</file>
-        <file>images-ng/bold.svg</file>
-        <file>images-ng/bookmark1.svgz</file>
-        <file>images-ng/bookmark2.svgz</file>
-        <file>images-ng/bookmark3.svgz</file>
-        <file>images-ng/bookmark-new.svg</file>
-        <file>images-ng/bookmarks.svg</file>
-        <file>images-ng/build.svgz</file>
-        <file>images-ng/chapter.svg</file>
-        <file>images-ng/compile-latex.svgz</file>
-        <file>images-ng/compile-lua.svgz</file>
-        <file>images-ng/compile-pdf.svgz</file>
-        <file>images-ng/compile.svgz</file>
-        <file>images-ng/compile-xelatex.svgz</file>
-        <file>images-ng/config_advancededitor.svg</file>
-        <file>images-ng/config_commands.svg</file>
-        <file>images-ng/config_completion.svg</file>
-        <file>images-ng/config_editor.svg</file>
-        <file>images-ng/config_general.svg</file>
-        <file>images-ng/config_highlighting.svg</file>
-        <file>images-ng/config_latexmenus.svg</file>
-        <file>images-ng/config_preview.svg</file>
-        <file>images-ng/config_quickbuild.svg</file>
-        <file>images-ng/config_shortcut.svg</file>
-        <file>images-ng/config_svn.svg</file>
-        <file>images-ng/config_toolbars.svg</file>
-        <file>images-ng/configure.svgz</file>
-        <file>images-ng/convert-dvipdf.svgz</file>
-        <file>images-ng/convert-dvips.svgz</file>
-        <file>images-ng/convert-pspdf.svgz</file>
-        <file>images-ng/count.svg</file>
-        <file>images-ng/cutCol.svg</file>
-        <file>images-ng/dialog-error.svg</file>
-        <file>images-ng/down.svgz</file>
-        <file>images-ng/editcopy.svgz</file>
-        <file>images-ng/editcut.svgz</file>
-        <file>images-ng/editpaste.svgz</file>
-        <file>images-ng/embedded-viewer.svg</file>
-        <file>images-ng/enumerate.svgz</file>
-        <file>images-ng/errornext.svg</file>
-        <file>images-ng/errorprev.svg</file>
-        <file>images-ng/error.svgz</file>
-        <file>images-ng/fileclose.svgz</file>
-        <file>images-ng/filenew.svgz</file>
-        <file>images-ng/fileopen.svgz</file>
-        <file>images-ng/filesave.svgz</file>
-        <file>images-ng/font_emph48.svg</file>
-        <file>images-ng/font_textbf48.svg</file>
-        <file>images-ng/font_textit48.svg</file>
-        <file>images-ng/font_textsc48.svg</file>
-        <file>images-ng/font_textsf48.svg</file>
-        <file>images-ng/font_textsl48.svg</file>
-        <file>images-ng/font_texttt48.svg</file>
-        <file>images-ng/font_underline48.svg</file>
-        <file>images-ng/format-fill-color.svg</file>
-        <file>images-ng/format-justify-center.svg</file>
-        <file>images-ng/format-justify-fill.svg</file>
-        <file>images-ng/format-justify-left.svg</file>
-        <file>images-ng/format-justify-right.svg</file>
-        <file>images-ng/format-stroke-color.svg</file>
-        <file>images-ng/format-text-bold.svg</file>
-        <file>images-ng/format-text-color.svg</file>
-        <file>images-ng/format-text-italic.svg</file>
-        <file>images-ng/format-text-underline.svg</file>
-        <file>images-ng/forward.svg</file>
-        <file>images-ng/go-first.svg</file>
-        <file>images-ng/go-last.svg</file>
-        <file>images-ng/go-next-diff.svg</file>
-        <file>images-ng/go-next.svg</file>
-        <file>images-ng/go-previous-diff.svg</file>
-        <file>images-ng/go-previous.svg</file>
-        <file>images-ng/goto.svg</file>
-        <file>images-ng/hand.svgz</file>
-        <file>images-ng/help.svgz</file>
-        <file>images-ng/home.svg</file>
-        <file>images-ng/image.svg</file>
-        <file>images-ng/italic.svg</file>
-        <file>images-ng/itemize.svgz</file>
-        <file>images-ng/item.svgz</file>
-        <file>images-ng/lbook0.svgz</file>
-        <file>images-ng/lbook1.svgz</file>
-        <file>images-ng/lbook2.svgz</file>
-        <file>images-ng/lbook3.svgz</file>
-        <file>images-ng/lbook4.svgz</file>
-        <file>images-ng/lbook5.svgz</file>
-        <file>images-ng/lbook6.svgz</file>
-        <file>images-ng/lbook7.svgz</file>
-        <file>images-ng/lbook8.svgz</file>
-        <file>images-ng/lbook9.svgz</file>
-        <file>images-ng/lbook.svgz</file>
-        <file>images-ng/leftright.svg</file>
-        <file>images-ng/left.svgz</file>
-        <file>images-ng/list-add.svgz</file>
-        <file>images-ng/list-remove.svgz</file>
-        <file>images-ng/logpanel.svg</file>
-        <file>images-ng/magnifier.svgz</file>
-        <file>images-ng/math6.svg</file>
-        <file>images-ng/math7.svg</file>
-        <file>images-ng/metapost.svg</file>
-        <file>images-ng/modified.svgz</file>
-        <file>images-ng/overline.svg</file>
-        <file>images-ng/part.svg</file>
-        <file>images-ng/pasteCol.svg</file>
-        <file>images-ng/preferences-system.svg</file>
-        <file>images-ng/pstricks.svg</file>
-        <file>images-ng/redo.svg</file>
-        <file>images-ng/remCol.svg</file>
-        <file>images-ng/remRow.svg</file>
-        <file>images-ng/repeat-compile-off.svg</file>
-        <file>images-ng/repeat-compile.svg</file>
-        <file>images-ng/replaceall.svg</file>
-        <file>images-ng/replacedown.svg</file>
-        <file>images-ng/replaceup.svg</file>
-        <file>images-ng/replaceup.svgz</file>
-        <file>images-ng/right.svgz</file>
-        <file>images-ng/section.svg</file>
-        <file>images-ng/sidebar.svg</file>
-        <file>images-ng/strikeout.svg</file>
-        <file>images-ng/structure.svg</file>
-        <file>images-ng/subsection.svg</file>
-        <file>images-ng/subsubsection.svg</file>
-        <file>images-ng/syncSource.svg</file>
-        <file>images-ng/syncViewer.svg</file>
-        <file>images-ng/tikz.svg</file>
-        <file>images-ng/underline.svg</file>
-        <file>images-ng/undo.svg</file>
-        <file>images-ng/up.svgz</file>
-        <file>images-ng/user.svgz</file>
-        <file>images-ng/view-doc-dvi.svg</file>
-        <file>images-ng/view-doc-pdf.svgz</file>
-        <file>images-ng/view-doc-ps.svg</file>
-        <file>images-ng/viewer.svgz</file>
-        <file>images-ng/view-fullscreen.svg</file>
-        <file>images-ng/view-left-close.svg</file>
-        <file>images-ng/viewlog.svgz</file>
-        <file>images-ng/warning.svgz</file>
-        <file>images-ng/waveUnderline.svg</file>
-        <file>images-ng/windowed-viewer.svgz</file>
-        <file>images-ng/zoom-fit-best.svg</file>
-        <file>images-ng/zoom-fit-text-width.svgz</file>
-        <file>images-ng/zoom-fit-width.svgz</file>
-        <file>images-ng/zoom-in.svgz</file>
-        <file>images-ng/zoom-original.svgz</file>
-        <file>images-ng/zoom-out.svgz</file>
-        <file>images-ng/classic/close.svg</file>
-        <file>images-ng/classic/dfrac.svg</file>
-        <file>images-ng/classic/format-justify-center.svgz</file>
-        <file>images-ng/classic/mathmode.svg</file>
-        <file>images-ng/classic/newline.svg</file>
-        <file>images-ng/classic/smallfrac.svg</file>
-        <file>images-ng/classic/sqrt.svg</file>
-        <file>images-ng/classic/subscript.svg</file>
-        <file>images-ng/classic/superscript.svg</file>
-        <file>images-ng/modern/close.svg</file>
-        <file>images-ng/modern/dfrac.svg</file>
-        <file>images-ng/modern/fileopen.svgz</file>
-        <file>images-ng/modern/frac.svg</file>
-        <file>images-ng/modern/mathmode.svg</file>
-        <file>images-ng/modern/newline.svg</file>
-        <file>images-ng/modern/smallfrac.svg</file>
-        <file>images-ng/modern/sqrt.svg</file>
-        <file>images-ng/modern/subscript.svg</file>
-        <file>images-ng/modern/superscript.svg</file>
-        <file>images-ng/annotation_caret.svg</file>
-        <file>images-ng/annotation_highlight.svg</file>
-        <file>images-ng/annotation_text.svg</file>
-        <file>images-ng/logmarkers.svgz</file>
-        <file>images-ng/stop.svgz</file>
-    </qresource>
+<qresource prefix="/">
+<file>images-ng/acroread.svg</file>
+<file>images-ng/addCol.svg</file>
+<file>images-ng/addRow.svg</file>
+<file>images-ng/alignCols.svgz</file>
+<file>images-ng/annotation_caret.svg</file>
+<file>images-ng/annotation_highlight.svg</file>
+<file>images-ng/annotation_text.svg</file>
+<file>images-ng/application-exit.svgz</file>
+<file>images-ng/asymptote.svg</file>
+<file>images-ng/back.svg</file>
+<file>images-ng/badbox.svg</file>
+<file>images-ng/bold.svg</file>
+<file>images-ng/bookmark1.svgz</file>
+<file>images-ng/bookmark2.svgz</file>
+<file>images-ng/bookmark3.svgz</file>
+<file>images-ng/bookmark-new.svg</file>
+<file>images-ng/bookmarks.svg</file>
+<file>images-ng/build.svgz</file>
+<file>images-ng/case.svg</file>
+<file>images-ng/chapter.svg</file>
+<file>images-ng/compile-latex.svgz</file>
+<file>images-ng/compile-lua.svgz</file>
+<file>images-ng/compile-pdf.svgz</file>
+<file>images-ng/compile.svgz</file>
+<file>images-ng/compile-xelatex.svgz</file>
+<file>images-ng/config_advancededitor.svg</file>
+<file>images-ng/config_commands.svg</file>
+<file>images-ng/config_completion.svg</file>
+<file>images-ng/config_editor.svg</file>
+<file>images-ng/config_general.svg</file>
+<file>images-ng/config_highlighting.svg</file>
+<file>images-ng/config_latexmenus.svg</file>
+<file>images-ng/config_preview.svg</file>
+<file>images-ng/config_quickbuild.svg</file>
+<file>images-ng/config_shortcut.svg</file>
+<file>images-ng/config_svn.svg</file>
+<file>images-ng/config_toolbars.svg</file>
+<file>images-ng/configure.svgz</file>
+<file>images-ng/convert-dvipdf.svgz</file>
+<file>images-ng/convert-dvips.svgz</file>
+<file>images-ng/convert-pspdf.svgz</file>
+<file>images-ng/count.svg</file>
+<file>images-ng/cursor.svg</file>
+<file>images-ng/cutCol.svg</file>
+<file>images-ng/dialog-error.svg</file>
+<file>images-ng/down.svgz</file>
+<file>images-ng/editcopy.svgz</file>
+<file>images-ng/editcut.svgz</file>
+<file>images-ng/editpaste.svgz</file>
+<file>images-ng/embedded-viewer.svg</file>
+<file>images-ng/enumerate.svgz</file>
+<file>images-ng/errornext.svg</file>
+<file>images-ng/errorprev.svg</file>
+<file>images-ng/error.svgz</file>
+<file>images-ng/fileclose.svgz</file>
+<file>images-ng/filenew.svgz</file>
+<file>images-ng/fileopen.svgz</file>
+<file>images-ng/filesave.svgz</file>
+<file>images-ng/font_emph48.svg</file>
+<file>images-ng/font_textbf48.svg</file>
+<file>images-ng/font_textit48.svg</file>
+<file>images-ng/font_textsc48.svg</file>
+<file>images-ng/font_textsf48.svg</file>
+<file>images-ng/font_textsl48.svg</file>
+<file>images-ng/font_texttt48.svg</file>
+<file>images-ng/font_underline48.svg</file>
+<file>images-ng/format-fill-color.svg</file>
+<file>images-ng/format-justify-center.svg</file>
+<file>images-ng/format-justify-fill.svg</file>
+<file>images-ng/format-justify-left.svg</file>
+<file>images-ng/format-justify-right.svg</file>
+<file>images-ng/format-stroke-color.svg</file>
+<file>images-ng/format-text-bold.svg</file>
+<file>images-ng/format-text-color.svg</file>
+<file>images-ng/format-text-italic.svg</file>
+<file>images-ng/format-text-underline.svg</file>
+<file>images-ng/forward.svg</file>
+<file>images-ng/go-first.svg</file>
+<file>images-ng/go-last.svg</file>
+<file>images-ng/go-next-diff.svg</file>
+<file>images-ng/go-next.svg</file>
+<file>images-ng/go-previous-diff.svg</file>
+<file>images-ng/go-previous.svg</file>
+<file>images-ng/goto.svg</file>
+<file>images-ng/hand.svgz</file>
+<file>images-ng/help.svgz</file>
+<file>images-ng/highlight.svg</file>
+<file>images-ng/home.svg</file>
+<file>images-ng/image.svg</file>
+<file>images-ng/italic.svg</file>
+<file>images-ng/itemize.svgz</file>
+<file>images-ng/item.svgz</file>
+<file>images-ng/lbook0.svgz</file>
+<file>images-ng/lbook1.svgz</file>
+<file>images-ng/lbook2.svgz</file>
+<file>images-ng/lbook3.svgz</file>
+<file>images-ng/lbook4.svgz</file>
+<file>images-ng/lbook5.svgz</file>
+<file>images-ng/lbook6.svgz</file>
+<file>images-ng/lbook7.svgz</file>
+<file>images-ng/lbook8.svgz</file>
+<file>images-ng/lbook9.svgz</file>
+<file>images-ng/lbook.svgz</file>
+<file>images-ng/leftright.svg</file>
+<file>images-ng/left.svgz</file>
+<file>images-ng/list-add.svgz</file>
+<file>images-ng/list-remove.svgz</file>
+<file>images-ng/logmarkers.svgz</file>
+<file>images-ng/logpanel.svg</file>
+<file>images-ng/magnifier.svgz</file>
+<file>images-ng/math6.svg</file>
+<file>images-ng/math7.svg</file>
+<file>images-ng/metapost.svg</file>
+<file>images-ng/modified.svgz</file>
+<file>images-ng/overline.svg</file>
+<file>images-ng/part.svg</file>
+<file>images-ng/pasteCol.svg</file>
+<file>images-ng/preferences-system.svg</file>
+<file>images-ng/pstricks.svg</file>
+<file>images-ng/redo.svg</file>
+<file>images-ng/regex.svg</file>
+<file>images-ng/remCol.svg</file>
+<file>images-ng/remRow.svg</file>
+<file>images-ng/repeat-compile-off.svg</file>
+<file>images-ng/repeat-compile.svg</file>
+<file>images-ng/replaceall.svg</file>
+<file>images-ng/replacedown.svg</file>
+<file>images-ng/replaceup.svg</file>
+<file>images-ng/replaceup.svgz</file>
+<file>images-ng/right.svgz</file>
+<file>images-ng/section.svg</file>
+<file>images-ng/selection.svg</file>
+<file>images-ng/sidebar.svg</file>
+<file>images-ng/stop.svgz</file>
+<file>images-ng/strikeout.svg</file>
+<file>images-ng/structure.svg</file>
+<file>images-ng/subsection.svg</file>
+<file>images-ng/subsubsection.svg</file>
+<file>images-ng/syncSource.svg</file>
+<file>images-ng/syncViewer.svg</file>
+<file>images-ng/tikz.svg</file>
+<file>images-ng/underline.svg</file>
+<file>images-ng/undo.svg</file>
+<file>images-ng/up.svgz</file>
+<file>images-ng/user.svgz</file>
+<file>images-ng/view-doc-dvi.svg</file>
+<file>images-ng/view-doc-pdf.svgz</file>
+<file>images-ng/view-doc-ps.svg</file>
+<file>images-ng/viewer.svgz</file>
+<file>images-ng/view-fullscreen.svg</file>
+<file>images-ng/view-left-close.svg</file>
+<file>images-ng/viewlog.svgz</file>
+<file>images-ng/warning.svgz</file>
+<file>images-ng/waveUnderline.svg</file>
+<file>images-ng/windowed-viewer.svgz</file>
+<file>images-ng/word.svg</file>
+<file>images-ng/zoom-fit-best.svg</file>
+<file>images-ng/zoom-fit-text-width.svgz</file>
+<file>images-ng/zoom-fit-width.svgz</file>
+<file>images-ng/zoom-in.svgz</file>
+<file>images-ng/zoom-original.svgz</file>
+<file>images-ng/zoom-out.svgz</file>
+<file>images-ng/classic/close.svg</file>
+<file>images-ng/classic/dfrac.svg</file>
+<file>images-ng/classic/format-justify-center.svgz</file>
+<file>images-ng/classic/mathmode.svg</file>
+<file>images-ng/classic/newline.svg</file>
+<file>images-ng/classic/smallfrac.svg</file>
+<file>images-ng/classic/sqrt.svg</file>
+<file>images-ng/classic/subscript.svg</file>
+<file>images-ng/classic/superscript.svg</file>
+<file>images-ng/modern/close.svg</file>
+<file>images-ng/modern/dfrac.svg</file>
+<file>images-ng/modern/fileopen.svgz</file>
+<file>images-ng/modern/frac.svg</file>
+<file>images-ng/modern/mathmode.svg</file>
+<file>images-ng/modern/newline.svg</file>
+<file>images-ng/modern/smallfrac.svg</file>
+<file>images-ng/modern/sqrt.svg</file>
+<file>images-ng/modern/subscript.svg</file>
+<file>images-ng/modern/superscript.svg</file>
+</qresource>
 </RCC>
