@@ -226,7 +226,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	symbolMostused.clear();
 	setupDockWidgets();
 
-    connect(outputView,SIGNAL(updateTheSearch(QList<LatexDocument*>,QString,QString,bool,bool,bool)),this,SLOT(updateFindGlobal(QList<LatexDocument*>,QString,QString,bool,bool,bool)));
+    connect(outputView,SIGNAL(updateTheSearch(int)),this,SLOT(updateFindGlobal(int)));
 
 	setMenuBar(new DblClickMenuBar());
 	setupMenus();
@@ -1502,6 +1502,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
 	connect(edit, SIGNAL(colonTyped()), this, SLOT(NormalCompletion()));
     connect(edit, SIGNAL(openInternalDocViewer(QString,QString)),this,SLOT(openInternalDocViewer(QString,QString)));
+    connect(edit, SIGNAL(searchExtendToggled(bool)),this,SLOT(searchExtendToggled(bool)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
@@ -7120,19 +7121,44 @@ void Texmaker::editFindGlobal(){
 		default:
 			break;
 		}
-        updateFindGlobal(docs,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
+        //updateFindGlobal(docs,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
         outputView->setSearchEditors(docs);
 	}
 }
 
-void Texmaker::updateFindGlobal(QList<LatexDocument *> docs,QString expr,QString repl,bool isWord,bool isCase,bool isReg){
+void Texmaker::updateFindGlobal(int scope){
+    // scope: 0 current doc, 1 all docs , 2 project
     outputView->clearSearch();
-    outputView->setSearchExpression(expr,repl,isCase,isWord,isReg);
+    LatexEditorView *edView = currentEditorView();
+    if(!edView)
+        return;
+
+    QList<LatexDocument *> docs;
+    LatexDocument *doc = currentEditorView()->document;
+    switch (scope) {
+    case 0:
+        docs << doc;
+        break;
+    case 1:
+        docs << documents.getDocuments();
+        break;
+    case 2:
+        docs << doc->getListOfDocs();
+        break;
+    default:
+        break;
+    }
+
+    bool isWord=edView->getSearchIsCase();
+    bool isCase=edView->getSearchIsWords();
+    bool isReg=edView->getSearchIsRegExp();
+
+    outputView->setSearchExpression(edView->getSearchText(),edView->getReplaceText(),isCase,isWord,isReg);
     foreach(LatexDocument *doc,docs){
         if (!doc) continue;
         QList<QDocumentLineHandle *> lines;
         for(int l=0;l<doc->lineCount();l++){
-            l=doc->findLineRegExp(expr,l,isCase ? Qt::CaseSensitive : Qt::CaseInsensitive,isWord,isReg);
+            l=doc->findLineRegExp(edView->getSearchText(),l,isCase ? Qt::CaseSensitive : Qt::CaseInsensitive,isWord,isReg);
             if(l>-1) lines << doc->line(l).handle();
             if(l==-1) break;
         }
@@ -8901,4 +8927,18 @@ void Texmaker::shrinkEmbeddedPDFViewer(bool preserveConfig){
         return;
     viewer->setStateEnlarged(false);
 #endif
+}
+
+void Texmaker::searchExtendToggled(bool toggled){
+    // show search result in tools widget
+    if(!toggled){
+        outputView->hide();
+        return;
+    }
+    QList<LatexDocument *> docs;
+    LatexDocument *doc = currentEditorView()->document;
+    docs << doc;
+
+    updateFindGlobal(outputView->getSearchScope());
+    outputView->setSearchEditors(docs);
 }

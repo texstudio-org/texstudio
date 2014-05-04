@@ -53,6 +53,11 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		bool getUseLineForSearch() const;
 		void setSearchOnlyInSelection(bool b);
 		bool getSearchOnlyInSelection() const;
+        QString getSearchText() const;
+        QString getReplaceText() const;
+        bool getSearchIsCase() const;
+        bool getSearchIsRegExp() const;
+        bool getSearchIsWords() const;
 		
 		
 	public slots:
@@ -67,6 +72,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void setOptions(int searchOptions, bool cursor, bool selection);
 	signals:
 		void onClose();
+        void extendToggled(bool);
 	protected:
 		virtual bool forward(QMouseEvent *e);
 		virtual void editorChange(QEditor *e);

@@ -595,6 +595,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	searchReplacePanel->setFont(QApplication::font());
 	searchReplacePanelAction=codeeditor->addPanel(searchReplacePanel, QCodeEdit::South,false);
 	searchReplacePanel->hide();
+    connect(searchReplacePanel,SIGNAL(extendToggled(bool)),this,SIGNAL(searchExtendToggled(bool)));
 	
 	
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
@@ -2647,5 +2648,26 @@ QString LinkOverlay::text() const {
 	if (!isValid()) return QString();
 	return docLine.text().mid(formatRange.offset, formatRange.length);
 }
+
+QString LatexEditorView::getSearchText(){
+    return searchReplacePanel->getSearchText();
+}
+
+QString LatexEditorView::getReplaceText(){
+    return searchReplacePanel->getReplaceText();
+}
+
+bool LatexEditorView::getSearchIsWords(){
+    return searchReplacePanel->getSearchIsWords();
+}
+
+bool LatexEditorView::getSearchIsCase(){
+    return searchReplacePanel->getSearchIsWords();
+}
+
+bool LatexEditorView::getSearchIsRegExp(){
+    return searchReplacePanel->getSearchIsWords();
+}
+
 
 

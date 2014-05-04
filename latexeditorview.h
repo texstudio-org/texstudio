@@ -138,6 +138,13 @@ public:
 
     LatexParser lp;
 
+    QString getSearchText();
+    QString getReplaceText();
+    bool getSearchIsCase();
+    bool getSearchIsRegExp();
+    bool getSearchIsWords();
+
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -278,6 +285,8 @@ signals:
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);
     void openInternalDocViewer(QString package,QString command="");
+
+    void searchExtendToggled(bool toggled);
 private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
 	void foldContextMenuRequested(int lineNumber, QPoint globalPos);
