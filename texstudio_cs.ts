@@ -1848,11 +1848,11 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Keep Indentation With Spaces Only</source>
-        <translation>Převzít odsazení předchozího řádku (použít pouze mezery)</translation>
+        <translation type="obsolete">Převzít odsazení předchozího řádku (použít pouze mezery)</translation>
     </message>
     <message>
         <source>Indent and Unindent Automatically With Spaces Only</source>
-        <translation>Odsadit a zrušit odsazení automaticky (použít pouze mezery)</translation>
+        <translation type="obsolete">Odsadit a zrušit odsazení automaticky (použít pouze mezery)</translation>
     </message>
     <message>
         <source>Indentation Mode:</source>
@@ -2562,6 +2562,22 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Soubory se slovníky byly zavedeny do
 %1.
 Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?</translation>
+    </message>
+    <message>
+        <source>Replace Tab by Whitespace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite Opening Bracket Followed by a Placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite Closing Bracket Following a Placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Text Width</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4193,6 +4209,22 @@ Chcete ji přepsat?</translation>
         <source>Log</source>
         <translation>Záznam</translation>
     </message>
+    <message>
+        <source>Search text:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace all</source>
+        <translation type="unfinished">Nahradit vše</translation>
+    </message>
 </context>
 <context>
     <name>PDFAnnotation</name>
@@ -4907,6 +4939,26 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>%1
 nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě vytváří. Opakování každé dvě sekundy.</translation>
     </message>
+    <message>
+        <source>Alt+Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to &amp;Text Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit to Text Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+4</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -5063,6 +5115,14 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     <message>
         <source>Could not open link:</source>
         <translation>Nepodařilo se otevřít odkaz:</translation>
+    </message>
+    <message>
+        <source>Calculating text width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Zrušit</translation>
     </message>
 </context>
 <context>
@@ -6270,6 +6330,10 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
         <source>Escape sequences</source>
         <translation>Únikové znaky (např.: \n)</translation>
     </message>
+    <message>
+        <source>Show results as list as well</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QStatusPanel</name>
@@ -6732,7 +6796,7 @@ Důvěřujete tomuto skriptu?</translation>
     <name>SearchResultModel</name>
     <message>
         <source>Click to jump to the line</source>
-        <translation>Klepněte pro skok na řádek</translation>
+        <translation type="obsolete">Klepněte pro skok na řádek</translation>
     </message>
     <message>
         <source>Results</source>
@@ -8338,7 +8402,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Find &amp;Dialog...</source>
-        <translation>&amp;Dialog hledání...</translation>
+        <translation type="obsolete">&amp;Dialog hledání...</translation>
     </message>
     <message>
         <source>Replace Next</source>
@@ -9396,6 +9460,10 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
         <translation>Vložit %1 ke štítku</translation>
     </message>
+    <message>
+        <source>Remove Current Placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -10277,6 +10345,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Open Documents</source>
         <translation>Otevřené dokumenty</translation>
+    </message>
+    <message>
+        <source>Current Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace:</source>
+        <translation type="unfinished">Nahradit:</translation>
     </message>
 </context>
 <context>
