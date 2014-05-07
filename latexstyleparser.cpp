@@ -176,6 +176,7 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
         QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
         QRegExp rxNewLength("\\\\newlength\\s*\\{\\\\(\\w+)\\}");
         QRegExp rxNewCounter("\\\\newcounter\\s*\\{(\\w+)\\}");
+        QRegExp rxLoadClass("\\\\LoadClass\\s*\\{(\\w+)\\}");
         bool inReq=false;
         while(!stream.atEnd()) {
             line = stream.readLine();
@@ -319,6 +320,12 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
                         results << "#include:" + package;
                 }
                 inReq=true;
+            }
+            if(rxLoadClass.indexIn(line)>-1){
+                QString arg = rxLoadClass.cap(1);
+                if(!arg.isEmpty())
+                    results << "#include:" + arg;
+                continue;
             }
         } // while line
     } // open data
