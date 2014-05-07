@@ -61,7 +61,7 @@
 	<li><a href="#SECTION18a">2.8.1 Manipulating a table</a></li>
 	<li><a href="#SECTION19">2.9 Inserting a "tabbing" environment</a></li>
 	<li><a href="#SECTION110">2.10 Inserting a picture</a></li>
-	<li><a href="#SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></li>  
+	<li><a href="#SECTION110a">2.10.1 Inserting a picture using a "wizard"</a></li>
 	<li><a href="#SECTION111">2.11 Cross References and notes</a></li>
 	<li><a href="#SECTION112">2.12 Inserting math formulae</a></li>
 	<li><a href="#SECTION113">2.13 Auto completion</a></li>
@@ -274,7 +274,7 @@
 	    <ul><li><p>Pdf viewer can show multiple pages</li>
 	        <li><p>Pdf viewer supports a presentation mode and multiple views</li>
                 <li><p>Pdf viewer has a new overview and clock dock</p></li>
-	        <li><p>Selection preview become faster and is shown within the text</li>  
+	        <li><p>Selection preview become faster and is shown within the text</li>
 	    </ul>
 	</li>
 	<li>easy parenthesis selection</li>
@@ -415,7 +415,7 @@ Alternatively a command can be directly selected through the file system.
 <p>If you enable the advanced options, you can configure the build system in more details.
 
 <p>Every txs-command is a list of external programs/latex-commands and other txs-commands to call. An external program can be called with its usual command line, while a txs-command with id "foobar" is called by txs:///foobar. <br>
-The commands in the list are separated by |, which is just a separator (i.e. it will <i>not</i> pass the stdout from one program to the stdin of the next). 
+The commands in the list are separated by |, which is just a separator (i.e. it will <i>not</i> pass the stdout from one program to the stdin of the next).
 
 <p>Each of these txs-command has a unique id, which is shown as tooltip of the displayed name for "normal" commands and in the edit box for user commands. Some important commands are usual: txs:///quick (Build & View, the old quickbuild), txs:///compile (Default compiler), txs:///view (Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex), txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External pdf viewer).
 
@@ -458,7 +458,7 @@ This also means that you can change every command as you want, ignoring its old 
 
 <p>
 Finally, there are also hidden options, which can only be changed by modifing the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
- 
+
 
 <h2 id="SECTION030">1.4 Configuring some general issues</h2>
 <p>This panel allows the setting of some general aspects.</p>
@@ -491,7 +491,7 @@ Furthermore the completion list contains partially additional information to det
 <h2 id="SECTION044">1.4.4 Configuring the grammar checker</h2>
 <p>The grammar checker is based on the standard http API of <a href="http://www.languagetool.org/">LanguageTool</a>, and requires a separate installation of LanguageTool and java.
 
-<p>Once LanguageTool is installed, you can try it by starting the LanguageTool standalone application, and start TeXstudio afterward.  LanguageTool then creates  a locally running server at the address http://localhost:8081/ and TeXstudio automatically connects to it at startup. When the connection is established, all typed paragraphs are send to LT and after a short delay the possible grammar errors are highlighted.  
+<p>Once LanguageTool is installed, you can try it by starting the LanguageTool standalone application, and start TeXstudio afterward.  LanguageTool then creates  a locally running server at the address http://localhost:8081/ and TeXstudio automatically connects to it at startup. When the connection is established, all typed paragraphs are send to LT and after a short delay the possible grammar errors are highlighted.
 
 <p>To automatically start LanguageTool with TeXstudio, you need to enter the path to LT jar in the grammar page of the config dialog. If the java executable is not in the default PATH, you also need to set the path to it there.
 
@@ -504,7 +504,7 @@ Furthermore the completion list contains partially additional information to det
 <p>
 TeXstudio has taken up completion word lists from kile which extended the number of known commands for completion considerably.
 TeXstudio understands the use of \documentclass and \usepackage in order to select valid lists of commands for completion as well as syntax checking.
-However TeXstudio allows one to select the additional word lists under 
+However TeXstudio allows one to select the additional word lists under
 "Configure TeXstudio" -> "Editor" -> "". The names of the word lists corresponds to the package for which they are made. The list latex.cwl contains the standard latex commands. <br>
 Concerning auto completion, TeXstudio allows one to adapt the behaviour to your liking.
 Following options are available:</p>
@@ -663,7 +663,7 @@ The wizard also comes into play when you drag   drop an image file to your docum
 <p>You can also define the format of your mathematical text via the "Math" menu.<br>For the "array" environments, a wizard (like the "Tabular" wizard) is available in the "Wizard" menu. With this wizard, you can select the environment : array, matrix, pmatrix.... The cells can be directly completed.</p>
 <p><IMG src="doc13.png" border="1" alt="Array Wizard"></p>
 <h2 id="SECTION113">2.13 Auto Completion</h2>
-<p>Whenever you press \  followed by a letter, a list of possible LaTex tags is shown where you select the right one. If you write additional letters the list is filtered, so that only the tags starting with the already written text are shown. 
+<p>Whenever you press \  followed by a letter, a list of possible LaTex tags is shown where you select the right one. If you write additional letters the list is filtered, so that only the tags starting with the already written text are shown.
 If the list contains words which all start with the same letter combination, you can press Tab to complete all common letters. If only one element is present in the list, Tab selects this one to do the completion, like Enter. This behaviour is similar to tab completion in bash shells.
 You can also press Ctrl+Space to open this list whenever you want.<br>
 If a tag has different options, a short descriptive text is inserted into your text, telling you the meaning of each option. You can press Ctrl+Left, Ctrl+Right to select all positions.<br>
@@ -712,7 +712,7 @@ A tool tip will show more details of the mistake if you jump to a line (it is al
 To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TeXstudio will open it.</p>
 <p>TeXstudio now understands parent/child relations of loaded documents (1 level only !). Therefore, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
 <p>You can still define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
-If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TeXstudio. 
+If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TeXstudio.
 <br>Note : you can leave the "master" mode with the "Options" menu.</p>
 <h2 id="SECTION32a">4.2 Syntax Check</h2>
 <p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
@@ -732,7 +732,7 @@ Apart from the supported svn features already describes in section 1.8, TeXstudi
 </p>
 <p>
 "File/Show old Revisions" pops up a dialog, which shows all alvailable revisions. A selection of an older revision leads to instatanious change of the current document to that older revision.
-You can can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version. If you start editing that document directly, the dialog is closed and the present text is your new 
+You can can select and copy old parts to transfer them to the most recent version of your document, by copying the parts and then going back to most recent version. If you start editing that document directly, the dialog is closed and the present text is your new
 most recent version though yet unsaved.
 </p>
 <h2 id="SECTION33">4.5 Personal macros</h2>
@@ -794,7 +794,7 @@ To access the document these objects are introduced:
   </tr>
   <tr><td> writeFile(name, value) </td>	<td> Writes value to file name (requires write privileges) </td></tr>
   <tr><td> readFile(name) </td>	<td> Reads the entire file name (requires read privileges) </td></tr>
-  <tr><td> system(cmd) </td>	<td> Calls cmd and returns a ProcessX object which has this methodes: 
+  <tr><td> system(cmd) </td>	<td> Calls cmd and returns a ProcessX object which has this methodes:
     <ul>
     <li>waitForFinished: Wait until the process is finished</li>
     <li>readAllStandardOutputStr: Returns the stdout</li>
@@ -802,7 +802,7 @@ To access the document these objects are introduced:
     <li>exitCode: The exit code</li>
     <li>exitStatus: The qt exit status</li>
     <li>terminate or kill: Stops the process</li>
-    
+
     </ul>  </td></tr>
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
   <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
@@ -810,31 +810,31 @@ To access the document these objects are introduced:
   <tr><td> setPersistent(name, value) </td>	<td> Sets a global configuration variable. (can change the values of the ini file, requires write privileges) </td></tr>
   <tr><td> getPersistent(name) </td>	<td> Reads a global configuration variable. (can read all values of the ini file, requires read privileges) </td></tr>
   <tr><td> hasPersistent(name) </td>	<td> Checks if a global configuration variable exists. (requires read privileges) </td></tr>
-  
+
   <tr><td> hasReadPrivileges() </td>	<td> Checks if the script has read privileges </td></tr>
   <tr><td> hasWritePrivileges() </td>	<td> Checks if the script has write privileges </td></tr>
-  <tr><td> registerAsBackgroundScript([id]) </td>	<td> Allows the script to run in the background (necessary iff the script should handle events/signals) </td></tr>  
-  <tr><td>triggerMatches </td>	<td> Matches of the regular trigger expression, if the script was called by an editor <a href="#sectionTriggers"> trigger</a>.</td></tr>  
-  <tr><td> triggerId </td>	<td> Numeric id of the trigger, if the script was called by an event <a href="#sectionTriggers"> trigger</a>. </td></tr>  
-  <tr><td> include(script) </td>	<td> Includes another script. Can be a filename or the name of a macro. </td></tr>  
-  <tr><td> pdfs </td>	<td> List of all open, internal pdf viewers . </td></tr>  
-    
+  <tr><td> registerAsBackgroundScript([id]) </td>	<td> Allows the script to run in the background (necessary iff the script should handle events/signals) </td></tr>
+  <tr><td>triggerMatches </td>	<td> Matches of the regular trigger expression, if the script was called by an editor <a href="#sectionTriggers"> trigger</a>.</td></tr>
+  <tr><td> triggerId </td>	<td> Numeric id of the trigger, if the script was called by an event <a href="#sectionTriggers"> trigger</a>. </td></tr>
+  <tr><td> include(script) </td>	<td> Includes another script. Can be a filename or the name of a macro. </td></tr>
+  <tr><td> pdfs </td>	<td> List of all open, internal pdf viewers . </td></tr>
+
   <tr><th colspan=2>Editor object</th></tr>
   <tr>
   	<td> editor.search(searchFor, [options], [scope], [callback]) </td>
-	<td> Searchs something in the editor. 
+	<td> Searchs something in the editor.
 	     <ul>
 	     <li>searchFor is the text which is searched. It can be either a string (e.g. "..") or a regexp (e.g. /[.]{2}/). </li>
 	     <li>options is a string and a combination of "i", "g", "w" to specify a case-<em>i</em>nsensitive search, a <em>g</em>lobal search (continue after the first match) or a whole-<em>w</em>ord-only search. </li>
 	     <li>scope is a cursor constraining the search scope (see editor.document().cursor).</li>
 	     <li>callback is a function which is called for every match. A cursor describing the position of the match is passed as first argument.</li>
-	  </ul> 
+	  </ul>
 	  All arguments except searchFor are optional, and the order may be changed (which may not be future compatible). The function returns the number of found matches.
 	  </td>
   </tr>
   <tr>
   	<td> editor.replace(searchFor, [options], [scope], [replaceWith]) </td>
-  	<td> This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith.  </td>  	
+  	<td> This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith.  </td>
   </tr>
   <tr>
     <td> editor.undo();</td>
@@ -938,7 +938,7 @@ To access the document these objects are introduced:
     <td> inserts str at the position of cursor </td>
   <tr>-->
   <tr>
-    <td> editor.setText(<i>text</i>) </td> 
+    <td> editor.setText(<i>text</i>) </td>
     <td> replace the whole text of the current document by <i>text</i> </td>
   </tr>
   <tr>
@@ -977,8 +977,8 @@ To access the document these objects are introduced:
   <tr><td>documentManager.singleMode() </td><td>   Returns if there is no explicit master document  </td></tr>
   <tr><td>documentManager.getMasterDocumentForDoc(document) </td><td>   Returns the open document (possibly indirectly) including the given document </td></tr>
   <tr><td>documentManager.findFileFromBibId(id) </td><td>   Returns the file name of the bib file containing an entry with the given id  </td></tr>
-    
-  
+
+
   <tr>
   <th colspan=2>Cursor object</th>
   </tr>
@@ -1020,7 +1020,7 @@ To access the document these objects are introduced:
     <td> returns the column of the cursor
   </tr>
   <tr>
-    <td> cursor.anchorLineNumber() 
+    <td> cursor.anchorLineNumber()
     <td> returns the line number of the anchor.
   </tr>
   <tr>
@@ -1077,11 +1077,11 @@ To access the document these objects are introduced:
   <tr>
     <td> cursor.eraseLine();
     <td> remove current line
-  </tr>  
+  </tr>
   <tr>
     <td> cursor.insertLine(bool keepAnchor = false);
     <td> insert empty line
-  </tr>  
+  </tr>
   <tr>
     <td> cursor.insertText(text, bool keepAnchor = false)
     <td> insert <i>text</i> text at cursor (this function will ignore indentations and mirrors, see editor.write and editor.insertText)
@@ -1109,10 +1109,10 @@ To access the document these objects are introduced:
   <tr>
     <td> cursor.deletePreviousChar();
     <td> removes char left to the cursor
-  </tr>		
+  </tr>
   <tr>
     <td> cursor.beginEditBlock();
-    <td> begins a new edit block. All cursor operations encapsulated in an edit block are undone/redone at once. 
+    <td> begins a new edit block. All cursor operations encapsulated in an edit block are undone/redone at once.
   </tr>
   <tr>
     <td> cursor.endEditBlock();
@@ -1166,8 +1166,8 @@ To access the document these objects are introduced:
   <tr>
 	<td> fileChooser.fileName()
 	<td> return selected filename (after exec)
-  </tr>  
-</table> 
+  </tr>
+</table>
 
 <br><br>
 <p>Some examples:</p>
@@ -1186,7 +1186,7 @@ obj = editor;                                                    //object to sho
 
 app.fileNew();                                                   //create a new document
 newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
-for (var prop in obj)              
+for (var prop in obj)
   newEditor.write(prop+"\n");                                    //print the properties
 </pre>
 </li>
@@ -1205,14 +1205,14 @@ ui.show();                                           //show dialog
 </pre> The dialog is described in an ui file which can be created with the Qt Designer. </li>
 <li>Calculator:<pre>
 %SCRIPT
-currentLine=editor.text(cursor.lineNumber()); 
-from=currentLine.lastIndexOf("%")+1; 
-to=currentLine.lastIndexOf("="); 
+currentLine=editor.text(cursor.lineNumber());
+from=currentLine.lastIndexOf("%")+1;
+to=currentLine.lastIndexOf("=");
 if (from>=0 && to > from) {
   toEvaluate = currentLine.substring(from, to);
   with (Math) { value = eval(toEvaluate);}
-  cursor.eraseLine(); 
-  cursor.insertText(currentLine.substring(0, from)+toEvaluate+"="+value); 
+  cursor.eraseLine();
+  cursor.insertText(currentLine.substring(0, from)+toEvaluate+"="+value);
   cursor.insertLine();
   cursor.movePosition(1,cursorEnums.Left );
 }
@@ -1259,7 +1259,7 @@ while (remaining != ""){
 	editor.write(remaining.slice(0,matchpos));
 	remaining = remaining.slice(matchpos+matches[0].length);
 	editor.write("(" + ((matches[2].replace(regExSpace, "")*1.0)+offsetX) + ", "+ ((matches[4].replace(regExSpace, "")*1.0)+offsetY) + ")");
-} 
+}
 editor.write(remaining);
 }
 doit();
@@ -1271,7 +1271,7 @@ This will add to all selected coordinate pairs the offset of the first pair whic
 </ul>
 
 <h3 id="sectionTriggers">4.5.4 Triggers</h3>
-<p>In its simplest form, the trigger is simply a text, which is replaced by the macro. 
+<p>In its simplest form, the trigger is simply a text, which is replaced by the macro.
 E.g. trigger="eg" macro="example given", "eg" in "the leg" is replaced on pressing "g" by "example given"<br>
 As the trigger is a regular expression, more elaborate triggers can be created. TXS makes use of look-behind searching: "(?<=\s)%" is used to replace a "%" if the previous character is a space. More help on regular expressions can be found on the internet.<br>
 You can also prepend the pseudo expression <code>(?language:...)</code> to only activate the macro in documents of a specify language (like the language "latex", e.g. <code>(?language:latex)</code>).<br>
@@ -1300,7 +1300,7 @@ Additionally the following special trigger terms (without parentheses) can be us
 <p>This command (from the "Tools" menu ) produces a set of html pages from a LaTeX source file with one image for each html page. Each page in the slide presentation corresponds to one of the postscript pages you would obtain running LaTeX.<br>
 The command also produces an index page corresponding to the table of contents you would obtain with LaTeX. Each item of the index page includes a link to the corresponding html page.</p>
 <p>You can create links in the html pages by using the \ttwplink{}{} command in the tex file.<br>
-Synopsis :<br> 
+Synopsis :<br>
 \ttwplink{http://www.mylink.com}{my text} (external link)<br>
 \ttwplink{page3.html}{my text} (internal link)<br>
 \ttwplink{name_of_a_label}{my text} (internal link)<br>
@@ -1313,7 +1313,7 @@ Synopsis :<br>
 <h3>Integrated pdf-viewer</h3>
 <p>
 TeXstudio provides an integarted pdf-viewer which offers forward- and inverse-search. Make sure that synctex is activated in the pdflatex command (option -synctex=1 needs to be added), though TeXstudio will ask you if it can correct the command itself if it is not set correctly.<br>
-Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned. Additionally you can CTRL+left click on a word in the text editor to jump to the pdf or use the context menu and select "Go To PDF".<br> 
+Forward search is automatically done every time the pdf-viewer is opened. TeXstudio will jump to the position where your cursor is currently positioned. Additionally you can CTRL+left click on a word in the text editor to jump to the pdf or use the context menu and select "Go To PDF".<br>
 Inverse can be activated by clicking in the pdf with CTRL+left mouse button or by slecting "jump to source" in the context menu, which is activated with a right mouse button click.
 Furthermore it is possible to enable "Scrolling follows Cursor" in pdf-viewer/configure. This will keep the pdf-viewer position synchronous to your cursor oposition in the editor.
 Likewise "Cursor follows Scrolling"  keeps the editor position synchronous to pdf-viewer position.
@@ -1359,7 +1359,7 @@ Naviation and closing are achieved via DDE commands. Since version 10 of the ado
 <tr><td>Adobe Acrobat 11</td><td>acroviewA11</td></tr>
 </table>
 <p>
-The following example is for Adobe Reader 11:<br> 
+The following example is for Adobe Reader 11:<br>
 To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
 
 To close the document in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
@@ -1427,7 +1427,7 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 % //Trigger = ?load-this-file <br>
 % app.load("/tmp/test/test.tex"); <br>
 % app.load("/tmp/test/a.tex"); <br>
-% TXS-SCRIPT-END 
+% TXS-SCRIPT-END
 </code>
 <p>This defines a temporary javascript macro which is executed, when the file is loaded, and which in turns loads the two files in /tmp/test. .
 </li>
@@ -1578,8 +1578,8 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <ul>
   <li><code>#include:&lt;packagename&gt;</code> (at start of line): also load packagename.cwl. This should be used to indicate that a package depends on other packages.</li>
   <li><code>#repl:&lt;search&gt; &lt;replacement&gt;</code> (at start of line): define a letter replacement, e.g. "a -> ä for German. Only used for letter replacement in spell checking (babel)</li>
-  <li><code>#keyvals:&lt;command&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphics.cwl in source code</li>
-  <li><code>#endkeyvals</code> (at start of line): end definition of keyvals, see graphics.cwl in source code</li>
+  <li><code>#keyvals:&lt;command&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphicx.cwl in source code</li>
+  <li><code>#endkeyvals</code> (at start of line): end definition of keyvals, see graphicx.cwl in source code</li>
   <li><code>#</code> (at start of line with the exception of <code>#include,#repl,#keyvals or #endkeyvals </code>): This line is a comment and will be ignored.</li>
   <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
 </ul>
@@ -1672,7 +1672,7 @@ c&amp;d\\ \hline
 <pre>
 var metaData = {
 "Name"       : "Colored rows",
-"Description" : "Formats the table using alternate colors for rows. &lt;br&gt; &lt;code&gt;\usepackage[table]{xcolor}&lt;/code&gt; is necessary.", 
+"Description" : "Formats the table using alternate colors for rows. &lt;br&gt; &lt;code&gt;\usepackage[table]{xcolor}&lt;/code&gt; is necessary.",
 "Author"      : "Jan Sundermeyer",
 "Date"        : "4.9.2011",
 "Version"     : "1.0"
@@ -1696,7 +1696,7 @@ function println(str){ //define this function to make source more readable
 cursor.insertText(str+"\n")
 }
 var arDef=def.split("") // split the table definition (ll -> 'l' 'l')
-println("\\begin{tabular}{"+arDef.join("")+"}") //print table env 
+println("\\begin{tabular}{"+arDef.join("")+"}") //print table env
 for(var i=0;i&lt;tab.length;i++){  // loop through all rows of the table
 	var line=tab[i];  // line is a list of all columns of row[i]
 	for(var j=0;j&lt;line.length;j++){ // loop through all columns of a row
@@ -1742,4 +1742,3 @@ println("\\end{"+env+"}")
 </pre>
 </p>
 </body></html>
-
