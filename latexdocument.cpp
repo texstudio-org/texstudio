@@ -2594,7 +2594,13 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 			}
 		}
 		if(zw.packageName=="<notFound>"){
-			emit importPackage(elem);
+            QString name=elem;
+            LatexDocument *masterDoc=getTopMasterDocument();
+            if(masterDoc){
+                QString fn=masterDoc->getFileInfo().absolutePath();
+                name+="/"+fn;
+            }
+            emit importPackage(name);
 		} else {
 			pck.unite(zw);
 			loadedFiles.append(elem);
