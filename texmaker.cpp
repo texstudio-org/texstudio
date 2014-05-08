@@ -8089,12 +8089,18 @@ void Texmaker::importPackage(QString name){
 		latexStyleParser->start();
 		QTimer::singleShot(30000,this,SLOT(stopPackageParser()));
 	}
+    QString dirName;
+    if(name.contains("/")){
+        int i=name.indexOf("/");
+        dirName="/"+name.mid(i+1);
+        name=name.left(i);
+    }
 	name.chop(4);
 	name.append(".sty");
-	latexStyleParser->addFile(name);
+    latexStyleParser->addFile(name+dirName);
 	name.chop(4);
 	name.append(".cls"); // try also cls
-	latexStyleParser->addFile(name);
+    latexStyleParser->addFile(name+dirName);
 }
 
 void Texmaker::packageScanCompleted(QString name){
