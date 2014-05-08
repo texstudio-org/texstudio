@@ -1708,10 +1708,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
         }
         if(!keyvals.isEmpty()){
             // read keyval (name stored in "keyvals")
-            QString elem=line;
-            if(!elem.endsWith("="))
-                elem+="=";
-            package.possibleCommands["key%"+keyvals] << elem;
+            package.possibleCommands["key%"+keyvals] << line;
             continue;
         }
         if(line.startsWith("#repl:")){

@@ -323,8 +323,14 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
             }
             if(rxLoadClass.indexIn(line)>-1){
                 QString arg = rxLoadClass.cap(1);
-                if(!arg.isEmpty())
-                    results << "#include:" + arg;
+                if(!arg.isEmpty()){
+                    if(mPackageAliases.contains(arg))
+                        foreach(QString elem,mPackageAliases.values(arg)){
+                            results << "#include:" + elem;
+                        }
+                    else
+                        results << "#include:" + arg;
+                }
                 continue;
             }
         } // while line

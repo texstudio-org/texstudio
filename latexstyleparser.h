@@ -14,6 +14,9 @@ public:
     explicit LatexStyleParser(QObject *parent = 0,QString baseDirName="",QString kpsecmd="");
     void stop();
     void addFile(QString filename);
+    void setAlias(QMultiHash<QString,QString> PackageAliases){
+        mPackageAliases=PackageAliases;
+    }
 
 protected:
     void run();
@@ -41,6 +44,7 @@ private:
 
     bool texdefMode;
 
+    QMultiHash<QString,QString> mPackageAliases;
 };
 
 #endif // LATEXSTYLEPARSER_H
