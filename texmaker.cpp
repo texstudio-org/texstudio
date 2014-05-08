@@ -8085,6 +8085,7 @@ void Texmaker::importPackage(QString name){
 		latexStyleParser=new LatexStyleParser(this,configManager.configBaseDir,baseDir+"kpsewhich");
 		connect(latexStyleParser,SIGNAL(scanCompleted(QString)),this,SLOT(packageScanCompleted(QString)));
 		connect(latexStyleParser,SIGNAL(finished()),this,SLOT(packageParserFinished()));
+        latexStyleParser->setAlias(latexParser.packageAliases);
 		latexStyleParser->start();
 		QTimer::singleShot(30000,this,SLOT(stopPackageParser()));
 	}
