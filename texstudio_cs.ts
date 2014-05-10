@@ -7068,6 +7068,14 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
         <source>environment not closed</source>
         <translation>Prostředí nezavřeno</translation>
     </message>
+    <message>
+        <source>unrecognized key in key option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unrecognized value in key option</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TabDialog</name>

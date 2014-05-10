@@ -781,7 +781,7 @@
 <context>
     <name>CodeSnippet</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="+1935"/>
+        <location filename="smallUsefulFunctions.cpp" line="+1934"/>
         <location line="+1"/>
         <source>something</source>
         <translation>algo</translation>
@@ -4532,7 +4532,7 @@ O assistente não suporta comandos</translation>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="latexcompleter.cpp" line="+999"/>
+        <location filename="latexcompleter.cpp" line="+1010"/>
         <location line="+9"/>
         <source>all</source>
         <translation>Todos</translation>
@@ -4705,7 +4705,7 @@ O assistente não suporta comandos</translation>
     </message>
     <message>
         <location line="+11"/>
-        <location filename="texmaker.cpp" line="+6666"/>
+        <location filename="texmaker.cpp" line="+6681"/>
         <location line="+6"/>
         <source>Go to Definition</source>
         <translation>Ir para Definição</translation>
@@ -8581,7 +8581,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="syntaxcheck.cpp" line="+350"/>
+        <location filename="syntaxcheck.cpp" line="+430"/>
         <source>no error</source>
         <translation>sem erro</translation>
     </message>
@@ -8639,6 +8639,16 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location line="+0"/>
         <source>environment not closed</source>
         <translation>ambiente não fechado</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>unrecognized key in key option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>unrecognized value in key option</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9033,7 +9043,7 @@ falhou.</translation>
     </message>
     <message>
         <location line="+1"/>
-        <location filename="texmaker.cpp" line="-6484"/>
+        <location filename="texmaker.cpp" line="-6499"/>
         <source>Central</source>
         <translation>Central</translation>
     </message>
@@ -9116,7 +9126,7 @@ falhou.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+4482"/>
+        <location filename="texmaker.cpp" line="+4497"/>
         <source>Edit User &amp;Tags</source>
         <translation>E&amp;ditar Etiquetas do Usuário</translation>
     </message>
@@ -9125,19 +9135,19 @@ falhou.</translation>
         <translation type="obsolete">E&amp;ditar Comandos do Usuário</translation>
     </message>
     <message>
-        <location line="-4409"/>
+        <location line="-4424"/>
         <location line="+1080"/>
         <source>Normal Mode</source>
         <translation>Modo Normal</translation>
     </message>
     <message>
         <location line="-1079"/>
-        <location line="+4905"/>
+        <location line="+4920"/>
         <source>Ready</source>
         <translation>Pronto</translation>
     </message>
     <message>
-        <location line="-4857"/>
+        <location line="-4872"/>
         <source>Plaintext files</source>
         <translation>Arquivos de texto</translation>
     </message>
@@ -9431,12 +9441,12 @@ falhou.</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+7369"/>
+        <location line="+7384"/>
         <source>&amp;Close</source>
         <translation>&amp;Fechar</translation>
     </message>
     <message>
-        <location line="-7368"/>
+        <location line="-7383"/>
         <source>Clos&amp;e All</source>
         <translation>F&amp;echar Todos</translation>
     </message>
@@ -9807,7 +9817,7 @@ falhou.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2176"/>
+        <location line="+2191"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -9847,7 +9857,7 @@ Voce deseja permitir e executar o novo comando?
         <translation>Falha ao ler o arquivo de perfil %1.</translation>
     </message>
     <message>
-        <location line="+899"/>
+        <location line="+906"/>
         <source>System Report</source>
         <translation>Relatório do Sistema</translation>
     </message>
@@ -9856,7 +9866,7 @@ Voce deseja permitir e executar o novo comando?
         <translation type="obsolete">Erro seguinte</translation>
     </message>
     <message>
-        <location line="-8018"/>
+        <location line="-8040"/>
         <source>Previous Warning</source>
         <oldsource>Previous warning</oldsource>
         <translation>Alerta Anterior</translation>
@@ -9971,7 +9981,7 @@ Voce deseja permitir e executar o novo comando?
         <translation>Documentação dos Pacotes...</translation>
     </message>
     <message>
-        <location line="+7620"/>
+        <location line="+7642"/>
         <source>Yes, try to recover</source>
         <translation>Sim, tentar recuperar</translation>
     </message>
@@ -9990,7 +10000,7 @@ Voce deseja permitir e executar o novo comando?
         <translation type="obsolete">&amp;Etiquetas do Usuário</translation>
     </message>
     <message>
-        <location line="-7672"/>
+        <location line="-7694"/>
         <source>Align Windows</source>
         <translation>Alinhar Janelas</translation>
     </message>
@@ -10007,12 +10017,12 @@ included document in %1</source>
 documento incluído em %1</translation>
     </message>
     <message>
-        <location line="+3238"/>
+        <location line="+3253"/>
         <source>Type: %1</source>
         <translation>Tipo: %1</translation>
     </message>
     <message>
-        <location line="+4020"/>
+        <location line="+4027"/>
         <location line="+84"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -10076,7 +10086,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
         <translation type="obsolete">&amp;Compilar</translation>
     </message>
     <message>
-        <location line="-7940"/>
+        <location line="-7962"/>
         <location line="+45"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
@@ -10581,7 +10591,7 @@ Você confia neste documento?</translation>
         <translation type="obsolete">Não, execute o comando padrão</translation>
     </message>
     <message>
-        <location line="+3825"/>
+        <location line="+3840"/>
         <source>Unknown internal command: %1</source>
         <translation>Comando interno desconhecido: %1</translation>
     </message>
@@ -10622,7 +10632,7 @@ Você confia neste documento?</translation>
         <translation>Final do texto alcançado.</translation>
     </message>
     <message>
-        <location line="+226"/>
+        <location line="+233"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -10671,15 +10681,15 @@ Pressione &quot;OK&quot; para exibir as diferenças ao invés de fonte gerada po
 Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
-        <location line="-7504"/>
+        <location line="-7526"/>
         <location line="+1304"/>
-        <location line="+4275"/>
+        <location line="+4290"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location line="-5578"/>
-        <location line="+5579"/>
+        <location line="-5593"/>
+        <location line="+5594"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
@@ -10692,19 +10702,19 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation type="obsolete">Colar depois</translation>
     </message>
     <message>
-        <location line="-5573"/>
-        <location line="+5577"/>
+        <location line="-5588"/>
+        <location line="+5592"/>
         <source>Indent Section</source>
         <translation>Rebaixar seção um nível</translation>
     </message>
     <message>
-        <location line="-5576"/>
-        <location line="+5577"/>
+        <location line="-5591"/>
+        <location line="+5592"/>
         <source>Unindent Section</source>
         <translation>Promover seção um nível</translation>
     </message>
     <message>
-        <location line="-5361"/>
+        <location line="-5376"/>
         <source>Click to jump to the bookmark</source>
         <translation>Clique para ir para o marcador</translation>
     </message>
@@ -10715,14 +10725,14 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location line="+391"/>
         <location line="+1534"/>
-        <location line="+1646"/>
+        <location line="+1661"/>
         <location line="+402"/>
         <location line="+132"/>
         <location line="+2"/>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+379"/>
-        <location line="+2653"/>
+        <location line="+2660"/>
         <source>Error</source>
         <translation>Erro</translation>
     </message>
@@ -10732,7 +10742,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation>Você não tem permissão par ler este arquivo.</translation>
     </message>
     <message>
-        <location line="-6185"/>
+        <location line="-6207"/>
         <source>Save As</source>
         <translation>Salvar Como</translation>
     </message>
@@ -10766,20 +10776,20 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation type="obsolete">Modelos</translation>
     </message>
     <message>
-        <location line="+6707"/>
+        <location line="+6722"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location line="-6750"/>
-        <location line="+7508"/>
+        <location line="-6765"/>
+        <location line="+7523"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Todos os arquivos</translation>
     </message>
     <message>
-        <location line="-7520"/>
+        <location line="-7535"/>
         <source>Pweave files</source>
         <translation>Arquivos pweave</translation>
     </message>
@@ -10991,13 +11001,13 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location line="+21"/>
-        <location line="+5579"/>
+        <location line="+5594"/>
         <source>Paste Before</source>
         <translation>Colar Antes</translation>
     </message>
     <message>
-        <location line="-5578"/>
-        <location line="+5579"/>
+        <location line="-5593"/>
+        <location line="+5594"/>
         <source>Paste After</source>
         <translation>Colar Depois</translation>
     </message>
@@ -11014,7 +11024,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation type="obsolete">Remover Todos</translation>
     </message>
     <message>
-        <location line="-5310"/>
+        <location line="-5325"/>
         <source>Normal Mode (current master document: </source>
         <translation>Modo Normal (documento mestre atual: </translation>
     </message>
@@ -11025,7 +11035,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location line="+194"/>
-        <location line="+6120"/>
+        <location line="+6142"/>
         <source>Open Files</source>
         <translation>Abrir Arquivos</translation>
     </message>
@@ -11034,7 +11044,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation type="obsolete">O documento contém trabalho não salvo. Deseja salvá-lo antes de fechar?</translation>
     </message>
     <message>
-        <location line="-5806"/>
+        <location line="-5828"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Salvar e Fechar</translation>
@@ -11068,13 +11078,13 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     </message>
     <message>
         <location line="+12"/>
-        <location line="+1988"/>
+        <location line="+2003"/>
         <location line="+28"/>
         <source>No document open</source>
         <translation>Nenhum documento aberto</translation>
     </message>
     <message>
-        <location line="-2010"/>
+        <location line="-2025"/>
         <source>No dictionary available.</source>
         <translation>Nenhum dicionário disponível.</translation>
     </message>
@@ -11084,7 +11094,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation>Não foi possível carregar banco de dados de sinônimos</translation>
     </message>
     <message>
-        <location line="+1364"/>
+        <location line="+1379"/>
         <source>Quick Start</source>
         <translation>Início Rápido</translation>
     </message>
@@ -11116,13 +11126,13 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
         <translation type="obsolete">Não foi possível iniciar o LaTeX.</translation>
     </message>
     <message>
-        <location line="-3941"/>
+        <location line="-3956"/>
         <location line="+10"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location line="+3924"/>
+        <location line="+3939"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Não foi possível determinar o nome do arquivo.
@@ -11160,7 +11170,7 @@ Você tem que salvar um documento antes de compilá-lo.</translation>
         <translation type="obsolete">Arquivo de log não encontrado!</translation>
     </message>
     <message>
-        <location line="-4515"/>
+        <location line="-4530"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>Nenhum erro LaTeX detectado!</translation>
@@ -11188,7 +11198,7 @@ TeXstudio não suporta múltiplas instâncias do mesmo arquivo.
 Você tem certeza que deseja continuar?</translation>
     </message>
     <message>
-        <location line="+4221"/>
+        <location line="+4236"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <oldsource>You have called the command to open the internal pdf viewer.
@@ -11214,7 +11224,7 @@ Todavia, você está utilizando uma versão de  TeXstudio  que foi compilada sem
         <translation>Você tem que salvar o arquivo antes de mudar para o modo de &apos;documento mestre&apos;!</translation>
     </message>
     <message>
-        <location line="-4452"/>
+        <location line="-4467"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Definir o Documento Atual como &apos;Documento Mestre&apos;</translation>
     </message>
@@ -11349,7 +11359,7 @@ salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation
         <translation>Salvamento da sessão falhou.</translation>
     </message>
     <message>
-        <location line="+1870"/>
+        <location line="+1885"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Arquivo Atual&gt;</translation>
     </message>
