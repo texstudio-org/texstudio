@@ -698,7 +698,7 @@
 <context>
     <name>CodeSnippet</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="+1935"/>
+        <location filename="smallUsefulFunctions.cpp" line="+1934"/>
         <location line="+1"/>
         <source>something</source>
         <translation>某些</translation>
@@ -4091,7 +4091,7 @@ Invalid \caption command.</source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="latexcompleter.cpp" line="+999"/>
+        <location filename="latexcompleter.cpp" line="+1010"/>
         <location line="+9"/>
         <source>all</source>
         <translation>所有</translation>
@@ -4286,7 +4286,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="+136"/>
-        <location filename="texmaker.cpp" line="+6666"/>
+        <location filename="texmaker.cpp" line="+6681"/>
         <location line="+6"/>
         <source>Go to Definition</source>
         <translation>跳转到定义</translation>
@@ -7996,7 +7996,7 @@ To change a shortcut, you have to edit the third or fourth column.</source>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="syntaxcheck.cpp" line="+350"/>
+        <location filename="syntaxcheck.cpp" line="+430"/>
         <source>no error</source>
         <translation>没有错误</translation>
     </message>
@@ -8026,7 +8026,17 @@ To change a shortcut, you have to edit the third or fourth column.</source>
         <translation>命令不在表单环境中</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
+        <source>unrecognized key in key option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>unrecognized value in key option</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>unknown</source>
         <translation>未知</translation>
     </message>
@@ -8393,8 +8403,8 @@ failed.</source>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-5599"/>
-        <location line="+5579"/>
+        <location filename="texmaker.cpp" line="-5614"/>
+        <location line="+5594"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
@@ -8403,7 +8413,7 @@ failed.</source>
         <translation type="obsolete">XML</translation>
     </message>
     <message>
-        <location line="-6066"/>
+        <location line="-6081"/>
         <source>&amp;New</source>
         <translation>新建(&amp;N)</translation>
     </message>
@@ -8415,7 +8425,7 @@ failed.</source>
     <message>
         <location line="+416"/>
         <location line="+1304"/>
-        <location line="+4275"/>
+        <location line="+4290"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
@@ -8430,7 +8440,7 @@ failed.</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6006"/>
+        <location filename="texmaker.cpp" line="-6021"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
@@ -8520,13 +8530,13 @@ failed.</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location line="+6677"/>
+        <location line="+6692"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>注意: 如果文本被编辑则自动关闭对话框 !</translation>
     </message>
     <message>
-        <location line="-5349"/>
-        <location line="+6120"/>
+        <location line="-5364"/>
+        <location line="+6142"/>
         <source>Open Files</source>
         <translation>打开文件</translation>
     </message>
@@ -8535,21 +8545,21 @@ failed.</source>
         <translation type="obsolete">清除</translation>
     </message>
     <message>
-        <location line="-6594"/>
+        <location line="-6616"/>
         <location line="+1534"/>
-        <location line="+1646"/>
+        <location line="+1661"/>
         <location line="+402"/>
         <location line="+132"/>
         <location line="+2"/>
         <location line="+8"/>
         <location line="+2"/>
         <location line="+379"/>
-        <location line="+2653"/>
+        <location line="+2660"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location line="-7756"/>
+        <location line="-7778"/>
         <source>Go to</source>
         <translation>跳转到</translation>
     </message>
@@ -8568,7 +8578,7 @@ failed.</source>
     </message>
     <message>
         <location line="-510"/>
-        <location line="+4905"/>
+        <location line="+4920"/>
         <source>Ready</source>
         <translation>已就绪</translation>
     </message>
@@ -8591,7 +8601,7 @@ failed.</source>
         <translation type="obsolete">前一个警告</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-4129"/>
+        <location filename="texmaker.cpp" line="-4144"/>
         <source>S&amp;ave Profile...</source>
         <translation>保存配置(&amp;A)...</translation>
     </message>
@@ -8617,12 +8627,12 @@ failed.</source>
         <translation>其他文本符号 (wasysym)</translation>
     </message>
     <message>
-        <location line="+6538"/>
+        <location line="+6553"/>
         <source>Remove all favorites</source>
         <translation>清空收藏夹</translation>
     </message>
     <message>
-        <location line="-6345"/>
+        <location line="-6360"/>
         <source>Continue F&amp;ind</source>
         <translation>继续查找(&amp;I)</translation>
     </message>
@@ -8647,7 +8657,7 @@ failed.</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location line="+4174"/>
+        <location line="+4189"/>
         <source>(a) allow for this document</source>
         <translation>(a) 仅为此文档允许</translation>
     </message>
@@ -8662,7 +8672,7 @@ failed.</source>
         <translation>(c) 使用默认命令</translation>
     </message>
     <message>
-        <location line="+3527"/>
+        <location line="+3534"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -8674,7 +8684,7 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location line="-7192"/>
+        <location line="-7214"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>当前文档设为&apos;主文档&apos;</translation>
     </message>
@@ -8693,22 +8703,22 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">粘贴列</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+6482"/>
+        <location filename="texmaker.cpp" line="+6497"/>
         <source>Save Profile</source>
         <translation>保存配置文件</translation>
     </message>
     <message>
-        <location line="-7100"/>
+        <location line="-7115"/>
         <source>Old Mac (CR)</source>
         <translation>旧 Mac (CR)</translation>
     </message>
     <message>
-        <location line="+6298"/>
+        <location line="+6313"/>
         <source>Remove from favorites</source>
         <translation>从收藏夹删除</translation>
     </message>
     <message>
-        <location line="-6544"/>
+        <location line="-6559"/>
         <source>Relation symbols</source>
         <translation>关系符号</translation>
     </message>
@@ -8718,12 +8728,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>操作符号</translation>
     </message>
     <message>
-        <location line="+4235"/>
+        <location line="+4250"/>
         <source>Labels:</source>
         <translation>标签:</translation>
     </message>
     <message>
-        <location line="-4233"/>
+        <location line="-4248"/>
         <source>Arrow symbols</source>
         <translation>箭头符号</translation>
     </message>
@@ -8738,12 +8748,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>显示旧版本(&amp;O)</translation>
     </message>
     <message>
-        <location line="+6602"/>
+        <location line="+6617"/>
         <source>commit comment:</source>
         <translation>注释 :</translation>
     </message>
     <message>
-        <location line="-6379"/>
+        <location line="-6394"/>
         <source>A&amp;nalyse Text...</source>
         <translation>分析文本(&amp;N)...</translation>
     </message>
@@ -8754,12 +8764,12 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <location line="-287"/>
-        <location line="+7369"/>
+        <location line="+7384"/>
         <source>&amp;Close</source>
         <translation>关闭(&amp;C)</translation>
     </message>
     <message>
-        <location line="-7328"/>
+        <location line="-7343"/>
         <source>&amp;Count</source>
         <translation>计数(&amp;C)</translation>
     </message>
@@ -8785,12 +8795,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location line="+7029"/>
+        <location line="+7044"/>
         <source>Load Profile</source>
         <translation>加载配置文件</translation>
     </message>
     <message>
-        <location line="-7519"/>
+        <location line="-7534"/>
         <source>Sweave files</source>
         <translation>Sweave 文件</translation>
     </message>
@@ -8817,12 +8827,12 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>另存为(&amp;A)...</translation>
     </message>
     <message>
-        <location line="+6007"/>
+        <location line="+6022"/>
         <source>Remove master document role</source>
         <translation>取消设为主文档</translation>
     </message>
     <message>
-        <location line="-6132"/>
+        <location line="-6147"/>
         <source>Cyrillic letters</source>
         <translation>Cyrillic 字母</translation>
     </message>
@@ -8832,7 +8842,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>插入 Unicode 字符...</translation>
     </message>
     <message>
-        <location line="+4415"/>
+        <location line="+4430"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>文件夹无法写入.</translation>
     </message>
@@ -8842,7 +8852,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>提交整个目录 ?</translation>
     </message>
     <message>
-        <location line="-6736"/>
+        <location line="-6751"/>
         <source>MetaPost Commands</source>
         <translation>Metapost 命令</translation>
     </message>
@@ -8865,7 +8875,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">新高亮:</translation>
     </message>
     <message>
-        <location line="+5985"/>
+        <location line="+6000"/>
         <source>Move document to &amp;end</source>
         <translation>移动到文档结尾(&amp;E)</translation>
     </message>
@@ -8876,7 +8886,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>插入为 %1</translation>
     </message>
     <message>
-        <location line="-5998"/>
+        <location line="-6013"/>
         <source>Declare Conflict Resolved</source>
         <translation>解决冲突</translation>
     </message>
@@ -8899,7 +8909,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">在之前粘贴</translation>
     </message>
     <message>
-        <location line="+4272"/>
+        <location line="+4287"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>该版本 TeXStudio 没有内置 PDF 查看器.</translation>
@@ -8926,7 +8936,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">模板</translation>
     </message>
     <message>
-        <location line="-3737"/>
+        <location line="-3752"/>
         <location line="+10"/>
         <source>BibTeX</source>
         <translation></translation>
@@ -8936,12 +8946,12 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">二进制文件</translation>
     </message>
     <message>
-        <location line="+4849"/>
+        <location line="+4864"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation>切换模式前请先保存文档 !</translation>
     </message>
     <message>
-        <location line="-3317"/>
+        <location line="-3332"/>
         <location line="+47"/>
         <source>Cancel</source>
         <translation>取消</translation>
@@ -8961,7 +8971,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>展开</translation>
     </message>
     <message>
-        <location line="+7552"/>
+        <location line="+7574"/>
         <source>Conflict!</source>
         <translation>冲突 !</translation>
     </message>
@@ -8971,7 +8981,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>格式</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7735"/>
+        <location filename="texmaker.cpp" line="-7757"/>
         <source>Remove Placeholders</source>
         <translation>删除占位符</translation>
     </message>
@@ -8986,12 +8996,12 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>重复硬断行(&amp;E)</translation>
     </message>
     <message>
-        <location line="+5880"/>
+        <location line="+5895"/>
         <source>Insert</source>
         <translation>插入</translation>
     </message>
     <message>
-        <location line="-5751"/>
+        <location line="-5766"/>
         <location line="+312"/>
         <source>Insert language as TeX comment</source>
         <translation>插入语言作为 TeX 注释</translation>
@@ -9036,13 +9046,13 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>刷新结构</translation>
     </message>
     <message>
-        <location line="+6220"/>
+        <location line="+6235"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location line="-6107"/>
+        <location line="-6122"/>
         <source>Previous Document</source>
         <translation>前一个文档</translation>
     </message>
@@ -9075,12 +9085,12 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">查找前一个(&amp;F)</translation>
     </message>
     <message>
-        <location line="+5975"/>
+        <location line="+5990"/>
         <source>Show all open documents in this tree</source>
         <translation>在此显示所有打开文档</translation>
     </message>
     <message>
-        <location line="-5837"/>
+        <location line="-5852"/>
         <source>Parenthesis</source>
         <translation>括号</translation>
     </message>
@@ -9132,13 +9142,13 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>补全</translation>
     </message>
     <message>
-        <location line="+4613"/>
+        <location line="+4628"/>
         <location line="+10"/>
         <source>File not found</source>
         <translation>未找到文件</translation>
     </message>
     <message>
-        <location line="-4789"/>
+        <location line="-4804"/>
         <source>Check &amp;in...</source>
         <translation>提交(&amp;I)...</translation>
     </message>
@@ -9174,7 +9184,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">删除行</translation>
     </message>
     <message>
-        <location line="+5720"/>
+        <location line="+5735"/>
         <source>Remove all</source>
         <translation>全部删除</translation>
     </message>
@@ -9192,17 +9202,17 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">最近更改</translation>
     </message>
     <message>
-        <location line="-5760"/>
+        <location line="-5775"/>
         <source>Generate &amp;Random Text...</source>
         <translation>生成随机文本(&amp;R)...</translation>
     </message>
     <message>
-        <location line="+4420"/>
+        <location line="+4435"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>查看日志前请先保存并编译文件</translation>
     </message>
     <message>
-        <location line="-2076"/>
+        <location line="-2091"/>
         <source>Join lines before wrapping</source>
         <translation>换行前插入新行</translation>
     </message>
@@ -9238,7 +9248,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">正常文本</translation>
     </message>
     <message>
-        <location line="+7357"/>
+        <location line="+7372"/>
         <source>Problem</source>
         <translation>问题</translation>
     </message>
@@ -9252,7 +9262,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">添加行</translation>
     </message>
     <message>
-        <location line="-1925"/>
+        <location line="-1940"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>无法加载词典数据库</translation>
     </message>
@@ -9277,12 +9287,12 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>显示文档的不同</translation>
     </message>
     <message>
-        <location line="+7817"/>
+        <location line="+7839"/>
         <source>You do not have read permission to this file.</source>
         <translation>没有权限读取文件。</translation>
     </message>
     <message>
-        <location line="-7205"/>
+        <location line="-7227"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
@@ -9325,7 +9335,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>替换(&amp;R)</translation>
     </message>
     <message>
-        <location line="+7306"/>
+        <location line="+7321"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation></translation>
     </message>
@@ -9334,7 +9344,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">恢复前一个会话</translation>
     </message>
     <message>
-        <location line="-7261"/>
+        <location line="-7276"/>
         <source>Setup Encoding...</source>
         <translation>设置编码...</translation>
     </message>
@@ -9524,12 +9534,12 @@ TeXstudio 不能并行处理同一个文件.
         <translation>跳到后一个不同</translation>
     </message>
     <message>
-        <location line="+5982"/>
+        <location line="+5997"/>
         <source>Show only current document in this tree</source>
         <translation>在此显示当前文档</translation>
     </message>
     <message>
-        <location line="-5921"/>
+        <location line="-5936"/>
         <source>Previous mark</source>
         <translation>前一个标记</translation>
     </message>
@@ -9544,12 +9554,12 @@ TeXstudio 不能并行处理同一个文件.
         <translation>PSTricks 命令</translation>
     </message>
     <message>
-        <location line="+4382"/>
+        <location line="+4397"/>
         <source>Can&apos;t detect the file name</source>
         <translation>无法检测文件名</translation>
     </message>
     <message>
-        <location line="-4395"/>
+        <location line="-4410"/>
         <source>Greek letters</source>
         <translation>希腊字母</translation>
     </message>
@@ -9578,12 +9588,12 @@ TeXstudio 不能并行处理同一个文件.
         <translation>保存所有(&amp;L)</translation>
     </message>
     <message>
-        <location line="+7969"/>
+        <location line="+7991"/>
         <source>SVN Conflict!</source>
         <translation>SVN 冲突！</translation>
     </message>
     <message>
-        <location line="-7616"/>
+        <location line="-7638"/>
         <source>Open Documents</source>
         <translation>打开文档</translation>
     </message>
@@ -9593,18 +9603,18 @@ TeXstudio 不能并行处理同一个文件.
         <translation>查看日志(&amp;L)</translation>
     </message>
     <message>
-        <location line="+4563"/>
+        <location line="+4578"/>
         <location line="+10"/>
         <source>Could not open browser</source>
         <translation>无法打开浏览器</translation>
     </message>
     <message>
-        <location line="-4586"/>
+        <location line="-4601"/>
         <source>View PD&amp;F</source>
         <translation>查看 &amp;PDF</translation>
     </message>
     <message>
-        <location line="+7656"/>
+        <location line="+7678"/>
         <source>Open Compare File</source>
         <translation>打开比较文件</translation>
     </message>
@@ -9613,7 +9623,7 @@ TeXstudio 不能并行处理同一个文件.
         <translation type="obsolete">&lt;当前 文档&gt;</translation>
     </message>
     <message>
-        <location line="-7651"/>
+        <location line="-7673"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
@@ -9624,7 +9634,7 @@ TeXstudio 不能并行处理同一个文件.
         <translation>第 %1 层</translation>
     </message>
     <message>
-        <location line="+6031"/>
+        <location line="+6046"/>
         <location line="+11"/>
         <source>Add to favorites</source>
         <translation>添加到收藏夹</translation>
@@ -9634,7 +9644,7 @@ TeXstudio 不能并行处理同一个文件.
         <translation type="obsolete">预览选中括号内容(&amp;V)</translation>
     </message>
     <message>
-        <location line="-5978"/>
+        <location line="-5993"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeX 引用...</translation>
     </message>
@@ -9662,7 +9672,7 @@ TeXstudio 不能并行处理同一个文件.
         <translation>替换所有(&amp;A)</translation>
     </message>
     <message>
-        <location line="+7890"/>
+        <location line="+7912"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -9673,7 +9683,7 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location line="-3991"/>
+        <location line="-3998"/>
         <source>Quick Start</source>
         <translation>快速开始</translation>
     </message>
@@ -9682,14 +9692,14 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">快速构建</translation>
     </message>
     <message>
-        <location line="-3505"/>
-        <location line="+5577"/>
+        <location line="-3520"/>
+        <location line="+5592"/>
         <source>Unindent Section</source>
         <translation>取消缩进</translation>
     </message>
     <message>
-        <location line="-5578"/>
-        <location line="+5577"/>
+        <location line="-5593"/>
+        <location line="+5592"/>
         <source>Indent Section</source>
         <translation>缩进</translation>
     </message>
@@ -9702,7 +9712,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">文档修改尚未保存, 关闭前保存 ?</translation>
     </message>
     <message>
-        <location line="-6168"/>
+        <location line="-6183"/>
         <source>Favorites</source>
         <translation>收藏夹</translation>
     </message>
@@ -9754,7 +9764,7 @@ Press &quot;Cancel&quot;to do nothing.
     </message>
     <message>
         <location line="+2320"/>
-        <location line="+1988"/>
+        <location line="+2003"/>
         <location line="+28"/>
         <source>No document open</source>
         <translation>没有打开的文档</translation>
@@ -9770,13 +9780,13 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">删除列</translation>
     </message>
     <message>
-        <location line="-4557"/>
+        <location line="-4572"/>
         <source>Plaintext files</source>
         <translation>纯文本</translation>
     </message>
     <message>
         <location line="+4"/>
-        <location line="+7508"/>
+        <location line="+7523"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>所有文件</translation>
@@ -9786,7 +9796,7 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">未命名书签</translation>
     </message>
     <message>
-        <location line="-5356"/>
+        <location line="-5371"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>关闭并保存</translation>
@@ -9797,12 +9807,12 @@ You have to save a document before you can compile it.</source>
         <translation>重音字母</translation>
     </message>
     <message>
-        <location line="+4741"/>
+        <location line="+4756"/>
         <source>Text Analysis</source>
         <translation>文本分析</translation>
     </message>
     <message>
-        <location line="+3056"/>
+        <location line="+3063"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -9813,17 +9823,17 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">删除 \hline</translation>
     </message>
     <message>
-        <location line="-7896"/>
+        <location line="-7918"/>
         <source>Open &amp;Recent</source>
         <translation>打开最近的(&amp;R)</translation>
     </message>
     <message>
-        <location line="+4652"/>
+        <location line="+4667"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-3897"/>
+        <location line="-3912"/>
         <source>Master Document</source>
         <translation>主文档</translation>
     </message>
@@ -9871,7 +9881,7 @@ You have to save a document before you can compile it.</source>
         <translation>查看 &amp;PS</translation>
     </message>
     <message>
-        <location line="+5793"/>
+        <location line="+5808"/>
         <source>Move document to &amp;front</source>
         <translation>文档移到最上(&amp;F)</translation>
     </message>
@@ -9880,12 +9890,12 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">对不起, 无法找到 &quot;%1&quot;</translation>
     </message>
     <message>
-        <location line="+1867"/>
+        <location line="+1874"/>
         <source>Open Base File</source>
         <translation>打开基本文件</translation>
     </message>
     <message>
-        <location line="-1876"/>
+        <location line="-1883"/>
         <source>Set this document as master document</source>
         <translation>设置此文档为主文档</translation>
     </message>
@@ -9898,7 +9908,7 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">&quot;下一个&quot;更改</translation>
     </message>
     <message>
-        <location line="-3419"/>
+        <location line="-3434"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>在过长字符后强制换行:</translation>
     </message>
@@ -10457,18 +10467,18 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <location line="+22"/>
-        <location line="+5579"/>
+        <location line="+5594"/>
         <source>Paste Before</source>
         <translation>在之前粘贴</translation>
     </message>
     <message>
-        <location line="-5578"/>
-        <location line="+5579"/>
+        <location line="-5593"/>
+        <location line="+5594"/>
         <source>Paste After</source>
         <translation>在之后粘贴</translation>
     </message>
     <message>
-        <location line="-5310"/>
+        <location line="-5325"/>
         <source>Normal Mode (current master document: </source>
         <translation>正常模式 (当前主文档 :</translation>
     </message>
@@ -10562,7 +10572,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>没有可用字典。</translation>
     </message>
     <message>
-        <location line="+1404"/>
+        <location line="+1419"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;当前文件&gt;</translation>
     </message>
@@ -10606,17 +10616,17 @@ Do you want to allow and run the new, overriding command?
         <translation>无法读取配置文件 %1 。</translation>
     </message>
     <message>
-        <location line="+899"/>
+        <location line="+906"/>
         <source>System Report</source>
         <translation>系统报告</translation>
     </message>
     <message>
-        <location line="-3709"/>
+        <location line="-3716"/>
         <source>Unknown internal command: %1</source>
         <translation>未知内部命令： %1</translation>
     </message>
     <message>
-        <location line="-4756"/>
+        <location line="-4771"/>
         <source>LilyPond files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10636,7 +10646,7 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+4194"/>
+        <location line="+4209"/>
         <source>No open project or tex file to clean.</source>
         <translation>无可清理项目或 tex 文件</translation>
     </message>
@@ -10690,7 +10700,7 @@ Do you want to create it?</source>
         <translation>已到达文本结尾。</translation>
     </message>
     <message>
-        <location line="+611"/>
+        <location line="+618"/>
         <location line="+84"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -10749,7 +10759,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>我想死掉，却什么都没有发生。</translation>
     </message>
     <message>
-        <location line="-6789"/>
+        <location line="-6811"/>
         <source>Could not write template meta data:</source>
         <translation>无法写入模板元数据：</translation>
     </message>
