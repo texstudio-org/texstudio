@@ -179,8 +179,8 @@ bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value,
          emit dataChanged(index, index);
     }else{
         bool state=(value==Qt::Checked);
-        for(int i=0;i<search.checked.size();i++){
-            search.checked.replace(i,state);
+        for(int l=0;l<search.checked.size();l++){
+            search.checked.replace(l,state);
         }
         int row=search.checked.size()-1;
         int j=(i&0xFFFF0000)+(1<<15)+row;
