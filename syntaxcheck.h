@@ -53,7 +53,9 @@ public:
 		ERR_tooLittleCols,
         ERR_missingEndOfLine,
         ERR_closingUnopendEnv,
-        ERR_EnvNotClosed
+        ERR_EnvNotClosed,
+        ERR_unrecognizedKey,
+        ERR_unrecognizedKeyValues
 	};
 	
 	struct SyntaxLine{

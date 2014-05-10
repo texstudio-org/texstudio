@@ -303,10 +303,90 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 				newRanges.append(elem);
 			}
 		}
-		
+        if(status!=LatexReader::NW_COMMAND){
+            // special treatment for key val checking
+            QString command,value;
+            LatexParser::ContextType ctx=ltxCommands->findContext(line, lr.wordStartIndex, command, value);
+            if(ctx==LatexParser::Keyval){
+                // search stored keyvals
+                QString elem;
+                foreach(elem,ltxCommands->possibleCommands.keys()){
+                    if(elem.startsWith("key%") && elem.mid(4)==command)
+                        break;
+                    elem.clear();
+                }
+                if(!elem.isEmpty()){
+                    // check whether keys is valid
+                    QStringList lst=ltxCommands->possibleCommands[elem].values();
+                    QStringList::iterator iterator;
+                    for (iterator = lst.begin(); iterator != lst.end();++iterator){
+                        int i=iterator->indexOf("#");
+                        if(i>-1)
+                            *iterator=iterator->left(i);
+
+                        if(iterator->endsWith("=")){
+                            iterator->chop(1);
+                        }
+                    }
+                    if(!lst.contains(word)){
+                        Error elem;
+                        elem.range=QPair<int,int>(wordstart,word.length());
+                        elem.type=ERR_unrecognizedKey;
+                        newRanges.append(elem);
+                    }
+
+                }
+
+            }
+            if(ctx==LatexParser::KeyvalValue){
+                //figure out keyval
+                int i=lr.wordStartIndex;
+                while(i>0 && line.at(i-1).isLetter())
+                    i--;
+                if(i>0 && line.at(i-1)==QChar('=')){
+                    int j=--i;
+                    while(i>0 && line.at(i-1).isLetter())
+                        i--;
+                    QString key=line.mid(i,j-i);
+
+                    QString elem;
+                    foreach(elem,ltxCommands->possibleCommands.keys()){
+                        if(elem.startsWith("key%") && elem.mid(4)==command)
+                            break;
+                        elem.clear();
+                    }
+                    if(!elem.isEmpty()){
+                        // check whether keys is valid
+                        QStringList lst=ltxCommands->possibleCommands[elem].values();
+                        QStringList::iterator iterator;
+                        QString options;
+                        for (iterator = lst.begin(); iterator != lst.end();++iterator){
+                            int i=iterator->indexOf("#");
+                            if(i>-1){
+                                options=iterator->mid(i+1);
+                                *iterator=iterator->left(i);
+                            }
+
+                            if(iterator->endsWith("=")){
+                                iterator->chop(1);
+                            }
+                            if(*iterator==key)
+                                break;
+                        }
+                        if(iterator!=lst.end() && !options.isEmpty()){
+                            QStringList l=options.split(",");
+                            if(!l.contains(word)){
+                                Error elem;
+                                elem.range=QPair<int,int>(wordstart,word.length());
+                                elem.type=ERR_unrecognizedKeyValues;
+                                newRanges.append(elem);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 	}
-	
-	
 }
 
 QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous){
@@ -348,7 +428,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironmen
 	
 	QStringList messages;
 	messages << tr("no error")<< tr("unrecognized command")<< tr("unrecognized math command")<< tr("unrecognized tabular command")<< tr("tabular command outside tabular env")<< tr("math command outside math env") << tr("tabbing command outside tabbing env") << tr("more cols in tabular than specified") << tr("cols in tabular missing")
-	         << tr("\\\\ missing") << tr("closing environment which has not been opened") << tr("environment not closed");
+             << tr("\\\\ missing") << tr("closing environment which has not been opened") << tr("environment not closed")<<tr("unrecognized key in key option")<<tr("unrecognized value in key option");
 	return messages.value(int(result),tr("unknown"));
 }
 void SyntaxCheck::setLtxCommands(const LatexParser& cmds){
