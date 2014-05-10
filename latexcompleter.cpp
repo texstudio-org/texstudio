@@ -627,7 +627,10 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
             validValues=str.mid(j+1);
             str=str.left(j);
             QStringList lst=validValues.split(",");
-            setKeyValWords(name+"/"+str,lst.toSet());
+            QString key=str;
+            if(key.endsWith("="))
+                key.chop(1);
+            setKeyValWords(name+"/"+key,lst.toSet());
         }
         CompletionWord cw(str);
         cw.index=0;

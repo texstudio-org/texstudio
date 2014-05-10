@@ -289,6 +289,18 @@
 \si{unit}
 \SI{value}[pre-unit]{unit commands}
 \SI{value}{unit commands}
+#keyvals:\SI
+mode=#math,text
+math-rm=
+math-sf=
+math-tt=
+text-rm=
+text-sf=
+text-tt=
+color=
+number-color=
+unit-color=
+#endkeyvals
 \siemens
 \sievert
 \SIlist
