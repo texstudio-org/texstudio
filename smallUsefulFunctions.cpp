@@ -1070,6 +1070,8 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
                 }
                 if(isKey)
                     return Keyval;
+                else
+                    return KeyvalValue;
             }
         }
 	default: return Unknown;

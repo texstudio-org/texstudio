@@ -3932,6 +3932,21 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(command);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
         break;
+    case LatexParser::KeyvalValue:{
+        //figure out keyval
+        int i=c.columnNumber();
+        while(i>0 && word.at(i-1).isLetter())
+            i--;
+        if(word.at(i-1)==QChar('=')){
+            int j=--i;
+            while(i>0 && word.at(i-1).isLetter())
+                i--;
+            QString key=word.mid(i,j-i);
+            completer->setWorkPath(command+"/"+key);
+            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+        }
+        break;
+    }
     case LatexParser::Package:
         if(latexParser.possibleCommands["%usepackage"].contains(command)){
             QString preambel;
