@@ -136,9 +136,9 @@ bool QLineNumberPanel::paint(QPainter *p, QEditor *e)
 	// 0xC4 gives a decent wrapping arrow in Wingdings fonts, availables on all windows systems
 	// this is a hackish fallback to workaround Windows issues with Unicode...
 	static const QChar wrappingArrow(0xC4);
-	specialFont.setRawName("Wingdings");
+	specialFont.setFamily("Wingdings");
 	const QFontMetrics specialSfm(specialFont);
-    specialFontUsage=true;
+	specialFontUsage=true;
 	#endif
 	
 	int max = e->document()->lines();
