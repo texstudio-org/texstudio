@@ -1727,26 +1727,26 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 		    bool uncommon=false;
 		    bool hideFromCompletion=false;
 		    if(sep>-1){
-			valid=line.mid(sep+1);
-			line=line.left(sep);
-			if(valid.startsWith("*")){
-			    valid=valid.mid(1);
-			    uncommon=true;
-			}
-			if(valid.startsWith("/")){
-			    env=valid.mid(1).split(',');
-			    valid="e";
-			}
-			if(valid.contains("\\")){
-			    int i=valid.indexOf("\\");
-			    QString zw=valid.mid(i+1);
-			    env=zw.split(',');
-			    valid=valid.left(i);
-			}
-			if(valid.contains('S')){
-			    hideFromCompletion=true;
-			    valid.remove('S');
-			}
+				valid=line.mid(sep+1);
+				line=line.left(sep);
+				if(valid.startsWith("*")){
+					valid=valid.mid(1);
+					uncommon=true;
+				}
+				if(valid.startsWith("/")){
+					env=valid.mid(1).split(',');
+					valid="e";
+				}
+				if(valid.contains("\\")){
+					int i=valid.indexOf("\\");
+					QString zw=valid.mid(i+1);
+					env=zw.split(',');
+					valid=valid.left(i);
+				}
+				if(valid.contains('S')){
+					hideFromCompletion=true;
+					valid.remove('S');
+				}
 		    }
             // parse for spell checkable commands
             int res=rxCom.indexIn(line);
