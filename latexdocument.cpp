@@ -502,6 +502,27 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//copy remainder to curLine for next round
 			curLine=remainder;
 			int offset=totalLength-curLine.length(); //TODO?? (line was commented out, with todo before)
+			
+			if (cmd=="\\todo") {
+				bool reuse=false;
+				StructureEntry *newTodo;
+				if(MapOfTodo.contains(dlh)){
+					newTodo=MapOfTodo.value(dlh);
+					//parent->add(newTodo);
+					newTodo->type=StructureEntry::SE_TODO;
+					MapOfTodo.remove(dlh,newTodo);
+					reuse=true;
+				}else{
+					newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
+				}
+				newTodo->title=name;
+				newTodo->setLine(line(i).handle(), i);
+				newTodo->parent=todoList;
+				if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
+				iter_todo.insert(newTodo);
+			}
+			
+			
 			//// newcommand ////
 			//TODO: handle optional arguments
 			if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {

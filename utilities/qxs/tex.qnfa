@@ -84,6 +84,7 @@ environments in smallUsefulFunctions.cpp)
 	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
 		<start>%TODO</start>
 		<start>%todo</start>
+		<start>\\todo</start>
 		<stop exclusive="false">\n</stop>
 	</context>
 
