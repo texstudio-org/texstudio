@@ -92,6 +92,7 @@
 	<li><a href="#SECTION39">4.12 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.13 Description of the cwl format</a></li>
 	<li><a href="#TABLETEMPLATE">4.14 Using table templates</a></li>
+	<li><a href="#LANGUAGEDEF">4.15 Writing your own language definitions</a></li>
 	</ul>
 </li>
 </ul>
@@ -102,6 +103,14 @@
 <ul>
 <li><p>completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)</p></li>
 <li><p>search and replace over several documents improved</p></li>
+<li><p>improved parser for log files (better detection of filenames)</p></li>
+<li><p>better compliance with standard shortcuts on OSX</p></li>
+<li><p>the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini
+"Editor/ContextMenuKeyboardModifiers"<p></li>
+<li><p>use Consolas as default editor font on Windows if available</p></li>
+<li><p>improved auto-hide toolbars feature in embedded viewer</p></li>
+<li><p>users can overwrite the default language definitions and add own ones</p></li>
+<li><p>windows version compiles now with Qt5</p></li>
 <li><p>several bugfixes</p></li>
 </ul>
 
@@ -1749,4 +1758,70 @@ for(var i=0;i&lt;tab.length;i++){
 println("\\end{"+env+"}")
 </pre>
 </p>
+
+<h2 id="LANGUAGEDEF">4.15 Writing your own language definitions</h2>
+<p>TeXstudio uses QCodeEdit as editor component. It specifies languages in a special xml format named QNFA. This includes highlighting, parentheses (for matching) and code folding. In a normal TeXstudio installation you won't find any .qnfa files, because we compile the files of the included languages into the binary. You can add your own languages or overwrite the default ones by placing appropriate .qnfa files in a <code>languages</code> folder inside the settings directory. Definitions here take precedence over the builtin ones.</p>
+
+<p>The .qnfa file specifies the syntax of the language. The actual format information is specified in a .qxf file. You can either use the formats specified in <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">defaultFormats.qxf</a> or provide your own .qxf file along with the .qnfa file.<p>
+
+<p>You should read the <a href="http://qcodeedit.edyuk.org/docs/qce_examples.html">syntax format specification</a> and have a look at the <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">formats shipped with TeXstudio</a>.<p>
+
+
+<p>Note: We expose the language specification to you as end-user to give you more flexibility in adapting TeXstudio to your needs. But you should take it as is, because we don't have the capacity to give support here. It's a powerful API, but neither polished nor fully featured. You might find some constructs in the shipped .qnfa files, which are not documented in the syntax format specification. Additionally, the regular-expression based formatting of QNFA is not sufficient to define all the highlighting we wanted for LaTeX. Therefore we have extra highlighting functionality directly implemented in the sourcecode for the "(La)TeX" language, e.g. the highlighting inside the parentheses of <code>\begin</code> and <code>\end</code>. You won't be able to modify this or add it to other languages.<p>
+
+<h3>Example</h3>
+<p>The following is a small example which specifies some highlighting of python code:<p>
+
+<p>python.qnfa</p>
+<pre>
+&lt;!DOCTYPE QNFA&gt;
+&lt;QNFA language="Python" extensions="py" defaultLineMark=""&gt;
+	&lt;sequence parenthesis="round:open" parenthesisWeight="00"&gt;\(&lt;/sequence&gt;
+	&lt;sequence parenthesis="round:close" parenthesisWeight="00"&gt;\)&lt;/sequence&gt;
+
+	&lt;!-- highlight def and function name --&gt;
+	&lt;sequence id="python/definition" format="python:definition"&gt;def$s?$w*&lt;/sequence&gt;
+
+	&lt;sequence id="python/number" format="python:number"&gt;[0-9]+&lt;/sequence&gt;
+	
+	&lt;list id="python/keyword" format="python:keyword"&gt;
+		&lt;word&gt;return&lt;/word&gt;
+		&lt;word&gt;if&lt;/word&gt;
+		&lt;word&gt;elif&lt;/word&gt;
+		&lt;word&gt;else&lt;/word&gt;
+	&lt;/list&gt;
+&lt;/QNFA&gt;
+</pre>
+
+<p>python.qxf</p>
+<pre>
+&lt;!DOCTYPE QXF&gt;
+&lt;QXF version="1.0" &gt;
+	&lt;!-- full specification --&gt;
+    &lt;format id="python:keyword" &gt;
+        &lt;bold&gt;false&lt;/bold&gt;
+        &lt;italic&gt;false&lt;/italic&gt;
+        &lt;overline&gt;false&lt;/overline&gt;
+        &lt;underline&gt;false&lt;/underline&gt;
+        &lt;strikeout&gt;false&lt;/strikeout&gt;
+        &lt;waveUnderline&gt;false&lt;/waveUnderline&gt;
+        &lt;foreground&gt;#B200FF&lt;/foreground&gt;
+    &lt;/format&gt;
+	&lt;!-- but it is sufficient to specify deviations from default --&gt;
+    &lt;format id="python:number" &gt;
+        &lt;italic&gt;true&lt;/italic&gt;
+        &lt;overline&gt;false&lt;/overline&gt;
+        &lt;foreground&gt;#007F0E&lt;/foreground&gt;
+    &lt;/format&gt;
+    &lt;format id="python:definition" &gt;
+        &lt;bold&gt;true&lt;/bold&gt;
+    &lt;/format&gt;
+&lt;/QXF&gt;
+</pre>
+
+<p>This results is the following highlighting:</p>
+<img src="format_example.png" border=1>
+
+
+
 </body></html>

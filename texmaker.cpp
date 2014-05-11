@@ -157,7 +157,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();
 	m_languages = new QLanguageFactory(m_formats, this);
 	m_languages->addDefinitionPath(qxsPath);
-	
+	m_languages->addDefinitionPath(configManager.configBaseDir + "languages");  // definitions here overwrite previous ones
+
 	// custom evironments & structure commands
 	updateTexQNFA();
 	
