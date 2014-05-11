@@ -1849,6 +1849,12 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                 }
                 valid.remove('U');
             }
+			if(valid.contains('D')){ // todo command
+				if(res>-1){
+					package.possibleCommands["%todo"] << rxCom.cap(1);
+				}
+				valid.remove('D');
+			}
 		    // normal commands for syntax checking
 		    // will be extended to distinguish between normal and math commands
 		    if(valid.isEmpty() || valid.contains('n')){

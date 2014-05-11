@@ -104,6 +104,7 @@
 <li><p>completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)</p></li>
 <li><p>search and replace over several documents improved</p></li>
 <li><p>improved parser for log files (better detection of filenames)</p></li>
+<li><p>todo-style commands (e.g. <code>\todo{}</code>) are added to the list of todos</p></li>
 <li><p>better compliance with standard shortcuts on OSX</p></li>
 <li><p>the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini
 "Editor/ContextMenuKeyboardModifiers"<p></li>
@@ -1630,6 +1631,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>u</td><td>this command declares an used package like "\usepackage{package}"</td></tr>
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>
+  <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel)</td></tr>
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
 </table>
