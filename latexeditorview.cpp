@@ -736,7 +736,7 @@ void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int tri
 		return;
 	} 
 	if (!this) return;
-	if (macro.size() > 1 && macro.left(1)=="%" && macro != "%%") {
+	if (macro.size() > 1 && macro.startsWith("%") && !macro.startsWith("%%")) {
 		macro=macro.remove(0,1);
 		CodeSnippet s("\\begin{"+macro+"}");
 		s.insert(editor);
