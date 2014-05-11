@@ -8197,7 +8197,10 @@ int Texmaker::getVersion() const{
 void Texmaker::updateTexQNFA() {
 	QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
 
-	QFile f(findResourceFile("qxs/tex.qnfa"));
+	QFile f(configManager.configBaseDir + "languages/tex.qnfa");
+	if (!f.exists()) {
+		f.setFileName(findResourceFile("qxs/tex.qnfa"));
+	}
 	QDomDocument doc;
 	doc.setContent(&f);
 
