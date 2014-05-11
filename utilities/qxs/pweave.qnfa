@@ -97,7 +97,7 @@
 	<context id="comment/todocmd" format="commentTodo" >
 		<start>\\todo</start>
 		<start>\\missingfigure</start>
-		<stop exclusive="false">}</stop>
+		<stop exclusive="false">[^\\]}</stop>
 	</context>
 
 	<context id="comment/magic" format="magicComment" stayOnLine="true" >
