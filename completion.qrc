@@ -171,6 +171,7 @@
 <file>completion/xspace.cwl</file>
 <file>completion/xtab.cwl</file>
 <file>completion/xy.cwl</file>
+<file>completion/yathesis.cwl</file>
 <file>completion/yfonts.cwl</file>
 <file>completion/cwlAliases.dat</file>
 </qresource>
