@@ -28,8 +28,8 @@ QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, B
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
 CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(LATEXMK, latexmk)
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
-CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
-CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
+CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
+CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(GLOSSARY, glossary) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
 CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
 #undef CMD_DEFINE
@@ -171,7 +171,8 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
-	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "%");
+	registerCommand("makeglossary","makeglossary", "Makeglossary", "%");
+	registerCommand("makeglossaries","makeglossaries", "Makeglossaries", "%");
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
@@ -199,6 +200,9 @@ void BuildManager::initDefaultCommandNames(){
 	descriptionList.clear();
 	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
 	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy","",true,descriptionList);
+	descriptionList.clear();
+	descriptionList<< tr("Makegloassaries");
+	registerCommand("glossary", tr("Default Glossary Tool"), QStringList() << "txs:///makeglossaries","",true,descriptionList);
 	
 	registerCommand("ps-chain", tr("PS Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
 	registerCommand("dvi-chain", tr("DVI Chain"), QStringList() << "txs:///latex | txs:///view-dvi");
