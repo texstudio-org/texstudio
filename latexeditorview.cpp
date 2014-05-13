@@ -654,6 +654,7 @@ void LatexEditorView::updateLtxCommands(bool updateAll){
 	
     //LatexParser ltxCommands=LatexParser::getInstance();
     lp.init();
+    lp.append(LatexParser::getInstance()); // append commands set in config
     QList<LatexDocument *>listOfDocs=document->getListOfDocs();
     foreach(const LatexDocument *elem,listOfDocs){
         lp.append(elem->ltxCommands);
