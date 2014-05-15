@@ -171,7 +171,6 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
-	registerCommand("makeglossary","makeglossary", "Makeglossary", "%");
 	registerCommand("makeglossaries","makeglossaries", "Makeglossaries", "%");
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
@@ -196,12 +195,12 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
-	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
+	registerCommand("bibliography", tr("Default Bibliography Tool"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
 	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy","",true,descriptionList);
 	descriptionList.clear();
-	descriptionList<< tr("Makegloassaries");
+	descriptionList<< tr("Makeglossaries");
 	registerCommand("glossary", tr("Default Glossary Tool"), QStringList() << "txs:///makeglossaries","",true,descriptionList);
 	
 	registerCommand("ps-chain", tr("PS Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
