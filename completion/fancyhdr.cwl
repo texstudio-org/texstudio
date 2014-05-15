@@ -1,30 +1,31 @@
 # mode: fancyhdr.sty
 # dani/2006-02-18
 # modified Edson 30-12-2010
+# modified T. Hoffmann 15-05-2014
 
-\chead[LH-even]{LH-odd}
-\chead{stuff}
-\cfoot[LH-even]{LH-odd}
-\cfoot{stuff}
+\chead[CH-even]{CH-odd}
+\chead{header}
+\cfoot[CF-even]{CF-odd}
+\cfoot{footer}
 
 \lhead[LH-even]{LH-odd}
-\lhead{stuff}
-\lfoot[LH-even]{LH-odd}
-\lfoot{stuff}
+\lhead{header}
+\lfoot[LF-even]{LF-odd}
+\lfoot{footer}
 
-\rhead[LH-even]{LH-odd}
-\rhead{stuff}
-\rfoot[LH-even]{LH-odd}
-\rfoot{stuff}
+\rhead[RH-even]{RH-odd}
+\rhead{header}
+\rfoot[RF-even]{RF-odd}
+\rfoot{footer}
 
-\fancyfoot[option]{stuff}
-\fancyfoot{stuff}
+\fancyfoot[positions]{footer}
+\fancyfoot{footer}
 
-\fancyhead[option]{stuff}
-\fancyhead{stuff}
+\fancyhead[positions]{header}
+\fancyhead{header}
 
-\fancyhf[option]{stuff}
-\fancyhf{stuff}
+\fancyhf[positions]{output}
+\fancyhf{output}
 
 \fancyfootoffset{length}
 \fancyfootoffset[place]{length}
