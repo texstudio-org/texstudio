@@ -13,6 +13,8 @@ class SyntaxCheckTest: public QObject{
 	private slots:
 		void checktabular_data();
 		void checktabular();
+        void checkkeyval_data();
+        void checkkeyval();
 };
 
 #endif
