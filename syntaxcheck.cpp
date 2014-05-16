@@ -338,7 +338,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                 }
 
             }
-            if(ctx==LatexParser::KeyvalValue){
+	    if(ctx==LatexParser::KeyvalValue && word.simplified()!=","){
                 //figure out keyval
                 int i=lr.wordStartIndex;
                 while(i>0 && line.at(i-1).isLetter())
@@ -362,6 +362,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                         QString options;
                         for (iterator = lst.begin(); iterator != lst.end();++iterator){
                             int i=iterator->indexOf("#");
+			    options.clear();
                             if(i>-1){
                                 options=iterator->mid(i+1);
                                 *iterator=iterator->left(i);
