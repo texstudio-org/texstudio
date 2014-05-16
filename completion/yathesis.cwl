@@ -291,7 +291,7 @@ welsh
 \tableofcontents[%<précision(s)%>]#n*
 #
 #keyvals:\tableofcontents
-depth=
+depth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
 name=
 #endkeyvals
 #
