@@ -101,9 +101,24 @@ void TextAnalysisDialog::setEditor(QEditor* aeditor) {
 	}
 }
 
+int lowestStructureLevel(StructureEntry *entry) {
+	if (!entry) return 1000;
+	if (entry->level>=1) return entry->level; //0 is part, 1 chapter, 2 section, ... we skip part, and take the next that exists
+	int r = 1000;
+	for (int i=0; i<entry->children.count(); i++)
+		r = qMin(r, lowestStructureLevel(entry->children.at(i)));
+	return r;
+}
+
 void TextAnalysisDialog::interpretStructureTree(StructureEntry *entry) {
+	chapters.clear();
+	interpretStructureTreeRec(entry, lowestStructureLevel(entry));
+}
+
+
+void TextAnalysisDialog::interpretStructureTreeRec(StructureEntry *entry, int targetLevel) {
 	if (!entry) return;
-	if (entry->level==1) {
+	if (entry->level==targetLevel) {
 		chapters.append(QPair<QString,int> (entry->title,entry->getCachedLineNumber()));
 		ui.comboBox->addItem(entry->title);
 	} else for (int i=0; i<entry->children.count(); i++)
