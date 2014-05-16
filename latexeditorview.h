@@ -241,6 +241,9 @@ public slots:
 	void checkForLinkOverlay(QDocumentCursor cursor);
 	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
 	const LinkOverlay & getLinkOverlay() const { return linkOverlay; }
+
+    void emitColonTyped() {emit colonTyped();}
+
 private:
 	void setLinkOverlay(const LinkOverlay &overlay);
 	void removeLinkOverlay();

@@ -457,6 +457,11 @@ public:
 		}
 		active=false;
         //editor=0; this leads to a crash, as the editor is still in use after reseting the cursor
+        if(completer && completer->completingKey() && curWord.endsWith("=")){
+            LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
+            Q_ASSERT(view);
+            view->emitColonTyped();
+        }
 		if(completer && completer->completingGraphic() && curWord.endsWith(QDir::separator())){
 			completer->complete(editor,LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));
 		}
@@ -498,6 +503,8 @@ private:
 	int curStart,maxWritten;
 	int curLineNumber;
 };
+
+Q_DECLARE_METATYPE(LatexEditorView*);
 
 CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
 //------------------------------Item Delegate--------------------------------
@@ -660,7 +667,7 @@ void CompletionListModel::setEnvironMode(bool mode){
 void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
 	if(mostUsed<0)
 		mostUsed=LatexCompleter::config->preferedCompletionTab;
-	if (word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
+    if (!word.isEmpty() && word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
 	mLastWord=word;
 	mLastMU=mostUsed;
 	mCanFetchMore=false;
@@ -1191,6 +1198,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
     }
     if(forcedKeyval){
         listModel->baselist=listModel->keyValLists.value(workingDir);
+
         handled=true;
     }
     if(!handled){
@@ -1336,7 +1344,7 @@ void LatexCompleter::filterList(QString word,int showMostUsed) {
 	if (cur!="") {
 		int p=listModel->getWords().indexOf(cur);
 		if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));
-	}
+    }
 }
 bool LatexCompleter::acceptChar(QChar c,int pos) {
 	//always accept alpha numerical characters
@@ -1487,3 +1495,6 @@ const QStringList& LatexCompleterConfig::getLoadedFiles(){
 	return files;
 }
 
+bool LatexCompleter::existValues(){
+    return listModel->keyValLists.value(workingDir).size()>0;
+}
