@@ -3946,7 +3946,8 @@ void Texmaker::NormalCompletion() {
                 i--;
             QString key=word.mid(i,j-i);
             completer->setWorkPath(command+"/"+key);
-            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+            if(completer->existValues())
+                currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
         }
         break;
     }

@@ -58,6 +58,7 @@ public:
 	bool isVisible(){
 		return list->isVisible();
 	}
+    bool existValues();
 	
 	void setWorkPath(const QString cwd){
 		workingDir=cwd;
@@ -65,6 +66,9 @@ public:
 	bool completingGraphic(){
 		return forcedGraphic;
 	}
+    bool completingKey(){
+        return forcedKeyval;
+    }
 	
 	int countWords();
 	void setTab(int index);
