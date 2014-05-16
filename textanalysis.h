@@ -43,6 +43,7 @@ class TextAnalysisDialog : public QDialog {
 
 	QVector<QPair<QString,int> > chapters;
 	QVector<QMap<QString,int> > maps[3]; //texts, commands, comments
+	QVector<int> lineCount[3]; //total line count, text lines, comment lines
 
 	TextAnalysisModel displayed;
 	const QDocument *document;
