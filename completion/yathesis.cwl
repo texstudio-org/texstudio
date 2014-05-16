@@ -305,4 +305,4 @@ name=
 #
 # Customization
 #
-\expression{label}{valeur (en français)}{valeur (en anglais)}#n*
+\expression{%<label%>}{%<valeur (en français)%>}{%<valeur (en anglais)%>}#n*
