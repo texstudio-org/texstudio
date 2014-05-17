@@ -40,7 +40,7 @@ public:
 	int snippetLength;
 
 	void insert(QEditor* editor);
-	void insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode=PlacehodersActive, bool byCompleter=false) const;
+    void insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode=PlacehodersActive, bool byCompleter=false, bool isKeyVal=false) const;
 
 	void setName(const QString& newName);
 	QString getName();

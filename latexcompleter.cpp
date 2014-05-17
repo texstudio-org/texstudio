@@ -146,7 +146,7 @@ public:
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
 			CodeSnippet::PlaceholderMode phMode = (LatexCompleter::config && LatexCompleter::config->usePlaceholders) ? CodeSnippet::PlacehodersActive : CodeSnippet::PlaceholdersRemoved;
-			cw.insertAt(editor,&cursor, phMode,!completer->startedFromTriggerKey);
+            cw.insertAt(editor,&cursor, phMode,!completer->startedFromTriggerKey,completer->forcedKeyval);
 			editor->document()->endMacro();
 			
 			return true;
