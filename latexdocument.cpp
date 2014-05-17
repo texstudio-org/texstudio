@@ -772,6 +772,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (latexParser.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
+				name = removeQuote(name);
 				newInclude->title=name;
                 QString fname=findFileName(name);
                 removedIncludes.removeAll(fname);
