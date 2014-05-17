@@ -1189,10 +1189,20 @@ QString dequoteStr(const QString &s) {
 	return res;
 }
 
+/** add a quotation around the string if it does not already have one. **/
 QString quotePath(const QString &s) {
 	if (s.startsWith('"') || !s.contains(' ')) return QString(s);
 	return QString("\"%1\"").arg(s);
 }
+
+/** if the string is surrounded by qoutes, remove these **/
+QString removeQuote(const QString &s) {
+	if (s.length() >= 2 && s.startsWith('"') && s.endsWith('"')) {
+		return s.mid(1, s.length()-2);
+	}
+	return s;
+}
+
 
 QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
 	//copied and modified from texworks

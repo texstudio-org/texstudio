@@ -96,6 +96,7 @@ QString enquoteStr(const QString &s);
 QString dequoteStr(const QString &s);
 
 QString quotePath(const QString &s);
+QString removeQuote(const QString &s);
 
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
