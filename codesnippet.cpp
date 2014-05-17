@@ -130,7 +130,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
 					sortWord.append('!');
 					break;
 				    case '[':
-					sortWord.append('\\');
+                    sortWord.append('"');
 					break;
 				    case '*':
 					sortWord.append('#');
