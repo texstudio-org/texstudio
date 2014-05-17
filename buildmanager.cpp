@@ -530,8 +530,14 @@ QString searchBaseCommand(const QString &cmd, QString options) {
                 paths << QString("/usr/local/texlive/%1/bin/powerpc-darwin/").arg(i);
 			}
 			foreach (const QString& p, paths)
-				if (QFileInfo(p+fileName).exists())
-					return p+fileName+options;
+				if (QFileInfo(p+fileName).exists()) {
+					if (cmd=="makeglossaries") {
+						// workaround: makeglossaries calls makeindex or xindy and therefore has to be run in an environment that has these commands on the path
+						return QString("sh -c \"PATH=$PATH:%1; %2%3\"").arg(p).arg(fileName).arg(options);
+					} else {
+						return p+fileName+options;
+					}
+				}
 #endif
 		}
 	}
