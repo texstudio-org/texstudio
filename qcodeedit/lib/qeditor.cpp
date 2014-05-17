@@ -3059,7 +3059,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
             if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier))
                 break;
 #else
-            if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier|Qt::AltModifier))
+			if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier|Qt::AltModifier) &&
+					!(e->modifiers()==Qt::ControlModifier&Qt::AltModifier && e->key() > Qt::Key_Z))  // !(...): Let AltGr + Key pass, if it results in a special symbol like '{' on German keyboards
                 break;
 #endif
 #endif
