@@ -228,7 +228,7 @@ void CodeSnippet::insert(QEditor* editor){
 	QDocumentCursor c=editor->cursor();
 	insertAt(editor,&c);
 }
-void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode, bool byCompleter) const{
+void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode, bool byCompleter,bool isKeyVal) const{
 	if (lines.empty()||!editor||!cursor) return;
 	
 	int phrmCursorLine = -1;
@@ -370,10 +370,11 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 	if (editBlockOpened) cursor->endEditBlock();
 
 	// on single line commands only: replace command
-    if(byCompleter && autoReplaceCommands && lines.size()==1 && line.startsWith('\\')){
+    if(byCompleter && autoReplaceCommands && lines.size()==1 && (line.startsWith('\\')||isKeyVal) ){
 		if(cursor->nextChar().isLetterOrNumber()||cursor->nextChar()==QChar('{')){
 			QString curLine=cursor->line().text();
-			int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
+            int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
+            int wordBreakEqual=curLine.indexOf("=",cursor->columnNumber());
 			int closeCurl=curLine.indexOf("}",cursor->columnNumber());
 			int openCurl=curLine.indexOf("{",cursor->columnNumber());
 			int openBracket=curLine.indexOf("[",cursor->columnNumber());
@@ -381,11 +382,15 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 				if(openBracket<0) openBracket=1e9;
 				if(closeCurl<0) closeCurl=1e9;
 				if(openCurl<0) openCurl=1e9;
+                if(wordBreakEqual<0) wordBreakEqual=1e9;
 				if(wordBreak<openBracket && wordBreak<closeCurl &&wordBreak<openCurl){
 					if(wordBreak<0)
 						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
-					else
+                    else {
+                        if(isKeyVal && wordBreak==wordBreakEqual)
+                            wordBreak=wordBreakEqual+1;
 						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+                    }
 					cursor->removeSelectedText();
 					return;
 				}
