@@ -2909,7 +2909,6 @@ void QEditor::keyPressEvent(QKeyEvent *e)
      //qDebug()<<"pressed"<<QTime::currentTime().toString("HH:mm:ss:zzz");
 	// reset hover counter
 	m_hoverCount=-1;
-	qDebug() << e->key() << e->modifiers() << e->text();
 
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
 		if ( b->keyPressEvent(e, this) )
