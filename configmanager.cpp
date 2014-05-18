@@ -333,17 +333,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
 	managedToolBars.append(ManagedToolBar("Edit", QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
-    //managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/commands/viewlog" << "main/edit2/goto/errorprev" << "main/edit2/goto/errornext"	<< "separator"
-    //                                      << "main/tools/commands/quickbuild" << "main/tools/commands/latex" << "main/tools/commands/viewdvi" << "main/tools/commands/dvi2ps" << "main/tools/commands/viewps" << "main/tools/commands/pdflatex" << "main/tools/commands/viewpdf"));
-    managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit2/goto/errorprev" << "main/edit2/goto/errornext"	<< "separator"
-										  << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/stopcompile" << "main/tools/view" ));
-	//managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
-	//                                      << "tags/brackets/left" << "separator" << "tags/brackets/right"));
+	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/stopcompile" << "main/tools/view" << "main/tools/viewlog"));
 	managedToolBars.append(ManagedToolBar("Math", QStringList() << "tags/brackets/left" << "separator" << "tags/brackets/right"));
-	//managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" <<
-	//                                      "main/latex/fontsizes" << "separator" <<
-	//                                      "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright"
-	//                                      << "separator" << "main/latex/spacing/newline"));
 	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" << "main/latex/fontsizes"));
 	managedToolBars.append(ManagedToolBar("Table", QStringList() << "main/latex/tabularmanipulation/addRow" << "main/latex/tabularmanipulation/addColumn" << "main/latex/tabularmanipulation/pasteColumn" << "main/latex/tabularmanipulation/removeRow" << "main/latex/tabularmanipulation/removeColumn" << "main/latex/tabularmanipulation/cutColumn" << "main/latex/tabularmanipulation/alignColumns"));
 	managedToolBars.append(ManagedToolBar("Diff", QStringList() << "main/file/svn/prevdiff" << "main/file/svn/nextdiff"  ));
