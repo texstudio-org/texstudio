@@ -2909,6 +2909,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
      //qDebug()<<"pressed"<<QTime::currentTime().toString("HH:mm:ss:zzz");
 	// reset hover counter
 	m_hoverCount=-1;
+	qDebug() << e->key() << e->modifiers() << e->text();
 
 	foreach ( QEditorInputBindingInterface *b, m_bindings )
 		if ( b->keyPressEvent(e, this) )
@@ -3058,13 +3059,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 #ifdef Q_OS_MAC
             if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier))
                 break;
-#else
-			if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier|Qt::AltModifier) &&
-					!(e->modifiers()==Qt::ControlModifier&Qt::AltModifier && e->key() > Qt::Key_Z))  // !(...): Let AltGr + Key pass, if it results in a special symbol like '{' on German keyboards
-                break;
 #endif
 #endif
-
             if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t')) )
 				break;
 		}
