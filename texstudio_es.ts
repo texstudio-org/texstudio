@@ -6594,7 +6594,7 @@ Nota: si el tamaño es mayor que el espacio entre líneas, los caracteres se pue
         <location filename="tests/codesnippet_t.cpp" line="+56"/>
         <location line="+301"/>
         <source>*environment-name*</source>
-        <translation type="unfinished">*entorno de nombre *</translation>
+        <translation>*nombre del entorno*</translation>
     </message>
     <message>
         <location line="-1"/>
@@ -7553,12 +7553,12 @@ siguiente valor:
     <message>
         <location line="+0"/>
         <source>math command outside math env</source>
-        <translation>comando de matemático fuera del entorno matemático</translation>
+        <translation type="unfinished">comando matemático fuera del entorno matemático</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>tabbing command outside tabbing env</source>
-        <translation>comando tabulación fuera del entorno de  tabulación</translation>
+        <translation type="unfinished">comando de tabulación fuera del entorno de  tabulación</translation>
     </message>
     <message>
         <location line="+0"/>
