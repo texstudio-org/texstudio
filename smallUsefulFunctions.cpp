@@ -107,7 +107,7 @@ int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool de
             } else if (cur=='.' || cur=='-') {
 				if (i>0 && line.at(i-1).isLetter())
                     i++; //take '.' or '-' into word, so that abbreviations/hyphenations, at least German ones, are checked correctly
-				if(i+1<line.size() && line.at(i+1).isLetter())
+				if(cur=='-' &&  i<line.size() && line.at(i).isLetter())
 				    ; // continue with composite words
 				else
 				    break;
