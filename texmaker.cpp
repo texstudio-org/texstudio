@@ -108,7 +108,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	static int crashHandlerType = 1;
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
 
-    registerCrashHandler(crashHandlerType);
+	initCrashHandler(crashHandlerType);
+
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
 	t->start(9500);

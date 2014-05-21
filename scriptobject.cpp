@@ -56,6 +56,11 @@ void ScriptObject::crash_loop(){
 	}; 
 }
 
+void ScriptObject::crash_throw(){
+	if (!confirmWarning("Do you want to let txs crash with an exception?")) return;
+	throw "debug crash";
+}
+
 ProcessX* ScriptObject::system(const QString& commandline){
 	if (!buildManager || !needWritePrivileges("system",commandline))
 		return 0;

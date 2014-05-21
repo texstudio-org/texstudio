@@ -2753,10 +2753,12 @@ void PDFDocument::reload(bool fillCache)
 	if (document.isNull()) {
 		switch (error) {
 		case PDFRenderManager::NoError: break;
-		case PDFRenderManager::FileOpenFailed:      statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
-		case PDFRenderManager::PopplerError:        statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
-		case PDFRenderManager::FileLocked:          statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;
-		case PDFRenderManager::FileIncomplete:      break; // message is handled via messageFrame
+		case PDFRenderManager::FileOpenFailed:         statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
+		case PDFRenderManager::PopplerError:           statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case PDFRenderManager::PopplerErrorBadAlloc:   statusBar()->showMessage(tr("Failed to load file \"%1\" due to a bad alloc; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case PDFRenderManager::PopplerErrorException:  statusBar()->showMessage(tr("Failed to load file \"%1\" due to an exception; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case PDFRenderManager::FileLocked:             statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;
+		case PDFRenderManager::FileIncomplete:         break; // message is handled via messageFrame
 		}
 		delete renderManager;
 		renderManager = 0;
