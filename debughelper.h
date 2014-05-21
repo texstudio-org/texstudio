@@ -9,9 +9,9 @@ void print_backtrace(const QString& message);
 
 void recover(); //defined in texmaker.cpp
 
-void registerCrashHandler(int mode);
+void initCrashHandler(int mode);
 QString getLastCrashInformation(bool & wasLoop);
-
+void catchUnhandledException();
 
 
 

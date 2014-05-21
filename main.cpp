@@ -15,7 +15,7 @@
 
 #include "texmaker.h"
 #include "smallUsefulFunctions.h"
-
+#include "debughelper.h"
 
 #if QT_VERSION >= 0x040400
 #include <qtsingleapplication.h>
@@ -178,5 +178,12 @@ int main(int argc, char ** argv) {
 					 a.mw,   SLOT(onOtherInstanceMessage(const QString &)));
 #endif
 
-	return a.exec();
+	try {
+		return a.exec();
+	} catch (...) {
+#ifndef NO_CRASH_HANDLER
+		catchUnhandledException();
+#endif
+		throw;
+	}
 }

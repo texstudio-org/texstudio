@@ -115,8 +115,8 @@ struct SimulatedCPU {
 #endif
 
 SAFE_INT crashHandlerType = 1;
-SAFE_INT lastErrorWasAssert = 0;
-SAFE_INT lastErrorWasLoop = 0;
+enum { ERR_NONE = 0, ERR_SIGNAL, ERR_ASSERT, ERR_LOOP, ERR_EXCEPTION};
+SAFE_INT lastErrorType = 0;
 volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump to, if recovering causes another sigsegv
 
 #define CRASH_HANDLER_RECOVER 1
@@ -586,8 +586,7 @@ const char * signalIdToName(int id){
 }
 
 void signalHandler(int type, siginfo_t * si, void* ccontext){
-	lastErrorWasAssert = 0;
-	lastErrorWasLoop = 0;
+	lastErrorType = ERR_SIGNAL;
 	SimulatedCPU cpu;
 	if (ccontext) {
 		cpu.set_all(ccontext);
@@ -612,7 +611,7 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 		if (type == SIGMYHANG) {
 			if (!isAddressInTeXstudio(cpu.pc)) return; //don't mess with library functions
 			lastLoopContext = *(static_cast<CPU_CONTEXT_TYPE*>(ccontext));
-			lastErrorWasLoop = 1;
+			lastErrorType = ERR_LOOP;
 		} else if (type == SIGMYSTACKSEGV) cpu.unwindStack();	
 		
 		lastCrashSignal = type;
@@ -631,8 +630,7 @@ const int SIGNAL_STACK_SIZE = 256*1024;
 char staticSignalStack[SIGNAL_STACK_SIZE];
 pthread_t mainThreadID;
 
-void registerCrashHandler(int mode){
-	crashHandlerType = mode;
+void registerCrashHandler(int mode){	
 	if (mode >= 0) {
 		stack_t ss;
 		ss.ss_sp = staticSignalStack;
@@ -660,14 +658,14 @@ QString getLastCrashInformationInternal(){
 
 bool recoverMainThreadFromOutside(){
 	//fprintf(stderr, "%i -> %lx",SIGMYHANG, mainThreadID);
-	lastErrorWasLoop = 0;
+	lastErrorType = ERR_NONE;
 	lastCrashSignal = 0;
 	if (pthread_kill(mainThreadID, SIGMYHANG) != 0) return false;
 	
 	int loopend = 1000000;
 	while ( !lastCrashSignal && (--loopend >= 0) ) ;
 	__sync_synchronize(); //memory barrier (does it work?)  (better have a barrier here, than a lock in the signal handler)
-	return lastErrorWasLoop;
+	return lastErrorType == ERR_LOOP;
 }
 
 void undoMainThreadRecoveringFromOutside(){
@@ -788,8 +786,7 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 
 	//if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION) print_backtrace("");
 
-	lastErrorWasAssert = 0;
-	lastErrorWasLoop = 0;
+	lastErrorType = ERR_SIGNAL;
 
 	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER){
 		print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode));
@@ -831,7 +828,6 @@ DWORD mainThreadID = 0;
 OpenThreadFunc OpenThreadDyn;
 
 void registerCrashHandler(int mode){
-	crashHandlerType = mode;
 	if (mode >= 0) {
 		SetUnhandledExceptionFilter(&crashHandler);
 
@@ -891,7 +887,7 @@ bool changeContextToRecover(HANDLE thread, CONTEXT* c){
 		cpu.call((char*)&recover);
 		cpu.get_all(c);
 		result = SetThreadContext(thread, c);
-		if (result) lastErrorWasLoop = true;
+		if (result) lastErrorType = ERR_LOOP;
 	}
 	return result;
 }
@@ -942,7 +938,7 @@ void txs_assert_x(const char *where, const char *assertion, const char *file, in
 	lastAssert = QString("Assert failure: %1 at %2 in %3:%4").arg(assertion).arg(where).arg(file).arg(line);
 	print_backtrace(lastAssert);
 
-	lastErrorWasAssert = 1;
+	lastErrorType = ERR_ASSERT;
 	recover();
 
 	//won't be called:
@@ -951,9 +947,12 @@ void txs_assert_x(const char *where, const char *assertion, const char *file, in
 }
 
 QString getLastCrashInformation(bool& wasLoop){
-	wasLoop = lastErrorWasLoop;
-	if (lastErrorWasAssert) return lastAssert;
-	else return getLastCrashInformationInternal();
+	wasLoop = lastErrorType == ERR_LOOP;
+	switch (lastErrorType){
+		case ERR_ASSERT: return lastAssert;
+		case ERR_EXCEPTION: return "c++ exception";
+		default: return getLastCrashInformationInternal();
+	}
 }
 
 
@@ -1160,6 +1159,13 @@ bool SimulatedCPU::stackWalk(){
 
 
 
+void catchUnhandledException(){
+	lastErrorType = ERR_EXCEPTION;
+	recover();
+}
+
+
+
 #else
  // defined NO_CRASH_HANDLER
  
@@ -1167,6 +1173,7 @@ bool SimulatedCPU::stackWalk(){
 void print_backtrace(const QString& message){Q_UNUSED(message)}
 void registerCrashHandler(int mode){Q_UNUSED(mode)}
 QString getLastCrashInformation(bool & wasLoop){Q_UNUSED(wasLoop); return "";}
+void catchUnhandledException(){}
 
 
 
@@ -1245,6 +1252,13 @@ bool IsDebuggerPresent()
 #endif
 #endif
 
+void initCrashHandler(int mode){
+#ifndef NO_CRASH_HANDLER
+     crashHandlerType = mode;
+     registerCrashHandler(mode);
+     if (mode >= 0) std::set_terminate(&catchUnhandledException);
+#endif
+}
 
 
 

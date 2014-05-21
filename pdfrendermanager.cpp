@@ -103,7 +103,16 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	}
 
 	Poppler::Document *docPtr;
-	docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
+	try {
+		docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
+	} catch (std::bad_alloc) {
+		error = PopplerErrorBadAlloc;
+		return QSharedPointer<Poppler::Document>();
+	} catch (...) {
+		error = PopplerErrorException;
+		return QSharedPointer<Poppler::Document>();
+	}
+
 	if (!docPtr) {
 		error = PopplerError;
 		return QSharedPointer<Poppler::Document>();
