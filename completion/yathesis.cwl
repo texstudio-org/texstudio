@@ -43,6 +43,7 @@
 #include:babel
 #include:datetime
 #include:datenumber
+#include:varioref
 #include:hyperref
 #include:hypcap
 #include:bookmark
