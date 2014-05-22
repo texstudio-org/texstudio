@@ -3055,7 +3055,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			QString text = e->text();
 
 #if QT_VERSION >= 0x050000
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MAC || Q_OS_LINUX
             if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier))
                 break;
 #endif
