@@ -1055,13 +1055,35 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
     case 3:
         // find possible commands for keyval completion
         {
-            QString elem;
+            /*QString elem;
             foreach(elem,possibleCommands.keys()){
                 if(elem.startsWith("key%") && (elem.mid(4)==command || elem.mid(4)==command+"#c"))
                     break;
                 elem.clear();
+            }*/
+            QStringList keys=possibleCommands.keys();
+            QString arg;
+            if(!vals.isEmpty()){
+                arg=vals.first();
+                if(arg.startsWith('{') )
+                    arg.remove(0,1);
+                if(arg.endsWith('}'))
+                    arg.chop(1);
             }
-            if(!elem.isEmpty()){
+            bool handled=false;
+            QString elem;
+            QStringList checkOptions;
+            checkOptions << "key%"+command+"/"+arg << "key%"+command+"/"+arg+"#c" << "key%"+command << "key%"+command+"#c";
+
+            foreach(elem,checkOptions){
+                if(keys.contains(elem)){
+                    handled=true;
+                    command=elem.mid(4);
+                    break;
+                }
+            }
+
+            if(handled){
                 // check that cursor is within keyval
                 bool isKey=false;
                 for(int i=col;col>0;col--){

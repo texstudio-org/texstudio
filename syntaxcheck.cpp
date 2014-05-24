@@ -309,12 +309,9 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
             LatexParser::ContextType ctx=ltxCommands->findContext(line, lr.wordStartIndex, command, value);
             if(ctx==LatexParser::Keyval){
                 // search stored keyvals
-                QString elem;
-                foreach(elem,ltxCommands->possibleCommands.keys()){
-                    if(elem.startsWith("key%") && elem.mid(4)==command)
-                        break;
+                QString elem="key%"+command;
+                if(elem.endsWith("#c"))
                     elem.clear();
-                }
                 if(!elem.isEmpty()){
                     // check whether keys is valid
                     QStringList lst=ltxCommands->possibleCommands[elem].values();
@@ -362,7 +359,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                         QString options;
                         for (iterator = lst.begin(); iterator != lst.end();++iterator){
                             int i=iterator->indexOf("#");
-			    options.clear();
+                            options.clear();
                             if(i>-1){
                                 options=iterator->mid(i+1);
                                 *iterator=iterator->left(i);
