@@ -49,7 +49,7 @@
 #include:bookmark
 #
 # Document class
-#keyvals:\documentclass#c
+#keyvals:\documentclass/yathesis
 mainlanguage=#french,english
 secnumdepth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
 space=#single,onehalf,double
