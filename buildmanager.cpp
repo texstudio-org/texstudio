@@ -1136,7 +1136,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 	if(!mainFile.fileName().isEmpty())
 		proc->setWorkingDirectory(mainFile.absolutePath());
 	if (cmd.startsWith(TXS_CMD_PREFIX)) 
-		connect(proc, SIGNAL(started()), SLOT(runInternalCommandThroughProcessX()));
+		connect(proc, SIGNAL(startedX()), SLOT(runInternalCommandThroughProcessX()));
 	
 	QString addPaths = additionalSearchPaths;
 #ifdef Q_OS_MAC
@@ -1692,7 +1692,7 @@ void ProcessX::startCommand() {
 #endif
 	
 	if (cmd.startsWith("txs:///")){
-        emit started();
+		onStarted();
 		emit finished(0);
 		emit finished(0, NormalExit);
 		return;
