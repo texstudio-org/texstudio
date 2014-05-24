@@ -1057,7 +1057,7 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
         {
             QString elem;
             foreach(elem,possibleCommands.keys()){
-                if(elem.startsWith("key%") && elem.mid(4)==command)
+                if(elem.startsWith("key%") && (elem.mid(4)==command || elem.mid(4)==command+"#c"))
                     break;
                 elem.clear();
             }

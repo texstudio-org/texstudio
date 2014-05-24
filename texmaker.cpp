@@ -6297,8 +6297,10 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 
     // add keyval completion
     foreach(const QString &elem,ltxCommands.possibleCommands.keys()){
-        if(elem.startsWith("key")){
+        if(elem.startsWith("key%")){
             QString name=elem.mid(4);
+            if(name.endsWith("#c"))
+                name.chop(2);
             if(!name.isEmpty()){
                 completer->setKeyValWords(name,ltxCommands.possibleCommands[elem]);
             }
