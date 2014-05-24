@@ -200,6 +200,17 @@ void SyntaxCheckTest::checkkeyval_data(){
              <<"\\SI[color=red,mode=texta]{test}"<<true;
      QTest::newRow("2 key/value,composite key")
              <<"\\SI[mode=text,math-sf=test]{test}"<<false;
+     QTest::newRow("yathesis without options")
+             <<"\\documentclass{yathesis}"<<false;
+     QTest::newRow("yathesis with valid option")
+             <<"\\documentclass[fleqn]{yathesis}"<<false;
+     QTest::newRow("yathesis with ilegal option")
+             <<"\\documentclass[fleqn2]{yathesis}"<<true;
+     QTest::newRow("article")
+             <<"\\documentclass[fleqn2]{article}"<<false;
+     QTest::newRow("article if yathesis is loaded")
+             <<"\\documentclass[fleqn]{yathesis}\n\\documentclass[fleqn2]{article}"<<false;
+
 }
 
 void SyntaxCheckTest::checkkeyval(){
@@ -226,5 +237,6 @@ void SyntaxCheckTest::checkkeyval(){
     edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
     edView->getConfig()->realtimeChecking = realtimeChecking;
 }
+
 #endif
 
