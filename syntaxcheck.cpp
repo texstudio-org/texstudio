@@ -214,7 +214,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 					QString first=options.takeFirst();
 					int start=starts.takeFirst();
 					lr.index=start+first.length();
-					if(!first.startsWith("[")){  //handling of includegraphics should be improved !!!
+                    if(!first.startsWith("[")){  //handling of includegraphics should be improved !!! This impedes keyval checking
 						break;
 					}
 				}
