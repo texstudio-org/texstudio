@@ -318,8 +318,8 @@ protected slots:
 	void editChangeLineEnding();
 	void editSetupEncoding();
 	void editInsertUnicode();
-	void editInsertRefToNextLabel(bool backward=false);
-	void editInsertRefToPrevLabel();
+	void editInsertRefToNextLabel(const QString &refCmd="\\ref", bool backward=false);
+	void editInsertRefToPrevLabel(const QString &refCmd="\\ref");
 	void editFindGlobal();
     void updateFindGlobal(int scope);
 	

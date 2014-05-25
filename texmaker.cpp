@@ -7010,7 +7010,7 @@ void Texmaker::showPreviewQueue(){
 	previewQueue.clear();
 }
 
-void Texmaker::editInsertRefToNextLabel(bool backward) {
+void Texmaker::editInsertRefToNextLabel(const QString &refCmd, bool backward) {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditor()->cursor();
 	int l=c.lineNumber();
@@ -7021,11 +7021,11 @@ void Texmaker::editInsertRefToNextLabel(bool backward) {
 	QString mLine=dLine.text();
 	QRegExp rx("\\\\label\\{(.*)\\}");
 	if(rx.indexIn(mLine)>-1){
-		currentEditor()->write("\\ref{"+rx.cap(1)+"}");
+		currentEditor()->write(refCmd+"{"+rx.cap(1)+"}");
 	}
 }
-void Texmaker::editInsertRefToPrevLabel() {
-	editInsertRefToNextLabel(true);
+void Texmaker::editInsertRefToPrevLabel(const QString &refCmd) {
+	editInsertRefToNextLabel(refCmd, true);
 }
 
 void Texmaker::SymbolGridContextMenu(QWidget* widget, const QPoint& point) {
