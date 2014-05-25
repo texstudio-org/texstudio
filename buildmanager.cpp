@@ -1693,6 +1693,7 @@ void ProcessX::startCommand() {
 	
 	if (cmd.startsWith("txs:///")){
 		onStarted();
+		emit startedX();
 		emit finished(0);
 		emit finished(0, NormalExit);
 		return;
