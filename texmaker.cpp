@@ -5644,7 +5644,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
 		foreach (PDFDocument* viewer, PDFDocument::documentList()) {
-			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(),filesToLoad.first().replace(".pdf", ".tex"));
+			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(), QFileInfo());
 			connect(viewer,SIGNAL(destroyed()), SLOT(deleteLater()));
 			viewer->show();
 			viewer->setFocus();
