@@ -26,7 +26,7 @@
 #include <QSplashScreen>
 #ifdef Q_OS_WIN32
 #include "windows.h"
-typedef BOOL (*AllowSetForegroundWindowFunc)(DWORD);
+typedef BOOL (WINAPI * AllowSetForegroundWindowFunc)(DWORD);
 #endif
 
 
