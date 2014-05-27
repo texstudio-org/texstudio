@@ -1771,6 +1771,7 @@ bool ProcessX::isRunning() const{
 void ProcessX::onStarted(){
 	if (isStarted) return; //why am I called twice?
 	isStarted=true;
+	emit startedX();
 	emit processNotification(tr("Process started: %1").arg(cmd));
 }
 
