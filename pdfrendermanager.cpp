@@ -133,8 +133,17 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
-		// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
-		Poppler::Document *doc=Poppler::Document::loadFromData(queueAdministration->documentData);
+		Poppler::Document *doc;
+		if (queueAdministration->documentData.size() < 100000000) {
+			// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
+			doc=Poppler::Document::loadFromData(queueAdministration->documentData);
+		} else {
+			// Workaround: loadFromData crashes if called with large data for the second time (i==1).
+			// See also bug report https://sourceforge.net/p/texstudio/bugs/710/?page=2
+			// I used a 200 MB file in the tests. Also 150 MB was reported to crash.
+			// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
+			doc=Poppler::Document::load(fileName);
+		}
 		QSharedPointer<Poppler::Document> spDoc(doc);
 		queueAdministration->renderQueues[i]->setDocument(spDoc);
 		if (!doc) {
