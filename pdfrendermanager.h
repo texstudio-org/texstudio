@@ -9,6 +9,7 @@
 #include <QImage>
 
 #include "pdfrenderengine.h"
+#include "poppler/poppler-config.h"
 
 class RecInfo{
 public:

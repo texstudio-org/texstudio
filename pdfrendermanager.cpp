@@ -134,6 +134,10 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
 		Poppler::Document *doc;
+#ifdef MULTITHREADED
+        // poppler claims to be thread safe ...
+        doc=docPtr;
+#else
 		if (queueAdministration->documentData.size() < 100000000) {
 			// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
 			doc=Poppler::Document::loadFromData(queueAdministration->documentData);
@@ -144,6 +148,7 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 			// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
 			doc=Poppler::Document::load(fileName);
 		}
+#endif
 		QSharedPointer<Poppler::Document> spDoc(doc);
 		queueAdministration->renderQueues[i]->setDocument(spDoc);
 		if (!doc) {
