@@ -131,13 +131,15 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	docPtr->setRenderHint(Poppler::Document::Antialiasing);
 	docPtr->setRenderHint(Poppler::Document::TextAntialiasing);
 
+    document = QSharedPointer<Poppler::Document>(docPtr);
 
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
-		Poppler::Document *doc;
-#ifdef MULTITHREADED
+
+#ifdef HAS_POPPLER_24
         // poppler claims to be thread safe ...
-        doc=docPtr;
+        queueAdministration->renderQueues[i]->setDocument(document);
 #else
+        Poppler::Document *doc;
 		if (queueAdministration->documentData.size() < 100000000) {
 			// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
 			doc=Poppler::Document::loadFromData(queueAdministration->documentData);
@@ -148,24 +150,26 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 			// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
 			doc=Poppler::Document::load(fileName);
 		}
+        QSharedPointer<Poppler::Document> spDoc(doc);
+        queueAdministration->renderQueues[i]->setDocument(spDoc);
+
+        if (!doc) {
+            Q_ASSERT(false);
+            error = FileIncomplete;
+            return QSharedPointer<Poppler::Document>();
+        }
+        doc->setRenderBackend(Poppler::Document::SplashBackend);
+        doc->setRenderHint(Poppler::Document::Antialiasing);
+        doc->setRenderHint(Poppler::Document::TextAntialiasing);
 #endif
-		QSharedPointer<Poppler::Document> spDoc(doc);
-		queueAdministration->renderQueues[i]->setDocument(spDoc);
-		if (!doc) {
-			Q_ASSERT(false);
-			error = FileIncomplete;
-			return QSharedPointer<Poppler::Document>();
-		}
-		doc->setRenderBackend(Poppler::Document::SplashBackend);
-		doc->setRenderHint(Poppler::Document::Antialiasing);
-		doc->setRenderHint(Poppler::Document::TextAntialiasing);
+
 		if(!queueAdministration->renderQueues[i]->isRunning())
 			queueAdministration->renderQueues[i]->start();
 	}
 	mFillCacheMode=true;
 
 	error = NoError;
-	document = QSharedPointer<Poppler::Document>(docPtr);
+
 	return document;
 }
 

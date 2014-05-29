@@ -1257,6 +1257,8 @@ void initCrashHandler(int mode){
      crashHandlerType = mode;
      registerCrashHandler(mode);
      if (mode >= 0) std::set_terminate(&catchUnhandledException);
+#else
+     Q_UNUSED(mode);
 #endif
 }
 
