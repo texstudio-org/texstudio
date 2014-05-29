@@ -1,0 +1,615 @@
+#include "grammarcheck.h"
+#include "smallUsefulFunctions.h"
+#include "QThread"
+GrammarError::GrammarError(){}
+GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error, const QString& message):offset(offset),length(length), error(error), message(message){}
+GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error, const QString& message, const QStringList& corrections):offset(offset),length(length), error(error), message(message), corrections(corrections){}
+GrammarError::GrammarError(int offset, int length, const GrammarError& other):offset(offset),length(length),error(other.error),message(other.message),corrections(other.corrections){}
+
+GrammarCheck::GrammarCheck(QObject *parent) :
+QObject(parent), backend(0), ticket(0)
+{
+	latexParser = new LatexParser();
+}
+
+GrammarCheck::~GrammarCheck(){
+	if (latexParser) delete latexParser;
+}
+
+void GrammarCheck::init(const LatexParser& lp, const GrammarCheckerConfig& config){
+	*latexParser = lp;
+	this->config = config;
+	if (!backend) {
+		backend = new GrammarCheckLanguageToolSOAP(this);
+		connect(backend,SIGNAL(checked(uint,int,QList<GrammarError>)),this,SLOT(backendChecked(uint,int,QList<GrammarError>)));
+	}
+	backend->init(config);
+
+	if (floatingEnvs.isEmpty())
+		floatingEnvs << "figure" << "table" << "SCfigure" << "wrapfigure" << "subfigure" << "floatbox";
+}
+
+
+QSet<QString> readWordList(const QString& file){
+	QFile f(file);
+	if (!f.open(QFile::ReadOnly)) return QSet<QString>();
+	QSet<QString> res;
+	foreach (const QByteArray& ba, f.readAll().split('\n')){
+		QByteArray bas = ba.simplified();
+		if (bas.startsWith('#')) continue;
+		res << QString::fromUtf8(bas);
+	}
+	return res;
+}
+
+struct TokenizedBlock{
+	QStringList words;
+	QList<int> indices, endindices, lines;
+	//int firstLineNr;
+};
+
+struct CheckRequest{
+	bool pending;
+	QString language;
+	void* doc;
+	QList<LineInfo> inlines;
+	int firstLineNr;
+	uint ticket;
+	int handledBlocks;
+	CheckRequest(const QString& language, const void* doc, const QList<LineInfo> inlines, const int firstLineNr, const int ticket):
+		pending(true), language(language),doc(const_cast<void*>(doc)),inlines(inlines),firstLineNr(firstLineNr), ticket(ticket), handledBlocks(0){}
+
+	QList<int> linesToSkip;
+
+	QList<TokenizedBlock> blocks;
+	QVector<QList<GrammarError> > errors;
+};
+
+void GrammarCheck::check(const QString& language, const void * doc, const QList<LineInfo>& inlines, int firstLineNr){
+	if (inlines.isEmpty()) return;
+	
+	ticket++;
+	for (int i=0;i<inlines.size();i++){
+		TicketHash::iterator it = tickets.find(inlines[i].line);
+		if (it == tickets.end()) tickets[inlines[i].line] = QPair<uint, int> (ticket,1);
+		else {
+			it.value().first = ticket;
+			it.value().second++;
+		}
+	}
+	
+	//qDebug()<<"CHECK:"<<inlines.first().text;
+	
+	QString lang = language;
+	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));		
+	if (lang.contains('-')) lang = lang.left(lang.indexOf('-'));		
+	requests << CheckRequest(lang,doc,inlines,firstLineNr,ticket);
+
+	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
+	QTimer::singleShot(50, this, SLOT(process()));
+}
+
+const QString uselessPunctation = "!:?,.;-"; //useful: \"(
+const QString noSpacePunctation = "!:?,.;)"; 
+
+#define CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words) i++; \
+  if (i >= (words).length()) break; \
+  if ((words)[i].length() == 1 && noSpacePunctation.contains((words)[i][0])) continue; \
+  if ((words)[i-1].length() == 1 && ((words)[i-1] == "(" || (words)[i-1] == "\"")) continue; \
+  if ((words)[i-1].length() == 2 && (words)[i-1][1] == '.' && (words)[i].length() == 2 && (words)[i][1] == '.') continue; /* abbeviations like "e.g." */ \
+
+void GrammarCheck::process(){
+	REQUIRE(latexParser);
+	REQUIRE(!requests.isEmpty());
+		
+	int reqId = -1;
+	for (int i=requests.size()-1;i>=0;i--)
+		if (requests[i].pending) {
+			reqId = i;
+			requests[i].pending = false;
+			break;
+		}
+	REQUIRE(reqId != -1);
+	
+	CheckRequest &cr = requests[reqId];
+	
+	
+	LIST_RESERVE(cr.linesToSkip, cr.inlines.size());
+	if (cr.ticket != ticket) {
+		//processing an old request
+		for (int i=0;i<cr.inlines.size();i++){
+			TicketHash::iterator it = tickets.find(cr.inlines[i].line);
+			Q_ASSERT(it != tickets.end());
+			if (it == tickets.end()) continue;
+			if (it.value().first != cr.ticket) {
+				it.value().second--;
+				Q_ASSERT(it.value().second >= 0);
+				cr.linesToSkip << i;
+				if (it.value().second <= 0) tickets.erase(it);
+			}
+		}
+		if (cr.linesToSkip.size() == cr.inlines.size())  {
+			requests.removeAt(reqId);
+			return;
+		}
+	}
+		
+	//gather words
+	int nonTextIndex = 0;
+	QList<TokenizedBlock> blocks;
+	blocks << TokenizedBlock();
+	//blocks.last().firstLineNr = cr.firstLineNr;
+	int floatingBlocks = 0;
+	int firstLineNr = cr.firstLineNr;
+	for (int l = 0; l < cr.inlines.size(); l++, firstLineNr++) {
+		TokenizedBlock &tb = blocks.last();
+		LatexReader lr(*latexParser, cr.inlines[l].text);
+		int type;
+		while ((type = lr.nextWord(false))) {
+			if (type == LatexReader::NW_ENVIRONMENT) {
+				if (lr.word == "figure"){ //config.floatingEnvs.contains(lr.word)) {
+					if (lr.lastCommand == "\\begin") {
+						floatingBlocks ++;
+					} else if (lr.lastCommand == "\\end") {
+						floatingBlocks --;
+					}
+				}
+				continue;
+			};
+
+			if (type == LatexReader::NW_COMMENT) break;
+			if (type != LatexReader::NW_TEXT && type != LatexReader::NW_PUNCTATION) {
+				//reference, label, citation
+				tb.words << QString("keyxyz%1").arg(nonTextIndex++);
+				tb.indices << lr.wordStartIndex;
+				tb.endindices << lr.index;
+				tb.lines << l;
+				continue;
+			}
+			
+			if (latexParser->structureCommandLevel(lr.lastCommand) >= 0) {
+				//don't check captions
+				QStringList temp; QList<int> starts;
+				LatexParser::resolveCommandOptions(lr.line,lr.wordStartIndex-1,temp,&starts);
+				for(int j=0;j<starts.count() && j<2;j++){
+					lr.index = starts.at(j) + temp.at(j).length()-1;
+					if(temp.at(j).startsWith("{")) break;
+				}
+				tb.words << ".";
+				tb.indices << lr.wordStartIndex;
+				tb.endindices << 1;
+				tb.lines << l;
+				continue;
+			}
+			
+			
+			if (type == LatexReader::NW_TEXT) tb.words << lr.word;
+			else /*if (type == LatexReader::NW_PUNCTATION) */{
+				if (lr.word == "-" && !tb.words.isEmpty()) {
+					//- can either mean a word-separator or a sentence -- separator
+					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
+					if (lr.wordStartIndex == tb.endindices.last()) {
+						tb.words.last() += '-';
+						tb.endindices.last()++;
+						
+						int tempIndex = lr.index;
+						int type = lr.nextWord(false);
+						if (type == LatexReader::NW_COMMENT) break;			
+						if (tempIndex != lr.wordStartIndex) {
+							lr.index = tempIndex;
+							continue;
+						}
+						tb.words.last() += lr.word;
+						tb.endindices.last() = lr.index;
+						continue;
+					}
+				} else if (lr.word == "\"") 
+					lr.word = "'"; //replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
+				tb.words << lr.word;
+			}
+			
+			tb.indices << lr.wordStartIndex;
+			tb.endindices << lr.index;
+			tb.lines << l;
+			
+		}
+
+
+		while (floatingBlocks > blocks.size() - 1) blocks << TokenizedBlock();
+		while (floatingBlocks >= 0 && floatingBlocks < blocks.size() - 1)
+			cr.blocks << blocks.takeLast();
+	}
+	while (blocks.size()) cr.blocks << blocks.takeLast();
+	
+	bool backendAvailable = backend->isAvailable();
+
+	QList<TokenizedBlock> crBlocks = cr.blocks; //cr itself might become invalid during the following loop
+	int crTicket = cr.ticket;
+	QString crLanguage = cr.language;
+
+	for (int b = 0; b < crBlocks.size(); b++) {
+		TokenizedBlock &tb = crBlocks[b];
+		while (!tb.words.isEmpty() && tb.words.first().length() == 1 && uselessPunctation.contains(tb.words.first()[0])) {
+			tb.words.removeFirst();
+			tb.indices.removeFirst();
+			tb.endindices.removeFirst();
+			tb.lines.removeFirst();
+		}
+
+		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
+		else  {
+			QString joined;
+			QStringList & words = tb.words;
+			int expectedLength = 0; foreach (const QString& s, words) expectedLength += s.length();
+			joined.reserve(expectedLength+words.length());
+			for (int i=0;;) {
+				joined += words[i];
+				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i,words);
+				joined += " ";
+			}
+			backend->check(crTicket, b, crLanguage, joined);
+		}
+	}
+}
+	
+void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<GrammarError>& backendErrors, bool directCall){
+	int reqId = -1;
+	for (int i=requests.size()-1;i>=0;i--)
+		if (requests[i].ticket == crticket) reqId = i;
+	//REQUIRE(reqId != -1);
+	if (reqId == -1) return;
+	
+	CheckRequest &cr = requests[reqId];
+	REQUIRE(subticket >= 0 && subticket < cr.blocks.size());
+	TokenizedBlock &tb = cr.blocks[subticket];
+
+	cr.handledBlocks++;
+
+	for (int i=0;i<cr.inlines.size();i++){
+		if (cr.linesToSkip.contains(i)) continue;
+		TicketHash::iterator it = tickets.find(cr.inlines[i].line);
+		Q_ASSERT(it != tickets.end());
+		if (it == tickets.end()) continue;
+		Q_ASSERT(it.value().second >= 0);
+		bool remove = cr.handledBlocks == cr.blocks.size();
+		if (it.value().first != cr.ticket) {
+			cr.linesToSkip << i;
+			remove = true;
+		}
+		if (remove) {
+			it.value().second--;
+			if (it.value().second <= 0) tickets.erase(it);
+		}
+	}
+	if (cr.linesToSkip.size() == cr.inlines.size()) {
+		requests.removeAt(reqId);
+		return;
+	}
+
+	QMap<QString,LanguageGrammarData>::const_iterator it = languages.constFind(cr.language);
+	if (it == languages.constEnd()) { 
+		LanguageGrammarData lgd;
+		lgd.stopWords = readWordList(config.wordlistsDir+"/"+cr.language+".stopWords");
+		lgd.badWords = readWordList(config.wordlistsDir+"/"+cr.language+".badWords");
+		languages.insert(cr.language, lgd);
+		it = languages.constFind(cr.language);
+	}
+	const LanguageGrammarData& ld = *it;
+	
+	if (cr.errors.size() != cr.inlines.size())
+		cr.errors.resize(cr.inlines.size());
+	
+	QStringList& words = tb.words;
+	
+	if (config.longRangeRepetitionCheck) {
+		const int MAX_REP_DELTA = config.maxRepetitionDelta;
+		bool checkLastWord = directCall;
+		QString prevSW;
+		//check repetition	
+		QHash<QString, int> repeatedWordCheck;
+		int totalWords = 0;
+		for (int w=0 ;w < words.size(); w++){
+			totalWords++;
+			if (words[w].length() == 1  && getCommonEOW().contains(words[w][0])) continue; //punctation
+	
+			//check words
+			bool realCheck = true; //cr.lines[w] >= cr.linesToSkipDelta;
+			QString normalized = words[w].toLower();
+			if (ld.stopWords.contains(normalized)) {
+				if (checkLastWord) {
+					if (prevSW == normalized) 
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_WORD_REPETITION, tr("Word repetition"), QStringList() << "");
+					prevSW = normalized;
+				}
+				continue;
+			} else prevSW.clear();
+			if (realCheck) {
+				int lastSeen = repeatedWordCheck.value(normalized, -1);
+				if (lastSeen > -1) {
+					int delta = totalWords - lastSeen;
+					if (delta <= MAX_REP_DELTA) 
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
+					else if (config.maxRepetitionLongRangeDelta > config.maxRepetitionDelta && delta <= config.maxRepetitionLongRangeDelta && normalized.length() >= config.maxRepetitionLongRangeMinWordLength) 
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
+				}
+			}
+			repeatedWordCheck.insert(normalized, totalWords);
+		}
+	}
+	if (config.badWordCheck) {
+		for (int w=0 ;w < words.size(); w++){
+			if (ld.badWords.contains(words[w]))
+				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w], GET_BAD_WORD, tr("Bad word"), QStringList() << "");
+			else if (words[w].length() > 1 && words[w].endsWith('.') && ld.badWords.contains(words[w].left(words[w].length()-1)))
+				cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w]-tb.indices[w]-1, GET_BAD_WORD, tr("Bad word"), QStringList() << "");
+		}
+
+	}
+
+	
+	
+	
+	//map indices to latex lines and indices
+	int curWord = 0, curOffset = 0; int err = 0;
+	while (err < backendErrors.size()) {
+		if (backendErrors[err].offset >= curOffset + words[curWord].length()) {
+			curOffset += words[curWord].length();
+			CHECK_FOR_SPACE_AND_CONTINUE_LOOP(curWord,words);
+			curOffset++; //space
+		} else { //if (backendErrors[err].offset >= curOffset) {
+			int trueIndex = tb.indices[curWord] + qMax(0, backendErrors[err].offset - curOffset);
+			int trueLength = -1;
+			int offsetEnd = backendErrors[err].offset + backendErrors[err].length;
+			int tempOffset = curOffset;
+			for (int w = curWord; ; ) {
+				tempOffset += words[w].length();
+				if (tempOffset >=  offsetEnd) {
+					if (tb.lines[curWord] == tb.lines[w]) {
+						int trueOffsetEnd = tb.endindices[w] - qMax(0, tempOffset - offsetEnd);
+						trueLength = trueOffsetEnd - trueIndex;
+					}
+					break;
+				} 
+				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(w,words);
+				tempOffset++; //space
+			}
+			if (trueLength == -1)
+				trueLength = cr.inlines[tb.lines[curWord]].text.length() - trueIndex;
+			cr.errors[tb.lines[curWord]] << GrammarError(trueIndex, trueLength, backendErrors[err]);
+			err++;
+		}
+	}
+	
+
+	if (cr.handledBlocks == cr.blocks.size()) {
+		//notify
+		for (int l=0;l<cr.inlines.size();l++){
+			if (cr.linesToSkip.contains(l)) continue; //too late
+
+			emit checked(cr.doc, cr.inlines[l].line, cr.firstLineNr+l, cr.errors[l]);
+		}
+
+		requests.removeAt(reqId);
+	}
+	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GrammarCheckBackend::GrammarCheckBackend(QObject* parent):QObject(parent){}
+
+
+
+#include "QtNetwork/QNetworkAccessManager"
+#include "QtNetwork/QNetworkReply"
+#include "QtNetwork/QNetworkRequest"
+
+
+struct CheckRequestBackend{
+	int ticket;
+	int subticket;
+	QString language;
+	QString text;
+	CheckRequestBackend(int ti, int st, const QString& la, const QString& te): ticket(ti), subticket(st), language(la), text(te) {}
+};
+
+GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject* parent):GrammarCheckBackend(parent),nam(0),connectionAvailability(false),triedToStart(false),firstRequest(true){
+	
+}
+
+GrammarCheckLanguageToolSOAP::~GrammarCheckLanguageToolSOAP(){
+	if (nam) delete nam;
+}
+
+void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig& config){
+	if (!nam) {
+		nam = new QNetworkAccessManager();
+		connect(nam,SIGNAL(finished(QNetworkReply*)),SLOT(finished(QNetworkReply*)));
+	}
+	server = config.languageToolURL;
+	ltPath = config.languageToolAutorun ? config.languageToolPath : "";
+	if (!ltPath.endsWith("jar")) {
+		QStringList jars; jars << "/LanguageTool.jar" << "/languagetool-server.jar" << "/languagetool-standalone.jar";
+		foreach (const QString& j, jars)
+			if (QFile::exists(ltPath + j)) {
+				ltPath = ltPath + j;
+				break;
+			}
+	}
+	javaPath = config.languageToolJavaPath;
+	
+	ignoredRules.clear();
+	foreach (const QString& r, config.languageToolIgnoredRules.split(","))
+		ignoredRules << r.trimmed();
+	connectionAvailability = 0;
+	if (config.languageToolURL.isEmpty()) connectionAvailability = -1;
+	triedToStart = false;
+	firstRequest = true;
+	
+	
+	specialRules.clear();
+	QList<const QString*> sr = QList<const QString*>() << &config.specialIds1 << &config.specialIds2 << &config.specialIds3 << &config.specialIds4;
+	foreach (const QString* s, sr) {
+		QSet<QString> temp;
+		foreach (const QString& r, s->split(","))
+			temp << r.trimmed();
+		specialRules << temp;
+	}
+}
+
+bool GrammarCheckLanguageToolSOAP::isAvailable(){
+	return connectionAvailability >= 0;
+}
+
+QString quoteSpaces(const QString& s){
+	if (!s.contains(' ')) return s;
+	return '"' + s + '"';
+}
+
+void GrammarCheckLanguageToolSOAP::tryToStart(){
+	if (triedToStart) {
+		if (QDateTime::currentDateTime().toTime_t() - startTime < 60*1000 ) {
+			connectionAvailability = 0;
+			ThreadBreaker::sleep(1);
+		}
+		return;
+	}
+	triedToStart = true;
+	startTime = 0;
+	if (ltPath == "" || !QFileInfo(ltPath).exists()) return;
+	QProcess *p = new QProcess();
+	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
+	connect(this, SIGNAL(destroyed()), p, SLOT(deleteLater()));
+
+	p->start(quoteSpaces(javaPath) + " -cp "+quoteSpaces(ltPath)+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
+	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
+	p->waitForStarted();
+	
+	connectionAvailability = 0;
+	startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
+}
+
+const QNetworkRequest::Attribute AttributeTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User);
+const QNetworkRequest::Attribute AttributeLanguage = (QNetworkRequest::Attribute)(QNetworkRequest::User+2);
+const QNetworkRequest::Attribute AttributeText = (QNetworkRequest::Attribute)(QNetworkRequest::User+3);
+const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User+4);
+
+void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString& language, const QString& text){
+	REQUIRE(nam);
+		
+	if (connectionAvailability == 0) {
+		if (firstRequest) firstRequest = false;
+		else {
+			delayedRequests << CheckRequestBackend(ticket, subticket, language, text);
+			return;
+		}
+	}
+
+	QNetworkRequest req(server);
+	req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=UTF-8");
+	QByteArray post;
+	post.reserve(text.length()+50);
+	post.append("language="+language+"&text=");
+	post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
+	post.append("\n");
+	
+	//qDebug() << text;
+
+	req.setAttribute(AttributeTicket, ticket);
+	req.setAttribute(AttributeLanguage, language);
+	req.setAttribute(AttributeText, text);
+	req.setAttribute(AttributeSubTicket, subticket);
+
+	nam->post(req, post);
+	
+	
+}
+
+void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
+	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
+	int subticket = nreply->request().attribute(AttributeSubTicket).toInt();
+	QString text = nreply->request().attribute(AttributeText).toString();
+	QByteArray reply = nreply->readAll();
+	int status = nreply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+	//qDebug() << status << ": " << reply;
+	
+	if (status == 0) {
+		//no response
+		connectionAvailability = -1; //assume no backend
+		tryToStart();
+		if (connectionAvailability == -1) {
+			if (delayedRequests.size()) delayedRequests.clear();
+			return; //confirmed: no backend
+		}
+		//there might be a backend now, but we still don't have the results
+		firstRequest = true;
+		check(ticket, subticket, nreply->request().attribute(AttributeLanguage).toString(), text);
+		nreply->deleteLater();		
+		return;
+	}
+
+	connectionAvailability = 1;
+				
+	QDomDocument dd;
+	dd.setContent(reply);
+	QList<GrammarError> results;
+	QDomNode n = dd.documentElement();
+	QDomNodeList lterrors = n.childNodes();
+	for (int i=0;i<lterrors.size();i++) {
+		if (lterrors.at(i).nodeType() != QDomNode::ElementNode) continue;
+		if (lterrors.at(i).nodeName() != "error") continue;
+		QDomNamedNodeMap atts = lterrors.at(i).attributes();
+		QString id = atts.namedItem("ruleId").nodeValue();
+		if (ignoredRules.contains(id)) continue;
+		QString context = atts.namedItem("context").nodeValue();
+		int contextoffset = atts.namedItem("contextoffset").nodeValue().toInt();
+		if (context.endsWith("..")) context.chop(3);
+		if (context.startsWith("..")) context = context.mid(3), contextoffset -= 3;
+		int from = atts.namedItem("fromx").nodeValue().toInt();
+		int realfrom = text.indexOf(context, qMax(from-5-context.length(),0)); //don't trust from
+		//qDebug() << realfrom << context;
+		if (realfrom == -1) { realfrom = from; } // qDebug() << "discard => " << from; }
+		else  realfrom += contextoffset;
+		int len = atts.namedItem("errorlength").nodeValue().toInt();
+		QStringList cors = atts.namedItem("replacements").nodeValue().split("#");
+		if (cors.size() == 1 && cors.first() == "") cors.clear();
+		
+		int type = GET_BACKEND;
+		for (int j=0;j<specialRules.size();j++)
+			if (specialRules[j].contains(id)) { type += j+1; break; }
+		results << GrammarError(realfrom, len, (GrammarErrorType)type, atts.namedItem("msg").nodeValue()+ " ("+id+")", cors);
+		//qDebug() << realfrom << len;
+	}
+	
+	emit checked(ticket, subticket, results);
+	
+	nreply->deleteLater();
+	
+	if (delayedRequests.size()) {
+		QList<CheckRequestBackend> delayedRequestsCopy = delayedRequests;
+		delayedRequests.clear();
+		foreach (const CheckRequestBackend& cr, delayedRequestsCopy)
+			check(cr.ticket, cr.subticket, cr.language, cr.text);
+	}
+	
+	return;	
+}
