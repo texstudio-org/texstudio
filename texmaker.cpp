@@ -762,13 +762,16 @@ void Texmaker::setupMenus() {
 
 	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
 #ifdef Q_OS_WIN32
+    QLocale::Language lang;
 #if QT_VERSION < 0x050000
-	// TODO: find replacement for QApplication::keyboardInputLocale() in Qt5
+    lang = QApplication::keyboardInputLocale().language();
+#else
+    lang = QInputMethod::locale().language();
+#endif
 	// on win ctrl+alt = altGr, hungarian: altGr+F = [
 	// so we should not use this as shortcut in this special case
-	if (QApplication::keyboardInputLocale().language() == QLocale::Hungarian)
+    if (lang == QLocale::Hungarian)
 		sc = QKeySequence(Qt::CTRL+Qt::ALT+Qt::SHIFT+Qt::Key_F);
-#endif
 #endif
 	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),sc);
 	

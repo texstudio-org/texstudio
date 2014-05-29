@@ -877,7 +877,7 @@
 <context>
     <name>CodeSnippet</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="+1953"/>
+        <location filename="smallUsefulFunctions.cpp" line="+1975"/>
         <location line="+1"/>
         <source>something</source>
         <translation>quelque chose</translation>
@@ -5031,7 +5031,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <location line="-6"/>
-        <location filename="texmaker.cpp" line="+6686"/>
+        <location filename="texmaker.cpp" line="+6688"/>
         <location line="+6"/>
         <source>Go to Definition</source>
         <translation>Aller à la définition</translation>
@@ -6607,7 +6607,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="+1573"/>
+        <location filename="buildmanager.cpp" line="+1575"/>
         <source>Process started: %1</source>
         <translation>Processus en cours : %1</translation>
     </message>
@@ -7192,7 +7192,7 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
     <message>
         <location line="+1"/>
         <source>Next placeholder</source>
-        <translation>Nouveau paramètre fictif</translation>
+        <translation>Paramètre fictif suivant</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7202,12 +7202,12 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
     <message>
         <location line="+1"/>
         <source>Next placeholder or one word right</source>
-        <translation>Nouveau paramètre fictif ou mot à droite</translation>
+        <translation>Paramètre fictif suivant ou mot à droite</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Previous placeholder or one word left</source>
-        <translation>Nouveau paramètre fictif ou mot à gauche</translation>
+        <translation>Paramètre fictif précédent ou mot à gauche</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8833,7 +8833,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
         <location filename="spellerdialog.cpp" line="+14"/>
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
-        <translation>Paramètre fictif pour les nouveaux mots ajoutés à la liste des mots ignorés</translation>
+        <translation>Paramètre fictif pour les mots nouvellement ajoutés à la liste des mots ignorés</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="-148"/>
@@ -8935,7 +8935,7 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="syntaxcheck.cpp" line="+431"/>
+        <location filename="syntaxcheck.cpp" line="+428"/>
         <source>no error</source>
         <translation>pas d&apos;erreur</translation>
     </message>
@@ -9371,7 +9371,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-6429"/>
+        <location filename="texmaker.cpp" line="-6431"/>
         <location line="+1082"/>
         <source>Normal Mode</source>
         <translation>Mode normal</translation>
@@ -9499,12 +9499,12 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
     <message>
         <location line="+33"/>
-        <location line="+7387"/>
+        <location line="+7389"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location line="-7383"/>
+        <location line="-7385"/>
         <source>Print...</source>
         <translation>Im&amp;primer...</translation>
     </message>
@@ -9521,18 +9521,18 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+426"/>
         <location line="+1304"/>
-        <location line="+4291"/>
+        <location line="+4293"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location line="-5594"/>
-        <location line="+5595"/>
+        <location line="-5596"/>
+        <location line="+5597"/>
         <source>Cut</source>
         <translation>Couper</translation>
     </message>
     <message>
-        <location line="-5932"/>
+        <location line="-5934"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Coller en La&amp;TeX</translation>
     </message>
@@ -10056,12 +10056,12 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Définir le document en cours comme « document &amp;maître »</translation>
     </message>
     <message>
-        <location line="+6806"/>
+        <location line="+6808"/>
         <source>Load Profile</source>
         <translation>Charger un profil</translation>
     </message>
     <message>
-        <location line="-6507"/>
+        <location line="-6509"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Définir le document en cours comme « maître »</translation>
     </message>
@@ -10095,13 +10095,13 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
     <message>
         <location line="+31"/>
-        <location line="+5593"/>
+        <location line="+5595"/>
         <source>Indent Section</source>
         <translation>Indenter Section</translation>
     </message>
     <message>
-        <location line="-5592"/>
-        <location line="+5593"/>
+        <location line="-5594"/>
+        <location line="+5595"/>
         <source>Unindent Section</source>
         <translation>Désindenter Section</translation>
     </message>
@@ -10131,7 +10131,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Format</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-5377"/>
+        <location filename="texmaker.cpp" line="-5379"/>
         <source>Click to jump to the bookmark</source>
         <translation>Cliquer pour atteindre le signet</translation>
     </message>
@@ -10149,7 +10149,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <location line="+8"/>
         <location line="+2"/>
         <location line="+379"/>
-        <location line="+2663"/>
+        <location line="+2665"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -10183,8 +10183,8 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation type="obsolete">Modèles</translation>
     </message>
     <message>
-        <location line="-8159"/>
-        <location line="+7526"/>
+        <location line="-8161"/>
+        <location line="+7528"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Tous les fichiers</translation>
@@ -10201,8 +10201,8 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location line="-4919"/>
-        <location line="+6146"/>
+        <location line="-4921"/>
+        <location line="+6148"/>
         <source>Open Files</source>
         <translation>Ouvrir fichiers</translation>
     </message>
@@ -10211,7 +10211,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation type="obsolete">Le document a été modifié. Voulez-vous l&apos;enregistrer avant de fermer ?</translation>
     </message>
     <message>
-        <location line="-5832"/>
+        <location line="-5834"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Enregistrer et Fermer</translation>
@@ -10381,7 +10381,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>(c) utiliser la compilation par défaut</translation>
     </message>
     <message>
-        <location line="+1604"/>
+        <location line="+1606"/>
         <source>Close document</source>
         <translation>Fermer le document</translation>
     </message>
@@ -10449,7 +10449,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
-        <location line="-7220"/>
+        <location line="-7222"/>
         <source>TeX files</source>
         <translation>Fichiers TeX</translation>
     </message>
@@ -10507,7 +10507,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>C&amp;onvertir le fichier source en html...</translation>
     </message>
     <message>
-        <location line="+7159"/>
+        <location line="+7161"/>
         <source>Problem</source>
         <translation>Problème</translation>
     </message>
@@ -10567,7 +10567,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">Supprimer un filet horizontal - \hline</translation>
     </message>
     <message>
-        <location line="-2586"/>
+        <location line="-2588"/>
         <location line="+10"/>
         <source>Could not open browser</source>
         <translation>Impossible d&apos;ouvrir le navigateur</translation>
@@ -10638,12 +10638,12 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Purger l&apos;aperçu en &amp;ligne</translation>
     </message>
     <message>
-        <location line="+6506"/>
+        <location line="+6508"/>
         <source>check in whole directory ?</source>
         <translation>Contrôler tout le répertoire ?</translation>
     </message>
     <message>
-        <location line="-6470"/>
+        <location line="-6472"/>
         <source>Parenthesis</source>
         <translation>Parenthèses</translation>
     </message>
@@ -10670,7 +10670,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Démarrage de %1 impossible.</translation>
     </message>
     <message>
-        <location line="+1468"/>
+        <location line="+1470"/>
         <source>Show all open documents in this tree</source>
         <translation>Afficher tous les documents ouverts dans cette arborescence</translation>
     </message>
@@ -10685,7 +10685,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Enregistrer le profil actif</translation>
     </message>
     <message>
-        <location line="-7166"/>
+        <location line="-7168"/>
         <source>&amp;Searching</source>
         <translation>&amp;Recherche</translation>
     </message>
@@ -10800,7 +10800,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation type="obsolete">Activer le sur&amp;lignage...</translation>
     </message>
     <message>
-        <location line="+5985"/>
+        <location line="+5987"/>
         <source>Move document to &amp;front</source>
         <translation>Placer le document tout au-dess&amp;us</translation>
     </message>
@@ -10822,7 +10822,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation>Différences</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8202"/>
+        <location filename="texmaker.cpp" line="-8204"/>
         <source>Sweave files</source>
         <translation>Fichiers sweave</translation>
     </message>
@@ -10877,7 +10877,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation type="obsolete">Le fichier de log n&apos;est pas lisible !</translation>
     </message>
     <message>
-        <location line="+2678"/>
+        <location line="+2680"/>
         <location line="+9"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
@@ -11004,7 +11004,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <translation>Texte ordinaire</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8133"/>
+        <location filename="texmaker.cpp" line="-8135"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Signets</translation>
@@ -11131,7 +11131,7 @@ Faites-vous confiance à ce document ?</translation>
         <translation type="obsolete">Oui, toujours lancer la compilation de remplacement</translation>
     </message>
     <message>
-        <location line="+7190"/>
+        <location line="+7192"/>
         <source>Reached beginning of text.</source>
         <translation>Le début du texte a été atteint.</translation>
     </message>
@@ -11200,7 +11200,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>J&apos;essaie de m&apos;arrêter, mais il ne se passe rien.</translation>
     </message>
     <message>
-        <location line="-8471"/>
+        <location line="-8473"/>
         <source>PDF files</source>
         <translation>Fichiers PDF</translation>
     </message>
@@ -11216,7 +11216,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>Fichiers TeX dtx</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+7696"/>
+        <location filename="texmaker.cpp" line="+7698"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>TeXstudio a été mis en pause en raison d&apos;une possible boucle infinie.
@@ -11231,7 +11231,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation type="obsolete">Oui, continuer la boucle.</translation>
     </message>
     <message>
-        <location line="-7689"/>
+        <location line="-7691"/>
         <source>Highlighting</source>
         <translation>Surlignement</translation>
     </message>
@@ -11319,7 +11319,7 @@ included document in %1</source>
         <translation type="obsolete">Ma&amp;cros</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+4033"/>
+        <location filename="texmaker.cpp" line="+4035"/>
         <source>Yes, try to recover</source>
         <translation>Oui, tenter de recouvrer</translation>
     </message>
@@ -11334,7 +11334,7 @@ included document in %1</source>
         <translation>Oui, continuer la boucle</translation>
     </message>
     <message>
-        <location line="-8010"/>
+        <location line="-8012"/>
         <source>Previous Change</source>
         <translation>Modification précédente</translation>
     </message>
@@ -11610,13 +11610,13 @@ included document in %1</source>
     </message>
     <message>
         <location line="+105"/>
-        <location line="+5595"/>
+        <location line="+5597"/>
         <source>Paste Before</source>
         <translation>Coller avant</translation>
     </message>
     <message>
-        <location line="-5594"/>
-        <location line="+5595"/>
+        <location line="-5596"/>
+        <location line="+5597"/>
         <source>Paste After</source>
         <translation>Coller après</translation>
     </message>
@@ -11625,7 +11625,7 @@ included document in %1</source>
         <translation type="obsolete">document</translation>
     </message>
     <message>
-        <location line="-4294"/>
+        <location line="-4296"/>
         <source>Rename/Move</source>
         <translation>Renommer/Déplacer</translation>
     </message>
@@ -11657,7 +11657,7 @@ included document in %1</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe plus. Voulez-vous le supprimer de la liste des fichiers récents ?</translation>
     </message>
     <message>
-        <location line="+3941"/>
+        <location line="+3943"/>
         <location line="+38"/>
         <source>Expand Subitems</source>
         <translation>Développer les sous-items</translation>
@@ -11700,7 +11700,7 @@ included document in %1</source>
         <translation type="obsolete">Insérer \ref pour label</translation>
     </message>
     <message>
-        <location line="-6070"/>
+        <location line="-6072"/>
         <source>New From &amp;Template...</source>
         <translation>Nouveau à par&amp;tir d&apos;un modèle...</translation>
     </message>
@@ -11749,7 +11749,7 @@ included document in %1</source>
         <translation>Vérifier l&apos;installation LaTeX</translation>
     </message>
     <message>
-        <location line="+6765"/>
+        <location line="+6767"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.
@@ -11771,7 +11771,7 @@ Voulez-vous le créer ?</translation>
         <translation>Chercher &amp;précédent</translation>
     </message>
     <message>
-        <location line="-7032"/>
+        <location line="-7034"/>
         <source>Long-range Word Repetition</source>
         <translation>Longue plage de répétition de mot</translation>
     </message>
@@ -11800,12 +11800,12 @@ Voulez-vous le créer ?</translation>
         <translation>Voir &amp;DVI</translation>
     </message>
     <message>
-        <location line="+5839"/>
+        <location line="+5841"/>
         <source>Create Label</source>
         <translation>Créer un label</translation>
     </message>
     <message>
-        <location line="-2032"/>
+        <location line="-2034"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Fichier en cours&gt;</translation>
     </message>
