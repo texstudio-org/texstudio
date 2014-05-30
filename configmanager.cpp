@@ -555,6 +555,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
 	
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
+    registerOption("Preview/UsePopplerLoad",&pdfDocumentConfig->usePopplerLoad,false,&pseudoDialog->checkBoxUsePopplerLoad);
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);

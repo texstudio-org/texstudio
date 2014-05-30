@@ -84,6 +84,7 @@ public:
 	void setCacheSize(int megabyte);
 	void fillCache(int pg=-1);
 	qreal getResLimit();
+    void UsePopperLoad(bool use);
 
 public slots:
 	void addToCache(QImage img,int pageNr,int ticket);
@@ -105,6 +106,8 @@ private:
 	QMap<int,RecInfo> lstForThumbs;
 	PDFQueue *queueAdministration;
     bool mFillCacheMode;
+
+    bool use_poppler_load;
 };
 
 #endif // PDFRENDERMANAGER_H
