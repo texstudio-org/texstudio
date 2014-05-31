@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs_CZ">
+<TS version="2.1" language="cs_CZ">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -369,7 +369,7 @@
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation>Výchozí bibliografie</translation>
+        <translation type="vanished">Výchozí bibliografie</translation>
     </message>
     <message>
         <source>Ps Chain</source>
@@ -554,6 +554,18 @@
     <message>
         <source>Stop Compile</source>
         <translation>Zastavit překlad</translation>
+    </message>
+    <message>
+        <source>Default Bibliography Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Makeglossaries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Glossary Tool</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2355,7 +2367,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
         <source>Show messages when starting compiling</source>
         <translation>Ukázat zprávy při spuštění překladu</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Anglické uvozovky (unicode): “ ”</translation>
     </message>
@@ -2577,6 +2589,14 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
     </message>
     <message>
         <source>Fit to Text Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this option, if you want to use Poppler for loading PDFs, in order to reduce memory consumption.&lt;/p&gt;&lt;p&gt;This disables some checks which prevent it from loading incomplete PDFs. Older versions of poppler showed stability issues ! &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;You have been warned !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Don&apos;t read complete PDF at once</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4957,6 +4977,14 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     </message>
     <message>
         <source>Ctrl+4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9470,6 +9498,14 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>Remove Current Placeholder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Glossary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Makeglossaries</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
