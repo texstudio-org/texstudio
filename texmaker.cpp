@@ -766,7 +766,7 @@ void Texmaker::setupMenus() {
 #if QT_VERSION < 0x050000
     lang = QApplication::keyboardInputLocale().language();
 #else
-    lang = QInputMethod::locale().language();
+	lang = QGuiApplication::inputMethod()->locale().language();
 #endif
 	// on win ctrl+alt = altGr, hungarian: altGr+F = [
 	// so we should not use this as shortcut in this special case
