@@ -831,6 +831,10 @@ void Texmaker::setupMenus() {
     newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), "view-doc-ps")->setData(BuildManager::CMD_VIEW_PS);
     newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), "view-doc-pdf")->setData(BuildManager::CMD_VIEW_PDF);
 	submenu->addSeparator();
+	newManagedAction(submenu, "bibtex",tr("&Bibtex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBTEX);
+	newManagedAction(submenu, "bibtex8",tr("&Bibtex 8-Bit"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBTEX8);
+	newManagedAction(submenu, "biber",tr("Bibe&r"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBER);
+	submenu->addSeparator();
 	newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
 	newManagedAction(submenu, "texindy",tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
 	newManagedAction(submenu, "makeglossaries",tr("&Makeglossaries"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_MAKEGLOSSARIES);
