@@ -1222,10 +1222,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
 		if (flags & CF_NORMAL_TEXT) eow+="{";
         if (flags & CF_FORCE_CITE){
-			eow+="{";
-			eow.remove(".");
-			eow.remove(":");
-			eow.remove("_");
+			// the prohibited chars in bibtex keys are not well documented and differ among bibtex tools
+			// this is what JabRef uses (assuming they have a good understanding due to the maturity of the project):
+			eow = "\n\r\t #{}\\\"~,^'";
 		}
 		if (flags & CF_FORCE_GRAPHIC) {
 			eow+="{";
