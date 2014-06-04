@@ -9,6 +9,7 @@ void bibtexReader::searchSection(QString file, QString bibId){
     QFile f(file);
     if (!f.open(QFile::ReadOnly)) return; //ups...
     QTextStream stream(&f);
+	stream.setCodec("UTF-8");
     QString line;
     QString result;
     int found=-1;
