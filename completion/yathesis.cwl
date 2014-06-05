@@ -33,6 +33,7 @@
 #include:tocbibind
 #include:nonumonpart
 #include:xcolor
+#include:tcolorbox
 #include:datatool
 #include:fncychap
 #include:titleps
@@ -49,7 +50,7 @@
 #include:bookmark
 #
 # Document class
-#keyvals:\documentclass/yathesis
+#keyvals:\documentclass
 mainlanguage=#french,english
 secnumdepth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
 space=#single,onehalf,double
@@ -66,6 +67,8 @@ leqno
 fleqn
 oneside
 #endkeyvals
+#
+\yadsetup{%<options%>}#n
 #
 # Cover and title pages
 #
