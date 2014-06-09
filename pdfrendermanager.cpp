@@ -99,37 +99,26 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 		return QSharedPointer<Poppler::Document>();
 	}
 	
-    Poppler::Document *docPtr;
+	Poppler::Document *docPtr;
 
-    if(!use_poppler_load){
-        queueAdministration->documentData = f.readAll();
-        if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
-                !foreceLoad) {
-            error = FileIncomplete;
-            return QSharedPointer<Poppler::Document>();
-        }
+	try {
+		if(!use_poppler_load){
+			queueAdministration->documentData = f.readAll();
+			if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
+					!foreceLoad) {
+				error = FileIncomplete;
+				return QSharedPointer<Poppler::Document>();
+			}
 
-        try {
-            docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
-        } catch (std::bad_alloc) {
-            error = PopplerErrorBadAlloc;
-            return QSharedPointer<Poppler::Document>();
-        } catch (...) {
-            error = PopplerErrorException;
-            return QSharedPointer<Poppler::Document>();
-        }
-    }else{
-        try {
-            docPtr = Poppler::Document::load(fileName);
-        } catch (std::bad_alloc) {
-            error = PopplerErrorBadAlloc;
-            return QSharedPointer<Poppler::Document>();
-        } catch (...) {
-            error = PopplerErrorException;
-            return QSharedPointer<Poppler::Document>();
-        }
-
-    }
+			docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
+		} else docPtr = Poppler::Document::load(fileName);
+	} catch (std::bad_alloc) {
+		error = PopplerErrorBadAlloc;
+		return QSharedPointer<Poppler::Document>();
+	} catch (...) {
+		error = PopplerErrorException;
+		return QSharedPointer<Poppler::Document>();
+	}
 
 	if (!docPtr) {
 		error = PopplerError;
@@ -149,36 +138,46 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	docPtr->setRenderHint(Poppler::Document::Antialiasing);
 	docPtr->setRenderHint(Poppler::Document::TextAntialiasing);
 
-    document = QSharedPointer<Poppler::Document>(docPtr);
+	document = QSharedPointer<Poppler::Document>(docPtr);
 
 	for(int i=0;i<queueAdministration->num_renderQueues;i++){
 
 #ifdef HAS_POPPLER_24
-        // poppler claims to be thread safe ...
-        queueAdministration->renderQueues[i]->setDocument(document);
+		// poppler claims to be thread safe ...
+		queueAdministration->renderQueues[i]->setDocument(document);
 #else
-        Poppler::Document *doc;
-        if (!use_poppler_load && queueAdministration->documentData.size() < 100000000) {
-			// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
-			doc=Poppler::Document::loadFromData(queueAdministration->documentData);
-		} else {
-			// Workaround: loadFromData crashes if called with large data for the second time (i==1).
-			// See also bug report https://sourceforge.net/p/texstudio/bugs/710/?page=2
-			// I used a 200 MB file in the tests. Also 150 MB was reported to crash.
-			// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
-			doc=Poppler::Document::load(fileName);
+		Poppler::Document *doc;
+		try {
+			if (!use_poppler_load && queueAdministration->documentData.size() < 100000000) {
+				// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
+				doc=Poppler::Document::loadFromData(queueAdministration->documentData);
+			} else {
+				// Workaround: loadFromData crashes if called with large data for the second time (i==1).
+				// See also bug report https://sourceforge.net/p/texstudio/bugs/710/?page=2
+				// I used a 200 MB file in the tests. Also 150 MB was reported to crash.
+				// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
+				doc=Poppler::Document::load(fileName);
+			}
+			QSharedPointer<Poppler::Document> spDoc(doc);
+			queueAdministration->renderQueues[i]->setDocument(spDoc);
+		} catch (std::bad_alloc) {
+			Q_ASSERT(false);
+			error = PopplerErrorBadAlloc;
+			return QSharedPointer<Poppler::Document>();
+		} catch (...) {
+			Q_ASSERT(false);
+			error = PopplerErrorException;
+			return QSharedPointer<Poppler::Document>();
 		}
-        QSharedPointer<Poppler::Document> spDoc(doc);
-        queueAdministration->renderQueues[i]->setDocument(spDoc);
 
-        if (!doc) {
-            Q_ASSERT(false);
-            error = FileIncomplete;
-            return QSharedPointer<Poppler::Document>();
-        }
-        doc->setRenderBackend(Poppler::Document::SplashBackend);
-        doc->setRenderHint(Poppler::Document::Antialiasing);
-        doc->setRenderHint(Poppler::Document::TextAntialiasing);
+		if (!doc) {
+			Q_ASSERT(false);
+			error = FileIncomplete;
+			return QSharedPointer<Poppler::Document>();
+		}
+		doc->setRenderBackend(Poppler::Document::SplashBackend);
+		doc->setRenderHint(Poppler::Document::Antialiasing);
+		doc->setRenderHint(Poppler::Document::TextAntialiasing);
 #endif
 
 		if(!queueAdministration->renderQueues[i]->isRunning())
@@ -186,7 +185,7 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	}
 	mFillCacheMode=true;
 
-    queueAdministration->documentData.clear(); // remove file, as poppler made a copy of its own
+	queueAdministration->documentData.clear(); // remove file, as poppler made a copy of its own
 
 	error = NoError;
 
