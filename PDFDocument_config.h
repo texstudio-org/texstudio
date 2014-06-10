@@ -10,7 +10,7 @@ struct PDFDocumentConfig{
 	QByteArray windowState;
 
 	int cacheSizeMB;
-    bool usePopplerLoad;
+	int loadStrategy;
 
 	int dpi;
 	int scaleOption;

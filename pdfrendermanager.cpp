@@ -49,7 +49,7 @@ void CachePixmap::setRes(qreal res, int x, int y){
 }
 
 PDFRenderManager::PDFRenderManager(QObject *parent,int limitQueues) :
-       QObject(parent), cachedNumPages(0),use_poppler_load(false)
+	   QObject(parent), cachedNumPages(0), loadStrategy(HybridLoad)
 {
 	queueAdministration=new PDFQueue();
     if(limitQueues>0){
@@ -87,8 +87,8 @@ void PDFRenderManager::setCacheSize(int megabyte) {
 	renderedPages.setMaxCost(megabyte);
 }
 
-void PDFRenderManager::UsePopperLoad(bool use){
-    use_poppler_load=use;
+void PDFRenderManager::setLoadStrategy(int strategy) {
+	loadStrategy = strategy;
 }
 
 QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &fileName, Error &error, bool foreceLoad){
@@ -102,16 +102,22 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	Poppler::Document *docPtr;
 
 	try {
-		if(!use_poppler_load){
+		if (loadStrategy==DirectLoad) {
+			docPtr = Poppler::Document::load(fileName);
+		} else {
+			// load data into buffer and check for completeness
 			queueAdministration->documentData = f.readAll();
 			if (!queueAdministration->documentData.mid(qMax(0, queueAdministration->documentData.size() - 1024)).trimmed().endsWith("%%EOF") &&
 					!foreceLoad) {
 				error = FileIncomplete;
 				return QSharedPointer<Poppler::Document>();
 			}
-
-			docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
-		} else docPtr = Poppler::Document::load(fileName);
+			// create document
+			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000))
+				docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
+			else
+				docPtr = Poppler::Document::load(fileName);
+		}
 	} catch (std::bad_alloc) {
 		error = PopplerErrorBadAlloc;
 		return QSharedPointer<Poppler::Document>();
@@ -148,13 +154,13 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 #else
 		Poppler::Document *doc;
 		try {
-			if (!use_poppler_load && queueAdministration->documentData.size() < 100000000) {
+			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000)) {
 				// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
 				doc=Poppler::Document::loadFromData(queueAdministration->documentData);
 			} else {
 				// Workaround: loadFromData crashes if called with large data for the second time (i==1).
 				// See also bug report https://sourceforge.net/p/texstudio/bugs/710/?page=2
-				// I used a 200 MB file in the tests. Also 150 MB was reported to crash.
+				// I used a 200 MB file in the tests. Also 150 MB and 66 MB was reported to crash.
 				// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
 				doc=Poppler::Document::load(fileName);
 			}
