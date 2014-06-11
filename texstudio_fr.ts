@@ -901,7 +901,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+3592"/>
+        <location filename="configdialog.ui" line="+102"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -911,7 +911,7 @@
         <translation>Annuler</translation>
     </message>
     <message>
-        <location line="-3472"/>
+        <location line="+83"/>
         <location line="+1448"/>
         <source>Appearance</source>
         <translation>Apparence</translation>
@@ -1298,7 +1298,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée ?</translation>
     </message>
     <message>
-        <location line="+884"/>
+        <location line="+909"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>En cas de « svn add », exécuter « svn propset svn:keywords &quot;Date Author Revision HeadURL&quot; »</translation>
     </message>
@@ -1342,7 +1342,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
         <translation type="obsolete">Télécharger le dictionnaire : %1</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2460"/>
+        <location filename="configdialog.ui" line="-2485"/>
         <location filename="configdialog.cpp" line="+147"/>
         <source>Command</source>
         <translation>Commande</translation>
@@ -1853,7 +1853,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">troisème</translation>
     </message>
     <message>
-        <location line="-1767"/>
+        <location line="-1832"/>
         <source>Configure TeXstudio</source>
         <translation>Configurer TeXstudio</translation>
     </message>
@@ -1866,7 +1866,7 @@ Lequel des trois sages dira toujours la vérité ?</translation>
         <translation type="obsolete">Inverser les guillemets français &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location line="+1731"/>
+        <location line="+1796"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Limiter la recherche à une sélection existante</translation>
     </message>
@@ -2212,12 +2212,12 @@ to set the key anyway?</source>
         <translation>&lt;inconnu&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2804"/>
+        <location filename="configdialog.ui" line="-751"/>
         <source>Show Advanced Options</source>
         <translation>Afficher les options avancées</translation>
     </message>
     <message>
-        <location line="-3413"/>
+        <location line="+142"/>
         <source>Style:</source>
         <translation>Style :</translation>
     </message>
@@ -2807,17 +2807,40 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     </message>
     <message>
         <location line="+13"/>
+        <source>Load Strategy:</source>
+        <translation>Stratégie de chargement :</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Définit comment un PDF est chargé :&lt;/p&gt;&lt;p&gt;&lt;b&gt;En mémoire tampon :&lt;/b&gt; Charge le fichier en mémoire tampon et contrôle s&apos;il est complet puis passe les données à poppler. Cela avait été au départ introduit pour accélérer les anciennes versions de poppler (&amp;lt;0.24) qui ne sécurisaient pas les unités d&apos;exécutions (« threads »). Il a été signalé que poppler pouvait s&apos;arrêter brutalement lors du chargement de gros fichiers. Cette option est donc déconseillée.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct :&lt;/b&gt; Utilise le chargement de fichiers natif de poppler. C&apos;est le plus rapide mais ne permet pas de détecter des fichiers incomplets.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybride (recommandé) :&lt;/b&gt; Charge d&apos;abord le fichier en mémoire tampon contrôle s&apos;il est complet. Utilise cette mémoire tampon pour de petits documents (&amp;lt; 50MB). Les gros fichiers sont chargés en utilisant le chargement de fichiers natif de poppler. Cela combine le contrôle des fichiers tout en évitant des problèmes avec les gros fichiers PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Buffered</source>
+        <translation>En mémoire tampon</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Direct</source>
+        <translation>Direct</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Hybrid</source>
+        <translation>Hybride</translation>
+    </message>
+    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this option, if you want to use Poppler for loading PDFs, in order to reduce memory consumption.&lt;/p&gt;&lt;p&gt;This option increases the likelihood that TeXstudio crashes when loading a PDF which is changed in the background.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;You have been warned !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this option, if you want to use Poppler for loading PDFs, in order to reduce memory consumption.&lt;/p&gt;&lt;p&gt;This options increases the likelihood that TeXstudio crashes when loading a PDF which is changed in the background.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;You have been warned !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cochez cette option si vous voulez utiliser Poppler pour le chargement des PDFs, de sorte à réduire la consommation de mémoire.&lt;/p&gt;&lt;p&gt;Cette option augmente la probabilité d&apos;un arrêt brutal de TeXstudio lorsdu chargement d&apos;un PDF qui a été modifié en arrière-plan.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Vous avez été prévenu !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cochez cette option si vous voulez utiliser Poppler pour le chargement des PDFs, de sorte à réduire la consommation de mémoire.&lt;/p&gt;&lt;p&gt;Cette option augmente la probabilité d&apos;un arrêt brutal de TeXstudio lorsdu chargement d&apos;un PDF qui a été modifié en arrière-plan.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Vous avez été prévenu !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Don&apos;t read complete PDF at once</source>
-        <translation>Ne pas lire immédiatement le PDF en entier</translation>
+        <translation type="obsolete">Ne pas lire immédiatement le PDF en entier</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+40"/>
         <source>Automatically check in after save</source>
         <translation>Vérifier automatiquement après l&apos;enregistrement</translation>
     </message>
@@ -2860,7 +2883,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Coloration syntaxique</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-3006"/>
+        <location filename="configdialog.ui" line="-3031"/>
         <source>Update</source>
         <translation>Mise à jour</translation>
     </message>
@@ -2890,12 +2913,12 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2943"/>
+        <location filename="configdialog.ui" line="+2968"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Utiliser les révisions SVN pour « défaire » avant la dernière version sauvée</translation>
     </message>
     <message>
-        <location line="-2691"/>
+        <location line="-2716"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Nombre maximum de compilations répétées :</translation>
     </message>
