@@ -314,7 +314,9 @@ unix:!macx {
         utilities/texstudio.svg
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texstudio.desktop
-    INSTALLS += applicationmenu
+    appdata.path = /usr/share/appdata
+    appdata.files = utilities/texstudio.appdata.xml
+    INSTALLS += applicationmenu appdata
 }
 
 # ##########UNIX + MACX###############
@@ -466,7 +468,7 @@ include(quazip/quazip/quazip.pri)
 debug{
     message(Creating debug version)
     CONFIG -= release
-    QT += testlib
+#    QT += testlib
 
     SOURCES += tests/testmanager.cpp \
         tests/testutil.cpp \
