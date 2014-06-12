@@ -2592,11 +2592,23 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this option, if you want to use Poppler for loading PDFs, in order to reduce memory consumption.&lt;/p&gt;&lt;p&gt;This disables some checks which prevent it from loading incomplete PDFs. Older versions of poppler showed stability issues ! &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;You have been warned !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>Load Strategy:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Don&apos;t read complete PDF at once</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Buffered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direct</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hybrid</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9506,6 +9518,18 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>&amp;Makeglossaries</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Bibtex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Bibtex 8-Bit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bibe&amp;r</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

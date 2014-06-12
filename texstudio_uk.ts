@@ -723,7 +723,7 @@
         <translation>Чи Ви дійсно хочете вилучити цей рядок?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1060"/>
+        <location filename="configdialog.ui" line="+1125"/>
         <location filename="configdialog.cpp" line="+147"/>
         <source>Command</source>
         <translation>Команда</translation>
@@ -921,7 +921,7 @@
         <translation type="obsolete">Команди SVN</translation>
     </message>
     <message>
-        <location line="+1232"/>
+        <location line="+1257"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Глибина пошуку SVN каталогів: </translation>
     </message>
@@ -942,7 +942,7 @@
         <translation type="obsolete">сучасна</translation>
     </message>
     <message>
-        <location line="-3245"/>
+        <location line="-3270"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Структура/Символи у вигляді вкладок</translation>
     </message>
@@ -1064,7 +1064,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Формати</translation>
     </message>
     <message>
-        <location line="+1343"/>
+        <location line="-2212"/>
         <source>OK</source>
         <translation>Гаразд</translation>
     </message>
@@ -1074,7 +1074,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Відміна</translation>
     </message>
     <message>
-        <location line="-3472"/>
+        <location line="+83"/>
         <location line="+1448"/>
         <source>Appearance</source>
         <translation>Зовнішній вигляд</translation>
@@ -1166,7 +1166,32 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Автозаміна команд  LaTeX</translation>
     </message>
     <message>
-        <location line="+976"/>
+        <location line="+917"/>
+        <source>Load Strategy:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Buffered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Direct</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Hybrid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+54"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>в svn додати executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
@@ -1191,7 +1216,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Пошук</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2740"/>
+        <location filename="configdialog.ui" line="-2765"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Не запускати новий примірник переглядача, якщо dvi/ps/pdf файл вже відкрито</translation>
     </message>
@@ -1347,12 +1372,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Показати довідку як підказку у текстовому полі редактора</translation>
     </message>
     <message>
-        <location line="-1767"/>
+        <location line="-1832"/>
         <source>Configure TeXstudio</source>
         <translation>Конфігурація TeXstudio</translation>
     </message>
     <message>
-        <location line="+1731"/>
+        <location line="+1796"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Обмежити область пошуку існуючим виділенням</translation>
     </message>
@@ -1585,12 +1610,12 @@ to set the key anyway?</source>
         <translation>&lt;невідомий&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2804"/>
+        <location filename="configdialog.ui" line="-751"/>
         <source>Show Advanced Options</source>
         <translation>Показати додаткові параметри</translation>
     </message>
     <message>
-        <location line="-3413"/>
+        <location line="+142"/>
         <source>Style:</source>
         <translation>Стиль:</translation>
     </message>
@@ -2272,17 +2297,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+13"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this option, if you want to use Poppler for loading PDFs, in order to reduce memory consumption.&lt;/p&gt;&lt;p&gt;This disables some checks which prevent it from loading incomplete PDFs. Older versions of poppler showed stability issues ! &lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;You have been warned !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Don&apos;t read complete PDF at once</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+42"/>
+        <location line="+83"/>
         <source>Automatically check in after save</source>
         <translation>Автоматично перевіряти після збереження</translation>
     </message>
@@ -2368,7 +2383,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Використовувати варіанти SVN для відміни перед останнім збереженим варіантом</translation>
     </message>
     <message>
-        <location line="-2691"/>
+        <location line="-2716"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Максимальне число повторень компіляції:</translation>
     </message>
@@ -3805,7 +3820,7 @@ Invalid \caption command.</source>
         <translation> (Тег користувача)</translation>
     </message>
     <message>
-        <location line="+289"/>
+        <location line="+288"/>
         <source>label missing!</source>
         <translation>відсутня позначка!</translation>
     </message>
@@ -3821,7 +3836,7 @@ Invalid \caption command.</source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Ім&apos;я файла: %1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location line="-403"/>
+        <location line="-402"/>
         <location line="+9"/>
         <source>all</source>
         <translation>усе</translation>
@@ -4022,7 +4037,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="-6"/>
-        <location filename="texmaker.cpp" line="+6691"/>
+        <location filename="texmaker.cpp" line="+6695"/>
         <location line="+6"/>
         <source>Go to Definition</source>
         <translation>Перейти до означення</translation>
@@ -8124,7 +8139,7 @@ failed.</source>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-6257"/>
+        <location filename="texmaker.cpp" line="-6261"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -8171,28 +8186,28 @@ failed.</source>
     </message>
     <message>
         <location line="-232"/>
-        <location line="+1085"/>
+        <location line="+1089"/>
         <source>Normal Mode</source>
         <translation>Звичайний режим</translation>
     </message>
     <message>
-        <location line="-1084"/>
-        <location line="+4926"/>
+        <location line="-1088"/>
+        <location line="+4930"/>
         <source>Ready</source>
         <translation>Готовий</translation>
     </message>
     <message>
-        <location line="-4604"/>
+        <location line="-4608"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location line="+1681"/>
+        <location line="+1685"/>
         <source>Save As</source>
         <translation>Зберегти як</translation>
     </message>
     <message>
-        <location line="-1620"/>
+        <location line="-1624"/>
         <source>Exit</source>
         <translation>Вийти</translation>
     </message>
@@ -8202,7 +8217,7 @@ failed.</source>
         <translation>З&amp;міни</translation>
     </message>
     <message>
-        <location line="+429"/>
+        <location line="+433"/>
         <location line="+1304"/>
         <location line="+4293"/>
         <source>Copy</source>
@@ -8215,7 +8230,7 @@ failed.</source>
         <translation>Вирізати</translation>
     </message>
     <message>
-        <location line="-5877"/>
+        <location line="-5881"/>
         <source>Refresh Structure</source>
         <translation>Оновити структуру</translation>
     </message>
@@ -8233,7 +8248,7 @@ failed.</source>
         <translation type="obsolete">Знищити допоміжні файли</translation>
     </message>
     <message>
-        <location line="+203"/>
+        <location line="+207"/>
         <source>Fullscreen Mode</source>
         <translation>Повноекранний режим</translation>
     </message>
@@ -8269,8 +8284,8 @@ failed.</source>
         <translation>Аналіз тексту</translation>
     </message>
     <message>
-        <location line="-4426"/>
-        <location line="+46"/>
+        <location line="-4430"/>
+        <location line="+50"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;Latex</translation>
     </message>
@@ -8280,8 +8295,8 @@ failed.</source>
         <translation>Майстер створення документа</translation>
     </message>
     <message>
-        <location line="-3793"/>
-        <location line="+92"/>
+        <location line="-3797"/>
+        <location line="+96"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Бібліографія</translation>
     </message>
@@ -8307,8 +8322,8 @@ failed.</source>
         <translation type="obsolete">Редагувати к&amp;оманди користувача</translation>
     </message>
     <message>
-        <location line="-3880"/>
-        <location line="+150"/>
+        <location line="-3884"/>
+        <location line="+154"/>
         <source>&amp;View</source>
         <translation>&amp;Вигляд</translation>
     </message>
@@ -8403,13 +8418,13 @@ failed.</source>
         <translation type="obsolete">Log файл не знайдено!</translation>
     </message>
     <message>
-        <location line="-4141"/>
+        <location line="-4145"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>Не виявлено помилок LaTeX!</translation>
     </message>
     <message>
-        <location line="+4667"/>
+        <location line="+4671"/>
         <location line="+10"/>
         <source>File not found</source>
         <translation>Файл не знайдено</translation>
@@ -8419,7 +8434,7 @@ failed.</source>
         <translation type="obsolete">Звичайний режим (поточний головний документ:</translation>
     </message>
     <message>
-        <location line="-4727"/>
+        <location line="-4731"/>
         <source>Toggle Bookmark</source>
         <translation>Встановити закладку</translation>
     </message>
@@ -8445,12 +8460,12 @@ failed.</source>
         <translation>Не виявлено поганих блоків!</translation>
     </message>
     <message>
-        <location line="+591"/>
+        <location line="+595"/>
         <source>Master Document</source>
         <translation>Головний документ</translation>
     </message>
     <message>
-        <location line="-875"/>
+        <location line="-879"/>
         <source>Operator symbols</source>
         <translation>Символи операторів</translation>
     </message>
@@ -8613,7 +8628,7 @@ failed.</source>
         <translation>Вилучити заповнювачі</translation>
     </message>
     <message>
-        <location line="+139"/>
+        <location line="+143"/>
         <location line="+10"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
@@ -8789,7 +8804,7 @@ You have to save a document before you can compile it.</source>
         <translation>Жоден документ не відкритий</translation>
     </message>
     <message>
-        <location line="-4656"/>
+        <location line="-4660"/>
         <source>&amp;New</source>
         <translation>&amp;Новий</translation>
     </message>
@@ -8830,12 +8845,12 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+7392"/>
+        <location line="+7396"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрити</translation>
     </message>
     <message>
-        <location line="-7391"/>
+        <location line="-7395"/>
         <source>Clos&amp;e All</source>
         <translation>Зак&amp;рити усе</translation>
     </message>
@@ -8964,7 +8979,7 @@ You have to save a document before you can compile it.</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+22"/>
         <source>View &amp;Log</source>
         <translation>Перегляд &amp;журналу</translation>
     </message>
@@ -9070,13 +9085,13 @@ You have to save a document before you can compile it.</source>
         <translation>Посібник користувача…</translation>
     </message>
     <message>
-        <location line="-745"/>
+        <location line="-749"/>
         <source>TeX files</source>
         <translation>Файли TeX</translation>
     </message>
     <message>
         <location line="+6"/>
-        <location line="+7531"/>
+        <location line="+7535"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Усі файли</translation>
@@ -9147,23 +9162,23 @@ You have to save a document before you can compile it.</source>
         <translation>Таблиця</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7125"/>
+        <location filename="texmaker.cpp" line="-7129"/>
         <source>Insert Unicode Character...</source>
         <translation>Вставити символ Юнікод…</translation>
     </message>
     <message>
-        <location line="+5084"/>
+        <location line="+5088"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation>Ви повинні зберегти файл перш ніж перейти до основного режиму!</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texmaker.cpp" line="-5625"/>
+        <location filename="texmaker.cpp" line="-5629"/>
         <source>Central</source>
         <translation>Центральний</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+663"/>
+        <location filename="texmaker.cpp" line="+667"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>П&amp;еретворити джерело у HTML...</translation>
     </message>
@@ -9194,7 +9209,7 @@ You have to save a document before you can compile it.</source>
         <translation>Не можливо відкрити веб-переглядач</translation>
     </message>
     <message>
-        <location line="-4811"/>
+        <location line="-4815"/>
         <source>SVN &amp;update...</source>
         <translation>&amp;Оновити SVN...</translation>
     </message>
@@ -9239,12 +9254,12 @@ You have to save a document before you can compile it.</source>
         <translation>Зареєструвати P&amp;DF</translation>
     </message>
     <message>
-        <location line="+337"/>
+        <location line="+341"/>
         <source>Open Documents</source>
         <translation>Відкрити документи</translation>
     </message>
     <message>
-        <location line="-654"/>
+        <location line="-658"/>
         <source>Plaintext files</source>
         <translation>Текстові файли</translation>
     </message>
@@ -9259,17 +9274,17 @@ You have to save a document before you can compile it.</source>
         <translation>О&amp;чистити вбудований перегляд</translation>
     </message>
     <message>
-        <location line="+6511"/>
+        <location line="+6515"/>
         <source>check in whole directory ?</source>
         <translation>зареєструвати цілий каталог?</translation>
     </message>
     <message>
-        <location line="-6472"/>
+        <location line="-6476"/>
         <source>Parenthesis</source>
         <translation>Дужки</translation>
     </message>
     <message>
-        <location line="+263"/>
+        <location line="+267"/>
         <source>S&amp;ave Profile...</source>
         <translation>&amp;Зберегти профіль…</translation>
     </message>
@@ -9294,7 +9309,7 @@ You have to save a document before you can compile it.</source>
         <translation>Зберегти профіль</translation>
     </message>
     <message>
-        <location line="-7171"/>
+        <location line="-7175"/>
         <source>&amp;Searching</source>
         <translation>&amp;Пошук</translation>
     </message>
@@ -9343,7 +9358,7 @@ You have to save a document before you can compile it.</source>
         <translation>&amp;Виділити усі збіги…</translation>
     </message>
     <message>
-        <location line="+359"/>
+        <location line="+363"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;Конфігурація TeXstudio...</translation>
     </message>
@@ -9360,7 +9375,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
 Однак, Ви використовуєте версію TeXstudio, яка була скомпільована без вбудованого переглядача PDF.</translation>
     </message>
     <message>
-        <location line="-4373"/>
+        <location line="-4377"/>
         <source>Show difference between two files</source>
         <translation>Показати відмінності між двома файлами</translation>
     </message>
@@ -9380,7 +9395,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Зневадження стеку відмін</translation>
     </message>
     <message>
-        <location line="+5990"/>
+        <location line="+5994"/>
         <source>Move document to &amp;front</source>
         <translation>Перемістити документ на &amp;передній план</translation>
     </message>
@@ -9402,7 +9417,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Відмінності</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8207"/>
+        <location filename="texmaker.cpp" line="-8211"/>
         <source>Sweave files</source>
         <translation>Файли Sweave</translation>
     </message>
@@ -9432,7 +9447,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Оголосити конфлікт розв&apos;язаним</translation>
     </message>
     <message>
-        <location line="+553"/>
+        <location line="+557"/>
         <source>Default</source>
         <translation>Типово</translation>
     </message>
@@ -9563,7 +9578,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Звичайний текст</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8138"/>
+        <location filename="texmaker.cpp" line="-8142"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Закладки</translation>
@@ -9574,7 +9589,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Видалити до &amp;кінця рядка</translation>
     </message>
     <message>
-        <location line="+327"/>
+        <location line="+331"/>
         <source>Grammar errors</source>
         <translation>Граматичні помилки</translation>
     </message>
@@ -9606,7 +9621,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>&amp;Користувач</translation>
     </message>
     <message>
-        <location line="-32"/>
+        <location line="-36"/>
         <source>&amp;Compile</source>
         <translation>&amp;Компіляція</translation>
     </message>
@@ -9615,7 +9630,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">О&amp;чистити маркери</translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+82"/>
         <source>&amp;Math</source>
         <translation>&amp;Математика</translation>
     </message>
@@ -9677,12 +9692,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Я спробував &quot;померти&quot;, але нічого не вийшло.</translation>
     </message>
     <message>
-        <location line="-8476"/>
+        <location line="-8480"/>
         <source>PDF files</source>
         <translation>Файли PDF</translation>
     </message>
     <message>
-        <location line="+694"/>
+        <location line="+698"/>
         <source>Align Windows</source>
         <translation>Вирівняти вікна</translation>
     </message>
@@ -9699,7 +9714,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-193"/>
+        <location filename="texmaker.cpp" line="-197"/>
         <source>&amp;Index</source>
         <translation>&amp;Індекс</translation>
     </message>
@@ -9715,7 +9730,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+20"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
@@ -9820,7 +9835,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Так, продовжити цикл</translation>
     </message>
     <message>
-        <location line="-8015"/>
+        <location line="-8019"/>
         <source>Previous Change</source>
         <translation>Попередня зміна</translation>
     </message>
@@ -10010,7 +10025,22 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+21"/>
+        <source>&amp;Bibtex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Bibtex 8-Bit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Bibe&amp;r</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
         <source>&amp;Makeglossaries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10206,7 +10236,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Системний звіт</translation>
     </message>
     <message>
-        <location line="-8220"/>
+        <location line="-8224"/>
         <source>New From &amp;Template...</source>
         <translation>Новий із &amp;шаблону...</translation>
     </message>
@@ -10216,7 +10246,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Відновити попередню сесію</translation>
     </message>
     <message>
-        <location line="+266"/>
+        <location line="+270"/>
         <source>Find Word Repetitions...</source>
         <translation>Пошук повторень слів…</translation>
     </message>
@@ -10263,7 +10293,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Повторення слів на великій відстані</translation>
     </message>
     <message>
-        <location line="-187"/>
+        <location line="-191"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Збирання і перегляд</translation>
     </message>
@@ -10278,7 +10308,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Перегляд &amp;DVI</translation>
     </message>
     <message>
-        <location line="+2387"/>
+        <location line="+2391"/>
         <source>No dictionary available.</source>
         <translation>Нема доступних словників</translation>
     </message>
@@ -10358,7 +10388,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>Ви не володієте правами на читання цього файлу:</translation>
     </message>
     <message>
-        <location line="-1405"/>
+        <location line="-1409"/>
         <source>&amp;Line Operations</source>
         <translation>Операції з &amp;рядками</translation>
     </message>
@@ -10388,7 +10418,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>Перейти вперед</translation>
     </message>
     <message>
-        <location line="+993"/>
+        <location line="+997"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Ви не володієте правами на читання файлу %1.</translation>
     </message>
@@ -10398,7 +10428,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>Не вдалося записати метадані шаблону:</translation>
     </message>
     <message>
-        <location line="-1380"/>
+        <location line="-1384"/>
         <source>Session</source>
         <translation>Сесія</translation>
     </message>
@@ -10413,7 +10443,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>Зберегти сесію…</translation>
     </message>
     <message>
-        <location line="+287"/>
+        <location line="+291"/>
         <source>Add magic comments ...</source>
         <translation>Додати чарівні коментарі…</translation>
     </message>
