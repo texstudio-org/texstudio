@@ -371,7 +371,7 @@
 \defglsdisplay#S
 \equal#S
 \glossary#S
-\gls{label}#r
+\gls{label}
 \glsSetSuffixF#S
 \glsacrdescriptionfalse#S
 \glsacrdescriptiontrue#S
@@ -425,7 +425,7 @@
 \glsnumberlinefalse#S
 \glsnumberlinetrue#S
 \glsopenbrace#S
-\glspl#S
+\glspl{label}
 \glsplural#S
 \glsquote#S
 \glsreset#S

@@ -116,7 +116,8 @@ private:
 typedef enum {
 	kFixedMag,
 	kFitWidth,
-	kFitWindow
+	kFitWindow,
+	kFitTextWidth
 } autoScaleOption;
 
 class PDFScrollArea;
@@ -169,6 +170,7 @@ public:
 	QRect pageRect(int page) const;
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
+	QRectF horizontalTextRangeF() const;
 
 	Q_INVOKABLE void zoom(qreal scale);
 
@@ -184,6 +186,7 @@ protected slots: //not private, so scripts have access
 	void doPageDialog();
 	
 	void fitWidth(bool checked = true);
+	void fitTextWidth(bool checked = true);
 	void zoomIn();
 	void zoomOut();
 	void jumpToSource();
@@ -301,6 +304,7 @@ private:
 	static QCursor	*zoomOutCursor;
 
 	mutable QSizeF maxPageSize; //cache pageSize
+	mutable QRectF horizontalTextRange;
 
 	QList<int> pageHistory;
 	int pageHistoryIndex;
@@ -382,9 +386,12 @@ protected:
 	virtual void dropEvent(QDropEvent *event);
 	virtual void enterEvent(QEvent *event);
 	virtual void leaveEvent(QEvent *event);
+	virtual void mouseMoveEvent(QMouseEvent *event);
 	void setToolbarsVisible(bool visible);
+	void shortcutOnlyIfFocused(const QList<QAction *> &actions);
 
 public slots:
+	void reloadSettings();
 	void reload(bool fillCache=true);
 	void fillRenderCache(int pg=-1);
 	void sideBySide();
@@ -396,6 +403,9 @@ public slots:
 	void syncFromView(const QString& pdfFile, const QFileInfo& masterFile, int page);
 	void loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert = true);
 	void printPDF();
+	void setAutoHideToolbars(bool enabled);
+	void hideToolbars();
+	void showToolbars();
 private slots:
 	void fileOpen();
 	
@@ -414,7 +424,9 @@ private slots:
 
 	void setGrid();
 
+public slots:
 	void closeSomething();
+private slots:
 	void tileWindows();
 	void stackWindows();
 	void unminimize();
@@ -426,6 +438,7 @@ private slots:
 	void search(bool backward, bool incremental);
 public:
 	void search(const QString& searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
+	void search();
 private slots:
 	void gotoAnnotation(const PDFAnnotation *ann);
 
@@ -477,15 +490,17 @@ private:
 	PDFAnnotations * annotations;
 	PDFAnnotationTableView * annotationTable;
 
-    QMenuBar *menubar;
-    QMenu *menuHelp;
-    QMenu *menuFile;
-    QMenu *menuEdit;
-    QMenu *menuView;
-    QMenu *menuGrid;
-    QMenu *menuWindow;
-    QMenu *menuShow;
-    QMenu *menuEdit_2;
+	QMenuBar *menubar;
+	QMenu *menuHelp;
+	QMenu *menuFile;
+	QMenu *menuEdit;
+	QMenu *menuView;
+	QMenu *menuGrid;
+	QMenu *menuWindow;
+public:
+	QMenu *menuShow;
+private:
+	QMenu *menuEdit_2;
 
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;

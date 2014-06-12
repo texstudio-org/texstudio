@@ -101,9 +101,24 @@ void TextAnalysisDialog::setEditor(QEditor* aeditor) {
 	}
 }
 
+int lowestStructureLevel(StructureEntry *entry) {
+	if (!entry) return 1000;
+	if (entry->level>=1) return entry->level; //0 is part, 1 chapter, 2 section, ... we skip part, and take the next that exists
+	int r = 1000;
+	for (int i=0; i<entry->children.count(); i++)
+		r = qMin(r, lowestStructureLevel(entry->children.at(i)));
+	return r;
+}
+
 void TextAnalysisDialog::interpretStructureTree(StructureEntry *entry) {
+	chapters.clear();
+	interpretStructureTreeRec(entry, lowestStructureLevel(entry));
+}
+
+
+void TextAnalysisDialog::interpretStructureTreeRec(StructureEntry *entry, int targetLevel) {
 	if (!entry) return;
-	if (entry->level==1) {
+	if (entry->level==targetLevel) {
 		chapters.append(QPair<QString,int> (entry->title,entry->getCachedLineNumber()));
 		ui.comboBox->addItem(entry->title);
 	} else for (int i=0; i<entry->children.count(); i++)
@@ -127,14 +142,15 @@ void TextAnalysisDialog::needCount() {
 	lastParsedMinWordLength=minimumWordLength;
 	bool respectSentenceEnd = ui.respectEndCharsCheck->isChecked();
 	lastEndCharacters=respectSentenceEnd?ui.sentenceEndChars->text():"";
-	int totalLines=document->lines();
-	int textLines=0;
-	int commentLines=0;
 	for (int i=0; i<3; i++) {
 		maps[i].resize(2+chapters.size());
 		for (int j=0; j<maps[i].size(); j++)
 			maps[i][j].clear();
+		lineCount[i].resize(2+chapters.size());
+		for (int j=0;j<lineCount[i].size();j++)
+			lineCount[i][j] = 0;
 	}
+	lineCount[0][0]=document->lines();
 	int selectionStartLine=-1;
 	int selectionEndLine=-1;
 	int selectionStartIndex=-1;
@@ -157,6 +173,7 @@ void TextAnalysisDialog::needCount() {
 			selectionStartIndex=selectionEndIndex;
 			selectionEndIndex=temp;
 		}
+		lineCount[0][1]=selectionEndLine - selectionStartLine + 1;
 	}
 
 	int nextChapter=0;
@@ -169,7 +186,8 @@ void TextAnalysisDialog::needCount() {
 			else extraMap++;
 			nextChapter++;
 			if (extraMap>=maps[0].size()) extraMap=0;
-		}
+		}	
+		if (extraMap != 0) lineCount[0][extraMap]++;
 		QString line=document->line(l).text();
 		bool commentReached=false;
 		bool lineCountedAsText=false;
@@ -200,25 +218,33 @@ void TextAnalysisDialog::needCount() {
 				curType=2;
 				if (!commentReached) {
 					commentReached=true;
-					commentLines++;
+					lineCount[2][0]++;
+					if (inSelection) lineCount[2][1]++;
+					if (extraMap!=0) lineCount[2][extraMap]++;
 					//find sentence end characters which belong to the words before the comment start
-					if (respectSentenceEnd) for (int i=lastIndex; i<lr.wordStartIndex; i++)
+                    if (respectSentenceEnd)
+                        for (int i=lastIndex; i<lr.wordStartIndex; i++){
 							if (line.at(i)==QChar('%') && (i==0 || line.at(i-1)!=QChar('\%'))) {
 								lastIndex=i;
 								break;
-							} else if (lastEndCharacters.contains(line.at(i))) {
-								sentenceLengths[0]=0;
-								lastWords[0].clear();
-								break;
+                            } else {
+                                if (lastEndCharacters.contains(line.at(i))) {
+                                    sentenceLengths[0]=0;
+                                    lastWords[0].clear();
+                                    break;
+                                }
 							}
+                        }
 				}
 			} else if (state==LatexReader::NW_COMMAND) {
 				curType=1;
 			} else if (state==LatexReader::NW_TEXT) {
 				curType=0;
 				if (!lineCountedAsText) {
-					textLines++;
 					lineCountedAsText=true;
+					lineCount[1][0]++;
+					if (inSelection) lineCount[1][1]++;
+					if (extraMap!=0) lineCount[1][extraMap]++;
 				}
 			}
 			if (respectSentenceEnd && !commentReached)
@@ -260,10 +286,6 @@ void TextAnalysisDialog::needCount() {
 	}
 
 	alreadyCount=true;
-
-	ui.totalLinesLabel->setText(QString::number(totalLines));
-	ui.textLinesLabel->setText(QString::number(textLines));
-	ui.commentLinesLabel->setText(QString::number(commentLines));
 }
 
 void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map) {
@@ -337,9 +359,10 @@ void TextAnalysisDialog::insertDisplayData(const QMap<QString,int> & map) {
 void TextAnalysisDialog::slotCount() {
 	needCount();
 	displayed.words.clear(); //insert into map to sort
-	if (ui.normalTextCheck->isChecked()) insertDisplayData(maps[0][ui.comboBox->currentIndex()]);
-	if (ui.commandsCheck->isChecked()) insertDisplayData(maps[1][ui.comboBox->currentIndex()]);
-	if (ui.commentsCheck->isChecked()) insertDisplayData(maps[2][ui.comboBox->currentIndex()]);
+	int currentMap = ui.comboBox->currentIndex();
+	if (ui.normalTextCheck->isChecked()) insertDisplayData(maps[0][currentMap]);
+	if (ui.commandsCheck->isChecked()) insertDisplayData(maps[1][currentMap]);
+	if (ui.commentsCheck->isChecked()) insertDisplayData(maps[2][currentMap]);
 
 	displayed.updateAll();
 
@@ -349,6 +372,9 @@ void TextAnalysisDialog::slotCount() {
 	ui.resultView->setShowGrid(false);
 	ui.resultView->resizeRowsToContents();
 
+	ui.totalLinesLabel->setText(QString::number(lineCount[0][currentMap]));
+	ui.textLinesLabel->setText(QString::number(lineCount[1][currentMap]));
+	ui.commentLinesLabel->setText(QString::number(lineCount[2][currentMap]));
 
 	ui.displayedWordLabel->setText(QString::number(displayed.wordCount));
 	ui.differentWordLabel->setText(QString::number(displayed.words.size()));

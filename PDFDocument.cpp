@@ -412,6 +412,7 @@ PDFWidget::PDFWidget(bool embedded)
 #endif
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
+	horizontalTextRange.setWidth(-1.0);
 
 	dpi = globalConfig->dpi;
 	if (dpi<=0) dpi = 72; //it crashes if dpi=0
@@ -434,6 +435,9 @@ PDFWidget::PDFWidget(bool embedded)
 		break;
 	case 3:
 		fixedScale(globalConfig->scale / 100.0);
+		break;
+	case 4:
+		fitTextWidth(true);
 		break;
 	}
 
@@ -493,6 +497,7 @@ void PDFWidget::setDocument(const QSharedPointer<Poppler::Document> &doc)
 	document = doc;
 	maxPageSize.setHeight(-1.0);
 	maxPageSize.setWidth(-1.0);
+
 	if(!document.isNull()){
 		docPages=document->numPages();
 		setSinglePageStep(globalConfig->singlepagestep);
@@ -515,6 +520,9 @@ void PDFWidget::windowResized()
 		break;
 	case kFitWidth:
 		fitWidth(true);
+		break;
+	case kFitTextWidth:
+		fitTextWidth(true);
 		break;
 	case kFitWindow:
 		fitWindow(true);
@@ -997,8 +1005,8 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 				setCursor(Qt::BlankCursor);
 			}
 		}
+		event->accept();
 		break;
-
 	case kScroll:
 		{
 			QPoint delta = event->globalPos() - scrollClickPos;
@@ -1011,12 +1019,11 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 				scrollArea->verticalScrollBar()->setValue(oldY - delta.y());
 			}
 		}
+		event->accept();
 		break;
-		
 	default:
-		break;
+		event->ignore();
 	}
-	event->accept();
 }
 
 void PDFWidget::keyPressEvent(QKeyEvent *event)
@@ -1068,12 +1075,18 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		usingTool = kNone;
 	}
 
+	if (pdfDoc && pdfDoc->menuShow) {
+		menu.addSeparator();
+		menu.addMenu(pdfDoc->menuShow);
+	}
+
 	QAction *action = menu.exec(event->globalPos());
 
 	if (action == ctxZoomInAction)
 		doZoom(event->pos(), 1);
 	else if (action == ctxZoomOutAction)
 		doZoom(event->pos(), -1);
+
 }
 
 void PDFWidget::jumpToSource()
@@ -1618,7 +1631,7 @@ void PDFWidget::pageDownOrNext()
 	else {
 		if (realPageIndex < realNumPages() - 1) {
 			goNext();
-			scrollBar->triggerAction(QAbstractSlider::SliderToMaximum);
+			scrollBar->triggerAction(QAbstractSlider::SliderToMinimum);
 		}
 	}
 	//shortcutPageDown->setAutoRepeat(scrollBar->value() < scrollBar->maximum());
@@ -1682,6 +1695,33 @@ void PDFWidget::fitWidth(bool checked)
 				scaleFactor = kMinScaleFactor;
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
+			adjustSize();
+			update();
+			updateStatusBar();
+			emit changedZoom(scaleFactor);
+		}
+	}
+	else
+		scaleOption = kFixedMag;
+	emit changedScaleOption(scaleOption);
+}
+
+void PDFWidget::fitTextWidth(bool checked)
+{
+	if (checked) {
+		scaleOption = kFitTextWidth;
+		QAbstractScrollArea*	scrollArea = getScrollArea();
+		if (scrollArea && !pages.isEmpty()) {
+			int margin = 8;
+			qreal portWidth = scrollArea->viewport()->width();
+
+			QRectF textRect = horizontalTextRangeF();
+			scaleFactor = portWidth / ((textRect.width() * dpi / 72.0) + 2*margin);
+			if (scaleFactor < kMinScaleFactor)
+				scaleFactor = kMinScaleFactor;
+			else if (scaleFactor > kMaxScaleFactor)
+				scaleFactor = kMaxScaleFactor;
+			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
 			adjustSize();
 			update();
 			updateStatusBar();
@@ -1897,6 +1937,42 @@ QSizeF PDFWidget::maxPageSizeF() const{
 	}
 	return maxPageSize;
 }
+
+// calculates the maximal horizontal text range (xmin, xmax) over the total document.
+// Note: this may be slow on large documents because each TextBox (~word) is analyzed.
+// Therefore the value is cached.
+// TODO: Replace TextBoxes with the ArtBox of the page once this becomes available via the poppler-qt interface.
+// Only the horizontal values of the returned QRectF have meaning.
+QRectF PDFWidget::horizontalTextRangeF() const{
+	REQUIRE_RET(!document.isNull(), QRectF());
+	qreal textXmin = +1.e99;
+	qreal textXmax = -1.e99;
+	if(!horizontalTextRange.isValid()){
+		QProgressDialog progress(tr("Calculating text width"), tr("Cancel"), 0, docPages);
+		progress.setWindowModality(Qt::WindowModal);
+		progress.setMinimumDuration(500);
+
+		for(int page=0;page<docPages;page++){
+			progress.setValue(page);
+			Poppler::Page *popplerPage=document->page(page);
+			if (!popplerPage) break;
+			foreach (Poppler::TextBox *textbox, popplerPage->textList()) {
+				QRectF bb = textbox->boundingBox();
+				if (textXmin > bb.left()) textXmin = bb.left();
+				if (textXmax < bb.right()) textXmax = bb.right();
+				delete textbox;
+			}
+			delete popplerPage;
+			if (progress.wasCanceled())
+				break;
+		}
+		progress.close();
+		if (textXmax - textXmin > 0) {
+			horizontalTextRange = QRectF(textXmin, 0, textXmax - textXmin, 1);
+		}
+	}
+	return horizontalTextRange;
+}
 QSizeF PDFWidget::gridSizeF(bool ignoreVerticalGrid) const{
 	QSizeF maxPageSize = maxPageSizeF();
 	int usedy = ignoreVerticalGrid?1:gridy;
@@ -1976,12 +2052,12 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		resize(w,h); //important to first resize then move
 		move(x,y);
 		if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
+		setToolbarsVisible(true);
 	}
 
 	if (embeddedMode && globalConfig->autoHideToolbars) {
-		setToolbarsVisible(false);
+		setAutoHideToolbars(true);
 	}
-
 
 	//batch test: 
 	/*QString test = QProcessEnvironment::systemEnvironment().value("TEST");
@@ -2034,8 +2110,7 @@ void PDFDocument::setupMenus(){
     menuGrid->setObjectName(QString::fromUtf8("menuGrid"));
     menuWindow = new QMenu(menubar);
     menuWindow->setObjectName(QString::fromUtf8("menuWindow"));
-    menuShow = new QMenu(menuWindow);
-    menuShow->setObjectName(QString::fromUtf8("menuShow"));
+
     menuEdit_2 = new QMenu(menubar);
     menuEdit_2->setObjectName(QString::fromUtf8("menuEdit_2"));
     setMenuBar(menubar);
@@ -2074,6 +2149,7 @@ void PDFDocument::setupMenus(){
     menuView->addAction(actionZoom_Out);
     menuView->addAction(actionActual_Size);
     menuView->addAction(actionFit_to_Width);
+	menuView->addAction(actionFit_to_Text_Width);
     menuView->addAction(actionFit_to_Window);
     menuView->addAction(actionContinuous);
     menuView->addAction(menuGrid->menuAction());
@@ -2107,8 +2183,21 @@ void PDFDocument::setupMenus(){
     menuView->setTitle(QApplication::translate("PDFDocument", "&View"));
     menuGrid->setTitle(QApplication::translate("PDFDocument", "Grid"));
     menuWindow->setTitle(QApplication::translate("PDFDocument", "&Window"));
-    menuShow->setTitle(QApplication::translate("PDFDocument", "Show"));
     menuEdit_2->setTitle(QApplication::translate("PDFDocument", "&Edit"));
+}
+
+// the shortcuts will only be triggered if this widget has focus (used in embedded mode)
+void PDFDocument::shortcutOnlyIfFocused(const QList<QAction *> &actions)
+{
+	foreach (QAction *act, actions) {
+		act->setParent(this);
+		act->setShortcutContext(Qt::WidgetWithChildrenShortcut);
+	}
+}
+
+void PDFDocument::reloadSettings()
+{
+	if (embeddedMode) setAutoHideToolbars(globalConfig->autoHideToolbars);
 }
 
 void PDFDocument::init(bool embedded)
@@ -2119,9 +2208,12 @@ void PDFDocument::init(bool embedded)
 
 	setupUi(this);
 
-    if(!embedded){
-        setupMenus();
-	}
+	menuShow = new QMenu(this);
+	menuShow->setObjectName(QString::fromUtf8("menuShow"));
+	menuShow->setTitle(QApplication::translate("PDFDocument", "Show"));
+	if(!embedded)
+		setupMenus();
+
 
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	setAttribute(Qt::WA_MacNoClickThrough, true);
@@ -2135,22 +2227,22 @@ void PDFDocument::init(bool embedded)
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
-	if (!embedded) {
-		connect((new QShortcut(Qt::CTRL | Qt::Key_Home, this)), SIGNAL(activated()), actionFirst_Page, SLOT(trigger()));
-		connect((new QShortcut(Qt::CTRL | Qt::Key_End, this)), SIGNAL(activated()), actionLast_Page, SLOT(trigger()));
-		// in embedded mode this would lead to an ambigous shortcut overload with forward/back actions of the cursor history
-		// TODO: it might be possible to allow these shortcuts even in embedded mode if use proper shortcut contexts
-		connect((new QShortcut(Qt::ALT | Qt::Key_Left, this)), SIGNAL(activated()), actionBack, SLOT(trigger()));
-		connect((new QShortcut(Qt::ALT | Qt::Key_Right, this)), SIGNAL(activated()), actionForward, SLOT(trigger()));
+
+	if (embedded) {
+		shortcutOnlyIfFocused(QList<QAction *>()
+							  << actionNext_Page
+							  << actionPrevious_Page
+						);
 	}
 	actionZoom_In->setIcon(getRealIcon("zoom-in"));
 	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
 	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
 	actionActual_Size->setIcon(getRealIcon("zoom-original"));
 	actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
+	actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
 	actionNew->setIcon(getRealIcon("filenew"));
 	actionFileOpen->setIcon(getRealIcon("fileopen"));
-	actionClose->setIcon(getRealIcon("fileclose"));
+	actionClose->setIcon(getRealIcon("close"));
 	action_Print->setIcon(getRealIcon("fileprint"));
 #ifdef Q_OS_WIN32
 	//action_Print->setVisible(false);
@@ -2205,12 +2297,8 @@ void PDFDocument::init(bool embedded)
 
 	comboZoom=0;
 
-	if(!embedded){
-		//QStringList lst;
-		//lst << "25%" << "50%" << "75%" << "100%" << "150%" << "200%" << "300%" << "400%";
-		//comboZoom=createComboToolButton(toolBar,lst,-1,this,SLOT(zoomFromAction()),"100%");
-		//toolBar->insertWidget(actionZoom_In, comboZoom);
-	}else{
+	if(embedded){
+		toolBar->setIconSize(QSize(16,16));
 		QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 		toolBar->insertWidget(actionClose, spacer);
@@ -2354,6 +2442,7 @@ void PDFDocument::init(bool embedded)
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
+	connect(actionFit_to_Text_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitTextWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
 
 	
@@ -2426,91 +2515,97 @@ void PDFDocument::init(bool embedded)
 	connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
-    if(!embedded){
-        menuShow->addAction(toolBar->toggleViewAction());
-        menuShow->addSeparator();
+	menuShow->addAction(toolBar->toggleViewAction());
+	menuShow->addSeparator();
 
-        menuShow->addAction(annotationPanel->toggleViewAction());
+	menuShow->addAction(annotationPanel->toggleViewAction());
 
-        QDockWidget *dw = dwOutline = new PDFOutlineDock(this);
-        if(embedded)
-            dw->hide();
-        addDockWidget(Qt::LeftDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	QDockWidget *dw = dwOutline = new PDFOutlineDock(this);
+	if(embedded)
+		dw->hide();
+	addDockWidget(Qt::LeftDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwInfo = new PDFInfoDock(this);
-        dw->hide();
-        addDockWidget(Qt::LeftDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	dw = dwInfo = new PDFInfoDock(this);
+	dw->hide();
+	addDockWidget(Qt::LeftDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwSearch = new PDFSearchDock(this);
-        if(embedded)
-            dw->hide();
-        connect(dwSearch, SIGNAL(search(bool,bool)),  SLOT(search(bool,bool)));
-        addDockWidget(Qt::BottomDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
+	dw = dwSearch = new PDFSearchDock(this);
+	if(embedded)
+		dw->hide();
+	connect(dwSearch, SIGNAL(search(bool,bool)),  SLOT(search(bool,bool)));
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
 
-        dw = dwFonts = new PDFFontsDock(this);
-        dw->hide();
-        addDockWidget(Qt::BottomDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	dw = dwFonts = new PDFFontsDock(this);
+	dw->hide();
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwOverview = new PDFOverviewDock(this);
-        dw->hide();
-        addDockWidget(Qt::LeftDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
-        connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
-        connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
+	dw = dwOverview = new PDFOverviewDock(this);
+	dw->hide();
+	addDockWidget(Qt::LeftDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
+	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
-        dw = dwClock = new PDFClockDock(this);
-        dw->hide();
-        addDockWidget(Qt::BottomDockWidgetArea, dw);
-        menuShow->addAction(dw->toggleViewAction());
-        connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
-        connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
-    }
+	dw = dwClock = new PDFClockDock(this);
+	dw->hide();
+	addDockWidget(Qt::BottomDockWidgetArea, dw);
+	menuShow->addAction(dw->toggleViewAction());
+	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
+	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
+
 	//disable all action shortcuts when embedded
-	if(embedded){
-		actionGo_to_Page->setShortcut(QKeySequence());
-		actionZoom_In->setShortcut(QKeySequence());
-		actionZoom_Out->setShortcut(QKeySequence());
-		actionFit_to_Window->setShortcut(QKeySequence());
-		actionActual_Size->setShortcut(QKeySequence());
-		actionFit_to_Width->setShortcut(QKeySequence());
+	if(embedded) {
+		shortcutOnlyIfFocused(QList<QAction *>()
+							  << actionNext_Page
+							  << actionPrevious_Page
+							  << actionLast_Page
+							  << actionFirst_Page
+							  << actionForward
+							  << actionBack
+							  << actionGo_to_Page
+							  << actionZoom_In
+							  << actionZoom_Out
+							  << actionFit_to_Window
+							  << actionActual_Size
+							  << actionFit_to_Width
+							  << actionFit_to_Text_Width
+							  << actionClose
+							  << actionUndo
+							  << actionRedo
+							  << actionCut
+							  << actionCopy
+							  << actionPaste
+							  << actionClear
+							  << actionGo_to_Source
+							  << actionFind
+							  << actionFind_Again
+							  << actionFind_2
+							  << actionFind_again
+							  << action_Print
+						);
 		actionNew->setShortcut(QKeySequence());
 		actionOpen->setShortcut(QKeySequence());
-		actionClose->setShortcut(QKeySequence());
-		actionUndo->setShortcut(QKeySequence());
-		actionRedo->setShortcut(QKeySequence());
-		actionCut->setShortcut(QKeySequence());
-		actionCopy->setShortcut(QKeySequence());
-		actionPaste->setShortcut(QKeySequence());
-		actionClear->setShortcut(QKeySequence());
 		actionTypeset->setShortcut(QKeySequence());
-		actionGo_to_Source->setShortcut(QKeySequence());
 		actionNew_from_Template->setShortcut(QKeySequence());
 		actionFull_Screen->setShortcut(QKeySequence());
 		actionQuit_TeXworks->setShortcut(QKeySequence());
-		actionFind->setShortcut(QKeySequence());
-		actionFind_Again->setShortcut(QKeySequence());
 		actionCloseSomething->setShortcut(QKeySequence());
-		actionFind_2->setShortcut(QKeySequence());
-		actionFind_again->setShortcut(QKeySequence());
 		actionPresentation->setShortcut(QKeySequence());
-		action_Print->setShortcut(QKeySequence());
 		actionFileOpen->setShortcut(QKeySequence());
-		actionLast_Page->setShortcut(QKeySequence());
-		actionFirst_Page->setShortcut(QKeySequence());
 	}
 }
 
@@ -2636,6 +2731,7 @@ void PDFDocument::reload(bool fillCache)
 	
 	renderManager = new PDFRenderManager(this);
 	renderManager->setCacheSize(globalConfig->cacheSizeMB);
+	renderManager->setLoadStrategy(int(globalConfig->loadStrategy));
 	PDFRenderManager::Error error = PDFRenderManager::NoError;
 	QFileInfo fi(curFile);
 	QDateTime lastModified=fi.lastModified();
@@ -2658,10 +2754,12 @@ void PDFDocument::reload(bool fillCache)
 	if (document.isNull()) {
 		switch (error) {
 		case PDFRenderManager::NoError: break;
-		case PDFRenderManager::FileOpenFailed:      statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
-		case PDFRenderManager::PopplerError:        statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
-		case PDFRenderManager::FileLocked:          statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;
-		case PDFRenderManager::FileIncomplete:      break; // message is handled via messageFrame
+		case PDFRenderManager::FileOpenFailed:         statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
+		case PDFRenderManager::PopplerError:           statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case PDFRenderManager::PopplerErrorBadAlloc:   statusBar()->showMessage(tr("Failed to load file \"%1\" due to a bad alloc; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case PDFRenderManager::PopplerErrorException:  statusBar()->showMessage(tr("Failed to load file \"%1\" due to an exception; perhaps it is not a valid PDF document.").arg(curFile)); break;
+		case PDFRenderManager::FileLocked:             statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;
+		case PDFRenderManager::FileIncomplete:         break; // message is handled via messageFrame
 		}
 		delete renderManager;
 		renderManager = 0;
@@ -2964,6 +3062,12 @@ void PDFDocument::search(const QString& searchText, bool backwards, bool increme
 	}
 }
 
+void PDFDocument::search(){
+	if (!dwSearch) return;
+	dwSearch->show();
+	dwSearch->setFocus();
+}
+
 void PDFDocument::gotoAnnotation(const PDFAnnotation *ann) {
 	if (!pdfWidget) return;
 	QPoint topLeft = pdfWidget->mapFromScaledPosition(ann->pageNum(), ann->popplerAnnotation()->boundary().topLeft()) / pdfWidget->totalScaleFactor();
@@ -3259,6 +3363,7 @@ void PDFDocument::adjustScaleActions(autoScaleOption scaleOption)
 {
 	actionFit_to_Window->setChecked(scaleOption == kFitWindow);
 	actionFit_to_Width->setChecked(scaleOption == kFitWidth);
+	actionFit_to_Text_Width->setChecked(scaleOption == kFitTextWidth);
 	Q_ASSERT(scrollArea);
 	if (scaleOption == kFitWidth) {
 		if (scrollArea->horizontalScrollBarPolicy() != Qt::ScrollBarAlwaysOff)
@@ -3431,24 +3536,32 @@ void PDFDocument::dropEvent(QDropEvent *event)
 
 void PDFDocument::enterEvent(QEvent *event)
 {
-	Q_UNUSED(event)
-    if (embeddedMode && globalConfig->autoHideToolbars) {
-        setToolbarsVisible(true);
-    }
+	if (event->type() == QEvent::Enter
+			&& embeddedMode
+			&& globalConfig->autoHideToolbars) {
+		showToolbars();
+	}
 }
 
 void PDFDocument::leaveEvent(QEvent *event)
 {
-	Q_UNUSED(event)
-	if (embeddedMode && globalConfig->autoHideToolbars) {
-		setToolbarsVisible(false);
+	if (event->type() == QEvent::Leave
+			&& embeddedMode
+			&& globalConfig->autoHideToolbars) {
+		hideToolbars();
 	}
 }
 
-void PDFDocument::setToolbarsVisible(bool visible)
+void PDFDocument::mouseMoveEvent(QMouseEvent *event)
 {
-	toolBar->setVisible(visible);
-	statusbar->setVisible(visible);
+	if (embeddedMode && globalConfig->autoHideToolbars) {
+		int h = toolBar->height() + 5;
+		if (event->pos().y() < h || event->pos().y() > this->height() - h) {
+			showToolbars();
+		} else {
+			hideToolbars();
+		}
+	}
 }
 
 void PDFDocument::doFindDialog(const QString command)
@@ -3581,5 +3694,50 @@ void PDFDocument::printPDF(){
 		emit runCommand(command, masterFile, masterFile, 0);
 }
 
+void PDFDocument::setAutoHideToolbars(bool enabled)
+{
+	setToolbarsVisible(!enabled);
+	// since we want to have the MouseMoveEvent down at the pdfWidget (internally e.g. for magnifier) up to
+	// the window (for toolbar hiding) all widgets in between seem to need MouseTracking enabled. Otherwise
+	// they will swallow the move event.
+	QWidget *w = pdfWidget;
+	while (w) {
+		w->setMouseTracking(enabled);
+		w = w->parentWidget();
+	}
+}
 
-#endif
+// hide toolbars while preserving the position of the PDF content on screen
+//   we have to compensate the change of scrollArea position by scrolling its content
+void PDFDocument::hideToolbars()
+{
+	if (toolBar->isVisible()) {
+		setToolbarsVisible(false);
+		// workaround: the method of checking the change in globalPos of the scrollArea (as in enterEvent)
+		// does not work here (positions are not yet updated after hiding the toolbars)
+		if (!toolBar->isFloating() && toolBar->orientation() == Qt::Horizontal) {
+			scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() - toolBar->height());
+		}
+	}
+}
+
+// hide toolbars while preserving the position of the PDF content on screen
+//   we have to compensate the change of scrollArea position by scrolling its content
+void PDFDocument::showToolbars()
+{
+	if (!toolBar->isVisible()) {
+		QPoint widgetPos = scrollArea->mapToGlobal(QPoint(0, 0));
+		setToolbarsVisible(true);
+		QPoint posChange = scrollArea->mapToGlobal(QPoint(0, 0)) - widgetPos;
+		scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() + posChange.y());
+	}
+}
+
+void PDFDocument::setToolbarsVisible(bool visible)
+{
+	toolBar->setVisible(visible);
+	statusbar->setVisible(visible);
+}
+
+
+#endif  // ndef NO_POPPLER_PREVIEW

@@ -146,7 +146,7 @@ public:
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
 			CodeSnippet::PlaceholderMode phMode = (LatexCompleter::config && LatexCompleter::config->usePlaceholders) ? CodeSnippet::PlacehodersActive : CodeSnippet::PlaceholdersRemoved;
-			cw.insertAt(editor,&cursor, phMode,!completer->startedFromTriggerKey);
+            cw.insertAt(editor,&cursor, phMode,!completer->startedFromTriggerKey,completer->forcedKeyval);
 			editor->document()->endMacro();
 			
 			return true;
@@ -457,6 +457,11 @@ public:
 		}
 		active=false;
         //editor=0; this leads to a crash, as the editor is still in use after reseting the cursor
+        if(completer && completer->completingKey() && curWord.endsWith("=")){
+            LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
+            Q_ASSERT(view);
+            view->emitColonTyped();
+        }
 		if(completer && completer->completingGraphic() && curWord.endsWith(QDir::separator())){
 			completer->complete(editor,LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));
 		}
@@ -498,6 +503,8 @@ private:
 	int curStart,maxWritten;
 	int curLineNumber;
 };
+
+Q_DECLARE_METATYPE(LatexEditorView*);
 
 CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
 //------------------------------Item Delegate--------------------------------
@@ -611,7 +618,37 @@ void CompletionListModel::fetchMore(const QModelIndex &){
 	endInsertRows();
 }
 CompletionWord CompletionListModel::getLastWord(){
-	return mLastWordInList;
+    return mLastWordInList;
+}
+
+void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString> &newwords)
+{
+    QList<CompletionWord> newWordList;
+    acceptedChars.clear();
+    newWordList.clear();
+    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
+        QString str=*i;
+        QString validValues;
+        if(str.contains("#")){
+            int j=str.indexOf("#");
+            validValues=str.mid(j+1);
+            str=str.left(j);
+            QStringList lst=validValues.split(",");
+            QString key=str;
+            if(key.endsWith("="))
+                key.chop(1);
+            setKeyValWords(name+"/"+key,lst.toSet());
+        }
+        CompletionWord cw(str);
+        cw.index=0;
+        cw.usageCount=-2;
+        cw.snippetLength=0;
+        newWordList.append(cw);
+        foreach(const QChar& c, str) acceptedChars.insert(c);
+    }
+    qSort(newWordList.begin(), newWordList.end());
+
+    keyValLists.insert(name,newWordList);
 }
 
 
@@ -630,7 +667,7 @@ void CompletionListModel::setEnvironMode(bool mode){
 void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
 	if(mostUsed<0)
 		mostUsed=LatexCompleter::config->preferedCompletionTab;
-	if (word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
+    if (!word.isEmpty() && word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
 	mLastWord=word;
 	mLastMU=mostUsed;
 	mCanFetchMore=false;
@@ -950,7 +987,8 @@ void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
 LatexReference * LatexCompleter::latexReference = 0;
 LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),forcedGraphic(false),startedFromTriggerKey(false) {
+LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),
+    forcedGraphic(false),forcedKeyval(false),startedFromTriggerKey(false){
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -1005,7 +1043,6 @@ LatexCompleter::~LatexCompleter() {
 		bibReader->quit();
 		bibReader->wait();
 	}
-	//delete list;
 }
 
 void LatexCompleter::changeView(int pos){
@@ -1034,7 +1071,12 @@ void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, Completio
 	if (config && completionType==CT_COMMANDS) concated.unite(config->words.toSet());
 	//concated.unite(newwords);
 	listModel->setBaseWords(concated,newwords,completionType);
-	widget->resize(200,200);
+    widget->resize(200,200);
+}
+
+void LatexCompleter::setKeyValWords(const QString &name, const QSet<QString> &newwords)
+{
+    listModel->setKeyValWords(name,newwords);
 }
 
 void LatexCompleter::adjustWidget(){
@@ -1087,6 +1129,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	forcedGraphic=flags & CF_FORCE_GRAPHIC;
 	forcedCite=flags & CF_FORCE_CITE;
     forcedPackage= flags & CF_FORCE_PACKAGE;
+    forcedKeyval= flags & CF_FORCE_KEYVAL;
 	startedFromTriggerKey= !(flags &CF_FORCE_VISIBLE_LIST);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -1153,6 +1196,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         listModel->baselist=listModel->wordsText;
         handled=true;
     }
+    if(forcedKeyval){
+        listModel->baselist=listModel->keyValLists.value(workingDir);
+
+        handled=true;
+    }
     if(!handled){
         if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
         else listModel->baselist=listModel->wordsCommands;
@@ -1174,10 +1222,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
 		if (flags & CF_NORMAL_TEXT) eow+="{";
         if (flags & CF_FORCE_CITE){
-			eow+="{";
-			eow.remove(".");
-			eow.remove(":");
-			eow.remove("_");
+			// the prohibited chars in bibtex keys are not well documented and differ among bibtex tools
+			// this is what JabRef uses (assuming they have a good understanding due to the maturity of the project):
+			eow = "\n\r\t #{}\\\"~,^'";
 		}
 		if (flags & CF_FORCE_GRAPHIC) {
 			eow+="{";
@@ -1202,6 +1249,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 				if (flags & CF_FORCE_GRAPHIC) start=i+1;
 				if (flags & CF_FORCE_CITE) start=i+1;
                 if (flags & CF_FORCE_PACKAGE) start=i+1;
+                if (flags & CF_FORCE_KEYVAL) start=i+1;
 				break;
 			}
 		}
@@ -1295,7 +1343,7 @@ void LatexCompleter::filterList(QString word,int showMostUsed) {
 	if (cur!="") {
 		int p=listModel->getWords().indexOf(cur);
 		if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));
-	}
+    }
 }
 bool LatexCompleter::acceptChar(QChar c,int pos) {
 	//always accept alpha numerical characters
@@ -1446,3 +1494,6 @@ const QStringList& LatexCompleterConfig::getLoadedFiles(){
 	return files;
 }
 
+bool LatexCompleter::existValues(){
+    return listModel->keyValLists.value(workingDir).size()>0;
+}

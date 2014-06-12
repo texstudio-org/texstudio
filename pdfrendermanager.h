@@ -76,7 +76,10 @@ public:
     explicit PDFRenderManager(QObject *parent, int limitQueues=-1);
 	~PDFRenderManager();
 
-	enum Error {NoError, FileOpenFailed, PopplerError, FileLocked, FileIncomplete };
+	static const int BufferedLoad=0;
+	static const int DirectLoad=1;
+	static const int HybridLoad=2;
+	enum Error {NoError, FileOpenFailed, PopplerError, PopplerErrorBadAlloc, PopplerErrorException, FileLocked, FileIncomplete };
 
 	QPixmap renderToImage(int pageNr,QObject *obj,const char *rec,double xres=72.0, double yres=72.0, int x=-1, int y=-1, int w=-1, int h=-1,bool cache=true,bool priority=false,Poppler::Page::Rotation rotate=Poppler::Page::Rotate0);
 	QSharedPointer<Poppler::Document> loadDocument(const QString& fileName, Error &error, bool foreceLoad=false);
@@ -84,6 +87,7 @@ public:
 	void setCacheSize(int megabyte);
 	void fillCache(int pg=-1);
 	qreal getResLimit();
+	void setLoadStrategy(int strategy);
 
 public slots:
 	void addToCache(QImage img,int pageNr,int ticket);
@@ -105,6 +109,8 @@ private:
 	QMap<int,RecInfo> lstForThumbs;
 	PDFQueue *queueAdministration;
     bool mFillCacheMode;
+
+	int loadStrategy;
 };
 
 #endif // PDFRENDERMANAGER_H

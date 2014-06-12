@@ -626,10 +626,15 @@ QStringList LatexTables::splitColDef(QString def){
 				if(inMultiplied){
 					QStringList helper=splitColDef(multiplier_str);
 					inMultiplied=false;
-					if(!col.isEmpty())
-						result << col;
-					for(int k=0;k<multiplier;k++)
+                    int zw=result.size();
+
+                    for(int k=0;k<multiplier;k++)
 						result << helper;
+
+                    if(!col.isEmpty() && result.size()>zw){
+                        result[zw]=col+result[zw];
+                        col.clear();
+                    }
 					before_multiplier_str.clear();
 					multiplier=0;
 					multiplier_str.clear();

@@ -53,6 +53,11 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		bool getUseLineForSearch() const;
 		void setSearchOnlyInSelection(bool b);
 		bool getSearchOnlyInSelection() const;
+        QString getSearchText() const;
+        QString getReplaceText() const;
+        bool getSearchIsCase() const;
+        bool getSearchIsRegExp() const;
+        bool getSearchIsWords() const;
 		
 		
 	public slots:
@@ -67,6 +72,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void setOptions(int searchOptions, bool cursor, bool selection);
 	signals:
 		void onClose();
+        void extendToggled(bool);
 	protected:
 		virtual bool forward(QMouseEvent *e);
 		virtual void editorChange(QEditor *e);
@@ -123,12 +129,13 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QComboBox *cFind;
 		QToolButton *bNext, *bPrevious, *bCount;
 		QGridLayout *layoutFindOptions;
-		QCheckBox *cbCase;
-		QCheckBox *cbWords;
-		QCheckBox *cbRegExp;
-		QCheckBox *cbHighlight;
-		QCheckBox *cbCursor;
-		QCheckBox *cbSelection;
+        QToolButton *cbCase;
+        QToolButton *cbWords;
+        QToolButton *cbRegExp;
+        QToolButton *cbHighlight;
+        QToolButton *cbCursor;
+        QToolButton *cbSelection;
+        QToolButton *bExtend;
 		// replace
 		QCheckBox *cbReplace;
 		QComboBox *cReplace;
@@ -136,8 +143,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QToolButton *bReplacePrevious;
 		QToolButton *bReplaceAll;
 		QGridLayout *layoutReplaceOptions;
-		QCheckBox *cbPrompt;
-		QCheckBox *cbEscapeSeq;
+        QToolButton *cbPrompt;
+        QToolButton *cbEscapeSeq;
 		
 		bool useLineForSearch, searchOnlyInSelection;
 };

@@ -1,8 +1,18 @@
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
-CONFIG += qt precompile_header uitools
-CONFIG -= debug
+greaterThan(QT_MAJOR_VERSION, 4) {
+    message(Building with Qt5)
+    CONFIG += qt
+    !win32: CONFIG += precompile_header # precompiling does not work with Qt5 and mingw
+    win32: CONFIG -= precompile_header
+} else {
+    message(Building with Qt4)
+    CONFIG += qt precompile_header uitools
+}
+
+# allow loading extra config by file for automatic compilations (OBS)
+exists(texstudio.pri):include(texstudio.pri)
 QT += network \
     xml \
     svg \
@@ -26,7 +36,7 @@ contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
-PRECOMPILED_HEADER = mostQtHeaders.h
+precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
@@ -304,7 +314,9 @@ unix:!macx {
         utilities/texstudio.svg
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texstudio.desktop
-    INSTALLS += applicationmenu
+    appdata.path = /usr/share/appdata
+    appdata.files = utilities/texstudio.appdata.xml
+    INSTALLS += applicationmenu appdata
 }
 
 # ##########UNIX + MACX###############
@@ -488,10 +500,13 @@ debug{
         tests/tablemanipulation_t.h \
         tests/structureview_t.h \
         tests/syntaxcheck_t.h
-# win32:LIBS += -lQtTest4
-win32:LIBS += -lQtTestd4
-#unix:!macx:LIBS += -lQtTest
-macx:LIBS += -framework QtTest
+    !greaterThan(QT_MAJOR_VERSION, 4) {
+        win32:LIBS += -lQtTestd4
+    } else {
+        win32:LIBS += -lQt5Testd
+    }
+    #unix:!macx:LIBS += -lQtTest
+    macx:LIBS += -framework QtTest
 }
 macx:LIBS += -framework CoreFoundation
 
@@ -503,48 +518,60 @@ unix {
 # ################################
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
-  !greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
-    unix:!macx {
-    
-        INCLUDEPATH += /usr/include/poppler/qt4
-        LIBS += -L/usr/lib \
-            -lpoppler-qt4 \
-            -lz
+    !win32 {
+    poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
+
+    CONFIG += link_pkgconfig
+    PKGCONFIG += $${poppler_qt_pkg}
+    system(pkg-config --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
+    } else: {
+	!greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
+	   # unix:!macx {
+	   #
+	   #     INCLUDEPATH += /usr/include/poppler/qt4
+	   #     LIBS += -L/usr/lib \
+	   #         -lpoppler-qt4 \
+	   #         -lz
+	   # }
+	   # macx {
+	   #     INCLUDEPATH += /usr/local/include/poppler/qt4
+	   #     LIBS += -L/usr/lib \
+	   #         -L/usr/local/lib \
+	   #         -lpoppler-qt4 \
+	   #         -lz
+	   # }
+	    win32 {
+	       INCLUDEPATH  += ./include_win32
+	       LIBS += ./zlib1.dll \
+		   ./libpoppler-qt4.dll \
+
+	       DEFINES += HAS_POPPLER_24
+	    }
+	  }else:{ # Qt5
+	    #unix:!macx {
+	    #
+	#	INCLUDEPATH += /usr/include/poppler/qt5
+	 #       LIBS += -L/usr/lib \
+	#	     -L/usr/include/poppler/lib \
+	 #           -lpoppler-qt5 \
+	  #          -lz
+	   # }
+	    #macx {
+	    #    INCLUDEPATH += /usr/local/include/poppler/qt5
+	    #   LIBS += -L/usr/lib \
+	    #        -L/usr/local/lib \
+	    #       -lpoppler-qt5 \
+	    #        -lz
+	    #}
+	    win32 {
+		INCLUDEPATH  += ./include_win32_qt5
+		LIBS += ./zlib1.dll \
+			./libpoppler-qt5.dll
+
+		DEFINES += HAS_POPPLER_24
+	    }
+	}
     }
-    macx {
-        INCLUDEPATH += /usr/local/include/poppler/qt4
-        LIBS += -L/usr/lib \
-            -L/usr/local/lib \
-            -lpoppler-qt4 \
-            -lz
-    }
-    win32 {
-	INCLUDEPATH  += ./include_win32
-	LIBS += ./zlib1.dll \
-	    ./libpoppler-qt4.dll \
-    }
-  }else:{ # Qt5
-    unix:!macx {
-    
-	INCLUDEPATH += /home/sdm/Dokumente/Programmieren/poppler/include/poppler/qt5
-        LIBS += -L/usr/lib \
-	     -L/home/sdm/Dokumente/Programmieren/poppler/lib \
-            -lpoppler-qt5 \
-            -lz
-    }
-    macx {
-        INCLUDEPATH += /usr/local/include/poppler/qt5
-        LIBS += -L/usr/lib \
-            -L/usr/local/lib \
-            -lpoppler-qt5 \
-            -lz
-    }
-    win32 {
-	INCLUDEPATH  += ./include_win32
-	LIBS += ./zlib1.dll \
-	    ./libpoppler-qt5.dll \
-    }
-  }
 }
 !isEmpty(NO_POPPLER_PREVIEW) {
     DEFINES += NO_POPPLER_PREVIEW

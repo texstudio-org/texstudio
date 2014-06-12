@@ -14,14 +14,23 @@
    <string>Configure TeXstudio</string>
   </property>
   <layout class="QGridLayout">
+   <property name="leftMargin">
+    <number>9</number>
+   </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
+   <property name="rightMargin">
+    <number>9</number>
+   </property>
+   <property name="bottomMargin">
+    <number>9</number>
+   </property>
    <property name="horizontalSpacing">
     <number>18</number>
    </property>
    <property name="verticalSpacing">
     <number>6</number>
-   </property>
-   <property name="margin">
-    <number>9</number>
    </property>
    <item row="0" column="0" rowspan="2">
     <widget class="QListWidget" name="contentsWidget">
@@ -51,6 +60,71 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="5">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+     <property name="text">
+      <string>Show Advanced Options</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="1" rowspan="2" colspan="5">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
@@ -66,14 +140,23 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -89,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>592</width>
-            <height>638</height>
+            <width>479</width>
+            <height>550</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -571,7 +654,16 @@
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -647,7 +739,16 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -795,8 +896,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>217</width>
-               <height>94</height>
+               <width>193</width>
+               <height>76</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -914,7 +1015,16 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
      </widget>
      <widget class="QWidget" name="pageShortcuts">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -975,7 +1085,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageLatexMenus">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1024,7 +1143,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageToolbars">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1125,7 +1253,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageEditor">
       <layout class="QGridLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <property name="spacing">
@@ -1150,6 +1287,120 @@ Then you can select a new shortcut by one of the following ways:
           <string>Editor</string>
          </property>
          <layout class="QGridLayout">
+          <item row="9" column="0">
+           <widget class="QLabel" name="label_39">
+            <property name="text">
+             <string>Replace Double Quotes:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0">
+           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Inline Checking:</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelEncoding">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Default Font Encoding:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0" colspan="3">
+           <widget class="QCheckBox" name="checkBoxAutoLoad">
+            <property name="text">
+             <string>Automatically load included files</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Indentation Mode:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" colspan="4">
+           <widget class="QCheckBox" name="checkBoxFolding">
+            <property name="text">
+             <string>Folding</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFamily">
+            <property name="text">
+             <string>Font Family:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="2" colspan="3">
+           <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
+            <property name="text">
+             <string>Hide grammar errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
+            <property name="text">
+             <string>Hide spelling errors in non-text environments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_65">
+            <property name="text">
+             <string>Automatic Encoding Detection:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxEncoding"/>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromLatex">
+            <property name="text">
+             <string>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromChars">
+            <property name="toolTip">
+             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
+            </property>
+            <property name="text">
+             <string>Analyze Characters</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxFont">
             <property name="editable">
@@ -1165,38 +1416,6 @@ Then you can select a new shortcut by one of the following ways:
             <property name="value">
              <number>12</number>
             </property>
-           </widget>
-          </item>
-          <item row="7" column="1" colspan="4">
-           <widget class="QComboBox" name="comboBoxAutoIndent">
-            <property name="advancedOption" stdset="0">
-             <bool>false</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Ignore Indentation</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Keep Indentation</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Indent and Unindent Automatically</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Keep Indentation With Spaces Only</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Indent and Unindent Automatically With Spaces Only</string>
-             </property>
-            </item>
            </widget>
           </item>
           <item row="2" column="1" colspan="4">
@@ -1218,7 +1437,75 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSize">
+            <property name="text">
+             <string>Font Size:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Line Spacing:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item row="9" column="1" colspan="4">
+           <widget class="QComboBox" name="comboBoxReplaceQuotes">
+            <item>
+             <property name="text">
+              <string>No Replacement</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>English Quotes:  `` ''</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>French Quotes:  &quot;&lt; &quot;&gt;</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>German Quotes:  &quot;` &quot;'</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>French Quotes (babel): \og \fg{}</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Reverse French Quotes: &quot;&gt; &quot;&lt;</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Package csquotes: \enquote{  }</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>English Quotes (unicode): “ ”</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxShowOnlyMonospacedFonts">
+            <property name="text">
+             <string>Show Only Monospaced Fonts</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1" colspan="4">
            <widget class="QGroupBox" name="groupBoxInlineChecking">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -1275,185 +1562,32 @@ Then you can select a new shortcut by one of the following ways:
             </layout>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelSize">
-            <property name="text">
-             <string>Font Size:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Line Spacing:</string>
-            </property>
+          <item row="7" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
-           </widget>
-          </item>
-          <item row="8" column="1" colspan="4">
-           <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
-              <string>No Replacement</string>
+              <string>Ignore Indentation</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>English Quotes:  `` ''</string>
+              <string>Keep Indentation</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>French Quotes:  &quot;&lt; &quot;&gt;</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>German Quotes:  &quot;` &quot;'</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>French Quotes (babel): \og \fg{}</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Reverse French Quotes: &quot;&gt; &quot;&lt;</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Package csquotes: \enquote{  }</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>English Quotes (unicode): “ ”</string>
+              <string>Indent and Unindent Automatically</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="0" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxShowOnlyMonospacedFonts">
+          <item row="7" column="3">
+           <widget class="QCheckBox" name="checkBoxReplaceTabByWhitespace">
             <property name="text">
-             <string>Show Only Monospaced Fonts</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label_39">
-            <property name="text">
-             <string>Replace Double Quotes:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <widget class="QCheckBox" name="checkBoxRealTimeCheck">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Inline Checking:</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelEncoding">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>Default Font Encoding:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0" colspan="3">
-           <widget class="QCheckBox" name="checkBoxAutoLoad">
-            <property name="text">
-             <string>Automatically load included files</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_30">
-            <property name="text">
-             <string>Indentation Mode:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" colspan="4">
-           <widget class="QCheckBox" name="checkBoxFolding">
-            <property name="text">
-             <string>Folding</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelFamily">
-            <property name="text">
-             <string>Font Family:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="2" colspan="3">
-           <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
-            <property name="text">
-             <string>Hide grammar errors in non-text environments</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
-            <property name="text">
-             <string>Hide spelling errors in non-text environments</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_65">
-            <property name="text">
-             <string>Automatic Encoding Detection:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxEncoding"/>
-          </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromLatex">
-            <property name="text">
-             <string>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromChars">
-            <property name="toolTip">
-             <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
-            </property>
-            <property name="text">
-             <string>Analyze Characters</string>
+             <string>Replace Tab by Whitespace</string>
             </property>
            </widget>
           </item>
@@ -1464,7 +1598,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageAdvEditor">
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -1480,8 +1623,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>822</width>
-            <height>1137</height>
+            <width>863</width>
+            <height>1043</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1680,7 +1823,14 @@ Then you can select a new shortcut by one of the following ways:
               <bool>false</bool>
              </property>
              <layout class="QGridLayout" columnstretch="0,1,1,1">
-              <item row="7" column="0">
+              <item row="6" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
+                <property name="text">
+                 <string>Overwrite Opening Bracket Followed by a Placeholder</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
                <widget class="QLabel" name="label_23">
                 <property name="text">
                  <string>Maximal Characters:</string>
@@ -1697,7 +1847,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
+              <item row="11" column="0">
                <widget class="QLabel" name="label_24">
                 <property name="text">
                  <string>Auto Save All Files:</string>
@@ -1721,7 +1871,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="7" column="1">
+              <item row="9" column="1">
                <widget class="QSpinBox" name="spinBoxWrapLineWidth">
                 <property name="minimum">
                  <number>20</number>
@@ -1731,7 +1881,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="9" column="1">
+              <item row="11" column="1">
                <widget class="QComboBox" name="comboBoxAutoSave">
                 <item>
                  <property name="text">
@@ -1760,7 +1910,7 @@ Then you can select a new shortcut by one of the following ways:
                 </item>
                </widget>
               </item>
-              <item row="6" column="0">
+              <item row="8" column="0">
                <widget class="QLabel" name="label_41">
                 <property name="text">
                  <string>Line Wrapping:</string>
@@ -1781,7 +1931,7 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="11" column="2">
+              <item row="13" column="2">
                <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
                 <property name="text">
                  <string>Disable key 'Esc' to close fullscreen-mode</string>
@@ -1795,21 +1945,21 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="10" column="0" colspan="4">
+              <item row="12" column="0" colspan="4">
                <widget class="QCheckBox" name="checkBoxSilentReload">
                 <property name="text">
                  <string>Silently reload saved files on external changes (discards undo/redo stack)</string>
                 </property>
                </widget>
               </item>
-              <item row="12" column="2">
+              <item row="14" column="2">
                <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
                 <property name="text">
                  <string>Go to error when displaying log</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1" colspan="2">
+              <item row="8" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxLineWrap">
                 <item>
                  <property name="text">
@@ -1833,7 +1983,7 @@ Then you can select a new shortcut by one of the following ways:
                 </item>
                </widget>
               </item>
-              <item row="11" column="0">
+              <item row="13" column="0">
                <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
                 <property name="toolTip">
                  <string>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</string>
@@ -1843,10 +1993,17 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="12" column="0">
+              <item row="14" column="0">
                <widget class="QCheckBox" name="checkBoxShowLogMarkersWhenClickingLogEntry">
                 <property name="text">
                  <string>Show log markers when clicking log entry</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
+                <property name="text">
+                 <string>Overwrite Closing Bracket Following a Placeholder</string>
                 </property>
                </widget>
               </item>
@@ -2121,7 +2278,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageSyntaxHighlighting">
       <layout class="QVBoxLayout" name="verticalLayout_7">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2153,7 +2319,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageCustomHighlighting">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2262,7 +2437,16 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageCompletion">
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2537,7 +2721,16 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageGrammar">
       <layout class="QVBoxLayout" name="verticalLayout_6">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -2553,8 +2746,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>377</width>
-            <height>528</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -2894,7 +3087,16 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pagePreview">
       <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -3111,6 +3313,11 @@ them here.</string>
               <string>Scaled Size</string>
              </property>
             </item>
+            <item>
+             <property name="text">
+              <string>Fit to Text Width</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="1" column="0">
@@ -3268,7 +3475,7 @@ them here.</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="11" column="0">
            <widget class="QCheckBox" name="autoHideToolbars">
             <property name="text">
              <string>Auto-hide Toolbars in Embedded Mode</string>
@@ -3301,6 +3508,44 @@ them here.</string>
             </property>
            </widget>
           </item>
+          <item row="10" column="0">
+           <widget class="QLabel" name="label_69">
+            <property name="text">
+             <string>Load Strategy:</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="1">
+           <widget class="QComboBox" name="comboBoxPDFLoadStrategy">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="currentIndex">
+             <number>2</number>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Buffered</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Direct</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Hybrid</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -3321,7 +3566,16 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageSVN">
       <layout class="QVBoxLayout">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -3384,62 +3638,6 @@ them here.</string>
        </item>
       </layout>
      </widget>
-    </widget>
-   </item>
-   <item row="2" column="5">
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>407</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
-        <string>OK</string>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-     <property name="text">
-      <string>Show Advanced Options</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
     </widget>
    </item>
   </layout>

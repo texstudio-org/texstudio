@@ -10,6 +10,7 @@ struct PDFDocumentConfig{
 	QByteArray windowState;
 
 	int cacheSizeMB;
+	int loadStrategy;
 
 	int dpi;
 	int scaleOption;

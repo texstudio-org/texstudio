@@ -21,6 +21,7 @@ void TableManipulationTest::splitColDef_data(){
 	QTest::newRow("supportedChars") << "lcrsSp" << "l-c-r-s-S-p";
 	QTest::newRow("atOperator") << "l@{someText}r" << "l-@{someText}r";
 	QTest::newRow("repetion") << "*{3}{lr}" << "l-r-l-r-l-r";
+    QTest::newRow("repetion2") << "l|*{3}{c}" << "l-|c-c-c";
 	QTest::newRow("block") << "p{width}l" << "p{width}-l";
 	QTest::newRow("option") << "rs[key=val]l" << "r-s[key=val]-l";
 }

@@ -12,8 +12,8 @@
 \fcolorbox{name1}{name2}{text}
 \fcolorbox[model]{specification1}{specification2}{text}
 \graphicspath{dir-list}
-\includegraphics*[key val list]{file}
-\includegraphics[key val list]{file}
+\includegraphics*[graphicx keys]{file}
+\includegraphics[graphicx keys]{file}
 \pagecolor{name}
 \pagecolor[model]{specification}
 \reflectbox{text}
@@ -25,3 +25,34 @@
 \setkeys{Gin}{key val}
 \textcolor{name}{text}
 \textcolor[model]{specification}{text}
+#keyvals:\includegraphics
+width=
+height=
+bb=
+bbllx=
+bbly=
+bburx=
+bbury=
+natwidth=
+natheight=
+hiresbb#true,false
+angle=
+origin=
+trim=
+viewport=
+totalheight=
+scale=
+clip#true,false
+draft#true,false
+type=
+ext=
+read=
+command=
+keepaspectratio
+#endkeyvals
+#keyvals:\rotatebox
+origin=
+x=
+y=
+units=
+#endkeyvals

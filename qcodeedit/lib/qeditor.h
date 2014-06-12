@@ -109,8 +109,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			BidiVisualColumnMode= 0x10000000,
 
 			ShowPlaceholders = 0x20000000,
-
-			SilentReloadOnExternalChanges = 0x40000000,
+			OverwriteOpeningBracketFollowedByPlaceholder = 0x40000000,
+			OverwriteClosingBracketFollowingPlaceholder = 0x80000000,
 
 			Accessible		= 0xfffff000
 		};
@@ -278,8 +278,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		int wrapWidth() const;
 
-		bool displayModifyTime();
+		bool displayModifyTime() const;
 		void setDisplayModifyTime(bool flag) {mDisplayModifyTime=flag;}
+
+		bool silentReloadOnExternalChanges() const {return mSilentReloadOnExternalChanges;}
+		void setSilentReloadOnExternalChanges(bool flag) {mSilentReloadOnExternalChanges=flag;}
+
 		inline int horizontalOffset() const
         {
 #if QT_VERSION >= 0x050000 && defined Q_OS_MAC
@@ -643,6 +647,7 @@ public slots:
 		QBasicTimer m_blink, m_click, m_drag;
 
 		bool mDisplayModifyTime;
+		bool mSilentReloadOnExternalChanges;
 		
 		static QReliableFileWatch* watcher();
 		

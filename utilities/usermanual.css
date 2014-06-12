@@ -9,10 +9,13 @@ a:visited { color: #672967; text-decoration: none }
 
 h1, h2, h3, h4, h5, h6  {
 	font: bold 120% 'century gothic', 'URW Gothic L', arial, sans-serif;
-	color: #ffffff;
-	background: #3F5881;
 	margin: 30px 0 15px 0;
 	padding: 5px;
+}
+
+h1, h2, h3 {
+	color: #ffffff;
+	background: #3F5881;
 }
 
 h1 {
@@ -23,6 +26,10 @@ h2 {margin-left: 0.5em;}
 
 h3 { 
 	background: #5F6B7F;
+	margin-left: 1em;
+}
+
+h4 {
 	margin-left: 1em;
 }
 

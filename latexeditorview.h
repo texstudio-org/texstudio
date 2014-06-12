@@ -136,6 +136,15 @@ public:
         latexPackageList=lst;
     }
 
+    LatexParser lp;
+
+    QString getSearchText();
+    QString getReplaceText();
+    bool getSearchIsCase();
+    bool getSearchIsRegExp();
+    bool getSearchIsWords();
+
+
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
 	*statusPanelAction, *searchReplacePanelAction, *gotoLinePanelAction;
@@ -182,7 +191,8 @@ private:
 
 	static QStringList checkedLanguages; // languages for online checking
 
-	
+    QMap<QString,QString> mReplacementList;
+
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();
@@ -231,6 +241,9 @@ public slots:
 	void checkForLinkOverlay(QDocumentCursor cursor);
 	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
 	const LinkOverlay & getLinkOverlay() const { return linkOverlay; }
+
+    void emitColonTyped() {emit colonTyped();}
+
 private:
 	void setLinkOverlay(const LinkOverlay &overlay);
 	void removeLinkOverlay();
@@ -275,6 +288,8 @@ signals:
 	void linesChanged(QString language, const void * doc, const QList<LineInfo>& lines, int firstLineNr);
 	void searchBibtexSection(QString file,QString bibId);
     void openInternalDocViewer(QString package,QString command="");
+
+    void searchExtendToggled(bool toggled);
 private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
 	void foldContextMenuRequested(int lineNumber, QPoint globalPos);

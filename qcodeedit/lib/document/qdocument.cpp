@@ -3104,6 +3104,9 @@ QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 	QTextLayout::FormatRange r;
 	r.start = r.length = -1;
 
+
+	bool skipNormalText = m_doc->formatScheme()->format(0) == QFormat();
+
 	int i = 0;
 
 	//if ( m_cache.isEmpty() )
@@ -3111,8 +3114,9 @@ QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 
 	while ( i < m_cache.count() )
 	{
-		while ( (i < m_cache.count()) && !m_cache[i] )
-			++i;
+		if (skipNormalText)
+			while ( (i < m_cache.count()) && !m_cache[i] )
+				++i;
 
 		if ( i >= m_cache.count() )
 			break;
@@ -6903,7 +6907,7 @@ void QDocumentPrivate::setWidth()
 	}
 }
 
-static const int widthCacheSize = 5;
+// static const int widthCacheSize = 5;  // unused ...
 
 void QDocumentPrivate::adjustWidth(int line)
 {

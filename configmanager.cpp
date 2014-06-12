@@ -112,6 +112,12 @@ void ManagedProperty::writeToObject(QObject* w) const{
 		checkBox->setChecked(*((bool*)storage));
 		return;
 	}
+    QToolButton* toolButton = qobject_cast<QToolButton*>(w);
+    if (toolButton) {
+        Q_ASSERT(type == PT_BOOL);
+        toolButton->setChecked(*((bool*)storage));
+        return;
+    }
 	QLineEdit* edit = qobject_cast<QLineEdit*>(w);
 	if (edit){
 		Q_ASSERT(type == PT_STRING);
@@ -327,17 +333,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
 	managedToolBars.append(ManagedToolBar("Edit", QStringList() << "main/edit/undo" << "main/edit/redo" << "main/edit/copy" << "main/edit/cut" << "main/edit/paste"));
-    //managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/commands/viewlog" << "main/edit2/goto/errorprev" << "main/edit2/goto/errornext"	<< "separator"
-    //                                      << "main/tools/commands/quickbuild" << "main/tools/commands/latex" << "main/tools/commands/viewdvi" << "main/tools/commands/dvi2ps" << "main/tools/commands/viewps" << "main/tools/commands/pdflatex" << "main/tools/commands/viewpdf"));
-    managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/viewlog" << "main/edit2/goto/errorprev" << "main/edit2/goto/errornext"	<< "separator"
-										  << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/stopcompile" << "main/tools/view" ));
-	//managedToolBars.append(ManagedToolBar("Math", QStringList() << "main/math/mathmode" << "main/math/subscript" << "main/math/superscript" << "main/math/frac" << "main/math/dfrac" << "main/math/sqrt" << "separator"
-	//                                      << "tags/brackets/left" << "separator" << "tags/brackets/right"));
+	managedToolBars.append(ManagedToolBar("Tools", QStringList() << "main/tools/quickbuild" << "main/tools/compile" << "main/tools/stopcompile" << "main/tools/view" << "main/tools/viewlog"));
 	managedToolBars.append(ManagedToolBar("Math", QStringList() << "tags/brackets/left" << "separator" << "tags/brackets/right"));
-	//managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" <<
-	//                                      "main/latex/fontsizes" << "separator" <<
-	//                                      "main/latex/fontstyles/textbf" << "main/latex/fontstyles/textit" << "main/latex/fontstyles/underline" << "main/latex/environment/flushleft" << "main/latex/environment/center" << "main/latex/environment/flushright"
-	//                                      << "separator" << "main/latex/spacing/newline"));
 	managedToolBars.append(ManagedToolBar("Format", QStringList() << "main/latex/sectioning" << "separator" << "main/latex/references" <<"separator" << "main/latex/fontsizes"));
 	managedToolBars.append(ManagedToolBar("Table", QStringList() << "main/latex/tabularmanipulation/addRow" << "main/latex/tabularmanipulation/addColumn" << "main/latex/tabularmanipulation/pasteColumn" << "main/latex/tabularmanipulation/removeRow" << "main/latex/tabularmanipulation/removeColumn" << "main/latex/tabularmanipulation/cutColumn" << "main/latex/tabularmanipulation/alignColumns"));
 	managedToolBars.append(ManagedToolBar("Diff", QStringList() << "main/file/svn/prevdiff" << "main/file/svn/nextdiff"  ));
@@ -378,9 +375,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
-    registerOption("Files/Autoload",&autoLoadChildren,false, &pseudoDialog->checkBoxAutoLoad);
-	registerOption("Files/Bib Paths", &additionalBibPaths, "", &pseudoDialog->lineEditPathBib);
-	registerOption("Files/Image Paths", &additionalImagePaths, "", &pseudoDialog->lineEditPathImages);
+	registerOption("Files/Autoload",&autoLoadChildren,false, &pseudoDialog->checkBoxAutoLoad);
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	registerOption("Files/Bib Paths", &additionalBibPaths, env.value("BIBINPUTS", ""), &pseudoDialog->lineEditPathBib);
+	registerOption("Files/Image Paths", &additionalImagePaths, env.value("TEXINPUTS", ""), &pseudoDialog->lineEditPathImages);
 
     registerOption("Editor/UseEscForClosingFullscreen",&disableEscForClosingFullscreen,false,&pseudoDialog->checkBoxDisableEscForClosingfullscreen);
 	registerOption("Editor/GoToErrorWhenDisplayingLog",&goToErrorWhenDisplayingLog ,true, &pseudoDialog->checkBoxGoToErrorWhenDisplayingLog);
@@ -407,8 +405,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Cursor Surrounding Lines", &editorConfig->cursorSurroundLines, 5);
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
-	registerOption("Editor/Weak Indent", &editorConfig->weakindent, true);
-	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false);
+	registerOption("Editor/Weak Indent", &editorConfig->weakindent, false);
+	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false, &pseudoDialog->checkBoxReplaceTabByWhitespace);
 	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
 	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
 	registerOption("Editor/Show Cursor State", &editorConfig->showcursorstate, true, &pseudoDialog->checkBoxState);
@@ -426,6 +424,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true , &pseudoDialog->checkBoxToolTipHelp2);
 	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true , &pseudoDialog->checkBoxToolTipPreview);
 	registerOption("Editor/MaxImageTooltipWidth", &editorConfig->maxImageTooltipWidth, 400);
+	registerOption("Editor/ContextMenuKeyboardModifiers", &editorConfig->contextMenuKeyboardModifiers, Qt::ShiftModifier);
 
 	registerOption("Editor/TexDoc Help Internal", &editorConfig->texdocHelpInInternalViewer, true , &pseudoDialog->checkBoxTexDocInternal);
 	registerOption("Editor/SilentReload", &editorConfig->silentReload, false, &pseudoDialog->checkBoxSilentReload);
@@ -466,6 +465,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	registerOption("Editor/Auto Insert LRM", &editorConfig->autoInsertLRM, false,&pseudoDialog->checkBoxAutoLRM);
 	registerOption("Editor/Visual Column Mode", &editorConfig->visualColumnMode, true, &pseudoDialog->checkBoxVisualColumnMode);
+	registerOption("Editor/Overwrite Opening Bracket Followed By Placeholder", &editorConfig->overwriteOpeningBracketFollowedByPlaceholder, true, &pseudoDialog->checkOverwriteOpeningBracketFollowedByPlaceholder);
+	registerOption("Editor/Overwrite Closing Bracket Following Placeholder", &editorConfig->overwriteClosingBracketFollowingPlaceholder, true, &pseudoDialog->checkOverwriteClosingBracketFollowingPlaceholder);
 
 	//table autoformating
 	registerOption("TableAutoformat/Special Commands", &tableAutoFormatSpecialCommands, "\\hline,\\cline,\\intertext,\\shortintertext,\\toprule,\\midrule,\\bottomrule", &pseudoDialog->leTableFormatingSpecialCommands);
@@ -554,6 +555,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
 	
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
+	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);
@@ -872,7 +874,8 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	//editor
 #ifdef Q_OS_WIN32
 	if (editorConfig->fontFamily.isEmpty()){
-		if (xf.contains("Courier New",Qt::CaseInsensitive)) editorConfig->fontFamily="Courier New";
+		if (xf.contains("Consolas",Qt::CaseInsensitive)) editorConfig->fontFamily="Consolas";
+		else if (xf.contains("Courier New",Qt::CaseInsensitive)) editorConfig->fontFamily="Courier New";
 		else editorConfig->fontFamily=qApp->font().family();
 	}
 	if (editorConfig->fontSize==-1)
@@ -1038,7 +1041,6 @@ bool ConfigManager::execConfigDialog() {
 	if (editorConfig->autoindent && editorConfig->weakindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(1);
 	else if (editorConfig->autoindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(2);
 	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
-	if(confDlg->ui.comboBoxAutoIndent->currentIndex()>0 && editorConfig->indentWithSpaces) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(confDlg->ui.comboBoxAutoIndent->currentIndex()+2);
 	
 	//completion
 	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
@@ -1279,7 +1281,6 @@ bool ConfigManager::execConfigDialog() {
 		//editor
 		editorConfig->autoindent=confDlg->ui.comboBoxAutoIndent->currentIndex()!=0;
 		editorConfig->weakindent=(confDlg->ui.comboBoxAutoIndent->currentIndex()&1)==1;
-		editorConfig->indentWithSpaces=confDlg->ui.comboBoxAutoIndent->currentIndex()>2;
 		switch (confDlg->ui.comboboxLineNumbers->currentIndex()) {
 		case 0:
 			editorConfig->showlinemultiples=0;
@@ -2403,7 +2404,7 @@ void ConfigManager::addCommand(){
 	QStringList currentUserCmdIDs;
 	for (int i=0; i<userGridLayout->count(); i++) {
 		QWidget *nameWidget = userGridLayout->itemAt(i)->widget();
-		if (!nameWidget || !nameWidget->property(PROPERTY_WIDGET_TYPE).toInt() == CG_ID) continue;
+        if (!nameWidget || !(nameWidget->property(PROPERTY_WIDGET_TYPE).toInt() == CG_ID)) continue;
 		currentUserCmdIDs << getCmdID(nameWidget);
 	}
 	for (int i=0; i<currentUserCmdIDs.count()+1; i++) {

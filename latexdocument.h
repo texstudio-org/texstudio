@@ -208,6 +208,8 @@ private:
     QSet<QString> mCWLFiles;
 	
 	QString mSpellingDictName;
+
+    QString mClassOptions; // store class options, if they are defined in this doc
 	
 	QDocumentLineHandle *mAppendixLine;
 	

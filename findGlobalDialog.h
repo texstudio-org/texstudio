@@ -21,6 +21,7 @@ public:
 
 	void setSearchWord(QString word);
 	QString getSearchWord();
+    QString getReplaceWord();
 	bool isWords();
 	bool isCase();
 	bool isRegExp();

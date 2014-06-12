@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1197</width>
+    <width>1179</width>
     <height>600</height>
    </rect>
   </property>
@@ -60,6 +60,7 @@
    <addaction name="separator"/>
    <addaction name="actionActual_Size"/>
    <addaction name="actionFit_to_Width"/>
+   <addaction name="actionFit_to_Text_Width"/>
    <addaction name="actionFit_to_Window"/>
    <addaction name="separator"/>
    <addaction name="actionClose"/>
@@ -88,7 +89,7 @@
     <string>&amp;Previous Page</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+PgUp</string>
+    <string notr="true">PgUp</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -99,7 +100,7 @@
     <string>&amp;Next Page</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+PgDown</string>
+    <string notr="true">PgDown</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
@@ -708,6 +709,9 @@
    <property name="toolTip">
     <string>Previously shown page</string>
    </property>
+   <property name="shortcut">
+    <string>Alt+Left</string>
+   </property>
   </action>
   <action name="actionForward">
    <property name="text">
@@ -715,6 +719,9 @@
    </property>
    <property name="toolTip">
     <string>Next shown page</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Right</string>
    </property>
   </action>
   <action name="actionToggleEmbedded">
@@ -746,6 +753,20 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+Left</string>
+   </property>
+  </action>
+  <action name="actionFit_to_Text_Width">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fit to &amp;Text Width</string>
+   </property>
+   <property name="toolTip">
+    <string>Fit to Text Width</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+4</string>
    </property>
   </action>
  </widget>

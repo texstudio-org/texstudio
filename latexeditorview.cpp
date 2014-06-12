@@ -164,6 +164,19 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 			return true;
 		if (autoInsertLRM(event, editor))
 			return true;
+		if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
+			// if cursor is at the end of a placeholder, remove that placeholder
+			int phId = editor->currentPlaceHolder();
+			if (phId >= 0) {
+				PlaceHolder ph = editor->getPlaceHolder(phId);
+				if (editor->cursor().lineNumber() == ph.cursor.lineNumber() &&
+					editor->cursor().columnNumber() == ph.cursor.columnNumber())
+				{
+					editor->removePlaceHolder(phId);
+					return true;
+				}
+			}
+		}
 	} else {
 		if (event->key() == Qt::Key_Control) {
 			editor->setMouseTracking(true);
@@ -275,7 +288,7 @@ bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *edi
 }
 
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor) {
-	if (!contextMenu) contextMenu=new QMenu(0);
+    if (!contextMenu) contextMenu=new QMenu(0);
 	contextMenu->clear();
 	QDocumentCursor cursor;
 	if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
@@ -360,7 +373,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					wordSelection.movePosition(fr.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 					editor->setCursor(wordSelection);
 					
-					if (event->modifiers() & Qt::ShiftModifier) {
+					if (event->modifiers() & editorViewConfig->contextMenuKeyboardModifiers) {
 						QAction* aReplacement=new QAction(LatexEditorView::tr("shift pressed => suggestions hidden"),contextMenu);
 						edView->connect(aReplacement,SIGNAL(triggered()),edView,SLOT(spellCheckingListSuggestions()));
 						contextMenu->addAction(aReplacement);
@@ -522,6 +535,8 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		curPoint.ry() += editor->document()->getLineSpacing();
 		contextMenu->exec(editor->mapToGlobal(editor->mapFromContents(curPoint)));
 	}
+    event->accept();
+
 	return true;
 }
 
@@ -580,6 +595,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	searchReplacePanel->setFont(QApplication::font());
 	searchReplacePanelAction=codeeditor->addPanel(searchReplacePanel, QCodeEdit::South,false);
 	searchReplacePanel->hide();
+    connect(searchReplacePanel,SIGNAL(extendToggled(bool)),this,SIGNAL(searchExtendToggled(bool)));
 	
 	
 	connect(lineMarkPanel,SIGNAL(lineClicked(int)),this,SLOT(lineMarkClicked(int)));
@@ -613,6 +629,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	SynChecker.setLtxCommands(LatexParser::getInstance());
 	SynChecker.start();
     unclosedEnv.id=-1;
+    lp=LatexParser::getInstance();
 	
 	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int)), Qt::QueuedConnection);
 }
@@ -635,28 +652,47 @@ void LatexEditorView::updateLtxCommands(bool updateAll){
 	if(!document->parent)
 		return;
 	
-	LatexParser ltxCommands=LatexParser::getInstance();
+    //LatexParser ltxCommands=LatexParser::getInstance();
+    lp.init();
+    lp.append(LatexParser::getInstance()); // append commands set in config
     QList<LatexDocument *>listOfDocs=document->getListOfDocs();
     foreach(const LatexDocument *elem,listOfDocs){
-		ltxCommands.append(elem->ltxCommands);
+        lp.append(elem->ltxCommands);
 	}
+
 
     if(updateAll){
         foreach(const LatexDocument *elem,listOfDocs){
 
             LatexEditorView *view=elem->getEditorView();
             if(view){
-                view->setLtxCommands(ltxCommands);
+                view->setLtxCommands(lp);
                 view->reCheckSyntax();
             }
         }
     }else{
-        SynChecker.setLtxCommands(ltxCommands);
+        SynChecker.setLtxCommands(lp);
     }
+
 }
 
 void LatexEditorView::setLtxCommands(const LatexParser& cmds){
     SynChecker.setLtxCommands(cmds);
+
+    QMap<QString,QString> replacementList;
+    bool differenceExists=false;
+    foreach(QString elem,cmds.possibleCommands["%replace"].values()){
+        int i=elem.indexOf(" ");
+        if(i>0){
+            replacementList.insert(elem.left(i),elem.mid(i+1));
+            if(mReplacementList.value(elem.left(i))!=elem.mid(i+1))
+                differenceExists=true;
+        }
+    }
+    if(differenceExists || replacementList.count()!=mReplacementList.count()){
+        mReplacementList=replacementList;
+        documentContentChanged(0,editor->document()->lines()); //force complete spellcheck
+    }
 }
 
 void LatexEditorView::paste(){
@@ -701,7 +737,7 @@ void LatexEditorView::insertMacro(QString macro, const QRegExp& trigger, int tri
 		return;
 	} 
 	if (!this) return;
-	if (macro.size() > 1 && macro.left(1)=="%" && macro != "%%") {
+	if (macro.size() > 1 && macro.startsWith("%") && !macro.startsWith("%%")) {
 		macro=macro.remove(0,1);
 		CodeSnippet s("\\begin{"+macro+"}");
 		s.insert(editor);
@@ -1247,10 +1283,12 @@ void LatexEditorView::updateSettings(){
 	editor->setFlag(QEditor::SmoothScrolling, config->smoothScrolling);
 	editor->setFlag(QEditor::AutoInsertLRM, config->autoInsertLRM);
 	editor->setFlag(QEditor::BidiVisualColumnMode, config->visualColumnMode);
+	editor->setFlag(QEditor::OverwriteOpeningBracketFollowedByPlaceholder, config->overwriteOpeningBracketFollowedByPlaceholder);
+	editor->setFlag(QEditor::OverwriteClosingBracketFollowingPlaceholder, config->overwriteClosingBracketFollowingPlaceholder);
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);
 	editor->setFlag(QEditor::ShowPlaceholders, config->showPlaceholders);
-	editor->setFlag(QEditor::SilentReloadOnExternalChanges, config->silentReload);	
+	editor->setSilentReloadOnExternalChanges(config->silentReload);
 	editor->setCursorSurroundingLines(config->cursorSurroundLines);
 	editor->setCursorBold(config->boldCursor);
 	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
@@ -1630,16 +1668,22 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		QString lineText = line.text();
 		int status;
 		const LatexParser& lp = LatexParser::getInstance();
-		LatexReader lr(LatexParser::getInstance(), lineText);
+        LatexReader lr(LatexParser::getInstance(), lineText, mReplacementList);
 		while ((status=lr.nextWord(false))){
 			// hack to color the environment given in \begin{environment}...
-			if (lp.structureCommands.contains(lr.lastCommand)){
+			if (lp.structureCommandLevel(lr.lastCommand) >= 0){
 				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 				//QString secName=extractSectionName(lineText.mid(lr.lr.wordStartIndex),true);
 				//line.addOverlay(QFormatRange(lr.wordStartIndex,secName.length(),structureFormat));
 				QStringList result;
 				QList<int> starts;
-				LatexParser::resolveCommandOptions(lineText,lr.wordStartIndex-1,result,&starts);
+
+				int optStart = lr.wordStartIndex-1;
+				QString stopChars = "{["; // find start of option (wordStartIndex is already inside)
+				for (; optStart > 0; optStart--) {
+					if (stopChars.contains(lineText.at(optStart))) break;
+				}
+				LatexParser::resolveCommandOptions(lineText,optStart,result,&starts);
 				for(int j=0;j<starts.count() && j<2;j++){
 					QString text=result.at(j);
 					line.addOverlay(QFormatRange(starts.at(j)+1,text.length()-2,structureFormat));
@@ -1659,6 +1703,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
 				if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 				QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
+				if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
 				int cnt=document->countLabels(ref);
 				if(cnt>1) {
 					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
@@ -1680,17 +1725,18 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				addedOverlayReference = true;
 			}
 			if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
-					QStringList citations=lr.word.split(",");
-					int pos=lr.wordStartIndex;
-					foreach ( const QString &cit, citations) {
-						QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
-						//check and highlight
-                        if(document->bibIdValid(rcit))
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
-						else
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
-						pos+=cit.length()+1;
-					}
+				if (lr.word.contains('#')) continue;  // don't highlight cite in definitions e.g. in \newcommand*{\MyCite}[1]{see~\cite{#1}}
+				QStringList citations=lr.word.split(",");
+				int pos=lr.wordStartIndex;
+				foreach ( const QString &cit, citations) {
+					QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
+					//check and highlight
+					if(document->bibIdValid(rcit))
+						line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
+					else
+						line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
+					pos+=cit.length()+1;
+				}
 				addedOverlayCitation = true;
 			}
 			if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
@@ -2603,5 +2649,26 @@ QString LinkOverlay::text() const {
 	if (!isValid()) return QString();
 	return docLine.text().mid(formatRange.offset, formatRange.length);
 }
+
+QString LatexEditorView::getSearchText(){
+    return searchReplacePanel->getSearchText();
+}
+
+QString LatexEditorView::getReplaceText(){
+    return searchReplacePanel->getReplaceText();
+}
+
+bool LatexEditorView::getSearchIsWords(){
+    return searchReplacePanel->getSearchIsWords();
+}
+
+bool LatexEditorView::getSearchIsCase(){
+    return searchReplacePanel->getSearchIsWords();
+}
+
+bool LatexEditorView::getSearchIsRegExp(){
+    return searchReplacePanel->getSearchIsWords();
+}
+
 
 

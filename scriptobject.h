@@ -60,6 +60,7 @@ public slots:
 	void crash_sigfpe();
 	void crash_stack();
 	void crash_loop();
+	void crash_throw();
 	
 	bool hasReadPrivileges();
 	bool hasWritePrivileges();

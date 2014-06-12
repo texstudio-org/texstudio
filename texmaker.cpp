@@ -94,6 +94,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
     recheckLabels=true;
     findDlg=0;
 	recentSessionList = 0;
+	EditorTabs = 0;
 	
 	ReadSettings();
 
@@ -107,7 +108,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	static int crashHandlerType = 1;
 	configManager.registerOption("Crash Handler Type", &crashHandlerType, 1);
 
-    registerCrashHandler(crashHandlerType);
+	initCrashHandler(crashHandlerType);
+
 	QTimer * t  = new QTimer(this);
 	connect(t, SIGNAL(timeout()), SLOT(iamalive()));
 	t->start(9500);
@@ -156,24 +158,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	QString qxsPath=QFileInfo(findResourceFile("qxs/tex.qnfa")).path();
 	m_languages = new QLanguageFactory(m_formats, this);
 	m_languages->addDefinitionPath(qxsPath);
-	
-	// custom evironments<
-	if(!configManager.customEnvironments.isEmpty()){
-		QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
-		
-		QFile f(findResourceFile("qxs/tex.qnfa"));
-		QDomDocument doc;
-		doc.setContent(&f);
-		
-		QMap<QString, QVariant>::const_iterator i;
-		for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-			QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-			addEnvironmentToDom(doc,i.key(),mode);
-		}
-		QNFADefinition::load(doc,&m_lang,m_formats);
-		
-		m_languages->addLanguage(m_lang);
-	}
+	m_languages->addDefinitionPath(configManager.configBaseDir + "languages");  // definitions here overwrite previous ones
+
+	// custom evironments & structure commands
+	updateTexQNFA();
 	
 	QLineMarksInfoCenter::instance()->loadMarkTypes(qxsPath+"/marks.qxm");
 	QList<QLineMarkType> &marks = QLineMarksInfoCenter::instance()->markTypes();
@@ -239,6 +227,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	
 	symbolMostused.clear();
 	setupDockWidgets();
+
+    connect(outputView,SIGNAL(updateTheSearch(int)),this,SLOT(updateFindGlobal(int)));
 
 	setMenuBar(new DblClickMenuBar());
 	setupMenus();
@@ -571,6 +561,15 @@ void Texmaker::updateToolBarMenu(const QString& menuName){
 	
 }
 
+// we different native shortcuts on OSX and Win/Linux
+// note: in particular many key combination with arrows are reserved for text navigation in OSX
+// and we already set them in QEditor. Don't overwrite them here.
+#ifdef Q_OS_MAC
+#define MAC_OTHER(shortcutMac, shortcutOther) shortcutMac
+#else
+#define MAC_OTHER(shortcutMac, shortcutOther) shortcutOther
+#endif
+
 void Texmaker::setupMenus() {
 	//This function is called whenever the menu changes (= start and retranslation)
 	//This means if you call it repeatedly with the same language setting it should not change anything
@@ -674,13 +673,13 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
-	newManagedEditorAction(submenu,"find", tr("&Find"), "find", Qt::CTRL+Qt::Key_F);
+	newManagedAction(submenu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
 	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", (QList<QKeySequence>()<< Qt::Key_F3)<<Qt::CTRL+Qt::Key_M);
-	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext");
-	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev");
+	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext", MAC_OTHER(Qt::CTRL+Qt::Key_G, 0));
+	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev", MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_G, 0));
 	newManagedEditorAction(submenu,"findcount",tr("&Count"), "findCount");
 	newManagedEditorAction(submenu,"select",tr("&Select all matches..."), "selectAllMatches");
-	newManagedAction(submenu,"findglobal",tr("Find &Dialog..."), SLOT(editFindGlobal()));
+    //newManagedAction(submenu,"findglobal",tr("Find &Dialog..."), SLOT(editFindGlobal()));
 	submenu->addSeparator();
 	newManagedEditorAction(submenu,"replace",tr("&Replace"), "replacePanel", Qt::CTRL+Qt::Key_R);
 	newManagedEditorAction(submenu,"replacenext",tr("Replace Next"), "replaceNext");
@@ -690,15 +689,15 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("Go to"));
 
-    newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", Qt::CTRL+Qt::Key_G, "goto");
+	newManagedEditorAction(submenu,"line", tr("Line"), "gotoLine", MAC_OTHER(Qt::CTRL+Qt::Key_L, Qt::CTRL+Qt::Key_G), "goto");
 	newManagedEditorAction(submenu,"lastchange",tr("Previous Change"), "jumpChangePositionBackward", Qt::CTRL+Qt::Key_H);
 	newManagedEditorAction(submenu,"nextchange",tr("Next Change"), "jumpChangePositionForward", Qt::CTRL+Qt::SHIFT+Qt::Key_H);
 	submenu->addSeparator();
-	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark",Qt::CTRL+Qt::Key_Up,"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
-	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark",Qt::CTRL+Qt::Key_Down,"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
+	newManagedAction(submenu,"markprev",tr("Previous mark"),"gotoMark", MAC_OTHER(0, Qt::CTRL+Qt::Key_Up),"",QList<QVariant>() << true << -1);//, ":/images/errorprev.png");
+	newManagedAction(submenu,"marknext",tr("Next mark"),"gotoMark", MAC_OTHER(0, Qt::CTRL+Qt::Key_Down),"",QList<QVariant>() << false << -1);//, ":/images/errornext.png");
 	submenu->addSeparator();
-    cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Go Back"), SLOT(goBack()), Qt::ALT+Qt::Key_Left, "back"));
-    cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), Qt::ALT+Qt::Key_Right, "forward"));
+	cursorHistory->setBackAction(newManagedAction(submenu,"goback",tr("Go Back"), SLOT(goBack()), MAC_OTHER(0, Qt::ALT+Qt::Key_Left), "back"));
+	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), MAC_OTHER(0, Qt::ALT+Qt::Key_Right), "forward"));
 	
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
 	for (int i=0; i<=9; i++)
@@ -734,7 +733,7 @@ void Texmaker::setupMenus() {
 	
 	//Edit 2 (for LaTeX related things)
 	menu=newManagedMenu("main/edit2",tr("&Idefix"));
-	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), Qt::ALT+Qt::Key_Delete);
+	newManagedAction(menu,"eraseWord",tr("Erase &Word/Cmd/Env"), SLOT(editEraseWordCmdEnv()), MAC_OTHER(0, Qt::ALT+Qt::Key_Delete));
 	
 	menu->addSeparator();
     newManagedAction(menu,"pasteAsLatex",tr("Pas&te as LaTeX"), SLOT(editPasteLatex()), Qt::CTRL+Qt::SHIFT+Qt::Key_V, "editpaste");
@@ -753,19 +752,25 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "goto",tr("&Go to"));
 	
-    newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Up, "errorprev", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
-    newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",Qt::CTRL+Qt::SHIFT+Qt::Key_Down, "errornext", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"errorprev",tr("Previous Error"),"gotoNearLogEntry",MAC_OTHER(0, Qt::CTRL+Qt::SHIFT+Qt::Key_Up), "errorprev", QList<QVariant>() << LT_ERROR << true << tr("No LaTeX errors detected !"));
+	newManagedAction(submenu,"errornext",tr("Next Error"),"gotoNearLogEntry",MAC_OTHER(0, Qt::CTRL+Qt::SHIFT+Qt::Key_Down), "errornext", QList<QVariant>() << LT_ERROR << false << tr("No LaTeX errors detected !"));
 	newManagedAction(submenu,"warningprev",tr("Previous Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << true << tr("No LaTeX warnings detected !"));//, ":/images/errorprev.png");
 	newManagedAction(submenu,"warningnext",tr("Next Warning"),"gotoNearLogEntry",QKeySequence(),"", QList<QVariant>() << LT_WARNING << false << tr("No LaTeX warnings detected !"));//, ":/images/errornext.png");
-	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Up, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
-	newManagedAction(submenu,"badboxnext",tr("Next Bad Box"),"gotoNearLogEntry",Qt::SHIFT+Qt::ALT+Qt::Key_Down, "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
+	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry", MAC_OTHER(0, Qt::SHIFT+Qt::ALT+Qt::Key_Up), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
+	newManagedAction(submenu,"badboxnext",tr("Next Bad Box"),"gotoNearLogEntry", MAC_OTHER(0, Qt::SHIFT+Qt::ALT+Qt::Key_Down), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
 	submenu->addSeparator();
 
 	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
 #ifdef Q_OS_WIN32
+    QLocale::Language lang;
+#if QT_VERSION < 0x050000
+    lang = QApplication::keyboardInputLocale().language();
+#else
+	lang = QGuiApplication::inputMethod()->locale().language();
+#endif
 	// on win ctrl+alt = altGr, hungarian: altGr+F = [
 	// so we should not use this as shortcut in this special case
-	if (QApplication::keyboardInputLocale().language() == QLocale::Hungarian)
+    if (lang == QLocale::Hungarian)
 		sc = QKeySequence(Qt::CTRL+Qt::ALT+Qt::SHIFT+Qt::Key_F);
 #endif
 	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),sc);
@@ -793,6 +798,7 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu,"reparse",tr("Refresh Structure"),SLOT(updateStructure()));
 	newManagedAction(menu,"removePlaceHolders",tr("Remove Placeholders"),SLOT(editRemovePlaceHolders()),Qt::CTRL+Qt::SHIFT+Qt::Key_K);
+	newManagedAction(menu,"removeCurrentPlaceHolder",tr("Remove Current Placeholder"),SLOT(editRemoveCurrentPlaceHolder()));
 	
 	//tools
 	
@@ -804,6 +810,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "stopcompile", buildManager.stopBuildAction())->setText(buildManager.tr("Stop Compile")); // resetting text necessary for language updates
 	buildManager.stopBuildAction()->setParent(menu);  // actions need to be a child of the menu in order to be configurable in toolbars
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,"viewer")->setData(BuildManager::CMD_VIEW);
+	newManagedAction(menu, "glossary",tr("&Glossary"), SLOT(commandFromAction()), Qt::Key_F10)->setData(BuildManager::CMD_GLOSSARY);
 	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBLIOGRAPHY);
 	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_INDEX);
 
@@ -824,8 +831,13 @@ void Texmaker::setupMenus() {
     newManagedAction(submenu, "viewps",tr("Vie&w PS"), SLOT(commandFromAction()), QKeySequence(), "view-doc-ps")->setData(BuildManager::CMD_VIEW_PS);
     newManagedAction(submenu, "viewpdf",tr("View PD&F"), SLOT(commandFromAction()), QKeySequence(), "view-doc-pdf")->setData(BuildManager::CMD_VIEW_PDF);
 	submenu->addSeparator();
+	newManagedAction(submenu, "bibtex",tr("&Bibtex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBTEX);
+	newManagedAction(submenu, "bibtex8",tr("&Bibtex 8-Bit"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBTEX8);
+	newManagedAction(submenu, "biber",tr("Bibe&r"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBER);
+	submenu->addSeparator();
 	newManagedAction(submenu, "makeindex",tr("&MakeIndex"), SLOT(commandFromAction()))->setData(BuildManager::CMD_MAKEINDEX);
 	newManagedAction(submenu, "texindy",tr("&TexIndy"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_TEXINDY);
+	newManagedAction(submenu, "makeglossaries",tr("&Makeglossaries"), SLOT(commandFromAction()), QKeySequence())->setData(BuildManager::CMD_MAKEGLOSSARIES);
 	submenu->addSeparator();
 	newManagedAction(submenu, "metapost",tr("&MetaPost"), SLOT(commandFromAction()))->setData(BuildManager::CMD_METAPOST);
 	newManagedAction(submenu, "asymptote",tr("&Asymptote"), SLOT(commandFromAction()))->setData(BuildManager::CMD_ASY);
@@ -846,7 +858,10 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "analysetext",tr("A&nalyse Text..."), SLOT(AnalyseText()));
 	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text..."), SLOT(GenerateRandomText()));
 	menu->addSeparator();
-	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
+	act = newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
+#ifndef QT_OS_MAC
+	act->setShortcut(Qt::CTRL+Qt::Key_Colon);
+#endif
 	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 	newManagedAction(menu,"wordrepetions",tr("Find Word Repetitions..."),SLOT(findWordRepetions()));
 	
@@ -1498,6 +1513,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
 	connect(edit, SIGNAL(colonTyped()), this, SLOT(NormalCompletion()));
     connect(edit, SIGNAL(openInternalDocViewer(QString,QString)),this,SLOT(openInternalDocViewer(QString,QString)));
+    connect(edit, SIGNAL(searchExtendToggled(bool)),this,SLOT(searchExtendToggled(bool)));
 
 	connect(edit->editor,SIGNAL(fileReloaded()),this,SLOT(fileReloaded()));
 	connect(edit->editor,SIGNAL(fileInConflict()),this,SLOT(fileInConflict()));
@@ -1633,7 +1649,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 		if(existingView->document->isHidden()){
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap>0);
 			documents.deleteDocument(existingView->document,true);
-            existingView->editor->setFlag(QEditor::SilentReloadOnExternalChanges,existingView->document->remeberAutoReload);
+			existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
 			documents.addDocument(existingView->document,false);
 			EditorTabs->insertEditor(existingView);
 			updateOpenDocumentMenu(false);
@@ -2215,7 +2231,7 @@ void Texmaker::fileSave(const bool saveSilently) {
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
-		if(configManager.autoCheckinAfterSave) {
+        if(configManager.autoCheckinAfterSave && !saveSilently) {
 			checkin(currentEditor()->fileName());
 			if(configManager.svnUndo) currentEditor()->document()->clearUndo();
 		}
@@ -3481,6 +3497,24 @@ void Texmaker::editTextToTitlecase() {
 	m_cursor.endEditBlock();
 }
 
+void Texmaker::editFind(){
+#ifndef NO_POPPLER_PREVIEW
+	QWidget* w = QApplication::focusWidget();
+	while (w && !qobject_cast<PDFDocument*>(w))
+		w = w->parentWidget();
+
+	if (qobject_cast<PDFDocument*>(w)){
+		PDFDocument* focusedPdf = qobject_cast<PDFDocument*>(w);
+		if (focusedPdf->embeddedMode) {
+			focusedPdf->search();
+			return;
+		}
+	}
+#endif
+	if (!currentEditor()) return;
+	currentEditor()->find();
+}
+
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings(bool reread) {
 	QuickDocumentDialog::registerOptions(configManager);
@@ -3519,16 +3553,23 @@ void Texmaker::ReadSettings(bool reread) {
 	
 	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode",false).toBool());
 	
-	latexParser.structureCommands.clear();
-	if(config->value("Structure/Structure Level 1","").toString()==""){
-		latexParser.structureCommands << "\\part" << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection";
-	}else{
-		int i=0;
-		QString elem;
-		while((elem=config->value("Structure/Structure Level "+QString::number(i+1),"").toString())!=""){
-			if (!elem.startsWith("\\")) elem=elem.prepend("\\");
-			latexParser.structureCommands << elem;
-			i++;
+	QList<QStringList> defaults = QList<QStringList>()
+			<< (QStringList() << "\\part")
+			<< (QStringList() << "\\chapter")
+			<< (QStringList() << "\\section")
+			<< (QStringList() << "\\subsection")
+			<< (QStringList() << "\\subsubsection")
+			<< (QStringList() << "\\paragraph");
+	latexParser.structureCommandLists.clear();
+	for (int level=0; level<defaults.length(); level++) {
+		QStringList cmds = config->value("Structure/Structure Level " + QString::number(level+1)).toStringList();
+		if (!cmds.isEmpty()) {
+			for (int i=0; i<cmds.length(); i++) {
+				if (!cmds[i].startsWith("\\")) cmds[i].prepend("\\");
+			}
+			latexParser.structureCommandLists << cmds;
+		} else {
+			latexParser.structureCommandLists << defaults[level];
 		}
 	}
 	
@@ -3853,9 +3894,15 @@ void Texmaker::editRemovePlaceHolders(){
 	currentEditor()->viewport()->update();
 }
 
+void Texmaker::editRemoveCurrentPlaceHolder() {
+	if (!currentEditor()) return;
+	currentEditor()->removePlaceHolder(currentEditor()->currentPlaceHolder());
+}
+
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
+    LatexEditorView *view=currentEditorView();
 	// complete text if no command is present
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
@@ -3868,7 +3915,7 @@ void Texmaker::NormalCompletion() {
 	}
 	
 	QString command,value;
-	LatexParser::ContextType ctx=latexParser.findContext(word, c.columnNumber(), command, value);
+    LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
 	switch(ctx){
 	case LatexParser::Command:
         if(mCompleterNeedsUpdate) updateCompleter();
@@ -3892,6 +3939,26 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
+    case LatexParser::Keyval:
+        completer->setWorkPath(command);
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+        break;
+    case LatexParser::KeyvalValue:{
+        //figure out keyval
+        int i=c.columnNumber();
+        while(i>0 && word.at(i-1).isLetter())
+            i--;
+        if(word.at(i-1)==QChar('=')){
+            int j=--i;
+            while(i>0 && word.at(i-1).isLetter())
+                i--;
+            QString key=word.mid(i,j-i);
+            completer->setWorkPath(command+"/"+key);
+            if(completer->existValues())
+                currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+        }
+        break;
+    }
     case LatexParser::Package:
         if(latexParser.possibleCommands["%usepackage"].contains(command)){
             QString preambel;
@@ -4449,7 +4516,7 @@ void Texmaker::QuickGraphics(const QString &graphicsFile) {
 	
 	QFileInfo docInfo=currentEditorView()->document->getFileInfo();
 	graphicsDlg->setTexFile(docInfo);
-	if (documents.masterDocument) graphicsDlg->setMasterTexFile(documents.masterDocument->getFileInfo());
+	graphicsDlg->setMasterTexFile(currentEditorView()->document->parent->getCompileFileName());
 	if (!graphicsFile.isNull()) graphicsDlg->setGraphicsFile(graphicsFile);
 	
 	if (graphicsDlg->exec()) {
@@ -4712,20 +4779,18 @@ void Texmaker::createLabelFromAction()
 
 	// find column position after structure command
 	QString lineText = edView->getDocument()->line(lineNr).text();
-	int pos = lineText.indexOf(latexParser.structureCommands[level]);
-	if (pos>=0) {
-		pos += latexParser.structureCommands[level].length();
-		// workaround for starred commands: \section*{Cap}
-		if ((lineText.length() > pos+1) && lineText.at(pos) == '*') pos++;
-	} else {
-		// fallback if structure commands are redefined
-		foreach (const QString &cmd, latexParser.structureCommands) {
-			pos = lineText.indexOf(cmd);
-			if (pos<0) continue;
+	int pos = -1;
+	Q_ASSERT(level < latexParser.structureCommandLists.length());
+	foreach (const QString &cmd, latexParser.structureCommandLists[level]) {
+		pos = lineText.indexOf(cmd);
+		if (pos >= 0) {
 			pos += cmd.length();
+			// workaround for starred commands: \section*{Cap}
+			if ((lineText.length() > pos+1) && lineText.at(pos) == '*') pos++;
+			break;
 		}
-		if (pos<0) return; // could not find associated command
 	}
+	if (pos < 0) return; // could not find associated command
 
 	// advance pos behind options, and use title to guess a label
 	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
@@ -5408,6 +5473,7 @@ void Texmaker::HelpAbout() {
 	delete abDlg;
 }
 ////////////// OPTIONS //////////////////////////////////////
+
 void Texmaker::GeneralOptions() {
 	QMap<QString,QVariant> oldCustomEnvironments = configManager.customEnvironments;
 	bool oldModernStyle = modernStyle;
@@ -5511,41 +5577,8 @@ void Texmaker::GeneralOptions() {
 		setupToolBars();
 		// custom evironments
 		bool customEnvironmentChanged = configManager.customEnvironments != oldCustomEnvironments;
-		QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
 		if (customEnvironmentChanged){
-			QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
-			
-			oldLaTeX = m_lang.d;
-			Q_ASSERT(oldLaTeX);
-			
-			QFile f(findResourceFile("qxs/tex.qnfa"));
-			QDomDocument doc;
-			doc.setContent(&f);
-			
-			{
-				QMap<QString, QVariant>::const_iterator i;
-				for (i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-					QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-					addEnvironmentToDom(doc,i.key(),mode);
-				}
-			}
-			//detected math envs
-			{
-				QMap<QString, QString>::const_iterator i;
-				for (i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
-					QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
-                    QString env=i.key();
-                    if(env.contains('*')){
-                        env.replace("*","\\*");
-                    }
-                    addEnvironmentToDom(doc,env,envMode);
-				}
-			}
-			QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
-			m_languages->addLanguage(m_lang);
-			
-			newLaTeX = m_lang.d;
-			Q_ASSERT(oldLaTeX != newLaTeX);
+			updateTexQNFA();
 		}
 		//completion
 		completionBaseCommandsUpdated=true;
@@ -5562,14 +5595,8 @@ void Texmaker::GeneralOptions() {
 		QEditor::setEditOperations(configManager.editorKeys,true);
 		foreach (LatexEditorView *edView, EditorTabs->editors()) {
 			QEditor* ed = edView->editor;
-			//if (customEnvironmentChanged) ed->highlight();
-			if (ed->languageDefinition() == oldLaTeX) {
-				ed->setLanguageDefinition(newLaTeX);
-				ed->highlight();
-			} else {
-				ed->document()->markFormatCacheDirty();
-				ed->update();
-			}
+			ed->document()->markFormatCacheDirty();
+			ed->update();
 		}
 		if (oldModernStyle != modernStyle || oldSystemTheme != useSystemTheme) {
 			setupMenus();
@@ -5580,6 +5607,9 @@ void Texmaker::GeneralOptions() {
 	}
 	if(configManager.autosaveEveryMinutes>0){
 		autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
+	}
+	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
+		viewer->reloadSettings();
 	}
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
@@ -5621,7 +5651,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
 		foreach (PDFDocument* viewer, PDFDocument::documentList()) {
-			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(),filesToLoad.first().replace(".pdf", ".tex"));
+			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(), QFileInfo());
 			connect(viewer,SIGNAL(destroyed()), SLOT(deleteLater()));
 			viewer->show();
 			viewer->setFocus();
@@ -5879,6 +5909,22 @@ void Texmaker::viewCloseSomething(){
 	if (completer && completer->isVisible() && completer->close())
 		return;
 
+#ifndef NO_POPPLER_PREVIEW
+	QWidget* w = QApplication::focusWidget();
+	while (w && !qobject_cast<PDFDocument*>(w))
+		w = w->parentWidget();
+
+	if (qobject_cast<PDFDocument*>(w)) {
+		PDFDocument* focusedPdf = qobject_cast<PDFDocument*>(w);
+		if (focusedPdf->embeddedMode) {
+			focusedPdf->closeSomething();
+			focusedPdf->widget()->setFocus();
+			return;
+		}
+
+	}
+#endif
+
 	if (textAnalysisDlg) {
 		textAnalysisDlg->close();
 		return;
@@ -5890,13 +5936,13 @@ void Texmaker::viewCloseSomething(){
 		return;
 	}
 #ifndef NO_POPPLER_PREVIEW
-  foreach (PDFDocument* doc, PDFDocument::documentList())
-    if (doc->embeddedMode) {
-      doc->close();
-      return;
-    }
+	foreach (PDFDocument* doc, PDFDocument::documentList())
+		if (doc->embeddedMode) {
+			doc->close();
+			return;
+		}
 #endif
-    if(windowState()==Qt::WindowFullScreen && !configManager.disableEscForClosingFullscreen){
+     if(windowState()==Qt::WindowFullScreen && !configManager.disableEscForClosingFullscreen){
           stateFullScreen=saveState(1);
           setWindowState(Qt::WindowNoState);
           restoreState(windowstate,0);
@@ -6189,13 +6235,18 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
         edView=currentEditorView();
 	
 	QList<LatexDocument*> docs;
+    LatexParser ltxCommands=LatexParser::getInstance();
+
 	if(edView && edView->document){
 		// determine from which docs data needs to be collected
 		docs=edView->document->getListOfDocs();
+
 		// collect user commands and references
         foreach(LatexDocument* doc,docs){
 			words.unite(doc->userCommandList());
 			words.unite(doc->additionalCommandsList());
+
+            ltxCommands.append(doc->ltxCommands);
 		}
 	}
 	
@@ -6250,6 +6301,19 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	completionBaseCommandsUpdated=false;
 	
 	completer->setAdditionalWords(words,CT_COMMANDS);
+
+    // add keyval completion
+    foreach(const QString &elem,ltxCommands.possibleCommands.keys()){
+        if(elem.startsWith("key%")){
+            QString name=elem.mid(4);
+            if(name.endsWith("#c"))
+                name.chop(2);
+            if(!name.isEmpty()){
+                completer->setKeyValWords(name,ltxCommands.possibleCommands[elem]);
+            }
+        }
+    }
+
 	if(edView) edView->viewActivated();
 	
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
@@ -6953,7 +7017,7 @@ void Texmaker::showPreviewQueue(){
 	previewQueue.clear();
 }
 
-void Texmaker::editInsertRefToNextLabel(bool backward) {
+void Texmaker::editInsertRefToNextLabel(const QString &refCmd, bool backward) {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditor()->cursor();
 	int l=c.lineNumber();
@@ -6964,11 +7028,11 @@ void Texmaker::editInsertRefToNextLabel(bool backward) {
 	QString mLine=dLine.text();
 	QRegExp rx("\\\\label\\{(.*)\\}");
 	if(rx.indexIn(mLine)>-1){
-		currentEditor()->write("\\ref{"+rx.cap(1)+"}");
+		currentEditor()->write(refCmd+"{"+rx.cap(1)+"}");
 	}
 }
-void Texmaker::editInsertRefToPrevLabel() {
-	editInsertRefToNextLabel(true);
+void Texmaker::editInsertRefToPrevLabel(const QString &refCmd) {
+	editInsertRefToNextLabel(refCmd, true);
 }
 
 void Texmaker::SymbolGridContextMenu(QWidget* widget, const QPoint& point) {
@@ -7071,40 +7135,70 @@ void Texmaker::editFindGlobal(){
         findDlg->setSearchWord(e->cursor().selectedText());
 	}
     if(findDlg->exec()){
-		QList<QEditor *> editors;
+        QList<LatexDocument *> docs;
+        LatexDocument *doc = currentEditorView()->document;
         switch (findDlg->getSearchScope()) {
         case 1:
-			editors << currentEditorView()->editor;
+            docs << doc;
 			break;
         case 0:
-            foreach (LatexDocument *doc, documents.getDocuments()) {
-                if(doc->getEditorView())
-                    editors << doc->getEditorView()->editor;
-			}
+            docs << documents.getDocuments();
 			break;
+        case 2:
+            docs << doc->getListOfDocs();
+            break;
 		default:
 			break;
 		}
-		outputView->clearSearch();
-        outputView->setSearchExpression(findDlg->getSearchWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
-		foreach(QEditor *ed,editors){
-			LatexDocument *doc=qobject_cast<LatexDocument*>(ed->document());
-			if (!doc) continue;
-			QList<QDocumentLineHandle *> lines;
-			for(int l=0;l<doc->lineCount();l++){
-                l=doc->findLineRegExp(findDlg->getSearchWord(),l,findDlg->isCase() ? Qt::CaseSensitive : Qt::CaseInsensitive,findDlg->isWords(),findDlg->isRegExp());
-				if(l>-1) lines << doc->line(l).handle();
-				if(l==-1) break;
-			}
-			
-			if(!lines.isEmpty()){ // don't add empty searches
-				if (ed->fileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
-					doc->setTemporaryFileName(buildManager.createTemporaryFileName());
-				outputView->addSearch(lines, doc);
-				outputView->showPage(outputView->SEARCH_RESULT_PAGE);
-			}
-		}
+        //updateFindGlobal(docs,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
+        outputView->setSearchEditors(docs);
 	}
+}
+
+void Texmaker::updateFindGlobal(int scope){
+    // scope: 0 current doc, 1 all docs , 2 project
+    outputView->clearSearch();
+    LatexEditorView *edView = currentEditorView();
+    if(!edView)
+        return;
+
+    QList<LatexDocument *> docs;
+    LatexDocument *doc = currentEditorView()->document;
+    switch (scope) {
+    case 0:
+        docs << doc;
+        break;
+    case 1:
+        docs << documents.getDocuments();
+        break;
+    case 2:
+        docs << doc->getListOfDocs();
+        break;
+    default:
+        break;
+    }
+
+    bool isWord=edView->getSearchIsCase();
+    bool isCase=edView->getSearchIsWords();
+    bool isReg=edView->getSearchIsRegExp();
+
+    outputView->setSearchExpression(edView->getSearchText(),edView->getReplaceText(),isCase,isWord,isReg);
+    foreach(LatexDocument *doc,docs){
+        if (!doc) continue;
+        QList<QDocumentLineHandle *> lines;
+        for(int l=0;l<doc->lineCount();l++){
+            l=doc->findLineRegExp(edView->getSearchText(),l,isCase ? Qt::CaseSensitive : Qt::CaseInsensitive,isWord,isReg);
+            if(l>-1) lines << doc->line(l).handle();
+            if(l==-1) break;
+        }
+
+        if(!lines.isEmpty()){ // don't add empty searches
+            if (doc->getFileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
+                doc->setTemporaryFileName(buildManager.createTemporaryFileName());
+            outputView->addSearch(lines, doc);
+            outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+        }
+    }
 }
 
 // show current cursor position in structure view
@@ -7162,7 +7256,7 @@ void Texmaker::fileCheckin(QString filename){
 	bool wholeDirectory;
 	dialog.addVariable(&wholeDirectory,tr("check in whole directory ?"));
 	if (dialog.exec()==QDialog::Accepted){
-		fileSave();
+        fileSave(true);
 		if(wholeDirectory){
 			fn=QFileInfo(fn).absolutePath();
 		}
@@ -7202,8 +7296,8 @@ void Texmaker::fileCheckinPdf(QString filename){
 	QString path=fi.path();
 	QString fn=path+"/"+basename+".pdf";
 	SVNSTATUS status=svnStatus(fn);
-	if(status==CheckedIn) return;
-	if(status==Unmanaged)
+	if(status==SVN_CheckedIn) return;
+	if(status==SVN_Unmanaged)
 		svnadd(fn);
 	fileCheckin(fn);
 }
@@ -7464,12 +7558,12 @@ SVNSTATUS Texmaker::svnStatus(QString filename){
 	statusLabelProcess->setText(QString(" svn status "));
 	QString buffer;
 	runCommand(cmd, &buffer);
-	if(buffer.isEmpty()) return CheckedIn;
-	if(buffer.startsWith("?")) return Unmanaged;
-	if(buffer.startsWith("M")) return Modified;
-	if(buffer.startsWith("C")) return InConflict;
-	if(buffer.startsWith("L")) return Locked;
-	return Unknown;
+	if(buffer.isEmpty()) return SVN_CheckedIn;
+	if(buffer.startsWith("?")) return SVN_Unmanaged;
+	if(buffer.startsWith("M")) return SVN_Modified;
+	if(buffer.startsWith("C")) return SVN_InConflict;
+	if(buffer.startsWith("L")) return SVN_Locked;
+	return SVN_Unknown;
 }
 
 void Texmaker::changeToRevision(QString rev,QString old_rev){
@@ -8020,15 +8114,22 @@ void Texmaker::importPackage(QString name){
 		latexStyleParser=new LatexStyleParser(this,configManager.configBaseDir,baseDir+"kpsewhich");
 		connect(latexStyleParser,SIGNAL(scanCompleted(QString)),this,SLOT(packageScanCompleted(QString)));
 		connect(latexStyleParser,SIGNAL(finished()),this,SLOT(packageParserFinished()));
+        latexStyleParser->setAlias(latexParser.packageAliases);
 		latexStyleParser->start();
 		QTimer::singleShot(30000,this,SLOT(stopPackageParser()));
 	}
+    QString dirName;
+    if(name.contains("/")){
+        int i=name.indexOf("/");
+        dirName="/"+name.mid(i+1);
+        name=name.left(i);
+    }
 	name.chop(4);
 	name.append(".sty");
-	latexStyleParser->addFile(name);
+    latexStyleParser->addFile(name+dirName);
 	name.chop(4);
 	name.append(".cls"); // try also cls
-	latexStyleParser->addFile(name);
+    latexStyleParser->addFile(name+dirName);
 }
 
 void Texmaker::packageScanCompleted(QString name){
@@ -8070,11 +8171,11 @@ void Texmaker::readinAllPackageNames(){
 		bool isMiktex = baseDir.contains("miktex", Qt::CaseInsensitive)
 				|| (!baseDir.contains("texlive", Qt::CaseInsensitive) && execCommand(baseDir+"latex.exe --version").contains("miktex", Qt::CaseInsensitive));
 		if (isMiktex)
-			packageListReader = new MiktexPackageScanner(baseDir+"mpm.exe", configManager.configBaseDir, this);
+			packageListReader = new MiktexPackageScanner(quotePath(baseDir+"mpm.exe"), configManager.configBaseDir, this);
 		else
-			packageListReader = new KpathSeaParser(baseDir+"kpsewhich", this); // TeXlive on windows uses kpsewhich
+			packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this); // TeXlive on windows uses kpsewhich
 #else
-		packageListReader = new KpathSeaParser(baseDir+"kpsewhich", this);
+		packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this);
 #endif
 		connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
 		packageListReader->start();
@@ -8106,6 +8207,56 @@ int Texmaker::getVersion() const{
 	return TXSVERSION_NUMERIC;
 }
 
+void Texmaker::updateTexQNFA() {
+	QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
+
+	QFile f(configManager.configBaseDir + "languages/tex.qnfa");
+	if (!f.exists()) {
+		f.setFileName(findResourceFile("qxs/tex.qnfa"));
+	}
+	QDomDocument doc;
+	doc.setContent(&f);
+
+	for (QMap<QString, QVariant>::const_iterator i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
+		QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
+		addEnvironmentToDom(doc,i.key(),mode);
+	}
+
+	//detected math envs
+	for (QMap<QString, QString>::const_iterator i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
+		QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
+		QString env=i.key();
+		if(env.contains('*')){
+			env.replace("*","\\*");
+		}
+		addEnvironmentToDom(doc,env,envMode);
+	}
+	// structure commands
+	addStructureCommandsToDom(doc, latexParser.structureCommandLists);
+
+	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
+	oldLaTeX = m_lang.d;
+	Q_ASSERT(oldLaTeX);
+
+	QNFADefinition::load(doc,&m_lang,m_formats);
+	m_languages->addLanguage(m_lang);
+
+	newLaTeX = m_lang.d;
+	Q_ASSERT(oldLaTeX != newLaTeX);
+
+	if (!EditorTabs) return;
+	documents.enablePatch(false);
+	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		QEditor* ed = edView->editor;
+		if (ed->languageDefinition() == oldLaTeX) {
+			ed->setLanguageDefinition(newLaTeX);
+			ed->highlight();
+		}
+	}
+	documents.enablePatch(true);
+}
+
+/// Updates the highlighting of environments specified via environmentAliases
 void Texmaker::updateHighlighting(){
 	
 	QStringList envList;
@@ -8136,45 +8287,7 @@ void Texmaker::updateHighlighting(){
 	if(!updateNecessary)
 		return;
 	
-	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
-	QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
-	
-	oldLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX);
-	
-	QFile f(findResourceFile("qxs/tex.qnfa"));
-	QDomDocument doc;
-	doc.setContent(&f);
-	
-	for (QMap<QString, QVariant>::const_iterator i = configManager.customEnvironments.constBegin(); i != configManager.customEnvironments.constEnd(); ++i){
-		QString mode=configManager.enviromentModes.value(i.value().toInt(),"verbatim");
-		addEnvironmentToDom(doc,i.key(),mode);
-	}
-	//detected math envs
-	for (QMap<QString, QString>::const_iterator i = detectedEnvironmentsForHighlighting.constBegin(); i != detectedEnvironmentsForHighlighting.constEnd(); ++i){
-		QString envMode=i.value()=="verbatim" ? "verbatim" :  "numbers";
-        QString env=i.key();
-        if(env.contains('*')){
-            env.replace("*","\\*");
-        }
-        addEnvironmentToDom(doc,env,envMode);
-	}
-	QNFADefinition::load(doc,&m_lang,qobject_cast<QFormatScheme*>(m_formats));
-	m_languages->addLanguage(m_lang);
-	
-	newLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX != newLaTeX);
-    documents.enablePatch(false);
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		QEditor* ed = edView->editor;
-		//if (customEnvironmentChanged) ed->highlight();
-		if (ed->languageDefinition() == oldLaTeX) {
-			ed->setLanguageDefinition(newLaTeX);
-            ed->highlight();
-		}
-	}
-    documents.enablePatch(true);
-
+	updateTexQNFA();
 	updateUserMacros(false); //update macros depending on the language to newLatex
 }
 
@@ -8495,7 +8608,7 @@ bool Texmaker::checkSVNConflicted(bool substituteContents){
 	QFileInfo qf(fn+".mine");
 	if(qf.exists()){
 		SVNSTATUS status=svnStatus(fn);
-		if(status==InConflict){
+		if(status==SVN_InConflict){
 			int ret = QMessageBox::warning(this,
 																		 tr("SVN Conflict!"),
 																		 tr(
@@ -8853,4 +8966,18 @@ void Texmaker::shrinkEmbeddedPDFViewer(bool preserveConfig){
         return;
     viewer->setStateEnlarged(false);
 #endif
+}
+
+void Texmaker::searchExtendToggled(bool toggled){
+    // show search result in tools widget
+    if(!toggled){
+        outputView->hide();
+        return;
+    }
+    QList<LatexDocument *> docs;
+    LatexDocument *doc = currentEditorView()->document;
+    docs << doc;
+
+    updateFindGlobal(outputView->getSearchScope());
+    outputView->setSearchEditors(docs);
 }

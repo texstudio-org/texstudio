@@ -54,12 +54,12 @@ typedef QHash<QString,int> SymbolList;
 typedef QSet<QString> StringSet;
 
 enum SVNSTATUS {
-	Unknown=0,
-	Unmanaged,
-	Modified,
-	Locked,
-	CheckedIn,
-	InConflict
+	SVN_Unknown=0,
+	SVN_Unmanaged,
+	SVN_Modified,
+	SVN_Locked,
+	SVN_CheckedIn,
+	SVN_InConflict
 };
 
 class UserMenuDialog;
@@ -298,6 +298,7 @@ protected slots:
 	void editTextToLowercase();
 	void editTextToUppercase();
 	void editTextToTitlecase();
+	void editFind();
 	void editPasteLatex();
 	void convertToLatex();
 	void editPasteRef();
@@ -317,9 +318,10 @@ protected slots:
 	void editChangeLineEnding();
 	void editSetupEncoding();
 	void editInsertUnicode();
-	void editInsertRefToNextLabel(bool backward=false);
-	void editInsertRefToPrevLabel();
+	void editInsertRefToNextLabel(const QString &refCmd="\\ref", bool backward=false);
+	void editInsertRefToPrevLabel(const QString &refCmd="\\ref");
 	void editFindGlobal();
+    void updateFindGlobal(int scope);
 	
 	void findWordRepetions();
 	void findNextWordRepetion();
@@ -360,6 +362,7 @@ protected slots:
 	void ShowStructure();
 	void clickedOnStructureEntry(const QModelIndex & index);
 	void editRemovePlaceHolders();
+	void editRemoveCurrentPlaceHolder();
 
 	void NormalCompletion();
 	void InsertEnvironmentCompletion();
@@ -411,6 +414,8 @@ protected slots:
 	bool checkProgramPermission(const QString& program, const QString& cmdId, LatexDocument* master);
 	void runInternalPdfViewer(const QFileInfo& master, const QString& options);
 	void runBibliographyIfNecessary(const QFileInfo& cmd);
+
+    void searchExtendToggled(bool toggled);
 
 public slots:
 	void connectSubCommand(ProcessX* p, bool showStdoutLocallyDefault);
@@ -550,6 +555,7 @@ protected slots:
 	void moveDocumentToEnd();
 	void moveDocumentToDest(int dest);
 	
+	void updateTexQNFA();
 	void updateHighlighting();
 	
 	void toggleGrammar(int type);
@@ -618,6 +624,8 @@ protected:
     QSet<QString> latexPackageList,currentPackageList;
 
     findGlobalDialog* findDlg;
+
+    QMap<QString,QString> *mReplacementList;
 
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);

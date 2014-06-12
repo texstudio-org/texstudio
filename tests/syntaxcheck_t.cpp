@@ -176,5 +176,67 @@ void SyntaxCheckTest::checktabular(){
 	edView->getConfig()->realtimeChecking = realtimeChecking;
 }
 
+void SyntaxCheckTest::checkkeyval_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<bool>("error");
+
+     QTest::newRow("no option")
+             <<"\\SI{test}"<<false;
+     QTest::newRow("key only")
+             <<"\\SI[mode]{test}"<<false;
+     QTest::newRow("key only,error")
+             <<"\\SI[modea]{test}"<<true;
+     QTest::newRow("key/value")
+             <<"\\SI[mode=text]{test}"<<false;
+     QTest::newRow("key/value,error key")
+             <<"\\SI[modea=text]{test}"<<true;
+     QTest::newRow("key/value,error value")
+             <<"\\SI[mode=texta]{test}"<<true;
+     QTest::newRow("2 key/value")
+             <<"\\SI[color=red,mode=text]{test}"<<false;
+     QTest::newRow("2 key/value,error key")
+             <<"\\SI[color=red,modea=text]{test}"<<true;
+     QTest::newRow("2 key/value,error value")
+             <<"\\SI[color=red,mode=texta]{test}"<<true;
+     QTest::newRow("2 key/value,composite key")
+             <<"\\SI[mode=text,math-sf=test]{test}"<<false;
+     QTest::newRow("yathesis without options")
+             <<"\\documentclass{yathesis}"<<false;
+     QTest::newRow("yathesis with valid option")
+             <<"\\documentclass[fleqn]{yathesis}"<<false;
+     QTest::newRow("yathesis with ilegal option")
+             <<"\\documentclass[fleqn2]{yathesis}"<<true;
+     QTest::newRow("article")
+             <<"\\documentclass[fleqn2]{article}"<<false;
+     QTest::newRow("article if yathesis is loaded")
+             <<"\\documentclass[fleqn]{yathesis}\n\\documentclass[fleqn2]{article}"<<false;
+
+}
+
+void SyntaxCheckTest::checkkeyval(){
+    QFETCH(QString, text);
+    QFETCH(bool, error);
+
+    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+    bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+    edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
+
+    text="\\usepackage{siunitx}\n"+text;
+
+    edView->editor->setText(text, false);
+    do{
+        edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+    }while(edView->SynChecker.queuedLines());
+    LatexDocument *doc=edView->getDocument();
+    QDocumentLineHandle *dlh=doc->line(1).handle();
+    QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
+    QEQUAL(!formats.isEmpty(),error);
+
+    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+    edView->getConfig()->realtimeChecking = realtimeChecking;
+}
+
 #endif
 

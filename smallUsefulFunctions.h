@@ -40,6 +40,7 @@ QString getCommonEOW();
 
 //removes special latex characters
 QString latexToPlainWord(const QString& word);
+QString latexToPlainWordwithReplacementList(const QString& word, QMap<QString, QString> &replacementList );
 //closing bracket (opening and closing bracket considered correctly)
 int findClosingBracket(const QString& word,int &start,QChar oc=QChar('{'),QChar cc=QChar('}'));
 //opening bracket (opening and closing bracket considered correctly), start at "start"
@@ -71,7 +72,7 @@ QString findToken(const QString &line,const QString &token,int &start);
 QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
-bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &optionStart);
+bool findCommandWithArg(const QString &line, QString &cmd, QString &outName, QString &outArg, QString &remainder, int &argStart, QString &option);
 
 
 // generate multiple times used regexpression
@@ -83,6 +84,7 @@ QList<int> indicesOf(const QString& line, const QRegExp& rx);
 
 // add Environment to QNFA DOM
 void addEnvironmentToDom(QDomDocument &doc,const QString& EnvironName,const QString& EnvironMode);
+void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &structureCommandLists);
 
 QString intListToStr(const QList<int> &ints);
 QList<int> strToIntList(const QString &s);
@@ -92,6 +94,9 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map);
 QString formatJsonStringParam(const QString &id, const QString &val, int minIdWidth = 0);
 QString enquoteStr(const QString &s);
 QString dequoteStr(const QString &s);
+
+QString quotePath(const QString &s);
+QString removeQuote(const QString &s);
 
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
@@ -116,7 +121,7 @@ public:
 	LatexParser();
 	void init();
 
-    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package};
+    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package,Keyval,KeyvalValue};
 	// realizes whether col is in a \command or in a parameter {}
 	int findContext(QString &line, int &column) const;
 	
@@ -145,6 +150,9 @@ public:
 	QSet<QString> customCommands;
     //QSet<QString> graphicsIncludeCommands;
 	QStringList structureCommands;
+	QList<QStringList> structureCommandLists;  // a list for each level. 0:\part,\mypart 1:\chapter,\mychapter 2:\section ... 5:paragraph
+	int structureDepth() { return structureCommandLists.length(); }
+	int structureCommandLevel(const QString &cmd) const;
 	QMultiHash<QString,QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
 	QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	// commands used for syntax check (per doc basis)
@@ -171,6 +179,7 @@ struct LatexReader{
 	LatexReader();
 	LatexReader(const QString& line);
 	LatexReader(const LatexParser& lp, const QString& line);
+    LatexReader(const LatexParser& lp, const QString& line, QMap<QString,QString> &replacementList);
 	
 	/** searches the next token in the line line after/at the index index
 	//there are these possible kind of tokens % (which starts a comment), { or } (as parentheses), \.* (command) or .* (text)
@@ -217,8 +226,10 @@ struct LatexReader{
 	QString word;
 	QString lastCommand;
 	int wordStartIndex;
+
 private:
 	const LatexParser* lp;
+    QMap<QString, QString> mReplacementList;
 };
 
 

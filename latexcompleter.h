@@ -33,7 +33,7 @@ class LatexReference;
 class LatexCompleter : public QObject  {
 	Q_OBJECT
 public:
-    enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16, CF_FORCE_CITE = 32, CF_FORCE_PACKAGE = 64};
+    enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16, CF_FORCE_CITE = 32, CF_FORCE_PACKAGE = 64, CF_FORCE_KEYVAL = 128};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag);
 	
 	LatexCompleter(const LatexParser& latexParser, QObject *p = 0);
@@ -41,6 +41,7 @@ public:
 	
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
 	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType=CT_COMMANDS);
+    void setKeyValWords(const QString &name,const QSet<QString> &newwords);
 	void updateAbbreviations();
 	
 	static void setLatexReference(LatexReference *ref) {latexReference = ref;}
@@ -57,6 +58,7 @@ public:
 	bool isVisible(){
 		return list->isVisible();
 	}
+    bool existValues();
 	
 	void setWorkPath(const QString cwd){
 		workingDir=cwd;
@@ -64,6 +66,9 @@ public:
 	bool completingGraphic(){
 		return forcedGraphic;
 	}
+    bool completingKey(){
+        return forcedKeyval;
+    }
 	
 	int countWords();
 	void setTab(int index);
@@ -85,7 +90,7 @@ private:
 	QEditor *editor;
 
     QSet<QString> *packageList;
-	
+
 	QWidget *widget;
 	QTabBar *tbBelow,*tbAbove;
 	
@@ -101,6 +106,7 @@ private:
 	bool forcedGraphic;
 	bool forcedCite;
     bool forcedPackage;
+    bool forcedKeyval;
     bool startedFromTriggerKey;
 	QString workingDir;
 	
@@ -108,7 +114,7 @@ private:
 	bibtexReader *bibReader;
 	
 	void showTooltip(QString topic);
-	
+
 private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);

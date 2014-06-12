@@ -28,8 +28,8 @@ QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, B
 #define CMD_DEFINE(up, id) const QString BuildManager::CMD_##up = BuildManager::TXS_CMD_PREFIX + #id;
 CMD_DEFINE(LATEX, latex) CMD_DEFINE(PDFLATEX, pdflatex) CMD_DEFINE(XELATEX, xelatex) CMD_DEFINE(LUALATEX, lualatex) CMD_DEFINE(LATEXMK, latexmk)
 CMD_DEFINE(VIEW_DVI, view-dvi) CMD_DEFINE(VIEW_PS, view-ps) CMD_DEFINE(VIEW_PDF, view-pdf) CMD_DEFINE(VIEW_LOG, view-log)
-CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
-CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
+CMD_DEFINE(DVIPNG, dvipng) CMD_DEFINE(DVIPS, dvips) CMD_DEFINE(DVIPDF, dvipdf) CMD_DEFINE(PS2PDF, ps2pdf) CMD_DEFINE(GS, gs) CMD_DEFINE(MAKEINDEX, makeindex) CMD_DEFINE(TEXINDY, texindy) CMD_DEFINE(MAKEGLOSSARIES, makeglossaries) CMD_DEFINE(METAPOST, metapost) CMD_DEFINE(ASY, asy) CMD_DEFINE(BIBTEX, bibtex) CMD_DEFINE(BIBTEX8, bibtex8) CMD_DEFINE(BIBER, biber) CMD_DEFINE(SVN, svn) CMD_DEFINE(SVNADMIN, svnadmin)
+CMD_DEFINE(COMPILE, compile) CMD_DEFINE(VIEW, view) CMD_DEFINE(BIBLIOGRAPHY, bibliography) CMD_DEFINE(INDEX, index) CMD_DEFINE(GLOSSARY, glossary) CMD_DEFINE(QUICK, quick) CMD_DEFINE(RECOMPILE_BIBLIOGRAPHY, recompile-bibliography)
 CMD_DEFINE(VIEW_PDF_INTERNAL, view-pdf-internal) CMD_DEFINE(CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY, conditionally-recompile-bibliography)
 CMD_DEFINE(INTERNAL_PRE_COMPILE, internal-pre-compile)
 #undef CMD_DEFINE
@@ -171,7 +171,7 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("biber",       "biber",        "Biber" ,       "%"); //todo: correct parameter?
 	registerCommand("makeindex",   "makeindex",    "Makeindex",   "%.idx", "Tools/Makeindex");
 	registerCommand("texindy",     "texindy",      "Texindy", "%.idx");
-	registerCommand("makeglossary","makeglossary;makeglossaries", "Makeglossary", "%");
+	registerCommand("makeglossaries","makeglossaries", "Makeglossaries", "%");
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
@@ -195,10 +195,13 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-internal" << "txs:///view-pdf-external","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
-	registerCommand("bibliography", tr("Default Bibliography"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
+	registerCommand("bibliography", tr("Default Bibliography Tool"), QStringList() << "txs:///bibtex" << "txs:///bibtex8" << "txs:///biber","",true,descriptionList);
 	descriptionList.clear();
 	descriptionList<< tr("BibTeX") << tr("BibTeX 8-Bit") << tr("Biber");
 	registerCommand("index", tr("Default Index Tool"), QStringList() << "txs:///makeindex" << "txs:///texindy","",true,descriptionList);
+	descriptionList.clear();
+	descriptionList<< tr("Makeglossaries");
+	registerCommand("glossary", tr("Default Glossary Tool"), QStringList() << "txs:///makeglossaries","",true,descriptionList);
 	
 	registerCommand("ps-chain", tr("PS Chain"), QStringList() << "txs:///latex | txs:///dvips | txs:///view-ps");
 	registerCommand("dvi-chain", tr("DVI Chain"), QStringList() << "txs:///latex | txs:///view-dvi");
@@ -388,7 +391,7 @@ QString BuildManager::findFileInPath(QString fileName) {
 }
 
 #ifdef Q_OS_WIN32
-typedef BOOL (* AssocQueryStringAFunc)(DWORD, DWORD, const char*, const char*, char*, DWORD*);
+typedef BOOL (__stdcall * AssocQueryStringAFunc)(DWORD, DWORD, const char*, const char*, char*, DWORD*);
 QString W32_FileAssociation(QString ext) {
 	if (ext=="") return "";
 	if (ext[0]!=QChar('.')) ext='.'+ext;
@@ -402,7 +405,7 @@ QString W32_FileAssociation(QString ext) {
 		DWORD buflen=1023;
 		if (assoc(0, ASSOCSTR_COMMAND, ba.data(), "open", &buf[0], &buflen)==S_OK) {
 			buf[buflen]=0;
-			result=QString::fromAscii(buf);
+			result=QString::fromLatin1(buf);
 			result.replace("%1","?am"+ext);
 			//QMessageBox::information(0,result,result,0);
 		};
@@ -527,8 +530,14 @@ QString searchBaseCommand(const QString &cmd, QString options) {
                 paths << QString("/usr/local/texlive/%1/bin/powerpc-darwin/").arg(i);
 			}
 			foreach (const QString& p, paths)
-				if (QFileInfo(p+fileName).exists())
-					return p+fileName+options;
+				if (QFileInfo(p+fileName).exists()) {
+					if (cmd=="makeglossaries") {
+						// workaround: makeglossaries calls makeindex or xindy and therefore has to be run in an environment that has these commands on the path
+						return QString("sh -c \"PATH=$PATH:%1; %2%3\"").arg(p).arg(fileName).arg(options);
+					} else {
+						return p+fileName+options;
+					}
+				}
 #endif
 		}
 	}
@@ -1127,7 +1136,7 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 	if(!mainFile.fileName().isEmpty())
 		proc->setWorkingDirectory(mainFile.absolutePath());
 	if (cmd.startsWith(TXS_CMD_PREFIX)) 
-		connect(proc, SIGNAL(started()), SLOT(runInternalCommandThroughProcessX()));
+		connect(proc, SIGNAL(startedX()), SLOT(runInternalCommandThroughProcessX()));
 	
 	QString addPaths = additionalSearchPaths;
 #ifdef Q_OS_MAC
@@ -1683,7 +1692,8 @@ void ProcessX::startCommand() {
 #endif
 	
 	if (cmd.startsWith("txs:///")){
-        emit started();
+		onStarted();
+		emit startedX();
 		emit finished(0);
 		emit finished(0, NormalExit);
 		return;
@@ -1761,6 +1771,7 @@ bool ProcessX::isRunning() const{
 void ProcessX::onStarted(){
 	if (isStarted) return; //why am I called twice?
 	isStarted=true;
+	emit startedX();
 	emit processNotification(tr("Process started: %1").arg(cmd));
 }
 

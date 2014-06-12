@@ -86,6 +86,11 @@ environments in smallUsefulFunctions.cpp)
 		<start>%todo</start>
 		<stop exclusive="false">\n</stop>
 	</context>
+	<context id="comment/todocmd" format="commentTodo" >
+		<start>\\todo</start>
+		<start>\\missingfigure</start>
+		<stop exclusive="false">[^\\]}</stop>
+	</context>
 
 	<context id="comment/magic" format="magicComment" stayOnLine="true" >
 		<start>% !TeX</start>
@@ -139,6 +144,7 @@ environments in smallUsefulFunctions.cpp)
 	<context id="mathmode$" format="numbers" transparency="true">
 		<start parenthesis="math:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</start>
 		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</stop>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="magicComment" >%\$</stop><!-- can be used as a workaround for closing math at the end of the line, if highlighting misinterprets a $ sign, e.g. \path{$PATH} %$ -->
 
 		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
 		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
@@ -243,7 +249,8 @@ environments in smallUsefulFunctions.cpp)
 
 	<!-- ========================= SECTIONS ====================== -->
 
-	<list id="keywords/block" format="extra-keyword">
+	<list id="keywords/structure" format="extra-keyword">
+	<!-- will be dynamically generated at runtime
 		<word parenthesis="part:boundary@nomatch" parenthesisWeight="8" fold="true">\\part</word>
 		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="7" fold="true">\\chapter</word>
 		<word parenthesis="section:boundary@nomatch" parenthesisWeight="6" fold="true">\\section</word>
@@ -251,6 +258,7 @@ environments in smallUsefulFunctions.cpp)
 		<word parenthesis="subsubsection:boundary@nomatch" parenthesisWeight="4" fold="true">\\subsubsection</word>
 		<word parenthesis="paragraph:boundary@nomatch" parenthesisWeight="3" fold="true" >\\paragraph</word>
 		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="2" fold="true" >\\subparagraph</word>
+	-->	
 	</list>
 	
 	<!-- ========================= GENERAL COMMANDS ====================== -->

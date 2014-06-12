@@ -133,8 +133,8 @@ bool browse(QWidget* w, const QString& title, const QString& extension, const QS
 	if (extension == "/") path = QFileDialog::getExistingDirectory(0, title, path);
 	else path = QFileDialog::getOpenFileName(0, title, path, extension, 0, QFileDialog::DontResolveSymlinks);
 	if (!path.isEmpty()) {
-		if (!list) path.replace(QString("\\"), QString("/"));
-		else if (!oldpath.isEmpty()) path = oldpath + pathSep + path;
+		path = QDir::toNativeSeparators(path);
+		if (list && !oldpath.isEmpty()) path = oldpath + pathSep + path;
 		if (le) le->setText(path);
 		if (cb) cb->setEditText(path);
 		return true;

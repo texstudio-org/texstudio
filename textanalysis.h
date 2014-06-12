@@ -43,6 +43,7 @@ class TextAnalysisDialog : public QDialog {
 
 	QVector<QPair<QString,int> > chapters;
 	QVector<QMap<QString,int> > maps[3]; //texts, commands, comments
+	QVector<int> lineCount[3]; //total line count, text lines, comment lines
 
 	TextAnalysisModel displayed;
 	const QDocument *document;
@@ -61,6 +62,8 @@ public:
 	//void setData(const QDocument* doc, const QDocumentCursor &cur);
 	void setEditor(QEditor* aeditor);
 	void interpretStructureTree(StructureEntry *item);
+private:
+	void interpretStructureTreeRec(StructureEntry *item, int targetLevel);
 private slots:
 	void slotCount();
 	void slotClose();

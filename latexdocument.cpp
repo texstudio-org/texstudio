@@ -237,7 +237,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	}
 
 	LatexParser& latexParser = LatexParser::getInstance();
-	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
+	QVector<StructureEntry*> parent_level(latexParser.structureDepth());
 	
 	QList<StructureEntry*> ls;
 	mergeStructure(baseStructure, parent_level, ls, linenr, 1);
@@ -494,13 +494,35 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			curLine.replace(0,1,' ');
 		}
 		int totalLength=curLine.length();
-        while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart)){
+        QString option;
+        while(findCommandWithArg(curLine,cmd,name,arg,remainder,optionStart,option)){
 			//update offset
 			//store optional arguments []
 			
 			//copy remainder to curLine for next round
 			curLine=remainder;
 			int offset=totalLength-curLine.length(); //TODO?? (line was commented out, with todo before)
+			
+			if (latexParser.possibleCommands["%todo"].contains(cmd)) {
+				bool reuse=false;
+				StructureEntry *newTodo;
+				if(MapOfTodo.contains(dlh)){
+					newTodo=MapOfTodo.value(dlh);
+					//parent->add(newTodo);
+					newTodo->type=StructureEntry::SE_TODO;
+					MapOfTodo.remove(dlh,newTodo);
+					reuse=true;
+				}else{
+					newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
+				}
+				newTodo->title=name;
+				newTodo->setLine(line(i).handle(), i);
+				newTodo->parent=todoList;
+				if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
+				iter_todo.insert(newTodo);
+			}
+			
+			
 			//// newcommand ////
 			//TODO: handle optional arguments
 			if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
@@ -658,12 +680,30 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
 				completerNeedsUpdate=true;
 				QStringList packagesHelper=name.split(",");
-				if(cmd.endsWith("theme")){ // special treatment for  \usetheme
+
+                if(cmd.endsWith("theme")){ // special treatment for  \usetheme
 					QString preambel=cmd;
 					preambel.remove(0,4);
 					preambel.prepend("beamer");
 					packagesHelper.replaceInStrings(QRegExp("^"),preambel);
 				}
+
+                if(cmd=="\\documentclass"){
+                    //special treatment for documentclass, especially for the class options
+                    // at the moment a change here soes not automatically lead to an update of corresponding definitions, here babel
+                    mClassOptions=option;
+                }
+
+                if(name=="babel"){
+                    //special treatment for babel
+                    if(option.isEmpty()){
+                        option=mClassOptions;
+                    }
+                    if(!option.isEmpty()){
+                        packagesHelper << option.split(",");
+                    }
+                }
+
 				QStringList packages;
                 foreach(QString elem,packagesHelper){
                     elem=elem.simplified();
@@ -731,7 +771,8 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			
 			if (latexParser.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureCommands.count() - 1;
+				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
+				name = removeQuote(name);
 				newInclude->title=name;
                 QString fname=findFileName(name);
                 removedIncludes.removeAll(fname);
@@ -753,7 +794,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			
 			if (latexParser.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureCommands.count() - 1;
+				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
                 QFileInfo fi(name,arg);
                 QString file = fi.filePath();
 				newInclude->title = file;
@@ -778,13 +819,13 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			//// all sections ////
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
-			int header=latexParser.structureCommands.indexOf(cmd);
-			if (header>-1) {
+			int level = latexParser.structureCommandLevel(cmd);
+			if (level>-1) {
 				StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
 				else newSection->appendix=false;
 				newSection->title=parseTexOrPDFString(name);
-				newSection->level=header;
+				newSection->level=level;
 				newSection->setLine(line(i).handle(), i);
 				newSection->columnNumber = offset;
 				flatStructure << newSection;
@@ -799,7 +840,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
             parent->updateMasterSlaveRelations(this);
         }
 	}//for each line handle
-	QVector<StructureEntry*> parent_level(latexParser.structureCommands.count());
+	QVector<StructureEntry*> parent_level(latexParser.structureDepth());
     if(!isHidden()){
         mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
 
@@ -1299,10 +1340,12 @@ StructureEntry* StructureEntryIterator::next(){
 LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
   iconDocument(":/images/doc.png"), iconMasterDocument(":/images/masterdoc.png"), iconBibTeX(":/images/bibtex.png"), iconInclude(":/images/include.png"),
   iconWarning(getRealIconCached("warning")), m_singleMode(false){
-  mHighlightIndex=QModelIndex();
-  iconSection.resize(LatexParser::getInstance().structureCommands.count());
-  for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-    iconSection[i]=getRealIconCached(LatexParser::getInstance().structureCommands[i].mid(1));
+	mHighlightIndex=QModelIndex();
+
+	QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph";
+	iconSection.resize(structureIconNames.length());
+	for (int i=0; i<structureIconNames.length(); i++)
+		iconSection[i] = getRealIconCached(structureIconNames[i]);
 }
 Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex & index ) const{
 	if (index.isValid()) return Qt::ItemIsEnabled|Qt::ItemIsSelectable;
@@ -1460,12 +1503,12 @@ QModelIndex LatexDocumentsModel::parent ( const QModelIndex & index ) const{
 	if (!entry) return QModelIndex();
 	if (!entry->parent) return QModelIndex();
 	
-	if(entry->level>LatexParser::getInstance().structureCommands.count() || entry->level<0){
+	if(entry->level>LatexParser::getInstance().structureDepth() || entry->level<0){
 		entry->debugPrint("Structure broken!");
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
 	}
-	if(entry->parent->level>LatexParser::getInstance().structureCommands.count() || entry->parent->level<0){
+	if(entry->parent->level>LatexParser::getInstance().structureDepth() || entry->parent->level<0){
 		entry->debugPrint("Structure broken (b)!");
 		//qDebug("Title %s",qPrintable(entry->title));
 		return QModelIndex();
@@ -1638,8 +1681,8 @@ void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
         if (edView) {
             QEditor* ed=edView->getEditor();
             if(ed){
-                document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
-                ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+                document->remeberAutoReload=ed->silentReloadOnExternalChanges();
+                ed->setSilentReloadOnExternalChanges(true);
             }
         }
     }else{
@@ -1719,8 +1762,8 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
             if (edView) {
                 QEditor* ed=edView->getEditor();
                 if(ed){
-                    document->remeberAutoReload=ed->flag(QEditor::SilentReloadOnExternalChanges);
-                    ed->setFlag(QEditor::SilentReloadOnExternalChanges,true);
+                    document->remeberAutoReload=ed->silentReloadOnExternalChanges();
+                    ed->setSilentReloadOnExternalChanges(true);
                 }
             }
         }else{
@@ -1933,9 +1976,7 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 	return 0;
 }
 void LatexDocuments::settingsRead(){
-	model->iconSection.resize(LatexParser::getInstance().structureCommands.count());
-	for (int i=0;i<LatexParser::getInstance().structureCommands.count();i++)
-        model->iconSection[i]=getRealIcon(LatexParser::getInstance().structureCommands[i].mid(1));
+	return; // currently unused
 }
 bool LatexDocuments::singleMode() const {
 	return !masterDocument;
@@ -2520,7 +2561,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 	//patch lines for new commands (ref,def, etc)
 	LatexParser& latexParser = LatexParser::getInstance();
 	QStringList categories;
-    categories<< "%ref" << "%label" << "%definition" << "%cite" << "%citeExtended" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include";
+	categories<< "%ref" << "%label" << "%definition" << "%cite" << "%citeExtended" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%todo";
 	QStringList newCmds;
 	foreach(const QString elem,categories){
 		QStringList cmds=ltxCommands.possibleCommands[elem].values();
@@ -2575,7 +2616,13 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 			}
 		}
 		if(zw.packageName=="<notFound>"){
-			emit importPackage(elem);
+            QString name=elem;
+            LatexDocument *masterDoc=getTopMasterDocument();
+            if(masterDoc){
+                QString fn=masterDoc->getFileInfo().absolutePath();
+                name+="/"+fn;
+            }
+            emit importPackage(name);
 		} else {
 			pck.unite(zw);
 			loadedFiles.append(elem);
