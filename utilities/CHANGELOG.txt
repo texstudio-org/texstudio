@@ -1,5 +1,22 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.7.0 -> 2.8.0
+-----------------------------------------
+- completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)
+- search and replace over several documents improved
+- improved parser for log files (better detection of filenames)
+- todo-style commands (e.g. <code>\todo{}</code>) are added to the list of todos
+- better compliance with standard shortcuts on OSX
+- the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini "Editor/ContextMenuKeyboardModifiers"
+- use Consolas as default editor font on Windows if available
+- improved auto-hide toolbars feature in embedded viewer
+- users can overwrite the default language definitions and add own ones
+- makeglossaries support
+- allow quoted filenames in include-like commands to support filenames and directories containing spaces
+- windows version compiles now with Qt5
+- updated LaTeX reference manual
+- several bugfixes
+
 TeXstudio 2.6.6 -> 2.7.0
 -----------------------------------------
 - added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)
