@@ -7182,6 +7182,8 @@ void Texmaker::updateFindGlobal(int scope){
     bool isCase=edView->getSearchIsWords();
     bool isReg=edView->getSearchIsRegExp();
 
+    bool linesShown=false;
+
     outputView->setSearchExpression(edView->getSearchText(),edView->getReplaceText(),isCase,isWord,isReg);
     foreach(LatexDocument *doc,docs){
         if (!doc) continue;
@@ -7198,6 +7200,9 @@ void Texmaker::updateFindGlobal(int scope){
             outputView->addSearch(lines, doc);
             outputView->showPage(outputView->SEARCH_RESULT_PAGE);
         }
+    }
+    if(!linesShown){
+        outputView->showPage(outputView->SEARCH_RESULT_PAGE);
     }
 }
 
