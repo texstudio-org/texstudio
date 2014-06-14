@@ -314,9 +314,12 @@ unix:!macx {
         utilities/texstudio.svg
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texstudio.desktop
-    appdata.path = /usr/share/appdata
-    appdata.files = utilities/texstudio.appdata.xml
-    INSTALLS += applicationmenu appdata
+    isEmpty(NO_APPDATA) {
+      appdata.path = /usr/share/appdata
+      appdata.files = utilities/texstudio.appdata.xml
+      INSTALLS += appdata
+    }
+    INSTALLS += applicationmenu
 }
 
 # ##########UNIX + MACX###############
