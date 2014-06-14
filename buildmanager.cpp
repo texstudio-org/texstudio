@@ -1287,7 +1287,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 				connect(p,SIGNAL(finished(int)),this,SLOT(preamblePrecompileCompleted(int)));
 				connect(p,SIGNAL(finished(int)),p,SLOT(deleteLater()));
 				tf->setParent(p); //free file when process is deleted
-				REQUIRE(p);
+
 				p->startCommand();
 				
 				if (p->waitForStarted()) {

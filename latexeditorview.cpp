@@ -1345,8 +1345,8 @@ void LatexEditorView::updateFormatSettings(){
 		const void ** temp = formats;
 		while (*temp) {
 			int * c = (static_cast<int*>(const_cast<void*>(*temp)));
-			*c = QDocument::defaultFormatScheme()->id(QString(static_cast<const char*>(*(temp+1))));
 			Q_ASSERT(c != 0);
+			*c = QDocument::defaultFormatScheme()->id(QString(static_cast<const char*>(*(temp+1))));
 			temp+=2;
 		}
 		//int f=QDocument::formatFactory()->id("citationMissing");
