@@ -154,6 +154,7 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
     searchScopeBox->addItem("current doc");
     searchScopeBox->addItem("all docs");
     searchScopeBox->addItem("project");
+    connect(searchScopeBox,SIGNAL(currentIndexChanged(int)),SIGNAL(updateTheSearch(int)));
 
 
     QLabel *lbl=new QLabel;

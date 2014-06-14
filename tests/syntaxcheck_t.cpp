@@ -209,7 +209,7 @@ void SyntaxCheckTest::checkkeyval_data(){
      QTest::newRow("article")
              <<"\\documentclass[fleqn2]{article}"<<false;
      QTest::newRow("article if yathesis is loaded")
-             <<"\\documentclass[fleqn]{yathesis}\n\\documentclass[fleqn2]{article}"<<false;
+             <<"\\documentclass[fleqn]{yathesis} \\documentclass[fleqn2]{article}"<<false;
 
 }
 

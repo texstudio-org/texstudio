@@ -471,8 +471,10 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		
 	setVisible(visible);
 
-	if ( !visible )
+    if ( !visible ){
 		editor()->setFocus();
+        bExtend->setChecked(false);
+    }
 }
 
 void QSearchReplacePanel::closeSomething(bool closeTogether){
