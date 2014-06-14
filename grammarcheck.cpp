@@ -1,7 +1,7 @@
 #include "grammarcheck.h"
 #include "smallUsefulFunctions.h"
 #include "QThread"
-GrammarError::GrammarError(){}
+GrammarError::GrammarError():offset(0),length(0), error(GET_UNKNOWN){}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error, const QString& message):offset(offset),length(length), error(error), message(message){}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error, const QString& message, const QStringList& corrections):offset(offset),length(length), error(error), message(message), corrections(corrections){}
 GrammarError::GrammarError(int offset, int length, const GrammarError& other):offset(offset),length(length),error(other.error),message(other.message),corrections(other.corrections){}
