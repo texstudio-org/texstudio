@@ -1,6 +1,9 @@
 # hyperref package
 # neeraavi 21 Mar 2007
 #modified Edson 30-12-2010
+#modified Denis Bitouz\'e 14-06-2014
+
+#include:nameref
 
 \hypersetup{options}
 
