@@ -1562,7 +1562,7 @@ void LatexParser::importCwlAliases(){
 	}
 }
 
-LatexReader::LatexReader():lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);}
+LatexReader::LatexReader():lp(&LatexParser::getInstance()),index(0),wordStartIndex(0){Q_ASSERT(this->lp);}
 LatexReader::LatexReader(const QString& line): lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);setLine(line);}
 LatexReader::LatexReader(const LatexParser& lp, const QString& line):lp(&lp){Q_ASSERT(this->lp);setLine(line);}
 

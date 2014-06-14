@@ -3,7 +3,7 @@
 #include "qdocumentsearch.h"
 #include "smallUsefulFunctions.h"
 
-SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(parent)
+SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(parent), mIsWord(false), mIsCaseSensitive(false), mIsRegExp(false)
 {
 	m_searches.clear();
 	mExpression.clear();

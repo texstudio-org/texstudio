@@ -52,7 +52,7 @@ QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "P
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
-	DefaultInputBinding():completerConfig(0),contextMenu(0),isDoubleClick(false) {}
+	DefaultInputBinding():completerConfig(0),editorViewConfig(0), contextMenu(0),isDoubleClick(false) {}
 	virtual QString id() const {
 		return "TXS::DefaultInputBinding";
 	}
