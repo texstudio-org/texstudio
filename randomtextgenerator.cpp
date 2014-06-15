@@ -49,13 +49,13 @@ void RandomTextGenerator::generateText(){
 		bool upcase = ui->upperCaseCheckBox->isChecked();
 		bool punctation = ui->punctationCheckBox->isChecked();
 		foreach (const QString& line, lines) {
-			int index=0;
-			int wordStartIndex=0;
-			int lastIndex = 0;
 			QString outWord;
 			static const QString Punctation = ".,:;!?";
 			
 			if (ui->latexInput->isChecked()) {
+				int index=0;
+				int wordStartIndex=0;
+				int lastIndex = 0;
 				LatexReader lr(line);
 				while (lr.nextTextWord()) {
 					if (upcase) outWord=outWord.toUpper();
