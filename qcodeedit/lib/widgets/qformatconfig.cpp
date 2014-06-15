@@ -613,7 +613,7 @@ void QFormatConfig::showEvent(QShowEvent *e){
 void QFormatConfig::on_m_selector_currentIndexChanged(int idx)
 {
 	return; //not needed in txs
-	
+	/*
 	QList<int> hasModif = modifiedFormats();
 
 	if ( hasModif.count() )
@@ -636,7 +636,7 @@ void QFormatConfig::on_m_selector_currentIndexChanged(int idx)
 
 	m_currentScheme = idx >= 0 && idx < m_schemes.count() ? m_schemes.at(idx) : 0;
 
-	cancel();
+	cancel();*/
 }
 
 /*! @} */

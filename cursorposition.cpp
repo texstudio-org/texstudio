@@ -38,6 +38,6 @@ QDocumentCursor CursorPosition::toCursor() {
 	return QDocumentCursor(m_doc, m_oldLineNumber, m_columnNumber);
 }
 
-bool CursorPosition::equals(const CursorPosition &pos) {
+bool CursorPosition::equals(const CursorPosition &pos) const{
 	return (m_doc == pos.m_doc && m_dlh == pos.m_dlh && m_columnNumber == pos.m_columnNumber);
 }

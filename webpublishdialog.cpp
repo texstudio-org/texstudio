@@ -356,7 +356,7 @@ int WebPublishDialog:: nbpagesps(QString psfile) {
 
 void WebPublishDialog::extractpage(QString psfile,int page) {
 	QString line;
-	bool go=true;
+
 	QFile f(workdir+"/"+psfile);
 	QRegExp rxpage("^\%\%Page:\\s+(-?\\d+)");
 	QRegExp rxtrailer("^\%\%Trailer");
@@ -373,6 +373,7 @@ void WebPublishDialog::extractpage(QString psfile,int page) {
 		} else {
 			QTextStream outts(&outf);
 			while (!psts.atEnd()) {
+				bool go=true;
 				line=psts.readLine();
 				if (rxpage.indexIn(line)>-1) {
 					int numpage=rxpage.cap(1).toInt();
@@ -451,7 +452,6 @@ void WebPublishDialog::ps2gif(QString input,QString output,int id_page,int w,int
 void WebPublishDialog::writepages(QString mode) {
 	bool match=false;
 	bool ok;
-	int counter=1;
 	maxwidth=1;
 	QString line;
 	QString captured1, captured2, captured3, captured4;
@@ -488,6 +488,7 @@ void WebPublishDialog::writepages(QString mode) {
 				texf.close();
 				outf.close();
 				ui.messagetextEdit->append(tr("Compiling input file. Please wait..."));
+				int counter=1;
 				while (counter <= config->compil) {
 					if (!errprocess) 
 						RunCommand(BuildManager::CMD_LATEX, workdir+"/"+base+"_"+mode+".tex", true);
@@ -795,8 +796,7 @@ void WebPublishDialog::clean() {
 	}
 }
 
-void WebPublishDialog::latexerror(QString logfile) {
-	bool ok=true;
+void WebPublishDialog::latexerror(QString logfile) {	
 	QRegExp rx("^!");
 	QString line;
 	QFile logf(logfile);
@@ -804,6 +804,7 @@ void WebPublishDialog::latexerror(QString logfile) {
 		fatalerror(logfile+" "+tr("not found")+".");
 	} else {
 		QTextStream LOG(&logf);
+		bool ok=true;
 		while (!LOG.atEnd()) {
 			line=LOG.readLine();
 			if (rx.indexIn(line)>-1) {

@@ -1490,7 +1490,7 @@ void LatexCompleterConfig::setFiles(const QStringList &newFiles) {
 	files=newFiles;
 }
 
-const QStringList& LatexCompleterConfig::getLoadedFiles(){
+const QStringList& LatexCompleterConfig::getLoadedFiles() const {
 	return files;
 }
 
