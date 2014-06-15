@@ -1717,6 +1717,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
 	    QString line;
 	    QTextStream stream(&tagsfile);
+		stream.setCodec("UTF-8");
 	    QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
 	    QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
 	    rxCom.setMinimal(true);
