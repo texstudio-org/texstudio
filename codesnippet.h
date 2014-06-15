@@ -14,7 +14,7 @@ struct CodeSnippetPlaceHolder{
 	int id;
 	enum Flag{AutoSelect = 1, Mirrored = 2, Mirror = 4, PreferredMultilineAutoSelect = 8, Persistent = 16, Translatable = 32};
 	int flags;
-	int offsetEnd();
+	int offsetEnd() const;
 };
 
 class CodeSnippet
@@ -39,11 +39,11 @@ public:
 	uint index;
 	int snippetLength;
 
-	void insert(QEditor* editor);
-    void insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode=PlacehodersActive, bool byCompleter=false, bool isKeyVal=false) const;
+	void insert(QEditor* editor) const;
+	void insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode=PlacehodersActive, bool byCompleter=false, bool isKeyVal=false) const;
 
 	void setName(const QString& newName);
-	QString getName();
+	QString getName() const;
 
 	static bool autoReplaceCommands;
 

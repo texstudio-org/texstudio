@@ -43,10 +43,10 @@ struct QLineMark
 	 : mark(m), line(l), file(f)
 	{}
 	
-	inline bool operator == (const QLineMark& m)
+	inline bool operator == (const QLineMark& m) const
 	{ return (line == m.line) && (file == m.file) && (mark == m.mark); }
 	
-	inline bool operator != (const QLineMark& m)
+	inline bool operator != (const QLineMark& m) const
 	{ return (line != m.line) || (file != m.file) || (mark != m.mark); }
 	
 	int mark;
@@ -68,10 +68,10 @@ struct QLineMarkHandle
 	 : mark(m), line(l), file(f)
 	{}
 	
-	inline bool operator == (const QLineMarkHandle& m)
+	inline bool operator == (const QLineMarkHandle& m) const
 	{ return (line == m.line) && (file == m.file) && (mark == m.mark); }
 	
-	inline bool operator != (const QLineMarkHandle& m)
+	inline bool operator != (const QLineMarkHandle& m) const
 	{ return (line != m.line) || (file != m.file) || (mark != m.mark); }
 	
 	int mark;

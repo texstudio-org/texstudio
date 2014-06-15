@@ -512,14 +512,14 @@ QString QDocument::text(int mode) const
 		return s;
 
 	int line = 0;
-	int prevIndent = 0, curIndent = 0, nextIndent = m_impl->m_lines.at(0)->nextNonSpaceChar(0);
+	int curIndent = 0, nextIndent = m_impl->m_lines.at(0)->nextNonSpaceChar(0);
 
 	if ( nextIndent < 0 )
 		nextIndent = 0;
 
 	foreach ( const QDocumentLineHandle *l, m_impl->m_lines )
 	{
-		prevIndent = curIndent;
+		int prevIndent = curIndent;
 		curIndent = nextIndent;
 		bool notLastLine = ++line < m_impl->m_lines.count();
 		nextIndent = notLastLine ? m_impl->m_lines.at(line)->nextNonSpaceChar(0) : 0;
@@ -3100,7 +3100,6 @@ QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 	// turning format "map" into ranges that QTextLayout can understand...
 	QList<QTextLayout::FormatRange> m_ranges;
 
-	int fid = 0;
 	QTextLayout::FormatRange r;
 	r.start = r.length = -1;
 
@@ -3121,7 +3120,7 @@ QList<QTextLayout::FormatRange> QDocumentLineHandle::decorations() const
 		if ( i >= m_cache.count() )
 			break;
 	
-		fid = m_cache[i];
+		int fid = m_cache[i];
 
 		int fmts[FORMAT_MAX_COUNT];
 		QFormat formats[FORMAT_MAX_COUNT];
@@ -3926,10 +3925,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						if ( cp + 2 > rwidth)
 						{
 							if ( !dir )
-                                lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+						  lstOfPoints<<QPoint(xspos+cp+1,ycenter);
                                 //p->drawLine(xspos + cp, ycenter - 1, xspos + cp + 1, ycenter);
 							else
-                                lstOfPoints<<QPoint(xspos+cp+1,ycenter);
+						  lstOfPoints<<QPoint(xspos+cp+1,ycenter);
                                 //p->drawLine(xspos + cp, ycenter + 1, xspos + cp + 1, ycenter);
 
 							// trick to keep current direction
@@ -5138,6 +5137,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			refreshColumnMemory();
 
+
 			break;
 		}
 
@@ -6295,8 +6295,8 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
     //QTime t;
     //t.start();
 	QDocumentLineHandle *h;
-	bool inSel = false, fullSel;
-    int i, realln, pos = 0, visiblePos = 0,
+	bool inSel = false;
+	int i, realln, pos = 0, visiblePos = 0,
 		firstLine = qMax(0, cxt.yoffset / m_lineSpacing),
 		lastLine = qMax(0, firstLine + (cxt.height / m_lineSpacing));
 
@@ -6384,7 +6384,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		// selections stuff (must do it before whatever the visibility...)
 		m_selectionBoundaries.clear();
 
-		fullSel = false;
+		int fullSel = false;
 
 		if ( inSel )
 			m_selectionBoundaries.prepend(0);
