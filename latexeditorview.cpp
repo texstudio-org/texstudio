@@ -52,7 +52,7 @@ QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "P
 class DefaultInputBinding: public QEditorInputBinding {
 	//  Q_OBJECT not possible because inputbinding is no qobject
 public:
-	DefaultInputBinding():completerConfig(0),contextMenu(0),isDoubleClick(false) {}
+	DefaultInputBinding():completerConfig(0),editorViewConfig(0), contextMenu(0),isDoubleClick(false) {}
 	virtual QString id() const {
 		return "TXS::DefaultInputBinding";
 	}
@@ -869,6 +869,7 @@ void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<G
 			continue;
 		line.addOverlay(QFormatRange(error.offset,error.length,f));
 	}
+	//todo: check for width changing like if (changed && ff->format(wordRepetitionFormat).widthChanging()) line.handle()->updateWrapAndNotifyDocument(i);
 }
 
 void LatexEditorView::lineGrammarChecked(const void* doc, const void* lineHandle, int lineNr, const QList<GrammarError>& errors){
@@ -1345,8 +1346,8 @@ void LatexEditorView::updateFormatSettings(){
 		const void ** temp = formats;
 		while (*temp) {
 			int * c = (static_cast<int*>(const_cast<void*>(*temp)));
-			*c = QDocument::defaultFormatScheme()->id(QString(static_cast<const char*>(*(temp+1))));
 			Q_ASSERT(c != 0);
+			*c = QDocument::defaultFormatScheme()->id(QString(static_cast<const char*>(*(temp+1))));
 			temp+=2;
 		}
 		//int f=QDocument::formatFactory()->id("citationMissing");
@@ -1618,9 +1619,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		bool addedOverlayReference = false;
 		bool addedOverlayCitation = false;
 		bool addedOverlayEnvironment = false;
-		bool addedOverlayStyleHint = false;
 		bool addedOverlayStructure = false;
-        bool addedOverlayPackage = false;
+		bool addedOverlayPackage = false;
 		
 		// diff presentation
 		QVariant cookie=line.getCookie(QDocumentLine::DIFF_LIST_COOCKIE);
@@ -1783,8 +1783,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			updateWrapping |= addedOverlayReference && (ff->format(referenceMissingFormat).widthChanging() || ff->format(referencePresentFormat).widthChanging() || ff->format(referenceMultipleFormat).widthChanging());
 			updateWrapping |= addedOverlayCitation && (ff->format(citationPresentFormat).widthChanging() || ff->format(citationMissingFormat).widthChanging());
             updateWrapping |= addedOverlayPackage && (ff->format(packagePresentFormat).widthChanging() || ff->format(packageMissingFormat).widthChanging());
-			updateWrapping |= addedOverlayEnvironment && ff->format(environmentFormat).widthChanging();
-			updateWrapping |= addedOverlayStyleHint && ff->format(wordRepetitionFormat).widthChanging();
+			updateWrapping |= addedOverlayEnvironment && ff->format(environmentFormat).widthChanging();			
 			updateWrapping |= addedOverlayStructure && ff->format(structureFormat).widthChanging();
 			if (updateWrapping)
 				line.handle()->updateWrapAndNotifyDocument(i);
@@ -2386,14 +2385,10 @@ void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
  */
 QDocumentCursor LatexEditorView::parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses) {
 	QDocumentCursor from, to;
-	cursor.getMatchingPair(from, to);
+	cursor.getMatchingPair(from, to, includeParentheses);
 	if (!from.hasSelection() || !to.hasSelection()) return QDocumentCursor();
 	QDocumentCursor::sort(from, to);
-	if (includeParentheses) {
-		return QDocumentCursor(from.selectionStart(), to.selectionEnd());
-	} else {
-		return QDocumentCursor(from.selectionStart(), to.selectionEnd());
-	}
+	return QDocumentCursor(from.selectionStart(), to.selectionEnd());
 }
 
 void LatexEditorView::triggeredThesaurus(){

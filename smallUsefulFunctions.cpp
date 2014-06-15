@@ -1562,7 +1562,7 @@ void LatexParser::importCwlAliases(){
 	}
 }
 
-LatexReader::LatexReader():lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);}
+LatexReader::LatexReader():index(0),wordStartIndex(0),lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);}
 LatexReader::LatexReader(const QString& line): lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);setLine(line);}
 LatexReader::LatexReader(const LatexParser& lp, const QString& line):lp(&lp){Q_ASSERT(this->lp);setLine(line);}
 
@@ -1717,6 +1717,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
 	    QString line;
 	    QTextStream stream(&tagsfile);
+		stream.setCodec("UTF-8");
 	    QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
 	    QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
 	    rxCom.setMinimal(true);

@@ -22,10 +22,10 @@ public:
 	QDocumentLineHandle *dlh;
 	int ticket;
 	
-	bool operator ==(const Environment& env){
+	bool operator ==(const Environment& env) const{
 		return (name==env.name)&&(id==env.id)&&(excessCol==env.excessCol);
 	}
-	bool operator !=(const Environment& env){
+	bool operator !=(const Environment& env) const{
 		return (name!=env.name)||(id!=env.id)||(excessCol!=env.excessCol);
 	}
 };

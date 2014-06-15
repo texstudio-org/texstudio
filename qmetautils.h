@@ -17,7 +17,8 @@ class ConnectionWrapper : public QObject
 {
 	Q_OBJECT
 public:
-	explicit ConnectionWrapper(QObject *parent = 0);
+	explicit ConnectionWrapper(QObject *parent, QObject * receiver, const char* slot);
+	explicit ConnectionWrapper(QObject *parentAndReceiver, const char* slot);
 
 	QObject * realReceiver;
 	const char* realSlot;

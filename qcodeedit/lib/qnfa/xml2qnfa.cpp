@@ -215,7 +215,6 @@ void copy(const QCharTreeLevel& src, QCharTreeLevel& dest)
 
 void embed(QNFA *src, QNFA *dest, int idx = 0)
 {
-	QNFA *nfa;
 	const int n = src->out.branch->count();
 	
 	//dest->out.branch->alloc(idx, n);
@@ -224,7 +223,7 @@ void embed(QNFA *src, QNFA *dest, int idx = 0)
 	
 	for ( int i = 0; i < n; ++i )
 	{
-		nfa = src->out.branch->at(i);
+		QNFA *nfa = src->out.branch->at(i);
 		
 		if ( nfa->type & Reserved )
 			continue;
