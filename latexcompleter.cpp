@@ -974,10 +974,6 @@ void CompletionListModel::setAbbrevWords(const QList<CompletionWord> &newwords) 
     qSort(wordsAbbrev.begin(), wordsAbbrev.end());
 }
 
-void CompletionListModel::setCitationWords(const QList<CompletionWord> &newwords) {
-	wordsCitations=newwords;
-}
-
 void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
 	config=newConfig;
 }

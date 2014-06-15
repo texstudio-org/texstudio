@@ -6384,7 +6384,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		// selections stuff (must do it before whatever the visibility...)
 		m_selectionBoundaries.clear();
 
-		int fullSel = false;
+        bool fullSel = false;
 
 		if ( inSel )
 			m_selectionBoundaries.prepend(0);
