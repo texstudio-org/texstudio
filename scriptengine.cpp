@@ -344,7 +344,7 @@ void TimeoutWrapper::run(){
 	deleteLater();
 }
 
-scriptengine::scriptengine(QObject *parent) : QObject(parent),globalObject(0), m_editor(0),m_allowWrite(false)
+scriptengine::scriptengine(QObject *parent) : QObject(parent),triggerId(-1), globalObject(0), m_editor(0),m_allowWrite(false)
 {
 	engine=new QScriptEngine(this);
 	qScriptRegisterQObjectMetaType<QDocument*>(engine);

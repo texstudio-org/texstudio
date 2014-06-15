@@ -4972,8 +4972,8 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (reuse) oldPDFs.insert(0, reuse);
 	if (oldPDFs.isEmpty()){
 		PDFDocument* doc = qobject_cast<PDFDocument*>(newPdfPreviewer(embedded));
-		doc->autoClose = autoClose;
 		REQUIRE(doc);
+		doc->autoClose = autoClose;
 		oldPDFs << doc;
 	}
 	

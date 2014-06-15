@@ -1,10 +1,7 @@
 #include "diffoperations.h"
 #include "latexdocument.h"
 #include "smallUsefulFunctions.h"
-DiffOp::DiffOp(){
-	dlh=0;
-	lineWasModified=false;
-}
+DiffOp::DiffOp(): start(0),length(0),type(Insert), lineWasModified(false),dlh(0){}
 
 void diffDocs(LatexDocument *doc,LatexDocument *doc2,bool dontAddLines){
 	

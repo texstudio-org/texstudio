@@ -7,7 +7,7 @@
 #include "latexdocument.h"
 #include "smallUsefulFunctions.h"
 
-int CodeSnippetPlaceHolder::offsetEnd(){
+int CodeSnippetPlaceHolder::offsetEnd() const{
 	return offset + length;
 }
 
@@ -223,7 +223,7 @@ bool CodeSnippet::operator== (const CodeSnippet &cw) const {
 }
 
 
-void CodeSnippet::insert(QEditor* editor){
+void CodeSnippet::insert(QEditor* editor) const{
 	if (!editor) return;
 	QDocumentCursor c=editor->cursor();
 	insertAt(editor,&c);
@@ -502,7 +502,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 void CodeSnippet::setName(const QString& newName){
 	name=newName;
 }
-QString CodeSnippet::getName(){
+QString CodeSnippet::getName() const{
 	return name;
 }
 

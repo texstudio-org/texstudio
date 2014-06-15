@@ -29,7 +29,7 @@ public:
 	QList<Macro> userMacros;
 
 	void setFiles(const QStringList & newFiles);
-	const QStringList& getLoadedFiles();
+	const QStringList& getLoadedFiles() const;
 
 	QString importedCwlBaseDir;
 private:

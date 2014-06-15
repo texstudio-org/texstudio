@@ -51,15 +51,6 @@ void QMetaObjectInvokeMethod(QObject* p, const char *signature, const QList<QGen
 										args.at(4),
 										args.at(5),
 										args.at(6));
-	else if ( args.count() == 7 )
-		QMetaObject::invokeMethod(	p, signature,
-										args.at(0),
-										args.at(1),
-										args.at(2),
-										args.at(3),
-										args.at(4),
-										args.at(5),
-										args.at(6));
 	else if ( args.count() == 8 )
 		QMetaObject::invokeMethod(	p, signature,
 										args.at(0),
@@ -118,19 +109,22 @@ QByteArray createMethodSignature(const char* methodName, const QList<QVariant>& 
 
 
 
-ConnectionWrapper::ConnectionWrapper(QObject *parent) :
-    QObject(parent)
+ConnectionWrapper::ConnectionWrapper(QObject *parent, QObject * receiver, const char* slot) :
+	QObject(parent), realReceiver(receiver), realSlot(slot)
 {
 }
+ConnectionWrapper::ConnectionWrapper(QObject * receiver, const char* slot) :
+	QObject(receiver), realReceiver(receiver), realSlot(slot)
+{
+}
+
 
 void ConnectionWrapper::activated(){
 	QMetaObjectInvokeMethod(realReceiver, realSlot, args);
 }
 
 void connectWithAdditionalArguments(QObject* sender, const char* signal, QObject* receiver, const char* slot, const QList<QVariant>& arguments){
-	ConnectionWrapper* wrapper = new ConnectionWrapper(receiver);
-	wrapper->realReceiver = receiver;
-	wrapper->realSlot = slot;
+	ConnectionWrapper* wrapper = new ConnectionWrapper(receiver, receiver, slot);
 	wrapper->args = arguments;
 	sender->connect(sender, signal, wrapper, SLOT(activated()));
 }

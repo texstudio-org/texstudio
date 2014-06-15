@@ -773,9 +773,12 @@ void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
 void QDocumentSearch::updateReplacementOverlays(){
 	if (m_newReplacementOverlays.isEmpty()) return;
 	QDocument* d = m_cursor.document();
-	if (!d) return;
+	if (!d) {
+		m_newReplacementOverlays.clear();
+		return;
+	}
 	int rid = d->getFormatId("replacement");
-	if (!d || !hasOption(HighlightReplacements) || !rid)  { 
+	if (!hasOption(HighlightReplacements) || !rid)  {
 		m_newReplacementOverlays.clear();
 		return;
 	}

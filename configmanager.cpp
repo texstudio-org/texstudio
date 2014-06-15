@@ -1068,10 +1068,9 @@ bool ConfigManager::execConfigDialog() {
 	else confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count()-1);
 	
 	QStringList files=findResourceFiles("completion","*.cwl",QStringList(configBaseDir));
-	QListWidgetItem *item;
 	const QStringList& loadedFiles = completerConfig->getLoadedFiles();
 	foreach(const QString& elem,files) {
-		item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
+		QListWidgetItem *item=new QListWidgetItem(elem,confDlg->ui.completeListWidget);
 		item->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled);
 		if (loadedFiles.contains(elem)) item->setCheckState(Qt::Checked);
 		else  item->setCheckState(Qt::Unchecked);
@@ -1643,9 +1642,9 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems) {
 		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit &Macros..."), SLOT(editMacros()));
 	}
 	// update quote replacement
-	static const char * open[8] = {"",  "``", "\"<", "\"`", "\\og ",  "\">", "\\enquote{", "\xE2\x80\x9C" /*“*/};
-	static const char * close[8] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"         , "\xE2\x80\x9D" /*”*/};
 	if (replaceQuotes >= 1 && replaceQuotes < 8) {
+		static const char * open[8] = {"",  "``", "\"<", "\"`", "\\og ",  "\">", "\\enquote{", "\xE2\x80\x9C" /*“*/};
+		static const char * close[8] = {"", "''", "\">", "\"'", "\\fg{}", "\"<", "}"         , "\xE2\x80\x9D" /*”*/};
 		completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_OPEN, QString::fromUtf8(open[replaceQuotes]), "", "(?language:latex)(?<=\\s|[(:]|^)\""));
 		completerConfig->userMacros.append(Macro(TXS_AUTO_REPLACE_QUOTE_CLOSE, QString::fromUtf8(close[replaceQuotes]), "", "(?language:latex)(?<=\\S)\""));
 	}
@@ -1754,9 +1753,8 @@ QList<QAction *> ConfigManager::getManagedActions(const QStringList& ids, const 
 		qWarning("Can't find internal actions: menuParent missing.");
 		return actions;
 	}
-	QAction *act;
 	foreach(const QString& id, ids) {
-		act=menuParent->findChild<QAction*>(commonPrefix+id);
+		QAction *act=menuParent->findChild<QAction*>(commonPrefix+id);
 		if (act==0) qWarning("Can't find internal action %s",id.toLatin1().data());
 		else actions << act;
 	}

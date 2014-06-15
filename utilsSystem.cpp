@@ -221,15 +221,16 @@ bool isFileRealWritable(const QString& filename) {
     //thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
     return QFileInfo(filename).isWritable();
 #endif
+#else
+     QFile fi(filename);
+     bool result=false;
+     if (fi.exists()) result=fi.open(QIODevice::ReadWrite);
+     else {
+         result=fi.open(QIODevice::WriteOnly);
+         fi.remove();
+     }
+     return result;
 #endif
-    QFile fi(filename);
-    bool result=false;
-    if (fi.exists()) result=fi.open(QIODevice::ReadWrite);
-    else {
-        result=fi.open(QIODevice::WriteOnly);
-        fi.remove();
-    }
-    return result;
 }
 
 bool isExistingFileRealWritable(const QString& filename) {
@@ -352,8 +353,9 @@ bool isRetinaMac() {
             isRetina = true;
     }
     return isRetina;
+#else
+     return false;
 #endif
-    return false;
 }
 
 bool hasAtLeastQt(int major, int minor){
