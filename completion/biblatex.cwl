@@ -5,7 +5,7 @@
 
 \ExecuteBibliographyOptions{key=value, ...}
 
-\bibliography{bib ﬁles}
+\bibliography{bib files}
 
 \addbibresource{bibliographic resource}#b
 \addbibresource[options]{bibliographic resource}
@@ -25,9 +25,9 @@
 \printshorthands
 \printshorthands[key=value, ...]
 \begin{refsection}
-\begin{refsection}[bib ﬁles]
+\begin{refsection}[bib files]
 \end{refsection}
-\newrefsection[bib ﬁles]
+\newrefsection[bib files]
 \begin{refsegment}
 \end{refsegment}
 \newrefsegment
@@ -343,7 +343,7 @@
 \RN{integer}
 \Rn{integer}
 
-\DefineBibliographyStrings{language}{deﬁnitions}
+\DefineBibliographyStrings{language}{definitions}
 \DefineBibliographyExtras{language}{code}
 \UndefineBibliographyExtras{language}{code}
 \DefineHyphenationExceptions{language}{text}
