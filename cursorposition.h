@@ -24,7 +24,7 @@ public:
 	CursorPosition(const QDocumentCursor& c);
 
 	QDocumentCursor toCursor();
-	bool equals(const CursorPosition &pos);
+	bool equals(const CursorPosition &pos) const;
 	int columnNumber() const {return m_columnNumber;}
 	void setColumnNumber(int col) {m_columnNumber = col;}
 private:
