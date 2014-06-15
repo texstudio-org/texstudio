@@ -193,7 +193,7 @@ QFoldedLineIterator& QFoldedLineIterator::operator++(){
 	int maxClosedParenthesisWeight=0, maxClosedHiddenParenthesisWeight=0;
 	collapsedBlockStart=line.hasFlag(QDocumentLine::CollapsedBlockStart);
 	foreach (const QParenthesis& par, line.parentheses()){
-		if (!par.role & QParenthesis::Fold)
+		if (!(par.role & QParenthesis::Fold))
 			continue;
 		if (par.role & QParenthesis::Close && !openParentheses.empty()) {
 			if (openParentheses.last().id==par.id) {
