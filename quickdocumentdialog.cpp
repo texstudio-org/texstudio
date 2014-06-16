@@ -367,13 +367,20 @@ void QuickDocumentDialog::geometryValuesChanged(){
 
 	QPainter painter(&preview);
 
-	painter.setTransform(QTransform().scale(resolution, resolution)*QTransform().translate(2,2));
+
 
 	preview.fill(QColor(0,0,0));
-	painter.setBrush(QBrush(QColor(255,255,255),Qt::SolidPattern));
-	painter.drawRect(QRectF(0,0,physicalPaperWidth, physicalPaperHeight));
+    QBrush brush(QColor(255,255,255));
+    brush.setStyle(Qt::SolidPattern);
+    painter.setBrush(brush);
+    painter.drawRect(2,2,qRound(physicalPaperWidth*resolution), qRound(physicalPaperHeight*resolution));
 
-	painter.setPen(QColor(128,128,128));
+    painter.setTransform(QTransform().scale(resolution, resolution)*QTransform().translate(2,2));
+
+    QPen pen(QColor(128,128,128));
+    pen.setWidth(0);
+    painter.setPen(pen);
+
 	painter.drawLine(QPointF(marginLeft, 0), QPointF(marginLeft, physicalPaperHeight));
 	painter.drawLine(QPointF(0, marginTop), QPointF(physicalPaperWidth, marginTop));
 	painter.drawLine(QPointF(physicalPaperWidth - marginRight, 0), QPointF(physicalPaperWidth - marginRight, physicalPaperHeight));
