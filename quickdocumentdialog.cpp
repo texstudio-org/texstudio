@@ -364,12 +364,9 @@ void QuickDocumentDialog::geometryValuesChanged(){
 	//draw paper
 	qreal resolution = qMin((ui.geometryPreviewLabel->width()-5)/physicalPaperWidth, (ui.geometryPreviewLabel->height()-5)/physicalPaperHeight);
 	QPixmap preview((int)(physicalPaperWidth*resolution+6), (int)(physicalPaperHeight*resolution+5));
+	preview.fill(QColor(0,0,0));
 
 	QPainter painter(&preview);
-
-
-
-	preview.fill(QColor(0,0,0));
     QBrush brush(QColor(255,255,255));
     brush.setStyle(Qt::SolidPattern);
     painter.setBrush(brush);
