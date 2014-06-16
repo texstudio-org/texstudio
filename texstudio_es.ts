@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es">
+<TS version="2.0" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -573,12 +573,12 @@
     <message>
         <location line="+2"/>
         <source>Makeglossaries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Makeglossaries</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Default Glossary Tool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Glosario por Defecto</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -711,7 +711,7 @@
         <location line="-1"/>
         <location line="+2"/>
         <source>den</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">den</translation>
     </message>
 </context>
 <context>
@@ -1910,12 +1910,12 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+190"/>
         <source>Replace Tab by Whitespace</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reemplazar Tab por espacios en blanco</translation>
     </message>
     <message>
         <location line="+239"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sobrescribir Paréntesis que abre seguido por un marcador de posición</translation>
     </message>
     <message>
         <location line="+170"/>
@@ -1925,7 +1925,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+7"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sobrescribir Paréntesis que cierra seguido por un marcador de posición</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2040,7 +2040,7 @@ aquí.</translation>
     <message>
         <location line="+3"/>
         <source>Check for Bad Words</source>
-        <translation>Comprobar Lenguaje soez</translation>
+        <translation type="unfinished">Comprobar Palabras inadecuadas</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2248,7 +2248,7 @@ aquí.</translation>
     <message>
         <location line="+5"/>
         <source>Fit to Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ajustar al Ancho del texto</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -2331,27 +2331,27 @@ aquí.</translation>
     <message>
         <location line="+13"/>
         <source>Load Strategy:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cargar la estrategia:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define cómo se carga un archivo PDF:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Búfer:&lt;/b&gt;Carga los archivos en un búfer y comprueba que estén completos. Luego se pasan los datos a poppler. Esto fue introducido principalmente como un aumento de velocidad para las versiones antiguas de poppler (&amp;lt;0.24) que no eran seguros para subprocesos. Se ha informado de que poppler puede bloquearse cuando se cargan grandes cantidades de memoria. Por lo tanto esta opción está obsoleta.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Directo:&lt;/b&gt;Utiliza la carga nativa de archivos poppler  . Esto es más rápido, pero no permite la comprobación de archivos incompletos.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Híbrido (recomendado):&lt;/b&gt;Primero carga los archivos en el búfer y comprueba que estén completos. Utiliza ese búfer para documentos pequeños (&amp;lt; 50MB).Los archivos grandes se cargan mediante la carga nativa de archivos poppler. Esto combina la comprobación de archivos al tiempo que evita los problemas con grandes archivos PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Buffered</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">En búfer</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Direct</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Directo</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Hybrid</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Híbrido</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -2615,7 +2615,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;&quot;&lt;/b&gt;: enclose in double-quotes, &lt;b&gt;.&lt;/b&gt; (dot) add a point at the end, (space): add a space at the end&lt;br /&gt;
 &lt;i&gt;Examples:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: complete absolute filename enclosed in double-quotes, &lt;b&gt;?e)&lt;/b&gt; just the extension without leading dot (e.g. tex), &lt;br /&gt;
 &lt;b&gt;?m&quot;&lt;/b&gt; double-quoted filename without extension (identical to &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; filename with extension (e.g. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: all .aux files in the current directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;i&gt;Selectores:&lt;/i&gt; una combinación de &lt;b&gt;una&lt;/b&gt;:ruta absoluta, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: nombre del archivo base sin extensión,&lt;b&gt;e&lt;/b&gt;:extensión, &lt;b&gt;r&lt;/b&gt;:ruta relativa al archivo maestro, &lt;b&gt;*&lt;/b&gt;:todos los archivos que coinciden con el modelo siguiente&lt;br /&gt;
+prepend &lt;b&gt;c:&lt;/b&gt; para el archivo actual en lugar del archivo maestro (incluir los dos puntos)&lt;br /&gt;
+&lt;i&gt;Terminación de caracteres:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: termina el selector. Los siguientes caracteres terminan el selector y tienen un significado adicional&lt;br /&gt;
+&lt;b&gt;&quot;&lt;/b&gt;: encerrar entre comillas dobles, &lt;b&gt;.&lt;/b&gt; (punto) añadir un punto al final, (espacio): añade un espacio al final&lt;br /&gt;
+&lt;i&gt;Ejemplos:&lt;/i&gt; &lt;b&gt;?ame&quot;&lt;/b&gt;: completa el nombre del archivo absoluto encerrado entre comillas dobles, &lt;b&gt;?e)&lt;/b&gt; sólo la extensión sin punto inicial (por ejemplo, tex), &lt;br /&gt;
+b&gt;?m&quot;&lt;/b&gt; nombre del archivo entre comillas dobles sin extensión (idéntico al &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nombre del archivo con la extensión (por ejemplo example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: todos los archivos .aux en el directorio actual</translation>
     </message>
     <message>
         <location line="-347"/>
@@ -3225,7 +3230,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <location line="+102"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ha habilitado la sustitución automática de citas. Sin embargo, hay macros con cadena desencadenante (?language:latex)(?&lt;=\s|^) o(?language:latex)(?&lt;=\S) que anulará el nuevo reemplazo de citas.
+¿Quieres eliminarlos?</translation>
     </message>
     <message>
         <location line="+227"/>
@@ -4336,17 +4342,17 @@ Do you want to overwrite it?</source>
     <message>
         <location line="-180"/>
         <source>Search text:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Buscar texto:</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Update Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Actualizar la Búsqueda</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Replace by:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reemplazar por:</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -5054,7 +5060,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+3"/>
         <source>Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Izquierda</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -5069,7 +5075,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+3"/>
         <source>Alt+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Derecha</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -5099,22 +5105,22 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+3"/>
         <source>Ctrl+Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+Izquierda</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Fit to &amp;Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ajustar al Ancho del &amp;Texto</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Fit to Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ajustar al Ancho del texto</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Ctrl+4</source>
-        <translation type="unfinished">Ctrl+4</translation>
+        <translation>Ctrl+4</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="+80"/>
@@ -5198,12 +5204,12 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location line="+1"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Error al cargar el archivo &quot;%1&quot; debido a un mal de asignación; tal vez no es un documento PDF válido.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Error al cargar el archivo &quot;%1&quot; debido a una excepción; tal vez no es un documento PDF válido. </translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5442,12 +5448,12 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location line="+304"/>
         <source>Calculating text width</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cálculo del ancho de texto</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -6767,7 +6773,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location line="+8"/>
         <source>Show results as list as well</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar los resultados también como una lista </translation>
     </message>
     <message>
         <location line="+64"/>
@@ -7213,12 +7219,12 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location line="+12"/>
         <source>First Order Word</source>
-        <translation type="unfinished">Palabras de primer orden</translation>
+        <translation>Palabras de primer orden</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Second Order Words</source>
-        <translation type="unfinished">Palabras de segundo orden</translation>
+        <translation>Palabras de segundo orden</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -7403,7 +7409,7 @@ siguiente valor:
     <name>SearchResultModel</name>
     <message>
         <source>Click to jump to the line</source>
-        <translation type="vanished">Clic para ir a la línea</translation>
+        <translation>Clic para ir a la línea</translation>
     </message>
     <message>
         <location filename="searchresultmodel.cpp" line="+148"/>
@@ -7566,7 +7572,7 @@ siguiente valor:
     <message>
         <location line="+15"/>
         <source>dummyStatusBar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">dummyStatusBar</translation>
     </message>
     <message>
         <location filename="spellerdialog.cpp" line="-5"/>
@@ -7711,12 +7717,12 @@ siguiente valor:
     <message>
         <location line="+0"/>
         <source>unrecognized key in key option</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">clave no reconocida en la opción de la tecla</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>unrecognized value in key option</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">valor no reconocido en la opción de la tecla</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8349,7 +8355,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location line="+1"/>
         <source>(b) allow for all documents</source>
-        <translation>(a) permitir para todos los documentos</translation>
+        <translation type="unfinished">(b) permitir para todos los documentos</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9079,7 +9085,7 @@ Do you want to create it?</source>
     <message>
         <location line="+1"/>
         <source>LilyPond files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Archivos fuente de LilyPond</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9137,7 +9143,7 @@ Do you want to create it?</source>
     <message>
         <location line="+3"/>
         <source>Fifi&amp;x</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fifi&amp;x</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9336,7 +9342,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Find &amp;Dialog...</source>
-        <translation type="vanished">&amp;Diálogo de Búsqueda...</translation>
+        <translation>&amp;Diálogo de Búsqueda...</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -9526,7 +9532,7 @@ Do you want to create it?</source>
     <message>
         <location line="+5"/>
         <source>Remove Current Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eliminar el actual marcador de posición </translation>
     </message>
     <message>
         <location line="+7"/>
@@ -9546,7 +9552,7 @@ Do you want to create it?</source>
     <message>
         <location line="+3"/>
         <source>&amp;Glossary</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Glosario</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -9577,17 +9583,17 @@ Do you want to create it?</source>
     <message>
         <location line="+4"/>
         <source>&amp;Bibtex</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Bibtex</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Bibtex 8-Bit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Bibe&amp;r</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibe&amp;r</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -9602,7 +9608,7 @@ Do you want to create it?</source>
     <message>
         <location line="+1"/>
         <source>&amp;Makeglossaries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Glosario - &amp;Makeglossaries</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -9809,7 +9815,7 @@ Do you want to create it?</source>
     <message>
         <location line="+1"/>
         <source>Bad words</source>
-        <translation>Lenguaje soez</translation>
+        <translation type="unfinished">Palabras inadecuadas</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -11449,7 +11455,7 @@ Los archivos html se encuentran en la carpeta %1.</translation>
     <message>
         <location line="+41"/>
         <source>Current Project</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Proyecto actual</translation>
     </message>
     <message>
         <location line="+8"/>
