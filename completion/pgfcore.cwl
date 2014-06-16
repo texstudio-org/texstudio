@@ -3,6 +3,8 @@
 #include:pgfsys
 #include:keyval
 #include:xcolor
+\foreach#*
+\breakforeach#*
 \pgfmathincluded#*
 \pgfmathloop{arg1}#*
 \pgfmathcounter#*
@@ -265,6 +267,8 @@
 \pgfdeclarelayer{arg1}#*
 \pgfsetlayers{arg1}#*
 \pgfonlayer{arg1}#*
+\begin{pgfonlayer}#*
+\end{pgfonlayer}#*
 \endpgfonlayer#*
 \pgfsetstrokeopacity{arg1}#*
 \pgfsetfillopacity{arg1}#*

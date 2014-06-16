@@ -1948,17 +1948,16 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                 }
             }
 		    if(!valid.contains('e') && !env.isEmpty()){ // set env alias
-			if(res>-1){
-			    if(rxCom.cap(1)=="\\begin"){
-				QString envName=rxCom.cap(3);
-				if(!envName.isEmpty()){
-
-				    foreach(const QString& elem,env)
-					package.environmentAliases.insert(rxCom.cap(3),elem);
-				}
-			    }
-			}
-		    }
+                if(res>-1){
+                    if(rxCom.cap(1)=="\\begin"){
+                        QString envName=rxCom.cap(3);
+                        if(!envName.isEmpty()){
+                            foreach(const QString& elem,env)
+                                package.environmentAliases.insert(rxCom.cap(3),elem);
+                        }
+                    }
+                }
+            }
 		    // normal parsing for completer
 		    if(hideFromCompletion)
 			continue; // command for spell checking only (auto parser)
