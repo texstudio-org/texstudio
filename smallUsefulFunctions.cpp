@@ -1934,12 +1934,19 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 			    package.possibleCommands["tabbing"] << line.simplified();
 			}
 		    }
-		    if(valid.contains('e') && !env.isEmpty()){ // tabbing support
-			if(res==-1){
-			    foreach(const QString& elem,env)
-				package.possibleCommands[elem] << line.simplified();
-			}
-		    }
+            if(valid.contains('e') && !env.isEmpty()){ // tabbing support
+                if(res==-1){
+                    foreach(const QString& elem,env)
+                        package.possibleCommands[elem] << line.simplified();
+                }else{
+                    QString cmd=rxCom.cap(1);
+                    if(cmd=="\\begin" || cmd=="\\end"){
+                        cmd=line.simplified();
+                    }
+                    foreach(const QString& elem,env)
+                        package.possibleCommands[elem] << cmd;
+                }
+            }
 		    if(!valid.contains('e') && !env.isEmpty()){ // set env alias
 			if(res>-1){
 			    if(rxCom.cap(1)=="\\begin"){
