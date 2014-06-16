@@ -48,3 +48,9 @@
 \begin{tikztimingtable}#n
 \end{tikztimingtable}#*
 &#/tikztimingtable
+\extracode#/tikztimingtable
+\vertlines[name]{points}#/pgfonlayer
+\begin{pgfonlayer}#/tikztimingtable
+\end{pgfonlayer}#*/tikztimingtable
+
+
