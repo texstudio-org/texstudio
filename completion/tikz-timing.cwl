@@ -4,9 +4,8 @@
 \tikztimingsetwscale{arg1}#*
 \timingwidth#*
 \timingheight#*
-\texttimingbefore#*
-\texttimingafter#*
-\texttiminggrid#*
+\texttiming[initial char]{timing}#
+\timing#*
 \wscale#*
 \slope#*
 \lslope#*
