@@ -48,7 +48,7 @@
 \end{tikztimingtable}#*
 &#/tikztimingtable
 \extracode#/tikztimingtable
-\vertlines[name]{points}#/pgfonlayer
+\vertlines[name]{points}#/tikztimingtable
 \begin{pgfonlayer}#/tikztimingtable
 \end{pgfonlayer}#*/tikztimingtable
 
