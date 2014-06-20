@@ -651,6 +651,41 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
     keyValLists.insert(name,newWordList);
 }
 
+void CompletionListModel::setContextWords(const QSet<QString> &newwords,const QString &context)
+{
+    QList<CompletionWord> newWordList;
+    acceptedChars.clear();
+    newWordList.clear();
+    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
+        QString str=*i;
+        QString validValues;
+        bool rare=false;
+        if(str.contains("#")){
+            int j=str.indexOf("#");
+            validValues=str.mid(j+1);
+            str=str.left(j);
+            QStringList lst=validValues.split(",");
+            QString key=str;
+            if(key.endsWith("="))
+                key.chop(1);
+            setKeyValWords(context+"/"+key,lst.toSet());
+        }
+        CompletionWord cw(str);
+        cw.index=0;
+        if(rare){
+            cw.usageCount=-2;
+        }else{
+            cw.usageCount=0;
+        }
+        cw.snippetLength=0;
+        newWordList.append(cw);
+        foreach(const QChar& c, str) acceptedChars.insert(c);
+    }
+    qSort(newWordList.begin(), newWordList.end());
+
+    contextLists.insert(context,newWordList);
+}
+
 
 QString makeSortWord(const QString& normal) {
 	QString res = normal.toLower();
@@ -984,7 +1019,7 @@ LatexReference * LatexCompleter::latexReference = 0;
 LatexCompleterConfig* LatexCompleter::config=0;
 
 LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),
-    forcedGraphic(false),forcedKeyval(false),startedFromTriggerKey(false){
+    forcedGraphic(false),forcedKeyval(false),forcedSpecialOption(false),startedFromTriggerKey(false){
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -1075,6 +1110,11 @@ void LatexCompleter::setKeyValWords(const QString &name, const QSet<QString> &ne
     listModel->setKeyValWords(name,newwords);
 }
 
+void LatexCompleter::setContextWords(const QSet<QString> &newwords,const QString &context)
+{
+    listModel->setContextWords(newwords,context);
+}
+
 void LatexCompleter::adjustWidget(){
 	int newWordMax=0;
 	QFont f=QApplication::font();
@@ -1126,6 +1166,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 	forcedCite=flags & CF_FORCE_CITE;
     forcedPackage= flags & CF_FORCE_PACKAGE;
     forcedKeyval= flags & CF_FORCE_KEYVAL;
+    forcedSpecialOption= flags & CF_FORCE_SPECIALOPTION;
 	startedFromTriggerKey= !(flags &CF_FORCE_VISIBLE_LIST);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -1197,6 +1238,11 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 
         handled=true;
     }
+    if(forcedSpecialOption){
+        listModel->baselist=listModel->contextLists.value(workingDir);
+
+        handled=true;
+    }
     if(!handled){
         if (flags & CF_NORMAL_TEXT) listModel->baselist=listModel->wordsText;
         else listModel->baselist=listModel->wordsCommands;
@@ -1217,6 +1263,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		if (flags & CF_FORCE_GRAPHIC) start=0;
 		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
 		if (flags & CF_NORMAL_TEXT) eow+="{";
+        if (flags & CF_FORCE_SPECIALOPTION) eow+="{";
         if (flags & CF_FORCE_CITE){
 			// the prohibited chars in bibtex keys are not well documented and differ among bibtex tools
 			// this is what JabRef uses (assuming they have a good understanding due to the maturity of the project):
@@ -1246,6 +1293,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 				if (flags & CF_FORCE_CITE) start=i+1;
                 if (flags & CF_FORCE_PACKAGE) start=i+1;
                 if (flags & CF_FORCE_KEYVAL) start=i+1;
+                if (flags & CF_FORCE_SPECIALOPTION) start=i+1;
 				break;
 			}
 		}

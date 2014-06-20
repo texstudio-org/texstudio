@@ -660,7 +660,6 @@ void LatexEditorView::updateLtxCommands(bool updateAll){
         lp.append(elem->ltxCommands);
 	}
 
-
     if(updateAll){
         foreach(const LatexDocument *elem,listOfDocs){
 

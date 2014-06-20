@@ -708,6 +708,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
 		completerConfig->words.append(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
+        latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
 		foreach(const QString& elem,pck.possibleCommands.keys()){
@@ -1340,6 +1341,7 @@ bool ConfigManager::execConfigDialog() {
 			LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
 			completerConfig->words.append(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
+            latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 			latexParser.environmentAliases.unite(pck.environmentAliases);
 			
 			//ltxCommands->possibleCommands.unite(pck.possibleCommands); qt bug

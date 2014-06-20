@@ -554,3 +554,12 @@
 \right[#m*
 \right\langle#m*
 \right\lbrace#m*
+# colors
+red#B
+blue#B
+green#B
+yellow#B
+gray#B
+black#B
+white#B
+cyan#B

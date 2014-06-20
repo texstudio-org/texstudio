@@ -935,6 +935,14 @@ int LatexParser::structureCommandLevel(const QString &cmd) const
 }
 
 int LatexParser::findContext(QString &line,int &column) const{
+    /* return a number for a context
+     * 0 unknown
+     * 1 command
+     * 2 option \command[option]{arg}
+     * 3 argument \command{arg}
+     * 4 argument 2   \command{arg}{arg2}
+     * etc
+     */
 	if(line.isEmpty())
 		return 0;
     QString eow="\\[]{} $";
@@ -965,12 +973,12 @@ int LatexParser::findContext(QString &line,int &column) const{
 	int ret=0;
 	if(start_ref>start_opt){
 		// assuming we are in command argument
-		ret=2;
+        ret=3;
 		i=start_ref-1;
 	}else{
 		if(start_opt>-1){
 			//assuming we are in command option
-			ret=3;
+            ret=2;
 			i=start_opt-1;
 		}
 	}
@@ -995,6 +1003,8 @@ int LatexParser::findContext(QString &line,int &column) const{
 		}
 		if(closeBrackets.contains(ch)){
 			n++;
+            if(ch=='}')
+                ++ret;  //going through another braces pair, [] is not checked
 			i--;
 			continue;
 		}
@@ -1032,11 +1042,19 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			value.remove(0,1);
         if(value.endsWith('}')||value.endsWith(']'))
 			value.chop(1);
-	}
+    }
 	switch (temp) {
 	case 0: return Unknown;
 	case 1: return Command;
-	case 2:
+    case 3:
+        if(specialTreatmentCommands.contains(command)){
+            QSet<QPair<QString,int> > helper=specialTreatmentCommands.value(command);
+            QPair<QString,int> elem;
+            foreach(elem,helper){
+                if(elem.second==1)
+                    return ArgEx;
+            }
+        }
 		if (environmentCommands.contains(command))
 			return Environment;
         else if (possibleCommands["%label"].contains(command))
@@ -1052,15 +1070,17 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
         else if (possibleCommands["%graphics"].contains(command))
             return Graphics;
 		else return Option;
-    case 3:
+    case 2:
         // find possible commands for keyval completion
         {
-            /*QString elem;
-            foreach(elem,possibleCommands.keys()){
-                if(elem.startsWith("key%") && (elem.mid(4)==command || elem.mid(4)==command+"#c"))
-                    break;
-                elem.clear();
-            }*/
+            if(specialTreatmentCommands.contains(command)){
+                QSet<QPair<QString,int> > helper=specialTreatmentCommands.value(command);
+                QPair<QString,int> elem;
+                foreach(elem,helper){
+                    if(elem.second==0)
+                        return OptionEx;
+                }
+            }
             QStringList keys=possibleCommands.keys();
             QString arg;
             if(!vals.isEmpty()){
@@ -1526,6 +1546,7 @@ void LatexParser::append(const LatexParser& elem){
 		    environmentAliases.insert(key,value);
 	    }
 	}
+    specialTreatmentCommands.unite(elem.specialTreatmentCommands);
 }
 
 void LatexParser::clear(){
@@ -1703,7 +1724,7 @@ void LatexReader::setLine(const QString& line){
 	this->wordStartIndex = 0;
 }
 
-LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
+LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QStringList conditions) {
 	QStringList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	LatexPackage package;
@@ -1714,6 +1735,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	QString fn=findResourceFile("completion/"+fileName,false,addPaths);
 	
 	QFile tagsfile(fn);
+    bool skipSection=false;
 	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
 	    QString line;
 	    QTextStream stream(&tagsfile);
@@ -1723,9 +1745,25 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	    rxCom.setMinimal(true);
 	    QStringList keywords;
 	    keywords << "text" << "title";
+        QStringList specialTreatment;
+        specialTreatment << "color";
         QString keyvals;
 	    while (!stream.atEnd()) {
 		line = stream.readLine().trimmed();
+        if(line.startsWith("#endif")){
+            // end of conditional section
+            skipSection=false;
+            continue;
+        }
+        if(line.startsWith("#ifOption:")){
+            QString condition=line.mid(10);
+            skipSection=!conditions.contains(condition);
+            continue;
+        }
+        if(skipSection) // skip conditional sections (if condition is not met)
+            continue;
+
+
 		if(line.startsWith("#include:")){
 		    //include additional cwl file
 		    QString fn=line.mid(9);
@@ -1744,6 +1782,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             keyvals.clear();
             continue;
         }
+
         if(!keyvals.isEmpty()){
             // read keyval (name stored in "keyvals")
             package.possibleCommands["key%"+keyvals] << line;
@@ -1788,6 +1827,9 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             int res=rxCom.indexIn(line);
             if(keywords.contains(rxCom.cap(3))){
                 package.optionCommands << rxCom.cap(1);
+            }
+            if(specialTreatment.contains(rxCom.cap(3))){
+                package.specialTreatmentCommands[rxCom.cap(1)].insert(qMakePair(rxCom.cap(3),1));
             }
             rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
             if(keywords.contains(rxCom2.cap(2))){
@@ -1891,19 +1933,23 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 				}
 				valid.remove('D');
 			}
+            if(valid.contains('B')){ // color
+                package.possibleCommands["%color"] << line;
+                hideFromCompletion=true;
+            }
 		    // normal commands for syntax checking
 		    // will be extended to distinguish between normal and math commands
-		    if(valid.isEmpty() || valid.contains('n')){
-			if(res>-1){
-			    if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-				package.possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-			    } else {
-				package.possibleCommands["normal"] << rxCom.cap(1);
-			    }
-			} else {
-			    package.possibleCommands["normal"] << line.simplified();
-			}
-		    }
+            if(valid.isEmpty() || valid.contains('n')){
+                if(res>-1){
+                    if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+                        package.possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+                    } else {
+                        package.possibleCommands["normal"] << rxCom.cap(1);
+                    }
+                } else {
+                    package.possibleCommands["normal"] << line.simplified();
+                }
+            }
 		    if(valid.contains('m')){ // math commands
 			if(res>-1){
 			    if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
@@ -2037,6 +2083,7 @@ void LatexPackage::unite(LatexPackage &add){
 	completionWords.append(add.completionWords);
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
+    specialTreatmentCommands.unite(add.specialTreatmentCommands);
 	//possibleCommands.unite(add.possibleCommands);
 	foreach(const QString& elem,add.possibleCommands.keys()){
 		QSet<QString> set2=add.possibleCommands[elem];

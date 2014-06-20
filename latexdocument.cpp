@@ -714,9 +714,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
                 }
 
 				foreach(const QString& elem,packages){
-					if(!removedUsepackages.removeAll(elem))
-						addedUsepackages << elem;
-					mUsepackageList.insertMulti(dlh,elem);
+                    if(!removedUsepackages.removeAll(option+"#"+elem))
+                        addedUsepackages << option+"#"+elem;
+                    mUsepackageList.insertMulti(dlh,option+"#"+elem); // hand on option of usepackages for conditional cwl load ..., force load if option is changed
 				}
 				continue;
 			}
@@ -895,9 +895,6 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
 
-    /*if(bibItemsChanged)
-        parent->updateBibFiles(false);*/
-
     // force update on citation overlays
     if(bibItemsChanged||bibTeXFilesNeedsUpdate){
         parent->updateBibFiles(bibTeXFilesNeedsUpdate);
@@ -913,21 +910,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 
     if(updateSyntaxCheck || updateLtxCommands) {
-        //qDebug()<<"update ltx"<< QTime::currentTime().toString("HH:mm:ss:zzz");
         if(edView){
             edView->updateLtxCommands(true);
-            //qDebug()<<"update ltxcommands done"<< QTime::currentTime().toString("HH:mm:ss:zzz");
         }
-        /*foreach(LatexDocument* elem,getListOfDocs()){
-			//getEditorView()->reCheckSyntax();//todo: signal
-            if(elem->edView){
-                elem->edView->updateLtxCommands();
-                qDebug()<<"update ltxcommands done"<< QTime::currentTime().toString("HH:mm:ss:zzz");
-				elem->edView->reCheckSyntax();
-            }
-        }*/
 	}
-    //qDebug()<<"update View"<< QTime::currentTime().toString("HH:mm:ss:zzz");
+
 	//update view
 	if(edView)
 		edView->documentContentChanged(linenr, count);
@@ -2546,6 +2533,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     //mCompleterWords=pck.completionWords.toSet();
     mCWLFiles=loadedFiles.toSet();
 	ltxCommands.optionCommands=pck.optionCommands;
+    ltxCommands.specialTreatmentCommands=pck.specialTreatmentCommands;
 	ltxCommands.possibleCommands=pck.possibleCommands;
 	ltxCommands.environmentAliases=pck.environmentAliases;
 	
@@ -2558,6 +2546,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 		}
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
+
 	//patch lines for new commands (ref,def, etc)
 	LatexParser& latexParser = LatexParser::getInstance();
 	QStringList categories;
@@ -2582,13 +2571,6 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 	if(update){
         LatexEditorView *edView=getEditorView();
         edView->updateLtxCommands(true);
-        /*foreach(LatexDocument* elem,getListOfDocs()){
-			LatexEditorView *edView=elem->getEditorView();
-			if(edView){
-				edView->updateLtxCommands();
-				edView->reCheckSyntax();
-			}
-        }*/
 	}
     return false;
 }
@@ -2606,7 +2588,15 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
         if(parent->cachedPackages.contains(elem)){
 			zw=parent->cachedPackages.value(elem);
 		}else{
-			zw=loadCwlFile(elem,completerConfig);
+            QString fileName=elem;
+            int i=fileName.indexOf('#');
+            QStringList options;
+            if(i>-1){
+                QString option=fileName.left(i);
+                fileName=fileName.mid(i+1);
+                options=option.split(',');
+            }
+            zw=loadCwlFile(fileName,completerConfig,options);
 			if(zw.packageName!="<notFound>"){
 				parent->cachedPackages.insert(elem,zw); // cache package
 			}else{
@@ -2719,11 +2709,21 @@ void LatexDocument::updateMagicCommentScripts(){
 }
 
 QStringList LatexDocument::containedPackages(){
-    return mUsepackageList.values();
+    QStringList helper=mUsepackageList.values();
+    for(int l=0;l<helper.size();++l){
+        QString elem=helper.value(l);
+        if(elem.contains('#')){
+            int i=elem.indexOf('#');
+            helper[l]=elem.mid(i+1);
+        }
+    }
+
+    return helper;
 }
 
 bool LatexDocument::containsPackage(const QString& name){
-	return mUsepackageList.keys(name).count()>0;
+    QStringList helper=containedPackages();
+    return helper.contains(name);
 }
 
 LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const { // doc==0 means current document

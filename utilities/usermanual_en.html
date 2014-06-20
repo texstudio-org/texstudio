@@ -1604,6 +1604,8 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   If #c is added, the keyvals are only used for completion, not for syntax checking
   </li>
   <li><code>#endkeyvals</code> (at start of line): end definition of keyvals, see graphicx.cwl in source code</li>
+  <li><code>#ifOption:&lt;option&gt;</code> (at start of line): the following block is only loaded if &lt;option&gt; was used in the usepackage command, e.g. \usepackage[svgnames]{color} -> option=svgnames</li>
+  <li><code>#endif</code> (at start of line): end conditional block</li>
   <li><code>#</code> (at start of line with the exception of <code>#include,#repl,#keyvals or #endkeyvals </code>): This line is a comment and will be ignored.</li>
   <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
 </ul>
@@ -1639,6 +1641,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>
   <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel)</td></tr>
+  <tr><td>B</td><td>this command declares a color (will be used for color completion only, no syntax checking)</td></tr>
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
 </table>

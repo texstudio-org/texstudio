@@ -3939,6 +3939,44 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
+    case LatexParser::ArgEx:
+    {
+        QSet<QPair<QString,int> > helper=view->lp.specialTreatmentCommands[command];
+        QPair<QString,int> elem;
+        int pos=1;
+        bool found=false;
+        foreach(elem,helper){
+            if(elem.second==pos){
+                found=true;
+                break;
+            }
+        }
+        if(found){
+            if(mCompleterNeedsUpdate) updateCompleter();
+            QString context="%"+elem.first;
+            completer->setWorkPath(context);
+            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);}
+        }
+        break;
+    case LatexParser::OptionEx:
+    {
+        QSet<QPair<QString,int> > helper=view->lp.specialTreatmentCommands[command];
+        QPair<QString,int> elem;
+        int pos=0;
+        bool found=false;
+        foreach(elem,helper){
+            if(elem.second==pos){
+                found=true;
+                break;
+            }
+        }
+        if(found){
+            if(mCompleterNeedsUpdate) updateCompleter();
+            QString context="%"+elem.first;
+            completer->setWorkPath(context);
+            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);}
+        }
+        break;
     case LatexParser::Keyval:
         completer->setWorkPath(command);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
@@ -6313,6 +6351,13 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             }
         }
     }
+    // add context completion
+    foreach(const QString &elem,ltxCommands.possibleCommands.keys()){
+        if(elem.startsWith("%color")){
+            completer->setContextWords(ltxCommands.possibleCommands[elem],elem);
+        }
+    }
+
 
 	if(edView) edView->viewActivated();
 	
