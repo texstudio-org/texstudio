@@ -3,7 +3,7 @@
 \textcolor{color}{text}
 \textcolor[model]{color}{text}
 \pagecolor{color}
-\definecolor{name}{model}{color-spec}
+\definecolor{name}{model}{color-spec}#s#%color
 \normalcolor
 \color[model]{color}
 \color{color}
