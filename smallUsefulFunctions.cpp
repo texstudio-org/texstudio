@@ -1547,6 +1547,7 @@ void LatexParser::append(const LatexParser& elem){
 	    }
 	}
     specialTreatmentCommands.unite(elem.specialTreatmentCommands);
+    specialDefCommands.unite(elem.specialDefCommands);
 }
 
 void LatexParser::clear(){
@@ -1799,6 +1800,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 		    int sep=line.indexOf('#');
 		    QString valid;
 		    QStringList env;
+            QString definition;
 		    bool uncommon=false;
 		    bool hideFromCompletion=false;
 		    if(sep>-1){
@@ -1808,6 +1810,13 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 					valid=valid.mid(1);
 					uncommon=true;
 				}
+                // second time split for specialDef
+                int sep=valid.indexOf('#');
+                if(sep>-1){
+                    definition=valid.mid(sep+1);
+                    valid=valid.left(sep);
+                }
+                // normal valid
 				if(valid.startsWith("/")){
 					env=valid.mid(1).split(',');
 					valid="e";
@@ -1858,6 +1867,12 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     package.possibleCommands["%ref"] << rxCom.cap(1);
                 }
                 valid.remove('r');
+            }
+            if(valid.contains('s')){ // special def
+                if(res>-1){
+                    package.specialDefCommands.insert(rxCom.cap(1),definition);
+                }
+                valid.remove('s');
             }
             if(valid.contains('c')){ // cite command
                 if(res>-1){
@@ -2084,6 +2099,7 @@ void LatexPackage::unite(LatexPackage &add){
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
     specialTreatmentCommands.unite(add.specialTreatmentCommands);
+    specialDefCommands.unite(add.specialDefCommands);
 	//possibleCommands.unite(add.possibleCommands);
 	foreach(const QString& elem,add.possibleCommands.keys()){
 		QSet<QString> set2=add.possibleCommands[elem];

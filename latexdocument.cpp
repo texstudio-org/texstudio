@@ -658,13 +658,31 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				lst << "\\the"+name ;
 				foreach(const QString& elem,lst){
 					mUserCommandList.insert(line(i).handle(),elem);
-					ltxCommands.possibleCommands["user"].insert(elem);
+                    ltxCommands.possibleCommands["user"].insert(elem);
 					if(!removedUserCommands.removeAll(elem)){
 						addedUserCommands << elem;
 					}
 				}
 				continue;
 			}
+            /// specialDefinition ///
+            /// e.g. definecolor
+            if(ltxCommands.specialDefCommands.contains(cmd)){
+                if(!name.isEmpty() ){
+                    completerNeedsUpdate=true;
+                    QStringList lst;
+                    lst << name ;
+                    foreach(const QString& elem,lst){
+                        // probably needs to be refined
+                        QString definition=ltxCommands.specialDefCommands.value(cmd);
+                        latexParser.possibleCommands[definition].insert(elem);
+                        if(!removedUserCommands.removeAll(elem)){
+                            addedUserCommands << elem;
+                        }
+                    }
+                    continue;
+                }
+            }
 			/// bibitem ///
 			if(latexParser.possibleCommands["%bibitem"].contains(cmd)){
 				if(!name.isEmpty() && !isDefinitionArgument(name)){
@@ -2534,6 +2552,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     mCWLFiles=loadedFiles.toSet();
 	ltxCommands.optionCommands=pck.optionCommands;
     ltxCommands.specialTreatmentCommands=pck.specialTreatmentCommands;
+    ltxCommands.specialDefCommands=pck.specialDefCommands;
 	ltxCommands.possibleCommands=pck.possibleCommands;
 	ltxCommands.environmentAliases=pck.environmentAliases;
 	

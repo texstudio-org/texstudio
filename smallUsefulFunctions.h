@@ -150,6 +150,7 @@ public:
 	// commands used for syntax check (per doc basis)
 	QHash<QString,QSet<QString> > possibleCommands;
     QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
+    QHash<QString,QString> specialDefCommands;
 	
 	void append(const LatexParser& elem);
 	void substract(const LatexParser& elem);
@@ -233,6 +234,7 @@ public:
 	QStringList requiredPackages;
 	QStringList completionWords;
 	QHash<QString,QSet<QString> > possibleCommands;
+    QHash<QString,QString> specialDefCommands;
 	QSet<QString> optionCommands;
     QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
 	QMultiHash<QString,QString> environmentAliases;
