@@ -33,7 +33,7 @@ class LatexReference;
 class LatexCompleter : public QObject  {
 	Q_OBJECT
 public:
-    enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16, CF_FORCE_CITE = 32, CF_FORCE_PACKAGE = 64, CF_FORCE_KEYVAL = 128};
+    enum CompletionFlag { CF_FORCE_VISIBLE_LIST = 1, CF_NORMAL_TEXT = 2, CF_FORCE_REF = 4, CF_OVERRIDEN_BACKSLASH=8,CF_FORCE_GRAPHIC = 16, CF_FORCE_CITE = 32, CF_FORCE_PACKAGE = 64, CF_FORCE_KEYVAL = 128, CF_FORCE_SPECIALOPTION = 256};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag);
 	
 	LatexCompleter(const LatexParser& latexParser, QObject *p = 0);
@@ -42,6 +42,7 @@ public:
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
 	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType=CT_COMMANDS);
     void setKeyValWords(const QString &name,const QSet<QString> &newwords);
+    void setContextWords(const QSet<QString> &newwords,const QString &context);
 	void updateAbbreviations();
 	
 	static void setLatexReference(LatexReference *ref) {latexReference = ref;}
@@ -107,6 +108,7 @@ private:
 	bool forcedCite;
     bool forcedPackage;
     bool forcedKeyval;
+    bool forcedSpecialOption;
     bool startedFromTriggerKey;
 	QString workingDir;
 	

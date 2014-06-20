@@ -121,7 +121,8 @@ public:
 	LatexParser();
 	void init();
 
-    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package,Keyval,KeyvalValue};
+    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package,Keyval,KeyvalValue,OptionEx,ArgEx};
+    // could do with some generalization as well, optionEx/argEx -> special treatment with specialOptionCommands
 	// realizes whether col is in a \command or in a parameter {}
 	int findContext(QString &line, int &column) const;
 	
@@ -135,20 +136,11 @@ public:
 	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 	static QString removeOptionBrackets(const QString &option);
 	
-    //QSet<QString> refCommands;
-    //QSet<QString> labelCommands;
-    //QSet<QString> citeCommands;
 	QSet<QString> environmentCommands;
-    //QSet<QString> definitionCommands;
 	QSet<QString> optionCommands;
 	QSet<QString> mathStartCommands;
 	QSet<QString> mathStopCommands;
-    //QSet<QString> tabularEnvirons;
-    //QSet<QString> fileCommands;
-    //QSet<QString> includeCommands;
-    //QSet<QString> usepackageCommands;
 	QSet<QString> customCommands;
-    //QSet<QString> graphicsIncludeCommands;
 	QStringList structureCommands;
 	QList<QStringList> structureCommandLists;  // a list for each level. 0:\part,\mypart 1:\chapter,\mychapter 2:\section ... 5:paragraph
 	int structureDepth() { return structureCommandLists.length(); }
@@ -157,6 +149,7 @@ public:
 	QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	// commands used for syntax check (per doc basis)
 	QHash<QString,QSet<QString> > possibleCommands;
+    QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
 	
 	void append(const LatexParser& elem);
 	void substract(const LatexParser& elem);
@@ -241,10 +234,11 @@ public:
 	QStringList completionWords;
 	QHash<QString,QSet<QString> > possibleCommands;
 	QSet<QString> optionCommands;
+    QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
 	QMultiHash<QString,QString> environmentAliases;
 	void unite(LatexPackage &add);
 };
 
-LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config=0);
+LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config=0, QStringList conditions=QStringList());
 
 #endif
