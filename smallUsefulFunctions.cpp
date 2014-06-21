@@ -1033,7 +1033,7 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 	value="";
 	if(!vals.isEmpty()){
 		value=vals.takeFirst();
-        if(value.startsWith('[') && temp<3){
+        if(value.startsWith('[') && temp!=2){
 			if(!vals.isEmpty()){
 				value=vals.takeFirst();
 			}
