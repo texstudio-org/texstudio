@@ -1055,6 +1055,39 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
                     return ArgEx;
             }
         }
+        // check key/val
+        {
+            QStringList keys=possibleCommands.keys();
+            bool handled=false;
+            QString elem;
+            QStringList checkOptions;
+            checkOptions <<  "key%1"+command << "key%1"+command+"#c";
+
+            foreach(elem,checkOptions){
+                if(keys.contains(elem)){
+                    handled=true;
+                    command=elem.mid(4);
+                    break;
+                }
+            }
+
+            if(handled){
+                // check that cursor is within keyval
+                bool isKey=false;
+                for(int i=col;col>0;col--){
+                    if(line.at(i-1).isLetter())
+                        continue;
+                    if(line.at(i-1)=='{' || line.at(i-1)==',')
+                        isKey=true;
+                    break;
+                }
+                if(isKey)
+                    return Keyval;
+                else
+                    return KeyvalValue;
+            }
+        }
+        // normal context
 		if (environmentCommands.contains(command))
 			return Environment;
         else if (possibleCommands["%label"].contains(command))

@@ -210,6 +210,14 @@ void SyntaxCheckTest::checkkeyval_data(){
              <<"\\documentclass[fleqn2]{article}"<<false;
      QTest::newRow("article if yathesis is loaded")
              <<"\\documentclass[fleqn]{yathesis} \\documentclass[fleqn2]{article}"<<false;
+     QTest::newRow("hypersetup, key in argument")
+             <<"\\usepackage{hyperref} \\hypersetup{pdfauthor}"<<false;
+     QTest::newRow("hypersetup, key in argument 2")
+             <<"\\usepackage{hyperref} \\hypersetup{pdfauthor2}"<<true;
+     QTest::newRow("hypersetup, val in argument")
+             <<"\\usepackage{hyperref} \\hypersetup{pdfpagemode=FullScreen}"<<false;
+     QTest::newRow("hypersetup, val in argument 2")
+             <<"\\usepackage{hyperref} \\hypersetup{pdfpagemode=test}"<<true;
 
 }
 

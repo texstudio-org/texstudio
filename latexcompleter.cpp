@@ -1261,16 +1261,13 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 		int start=c.columnNumber()-1;
 		if (flags & CF_NORMAL_TEXT) start=0;
 		if (flags & CF_FORCE_GRAPHIC) start=0;
-		QString eow="~!@#$%^&*()_+}|:\"<>?,./;[]-= \n\r`+�\t";
-		if (flags & CF_NORMAL_TEXT) eow+="{";
-        if (flags & CF_FORCE_SPECIALOPTION) eow+="{";
+        QString eow="~!@#$%^&*()_+{}|:\"<>?,./;[]-= \n\r`+�\t";
         if (flags & CF_FORCE_CITE){
 			// the prohibited chars in bibtex keys are not well documented and differ among bibtex tools
 			// this is what JabRef uses (assuming they have a good understanding due to the maturity of the project):
 			eow = "\n\r\t #{}\\\"~,^'";
 		}
 		if (flags & CF_FORCE_GRAPHIC) {
-			eow+="{";
 			eow.remove("/");
 			eow.remove("\\");
 			eow.remove(".");
@@ -1278,7 +1275,6 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 			eow.remove("_");
 		}
         if (flags & CF_FORCE_PACKAGE) {
-            eow+="{";
             eow.remove("_");
         }
 		if (flags & CF_FORCE_REF) eow="\\";
