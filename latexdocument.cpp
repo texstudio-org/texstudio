@@ -277,13 +277,17 @@ inline bool isDefinitionArgument(const QString &arg) {
 	return (pos >= 0 && pos<arg.length()-1 && arg[pos+1].isDigit());
 }
 
-void LatexDocument::patchStructure(int linenr, int count) {
+bool LatexDocument::patchStructure(int linenr, int count) {
+    /* true means a second run is suggested as packages are loadeed which change the outcome
+     * e.g. definition of specialDef command, but packages are load at the end of this method.
+     */
     //qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
     if(!parent->patchEnabled())
-        return;
+        return false;
 
-	if (!baseStructure) return;
+    if (!baseStructure) return false;
 
+    bool reRunSuggested=false;
     bool recheckLabels=true;
     if(count<0){
         count=lineCount();
@@ -908,6 +912,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
 		bool forceUpdate=!addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
         updateLtxCommands=updateCompletionFiles(forceUpdate,false,true);
+        reRunSuggested=(count>1)&&(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());
 	}
 	
 	if (bibTeXFilesNeedsUpdate)
@@ -946,6 +951,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
         parent->addDocToLoad(fname);
     }
     //qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
+    return reRunSuggested;
 }
 
 #ifndef QT_NO_DEBUG

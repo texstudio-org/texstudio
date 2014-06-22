@@ -3811,7 +3811,9 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
         doc = currentEditorView()->document;
 	if(initial){
         //int len=doc->lineCount();
-        doc->patchStructure(0,-1); //len
+        if(doc->patchStructure(0,-1))
+            doc->patchStructure(0,-1); // do a second run, if packages are load (which might define new commands)
+        // admitedly this solution is expensive (though working)
 
 		doc->updateMagicCommentScripts();
 		configManager.completerConfig->userMacros << doc->localMacros;
