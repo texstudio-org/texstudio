@@ -1776,6 +1776,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 		stream.setCodec("UTF-8");
 	    QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
 	    QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
+        QRegExp rxCom3("^(\\\\\\w+\\*?)");
 	    rxCom.setMinimal(true);
 	    QStringList keywords;
 	    keywords << "text" << "title";
@@ -1874,6 +1875,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                 package.specialTreatmentCommands[rxCom.cap(1)].insert(qMakePair(rxCom.cap(3),1));
             }
             rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
+            int res3=rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
             if(keywords.contains(rxCom2.cap(2))){
                 package.optionCommands << rxCom2.cap(1);
             }
@@ -1904,6 +1906,9 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
             if(valid.contains('s')){ // special def
                 if(res>-1){
                     package.specialDefCommands.insert(rxCom.cap(1),definition);
+                }else{
+                    if(res3>-1)
+                        package.specialDefCommands.insert(rxCom3.cap(1),definition);
                 }
                 valid.remove('s');
             }

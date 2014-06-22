@@ -976,8 +976,12 @@ void BuildManager::readSettings(QSettings &settings){
 			settings.remove(QString("User/ToolName%1").arg(i));
 		}
 	}			
-	
-	if (reinterpret_cast<int&>(dvi2pngMode)<0) {
+    int md=reinterpret_cast<int&>(dvi2pngMode);
+#ifdef NO_POPPLER_PREVIEW
+    if(md==DPM_EMBEDDED_PDF)
+        md=-1;
+#endif
+    if (md<0) {
 		if (isCommandDirectlyDefined(CMD_DVIPNG)) dvi2pngMode = DPM_DVIPNG; //best/fastest mode
 		else if (isCommandDirectlyDefined(CMD_DVIPS) && isCommandDirectlyDefined(CMD_GS)) dvi2pngMode = DPM_DVIPS_GHOSTSCRIPT; //compatible mode
 		else dvi2pngMode = DPM_DVIPNG; //won't work
@@ -1279,7 +1283,13 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 				QFileInfo fi(*tf);
 				preambleFormatFile = fi.completeBaseName();
 				previewFileNames.append(fi.absoluteFilePath());
-				ProcessX *p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName()).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+                ProcessX *p =0;
+                if(dvi2pngMode==DPM_EMBEDDED_PDF){
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&pdflatex %3 \\dump\"").arg(getCommandInfo(CMD_PDFLATEX).getProgramName()).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+                }else{
+                    p = newProcessInternal(QString("%1 -interaction=nonstopmode -ini \"&latex %3 \\dump\"").arg(getCommandInfo(CMD_LATEX).getProgramName()).arg(preambleFormatFile), tf->fileName()); //no delete! goes automatically
+                }
+
 				REQUIRE(p);
 				addLaTeXInputPaths(p, addPaths);
 				p->setProperty("preamble", preamble_mod);
@@ -1326,9 +1336,16 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 	tf->setAutoRemove(false);
 	tf->close();
 	delete tf; // tex file needs to be freed
-	// start conversion
-	// tex -> dvi
-	ProcessX *p1 = firstProcessOfDirectExpansion(CMD_LATEX, QFileInfo(ffn)); //no delete! goes automatically
+    ProcessX *p1=0;
+    if(dvi2pngMode==DPM_EMBEDDED_PDF){
+        // start conversion
+        // tex -> dvi
+        p1 = firstProcessOfDirectExpansion(CMD_PDFLATEX, QFileInfo(ffn)); //no delete! goes automatically
+    }else{
+        // start conversion
+        // tex -> dvi
+        p1 = firstProcessOfDirectExpansion(CMD_LATEX, QFileInfo(ffn)); //no delete! goes automatically
+    }
     if(!p1) return; // command failed, not set ?
 	addLaTeXInputPaths(p1, addPaths);
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
@@ -1471,6 +1488,17 @@ void BuildManager::latexPreviewCompleted(int status){
 		connect(p2,SIGNAL(finished(int)),this,SLOT(dvi2psPreviewCompleted(int)));
 		p2->startCommand();
 	}
+    if (dvi2pngMode==DPM_EMBEDDED_PDF) {
+        ProcessX* p1=qobject_cast<ProcessX*> (sender());
+        if (!p1) return;
+        QString processedFile=p1->getFile();
+        if (processedFile.endsWith(".tex"))
+            processedFile = parseExtendedCommandLine("?am.tex",processedFile).first();
+        QString fn=parseExtendedCommandLine("?am).pdf",processedFile).first();
+        if(QFileInfo(fn).exists()){
+            emit previewAvailable(fn, previewFileNameToSource[processedFile]);
+        }
+    }
 }
 
 //dvi to ps conversion is finished, call ghostscript to make a useable png from it
