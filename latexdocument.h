@@ -241,7 +241,7 @@ public:
 	
 public slots:
 	void updateStructure();
-	void patchStructure(int linenr, int count);
+	bool patchStructure(int linenr, int count);
 	void patchStructureRemoval(QDocumentLineHandle* dlh);
 	void initClearStructure();
 	
