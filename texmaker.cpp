@@ -3814,6 +3814,7 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
         if(doc->patchStructure(0,-1))
             doc->patchStructure(0,-1); // do a second run, if packages are load (which might define new commands)
         // admitedly this solution is expensive (though working)
+        //TODO: does not working when entering \usepackage in text ... !
 
 		doc->updateMagicCommentScripts();
 		configManager.completerConfig->userMacros << doc->localMacros;
@@ -3980,11 +3981,17 @@ void Texmaker::NormalCompletion() {
         }
         break;
     case LatexParser::Keyval:
+        if(command.endsWith("#c")){
+            command.chop(2);
+        }
         completer->setWorkPath(command);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
         break;
     case LatexParser::KeyvalValue:{
         //figure out keyval
+        if(command.endsWith("#c")){
+            command.chop(2);
+        }
         int i=c.columnNumber();
         while(i>0 && word.at(i-1).isLetter())
             i--;
@@ -6823,6 +6830,19 @@ void Texmaker::previewLatex(){
 	
 }
 void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& source){
+#ifndef NO_POPPLER_PREVIEW
+    if(imageFile.endsWith(".pdf")){
+        // special treatment for pdf files (embedded pdf mode)
+        runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
+        /*
+        if (PDFDocument::documentList().isEmpty())
+            newPdfPreviewer();
+        PDFDocument::documentList().first()->loadFile(imageFile,QString(imageFile).replace(".pdf", ".tex"));
+        PDFDocument::documentList().first()->show();
+        PDFDocument::documentList().first()->setFocus();*/
+        return;
+    }
+#endif
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 			configManager.previewMode == ConfigManager::PM_PANEL||
 			(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {

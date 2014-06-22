@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>479</width>
-            <height>550</height>
+            <width>576</width>
+            <height>630</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -896,7 +896,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>193</width>
+               <width>191</width>
                <height>76</height>
               </rect>
              </property>
@@ -1623,8 +1623,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
-            <height>1043</height>
+            <width>833</width>
+            <height>1228</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2746,8 +2746,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>341</width>
+            <height>528</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3130,6 +3130,11 @@ them here.</string>
             <item>
              <property name="text">
               <string>Preview with dvips/ghostscript</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Preview with embedded PDF-viewer</string>
              </property>
             </item>
            </widget>
