@@ -6834,12 +6834,9 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
     if(imageFile.endsWith(".pdf")){
         // special treatment for pdf files (embedded pdf mode)
         runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
-        /*
-        if (PDFDocument::documentList().isEmpty())
-            newPdfPreviewer();
-        PDFDocument::documentList().first()->loadFile(imageFile,QString(imageFile).replace(".pdf", ".tex"));
-        PDFDocument::documentList().first()->show();
-        PDFDocument::documentList().first()->setFocus();*/
+        if(currentEditorView())
+            currentEditorView()->setFocus();
+
         return;
     }
 #endif

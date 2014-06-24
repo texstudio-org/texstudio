@@ -1277,6 +1277,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         if (flags & CF_FORCE_PACKAGE) {
             eow.remove("_");
         }
+        if(flags == CF_FORCE_VISIBLE_LIST)
+            eow.remove("{");
 		if (flags & CF_FORCE_REF) eow="\\";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
