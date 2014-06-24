@@ -38,7 +38,13 @@ LatexDocument::~LatexDocument(){
 	if (!labelList->parent) delete labelList;
 	if (!todoList->parent) delete todoList;
 	if (!bibTeXList->parent) delete bibTeXList;
-	if (!blockList->parent) delete blockList;
+    if (!blockList->parent) delete blockList;
+
+    foreach (QDocumentLineHandle *dlh, mLineSnapshot) {
+        dlh->deref();
+    }
+    mLineSnapshot.clear();
+
 	delete baseStructure;
 }
 
