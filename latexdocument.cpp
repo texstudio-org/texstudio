@@ -848,7 +848,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
 			int level = latexParser.structureCommandLevel(cmd);
-			if (level>-1) {
+			if (level>-1 && !isDefinitionArgument(name)) {
 				StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
 				else newSection->appendix=false;
