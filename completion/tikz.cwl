@@ -88,9 +88,9 @@ intersections
 \begin{tikzpicture}
 \end{tikzpicture}
 #keyvals:\node#c
-below of=
-right of=
-left of=
+below of=#%node
+right of=#%node
+left of=#%node
 outline
 %tikzstyle
 %color
