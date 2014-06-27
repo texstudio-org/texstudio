@@ -1910,6 +1910,15 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     if(res3>-1)
                         package.specialDefCommands.insert(rxCom3.cap(1),definition);
                 }
+                if(definition.startsWith('%')){
+                    config->specialCompletionKeys.insert(definition);
+                }else{
+                    if(definition.length()>2){
+                        QString helper=definition.mid(1,definition.length()-2);
+                        if(helper.startsWith('%'))
+                            config->specialCompletionKeys.insert(helper);
+                    }
+                }
                 valid.remove('s');
             }
             if(valid.contains('c')){ // cite command

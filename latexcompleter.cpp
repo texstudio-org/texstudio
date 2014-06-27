@@ -1234,7 +1234,22 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         handled=true;
     }
     if(forcedKeyval){
-        listModel->baselist=listModel->keyValLists.value(workingDir);
+        listModel->baselist.clear();
+        foreach(const CompletionWord &cw,listModel->keyValLists.value(workingDir)){
+            if(cw.word.startsWith('%')){
+                QString specialList=cw.word;
+                if(listModel->contextLists.contains(specialList)){
+                    listModel->baselist << listModel->contextLists.value(specialList);
+                    QList<CompletionWord>::iterator middle=listModel->baselist.end()-listModel->contextLists.value(specialList).length();
+                    std::inplace_merge(listModel->baselist.begin(),middle,listModel->baselist.end());
+                }
+            }else{
+                // nothing special, simply add
+                QList<CompletionWord>::iterator it;
+                it=qLowerBound(listModel->baselist.begin(),listModel->baselist.end(),cw);
+                listModel->baselist.insert(it,cw); // keep sorting
+            }
+        }
 
         handled=true;
     }

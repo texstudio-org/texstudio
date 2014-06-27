@@ -92,6 +92,8 @@ below of=
 right of=
 left of=
 outline
+%tikzstyle
+%color
 #endkeyvals
 #keyvals:\path#c
 line
@@ -103,7 +105,7 @@ dashed
 thick
 name path=
 very thin
-color=
+color=#%color
 sharp corners
 rounded corners=
 #endkeyvals
