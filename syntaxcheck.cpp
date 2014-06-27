@@ -335,7 +335,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                 }
 
             }
-	    if(ctx==LatexParser::KeyvalValue && word.simplified()!=","){
+        if(ctx==LatexParser::KeyvalValue && word.simplified()!="," && !command.endsWith("#c")){
                 //figure out keyval
                 int i=lr.wordStartIndex;
                 while(i>0 && line.at(i-1).isLetter())
