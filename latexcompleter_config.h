@@ -25,6 +25,7 @@ public:
 	PreferedCompletionTab preferedCompletionTab;
 	QStringList words;
 	QMultiMap<uint,QPair<int,int> > usage;
+    QSet<QString> specialCompletionKeys;
 
 	QList<Macro> userMacros;
 

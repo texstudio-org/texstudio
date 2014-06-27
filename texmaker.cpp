@@ -6361,8 +6361,9 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
         }
     }
     // add context completion
-    foreach(const QString &elem,ltxCommands.possibleCommands.keys()){
-        if(elem.startsWith("%color")){
+    LatexCompleterConfig* config=completer->getConfig();
+    if(config){
+        foreach(const QString &elem,config->specialCompletionKeys){
             completer->setContextWords(ltxCommands.possibleCommands[elem],elem);
         }
     }
