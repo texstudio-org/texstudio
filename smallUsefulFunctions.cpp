@@ -945,7 +945,7 @@ int LatexParser::findContext(QString &line,int &column) const{
      */
 	if(line.isEmpty())
 		return 0;
-    QString eow="\\[]{} $";
+    QString eow="\\[]{}$";
 	int i=column;
 	if(i>=line.length())
 		i=line.length();
@@ -989,6 +989,7 @@ int LatexParser::findContext(QString &line,int &column) const{
 	QString openBrackets="[{";
 	QString closeBrackets="]}";
 	eow=getCommonEOW();
+    eow.remove(' ');
 	int stop=i;
 	while (i>-1) {
 		ch=line.at(i);
@@ -1011,7 +1012,7 @@ int LatexParser::findContext(QString &line,int &column) const{
 		if(n==0 && eow.contains(ch)){
 			if(ch=='\\'){
 				//TODO: check if not \\ (newline) was found
-				line=line.mid(i,stop-i+1);
+                line=line.mid(i,stop-i+1).simplified();
 				column=i;
 				return ret;
 			}else{ // this is a overly strict interpretation of command syntax
