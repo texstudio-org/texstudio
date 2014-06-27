@@ -682,9 +682,19 @@ bool LatexDocument::patchStructure(int linenr, int count) {
                     completerNeedsUpdate=true;
                     QStringList lst;
                     lst << name ;
-                    foreach(const QString& elem,lst){
+                    foreach(QString elem,lst){
                         // probably needs to be refined
                         QString definition=ltxCommands.specialDefCommands.value(cmd);
+                        if(definition.startsWith('(')){
+                            if(elem.startsWith('(')){
+                                elem.chop(1);
+                                elem=elem.mid(1);
+                                definition.chop(1);
+                                definition=definition.mid(1);
+                            }else{
+                                continue;
+                            }
+                        }
                         latexParser.possibleCommands[definition].insert(elem);
                         if(!removedUserCommands.removeAll(elem)){
                             addedUserCommands << elem;

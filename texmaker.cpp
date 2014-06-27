@@ -3997,9 +3997,9 @@ void Texmaker::NormalCompletion() {
             i--;
         if(word.at(i-1)==QChar('=')){
             int j=--i;
-            while(i>0 && word.at(i-1).isLetter())
+            while(i>0 && (word.at(i-1).isLetter()||word.at(i-1)==' '))
                 i--;
-            QString key=word.mid(i,j-i);
+            QString key=word.mid(i,j-i).simplified();
             completer->setWorkPath(command+"/"+key);
             if(completer->existValues())
                 currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);

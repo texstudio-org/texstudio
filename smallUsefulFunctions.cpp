@@ -857,8 +857,8 @@ void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &stru
 }
 
 void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
-	const QString BracketsOpen("[{");
-	const QString BracketsClose("]}");
+    const QString BracketsOpen("[{(");
+    const QString BracketsClose("]})");
 	int start=column;
     int stop=-1;
 	int type;

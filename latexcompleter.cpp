@@ -639,7 +639,7 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
                 key.chop(1);
             setKeyValWords(name+"/"+key,lst.toSet());
         }
-        CompletionWord cw(str);
+        CompletionWord cw(str,false);
         cw.index=0;
         cw.usageCount=-2;
         cw.snippetLength=0;
