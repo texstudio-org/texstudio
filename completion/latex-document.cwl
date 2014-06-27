@@ -99,6 +99,7 @@
 \end{figure}
 \end{figure*}
 \end{filecontents}
+\end{filecontents*}
 \end{flushleft}
 \end{flushright}
 \end{footnotesize}
