@@ -368,11 +368,7 @@ public:
 				handled=true;
 			} else if (event->text().length()==1 && getCommonEOW().contains(event->text().at(0)) ) {
 				QString curWord = getCurWord();
-				if (curWord=="\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes) {
-					resetBinding();
-					simpleRestoreAutoOverride(written);
-					return false;
-				}
+
 				const QList<CompletionWord> &words=completer->listModel->getWords();
 				QString newWord;
 				int eowchars = 10000;
@@ -400,7 +396,13 @@ public:
 					insertText(insertion);
 					//insertText(written);
 					handled = true;
-				} else {
+                }
+                if (!handled && (curWord=="\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes)) {
+                    resetBinding();
+                    simpleRestoreAutoOverride(written);
+                    return false;
+                }
+                if(!handled) {
 					insertCompletedWord();
 					if (newWord.isEmpty())
 						simpleRestoreAutoOverride(written);
