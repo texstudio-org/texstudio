@@ -369,6 +369,11 @@ public:
 			} else if (event->text().length()==1 && getCommonEOW().contains(event->text().at(0)) ) {
 				QString curWord = getCurWord();
 
+                if (curWord=="\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes) {
+                    resetBinding();
+                    simpleRestoreAutoOverride(written);
+                    return false;
+                }
 				const QList<CompletionWord> &words=completer->listModel->getWords();
 				QString newWord;
 				int eowchars = 10000;
@@ -397,11 +402,7 @@ public:
 					//insertText(written);
 					handled = true;
                 }
-                if (!handled && (curWord=="\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes)) {
-                    resetBinding();
-                    simpleRestoreAutoOverride(written);
-                    return false;
-                }
+
                 if(!handled) {
 					insertCompletedWord();
 					if (newWord.isEmpty())
@@ -626,7 +627,6 @@ CompletionWord CompletionListModel::getLastWord(){
 void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString> &newwords)
 {
     QList<CompletionWord> newWordList;
-    acceptedChars.clear();
     newWordList.clear();
     for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
         QString str=*i;
@@ -646,7 +646,6 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
         cw.usageCount=-2;
         cw.snippetLength=0;
         newWordList.append(cw);
-        foreach(const QChar& c, str) acceptedChars.insert(c);
     }
     qSort(newWordList.begin(), newWordList.end());
 
@@ -656,7 +655,6 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
 void CompletionListModel::setContextWords(const QSet<QString> &newwords,const QString &context)
 {
     QList<CompletionWord> newWordList;
-    acceptedChars.clear();
     newWordList.clear();
     for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
         QString str=*i;
@@ -681,7 +679,6 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords,const QS
         }
         cw.snippetLength=0;
         newWordList.append(cw);
-        foreach(const QChar& c, str) acceptedChars.insert(c);
     }
     qSort(newWordList.begin(), newWordList.end());
 
@@ -866,7 +863,6 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 typedef QPair<int,int> PairIntInt;
 void CompletionListModel::setBaseWords(const QSet<QString> &newwords, CompletionType completionType) {
 	QList<CompletionWord> newWordList;
-	acceptedChars.clear();
 	newWordList.clear();
 	for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
 		QString str=*i;
@@ -888,7 +884,6 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, Completion
 			cw.snippetLength=0;
 		}
 		newWordList.append(cw);
-		foreach(const QChar& c, str) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
 	
@@ -910,11 +905,9 @@ void CompletionListModel::setBaseWords(const QSet<QString> &newwords, Completion
 
 void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType) {
 	QList<CompletionWord> newWordList;
-	acceptedChars.clear();
 	newWordList.clear();
 	foreach(const CompletionWord& cw, newwords) {
 		newWordList.append(cw);
-		foreach(const QChar& c, cw.word) acceptedChars.insert(c);
 	}
 	qSort(newWordList.begin(), newWordList.end());
 	
@@ -936,7 +929,6 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, Co
 
 void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const QSet<QString> &newwords, CompletionType completionType) {
     QList<CompletionWord> newWordList;
-    acceptedChars.clear();
     newWordList.clear();
     for(QSet<QString>::const_iterator i=baseCommands.constBegin();i!=baseCommands.constEnd();++i) {
         QString str=*i;
@@ -958,7 +950,6 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
             cw.snippetLength=0;
         }
         newWordList.append(cw);
-        foreach(const QChar& c, str) acceptedChars.insert(c);
     }
     for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
         QString str=*i;
@@ -985,7 +976,6 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
             cw.snippetLength=0;
         }
         newWordList.append(cw);
-        foreach(const QChar& c, str) acceptedChars.insert(c);
     }
     qSort(newWordList.begin(), newWordList.end());
 
@@ -1410,8 +1400,6 @@ bool LatexCompleter::acceptChar(QChar c,int pos) {
 	              ((c>=QChar('A')) && (c<=QChar('Z'))) ||
 	              ((c>=QChar('0')) && (c<=QChar('9')))) return true;
 	if (pos<=1) return false;
-	if (!listModel->getAcceptedChars().contains(c))
-		return false; //if no word contains the character don't accept it
 	if (listModel->isNextCharPossible(c))
 		return true; //only accept non standard character, if one of the current words contains it
 	return false;
