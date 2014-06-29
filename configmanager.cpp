@@ -425,6 +425,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true , &pseudoDialog->checkBoxToolTipPreview);
 	registerOption("Editor/MaxImageTooltipWidth", &editorConfig->maxImageTooltipWidth, 400);
 	registerOption("Editor/ContextMenuKeyboardModifiers", &editorConfig->contextMenuKeyboardModifiers, Qt::ShiftModifier);
+	registerOption("Editor/ContextMenuSpellcheckingEntryLocation", &editorConfig->contextMenuSpellcheckingEntryLocation, 0, &pseudoDialog->comboBoxContextMenuSpellcheckingEntryLocation);
 
 	registerOption("Editor/TexDoc Help Internal", &editorConfig->texdocHelpInInternalViewer, true , &pseudoDialog->checkBoxTexDocInternal);
 	registerOption("Editor/SilentReload", &editorConfig->silentReload, false, &pseudoDialog->checkBoxSilentReload);

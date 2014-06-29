@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>12</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>630</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -896,7 +896,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>191</width>
+               <width>860</width>
                <height>76</height>
               </rect>
              </property>
@@ -1623,8 +1623,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>833</width>
-            <height>1228</height>
+            <width>863</width>
+            <height>1069</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2004,6 +2004,27 @@ Then you can select a new shortcut by one of the following ways:
                <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
                 <property name="text">
                  <string>Overwrite Closing Bracket Following a Placeholder</string>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="1" colspan="2">
+               <widget class="QComboBox" name="comboBoxContextMenuSpellcheckingEntryLocation">
+                <item>
+                 <property name="text">
+                  <string>Add Entries Directly To Context  Menu</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Create Dedicated Submenu</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="15" column="0">
+               <widget class="QLabel" name="label_70">
+                <property name="text">
+                 <string>Spellchecking via context menu:</string>
                 </property>
                </widget>
               </item>
@@ -2746,8 +2767,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>341</width>
-            <height>528</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
