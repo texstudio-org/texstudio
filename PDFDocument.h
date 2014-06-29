@@ -269,14 +269,6 @@ private:
 	QShortcut *shortcutLeft;
 	QShortcut *shortcutDown;
 	QShortcut *shortcutRight;
-	QShortcut *shortcutPageUp1;
-	QShortcut *shortcutPageUp2;
-	QShortcut *shortcutPageUp3;
-	QShortcut *shortcutPageUp4;
-	QShortcut *shortcutPageDown1;
-	QShortcut *shortcutPageDown2;
-	QShortcut *shortcutPageDown3;
-	QShortcut *shortcutPageDown4;
 
 	QPixmap image;
 	QRect	imageRect;
