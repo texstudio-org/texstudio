@@ -290,6 +290,7 @@ bool DefaultInputBinding::mouseDoubleClickEvent(QMouseEvent *event, QEditor *edi
 bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *editor) {
     if (!contextMenu) contextMenu=new QMenu(0);
 	contextMenu->clear();
+	contextMenu->setProperty("isSpellingPopulated", QVariant());  // delete information on spelling
 	QDocumentCursor cursor;
 	if (event->reason()==QContextMenuEvent::Mouse) cursor=editor->cursorForPosition(editor->mapToContents(event->pos()));
 	else cursor=editor->cursor();
@@ -355,7 +356,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 						const QList<GrammarError>& errors = var.value<QList<GrammarError> >();
 						for (int i=0;i<errors.size();i++)
 							if (errors[i].offset <= cursor.columnNumber() && errors[i].offset+errors[i].length >= cursor.columnNumber()) {
-								edView->addListToContextMenu(errors[i].corrections, true, SLOT(spellCheckingReplace()));
+								edView->addListToMenu(errors[i].corrections, contextMenu, true, SLOT(spellCheckingReplace()));
 								break;
 							}
 					}
@@ -373,18 +374,14 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 					wordSelection.movePosition(fr.length,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
 					editor->setCursor(wordSelection);
 					
-					if (event->modifiers() & editorViewConfig->contextMenuKeyboardModifiers) {
-						QAction* aReplacement=new QAction(LatexEditorView::tr("shift pressed => suggestions hidden"),contextMenu);
-						edView->connect(aReplacement,SIGNAL(triggered()),edView,SLOT(spellCheckingListSuggestions()));
-						contextMenu->addAction(aReplacement);
-					} else edView->spellCheckingListSuggestions();
-					QFont ignoreFont;
-					ignoreFont.setItalic(true);
-					QAction* act=new QAction(LatexEditorView::tr("always ignore"),contextMenu);
-					act->setFont(ignoreFont);
-					edView->connect(act,SIGNAL(triggered()),edView,SLOT(spellCheckingAlwaysIgnore()));
-					contextMenu->addAction(act);
-					contextMenu->addSeparator();
+					if ((editorViewConfig->contextMenuSpellcheckingEntryLocation == 0) ^ (event->modifiers() & editorViewConfig->contextMenuKeyboardModifiers)) {
+						edView->addSpellingActions(contextMenu, lastSpellCheckedWord, false);
+						contextMenu->addSeparator();
+					} else {
+						QMenu *spellingMenu = contextMenu->addMenu(LatexEditorView::tr("Spelling"));
+						spellingMenu->setProperty("word", lastSpellCheckedWord);
+						edView->connect(spellingMenu, SIGNAL(aboutToShow()), edView, SLOT(populateSpellingMenu()));
+					}
 				}
 			}
 		}
@@ -1828,37 +1825,47 @@ void LatexEditorView::spellCheckingAlwaysIgnore() {
 		speller->addToIgnoreList(newToIgnore);
 	}
 }
-void LatexEditorView::addListToContextMenu(const QStringList& list, bool italic, const char* action){
+void LatexEditorView::addListToMenu(const QStringList& list, QMenu *menu, bool italic, const char* action){
 	if (list.isEmpty()) return;
-	QMenu* contextMenu = defaultInputBinding->contextMenu;
-	if (!contextMenu) return;
+	if (!menu) return;
 	QAction* before=0;
-	if (!contextMenu->actions().isEmpty()) before=contextMenu->actions()[0];
-	
+	if (!menu->actions().isEmpty()) before=menu->actions()[0];
+
 	QFont correctionFont;
 	correctionFont.setBold(true);
 	correctionFont.setItalic(italic);
-	for (int i=0; i<list.size(); i++) {
-		QAction* aReplacement=new QAction(list[i],contextMenu);
+	foreach (const QString &text, list) {
+		QAction* aReplacement=new QAction(text, menu);
 		aReplacement->setFont(correctionFont);
-		connect(aReplacement,SIGNAL(triggered()),this,action);
-		contextMenu->insertAction(before,aReplacement);
+		connect(aReplacement, SIGNAL(triggered()), this, action);
+		menu->insertAction(before, aReplacement);
 	}
 }
-void LatexEditorView::spellCheckingListSuggestions() {
-	QMenu* contextMenu = defaultInputBinding->contextMenu;
-	if (!contextMenu) return;
-	bool repopup=false;
-	if (!contextMenu->actions().isEmpty() && contextMenu->actions()[0]->text()==tr("shift pressed => suggestions hidden")) {
-		contextMenu->removeAction(contextMenu->actions()[0]);
-		repopup=true;
+
+void LatexEditorView::populateSpellingMenu() {
+	QMenu *menu = qobject_cast<QMenu *>(sender());
+	if (!menu) return;
+	QString word = menu->property("word").toString();
+	if (word.isEmpty()) return;
+	addSpellingActions(menu, word, true);
+}
+void LatexEditorView::addSpellingActions(QMenu *menu, QString word, bool dedicatedMenu) {
+	if (menu->property("isSpellingPopulated").toBool()) return;
+
+	QStringList suggestions = speller->suggest(word);
+	addListToMenu(suggestions, menu, false, SLOT(spellCheckingReplace()));
+
+	QAction* act = new QAction(LatexEditorView::tr("always ignore"), menu);
+	connect(act, SIGNAL(triggered()), this, SLOT(spellCheckingAlwaysIgnore()));
+	if (dedicatedMenu) {
+		menu->addSeparator();
+	} else {
+		QFont ignoreFont;
+		ignoreFont.setItalic(true);
+		act->setFont(ignoreFont);
 	}
-	QStringList suggestions= speller->suggest(defaultInputBinding->lastSpellCheckedWord);
-	addListToContextMenu(suggestions,false, SLOT(spellCheckingReplace()));
-	if (repopup) {
-		//    contextMenu->close();
-		contextMenu->show();
-	}
+	menu->addAction(act);
+	menu->setProperty("isSpellingPopulated", true);
 }
 void LatexEditorView::spellRemoveMarkers(const QString& newIgnoredWord){
 	REQUIRE(editor);
