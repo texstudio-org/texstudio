@@ -468,14 +468,6 @@ PDFWidget::PDFWidget(bool embedded)
 		shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()));
 		shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()));
 		shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()));
-		shortcutPageUp1 = new QShortcut(QKeySequence(Qt::Key_PageUp), this, SLOT(pageUpOrPrev()));
-		//shortcutPageUp2 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Space), this, SLOT(pageUpOrPrev()));
-		//shortcutPageUp3 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Enter), this, SLOT(pageUpOrPrev()));
-		//shortcutPageUp4 = new QShortcut(QKeySequence(Qt::SHIFT | Qt::Key_Return), this, SLOT(pageUpOrPrev()));
-		shortcutPageDown1 = new QShortcut(QKeySequence(Qt::Key_PageDown), this, SLOT(pageDownOrNext()));
-		//shortcutPageDown2 = new QShortcut(QKeySequence(Qt::Key_Space), this, SLOT(pageDownOrNext()));
-		//shortcutPageDown3 = new QShortcut(QKeySequence(Qt::Key_Enter), this, SLOT(pageDownOrNext()));
-		//shortcutPageDown4 = new QShortcut(QKeySequence(Qt::Key_Return), this, SLOT(pageDownOrNext()));
 	}
 	highlightRemover.setSingleShot(true);
 	highlightPage=-1;
