@@ -279,7 +279,7 @@ void Bookmarks::removeAllBookmarks() {
 		QDocumentLineHandle *dlh = qvariant_cast<QDocumentLineHandle*>(item->data(DocLineHandle));
 
 		LatexDocument *doc = documents->findDocumentFromName(fn);
-		if (!doc) return;
+        if (!doc) continue;
 		LatexEditorView* edView = doc->getEditorView();
 		if (dlh) {
 			edView->removeBookmark(dlh, bookmarkNumber);
