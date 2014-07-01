@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="cs_CZ">
+<TS version="2.0" language="cs_CZ">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -369,7 +369,7 @@
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation type="vanished">Výchozí bibliografie</translation>
+        <translation>Výchozí bibliografie</translation>
     </message>
     <message>
         <source>Ps Chain</source>
@@ -557,15 +557,15 @@
     </message>
     <message>
         <source>Default Bibliography Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí program pro bibliografie</translation>
     </message>
     <message>
         <source>Makeglossaries</source>
-        <translation type="unfinished"></translation>
+        <translation>Makeglossaries</translation>
     </message>
     <message>
         <source>Default Glossary Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí program pro slovníček</translation>
     </message>
 </context>
 <context>
@@ -841,7 +841,7 @@
     </message>
     <message>
         <source>Show Whitespace</source>
-        <translation>Ukázat mezeru</translation>
+        <translation>Ukázat bílý znak</translation>
     </message>
     <message>
         <source>Custom Environment</source>
@@ -2577,39 +2577,39 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
     </message>
     <message>
         <source>Replace Tab by Whitespace</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit zarážky bílými znaky</translation>
     </message>
     <message>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Přepsat otevírající závorku, která je následována zástupným znakem</translation>
     </message>
     <message>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Přepsat uzavírající závorku, která je následována zástupným znakem</translation>
     </message>
     <message>
         <source>Fit to Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Přizpůsobit šířce textu</translation>
     </message>
     <message>
         <source>Load Strategy:</source>
-        <translation type="unfinished"></translation>
+        <translation>Postup nahrání:</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stanovuje, jakým způsobem je PDF nahráno:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Uložen ve vyrovnávací paměti:&lt;/b&gt; Nahrát soubor do vyrovnávací paměti a ověřit úplnost. Potom data předat poppleru. Toto bylo v první řadě zavedeno jako zrychlení pro starší verze poppleru (&amp;lt;0.24), které nebyly &quot;thread-safe&quot;. bylo hlášeno, že poppler může při nahrávání velkých objemů dat uložených do vyrovnávací paměti spadnout. Z toho důvodu je tato volba zamítnuta.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Přímý:&lt;/b&gt; Používá vlastní funkce poppleru pro nahrávání ze souborů. Toto je nejrychlejší cesta, ale neumožňuje přezkoušení neúplných souborů.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Smíšený (doporučeno):&lt;/b&gt; Nejprve soubor nahraje do vyrovnávací paměti a přezkouší jej na úplnost. U malých souborů (&amp;lt; 50MB) jsou data předána dál přímo poppleru.Velké soubory jsou nahrány pomocí vlastních funkcí poppleru pro nahrávání souborů. Tento postup podporuje přezkoušení souborů na úplnost a zabraňuje možným potížím spojeným s pády velkých souborů PDF.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Buffered</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložen ve vyrovnávací paměti</translation>
     </message>
     <message>
         <source>Direct</source>
-        <translation type="unfinished"></translation>
+        <translation>Přímý</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished"></translation>
+        <translation>Smíšený</translation>
     </message>
 </context>
 <context>
@@ -3310,7 +3310,7 @@ hcete je odstranit?</translation>
     </message>
     <message>
         <source>Tabulators &amp;&amp; Whitespaces</source>
-        <translation>Zarážky &amp;&amp; Mezery</translation>
+        <translation>Zarážky a bílé znaky</translation>
     </message>
     <message>
         <source>Tab width</source>
@@ -3318,7 +3318,7 @@ hcete je odstranit?</translation>
     </message>
     <message>
         <source>Show leading whitespaces</source>
-        <translation>Ukázat vedoucí mezery</translation>
+        <translation>Ukázat vedoucí bílé znaky</translation>
     </message>
     <message>
         <source>Show tabs which are neither leading nor trailing</source>
@@ -3326,7 +3326,7 @@ hcete je odstranit?</translation>
     </message>
     <message>
         <source>Show trailing whitespaces</source>
-        <translation>Ukázat následující mezery</translation>
+        <translation>Ukázat následující bílé znaky</translation>
     </message>
     <message>
         <source>Replace tabs by blanks</source>
@@ -4243,19 +4243,19 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>Search text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Text k hledání:</translation>
     </message>
     <message>
         <source>Update Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat hledání</translation>
     </message>
     <message>
         <source>Replace by:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradit:</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation type="unfinished">Nahradit vše</translation>
+        <translation>Nahradit vše</translation>
     </message>
 </context>
 <context>
@@ -4973,31 +4973,31 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     </message>
     <message>
         <source>Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+šipka vlevo</translation>
     </message>
     <message>
         <source>Alt+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+šipka vpravo</translation>
     </message>
     <message>
         <source>Fit to &amp;Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Přizpůsobit šířce &amp;textu</translation>
     </message>
     <message>
         <source>Fit to Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Přizpůsobit šířce textu</translation>
     </message>
     <message>
         <source>Ctrl+4</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+4</translation>
     </message>
     <message>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se nahrát soubor &quot;%1&quot; kvůli &quot;bad alloc&quot;; možná není platným dokumentem PDF.</translation>
     </message>
     <message>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se nahrát soubor &quot;%1&quot; kvůli výjimce; možná není platným dokumentem PDF.</translation>
     </message>
 </context>
 <context>
@@ -5158,11 +5158,11 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     </message>
     <message>
         <source>Calculating text width</source>
-        <translation type="unfinished"></translation>
+        <translation>Počítá se šířka textu</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Zrušit</translation>
+        <translation>Zrušit</translation>
     </message>
 </context>
 <context>
@@ -6372,7 +6372,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
     <message>
         <source>Show results as list as well</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat výsledky také jako seznam</translation>
     </message>
 </context>
 <context>
@@ -7110,11 +7110,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>unrecognized key in key option</source>
-        <translation type="unfinished"></translation>
+        <translation>Nerozpoznaný klíč ve volbách</translation>
     </message>
     <message>
         <source>unrecognized value in key option</source>
-        <translation type="unfinished"></translation>
+        <translation>Nerozpoznaná hodnota ve volbách</translation>
     </message>
 </context>
 <context>
@@ -9441,7 +9441,7 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>&amp;Revert to saved...</source>
-        <translation>&amp;Vrátit na uložený...</translation>
+        <translation>&amp;Vrátit na poslední uložený stav...</translation>
     </message>
     <message>
         <source>Copy filename to &amp;clipboard</source>
@@ -9457,15 +9457,15 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>To Lowercase</source>
-        <translation>Na malá písmena</translation>
+        <translation>Malá písmena</translation>
     </message>
     <message>
         <source>To Uppercase</source>
-        <translation>Na velká písmena</translation>
+        <translation>Velká písmena</translation>
     </message>
     <message>
         <source>To Titlecase</source>
-        <translation type="unfinished"></translation>
+        <translation>Velká písmena na začátcích slov</translation>
     </message>
     <message>
         <source>Pre&amp;view Selection/Parentheses</source>
@@ -9510,27 +9510,27 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>Remove Current Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstranit nynější zástupný znak</translation>
     </message>
     <message>
         <source>&amp;Glossary</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Slovníček</translation>
     </message>
     <message>
         <source>&amp;Makeglossaries</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
         <source>&amp;Bibtex</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bibtex</translation>
     </message>
     <message>
         <source>&amp;Bibtex 8-Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
         <source>Bibe&amp;r</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibe&amp;r</translation>
     </message>
 </context>
 <context>
@@ -10416,11 +10416,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Current Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Nynější projekt</translation>
     </message>
     <message>
         <source>Replace:</source>
-        <translation type="unfinished">Nahradit:</translation>
+        <translation>Nahradit:</translation>
     </message>
 </context>
 <context>
