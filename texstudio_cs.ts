@@ -369,7 +369,7 @@
     </message>
     <message>
         <source>Default Bibliography</source>
-        <translation>Výchozí bibliografie</translation>
+        <translation type="obsolete">Výchozí bibliografie</translation>
     </message>
     <message>
         <source>Ps Chain</source>
@@ -2367,7 +2367,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
         <source>Show messages when starting compiling</source>
         <translation>Ukázat zprávy při spuštění překladu</translation>
     </message>
-    <message>
+    <message utf8="true">
         <source>English Quotes (unicode): “ ”</source>
         <translation>Anglické uvozovky (unicode): “ ”</translation>
     </message>
@@ -2610,6 +2610,22 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
     <message>
         <source>Hybrid</source>
         <translation>Smíšený</translation>
+    </message>
+    <message>
+        <source>Add Entries Directly To Context  Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create Dedicated Submenu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spellchecking via context menu:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview with embedded PDF-viewer</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3838,7 +3854,7 @@ Neplatný příkaz \caption.</translation>
     <name>LatexEditorView</name>
     <message>
         <source>always ignore</source>
-        <translation>Vždy přehlížet</translation>
+        <translation type="obsolete">Vždy přehlížet</translation>
     </message>
     <message>
         <source>New BibTeX Entry %1</source>
@@ -3875,7 +3891,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>shift pressed =&gt; suggestions hidden</source>
-        <translation>shift stisknut =&gt; žádné návrhy</translation>
+        <translation type="obsolete">shift stisknut =&gt; žádné návrhy</translation>
     </message>
     <message>
         <source>Open %1</source>
@@ -3988,6 +4004,14 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>Open Document</source>
         <translation>Otevřít dokument</translation>
+    </message>
+    <message>
+        <source>Spelling</source>
+        <translation type="unfinished">Pravopis</translation>
+    </message>
+    <message>
+        <source>Add to Dictionary</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6939,11 +6963,11 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Show Ignore List</source>
-        <translation>Ukázat seznam přehlíženého</translation>
+        <translation type="obsolete">Ukázat seznam přehlíženého</translation>
     </message>
     <message>
         <source>Hide Ignore List</source>
-        <translation>Skrýt seznam přehlíženého</translation>
+        <translation type="obsolete">Skrýt seznam přehlíženého</translation>
     </message>
     <message>
         <source>Unknown word</source>
@@ -6992,11 +7016,27 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>Always Ignore</source>
-        <translation>Vždy přehlížet</translation>
+        <translation type="obsolete">Vždy přehlížet</translation>
     </message>
     <message>
         <source>Ignored Words</source>
-        <translation>Přehlížená slova</translation>
+        <translation type="obsolete">Přehlížená slova</translation>
+    </message>
+    <message>
+        <source>User-added Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide Added Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show User Words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide User Words</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
