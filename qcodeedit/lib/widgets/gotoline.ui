@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GotoLine</class>
+ <widget class="QWidget" name="GotoLine">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>513</width>
+    <height>45</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QToolButton" name="bClose">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&amp;Go to line :</string>
+     </property>
+     <property name="buddy">
+      <cstring>spLine</cstring>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSpinBox" name="spLine">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="prefix">
+      <string> </string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="bGo">
+     <property name="text">
+      <string>G&amp;o</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSlider" name="slLine">
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>spLine</tabstop>
+  <tabstop>bGo</tabstop>
+  <tabstop>bClose</tabstop>
+  <tabstop>slLine</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

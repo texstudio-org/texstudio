@@ -1,0 +1,3 @@
+syntax: glob
+hg_revision.cpp
+texstudio.pro.user
