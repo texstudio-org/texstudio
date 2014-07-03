@@ -310,16 +310,18 @@ unix:!macx {
         utilities/texstudio32x32.png \
         utilities/texstudio48x48.png \
         utilities/texstudio64x64.png \
-        utilities/texstudio128x128.png \
-        utilities/texstudio.svg
+        utilities/texstudio128x128.png
     applicationmenu.path = $${PREFIX}/share/applications
     applicationmenu.files = utilities/texstudio.desktop
+    icon.path = $${PREFIX}/share/icons/hicolor/scalable/apps
+    icon.files = utilities/texstudio.svg
     isEmpty(NO_APPDATA) {
       appdata.path = /usr/share/appdata
       appdata.files = utilities/texstudio.appdata.xml
       INSTALLS += appdata
     }
-    INSTALLS += applicationmenu
+    INSTALLS += applicationmenu 
+    INSTALLS += icon
 }
 
 # ##########UNIX + MACX###############
