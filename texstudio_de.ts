@@ -2521,7 +2521,7 @@ Ein neuer Tastenkürzel kann mit einer der dreifolgenden Methoden gewählt werde
     <message>
         <location line="+32"/>
         <source>Preview with embedded PDF-viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau mit eingebetteten PDF Betrachter</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -3095,17 +3095,17 @@ Wenn &lt;b&gt;c:&lt;/b&gt; vorangestellt wird (inkl. Doppelpunkt), wird die aktu
     <message>
         <location line="+8"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge Einträge direkt ins Contex-Menu zu</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Create Dedicated Submenu</source>
-        <translation type="unfinished"></translation>
+        <translation>Generiere Untermenü</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechtschreibprüfung über Contextmenü:</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -4858,7 +4858,7 @@ Fehlender \caption Kommando.</translation>
     <message>
         <location line="-80"/>
         <source>Spelling</source>
-        <translation type="unfinished">Rechtschreibung</translation>
+        <translation>Rechtschreibung</translation>
     </message>
     <message>
         <location line="+109"/>
@@ -4873,7 +4873,7 @@ Fehlender \caption Kommando.</translation>
     <message>
         <location line="+1364"/>
         <source>Add to Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Zum Wörterbuchhinzufügen</translation>
     </message>
     <message>
         <location line="+232"/>
@@ -8619,13 +8619,13 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
         <location filename="spellerdialog.cpp" line="+8"/>
         <source>Show User Words</source>
         <oldsource>Show Ignore List</oldsource>
-        <translation type="unfinished">Ignorierte Wörter anzeigen</translation>
+        <translation>Zeige nutzerdefinierte Wörter</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Hide User Words</source>
         <oldsource>Hide Ignore List</oldsource>
-        <translation type="unfinished">Ignorierte Wörter ausblenden</translation>
+        <translation>Benutzerdefinierte Wörter ausblenden</translation>
     </message>
     <message>
         <source>Unknown word</source>
@@ -8653,7 +8653,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <message>
         <location line="-15"/>
         <source>User-added Words</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Wörter</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -8663,7 +8663,7 @@ Um einen Tastaturkürzel zu ändern, muss die dritte oder vierte Spalte geänder
     <message>
         <location line="+42"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberge zugefügte Wörter</translation>
     </message>
     <message>
         <source>Hide ignore list</source>
