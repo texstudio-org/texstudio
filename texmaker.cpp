@@ -6881,15 +6881,25 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
         QPixmap img;
         if(image.isNull()){
             img.load(imageFile);
+            int w=img.width();
+            if(w>screen.width()) w=screen.width()-2;
+            QToolTip::showText(p, QString("<img src=\""+imageFile+"\" width=%1 />").arg(w), 0);
         }else{
-            img.fromImage(image);
+            img=QPixmap::fromImage(image);
+            int w=img.width();
+            if(w>screen.width()) w=screen.width()-2;
+            QString text;
+#if QT_VERSION >= 0x040700
+            text= QString("%1").arg(getImageAsText(img));
+#else
+            QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
+            img.save(tempPath+"txs_preview.png","PNG");
+            buildManager.addPreviewFileName(tempPath+"txs_preview.png");
+            text=QString("<img src=\""+tempPath+"txs_preview.png\" width=%1 />").arg(w);
+#endif
+            QToolTip::showText(p, text, 0);
         }
-
-		int w=img.width();
-		if(w>screen.width()) w=screen.width()-2;
-		QToolTip::showText(p, QString("<img src=\""+imageFile+"\" width=%1 />").arg(w), 0);
-		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
-		
+        LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 	}
 	if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0){
 		QDocument* doc = currentEditor()->document();
@@ -6906,7 +6916,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
         if(image.isNull()){
             img.load(imageFile);
         }else{
-            img.fromImage(image);
+            img=QPixmap::fromImage(image);
         }
         doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(img));
 		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
