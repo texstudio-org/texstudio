@@ -120,7 +120,7 @@ public:
 	double logViewWarnIfFileSizeLargerMB;
 
 	//preview
-	enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH,PM_INLINE};
+    enum PreviewMode {PM_TOOLTIP_AS_FALLBACK=0, PM_PANEL,PM_TOOLTIP,PM_BOTH,PM_INLINE,PM_EMBEDDED};
 	enum AutoPreviewMode {AP_NEVER = 0, AP_PREVIOUSLY = 1};
 	PreviewMode previewMode; 
 	AutoPreviewMode autoPreview;

@@ -6831,21 +6831,41 @@ void Texmaker::previewLatex(){
 	
 }
 void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& source){
+    QImage image;
 #ifndef NO_POPPLER_PREVIEW
     if(imageFile.endsWith(".pdf")){
         // special treatment for pdf files (embedded pdf mode)
-        runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
-        if(currentEditorView())
-            currentEditorView()->setFocus();
+        if(configManager.previewMode == ConfigManager::PM_EMBEDDED){
+            runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
+            if(currentEditorView())
+                currentEditorView()->setFocus();
 
-        return;
+            return;
+        }else{
+            //need to generate an image
+            Poppler::Document *document = Poppler::Document::load(imageFile);
+            if(!document)
+                return;
+            Poppler::Page *page=document->page(0);
+            if(!page)
+                return;
+            document->setRenderHint(Poppler::Document::Antialiasing);
+            document->setRenderHint(Poppler::Document::TextAntialiasing);
+            image=page->renderToImage(120,120);
+        }
     }
 #endif
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 			configManager.previewMode == ConfigManager::PM_PANEL||
 			(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
 		outputView->showPage(outputView->PREVIEW_PAGE);
-		outputView->previewLatex(QPixmap(imageFile));
+        QPixmap img;
+        if(image.isNull()){
+            img.load(imageFile);
+        }else{
+            img=QPixmap::fromImage(image);
+        }
+        outputView->previewLatex(img);
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 			configManager.previewMode == ConfigManager::PM_TOOLTIP||
@@ -6858,7 +6878,13 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 		else
 			p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 		QRect screen = QApplication::desktop()->screenGeometry();
-		QPixmap img(imageFile);
+        QPixmap img;
+        if(image.isNull()){
+            img.load(imageFile);
+        }else{
+            img.fromImage(image);
+        }
+
 		int w=img.width();
 		if(w>screen.width()) w=screen.width()-2;
 		QToolTip::showText(p, QString("<img src=\""+imageFile+"\" width=%1 />").arg(w), 0);
@@ -6876,7 +6902,13 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
 				doc->adjustWidth(l);
 			}
-		doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
+        QPixmap img;
+        if(image.isNull()){
+            img.load(imageFile);
+        }else{
+            img.fromImage(image);
+        }
+        doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(img));
 		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
 		doc->adjustWidth(toLine);
 	}
@@ -7045,6 +7077,12 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	QStringList header;
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
+    if((buildManager.dvi2pngMode==BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED){
+        header << "\\usepackage[active,tightpage]{preview}"
+        << "\\usepackage{varwidth}"
+        << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
+        <<"\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+    }
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
 	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), edView->editor->document()->codec());
