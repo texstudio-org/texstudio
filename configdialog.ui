@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>576</width>
+            <height>630</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -896,7 +896,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>860</width>
+               <width>191</width>
                <height>76</height>
               </rect>
              </property>
@@ -1623,8 +1623,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
-            <height>1069</height>
+            <width>833</width>
+            <height>1257</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2767,8 +2767,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>341</width>
+            <height>528</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3155,7 +3155,7 @@ them here.</string>
             </item>
             <item>
              <property name="text">
-              <string>Preview with embedded PDF-viewer</string>
+              <string>Preview with pdflatex</string>
              </property>
             </item>
            </widget>
@@ -3198,6 +3198,11 @@ them here.</string>
             <item>
              <property name="text">
               <string>Inline</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string extracomment="Only available if pdflatex is used for compilation">Show in embedded viewer</string>
              </property>
             </item>
            </widget>

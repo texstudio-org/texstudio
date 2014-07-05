@@ -475,6 +475,15 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxVisualColumnMode->setChecked(false);
 	ui.checkBoxVisualColumnMode->setEnabled(false);
 #endif
+
+    // poppler preview
+#ifdef NO_POPPLER_PREVIEW
+    int l=ui.comboBoxDvi2PngMode->count();
+    ui.comboBoxDvi2PngMode->removeItem(l-1);
+    l=ui.comboBoxPreviewMode->count();
+    ui.comboBoxPreviewMode->removeItem(l-1);
+    // maybe add some possibility to disable some preview modes in poppler mode
+#endif
 }
 
 ConfigDialog::~ConfigDialog() {
@@ -953,5 +962,4 @@ bool ConfigDialog::askRiddle(){
 	return false;
 	*/
 }
-
 
