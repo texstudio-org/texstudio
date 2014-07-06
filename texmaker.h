@@ -126,6 +126,8 @@ private:
 	void closeEvent(QCloseEvent *e);
 	
 	void updateUserMacros(bool updateMenu = true);
+
+    void updateEmphasizedRegion(QDocumentCursor c,int sid);
 	
 	QFormatScheme *m_formats, *m_formatsOldDefault;
 	QLanguageFactory* m_languages;
