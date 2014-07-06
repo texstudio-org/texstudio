@@ -6890,7 +6890,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
             if(w>screen.width()) w=screen.width()-2;
             QString text;
 #if QT_VERSION >= 0x040700
-            text= QString("%1").arg(getImageAsText(img));
+            text= getImageAsText(img,w);
 #else
             QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
             img.save(tempPath+"txs_preview.png","PNG");
@@ -7030,7 +7030,7 @@ void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
     if(w>screen.width()) w=screen.width()-2;
     QString text;
 #if QT_VERSION >= 0x040700
-    text= QString("%1").arg(getImageAsText(pm));
+    text= getImageAsText(pm,w);
 #else
     QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
     pm.save(tempPath+"txs_preview.png","PNG");
