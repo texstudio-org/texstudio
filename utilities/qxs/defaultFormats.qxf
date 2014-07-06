@@ -301,6 +301,7 @@
 	</format>
 	<format id="selection" >
 		<background>#AAFFFF</background>
+		<wrapAround>true</wrapAround>
 	</format>
 	<format id="replacement" >
 		<background>#FFAAAA</background>
@@ -317,6 +318,7 @@
 	</format>
 	<format id="previewSelection" >
 		<background>#AAFFAA</background>
+		<wrapAround>true</wrapAround>
 	</format>
 <!-- txs tests -->
 	<format id="txs-test" >
