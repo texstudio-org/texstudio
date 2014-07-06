@@ -2158,12 +2158,13 @@ void LatexPackage::unite(LatexPackage &add){
 }
 
 
-QString getImageAsText(const QPixmap &AImage) {
+QString getImageAsText(const QPixmap &AImage,const int w) {
     QByteArray ba;
     QBuffer buffer(&ba);
     buffer.open(QIODevice::WriteOnly);
     AImage.save(&buffer, "PNG");
-    return QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64()));
+    QString text=w<0 ? QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64())): QString("<img src=\"data:image/png;base64,%1\" width=%2 >").arg(QString(buffer.data().toBase64())).arg(w);
+    return text;
 }
 
 void showTooltipLimited(QPoint tt,QString topic,int width){

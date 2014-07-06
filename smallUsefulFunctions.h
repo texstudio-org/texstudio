@@ -109,7 +109,7 @@ enum {
 
 };
 
-QString getImageAsText(const QPixmap &AImage);
+QString getImageAsText(const QPixmap &AImage, const int w=-1);
 void showTooltipLimited(QPoint tt,QString topic,int width=0);
 QString truncateLines(const QString & s, int maxLines);
 
