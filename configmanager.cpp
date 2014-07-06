@@ -416,7 +416,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Check References", &editorConfig->inlineReferenceChecking, true, &pseudoDialog->checkBoxInlineReferenceCheck);
 	registerOption("Editor/Check Syntax", &editorConfig->inlineSyntaxChecking, true, &pseudoDialog->checkBoxInlineSyntaxCheck);
 	registerOption("Editor/Check Grammar", &editorConfig->inlineGrammarChecking, true, &pseudoDialog->checkBoxInlineGrammarCheck);
-    registerOption("Editor/Check Package", &editorConfig->inlinePackageChecking, true, &pseudoDialog->checkBoxInlinePackageCheck);
+	registerOption("Editor/Check Package", &editorConfig->inlinePackageChecking, true, &pseudoDialog->checkBoxInlinePackageCheck);
+	registerOption("Editor/Check In Non TeX Files", &editorConfig->inlineCheckNonTeXFiles, true, &pseudoDialog->checkBoxInlineCheckNonTeXFiles);
 	registerOption("Editor/Hide Spelling Errors in Non Text", &editorConfig->hideNonTextSpellingErrors, true, &pseudoDialog->checkBoxHideSpellingErrorsInNonText);
 	registerOption("Editor/Hide Grammar Errors in Non Text", &editorConfig->hideNonTextGrammarErrors, true, &pseudoDialog->checkBoxHideGrammarErrorsInNonText);
 	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, false, &pseudoDialog->checkBoxShowWhitespace);
@@ -2887,6 +2888,7 @@ void ConfigManager::managedOptionBoolToggled(){
 		int totalState=0;
 		foreach (const QObject* o, managedOptionObjects[property].second)
 			totalState += isChecked(o);
+
 		if (totalState == 0) totalState = state;
 		if ((totalState > 0) == *(bool*)(property->storage)) return;
 		*(bool*)property->storage = (totalState > 0);
