@@ -315,6 +315,9 @@
 	<format id="diffReplace" >
 		<background>#FFFF50</background>
 	</format>
+	<format id="previewSelection" >
+		<background>#AAFFAA</background>
+	</format>
 <!-- txs tests -->
 	<format id="txs-test" >
 		<bold>true</bold>

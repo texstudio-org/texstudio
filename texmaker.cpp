@@ -6953,8 +6953,14 @@ void Texmaker::clearPreview() {
 		edit->document()->adjustWidth(i);
 		for (int j=currentEditorView()->autoPreviewCursor.size()-1;j>=0;j--)
 			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
-					currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i)
-				currentEditorView()->autoPreviewCursor.removeAt(j);
+                    currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i){
+                // remove mark
+                int sid = edit->document()->getFormatId("previewSelection");
+                if (!sid) return;
+                updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j],-sid);
+                currentEditorView()->autoPreviewCursor.removeAt(j);
+            }
+
 	}
 }
 
@@ -7074,6 +7080,12 @@ void Texmaker::showPreview(const QDocumentCursor& previewc){
 		previewQueue.clear();
 	previewQueueOwner = currentEditorView();
 	previewQueue.insert(previewc.lineNumber());
+
+    // mark region which is previewed, or update
+    int sid = previewc.document()->getFormatId("previewSelection");
+    if (sid)
+        updateEmphasizedRegion(previewc,sid);
+
 	QTimer::singleShot(qMax(40,configManager.autoPreviewDelay),this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
 }
 
@@ -7103,28 +7115,60 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
 	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), edView->editor->document()->codec());
 	
-	if (!addToList)
+    if (!addToList)
 		return;
+
 	if (configManager.autoPreview == ConfigManager::AP_PREVIOUSLY) {
 		QList<QDocumentCursor> & clist = currentEditorView()->autoPreviewCursor;
+        int sid = previewc.document()->getFormatId("previewSelection");
 		for (int i=clist.size()-1;i>=0;i--)
 			if (clist[i].anchorLineNumber() <= ps.toLine &&
-					clist[i].lineNumber()   >= ps.fromLine)
+                    clist[i].lineNumber()   >= ps.fromLine){
+                if(sid>0)
+                    updateEmphasizedRegion(clist[i],-sid);
 				clist.removeAt(i);
+            }
 		
 		QDocumentCursor ss = previewc.selectionStart();
 		QDocumentCursor se = previewc.selectionEnd();
 		QDocumentCursor c(ss, se);
 		c.setAutoUpdated(true);
 		currentEditorView()->autoPreviewCursor.insert(0,c);
+        // mark region
+        if (sid)
+            updateEmphasizedRegion(c,sid);
 	}
 }
+
+void Texmaker::updateEmphasizedRegion(QDocumentCursor c,int sid){
+    QDocument *doc=c.document();
+    QDocumentCursor ss = c.selectionStart();
+    QDocumentCursor se = c.selectionEnd();
+    for(int i=ss.anchorLineNumber();i<=se.anchorLineNumber();i++){
+        int beg = i==ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
+        int en = i==se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
+        if(sid>0){
+            doc->line(i).addOverlay(QFormatRange(beg, en-beg, sid));
+        }else{
+            // remove overlay if sid <0 (removes -sid)
+            doc->line(i).clearOverlays(-sid);
+        }
+    }
+}
+
 void Texmaker::showPreviewQueue(){
 	if (previewQueueOwner != currentEditorView()) {
 		previewQueue.clear();
 		return;
 	}
 	if (configManager.autoPreview == ConfigManager::AP_NEVER) {
+        // remove marks
+        int sid=previewQueueOwner->document->getFormatId("previewSelection");
+        if(sid>0){
+            foreach(const QDocumentCursor &c,previewQueueOwner->autoPreviewCursor){
+                updateEmphasizedRegion(c,-sid);
+            }
+        }
 		previewQueueOwner->autoPreviewCursor.clear();
 		previewQueue.clear();
 		return;
