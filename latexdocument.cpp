@@ -1369,7 +1369,7 @@ LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
   iconWarning(getRealIconCached("warning")), m_singleMode(false){
 	mHighlightIndex=QModelIndex();
 
-	QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph";
+    QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph" << "subparagraph";
 	iconSection.resize(structureIconNames.length());
 	for (int i=0; i<structureIconNames.length(); i++)
 		iconSection[i] = getRealIconCached(structureIconNames[i]);

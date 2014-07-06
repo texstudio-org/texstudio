@@ -3559,7 +3559,8 @@ void Texmaker::ReadSettings(bool reread) {
 			<< (QStringList() << "\\section")
 			<< (QStringList() << "\\subsection")
 			<< (QStringList() << "\\subsubsection")
-			<< (QStringList() << "\\paragraph");
+            << (QStringList() << "\\paragraph")
+            << (QStringList() << "\\subparagraph");
 	latexParser.structureCommandLists.clear();
 	for (int level=0; level<defaults.length(); level++) {
 		QStringList cmds = config->value("Structure/Structure Level " + QString::number(level+1)).toStringList();
