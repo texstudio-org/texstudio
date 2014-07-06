@@ -7059,6 +7059,12 @@ void Texmaker::showPreview(const QString& text){
 	QStringList header;
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
+    if(buildManager.dvi2pngMode==BuildManager::DPM_EMBEDDED_PDF){
+        header << "\\usepackage[active,tightpage]{preview}"
+        << "\\usepackage{varwidth}"
+        << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
+        <<"\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+    }
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec());
 }
