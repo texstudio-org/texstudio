@@ -3499,7 +3499,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		//m_layout->clearAdditionalFormats();
 	} else if ( m_text.isEmpty() ) {
 		// enforce selection drawing on empty lines
-		if ( sel.count() == 1 )
+        if ( sel.count() == 1 ){
 			p->fillRect(
 						qMax(xOffset, QDocumentPrivate::m_leftMargin),
 						0,
@@ -3507,18 +3507,18 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						QDocumentPrivate::m_lineSpacing,
 						pal.highlight()
 						);
-		/* cursor drawing is done one hierarchy up
-		// enforce cursor drawing on empty lines
-		if ( cursor.count() && (xOffset < QDocumentPrivate::m_leftMargin) )
-			p->drawLine(
-						QDocumentPrivate::m_leftMargin,
-						0,
-						QDocumentPrivate::m_leftMargin,
-						QDocumentPrivate::m_lineSpacing
-						);
-		*/
+        }else{ if(!fullSel){
+                QDocumentPrivate *d = m_doc->impl();
+                foreach(QFormatRange overlay,m_overlays){
+                    QFormat format=d->m_formatScheme->format(overlay.format);
+                    if(format.wrapAround){
+                        p->fillRect(qMax(xOffset, QDocumentPrivate::m_leftMargin),0,vWidth,QDocumentPrivate::m_lineSpacing,format.background);
+                    }
+                }
+            }
+        }
 
-		// draw line width when hard wrapping is activated
+        // draw line width when hard wrapping is activated
 		if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
             p->save();
 			p->setPen(Qt::lightGray);
@@ -3543,6 +3543,35 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		const int ts = d->m_tabStop;
 		const int maxWidth = xOffset + vWidth;
 		const bool unbounded = sel.count() & 1;
+        // check if wraparound format is active
+        int wrapAroungHighlight = 0;
+        int length=m_text.length();
+        QList<int> foundFormats;
+        if(!fullSel){
+            foreach(QFormatRange fng,m_overlays){
+                if(fng.offset+fng.length==length){
+                    QFormat format=d->m_formatScheme->format(fng.format);
+                    if(format.wrapAround){
+                        foundFormats<<fng.format;
+                    }
+                }
+            }
+            if(!foundFormats.isEmpty()){
+                int lineNr=d->indexOf(this)+1;
+                QDocumentLineHandle *nextHandle=d->at(lineNr);
+                int priority=-100;
+                if(nextHandle){
+                    foreach(QFormatRange fng,nextHandle->m_overlays){
+                        if(fng.offset==0){
+                            QFormat format=d->m_formatScheme->format(fng.format);
+                            if(format.wrapAround && foundFormats.contains(fng.format) && format.priority>=priority){
+                                wrapAroungHighlight=fng.format;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 		const QColor ht = pal.highlightedText().color();
 
 		const bool showTabs = QDocument::showSpaces() & QDocument::ShowTabs,
@@ -3975,6 +4004,14 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			    pal.highlight()
 			    );   
 		}
+        if(wrapAroungHighlight && !unbounded){
+            QFormat format=m_doc->impl()->m_formatScheme->format(wrapAroungHighlight);
+            p->fillRect(
+                xpos, ypos,
+                maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
+                format.background
+                );
+        }
 
         if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
             p->setPen(Qt::lightGray);
@@ -6537,7 +6574,11 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			if (useLineCache) {
 				px = new QPixmap(lineCacheWidth,ht);
 				//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
-				px->fill(fullSel ? selbg.color() : bg.color());
+                if(fullSel){
+                    px->fill(selbg.color());
+                }else{
+                    px->fill(bg.color());
+                }
 				pr = new QPainter(px);
 			} else {
 				pr = p;
