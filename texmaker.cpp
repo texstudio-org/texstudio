@@ -7157,7 +7157,7 @@ void Texmaker::updateEmphasizedRegion(QDocumentCursor c,int sid){
 }
 
 void Texmaker::showPreviewQueue(){
-	if (previewQueueOwner != currentEditorView()) {
+    if (previewQueueOwner != currentEditorView()) {
 		previewQueue.clear();
 		return;
 	}
