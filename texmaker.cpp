@@ -669,7 +669,8 @@ void Texmaker::setupMenus() {
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
 	newManagedAction(submenu,"textToLowercase", tr("To Lowercase"), SLOT(editTextToLowercase()));
 	newManagedAction(submenu,"textToUppercase", tr("To Uppercase"), SLOT(editTextToUppercase()));
-	newManagedAction(submenu,"textToTitlecase", tr("To Titlecase"), SLOT(editTextToTitlecase()));
+	newManagedAction(submenu,"textToTitlecaseStrict", tr("To Titlecase (strict)"), SLOT(editTextToTitlecase()));
+	newManagedAction(submenu,"textToTitlecaseSmart", tr("To Titlecase (smart)"), SLOT(editTextToTitlecaseSmart()));
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
@@ -3461,7 +3462,11 @@ void Texmaker::editTextToUppercase() {
 	m_cursor.endEditBlock();
 }
 
-void Texmaker::editTextToTitlecase() {
+/*!
+ * Converts the selected text to title case. Small words like a,an etc. are not converted.
+ * \param smart: Words containing capital letters are not converted because the are assumed to be acronymes.
+ */
+void Texmaker::editTextToTitlecase(bool smart) {
 	if (!currentEditorView()) return;
 	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
 	QString text = m_cursor.selectedText();
@@ -3470,7 +3475,7 @@ void Texmaker::editTextToTitlecase() {
 	// easier to be done in javascript
 	scriptengine* eng = new scriptengine();
 	eng->setEditorView(currentEditorView());
-	eng->setScript(
+	QString script =
 		"/* \n" \
 		"	* To Title Case 2.1  http://individed.com/code/to-title-case/ \n" \
 		"	* Copyright © 20082013 David Gouch. Licensed under the MIT License.\n" \
@@ -3483,18 +3488,29 @@ void Texmaker::editTextToTitlecase() {
 		"  (title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&\n" \
 		"  title.charAt(index - 1).search(/[^\\s-]/) < 0) {\n" \
 		"    return match.toLowerCase();\n" \
-		"}\n" \
+		"}\n";
+	if (smart) {
+		script +=
 		"if (match.substr(1).search(/[A-Z]|\\../) > -1) {\n" \
 		"return match;\n" \
 		"}\n" \
-		"return match.charAt(0).toUpperCase() + match.substr(1);\n" \
+		"return match.charAt(0).toUpperCase() + match.substr(1);\n";
+	} else {
+		script +=
+		"return match.charAt(0).toUpperCase() + match.substr(1).toLowerCase();\n";
+	}
+	script +=
 		"});\n" \
 		"};\n" \
-		"cursor.insertText(cursor.selectedText().toTitleCase())"
-	);
+		"cursor.insertText(cursor.selectedText().toTitleCase())";
+	eng->setScript(script);
 	eng->run();
 	if (!eng->globalObject) delete eng;
 	m_cursor.endEditBlock();
+}
+
+void Texmaker::editTextToTitlecaseSmart() {
+	editTextToTitlecase(true);
 }
 
 void Texmaker::editFind(){

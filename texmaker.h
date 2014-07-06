@@ -299,7 +299,8 @@ protected slots:
 	void editSectionPasteBefore(int line);
 	void editTextToLowercase();
 	void editTextToUppercase();
-	void editTextToTitlecase();
+	void editTextToTitlecase(bool smart=false);
+	void editTextToTitlecaseSmart();
 	void editFind();
 	void editPasteLatex();
 	void convertToLatex();
