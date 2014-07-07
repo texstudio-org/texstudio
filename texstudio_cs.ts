@@ -2624,7 +2624,16 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preview with embedded PDF-viewer</source>
+        <source>Check non tex files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview with pdflatex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show in embedded viewer</source>
+        <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9505,7 +9514,7 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>To Titlecase</source>
-        <translation>Velká písmena na začátcích slov</translation>
+        <translation type="obsolete">Velká písmena na začátcích slov</translation>
     </message>
     <message>
         <source>Pre&amp;view Selection/Parentheses</source>
@@ -9571,6 +9580,14 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     <message>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
+    </message>
+    <message>
+        <source>To Titlecase (strict)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To Titlecase (smart)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
