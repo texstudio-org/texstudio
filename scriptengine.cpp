@@ -342,8 +342,6 @@ QScriptValue setTimeout(QScriptContext *context, QScriptEngine *engine){
 void TimeoutWrapper::run(){
     scriptengine *eng=qobject_cast<scriptengine*>(fun.engine());
     QScriptEngine *engine=fun.engine();
-    qScriptRegisterSequenceMetaType<QList<LatexDocument*> >(engine);
-    qScriptRegisterQObjectMetaType<LatexDocuments*>(engine);
     engine->globalObject().setProperty("documentManager", engine->newQObject(&eng->app->documents));
     engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, eng->app->documents.documents));
 #ifndef NO_POPPLER_PREVIEW
