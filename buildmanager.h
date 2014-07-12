@@ -158,6 +158,8 @@ public:
 	void setAllCommands(const CommandMapping& commands, const QStringList& userOrder);
 	
 	int maxExpandingNestingDeep;
+
+    int previewCompileTimeOut;
 	
 	int deprecatedQuickmode;
 	QStringList deprecatedUserToolCommands, deprecatedUserToolNames;

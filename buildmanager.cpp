@@ -877,6 +877,7 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	
 	cmi.registerOption("Tools/Display Names", &userToolDisplayNames, QStringList());
 	cmi.registerOption("Tools/User Order", &userToolOrder, QStringList());
+    cmi.registerOption("Tools/Preview Compile Time Out", &previewCompileTimeOut, 15000); //hidden option, 15s predefined
 }
 void BuildManager::readSettings(QSettings &settings){
 	QStringList rerunCommandsUnexpanded = autoRerunCommands.split("|");
@@ -1350,6 +1351,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource& source,
 	addLaTeXInputPaths(p1, addPaths);
 	connect(p1,SIGNAL(finished(int)),this,SLOT(latexPreviewCompleted(int)));
 	p1->startCommand();
+    QTimer::singleShot(previewCompileTimeOut,p1,SLOT(kill()));
 	
 	if (dvi2pngMode==DPM_DVIPNG_FOLLOW) {
 		p1->waitForStarted();
