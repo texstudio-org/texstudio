@@ -26,15 +26,15 @@ QuickBeamerDialog::QuickBeamerDialog(QWidget *parent, const QString& name)
 	setWindowTitle(tr("Quick Beamer Presentation"));
 	labelImage = new QLabel(ui.scrollArea);
 	labelImage->setScaledContents(true);
-	labelImage->setMinimumSize(461,696);
-	labelImage->setMaximumSize(461,696);
-	ui.scrollArea->setMinimumWidth(500);
-	ui.scrollArea->setMaximumWidth(500);
+	labelImage->setMinimumSize(504,696);
+	labelImage->setMaximumSize(504,696);
+	ui.scrollArea->setMinimumWidth(520);
+	ui.scrollArea->setMaximumWidth(520);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 	if (qApp->devicePixelRatio()==2)
 	{
-		labelImage->setMinimumSize(240,348);
-		labelImage->setMaximumSize(240,348);
+		labelImage->setMinimumSize(252,348);
+		labelImage->setMaximumSize(252,348);
 		ui.scrollArea->setMinimumWidth(280);
 		ui.scrollArea->setMaximumWidth(280);
 	}
@@ -47,8 +47,8 @@ QuickBeamerDialog::~QuickBeamerDialog() {
 }
 
 void QuickBeamerDialog::registerOptions(ConfigManagerInterface& configManager) {
-	//configManager.registerOption("Quick/Encoding",&document_encoding, "utf8");
 	configManagerInterface = &configManager;
+	configManager.registerOption("Beamer/Encoding",&document_encoding, "utf8");
 }
 
 void QuickBeamerDialog::Init() {
@@ -61,8 +61,10 @@ void QuickBeamerDialog::Init() {
 	ui.comboBoxSize->addItem( "14pt" );
 	ui.comboBoxSize->addItem( "17pt" );
 	ui.comboBoxSize->addItem( "20pt" );
+	ui.comboBoxSize->setCurrentText("11pt");
 
 	ui.comboBoxTheme->clear();
+	ui.comboBoxTheme->addItem( "default" );
 	ui.comboBoxTheme->addItem( "AnnArbor" );
 	ui.comboBoxTheme->addItem( "Antibes" );
 	ui.comboBoxTheme->addItem( "Bergen" );
@@ -73,8 +75,11 @@ void QuickBeamerDialog::Init() {
 	ui.comboBoxTheme->addItem( "Copenhagen" );
 	ui.comboBoxTheme->addItem( "Darmstadt" );
 	ui.comboBoxTheme->addItem( "Dresden" );
+	ui.comboBoxTheme->addItem( "EastLansing" );
 	ui.comboBoxTheme->addItem( "Frankfurt" );
 	ui.comboBoxTheme->addItem( "Goettingen" );
+	ui.comboBoxTheme->addItem( "Hannover" );
+	ui.comboBoxTheme->addItem( "Ilmenau" );
 	ui.comboBoxTheme->addItem( "JuanLesPins" );
 	ui.comboBoxTheme->addItem( "Luebeck" );
 	ui.comboBoxTheme->addItem( "Madrid" );
@@ -89,6 +94,8 @@ void QuickBeamerDialog::Init() {
 	ui.comboBoxTheme->addItem( "Warsaw" );
 
 	connect(ui.comboBoxTheme, SIGNAL(currentIndexChanged( const QString & ) ), this, SLOT( updatePreview(const QString &) ));
+	ui.comboBoxSize->setCurrentText("default");
+	updatePreview("default");
 
 	ui.comboBoxEncoding->clear();
 	ui.comboBoxEncoding->addItem( "latin1" );
@@ -131,7 +138,7 @@ void QuickBeamerDialog::Init() {
 	ui.listWidgetBabel->addItem("slovak" );
 	ui.listWidgetBabel->addItem("spanish" );
 
-	//configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxEncoding);
+	configManagerInterface->linkOptionToDialogWidget(&document_encoding, ui.comboBoxEncoding);
 }
 
 void QuickBeamerDialog::updatePreview(const QString &theme)
@@ -152,7 +159,6 @@ QString QuickBeamerDialog::getNewDocumentText(){
 	tag+="\\usetheme{"+ui.comboBoxTheme->currentText()+"}\n\n";
 	if (ui.comboBoxEncoding->currentText()!="NONE") {
 		tag+=QString("\\usepackage[")+ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
-		document_encoding = ui.comboBoxEncoding->currentText();
 	}
 	tag+=QString("\n");
 	if (ui.comboBoxEncoding->currentText().startsWith("utf8x"))
