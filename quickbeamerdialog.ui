@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>944</width>
+    <width>940</width>
     <height>474</height>
    </rect>
   </property>
@@ -96,13 +96,13 @@
     <widget class="QScrollArea" name="scrollArea">
      <property name="minimumSize">
       <size>
-       <width>500</width>
+       <width>520</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>500</width>
+       <width>520</width>
        <height>16777215</height>
       </size>
      </property>
@@ -120,7 +120,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>494</width>
+        <width>510</width>
         <height>474</height>
        </rect>
       </property>
