@@ -31,6 +31,7 @@
 #include "tabbingdialog.h"
 #include "letterdialog.h"
 #include "quickdocumentdialog.h"
+#include "quickbeamerdialog.h"
 #include "mathassistant.h"
 #include "maketemplatedialog.h"
 #include "templateselector.h"
@@ -895,6 +896,7 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/wizards",tr("&Wizards"));
 	newManagedAction(menu, "start",tr("Quick &Start..."), SLOT(QuickDocument()));
+	newManagedAction(menu, "beamer",tr("Quick &Beamer Presentation..."), SLOT(QuickBeamer()));
 	newManagedAction(menu, "letter",tr("Quick &Letter..."), SLOT(QuickLetter()));
 	
 	menu->addSeparator();
@@ -3534,6 +3536,7 @@ void Texmaker::editFind(){
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings(bool reread) {
 	QuickDocumentDialog::registerOptions(configManager);
+	QuickBeamerDialog::registerOptions(configManager);
 	buildManager.registerOptions(configManager);
 	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
 	configManager.registerOption("PDFSplitter",&pdfSplitterRel,0.5);
@@ -4686,6 +4689,24 @@ void Texmaker::QuickDocument() {
 	delete startDlg;
 }
 
+void Texmaker::QuickBeamer() {
+	if (!currentEditorView()) {
+		fileNew();
+		Q_ASSERT(currentEditorView());
+	}
+	QuickBeamerDialog *startDlg = new QuickBeamerDialog(this,tr("Quick Beamer Presentation"));
+	startDlg->Init();
+	if (startDlg->exec()) {
+		Q_ASSERT(currentEditor());
+		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
+		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
+		if (codec && codec != currentEditor()->document()->codec()){
+			currentEditor()->document()->setCodec(codec);
+			UpdateCaption();
+		}
+	}
+	delete startDlg;
+}
 
 void Texmaker::InsertBibEntryFromAction(){
 	if (!currentEditorView()) return;

@@ -45,5 +45,29 @@
         <file>images/TexTablet.png</file>
         <file>utilities/packageList</file>
         <file>utilities/template_resources.xml</file>
+        <file>images/beamer/AnnArbor.png</file>
+        <file>images/beamer/Antibes.png</file>
+        <file>images/beamer/Bergen.png</file>
+        <file>images/beamer/Berkeley.png</file>
+        <file>images/beamer/Berlin.png</file>
+        <file>images/beamer/Boadilla.png</file>
+        <file>images/beamer/CambridgeUS.png</file>
+        <file>images/beamer/Copenhagen.png</file>
+        <file>images/beamer/Darmstadt.png</file>
+        <file>images/beamer/Dresden.png</file>
+        <file>images/beamer/Frankfurt.png</file>
+        <file>images/beamer/Goettingen.png</file>
+        <file>images/beamer/JuanLesPins.png</file>
+        <file>images/beamer/Luebeck.png</file>
+        <file>images/beamer/Madrid.png</file>
+        <file>images/beamer/Malmoe.png</file>
+        <file>images/beamer/Marburg.png</file>
+        <file>images/beamer/Montpellier.png</file>
+        <file>images/beamer/PaloAlto.png</file>
+        <file>images/beamer/Pittsburgh.png</file>
+        <file>images/beamer/Rochester.png</file>
+        <file>images/beamer/Singapore.png</file>
+        <file>images/beamer/Szeged.png</file>
+        <file>images/beamer/Warsaw.png</file>
     </qresource>
 </RCC>

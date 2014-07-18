@@ -57,6 +57,7 @@ HEADERS += texmaker.h \
     tabdialog.h \
     letterdialog.h \
     quickdocumentdialog.h \
+    quickbeamerdialog.h \
     usermenudialog.h \
     usertooldialog.h \
     configmanager.h \
@@ -162,6 +163,7 @@ SOURCES += main.cpp \
     tabdialog.cpp \
     letterdialog.cpp \
     quickdocumentdialog.cpp \
+    quickbeamerdialog.cpp \
     usermenudialog.cpp \
     usertooldialog.cpp \
     configmanager.cpp \
@@ -248,6 +250,7 @@ FORMS += structdialog.ui \
     tabdialog.ui \
     letterdialog.ui \
     quickdocumentdialog.ui \
+    quickbeamerdialog.ui \
     usermenudialog.ui \
     usertooldialog.ui \
     aboutdialog.ui \

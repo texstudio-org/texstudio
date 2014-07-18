@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QuickBeamerDialog</class>
+ <widget class="QDialog" name="QuickBeamerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>944</width>
+    <height>474</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="7" column="0">
+      <widget class="QCheckBox" name="checkBoxAMS">
+       <property name="text">
+        <string>AMS Packages</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelEncoding">
+       <property name="text">
+        <string>Encoding</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="lineEditAuthor"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelSize">
+       <property name="text">
+        <string>Typeface Size</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QCheckBox" name="checkBoxBabel">
+       <property name="text">
+        <string>babel Package</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBoxSize"/>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="lineEditTitle"/>
+     </item>
+     <item row="8" column="0">
+      <widget class="QCheckBox" name="checkBoxGraphicx">
+       <property name="text">
+        <string>graphicx Package</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="labelTitle">
+       <property name="text">
+        <string>Title</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QListWidget" name="listWidgetBabel"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="comboBoxEncoding"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="labelAuthor">
+       <property name="text">
+        <string>Author</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelTheme">
+       <property name="text">
+        <string>Theme</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBoxTheme"/>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="1">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>500</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="widgetResizable">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>494</width>
+        <height>474</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>comboBoxTheme</tabstop>
+  <tabstop>comboBoxSize</tabstop>
+  <tabstop>comboBoxEncoding</tabstop>
+  <tabstop>lineEditAuthor</tabstop>
+  <tabstop>lineEditTitle</tabstop>
+  <tabstop>listWidgetBabel</tabstop>
+  <tabstop>checkBoxBabel</tabstop>
+  <tabstop>checkBoxAMS</tabstop>
+  <tabstop>checkBoxGraphicx</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>scrollArea</tabstop>
+ </tabstops>
+ <resources>
+  <include location="texmaker.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>QuickBeamerDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>QuickBeamerDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
