@@ -411,6 +411,7 @@ protected slots:
 	void QuickTabbing();
 	void QuickLetter();
 	void QuickDocument();
+	void QuickBeamer();
 	void QuickGraphics(const QString &graphicsFile = QString());
 	void QuickMath();
 	
