@@ -164,6 +164,37 @@ QString QuickBeamerDialog::getNewDocumentText(){
 	if (ui.comboBoxEncoding->currentText().startsWith("utf8x"))
 		tag+=QString("\\usepackage{ucs}\n");
 	// TODO: babel
+	if (ui.checkBoxBabel->isChecked()) {
+		QString optbabel="";
+		QString fontenc="";
+		QList<QListWidgetItem *> babelItems=ui.listWidgetBabel->selectedItems();
+		for (int i = 0; i < babelItems.size(); ++i) {
+			if ( babelItems.at(i) ) {
+				if ((babelItems.at(i)->text()=="arabic") && fontenc.isEmpty()) fontenc="LAE,LFE";
+				else if ((babelItems.at(i)->text()=="russian") && fontenc.isEmpty()) fontenc="OT1";
+				else if ((babelItems.at(i)->text()=="slovak") && fontenc.isEmpty()) fontenc="IL2";
+				else if ((babelItems.at(i)->text()=="francais") && fontenc.isEmpty()) fontenc="T1";
+				else if ((babelItems.at(i)->text()=="french") && fontenc.isEmpty()) fontenc="T1";
+				else if ((babelItems.at(i)->text()=="frenchb") && fontenc.isEmpty()) fontenc="T1";
+				else if ((babelItems.at(i)->text()=="portuguese") && fontenc.isEmpty()) fontenc="T1";
+				else if ((babelItems.at(i)->text()=="icelandic") && fontenc.isEmpty()) fontenc="T1";
+				else if ((babelItems.at(i)->text()=="czech") && fontenc.isEmpty()) fontenc="T1";
+				else if ((babelItems.at(i)->text()=="magyar") && fontenc.isEmpty()) fontenc="T1";
+				else if ((babelItems.at(i)->text()=="finnish") && fontenc.isEmpty()) fontenc="T1";
+				if (i==0) {
+					optbabel+=babelItems.at(i)->text();
+				} else
+					optbabel+=QString(",")+babelItems.at(i)->text();
+			}
+		}
+		if (!fontenc.isEmpty()) {
+			tag+=QString("\\usepackage["+fontenc+"]{fontenc}\n");
+		}
+		tag+=QString("\\usepackage["+optbabel+"]{babel}\n");
+	} else {
+		tag+=QString("\\usepackage[T1]{fontenc}\n");
+	}
+
 	if (ui.checkBoxAMS->isChecked())
 		tag+=QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
 	if (ui.checkBoxGraphicx->isChecked())
