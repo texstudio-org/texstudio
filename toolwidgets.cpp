@@ -151,9 +151,9 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
     QHBoxLayout *horz=new QHBoxLayout;
     searchScopeBox=new QComboBox;
     searchScopeBox->setEditable(false);
-    searchScopeBox->addItem("current doc");
-    searchScopeBox->addItem("all docs");
-    searchScopeBox->addItem("project");
+	searchScopeBox->addItem(tr("Current Doc"));
+	searchScopeBox->addItem(tr("All Docs"));
+	searchScopeBox->addItem(tr("Project"));
     connect(searchScopeBox,SIGNAL(currentIndexChanged(int)),SIGNAL(updateTheSearch(int)));
 
 
