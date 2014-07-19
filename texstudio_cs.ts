@@ -4290,6 +4290,18 @@ Chcete ji přepsat?</translation>
         <source>Replace all</source>
         <translation>Nahradit vše</translation>
     </message>
+    <message>
+        <source>Current Doc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All Docs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFAnnotation</name>
@@ -5031,6 +5043,10 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     <message>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>Nepodařilo se nahrát soubor &quot;%1&quot; kvůli výjimce; možná není platným dokumentem PDF.</translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6489,6 +6505,49 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     <message>
         <source>ZIP/UNZIP API error %1</source>
         <translation type="obsolete">Chyba API ZIP/UNZIP %1</translation>
+    </message>
+</context>
+<context>
+    <name>QuickBeamerDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation type="unfinished">Dialog</translation>
+    </message>
+    <message>
+        <source>AMS Packages</source>
+        <translation type="unfinished">Balíky AMS</translation>
+    </message>
+    <message>
+        <source>Encoding</source>
+        <translation type="unfinished">Kódování znaků</translation>
+    </message>
+    <message>
+        <source>Typeface Size</source>
+        <translation type="unfinished">Velikost písma</translation>
+    </message>
+    <message>
+        <source>babel Package</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>graphicx Package</source>
+        <translation type="unfinished">Balík graphicx</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="unfinished">Název</translation>
+    </message>
+    <message>
+        <source>Author</source>
+        <translation type="unfinished">Autor</translation>
+    </message>
+    <message>
+        <source>Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quick Beamer Presentation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9587,6 +9646,14 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>To Titlecase (smart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quick &amp;Beamer Presentation...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quick Beamer Presentation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
