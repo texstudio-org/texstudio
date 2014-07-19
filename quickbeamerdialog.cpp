@@ -61,7 +61,7 @@ void QuickBeamerDialog::Init() {
 	ui.comboBoxSize->addItem( "14pt" );
 	ui.comboBoxSize->addItem( "17pt" );
 	ui.comboBoxSize->addItem( "20pt" );
-	ui.comboBoxSize->setCurrentText("11pt");
+    ui.comboBoxSize->setCurrentIndex(3);
 
 	ui.comboBoxTheme->clear();
 	ui.comboBoxTheme->addItem( "default" );
@@ -94,7 +94,7 @@ void QuickBeamerDialog::Init() {
 	ui.comboBoxTheme->addItem( "Warsaw" );
 
 	connect(ui.comboBoxTheme, SIGNAL(currentIndexChanged( const QString & ) ), this, SLOT( updatePreview(const QString &) ));
-	ui.comboBoxSize->setCurrentText("default");
+    ui.comboBoxTheme->setCurrentIndex(0);
 	updatePreview("default");
 
 	ui.comboBoxEncoding->clear();
