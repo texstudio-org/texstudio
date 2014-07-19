@@ -942,11 +942,14 @@ void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 {
 	if ( m_search ) {
 		m_search->setScope(on ? editor()->cursor() : QDocumentCursor());
-		/*if ( m_search && cbHighlight->isChecked())
-		{
-			m_search->setOption(QDocumentSearch::HighlightAll, false);
-			m_search->setOption(QDocumentSearch::HighlightAll, true);
-		}*/
+        if(on){
+            // deselect cursor to show search scope (which is below cuersor highlight)
+            QDocumentCursor cur=editor()->cursor();
+            if(cur.hasSelection()){
+                cur.clearSelection();
+                editor()->setCursor(cur);
+            }
+        }
 	}
 	cFind->setFocus();
 }
