@@ -532,6 +532,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
+	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
+	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
 	
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
 	registerOption("Interface/Config Riddled", &configRiddled, false);	

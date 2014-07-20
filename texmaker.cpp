@@ -122,7 +122,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	
 	setWindowIcon(QIcon(":/images/logo128.png"));
 	
-	setIconSize(QSize(22,22));
+	int iconSize = qMax(16, configManager.guiToolbarIconSize);
+	setIconSize(QSize(iconSize, iconSize));
 	
 	leftPanel=0;
 	structureTreeView=0;
@@ -191,7 +192,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
-	centralToolBar->setIconSize(QSize(16,16));
+	iconSize = qMax(16, configManager.guiSecondaryToolbarIconSize);
+	centralToolBar->setIconSize(QSize(iconSize, iconSize));
 	
 	EditorTabs=new TxsTabWidget(centralFrame);
 	EditorTabs->setFocus();
