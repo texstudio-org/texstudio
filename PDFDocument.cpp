@@ -2316,7 +2316,8 @@ void PDFDocument::init(bool embedded)
 	comboZoom=0;
 
 	if(embedded){
-		toolBar->setIconSize(QSize(16,16));
+		int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+		toolBar->setIconSize(QSize(sz,sz));
 		QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 		toolBar->insertWidget(actionClose, spacer);

@@ -577,7 +577,9 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 		toolbar->setFloatable(false);
 		toolbar->setOrientation(Qt::Vertical);
 		toolbar->setMovable(false);
-		toolbar->setIconSize(QSize(16,16 ));
+
+		int sz = qMax(16, ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+		toolbar->setIconSize(QSize(sz, sz));
 
 		stack=new QStackedWidget(this);
 

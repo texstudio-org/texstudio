@@ -62,6 +62,8 @@ public:
 	QPalette systemPalette; 
 	QString interfaceStyle;
 	QString interfaceFontFamily;
+	int guiToolbarIconSize;
+	int guiSecondaryToolbarIconSize;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
 	bool newLeftPanelLayout;
