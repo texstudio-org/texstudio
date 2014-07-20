@@ -4636,13 +4636,16 @@ void Texmaker::QuickTabbing() {
 }
 
 void Texmaker::QuickLetter() {
-	if (!currentEditorView()) {
-		fileNew();
-		if (!currentEditorView()) return;
-	}
 	QString tag=QString("\\documentclass[");
 	LetterDialog *ltDlg = new LetterDialog(this,"Letter");
 	if (ltDlg->exec()) {
+		if (!currentEditorView() ||
+			currentEditorView()->getDocument()->lineCount() > 1 || // first faster than text().isEmpty on large documents
+			!currentEditorView()->getDocument()->text().isEmpty())
+		{
+			fileNew();
+			Q_ASSERT(currentEditorView());
+		}
 		tag+=ltDlg->ui.comboBoxPt->currentText()+QString(",");
 		tag+=ltDlg->ui.comboBoxPaper->currentText()+QString("]{letter}");
 		tag+=QString("\n");
@@ -4671,13 +4674,16 @@ void Texmaker::QuickLetter() {
 }
 
 void Texmaker::QuickDocument() {
-	if (!currentEditorView()) {
-		fileNew();
-		Q_ASSERT(currentEditorView());
-	}
 	QuickDocumentDialog *startDlg = new QuickDocumentDialog(this,tr("Quick Start"));
 	startDlg->Init();
 	if (startDlg->exec()) {
+		if (!currentEditorView() ||
+			currentEditorView()->getDocument()->lineCount() > 1 || // first faster than text().isEmpty on large documents
+			!currentEditorView()->getDocument()->text().isEmpty())
+		{
+			fileNew();
+			Q_ASSERT(currentEditorView());
+		}
 		Q_ASSERT(currentEditor());
 		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
 		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
@@ -4690,13 +4696,16 @@ void Texmaker::QuickDocument() {
 }
 
 void Texmaker::QuickBeamer() {
-	if (!currentEditorView()) {
-		fileNew();
-		Q_ASSERT(currentEditorView());
-	}
 	QuickBeamerDialog *startDlg = new QuickBeamerDialog(this,tr("Quick Beamer Presentation"));
 	startDlg->Init();
 	if (startDlg->exec()) {
+		if (!currentEditorView() ||
+			currentEditorView()->getDocument()->lineCount() > 1 || // first faster than text().isEmpty on large documents
+			!currentEditorView()->getDocument()->text().isEmpty())
+		{
+			fileNew();
+			Q_ASSERT(currentEditorView());
+		}
 		Q_ASSERT(currentEditor());
 		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
 		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
