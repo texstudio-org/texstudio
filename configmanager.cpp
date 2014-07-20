@@ -602,10 +602,11 @@ ConfigManager::~ConfigManager(){
 QSettings* ConfigManager::readSettings(bool reread) {
 	//load config
 	QSettings *config = persistentConfig;
+	bool usbMode;
 	if (!config){
 		QString ini = iniFileOverride;
 		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath()+"/texstudio.ini";
-		bool usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(ini);
+		usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(ini);
 		if (usbMode) {
 			config=new QSettings(ini,QSettings::IniFormat);
 		} else {
@@ -618,8 +619,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
 		if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
 		persistentConfig = config;
+	} else {
+		usbMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
 	}
-	
 	config->beginGroup("texmaker");
 	
 	if (config->contains("Files/Auto Detect Encoding Of Loaded Files")) { // import old setting
@@ -655,7 +657,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 			QStringList temp;
 			QStringList fallBackPaths;
 #ifdef Q_OS_WIN32
-			fallBackPaths << reverseParseDir("[txs-settings-dir]") << reverseParseDir("[txs-app-dir]");
+			fallBackPaths << parseDir("[txs-settings-dir]/dictionaries") << parseDir("[txs-app-dir]/dictionaries");
 #endif
 #ifndef Q_OS_WIN32
 #ifndef PREFIX
@@ -676,6 +678,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		QFileInfo fi(dic);
 		if (fi.exists()) {
 			spellDictDir = fi.absolutePath();
+			if (usbMode) {
+				spellDictDir = reverseParseDir(spellDictDir);
+			}
 			spellLanguage = fi.baseName();
 		}
 	}
@@ -2831,8 +2836,9 @@ void ConfigManager::getDefaultEncoding(const QByteArray&, QTextCodec*&guess, int
 }
 
 QString ConfigManager::parseDir(QString s) const {
-	s.replace("[txs-settings-dir]", configBaseDir);
-	s.replace("[txs-app-dir]", QCoreApplication::applicationDirPath());
+	QString cbd = configBaseDir;
+	s.replace("[txs-settings-dir]", removePathDelim(configBaseDir));
+	s.replace("[txs-app-dir]", removePathDelim(QCoreApplication::applicationDirPath()));
 	return s;
 }
 
@@ -2841,8 +2847,8 @@ QStringList ConfigManager::parseDirList(const QString & s) const {
 }
 
 QString ConfigManager::reverseParseDir(QString s) const {
-	s.replace(configBaseDir, "[txs-settings-dir]");
-	s.replace(QCoreApplication::applicationDirPath(), "[txs-app-dir]");
+	s.replace(removePathDelim(configBaseDir), "[txs-settings-dir]");
+	s.replace(removePathDelim(QCoreApplication::applicationDirPath()), "[txs-app-dir]");
 	return s;
 }
 
