@@ -175,7 +175,13 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 	p->save();
 	QPen linePen(QColor(128,0,128));
+#if defined(__MINGW32__) && (QT_VERSION >= 0x050000)
+	// workaround for https://bugreports.qt-project.org/browse/QTBUG-32387
+	// odd line width does not work correctly: when set to 3, the actual width varies between 2 and 4.
+	linePen.setWidth(2);
+#else
 	linePen.setWidth(3);
+#endif
 	linePen.setCapStyle(Qt::FlatCap);
 	p->setPen(linePen);
 
