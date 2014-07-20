@@ -26,17 +26,21 @@ QuickBeamerDialog::QuickBeamerDialog(QWidget *parent, const QString& name)
 	setWindowTitle(tr("Quick Beamer Presentation"));
 	labelImage = new QLabel(ui.scrollArea);
 	labelImage->setScaledContents(true);
-	labelImage->setMinimumSize(504,696);
-	labelImage->setMaximumSize(504,696);
-	ui.scrollArea->setMinimumWidth(520);
-	ui.scrollArea->setMaximumWidth(520);
+	int imgWidth = 564;  // sizes of the preview .png images
+	int imgHeight = 853;
+	int scrollbarWidth = qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent);
+	int margin = 2;
+	labelImage->setMinimumSize(imgWidth, imgHeight);
+	labelImage->setMaximumSize(imgWidth, imgHeight);
+	ui.scrollArea->setMinimumWidth(imgWidth + scrollbarWidth + margin);
+	ui.scrollArea->setMaximumWidth(imgWidth + scrollbarWidth + margin);
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
 	if (qApp->devicePixelRatio()==2)
 	{
-		labelImage->setMinimumSize(252,348);
-		labelImage->setMaximumSize(252,348);
-		ui.scrollArea->setMinimumWidth(280);
-		ui.scrollArea->setMaximumWidth(280);
+		labelImage->setMinimumSize(imgWidth/2, imgHeight/2);
+		labelImage->setMaximumSize(imgWidth/2, imgHeight/2);
+		ui.scrollArea->setMinimumWidth(imgWidth/2 + scrollbarWidth + margin);
+		ui.scrollArea->setMaximumWidth(imgWidth/2 + scrollbarWidth + margin);
 	}
 #endif
 	ui.scrollArea->setBackgroundRole(QPalette::Dark);
