@@ -1279,6 +1279,15 @@ QString removeQuote(const QString &s) {
 	return s;
 }
 
+QString removePathDelim(const QString &s) {
+	// we use the explicit chars intentionally and not QDir::separator()
+	// because it shall also work for / on windows (many paths are internally
+	// represented with / as delimiter
+	if (s.endsWith('/') || s.endsWith('\\')) {
+		return s.left(s.length()-1);
+	}
+	return s;
+}
 
 QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
 	//copied and modified from texworks
