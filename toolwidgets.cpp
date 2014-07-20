@@ -149,6 +149,9 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
 
     QHBoxLayout *horz=new QHBoxLayout;
+	horz->setContentsMargins(4,2,4,2);
+	horz->setSpacing(8);
+
     searchScopeBox=new QComboBox;
     searchScopeBox->setEditable(false);
 	searchScopeBox->addItem(tr("Current Doc"));
@@ -184,11 +187,18 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	OutputSearchTree->setUniformRowHeights(true);
 	OutputSearchTree->setModel(searchResultModel);
     OutputSearchTree->setItemDelegate(searchDelegate);
+	OutputSearchTree->setFrameShape(QFrame::NoFrame);
 
     QVBoxLayout *vert=new QVBoxLayout;
+	vert->setContentsMargins(0,0,0,0);
+	vert->setSpacing(0);
 
     vert->addLayout(horz);
+	QFrame *hLine = new QFrame();
+	hLine->setFrameShape(QFrame::HLine);
+	vert->addWidget(hLine);
     vert->addWidget(OutputSearchTree,1);
+
 
     QWidget *wgt=new QWidget;
     wgt->setLayout(vert);
