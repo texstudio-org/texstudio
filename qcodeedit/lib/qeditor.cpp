@@ -3200,6 +3200,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
         preEditColumnNumber=i;
         preEditLength=preEdit.length();
         preEditLineNumber=m_cursor.lineNumber();
+		updateMicroFocus();
     }
 //#endif
 
