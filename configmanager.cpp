@@ -214,6 +214,11 @@ bool ManagedProperty::readFromObject(const QObject* w){
 		Q_ASSERT(type == PT_BOOL);
 		READ_FROM_OBJECT(bool, checkBox->isChecked())
 	}
+    const QToolButton* toolButton = qobject_cast<const QToolButton*>(w);
+    if (toolButton) {
+        Q_ASSERT(type == PT_BOOL);
+        READ_FROM_OBJECT(bool, toolButton->isChecked())
+    }
 	const QLineEdit* edit = qobject_cast<const QLineEdit*>(w);
 	if (edit){
 		Q_ASSERT(type == PT_STRING);
