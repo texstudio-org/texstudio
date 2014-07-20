@@ -2773,7 +2773,7 @@ void ConfigManager::linkOptionToObject(const void* optionStorage, QObject* objec
 	property->writeToObject(object);
 	object->setProperty("managedProperty", QVariant::fromValue<ManagedProperty*>(property));
 	connect(object,SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
-	if (qobject_cast<QAction*>(object) || qobject_cast<QCheckBox*>(object))
+    if (qobject_cast<QAction*>(object) || qobject_cast<QCheckBox*>(object)|| qobject_cast<QToolButton*>(object))
 		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionBoolToggled()));
 }
 void ConfigManager::updateAllLinkedObjects(const void* optionStorage){
@@ -2870,6 +2870,8 @@ int isChecked(const QObject* obj){
 	if (act) return (act->isChecked()?1:-1);
 	const QCheckBox* cb = qobject_cast<const QCheckBox*>(obj);
 	if (cb) return (cb->isChecked()?1:-1);
+    const QToolButton* tb = qobject_cast<const QToolButton*>(obj);
+    if (tb) return (tb->isChecked()?1:-1);
 	return 0;
 }
 
