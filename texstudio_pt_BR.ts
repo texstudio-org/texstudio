@@ -69,7 +69,7 @@
     <message>
         <location line="+1"/>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation type="unfinished"></translation>
+        <translation>TeXstudio utiliza To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -524,7 +524,7 @@
     <message>
         <location line="-65"/>
         <source>Stop Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar Compilação</translation>
     </message>
     <message>
         <location line="+43"/>
@@ -609,12 +609,12 @@
     <message>
         <location line="+3"/>
         <source>Makeglossaries</source>
-        <translation type="unfinished"></translation>
+        <translation>Makeglossaries</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Default Glossary Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramenta Padrão de Glossário</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -639,7 +639,7 @@
         <location line="-18"/>
         <source>Default Bibliography Tool</source>
         <oldsource>Default Bibliography</oldsource>
-        <translation type="unfinished">Bibliografia padrão</translation>
+        <translation>Ferramenta Padrão de Bibliografia</translation>
     </message>
     <message>
         <source>Ps Chain</source>
@@ -786,7 +786,7 @@
     <message>
         <location line="+34"/>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
-        <translation type="unfinished"></translation>
+        <translation>Para sua própria segurança, a limpeza não excluirá os arquivos com as seguintes extensões:</translation>
     </message>
 </context>
 <context>
@@ -835,7 +835,7 @@
     <message>
         <location line="+44"/>
         <source>Show Placeholders</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Espaços Reservados</translation>
     </message>
     <message>
         <location line="+20"/>
@@ -1215,7 +1215,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+491"/>
         <source>Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Pacote</translation>
     </message>
     <message utf8="true">
         <location line="-62"/>
@@ -1290,92 +1290,92 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="-34"/>
         <source>Go to error when displaying log</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para o erro quando exibir o log</translation>
     </message>
     <message>
         <location line="-1412"/>
         <source>Spelling Dictionary Directories:</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretórios de Dicionários Ortográficos:</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um ou mais diretórios para buscar dicionários. Caminhos múltiplos podem ser separados por ponto e vírgula. Você pode utilizar as palavras-chave especiais [txs-settings-dir] e [txs-app-dir] que são reservadas para os respectivos diretórios.</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Import Dictionary...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar Dicionário...</translation>
     </message>
     <message>
         <location line="+374"/>
         <source>PDF File</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo PDF</translation>
     </message>
     <message>
         <location line="+392"/>
         <source>Automatic Encoding Detection:</source>
-        <translation type="unfinished"></translation>
+        <translation>Detectar Codificação Automaticamente:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Analyze Characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar Caracteres</translation>
     </message>
     <message>
         <location line="+190"/>
         <source>Replace Tab by Whitespace</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir Tab por espaço em branco</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Check non tex files</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar arquivos não tex</translation>
     </message>
     <message>
         <location line="+233"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescrever colchete esquerdo seguido por um espaço reservado</translation>
     </message>
     <message>
         <location line="+170"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar marcas de log quando clicar em uma entrada de log</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescrever colchete direito seguido por um espaço reservado</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar entradas diretamente ao menu de contexto</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Create Dedicated Submenu</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar Submenu Dedicado</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar ortografia via menu de contexto:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Structure Panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Painel de Estrutura</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Reference commands in context menu:</source>
-        <translation type="unfinished"></translation>
+        <translation>Comandos de Referência no menu de contexto:</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1415,17 +1415,17 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+10"/>
         <source>Additional Search Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminhos Adicionais para Busca</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Bib Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aquivos Bib:</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Image Files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de Imagem:</translation>
     </message>
     <message>
         <location line="+38"/>
@@ -1526,27 +1526,27 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+840"/>
         <source>Load Strategy:</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar Estratégia:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Define como um PDF é carregado:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Carrega o arquivo em um buffer e checa por completamento. Então passa a informação para o poppler. Isto foi primeiramente introduzido como um acelarador para versões antigas do poppler (&amp;lt;0.24) que não eram seguras. Tem sido reportado que o poppler pode parar quando carrega grandes buffers. Portanto esta opção é precária.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direto:&lt;/b&gt; Usa carregamento de arquivo poppler nativo. Esta é mais rápida, mas não permite checagem em arquivos incompletos.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Híbrido (recomendado):&lt;/b&gt; Primeiro carrega o arquivo em um buffer e checa se está completo. Usa aquele buffer para arquivos pequenos (&amp;lt; 50MB). Arquivos grandes são carregados usando carregamento de arquivo poppler nativo. Isto engloba a checagem de arquivo enquanto previne problemas com arquivos PDF grandes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Buffered</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffered</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Direct</source>
-        <translation type="unfinished"></translation>
+        <translation>Direto</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Hybrid</source>
-        <translation type="unfinished"></translation>
+        <translation>Híbrido</translation>
     </message>
     <message>
         <location line="-917"/>
@@ -1630,7 +1630,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+32"/>
         <source>Preview with pdflatex</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizar com pdflatex</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -1646,7 +1646,8 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <location line="+25"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Disponível somente se pdflatex é usado para compilação</translatorcomment>
+        <translation>Exibir no visualizador integrado</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -1666,12 +1667,12 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+6"/>
         <source>Highlight Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Destacar Duração</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Infinite</source>
-        <translation type="unfinished"></translation>
+        <translation>Infinito</translation>
     </message>
     <message>
         <location line="+19"/>
@@ -1701,7 +1702,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+5"/>
         <source>Fit to Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar para a Largura do Texto</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1711,7 +1712,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+7"/>
         <source> dpi</source>
-        <translation type="unfinished"></translation>
+        <translation> dpi</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1721,7 +1722,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+28"/>
         <source> px</source>
-        <translation type="unfinished"></translation>
+        <translation> px</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1741,22 +1742,22 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+22"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto ocultar Barra de Ferramentas no Modo Integrado</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Highlight Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Destacar Cores</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar como valor hexadecimal RGBA. Nota: a transparência é exigida porque o destaque é feito em cima do texto devido a limitações técnicas.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>\#HHHHHHHH;_</source>
-        <translation type="unfinished"></translation>
+        <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
         <location line="+74"/>
@@ -1801,7 +1802,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <oldsource>&lt;b&gt;%&lt;/b&gt;: filename without extension &lt;b&gt;@&lt;/b&gt;: line number </oldsource>
-        <translation>&lt;b&gt;%&lt;/b&gt;: nome do arquivo sem extensão; &lt;b&gt;@&lt;/b&gt;: número da linha; &lt;b&gt;?[seletor][caracter de encerramento]&lt;/b&gt;: nome do arquivo formatado
+        <translation>&lt;b&gt;%&lt;/b&gt;: nome do arquivo sem extensão; &lt;b&gt;@&lt;/b&gt;: número da linha; &lt;b&gt;?[seletor][caractere de encerramento]&lt;/b&gt;: nome do arquivo formatado
 </translation>
     </message>
     <message>
@@ -2230,7 +2231,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location line="+5"/>
         <source>Single Letter</source>
-        <translation>Caracter Único</translation>
+        <translation>Caractere Único</translation>
     </message>
     <message>
         <location line="-18"/>
@@ -2301,7 +2302,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location line="+10"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Posição</translation>
     </message>
     <message>
         <source>Show all</source>
@@ -2406,7 +2407,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location line="+10"/>
         <source>Complete selected text when non-word character is pressed</source>
-        <translation>Completar texto ao pressionar caracter &quot;não textual&quot;</translation>
+        <translation>Completar texto ao pressionar caractere &quot;não textual&quot;</translation>
     </message>
     <message>
         <source>Enable ToolTip-Help</source>
@@ -2881,8 +2882,8 @@ Ferramentas</translation>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
-        <translation>O atalho que você escolheu é um caracter padrão.
-Você não conseguirá mais inserir este caracter em seu texto. Deseja realmente manter este atalho?</translation>
+        <translation>O atalho que você escolheu é um caractere padrão.
+Você não conseguirá mais inserir este caractere em seu texto. Deseja realmente manter este atalho?</translation>
     </message>
     <message>
         <location line="+25"/>
@@ -2901,7 +2902,7 @@ Você não conseguirá mais inserir este caracter em seu texto. Deseja realmente
     <message>
         <location line="+166"/>
         <source>Download additional dictionaries from %1 or %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Obter Dicionários Adicionais de %1 or %2</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2952,12 +2953,12 @@ Personalizado</translation>
     <message>
         <location line="+4"/>
         <source>Search Path .bib Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de Busca de arquivos .bib</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Search Path for Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de Busca de Imagens</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -2987,24 +2988,24 @@ Personalizado</translation>
     <message>
         <location line="+3"/>
         <source>Images</source>
-        <translation type="unfinished">Imagens</translation>
+        <translation>Imagens</translation>
     </message>
     <message>
         <location line="+53"/>
         <source>Import Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar Dicionário</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>OpenOffice Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Dicionário OpenOffice</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>The dictionary files have been imported to
 %1.
 However this path is not contained in the dictionary path list. Do you want to add it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Os arquivos de dicionários foram importados para %1. No entanto, este caminho não está contido na lista de caminhos de dicionários. Gostaria de adicioná-lo à lista?</translation>
     </message>
     <message>
         <location line="+101"/>
@@ -3878,7 +3879,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <location line="+16"/>
         <location line="+5"/>
         <source>Key replacement: %1 %2</source>
-        <translation>Substituição de caracter: %1 %2</translation>
+        <translation>Substituição de caractere: %1 %2</translation>
     </message>
     <message>
         <location line="-27"/>
@@ -4588,7 +4589,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+82"/>
         <source>Images</source>
-        <translation type="unfinished">Imagens</translation>
+        <translation>Imagens</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -4788,7 +4789,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+1195"/>
         <source>Package not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Pacote não encontrado</translation>
     </message>
     <message>
         <source>texdoc took too long to open the documentation for the package:</source>
@@ -4797,12 +4798,12 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="-1710"/>
         <source>Spelling</source>
-        <translation type="unfinished">Ortografia</translation>
+        <translation>Ortografia</translation>
     </message>
     <message>
         <location line="+1478"/>
         <source>Add to Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar ao Dicionário</translation>
     </message>
     <message>
         <location line="+191"/>
@@ -4834,7 +4835,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+12"/>
         <source>Package present</source>
-        <translation type="unfinished"></translation>
+        <translation>Pacote existente</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -4920,7 +4921,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="texmaker.cpp" line="-1"/>
         <source>Open Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir Documento</translation>
     </message>
 </context>
 <context>
@@ -4976,22 +4977,22 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexlogwidget.cpp" line="+28"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished">&amp;Copiar</translation>
+        <translation>&amp;Copiar</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Copy All</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Copiar todos</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Copy All With Line Numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Copiar todos com números de linha</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>No log file available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum arquivo de log disponível</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -5001,28 +5002,28 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+3"/>
         <source>Log File</source>
-        <translation type="unfinished">Arquivo de Log</translation>
+        <translation>Arquivo de Log</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Issues and Log</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location line="+11"/>
         <source>Log file not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de log não encontrado.</translation>
     </message>
     <message>
         <location line="+4"/>
         <location line="+48"/>
         <source>Log file not readable.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de log não legível.</translation>
     </message>
     <message>
         <location line="-40"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo de log é muito grande (%1 MB). Você realmente deseja carregá-lo?</translation>
     </message>
     <message>
         <source>The logfile is very large (&gt; %1 MB) are you sure you want to load it?</source>
@@ -5187,13 +5188,13 @@ Você deseja substituí-lo?</translation>
         <location line="-217"/>
         <location line="+216"/>
         <source>Messages / Log File</source>
-        <translation type="unfinished">Mensagens / Arquivo de log</translation>
+        <translation>Mensagens / Arquivo de log</translation>
     </message>
     <message>
         <location line="-200"/>
         <location line="+202"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log</translation>
     </message>
     <message>
         <location line="-196"/>
@@ -5205,37 +5206,37 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="-187"/>
         <source>Current Doc</source>
-        <translation type="unfinished"></translation>
+        <translation>Doc Atual</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>All Docs</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos os docs</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projeto</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Search text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar texto:</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Update Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar Busca</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Replace by:</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir por:</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Replace all</source>
-        <translation type="unfinished">Substituir tudo</translation>
+        <translation>Substituir tudo</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -5250,37 +5251,37 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="pdfannotation.cpp" line="+30"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Line</source>
-        <translation type="unfinished">Linha</translation>
+        <translation>Linha</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Geometric</source>
-        <translation type="unfinished"></translation>
+        <translation>Geométrico</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Highlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Destacar</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Stamp</source>
-        <translation type="unfinished"></translation>
+        <translation>Carimbo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Ink</source>
-        <translation type="unfinished"></translation>
+        <translation>Tinta</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Link</source>
-        <translation type="unfinished"></translation>
+        <translation>Link</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -5290,17 +5291,17 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+1"/>
         <source>Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Anexo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Som</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Movie</source>
-        <translation type="unfinished"></translation>
+        <translation>Filme</translation>
     </message>
 </context>
 <context>
@@ -5308,7 +5309,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="pdfannotationdlg.ui" line="+14"/>
         <source>Annotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Anotação</translation>
     </message>
     <message>
         <source>User</source>
@@ -5324,32 +5325,32 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="pdfannotation.cpp" line="+154"/>
         <source>Author</source>
-        <translation type="unfinished">Autor</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificado</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Created</source>
-        <translation type="unfinished"></translation>
+        <translation>Criado</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Página</translation>
     </message>
 </context>
 <context>
@@ -5367,27 +5368,27 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+11"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Texto ou padrão a pesquisar</translation>
+        <translation>Texto ou padrão a pesquisar</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find next occurence</source>
-        <translation type="unfinished">Localizar próxima ocorrência</translation>
+        <translation>Localizar próxima ocorrência</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find previous occurence</source>
-        <translation type="unfinished">Localizar ocorrência anterior</translation>
+        <translation>Localizar ocorrência anterior</translation>
     </message>
     <message>
         <location line="+2"/>
         <source> Find :</source>
-        <translation type="unfinished"> Localizar :</translation>
+        <translation> Localizar :</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Case</source>
-        <translation type="unfinished">Maiúsc.</translation>
+        <translation>Caixa</translation>
     </message>
 </context>
 <context>
@@ -5897,7 +5898,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+3"/>
         <source>Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Left</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -5912,7 +5913,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+3"/>
         <source>Alt+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Right</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -5932,37 +5933,37 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+8"/>
         <source>Invert Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter Cores</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Focus Editor</source>
-        <translation type="unfinished">Foco no Editor</translation>
+        <translation>Foco no Editor</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Ctrl+Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+Left</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Fit to &amp;Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar para a Largura do &amp;Texto</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Fit to Text Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar para a Largura do Texto</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Ctrl+4</source>
-        <translation type="unfinished">Ctrl+4</translation>
+        <translation>Ctrl+4</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Tons de Cinza</translation>
     </message>
     <message>
         <location line="-178"/>
@@ -6068,33 +6069,34 @@ Você deseja substituí-lo?</translation>
         <location line="+24"/>
         <location line="+3"/>
         <source>Annotations</source>
-        <translation type="unfinished"></translation>
+        <translation>Anotações</translation>
     </message>
     <message>
         <location line="+331"/>
         <source>Retry</source>
-        <translation type="unfinished"></translation>
+        <translation>Tentar novamente</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1
+não parece ser um documento PDF válido. Ou o arquivo está corrompido ou está em processo de criação. Tentando novamente a cada 2 segundos.</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao carregar arquivo &quot;%1&quot; devido a uma má alocação; talvez ele não seja um documento PDF válido.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao carregar arquivo &quot;%1&quot; devido a uma restrição; talvez ele não seja um documento PDF válido.</translation>
     </message>
     <message>
         <source>%1
@@ -6347,12 +6349,12 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location line="+996"/>
         <source>Calculating text width</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculando a largura do texto</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Could not open browser</source>
@@ -6887,13 +6889,12 @@ Você deseja atualizar recarregando o arquivo?
     <message>
         <location line="+1"/>
         <source>Move cursor left (1 character)</source>
-        <translation>Mover cursor para a esquerda (1 caracter)</translation>
+        <translation>Mover cursor para a esquerda (1 caractere)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Move cursor right (1 character)</source>
-        <translation>
-mover cursor para a direita (1 caracter)</translation>
+        <translation>Mover cursor para a direita (1 caractere)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6948,12 +6949,12 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="+1"/>
         <source>Select left (1 character)</source>
-        <translation>Selecionar à esquerda (1 caracter)</translation>
+        <translation>Selecionar à esquerda (1 caractere)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Select right (1 character)</source>
-        <translation>Selecionar à direita (1 caracter)</translation>
+        <translation>Selecionar à direita (1 caractere)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -6998,12 +6999,12 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="+4"/>
         <source>Delete left character</source>
-        <translation>Excluir caracter à esquerda</translation>
+        <translation>Excluir caractere à esquerda</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Delete right character</source>
-        <translation>Excluir caracter à direita</translation>
+        <translation>Excluir caractere à direita</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7330,7 +7331,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="-3"/>
         <source>link</source>
-        <translation type="unfinished"></translation>
+        <translation>link</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -7420,12 +7421,12 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="+1"/>
         <source>packagePresent</source>
-        <translation type="unfinished"></translation>
+        <translation>pacote presente</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>packageMissing</source>
-        <translation type="unfinished"></translation>
+        <translation>pacote inexistente</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7480,7 +7481,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="+7"/>
         <source>dtx:commands</source>
-        <translation type="unfinished"></translation>
+        <translation>dtx:commands</translation>
     </message>
     <message>
         <source>txs-test-skip</source>
@@ -7509,7 +7510,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="+1"/>
         <source>dtx:specialchar</source>
-        <translation>dtx:caracter especial</translation>
+        <translation>dtx:caractere especial</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -7524,7 +7525,7 @@ mover cursor para a direita (1 caracter)</translation>
     <message>
         <location line="+1"/>
         <source>preedit</source>
-        <translation type="unfinished"></translation>
+        <translation>pré-editar</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7748,7 +7749,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location line="+8"/>
         <source>Show results as list as well</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir resultados também como lista</translation>
     </message>
     <message>
         <location line="+64"/>
@@ -7767,97 +7768,97 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location line="+25"/>
         <source>Close search/replace panel</source>
-        <translation type="unfinished">Fechar painel Pesquisar/Substituir</translation>
+        <translation>Fechar painel Pesquisar/Substituir</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished">Texto ou padrão a pesquisar</translation>
+        <translation>Texto ou padrão a pesquisar</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find next</source>
-        <translation type="unfinished">Localizar próximo</translation>
+        <translation>Localizar próximo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find previous</source>
-        <translation type="unfinished">Localizar anterior</translation>
+        <translation>Localizar anterior</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Count occurences</source>
-        <translation type="unfinished">Contar ocorrências</translation>
+        <translation>Contar ocorrências</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replacement text</source>
-        <translation type="unfinished">Substituir texto</translation>
+        <translation>Substituir texto</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace and find next</source>
-        <translation type="unfinished">Substituir e localizar o próximo</translation>
+        <translation>Substituir e localizar o próximo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace and find previous</source>
-        <translation type="unfinished">Substituir e localizar o anterior</translation>
+        <translation>Substituir e localizar o anterior</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Replace all</source>
-        <translation type="unfinished">Substituir tudo</translation>
+        <translation>Substituir tudo</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Find:</source>
-        <translation type="unfinished">Localizar:</translation>
+        <translation>Localizar:</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Case</source>
-        <translation type="unfinished">Maiúsc.</translation>
+        <translation>Caixa</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Words</source>
-        <translation type="unfinished">Palavras</translation>
+        <translation>Palavras</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Regexp</source>
-        <translation type="unfinished">ExpReg</translation>
+        <translation>ExpReg</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Highlight all</source>
-        <translation type="unfinished">Destacar tudo</translation>
+        <translation>Destacar tudo</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Cursor</source>
-        <translation type="unfinished">Cursor</translation>
+        <translation>Cursor</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Selection</source>
-        <translation type="unfinished">Seleção</translation>
+        <translation>Seleção</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Replace:</source>
-        <translation type="unfinished">Substituir:</translation>
+        <translation>Substituir:</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Prompt on replace</source>
-        <translation type="unfinished">Perguntar ao substituir</translation>
+        <translation>Perguntar ao substituir</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Escape sequences</source>
-        <translation type="unfinished">Sequências de escape</translation>
+        <translation>Sequências de escape</translation>
     </message>
     <message>
         <location line="+249"/>
@@ -7965,7 +7966,7 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="quazip/quazip/quazipfile.cpp" line="+217"/>
         <source>ZIP/UNZIP API error %1</source>
-        <translation type="unfinished">ZIP/UNZIP API erro %1</translation>
+        <translation>ZIP/UNZIP API erro %1</translation>
     </message>
 </context>
 <context>
@@ -7980,52 +7981,52 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
     <message>
         <location filename="quickbeamerdialog.ui" line="+14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Diálogo</translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>AMS Packages</source>
-        <translation type="unfinished">Pacotes AMS</translation>
+        <translation>Pacotes AMS</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Encoding</source>
-        <translation type="unfinished">Codificação</translation>
+        <translation>Codificação</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Typeface Size</source>
-        <translation type="unfinished">Tamanho da Fonte</translation>
+        <translation>Tamanho da Fonte</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>babel Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Pacote babel</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>graphicx Package</source>
-        <translation type="unfinished">Pacote graphicx</translation>
+        <translation>Pacote graphicx</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Author</source>
-        <translation type="unfinished">Autor</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.cpp" line="+26"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Apresentação Beamer</translation>
     </message>
 </context>
 <context>
@@ -8533,7 +8534,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location line="-10"/>
         <source>Only single characters are allowed as key</source>
-        <translation>Somente um caracter é permitido</translation>
+        <translation>Somente um caractere é permitido</translation>
     </message>
     <message>
         <location line="-47"/>
@@ -8596,7 +8597,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location line="+89"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"></translation>
+        <translation>Esconder Palavras Adicionadas</translation>
     </message>
     <message>
         <source>Always Ignore</source>
@@ -8617,7 +8618,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location line="-15"/>
         <source>User-added Words</source>
-        <translation type="unfinished"></translation>
+        <translation>Palavras Adicionadas pelo Usuário</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -8628,7 +8629,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.cpp" line="+218"/>
         <source>Hide User Words</source>
         <oldsource>Hide Ignore List</oldsource>
-        <translation type="unfinished">Ocultar Lista de Ignorados</translation>
+        <translation>Ocultar Palavras do Usuário</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="+57"/>
@@ -8648,7 +8649,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
         <location filename="spellerdialog.cpp" line="-5"/>
         <source>Show User Words</source>
         <oldsource>Show Ignore List</oldsource>
-        <translation type="unfinished">Mostrar Lista de Ignorados</translation>
+        <translation>Mostrar Palavras do Usuário</translation>
     </message>
     <message>
         <source>Add/Remove</source>
@@ -8662,7 +8663,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location line="+10"/>
         <source>Check spelling from cursor...</source>
-        <translation>Verificar ortografia à partir do cursor...</translation>
+        <translation>Verificar ortografia a partir do cursor...</translation>
     </message>
     <message>
         <location line="+119"/>
@@ -8739,7 +8740,7 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location line="+12"/>
         <source>Unicode Character: </source>
-        <translation>Caracter Unicode:</translation>
+        <translation>Caractere Unicode:</translation>
     </message>
 </context>
 <context>
@@ -8807,12 +8808,12 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <message>
         <location line="+0"/>
         <source>unrecognized key in key option</source>
-        <translation type="unfinished"></translation>
+        <translation>chave não reconhecida na opção chave</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>unrecognized value in key option</source>
-        <translation type="unfinished"></translation>
+        <translation>valor não reconhecido na opção chave</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9233,7 +9234,7 @@ falhou.</translation>
         <location line="+1"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Homespring</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9245,7 +9246,7 @@ falhou.</translation>
         <location line="+1"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Pweave</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9257,7 +9258,7 @@ falhou.</translation>
         <location line="+1"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"></translation>
+        <translation>Sweave</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9496,37 +9497,37 @@ falhou.</translation>
     <message>
         <location line="+1"/>
         <source>Save renamed/&amp;moved file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar arquivo renomeado/&amp;movido...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Save copied file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar arquivo copiado...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Delete file</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Deletar arquivo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set &amp;permissions...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustar &amp;permissões...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Revert to saved...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Reverter para o salvo anteriormente...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Copy filename to &amp;clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Copiar nome do arquivo para área de transferência</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy master filename to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar nome do arquivo mestre para área de transferência</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -9697,23 +9698,23 @@ falhou.</translation>
     <message>
         <location line="+2"/>
         <source>&amp;Text Operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Operações com &amp;Texto</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>To Lowercase</source>
-        <translation type="unfinished"></translation>
+        <translation>Minúsculas</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>To Uppercase</source>
-        <translation type="unfinished"></translation>
+        <translation>Maiúsculas</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>To Titlecase (strict)</source>
         <oldsource>To Titlecase</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Somente Inicial Maiúscula</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9852,7 +9853,7 @@ falhou.</translation>
     <message>
         <location line="+1"/>
         <source>Insert Unicode Character...</source>
-        <translation>Inserir Caracter Unicode...</translation>
+        <translation>Inserir Caractere Unicode...</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -9932,7 +9933,7 @@ falhou.</translation>
     <message>
         <location line="+101"/>
         <source>Quick &amp;Beamer Presentation...</source>
-        <translation type="unfinished"></translation>
+        <translation>Apresentação &amp;Beamer...</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -9957,22 +9958,22 @@ falhou.</translation>
     <message>
         <location line="+1383"/>
         <source>Rename/Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Renomear/Mover</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente excluir o arquivo &quot;%1&quot;?</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente reverter o arquivo &quot;%1&quot;?</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Numeric permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Permissões numéricas</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9984,17 +9985,17 @@ falhou.</translation>
         <location line="+31"/>
         <location line="+78"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo &quot;%1&quot; não existe mais. Deseja removê-lo da lista de arquivos recentes?</translation>
     </message>
     <message>
         <location line="+124"/>
         <source>The following files could not be loaded:</source>
-        <translation type="unfinished"></translation>
+        <translation>Os seguintes arquivos podem não ser carregados:</translation>
     </message>
     <message>
         <location line="+1863"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Apresentação Beamer</translation>
     </message>
     <message>
         <location line="+411"/>
@@ -10029,7 +10030,8 @@ Voce deseja permitir e executar o novo comando?
         <location line="-18"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>auto substituído, e.g.: Inserir \ref no Rótulo</translatorcomment>
+        <translation>Inserir &quot;%1&quot; no Rótulo</translation>
     </message>
     <message>
         <location line="+1345"/>
@@ -10573,7 +10575,7 @@ Você deseja continuar executando TeXstudio ? Iso pode ocasionar perda de dados.
     <message>
         <location line="-659"/>
         <source>LilyPond files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos LilyPond</translation>
     </message>
     <message>
         <location line="+661"/>
@@ -11000,7 +11002,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location line="+60"/>
         <source>Pre&amp;view Selection/Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Visualizar Seleção/Parênteses</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -11073,7 +11075,7 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location line="+6"/>
         <source>Remove Current Placeholder</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover Espaço Reservado Atual</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -11083,12 +11085,12 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location line="+2"/>
         <source>Stop Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar Compilação</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Glossary</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Glossário</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -11103,27 +11105,27 @@ Pressione &quot;Cancelar&quot; para não fazer nada.</translation>
     <message>
         <location line="+4"/>
         <source>&amp;Bibtex</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bibtex</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Bibtex 8-Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Bibe&amp;r</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibe&amp;r</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>&amp;Makeglossaries</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>Show Log Markers</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir Marcas de Log</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -11363,7 +11365,7 @@ Você tem que salvar um documento antes de compilá-lo.</translation>
     <message>
         <location line="+17"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
-        <translation>O gerador de texto aleatório constrói um novo texto à partir de palavras existentes, então você tem que abrir algum arquivo de texto</translation>
+        <translation>O gerador de texto aleatório constrói um novo texto a partir de palavras existentes, então você tem que abrir algum arquivo de texto</translation>
     </message>
     <message>
         <location line="+27"/>
@@ -12119,7 +12121,7 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     <message>
         <location filename="titledpanel.cpp" line="+114"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation>Fechar</translation>
     </message>
 </context>
 <context>
@@ -12801,12 +12803,12 @@ The html files are located in the %1 directory.</source>
     <message>
         <location line="+41"/>
         <source>Current Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Projeto Atual</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Replace:</source>
-        <translation type="unfinished">Substituir:</translation>
+        <translation>Substituir:</translation>
     </message>
     <message>
         <location line="-56"/>
