@@ -2824,7 +2824,7 @@ QString LatexDocuments::findPackageByCommand(const QString command){
         const LatexPackage pck=cachedPackages.value(key);
         foreach(const QString envs,pck.possibleCommands.keys()){
             if(pck.possibleCommands.value(envs).contains(command)){
-                result=key; //pck.packageName;
+				result=LatexPackage::keyToCwlFilename(key); //pck.packageName;
                 break;
             }
         }
