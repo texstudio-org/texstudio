@@ -5540,23 +5540,11 @@ void Texmaker::TexdocHelp() {
 	QStringList packages;
 	if (currentEditorView()) {
 		selection = currentEditorView()->editor->cursor().selectedText();
-		// TODO is there a better way to get the used packages than using the .cwl files and removing cwls for native commands
 		foreach (const QString &key, currentEditorView()->document->parent->cachedPackages.keys()) {
 			if (currentEditorView()->document->parent->cachedPackages[key].completionWords.isEmpty())
 				// remove empty packages which probably do not exist
 				continue;
-			int col = key.indexOf('#');
-			QString filename;
-			if (col >= 0) {
-				filename = key.mid(col + 1);
-			} else {
-				filename = key;
-			}
-			if (filename.endsWith(".cwl"))
-				filename.remove(filename.length()-4, 4);
-			if (filename.startsWith("class-"))
-				filename.remove(0, 6);
-			packages << filename;
+			packages << LatexPackage::keyToPackageName(key);
 		}
 
 		packages.removeDuplicates();

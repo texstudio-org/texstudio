@@ -2629,16 +2629,10 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
         if(parent->cachedPackages.contains(elem)){
 			zw=parent->cachedPackages.value(elem);
 		}else{
-            QString fileName=elem;
-            int i=fileName.indexOf('#');
-            QStringList options;
-            if(i>-1){
-                QString option=fileName.left(i);
-                fileName=fileName.mid(i+1);
-                options=option.split(',');
-            }
+			QString fileName = LatexPackage::keyToCwlFilename(elem);
+			QStringList options = LatexPackage::keyToOptions(elem).split(',');
             zw=loadCwlFile(fileName,completerConfig,options);
-			if(zw.packageName!="<notFound>"){
+			if(!zw.notFound){
 				parent->cachedPackages.insert(elem,zw); // cache package
 			}else{
 				LatexPackage zw;
@@ -2646,7 +2640,7 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 				parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
 			}
 		}
-		if(zw.packageName=="<notFound>"){
+		if(zw.notFound){
             QString name=elem;
             LatexDocument *masterDoc=getTopMasterDocument();
             if(masterDoc){

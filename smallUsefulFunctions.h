@@ -231,6 +231,16 @@ private:
 class LatexPackage{
 public:
 	LatexPackage();
+
+	// Temporary solution: keys of LatexDocuments::cachedPackages have become complex. Use these functions to manage them.
+	// This is a first step for refactoring the existing code. No functionality is changed.
+	// In the long run, the information should be stored and accessed via the LatexPackage objects, which are referenced by the keys.
+	static QString makeKey(const QString &cwlFilename, const QString &options);  // TODO not yet used: where are the keys actually created?
+	static QString keyToCwlFilename(const QString &key);
+	static QString keyToPackageName(const QString &key);
+	static QString keyToOptions(const QString &key);
+
+	bool notFound;  // Workaround: explicit flag better than using a magic value in package name. TODO: Do we need not found packages?
 	QString packageName;
 	QStringList requiredPackages;
 	QStringList completionWords;
