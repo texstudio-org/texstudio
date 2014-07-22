@@ -8354,7 +8354,7 @@ void Texmaker::packageScanCompleted(QString name){
     }
 	foreach(LatexDocument *doc,documents.documents){
         if(doc->containsPackage(baseName)){
-			documents.cachedPackages.remove(name+".cwl");
+			documents.cachedPackages.remove(name+".cwl");  // TODO: check is this still correct if keys are complex?
             doc->updateCompletionFiles(false);
 		}
 	}
