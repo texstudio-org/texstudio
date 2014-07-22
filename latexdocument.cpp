@@ -2623,7 +2623,7 @@ void LatexDocument::emitUpdateCompleter(){
 void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){
 	LatexPackage zw;
 	LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
-	foreach(const QString& elem,files){
+	foreach(const QString& elem, files){
 		if(loadedFiles.contains(elem))
 			continue;
         if(parent->cachedPackages.contains(elem)){
@@ -2645,7 +2645,9 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
             LatexDocument *masterDoc=getTopMasterDocument();
             if(masterDoc){
                 QString fn=masterDoc->getFileInfo().absolutePath();
-                name+="/"+fn;
+				name+="/"+fn;
+				// TODO: oha, the key can be even more complex: option#filename.cwl/masterfile
+				// consider this in the key-handling functions of LatexPackage
             }
             emit importPackage(name);
 		} else {
