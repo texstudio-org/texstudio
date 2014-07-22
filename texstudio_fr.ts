@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1673,7 +1673,7 @@ Cependant, ce chemin n&apos;est pas contenu dans la liste des chemins de diction
     <message>
         <location line="+655"/>
         <source>Preview with pdflatex</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aperçu avec pdflatex</translation>
     </message>
     <message>
         <location line="+292"/>
@@ -2348,7 +2348,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Show All</source>
         <translation>Afficher tout</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="+340"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -2528,7 +2528,8 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location line="+7"/>
         <source>Check non tex files</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Est-ce l&apos;orthographe uniquement? [M2L]</translatorcomment>
+        <translation type="unfinished">Vérifier les fichiers autres que .tex</translation>
     </message>
     <message>
         <location line="+233"/>
@@ -2563,17 +2564,20 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location line="+8"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Je n&apos;ai pas le contexte [M2L]</translatorcomment>
+        <translation type="unfinished">Ajouter des entrées au menu contextuel directement</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Create Dedicated Submenu</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Je n&apos;ai pas le contexte [M2L]</translatorcomment>
+        <translation type="unfinished">Créer un sous-menu dédié</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Je n&apos;ai pas le contexte [M2L]</translatorcomment>
+        <translation type="unfinished">Vérification orthographique via le menu contextuel :</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2583,7 +2587,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location line="+6"/>
         <source>Reference commands in context menu:</source>
-        <translation>Commandes de référence dans le menu contextuel</translation>
+        <translation type="unfinished">Commandes de référence dans le menu contextuel :</translation>
     </message>
     <message>
         <location line="+84"/>
@@ -2730,7 +2734,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <location line="+25"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afficher dans le PDF embarqué</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -5002,7 +5006,7 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <location line="+1464"/>
         <source>Add to Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ajouter au dictionnaire</translation>
     </message>
     <message>
         <location line="+191"/>
@@ -5494,17 +5498,18 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location line="-187"/>
         <source>Current Doc</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Docu. en cours</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>All Docs</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tous les docu.</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Comment appeler l&apos;ensemble formé des fichiers parent et enfants?</translatorcomment>
+        <translation type="unfinished">Projet</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -5984,7 +5989,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location line="+8"/>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Échelle de gris</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="+551"/>
@@ -8290,7 +8295,8 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location filename="quickbeamerdialog.ui" line="+14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialogue</translation>
+        <translatorcomment>Why this string? [M2L]</translatorcomment>
+        <translation type="unfinished">Assistant présentation Beamer</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -8310,7 +8316,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location line="+7"/>
         <source>babel Package</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Package babel</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -8330,12 +8336,12 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location line="+7"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Thème</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.cpp" line="+26"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Assistant présentation Beamer</translation>
     </message>
 </context>
 <context>
@@ -8964,7 +8970,8 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     <message>
         <location line="-15"/>
         <source>User-added Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mots ajoutés 
+par l&apos;utilisateur</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -8974,7 +8981,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     <message>
         <location line="+42"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cacher les mots ajoutés</translation>
     </message>
     <message>
         <source>Hide ignore list</source>
@@ -10497,7 +10504,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <location line="+1863"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Assistant présentation Beamer</translation>
     </message>
     <message>
         <location line="+411"/>
@@ -11566,12 +11573,14 @@ included document in %1</source>
         <location line="+1"/>
         <source>To Titlecase (strict)</source>
         <oldsource>To Titlecase</oldsource>
-        <translation type="unfinished">en « titre »</translation>
+        <translatorcomment>en « titre anglais » (strict)? [M2L]</translatorcomment>
+        <translation type="unfinished">en « titre » (strict)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>To Titlecase (smart)</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>en « titre anglais » (intelligent)? [M2L]</translatorcomment>
+        <translation type="unfinished">en « titre » (intelligent)</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -11781,7 +11790,7 @@ included document in %1</source>
     <message>
         <location line="+13"/>
         <source>Quick &amp;Beamer Presentation...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Assistant présentation &amp;Beamer...</translation>
     </message>
     <message>
         <location line="+82"/>
