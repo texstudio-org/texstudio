@@ -740,7 +740,7 @@
     <message>
         <location line="+2015"/>
         <source>Preview with pdflatex</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vista previa con pdflatex</translation>
     </message>
     <message>
         <location line="+232"/>
@@ -1920,7 +1920,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+7"/>
         <source>Check non tex files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comprobar los archivos no tex</translation>
     </message>
     <message>
         <location line="+233"/>
@@ -1940,17 +1940,17 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+8"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Agregar entradas directamente al menú contextual</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Create Dedicated Submenu</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Crear Submenú Dedicado</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Revisión ortográfica a través del menú contextual:</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2209,7 +2209,7 @@ aquí.</translation>
         <location line="+5"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar en el visor incorporado</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -4015,7 +4015,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location line="+963"/>
         <source>Add to Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Agregar al diccionario</translation>
     </message>
     <message>
         <location line="+201"/>
@@ -4381,17 +4381,17 @@ Do you want to overwrite it?</source>
     <message>
         <location line="-187"/>
         <source>Current Doc</source>
-        <translation type="unfinished"></translation>
+        <translation>Documento actual</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>All Docs</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos los Documentos</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Proyecto</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -5179,7 +5179,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+8"/>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Escala de grises</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="+80"/>
@@ -7053,52 +7053,52 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
     <message>
         <location filename="quickbeamerdialog.ui" line="+14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Diálogo</translation>
+        <translation>Crear presentación con Beamer</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>AMS Packages</source>
-        <translation type="unfinished">Paquetes AMS</translation>
+        <translation>Paquetes AMS</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Encoding</source>
-        <translation type="unfinished">Codificación</translation>
+        <translation>Codificación</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Typeface Size</source>
-        <translation type="unfinished">Tamaño de letra</translation>
+        <translation>Tamaño de letra</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>babel Package</source>
-        <translation type="unfinished"></translation>
+        <translation>Paquete babel</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>graphicx Package</source>
-        <translation type="unfinished">Paquete graphicx</translation>
+        <translation>Paquete graphicx</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Author</source>
-        <translation type="unfinished">Autor</translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.cpp" line="+26"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear presentación con Beamer</translation>
     </message>
 </context>
 <context>
@@ -7656,7 +7656,7 @@ siguiente valor:
     <message>
         <location line="+109"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ocultar palabras agregadas</translation>
     </message>
     <message>
         <source>Always Ignore</source>
@@ -7675,7 +7675,7 @@ siguiente valor:
     <message>
         <location line="-15"/>
         <source>User-added Words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Palabras agregadas por el usuario</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -9429,12 +9429,12 @@ Do you want to create it?</source>
         <location line="+1"/>
         <source>To Titlecase (strict)</source>
         <oldsource>To Titlecase</oldsource>
-        <translation type="unfinished">Capitalizar</translation>
+        <translation type="unfinished">Capitalizar (estricto)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>To Titlecase (smart)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Capitalizar (inteligente)</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -9859,7 +9859,7 @@ Do you want to create it?</source>
     <message>
         <location line="+6"/>
         <source>Quick &amp;Beamer Presentation...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Crear presentación con &amp;Beamer...</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -10051,7 +10051,7 @@ Do you want to create it?</source>
     <message>
         <location line="+1863"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Crear presentación con Beamer</translation>
     </message>
     <message>
         <location line="+411"/>
