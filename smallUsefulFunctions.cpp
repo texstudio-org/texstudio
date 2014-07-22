@@ -2139,6 +2139,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 	}else{
 	    //qDebug() << "Completion file not found:" << fileName;
 	    package.packageName="<notFound>";
+		package.notFound = true;
 	}
 	
 	QApplication::restoreOverrideCursor();
@@ -2146,9 +2147,35 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 	return package;
     }
 
-LatexPackage::LatexPackage(){
+LatexPackage::LatexPackage() : notFound(false) {
 	completionWords.clear();
 	packageName.clear();
+}
+
+QString LatexPackage::makeKey(const QString &cwlFilename, const QString &options) {
+	return QString("%1#%2").arg(options).arg(cwlFilename);
+}
+
+QString LatexPackage::keyToCwlFilename(const QString &key) {
+	int i = key.indexOf('#');
+	if (i<0) return key;
+	else return key.mid(i+1);
+}
+
+QString LatexPackage::keyToPackageName(const QString &key) {
+	// Workaround since there is currently no reliable way to determine the packageName from LatexPackage directly (the attribute with the same name contains the key and sometimes nothing).
+	QString name = LatexPackage::keyToCwlFilename(key);
+	if (name.endsWith(".cwl"))
+		name.remove(name.length()-4, 4);
+	if (name.startsWith("class-"))
+		name.remove(0, 6);
+	return name;
+}
+
+QString LatexPackage::keyToOptions(const QString &key) {
+	int i = key.indexOf('#');
+	if (i<0) return QString();
+	else return key.left(i);
 }
 
 void LatexPackage::unite(LatexPackage &add){
