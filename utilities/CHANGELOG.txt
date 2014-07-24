@@ -1,5 +1,17 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.8.0 -> 2.8.2
+-----------------------------------------
+- color completion
+- some more predefined completions for tikz
+- region preview with pdflatex and the embedded viewer (activate in options)
+- more consistent visual for search/region preview range
+- PDF can be shown in grayscale (as a preview how a grayscale print would look like)
+- improved input method support
+- improved \todo highlighting
+- texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize
+- several bugfixes
+
 TeXstudio 2.7.0 -> 2.8.0
 -----------------------------------------
 - completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)
