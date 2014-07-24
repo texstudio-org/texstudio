@@ -183,7 +183,15 @@ QIcon getRealIcon(const QString& icon){
     if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
 #endif
     //return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
-    return QIcon(getRealIconFile(icon));
+    QString name=getRealIconFile(icon);
+    QIcon ic=QIcon(name);
+    //if(ic.isNull()){
+#if (QT_VERSION >= 0x050000)&&(defined(Q_OS_OSX))
+    QPixmap pm(32,32);
+    pm.load(name);
+    ic=QIcon(pm);
+#endif
+    return ic;
 }
 
 QIcon getRealIconCached(const QString& icon){

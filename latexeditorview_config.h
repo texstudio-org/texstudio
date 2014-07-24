@@ -17,7 +17,8 @@ public:
 	int cursorSurroundLines;
 	bool boldCursor;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;	
-    bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking, inlinePackageChecking;
+	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking, inlinePackageChecking;
+	bool inlineCheckNonTeXFiles;
 	bool hideNonTextSpellingErrors, hideNonTextGrammarErrors;
 	QString fontFamily;
 	int fontSize;
@@ -43,6 +44,7 @@ public:
 
 	bool overwriteOpeningBracketFollowedByPlaceholder;
 	bool overwriteClosingBracketFollowingPlaceholder;
+	int contextMenuSpellcheckingEntryLocation;
 	int contextMenuKeyboardModifiers;  // actually this is a Qt::KeyboardModifiers flag (but we don't want to import the whole qt namespace here)
 
 

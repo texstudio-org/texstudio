@@ -538,6 +538,26 @@ QPixmap invertColors(const QPixmap &pixmap) {
 	return QPixmap::fromImage(img);
 }
 
+QPixmap convertToGray(const QPixmap &pixmap)
+{
+	if (pixmap.isNull()) return pixmap;
+	QImage img = pixmap.toImage();
+
+	QImage retImg(img.width(),img.height(),QImage::Format_Indexed8);
+	QVector<QRgb> table(256);
+	for( int i=0; i<256; ++i) {
+		table[i] = qRgb(i, i, i);
+	}
+	retImg.setColorTable(table);
+	for(int i=0; i<img.width(); i++) {
+		for(int j=0; j<img.height();j++) {
+			QRgb value = img.pixel(i,j);
+			retImg.setPixel(i, j, qGray(value));
+		}
+	}
+	return QPixmap::fromImage(retImg);
+}
+
 void PDFWidget::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
@@ -564,6 +584,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 									  0,0, newRect.width()*overScale, newRect.height()*overScale,true,true);
 			if (globalConfig->invertColors)
 				image = invertColors(image);
+			if (globalConfig->grayscale)
+				image = convertToGray(image);
 			fillRectBorder(painter, drawTo, newRect);
 			painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
 			if (pageNr==highlightPage && !highlightPath.isEmpty() ) {
@@ -619,6 +641,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						0,0,drawGrid.width()*overScale,drawGrid.height()*overScale,true,true);
 				if (globalConfig->invertColors)
 					temp = invertColors(temp);
+				if (globalConfig->grayscale)
+					temp = convertToGray(temp);
 
 				if (drawGrid != basicGrid) 
 					fillRectBorder(painter, drawGrid, basicGrid);
@@ -2129,6 +2153,7 @@ void PDFDocument::setupMenus(){
     menuEdit->addAction(actionSynchronize_multiple_views);
     menuEdit->addSeparator();
     menuEdit->addAction(actionInvertColors);
+    menuEdit->addAction(actionGrayscale);
     menuView->addAction(actionFirst_Page);
     menuView->addAction(actionBack);
     menuView->addAction(actionPrevious_Page);
@@ -2291,7 +2316,8 @@ void PDFDocument::init(bool embedded)
 	comboZoom=0;
 
 	if(embedded){
-		toolBar->setIconSize(QSize(16,16));
+		int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+		toolBar->setIconSize(QSize(sz,sz));
 		QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 		toolBar->insertWidget(actionClose, spacer);
@@ -2506,6 +2532,9 @@ void PDFDocument::init(bool embedded)
 	conf->registerOption("Preview/Invert Colors", &globalConfig->invertColors, false);
 	conf->linkOptionToObject(&globalConfig->invertColors, actionInvertColors);
 	connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
+    conf->registerOption("Preview/Grayscale", &globalConfig->grayscale, false);
+    conf->linkOptionToObject(&globalConfig->grayscale, actionGrayscale);
+	connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
 	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
 	menuShow->addAction(toolBar->toggleViewAction());

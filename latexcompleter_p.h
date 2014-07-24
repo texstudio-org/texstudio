@@ -20,7 +20,6 @@ public:
 	QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
 	const QList<CompletionWord> & getWords(){return words;}
-	const QSet<QChar>& getAcceptedChars(){return acceptedChars;}
 	bool isNextCharPossible(const QChar &c); //does this character lead to a new possible word
 	void filterList(const QString &word,int mostUsed=-1,bool fetchMore=false);
     void setEnvironMode(bool mode);
@@ -33,6 +32,7 @@ public:
 	virtual bool canFetchMore(const QModelIndex &parent) const;
 	void fetchMore(const QModelIndex &parent);
 	CompletionWord getLastWord();
+    void setContextWords(const QSet<QString> &newwords,const QString &context);
     void setKeyValWords(const QString &name,const QSet<QString> &newwords);
 private:
 	friend class LatexCompleter; //TODO: make this unnecessary
@@ -41,10 +41,11 @@ private:
 
 	QList<CompletionWord> baselist;
     QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations,wordsCitationCommands;
-	QSet<QChar> acceptedChars;
-	int mostUsedUpdated;
+
+    int mostUsedUpdated;
 
     QMap<QString,QList<CompletionWord> > keyValLists;
+    QMap<QString,QList<CompletionWord> > contextLists;
 
 	bool mCanFetchMore;
 	QString mLastWord;

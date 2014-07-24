@@ -76,6 +76,8 @@ static void setFormatOption(QFormat& fmt, const QString& field, const QString& v
 		fmt.fontFamily = value;
 	else if ( field == "pointSize" )
 		fmt.pointSize = value.toInt();
+    else if ( field == "wrapAround" )
+        fmt.wrapAround = bool_cast(value);
 }
 
 /*!
@@ -302,6 +304,11 @@ void QFormatScheme::save(QDomElement& elem) const
 		f.appendChild(t);
 		c.appendChild(f);
 
+        f = doc.createElement("wrapAround");
+        t = doc.createTextNode(fmt.wrapAround ? "true" : "false");
+        f.appendChild(t);
+        c.appendChild(f);
+
 		elem.appendChild(c);
 	}
 }
@@ -411,6 +418,7 @@ void QFormatScheme::save(QSettings& s,QFormatScheme *defaultFormats) const
 		
 		s.setValue("fontFamily", fmt.fontFamily);
 		s.setValue("pointSize", fmt.pointSize);
+        s.setValue("wrapAround", fmt.wrapAround ? "true" : "false");
 
 		s.endGroup();
 	}

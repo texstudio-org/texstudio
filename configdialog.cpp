@@ -396,6 +396,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	fmConfig->addCategory(tr("Line highlighting"))     <<"line:error" <<"line:warning" <<"line:badbox" <<"line:bookmark" <<"line:bookmark0" <<"line:bookmark1" <<"line:bookmark2" <<"line:bookmark3" <<"line:bookmark4" <<"line:bookmark5" <<"line:bookmark6"  <<"line:bookmark7" <<"line:bookmark8"<<"line:bookmark9"<<"current";
 	fmConfig->addCategory(tr("Search")) <<"search"<<"replacement"<<"selection";
 	fmConfig->addCategory(tr("Diff")) <<"diffDelete"<<"diffAdd"<<"diffReplace";
+    fmConfig->addCategory(tr("Preview")) <<"previewSelection";
 	fmConfig->addCategory(tr("DTX files")) << "dtx:guard" << "dtx:macro" << "dtx:verbatim" << "dtx:specialchar" << "dtx:commands";
 	fmConfig->addCategory(tr("Sweave / Pweave")) << "sweave-delimiter" << "sweave-block" << "pweave-delimiter" << "pweave-block";
 	fmConfig->addCategory(tr("Lua")) << "lua:keyword" << "lua:comment";
@@ -474,6 +475,15 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 #if QT_VERSION < 0x040800
 	ui.checkBoxVisualColumnMode->setChecked(false);
 	ui.checkBoxVisualColumnMode->setEnabled(false);
+#endif
+
+    // poppler preview
+#ifdef NO_POPPLER_PREVIEW
+    int l=ui.comboBoxDvi2PngMode->count();
+    ui.comboBoxDvi2PngMode->removeItem(l-1);
+    l=ui.comboBoxPreviewMode->count();
+    ui.comboBoxPreviewMode->removeItem(l-1);
+    // maybe add some possibility to disable some preview modes in poppler mode
 #endif
 }
 
@@ -953,5 +963,4 @@ bool ConfigDialog::askRiddle(){
 	return false;
 	*/
 }
-
 

@@ -97,6 +97,7 @@ QString dequoteStr(const QString &s);
 
 QString quotePath(const QString &s);
 QString removeQuote(const QString &s);
+QString removePathDelim(const QString &s);
 
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
@@ -109,7 +110,7 @@ enum {
 
 };
 
-QString getImageAsText(const QPixmap &AImage);
+QString getImageAsText(const QPixmap &AImage, const int w=-1);
 void showTooltipLimited(QPoint tt,QString topic,int width=0);
 QString truncateLines(const QString & s, int maxLines);
 
@@ -121,7 +122,8 @@ public:
 	LatexParser();
 	void init();
 
-    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package,Keyval,KeyvalValue};
+    enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package,Keyval,KeyvalValue,OptionEx,ArgEx};
+    // could do with some generalization as well, optionEx/argEx -> special treatment with specialOptionCommands
 	// realizes whether col is in a \command or in a parameter {}
 	int findContext(QString &line, int &column) const;
 	
@@ -135,20 +137,11 @@ public:
 	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 	static QString removeOptionBrackets(const QString &option);
 	
-    //QSet<QString> refCommands;
-    //QSet<QString> labelCommands;
-    //QSet<QString> citeCommands;
 	QSet<QString> environmentCommands;
-    //QSet<QString> definitionCommands;
 	QSet<QString> optionCommands;
 	QSet<QString> mathStartCommands;
 	QSet<QString> mathStopCommands;
-    //QSet<QString> tabularEnvirons;
-    //QSet<QString> fileCommands;
-    //QSet<QString> includeCommands;
-    //QSet<QString> usepackageCommands;
 	QSet<QString> customCommands;
-    //QSet<QString> graphicsIncludeCommands;
 	QStringList structureCommands;
 	QList<QStringList> structureCommandLists;  // a list for each level. 0:\part,\mypart 1:\chapter,\mychapter 2:\section ... 5:paragraph
 	int structureDepth() { return structureCommandLists.length(); }
@@ -157,6 +150,8 @@ public:
 	QMultiHash<QString,QString> environmentAliases; // aliases for environments, e.g. equation is math, supertabular is also tab etc.
 	// commands used for syntax check (per doc basis)
 	QHash<QString,QSet<QString> > possibleCommands;
+    QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
+    QHash<QString,QString> specialDefCommands;
 	
 	void append(const LatexParser& elem);
 	void substract(const LatexParser& elem);
@@ -236,15 +231,27 @@ private:
 class LatexPackage{
 public:
 	LatexPackage();
+
+	// Temporary solution: keys of LatexDocuments::cachedPackages have become complex. Use these functions to manage them.
+	// This is a first step for refactoring the existing code. No functionality is changed.
+	// In the long run, the information should be stored and accessed via the LatexPackage objects, which are referenced by the keys.
+	static QString makeKey(const QString &cwlFilename, const QString &options);  // TODO not yet used: where are the keys actually created?
+	static QString keyToCwlFilename(const QString &key);
+	static QString keyToPackageName(const QString &key);
+	static QString keyToOptions(const QString &key);
+
+	bool notFound;  // Workaround: explicit flag better than using a magic value in package name. TODO: Do we need not found packages?
 	QString packageName;
 	QStringList requiredPackages;
 	QStringList completionWords;
 	QHash<QString,QSet<QString> > possibleCommands;
+    QHash<QString,QString> specialDefCommands;
 	QSet<QString> optionCommands;
+    QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
 	QMultiHash<QString,QString> environmentAliases;
 	void unite(LatexPackage &add);
 };
 
-LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config=0);
+LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config=0, QStringList conditions=QStringList());
 
 #endif

@@ -4,9 +4,8 @@
 \tikztimingsetwscale{arg1}#*
 \timingwidth#*
 \timingheight#*
-\texttimingbefore#*
-\texttimingafter#*
-\texttiminggrid#*
+\texttiming[initial char]{timing}#
+\timing#*
 \wscale#*
 \slope#*
 \lslope#*
@@ -45,11 +44,11 @@
 \tikztiminglet{arg1}#*
 \tikztimingchar{arg1}#*
 \tikztimingecopy{arg1}#*
-\begin{tikztimingtable}#n
+\begin{tikztimingtable}#n\tikzpicture
 \end{tikztimingtable}#*
 &#/tikztimingtable
 \extracode#/tikztimingtable
-\vertlines[name]{points}#/pgfonlayer
+\vertlines[name]{points}#/tikztimingtable
 \begin{pgfonlayer}#/tikztimingtable
 \end{pgfonlayer}#*/tikztimingtable
 

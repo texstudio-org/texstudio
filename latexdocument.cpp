@@ -38,7 +38,13 @@ LatexDocument::~LatexDocument(){
 	if (!labelList->parent) delete labelList;
 	if (!todoList->parent) delete todoList;
 	if (!bibTeXList->parent) delete bibTeXList;
-	if (!blockList->parent) delete blockList;
+    if (!blockList->parent) delete blockList;
+
+    foreach (QDocumentLineHandle *dlh, mLineSnapshot) {
+        dlh->deref();
+    }
+    mLineSnapshot.clear();
+
 	delete baseStructure;
 }
 
@@ -277,13 +283,17 @@ inline bool isDefinitionArgument(const QString &arg) {
 	return (pos >= 0 && pos<arg.length()-1 && arg[pos+1].isDigit());
 }
 
-void LatexDocument::patchStructure(int linenr, int count) {
+bool LatexDocument::patchStructure(int linenr, int count) {
+    /* true means a second run is suggested as packages are loadeed which change the outcome
+     * e.g. definition of specialDef command, but packages are load at the end of this method.
+     */
     //qDebug()<<"begin Patch"<<QTime::currentTime().toString("HH:mm:ss:zzz");
     if(!parent->patchEnabled())
-        return;
+        return false;
 
-	if (!baseStructure) return;
+    if (!baseStructure) return false;
 
+    bool reRunSuggested=false;
     bool recheckLabels=true;
     if(count<0){
         count=lineCount();
@@ -658,13 +668,41 @@ void LatexDocument::patchStructure(int linenr, int count) {
 				lst << "\\the"+name ;
 				foreach(const QString& elem,lst){
 					mUserCommandList.insert(line(i).handle(),elem);
-					ltxCommands.possibleCommands["user"].insert(elem);
+                    ltxCommands.possibleCommands["user"].insert(elem);
 					if(!removedUserCommands.removeAll(elem)){
 						addedUserCommands << elem;
 					}
 				}
 				continue;
 			}
+            /// specialDefinition ///
+            /// e.g. definecolor
+            if(ltxCommands.specialDefCommands.contains(cmd)){
+                if(!name.isEmpty() ){
+                    completerNeedsUpdate=true;
+                    QStringList lst;
+                    lst << name ;
+                    foreach(QString elem,lst){
+                        // probably needs to be refined
+                        QString definition=ltxCommands.specialDefCommands.value(cmd);
+                        if(definition.startsWith('(')){
+                            if(elem.startsWith('(')){
+                                elem.chop(1);
+                                elem=elem.mid(1);
+                                definition.chop(1);
+                                definition=definition.mid(1);
+                            }else{
+                                continue;
+                            }
+                        }
+                        latexParser.possibleCommands[definition].insert(elem);
+                        if(!removedUserCommands.removeAll(elem)){
+                            addedUserCommands << elem;
+                        }
+                    }
+                    continue;
+                }
+            }
 			/// bibitem ///
 			if(latexParser.possibleCommands["%bibitem"].contains(cmd)){
 				if(!name.isEmpty() && !isDefinitionArgument(name)){
@@ -714,9 +752,9 @@ void LatexDocument::patchStructure(int linenr, int count) {
                 }
 
 				foreach(const QString& elem,packages){
-					if(!removedUsepackages.removeAll(elem))
-						addedUsepackages << elem;
-					mUsepackageList.insertMulti(dlh,elem);
+                    if(!removedUsepackages.removeAll(option+"#"+elem))
+                        addedUsepackages << option+"#"+elem;
+                    mUsepackageList.insertMulti(dlh,option+"#"+elem); // hand on option of usepackages for conditional cwl load ..., force load if option is changed
 				}
 				continue;
 			}
@@ -820,7 +858,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
 			int level = latexParser.structureCommandLevel(cmd);
-			if (level>-1) {
+			if (level>-1 && !isDefinitionArgument(name)) {
 				StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
 				else newSection->appendix=false;
@@ -890,13 +928,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 	if(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()){
 		bool forceUpdate=!addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
         updateLtxCommands=updateCompletionFiles(forceUpdate,false,true);
+        reRunSuggested=(count>1)&&(!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());
 	}
 	
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
-
-    /*if(bibItemsChanged)
-        parent->updateBibFiles(false);*/
 
     // force update on citation overlays
     if(bibItemsChanged||bibTeXFilesNeedsUpdate){
@@ -913,21 +949,11 @@ void LatexDocument::patchStructure(int linenr, int count) {
 
 
     if(updateSyntaxCheck || updateLtxCommands) {
-        //qDebug()<<"update ltx"<< QTime::currentTime().toString("HH:mm:ss:zzz");
         if(edView){
             edView->updateLtxCommands(true);
-            //qDebug()<<"update ltxcommands done"<< QTime::currentTime().toString("HH:mm:ss:zzz");
         }
-        /*foreach(LatexDocument* elem,getListOfDocs()){
-			//getEditorView()->reCheckSyntax();//todo: signal
-            if(elem->edView){
-                elem->edView->updateLtxCommands();
-                qDebug()<<"update ltxcommands done"<< QTime::currentTime().toString("HH:mm:ss:zzz");
-				elem->edView->reCheckSyntax();
-            }
-        }*/
 	}
-    //qDebug()<<"update View"<< QTime::currentTime().toString("HH:mm:ss:zzz");
+
 	//update view
 	if(edView)
 		edView->documentContentChanged(linenr, count);
@@ -941,6 +967,7 @@ void LatexDocument::patchStructure(int linenr, int count) {
         parent->addDocToLoad(fname);
     }
     //qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
+    return reRunSuggested;
 }
 
 #ifndef QT_NO_DEBUG
@@ -1342,7 +1369,7 @@ LatexDocumentsModel::LatexDocumentsModel(LatexDocuments& docs):documents(docs),
   iconWarning(getRealIconCached("warning")), m_singleMode(false){
 	mHighlightIndex=QModelIndex();
 
-	QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph";
+    QStringList structureIconNames = QStringList() << "part" << "chapter" << "section" << "subsection" << "subsubsection" << "paragraph" << "subparagraph";
 	iconSection.resize(structureIconNames.length());
 	for (int i=0; i<structureIconNames.length(); i++)
 		iconSection[i] = getRealIconCached(structureIconNames[i]);
@@ -2546,6 +2573,8 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     //mCompleterWords=pck.completionWords.toSet();
     mCWLFiles=loadedFiles.toSet();
 	ltxCommands.optionCommands=pck.optionCommands;
+    ltxCommands.specialTreatmentCommands=pck.specialTreatmentCommands;
+    ltxCommands.specialDefCommands=pck.specialDefCommands;
 	ltxCommands.possibleCommands=pck.possibleCommands;
 	ltxCommands.environmentAliases=pck.environmentAliases;
 	
@@ -2558,6 +2587,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 		}
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
+
 	//patch lines for new commands (ref,def, etc)
 	LatexParser& latexParser = LatexParser::getInstance();
 	QStringList categories;
@@ -2582,13 +2612,6 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 	if(update){
         LatexEditorView *edView=getEditorView();
         edView->updateLtxCommands(true);
-        /*foreach(LatexDocument* elem,getListOfDocs()){
-			LatexEditorView *edView=elem->getEditorView();
-			if(edView){
-				edView->updateLtxCommands();
-				edView->reCheckSyntax();
-			}
-        }*/
 	}
     return false;
 }
@@ -2600,14 +2623,16 @@ void LatexDocument::emitUpdateCompleter(){
 void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){
 	LatexPackage zw;
 	LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
-	foreach(const QString& elem,files){
+	foreach(const QString& elem, files){
 		if(loadedFiles.contains(elem))
 			continue;
         if(parent->cachedPackages.contains(elem)){
 			zw=parent->cachedPackages.value(elem);
 		}else{
-			zw=loadCwlFile(elem,completerConfig);
-			if(zw.packageName!="<notFound>"){
+			QString fileName = LatexPackage::keyToCwlFilename(elem);
+			QStringList options = LatexPackage::keyToOptions(elem).split(',');
+            zw=loadCwlFile(fileName,completerConfig,options);
+			if(!zw.notFound){
 				parent->cachedPackages.insert(elem,zw); // cache package
 			}else{
 				LatexPackage zw;
@@ -2615,12 +2640,14 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 				parent->cachedPackages.insert(elem,zw); // cache package as empty/not found package
 			}
 		}
-		if(zw.packageName=="<notFound>"){
+		if(zw.notFound){
             QString name=elem;
             LatexDocument *masterDoc=getTopMasterDocument();
             if(masterDoc){
                 QString fn=masterDoc->getFileInfo().absolutePath();
-                name+="/"+fn;
+				name+="/"+fn;
+				// TODO: oha, the key can be even more complex: option#filename.cwl/masterfile
+				// consider this in the key-handling functions of LatexPackage
             }
             emit importPackage(name);
 		} else {
@@ -2719,11 +2746,21 @@ void LatexDocument::updateMagicCommentScripts(){
 }
 
 QStringList LatexDocument::containedPackages(){
-    return mUsepackageList.values();
+    QStringList helper=mUsepackageList.values();
+    for(int l=0;l<helper.size();++l){
+        QString elem=helper.value(l);
+        if(elem.contains('#')){
+            int i=elem.indexOf('#');
+            helper[l]=elem.mid(i+1);
+        }
+    }
+
+    return helper;
 }
 
 bool LatexDocument::containsPackage(const QString& name){
-	return mUsepackageList.keys(name).count()>0;
+    QStringList helper=containedPackages();
+    return helper.contains(name);
 }
 
 LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const { // doc==0 means current document
@@ -2789,7 +2826,7 @@ QString LatexDocuments::findPackageByCommand(const QString command){
         const LatexPackage pck=cachedPackages.value(key);
         foreach(const QString envs,pck.possibleCommands.keys()){
             if(pck.possibleCommands.value(envs).contains(command)){
-                result=key; //pck.packageName;
+				result=LatexPackage::keyToCwlFilename(key); //pck.packageName;
                 break;
             }
         }

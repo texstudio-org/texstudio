@@ -14,7 +14,16 @@
    <string>Check Spelling</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -82,7 +91,7 @@
      <item row="4" column="2">
       <widget class="QPushButton" name="pushButtonAlwaysIgnore">
        <property name="text">
-        <string>Always Ignore</string>
+        <string>Add</string>
        </property>
       </widget>
      </item>
@@ -96,7 +105,7 @@
      <item row="8" column="0">
       <widget class="QLabel" name="labelIgnoredWords">
        <property name="text">
-        <string>Ignored Words</string>
+        <string>User-added Words</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -114,7 +123,7 @@
           <string>Add</string>
          </property>
          <property name="icon">
-          <iconset resource="texstudio.qrc">
+          <iconset>
            <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
          </property>
         </widget>
@@ -125,7 +134,7 @@
           <string>Remove</string>
          </property>
          <property name="icon">
-          <iconset resource="texstudio.qrc">
+          <iconset>
            <normaloff>:/images/list-remove.png</normaloff>:/images/list-remove.png</iconset>
          </property>
         </widget>
@@ -164,7 +173,7 @@
        <item>
         <widget class="QPushButton" name="pushButtonIgnoreList">
          <property name="text">
-          <string>Hide Ignore List</string>
+          <string>Hide Added Words</string>
          </property>
          <property name="icon">
           <iconset resource="texstudio.qrc">

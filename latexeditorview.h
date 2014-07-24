@@ -225,8 +225,10 @@ public slots:
 	void lineDeleted(QDocumentLineHandle* l);
 	void spellCheckingReplace();
 	void spellCheckingAlwaysIgnore();
-	void addListToContextMenu(const QStringList& list, bool italic, const char* action);
-	void spellCheckingListSuggestions();
+	void populateSpellingMenu();
+	void addListToMenu(const QStringList& list, QMenu *menu, bool italic, const char* action);
+	void addSpellingActions(QMenu *menu, QString word, bool dedicatedMenu);
+public slots:
 	void spellRemoveMarkers(const QString& newIgnoredWord);
 	void mouseHovered(QPoint pos);
 	bool closeSomething();

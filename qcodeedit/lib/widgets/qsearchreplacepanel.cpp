@@ -430,7 +430,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 		bool focusFindEdit = true;
 		if (m_search){
 			if(editor()->cursor().hasSelection()){
-				if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !useLineForSearch ||cbSelection->isChecked()){
+                if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !useLineForSearch){
 					if (searchOnlyInSelection){
 						if(cbSelection->isChecked()) on_cbSelection_toggled(true);
 						else cbSelection->setChecked(true);
@@ -442,6 +442,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 				} else {
 					// single line selection
 					// copy content to cFind (doesn't trigger textEdited; don't call textEdited to prevent cursor jumping)
+                    cbSelection->setChecked(false);
 					cFind->setEditText(editor()->cursor().selectedText());
 					m_search->setSearchText(cFind->currentText());
 				}
@@ -941,11 +942,14 @@ void QSearchReplacePanel::on_cbSelection_toggled(bool on)
 {
 	if ( m_search ) {
 		m_search->setScope(on ? editor()->cursor() : QDocumentCursor());
-		/*if ( m_search && cbHighlight->isChecked())
-		{
-			m_search->setOption(QDocumentSearch::HighlightAll, false);
-			m_search->setOption(QDocumentSearch::HighlightAll, true);
-		}*/
+        if(on){
+            // deselect cursor to show search scope (which is below cuersor highlight)
+            QDocumentCursor cur=editor()->cursor();
+            if(cur.hasSelection()){
+                cur.clearSelection();
+                editor()->setCursor(cur);
+            }
+        }
 	}
 	cFind->setFocus();
 }

@@ -86,11 +86,6 @@ environments in smallUsefulFunctions.cpp)
 		<start>%todo</start>
 		<stop exclusive="false">\n</stop>
 	</context>
-	<context id="comment/todocmd" format="commentTodo" >
-		<start>\\todo</start>
-		<start>\\missingfigure</start>
-		<stop exclusive="false">[^\\]}</stop>
-	</context>
 
 	<context id="comment/magic" format="magicComment" stayOnLine="true" >
 		<start>% !TeX</start>
@@ -221,6 +216,11 @@ environments in smallUsefulFunctions.cpp)
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 
+	<context id="comment/todocmd" format="commentTodo"  transparency="true">
+		<start>\\todo</start>
+		<start>\\missingfigure</start>
+		<stop exclusive="false">}</stop>
+	</context>
 
 	<!-- ========================= PICTURES ====================== -->
 	<foreach loopVar="$env">

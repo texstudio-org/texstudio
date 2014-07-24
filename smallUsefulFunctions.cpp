@@ -857,8 +857,8 @@ void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &stru
 }
 
 void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
-	const QString BracketsOpen("[{");
-	const QString BracketsClose("]}");
+    const QString BracketsOpen("[{(");
+    const QString BracketsClose("]})");
 	int start=column;
     int stop=-1;
 	int type;
@@ -935,9 +935,17 @@ int LatexParser::structureCommandLevel(const QString &cmd) const
 }
 
 int LatexParser::findContext(QString &line,int &column) const{
+    /* return a number for a context
+     * 0 unknown
+     * 1 command
+     * 2 option \command[option]{arg}
+     * 3 argument \command{arg}
+     * 4 argument 2   \command{arg}{arg2}
+     * etc
+     */
 	if(line.isEmpty())
 		return 0;
-    QString eow="\\[]{} $";
+    QString eow="\\[]{}$";
 	int i=column;
 	if(i>=line.length())
 		i=line.length();
@@ -965,12 +973,12 @@ int LatexParser::findContext(QString &line,int &column) const{
 	int ret=0;
 	if(start_ref>start_opt){
 		// assuming we are in command argument
-		ret=2;
+        ret=3;
 		i=start_ref-1;
 	}else{
 		if(start_opt>-1){
 			//assuming we are in command option
-			ret=3;
+            ret=2;
 			i=start_opt-1;
 		}
 	}
@@ -981,6 +989,7 @@ int LatexParser::findContext(QString &line,int &column) const{
 	QString openBrackets="[{";
 	QString closeBrackets="]}";
 	eow=getCommonEOW();
+    eow.remove(' ');
 	int stop=i;
 	while (i>-1) {
 		ch=line.at(i);
@@ -995,13 +1004,15 @@ int LatexParser::findContext(QString &line,int &column) const{
 		}
 		if(closeBrackets.contains(ch)){
 			n++;
+            if(ch=='}')
+                ++ret;  //going through another braces pair, [] is not checked
 			i--;
 			continue;
 		}
 		if(n==0 && eow.contains(ch)){
 			if(ch=='\\'){
 				//TODO: check if not \\ (newline) was found
-				line=line.mid(i,stop-i+1);
+                line=line.mid(i,stop-i+1).simplified();
 				column=i;
 				return ret;
 			}else{ // this is a overly strict interpretation of command syntax
@@ -1023,7 +1034,7 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 	value="";
 	if(!vals.isEmpty()){
 		value=vals.takeFirst();
-        if(value.startsWith('[') && temp<3){
+        if(value.startsWith('[') && temp!=2){
 			if(!vals.isEmpty()){
 				value=vals.takeFirst();
 			}
@@ -1032,11 +1043,52 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
 			value.remove(0,1);
         if(value.endsWith('}')||value.endsWith(']'))
 			value.chop(1);
-	}
+    }
 	switch (temp) {
 	case 0: return Unknown;
 	case 1: return Command;
-	case 2:
+    case 3:
+        if(specialTreatmentCommands.contains(command)){
+            QSet<QPair<QString,int> > helper=specialTreatmentCommands.value(command);
+            QPair<QString,int> elem;
+            foreach(elem,helper){
+                if(elem.second==1)
+                    return ArgEx;
+            }
+        }
+        // check key/val
+        {
+            QStringList keys=possibleCommands.keys();
+            bool handled=false;
+            QString elem;
+            QStringList checkOptions;
+            checkOptions <<  "key%1"+command << "key%1"+command+"#c";
+
+            foreach(elem,checkOptions){
+                if(keys.contains(elem)){
+                    handled=true;
+                    command=elem.mid(4);
+                    break;
+                }
+            }
+
+            if(handled){
+                // check that cursor is within keyval
+                bool isKey=false;
+                for(int i=col;col>0;col--){
+                    if(line.at(i-1).isLetter())
+                        continue;
+                    if(line.at(i-1)=='{' || line.at(i-1)==',')
+                        isKey=true;
+                    break;
+                }
+                if(isKey)
+                    return Keyval;
+                else
+                    return KeyvalValue;
+            }
+        }
+        // normal context
 		if (environmentCommands.contains(command))
 			return Environment;
         else if (possibleCommands["%label"].contains(command))
@@ -1052,15 +1104,17 @@ LatexParser::ContextType LatexParser::findContext(const QString &line, int colum
         else if (possibleCommands["%graphics"].contains(command))
             return Graphics;
 		else return Option;
-    case 3:
+    case 2:
         // find possible commands for keyval completion
         {
-            /*QString elem;
-            foreach(elem,possibleCommands.keys()){
-                if(elem.startsWith("key%") && (elem.mid(4)==command || elem.mid(4)==command+"#c"))
-                    break;
-                elem.clear();
-            }*/
+            if(specialTreatmentCommands.contains(command)){
+                QSet<QPair<QString,int> > helper=specialTreatmentCommands.value(command);
+                QPair<QString,int> elem;
+                foreach(elem,helper){
+                    if(elem.second==0)
+                        return OptionEx;
+                }
+            }
             QStringList keys=possibleCommands.keys();
             QString arg;
             if(!vals.isEmpty()){
@@ -1225,6 +1279,15 @@ QString removeQuote(const QString &s) {
 	return s;
 }
 
+QString removePathDelim(const QString &s) {
+	// we use the explicit chars intentionally and not QDir::separator()
+	// because it shall also work for / on windows (many paths are internally
+	// represented with / as delimiter
+	if (s.endsWith('/') || s.endsWith('\\')) {
+		return s.left(s.length()-1);
+	}
+	return s;
+}
 
 QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
 	//copied and modified from texworks
@@ -1526,6 +1589,8 @@ void LatexParser::append(const LatexParser& elem){
 		    environmentAliases.insert(key,value);
 	    }
 	}
+    specialTreatmentCommands.unite(elem.specialTreatmentCommands);
+    specialDefCommands.unite(elem.specialDefCommands);
 }
 
 void LatexParser::clear(){
@@ -1703,7 +1768,7 @@ void LatexReader::setLine(const QString& line){
 	this->wordStartIndex = 0;
 }
 
-LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
+LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QStringList conditions) {
 	QStringList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	LatexPackage package;
@@ -1714,18 +1779,36 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	QString fn=findResourceFile("completion/"+fileName,false,addPaths);
 	
 	QFile tagsfile(fn);
+    bool skipSection=false;
 	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
 	    QString line;
 	    QTextStream stream(&tagsfile);
 		stream.setCodec("UTF-8");
 	    QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
 	    QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
+        QRegExp rxCom3("^(\\\\\\w+\\*?)");
 	    rxCom.setMinimal(true);
 	    QStringList keywords;
 	    keywords << "text" << "title";
+        QStringList specialTreatment;
+        specialTreatment << "color";
         QString keyvals;
 	    while (!stream.atEnd()) {
 		line = stream.readLine().trimmed();
+        if(line.startsWith("#endif")){
+            // end of conditional section
+            skipSection=false;
+            continue;
+        }
+        if(line.startsWith("#ifOption:")){
+            QString condition=line.mid(10);
+            skipSection=!conditions.contains(condition);
+            continue;
+        }
+        if(skipSection) // skip conditional sections (if condition is not met)
+            continue;
+
+
 		if(line.startsWith("#include:")){
 		    //include additional cwl file
 		    QString fn=line.mid(9);
@@ -1744,6 +1827,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             keyvals.clear();
             continue;
         }
+
         if(!keyvals.isEmpty()){
             // read keyval (name stored in "keyvals")
             package.possibleCommands["key%"+keyvals] << line;
@@ -1760,6 +1844,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 		    int sep=line.indexOf('#');
 		    QString valid;
 		    QStringList env;
+            QString definition;
 		    bool uncommon=false;
 		    bool hideFromCompletion=false;
 		    if(sep>-1){
@@ -1769,6 +1854,13 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 					valid=valid.mid(1);
 					uncommon=true;
 				}
+                // second time split for specialDef
+                int sep=valid.indexOf('#');
+                if(sep>-1){
+                    definition=valid.mid(sep+1);
+                    valid=valid.left(sep);
+                }
+                // normal valid
 				if(valid.startsWith("/")){
 					env=valid.mid(1).split(',');
 					valid="e";
@@ -1789,7 +1881,11 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
             if(keywords.contains(rxCom.cap(3))){
                 package.optionCommands << rxCom.cap(1);
             }
+            if(specialTreatment.contains(rxCom.cap(3))){
+                package.specialTreatmentCommands[rxCom.cap(1)].insert(qMakePair(rxCom.cap(3),1));
+            }
             rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
+            int res3=rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
             if(keywords.contains(rxCom2.cap(2))){
                 package.optionCommands << rxCom2.cap(1);
             }
@@ -1816,6 +1912,24 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
                     package.possibleCommands["%ref"] << rxCom.cap(1);
                 }
                 valid.remove('r');
+            }
+            if(valid.contains('s')){ // special def
+                if(res>-1){
+                    package.specialDefCommands.insert(rxCom.cap(1),definition);
+                }else{
+                    if(res3>-1)
+                        package.specialDefCommands.insert(rxCom3.cap(1),definition);
+                }
+                if(definition.startsWith('%')){
+                    config->specialCompletionKeys.insert(definition);
+                }else{
+                    if(definition.length()>2){
+                        QString helper=definition.mid(1,definition.length()-2);
+                        if(helper.startsWith('%'))
+                            config->specialCompletionKeys.insert(helper);
+                    }
+                }
+                valid.remove('s');
             }
             if(valid.contains('c')){ // cite command
                 if(res>-1){
@@ -1891,19 +2005,23 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 				}
 				valid.remove('D');
 			}
+            if(valid.contains('B')){ // color
+                package.possibleCommands["%color"] << line;
+                hideFromCompletion=true;
+            }
 		    // normal commands for syntax checking
 		    // will be extended to distinguish between normal and math commands
-		    if(valid.isEmpty() || valid.contains('n')){
-			if(res>-1){
-			    if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-				package.possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-			    } else {
-				package.possibleCommands["normal"] << rxCom.cap(1);
-			    }
-			} else {
-			    package.possibleCommands["normal"] << line.simplified();
-			}
-		    }
+            if(valid.isEmpty() || valid.contains('n')){
+                if(res>-1){
+                    if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
+                        package.possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
+                    } else {
+                        package.possibleCommands["normal"] << rxCom.cap(1);
+                    }
+                } else {
+                    package.possibleCommands["normal"] << line.simplified();
+                }
+            }
 		    if(valid.contains('m')){ // math commands
 			if(res>-1){
 			    if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
@@ -2021,6 +2139,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	}else{
 	    //qDebug() << "Completion file not found:" << fileName;
 	    package.packageName="<notFound>";
+		package.notFound = true;
 	}
 	
 	QApplication::restoreOverrideCursor();
@@ -2028,15 +2147,43 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config) {
 	return package;
     }
 
-LatexPackage::LatexPackage(){
+LatexPackage::LatexPackage() : notFound(false) {
 	completionWords.clear();
 	packageName.clear();
+}
+
+QString LatexPackage::makeKey(const QString &cwlFilename, const QString &options) {
+	return QString("%1#%2").arg(options).arg(cwlFilename);
+}
+
+QString LatexPackage::keyToCwlFilename(const QString &key) {
+	int i = key.indexOf('#');
+	if (i<0) return key;
+	else return key.mid(i+1);
+}
+
+QString LatexPackage::keyToPackageName(const QString &key) {
+	// Workaround since there is currently no reliable way to determine the packageName from LatexPackage directly (the attribute with the same name contains the key and sometimes nothing).
+	QString name = LatexPackage::keyToCwlFilename(key);
+	if (name.endsWith(".cwl"))
+		name.remove(name.length()-4, 4);
+	if (name.startsWith("class-"))
+		name.remove(0, 6);
+	return name;
+}
+
+QString LatexPackage::keyToOptions(const QString &key) {
+	int i = key.indexOf('#');
+	if (i<0) return QString();
+	else return key.left(i);
 }
 
 void LatexPackage::unite(LatexPackage &add){
 	completionWords.append(add.completionWords);
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
+    specialTreatmentCommands.unite(add.specialTreatmentCommands);
+    specialDefCommands.unite(add.specialDefCommands);
 	//possibleCommands.unite(add.possibleCommands);
 	foreach(const QString& elem,add.possibleCommands.keys()){
 		QSet<QString> set2=add.possibleCommands[elem];
@@ -2047,12 +2194,13 @@ void LatexPackage::unite(LatexPackage &add){
 }
 
 
-QString getImageAsText(const QPixmap &AImage) {
+QString getImageAsText(const QPixmap &AImage,const int w) {
     QByteArray ba;
     QBuffer buffer(&ba);
     buffer.open(QIODevice::WriteOnly);
     AImage.save(&buffer, "PNG");
-    return QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64()));
+    QString text=w<0 ? QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64())): QString("<img src=\"data:image/png;base64,%1\" width=%2 >").arg(QString(buffer.data().toBase64())).arg(w);
+    return text;
 }
 
 void showTooltipLimited(QPoint tt,QString topic,int width){

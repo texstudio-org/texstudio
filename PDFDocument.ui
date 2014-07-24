@@ -769,6 +769,14 @@
     <string>Ctrl+4</string>
    </property>
   </action>
+  <action name="actionGrayscale">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Grayscale</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>

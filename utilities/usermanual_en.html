@@ -12,6 +12,7 @@
 <ul class="two-columns">
 <li><a href="#SECTIONNEW">0. What's new</a>
 	<ul>
+	<li><a href="#SECTIONNEW281">Version 2.8.0 -> Version 2.8.2</a></li>
 	<li><a href="#SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</a></li>
 	<li><a href="#SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</a></li>
 	<li><a href="#SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</a></li>
@@ -98,6 +99,20 @@
 </ul>
 <hr>
 <h1 id="SECTIONNEW">0. What's new</h1>
+
+<h2 id="SECTIONNEW281">Version 2.8.0 -> Version 2.8.2</h2>
+<ul>
+<li><p>color completion</p></li>
+<li><p>some more predefined completions for tikz</p></li>
+<li><p>region preview with pdflatex and the embedded viewer (activate in options)</p></li>
+<li><p>more consistent visual for search/region preview range</p></li>
+<li><p>PDF can be shown in grayscale (as a preview how a grayscale print would look like)</p></li>
+<li><p>improved input method support</p></li>
+<li><p>improved \todo highlighting</p></li>
+<li><p>texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize</p></li>
+<li><p>portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version</p></li>
+<li><p>several bugfixes</p></li>
+</ul>
 
 <h2 id="SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</h2>
 <ul>
@@ -638,6 +653,15 @@ Section can be indented/unindented which means that the hierarchy level is chang
 <p>You can quickly set the format of a part of your text with this tool bar :</p>
 <p><IMG src="doc6.png" border="1" alt="Format Toolbar"></p>
 <p><b>Additional option:</b> a selected text can be directly framed by certain environments. Example: while clicking on the button "Bold" after having selected the word "Hello" , you will obtain the code: \textbf{Hello}.<br>This option is available for all the environments indicated by "[selection]" in the "LaTeX" menu.</p>
+<h3>Capitalisation</h3>
+<p>The menu "Edit" -> "Text Operations" contains a few methods for changing the capitalization of selected text:</p>
+<ul>
+<li>To Lowercase</li>
+<li>To Uppercase</li>
+<li>To Titlecase (strict)</li>
+<li>To Titlecase (smart)</li>
+</ul>
+<p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronymes which require a fixed capitalization (e.g. "TeXstudio").</p>
 <h2 id="SECTION16">2.6 Spacings</h2>
 <p>The usual "spacing" commands are available in the "LaTeX" and "Math" menus. To insert quickly the "new line" LaTeX command, you can use the corresponding command in the toolbar (shortcut : Ctrl+Alt+return) </p>
 <h2 id="SECTION17">2.7 Inserting a list</h2>
@@ -1614,10 +1638,13 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>#include:&lt;packagename&gt;</code> (at start of line): also load packagename.cwl. This should be used to indicate that a package depends on other packages.</li>
   <li><code>#repl:&lt;search&gt; &lt;replacement&gt;</code> (at start of line): define a letter replacement, e.g. "a -> ä for German. Only used for letter replacement in spell checking (babel)</li>
   <li><code>#keyvals:&lt;command&gt;</code> (at start of line): start definition of keyvals for <code>command</code>, see graphicx.cwl in source code. To specify possible values for keys, add them after #  e.g. <code>mode=#text,math</code><br>
+  Instead of single keys/values, complete special lists can be given, e.g. <code>color=#%color</code>, see also tikz.cwl.<br>
   <code>command</code> can consist of two parts, e.g. \documentclass/thesis which is only valid when the command \documentclass uses thesis as argument.<br>
   If #c is added, the keyvals are only used for completion, not for syntax checking
   </li>
   <li><code>#endkeyvals</code> (at start of line): end definition of keyvals, see graphicx.cwl in source code</li>
+  <li><code>#ifOption:&lt;option&gt;</code> (at start of line): the following block is only loaded if &lt;option&gt; was used in the usepackage command, e.g. \usepackage[svgnames]{color} -> option=svgnames</li>
+  <li><code>#endif</code> (at start of line): end conditional block</li>
   <li><code>#</code> (at start of line with the exception of <code>#include,#repl,#keyvals or #endkeyvals </code>): This line is a comment and will be ignored.</li>
   <li><code>#</code> (in the middle of a line): Separates the command from the classification</li>
 </ul>
@@ -1653,6 +1680,8 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>
   <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel)</td></tr>
+  <tr><td>B</td><td>this command declares a color (will be used for color completion only, no syntax checking)</td></tr>
+  <tr><td>s</td><td>this command declares a special definition, the definition class is given after a "#". The class name needs a preceding %. (e.g. %color), also see the examples below.</td></tr>
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
 </table>
@@ -1666,6 +1695,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 	<tr><td><code>\pageref{key}#r</code></td><td>declares a reference command which is used correctly for completion</td></tr>
 	<tr><td><code>\vector(xslope,yslope){length}#*/picture</code></td><td>unusual command which is valid only in the picture environment</td></tr>
 	<tr><td><code>\begin{align}#\math</code></td><td>declares that the "align"-environment is handled like a math-env, concerning command validity and syntax highlighting!</td></tr>
+	<tr><td><code>\definecolor{name}{model}{color-spec}#s#%color</code></td><td>adds <code>name</code> to the special list <code>%color</code></td></tr>
 </table>
 <h3>4.13.4 cwl guidelines</h3>
 <p>Though TeXstudio can automatically create cwls from packages, these autogenerated cwls do not contain meaningful argument names and no classification of commands. Therefore we ship hand-tuned cwls for many packages. We encourage users  to contribute new cwl files. These should have the following attributes:</p>

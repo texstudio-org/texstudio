@@ -31,6 +31,7 @@
 #include "tabbingdialog.h"
 #include "letterdialog.h"
 #include "quickdocumentdialog.h"
+#include "quickbeamerdialog.h"
 #include "mathassistant.h"
 #include "maketemplatedialog.h"
 #include "templateselector.h"
@@ -121,7 +122,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	
 	setWindowIcon(QIcon(":/images/logo128.png"));
 	
-	setIconSize(QSize(22,22));
+	int iconSize = qMax(16, configManager.guiToolbarIconSize);
+	setIconSize(QSize(iconSize, iconSize));
 	
 	leftPanel=0;
 	structureTreeView=0;
@@ -190,7 +192,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	centralToolBar->setFloatable(false);
 	centralToolBar->setOrientation(Qt::Vertical);
 	centralToolBar->setMovable(false);
-	centralToolBar->setIconSize(QSize(16,16));
+	iconSize = qMax(16, configManager.guiSecondaryToolbarIconSize);
+	centralToolBar->setIconSize(QSize(iconSize, iconSize));
 	
 	EditorTabs=new TxsTabWidget(centralFrame);
 	EditorTabs->setFocus();
@@ -669,7 +672,8 @@ void Texmaker::setupMenus() {
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
 	newManagedAction(submenu,"textToLowercase", tr("To Lowercase"), SLOT(editTextToLowercase()));
 	newManagedAction(submenu,"textToUppercase", tr("To Uppercase"), SLOT(editTextToUppercase()));
-	newManagedAction(submenu,"textToTitlecase", tr("To Titlecase"), SLOT(editTextToTitlecase()));
+	newManagedAction(submenu,"textToTitlecaseStrict", tr("To Titlecase (strict)"), SLOT(editTextToTitlecase()));
+	newManagedAction(submenu,"textToTitlecaseSmart", tr("To Titlecase (smart)"), SLOT(editTextToTitlecaseSmart()));
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
@@ -894,6 +898,7 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/wizards",tr("&Wizards"));
 	newManagedAction(menu, "start",tr("Quick &Start..."), SLOT(QuickDocument()));
+	newManagedAction(menu, "beamer",tr("Quick &Beamer Presentation..."), SLOT(QuickBeamer()));
 	newManagedAction(menu, "letter",tr("Quick &Letter..."), SLOT(QuickLetter()));
 	
 	menu->addSeparator();
@@ -3464,7 +3469,11 @@ void Texmaker::editTextToUppercase() {
 	m_cursor.endEditBlock();
 }
 
-void Texmaker::editTextToTitlecase() {
+/*!
+ * Converts the selected text to title case. Small words like a,an etc. are not converted.
+ * \param smart: Words containing capital letters are not converted because the are assumed to be acronymes.
+ */
+void Texmaker::editTextToTitlecase(bool smart) {
 	if (!currentEditorView()) return;
 	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
 	QString text = m_cursor.selectedText();
@@ -3473,7 +3482,7 @@ void Texmaker::editTextToTitlecase() {
 	// easier to be done in javascript
 	scriptengine* eng = new scriptengine();
 	eng->setEditorView(currentEditorView());
-	eng->setScript(
+	QString script =
 		"/* \n" \
 		"	* To Title Case 2.1  http://individed.com/code/to-title-case/ \n" \
 		"	* Copyright © 20082013 David Gouch. Licensed under the MIT License.\n" \
@@ -3486,18 +3495,29 @@ void Texmaker::editTextToTitlecase() {
 		"  (title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&\n" \
 		"  title.charAt(index - 1).search(/[^\\s-]/) < 0) {\n" \
 		"    return match.toLowerCase();\n" \
-		"}\n" \
+		"}\n";
+	if (smart) {
+		script +=
 		"if (match.substr(1).search(/[A-Z]|\\../) > -1) {\n" \
 		"return match;\n" \
 		"}\n" \
-		"return match.charAt(0).toUpperCase() + match.substr(1);\n" \
+		"return match.charAt(0).toUpperCase() + match.substr(1);\n";
+	} else {
+		script +=
+		"return match.charAt(0).toUpperCase() + match.substr(1).toLowerCase();\n";
+	}
+	script +=
 		"});\n" \
 		"};\n" \
-		"cursor.insertText(cursor.selectedText().toTitleCase())"
-	);
+		"cursor.insertText(cursor.selectedText().toTitleCase())";
+	eng->setScript(script);
 	eng->run();
 	if (!eng->globalObject) delete eng;
 	m_cursor.endEditBlock();
+}
+
+void Texmaker::editTextToTitlecaseSmart() {
+	editTextToTitlecase(true);
 }
 
 void Texmaker::editFind(){
@@ -3521,6 +3541,7 @@ void Texmaker::editFind(){
 /////////////// CONFIG ////////////////////
 void Texmaker::ReadSettings(bool reread) {
 	QuickDocumentDialog::registerOptions(configManager);
+	QuickBeamerDialog::registerOptions(configManager);
 	buildManager.registerOptions(configManager);
 	configManager.registerOption("Files/Default File Filter", &selectedFileFilter);
 	configManager.registerOption("PDFSplitter",&pdfSplitterRel,0.5);
@@ -3562,7 +3583,8 @@ void Texmaker::ReadSettings(bool reread) {
 			<< (QStringList() << "\\section")
 			<< (QStringList() << "\\subsection")
 			<< (QStringList() << "\\subsubsection")
-			<< (QStringList() << "\\paragraph");
+            << (QStringList() << "\\paragraph")
+            << (QStringList() << "\\subparagraph");
 	latexParser.structureCommandLists.clear();
 	for (int level=0; level<defaults.length(); level++) {
 		QStringList cmds = config->value("Structure/Structure Level " + QString::number(level+1)).toStringList();
@@ -3814,7 +3836,10 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
         doc = currentEditorView()->document;
 	if(initial){
         //int len=doc->lineCount();
-        doc->patchStructure(0,-1); //len
+        if(doc->patchStructure(0,-1))
+            doc->patchStructure(0,-1); // do a second run, if packages are load (which might define new commands)
+        // admitedly this solution is expensive (though working)
+        //TODO: does not working when entering \usepackage in text ... !
 
 		doc->updateMagicCommentScripts();
 		configManager.completerConfig->userMacros << doc->localMacros;
@@ -3942,20 +3967,64 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
+    case LatexParser::ArgEx:
+    {
+        QSet<QPair<QString,int> > helper=view->lp.specialTreatmentCommands[command];
+        QPair<QString,int> elem;
+        int pos=1;
+        bool found=false;
+        foreach(elem,helper){
+            if(elem.second==pos){
+                found=true;
+                break;
+            }
+        }
+        if(found){
+            if(mCompleterNeedsUpdate) updateCompleter();
+            QString context="%"+elem.first;
+            completer->setWorkPath(context);
+            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);}
+        }
+        break;
+    case LatexParser::OptionEx:
+    {
+        QSet<QPair<QString,int> > helper=view->lp.specialTreatmentCommands[command];
+        QPair<QString,int> elem;
+        int pos=0;
+        bool found=false;
+        foreach(elem,helper){
+            if(elem.second==pos){
+                found=true;
+                break;
+            }
+        }
+        if(found){
+            if(mCompleterNeedsUpdate) updateCompleter();
+            QString context="%"+elem.first;
+            completer->setWorkPath(context);
+            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);}
+        }
+        break;
     case LatexParser::Keyval:
+        if(command.endsWith("#c")){
+            command.chop(2);
+        }
         completer->setWorkPath(command);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
         break;
     case LatexParser::KeyvalValue:{
         //figure out keyval
+        if(command.endsWith("#c")){
+            command.chop(2);
+        }
         int i=c.columnNumber();
         while(i>0 && word.at(i-1).isLetter())
             i--;
         if(word.at(i-1)==QChar('=')){
             int j=--i;
-            while(i>0 && word.at(i-1).isLetter())
+            while(i>0 && (word.at(i-1).isLetter()||word.at(i-1)==' '))
                 i--;
-            QString key=word.mid(i,j-i);
+            QString key=word.mid(i,j-i).simplified();
             completer->setWorkPath(command+"/"+key);
             if(completer->existValues())
                 currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
@@ -4572,13 +4641,16 @@ void Texmaker::QuickTabbing() {
 }
 
 void Texmaker::QuickLetter() {
-	if (!currentEditorView()) {
-		fileNew();
-		if (!currentEditorView()) return;
-	}
 	QString tag=QString("\\documentclass[");
 	LetterDialog *ltDlg = new LetterDialog(this,"Letter");
 	if (ltDlg->exec()) {
+		if (!currentEditorView() ||
+			currentEditorView()->getDocument()->lineCount() > 1 || // first faster than text().isEmpty on large documents
+			!currentEditorView()->getDocument()->text().isEmpty())
+		{
+			fileNew();
+			Q_ASSERT(currentEditorView());
+		}
 		tag+=ltDlg->ui.comboBoxPt->currentText()+QString(",");
 		tag+=ltDlg->ui.comboBoxPaper->currentText()+QString("]{letter}");
 		tag+=QString("\n");
@@ -4607,13 +4679,16 @@ void Texmaker::QuickLetter() {
 }
 
 void Texmaker::QuickDocument() {
-	if (!currentEditorView()) {
-		fileNew();
-		Q_ASSERT(currentEditorView());
-	}
 	QuickDocumentDialog *startDlg = new QuickDocumentDialog(this,tr("Quick Start"));
 	startDlg->Init();
 	if (startDlg->exec()) {
+		if (!currentEditorView() ||
+			currentEditorView()->getDocument()->lineCount() > 1 || // first faster than text().isEmpty on large documents
+			!currentEditorView()->getDocument()->text().isEmpty())
+		{
+			fileNew();
+			Q_ASSERT(currentEditorView());
+		}
 		Q_ASSERT(currentEditor());
 		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
 		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
@@ -4625,6 +4700,27 @@ void Texmaker::QuickDocument() {
 	delete startDlg;
 }
 
+void Texmaker::QuickBeamer() {
+	QuickBeamerDialog *startDlg = new QuickBeamerDialog(this,tr("Quick Beamer Presentation"));
+	startDlg->Init();
+	if (startDlg->exec()) {
+		if (!currentEditorView() ||
+			currentEditorView()->getDocument()->lineCount() > 1 || // first faster than text().isEmpty on large documents
+			!currentEditorView()->getDocument()->text().isEmpty())
+		{
+			fileNew();
+			Q_ASSERT(currentEditorView());
+		}
+		Q_ASSERT(currentEditor());
+		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
+		QTextCodec* codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
+		if (codec && codec != currentEditor()->document()->codec()){
+			currentEditor()->document()->setCodec(codec);
+			UpdateCaption();
+		}
+	}
+	delete startDlg;
+}
 
 void Texmaker::InsertBibEntryFromAction(){
 	if (!currentEditorView()) return;
@@ -5447,18 +5543,14 @@ void Texmaker::TexdocHelp() {
 	QStringList packages;
 	if (currentEditorView()) {
 		selection = currentEditorView()->editor->cursor().selectedText();
-		// TODO is there a better way to get the used packages than using the .cwl files and removing cwls for native commands
-		packages = currentEditorView()->document->parent->cachedPackages.keys();
-        // remove empty packages whicjh probably do not exist
-        QMutableStringListIterator it(packages);
-        while (it.hasNext()) {
-            QString elem=it.next();
-            LatexPackage ltxPackage=currentEditorView()->document->parent->cachedPackages.value(elem);
-            if(ltxPackage.completionWords.isEmpty())
-                it.remove();;
-        }
+		foreach (const QString &key, currentEditorView()->document->parent->cachedPackages.keys()) {
+			if (currentEditorView()->document->parent->cachedPackages[key].completionWords.isEmpty())
+				// remove empty packages which probably do not exist
+				continue;
+			packages << LatexPackage::keyToPackageName(key);
+		}
 
-		packages.replaceInStrings(".cwl", "");
+		packages.removeDuplicates();
 		packages.removeAll("latex-209");
 		packages.removeAll("latex-dev");
 		packages.removeAll("latex-l2tabu");
@@ -6316,6 +6408,14 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             }
         }
     }
+    // add context completion
+    LatexCompleterConfig* config=completer->getConfig();
+    if(config){
+        foreach(const QString &elem,config->specialCompletionKeys){
+            completer->setContextWords(ltxCommands.possibleCommands[elem],elem);
+        }
+    }
+
 
 	if(edView) edView->viewActivated();
 	
@@ -6779,11 +6879,41 @@ void Texmaker::previewLatex(){
 	
 }
 void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& source){
+    QImage image;
+#ifndef NO_POPPLER_PREVIEW
+    if(imageFile.endsWith(".pdf")){
+        // special treatment for pdf files (embedded pdf mode)
+        if(configManager.previewMode == ConfigManager::PM_EMBEDDED){
+            runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
+            if(currentEditorView())
+                currentEditorView()->setFocus();
+
+            return;
+        }else{
+            //need to generate an image
+            Poppler::Document *document = Poppler::Document::load(imageFile);
+            if(!document)
+                return;
+            Poppler::Page *page=document->page(0);
+            if(!page)
+                return;
+            document->setRenderHint(Poppler::Document::Antialiasing);
+            document->setRenderHint(Poppler::Document::TextAntialiasing);
+            image=page->renderToImage(120,120);
+        }
+    }
+#endif
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 			configManager.previewMode == ConfigManager::PM_PANEL||
 			(configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
 		outputView->showPage(outputView->PREVIEW_PAGE);
-		outputView->previewLatex(QPixmap(imageFile));
+        QPixmap img;
+        if(image.isNull()){
+            img.load(imageFile);
+        }else{
+            img=QPixmap::fromImage(image);
+        }
+        outputView->previewLatex(img);
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 			configManager.previewMode == ConfigManager::PM_TOOLTIP||
@@ -6796,12 +6926,28 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 		else
 			p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 		QRect screen = QApplication::desktop()->screenGeometry();
-		QPixmap img(imageFile);
-		int w=img.width();
-		if(w>screen.width()) w=screen.width()-2;
-		QToolTip::showText(p, QString("<img src=\""+imageFile+"\" width=%1 />").arg(w), 0);
-		LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
-		
+        QPixmap img;
+        if(image.isNull()){
+            img.load(imageFile);
+            int w=img.width();
+            if(w>screen.width()) w=screen.width()-2;
+            QToolTip::showText(p, QString("<img src=\""+imageFile+"\" width=%1 />").arg(w), 0);
+        }else{
+            img=QPixmap::fromImage(image);
+            int w=img.width();
+            if(w>screen.width()) w=screen.width()-2;
+            QString text;
+#if QT_VERSION >= 0x040700
+            text= getImageAsText(img,w);
+#else
+            QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
+            img.save(tempPath+"txs_preview.png","PNG");
+            buildManager.addPreviewFileName(tempPath+"txs_preview.png");
+            text=QString("<img src=\""+tempPath+"txs_preview.png\" width=%1 />").arg(w);
+#endif
+            QToolTip::showText(p, text, 0);
+        }
+        LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
 	}
 	if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0){
 		QDocument* doc = currentEditor()->document();
@@ -6814,7 +6960,13 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
 				doc->adjustWidth(l);
 			}
-		doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(QPixmap(imageFile)));
+        QPixmap img;
+        if(image.isNull()){
+            img.load(imageFile);
+        }else{
+            img=QPixmap::fromImage(image);
+        }
+        doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(img));
 		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
 		doc->adjustWidth(toLine);
 	}
@@ -6849,8 +7001,14 @@ void Texmaker::clearPreview() {
 		edit->document()->adjustWidth(i);
 		for (int j=currentEditorView()->autoPreviewCursor.size()-1;j>=0;j--)
 			if (currentEditorView()->autoPreviewCursor[j].selectionStart().lineNumber() <= i &&
-					currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i)
-				currentEditorView()->autoPreviewCursor.removeAt(j);
+                    currentEditorView()->autoPreviewCursor[j].selectionEnd().lineNumber() >= i){
+                // remove mark
+                int sid = edit->document()->getFormatId("previewSelection");
+                if (!sid) return;
+                updateEmphasizedRegion(currentEditorView()->autoPreviewCursor[j],-sid);
+                currentEditorView()->autoPreviewCursor.removeAt(j);
+            }
+
 	}
 }
 
@@ -6926,7 +7084,7 @@ void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
     if(w>screen.width()) w=screen.width()-2;
     QString text;
 #if QT_VERSION >= 0x040700
-    text= QString("%1").arg(getImageAsText(pm));
+    text= getImageAsText(pm,w);
 #else
     QString tempPath = QDir::tempPath()+QDir::separator()+"."+QDir::separator();
     pm.save(tempPath+"txs_preview.png","PNG");
@@ -6955,6 +7113,12 @@ void Texmaker::showPreview(const QString& text){
 	QStringList header;
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
+    if(buildManager.dvi2pngMode==BuildManager::DPM_EMBEDDED_PDF){
+        header << "\\usepackage[active,tightpage]{preview}"
+        << "\\usepackage{varwidth}"
+        << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
+        <<"\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+    }
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	buildManager.preview(header.join("\n"), PreviewSource(text, -1, -1, true), documents.getCompileFileName(), edView->editor->document()->codec());
 }
@@ -6964,6 +7128,12 @@ void Texmaker::showPreview(const QDocumentCursor& previewc){
 		previewQueue.clear();
 	previewQueueOwner = currentEditorView();
 	previewQueue.insert(previewc.lineNumber());
+
+    // mark region which is previewed, or update
+    int sid = previewc.document()->getFormatId("previewSelection");
+    if (sid)
+        updateEmphasizedRegion(previewc,sid);
+
 	QTimer::singleShot(qMax(40,configManager.autoPreviewDelay),this, SLOT(showPreviewQueue())); //slow down or it could create thousands of images
 }
 
@@ -6983,32 +7153,70 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	QStringList header;
 	for (int l=0; l<m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
+    if((buildManager.dvi2pngMode==BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED){
+        header << "\\usepackage[active,tightpage]{preview}"
+        << "\\usepackage{varwidth}"
+        << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
+        <<"\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+    }
 	header << "\\pagestyle{empty}";// << "\\begin{document}";
 	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
 	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), edView->editor->document()->codec());
 	
-	if (!addToList)
+    if (!addToList)
 		return;
+
 	if (configManager.autoPreview == ConfigManager::AP_PREVIOUSLY) {
 		QList<QDocumentCursor> & clist = currentEditorView()->autoPreviewCursor;
+        int sid = previewc.document()->getFormatId("previewSelection");
 		for (int i=clist.size()-1;i>=0;i--)
 			if (clist[i].anchorLineNumber() <= ps.toLine &&
-					clist[i].lineNumber()   >= ps.fromLine)
+                    clist[i].lineNumber()   >= ps.fromLine){
+                if(sid>0)
+                    updateEmphasizedRegion(clist[i],-sid);
 				clist.removeAt(i);
+            }
 		
 		QDocumentCursor ss = previewc.selectionStart();
 		QDocumentCursor se = previewc.selectionEnd();
 		QDocumentCursor c(ss, se);
 		c.setAutoUpdated(true);
 		currentEditorView()->autoPreviewCursor.insert(0,c);
+        // mark region
+        if (sid)
+            updateEmphasizedRegion(c,sid);
 	}
 }
+
+void Texmaker::updateEmphasizedRegion(QDocumentCursor c,int sid){
+    QDocument *doc=c.document();
+    QDocumentCursor ss = c.selectionStart();
+    QDocumentCursor se = c.selectionEnd();
+    for(int i=ss.anchorLineNumber();i<=se.anchorLineNumber();i++){
+        int beg = i==ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
+        int en = i==se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
+        if(sid>0){
+            doc->line(i).addOverlay(QFormatRange(beg, en-beg, sid));
+        }else{
+            // remove overlay if sid <0 (removes -sid)
+            doc->line(i).clearOverlays(-sid);
+        }
+    }
+}
+
 void Texmaker::showPreviewQueue(){
-	if (previewQueueOwner != currentEditorView()) {
+    if (previewQueueOwner != currentEditorView()) {
 		previewQueue.clear();
 		return;
 	}
 	if (configManager.autoPreview == ConfigManager::AP_NEVER) {
+        // remove marks
+        int sid=previewQueueOwner->document->getFormatId("previewSelection");
+        if(sid>0){
+            foreach(const QDocumentCursor &c,previewQueueOwner->autoPreviewCursor){
+                updateEmphasizedRegion(c,-sid);
+            }
+        }
 		previewQueueOwner->autoPreviewCursor.clear();
 		previewQueue.clear();
 		return;
@@ -8149,7 +8357,7 @@ void Texmaker::packageScanCompleted(QString name){
     }
 	foreach(LatexDocument *doc,documents.documents){
         if(doc->containsPackage(baseName)){
-			documents.cachedPackages.remove(name+".cwl");
+			documents.cachedPackages.remove(name+".cwl");  // TODO: check is this still correct if keys are complex?
             doc->updateCompletionFiles(false);
 		}
 	}

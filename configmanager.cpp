@@ -214,6 +214,11 @@ bool ManagedProperty::readFromObject(const QObject* w){
 		Q_ASSERT(type == PT_BOOL);
 		READ_FROM_OBJECT(bool, checkBox->isChecked())
 	}
+    const QToolButton* toolButton = qobject_cast<const QToolButton*>(w);
+    if (toolButton) {
+        Q_ASSERT(type == PT_BOOL);
+        READ_FROM_OBJECT(bool, toolButton->isChecked())
+    }
 	const QLineEdit* edit = qobject_cast<const QLineEdit*>(w);
 	if (edit){
 		Q_ASSERT(type == PT_STRING);
@@ -416,7 +421,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Check References", &editorConfig->inlineReferenceChecking, true, &pseudoDialog->checkBoxInlineReferenceCheck);
 	registerOption("Editor/Check Syntax", &editorConfig->inlineSyntaxChecking, true, &pseudoDialog->checkBoxInlineSyntaxCheck);
 	registerOption("Editor/Check Grammar", &editorConfig->inlineGrammarChecking, true, &pseudoDialog->checkBoxInlineGrammarCheck);
-    registerOption("Editor/Check Package", &editorConfig->inlinePackageChecking, true, &pseudoDialog->checkBoxInlinePackageCheck);
+	registerOption("Editor/Check Package", &editorConfig->inlinePackageChecking, true, &pseudoDialog->checkBoxInlinePackageCheck);
+	registerOption("Editor/Check In Non TeX Files", &editorConfig->inlineCheckNonTeXFiles, true, &pseudoDialog->checkBoxInlineCheckNonTeXFiles);
 	registerOption("Editor/Hide Spelling Errors in Non Text", &editorConfig->hideNonTextSpellingErrors, true, &pseudoDialog->checkBoxHideSpellingErrorsInNonText);
 	registerOption("Editor/Hide Grammar Errors in Non Text", &editorConfig->hideNonTextGrammarErrors, true, &pseudoDialog->checkBoxHideGrammarErrorsInNonText);
 	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, false, &pseudoDialog->checkBoxShowWhitespace);
@@ -425,6 +431,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true , &pseudoDialog->checkBoxToolTipPreview);
 	registerOption("Editor/MaxImageTooltipWidth", &editorConfig->maxImageTooltipWidth, 400);
 	registerOption("Editor/ContextMenuKeyboardModifiers", &editorConfig->contextMenuKeyboardModifiers, Qt::ShiftModifier);
+	registerOption("Editor/ContextMenuSpellcheckingEntryLocation", &editorConfig->contextMenuSpellcheckingEntryLocation, 0, &pseudoDialog->comboBoxContextMenuSpellcheckingEntryLocation);
 
 	registerOption("Editor/TexDoc Help Internal", &editorConfig->texdocHelpInInternalViewer, true , &pseudoDialog->checkBoxTexDocInternal);
 	registerOption("Editor/SilentReload", &editorConfig->silentReload, false, &pseudoDialog->checkBoxSilentReload);
@@ -530,6 +537,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("X11/Font Family", &interfaceFontFamily, interfaceFontFamily, &pseudoDialog->comboBoxInterfaceFont); //named X11 for backward compatibility
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
+	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
+	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
 	
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
 	registerOption("Interface/Config Riddled", &configRiddled, false);	
@@ -593,10 +602,11 @@ ConfigManager::~ConfigManager(){
 QSettings* ConfigManager::readSettings(bool reread) {
 	//load config
 	QSettings *config = persistentConfig;
+	bool usbMode;
 	if (!config){
 		QString ini = iniFileOverride;
 		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath()+"/texstudio.ini";
-		bool usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(ini);
+		usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(ini);
 		if (usbMode) {
 			config=new QSettings(ini,QSettings::IniFormat);
 		} else {
@@ -609,8 +619,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
 		if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
 		persistentConfig = config;
+	} else {
+		usbMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
 	}
-	
 	config->beginGroup("texmaker");
 	
 	if (config->contains("Files/Auto Detect Encoding Of Loaded Files")) { // import old setting
@@ -646,7 +657,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 			QStringList temp;
 			QStringList fallBackPaths;
 #ifdef Q_OS_WIN32
-			fallBackPaths << reverseParseDir("[txs-settings-dir]") << reverseParseDir("[txs-app-dir]");
+			fallBackPaths << parseDir("[txs-settings-dir]/dictionaries") << parseDir("[txs-app-dir]/dictionaries");
 #endif
 #ifndef Q_OS_WIN32
 #ifndef PREFIX
@@ -667,6 +678,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		QFileInfo fi(dic);
 		if (fi.exists()) {
 			spellDictDir = fi.absolutePath();
+			if (usbMode) {
+				spellDictDir = reverseParseDir(spellDictDir);
+			}
 			spellLanguage = fi.baseName();
 		}
 	}
@@ -708,6 +722,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
 		completerConfig->words.append(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
+        latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
 		foreach(const QString& elem,pck.possibleCommands.keys()){
@@ -1340,6 +1355,7 @@ bool ConfigManager::execConfigDialog() {
 			LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
 			completerConfig->words.append(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
+            latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 			latexParser.environmentAliases.unite(pck.environmentAliases);
 			
 			//ltxCommands->possibleCommands.unite(pck.possibleCommands); qt bug
@@ -1354,6 +1370,11 @@ bool ConfigManager::execConfigDialog() {
 		//preview
 		previewMode=(PreviewMode) confDlg->ui.comboBoxPreviewMode->currentIndex();
 		buildManager->dvi2pngMode=(BuildManager::Dvi2PngMode) confDlg->ui.comboBoxDvi2PngMode->currentIndex();
+#ifdef NO_POPPLER_PREVIEW
+        if(buildManager->dvi2pngMode==BuildManager::DPM_EMBEDDED_PDF){
+           buildManager->dvi2pngMode=BuildManager::DPM_DVIPNG; //fallback when poppler is not included
+        }
+#endif
 		
 		//build things
 		QStringList userOrder;
@@ -2764,7 +2785,7 @@ void ConfigManager::linkOptionToObject(const void* optionStorage, QObject* objec
 	property->writeToObject(object);
 	object->setProperty("managedProperty", QVariant::fromValue<ManagedProperty*>(property));
 	connect(object,SIGNAL(destroyed(QObject*)), SLOT(managedOptionObjectDestroyed(QObject*)));
-	if (qobject_cast<QAction*>(object) || qobject_cast<QCheckBox*>(object))
+    if (qobject_cast<QAction*>(object) || qobject_cast<QCheckBox*>(object)|| qobject_cast<QToolButton*>(object))
 		connect(object, SIGNAL(toggled(bool)), SLOT(managedOptionBoolToggled()));
 }
 void ConfigManager::updateAllLinkedObjects(const void* optionStorage){
@@ -2815,8 +2836,9 @@ void ConfigManager::getDefaultEncoding(const QByteArray&, QTextCodec*&guess, int
 }
 
 QString ConfigManager::parseDir(QString s) const {
-	s.replace("[txs-settings-dir]", configBaseDir);
-	s.replace("[txs-app-dir]", QCoreApplication::applicationDirPath());
+	QString cbd = configBaseDir;
+	s.replace("[txs-settings-dir]", removePathDelim(configBaseDir));
+	s.replace("[txs-app-dir]", removePathDelim(QCoreApplication::applicationDirPath()));
 	return s;
 }
 
@@ -2825,8 +2847,8 @@ QStringList ConfigManager::parseDirList(const QString & s) const {
 }
 
 QString ConfigManager::reverseParseDir(QString s) const {
-	s.replace(configBaseDir, "[txs-settings-dir]");
-	s.replace(QCoreApplication::applicationDirPath(), "[txs-app-dir]");
+	s.replace(removePathDelim(configBaseDir), "[txs-settings-dir]");
+	s.replace(removePathDelim(QCoreApplication::applicationDirPath()), "[txs-app-dir]");
 	return s;
 }
 
@@ -2861,6 +2883,8 @@ int isChecked(const QObject* obj){
 	if (act) return (act->isChecked()?1:-1);
 	const QCheckBox* cb = qobject_cast<const QCheckBox*>(obj);
 	if (cb) return (cb->isChecked()?1:-1);
+    const QToolButton* tb = qobject_cast<const QToolButton*>(obj);
+    if (tb) return (tb->isChecked()?1:-1);
 	return 0;
 }
 
@@ -2879,6 +2903,7 @@ void ConfigManager::managedOptionBoolToggled(){
 		int totalState=0;
 		foreach (const QObject* o, managedOptionObjects[property].second)
 			totalState += isChecked(o);
+
 		if (totalState == 0) totalState = state;
 		if ((totalState > 0) == *(bool*)(property->storage)) return;
 		*(bool*)property->storage = (totalState > 0);

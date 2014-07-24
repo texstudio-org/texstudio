@@ -149,11 +149,14 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
 
     QHBoxLayout *horz=new QHBoxLayout;
+	horz->setContentsMargins(4,2,4,2);
+	horz->setSpacing(8);
+
     searchScopeBox=new QComboBox;
     searchScopeBox->setEditable(false);
-    searchScopeBox->addItem("current doc");
-    searchScopeBox->addItem("all docs");
-    searchScopeBox->addItem("project");
+	searchScopeBox->addItem(tr("Current Doc"));
+	searchScopeBox->addItem(tr("All Docs"));
+	searchScopeBox->addItem(tr("Project"));
     connect(searchScopeBox,SIGNAL(currentIndexChanged(int)),SIGNAL(updateTheSearch(int)));
 
 
@@ -184,11 +187,18 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	OutputSearchTree->setUniformRowHeights(true);
 	OutputSearchTree->setModel(searchResultModel);
     OutputSearchTree->setItemDelegate(searchDelegate);
+	OutputSearchTree->setFrameShape(QFrame::NoFrame);
 
     QVBoxLayout *vert=new QVBoxLayout;
+	vert->setContentsMargins(0,0,0,0);
+	vert->setSpacing(0);
 
     vert->addLayout(horz);
+	QFrame *hLine = new QFrame();
+	hLine->setFrameShape(QFrame::HLine);
+	vert->addWidget(hLine);
     vert->addWidget(OutputSearchTree,1);
+
 
     QWidget *wgt=new QWidget;
     wgt->setLayout(vert);
@@ -567,7 +577,9 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 		toolbar->setFloatable(false);
 		toolbar->setOrientation(Qt::Vertical);
 		toolbar->setMovable(false);
-		toolbar->setIconSize(QSize(16,16 ));
+
+		int sz = qMax(16, ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+		toolbar->setIconSize(QSize(sz, sz));
 
 		stack=new QStackedWidget(this);
 

@@ -126,6 +126,8 @@ private:
 	void closeEvent(QCloseEvent *e);
 	
 	void updateUserMacros(bool updateMenu = true);
+
+    void updateEmphasizedRegion(QDocumentCursor c,int sid);
 	
 	QFormatScheme *m_formats, *m_formatsOldDefault;
 	QLanguageFactory* m_languages;
@@ -297,7 +299,8 @@ protected slots:
 	void editSectionPasteBefore(int line);
 	void editTextToLowercase();
 	void editTextToUppercase();
-	void editTextToTitlecase();
+	void editTextToTitlecase(bool smart=false);
+	void editTextToTitlecaseSmart();
 	void editFind();
 	void editPasteLatex();
 	void convertToLatex();
@@ -408,6 +411,7 @@ protected slots:
 	void QuickTabbing();
 	void QuickLetter();
 	void QuickDocument();
+	void QuickBeamer();
 	void QuickGraphics(const QString &graphicsFile = QString());
 	void QuickMath();
 	

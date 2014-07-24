@@ -340,6 +340,13 @@ QScriptValue setTimeout(QScriptContext *context, QScriptEngine *engine){
 }
 
 void TimeoutWrapper::run(){
+    scriptengine *eng=qobject_cast<scriptengine*>(fun.engine());
+    QScriptEngine *engine=fun.engine();
+    engine->globalObject().setProperty("documentManager", engine->newQObject(&eng->app->documents));
+    engine->globalObject().setProperty("documents", qScriptValueFromQList(engine, eng->app->documents.documents));
+#ifndef NO_POPPLER_PREVIEW
+    engine->globalObject().setProperty("pdfs", qScriptValueFromQList(engine, PDFDocument::documentList()));
+#endif
 	fun.call();
 	deleteLater();
 }
