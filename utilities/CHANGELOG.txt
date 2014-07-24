@@ -10,6 +10,7 @@ TeXstudio 2.8.0 -> 2.8.2
 - improved input method support
 - improved \todo highlighting
 - texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize
+- portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version
 - several bugfixes
 
 TeXstudio 2.7.0 -> 2.8.0
