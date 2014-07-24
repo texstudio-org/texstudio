@@ -879,15 +879,30 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Tools/User Order", &userToolOrder, QStringList());
     cmi.registerOption("Tools/Preview Compile Time Out", &previewCompileTimeOut, 15000); //hidden option, 15s predefined
 }
+
+void removeDuplicateUserTools(QStringList &userToolOrder, QStringList &userToolDisplayNames) {
+	// workaround to cleanup duplicates in usertools https://sourceforge.net/p/texstudio/discussion/907839/
+	// needed for some time even after that fix will be in place to catch the duplicates already created by previous versions
+	int i=0;
+	QSet<QString> visitedTools;
+	while (i < qMin(userToolOrder.size(), userToolDisplayNames.size())) {
+		QString tool = userToolOrder[i];
+		if (visitedTools.contains(tool)) {
+			userToolOrder.removeAt(i);
+			userToolDisplayNames.removeAt(i);
+		} else {
+			visitedTools.insert(tool);
+			i++;
+		}
+	}
+}
+
 void BuildManager::readSettings(QSettings &settings){
 	QStringList rerunCommandsUnexpanded = autoRerunCommands.split("|");
 	for (int i=0;i<rerunCommandsUnexpanded.size();i++)
 		if (rerunCommandsUnexpanded[i].startsWith(TXS_CMD_PREFIX))
 			rerunCommandsUnexpanded[i] = rerunCommandsUnexpanded[i].mid(TXS_CMD_PREFIX.size());
 
-	for (int i=0, end = qMin(userToolOrder.size(), userToolDisplayNames.size());i<end;++i)
-		registerCommand(userToolOrder[i], "", userToolDisplayNames[i], "", "", 0, true);
-	
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
 	QStringList cmds = settings.childKeys();
@@ -900,6 +915,16 @@ void BuildManager::readSettings(QSettings &settings){
 			it.value().commandLine = cmd;
 		}
 	}
+
+	removeDuplicateUserTools(userToolOrder, userToolDisplayNames);
+	for (int i=0; i<qMin(userToolOrder.size(), userToolDisplayNames.size()); ++i) {
+		QString id = userToolOrder[i];
+		CommandMapping::iterator it = commands.find(id);
+		if (it == commands.end()) {  // only use if there is not a standard command with the same name
+			registerCommand(id, "", userToolDisplayNames[i], "", "", 0, true);
+		}
+	}
+
 	settings.endGroup();
 	settings.endGroup();
 	
