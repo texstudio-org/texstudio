@@ -2,7 +2,7 @@
 #include:siunitx
 #include:tikz
 #include:xstring
-\begin{circuitikz}#/tikzpicture
+\begin{circuitikz}#\tikzpicture
 \circuitikzbasekey#*
 \circuitikzset{arg1}#*
 \ctikzset#*
