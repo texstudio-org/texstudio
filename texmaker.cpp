@@ -5700,9 +5700,11 @@ void Texmaker::GeneralOptions() {
 	if(configManager.autosaveEveryMinutes>0){
 		autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
 	}
+#ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
 		viewer->reloadSettings();
 	}
+#endif
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line
