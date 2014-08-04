@@ -3624,7 +3624,17 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 
 		m_dragAndDrop = c;
 
+		// workaround for dragging
+		// TODO 1: Exchange the use of KeepSurrounding for a check
+		//         int lineSpacing = this->document()->getLineSpacing();
+		//         if (e->pos().y() < lineSpacing || e->pos().y() > (height() - 2*lineSpacing))
+		// TODO 2: The event is only fired when the mouse is moved, but scrolling should continue
+		//         while dragging if the mouse is close to the border and not moved further
+		//         (maybe even at different speeds depending on the distance to the border
+		int backup = m_cursorSurroundingLines;
+		m_cursorSurroundingLines = 1;  // restricting to 1 & KeepSurrounding is almost like scrolling
 		ensureCursorVisible(m_dragAndDrop, KeepSurrounding);
+		m_cursorSurroundingLines = backup;
 
 		crect = cursorRect(m_dragAndDrop);
 		viewport()->update(crect);
