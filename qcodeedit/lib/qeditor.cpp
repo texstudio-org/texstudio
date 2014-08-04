@@ -2040,7 +2040,7 @@ const PlaceHolder& QEditor::getPlaceHolder(int i) const{
 	return m_placeHolders.at(i);
 }
 
-/*! Checks if there exists a placeholder that will be auto overriden by inserting string s
+/*! Checks if there exists a placeholder that will be auto overridden by inserting string s
 */
 bool QEditor::isAutoOverrideText(const QString& s) const{
 	const QDocumentCursor& c= m_cursor;
@@ -2055,7 +2055,7 @@ bool QEditor::isAutoOverrideText(const QString& s) const{
 	return false;
 }
 
-/*! Creates a temporary auto overriden placeholder at position start with length length, and
+/*! Creates a temporary auto overridden placeholder at position start with length length, and
     merges it with a directly following placeholder (equivalent to extending the following placeholder
     by length characters to the left)
 */
