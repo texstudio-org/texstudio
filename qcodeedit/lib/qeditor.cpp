@@ -3078,7 +3078,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if ( m_definition )
 			m_definition->clearMatches(m_doc);
 
-        bool macroing = isMirrored();
+		bool macroing = isMirrored() || m_mirrors.count() > 0;
 
 		if ( macroing )
 			m_doc->beginMacro();
