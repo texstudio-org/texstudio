@@ -384,7 +384,7 @@ protected:
 
 public slots:
 	void reloadSettings();
-	void reload(bool fillCache=true);
+	void loadCurrentFile(bool fillCache=true);
 	void fillRenderCache(int pg=-1);
 	void sideBySide();
     void doFindDialog(const QString command="");
@@ -440,7 +440,7 @@ private slots:
     void shrink();
 signals:
 	void documentClosed();
-	void reloaded();
+	void documentLoaded();
 	void syncSource(const QString& sourceFile, int line, bool activate, const QString& guessedWord); //view -> source
 	void syncView(const QString& pdfFile, const QFileInfo& masterFile, int page); //view -> other view
 	void focusEditor();

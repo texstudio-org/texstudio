@@ -2547,7 +2547,7 @@ void PDFDocument::init(bool embedded)
 		dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2555,7 +2555,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2570,7 +2570,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2578,7 +2578,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2701,7 +2701,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 	if(!fileAlreadyLoaded){
 		this->masterFile = masterFile;
 		setCurrentFile(fileName);
-		reload(false);
+		loadCurrentFile(false);
 	}
 
 	if (watcher) {
@@ -2724,7 +2724,7 @@ void PDFDocument::fillRenderCache(int pg){
 		renderManager->fillCache(pg);
 }
 
-void PDFDocument::reload(bool fillCache)
+void PDFDocument::loadCurrentFile(bool fillCache)
 {
 	if (reloadTimer) reloadTimer->stop();
 	messageFrame->hide();
@@ -2762,7 +2762,7 @@ void PDFDocument::reload(bool fillCache)
 	if (error==PDFRenderManager::FileIncomplete) {
 		QAction *retryAction = new QAction(tr("Retry"), this);
 		retryAction->setProperty("fillCache", fillCache);
-		connect(retryAction, SIGNAL(triggered()), this, SLOT(reload()));
+		connect(retryAction, SIGNAL(triggered()), this, SLOT(loadCurrentFile()));
 		QAction *closeAction = new QAction(tr("Close"), this);
 		connect(closeAction, SIGNAL(triggered()), this, SLOT(stopReloadTimer()));
 		connect(closeAction, SIGNAL(triggered()), messageFrame, SLOT(hide()));
@@ -2815,7 +2815,7 @@ void PDFDocument::reload(bool fillCache)
 		}
 		scrollArea->updateScrollBars();
 		
-		emit reloaded();
+		emit documentLoaded();
 	}
 
 	QApplication::restoreOverrideCursor();
@@ -2842,7 +2842,7 @@ void PDFDocument::reloadWhenIdle()
 
 void PDFDocument::idleReload(){
 	if (isCompiling) reloadWhenIdle();
-	else reload();
+	else loadCurrentFile();
 }
 
 void PDFDocument::runExternalViewer(){
