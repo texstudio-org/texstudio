@@ -3218,8 +3218,8 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 		}
 		if (page > 0) {
 			syncToSourceBlock = true;
-			scrollArea->goToPage(page - 1, false);
 			path.setFillRule(Qt::WindingFill);
+			if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
 			if (activatePreview) {
