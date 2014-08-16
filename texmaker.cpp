@@ -6945,7 +6945,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
             QToolTip::showText(p, text, 0);
         }
         LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
-	}
+     }
 	if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0){
 		QDocument* doc = currentEditor()->document();
 		doc->setForceLineWrapCalculation(true);
@@ -6955,7 +6955,8 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE);
 				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
 				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
-				doc->adjustWidth(l);
+				if (l != toLine) //must not adjust line toLine here, or will recalculate the document height without preview and scroll away if the preview is very height
+					doc->adjustWidth(l);
 			}
         QPixmap img;
         if(image.isNull()){
