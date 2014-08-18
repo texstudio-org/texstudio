@@ -4236,11 +4236,31 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	else {
         QHash<QString,int> result;
 		result = m_registeredKeys;
+        QSet<int> opsCount;
+        QList<int> zw=m_registeredKeys.values();
+        qSort(zw);
+        int cnt=0;
+        int key=-1;
+        foreach(const int elem,zw){
+            if(key==elem)
+                cnt++;
+            if(key==-1){
+                key=elem;
+            }
+            if(key!=elem){
+                if(cnt>0)
+                    opsCount.insert(key);
+                key=elem;
+                cnt=0;
+            }
+        }
 
         QHash<QString, int>::const_iterator i = m_registeredDefaultKeys.begin();
 		while (i != m_registeredDefaultKeys.constEnd()) {
-            QHash<QString, int>::iterator j = result.find(i.key());
-			if (j!=result.end() && j.value() == i.value()) result.erase(j);
+            if(!opsCount.contains(i.value())){ // don't remove keys when an operation is defined various times
+                QHash<QString, int>::iterator j = result.find(i.key());
+                if (j!=result.end() && j.value() == i.value()) result.erase(j);
+            }
 			++i;
 		}
 		return result;

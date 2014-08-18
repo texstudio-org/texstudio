@@ -3637,14 +3637,20 @@ void Texmaker::ReadSettings(bool reread) {
     config->endGroup();}
     config->beginGroup("Editor Key Mapping New");
 	QStringList sl = config->childKeys();
+    QSet<int>manipulatedOps;
 	if (!sl.empty()) {
 		foreach (const QString& key, sl) {
             if (key.isEmpty()) continue;
 			int operationID = config->value(key).toInt();
-			QString defaultKey = configManager.editorKeys.key(operationID);
-			if (!defaultKey.isNull()) {
-				configManager.editorKeys.remove(defaultKey);
-			}
+            if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                QStringList defaultKeys = configManager.editorKeys.keys(operationID);
+                if (!defaultKeys.isEmpty()) {
+                    foreach(const QString elem,defaultKeys){
+                        configManager.editorKeys.remove(elem);
+                    }
+                    manipulatedOps.insert(operationID);
+                }
+            }
 			configManager.editorKeys.insert(key, operationID);
 		}
 		QEditor::setEditOperations(configManager.editorKeys);
