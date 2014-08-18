@@ -4028,7 +4028,7 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 	static const int MAX_JUMP_TO_PLACEHOLDER = 5;
 	switch (op){
 	case IndentSelection: case UnindentSelection:
-		if (!m_cursor.hasSelection()) op = NoOperation;
+        //if (!m_cursor.hasSelection()) op = NoOperation; // works also if the cursor has no selection !
 		break;
 	case NextPlaceHolder: case PreviousPlaceHolder:
 		if (m_placeHolders.isEmpty()) op = NoOperation;
