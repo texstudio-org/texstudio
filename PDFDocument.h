@@ -494,6 +494,9 @@ public:
 private:
 	QMenu *menuEdit_2;
 
+	QAction *actionPage_Up;
+	QAction *actionPage_Down;
+
 	QButtonGroup	*toolButtonGroup;
 	QToolButton *comboZoom;
 	QLineEdit *leCurrentPage;

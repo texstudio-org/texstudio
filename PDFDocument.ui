@@ -88,9 +88,6 @@
    <property name="text">
     <string>&amp;Previous Page</string>
    </property>
-   <property name="shortcut">
-    <string notr="true">PgUp</string>
-   </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
    </property>
@@ -98,9 +95,6 @@
   <action name="actionNext_Page">
    <property name="text">
     <string>&amp;Next Page</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true">PgDown</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>
