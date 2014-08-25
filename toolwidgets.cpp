@@ -4,6 +4,7 @@
 #include "qdocument.h"
 #include "latexdocument.h"
 #include "utilsSystem.h"
+#include "configmanagerinterface.h"
 
 void adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
@@ -15,7 +16,8 @@ void adjustScrollBar(QScrollBar *scrollBar, double factor)
 PreviewWidget::PreviewWidget(QWidget * parent): QScrollArea(parent){
 	setBackgroundRole(QPalette::Base);
 
-	mCenter=false;
+	mCenter = ConfigManagerInterface::getInstance()->getOption("Preview/PreviewPanelCenter", true).toBool();
+	mFit = ConfigManagerInterface::getInstance()->getOption("Preview/PreviewPanelFit", false).toBool();
 
 	preViewer = new QLabel(this);
 	preViewer->setBackgroundRole(QPalette::Base);
@@ -38,39 +40,49 @@ void PreviewWidget::scaleImage(double factor)
 	adjustScrollBar(horizontalScrollBar(), factor);
 	adjustScrollBar(verticalScrollBar(), factor);
 
+	mFit = false;
+	ConfigManagerInterface::getInstance()->setOption("Preview/PreviewPanelFit", mFit);
 }
 
 void PreviewWidget::previewLatex(const QPixmap& previewImage){
 	preViewer->setPixmap(previewImage);
 	preViewer->adjustSize();
 	pvscaleFactor=1.0;
+	if (mFit) fitImage(true);
+	if (mCenter) centerImage(true);
 }
 
-void PreviewWidget::fitImage(){
+void PreviewWidget::fitImage(bool fit){
+	mFit = fit;
+	ConfigManagerInterface::getInstance()->setOption("Preview/PreviewPanelFit", mFit);
 	REQUIRE(preViewer->pixmap());
-	// needs to be improved
-	QSize m_size=size()-QSize(2,2);
-	QSize m_labelSize=preViewer->size();
-	qreal ratio=1.0*m_labelSize.height()/m_labelSize.width();
-	qreal ratioPreviewer=1.0*m_size.height()/m_size.width();
-	int h,w;
-	if(ratioPreviewer>ratio){
-		h=qRound(ratio*m_size.width());
-		w=m_size.width();
-		pvscaleFactor=1.0*w/preViewer->pixmap()->size().width();
+	if (fit) {
+		// needs to be improved
+		QSize m_size=size()-QSize(2,2);
+		QSize m_labelSize=preViewer->size();
+		qreal ratio=1.0*m_labelSize.height()/m_labelSize.width();
+		qreal ratioPreviewer=1.0*m_size.height()/m_size.width();
+		int h,w;
+		if(ratioPreviewer>ratio){
+			h=qRound(ratio*m_size.width());
+			w=m_size.width();
+			pvscaleFactor=1.0*w/preViewer->pixmap()->size().width();
+		} else {
+			h=m_size.height();
+			w=qRound(m_size.height()/ratio);
+			pvscaleFactor=1.0*h/preViewer->pixmap()->size().height();;
+		}
+		preViewer->resize(w,h);
+		//setWidgetResizable(true);
 	} else {
-		h=m_size.height();
-		w=qRound(m_size.height()/ratio);
-		pvscaleFactor=1.0*h/preViewer->pixmap()->size().height();;
+		resetZoom();
 	}
-	preViewer->resize(w,h);
-	//setWidgetResizable(true);
 }
-void PreviewWidget::centerImage(){
-	mCenter=!mCenter;
+void PreviewWidget::centerImage(bool center){
+	mCenter = center;
+	ConfigManagerInterface::getInstance()->setOption("Preview/PreviewPanelCenter", mCenter);
 	if(mCenter) setAlignment(Qt::AlignCenter);
 	else setAlignment(Qt::AlignLeft|Qt::AlignTop);
-	scaleImage(1.0);
 }
 
 void PreviewWidget::zoomOut(){
@@ -99,12 +111,17 @@ void PreviewWidget::wheelEvent(QWheelEvent *event){
 void PreviewWidget::contextMenu(QPoint point) {
 	if (!preViewer->pixmap()) return;
 	QMenu menu;
-	menu.addAction(tr("zoom in "),this, SLOT(zoomIn()));
-	menu.addAction(tr("zoom out"),this, SLOT(zoomOut()));
-	menu.addAction(tr("reset zoom"),this, SLOT(resetZoom()));
-	menu.addAction(tr("fit"),this, SLOT(fitImage()));
-	if(mCenter) menu.addAction(tr("left-align image"),this, SLOT(centerImage()));
-	else menu.addAction(tr("center image"),this, SLOT(centerImage()));
+	menu.addAction(tr("Zoom In"),this, SLOT(zoomIn()));
+	menu.addAction(tr("Zoom Out"),this, SLOT(zoomOut()));
+	menu.addAction(tr("Reset Zoom"),this, SLOT(resetZoom()));
+	QAction *act = menu.addAction(tr("Fit"));
+	act->setCheckable(true);
+	act->setChecked(mFit);
+	connect(act, SIGNAL(triggered(bool)), this, SLOT(fitImage(bool)));
+	act = menu.addAction(tr("Center"));
+	act->setCheckable(true);
+	act->setChecked(mCenter);
+	connect(act, SIGNAL(triggered(bool)), this, SLOT(centerImage(bool)));
 	QWidget* menuParent = qobject_cast<QWidget*>(sender());
 	Q_ASSERT(menuParent);
 	if (!menuParent) menuParent = preViewer;
