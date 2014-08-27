@@ -4388,6 +4388,7 @@ void Texmaker::InsertFromAction() {
   CodeSnippet cs=CodeSnippet(action->data().toString());
         cs.insertAt(currentEditorView()->editor,&c);*/
     edView->insertMacro(action->data().toString(),QRegExp(),0,true);
+	generateMirror();
 	outputView->setMessage(CodeSnippet(action->whatsThis(), false).lines.join("\n"));
   }
 }
