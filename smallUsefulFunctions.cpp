@@ -614,12 +614,13 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
             argStart=start+1;
             remainder=line.mid(start+first.length());
             outName = LatexParser::removeOptionBrackets(first);
-            if(values.size()>0){ // if there's something after the firt option (in case of import)
+            if(values.size()>0){ // if there's something after the first option (in case of import)
                 first=values.takeFirst();
                 start=starts.takeFirst();
                 argStart=start+1;
                 remainder=line.mid(start+first.length());
-                outArg = LatexParser::removeOptionBrackets(first);
+                //outArg = LatexParser::removeOptionBrackets(first);
+                outArg = first; // don't remove brackets in order to distinguih between [ and { later
             }
             return true;
         }

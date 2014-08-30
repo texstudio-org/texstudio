@@ -548,7 +548,15 @@ bool LatexDocument::patchStructure(int linenr, int count) {
                 }
 				completerNeedsUpdate=true;
 				QRegExp rx("^\\s*(\\[.+\\])?");
-				int options=arg.toInt();
+                int options=0;
+                if(arg.startsWith('[')){
+                    arg=LatexParser::removeOptionBrackets(arg);
+                    options=arg.toInt();
+                    // limit options !!!
+                    if(options>9 || options<0)
+                        options=0;
+                }
+
 				int def=0;
 				if(rx.indexIn(remainder)>-1){
 					if(!rx.cap(1).isEmpty())
@@ -558,7 +566,8 @@ bool LatexDocument::patchStructure(int linenr, int count) {
                 if(!removedUserCommands.removeAll(name)){
                     addedUserCommands << name;
                 }
-				if(def==1){
+                // why twice ??
+                /*if(def==1){
 					QString helper=name;
 					for (int j=0; j<options; j++) {
 						if (j==1)
@@ -568,7 +577,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 					}
 					mUserCommandList.insert(line(i).handle(),helper);
 					
-				}
+                }*/
 				for (int j=0; j<options; j++) {
 					if (j==0) {
 						if(def==0)
@@ -628,7 +637,13 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
 			if (envTokens.contains(cmd)) {
 				completerNeedsUpdate=true;
-				int options=arg.toInt(); //returns 0 if conversion fails
+                int options=0;
+                if(arg.startsWith('[')){
+                    arg=LatexParser::removeOptionBrackets(arg);
+                    options=arg.toInt(); //returns 0 if conversion fails
+                    if(options>9 || options<0)
+                        options=0;
+                }
 				name.append("}");
 				mUserCommandList.insert(line(i).handle(),"\\end{"+name);
 				QStringList lst;
@@ -797,7 +812,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 				}else{
 					newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
 				}
-				newBlock->title=arg;
+                newBlock->title=LatexParser::removeOptionBrackets(arg);
 				newBlock->setLine(line(i).handle(), i);
 				newBlock->parent=blockList;
 				iter_block.insert(newBlock);
@@ -833,7 +848,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			if (latexParser.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(name)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
-                QFileInfo fi(name,arg);
+                QFileInfo fi(name,LatexParser::removeOptionBrackets(arg));
                 QString file = fi.filePath();
 				newInclude->title = file;
                 QString fname=findFileName(file);
