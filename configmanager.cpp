@@ -1484,6 +1484,9 @@ bool ConfigManager::execConfigDialog() {
 
 		//menus
 		managedMenuNewShortcuts.clear();
+#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+        specialShortcuts.clear();
+#endif
 		treeWidgetToManagedMenuTo(menuShortcuts);
 		treeWidgetToManagedLatexMenuTo();
 		
@@ -1724,6 +1727,11 @@ QAction* ConfigManager::newManagedAction(QWidget* menu, const QString &id,const 
 	
 	act->setObjectName(completeId);
 	act->setShortcuts(shortCuts);
+#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+    // workaround for osx not being able to use alt+key/esc as shortcut
+    for (int i=0;i<shortCuts.size();i++)
+        specialShortcuts.insert(shortCuts[i],act);
+#endif
 	if (slotName) {
 		connect(act, SIGNAL(triggered()), menuParent, slotName);
 		act->setProperty("primarySlot", QString::fromLocal8Bit(slotName));
@@ -1994,6 +2002,11 @@ void ConfigManager::setManagedShortCut(QAction* act, int num, const QKeySequence
 	if (num < shortcuts.size()) shortcuts[num] = ks;
 	else shortcuts << ks;
 	act->setShortcuts(shortcuts);
+#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+    // workaround for osx not being able to use alt+key/esc as shortcut
+    for (int i=0;i<shortcuts.size();i++)
+        specialShortcuts.insert(shortcuts[i],act);
+#endif
 }
 
 void ConfigManager::loadManagedMenu(QMenu* parent,const QDomElement &f) {
