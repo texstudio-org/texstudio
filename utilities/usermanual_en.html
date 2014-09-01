@@ -12,7 +12,7 @@
 <ul class="two-columns">
 <li><a href="#SECTIONNEW">0. What's new</a>
 	<ul>
-	<li><a href="#SECTIONNEW281">Version 2.8.0 -> Version 2.8.2</a></li>
+	<li><a href="#SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</a></li>
 	<li><a href="#SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</a></li>
 	<li><a href="#SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</a></li>
 	<li><a href="#SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</a></li>
@@ -100,7 +100,7 @@
 <hr>
 <h1 id="SECTIONNEW">0. What's new</h1>
 
-<h2 id="SECTIONNEW281">Version 2.8.0 -> Version 2.8.2</h2>
+<h2 id="SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</h2>
 <ul>
 <li><p>color completion</p></li>
 <li><p>some more predefined completions for tikz</p></li>
@@ -441,14 +441,14 @@ A useful alternative might be using the "latexmk" as compile command (if the com
 The advanced options allows finer customization which is in general not necessary.<br>
 </p>
 <p><IMG src="configure_build.png" border="1" alt="Configure Build System"></p>
-User commands can be defined here by "adding" them. Each user command has  a name like "user%n:" where "%n" is a number. After the colon a name can be stated which is shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
+User commands can be defined here by "adding" them. Each user command has a name with a pattern <code>&lt;command id&gt;:&lt;display name&gt;</code>, e.g. <code>user0:User Command 0</code>. The command id has to be unique and must not contain spaces. In <a href="SECTION02a1">advanced mode</a>, you can reference it using <code>txs:///"&lt;command id&gt;</code>. The display name will be shown in the tools menu. The user commands can be activated either by short cut (alt+shift+F%n) or by the tools menu (Tools/User).<br>
 User commands can either consist of a combination of known commands by selecting them from a list of available commands. This is triggered by clicking the spanner-symbol.<br>
 Alternatively a command can be directly selected through the file system.
 <p><IMG src="doc21.png" border="1" alt="Configure user commands from known commands"></p>
 
 <h2 id="SECTION02a1">1.3.1 Advanced configuration of the build system</h2>
 
-<p>If you enable the advanced options, you can configure the build system in more details.
+<p>If you enable the advanced options, you can configure the build system in more detail.
 
 <p>Every txs-command is a list of external programs/latex-commands and other txs-commands to call. An external program can be called with its usual command line, while a txs-command with id "foobar" is called by txs:///foobar. <br>
 The commands in the list are separated by |, which is just a separator (i.e. it will <i>not</i> pass the stdout from one program to the stdin of the next).
@@ -494,7 +494,46 @@ This also means that you can change every command as you want, ignoring its old 
 
 <p>
 Finally, there are also hidden options, which can only be changed by modifing the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
-
+</p>
+<h2 id="SECTION02a2">1.3.2 Details of the execution environment</h2>
+<p>
+The PATH for the execution is the same as the PATH used when executing TeXstudio. On Linux/OS X the PATH may depend on the way you started TeXstudio. Programs started from the GUI may have a different PATH setting than programs started from a shell.
+</p>
+<p>
+The working directory is set to the path of the master document, or to the path of the current file if there is no master document.
+</p>
+<p>
+All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So output redirection and other shell functionality does not work.
+</p>
+<p>
+You can see the difference with the following scipt:
+</p>
+<pre>
+#! /bin/sh
+# I am testscript
+echo "Working Directory"
+pwd
+echo "Arg1: $1"
+echo "Arg2: $2"
+echo "Arg3: $3"
+</pre>
+<p>When calling <code>/path/to/testscript foo > bar</code> from the shell, you will pass one argument (foo) and redirect the output to bar. When writing this as a user command in TeXstudio, you will have three arguments(foo, &gt; bar) and no redirection.</p>
+<p>If you need shell functionality, you have to explicitly run a shell. You can either do this directly in the user command.</p>
+<pre>
+sh -c "/path/to/testscript foo > bar"
+</pre>
+<p>or on Windows:</p>
+<pre>
+cmd /C "/path/to/testscript.bat foo > bar"
+</pre>
+<p>or call a wrapper script in the user command</p>
+<pre>/path/to/wrapperscript foo bar</pre>
+<p>and do the actual work inside the wrapper script:</p>
+<pre>
+#! /bin/sh
+# I am wrapperscript
+/path/to/testscript $1 > $2
+</pre>
 
 <h2 id="SECTION030">1.4 Configuring some general issues</h2>
 <p>This panel allows the setting of some general aspects.</p>

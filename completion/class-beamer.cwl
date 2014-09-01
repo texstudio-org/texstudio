@@ -52,9 +52,11 @@
 \begin{definition}<action specification>[additional text]<action specification>
 \begin{definition}<action specification><action specification>
 \end{definition}
+\begin{example}
 \begin{example}<action specification>[additional text]<action specification>
 \begin{example}<action specification><action specification>
 \end{example}
+\begin{proof}
 \begin{proof}<action specification>[proof name]<action specification>
 \begin{proof}<action specification><action specification>
 \end{proof}

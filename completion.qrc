@@ -28,6 +28,7 @@
 <file>completion/caption.cwl</file>
 <file>completion/cases.cwl</file>
 <file>completion/chemstyle.cwl</file>
+<file>completion/circuitikz.cwl</file>
 <file>completion/class-beamer.cwl</file>
 <file>completion/class-book.cwl</file>
 <file>completion/class-letter.cwl</file>
@@ -164,6 +165,7 @@
 <file>completion/verse.cwl</file>
 <file>completion/virginialake.cwl</file>
 <file>completion/wasysym.cwl</file>
+<file>completion/xcolor.cwl</file>
 <file>completion/xetex.cwl</file>
 <file>completion/xifthen.cwl</file>
 <file>completion/xltxtra.cwl</file>
