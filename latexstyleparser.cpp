@@ -179,8 +179,8 @@ QStringList LatexStyleParser::readPackage(QString fn,QStringList& parsedPackages
         QString line;
         QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
         QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
-        QRegExp rxCom("\\\\(newcommand|providecommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
-        QRegExp rxCom2("\\\\(newcommand|providecommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
+        QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
+        QRegExp rxCom2("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
         QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
         QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
         QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");

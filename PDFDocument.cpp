@@ -2547,7 +2547,7 @@ void PDFDocument::init(bool embedded)
 		dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2555,7 +2555,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2570,7 +2570,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2578,7 +2578,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2589,6 +2589,14 @@ void PDFDocument::init(bool embedded)
 	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
 	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
 
+	actionPage_Down = new QAction(tr("Page Down"), this);
+	actionPage_Down->setShortcut(QKeySequence(tr("PgDown")));
+	addAction(actionPage_Down);
+	connect(actionPage_Down, SIGNAL(triggered()), pdfWidget, SLOT(pageDownOrNext()));
+	actionPage_Up = new QAction(tr("Page Up"), this);
+	actionPage_Up->setShortcut(QKeySequence(tr("PgUp")));
+	connect(actionPage_Up, SIGNAL(triggered()), pdfWidget, SLOT(pageUpOrPrev()));
+	addAction(actionPage_Up);
 	//disable all action shortcuts when embedded
 	if(embedded) {
 		shortcutOnlyIfFocused(QList<QAction *>()
@@ -2598,6 +2606,8 @@ void PDFDocument::init(bool embedded)
 							  << actionFirst_Page
 							  << actionForward
 							  << actionBack
+							  << actionPage_Down
+							  << actionPage_Up
 							  << actionGo_to_Page
 							  << actionZoom_In
 							  << actionZoom_Out
@@ -2701,7 +2711,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 	if(!fileAlreadyLoaded){
 		this->masterFile = masterFile;
 		setCurrentFile(fileName);
-		reload(false);
+		loadCurrentFile(false);
 	}
 
 	if (watcher) {
@@ -2724,7 +2734,7 @@ void PDFDocument::fillRenderCache(int pg){
 		renderManager->fillCache(pg);
 }
 
-void PDFDocument::reload(bool fillCache)
+void PDFDocument::loadCurrentFile(bool fillCache)
 {
 	if (reloadTimer) reloadTimer->stop();
 	messageFrame->hide();
@@ -2762,7 +2772,7 @@ void PDFDocument::reload(bool fillCache)
 	if (error==PDFRenderManager::FileIncomplete) {
 		QAction *retryAction = new QAction(tr("Retry"), this);
 		retryAction->setProperty("fillCache", fillCache);
-		connect(retryAction, SIGNAL(triggered()), this, SLOT(reload()));
+		connect(retryAction, SIGNAL(triggered()), this, SLOT(loadCurrentFile()));
 		QAction *closeAction = new QAction(tr("Close"), this);
 		connect(closeAction, SIGNAL(triggered()), this, SLOT(stopReloadTimer()));
 		connect(closeAction, SIGNAL(triggered()), messageFrame, SLOT(hide()));
@@ -2815,7 +2825,7 @@ void PDFDocument::reload(bool fillCache)
 		}
 		scrollArea->updateScrollBars();
 		
-		emit reloaded();
+		emit documentLoaded();
 	}
 
 	QApplication::restoreOverrideCursor();
@@ -2842,7 +2852,7 @@ void PDFDocument::reloadWhenIdle()
 
 void PDFDocument::idleReload(){
 	if (isCompiling) reloadWhenIdle();
-	else reload();
+	else loadCurrentFile();
 }
 
 void PDFDocument::runExternalViewer(){
@@ -3218,8 +3228,8 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 		}
 		if (page > 0) {
 			syncToSourceBlock = true;
-			scrollArea->goToPage(page - 1, false);
 			path.setFillRule(Qt::WindingFill);
+			if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
 			if (activatePreview) {

@@ -2040,7 +2040,7 @@ const PlaceHolder& QEditor::getPlaceHolder(int i) const{
 	return m_placeHolders.at(i);
 }
 
-/*! Checks if there exists a placeholder that will be auto overriden by inserting string s
+/*! Checks if there exists a placeholder that will be auto overridden by inserting string s
 */
 bool QEditor::isAutoOverrideText(const QString& s) const{
 	const QDocumentCursor& c= m_cursor;
@@ -2055,7 +2055,7 @@ bool QEditor::isAutoOverrideText(const QString& s) const{
 	return false;
 }
 
-/*! Creates a temporary auto overriden placeholder at position start with length length, and
+/*! Creates a temporary auto overridden placeholder at position start with length length, and
     merges it with a directly following placeholder (equivalent to extending the following placeholder
     by length characters to the left)
 */
@@ -3055,7 +3055,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 			QString text = e->text();
 
 #if QT_VERSION >= 0x050000
-#ifdef Q_OS_MAC || Q_OS_LINUX
+#if defined(Q_OS_MAC) || defined(Q_OS_LINUX)
             if(e->modifiers()&(Qt::MetaModifier|Qt::ControlModifier))
                 break;
 #endif
@@ -3078,7 +3078,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 		if ( m_definition )
 			m_definition->clearMatches(m_doc);
 
-        bool macroing = isMirrored();
+		bool macroing = isMirrored() || m_mirrors.count() > 0;
 
 		if ( macroing )
 			m_doc->beginMacro();
@@ -3624,7 +3624,17 @@ void QEditor::dragMoveEvent(QDragMoveEvent *e)
 
 		m_dragAndDrop = c;
 
+		// workaround for dragging
+		// TODO 1: Exchange the use of KeepSurrounding for a check
+		//         int lineSpacing = this->document()->getLineSpacing();
+		//         if (e->pos().y() < lineSpacing || e->pos().y() > (height() - 2*lineSpacing))
+		// TODO 2: The event is only fired when the mouse is moved, but scrolling should continue
+		//         while dragging if the mouse is close to the border and not moved further
+		//         (maybe even at different speeds depending on the distance to the border
+		int backup = m_cursorSurroundingLines;
+		m_cursorSurroundingLines = 1;  // restricting to 1 & KeepSurrounding is almost like scrolling
 		ensureCursorVisible(m_dragAndDrop, KeepSurrounding);
+		m_cursorSurroundingLines = backup;
 
 		crect = cursorRect(m_dragAndDrop);
 		viewport()->update(crect);
@@ -4018,7 +4028,7 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 	static const int MAX_JUMP_TO_PLACEHOLDER = 5;
 	switch (op){
 	case IndentSelection: case UnindentSelection:
-		if (!m_cursor.hasSelection()) op = NoOperation;
+        //if (!m_cursor.hasSelection()) op = NoOperation; // works also if the cursor has no selection !
 		break;
 	case NextPlaceHolder: case PreviousPlaceHolder:
 		if (m_placeHolders.isEmpty()) op = NoOperation;
@@ -4226,11 +4236,31 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	else {
         QHash<QString,int> result;
 		result = m_registeredKeys;
+        QSet<int> opsCount;
+        QList<int> zw=m_registeredKeys.values();
+        qSort(zw);
+        int cnt=0;
+        int key=-1;
+        foreach(const int elem,zw){
+            if(key==elem)
+                cnt++;
+            if(key==-1){
+                key=elem;
+            }
+            if(key!=elem){
+                if(cnt>0)
+                    opsCount.insert(key);
+                key=elem;
+                cnt=0;
+            }
+        }
 
         QHash<QString, int>::const_iterator i = m_registeredDefaultKeys.begin();
 		while (i != m_registeredDefaultKeys.constEnd()) {
-            QHash<QString, int>::iterator j = result.find(i.key());
-			if (j!=result.end() && j.value() == i.value()) result.erase(j);
+            if(!opsCount.contains(i.value())){ // don't remove keys when an operation is defined various times
+                QHash<QString, int>::iterator j = result.find(i.key());
+                if (j!=result.end() && j.value() == i.value()) result.erase(j);
+            }
 			++i;
 		}
 		return result;

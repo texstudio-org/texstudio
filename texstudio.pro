@@ -275,6 +275,7 @@ TRANSLATIONS += texstudio_cs.ts \
     texstudio_fr.ts \
     texstudio_hu.ts \
     texstudio_it.ts \
+    texstudio_pl.ts \
     texstudio_pt_BR.ts \
     texstudio_uk.ts \
     texstudio_ru.ts \
@@ -376,6 +377,7 @@ unix {
 	texstudio_hu.qm \
 	texstudio_it.qm \
 	texstudio_ja.qm \
+	texstudio_pl.qm \
 	texstudio_pt_BR.qm \
 	texstudio_uk.qm \
 	texstudio_ru.qm \
@@ -385,6 +387,7 @@ unix {
         qt_ja.qm \
         qt_fr.qm \
         qt_hu.qm \
+        qt_pl.qm \
         qt_zh.qm \
 	templates/tabletemplate_fullyframed_firstBold.js \
 	templates/tabletemplate_fullyframed_firstBold.png \
