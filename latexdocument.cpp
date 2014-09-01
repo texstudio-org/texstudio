@@ -1156,7 +1156,7 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visited
 			deleteVisitedDocs=true;
 		}
         foreach(LatexDocument *elem,parent->getDocuments()){ // check children
-			if(elem!=master && elem->masterDocument!=master) continue;
+               //if(elem!=master && elem->masterDocument!=master) continue; disabled; if a doc is included in many master documents it needs to be known in all of them
 			if(visitedDocs && !visitedDocs->contains(elem)){
 				listOfDocs << elem;
 				visitedDocs->insert(elem);

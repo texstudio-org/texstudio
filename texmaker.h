@@ -578,6 +578,7 @@ protected:
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
 	virtual void resizeEvent(QResizeEvent *e);
+    bool eventFilter(QObject *obj, QEvent *event);
 	
 	Qt::MouseButtons mb;
 	
