@@ -25,11 +25,12 @@ private slots:
 	void onReject();
 
 private:
-	enum Scope {None, Project, CurrentTexFile, CurrentFileFolder, OpenTexFiles};
+	enum Scope {None, Project, CurrentTexFile, CurrentFileFolder, OpenTexFiles, MAX_SCOPE};
 
 	Ui::CleanDialog *ui;
 	static QString defaultExtensions;
 	static QString currentExtensions;
+	static int scopeID;
 
 	QString masterFile;
 	QString currentTexFile;

@@ -5,6 +5,7 @@
 
 QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,ilg,toc,ind,out,blg";
 QString CleanDialog::currentExtensions = CleanDialog::defaultExtensions;
+int CleanDialog::scopeID = 0;
 
 static const int AbsFilePathRole = Qt::UserRole;
 
@@ -14,7 +15,10 @@ CleanDialog::CleanDialog(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	ConfigManager::getInstance()->registerOption("CleanDialog/Extensions", &currentExtensions, defaultExtensions);
+	ConfigManagerInterface *config = ConfigManager::getInstance();
+	config->registerOption("CleanDialog/Extensions", &currentExtensions, defaultExtensions);
+	config->registerOption("CleanDialog/Scope", &scopeID, 0);
+	if (scopeID < 0 || scopeID >= MAX_SCOPE) scopeID = 0;
 
 	QString allowedChars = "[^\\\\/\\?\\%\\*:|\"<>\\s,;]";
 	QRegExpValidator *rxValExtensionList = new QRegExpValidator(QRegExp(QString("(%1+\\.)*%1+(,(%1+\\.)*%1+)*").arg(allowedChars)), this);
@@ -45,15 +49,19 @@ CleanDialog::~CleanDialog() {
    Returns true, if at least one variant can be applied. */
 bool CleanDialog::checkClean(const LatexDocuments &docs) {
 	bool somethingToClean = false;
+	ui->cbScope->blockSignals(true);  // don't emit currentIndexChanged while populating the combo box
 	if (docs.masterDocument) {
 		masterFile = docs.masterDocument->getFileName();
 		ui->cbScope->addItem(tr("Project (Master file folder and all subfolders)"), CleanDialog::Project);
+		if (scopeID == CleanDialog::Project) ui->cbScope->setCurrentIndex(ui->cbScope->count()-1);
 		somethingToClean = true;
 	}
 	if (docs.currentDocument && docs.currentDocument->getFileInfo().suffix()=="tex") {
 		currentTexFile = docs.currentDocument->getFileName();
 		ui->cbScope->addItem(tr("Current File"), CleanDialog::CurrentTexFile);
+		if (scopeID == CleanDialog::CurrentTexFile) ui->cbScope->setCurrentIndex(ui->cbScope->count()-1);
 		ui->cbScope->addItem(tr("Current File Folder"), CleanDialog::CurrentFileFolder);
+		if (scopeID == CleanDialog::CurrentFileFolder) ui->cbScope->setCurrentIndex(ui->cbScope->count()-1);
 		somethingToClean = true;
 	}
 	foreach (LatexDocument *doc, docs.documents) {
@@ -61,8 +69,10 @@ bool CleanDialog::checkClean(const LatexDocuments &docs) {
 	}
 	if (!openTexFiles.isEmpty()) {
 		ui->cbScope->addItem(tr("Open Files"), CleanDialog::OpenTexFiles);
+		if (scopeID == CleanDialog::OpenTexFiles) ui->cbScope->setCurrentIndex(ui->cbScope->count()-1);
 		somethingToClean = true;
 	}
+	ui->cbScope->blockSignals(false);
 
 	if (somethingToClean)
 		updateFilesToRemove();
@@ -85,7 +95,8 @@ void CleanDialog::onReject() {
 }
 
 void CleanDialog::updateFilesToRemove() {
-	Scope scope = (Scope) ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
+	scopeID = ui->cbScope->itemData(ui->cbScope->currentIndex()).toInt();
+	Scope scope = (Scope) scopeID;
 	QStringList extList(ui->leExtensions->text().split(',', QString::SkipEmptyParts));
 	QStringList forbiddenExtensions = QStringList() << "tex" << "lytex";
 	QStringList found;
