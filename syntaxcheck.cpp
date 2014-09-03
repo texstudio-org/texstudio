@@ -209,7 +209,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
             if(ltxCommands->possibleCommands["%ref"].contains(word)||ltxCommands->possibleCommands["%label"].contains(word)||ltxCommands->possibleCommands["%file"].contains(word)||ltxCommands->possibleCommands["%cite"].contains(word)||ltxCommands->possibleCommands["%bibitem"].contains(word)||ltxCommands->possibleCommands["%url"].contains(word)){ //don't check syntax in reference, label or include
 				QStringList options;
 				QList<int> starts;
-				ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
+				bool complete = ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
 				while(options.size()>0){
 					QString first=options.takeFirst();
 					int start=starts.takeFirst();
@@ -217,6 +217,10 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                     if(!first.startsWith("[")){  //handling of includegraphics should be improved !!! This impedes keyval checking
 						break;
 					}
+				}
+				if (!complete) {
+					lr.index = line.length();  // incomplete command options continues beyond on line: stop all further checking for this line
+					break;
 				}
 			}
 			if(ltxCommands->mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
