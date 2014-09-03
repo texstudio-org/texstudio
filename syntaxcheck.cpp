@@ -196,7 +196,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 			if(ltxCommands->possibleCommands["%definition"].contains(word)){ // don't check in command definition
 				QStringList options;
 				QList<int> starts;
-				complete = ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
+				ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
 				for(int i=1; i<options.count() && i<4; i++){
 					QString option = options.at(i);
 					if (option.startsWith("[")) {
