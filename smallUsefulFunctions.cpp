@@ -857,7 +857,8 @@ void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &stru
 	}
 }
 
-void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
+/* returns true if the options are complete, false if the scanning ended while still in the options */
+bool LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
     const QString BracketsOpen("[{(");
     const QString BracketsClose("]})");
 	int start=column;
@@ -915,8 +916,9 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 			if(starts)
 				starts->append(found);
 			start=stop+1;
-		} else break;
+		} else return false;
 	}
+	return true;
 }
 
 QString LatexParser::removeOptionBrackets(const QString &option) {
