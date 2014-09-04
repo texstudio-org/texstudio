@@ -69,7 +69,7 @@ public:
 	void reshape();
 	
 public slots:
-	void setImage(QPixmap img,int pageNr);
+	void setImage(const QPixmap &img, int pageNr);
 	
 protected:
 	virtual void paintEvent(QPaintEvent *event);
