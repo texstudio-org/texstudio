@@ -66,6 +66,33 @@ bool PDFDocument::isCompiling = false;
 bool PDFDocument::isMaybeCompiling = false;
 
 static const int GridBorder = 5;
+
+
+QPixmap invertColors(const QPixmap &pixmap) {
+	QImage img = pixmap.toImage();
+	img.invertPixels();
+	return QPixmap::fromImage(img);
+}
+
+QPixmap convertToGray(const QPixmap &pixmap)
+{
+	QImage img = pixmap.toImage();
+
+	QImage retImg(img.width(),img.height(),QImage::Format_Indexed8);
+	QVector<QRgb> table(256);
+	for( int i=0; i<256; ++i) {
+		table[i] = qRgb(i, i, i);
+	}
+	retImg.setColorTable(table);
+	for(int i=0; i<img.width(); i++) {
+		for(int j=0; j<img.height();j++) {
+			QRgb value = img.pixel(i,j);
+			retImg.setPixel(i, j, qGray(value));
+		}
+	}
+	return QPixmap::fromImage(retImg);
+}
+
 //====================Zoom utils==========================
 
 void zoomToScreen(QWidget *window)
@@ -253,6 +280,8 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
 					//don't cache in rendermanager in order to reduce memory consumption
 					image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * overScale , dpi * overScale, loc.x() *overScale, loc.y()*overScale, size.width()*overScale, size.height()*overScale,false,true);
+					if (globalConfig->invertColors) image = invertColors(image);
+					if (globalConfig->grayscale) image = convertToGray(image);
 				}
 				imagePage = page;
 				imageDpi = dpi;
@@ -282,9 +311,16 @@ void PDFMagnifier::reshape(){
 	}
 }
 
-void PDFMagnifier::setImage(QPixmap img,int pageNr){
-	if(pageNr==page)
-		image=img;
+void PDFMagnifier::setImage(const QPixmap &img, int pageNr){
+	if(pageNr==page) {
+		image = img;
+		if (globalConfig->invertColors) {
+			image = invertColors(image);
+		}
+		if (globalConfig->grayscale) {
+			image = convertToGray(image);
+		}
+	}
 	update();
 }
 
@@ -530,32 +566,6 @@ void fillRectBorder(QPainter& painter, const QRect& inner, const QRect& outer){
 	
 	painter.drawRect(inner.x(), outer.y(),      inner.width(), inner.y()      - outer.y());
 	painter.drawRect(inner.x(), inner.bottom(), inner.width(), outer.bottom() - inner.bottom());
-}
-
-QPixmap invertColors(const QPixmap &pixmap) {
-	QImage img = pixmap.toImage();
-	img.invertPixels();
-	return QPixmap::fromImage(img);
-}
-
-QPixmap convertToGray(const QPixmap &pixmap)
-{
-	if (pixmap.isNull()) return pixmap;
-	QImage img = pixmap.toImage();
-
-	QImage retImg(img.width(),img.height(),QImage::Format_Indexed8);
-	QVector<QRgb> table(256);
-	for( int i=0; i<256; ++i) {
-		table[i] = qRgb(i, i, i);
-	}
-	retImg.setColorTable(table);
-	for(int i=0; i<img.width(); i++) {
-		for(int j=0; j<img.height();j++) {
-			QRgb value = img.pixel(i,j);
-			retImg.setPixel(i, j, qGray(value));
-		}
-	}
-	return QPixmap::fromImage(retImg);
 }
 
 void PDFWidget::paintEvent(QPaintEvent *event)
