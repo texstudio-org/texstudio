@@ -3228,7 +3228,7 @@ void QDocumentLineHandle::layout(int lineNr) const
 		
 		// Syntax highlighting, inbuilt and arbitrary
         m_layout->setAdditionalFormats(decorations());
-
+        setFlag(QDocumentLine::FormatsApplied, true);
 
 		// Begin layouting
 		m_layout->beginLayout();
@@ -3300,7 +3300,6 @@ void QDocumentLineHandle::layout(int lineNr) const
 	}
 
 	setFlag(QDocumentLine::LayoutDirty, false);
-    setFlag(QDocumentLine::FormatsApplied, true);
 }
 
 
