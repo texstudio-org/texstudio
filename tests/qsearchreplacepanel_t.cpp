@@ -423,7 +423,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		}
 	}
 	
-	
+
 	//test if the current selection is used as search scope
 	for (int oldSel=0;oldSel<2;oldSel++){
 		//multiline
@@ -444,7 +444,7 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		panel->display(1,false);
 		QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
 		QEQUAL(widget->cbSelection->isChecked(),true);
-		
+
 		//not single line (=single line with disabled take selection)
 		panel->setUseLineForSearch(true);
 		widget->cbSelection->setChecked(oldSel);
@@ -452,7 +452,8 @@ void QSearchReplacePanelTest::findSpecialCase2(){
 		ed->setCursor(sel);
 		panel->display(1,false);
 		QEQUAL(widget->cFind->currentText(),"l");
-		QEQUAL(widget->cbSelection->isChecked(),oldSel);
+        QEQUAL(widget->cbSelection->isChecked(),false); // is automatically set to false for convinience
+
 	}
 
 	//test if first match in newly selected text is matched
@@ -501,19 +502,20 @@ void QSearchReplacePanelTest::selectionHighlighting(){
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel); //should now highlighted
 	panel->display(0, false);
 	QCEEQUAL2(getHighlightedSelection(ed),QDocumentCursor(), "highlight not removed"); //highlighting should be removed
-	
+
 //test if cursor changes with invisible panel modify are (correctly not) highlighted
 	ed->setCursor(sel);
 	QCEEQUAL2(getHighlightedSelection(ed),QDocumentCursor(), "sel. highlighting was wrongly restored");
 	ed->setCursor(ed->document()->cursor(1,3,1,8));
 	QCEEQUAL2(getHighlightedSelection(ed),QDocumentCursor(), "sel. highlighting was wrongly restored");
-	
+
 //test how selection reacts to document modifications
 	panel->display(1, false);
+    widget->cbSelection->setChecked(true); // was deactivated automatically because of previous single line selection
 	sel=ed->document()->cursor(0,5,2,10);	
 	ed->setCursor(sel);
 	QCEMULTIEQUAL(getHighlightedSelection(ed),panel->getSearchScope(), sel);
-	
+
 	//modify mid line of selection
 	QDocumentCursor c=ed->document()->cursor(1,10);
 	c.deletePreviousChar();
