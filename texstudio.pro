@@ -4,11 +4,12 @@ DESTDIR = ./
 greaterThan(QT_MAJOR_VERSION, 4) {
     message(Building with Qt5)
     CONFIG += qt
-    !win32: CONFIG += precompile_header # precompiling does not work with Qt5 and mingw
+    !win32: CONFIG -= precompile_header # precompiling does not work with Qt5 and mingw
     win32: CONFIG -= precompile_header
 } else {
     message(Building with Qt4)
-    CONFIG += qt precompile_header uitools
+    CONFIG += qt uitools
+    CONFIG -= precompile_header
 }
 
 # allow loading extra config by file for automatic compilations (OBS)
@@ -36,7 +37,7 @@ contains($$list($$[QT_VERSION]), 4.3.*):message("qt 4.3.x")
 else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
-precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
+# precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
     dsingleapplication.h \
@@ -641,7 +642,7 @@ exists(./.svn/entries)|exists(./.svn/wc.db){
 }
 
 # add mercurial revision
-exists(./.hg) {
+exists(./.hg2) {
   win32: {
     message(HG)
     QMAKE_PRE_LINK += \"$${PWD}/hg_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
