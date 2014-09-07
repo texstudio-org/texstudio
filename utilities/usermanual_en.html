@@ -103,8 +103,28 @@
 
 <h2 id="SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</h2>
 <ul>
-<li><p>crash with TRL text entry fixed</p></li>
-<li><p>several bugfixes</p></li>
+<li><p>improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible</p></li>
+<li><p>support command detection for \DeclareRobustCommand</p></li>
+<li><p>persistently store fit and center options of preview panel</p></li>
+<li><p>support more environments for table auto-formatting</p></li>
+<li><p>remember scope when deleting auxiliary files</p></li>
+<li><p>improved handling of incomplete options in the syntax checker</p></li>
+<li><p>new/improved cwls: mathtools, circuitikz</p></li>
+<li><p>fix: crash with RTL text input</p></li>
+<li><p>fix: some shortcuts couldn't be assigned on OSX</p></li>
+<li><p>fix: multi-cursor edits are now grouped into a single undo action</p></li>
+<li><p>fix: lost scroll position when previewing large images</p></li>
+<li><p>fix: assignment of multiple shortcuts to editor operations</p></li>
+<li><p>fix: unindent per shortcut without selection</p></li>
+<li><p>fix: more consistent behavior for PgUp/PgDown in PDF viewer</p></li>
+<li><p>fix: immediately generate cursor mirrors when inserting via the menu</p></li>
+<li><p>fix: commands defined in one file included by many documents were only known in the completion list  of one them</p></li>
+<li><p>fix: compile option without poppler</p></li>
+<li><p>fix: crash with \newcommands{xyz}{123456789}</p></li>
+<li><p>fix: %BEGIN_FOLD could not be folded</p></li>
+<li><p>fix: apply grayscale and invert color settings also to magnifier</p></li>
+<li><p>fix: incorrect search hightlight region in PDF viewer with Qt5</p></li>
+<li><p>fix: drag&amp;drop of text already started +/-5 lines from the border (now 1 line)</p></li>
 </ul>
 
 <h2 id="SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</h2>
