@@ -1,5 +1,10 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.8.2 -> 2.8.4
+-----------------------------------------
+- fix crash with RTL text entry
+- several bugfixes
+
 TeXstudio 2.8.0 -> 2.8.2
 -----------------------------------------
 - color completion
