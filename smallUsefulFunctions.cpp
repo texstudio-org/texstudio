@@ -614,12 +614,13 @@ bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QStr
             argStart=start+1;
             remainder=line.mid(start+first.length());
             outName = LatexParser::removeOptionBrackets(first);
-            if(values.size()>0){ // if there's something after the firt option (in case of import)
+            if(values.size()>0){ // if there's something after the first option (in case of import)
                 first=values.takeFirst();
                 start=starts.takeFirst();
                 argStart=start+1;
                 remainder=line.mid(start+first.length());
-                outArg = LatexParser::removeOptionBrackets(first);
+                //outArg = LatexParser::removeOptionBrackets(first);
+                outArg = first; // don't remove brackets in order to distinguih between [ and { later
             }
             return true;
         }
@@ -856,7 +857,8 @@ void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &stru
 	}
 }
 
-void LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
+/* returns true if the options are complete, false if the scanning ended while still in the options */
+bool LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
     const QString BracketsOpen("[{(");
     const QString BracketsClose("]})");
 	int start=column;
@@ -914,8 +916,9 @@ void LatexParser::resolveCommandOptions(const QString &line, int column, QString
 			if(starts)
 				starts->append(found);
 			start=stop+1;
-		} else break;
+		} else return false;
 	}
+	return true;
 }
 
 QString LatexParser::removeOptionBrackets(const QString &option) {

@@ -24,13 +24,13 @@ public:
 
 public slots:	
 	void previewLatex(const QPixmap& previewImage);
-	void fitImage();
+	void fitImage(bool fit);
+	void centerImage(bool center);
 	void scaleImage(double factor);
 	void zoomOut();
 	void zoomIn();
 	void resetZoom();
 	void contextMenu(QPoint point);
-	void centerImage();
 
 protected:
 	void wheelEvent(QWheelEvent *event);
@@ -39,6 +39,7 @@ private:
 	QLabel *preViewer;
 	double pvscaleFactor;
 	bool mCenter;
+	bool mFit;
 };
 
 class OutputViewWidget: public TitledPanel {

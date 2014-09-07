@@ -66,6 +66,33 @@ bool PDFDocument::isCompiling = false;
 bool PDFDocument::isMaybeCompiling = false;
 
 static const int GridBorder = 5;
+
+
+QPixmap invertColors(const QPixmap &pixmap) {
+	QImage img = pixmap.toImage();
+	img.invertPixels();
+	return QPixmap::fromImage(img);
+}
+
+QPixmap convertToGray(const QPixmap &pixmap)
+{
+	QImage img = pixmap.toImage();
+
+	QImage retImg(img.width(),img.height(),QImage::Format_Indexed8);
+	QVector<QRgb> table(256);
+	for( int i=0; i<256; ++i) {
+		table[i] = qRgb(i, i, i);
+	}
+	retImg.setColorTable(table);
+	for(int i=0; i<img.width(); i++) {
+		for(int j=0; j<img.height();j++) {
+			QRgb value = img.pixel(i,j);
+			retImg.setPixel(i, j, qGray(value));
+		}
+	}
+	return QPixmap::fromImage(retImg);
+}
+
 //====================Zoom utils==========================
 
 void zoomToScreen(QWidget *window)
@@ -253,6 +280,8 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
 					//don't cache in rendermanager in order to reduce memory consumption
 					image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * overScale , dpi * overScale, loc.x() *overScale, loc.y()*overScale, size.width()*overScale, size.height()*overScale,false,true);
+					if (globalConfig->invertColors) image = invertColors(image);
+					if (globalConfig->grayscale) image = convertToGray(image);
 				}
 				imagePage = page;
 				imageDpi = dpi;
@@ -282,9 +311,16 @@ void PDFMagnifier::reshape(){
 	}
 }
 
-void PDFMagnifier::setImage(QPixmap img,int pageNr){
-	if(pageNr==page)
-		image=img;
+void PDFMagnifier::setImage(const QPixmap &img, int pageNr){
+	if(pageNr==page) {
+		image = img;
+		if (globalConfig->invertColors) {
+			image = invertColors(image);
+		}
+		if (globalConfig->grayscale) {
+			image = convertToGray(image);
+		}
+	}
 	update();
 }
 
@@ -530,32 +566,6 @@ void fillRectBorder(QPainter& painter, const QRect& inner, const QRect& outer){
 	
 	painter.drawRect(inner.x(), outer.y(),      inner.width(), inner.y()      - outer.y());
 	painter.drawRect(inner.x(), inner.bottom(), inner.width(), outer.bottom() - inner.bottom());
-}
-
-QPixmap invertColors(const QPixmap &pixmap) {
-	QImage img = pixmap.toImage();
-	img.invertPixels();
-	return QPixmap::fromImage(img);
-}
-
-QPixmap convertToGray(const QPixmap &pixmap)
-{
-	if (pixmap.isNull()) return pixmap;
-	QImage img = pixmap.toImage();
-
-	QImage retImg(img.width(),img.height(),QImage::Format_Indexed8);
-	QVector<QRgb> table(256);
-	for( int i=0; i<256; ++i) {
-		table[i] = qRgb(i, i, i);
-	}
-	retImg.setColorTable(table);
-	for(int i=0; i<img.width(); i++) {
-		for(int j=0; j<img.height();j++) {
-			QRgb value = img.pixel(i,j);
-			retImg.setPixel(i, j, qGray(value));
-		}
-	}
-	return QPixmap::fromImage(retImg);
 }
 
 void PDFWidget::paintEvent(QPaintEvent *event)
@@ -2547,7 +2557,7 @@ void PDFDocument::init(bool embedded)
 		dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2555,7 +2565,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2570,7 +2580,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2578,7 +2588,7 @@ void PDFDocument::init(bool embedded)
 	dw->hide();
 	addDockWidget(Qt::LeftDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
-	connect(this, SIGNAL(reloaded()), dw, SLOT(documentLoaded()));
+	connect(this, SIGNAL(documentLoaded()), dw, SLOT(documentLoaded()));
 	connect(this, SIGNAL(documentClosed()), dw, SLOT(documentClosed()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), dw, SLOT(pageChanged(int)));
 
@@ -2589,6 +2599,14 @@ void PDFDocument::init(bool embedded)
 	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(pageChanged(int)));
 	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
 
+	actionPage_Down = new QAction(tr("Page Down"), this);
+	actionPage_Down->setShortcut(QKeySequence(tr("PgDown")));
+	addAction(actionPage_Down);
+	connect(actionPage_Down, SIGNAL(triggered()), pdfWidget, SLOT(pageDownOrNext()));
+	actionPage_Up = new QAction(tr("Page Up"), this);
+	actionPage_Up->setShortcut(QKeySequence(tr("PgUp")));
+	connect(actionPage_Up, SIGNAL(triggered()), pdfWidget, SLOT(pageUpOrPrev()));
+	addAction(actionPage_Up);
 	//disable all action shortcuts when embedded
 	if(embedded) {
 		shortcutOnlyIfFocused(QList<QAction *>()
@@ -2598,6 +2616,8 @@ void PDFDocument::init(bool embedded)
 							  << actionFirst_Page
 							  << actionForward
 							  << actionBack
+							  << actionPage_Down
+							  << actionPage_Up
 							  << actionGo_to_Page
 							  << actionZoom_In
 							  << actionZoom_Out
@@ -2701,7 +2721,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 	if(!fileAlreadyLoaded){
 		this->masterFile = masterFile;
 		setCurrentFile(fileName);
-		reload(false);
+		loadCurrentFile(false);
 	}
 
 	if (watcher) {
@@ -2724,7 +2744,7 @@ void PDFDocument::fillRenderCache(int pg){
 		renderManager->fillCache(pg);
 }
 
-void PDFDocument::reload(bool fillCache)
+void PDFDocument::loadCurrentFile(bool fillCache)
 {
 	if (reloadTimer) reloadTimer->stop();
 	messageFrame->hide();
@@ -2762,7 +2782,7 @@ void PDFDocument::reload(bool fillCache)
 	if (error==PDFRenderManager::FileIncomplete) {
 		QAction *retryAction = new QAction(tr("Retry"), this);
 		retryAction->setProperty("fillCache", fillCache);
-		connect(retryAction, SIGNAL(triggered()), this, SLOT(reload()));
+		connect(retryAction, SIGNAL(triggered()), this, SLOT(loadCurrentFile()));
 		QAction *closeAction = new QAction(tr("Close"), this);
 		connect(closeAction, SIGNAL(triggered()), this, SLOT(stopReloadTimer()));
 		connect(closeAction, SIGNAL(triggered()), messageFrame, SLOT(hide()));
@@ -2815,7 +2835,7 @@ void PDFDocument::reload(bool fillCache)
 		}
 		scrollArea->updateScrollBars();
 		
-		emit reloaded();
+		emit documentLoaded();
 	}
 
 	QApplication::restoreOverrideCursor();
@@ -2842,7 +2862,7 @@ void PDFDocument::reloadWhenIdle()
 
 void PDFDocument::idleReload(){
 	if (isCompiling) reloadWhenIdle();
-	else reload();
+	else loadCurrentFile();
 }
 
 void PDFDocument::runExternalViewer(){
@@ -3055,7 +3075,7 @@ void PDFDocument::search(const QString& searchText, bool backwards, bool increme
 #else
             double rectLeft, rectTop, rectRight, rectBottom;
             if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchMode)) {
-                lastSearchResult.selRect=QRectF(rectLeft, rectTop, rectRight, rectBottom);
+				lastSearchResult.selRect=QRectF(rectLeft, rectTop, rectRight-rectLeft, rectBottom-rectTop);
 #endif
 				lastSearchResult.doc = this;
 				lastSearchResult.pageIdx = pageIdx;
@@ -3218,8 +3238,8 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 		}
 		if (page > 0) {
 			syncToSourceBlock = true;
-			scrollArea->goToPage(page - 1, false);
 			path.setFillRule(Qt::WindingFill);
+			if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
 			if (activatePreview) {

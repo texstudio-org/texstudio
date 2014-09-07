@@ -197,26 +197,36 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 				QStringList options;
 				QList<int> starts;
 				ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
-				for(int i=1;i<options.count()&&i<4;i++){
-					QString option=options.at(i);
-					if(option.startsWith("[")){
+				for(int i=1; i<options.count() && i<4; i++){
+					QString option = options.at(i);
+					if (option.startsWith("[")) {
 						continue;
 					}
-					lr.index=starts.at(i)+option.length();
+					lr.index = starts.at(i) + option.length();
 					break;
 				}
 			}
-            if(ltxCommands->possibleCommands["%ref"].contains(word)||ltxCommands->possibleCommands["%label"].contains(word)||ltxCommands->possibleCommands["%file"].contains(word)||ltxCommands->possibleCommands["%cite"].contains(word)||ltxCommands->possibleCommands["%bibitem"].contains(word)||ltxCommands->possibleCommands["%url"].contains(word)){ //don't check syntax in reference, label or include
+			if( ltxCommands->possibleCommands["%ref"].contains(word) ||
+				ltxCommands->possibleCommands["%label"].contains(word) ||
+				ltxCommands->possibleCommands["%file"].contains(word) ||
+				ltxCommands->possibleCommands["%cite"].contains(word) ||
+				ltxCommands->possibleCommands["%bibitem"].contains(word) ||
+				ltxCommands->possibleCommands["%url"].contains(word)
+				){ //don't check syntax in reference, label or include
 				QStringList options;
 				QList<int> starts;
-				ltxCommands->resolveCommandOptions(line,wordstart,options,&starts);
-				while(options.size()>0){
-					QString first=options.takeFirst();
-					int start=starts.takeFirst();
-					lr.index=start+first.length();
-                    if(!first.startsWith("[")){  //handling of includegraphics should be improved !!! This impedes keyval checking
+				bool complete = ltxCommands->resolveCommandOptions(line, wordstart, options, &starts);
+				while (options.size() > 0){
+					QString option = options.takeFirst();
+					int start = starts.takeFirst();
+					lr.index = start + option.length();
+					if (!option.startsWith("[")) {  // handling of includegraphics should be improved !!! This impedes keyval checking
 						break;
 					}
+				}
+				if (!complete) {
+					lr.index = line.length();  // last option continues beyond end of line: stop all further checking for this line
+					break;
 				}
 			}
 			if(ltxCommands->mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){

@@ -650,7 +650,7 @@ void PDFScrollArea::goToPage(int page,bool sync){
 void PDFScrollArea::ensureVisiblePageAbsolutePos(int page, const QPointF& pos, int xmargin, int ymargin){
 	Q_ASSERT(pdf);
 	if (!pdf || page < 0 || page >= pdf->realNumPages()) return;
-	goToPage(page);
+	if (pdf->pageRect(page).isNull()) goToPage(page);  // pageRect is null if the page is not displayed.
 	QPoint scaled = (pdf->totalScaleFactor() * pos).toPoint() + pdf->pageRect(page).topLeft();
 	ensureVisible(scaled.x(), scaled.y(), xmargin, ymargin);
 }

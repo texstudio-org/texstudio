@@ -134,7 +134,7 @@ public:
 	static QString cutComment(const QString& text);
 	
 	ContextType findContext(const QString &line, int column, QString &command, QString& value) const;
-	static void resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
+	static bool resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts=0);
 	static QString removeOptionBrackets(const QString &option);
 	
 	QSet<QString> environmentCommands;

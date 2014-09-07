@@ -99,6 +99,10 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	
 	ReadSettings();
 
+#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+    QCoreApplication::instance()->installEventFilter(this);
+#endif
+
 	latexReference = new LatexReference();
 	latexReference->setFile(findResourceFile("latex2e.html"));
 
@@ -266,7 +270,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	
 	setAcceptDrops(true);
-	installEventFilter(this);
+    //installEventFilter(this);
 	
 	UpdateChecker::instance()->autoCheck();
 	
@@ -3640,14 +3644,20 @@ void Texmaker::ReadSettings(bool reread) {
     config->endGroup();}
     config->beginGroup("Editor Key Mapping New");
 	QStringList sl = config->childKeys();
+    QSet<int>manipulatedOps;
 	if (!sl.empty()) {
 		foreach (const QString& key, sl) {
             if (key.isEmpty()) continue;
 			int operationID = config->value(key).toInt();
-			QString defaultKey = configManager.editorKeys.key(operationID);
-			if (!defaultKey.isNull()) {
-				configManager.editorKeys.remove(defaultKey);
-			}
+            if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                QStringList defaultKeys = configManager.editorKeys.keys(operationID);
+                if (!defaultKeys.isEmpty()) {
+                    foreach(const QString elem,defaultKeys){
+                        configManager.editorKeys.remove(elem);
+                    }
+                    manipulatedOps.insert(operationID);
+                }
+            }
 			configManager.editorKeys.insert(key, operationID);
 		}
 		QEditor::setEditOperations(configManager.editorKeys);
@@ -3785,7 +3795,8 @@ void Texmaker::SaveSettings(const QString& configName) {
 		config->remove("");
         QHash<QString, int>::const_iterator i = keys.begin();
 		while (i != keys.constEnd()) {
-            config->setValue(i.key(), i.value());
+            if(!i.key().isEmpty()) //avoid crash
+                config->setValue(i.key(), i.value());
 			++i;
 		}
 	}
@@ -4385,6 +4396,7 @@ void Texmaker::InsertFromAction() {
   CodeSnippet cs=CodeSnippet(action->data().toString());
         cs.insertAt(currentEditorView()->editor,&c);*/
     edView->insertMacro(action->data().toString(),QRegExp(),0,true);
+	generateMirror();
 	outputView->setMessage(CodeSnippet(action->whatsThis(), false).lines.join("\n"));
   }
 }
@@ -5703,9 +5715,11 @@ void Texmaker::GeneralOptions() {
 	if(configManager.autosaveEveryMinutes>0){
 		autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
 	}
+#ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
 		viewer->reloadSettings();
 	}
+#endif
 }
 void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 	// parse command line
@@ -6279,8 +6293,48 @@ void Texmaker::changeEvent(QEvent *e) {
 
 void Texmaker::resizeEvent(QResizeEvent *e){
 	centerFileSelector();
-	QMainWindow::resizeEvent(e);
+    QMainWindow::resizeEvent(e);
 }
+
+#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+// workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
+bool Texmaker::eventFilter(QObject *obj, QEvent *event)
+{
+    if(obj->objectName()=="ConfigDialogWindow" || obj->objectName()=="ShortcutComboBox")
+        return false; // don't handle keys from shortcutcombo (config)
+    if(event->type()==QEvent::KeyPress){
+        //qDebug()<<obj->objectName();
+        //qDebug()<<obj->metaObject()->className();
+        QKeyEvent *keyEvent=static_cast<QKeyEvent*>(event);
+        QString modifier = QString::null;
+
+        if (keyEvent->modifiers() & Qt::ShiftModifier)
+            modifier += "Shift+";
+        if (keyEvent->modifiers() & Qt::ControlModifier)
+            modifier += "Ctrl+";
+        if (keyEvent->modifiers() & Qt::AltModifier)
+            modifier += "Alt+";
+        if (keyEvent->modifiers() & Qt::MetaModifier)
+            modifier += "Meta+";
+
+        QString key = QKeySequence(keyEvent->key()).toString();
+
+        QKeySequence result(modifier + key);
+
+        if((keyEvent->key()==0)||((keyEvent->modifiers()==0)&&(key!="Esc")) || (keyEvent->modifiers()&Qt::MetaModifier) || (keyEvent->modifiers() & Qt::ControlModifier) || (keyEvent->modifiers() & Qt::KeypadModifier))
+            return false; // no need to handle these
+
+        if(configManager.specialShortcuts.contains(result)){
+            QAction *act=configManager.specialShortcuts.value(result);
+            if(act)
+                act->trigger();
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+#endif
 
 //***********************************
 void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
@@ -6948,7 +7002,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
             QToolTip::showText(p, text, 0);
         }
         LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
-	}
+     }
 	if (configManager.previewMode == ConfigManager::PM_INLINE && source.fromLine >= 0){
 		QDocument* doc = currentEditor()->document();
 		doc->setForceLineWrapCalculation(true);
@@ -6958,7 +7012,8 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE);
 				doc->line(l).removeCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS);
 				doc->line(l).setFlag(QDocumentLine::LayoutDirty);
-				doc->adjustWidth(l);
+				if (l != toLine) //must not adjust line toLine here, or will recalculate the document height without preview and scroll away if the preview is very height
+					doc->adjustWidth(l);
 			}
         QPixmap img;
         if(image.isNull()){

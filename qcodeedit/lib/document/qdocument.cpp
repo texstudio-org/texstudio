@@ -2851,7 +2851,12 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 
 	if ( m_layout )
 	{
-		x += int(m_layout->lineAt(wrap).cursorToX(cpos));
+        // workaround on qt5.3 bug
+        QTextLine tl=m_layout->lineAt(wrap);
+        if(tl.textLength()>=cpos)
+            x += int(tl.cursorToX(cpos));
+        else
+            x += int(tl.width());
 	} else {
 		if ( wrap )
 			x += m_indent;
@@ -3222,7 +3227,8 @@ void QDocumentLineHandle::layout(int lineNr) const
 		m_layout->setTextOption(opt);
 		
 		// Syntax highlighting, inbuilt and arbitrary
-		//m_layout->setAdditionalFormats(m_ranges);
+        m_layout->setAdditionalFormats(decorations());
+        setFlag(QDocumentLine::FormatsApplied, true);
 
 		// Begin layouting
 		m_layout->beginLayout();
@@ -3445,8 +3451,9 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 	if ( m_layout )
 	{
-		if ( !hasFlag(QDocumentLine::FormatsApplied) )
-			m_layout->setAdditionalFormats(decorations());
+        if ( !hasFlag(QDocumentLine::FormatsApplied) )
+            layout(lineNr); // formats need to added before splitting lines, as they could change the linewidthes ...
+            //m_layout->setAdditionalFormats(decorations()); (this causes a crash on qt>5.3)
 
 		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		//	applyOverlays();
