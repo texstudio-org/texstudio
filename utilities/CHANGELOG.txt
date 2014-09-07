@@ -2,8 +2,27 @@
 
 TeXstudio 2.8.2 -> 2.8.4
 -----------------------------------------
-- fix crash with RTL text entry
-- several bugfixes
+- improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible
+- support command detection for \DeclareRobustCommand
+- persistently store fit and center options of preview panel
+- support more environments for table auto-formatting
+- remember scope when deleting auxiliary files
+- improved handling of incomplete options in the syntax checker
+- new/improved cwls: mathtools, circuitikz
+- fix: crash with RTL text input
+- fix: some shortcuts couldn't be assigned on OSX
+- fix: multi-cursor edits are now grouped into a single undo action
+- fix: lost scroll position when previewing large images
+- fix: assignment of multiple shortcuts to editor operations
+- fix: unindent per shortcut without selection
+- fix: more consistent behavior for PgUp/PgDown in PDF viewer
+- fix: immediately generate cursor mirrors when inserting via the menu
+- fix: commands defined in one file included by many documents were only known in the completion list  of one them
+- fix: compile option without poppler
+- fix: crash with \newcommands{xyz}{123456789}
+- fix: %BEGIN_FOLD could not be folded
+- fix: apply grayscale and invert color settings also to magnifier
+- fix incorrect search hightlight region in PDF viewer with Qt5
 
 TeXstudio 2.8.0 -> 2.8.2
 -----------------------------------------
