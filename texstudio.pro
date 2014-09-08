@@ -298,7 +298,8 @@ macx {
     # QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
     # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
-    utilities.path = Contents/Resources
+    manual.path = Contents/Resources/
+    utilities.path = Contents/Resources/
     QMAKE_BUNDLE_DATA += utilities
     ICON = texstudio.icns
     QMAKE_INFO_PLIST = Info.plist
@@ -310,6 +311,7 @@ unix:!macx {
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
     utilities.path = $${PREFIX}/share/texstudio
+    manual.path = $${PREFIX}/share/texstudio
     utilities.files = utilities/texstudio16x16.png \
         utilities/texstudio22x22.png \
         utilities/texstudio32x32.png \
@@ -334,43 +336,8 @@ unix {
     UI_DIR = .ui
     MOC_DIR = .moc
     OBJECTS_DIR = .obj
-    utilities.files += utilities/doc1.png \
-        utilities/doc10.png \
-        utilities/doc11.png \
-        utilities/doc12.png \
-        utilities/doc13.png \
-        utilities/doc14.png \
-        utilities/doc15.png \
-        utilities/doc16.png \
-        utilities/doc17.png \
-        utilities/doc18.png \
-        utilities/doc19.png \
-        utilities/doc2.png \
-        utilities/doc20.png \
-        utilities/doc21.png \
-        utilities/doc3.png \
-        utilities/doc4.png \
-        utilities/doc5.png \
-        utilities/doc6.png \
-        utilities/doc7.png \
-        utilities/doc8.png \
-        utilities/doc9.png \
-        utilities/configure_completion.png \
-        utilities/configure_customizeMenu.png \
-        utilities/configure_customToolbar.png \
-        utilities/configure_editor.png \
-        utilities/configure_general.png \
-        utilities/configure_shortcuts.png \
-        utilities/configure_svn.png \
-        utilities/configure_build.png \
-        utilities/compile_toolbar.png \
-        utilities/template.png \
-        utilities/thesaurus.png \
-        utilities/latex2e.html \
+    utilities.files += utilities/latex2e.html \
         utilities/latex2e.css \
-        utilities/wizard_figure.png \
-	utilities/block_selection.png \
-	utilities/spellcheck_menu.png \
 	texstudio_cs.qm \
 	texstudio_de.qm \
 	texstudio_es.qm \
@@ -435,9 +402,6 @@ unix {
 	templates/template_Scrlttr2.tex \
 	templates/template_Scrreprt.json \
 	templates/template_Scrreprt.tex \
-        utilities/usermanual_en.html \
-	utilities/usermanual.css \
-        utilities/usermanual_fr.html \
 	utilities/dictionaries/en_GB.aff \
 	utilities/dictionaries/en_GB.dic \
 	utilities/dictionaries/en_US.aff \
@@ -461,7 +425,47 @@ unix {
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/CHANGELOG.txt
+    manual.files = \
+        utilities/usermanual_en.html \
+        utilities/usermanual_fr.html \
+        utilities/usermanual.css \
+        utilities/manual/doc1.png \
+        utilities/manual/doc10.png \
+        utilities/manual/doc11.png \
+        utilities/manual/doc12.png \
+        utilities/manual/doc13.png \
+        utilities/manual/doc14.png \
+        utilities/manual/doc15.png \
+        utilities/manual/doc16.png \
+        utilities/manual/doc17.png \
+        utilities/manual/doc18.png \
+        utilities/manual/doc19.png \
+        utilities/manual/doc2.png \
+        utilities/manual/doc20.png \
+        utilities/manual/doc21.png \
+        utilities/manual/doc3.png \
+        utilities/manual/doc4.png \
+        utilities/manual/doc5.png \
+        utilities/manual/doc6.png \
+        utilities/manual/doc7.png \
+        utilities/manual/doc8.png \
+        utilities/manual/doc9.png \
+        utilities/manual/configure_completion.png \
+        utilities/manual/configure_customizeMenu.png \
+        utilities/manual/configure_customToolbar.png \
+        utilities/manual/configure_editor.png \
+        utilities/manual/configure_general.png \
+        utilities/manual/configure_shortcuts.png \
+        utilities/manual/configure_svn.png \
+        utilities/manual/configure_build.png \
+        utilities/manual/compile_toolbar.png \
+        utilities/manual/template.png \
+        utilities/manual/thesaurus.png \
+        utilities/wizard_figure.png \
+        utilities/block_selection.png \
+        utilities/spellcheck_menu.png
     INSTALLS += target \
+        manual \
         utilities
 }
 
