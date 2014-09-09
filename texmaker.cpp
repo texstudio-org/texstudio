@@ -8151,12 +8151,18 @@ void Texmaker::loadProfile(){
 					}
 					continue;
 				}
-				if((key=="texmaker/Tools/User Order")||(key=="texmaker/Tools/Display Names")){
+				if(key == "texmaker/Tools/User Order"){
 					// logic assumes that the user command name is exclusive
-					QStringList order=config->value(key).toStringList()<<profile->value(key).toStringList();
+					QStringList order=config->value(key).toStringList() << profile->value(key).toStringList();
 					config->setValue(key,order);
 					userCommand=true;
+					QString nameKey("texmaker/Tools/Display Names");
+					QStringList displayNames = config->value(nameKey).toStringList() << profile->value(nameKey).toStringList();
+					config->setValue(nameKey, displayNames);
 					continue;
+				}
+				if (key == "texmaker/Tools/Display Names") {
+					continue;  // handled above
 				}
 				config->setValue(key,profile->value(key));
 			}
