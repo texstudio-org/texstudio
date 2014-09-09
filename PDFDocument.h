@@ -73,6 +73,7 @@ public slots:
 	
 protected:
 	virtual void paintEvent(QPaintEvent *event);
+	QPixmap & getConvertedImage();
 
 private:
 	int oldshape;
@@ -81,6 +82,9 @@ private:
 	qreal	scaleFactor;
 	qreal	parentDpi;
 	QPixmap	image;
+	QPixmap	convertedImage;
+	bool	convertedImageIsGrayscale;
+	bool	convertedImageIsColorInverted;
 	
 	QPoint mouseTranslate;
 	

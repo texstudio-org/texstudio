@@ -68,29 +68,28 @@ bool PDFDocument::isMaybeCompiling = false;
 static const int GridBorder = 5;
 
 
-QPixmap invertColors(const QPixmap &pixmap) {
-	QImage img = pixmap.toImage();
-	img.invertPixels();
-	return QPixmap::fromImage(img);
-}
+QPixmap convertImage(const QPixmap &pixmap, bool invertColors, bool convertToGray) {
+	if (pixmap.isNull()) return pixmap;
 
-QPixmap convertToGray(const QPixmap &pixmap)
-{
 	QImage img = pixmap.toImage();
-
-	QImage retImg(img.width(),img.height(),QImage::Format_Indexed8);
-	QVector<QRgb> table(256);
-	for( int i=0; i<256; ++i) {
-		table[i] = qRgb(i, i, i);
-	}
-	retImg.setColorTable(table);
-	for(int i=0; i<img.width(); i++) {
-		for(int j=0; j<img.height();j++) {
-			QRgb value = img.pixel(i,j);
-			retImg.setPixel(i, j, qGray(value));
+	if (invertColors)
+		img.invertPixels();
+	if (convertToGray) {
+		QImage retImg(img.width(),img.height(),QImage::Format_Indexed8);
+		QVector<QRgb> table(256);
+		for( int i=0; i<256; ++i) {
+			table[i] = qRgb(i, i, i);
 		}
+		retImg.setColorTable(table);
+		for(int i=0; i<img.width(); i++) {
+			for(int j=0; j<img.height();j++) {
+				QRgb value = img.pixel(i,j);
+				retImg.setPixel(i, j, qGray(value));
+			}
+		}
+		return QPixmap::fromImage(retImg);
 	}
-	return QPixmap::fromImage(retImg);
+	return QPixmap::fromImage(img);
 }
 
 //====================Zoom utils==========================
@@ -259,6 +258,9 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 	if (page <0) {
 		imagePage=-1;
 		image = QPixmap();
+		convertedImage = QPixmap();
+		convertedImageIsGrayscale = false;
+		convertedImageIsColorInverted = false;
 	}
 	else {
 		PDFWidget* parent = qobject_cast<PDFWidget*>(parentWidget());
@@ -280,8 +282,6 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect& visibleRect)
 				if (page != imagePage || dpi != imageDpi || loc != imageLoc || size != imageSize){
 					//don't cache in rendermanager in order to reduce memory consumption
 					image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * overScale , dpi * overScale, loc.x() *overScale, loc.y()*overScale, size.width()*overScale, size.height()*overScale,false,true);
-					if (globalConfig->invertColors) image = invertColors(image);
-					if (globalConfig->grayscale) image = convertToGray(image);
 				}
 				imagePage = page;
 				imageDpi = dpi;
@@ -314,12 +314,9 @@ void PDFMagnifier::reshape(){
 void PDFMagnifier::setImage(const QPixmap &img, int pageNr){
 	if(pageNr==page) {
 		image = img;
-		if (globalConfig->invertColors) {
-			image = invertColors(image);
-		}
-		if (globalConfig->grayscale) {
-			image = convertToGray(image);
-		}
+		convertedImage = QPixmap();
+		convertedImageIsGrayscale = false;
+		convertedImageIsColorInverted = false;
 	}
 	update();
 }
@@ -330,7 +327,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	drawFrame(&painter);
 	QRect tmpRect(event->rect().x()*overScale,event->rect().y()*overScale,event->rect().width()*overScale,event->rect().height()*overScale);
 
-	painter.drawPixmap(event->rect(), image, tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
+	painter.drawPixmap(event->rect(), getConvertedImage(), tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
 	
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
@@ -343,6 +340,19 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 		default: painter.drawRect(0,0,width()-1,height()-1); //rectangular
 		}
 	}
+}
+
+/* lazy evaluation of image convertion */
+QPixmap & PDFMagnifier::getConvertedImage()
+{
+	if (!globalConfig->invertColors && !globalConfig->grayscale) {  // no processing needed
+		return image;
+	}
+	if (globalConfig->invertColors == convertedImageIsColorInverted && globalConfig->grayscale == convertedImageIsGrayscale) {  // conversion already done
+		return convertedImage;
+	}
+	convertedImage = convertImage(image, globalConfig->invertColors, globalConfig->grayscale);
+	return convertedImage;
 }
 
 #ifdef PHONON
@@ -592,10 +602,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			QRect drawTo = pageRect(pageNr);
 			image = doc->renderManager->renderToImage(pageNr,this,"setImage",dpi * scaleFactor *overScale, dpi * scaleFactor*overScale,
 									  0,0, newRect.width()*overScale, newRect.height()*overScale,true,true);
-			if (globalConfig->invertColors)
-				image = invertColors(image);
-			if (globalConfig->grayscale)
-				image = convertToGray(image);
+			if (globalConfig->invertColors || globalConfig->grayscale)
+				image = convertImage(image, globalConfig->invertColors, globalConfig->grayscale);
 			fillRectBorder(painter, drawTo, newRect);
 			painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
 			if (pageNr==highlightPage && !highlightPath.isEmpty() ) {
@@ -649,12 +657,9 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						dpi * scaleFactor * overScale,
 						dpi * scaleFactor * overScale,
 						0,0,drawGrid.width()*overScale,drawGrid.height()*overScale,true,true);
-				if (globalConfig->invertColors)
-					temp = invertColors(temp);
-				if (globalConfig->grayscale)
-					temp = convertToGray(temp);
-
-				if (drawGrid != basicGrid) 
+				if (globalConfig->invertColors || globalConfig->grayscale)
+					temp = convertImage(temp, globalConfig->invertColors, globalConfig->grayscale);
+				if (drawGrid != basicGrid)
 					fillRectBorder(painter, drawGrid, basicGrid);
 				painter.drawPixmap(QRect(drawGrid.left(), drawGrid.top(),temp.width()/overScale,temp.height()/overScale), temp);
 				if(pageNr==highlightPage){
