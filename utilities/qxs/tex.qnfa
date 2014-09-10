@@ -27,7 +27,7 @@ environments in smallUsefulFunctions.cpp)
 	<foreach loopVar="$v">
 		<e>verbatim</e> <e>verbatim\*</e> <e>lstlisting</e> <e>Verbatim</e> <e>BVerbatim</e> <e>Verbatim\*</e> <e>BVerbatim\*</e>
 		<body>
-			<context id="$v" format="verbatim" transparency="true">
+			<context id="$v" format="verbatim">
 				<start parenthesis="$v:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{$v}</start>
 				<stop parenthesis="$v:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{$v}</stop>
 
