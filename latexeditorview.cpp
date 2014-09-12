@@ -193,7 +193,8 @@ void DefaultInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (event->text() == ",") {
 		LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
 		Q_ASSERT(view);
-		emit view->colonTyped();
+        if(completerConfig && completerConfig->enabled)
+            emit view->colonTyped();
 	}
 }
 
