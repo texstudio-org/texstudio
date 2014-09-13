@@ -3646,16 +3646,24 @@ void Texmaker::ReadSettings(bool reread) {
 		foreach (const QString& key, sl) {
             if (key.isEmpty()) continue;
 			int operationID = config->value(key).toInt();
-            if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
-                QStringList defaultKeys = configManager.editorKeys.keys(operationID);
-                if (!defaultKeys.isEmpty()) {
-                    foreach(const QString elem,defaultKeys){
-                        configManager.editorKeys.remove(elem);
-                    }
-                    manipulatedOps.insert(operationID);
+            if(key.startsWith("#")){
+                // remove predefined key
+                QString realKey=key.mid(1);
+                if(configManager.editorKeys.value(realKey)==operationID){
+                    configManager.editorKeys.remove(realKey);
                 }
+            }else{
+                if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
+                    if (!defaultKeys.isEmpty()) {
+                        foreach(const QString elem,defaultKeys){
+                            configManager.editorKeys.remove(elem);
+                        }
+                        manipulatedOps.insert(operationID);
+                    }
+                }
+                configManager.editorKeys.insert(key, operationID);
             }
-			configManager.editorKeys.insert(key, operationID);
 		}
 		QEditor::setEditOperations(configManager.editorKeys);
 	}

@@ -4216,7 +4216,7 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
 	#endif
 
-		addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
+        addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
 		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
 
 		addEditOperation(Undo, QKeySequence::Undo);
@@ -4234,36 +4234,18 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	}
 	if (!excludeDefault) return m_registeredKeys;
 	else {
-        QHash<QString,int> result;
-		result = m_registeredKeys;
-        QSet<int> opsCount;
-        QList<int> zw=m_registeredKeys.values();
-        qSort(zw);
-        int cnt=0;
-        int key=-1;
-        foreach(const int elem,zw){
-            if(key==elem)
-                cnt++;
-            if(key==-1){
-                key=elem;
-            }
-            if(key!=elem){
-                if(cnt>0)
-                    opsCount.insert(key);
-                key=elem;
-                cnt=0;
-            }
+        QHash<QString, int> result = m_registeredKeys;
+        foreach(QString key,m_registeredDefaultKeys.keys()){
+                if(result.contains(key)){
+                    if(result.value(key)==m_registeredDefaultKeys.value(key)){
+                        result.remove(key);
+                    }
+                }else{
+                    // add for removal
+                    result.insert("#"+key,m_registeredDefaultKeys.value(key));
+                }
         }
-
-        QHash<QString, int>::const_iterator i = m_registeredDefaultKeys.begin();
-		while (i != m_registeredDefaultKeys.constEnd()) {
-            if(!opsCount.contains(i.value())){ // don't remove keys when an operation is defined various times
-                QHash<QString, int>::iterator j = result.find(i.key());
-                if (j!=result.end() && j.value() == i.value()) result.erase(j);
-            }
-			++i;
-		}
-		return result;
+        return result;
 	}
 }
 
