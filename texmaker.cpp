@@ -5696,8 +5696,8 @@ void Texmaker::GeneralOptions() {
 			else
 				marks[i].color = Qt::transparent;
 		// update all docuemnts views as spellcheck may be different
-		QEditor::setEditOperations(configManager.editorKeys,true);
-		foreach (LatexEditorView *edView, EditorTabs->editors()) {
+        QEditor::setEditOperations(configManager.editorKeys,false); // true -> false, otherwise edit operation can't be removed, e.g. tab for indentSelection
+        foreach (LatexEditorView *edView, EditorTabs->editors()) {
 			QEditor* ed = edView->editor;
 			ed->document()->markFormatCacheDirty();
 			ed->update();
