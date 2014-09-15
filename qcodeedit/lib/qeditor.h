@@ -178,6 +178,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			PreviousPlaceHolder,
 			NextPlaceHolderOrWord,
 			PreviousPlaceHolderOrWord,
+            TabOrIndentSelection,
 			IndentSelection,
 			UnindentSelection
 		};
@@ -380,6 +381,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void gotoLine();
 		
+        void tabOrIndentSelection();
 		void indentSelection();
 		void unindentSelection();
 		

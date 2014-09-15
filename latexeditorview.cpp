@@ -193,7 +193,8 @@ void DefaultInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (event->text() == ",") {
 		LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
 		Q_ASSERT(view);
-		emit view->colonTyped();
+        if(completerConfig && completerConfig->enabled)
+            emit view->colonTyped();
 	}
 }
 
@@ -2363,6 +2364,7 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 		QEditor::PreviousPlaceHolder,
 		QEditor::NextPlaceHolderOrWord,
 		QEditor::PreviousPlaceHolderOrWord,
+        QEditor::TabOrIndentSelection,
 		QEditor::IndentSelection,
 		QEditor::UnindentSelection};
 	QList<int> res;
@@ -2465,11 +2467,15 @@ void LatexEditorViewConfig::settingsChanged(){
 	bool lettersHaveDifferentWidth = false, sameLettersHaveDifferentWidth = false;
 	int letterWidth = fms.first().width('a');
 	
-	static QString lettersToCheck("abcdefghijklmnoqrstuvwxyzABCDEFHIJKLMNOQRSTUVWXYZ_+ 123/()=.,;#");
-	
+	const QString lettersToCheck("abcdefghijklmnoqrstuvwxyzABCDEFHIJKLMNOQRSTUVWXYZ_+ 123/()=.,;#");
+	QVector<QMap<QChar, int> > widths;
+	widths.resize(fms.size());
+
 	foreach (const QChar& c, lettersToCheck) {
-		foreach (const QFontMetrics& fm, fms) {
+		for (int fmi = 0; fmi < fms.size(); fmi++) {
+			const QFontMetrics& fm = fms[fmi];
 			int currentWidth = fm.width(c);
+			widths[fmi].insert(c, currentWidth);
 			if (currentWidth != letterWidth) lettersHaveDifferentWidth = true;
 			QString testString;
 			for (int i=1;i<10;i++) {
@@ -2482,9 +2488,20 @@ void LatexEditorViewConfig::settingsChanged(){
 		}
 		if (lettersHaveDifferentWidth && sameLettersHaveDifferentWidth) break;
 	}
+	const QString ligatures[2] = {"aftt", "afit"}; 
+	for (int l=0;l<2 && !sameLettersHaveDifferentWidth;l++) {
+		for (int fmi = 0; fmi < fms.size(); fmi++) {
+			int expectedWidth = 0;
+			for (int i=0;i<ligatures[l].size() && !sameLettersHaveDifferentWidth;i++){
+				expectedWidth += widths[fmi].value(ligatures[l][i]);
+				if (expectedWidth != fms[fmi].width(ligatures[l].left(i+1))) sameLettersHaveDifferentWidth = true;
+			}
+		}
+	}
+
 	
 	if (!QFontInfo(f).fixedPitch()) hackDisableFixedPitch = false; //won't be enabled anyways
-	else hackDisableFixedPitch = lettersHaveDifferentWidth;
+	else hackDisableFixedPitch = lettersHaveDifferentWidth || sameLettersHaveDifferentWidth;
 	hackDisableWidthCache = sameLettersHaveDifferentWidth;
 
 	hackDisableLineCache = isRetinaMac();
