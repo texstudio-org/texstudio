@@ -1165,19 +1165,20 @@ bool ConfigManager::execConfigDialog() {
 			twi->setSizeHint(0,QSize(sz.width(),ht));
 #endif
 		}
+
 	}
-	QTreeWidgetItem * twi=new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
+	
+	confDlg->ui.shortcutTree->addTopLevelItem(editorItem);
+	editorItem->setExpanded(true);
+    editorKeys->sortChildren(0,Qt::AscendingOrder); //sorting only works after assigning a tree widget !
+    QTreeWidgetItem * twi=new QTreeWidgetItem(editorKeys, QStringList() << ShortcutDelegate::addRowButton);
 #ifdef Q_OS_WIN32
-	QSize sz=twi->sizeHint(0);
-	twi->setSizeHint(0,QSize(sz.width(),ht));
+    QSize sz=twi->sizeHint(0);
+    twi->setSizeHint(0,QSize(sz.width(),ht));
 #else
     Q_UNUSED(twi);
     Q_UNUSED(ht);
 #endif
-
-	
-	confDlg->ui.shortcutTree->addTopLevelItem(editorItem);
-	editorItem->setExpanded(true);
 	
 	ShortcutDelegate delegate;
 	delegate.treeWidget=confDlg->ui.shortcutTree;
