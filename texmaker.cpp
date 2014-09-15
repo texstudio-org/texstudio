@@ -647,7 +647,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 	
 	menu->addSeparator();
-	newManagedEditorAction(menu, "print",tr("Print..."), "print", Qt::CTRL+Qt::Key_P);
+	newManagedEditorAction(menu, "print",tr("Print Source Code..."), "print", Qt::CTRL+Qt::Key_P);
 	
 	menu->addSeparator();
 	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q)->setMenuRole(QAction::QuitRole);
