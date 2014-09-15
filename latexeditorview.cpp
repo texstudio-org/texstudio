@@ -2364,6 +2364,7 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 		QEditor::PreviousPlaceHolder,
 		QEditor::NextPlaceHolderOrWord,
 		QEditor::PreviousPlaceHolderOrWord,
+        QEditor::TabOrIndentSelection,
 		QEditor::IndentSelection,
 		QEditor::UnindentSelection};
 	QList<int> res;

@@ -2479,6 +2479,15 @@ static void removeFromStart(const QDocumentCursor& cur, const QString& txt)
 	c.removeSelectedText();
 }
 
+void QEditor::tabOrIndentSelection()
+{
+    if(m_cursor.hasSelection()){
+        indentSelection();
+    }else{
+        m_cursor.insertText("\t");
+    }
+}
+
 /*!
 	\brief Indent the selection
 */
@@ -3029,7 +3038,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	case NextPlaceHolder: nextPlaceHolder(); break;
 	case PreviousPlaceHolder: previousPlaceHolder(); break;
 
-
+    case TabOrIndentSelection: tabOrIndentSelection(); break;
 	case IndentSelection: indentSelection(); break;
 	case UnindentSelection: unindentSelection(); break;
 
@@ -4216,7 +4225,7 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
 	#endif
 
-        addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
+        addEditOperation(TabOrIndentSelection, Qt::NoModifier, Qt::Key_Tab);
 		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
 
 		addEditOperation(Undo, QKeySequence::Undo);
@@ -4312,6 +4321,7 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case PreviousPlaceHolder: return tr("Previous placeholder");
 	case NextPlaceHolderOrWord: return tr("Next placeholder or one word right");
 	case PreviousPlaceHolderOrWord: return tr("Previous placeholder or one word left");
+    case TabOrIndentSelection: return tr("Tab or Indent selection");
 	case IndentSelection: return tr("Indent selection");
 	case UnindentSelection: return tr("Unindent selection");
 
