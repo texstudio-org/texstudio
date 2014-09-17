@@ -332,6 +332,29 @@ QString findAbsoluteFilePath(const QString & relName, const QString &extension, 
 	return fbp + s; // fallback
 }
 
+void updatePathSettings(QProcess* proc, QString additionalPaths)
+{
+#ifndef Q_OS_MAC
+#if (QT_VERSION >= 0x040600)
+	QProcess *myProcess = new QProcess();
+	myProcess->start("bash -l -c \"echo $PATH\"");
+	myProcess->waitForFinished(3000);
+	if(myProcess->exitStatus()==QProcess::NormalExit){
+		QByteArray res=myProcess->readAllStandardOutput();
+		delete myProcess;
+		QString path(res);
+		if (additionalPaths.isEmpty()) additionalPaths = path;
+		else additionalPaths += ":" + path;
+	}
+#endif
+#endif
+	if (!additionalPaths.isEmpty()) {
+		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+		env.insert("PATH", env.value("PATH") + getPathListSeparator() + additionalPaths);
+		proc->setProcessEnvironment(env);
+	}
+}
+
 int x11desktop_env() {
     // 0 : no kde ; 3: kde ; 4 : kde4 ;
     QString kdesession= ::getenv("KDE_FULL_SESSION");
