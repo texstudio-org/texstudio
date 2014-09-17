@@ -640,13 +640,15 @@ For this menu items can be renamed and a new Latex-Code can be placed. The aprop
 Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the custom toolbar list in the configure dialog.
 </p>
 <p><IMG src="configure_customToolbar.png" border="1" alt="Customize Toolbars"></p>
-<h2 id="SECTION08">1.8 Configuring SVN support</h2>
-<p>To provide documenten versioning, TeXstudio makes use of SVN (subversion). To make use of it, the SVN commandline tools need to be installed.
+<h2 id="SECTION08">1.9 Configuring SVN support</h2>
+<p>To supports SVN (subversion) for document versioning. To make use of it, the SVN commandline tools need to be installed.
 Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
 </p>
-<p>
-The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the svn configure page, see below.
-Furthermore the user can choose the degree of automation, which TeXstudio provides.
+<p>The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the Commands page in the options. 
+On the SVN page you can can choose the degree of automation (see below) WSVN, see below.
+</p>
+<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the commmand line or the GUI of your choice). 
+Once you have a working copy, TeXstudio can operate on it.
 </p>
 <p>
 "Automatically check in after save" allows TeXstudio to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
