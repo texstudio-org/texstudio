@@ -1976,7 +1976,9 @@ QSizeF PDFWidget::maxPageSizeF() const{
 // TODO: Replace TextBoxes with the ArtBox of the page once this becomes available via the poppler-qt interface.
 // Only the horizontal values of the returned QRectF have meaning.
 QRectF PDFWidget::horizontalTextRangeF() const{
-	REQUIRE_RET(!document.isNull(), QRectF());
+	REQUIRE_RET(document && pdfdocument, QRectF());
+	if (pdfdocument->isCompiling) return QRectF();
+
 	qreal textXmin = +1.e99;
 	qreal textXmax = -1.e99;
 	if(!horizontalTextRange.isValid()){
@@ -1985,8 +1987,11 @@ QRectF PDFWidget::horizontalTextRangeF() const{
 		progress.setMinimumDuration(500);
 
 		for(int page=0;page<docPages;page++){
-			progress.setValue(page);
+			progress.setValue(page); //this is like the fire nation
+			if (horizontalTextRange.isValid()) return horizontalTextRange;
+			if (progress.wasCanceled() || !document || !pdfdocument || pdfdocument->isCompiling) break;
 			Poppler::Page *popplerPage=document->page(page);
+
 			if (!popplerPage) break;
 			foreach (Poppler::TextBox *textbox, popplerPage->textList()) {
 				QRectF bb = textbox->boundingBox();
@@ -1995,11 +2000,8 @@ QRectF PDFWidget::horizontalTextRangeF() const{
 				delete textbox;
 			}
 			delete popplerPage;
-			if (progress.wasCanceled())
-				break;
 		}
-		progress.close();
-		if (textXmax - textXmin > 0) {
+		if (textXmax > textXmin) {
 			horizontalTextRange = QRectF(textXmin, 0, textXmax - textXmin, 1);
 		}
 	}
