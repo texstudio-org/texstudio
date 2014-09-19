@@ -4889,7 +4889,7 @@ Fehlender \caption Kommando.</translation>
     <message>
         <location line="+1365"/>
         <source>Add to Dictionary</source>
-        <translation>Zum Wörterbuchhinzufügen</translation>
+        <translation type="unfinished">Zum Wörterbuch hinzufügen</translation>
     </message>
     <message>
         <location line="+232"/>

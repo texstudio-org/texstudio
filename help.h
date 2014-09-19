@@ -32,6 +32,8 @@ private:
 	Help(const Help &);
 	Help& operator=(const Help &);
 
+	static QString getAdditionalCmdSearchPath();
+
 	static Help *m_Instance;
 
 };

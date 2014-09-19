@@ -3081,6 +3081,10 @@ void PDFDocument::search(const QString& searchText, bool backwards, bool increme
 			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
 #else
             double rectLeft, rectTop, rectRight, rectBottom;
+            rectLeft=lastSearchResult.selRect.left();
+            rectTop=lastSearchResult.selRect.top();
+            rectRight=lastSearchResult.selRect.right();
+            rectBottom=lastSearchResult.selRect.bottom();
             if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchMode)) {
 				lastSearchResult.selRect=QRectF(rectLeft, rectTop, rectRight-rectLeft, rectBottom-rectTop);
 #endif
