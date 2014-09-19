@@ -1,0 +1,2470 @@
+# tlmgr: package repository http://ftp.uni-erlangen.de/mirrors/CTAN/systems/texlive/tlnet
+# obtained 2013-01-17
+12many: Generalising mathematical index sets.
+2up: (shortdesc missing)
+Asana-Math: A font to typeset maths in Xe(La)TeX and Lua(La)TeX.
+ESIEEcv: Curriculum vitae for French use.
+FAQ-en: A compilation of Frequently Asked Questions with answers.
+GS1: Typeset EAN barcodes using TeX rules, only.
+HA-prosper: Patches and improvements for prosper.
+IEEEconf: Macros for IEEE conference proceedings.
+IEEEtran: Document class for IEEE Transactions journals and conferences.
+MemoirChapStyles: Chapter styles in memoir class.
+SIstyle: Package to typeset SI units, numbers and angles.
+SIunits: International System of Units.
+Tabbing: Tabbing with accented letters.
+Type1fonts: Font installation guide.
+a0poster: Support for designing posters on large paper.
+a2ping: Advanced PS, PDF, EPS converter.
+a4wide: "Wide" a4 layout.
+a5comb: Support for a5 paper sizes.
+aastex: Macros for Manuscript Preparation for AAS Journals.
+abbr: Simple macros supporting abreviations for Plain and LaTeX.
+abc: Support ABC music notation in LaTeX.
+abntex2: Typeset a Brazilian academic thesis based on ABNT rules.
+abraces: Asymmetric over-/underbraces in maths.
+abstract: Control the typesetting of the abstract environment.
+abstyles: Adaptable BibTeX styles.
+accfonts: Utilities to derive new fonts from existing ones.
+achemso: Support for American Chemical Society journal submissions.
+acmconf: Class for ACM conference proceedings.
+acro: Typeset acronyms.
+acronym: Expand acronyms at least once.
+acroterm: Manage and index acronyms and terms.
+active-conf: Class for typesetting ACTIVE conference papers.
+actuarialangle: Symbol for use in "present value" statements of an annuity.
+addlines: A user-friendly wrapper around \enlargethispage.
+adfathesis: Australian Defence Force Academy thesis format.
+adforn: OrnementsADF font with TeX/LaTeX support
+adfsymbols: SymbolsADF with TeX/LaTeX support.
+adhocfilelist: '\listfiles' entries from the command line.
+adjmulticol: Adjusting margins for multicolumn and single column output.
+adjustbox: (shortdesc missing)
+adobemapping: Adobe cmap and pdfmapping files
+adrconv: BibTeX styles to implement an address database.
+advdate: Print a date relative to "today".
+ae: Virtual fonts for T1 encoded CMR-fonts.
+aecc: (shortdesc missing)
+aeguill: Add several kinds of guillemets to the ae fonts.
+afm2pl: (shortdesc missing)
+afthesis: Air Force Institute of Technology thesis class.
+aguplus: Styles for American Geophysical Union.
+aiaa: Typeset AIAA conference papers.
+aichej: Bibliography style file for the AIChE Journal.
+akktex: A collection of packages and classes.
+akletter: Comprehensive letter support.
+aleph: Extended TeX.
+alg: LaTeX environments for typesetting algorithms.
+algorithm2e: Floating algorithm environment with algorithmic keywords.
+algorithmicx: The algorithmic style you always wanted.
+algorithms: A suite of tools for typesetting algorithms in pseudo-code.
+allrunes: Fonts and LaTeX package for almost all runes.
+alnumsec: Alphanumeric section numbering.
+alterqcm: Multiple choice questionnaires in two column tables.
+altfont: Alternative font handling in LaTeX.
+ametsoc: Official American Meteorological Society Latex Template.
+amiri: A classical Arabic typeface, Naskh style.
+amsaddr: Alter the position of affiliations in amsart.
+amscls: AMS document classes for LaTeX.
+amsfonts: TeX fonts from the American Mathematical Society.
+amslatex-primer: Getting up and running with AMS-LaTeX.
+amsldoc-it: (shortdesc missing)
+amsldoc-vn: Vietnamese documentation.
+amsmath: AMS mathematical facilities for LaTeX.
+amsmath-it: Italian translations of some old AMSmath documents.
+amsrefs: A LaTeX-based replacement for BibTeX.
+amstex: American Mathematical Society plain TeX macros.
+amsthdoc-it: (shortdesc missing)
+animate: Create PDF animations from graphics files and inline graphics.
+anonchap: Make chapters be typeset like sections.
+answers: Setting questions (or exercises) and answers.
+antiqua: URW Antiqua condensed font, for use with TeX.
+antomega: Alternative language support for Omega/Lambda.
+antt: Antykwa Torunska: a Type 1 family of a Polish traditional type.
+anufinalexam: LaTeX document shell for ANU final exam
+anyfontsize: Select any font size in LaTeX.
+anysize: A simple package to set up document margins.
+aomart: Typeset articles for the Annals of Mathematics.
+apa: American Psychological Association format.
+apa6: Format documents in APA style (6th edition).
+apa6e: Format manuscripts to APA 6th edition guidelines.
+apacite: Citation style following the rules of the APA.
+apalike2: Bibliography style that approaches APA requirements.
+appendix: Extra control of appendices.
+appendixnumberbeamer: Manage frame numbering in appendixes in beamer.
+apprends-latex: Apprends LaTeX!
+apptools: Tools for customising appendices.
+arabi: (La)TeX support for Arabic and Farsi, compliant with Babel.
+arabtex: Macros and fonts for typesetting Arabic.
+arabxetex: An ArabTeX-like interface for XeLaTeX.
+archaic: A collection of archaic fonts.
+arcs: Draw arcs over and under text
+arev: Fonts and LaTeX support files for Arev Sans.
+around-the-bend: Typeset exercises in TeX, with answers.
+arphic: Arphic (Chinese) font packages.
+arrayjobx: Array data structures for (La)TeX.
+arsclassica: A different view of the ClassicThesis package.
+articleingud: LaTeX class for articles published in INGENIERIA review.
+arydshln: Horizontal and vertical dashed lines in arrays and tabulars.
+asaetr: Transactions of the ASAE.
+ascelike: Bibliography style for the ASCE.
+ascii: Support for IBM "standard ASCII" font.
+ascii-chart: An ASCII wall chart.
+aspectratio: Capital A and capital R ligature for Aspect Ratio.
+assignment: A class file for typesetting homework and lab assignments
+astro: Astronomical (planetary) symbols.
+asyfig: Commands for using Asymptote figures.
+asymptote: 2D and 3D TeX-Aware Vector Graphics Language.
+asymptote-by-example-zh-cn: Asymptote by example.
+asymptote-faq-zh-cn: Asymptote FAQ (Chinese translation).
+asymptote-manual-zh-cn: A Chinese translation of the asymptote manual.
+attachfile: Attach arbitrary files to a PDF document
+augie: Calligraphic font for typesetting handwriting.
+auncial-new: Artificial Uncial font and LaTeX support macros.
+aurical: Calligraphic fonts for use with LaTeX in T1 encoding.
+authoraftertitle: Make author, etc., available after \maketitle.
+authorindex: Index citations by author names.
+auto-pst-pdf: Wrapper for pst-pdf (with some psfrag features).
+autoarea: Automatic computation of bounding boxes with PiCTeX.
+automata: Finite state machines, graphs and trees in MetaPost.
+autonum: Automatic equation references.
+autopdf: Conversion of graphics to pdfLaTeX-compatible formats.
+avantgar: URW "Base 35" font pack for LaTeX.
+b1encoding: LaTeX encoding tools for Bookhands fonts.
+babel: Multilingual support for Plain TeX or LaTeX.
+babelbib: Multilingual bibliographies.
+background: Placement of background material on pages of a document.
+backnaur: Typeset Backus Naur Form definitions.
+bangtex: Writing Bangla and Assamese with LaTeX.
+barcodes: Fonts for making barcodes.
+bardiag: LateX package for drawing bar diagrams.
+barr: Diagram macros by Michael Barr.
+bartel-chess-fonts: A set of fonts supporting chess diagrams.
+bashful: Invoke bash commands from within LaTeX.
+baskervald: Baskervald ADF fonts collection with TeX/LaTeX support.
+basque-book: Class for book-type documents written in Basque.
+basque-date: Print the date in Basque.
+bbcard: Bullshit bingo, calendar and baseball-score cards.
+bbding: A symbol (dingbat) font and LaTeX macros for its use.
+bbm: "Blackboard-style" cm fonts.
+bbm-macros: LaTeX support for "blackboard-style" cm fonts.
+bbold: Sans serif blackboard bold.
+bbold-type1: An Adobe Type 1 format version of the bbold font.
+bchart: Draw simple bar charts in LaTeX.
+bclogo: Creating colourful boxes with logos.
+beamer: A LaTeX class for producing presentations and slides.
+beamer-FUBerlin: Beamer, using the style of FU Berlin.
+beamer-tut-pt: An introduction to the Beamer class, in Portuguese.
+beamer2thesis: Thesis presentations using beamer.
+beameraudience: Assembling beamer frames according to audience
+beamerposter: Extend beamer and a0poster for custom sized posters.
+beamersubframe: Reorder frames in the PDF file.
+beamerthemejltree: Contributed beamer theme.
+beamerthemenirma: A Beamer theme for academic presentations.
+beebe: (shortdesc missing)
+begriff: Typeset Begriffschrift.
+belleek: Free replacement for basic MathTime fonts.
+bengali: Support for the Bengali language.
+bera: Bera fonts.
+berenisadf: Berenis ADF fonts and TeX/LaTeX support.
+betababel: Insert ancient greek text coded in Beta Code.
+beton: Use Concrete fonts.
+bez123: Support for Bezier curves.
+bezos: Packages by Javier Bezos.
+bgreek: Using Beccari's fonts in betacode for classical Greek.
+bgteubner: Class for producing books for the publisher "Teubner Verlag".
+bguq: Improved quantifier stroke for Begriffsschrift packages.
+bhcexam: A LaTeX document class specially designed for High School Math Teachers in China.
+bib-fr: French translation of classical BibTeX styles
+bibarts: "Arts"-style bibliographical information.
+biber: A BibTeX replacement for users of biblatex.
+bibexport: Extract a BibTeX file based on a .aux file.
+bibhtml: BibTeX support for HTML files.
+biblatex: Bibliographies in LaTeX using BibTeX for sorting only.
+biblatex-apa: Biblatex citation and reference style for APA.
+biblatex-bwl: (shortdesc missing)
+biblatex-caspervector: A simple citation style for Chinese users.
+biblatex-chem: A set of biblatex implementations of chemistry-related bibliography styles.
+biblatex-chicago: Chicago style files for biblatex.
+biblatex-dw: Humanities styles for biblatex.
+biblatex-fiwi: Biblatex styles for use in German humanities.
+biblatex-historian: A Biblatex style.
+biblatex-ieee: Ieee style files for biblatex.
+biblatex-juradiss: Biblatex stylefiles for German law thesis.
+biblatex-luh-ipw: Biblatex styles for social sciences.
+biblatex-mla: MLA style files for biblatex.
+biblatex-musuos: A biblatex style for citations in musuos.cls.
+biblatex-nature: Biblatex support for Nature.
+biblatex-nejm: Biblatex style for the New England Journal of Medicine (NEJM).
+biblatex-philosophy: Styles for using biblatex for work in philosophy.
+biblatex-phys: A biblatex implementation of the AIP and APS bibliography style.
+biblatex-publist: BibLaTeX bibliography support for publication lists.
+biblatex-science: Biblatex implementation of the Science bibliography style.
+biblatex-swiss-legal: Bibliography and citation styles following Swiss legal practice.
+biblatex-trad: "Traditional" BibTeX styles with BibLaTeX.
+bibleref: Format bible citations.
+bibleref-french: French translations for bibleref.
+bibleref-german: German adaptation of bibleref.
+bibleref-lds: Bible references, including those to the scriptures of the Church of Jesus Christ of Latter Day Saints.
+bibleref-mouth: Consistent formatting of Bible references.
+bibleref-parse: Specify Bible passages in human-readable format.
+biblist: Print a BibTeX database.
+bibtex: Process bibliographies for LaTeX, etc.
+bibtex8: A fully 8-bit adaptation of BibTeX 0.99.
+bibtexu: (shortdesc missing)
+bibtopic: Include multiple bibliographies in a document.
+bibtopicprefix: Prefix references to bibliographies produced by bibtopic.
+bibunits: Multiple bibliographies in one document.
+bidi: Support for bidirectional typesetting in plain TeX and LaTeX.
+bigfoot: Footnotes for critical editions.
+bigints: Writing big integrals.
+binomexp: Calculate Pascal's triangle.
+biocon: Typesetting biological species names
+bitelist: Split list, in TeX's mouth.
+bizcard: Typeset business cards.
+blacklettert1: T1-encoded versions of Haralambous old German fonts.
+blindtext: Producing 'blind' text for testing.
+blkarray: Extended array and tabular.
+block: A block letter style for the letter class.
+blockdraw_mp: Block diagrams and bond graphs, with MetaPost.
+bloques: Generate control diagrams.
+blowup: Upscale or downscale all pages of a document.
+bodegraph: Draw Bode, Nyquist and Black plots with gnuplot and TikZ.
+bohr: Simple atom representation according to the Bohr model.
+boisik: A font inspired by Baskerville design.
+boites: Boxes that may break across pages
+bold-extra: Use bold small caps and typewriter fonts.
+boldtensors: Bold latin and greek characters through simple prefix characters.
+bondgraph: Create bond graph figures in LaTeX documents.
+bookest: Extended book class.
+bookhands: A collection of book-hand fonts.
+booklet: Aids for printing simple booklets.
+bookman: URW "Base 35" font pack for LaTeX.
+booktabs: Publication quality tables in LaTeX
+booktabs-de: German version of booktabs.
+booktabs-fr: French translation of booktabs documentation.
+boolexpr: A boolean expression evaluator and a switch command.
+boondox: Mathematical alphabets derived from the STIX fonts.
+bophook: Provides an At-Begin-Page hook.
+borceux: Diagram macros by Francois Borceux.
+bosisio: A collection of packages by Francesco Bosisio.
+boxedminipage: A package for producing framed minipages.
+boxhandler: Flexible Captioning and Deferred Box/List Printing.
+bpchem: Typeset chemical names, formulae, etc.
+bpolynomial: Drawing polynomial functions of up to order 3.
+bracketkey: Produce bracketed identification keys.
+braids: Draw braid diagrams with PGF/TikZ.
+braille: Support for braille.
+braket: Dirac bra-ket and set notations.
+breakcites: Ensure that multiple citations may break at line end.
+breakurl: Line-breakable \url-like links in hyperref when compiling via dvips/ps2pdf.
+bropd: Simplified brackets and differentials in LaTeX.
+brushscr: A handwriting script font.
+bullcntr: Display list item counter as regular pattern of bullets.
+bundledoc: Bundle together all the files needed to build a LaTeX document.
+burmese: Basic Support for Writing Burmese.
+bussproofs: Proof trees in the style of the sequent calculus.
+bxbase: BX bundle base components.
+bytefield: Create illustrations for network protocol specifications.
+c-pascal: Typeset Python, C and Pascal programs.
+c90: (shortdesc missing)
+cabin: A humanist Sans Serif font, with LaTeX support.
+cachepic: Convert document fragments into graphics.
+calcage: Calculate the age of something, in years.
+calctab: Language for numeric tables.
+calculator: Use LaTeX as a scientific calculator.
+calligra: Calligraphic font.
+calligra-type1: Type 1 version of Caliigra.
+calrsfs: Copperplate calligraphic letters in LaTeX.
+cals: Multipage tables with wide range of features.
+calxxxx-yyyy: Print a calendar for a group of years.
+cancel: Place lines through maths formulae.
+canoniclayout: Create canonical page layouts with memoir.
+cantarell: LaTeX support for the Cantarell font family.
+capt-of: Captions on more than floats.
+captcont: Retain float number across several floats.
+captdef: Declare free-standing \caption commands.
+caption: Customising captions in floating environments.
+carlisle: David Carlisle's small packages.
+carolmin-ps: Adobe Type 1 format of Carolingian Minuscule fonts.
+cascadilla: Typeset papers conforming to the stylesheet of the Cascadilla Proceedings Project.
+cases: Numbered cases environment
+casyl: Typeset Cree/Inuktitut in Canadian Aboriginal Syllabics.
+catchfilebetweentags: Catch text delimited by docstrip tags.
+catcodes: Generic handling of TeX category codes.
+catechis: Macros for typesetting catechisms.
+catoptions: Preserving and recalling standard catcodes.
+cbcoptic: Coptic fonts and LaTeX macros for general usage and for philology.
+cbfonts: Complete set of Greek fonts.
+cc-pl: Polish extension of Computer Concrete fonts.
+ccaption: Continuation headings and legends for floats.
+ccfonts: Support for Concrete text and math fonts in LaTeX.
+ccicons: (shortdesc missing)
+cclicenses: Typeset Creative Commons licence logos.
+cd: Typeset CD covers.
+cd-cover: Typeset CD covers.
+cdpbundl: Business letters in the Italian style.
+cell: Bibliography style for Cell.
+cellspace: Ensure minimal spacing of table cells.
+censor: Facilities for controlling restricted text in a document.
+cfr-lm: Enhanced support for the Latin Modern fonts.
+changebar: Generate changebars in LaTeX documents.
+changelayout: Change the layout of individual pages and their text.
+changepage: Margin adjustment and detection of odd/even pages.
+changes: Manual change markup.
+chappg: Page numbering by chapter.
+chapterfolder: Package for working with complicated folder structures.
+charter: Charter fonts.
+chbibref: Change the Bibliography/References title.
+checkcites: Check citation commands in a document.
+chem-journal: Various BibTeX formats for journals in Chemistry.
+chemarrow: Arrows for use in chemistry.
+chembst: A collection of BibTeX files for chemistry journals.
+chemcompounds: Simple consecutive numbering of chemical compounds.
+chemcono: Support for compound numbers in chemistry documents.
+chemexec: Creating (chemical) exercise sheets.
+chemfig: Draw molecules with easy syntax.
+chemmacros: A collection of macros to support typesetting chemistry documents.
+chemnum: A method of numbering chemical compounds.
+chemstyle: Writing chemistry with style.
+cherokee: A font for the Cherokee script.
+chess: Fonts for typesetting chess boards.
+chess-problem-diagrams: A package for typesetting chess problem diagrams.
+chessboard: Print chess boards.
+chessfss: A package to handle chess fonts.
+chet: LaTeX layout inspired by harvmac.
+chextras: A companion package for the Swiss typesetter.
+chicago: A "Chicago" bibliography style.
+chicago-annote: Chicago-based annotated BibTeX style.
+chickenize: Use lua callbacks for "interesting" textual effects.
+chkfloat: Warn whenever a float is placed "to far away".
+chktex: Check for errors in LaTeX documents.
+chletter: Class for typesetting letters to Swiss rules.
+chngcntr: Change the resetting of counters.
+chronology: Provides a horizontal timeline.
+chronosys: Drawing time-line diagrams.
+chscite: Bibliography style for Chalmers University of Technology.
+circ: Macros for typesetting circuit diagrams.
+circuitikz: Draw electrical networks with TikZ.
+cite: Improved citation handling in LaTeX.
+cjhebrew: Typeset Hebrew with LaTeX.
+cjk: CJK language support.
+cjkpunct: Adjust locations and kerning of CJK punctuation marks.
+cjkutils: (shortdesc missing)
+classicthesis: A "classically styled" thesis package.
+clefval: Key/value support with a hash.
+cleveref: Intelligent cross-referencing.
+clock: Graphical and textual clocks for TeX and LaTeX.
+clrscode: Typesets pseudocode as in Introduction to Algorithms.
+cm: Computer Modern fonts.
+cm-lgc: Type 1 CM-based fonts for Latin, Greek and Cyrillic.
+cm-super: CM-Super family of fonts
+cm-unicode: Computer Modern Unicode font family.
+cmap: (shortdesc missing)
+cmarrows: MetaPost arrows and braces in the Computer Modern style.
+cmbright: Computer Modern Bright fonts.
+cmcyr: Computer Modern fonts with cyrillic extensions.
+cmdstring: Get command name reliably.
+cmextra: (shortdesc missing)
+cmll: Symbols for linear logic.
+cmpica: A Computer Modern Pica variant.
+cmpj: Style for the journal Condensed Matter Physics.
+cmsd: Interfaces to the CM Sans Serif Bold fonts.
+cmtiup: Upright punctuation with CM slanted.
+cns: (shortdesc missing)
+codedoc: LaTeX code and documentation in LaTeX-format file.
+codepage: Support for variant code pages.
+codicefiscaleitaliano: Test the consistency of the Italian personal Fiscal Code.
+collcell: Collect contents of a tabular cell as argument to a macro.
+collectbox: (shortdesc missing)
+collection-basic: Essential programs and files
+collection-bibtexextra: Extra BibTeX styles
+collection-binextra: TeX auxiliary programs
+collection-context: ConTeXt format
+collection-documentation-arabic: Arabic documentation
+collection-documentation-base: TeX Live documentation
+collection-documentation-bulgarian: Bulgarian documentation
+collection-documentation-chinese: Chinese documentation
+collection-documentation-czechslovak: Czech/Slovak documentation
+collection-documentation-dutch: Dutch documentation
+collection-documentation-english: English documentation
+collection-documentation-finnish: Finnish documentation
+collection-documentation-french: French documentation
+collection-documentation-german: German documentation
+collection-documentation-italian: Italian documentation
+collection-documentation-japanese: Japanese documentation
+collection-documentation-korean: Korean documentation
+collection-documentation-mongolian: Mongolian documentation
+collection-documentation-polish: Polish documentation
+collection-documentation-portuguese: Portuguese documentation
+collection-documentation-russian: Russian documentation
+collection-documentation-serbian: Serbian documentation
+collection-documentation-slovenian: Slovenian documentation
+collection-documentation-spanish: Spanish documentation
+collection-documentation-thai: Thai documentation
+collection-documentation-turkish: Turkish documentation
+collection-documentation-ukrainian: Ukrainian documentation
+collection-documentation-vietnamese: Vietnamese documentation
+collection-fontsextra: Extra fonts
+collection-fontsrecommended: Recommended fonts
+collection-fontutils: Graphics and font utilities
+collection-formatsextra: Extra formats
+collection-games: Games typesetting
+collection-genericextra: Extra generic packages
+collection-genericrecommended: Recommended generic packages
+collection-htmlxml: HTML/SGML/XML support
+collection-humanities: Humanities packages
+collection-langafrican: African scripts
+collection-langarabic: Arabic
+collection-langarmenian: Armenian
+collection-langcjk: Chinese, Japanese, Korean
+collection-langcroatian: Croatian
+collection-langcyrillic: Cyrillic
+collection-langczechslovak: Czech/Slovak
+collection-langdanish: Danish
+collection-langdutch: Dutch
+collection-langenglish: US and UK English
+collection-langfinnish: Finnish
+collection-langfrench: French
+collection-langgerman: German
+collection-langgreek: Greek
+collection-langhebrew: Hebrew
+collection-langhungarian: Hungarian
+collection-langindic: Indic scripts
+collection-langitalian: Italian
+collection-langlatin: Latin
+collection-langlatvian: Latvian
+collection-langlithuanian: Lithuanian
+collection-langmongolian: Mongolian
+collection-langnorwegian: Norwegian
+collection-langother: Other hyphenation patterns
+collection-langpolish: Polish
+collection-langportuguese: Portuguese
+collection-langspanish: Spanish
+collection-langswedish: Swedish
+collection-langtibetan: Tibetan
+collection-langturkmen: Turkmen
+collection-langvietnamese: Vietnamese
+collection-latex: Basic LaTeX packages
+collection-latexextra: LaTeX supplementary packages
+collection-latexrecommended: LaTeX recommended packages
+collection-luatex: LuaTeX packages
+collection-mathextra: Advanced math typesetting
+collection-metapost: MetaPost (and Metafont) drawing packages
+collection-music: Music typesetting
+collection-omega: Omega packages
+collection-pictures: Graphics packages and programs
+collection-plainextra: Plain TeX supplementary packages
+collection-pstricks: PSTricks packages
+collection-publishers: Support for publishers, theses, standards, conferences, etc.
+collection-science: Typesetting for natural and computer sciences
+collection-texinfo: GNU Texinfo
+collection-texworks: TeXworks editor
+collection-wintools: Windows support programs
+collection-xetex: XeTeX packages
+collref: Collect blocks of references into a single reference.
+colordoc: Coloured syntax highlights in documentation.
+colorinfo: Retrieve colour model and values for defined colours.
+colorsep: Color separation.
+colortab: Shade cells of tables and halign.
+colortbl: Add colour to LaTeX tables.
+colorwav: Colours by wavelength of visible light.
+colourchange: colourchange
+combelow: Typeset "comma-below" letters, as in Romanian.
+combine: Bundle individual documents into a single document.
+combinedgraphics: Include graphic (EPS or PDF)/LaTeX combinations.
+comfortaa: Sans serif font, with LaTeX support.
+comma: Formats a number by inserting commas.
+commado: Expandable iteration on comma-separated and filename lists.
+commath: Mathematics typesetting support.
+comment: Selectively include/excludes portions of text.
+compactbib: Multiple thebibliography environments.
+complexity: Computational complexity class names.
+components-of-TeX: Components of TeX.
+comprehensive: Symbols accessible from LaTeX.
+computational-complexity: Class for the journal Computational Complexity.
+concepts: Keeping track of formal 'concepts' for a particular field.
+concmath: Concrete Math fonts.
+concmath-fonts: Concrete mathematics fonts.
+concprog: Concert programmes.
+concrete: Concrete Roman fonts.
+confproc: A set of tools for generating conference proceedings.
+constants: Automatic numbering of constants.
+context: The ConTeXt macro package.
+context-account: A simple accounting package.
+context-algorithmic: Algorithm handling in ConTeXt.
+context-bnf: A BNF module for Context.
+context-chromato: ConTeXt macros for chromatograms.
+context-construction-plan: Construction plans in ConTeXt.
+context-degrade: Degrading JPEG images in ConTeXt.
+context-filter: Run external programs on the contents of a start-stop environment.
+context-fixme: Make editorial marks on a document.
+context-french: Support for writing French in ConTeXt.
+context-fullpage: Overfull pages with ConTeXt
+context-games: (shortdesc missing)
+context-gantt: GANTT module for ConTeXt.
+context-gnuplot: Inclusion of Gnuplot graphs in ConTeXt.
+context-letter: Context package for writing letters.
+context-lettrine: A ConTeXt implementation of lettrines.
+context-lilypond: Lilypond code in ConTeXt.
+context-mathsets: Set notation in ConTeXt.
+context-notes-zh-cn: Notes on using ConTeXt MkIV.
+context-rst: Process reStructuredText with ConTeXt.
+context-ruby: Ruby annotations in ConTeXt.
+context-simplefonts: Simplified font usage for ConTeXt.
+context-simpleslides: (shortdesc missing)
+context-typearea: Something like Koma-Script typearea.
+context-typescripts: Small modules to load various fonts for use in ConTeXt.
+context-vim: Generate Context syntax highlighting code from vim.
+contour: Print a coloured contour around text.
+cooking: Typeset recipes.
+cookingsymbols: (shortdesc missing)
+cool: COntent-Oriented LaTeX.
+coollist: Manipulate COntent Oriented LaTeX Lists.
+coolstr: String manipulation in LaTeX.
+coolthms: Reference items in a theorem environment.
+cooltooltips: Associate a pop-up window and tooltip with PDF hyperlinks.
+coordsys: Draw cartesian coordinate systems.
+copypaste: (shortdesc missing)
+copyrightbox: Provide copyright notices for images in a document.
+coseoul: Context sensitive outline elements
+countriesofeurope: A font with the images of the countries of Europe.
+counttexruns: Count compilations of a document.
+courier: URW "Base 35" font pack for LaTeX.
+courier-scaled: Provides a scaled Courier font.
+courseoutline: Prepare university course outlines.
+coursepaper: Prepare university course papers.
+coverpage: Automatic cover page creation for scientific papers (with BibTeX data and copyright notice).
+covington: Linguistic support.
+cprotect: Allow verbatim, etc., in macro arguments.
+crbox: Boxes with crossed corners.
+crop: Support for cropmarks.
+crossreference: Crossreferences within documents.
+crossword: Typeset crossword puzzles.
+crosswrd: Macros for typesetting crossword puzzles.
+cryst: Font for graphical symbols used in crystallography.
+cs: Czech/Slovak-tuned Computer Modern fonts.
+csbulletin: LaTeX class for articles submitted to the CSTUG Bulletin (Zpravodaj).
+cslatex: LaTeX support for Czech/Slovak typesetting.
+csplain: Plain TeX support for Czech/Slovak typesetting.
+csquotes: Context sensitive quotation facilities.
+csquotes-de: German translation of csquotes documentation.
+cstex: Support for Czech/Slovak languages.
+csvsimple: Simple CSV file processing.
+csvtools: Reading data from CSV files.
+ctable: Easily typeset centered tables.
+ctanify: Prepare a package for upload to CTAN.
+ctanupload: Support for users uploading to CTAN.
+ctex: LaTeX classes and packages for Chinese typesetting.
+ctex-faq: LaTeX FAQ by the Chinese TeX Society (ctex.org).
+ctib: Tibetan for TeX and LATeX2e.
+ctie: C version of tie (merging Web change files).
+cuisine: Typeset recipes.
+currfile: Provide file name and path of input files.
+currvita: Typeset a curriculum vitae.
+cursolatex: A LaTeX tutorial.
+curve: A class for making curriculum vitae.
+curve2e: Extensions for package pict2e.
+curves: Curves for LaTeX picture environment
+custom-bib: Customised BibTeX styles.
+cutwin: Cut a window in a paragraph, typeset material in it.
+cv: A package for creating a curriculum vitae.
+cweb: A Web system in C.
+cweb-latex: A LaTeX version of CWEB.
+cyklop: The Cyclop typeface.
+cyrillic: Support for Cyrillic fonts in LaTeX.
+cyrillic-bin: Cyrillic bibtex and makeindex.
+cyrplain: (shortdesc missing)
+dancers: Font for Conan Doyle's "The Dancing Men".
+dashbox: Draw dashed boxes.
+dashrule: Draw dashed rules.
+dashundergaps: Underline with dotted or dashed lines.
+datatool: Tools to load and manipulate data.
+dateiliste: Extensions of the \listfiles concept.
+datenumber: Convert a date into a number and vice versa.
+datetime: Change format of \today with commands for current time.
+dblfloatfix: Fixes for twocolumn floats.
+dcpic: Commutative diagrams in a LaTeX and TeX documents.
+de-macro: Expand private macros in a document.
+decimal: LaTeX package for the English raised decimal point.
+decorule: Decorative swelled rule using font character.
+dehyph-exptl: Experimental hyphenation patterns for the German language.
+dejavu: LaTeX support for the fonts DejaVu.
+delim: (shortdesc missing)
+delimtxt: Read and parse text tables.
+detex: Strip TeX from a source file.
+devnag: Typeset Devanagari.
+dhua: German abbreviations using thin space.
+diagbox: Table heads with diagonal lines.
+diagmac2: Diagram macros, using pict2e.
+diagnose: A diagnostic tool for a TeX installation.
+dice: A font for die faces.
+dichokey: Construct dichotomous identification keys.
+dictsym: DictSym font and macro package
+digiconfigs: Writing "configurations"
+din1505: Bibliography styles for German texts.
+dinat: Bibliography style for German texts.
+dinbrief: German letter DIN style.
+dingbat: Two dingbat symbol fonts.
+directory: An address book using BibTeX.
+dirtree: Display trees in the style of windows explorer.
+dirtytalk: (shortdesc missing)
+disser: Class and templates for typesetting dissertations in Russian.
+dk-bib: Danish variants of standard BibTeX styles.
+dlfltxb: Macros related to "Introdktion til LaTeX".
+dnaseq: Format DNA base sequences.
+dnp: (shortdesc missing)
+doc-pictex: A summary list of PicTeX documentation.
+docmfp: Document non-LaTeX code.
+docmute: Input files ignoring LaTeX preamble, etc.
+documentation: Documentation support for C, Java and assembler code.
+doi: Create correct hyperlinks for DOI numbers.
+doipubmed: Special commands for use in bibliographies.
+dosepsbin: Deal with DOS binary EPS files.
+dot2texi: Create graphs within LaTeX using the dot2tex tool.
+dotarrow: Extendable dotted arrows.
+dotseqn: Flush left equations with dotted leaders to the numbers.
+dottex: Use dot code in LaTeX.
+doublestroke: Typeset mathematical double stroke symbols.
+dowith: Apply a command to a list of items.
+dox: Extend the doc package.
+dozenal: Typeset documents using base twelve numbering (also called "dozenal")
+dpfloat: Support for double-page floats.
+dprogress: LaTeX-relevant log information for debugging.
+drac: Declare active character substitution, robustly.
+draftcopy: Identify draft copies.
+draftwatermark: Put a grey textual watermark on document pages.
+dramatist: Typeset dramas, both in verse and in prose.
+dratex: General drawing macros.
+drawstack: Draw execution stacks.
+droid: LaTeX support for the Droid font families.
+droit-fr: Document class and bibliographic style for French law.
+drs: Typeset Discourse Representation Structures (DRS).
+drv: Derivation trees with MetaPost.
+dtk: Document class for the journal of DANTE.
+dtl: Tools to dis-assemble and re-assemble DVI files.
+dtxgallery: A small collection of minimal DTX examples.
+dtxtut: Tutorial on writing .dtx and .ins files
+duerer: Computer Duerer fonts.
+duerer-latex: LaTeX support for the Duerer fonts.
+duotenzor: Drawing package for circuit and duotensor diagrams.
+dutchcal: A reworking of ESSTIX13, adding a bold version.
+dvdcoll: A class for typesetting DVD archives
+dvi2tty: Produce ASCII from DVI.
+dviasm: A utility for editing DVI files.
+dvicopy: Copy DVI files, flattening VFs.
+dvidvi: Convert one DVI file into another.
+dviincl: Include a DVI page into MetaPost output.
+dviljk: DVI to Laserjet output.
+dvipdfm: A DVI driver to produce PDF directly.
+dvipdfmx: An extended version of dvipdfm.
+dvipdfmx-def: (shortdesc missing)
+dvipng: A fast DVI to PNG/GIF converter.
+dvipos: (shortdesc missing)
+dvips: A DVI to PostScript driver.
+dvipsconfig: Collection of dvips PostScript headers.
+dvisvgm: Converts DVI files to Scalable Vector Graphics format (SVG).
+dynblocks: A simple way to create dynamic blocks for Beamer.
+dyntree: Construct Dynkin tree diagrams.
+ean: Macros for making EAN barcodes.
+ean13isbn: Print EAN13 for ISBN.
+easy: A collection of easy-to-use macros.
+easy-todo: To-do notes in a document.
+easyfig: Simplifying the use of common figures.
+easylist: Lists using a single active character.
+ebezier: Device independent picture environment enhancement.
+ebgaramond: LaTeX support for EBGaramond fonts.
+ebong: Utility for writing Bengali in Rapid Roman Format.
+ebsthesis: Typesetting theses for economics
+ec: Computer modern fonts in T1 and TS1 encodings.
+ecc: Sources for the European Concrete fonts.
+ecclesiastic: Typesetting Ecclesiastic Latin.
+ecltree: Trees using epic and eepic macros.
+eco: Oldstyle numerals using EC fonts.
+economic: BibTeX support for submitting to Economics journals.
+ecv: A fancy Curriculum Vitae class.
+ed: Editorial Notes for LaTeX documents.
+edfnotes: Critical annotations to footnotes with ednotes.
+edmac: Typeset scholarly edition.
+edmargin: Multiple series of endnotes for critical editions.
+ednotes: Typeset scholarly editions.
+eemeir: Adjust the gender of words in a document.
+eepic: Extensions to epic and the LaTeX drawing tools.
+egameps: LaTeX package for typesetting extensive games.
+egplot: Encapsulate Gnuplot sources in LaTeX documents.
+eiad: Traditional style Irish fonts.
+eiad-ltx: LaTeX support for the eiad font.
+eijkhout: Victor Eijkhout's packages.
+einfuehrung: Examples from the book Einfuhrung in LaTeX.
+ejpecp: Class for EJP and ECP.
+elbioimp: A LaTeX document class for the Journal of Electrical Bioimpedance.
+electrum: Electrum ADF fonts collection.
+eledform: Define textual variants.
+eledmac: Typeset scholarly editions.
+ellipsis: Fix uneven spacing around ellipses in LaTeX text mode.
+elmath: Mathematics in Greek texts.
+elpres: A simple class for electronic presentations
+elsarticle: Class for articles for submission to Elsevier journals.
+elteikthesis: Thesis class for ELTE University Informatics wing.
+eltex: Simple circuit diagrams in LaTeX picture mode.
+elvish: Fonts for typesetting Tolkien Elvish scripts.
+emarks: Named mark registers with e-TeX.
+embrac: Upright brackets in emphasised text.
+emp: "Encapsulate" MetaPost figures in a document.
+emptypage: Make empty pages really empty.
+emulateapj: Produce output similar to that of APJ.
+enctex: A TeX extension that translates input on its way into TeX.
+encxvlna: Insert nonbreakable spaces, using encTeX.
+endfloat: Move floats to the end, leaving markers where they belong.
+endheads: Running headers of the form "Notes to pp.xx-yy"
+endiagram: Easy creation of potential energy curve diagrams.
+endnotes: Place footnotes at the end.
+engpron: Helps to type the pronunciation of English words.
+engrec: Enumerate with lower- or uppercase Greek letters.
+engtlc: Support for users in Telecommunications Engineering.
+enotez: Support for end-notes.
+enumitem: Control layout of itemize, enumerate, description.
+enumitem-zref: Extended references to items for enumitem package.
+envbig: Printing addresses on envelopes.
+environ: A new interface for environments in LaTeX.
+envlab: Addresses on envelopes or mailing labels.
+epigrafica: A Greek and Latin font.
+epigram: Display short quotations.
+epigraph: A package for typesetting epigraphs.
+epiolmec: Typesetting the Epi-Olmec Language.
+eplain: Extended plain tex macros.
+epsdice: A scalable dice "font".
+epsf: Simple macros for EPS inclusion.
+epsincl: Include EPS in MetaPost figures.
+epslatex-fr: French version of "graphics in LaTeX".
+epspdf: Converter for PostScript, EPS and PDF.
+epspdfconversion: On-the-fly conversion of EPS to PDF.
+epstopdf: (shortdesc missing)
+eqell: Sympathetically spaced ellipsis after punctuation.
+eqlist: Description lists with equal indentation.
+eqname: Name tags for equations.
+eqnarray: More generalised equation arrays with numbering.
+eqparbox: Create equal-widthed parboxes.
+erdc: Style for Reports by US Army Corps of Engineers.
+errata: Error markup for LaTeX documents.
+es-tex-faq: CervanTeX (Spanish TeX Group) FAQ
+esdiff: Simplify typesetting of derivatives.
+esint: Extended set of integrals for Computer Modern.
+esint-type1: Font esint10 in Type 1 format
+esk: Package to encapsulate Sketch files in LaTeX sources.
+eskd: Modern Russian typesetting.
+eskdx: Modern Russian typesetting.
+eso-pic: Add picture commands (or backgrounds) to every page.
+esstix: PostScript versions of the ESSTIX, with macro support.
+estcpmm: Style for Munitions Management Project Reports.
+esvect: Vector arrows.
+etaremune: Reverse-counting enumerate environment.
+etex: An extended version of TeX, from the NTS project.
+etex-pkg: E-TeX support package.
+etextools: e-TeX tools for LaTeX users and package writers.
+ethiop: LaTeX macros and fonts for typesetting Amharic.
+ethiop-t1: Type 1 versions of Amharic fonts.
+etoc: Easily customisable TOCs.
+etoolbox: Tool-box for LaTeX programmers using e-TeX.
+etoolbox-de: German translation of documentation of etoolbox.
+euenc: Unicode font encoding definitions for XeTeX.
+eukdate: UK format dates, with weekday.
+euler: Use AMS Euler fonts for math.
+eulervm: Euler virtual math fonts.
+euro: Provide Euro values for national currency amounts.
+euro-ce: Euro and CE sign font.
+europecv: Unofficial class for European curricula vitae.
+eurosym: MetaFont and macros for Euro sign.
+euxm: (shortdesc missing)
+everyhook: Hooks for standard TeX token lists.
+everypage: Provide hooks to be run on every page of a document.
+exam: Package for typesetting exam scripts.
+examdesign: LaTeX class for typesetting exams.
+examplep: Verbatim phrases and listings in LaTeX.
+exceltex: Get data from Excel files into LaTeX.
+excludeonly: Prevent files being \include-ed.
+exercise: Typeset exercises, problems, etc. and their answers
+exp-testopt: Expandable \@testopt (and related) macros.
+expdlist: Expanded description environments.
+export: Import and export values of LaTeX registers.
+expressg: Diagrams consisting of boxes, lines, and annotations.
+exsheets: Create exercise sheets and exams.
+extarrows: Extra Arrows beyond those provided in AMSmath
+exteps: Include EPS figures in MetaPost.
+extpfeil: Extensible arrows in mathematics.
+extract: Extract parts of a document and write to another document.
+extsizes: Extend the standard classes' size options.
+facsimile: Document class for preparing faxes.
+facture: Generate an invoice.
+faktor: Typeset quotient structures with LaTeX.
+fancybox: Variants of \fbox and other games with boxes.
+fancyhdr: Extensive control of page headers and footers in LaTeX2e.
+fancyhdr-it: Italian translation of fancyhdr documentation.
+fancynum: Typeset numbers.
+fancypar: Decoration of individual paragraphs.
+fancyref: A LaTeX package for fancy cross-referencing.
+fancytabs: Fancy page border tabs.
+fancytooltips: Include a wide range of material in PDF tooltips.
+fancyvrb: Sophisticated verbatim text.
+fbithesis: Computer Science thesis class for University of Dortmund.
+fbs: BibTeX style for Frontiers in Bioscience.
+fc: Fonts for African languages.
+fcltxdoc: Macros for use in the author's documentation.
+fdsymbol: A maths symbol font.
+featpost: MetaPost macros for 3D.
+fenixpar: One-shot changes to token registers such as \everypar.
+feyn: A font for in-text Feynman diagrams.
+feynmf: Macros and fonts for creating Feynman (and other) diagrams.
+fge: A font for Frege's Grundgesetze der Arithmetik.
+fifinddo-info: German HTML beamer presentation on nicetext and morehype.
+fig4latex: Management of figures for large LaTeX documents.
+figbas: Mini-fonts for figured-bass notation in music.
+figbib: Organize figure databases with BibTeX.
+figflow: Flow text around a figure.
+figsize: Auto-size graphics.
+filecontents: Extended filecontents and filecontents* environments
+filedate: Access and compare info and modification dates.
+filehook: Hooks for input files.
+fileinfo: Enhanced display of LaTeX File Information.
+filemod: Provide file modification times, and compare them.
+finbib: A Finnish version of plain.bst.
+findhyph: Find hyphenated words in a document.
+fink: The LaTeX2e File Name Keeper.
+finstrut: Adjust behaviour of the ends of footnotes.
+first-latex-doc: A document for absolute LaTeX beginners.
+fix2col: Fix miscellaneous two column mode features.
+fixfoot: Multiple use of the same footnote text.
+fixlatvian: Improve Latvian language support in XeLaTeX.
+fixltxhyph: Allow hyphenation of partially-emphasised substrings.
+fixme: Insert "fixme" notes into draft documents.
+fixmetodonotes: Add notes on document development.
+fixpdfmag: Fix magnification in PDFTeX.
+fjodor: A selection of layout styles.
+flabels: Labels for files and folders.
+flacards: Generate flashcards for printing.
+flagderiv: Flag style derivation package
+flashcards: A class for typesetting flashcards.
+flashmovie: Directly embed flash movies into PDF files.
+flipbook: Typeset flipbook animations, in the corners of documents.
+flippdf: Horizontal flipping of pages with pdfLaTeX.
+float: Improved interface for floating objects.
+floatflt: Wrap text around floats.
+floatrow: Modifying the layout of floats.
+flowfram: Create text frames for posters, brochures or magazines.
+fltpoint: Simple floating point arithmetic.
+fmp: Include Functional MetaPost in LaTeX.
+fmtcount: Display the value of a LaTeX counter in a variety of formats.
+fn2end: Convert footnotes to endnotes.
+fnbreak: Warn for split footnotes.
+fncychap: Seven predefined chapter heading styles.
+fncylab: Alter the format of \label references.
+fnpara: Footnotes in paragraphs.
+fnpct: Manage footnote marks' interaction with punctuation.
+fntproof: A programmable font test pattern generator.
+fnumprint: Print a number in 'appropriate' format.
+foekfont: The title font of the Mads Fok magazine.
+foilhtml: Interface between foiltex and LaTeX2HTML.
+fonetika: Support for the danish "Dania" phonetic system.
+font-change: Macros to Change Text and Math fonts in plain TeX.
+fontaxes: Additional font axes for LaTeX.
+fontbook: Generate a font book.
+fontch: Changing fonts, sizes and encodings in Plain TeX.
+fontinst: Help with installing fonts for TeX and LaTeX.
+fontname: Scheme for naming fonts in TeX.
+fontools: Tools to simplify using fonts (especially TT/OTF ones).
+fonts-tlwg: Thai fonts for LaTeX from TLWG.
+fontspec: Advanced font selection in XeLaTeX and LuaLaTeX.
+fonttable: Print font tables from a LaTeX document.
+fontware: (shortdesc missing)
+fontwrap: Bind fonts to specific unicode blocks.
+footbib: Bibliographic references as footnotes.
+footmisc: A range of footnote options.
+footnotebackref: Back-references from footnotes.
+footnoterange: References to ranges of footnotes.
+footnpag: Per-page numbering of footnotes.
+forarray: Using array structures in LaTeX.
+foreign: Systematic treatment of 'foreign' words in documents.
+forest: Drawing (linguistic) trees.
+forloop: Iteration in LaTeX.
+formlett: Letters to multiple recipients.
+formular: Create forms containing field for manual entry.
+fouridx: Left sub- and superscripts in maths mode.
+fourier: Using Utopia fonts in LaTeX documents.
+fouriernc: Use New Century Schoolbook text with Fourier maths fonts.
+fp: Fixed point arithmetic.
+fpl: SC and OsF fonts for URW Palladio L
+fragmaster: Using psfrag with PDFLaTeX.
+fragments: Fragments of LaTeX code.
+frame: Framed boxes for Plain TeX.
+framed: Framed or shaded regions that can break across pages.
+francais-bst: Bibliographies conforming to French typographic standards.
+frankenstein: A collection of LaTeX packages.
+frcursive: French cursive hand fonts.
+frege: Typeset fregean Begriffsschrift.
+frenchle: French macros, usable stand-alone or with Babel.
+friulan: Babel/Polyglossia support for Friulan(Furlan).
+frletter: Typeset letters in the French style.
+frontespizio: Create a frontispiece for Italian theses.
+ftcap: Allows \caption at the beginning of a table-environment.
+ftnxtra: Extends the applicability of the \footnote command.
+fullblck: Left-blocking for letter class.
+fullwidth: Adjust margins of text block.
+functan: Macros for functional analysis and PDE theory
+fundus-calligra: Support for the calligra font in LaTeX documents.
+fundus-cyr: Support for Washington University Cyrillic fonts.
+fundus-sueterlin: Sutterlin
+fwlw: Get first and last words of a page.
+g-brief: Letter document class.
+gaceta: A class to typeset La Gaceta de la RSME.
+galois: Typeset Galois connections.
+gamebook: Typeset gamebooks and other interactive novels.
+garrigues: MetaPost macros for the reproduction of Garrigues' Easter nomogram.
+garuda-c90: TeX support (from CJK) for the garuda font in thailatex
+gastex: Graphs and Automata Simplified in TeX.
+gatech-thesis: Georgia Institute of Technology thesis class
+gates: Support for writing modular and customisable code.
+gauss: A package for Gaussian operations.
+gb4e: Linguistic tools.
+gcard: Arrange text on a sheet to fold into a greeting card.
+gchords: Typeset guitar chords.
+gcite: Citations in a reader-friendly style.
+gene-logic: Typeset logic formulae, etc.
+genealogy: A compilation genealogy font.
+genmisc: (shortdesc missing)
+genmpage: Generalization of LaTeX's minipages.
+gentium: Gentium font and support files.
+gentle: A Gentle Introduction to TeX.
+geometry: Flexible and complete interface to document dimensions.
+geometry-de: German translation of the geometry package.
+german: Support for German typography.
+germbib: German variants of standard BibTeX styles.
+germkorr: Change kerning for german quotation marks.
+geschichtsfrkl: BibLaTeX style for historians.
+getfiledate: Find the date of last modification of a file.
+getoptk: Define macros with sophisticated options.
+gfsartemisia: A modern Greek font design.
+gfsbaskerville: A Greek font, from one such by Baskerville.
+gfsbodoni: A Greek and Latin font based on Bodoni.
+gfscomplutum: A Greek font with a long history.
+gfsdidot: A Greek font based on Didot's work.
+gfsneohellenic: A Greek font in the Neo-Hellenic style.
+gfsporson: A Greek font, originally from Porson.
+gfssolomos: A Greek-alphabet font.
+ghab: Typeset ghab boxes in LaTeX.
+gillcm: Alternative unslanted italic Computer Modern fonts.
+gincltex: Include TeX files as graphics (.tex support for \includegraphics).
+ginpenc: Modification of inputenc for German.
+gitinfo: Access metadata from the git distributed version control system.
+gloss: Create glossaries using BibTeX.
+glossaries: Create glossaries and lists of acronyms.
+glyphlist: (shortdesc missing)
+gmdoc: Documentation of LaTeX packages.
+gmdoc-enhance: Some enhancements to the gmdoc package.
+gmeometric: Change page size wherever it's safe
+gmiflink: Simplify usage of \hypertarget and \hyperlink.
+gmp: Allow integration between MetaPost pictures and LaTeX.
+gmutils: Support macros for other packages.
+gmverb: A variant of LaTeX \verb, verbatim and shortvrb.
+gmverse: a package for typesetting (short) poems.
+gnu-freefont: A Unicode font, with rather wide coverage.
+gnuplottex: Embed Gnuplot commands in LaTeX documents.
+go: Fonts and macros for typesetting go games.
+gost: BibTeX styles to format according to GOST.
+gothic: A collection of old German-style fonts.
+gradientframe: Simple gradient frames around objects.
+grafcet: Draw Grafcet/SFC with TikZ.
+graphics: Standard LaTeX graphics.
+graphics-pln: LaTeX-style graphics for Plain TeX users.
+graphicx-psmin: Reduce size of PostScript files by not repeating images.
+greek-inputenc: Greek encoding support for inputenc.
+greekdates: Provides ancient Greek day and month names, dates, etc.
+greektex: Fonts for typesetting Greek/English documents.
+greenpoint: The Green Point logo.
+grfpaste: Include fragments of a dvi file.
+grid: Grid typesetting in LaTeX.
+gridset: Grid, a.k.a. in-register, setting.
+grotesq: URW Grotesq font pack for LaTeX.
+grverb: Typesetting Greek verbatim.
+gsftopk: Convert "ghostscript fonts" to PK files.
+gtrcrd: Add chords to lyrics.
+gu: Typeset crystallographic group-subgroup-schemes.
+guide-to-latex: (shortdesc missing)
+guitar: Guitar chords and song texts.
+guitlogo: Macros for typesetting the GuIT logo.
+gustlib: Polish oriented macros.
+gustprog: (shortdesc missing)
+hacm: Font support for the Arka language.
+hands: Pointing hand font.
+hanging: Hanging paragraphs.
+hanoi: Tower of Hanoi in TeX.
+happy4th: A firework display in obfuscated TeX.
+har2nat: Replace the harvard package with natbib.
+hardwrap: Hard wrap text to a certain character length.
+harmony: Typeset harmony symbols, etc., for musicology.
+harnon-cv: (shortdesc missing)
+harpoon: Extra harpoons, using the graphics package.
+harvard: Harvard citation package for use with LaTeX 2e.
+harvmac: Macros for scientific articles.
+hatching: MetaPost macros for hatching interior of closed paths.
+hausarbeit-jura: Class for writing "juristiche Hausarbeiten" at German Universities.
+hc: Replacement for the LaTeX classes.
+he-she: Alternating pronouns to aid to gender-neutral writing.
+helvetic: URW "Base 35" font pack for LaTeX.
+hep: A "convenience wrapper" for High Energy Physics packages.
+hepnames: Pre-defined high energy particle names.
+hepparticles: Macros for typesetting high energy physics particle names.
+hepthesis: A class for academic reports, especially PhD theses.
+hepunits: A set of units useful in high energy physics applications.
+here: Emulation of obsolete package for "here" floats.
+hexgame: Provide an environment to draw a hexgame-board.
+hf-tikz: A simple way to highlight formulas and formula parts.
+hfbright: The hfbright fonts.
+hfoldsty: Old style numerals with EC fonts.
+hhtensor: Print vectors, matrices, and tensors.
+histogr: Draw histograms with the LaTeX picture environment.
+historische-zeitschrift: Biblatex style for the journal 'Historische Zeitschrift'
+hitec: Class for documentation.
+hletter: Flexible letter typesetting with flexible page headings.
+hobby: An implementation of Hobby's algorithm for PGF/TikZ.
+hobete: Unofficial beamer theme for the University of Hohenheim.
+hpsdiss: A dissertation class.
+hrefhide: Suppress hyper links when printing.
+hrlatex: LaTeX support for Croatian documents.
+hvfloat: Rotating caption and object of floats independently.
+hvindex: Support for indexing.
+hypdvips: Hyperref extensions for use with dvips.
+hyper: Hypertext cross referencing.
+hypernat: Allow hyperref and natbib to work together.
+hyperref: Extensive support for hypertext in LaTeX.
+hyperref-docsrc: (shortdesc missing)
+hyperxmp: Embed XMP metadata within a LaTeX document.
+hyph-utf8: Hyphenation patterns expressed in UTF-8.
+hyphen-afrikaans: Afrikaans hyphenation patterns.
+hyphen-ancientgreek: Ancient Greek hyphenation patterns.
+hyphen-arabic: (No) Arabic hyphenation patterns.
+hyphen-armenian: Armenian hyphenation patterns.
+hyphen-base: (shortdesc missing)
+hyphen-basque: Basque hyphenation patterns.
+hyphen-bulgarian: Bulgarian hyphenation patterns.
+hyphen-catalan: Catalan hyphenation patterns.
+hyphen-chinese: Chinese pinyin hyphenation patterns.
+hyphen-coptic: Coptic hyphenation patterns.
+hyphen-croatian: Croatian hyphenation patterns.
+hyphen-czech: Czech hyphenation patterns.
+hyphen-danish: Danish hyphenation patterns.
+hyphen-dutch: Dutch hyphenation patterns.
+hyphen-english: English hyphenation patterns.
+hyphen-esperanto: Esperanto hyphenation patterns.
+hyphen-estonian: Estonian hyphenation patterns.
+hyphen-ethiopic: Hyphenation patterns for Ethiopic scripts.
+hyphen-farsi: (No) Persian hyphenation patterns.
+hyphen-finnish: Finnish hyphenation patterns.
+hyphen-french: French hyphenation patterns.
+hyphen-friulan: Friulan hyphenation patterns.
+hyphen-galician: Galician hyphenation patterns.
+hyphen-german: German hyphenation patterns.
+hyphen-greek: Modern Greek hyphenation patterns.
+hyphen-hungarian: Hungarian hyphenation patterns.
+hyphen-icelandic: Icelandic hyphenation patterns.
+hyphen-indic: Indic hyphenation patterns.
+hyphen-indonesian: Indonesian hyphenation patterns.
+hyphen-interlingua: Interlingua hyphenation patterns.
+hyphen-irish: Irish hyphenation patterns.
+hyphen-italian: Italian hyphenation patterns.
+hyphen-kurmanji: Kurmanji hyphenation patterns.
+hyphen-latin: Latin hyphenation patterns.
+hyphen-latvian: Latvian hyphenation patterns.
+hyphen-lithuanian: Lithuanian hyphenation patterns.
+hyphen-mongolian: Mongolian hyphenation patterns in Cyrillic script.
+hyphen-norwegian: Norwegian Bokmal and Nynorsk hyphenation patterns.
+hyphen-polish: Polish hyphenation patterns.
+hyphen-portuguese: Portuguese hyphenation patterns.
+hyphen-romanian: Romanian hyphenation patterns.
+hyphen-romansh: Romansh hyphenation patterns.
+hyphen-russian: Russian hyphenation patterns.
+hyphen-sanskrit: Sanskrit hyphenation patterns.
+hyphen-serbian: Serbian hyphenation patterns.
+hyphen-slovak: Slovak hyphenation patterns.
+hyphen-slovenian: Slovenian hyphenation patterns.
+hyphen-spanish: Spanish hyphenation patterns.
+hyphen-swedish: Swedish hyphenation patterns.
+hyphen-turkish: Turkish hyphenation patterns.
+hyphen-turkmen: Turkmen hyphenation patterns.
+hyphen-ukrainian: Ukrainian hyphenation patterns.
+hyphen-uppersorbian: Upper Sorbian hyphenation patterns.
+hyphen-welsh: Welsh hyphenation patterns.
+hyphenat: Disable/enable hypenation.
+hyphenex: Generate a hyphenation exceptions file.
+hyplain: Basic support for multiple languages in Plain TeX.
+ibycus-babel: Use the Ibycus 4 Greek font with Babel
+ibygrk: Fonts and macros to typeset ancient Greek.
+icsv: Class for typesetting articles for the ICSV conference.
+idxlayout: Configurable index layout, responsive to KOMA-Script and memoir.
+ieeepes: IEEE Power Engineering Society Transactions.
+ifetex: Provides \ifetex switch.
+ifluatex: Provides the \ifluatex switch.
+ifmslide: Presentation slides for screen and printouts.
+ifmtarg: If-then-else command for processing potentially empty arguments.
+ifnextok: Utility macro: peek ahead without ignoring spaces.
+ifoddpage: (shortdesc missing)
+ifplatform: Conditionals to test which platform is being used.
+ifsym: A collection of symbols.
+iftex: Am I running under pdfTeX, XeTeX or LuaTeX?
+ifthenx: Extra tests for \ifthenelse.
+ifxetex: Am I running under XeTeX?
+ijmart: LaTeX Class for the Israel Journal of Mathematics.
+ijqc: BibTeX style file for the Intl. J. Quantum Chem.
+imac: International Modal Analysis Conference format.
+image-gallery: Create an overview of pictures from a digital camera or from other sources.
+imakeidx: A package for producing multiple indexes.
+impatient: Free edition of the book "TeX for the Impatient"
+impatient-fr: Free edition of the book "TeX for the Impatient"
+impnattypo: Support typography of l'Imprimerie Nationale FranASSaise.
+import: Establish input relative to a directory.
+imsproc: Typeset IMS conference proceedings.
+imtekda: IMTEK thesis class.
+incgraph: Sophisticated graphics inclusion in a PDF document.
+inconsolata: A monospaced font, with support files for use with TeX.
+index: Extended index for LaTeX including multiple indexes.
+initials: Adobe Type 1 decorative initial fonts.
+inlinebib: Citations in footnotes.
+inlinedef: Inline expansions within definitions.
+inputtrc: Trace which file loads which.
+insbox: A TeX macro for inserting pictures/boxes into paragraphs.
+installfont: A bash script for installing a LaTeX font family.
+interactiveworkbook: latex-based interactive PDF on the web
+interfaces: Set parameters for other packages, conveniently.
+interpreter: Translate input files on the fly.
+intro-scientific: Introducing scientific/mathematical documents using LaTeX.
+inversepath: Calculate inverse file paths.
+invoice: Generate invoices.
+ionumbers: Restyle numbers in maths mode.
+iopart-num: Numeric citation style for IOP journals.
+ipaex: IPA and IPAex fonts from Information-technology Promotion Agency, Japan.
+iso: Generic ISO standards typesetting macros.
+iso10303: Typesetting the STEP standards.
+isodate: Tune the output format of dates according to language.
+isodoc: A LaTeX class for the preparation of letters and invoices.
+isomath: Mathematics style for science and technology.
+isonums: Display numbers in maths mode according to ISO 31-0.
+isorot: Rotation of document elements.
+isotope: A package for typesetting isotopes
+issuulinks: Produce external links instead of internal ones.
+itnumpar: Spell numbers in words (Italian).
+iwhdp: Halle Institute for Economic Research (IWH) Discussion Papers.
+iwona: A two-element sans-serif font.
+jablantile: Metafont version of tiles in the style of Slavik Jablan.
+jadetex: Macros supporting Jade DSSSL output.
+jamtimes: Expanded Times Roman fonts.
+japanese: A substitute for a babel package for Japanese.
+japanese-otf: Advanced font selection for platex and its friends.
+japanese-otf-uptex: Support for Japanese OTF files in upLaTeX.
+jfontmaps: Font maps for Japanese fonts.
+jknapltx: Miscellaneous packages by Joerg Knappen.
+jlabels: Make letter-sized pages of labels.
+jmlr: Class files for the Journal of Machine Learning Research.
+jmn: (shortdesc missing)
+jneurosci: BibTeX style for the Journal of Neuroscience.
+jpsj: Document Class for Journal of the Physical Society of Japan.
+js-misc: Miscellaneous macros from Joachim Schrod.
+jsclasses: Classes tailored for use with Japanese.
+junicode: A TrueType font for mediaevalists.
+jura: A document class for German legal texts.
+juraabbrev: Abbreviations for typesetting (German) juridical documents.
+jurabib: Extended BibTeX citation support for the humanities and legal texts.
+juramisc: Typesetting German juridical documents.
+jurarsp: Citations of judgements and official documents in (German) juridical documents.
+jvlisting: A replacement for LaTeX's verbatim package.
+kantlipsum: Generate sentences in Kant's style.
+karnaugh: Typeset Karnaugh-Veitch-maps.
+kastrup: (shortdesc missing)
+kdgdocs: Document classes for Karel de Grote University College.
+kerkis: Kerkis (Greek) font family.
+kerntest: Print tables and generate control files to adjust kernings.
+keycommand: Simple creation of commands with key-value arguments.
+keyreader: A robust interface to xkeyval.
+keystroke: Graphical representation of keys on keyboard.
+keyval2e: A lightweight and robust key-value parser.
+kix: Typeset KIX codes.
+kixfont: A font for KIX codes.
+kluwer: (shortdesc missing)
+knitting: Produce knitting charts, in Plain TeX or LaTeX.
+knittingpattern: Create knitting patterns.
+knuth: Knuth's published errata.
+knuthotherfonts: (shortdesc missing)
+koma-moderncvclassic: Makes the style and command of moderncv (style classic) available for koma-classes and thus compatible with biblatex.
+koma-script: A bundle of versatile classes and packages
+koma-script-sfs: Koma-script letter class option for Finnish.
+kpathsea: Path searching library for TeX-related files.
+kpfonts: A complete set of fonts for text and mathematics.
+ksfh_nat: (shortdesc missing)
+ktv-texdata: Extract subsets of documents.
+kurier: A two-element sans-serif typeface.
+l2picfaq: LaTeX pictures "how-to" (German).
+l2tabu: Obsolete packages and commands.
+l2tabu-english: English translation of "Obsolete packages and commands".
+l2tabu-french: French translation of l2tabu.
+l2tabu-italian: Italian Translation of Obsolete packages and commands
+l2tabu-spanish: Spanish translation of "Obsolete packages and commands".
+l3experimental: Experimental LaTeX3 concepts.
+l3kernel: LaTeX3 programming conventions.
+l3packages: High-level LaTeX3 concepts.
+labbook: Typeset laboratory journals.
+labelcas: Check the existence of labels, and fork accordingly.
+labels: Print sheets of sticky labels.
+lacheck: LaTeX checker.
+lambda: (shortdesc missing)
+langcode: (shortdesc missing)
+lapdf: PDF drawing directly in TeX documents.
+lastpage: Reference last page for Page N of M type footers.
+latex: A TeX macro package that defines LaTeX.
+latex-bib-ex: Examples for the book Bibliografien mit LaTeX.
+latex-bin: LaTeX executables and man pages.
+latex-course: A LaTeX course as a projected presentation.
+latex-doc-ptr: A direction-finder for LaTeX documentation.
+latex-fonts: A collection of fonts used in LaTeX distributions.
+latex-graphics-companion: Examples from The LaTeX Graphics Companion.
+latex-notes-zh-cn: Chinese Introduction to TeX and LaTeX.
+latex-referenz: Examples from the book "LaTeX Referenz".
+latex-tabellen: LaTeX Tabellen.
+latex-tds: A structured copy of the LaTeX distribution.
+latex-veryshortguide: The Very Short Guide to LaTeX.
+latex-web-companion: Examples from The LaTeX Web Companion.
+latex2e-help-texinfo: Unoffical reference manual covering LaTeX2e.
+latex2e-help-texinfo-spanish: (shortdesc missing)
+latex2man: Translate LaTeX-based manual pages into Unix man format.
+latex4wp: A LaTeX guide specifically designed for word processor users.
+latex4wp-it: (shortdesc missing)
+latexcheat: A LaTeX cheat sheet.
+latexcheat-esmx: A LaTeX cheat sheet, in Spanish.
+latexcheat-ptbr: A LaTeX cheat sheet, in Brazilian Portuguese.
+latexconfig: (shortdesc missing)
+latexdiff: Determine and mark up significant differences between latex files.
+latexfileinfo-pkgs: A comparison of packages showing LaTeX file information.
+latexfileversion: Prints the version and date of a LaTeX class or style file.
+latexmk: Fully automated LaTeX document generation.
+latexmp: Interface for LaTeX-based typesetting in MetaPost
+latexpand: Expand \input and \include in a LaTeX document.
+lato: Lato font fanily and LaTeX support.
+layaureo: A package to improve the A4 page layout.
+layouts: Display various elements of a document's layout.
+lazylist: Lists in TeX's "mouth".
+lcd: Alphanumerical LCD-style displays.
+lcdftypetools: A bundle of outline font manipulation tools.
+lcg: Generate random integers.
+lcyw: Make Classic Cyrillic CM fonts accessible in LaTeX.
+leading: Define leading with a length.
+leaflet: Create small handouts (flyers).
+lecturer: On-screen presentations for (almost) all formats.
+ledmac: Typeset scholarly editions.
+leftidx: Left and right subscripts and superscripts in math mode.
+lettre: Letters and faxes in French.
+lettrine: Typeset dropped capitals.
+levy: Fonts for typesetting classical greek.
+lewis: Draw Lewis structures.
+lexikon: Macros for a two language dictionary.
+lfb: A Greek font with normal and bold variants.
+lgreek: LaTeX macros for using Silvio Levy's Greek fonts.
+lgrx: Greek text with the LGR font encoding.
+lh: Cyrillic fonts that support LaTeX standard encodings.
+lhcyr: A non-standard Cyrillic input scheme.
+lhelp: Miscellaneous helper packages.
+libertine: Use of Linux Libertine and Biolinum fonts with LaTeX.
+libgreek: Use Libertine or Biolinum Greek glyphs in mathematics.
+librarian: Tools to create bibliographies in TeX.
+librebaskerville: LaTeX support for the Libre Baskerville family of fonts.
+libris: Libris ADF fonts, with LaTeX support.
+limap: Typeset maps and blocks according to the Information Mapping method.
+linearA: Linear A script fonts.
+linegoal: A "dimen" that returns the space left on the line.
+lineno: Line numbers on paragraphs.
+linguex: Format linguists' examples.
+lipsum: Easy access to the Lorem Ipsum dummy text.
+listbib: Lists contents of BibTeX files.
+listing: Produce formatted program listings.
+listings: Typeset source code listings using LaTeX.
+listings-ext: Automated input of source.
+listliketab: Typeset lists as tables.
+listofsymbols: Create and manipulate lists of symbols
+lithuanian: Lithuanian language support.
+liturg: Support for typesetting Catholic liturgical texts.
+lkproof: LK Proof figure macros.
+lm: Latin modern fonts in outline formats.
+lm-math: OpenType maths fonts for Latin Modern.
+lmake: Process lists to do repetitive actions.
+lmextra: (shortdesc missing)
+locality: Various macros for keeping things local.
+localloc: Macros for localizing TeX register allocations.
+logbox: e-TeX showbox facilities for exploration purposes.
+logical-markup-utils: Packages for language-dependent inline quotes and dashes.
+logpap: Generate logarithmic graph paper with LaTeX.
+logreq: Support for automation of the LaTeX workflow.
+longnamefilelist: Tidy \listfiles with long file names.
+loops: General looping macros for use with LaTeX.
+lpic: Put LaTeX material over included graphics.
+lps: Class for "Logic and Philosophy of Science".
+lsc: Typesetting Live Sequence Charts.
+lshort-bulgarian: Bulgarian translation of the "Short Introduction to LaTeX2e".
+lshort-chinese: Introduction to LaTeX, in Chinese.
+lshort-czech: Czech translation of the "Short Introduction to LaTeX2e".
+lshort-dutch: Introduction to LaTeX in Dutch.
+lshort-english: A (Not So) Short Introduction to LaTeX2e.
+lshort-finnish: Finnish introduction to LaTeX.
+lshort-french: Short introduction to LaTeX, French translation.
+lshort-german: German version of A Short Introduction to LaTeX2e: LaTeX2e-Kurzbeschreibung.
+lshort-italian: Introduction to LaTeX in Italian.
+lshort-japanese: Japanese version of A Short Introduction to LaTeX2e
+lshort-korean: Korean introduction to LaTeX.
+lshort-mongol: Short introduction to LaTeX, in Mongolian.
+lshort-persian: Persian (Farsi) introduction to LaTeX.
+lshort-polish: Introduction to LaTeX in Polish.
+lshort-portuguese: Introduction to LaTeX in Portuguese.
+lshort-russian: Russian introduction to LaTeX.
+lshort-slovak: Slovak introduction to LaTeX.
+lshort-slovenian: Slovenian translation of lshort.
+lshort-spanish: Short introduction to LaTeX, Spanish translation.
+lshort-thai: Introduction to LaTeX in Thai.
+lshort-turkish: Turkish introduction to LaTeX.
+lshort-ukr: Ukrainian version of the LaTeX introduction.
+lshort-vietnamese: vietnamese version of the LaTeX introduction.
+lstaddons: Add-on packagvess for listings: autogobble and line background.
+ltabptch: Bug fix for longtable.
+ltxdockit: Documentation support.
+ltxindex: A LaTeX package to typeset indices with GNU's Texindex.
+ltxkeys: A robust key parser for LaTeX.
+ltxmisc: Miscellaneous LaTeX packages, etc.
+ltxnew: A simple means of creating commands.
+ltxtools: A collection of LaTeX API macros.
+lua-alt-getopt: Process application arguments the same way as getopt_long.
+lua-check-hyphen: Mark hyphenations in a document, for checking.
+lua-visual-debug: Visual debugging with LuaLaTeX.
+lua2dox: Auto-documentation of lua code.
+luabibentry: Repeat BibTeX entries in a LuaLaTeX document body.
+luacode: Helper for executing lua code from within TeX.
+luaindex: Create index using lualatex.
+luainputenc: Replacing inputenc for use in LuaTeX.
+lualatex-doc: A guide to use of LaTeX with LuaTeX.
+lualatex-math: Fixes for mathematics-related LuaLaTeX issues.
+lualibs: Additional Lua functions for LuaTeX macro programmers.
+luamplib: Use LuaTeX's built-in MetaPost interpreter.
+luaotfload: OpenType layout system for Plain TeX and LaTeX.
+luasseq: Drawing spectral sequences in LuaLaTeX.
+luatex: The LuaTeX engine.
+luatexbase: Basic resource management for LuaTeX code.
+luatexja: Typesest Japanese with lua(la)tex.
+luatextra: Additional macros for Plain TeX and LaTeX in LuaTeX.
+luaxml: Lua library for reading and serialising XML files.
+lxfonts: Set of slide fonts based on CM.
+ly1: Support for LY1 LaTeX encoding.
+m-tx: A preprocessor for pmx.
+macqassign: Typeset assignments for Macquarie University.
+macros2e: A list of internal LaTeX2e macros.
+mafr: Mathematics in accord with French usage.
+magaz: Magazine layout.
+magyar: Hungarian language definition for Babel.
+mailing: Macros for mail merging.
+mailmerge: Repeating text field substitution.
+makebarcode: Print various kinds 2/5 and Code 39 bar codes.
+makebox: Defines a \makebox* command.
+makecell: Tabular column heads and multilined cells.
+makecirc: A MetaPost library for drawing electrical circuit diagrams.
+makecmds: The new \makecommand command always (re)defines a command.
+makedtx: Perl script to help generate dtx and ins files
+makeglos: Include a glossary into a document.
+makeindex: Process index output to produce typesettable code.
+makeplot: Easy plots from Matlab in LaTeX.
+mandi: (shortdesc missing)
+manfnt: LaTeX support for the TeX book symbols.
+manuscript: Emulate look of a document typed on a typewriter.
+margbib: Display bibitem tags in the margins.
+marginfix: Patch \marginpar to avoid overfull margins.
+marginnote: Notes in the margin, even where \marginpar fails
+marvosym: Martin Vogel's Symbols (marvosym) font.
+match_parens: Easily detect mismatched parens.
+math-e: Examples from the book Typesetting Mathematics with LaTeX.
+mathabx: Three series of mathematical symbols.
+mathabx-type1: Outline version of the mathabx fonts.
+mathalfa: General package for loading maths alphabets in LaTeX.
+mathastext: Use the text font in simple mathematics.
+mathcomp: Text symbols in maths mode.
+mathdesign: Mathematical fonts to fit with particular text fonts.
+mathdots: Commands to produce dots in math that respect font size.
+mathexam: Package for typesetting exams.
+mathmode: A comprehensive review of mathematics in (La)TeX.
+mathpazo: Fonts to typeset mathematics to match Palatino.
+mathspec: Specify arbitrary fonts for mathematics in XeTeX.
+mathspic: A Perl filter program for use with PiCTeX.
+mattens: Matrices/tensor typesetting.
+maybemath: Make math bold or italic according to context.
+mbenotes: Notes in tables or images.
+mcaption: Put captions in the margin.
+mceinleger: Creating covers for music cassettes.
+mcite: Multiple items in a single citation.
+mciteplus: Enhanced multiple citations.
+mdframed: Framed environments that can split at page boundaries.
+mdputu: Upright digits in Adobe Utopia Italic.
+mdsymbol: Symbol fonts to match Adobe Myriad Pro.
+mdwtools: Miscellaneous tools by Mark Wooding.
+media9: Multimedia inclusion package with Adobe Reader-9/X compatibility.
+meetingmins: Format written minutes of meetings.
+memdesign: Notes on book design
+memexsupp: Experimental memoir support.
+memoir: Typeset fiction, non-fiction and mathematical books.
+mentis: A basis for books to be published by Mentis publishers.
+menu: Typesetting menus.
+menukeys: Format menu sequences, paths and keystrokes from lists.
+metafont: A system for specifying fonts.
+metafont-beginners: An introductory tutorial for MetaFont.
+metago: MetaPost output of Go positions.
+metalogo: Extended TeX logo macros.
+metaobj: MetaPost package providing high-level objects.
+metaplot: Plot-manipulation macros for use in Metapost.
+metapost: A development of Metafont for creating graphics.
+metapost-examples: Example drawings using MetaPost.
+metatex: Incorporate MetaFont pictures in TeX source.
+metauml: MetaPost library for typesetting UML diagrams.
+method: Typeset method and variable declarations.
+metre: Support for the work of classicists
+mex: Polish formats for TeX.
+mf2pt1: Produce PostScript Type 1 fonts from Metafont source.
+mflogo: LaTeX support for MetaFont logo fonts.
+mfnfss: Packages to typeset oldgerman and pandora fonts in LaTeX.
+mfpic: Draw Metafont/post pictures from (La)TeX commands.
+mfpic4ode: Macros to draw direction fields and solutions of ODEs.
+mftinc: Pretty-print Metafont source.
+mfware: Supporting tools for use with Metafont.
+mh: The MH bundle
+mhchem: Typeset chemical formulae/equations and Risk and Safety phrases.
+mhequ: Multicolumn equations, tags, labels, sub-numbering.
+microtype: An interface to the micro-typographic features of pdfTeX.
+microtype-de: Translation into German of the documentation of microtype.
+midnight: A set of useful macro tools.
+midpage: Environment for vertical centring.
+mil3: Samples from Math into LaTeX, third edition.
+miller: Typeset miller indices.
+minibox: A simple type of box for LaTeX.
+minifp: Fixed-point real computations to 8 decimals.
+minipage-marginpar: Minipages with marginal notes.
+miniplot: A package for easy figure arrangement.
+minitoc: Produce a table of contents for each chapter, part or section.
+minted: Highlighted source code for LaTeX.
+minutes: Typeset the minutes of meetings.
+misc: (shortdesc missing)
+misc209: (shortdesc missing)
+mkgrkindex: Makeindex working with Greek.
+mkjobtexmf: Generate a texmf tree for a particular job.
+mkpattern: A utility for making hyphenation patterns.
+mla-paper: Proper MLA formatting.
+mlist: Logical markup for lists.
+mltex: The MLTeX system.
+mmap: Include CMap resources in PDF files from PDFTeX.
+mnsymbol: Mathematical symbol font for Adobe MinionPro.
+moderncv: A modern curriculum vitae class.
+moderntimeline: Timelines for use with moderncv.
+modiagram: Drawing molecular orbital diagrams.
+modref: Customisation of cross-references in LaTeX.
+modroman: Write numbers in lower case roman numerals.
+mongolian-babel: A language definition file for Mongolian in Babel.
+monofill: Alignment of plain text.
+montex: Mongolian LaTeX.
+moreenum: More enumeration options.
+morefloats: Increase the number of simultaneous LaTeX floats.
+morehype: Hypertext tools for use with LaTeX.
+moresize: Allows font sizes up to 35.83pt.
+moreverb: Extended verbatim.
+morewrites: Always room for a new write stream.
+movie15: Multimedia inclusion package.
+mp3d: 3D animations.
+mparhack: A workaround for a LaTeX bug in marginpars.
+mpattern: Patterns in MetaPost.
+mpcolornames: XXXX
+mpgraphics: Process and display MetaPost figures inline.
+mpman-ru: A Russian translation of the MetaPost manual.
+mptopdf: mpost to PDF, native MetaPost graphics inclusion
+ms: Various LaTeX packages by Martin Schroder.
+msc: Draw MSC diagrams.
+msg: A package for LaTeX localisation.
+mslapa: Michael Landy's APA citation style.
+msu-thesis: Class for Michigan State University Master's and PhD theses.
+mtgreek: Use italic and upright greek letters with mathtime.
+multenum: Multi-column enumerated lists.
+multi: (shortdesc missing)
+multibbl: Multiple bibliographies.
+multibib: Multiple bibliographies within one document.
+multicap: Format captions inside multicols
+multido: A loop facility for Generic TeX.
+multienv: (shortdesc missing)
+multiexpand: Variations on the primitive command \expandafter.
+multiobjective: Symbols for multibojective optimisation etc.
+multirow: Create tabular cells spanning multiple rows.
+munich: An alternative authordate bibliography style.
+musixguit: Easy notation for guitar music, in MusixTeX.
+musixtex: Sophisticated music typesetting
+musixtex-fonts: Fonts used by MusixTeX.
+musuos: Typeset papers for the department of music, Osnabruck.
+muthesis: Classes for University of Manchester Dept of Computer Science.
+mversion: Keeping track of document versions.
+mwcls: Polish-oriented document classes.
+mwe: Packages and image files for MWEs.
+mxedruli: A pair of Georgian fonts.
+mychemistry: Create reaction schemes with LaTeX and ChemFig.
+mycv: A list-driven CV class, allowing TikZ decorations.
+mylatexformat: Build a format based on the preamble of a LaTeX file.
+nag: Detecting and warning about obsolete LaTeX commands
+nameauth: Name authority mechanism for consistency in body text and index.
+namespc: Rudimentary c++-like namespaces in LaTeX.
+natbib: Flexible bibliography support.
+nath: Natural mathematics notation.
+nature: Prepare papers for the journal Nature.
+navigator: PDF features across formats and engines.
+ncclatex: An extended general-purpose class
+ncctools: A collection of general packages for LaTeX
+ncntrsbk: URW "Base 35" font pack for LaTeX.
+nddiss: Notre Dame Dissertation format class.
+needspace: Insert pagebreak if not enough space.
+nestquot: Alternate quotes between double and single with nesting.
+newcommand: Generate new LaTeX command definitions.
+newfile: User level management of LaTeX input and output.
+newlfm: Write letters, facsimiles, and memos.
+newsletr: Macros for making newsletters with Plain TeX.
+newspaper: Typeset newsletters to resemble newspapers.
+newtx: Alternative uses of the TX fonts, with improved metrics.
+newunicodechar: Definitions of the meaning of Unicode characters.
+newvbtm: Define your own verbatim-like environment.
+newverbs: Define new versions of \verb, including short verb versions.
+nextpage: Generalisations of the page advance commands.
+nfssext-cfr: Extensions to the LaTeX NFSS.
+nicefilelist: Provide \listfiles alignment.
+niceframe: Support for fancy frames.
+nicetext: Minimal markup for simple text (Wikipedia style) and documentation.
+nih: A class for NIH grant applications.
+nkarta: A "new" version of the karta cartographic fonts.
+nlctdoc: Package documentation class.
+noitcrul: Improved underlines in mathematics.
+nolbreaks: No line breaks in text.
+nomencl: Produce lists of symbols as in nomenclature.
+nomentbl: Nomenclature typeset in a longtable
+nonfloat: Non-floating table and figure captions.
+nonumonpart: Prevent page numbers on part pages.
+nopageno: No page numbers in LaTeX documents.
+norasi-c90: TeX support (from CJK) for the norasi font in thailatex
+nostarch: LaTeX class for No Starch Press.
+notes: Mark sections of a document.
+notes2bib: Integrating notes into the bibliography.
+notoccite: Prevent trouble from citations in table of contents, etc.
+nowidow: Avoid widows.
+nrc: Class for the NRC technical journals.
+ntgclass: "European" versions of standard classes.
+ntheorem: Enhanced theorem environment.
+ntheorem-vn: (shortdesc missing)
+nuc: Notation for nuclear isotopes.
+numericplots: Plot numeric data (including Matlab export) using PSTricks.
+numname: Convert a number to its English expression.
+numprint: Print numbers with separators and exponent if necessary.
+oberdiek: A bundle of packages submitted by Heiko Oberdiek.
+objectz: Macros for typesetting Object Z.
+ocg-p: PDF OCG support in LaTeX.
+ocgx: Use OCGs within a PDF document without JavaScript.
+ocherokee: LaTeX Support for the Cherokee language.
+ocr-b: Fonts for OCR-B.
+ocr-b-outline: OCR-B fonts in Type 1 and OpenType.
+ocr-latex: LaTeX support for ocr fonts.
+octavo: Typeset books following classical design and layout.
+odsfile: Read OpenDocument Spreadsheet documents as LaTeX tables.
+ofs: Macros for managing large font collections.
+ogham: Fonts for typesetting Ogham script.
+oinuit: LaTeX Support for the Inuktitut Language.
+oldlatin: Compute Modern like font with long s.
+oldstandard: Old Standard: A Unicode Font for Classical and Medieval Studies.
+oldstyle: Old style numbers in OT1 encoding.
+omega: A wide-character-set extension of TeX.
+omegaware: (shortdesc missing)
+onlyamsmath: Inhibit use of non-amsmath mathematics markup when using amsmath.
+onrannual: Class for Office of Naval Research Ocean Battlespace Sensing annual report.
+opcit: Footnote-style bibliographical references.
+opensans: The Open Sans font family, and LaTeX support.
+opteng: SPIE Optical Engineering and OE Letters manuscript template.
+optional: Facilitate optional printing of parts of a document.
+ordinalpt: Counters as ordinal numbers in Portuguese.
+orkhun: A font for orkhun script.
+oscola: BibLaTeX style for the Oxford Standard for the Citation of Legal Authorities.
+ot-tableau: Optimality Theory tableaux in LaTeX.
+othello: Create othello boards in LaTeX.
+othelloboard: Typeset Othello (Reversi) diagrams of any size, with annotations.
+otibet: (shortdesc missing)
+oubraces: Braces over and under a formula.
+outline: List environment for making outlines.
+outliner: Change section levels easily.
+outlines: Produce "outline" lists.
+overpic: Combine LaTeX commands over included graphics.
+pacioli: Fonts designed by Fra Luca de Pacioli in 1497.
+pagecolor: Interrogate page colour.
+pagecont: Page numbering that continues between documents.
+pagenote: Notes at end of document.
+pagerange: Flexible and configurable page range typesetting.
+pageslts: Variants of last page labels.
+palatino: URW "Base 35" font pack for LaTeX.
+paper: Versions of article class, tuned for scholarly publications.
+papercdcase: Origami-style folding paper CD case.
+papermas: Compute the mass of a printed version of a document.
+papertex: Class for newspapers, etc.
+paracol: Multiple columns with texts "in parallel".
+paralist: Enumerate and itemize within paragraphs.
+parallel: Typeset parallel texts.
+paratype: LaTeX support for free fonts by ParaType.
+paresse: Defines simple macros for greek letters.
+parnotes: Notes after every paragraph (or elsewhere).
+parrun: Typesets (two) streams of text running parallel.
+parselines: Apply a macro to each line of an environment.
+parskip: Layout with zero \parindent, non-zero \parskip.
+passivetex: Support package for XML/SGML typesetting
+patch: Patch loaded packages, etc..
+patchcmd: Change the definition of an existing command.
+patgen: Generate hyphenation patterns.
+patgen2-tutorial: A tutorial on the use of Patgen 2.
+path: Typeset paths, making them breakable.
+pauldoc: German LaTeX package documentation.
+pawpict: Using graphics from PAW.
+pax: Extract and reinsert PDF annotations with pdfTeX.
+pb-diagram: A commutative diagram package using LAMSTeX or Xy-pic fonts.
+pbox: A variable-width \parbox command.
+pbsheet: Problem sheet class.
+pdf-trans: A set of macros for various transformations of TeX boxes.
+pdf14: Restore PDF 1.4 to a TeX live 2010 format.
+pdfcomment: A user-friendly interface to pdf annotations.
+pdfcprot: Activating and setting of character protruding using pdflatex.
+pdfcrop: Crop PDF graphics.
+pdfjam: Shell scripts interfacing to pdfpages.
+pdfmarginpar: Generate marginpar-equivalent PDF annotations.
+pdfpages: Include PDF documents in LaTeX.
+pdfscreen: Support screen-based document design.
+pdfslide: Presentation slides using pdftex.
+pdfsync: Provide links between source and PDF.
+pdftex: A TeX extension for direct creation of PDF.
+pdftex-def: Colour and Graphics support for PDFTeX.
+pdftools: PDF-related utilities, including PostScript-to-PDF conversion
+pdftricks: Support for pstricks in pdfTeX.
+pdfwin: (shortdesc missing)
+pdfx: PDF/X-1a and PDF/A-1b support for pdfTeX.
+pecha: Print Tibetan text in the classic pecha layout style.
+pedigree-perl: Generate TeX pedigree files from CSV files.
+perception: BibTeX style for the journal Perception.
+perltex: Define LaTeX macros in terms of Perl code
+permute: Support for symmetric groups.
+persian-bib: Persian translations of classic BibTeX styles.
+persian-modern: The "Persian Modern" family of fonts.
+petiteannonce: A class for small advertisements.
+petri-nets: A set TeX/LaTeX packages for drawing Petri nets.
+pgf: Create PostScript and PDF graphics in TeX.
+pgf-blur: PGF/TikZ package for "blurred" shadows.
+pgf-soroban: Create images of the soroban using TikZ/PGF.
+pgf-umlsd: Draw UML Sequence Diagrams.
+pgfgantt: Draw Gantt charts with TikZ.
+pgfkeyx: Extended and more robust version of pgfkeys.
+pgfmolbio: Draw graphs typically found in molecular biology texts.
+pgfopts: LaTeX package options with pgfkeys.
+pgfplots: Create normal/logarithmic plots in two and three dimensions.
+phaistos: Disk of Phaistos font.
+philex: Cross references for named and numbered environments.
+philokalia: A font to typeset the Philokalia Books.
+philosophersimprint: Typesetting articles for "Philosophers' Imprint".
+phonetic: MetaFont Phonetic fonts, based on Computer Modern.
+photo: A float environment for photographs.
+physics: Macros supporting the Mathematics of Physics.
+physymb: Assorted macros for Physicists.
+piano: Typeset a basic 2-octave piano diagram.
+picinpar: Insert pictures into paragraphs.
+pict2e: New implementation of picture commands.
+pictex: Picture drawing macros for TeX and LaTeX.
+pictex2: Adds relative coordinates and improves the \plot command.
+pictexsum: A summary of PicTeX commands.
+piechartmp: Draw pie-charts using MetaPost.
+piff: Macro tools by Mike Piff.
+pigpen: A font for the pigpen (or masonic) cipher.
+pinlabel: A TeX labelling package.
+pitex: Documentation macros.
+pittetd: Electronic Theses and Dissertations at Pitt.
+pkfix: Replace pk fonts in PostScript with Type 1 fonts.
+pkfix-helper: Make PostScript files accessible to pkfix.
+pkuthss: LaTeX template for dissertations in Peking University.
+pl: Polish extension of CM fonts in Type 1 format.
+placeins: Control float placement.
+placeins-plain: Insertions that keep their place.
+plain: (shortdesc missing)
+plain-doc: A list of plain.tex cs names.
+plainpkg: (shortdesc missing)
+plantslabels: Write labels for plants.
+plari: Typesetting stageplay scripts.
+plates: Arrange for "plates" sections of documents.
+play: Typeset drama using LaTeX.
+plipsum: 'Lorem ipsum' for Plain TeX developers.
+plnfss: Font selection for Plain TeX.
+plweb: Literate Programming for Prolog with LaTeX.
+pmgraph: "Poor man's" graphics.
+pmx: Preprocessor for MusiXTeX.
+pnas2009: Bibtex style for PNAS.
+poemscol: Typesetting Critical Editions of Poetry.
+poetrytex: Typeset anthologies of poetry.
+polski: Typeset Polish documents with LaTeX and Polish fonts.
+poltawski: Antykwa Poltawskiego Family of Fonts.
+polyglossia: Modern multilingual typesetting with XeLaTeX.
+polyglot: (shortdesc missing)
+polynom: Macros for manipulating polynomials.
+polynomial: Typeset (univariate) polynomials.
+polytable: Tabular-like environments with named columns.
+postcards: Facilitates mass-mailing of postcards (junkmail).
+poster-mac: Make posters and banners with TeX.
+powerdot: A presentation class.
+powerdot-FUBerlin: Powerdot, using the style of FU Berlin.
+ppr-prv: Prosper preview.
+pracjourn: Typeset articles for PracTeX.
+preprint: A bundle of packages provided "as is".
+prerex: Interactive editor and macro support for prerequisite charts.
+present: Presentations with Plain TeX.
+presentations: Examples from the book Presentationen mit LaTeX.
+presentations-en: Examples from the book Presentations with LaTeX.
+prettyref: Make label references "self-identify".
+preview: Extract bits of a LaTeX source for output.
+printlen: Print lengths using specified units.
+proba: Shortcuts commands to symbols used in probability texts.
+probsoln: Generate problem sheets and their solution sheets.
+procIAGssymp: Macros for IAG symposium papers.
+prodint: A font that provides the product integral symbol.
+productbox: Typeset a three-dimensional product box.
+program: Typesetting programs and algorithms.
+progress: Creates an overview of a document's state.
+progressbar: Visualize shares of total amounts in the form of a (progress-)bar.
+properties: Load properties from a file.
+prosper: LaTeX class for high quality slides.
+protex: Literate programming package.
+protocol: A class for minutes of meetings.
+przechlewski-book: Examples from Przechlewski's LaTeX book.
+ps2pkm: Generate a PK font from an Adobe Type 1 font.
+psafm: (shortdesc missing)
+psbao: Draw Bao diagrams.
+pseudocode: LaTeX environment for specifying algorithms in a natural way.
+psfrag: Replace strings in encapsulated PostScript figures.
+psfrag-italian: PSfrag documentation in Italian.
+psfragx: A psfrag eXtension.
+psgo: Typeset go diagrams with PSTricks.
+psizzl: A TeX format for physics papers.
+pslatex: Use PostScript fonts by default.
+psnfss: Font support for common PostScript fonts.
+pspicture: PostScript picture support.
+pst-2dplot: A PSTricks package for drawing 2D curves.
+pst-3d: A PSTricks package for tilting and other pseudo-3D tricks.
+pst-3dplot: Draw 3D objects in parallel projection, using PSTricks.
+pst-abspos: Put objects at an absolute position.
+pst-am: Simulation of modulation and demodulation.
+pst-asr: Typeset autosegmental representations for linguists.
+pst-bar: Produces bar charts using pstricks.
+pst-barcode: Print barcodes using PostScript.
+pst-bezier: Draw Bezier curves.
+pst-blur: PSTricks package for "blurred" shadows.
+pst-bspline: Draw cubic Bspline curves and interpolations.
+pst-calendar: Plot calendars in "fancy" ways.
+pst-circ: PSTricks package for drawing electric circuits.
+pst-coil: A PSTricks package for coils, etc.
+pst-cox: Drawing regular complex polytopes with PSTricks.
+pst-dbicons: Support for drawing ER diagrams.
+pst-diffraction: Print diffraction patterns from various apertures.
+pst-electricfield: Draw electric field and equipotential lines with PStricks.
+pst-eps: Create EPS files from PSTricks figures.
+pst-eucl: Euclidian geometry with pstricks.
+pst-eucl-translation-bg: Bulgarian translation of the pst-eucl documentation.
+pst-exa: Typeset PSTricks examples, with code.
+pst-fill: Fill or tile areas with PSTricks.
+pst-fit: Macros for curve fitting.
+pst-fr3d: Draw 3-dimensional framed boxes using PSTricks.
+pst-fractal: Draw fractal sets using PSTricks.
+pst-fun: Draw "funny" objects with PSTricks.
+pst-func: PSTricks package for plotting mathematical functions.
+pst-gantt: Draw GANTT charts with pstricks.
+pst-geo: Geographical Projections
+pst-ghsb: (shortdesc missing)
+pst-gr3d: Three dimensional grids with PSTricks.
+pst-grad: Filling with colour gradients, using PStricks.
+pst-graphicx: A pstricks-compatible graphicx for use with Plain TeX.
+pst-infixplot: Using pstricks plotting capacities with infix expressions rather than RPN
+pst-jtree: Typeset complex trees for linguists.
+pst-knot: PSTricks package for displaying knots.
+pst-labo: Draw objects for Chemistry laboratories.
+pst-layout: Page layout macros based on PStricks packages.
+pst-lens: Lenses with PSTricks.
+pst-light3d: 3D lighting effects for pstricks.
+pst-magneticfield: Plotting a magnetic field with PSTricks.
+pst-math: Enhancement of PostScript math operators to use with pstricks
+pst-mirror: Images on a spherical mirror.
+pst-node: Draw connections using pstricks.
+pst-ob3d: Three dimensional objects using PSTricks.
+pst-ode: Solving initial value problems for sets of Ordinary Differential Equations.
+pst-optexp: Drawing optical experimental setups.
+pst-optic: Drawing optics diagrams.
+pst-osci: Oscgons with PSTricks.
+pst-pad: Draw simple attachment systems with PSTricks.
+pst-pdf: Make PDF versions of graphics by processing between runs.
+pst-pdgr: Draw medical pedigrees using pstricks.
+pst-platon: Platonic solids in PSTricks.
+pst-plot: Plot data using PSTricks.
+pst-poly: Polygons with PSTricks.
+pst-pulley: Plot pulleys, using pstricks.
+pst-qtree: Simple syntax for trees.
+pst-rubans: Draw three-dimensional ribbons.
+pst-sigsys: Support of signal processing-related disciplines.
+pst-slpe: Sophisticated colour gradients.
+pst-solarsystem: Plot the solar system for a specific date.
+pst-solides3d: Draw perspective views of 3D solids.
+pst-soroban: Draw a Soroban using PSTricks.
+pst-spectra: Draw continuum, emission and absorption spectra with PSTricks.
+pst-stru: Civil engineering diagrams, using pstricks.
+pst-support: Assorted support files for use with PStricks.
+pst-text: Text and character manipulation in PSTricks.
+pst-thick: Drawing very thick lines and curves.
+pst-tools: PStricks support functions.
+pst-tree: Trees, using pstricks.
+pst-tvz: Draw trees with more than on root node, using PSTricks.
+pst-uml: UML diagrams with PSTricks.
+pst-vectorian: Printing ornaments.
+pst-vowel: Enable arrows showing diphthongs on vowel charts.
+pst-vue3d: Draw perspective views of three dimensional objects.
+pst2pdf: A script to compile pstricks documents via pdftex.
+pstool: Support for psfrag within pdfLaTeX.
+pstools: Produce Encapsulated PostScript from PostScript.
+pstricks: PostScript macros for TeX.
+pstricks-add: A collection of add-ons and bugfixes for PSTricks.
+pstricks-examples: PSTricks examples.
+pstricks-examples-en: Examples from PSTricks book (English edition).
+pstricks-tutorial: (shortdesc missing)
+pstricks_calcnotes: (shortdesc missing)
+psu-thesis: Package for writing a thesis at Penn State University.
+psutils: PostScript utilities.
+ptex: A TeX system for publishing in Japanese.
+ptext: A 'lipsum' for Persian.
+ptptex: Macros for 'Progress of Theoretical Physics'.
+punk: Donald Knuth's punk font.
+punk-latex: LaTeX support for punk fonts.
+punknova: OpenType version of Knuth's Punk font.
+purifyeps: Make EPS work with both LaTeX/dvips and pdfLaTeX.
+pxbase: Tools for use with (u)pLaTeX.
+pxchfon: Japanese font setup for pLaTeX.
+pxcjkcat: (shortdesc missing)
+pxfonts: Palatino-like fonts in support of mathematics.
+pxgreeks: Shape selection for PX fonts Greek letters.
+pxjahyper: Hyperref support for pLaTeX.
+pxrubrica: (shortdesc missing)
+pxtxalfa: Virtual maths alphabets based on pxfonts and txfonts.
+python: Embed Python code in LaTeX.
+qcm: A LaTeX2e class for making multiple choice questionnaires
+qobitree: LaTeX macros for typesetting trees.
+qpxqtx: (shortdesc missing)
+qstest: Bundle for unit tests and pattern matching.
+qsymbols: Maths symbol abbreviations.
+qtree: Draw tree structures.
+quattrocento: LaTeX support for Quattrocento and Quattrocento Sans fonts.
+quotchap: Decorative chapter headings.
+quoting: Consolidated environment for displayed text.
+quotmark: Consistent quote marks.
+r_und_s: Chemical hazard codes.
+ran_toks: (shortdesc missing)
+randbild: Marginal pictures.
+randomwalk: Random walks using TikZ.
+randtext: Randomise the order of characters in strings.
+rccol: Decimal-centered optionally rounded numbers in tabular.
+rcs: Use RCS (revision control system) tags in LaTeX documents.
+rcs-multi: Typeset RCS version control in multiple-file documents.
+rcsinfo: Support for the revision control system.
+realboxes: Variants of common box-commands that read their content as real box and not as macro argument.
+realscripts: Access OpenType subscript and superscript glyphs.
+rec-thy: Commands to typeset recursion theory papers.
+recipe: A LaTeX class to typeset recipes.
+recipecard: Typeset recipes in note-card-sized boxes.
+rectopma: Recycle top matter.
+recycle: A font providing the "recyclable" logo.
+refcheck: Check references (in figures, table, equations, etc).
+refman: Format technical reference manuals.
+refstyle: Advanced formatting of cross references.
+regcount: Display the allocation status of the TeX registers.
+regexpatch: High level patching of commands.
+register: Typeset programmable elements in digital hardware (registers).
+regstats: Information about register use.
+relenc: A "relaxed" font encoding.
+relsize: Set the font size relative to the current font size.
+reotex: Draw Reo Channels and Circuits.
+repeatindex: Repeat items in an index after a page or column break
+resphilosophica: Typeset articles for the journal Res Philosophica.
+resumemac: Plain TeX macros for resumes.
+reverxii: Playing Reversi in TeX.
+revtex: Styles for various Physics Journals.
+revtex4: (shortdesc missing)
+rjlparshap: (shortdesc missing)
+rlepsf: Rewrite labels in EPS graphics.
+rmpage: A package to help change page layout parameters in LaTeX.
+robustcommand: Declare robust command, with \newcommand checks.
+robustindex: Create index with pagerefs.
+roex: (shortdesc missing)
+romanbar: Write roman number with "bars".
+romande: Romande ADF fonts and LaTeX support.
+romanneg: Roman page numbers negative.
+romannum: Generate roman numerals instead of arabic digits.
+romansh: Babel/Polyglossia support for the Romansh language.
+rotating: Rotation tools, including rotated full-page floats.
+rotfloat: Rotate floats.
+rotpages: Typeset sets of pages upside-down and backwards.
+roundbox: Round boxes in LaTeX.
+rrgtrees: Linguistic tree diagrams for Role and Reference Grammar (RRG) with LaTeX.
+rsc: BibTeX style for use with RSC journals.
+rsfs: Ralph Smith's Formal Script font.
+rsfso: A mathematical calligraphic font based on rsfs.
+rtkinenc: Input encoding with fallback procedures.
+rtklage: A package for German lawyers
+ruhyphen: Russian hyphenation.
+russ: LaTeX in Russian, without babel.
+rviewport: Relative Viewport for Graphics Inclusion.
+rvwrite: Increase the number of available output streams in LaTeX.
+ryethesis: Class for Ryerson Unversity Graduate School requirements.
+sa-tikz: TikZ library to draw switching architectures.
+sageep: Format papers for the annual meeting of EEGS.
+sanskrit: Sanskrit support.
+sansmath: Maths in a sans font.
+sansmathaccent: Correct placement of accents in sans-serif maths.
+sapthesis: Typeset theses for Sapienza-University, Rome.
+sasnrdisplay: Typeset SAS or R code or output.
+sauerj: A bundle of utilities by Jonathan Sauer.
+sauter: Wide range of design sizes for CM fonts.
+sauterfonts: Use sauter fonts in LaTeX.
+savefnmark: Save name of the footnote mark for reuse.
+savesym: Redefine symbols where names conflict.
+savetrees: Pack as much as possible onto each page of a LaTeX document.
+scale: Scale document by sqrt(2) or magstep(2).
+scalebar: Create scalebars for maps, diagrams or photos.
+schemabloc: Draw block diagrams, using Tikz.
+scheme-basic: basic scheme (plain and latex)
+scheme-context: ConTeXt scheme
+scheme-full: full scheme (everything)
+scheme-gust: GUST TeX Live scheme
+scheme-medium: medium scheme (small + more packages and languages)
+scheme-minimal: minimal scheme (plain only)
+scheme-small: small scheme (basic + xetex, metapost, a few languages)
+scheme-tetex: teTeX scheme (more than medium, but nowhere near full)
+scheme-xml: XML scheme
+schulschriften: German "school scripts" from Suetterlin to the present day.
+schwalbe-chess: Typeset the German chess magazine "Die Schwalbe"
+sciposter: Make posters of ISO A3 size and larger.
+screenplay: A class file to typeset screenplays.
+scrjrnl: Typeset diaries or journals.
+sdrt: Macros for Segmented Discourse Representation Theory.
+secdot: Section numbers with trailing dots.
+section: Modifying section commands in LaTeX.
+sectionbox: Create fancy boxed ((sub)sub)sections.
+sectsty: Control sectional headers.
+seetexk: Utilities for manipulating DVI files.
+selectp: Select pages to be output.
+semantic: Help for writing programming language semantics.
+semaphor: Semaphore alphabet font.
+seminar: Make overhead slides.
+semioneside: Put only special contents on left-hand pages in two sided layout.
+sepfootnotes: Define the texts of footnotes defined before their marks.
+sepnum: Print numbers in a "friendly" format.
+seqsplit: Split long sequences of characters in a neutral way.
+serbian-apostrophe: Commands for Serbian words with apostrophes.
+serbian-date-lat: Updated date typesetting for Serbian.
+serbian-def-cyr: (shortdesc missing)
+serbian-lig: Control ligatures in Serbian.
+serbianc: Babel module to support Serbian Cyrillic.
+setdeck: Typeset cards for Set.
+setspace: Set space between lines.
+seuthesis: LaTeX template for theses at Southeastern University.
+sf298: Standard form 298.
+sffms: Typesetting science fiction/fantasy manuscripts.
+sfg: Draw signal flow graphs.
+sfmath: Sans-serif mathematics.
+sgame: LaTeX style for typesetting strategic games.
+shade: Shade pieces of text.
+shadethm: Theorem environments that are shaded
+shadow: Shadow boxes.
+shadowtext: shadowtext
+shapepar: A macro to typeset paragraphs in specific shapes.
+shipunov: A collection of LaTeX packages and classes.
+shorttoc: Table of contents with different depths.
+show2e: Variants of \show for LaTeX2e.
+showcharinbox: Show characters inside a box.
+showexpl: Typesetting LaTeX source code.
+showhyphens: Show all possible hyphenations in LuaLaTeX.
+showlabels: Show label commands in the margin.
+showtags: Print the tags of bibliography entries.
+shuffle: A symbol for the shuffle product.
+sidecap: Typeset captions sideways.
+sidenotes: Typeset notes containing rich content, in the margin.
+sides: A LaTeX class for typesetting stage plays.
+silence: Selective filtering of error messages and warnings.
+simplecd: Simple CD, DVD covers for printing.
+simplecv: A simple class for writing curricula vitae.
+simplewick: Simple Wick contractions.
+simplified-latex: A Simplified Introduction to LaTeX.
+sitem: Save the optional argument of \item.
+siunitx: A comprehensive (SI) units package.
+skak: Fonts and macros for typesetting chess games.
+skaknew: The skak chess fonts redone in Adobe Type 1.
+skb: Tools for a repository of long-living documents.
+skeycommand: Create commands using parameters and keyval in parallel.
+skeyval: Extensions to xkeyval.
+skull: A font to draw a skull.
+slantsc: Access different-shaped small-caps fonts.
+slideshow: Generate slideshow with MetaPost.
+smalltableof: Create listoffigures etc. in a single chapter.
+smartdiagram: Generate diagrams from lists.
+smartref: Extend LaTeX's \ref capability.
+snapshot: List the external dependencies of a LaTeX document.
+songbook: Package for typesetting song lyrics and chord books.
+sort-by-letters: Bibliography styles for alphabetic sorting.
+soton: University of Southampton-compliant slides.
+soul: Hyphenation for letterspacing, underlining, and more.
+sourcecodepro: Use SourceCodePro with TeX(-alike) systems.
+sourcesanspro: Use SourceSansPro with TeX(-alike) systems.
+spanglish: Simplified Spanish support for Babel.
+spanish: Spanish in Babel.
+spanish-mx: Typeset Spanish as in Mexico.
+sparklines: Drawing sparklines: intense, simple, wordlike graphics.
+spelling: Support for spell-checking of LuaLaTeX documents.
+sphack: Patch LaTeX kernel spacing macros.
+spie: Support for formatting SPIE Proceedings manuscripts.
+splines: MetaPost macros for drawing cubic spline interpolants.
+splitbib: Split and reorder your bibliography.
+splitindex: Unlimited number of indexes.
+spot: Spotlight highlighting for Beamer.
+spotcolor: Spot colours for pdfLaTeX.
+spreadtab: Spreadsheet features for LaTeX tabular environments.
+spverbatim: Allow line breaks within \verb and verbatim output.
+srbook-mem: (shortdesc missing)
+srcltx: Jump between DVI and TeX files.
+sseq: Spectral sequence diagrams.
+stack: Tools to define and use stacks.
+stage: A LaTeX class for stage plays
+standalone: Compile TeX pictures stand-alone or as part of a document.
+starfont: The StarFont Sans astrological font.
+startex: An XML-inspired format for student use.
+statex: Statistics style.
+statex2: Statistics style.
+statistik: Store statistics of a document.
+staves: Typeset Icelandic staves and runic letters.
+stdclsdv: Provide sectioning information for package writers.
+stdpage: Standard pages with n lines of at most m characters each.
+steinmetz: Print Steinmetz notation.
+stellenbosch: Stellenbosch thesis bundle.
+stex: An Infrastructure for Semantic Preloading of LaTeX Documents.
+stix: OpenType Unicode maths fonts.
+stmaryrd: St Mary Road symbols for theoretical computer science.
+storebox: Storing information for reuse.
+storecmd: Store the name of a defined command in a container.
+stringstrings: String manipulation for cosmetic and programming application.
+struktex: Draw Nassi-Schneidermann charts
+sttools: Various macros.
+stubs: Create tear-off stubs at the bottom of a page.
+sty2dtx: Create a .dtx file from a .sty file.
+suanpan: MetaPost macros for drawing Chinese and Japanese abaci.
+subdepth: Unify maths subscript height.
+subeqn: Package for subequation numbering.
+subeqnarray: Equation array with sub numbering.
+subfig: Figures broken into subfigures
+subfigmat: Automates layout when using the subfigure package.
+subfigure: Deprecated: Figures divided into subfigures.
+subfiles: (shortdesc missing)
+subfloat: Sub-numbering for figures and tables.
+substances: A database of chemicals.
+substitutefont: Easy font substitution.
+substr: Deal with substrings in strings.
+subsupscripts: A range of sub- and superscript commands.
+sudoku: Create sudoku grids.
+sudokubundle: A set of sudoku-related packages.
+suftesi: A document class for typesetting theses, books and articles.
+sugconf: SAS(R) user group conference proceedings document class.
+superiors: Attach superior figures to a font family.
+supertabular: A multi-page tables package.
+susy: Macros for SuperSymmetry-related work.
+svg: Include and extract SVG pictures using Inkscape.
+svg-inkscape: How to include an SVG image in LaTeX using Inkscape.
+svgcolor: Define SVG named colours.
+svn: Typeset Subversion keywords.
+svn-multi: Subversion keywords in multi-file LaTeX documents
+svn-prov: Subversion variants of \Provides... macros.
+svninfo: Typeset Subversion keywords.
+swebib: Swedish bibliography styles.
+swimgraf: Graphical/textual representations of swimming performances
+syllogism: Typeset syllogisms in LaTeX.
+symbol: URW "Base 35" font pack for LaTeX.
+synctex: (shortdesc missing)
+synproof: Easy drawing of syntactic proofs.
+syntax: Creation of syntax diagrams.
+syntrace: Labels for tracing in a syntax tree.
+synttree: Typeset syntactic trees.
+systeme: Format systems of equations.
+t-angles: Draw tangles, trees, Hopf algebra operations and other pictures.
+t1utils: Simple Type 1 font manipulation programs.
+t2: Support for using T2 encoding.
+tabfigures: Maintain vertical alignment of figures.
+tableaux: Construct tables of signs and variations.
+tablefootnote: Permit footnotes in tables.
+tableof: Tagging tables of contents.
+tablists: Tabulated lists of short items.
+tablor: Create tables of signs and of variations.
+tabls: Better vertical spacing in tables and arrays.
+tabto-generic: "Tab" to a measured position in the line.
+tabto-ltx: "Tab" to a measured position in the line.
+tabu: Flexible LaTeX tabulars.
+tabularborder: Correct index entries for chemical compounds.
+tabularcalc: Calculate formulas in a tabular environment.
+tabularew: A variation on the tabular environment.
+tabulars-e: Examples from the book "Typesetting tables with LaTeX".
+tabulary: Tabular with variable width columns balanced.
+tabvar: Typesetting tables showing variations of functions.
+tagging: Document configuration with tags.
+talk: A LaTeX class for presentations.
+tamefloats: Experimentally use \holdinginserts with LaTeX floats.
+tamethebeast: A manual about bibliographies and especially BibTeX.
+tap: TeX macros for typesetting complex tables.
+tapir: A simple geometrical font.
+tcldoc: Doc/docstrip for tcl.
+tcolorbox: Coloured boxes, for LaTeX examples and theorems, etc.
+tdclock: A ticking digital clock package for PDF output.
+tds: The TeX Directory Structure standard.
+tdsfrmath: Macros for French teachers of mathematics.
+technics: A package to format technical documents.
+ted: A (primitive) token list editor.
+templates-fenn: Templates for TeX usage.
+templates-sommer: Templates for TeX usage.
+tengwarscript: LaTeX support for using Tengwar fonts.
+tensor: Typeset tensors.
+termcal: Print a class calendar.
+termlist: Label any kind of term with a continuous counter.
+tetex: scripts and files originally written for or included in teTeX
+teubner: Philological typesetting of classical Greek.
+tex: A sophisticated typesetting engine.
+tex-ewd: Macros to typeset calculational proofs and programs in Dijkstra's style.
+tex-font-errors-cheatsheet: Cheat sheet outlining the most common TeX font errors.
+tex-gyre: TeX Fonts extending freely available URW fonts.
+tex-gyre-math: Maths fonts to match tex-gyre text fonts.
+tex-label: Place a classification on each page of a document
+tex-overview: An overview of the development of TeX.
+tex-ps: TeX to PostScript generic macros and add-ons.
+tex-refs: References for TeX and Friends
+tex-virtual-academy-pl: (shortdesc missing)
+tex4ht: Convert (La)TeX to HTML/XML.
+texapi: Macros to write format-independent packages.
+texbytopic: Freed version of the book TeX by Topic.
+texconfig: (shortdesc missing)
+texcount: Count words in a LaTeX document.
+texdef: Display the definitions of TeX commands.
+texdiff: Compare documents and produce tagged merge.
+texdirflatten: Collect files related to a LaTeX job in a single directory.
+texdoc: Documentation access for TeX distributions.
+texdraw: Graphical macros, using embedded PostScript.
+texilikechaps: Format chapters with a texi-like format.
+texilikecover: A cover-page package, like TeXinfo.
+texinfo: Texinfo documentation system.
+texlive-common: TeX Live documentation (common elements)
+texlive-cz: TeX Live manual (Czech/Slovak)
+texlive-de: TeX Live manual (German)
+texlive-docindex: top-level TeX Live doc.html, etc.
+texlive-en: TeX Live manual (English)
+texlive-fr: TeX Live manual (French)
+texlive-it: TeX Live manual (Italian)
+texlive-msg-translations: translations of the TeX Live installer and TeX Live Manager
+texlive-pl: TeX Live manual (Polish)
+texlive-ru: TeX Live manual (Russian)
+texlive-scripts: TeX Live infrastructure programs
+texlive-sr: TeX Live manual (Serbian)
+texlive-zh-cn: TeX Live manual (Chinese)
+texliveonfly: On-the-fly download of missing TeX live packages.
+texloganalyser: Analyse TeX logs.
+texlogos: Ready-to-use LaTeX logos.
+texmate: Comprehensive chess annotation in LaTeX.
+texments: Using the Pygments highlighter in LaTeX.
+texpower: Create dynamic online presentations with LaTeX.
+texshade: Package for setting nucleotide and peptide alignments.
+texsis: Plain TeX macros for Physicists.
+textcase: Case conversion ignoring mathematics, etc.
+textfit: Fit text to a desired size.
+textgreek: Upright greek letters in text.
+textmerg: Merge text in TeX and LaTeX.
+textopo: Annotated membrane protein topology plots.
+textpath: Setting text along a path with MetaPost.
+textpos: Place boxes at arbitrary positions on the LaTeX page.
+texware: Utility programs for use with TeX.
+texworks: Cross-platform friendly front end.
+tfrupee: A font offering the new (Indian) Rupee symbol.
+thailatex: Typeset Thai texts with standard LaTeX classes.
+theoremref: References with automatic theorem names.
+thesis-titlepage-fhac: Little style to create a standard titlepage for diploma thesis
+thinsp: A stretchable \thinspace for LaTeX.
+thmbox: Decorate theorem statements.
+thmtools: Extensions to theorem environments.
+threadcol: Organize document columns into PDF "article thread".
+threeddice: Create images of dice with one, two, or three faces showing, using MetaPost.
+threeparttable: Tables with captions and notes all the same width.
+threeparttablex: Notes in longtables.
+thumb: Thumb marks in documents.
+thumbpdf: Thumbnails for pdfTeX and dvips/ps2pdf.
+thumbs: Create thumb indexes.
+thumby: Create thumb indexes for printed books.
+thuthesis: Thesis template for Tsinghua University.
+ticket: Make labels, visting-cards, pins with LaTeX.
+tie: Allow multiple web change files.
+tikz-3dplot: Coordinate transformation styles for 3d plotting in TikZ.
+tikz-cd: Create commutative diagrams with TikZ
+tikz-dependency: A library for drawing dependency graphs.
+tikz-inet: Draw interaction nets with TikZ
+tikz-qtree: Use existing qtree syntax for trees in TikZ.
+tikz-timing: Easy generation of timing diagrams as tikz pictures.
+tikzinclude: Import TikZ images from colletions.
+tikzorbital: Atomic and molecular orbitals using TiKZ.
+tikzpagenodes: Create commutative diagrams with TikZ
+tikzpfeile: Draw arrows using PGF/TikZ.
+tikzposter: Create scientific posters using TikZ.
+tikzscale: Resize pictures while respecting text size.
+times: URW "Base 35" font pack for LaTeX.
+timesht: (shortdesc missing)
+timetable: Generate timetables.
+tipa: Fonts and macros for IPA phonetics characters.
+tipa-de: German translation of tipa documentation.
+titlefoot: Add special material to footer of title page.
+titlepages: Sample titlepages, and how to code them.
+titlepic: Add picture to title page of a document.
+titleref: A "\titleref" command to cross-reference section titles.
+titlesec: Select alternative section titles.
+titling: Control over the typesetting of the \maketitle command.
+tkz-base: Tools for drawing with a cartesian coordinate system.
+tkz-berge: Macros for drawing graphs of graph theory.
+tkz-doc: Documentation macros for the TKZ series of packages.
+tkz-euclide: Tools for drawing euclidean geometry.
+tkz-fct: Tools for drawing graphs of functions.
+tkz-graph: Draw graph-theory graphs.
+tkz-kiviat: Draw Kiviat graphs.
+tkz-linknodes: Link nodes in mathematical environments.
+tkz-orm: Create Object-Role Model (ORM) diagrams,
+tkz-tab: Tables of signs and variations using PGF/TikZ.
+tlc2: Examples from "The LaTeX Companion", second edition.
+tocbibind: Add bibliography/index/contents to Table of Contents.
+tocloft: Control table of contents, figures, etc.
+tocvsec2: Section numbering and table of contents control.
+todo: Make a to-do list for a document.
+todonotes: Marking things to do in a LaTeX document.
+tokenizer: A tokenizer.
+toolbox: Macros for writing indices, glossaries.
+tools: The LaTeX standard tools bundle.
+topfloat: Move floats to the top of the page.
+toptesi: Bundle of files for typsetting theses.
+totcount: Find the last value of a counter.
+totpages: Count pages in a document, and report last page number.
+tpic2pdftex: Use tpic commands in PDFTeX.
+tpslifonts: A LaTeX package for configuring presentation fonts.
+tqft: Drawing TQFT diagrams with TikZ/PGF.
+trajan: Fonts from the Trajan column in Rome.
+tram: Typeset tram boxes in LaTeX.
+translation-array-fr: French translation of the documentation of array.
+translation-arsclassica-de: German version of arsclassica.
+translation-biblatex-de: German translation of the documentation of biblatex.
+translation-chemsym-de: German version of chemsym.
+translation-dcolumn-fr: French translation of the documentation of dcolumn.
+translation-ecv-de: German version of evc.
+translation-enumitem-de: Enumitem documentation, in German.
+translation-europecv-de: German version of europecv.
+translation-filecontents-de: German version of filecontents.
+translation-moreverb-de: German version of moreverb.
+translation-natbib-fr: French translation of the documentation of natbib.
+translation-tabbing-fr: French translation of the documentation of Tabbing.
+tree-dvips: Trees and other linguists' macros.
+treetex: Draw trees.
+trfsigns: Typeset transform signs.
+trimspaces: Trim spaces around an argument or within a macro.
+trivfloat: Quick float definitions in LaTeX.
+trsym: Symbols for transformations.
+truncate: Truncate text to a specified width.
+tsemlines: Support for the ancient \emline macro.
+ttfutils: (shortdesc missing)
+tucv: Support for typesetting a CV or resumee.
+tufte-latex: Document classes inspired by the work of Edward Tufte.
+tugboat: LaTeX macros for TUGboat articles.
+tugboat-plain: (shortdesc missing)
+tui: Thesis style for the University of the Andes, Colombia.
+turkmen: Babel support for Turkmen.
+turnstile: Typeset the (logic) turnstile notation.
+turnthepage: Provide "turn page" instructions.
+twoinone: Print two pages on a single page.
+twoup: Print two virtual pages on each physical page.
+txfonts: Times-like fonts in support of mathematics.
+txfontsb: Extensions to txfonts, using GNU Freefont.
+txgreeks: Shape selection for TX fonts Greek letters.
+type1cm: Arbitrary size font selection in LaTeX.
+typeface: Select a balanced set of fonts.
+typehtml: Typeset HTML directly from LaTeX.
+typeoutfileinfo: Display class/package/file information.
+typogrid: Print a typographic grid.
+uaclasses: University of Arizona thesis and dissertation format.
+uafthesis: Document class for theses at University of Alaska Fairbanks.
+ucdavisthesis: A thesis/dissertation class for University of California Davis.
+ucharclasses: Switch fonts in XeTeX according to what is being processed.
+ucs: Extended UTF-8 input encoding support for LaTeX.
+ucthesis: University of California thesis format.
+uebungsblatt: A LaTeX class for writing exercise sheets.
+uhc: Fonts for the Korean language.
+uiucthesis: UIUC thesis class.
+ukrhyph: Hyphenation Patterns for Ukrainian.
+ulem: Package for underlining.
+ulqda: Support of Qualitative Data Analysis.
+ulthese: Thesis class and templates for Universite Laval.
+umich-thesis: University of Michigan Thesis LaTeX class.
+uml: UML diagrams in LaTeX.
+umlaute: German input encodings in LaTeX.
+umoline: Underline text allowing line breaking.
+umthesis: Dissertations at the University of Michigan.
+umtypewriter: Fonts to typeset with the xgreek package.
+unamthesis: Style for Universidad Nacional Autonoma de Mexico theses.
+underlin: Underlined running heads.
+underscore: Control the behaviour of "_" in text.
+undolabl: Override existing labels.
+uni-wtal-ger: (shortdesc missing)
+uni-wtal-lin: Citation style for linguistic studies at the University of Wuppertal.
+unicode-math: Unicode mathematics support for XeTeX and LuaTeX.
+unisugar: Define syntactic sugar for Unicode LaTeX.
+units: Typeset units.
+unitsdef: Typesetting units in LaTeX.
+universa: Herbert Bayer's 'universal' font.
+uothesis: Class for dissertations and theses at the University of Oregon.
+uowthesis: Document class for dissertations at the University of Wollongong.
+upca: (shortdesc missing)
+upmethodology: Writing specification such as for UP-based methodologies.
+upquote: Show "realistic" quotes in verbatim.
+uptex: Unicode version of pTeX.
+uri: (shortdesc missing)
+url: Verbatim with URL-sensitive line breaks.
+urlbst: Web support for BibTeX.
+urwchancal: Use URW's clone of Zapf Chancery as a maths alphabet.
+usebib: A simple bibloography processor.
+ushort: Shorter (and longer) underlines and underbars.
+uspatent: U.S. Patent Application Tools for LaTeX and LyX.
+ut-thesis: University of Toronto thesis style.
+utf8mex: (shortdesc missing)
+utopia: Adobe Utopia fonts.
+uwmslide: Slides with a simple Power Point like appearance.
+uwthesis: University of Washington thesis class.
+vak: BibTeX style for Russian Theses, books, etc.
+vancouver: Bibliographic style file for Biomedical Journals.
+variations: Typeset tables of variations of functions.
+varindex: Luxury frontend to the \index command.
+varisize: Change font size in Plain TeX.
+varsfromjobname: Extract variables from the name of the LaTeX file.
+varwidth: A variable-width minipage.
+vaucanson-g: PSTricks macros for drawing automata
+velthuis: Typeset Devanagari.
+venn: Creating Venn diagrams with MetaPost.
+venndiagram: Creating Venn diagrams with TikZ.
+venturisadf: Venturis ADF fonts collection.
+verbasef: VERBatim Automatic Splitting of External Files.
+verbatimbox: Deposit verbatim text in a box.
+verbatimcopy: Make copies of text documents from within LaTeX.
+verbdef: Define commands which expand to verbatim text
+verbments: Syntax highlighting of source code in LaTeX documents.
+verse: Aids for typesetting simple verse.
+version: Conditionally include text.
+versions: Optionally omit pieces of text.
+vertbars: Mark vertical rules in margin of text.
+vhistory: Support for creating a change log.
+visualfaq: A Visual LaTeX FAQ.
+vlna: (shortdesc missing)
+vmargin: Set various page dimensions.
+vntex: Support for Vietnamese.
+vocaltract: Visualise the vocal tract using LaTeX and PStricks.
+volumes: Typeset only parts of a document, with complete indexes etc.
+voss-de: (shortdesc missing)
+vpe: Source specials for PDF output.
+vruler: Numbering text.
+vwcol: Variable-width multiple text columns.
+wadalab: Wadalab (Japanese) font packages.
+wallpaper: Easy addition of wallpapers (background images) to LaTeX documents, including tiling.
+warning: Global warnings at the end of the logfile.
+warpcol: Relative alignment of rows in numeric columns in tabulars.
+was: A collection of small packages by Walter Schmidt.
+wasy: The wasy fonts (Waldi symbol fonts).
+wasysym: LaTeX support file to use the WASY2 fonts
+web: original web programs tangle and weave
+webguide: Brief Guide to LaTeX Tools for Web publishing.
+widetable: An environment for typesetting tables of specified width
+williams: Miscellaneous macros by Peter Williams.
+wnri: Ridgeway's fonts.
+wnri-latex: LaTeX support for wnri fonts.
+wordlike: Simulating word processor layout.
+wrapfig: Produces figures which text can flow around.
+wsuipa: International Phonetic Alphabet fonts.
+xargs: Define commands with many optional arguments.
+xbmc: (shortdesc missing)
+xcite: Use citation keys from a different document.
+xcolor: Driver-independent color extensions for LaTeX and pdfLaTeX.
+xcomment: Allows selected environments to be included/excluded.
+xdoc: Extending the LaTeX doc system.
+xdvi: A DVI previewer for the X Window System.
+xecjk: Support for CJK documents in XeLaTeX.
+xecolor: (shortdesc missing)
+xecyr: Using Cyrillic languages in XeTeX.
+xeindex: Automatic index generation for XeLaTeX.
+xepersian: Persian for LaTeX, using XeTeX.
+xesearch: A string finder for XeTeX.
+xetex: Unicode and OpenType-enabled TeX engine.
+xetex-def: Colour and graphics support for XeTeX.
+xetex-devanagari: XeTeX input map for Unicode Devanagari.
+xetex-itrans: Itrans input maps for use with XeLaTeX.
+xetex-pstricks: Running PStricks under XeTeX.
+xetex-tibetan: XeTeX input maps for Unicode Tibetan.
+xetexconfig: Configuration files for XeTeX.
+xetexfontinfo: Report font features in XeTeX.
+xetexref: Reference documentation of XeTeX.
+xfor: A reimplimentation of the LaTeX for-loop macro.
+xgreek: XeLaTeX package for typesetting Greek language documents (beta release).
+xhfill: Extending \hrulefill.
+xifthen: Extended conditional commands.
+xindy: A general-purpose index processor.
+xits: A Scientific Times-like font with support for mathematical typesetting.
+xkeyval: Extension of the keyval package.
+xlop: Calculates and displays arithmetic operations.
+xltxtra: "Extras" for LaTeX users of XeTeX.
+xmltex: Support for parsing XML documents.
+xmpincl: Include eXtensible Metadata Platform data in PDFLaTeX.
+xnewcommand: Define \global and \protected commands with \newcommand.
+xoptarg: Expandable macros that take an optional argument.
+xpatch: Extending etoolbox patching commands.
+xpeek: Define commands that peek ahead in the input stream.
+xpicture: Extensions of LaTeX picture drawing.
+xpinyin: Automatically add pinyin to Chinese characters.
+xpunctuate: (shortdesc missing)
+xq: Support for writing about xiangqi.
+xskak: An extension to the skak package for chess typesetting.
+xstring: String manipulation for (La)TeX.
+xtab: Break tables across pages.
+xunicode: Generate Unicode characters from accented glyphs.
+xwatermark: Graphics and text watermarks on selected pages.
+xyling: Draw syntactic trees, etc., for linguistics literature, using xy-pic.
+xypic: (shortdesc missing)
+xypic-tut-pt: A tutorial for XY-pic, in Portuguese.
+xytree: Tree macros using XY-Pic.
+yafoot: A bundle of miscellaneous footnote packages.
+yagusylo: A symbol loader.
+yannisgr: Greek fonts by Yannis Haralambous.
+yax: Yet Another Key System.
+ydoc: Macros for documentation of LaTeX classes and packages.
+yfonts: Support for old German fonts.
+yhmath: Extended maths fonts for LaTeX.
+york-thesis: A thesis class file for York University, Toronto.
+youngtab: Typeset Young-Tableaux.
+yplan: Daily planner type calendar.
+ytableau: Many-featured Young tableaux and Young diagrams.
+zapfchan: URW "Base 35" font pack for LaTeX.
+zapfding: URW "Base 35" font pack for LaTeX.
+zed-csp: Typesetting Z and CSP format specifications.
+zhmetrics: TFM subfont files for using Chinese fonts in 8-bit TeX.
+zhnumber: Typeset Chinese representations of numbers.
+zhspacing: Spacing for mixed CJK-English documents in XeTeX.
+ziffer: Conversion of punctuation in maths mode.
+zwgetfdate: Get package or file date.
+zwpagelayout: Page layout and crop-marks.
+zxjafbfont: (shortdesc missing)
+zxjafont: Set up Japanese font families for XeLaTeX.
+zxjatype: Standard conforming typesetting of Japanese, for XeLaTeX.
