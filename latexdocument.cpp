@@ -329,6 +329,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 	
 	LatexParser& latexParser = LatexParser::getInstance();
 	int verbatimFormat=getFormatId("verbatim");
+	int commentFormat=getFormatId("comment");
 	bool updateSyntaxCheck=false;
 	
 	QList<StructureEntry*> flatStructure;
@@ -350,7 +351,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 		QVector<int> fmts=line(i).getFormats();
 		
 		for(int j=0;j<curLine.length() && j < fmts.size();j++){
-			if(fmts[j]==verbatimFormat){
+			if(fmts[j]==verbatimFormat || fmts[j]==commentFormat){
 				curLine[j]=QChar(' ');
 			}
 		}

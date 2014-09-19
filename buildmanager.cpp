@@ -2,6 +2,7 @@
 
 #include "smallUsefulFunctions.h"
 #include "configmanagerinterface.h"
+#include "utilsSystem.h"
 
 #include "userquickdialog.h"
 
@@ -1165,30 +1166,8 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 		proc->setWorkingDirectory(mainFile.absolutePath());
 	if (cmd.startsWith(TXS_CMD_PREFIX)) 
 		connect(proc, SIGNAL(startedX()), SLOT(runInternalCommandThroughProcessX()));
-	
-	QString addPaths = additionalSearchPaths;
-#ifdef Q_OS_MAC
-#if (QT_VERSION >= 0x040600)
-	QProcess *myProcess = new QProcess();
-	myProcess->start("bash -l -c \"echo $PATH\"");
-	myProcess->waitForFinished(3000);
-	if(myProcess->exitStatus()==QProcess::NormalExit){
-		QByteArray res=myProcess->readAllStandardOutput();
-		delete myProcess;
-		QString path(res);
-		if (addPaths.isEmpty()) addPaths = path;
-		else addPaths += ":" + path;
-	}
-#endif
-#endif
-	
 
-	if (!addPaths.isEmpty()) {
-		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-		env.insert("PATH", env.value("PATH") + getPathListSeparator() + addPaths); //apply user path as well
-		proc->setProcessEnvironment(env);		
-	}	
-	
+	updatePathSettings(proc, additionalSearchPaths);
 	return proc;
 }
 

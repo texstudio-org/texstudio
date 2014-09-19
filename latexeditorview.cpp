@@ -193,7 +193,8 @@ void DefaultInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (event->text() == ",") {
 		LatexEditorView* view = editor->property("latexEditor").value<LatexEditorView*>();
 		Q_ASSERT(view);
-		emit view->colonTyped();
+        if(completerConfig && completerConfig->enabled)
+            emit view->colonTyped();
 	}
 }
 
@@ -1253,7 +1254,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,LatexEditorView::packageMissingFormat,LatexEditorView::packagePresentFormat,LatexEditorView::packageUndefinedFormat,
 LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
-LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat,
+LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::commentFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat,
 LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat;
 int LatexEditorView::syntaxErrorFormat,LatexEditorView::preEditFormat;
 int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView::replaceFormat;
@@ -1329,7 +1330,7 @@ void LatexEditorView::updateFormatSettings(){
 							 F(wordRepetition) F(wordRepetitionLongRange) F(badWord)
 							 F(grammarMistake)
 							 F(grammarMistakeSpecial1) F(grammarMistakeSpecial2) F(grammarMistakeSpecial3) F(grammarMistakeSpecial4)
-							 F(numbers) F(verbatim) F(picture)
+							 F(numbers) F(verbatim) F(comment) F(picture)
 							 &pweaveDelimiterFormat, "pweave-delimiter",
 							 &pweaveBlockFormat, "pweave-block",
 							 &sweaveDelimiterFormat, "sweave-delimiter",
@@ -1648,7 +1649,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
 			QVector<int>fmts=line.getFormats();
 			for(int i=0;i<text.length() && i < fmts.size();i++){
-				if(fmts[i]==verbatimFormat){
+				if(fmts[i]==verbatimFormat || fmts[i]==commentFormat){
 					text[i]=QChar(' ');
 				}
 			}
@@ -1666,9 +1667,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		LatexReader lr(LatexParser::getInstance(), lineText, mReplacementList);
 		while ((status=lr.nextWord(false))){
 			if (latexLikeChecking) {
+				int format = line.getFormatAt(lr.wordStartIndex);
+				if(format==verbatimFormat || format==commentFormat) continue;
 				// hack to color the environment given in \begin{environment}...
 				if (lp.structureCommandLevel(lr.lastCommand) >= 0){
-					if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 					//QString secName=extractSectionName(lineText.mid(lr.lr.wordStartIndex),true);
 					//line.addOverlay(QFormatRange(lr.wordStartIndex,secName.length(),structureFormat));
 					QStringList result;
@@ -1688,7 +1690,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					addedOverlayStructure = true;
 				}
 				if (status==LatexReader::NW_ENVIRONMENT) {
-					if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,environmentFormat));
 					QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
 					rx.setMinimal(true);
@@ -1697,7 +1698,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					addedOverlayEnvironment = true;
 				}
 				if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
-					if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 					QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
 					if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
 					int cnt=document->countLabels(ref);
@@ -1708,7 +1708,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					addedOverlayReference = true;
 				}
 				if (status==LatexReader::NW_LABEL && config->inlineReferenceChecking) {
-					if(line.getFormatAt(lr.wordStartIndex)==verbatimFormat) continue;
 					QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
 
 					int cnt=document->countLabels(ref);
@@ -2363,6 +2362,7 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 		QEditor::PreviousPlaceHolder,
 		QEditor::NextPlaceHolderOrWord,
 		QEditor::PreviousPlaceHolderOrWord,
+        QEditor::TabOrIndentSelection,
 		QEditor::IndentSelection,
 		QEditor::UnindentSelection};
 	QList<int> res;

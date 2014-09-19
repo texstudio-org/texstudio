@@ -426,9 +426,9 @@ unix {
         utilities/COPYING \
         utilities/CHANGELOG.txt
     manual.files = \
-        utilities/usermanual_en.html \
-        utilities/usermanual_fr.html \
-        utilities/usermanual.css \
+        utilities/manual/usermanual_en.html \
+        utilities/manual/usermanual_fr.html \
+        utilities/manual/usermanual.css \
         utilities/manual/doc1.png \
         utilities/manual/doc10.png \
         utilities/manual/doc11.png \
@@ -461,9 +461,9 @@ unix {
         utilities/manual/compile_toolbar.png \
         utilities/manual/template.png \
         utilities/manual/thesaurus.png \
-        utilities/wizard_figure.png \
-        utilities/block_selection.png \
-        utilities/spellcheck_menu.png
+        utilities/manual/wizard_figure.png \
+        utilities/manual/block_selection.png \
+        utilities/manual/spellcheck_menu.png
     INSTALLS += target \
         manual \
         utilities

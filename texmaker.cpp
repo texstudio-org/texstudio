@@ -647,7 +647,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 	
 	menu->addSeparator();
-	newManagedEditorAction(menu, "print",tr("Print..."), "print", Qt::CTRL+Qt::Key_P);
+	newManagedEditorAction(menu, "print",tr("Print Source Code..."), "print", Qt::CTRL+Qt::Key_P);
 	
 	menu->addSeparator();
 	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q)->setMenuRole(QAction::QuitRole);
@@ -3646,16 +3646,24 @@ void Texmaker::ReadSettings(bool reread) {
 		foreach (const QString& key, sl) {
             if (key.isEmpty()) continue;
 			int operationID = config->value(key).toInt();
-            if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
-                QStringList defaultKeys = configManager.editorKeys.keys(operationID);
-                if (!defaultKeys.isEmpty()) {
-                    foreach(const QString elem,defaultKeys){
-                        configManager.editorKeys.remove(elem);
-                    }
-                    manipulatedOps.insert(operationID);
+            if(key.startsWith("#")){
+                // remove predefined key
+                QString realKey=key.mid(1);
+                if(configManager.editorKeys.value(realKey)==operationID){
+                    configManager.editorKeys.remove(realKey);
                 }
+            }else{
+                if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
+                    if (!defaultKeys.isEmpty()) {
+                        foreach(const QString elem,defaultKeys){
+                            configManager.editorKeys.remove(elem);
+                        }
+                        manipulatedOps.insert(operationID);
+                    }
+                }
+                configManager.editorKeys.insert(key, operationID);
             }
-			configManager.editorKeys.insert(key, operationID);
 		}
 		QEditor::setEditOperations(configManager.editorKeys);
 	}
@@ -5696,8 +5704,8 @@ void Texmaker::GeneralOptions() {
 			else
 				marks[i].color = Qt::transparent;
 		// update all docuemnts views as spellcheck may be different
-		QEditor::setEditOperations(configManager.editorKeys,true);
-		foreach (LatexEditorView *edView, EditorTabs->editors()) {
+        QEditor::setEditOperations(configManager.editorKeys,false); // true -> false, otherwise edit operation can't be removed, e.g. tab for indentSelection
+        foreach (LatexEditorView *edView, EditorTabs->editors()) {
 			QEditor* ed = edView->editor;
 			ed->document()->markFormatCacheDirty();
 			ed->update();
