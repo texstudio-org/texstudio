@@ -1157,7 +1157,12 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visited
 			deleteVisitedDocs=true;
 		}
         foreach(LatexDocument *elem,parent->getDocuments()){ // check children
-               //if(elem!=master && elem->masterDocument!=master) continue; disabled; if a doc is included in many master documents it needs to be known in all of them
+            if(elem!=master && elem->masterDocument!=master) continue;
+            /* reenabled by sdm.
+             * WAS disabled; if a doc is included in many master documents it needs to be known in all of them
+             * this "fix" breaks the complete functionality of this method !!!! (Bug 1102 e.g.)
+             * if it is really important that a document can be child of several masters, the logic has to be changed completely
+             */
 			if(visitedDocs && !visitedDocs->contains(elem)){
 				listOfDocs << elem;
 				visitedDocs->insert(elem);
