@@ -453,11 +453,25 @@ TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a diffe
 </ul>
 <p><IMG src="configure_editor.png" border="1" alt="Configure Editor"></p>
 <h2 id="SECTION02">1.2 Configuring the latex related commands</h2>
-<p>TeXstudio can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
-The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TeXstudio will adapt automatically the syntax of the command.<br>
-The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog. <br>
-Section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.<br>
-You can always restore the original settings using the revert button to the right.
+<p>LaTeX comes with a number of command line tools to compile and manipulate LaTeX
+documents. The commands section defines there location and arguments.</p>
+<p>The default settings should work with the recent and standard LaTeX distributions,
+but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change
+a command, just click on the button at the end of the corresponding line and select
+the command in the file browser : TeXstudio will automatically adapt the syntax of
+the command.</p>
+<p>You can use a number of special characters / character sequences to address the
+context of the current document. They are expanded at runtime:
+<table>
+<tr><th>Special Character</th><th>Expands to</th></tr>
+<tr><td><code>%</code></td><td>master filename (root) for of current document without extension</td></tr>
+<tr><td><code>@</code></td><td>current line number</td></tr>
+<tr><td><code>?</code> followed by further characters</td><td>See the instruction at the bottom of the configuration dialog.</td></tr>
+<tr><td><code>[txs-app-dir]</code></td><td>Location of the TeXstudio executable (useful for portable settings)</td></tr>
+<tr><td><code>[txs-settings-dir]</code></td><td>Location of the settings file (texstudio.ini)</td></tr>
+</table>
+<p>The section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.</p>
+<p>You can always restore the original settings using the revert button to the right.
 </p>
 <p><IMG src="configure_commands.png" border="1" alt="Configure Commands"></p>
 <h2 id="SECTION02a">1.3 Configuring the build system</h2>
