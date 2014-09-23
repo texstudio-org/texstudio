@@ -254,6 +254,7 @@ QString BuildManager::getCommandLine(const QString& id, bool* user){
 }
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
+	str = ConfigManagerInterface::getInstance()->parseDir(str);
 	str=str+" "; //end character  so str[i++] is always defined
 	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {
