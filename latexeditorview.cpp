@@ -38,6 +38,7 @@
 #include "qlinechangepanel.h"
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
+#include "latexpackages.h"
 
 #include "latexcompleter_config.h"
 
@@ -2078,16 +2079,23 @@ void LatexEditorView::mouseHovered(QPoint pos){
           break;
      case LatexParser::Package:
      {
-          QString preambel;
+		  QString type = (command=="\\documentclass") ? tr("Class") : tr("Package");
+		  QString preambel;
           if(command.endsWith("theme")){ // special treatment for  \usetheme
                preambel=command;
                preambel.remove(0,4);
                preambel.prepend("beamer");
+			   type = tr("Beamer Theme");
+			   type.replace(' ', "&nbsp;");
           }
-          if(latexPackageList->contains(preambel+value)){
-               QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package present"));
+		  QString text = QString("%1:&nbsp;<b>%2</b>").arg(type).arg(value);
+		  if(latexPackageList->contains(preambel+value)){
+			  QString description = LatexPackages::instance()->shortDescription(value);
+			  if (!description.isEmpty()) text += "<br>" + description;
+			  QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
           } else {
-               QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("Package not found"));
+			  text += "<br><b>(" + tr("not found") + ")";
+			   QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
           }
      }
           break;

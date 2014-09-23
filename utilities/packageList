@@ -2468,3 +2468,7 @@ zwpagelayout: Page layout and crop-marks.
 zxjafbfont: (shortdesc missing)
 zxjafont: Set up Japanese font families for XeLaTeX.
 zxjatype: Standard conforming typesetting of Japanese, for XeLaTeX.
+# manual entries
+mathtools: Extension to amsmath.
+inputenc: Input encoding specification.
+amssymb: Symbols from the American Mathematical Society.
