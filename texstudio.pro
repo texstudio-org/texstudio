@@ -367,8 +367,9 @@ unix {
 	templates/tabletemplate_plain_tabularx.png \
 	templates/tabletemplate_rowcolors_tabular.js \
 	templates/tabletemplate_rowcolors_tabular.png \
-	templates/template_Article_French.json \
-	templates/template_Article_French.tex \
+        templates/template_Article_French.json \
+        templates/template_Article_French.png \
+        templates/template_Article_French.tex \
 	templates/template_Article.json \
 	templates/template_Article.png \
 	templates/template_Article.tex \
