@@ -3,7 +3,7 @@
 #include "configmanager.h"
 
 LatexLogWidget::LatexLogWidget(QWidget *parent) :
-	QWidget(parent), logModel(0), displayPartsActions(0), logpresent(false)
+    QWidget(parent), logModel(0), displayPartsActions(0), logpresent(false),filterWarningAction(0),filterErrorAction(0),filterBadBoxAction(0)
 {
 	logModel = new LatexLogModel(this);//needs loaded line marks
 
@@ -24,6 +24,7 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	errorTable->horizontalHeader()->setStretchLastSection(true);
 	errorTable->setMinimumHeight(5*(fm.lineSpacing()+4));
 	errorTable->setFrameShape(QFrame::NoFrame);
+    errorTable->setSortingEnabled(true);
 
 	QAction * act = new QAction(tr("&Copy"),errorTable);
 	connect(act, SIGNAL(triggered()), SLOT(copyMessage()));
@@ -70,6 +71,18 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	displayLogAndTableAction = new QAction(tr("Issues and Log"), displayPartsActions);
 	displayLogAndTableAction->setData(qVariantFromValue(DisplayLogAndTable));
 	displayLogAndTableAction->setCheckable(true);
+    filterErrorAction = new QAction(QIcon(":/images-ng/error.svgz"),tr("Show Error"),this);
+    filterErrorAction->setCheckable(true);
+    filterErrorAction->setChecked(true);
+    connect(filterErrorAction,SIGNAL(toggled(bool)),this,SLOT(filterChanged(bool)));
+    filterWarningAction = new QAction(QIcon(":/images-ng/warning.svgz"),tr("Show Warning"),this);
+    filterWarningAction->setCheckable(true);
+    filterWarningAction->setChecked(true);
+    connect(filterWarningAction,SIGNAL(toggled(bool)),this,SLOT(filterChanged(bool)));
+    filterBadBoxAction = new QAction(QIcon(":/images-ng/badbox.svg"),tr("Show BadBox"),this);
+    filterBadBoxAction->setCheckable(true);
+    filterBadBoxAction->setChecked(true);
+    connect(filterBadBoxAction,SIGNAL(toggled(bool)),this,SLOT(filterChanged(bool)));
 
 	setDisplayParts(DisplayTable);
 }
@@ -108,6 +121,7 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString & compile
 		log->setPlainText(codec->toUnicode(fullLog));
 
 		logModel->parseLogDocument(log->document(), compiledFileName);
+        m_compiledFileName=compiledFileName;
 
 		logpresent=true;
 
@@ -226,3 +240,19 @@ void LatexLogWidget::setInfo(const QString &message) {
 	infoLabel->setVisible(!message.isEmpty());
 }
 
+QList<QAction *> LatexLogWidget::displayActions(){
+    QList<QAction *> result=displayPartsActions->actions();
+    result<<filterErrorAction<<filterWarningAction<<filterBadBoxAction;
+    return result;
+}
+
+void LatexLogWidget::filterChanged(bool ){
+    QList<LogType> lst;
+    if(filterErrorAction && filterErrorAction->isChecked())
+        lst<<LT_ERROR;
+    if(filterWarningAction && filterWarningAction->isChecked())
+        lst<<LT_WARNING;
+    if(filterBadBoxAction && filterBadBoxAction->isChecked())
+        lst<<LT_BADBOX;
+    logModel->parseLogDocument(log->document(), m_compiledFileName,lst);
+}

@@ -22,7 +22,7 @@ public:
 	const LatexLogEntry& at(int i);
 	//	void append(QString aFile, LogType aType, QString aOldline, int aLogline, QString aMessage);
 
-    void parseLogDocument(QTextDocument* doc, QString baseFileName);
+    void parseLogDocument(QTextDocument* doc, QString baseFileName, QList<LogType> lst_logType=QList<LogType>());
 
 	bool found(LogType lt) const;
 	int markID(LogType lt) const;
