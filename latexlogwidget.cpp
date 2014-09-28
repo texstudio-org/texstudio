@@ -9,7 +9,11 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 
 	errorTable = new QTableView(this);
 
-	errorTable->setModel(logModel);
+    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
+
+    //errorTable->setModel(logModel);
+    proxyModel->setSourceModel(logModel);
+    errorTable->setModel(proxyModel);
 
 	QFontMetrics fm(QApplication::font());
 	errorTable->setSelectionBehavior(QAbstractItemView::SelectRows);

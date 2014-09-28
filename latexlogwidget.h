@@ -4,6 +4,8 @@
 #include "logeditor.h"
 #include "latexlog.h"
 
+#include <QSortFilterProxyModel>
+
 #include "mostQtHeaders.h"
 
 class LatexLogWidget : public QWidget
