@@ -3488,9 +3488,9 @@ void Texmaker::editTextToTitlecase(bool smart) {
 		"	* To Title Case 2.1  http://individed.com/code/to-title-case/ \n" \
 		"	* Copyright © 20082013 David Gouch. Licensed under the MIT License.\n" \
 		"*/ \n" \
-		"String.prototype.toTitleCase = function(){\n" \
+        "toTitleCase = function(text){\n" \
 		"var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\\.?|via)$/i;\n" \
-		"return this.replace(/[A-Za-z0-9\\u00C0-\\u00FF]+[^\\s-]*/g, function(match, index, title){\n" \
+        "return text.replace(/[A-Za-z0-9\\u00C0-\\u00FF]+[^\\s-]*/g, function(match, index, title){\n" \
 		"if (index > 0 && index + match.length !== title.length &&\n" \
 		"  match.search(smallWords) > -1 && title.charAt(index - 2) !== \":\" &&\n" \
 		"  (title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&\n" \
@@ -3510,7 +3510,7 @@ void Texmaker::editTextToTitlecase(bool smart) {
 	script +=
 		"});\n" \
 		"};\n" \
-		"cursor.insertText(cursor.selectedText().toTitleCase())";
+        "cursor.insertText(toTitleCase(cursor.selectedText()))";
 	eng->setScript(script);
 	eng->run();
 	if (!eng->globalObject) delete eng;
