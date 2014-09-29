@@ -2159,7 +2159,7 @@ void PDFDocument::setupMenus(){
     menuHelp->addSeparator();
     menuHelp->addAction(actionAbout_TW);
     menuFile->addAction(actionFileOpen);
-    menuFile->addAction(action_Print);
+    //menuFile->addAction(action_Print); //disable incomplete print support
     menuFile->addAction(actionClose);
     menuFile->addSeparator();
     menuFile->addAction(actionQuit_TeXworks);
