@@ -56,7 +56,8 @@ private:
     QAction *displayTableAction, *displayLogAction, *displayLogAndTableAction,*filterErrorAction,*filterWarningAction,*filterBadBoxAction;
 
 	bool logpresent;
-    QString m_compiledFileName;
+
+    QSortFilterProxyModel *proxyModel;
 };
 
 Q_DECLARE_METATYPE(LatexLogWidget::DisplayParts)
