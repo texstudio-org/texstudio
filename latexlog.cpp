@@ -82,7 +82,7 @@ const LatexLogEntry& LatexLogModel::at(int i) {
 
 
 //Parse a latex log file to find errors, warnings, bad boxes...
-void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName,QList<LogType> lst_logType) {
+void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName) {
 	LatexOutputFilter outputFilter;
 	//TODO: investigate why it crashes if outputFilter is a member variable, m_infoList is set to a global variable by the LatexLogModel constructor instead here, but only if the m_filelookup member of LatexOutputFilter does exist
 	outputFilter.setSource(baseFileName);	
@@ -92,16 +92,9 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName,QL
 	log.clear();
 	QList<LatexLogEntry> laterLog;
 	for (int i = 0; i <outputFilter.m_infoList.count(); i++) {
-		LatexLogEntry cur = outputFilter.m_infoList.at(i);
-        if(lst_logType.isEmpty() || lst_logType.size()>2){
-            if (cur.type == LT_ERROR) log << cur;
-            else laterLog << cur;
-        }else{
-            if(lst_logType.contains(cur.type)){
-                if (cur.type == LT_ERROR) log << cur;
-                else laterLog << cur;
-            }
-        }
+        LatexLogEntry cur = outputFilter.m_infoList.at(i);
+        if (cur.type == LT_ERROR) log << cur;
+        else laterLog << cur;
 	}
 	log << laterLog;
 
@@ -157,4 +150,17 @@ QString LatexLogModel::htmlErrorTable(const QList<int> &errors) {
 		msg.append(at(error).niceMessage());
 	}
 	return msg.append("</table>");
+}
+
+QString LatexLogModel::returnString(LogType type){
+    switch (type) {
+    case LT_ERROR:
+        return tr("error");
+    case LT_WARNING:
+        return tr("warning");
+    case LT_BADBOX:
+        return tr("bad box");
+    default:
+        return QString();
+    }
 }

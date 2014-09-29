@@ -3,13 +3,13 @@
 #include "configmanager.h"
 
 LatexLogWidget::LatexLogWidget(QWidget *parent) :
-    QWidget(parent), logModel(0), displayPartsActions(0), logpresent(false),filterWarningAction(0),filterErrorAction(0),filterBadBoxAction(0)
+    QWidget(parent), logModel(0), displayPartsActions(0),filterErrorAction(0),filterWarningAction(0),filterBadBoxAction(0),logpresent(false)
 {
 	logModel = new LatexLogModel(this);//needs loaded line marks
 
 	errorTable = new QTableView(this);
 
-    QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel(this);
+    proxyModel = new QSortFilterProxyModel(this);
 
     //errorTable->setModel(logModel);
     proxyModel->setSourceModel(logModel);
@@ -125,7 +125,6 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString & compile
 		log->setPlainText(codec->toUnicode(fullLog));
 
 		logModel->parseLogDocument(log->document(), compiledFileName);
-        m_compiledFileName=compiledFileName;
 
 		logpresent=true;
 
@@ -251,12 +250,14 @@ QList<QAction *> LatexLogWidget::displayActions(){
 }
 
 void LatexLogWidget::filterChanged(bool ){
-    QList<LogType> lst;
+    QStringList lst;
     if(filterErrorAction && filterErrorAction->isChecked())
-        lst<<LT_ERROR;
+        lst<<logModel->returnString(LT_ERROR);
     if(filterWarningAction && filterWarningAction->isChecked())
-        lst<<LT_WARNING;
+        lst<<logModel->returnString(LT_WARNING);
     if(filterBadBoxAction && filterBadBoxAction->isChecked())
-        lst<<LT_BADBOX;
-    logModel->parseLogDocument(log->document(), m_compiledFileName,lst);
+        lst<<logModel->returnString(LT_BADBOX);
+    QString rg=lst.join("|");
+    proxyModel->setFilterRegExp(rg);
+    proxyModel->setFilterKeyColumn(1);
 }
