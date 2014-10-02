@@ -3450,24 +3450,29 @@ void Texmaker::editSectionPasteBefore(int line) {
 	currentEditorView()->paste();
 }
 
+void changeCase(QEditor* editor, QString(QString::*method)() const) {
+	if (!editor) return;
+	QList<QDocumentCursor> cs = editor->cursors();
+	bool allEmpty = true;
+	foreach (QDocumentCursor c, cs)
+		if (!c.selectedText().isEmpty()) {
+			allEmpty = false;
+			break;
+		}
+	if (allEmpty) return;
+
+	editor->document()->beginMacro();
+	foreach (QDocumentCursor c, editor->cursors())
+		c.replaceSelectedText( (c.selectedText().*method)() );
+	editor->document()->endMacro();
+}
+
 void Texmaker::editTextToLowercase() {
-	if (!currentEditorView()) return;
-	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
-	QString text = m_cursor.selectedText();
-	if (text.isEmpty()) return;
-	m_cursor.beginEditBlock();
-	m_cursor.insertText(text.toLower());
-	m_cursor.endEditBlock();
+	changeCase(currentEditor(), &QString::toLower);
 }
 
 void Texmaker::editTextToUppercase() {
-	if (!currentEditorView()) return;
-	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
-	QString text = m_cursor.selectedText();
-	if (text.isEmpty()) return;
-	m_cursor.beginEditBlock();
-	m_cursor.insertText(text.toUpper());
-	m_cursor.endEditBlock();
+	changeCase(currentEditor(), &QString::toUpper);
 }
 
 /*!
@@ -3510,7 +3515,7 @@ void Texmaker::editTextToTitlecase(bool smart) {
 	script +=
 		"});\n" \
 		"};\n" \
-        "cursor.insertText(toTitleCase(cursor.selectedText()))";
+	   "editor.replaceSelectedText(toTitleCase)";
 	eng->setScript(script);
 	eng->run();
 	if (!eng->globalObject) delete eng;
