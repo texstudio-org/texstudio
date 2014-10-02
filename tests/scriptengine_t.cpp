@@ -67,6 +67,7 @@ void ScriptEngineTest::script_data(){
 		<< "cursor.moveTo(20,10);cursor.deleteChar();cursor.deletePreviousChar();cursor.eraseLine();cursor.insertText(\"as\")"
 		<< "bello";  // invalid cursors are not executed
 
+
 	QTest::newRow("Search/Replace Test 1")
 		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.replace(\"a\", \"b\"); "
 		<< "Hbllo1\nHallo2\nHallo3";
@@ -112,6 +113,18 @@ void ScriptEngineTest::script_data(){
 			  << "editor.setText(\"Hallo1\\nHamlo2\\nHallo3\", false); editor.replace(/a./, \"g\", function(c){return \">\"+c.selectedText()+\"<\";}); "
 			<< "H>al<lo1\nH>am<lo2\nH>al<lo3";
 	}
+
+	QTest::newRow("replaceSelectedText 1")
+		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.setCursor(editor.document().cursor(1,2,1,4)); editor.addCursorMirror(editor.document().cursor(2,2,2,4));  editor.replaceSelectedText('xYz'); "
+		<< "Hallo1\nHaxYzo2\nHaxYzo3";
+
+	QTest::newRow("replaceSelectedText 2")
+		<< "editor.setText(\"Hallo1\\nHallo2\\nHalso3\", false); editor.setCursor(editor.document().cursor(1,2,1,4)); editor.addCursorMirror(editor.document().cursor(2,2,2,4));  editor.replaceSelectedText(function(s){return s.toUpperCase();}); "
+		<< "Hallo1\nHaLLo2\nHaLSo3";
+
+	QTest::newRow("replaceSelectedText 3")
+		<< "editor.setText(\"Hallo1\\nHallo2\\nHallo3\", false); editor.setCursor(editor.document().cursor(1,2,1,4)); editor.addCursorMirror(editor.document().cursor(2,2,2,4));  editor.replaceSelectedText('x%<Y%>z', {'macro': true}); "
+		<< "Hallo1\nHaxllzo2\nHaxllzo3";
 }
 void ScriptEngineTest::script(){
 	QFETCH(QString, script);

@@ -180,6 +180,77 @@ void qScriptValueToStringPtr(const QScriptValue &value, QString* &str) {
 
 #define SCRIPT_REQUIRE(cond, message) if (!(cond)) { context->throwError(scriptengine::tr(message)); return engine->undefinedValue(); }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(4, 5, 0))
+#define SCRIPT_TO_BOOLEAN toBool
+#else
+#define SCRIPT_TO_BOOLEAN toBoolean
+#endif
+
+
+QScriptValue replaceSelectedText(QScriptContext *context, QScriptEngine *engine){
+	QEditor *editor = qobject_cast<QEditor*>(context->thisObject().toQObject());
+	SCRIPT_REQUIRE(context->argumentCount()>=1, "at least one argument is required");
+
+	bool noEmpty = false;
+	bool onlyEmpty = false;
+	bool append = false;
+	bool prepend = false;
+	bool macro = false;
+
+	if (context->argumentCount()>=2 ) {
+		SCRIPT_REQUIRE(context->argument(1).isObject(), "2nd value needs to be an object");
+		noEmpty = context->argument(1).property("noEmpty").SCRIPT_TO_BOOLEAN();
+		onlyEmpty = context->argument(1).property("onlyEmpty").SCRIPT_TO_BOOLEAN();
+		append = context->argument(1).property("append").SCRIPT_TO_BOOLEAN();
+		prepend = context->argument(1).property("prepend").SCRIPT_TO_BOOLEAN();
+		macro = context->argument(1).property("macro").SCRIPT_TO_BOOLEAN();
+		SCRIPT_REQUIRE(!macro || !(append || prepend), "Macro option cannot be combined with append or prepend option."); //well it could, but there is no good way to	define what should happen to the selection
+	}
+
+	QList<QDocumentCursor> cursors = editor->cursors();
+	QList<PlaceHolder> newMacroPlaceholder = macro ? editor->getPlaceHolders() : QList<PlaceHolder>();
+	QList<QDocumentCursor> newMacroCursors;
+
+	editor->document()->beginMacro();
+	foreach (QDocumentCursor c, cursors) {
+		QString st = c.selectedText();
+		if (noEmpty && st.isEmpty()) continue;
+		if (onlyEmpty && !st.isEmpty()) continue;
+		QString newst;
+		if (context->argument(0).isFunction()) {
+			QScriptValue cb = context->argument(0).call(QScriptValue(), QScriptValueList() << engine->toScriptValue(st) << engine->newQObject(&c));
+			newst = cb.toString();
+		} else newst = context->argument(0).toString();
+		if (!macro) {
+			if (append && prepend) newst = newst + st + newst;
+			else if (append) newst = st + newst;
+			else if (prepend) newst = newst + st;
+			c.replaceSelectedText(newst);
+		} else {
+			editor->clearPlaceHolders();
+			editor->clearCursorMirrors();
+			CodeSnippet cs(newst);
+			cs.insertAt(editor, &c);
+			newMacroPlaceholder << editor->getPlaceHolders();
+			if (editor->cursor().isValid()) {
+				newMacroCursors << editor->cursor();
+				newMacroCursors.last().setAutoUpdated(true);
+			} else newMacroCursors << c; //CodeSnippet does not select without placeholder. But here we do, since it is called replaceSelectedText
+		}
+	}
+	editor->document()->endMacro();
+	if (macro && (cursors.size() > 0 /*|| (append && prepend) disallowed*/)) { //inserting multiple macros destroyed the new cursors, we need to insert them again
+		if (noEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && c.selectedText().isEmpty()) newMacroCursors << c;
+		if (onlyEmpty) foreach (QDocumentCursor c, cursors) if (c.isValid() && !c.selectedText().isEmpty()) newMacroCursors << c;
+		if (newMacroCursors.size())
+			editor->setCursor(newMacroCursors.first());
+		for (int i=1;i<newMacroCursors.size();i++)
+			editor->addCursorMirror(newMacroCursors[i]);
+		editor->replacePlaceHolders(newMacroPlaceholder);
+	}
+	return QScriptValue();
+}
+
 
 QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engine, bool replace){
 	QEditor *editor = qobject_cast<QEditor*>(context->thisObject().toQObject());
@@ -371,6 +442,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),triggerId(-1), glo
 	qScriptRegisterQObjectMetaType<PDFWidget*>(engine);
 #endif
 	QScriptValue extendedQEditor = engine->newObject();
+	extendedQEditor.setProperty("replaceSelectedText", engine->newFunction(&replaceSelectedText), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	extendedQEditor.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly|QScriptValue::Undeletable);
 	extendedQEditor.setProperty("save", engine->newFunction(&editorSaveWrapper), QScriptValue::ReadOnly|QScriptValue::Undeletable);
@@ -442,7 +514,7 @@ void scriptengine::run(){
 	globalValue.setPrototype(engine->globalObject());
 	engine->setGlobalObject(globalValue);
 	
-	QDocumentCursor c;
+	QDocumentCursor c( m_editor ? m_editor->cursorHandle() : 0); //create from handle, so modifying the cursor in the script directly affects the actual cursor
 	QScriptValue cursorValue;
 	if (m_editorView)
 		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
@@ -450,8 +522,6 @@ void scriptengine::run(){
 	if (m_editor) {
 		engine->globalObject().setProperty("editor", engine->newQObject(m_editor));
 		
-		c=m_editor->cursor();
-		c.setAutoUpdated(true); //auto updated so the editor text insert functions actually move the cursor		
 		cursorValue = engine->newQObject(&c);
 		engine->globalObject().setProperty("cursor", cursorValue);
 		
@@ -495,8 +565,8 @@ void scriptengine::run(){
 	}
 	
 	if (m_editor) {
-		if (engine->globalObject().property("cursor").strictlyEquals(cursorValue)) m_editor->setCursor(c);
-		else m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
+		if (!engine->globalObject().property("cursor").strictlyEquals(cursorValue))
+			m_editor->setCursor(cursorFromValue(engine->globalObject().property("cursor")));
 	}
 	
 	if (!globalObject->backgroundScript) {

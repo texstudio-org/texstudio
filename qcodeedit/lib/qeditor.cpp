@@ -1914,6 +1914,18 @@ QDocumentCursor QEditor::cursorMirror(int i) const
 }
 
 /*!
+	\return the current cursor and all mirrors
+
+	Not slow, but also not the fastest. Best to avoid in loops
+*/
+QList<QDocumentCursor> QEditor::cursors() const{
+	QList<QDocumentCursor> res;
+	if (m_cursor.isValid()) res << m_cursor;
+	res << m_mirrors;
+	return res;
+}
+
+/*!
 	\brief Clear all placeholders
 */
 void QEditor::clearPlaceHolders()
@@ -2023,6 +2035,20 @@ void QEditor::removePlaceHolder(int id)
 }
 
 /*!
+	\brief Replaces all placeholders with new ones.
+
+	\note New placeholders will not be initialized
+*/
+void QEditor::replacePlaceHolders(const QList<PlaceHolder>& newPlaceholders){
+	clearPlaceHolders();//is this needed?
+	m_placeHolders = newPlaceholders;
+	if ( m_curPlaceHolder >= m_placeHolders.size() )
+		m_curPlaceHolder = m_placeHolders.size() - 1;
+	m_lastPlaceHolder = -1;
+	viewport()->update();
+}
+
+/*!
 	\return the number of placeholders currently set
 */
 int QEditor::placeHolderCount() const
@@ -2038,6 +2064,9 @@ int QEditor::currentPlaceHolder() const
 }
 const PlaceHolder& QEditor::getPlaceHolder(int i) const{
 	return m_placeHolders.at(i);
+}
+QList<PlaceHolder> QEditor::getPlaceHolders(){
+	return m_placeHolders;
 }
 
 /*! Checks if there exists a placeholder that will be auto overridden by inserting string s
@@ -4786,6 +4815,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 					 || cm.selectedText() != autoBracket //bracket mismatch
 					 || (!previousBracketMatch.isNull() &&
 					     cm.anchorLineNumber() == cm.lineNumber() &&
+
 					     cm.selectionEnd() == previousBracketMatch.selectionEnd());
 		}
 

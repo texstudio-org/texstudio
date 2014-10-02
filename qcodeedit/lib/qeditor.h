@@ -247,6 +247,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		Q_INVOKABLE int cursorMirrorCount() const;
 		Q_INVOKABLE QDocumentCursor cursorMirror(int i) const;
 		
+		Q_INVOKABLE QList<QDocumentCursor> cursors() const;
+
 		QLanguageDefinition* languageDefinition() const;
 		QCodeCompletionEngine* completionEngine() const;
 		
@@ -443,10 +445,12 @@ public slots:
 		void addPlaceHolder(const PlaceHolder& p, bool autoUpdate = true);
 		void addPlaceHolderMirror(int placeHolderId, const QDocumentCursor& c);
 		void removePlaceHolder(int id);
+		void replacePlaceHolders(const QList<PlaceHolder>& newPlaceholders);
 				
 		int placeHolderCount() const;
 		int currentPlaceHolder() const;
 		const PlaceHolder& getPlaceHolder(int i) const;
+		QList<PlaceHolder> getPlaceHolders();
 		bool isAutoOverrideText(const QString& s) const;
 		void resizeAutoOverridenPlaceholder(const QDocumentCursor& start, int length);
 
@@ -579,8 +583,8 @@ public slots:
 		bool getPositionBelowCursor(QPoint& offset, int width, int height,bool &above);
 		bool getPositionBelowCursor(QPoint& offset, int width=0, int height=0);
 
-		void clearCursorMirrors();
-		void addCursorMirror(const QDocumentCursor& c);
+		Q_INVOKABLE void clearCursorMirrors();
+		Q_INVOKABLE void addCursorMirror(const QDocumentCursor& c);
 
 		void setCursorBold(bool bold);
 
