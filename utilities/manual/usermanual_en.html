@@ -964,6 +964,24 @@ To access the document these objects are introduced:
   	<td> This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith.  </td>
   </tr>
   <tr>
+  	<td> editor.replaceSelectedText(newText, [options]) </td>
+  	<td>  This function replaces the current selections with newText or inserts newText, if nothing is selected. <br>
+  	     If newText is a function, it will be called with the selected text and corresponding cursor, and the return value will be the newText.<br>
+  	     It is recommended to use this function for all text replacements/insertions, since it is the easiest way to handle multiple cursors/block selections correctly. Though it is only available in txs >= 2.8.5.<br><br>
+  	     
+  	    Options is an object that can have the following properties:
+  	    <ul>
+  	    <li><code>{"noEmpty": true}</code>    only replaces; does not insert anything if the selection is empty</li>
+  	    <li><code>{"onlyEmpty": true}</code>  only inserts at the cursor position; does not change non empty selected text</li>
+  	    <li><code>{"append": true}</code>     appends newText to the current selection, does not remove the old text</li>
+  	    <li><code>{"prepend": true}</code>    prepends newText to the current selection, does not remove the old text</li> 
+  	    <li><code>{"macro": true}</code>      Treats newText as normal macro text, e.g. inserting %&lt; %&gt; placeholders </li> 
+  	    </ul><br>
+  	    Examples:<br>
+  	    <code>editor.replaceSelectedText("world", {"append": true} )</code> Appends "world" to the current selections.<br>
+  	    <code>editor.replaceSelectedText(function(s){return s.toUpperCase();})</code> Converts the current selection to uppercase.  </td>
+  </tr>
+  <tr>
     <td> editor.undo();</td>
     <td>undo last command in editor</td>
   </tr>
@@ -1057,7 +1075,7 @@ To access the document these objects are introduced:
   </tr>
   <tr>
     <td> editor.insertText(str) </td>
-    <td> inserts str at the current cursor position (cursor mirrors are ignored)</td>
+    <td> inserts str at the current cursor position (cursor mirrors are ignored, so it is preferable to use replaceSelectedText or write instead) </td>
   </tr>
   <!--
   <tr>
