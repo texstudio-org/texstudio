@@ -26,6 +26,7 @@ struct StructureEntry{
 	StructureEntry* parent;
 	LatexDocument* document;
 	bool appendix;
+    bool hide;
 	
 	StructureEntry(LatexDocument* doc, Type newType);
 	~StructureEntry();
@@ -211,10 +212,12 @@ private:
 
     QString mClassOptions; // store class options, if they are defined in this doc
 	
-	QDocumentLineHandle *mAppendixLine;
+    QDocumentLineHandle *mAppendixLine,*mBeyondEnd;
 	
 	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
+    void updateBeyondEnd(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
 	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
+    void setDocumentEnd(StructureEntry *se,int startLine,int endLine,bool state);
 
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void mergeStructure(StructureEntry* se, QVector<StructureEntry*> &parent_level, QList<StructureEntry*>& flatStructure, const int linenr, const int count);

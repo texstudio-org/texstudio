@@ -137,6 +137,7 @@ void LatexDocument::initClearStructure() {
 	mMentionedBibTeXFiles.clear();
 	
 	mAppendixLine=0;
+    mBeyondEnd=0;
 
 
 	emit structureUpdated(this,0);
@@ -307,6 +308,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 	bool bibItemsChanged=false;
 	
 	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
+    QDocumentLineHandle *oldLineBeyond=mBeyondEnd; // to detect a change in end document position
 	
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfMagicComments;
 	QMutableListIterator<StructureEntry*> iter_magicComment(magicCommentList->children);
@@ -500,6 +502,17 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			oldLine=mAppendixLine;
 			mAppendixLine=0;
 		}
+        /// \end{document} keyword
+        /// don't add section in structure view after passing \end{document} , this command must not contains spaces nor any additions in the same line
+        if (curLine=="\\end{document}") {
+            oldLineBeyond=mBeyondEnd;
+            mBeyondEnd=line(i).handle();
+
+        }
+        if(line(i).handle()==mBeyondEnd && curLine!="\\end{document}"){
+            oldLineBeyond=mBeyondEnd;
+            mBeyondEnd=0;
+        }
 		//let %\include be processed
 		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")||curLine.startsWith("%\\import")){
 			curLine.replace(0,1,' ');
@@ -875,14 +888,16 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 				cmd=cmd.left(cmd.length()-1);
 			int level = latexParser.structureCommandLevel(cmd);
 			if (level>-1 && !isDefinitionArgument(name)) {
-				StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
-				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
-				else newSection->appendix=false;
-				newSection->title=parseTexOrPDFString(name);
-				newSection->level=level;
-				newSection->setLine(line(i).handle(), i);
-				newSection->columnNumber = offset;
-				flatStructure << newSection;
+                StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
+                if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
+                else newSection->appendix=false;
+                if(mBeyondEnd &&indexOf(mBeyondEnd)<i) newSection->hide=true;
+                else newSection->hide=false;
+                newSection->title=parseTexOrPDFString(name);
+                newSection->level=level;
+                newSection->setLine(line(i).handle(), i);
+                newSection->columnNumber = offset;
+                flatStructure << newSection;
 			}
 		}// for each command
 		
@@ -911,6 +926,10 @@ bool LatexDocument::patchStructure(int linenr, int count) {
         //update appendix change
         if(oldLine!=mAppendixLine){
             updateAppendix(oldLine,mAppendixLine);
+        }
+        //update end document change
+        if(oldLineBeyond!=mBeyondEnd){
+            updateBeyondEnd(oldLineBeyond,mBeyondEnd);
         }
 
         // rehighlight current cursor position
@@ -1275,7 +1294,7 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
  
 }
 */
-StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), parent(0), document(doc),appendix(false), parentRow(-1), lineHandle(0), lineNumber(-1){
+StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), parent(0), document(doc),appendix(false),hide(false), parentRow(-1), lineHandle(0), lineNumber(-1){
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(document);
 	document->StructureContent.insert(this);
@@ -1462,8 +1481,9 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		}
 	case Qt::BackgroundRole:
         if (index==mHighlightIndex) return QVariant(QColor(Qt::lightGray));
-		if (entry->appendix) return QVariant(QColor(200,230,200));
-		else return QVariant();
+        if (entry->appendix) return QVariant(QColor(200,230,200));
+        if (entry->hide) return QVariant(QColor(255,170,0));
+        return QVariant();
 	case Qt::ForegroundRole:
         if(entry->type==StructureEntry::SE_INCLUDE) {
             return entry->valid ? QVariant() : QVariant(QColor(Qt::red)); // not found files marked red, else black (green is not easily readable)
@@ -2395,6 +2415,24 @@ void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHan
 	}
 }
 
+void LatexDocument::updateBeyondEnd(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
+    int endLine=newLine?indexOf(newLine):-1 ;
+    int startLine=-1;
+    if(oldLine){
+        startLine=indexOf(oldLine);
+        if(endLine<0 || endLine>startLine){
+            // remove appendic marker
+            StructureEntry *se=baseStructure;
+            setAppendix(se,startLine,endLine,false);
+        }
+    }
+
+    if(endLine>-1 && (endLine<startLine || startLine<0)){
+        StructureEntry *se=baseStructure;
+        setAppendix(se,endLine,startLine,true);
+    }
+}
+
 void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,bool state){
 	bool first=false;
 	for(int i=0;i<se->children.size();i++){
@@ -2412,6 +2450,25 @@ void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,boo
 		StructureEntry *elem=se->children.last();
 		if(elem->type==StructureEntry::SE_SECTION) setAppendix(elem,startLine,endLine,state);
 	}
+}
+
+void LatexDocument::setDocumentEnd(StructureEntry *se,int startLine,int endLine,bool state){
+    bool first=false;
+    for(int i=0;i<se->children.size();i++){
+        StructureEntry *elem=se->children[i];
+        if(endLine>=0 && elem->getLineHandle() && elem->getRealLineNumber()>endLine) break;
+        if(elem->type==StructureEntry::SE_SECTION && elem->getRealLineNumber()>startLine){
+            if(!first && i>0) setDocumentEnd(se->children[i-1],startLine,endLine,state);
+            elem->hide=state;
+            emit updateElement(elem);
+            setDocumentEnd(se->children[i],startLine,endLine,state);
+            first=true;
+        }
+    }
+    if(!first && !se->children.isEmpty()) {
+        StructureEntry *elem=se->children.last();
+        if(elem->type==StructureEntry::SE_SECTION) setDocumentEnd(elem,startLine,endLine,state);
+    }
 }
 
 bool LatexDocument::fileExits(QString fname){
