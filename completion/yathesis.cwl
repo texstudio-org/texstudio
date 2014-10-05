@@ -22,6 +22,7 @@
 #include:textcase
 #include:translator
 #include:fixltx2e
+#include:iftex
 #include:epigraph
 #include:tcolorbox
 #include:marvosym
@@ -76,6 +77,15 @@ noabstract
 nomakeabstract
 notableofcontents
 noprintbibliography
+graphicx
+adjustbox
+setspace
+xcolor
+datatool
+titleps
+draftwatermark
+babel
+datetime
 #endkeyvals
 #
 \yadsetup{%<options%>}#n
