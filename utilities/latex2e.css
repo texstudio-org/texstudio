@@ -1,0 +1,35 @@
+h3.fn,span.fn {font-family:sans-serif; margin-left: 1cm; text-indent: -1cm; }
+a:link {font-family:sans-serif; color: #004faf; text-decoration: none }
+a:visited {font-family:sans-serif; color: #004faf; text-decoration: none }
+body {font-family:sans-serif; background: white; color: black; }
+P        { font-family:sans-serif; }
+OL        { font-family:sans-serif; }
+UL        { font-family:sans-serif; }
+LI       { font-family:sans-serif;  }
+TD        { font-family:sans-serif; }
+DD        { font-family:sans-serif; }
+DL        { font-family:sans-serif; }
+DT        { font-family:sans-serif; }
+H1        { font-family:sans-serif;  }
+H2        { font-family:sans-serif; color:white; background:#3f5881;  
+	margin: 30px 0 15px 0;
+	padding: 5px;
+}
+
+.shortcontents {
+	-moz-column-count: 3;
+	-moz-column-width: 320px;
+	-webkit-column-count: 3;
+	-webkit-column-width: 320px;
+	column-count: 3;
+	column-width: 320px;
+}
+
+.contents {
+	-moz-column-count: 3;
+	-moz-column-width: 320px;
+	-webkit-column-count: 3;
+	-webkit-column-width: 320px;
+	column-count: 3;
+	column-width: 320px;
+}
