@@ -3444,16 +3444,15 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 								int yStart,
 								int yEnd) const
 {
-    QReadLocker locker(&mLock);
-	if ( hasFlag(QDocumentLine::LayoutDirty) )
-        layout(lineNr);
-
+	QReadLocker locker(&mLock);
+	if ( hasFlag(QDocumentLine::LayoutDirty) ||
+     ( m_layout && !hasFlag(QDocumentLine::FormatsApplied) ) ) // formats need to added before splitting lines, as they could change the linewidthes ...
+		layout(lineNr);
 
 	if ( m_layout )
 	{
-        if ( !hasFlag(QDocumentLine::FormatsApplied) )
-            layout(lineNr); // formats need to added before splitting lines, as they could change the linewidthes ...
-            //m_layout->setAdditionalFormats(decorations()); (this causes a crash on qt>5.3)
+    //if (!hasFlag(QDocumentLine::FormatsApplied))
+      //m_layout->setAdditionalFormats(decorations()); (this causes a crash on qt>5.3)
 
 		//if ( !hasFlag(QDocumentLine::FormatsApplied) )
 		//	applyOverlays();
