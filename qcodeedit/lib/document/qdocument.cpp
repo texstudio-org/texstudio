@@ -2851,12 +2851,12 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 
 	if ( m_layout )
 	{
-        // workaround on qt5.3 bug
-        QTextLine tl=m_layout->lineAt(wrap);
-        if(tl.textLength()>=cpos)
-            x += int(tl.cursorToX(cpos));
-        else
-            x += int(tl.width());
+		// workaround on qt5.3 bug
+		QTextLine tl=m_layout->lineAt(wrap);
+		if(tl.textStart() + tl.textLength()>=cpos)
+			x += int(tl.cursorToX(cpos));
+		else
+			x += int(tl.width());
 	} else {
 		if ( wrap )
 			x += m_indent;
