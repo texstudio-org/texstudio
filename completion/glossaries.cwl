@@ -240,7 +240,7 @@
 \loadglsentries{file}#i
 \makeglossaries
 \newacronymhook#S
-\newglossaryentry{label}{name=glossaryentry, description={descriptive text}}#l
+\newglossaryentry{label}{name={%<glossaryentry%>}, description={%<descriptive text%>}}#l
 \newacronym{label}{abbrv}{long}#l
 \newacronym[options]{label}{abbrv}{long}#l
 \newglossary[log-ext]{name}{in-ext}{out-ext}{title}
