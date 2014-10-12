@@ -578,56 +578,29 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
 	return false;
 }
 
-bool findCommandWithArg(const QString &line,QString &cmd, QString &outName, QString &outArg, QString &remainder,int &argStart,QString &option){
-    // true means that a command is found, with or without arguments ...
-    // otherwise a command before the interesting command leads to quiting the loop
-	outName="";
-	outArg = "";
-	remainder="";
-    argStart=-1;
-    option="";
-	QRegExp token("\\\\\\w+\\*?");
-	int tagStart=token.indexIn(line);
-	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
-	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
-		cmd=token.cap(0);
-        QStringList values;
-        QList<int> starts;
-        LatexParser::resolveCommandOptions(line,tagStart,values,&starts);
-        if(values.size()>0){
-            QString first=values.takeFirst();
-            int start=starts.takeFirst();
-            if(first.startsWith('[')){ // neglect [] arguments before {}
-                if(values.size()>0){
-                    option=LatexParser::removeOptionBrackets(first);
-                    first=values.takeFirst();
-                    start=starts.takeFirst();
-                    if(first.startsWith('[')){
-                        remainder=line.mid(start+first.length()); //two options [..][...]
-                        return true;
-                    }
-                }else{
-                    remainder=line.mid(start+first.length()); //no argument after option
-                    return true;
-                }
-            }
-            argStart=start+1;
-            remainder=line.mid(start+first.length());
-            outName = LatexParser::removeOptionBrackets(first);
-            if(values.size()>0){ // if there's something after the first option (in case of import)
-                first=values.takeFirst();
-                start=starts.takeFirst();
-                argStart=start+1;
-                remainder=line.mid(start+first.length());
-                //outArg = LatexParser::removeOptionBrackets(first);
-                outArg = first; // don't remove brackets in order to distinguih between [ and { later
-            }
-            return true;
-        }
-        remainder=line.mid(tagStart+cmd.length());
-        return true;
-    }
-    return false; // no command found
+/*
+ * Searches for the first latex command in line starting at offset. Comments are ignored.
+ *
+ * Outputs:
+ *   cmd - the command name, e.g. \section
+ *   args - a list of the arguments including their brackets, e.g. "[arg1]", "{arg2}"
+ *   argStarts - a list of the starting positions of the arguments in line (if not needed, you can pass 0 in)
+ *
+ * Returns the starting position of cmd in line, or -1 if no command was found.
+ */
+int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts, int offset) {
+	// true means that a command is found, with or without arguments ...
+	// otherwise a command before the interesting command leads to quiting the loop
+	static QRegExp rxCmd("\\\\\\w+\\*?");
+	static QRegExp rxComment("(^|[^\\\\])%");
+	int cmdStart = rxCmd.indexIn(line, offset);
+	int commentStart = rxComment.indexIn(line);
+	if (cmdStart==-1 || (commentStart >= 0 && commentStart < cmdStart)) {
+		return cmdStart;  // no command found
+	}
+	cmd = rxCmd.cap(0);
+	LatexParser::resolveCommandOptions(line, cmdStart, args, argStarts);
+	return cmdStart;
 }
 
 // returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
@@ -1322,9 +1295,57 @@ QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
 	return 0;
 }
 
+/*!
+ * returns the content (i.e. String without brackets) of the index-th argument
+ */
+QString ArgumentList::argContent(int index) const
+{
+    return LatexParser::removeOptionBrackets(this->at(index));
+}
+
+/*!
+ * returns the content (i.e. String without brackets) index-th argument of the
+ * specified type
+ */
+QString ArgumentList::argContent(int index, ArgumentList::ArgType type) const
+{
+    for (int i=0; i<size(); i++) {
+        if (argType(i) == type) {
+            if (index == 0)
+				return argContent(i);
+            else
+                index--;
+        }
+    }
+    return QString();
+}
+
+/*!
+ * returns the type of the index-th argument
+ */
+ArgumentList::ArgType ArgumentList::argType(int index) const
+{
+    return (this->at(index)[0] == '[') ? Optional : Mandatory;
+}
+
+/*!
+ * returns the number of arguments of the specified type
+ */
+int ArgumentList::count(ArgumentList::ArgType type) const
+{
+    int count = 0;
+    for (int i=0; i<size(); i++) {
+        if (argType(i) == type) {
+            count++;
+        }
+    }
+    return count;
+}
+
+
 QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
-	if (str.contains(',')) { //multiple options are allowed
-		foreach (const QString& splitter, str.split(',')){
+    if (str.contains(',')) { //multiple options are allowed
+        foreach (const QString& splitter, str.split(',')){
 			QTextCodec* codec = QTextCodecForLatexName(splitter);
 			if (codec) return codec;
 		}
