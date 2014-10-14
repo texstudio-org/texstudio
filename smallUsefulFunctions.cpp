@@ -596,7 +596,7 @@ int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QL
 	int cmdStart = rxCmd.indexIn(line, offset);
 	int commentStart = rxComment.indexIn(line);
 	if (cmdStart==-1 || (commentStart >= 0 && commentStart < cmdStart)) {
-		return cmdStart;  // no command found
+        return -1;  // no command found
 	}
 	cmd = rxCmd.cap(0);
 	LatexParser::resolveCommandOptions(line, cmdStart, args, argStarts);
