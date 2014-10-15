@@ -125,7 +125,7 @@
 <li><p>fix: case conversion work also for cursor mirrors</p></li>
 <li><p>fix: broken cursor position for wrapped RTL text</p></li>
 <li><p>fix: crash when switching between qt and normal rendering</p></li>
-<li><p>updated cwls: yathesis, mervosym, mircotype, pifont, golssaries</p></li>
+<li><p>updated cwls: yathesis, marvosym, microtype, pifont, glossaries</p></li>
 </ul>
 
 <h2 id="SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</h2>
@@ -685,10 +685,10 @@ Since many of those item don't have icons, user icons can be loaded as well. Thi
 <p>To supports SVN (subversion) for document versioning. To make use of it, the SVN commandline tools need to be installed.
 Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
 </p>
-<p>The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the Commands page in the options. 
+<p>The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the Commands page in the options.
 On the SVN page you can can choose the degree of automation (see below) WSVN, see below.
 </p>
-<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the commmand line or the GUI of your choice). 
+<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the commmand line or the GUI of your choice).
 Once you have a working copy, TeXstudio can operate on it.
 </p>
 <p>
@@ -995,14 +995,14 @@ To access the document these objects are introduced:
   	<td>  This function replaces the current selections with newText or inserts newText, if nothing is selected. <br>
   	     If newText is a function, it will be called with the selected text and corresponding cursor, and the return value will be the newText.<br>
   	     It is recommended to use this function for all text replacements/insertions, since it is the easiest way to handle multiple cursors/block selections correctly. Though it is only available in txs >= 2.8.5.<br><br>
-  	     
+
   	    Options is an object that can have the following properties:
   	    <ul>
   	    <li><code>{"noEmpty": true}</code>    only replaces; does not insert anything if the selection is empty</li>
   	    <li><code>{"onlyEmpty": true}</code>  only inserts at the cursor position; does not change non empty selected text</li>
   	    <li><code>{"append": true}</code>     appends newText to the current selection, does not remove the old text</li>
-  	    <li><code>{"prepend": true}</code>    prepends newText to the current selection, does not remove the old text</li> 
-  	    <li><code>{"macro": true}</code>      Treats newText as normal macro text, e.g. inserting %&lt; %&gt; placeholders </li> 
+  	    <li><code>{"prepend": true}</code>    prepends newText to the current selection, does not remove the old text</li>
+  	    <li><code>{"macro": true}</code>      Treats newText as normal macro text, e.g. inserting %&lt; %&gt; placeholders </li>
   	    </ul><br>
   	    Examples:<br>
   	    <code>editor.replaceSelectedText("world", {"append": true} )</code> Appends "world" to the current selections.<br>
@@ -1963,7 +1963,7 @@ println("\\end{"+env+"}")
 	&lt;sequence id="python/definition" format="python:definition"&gt;def$s?$w*&lt;/sequence&gt;
 
 	&lt;sequence id="python/number" format="python:number"&gt;[0-9]+&lt;/sequence&gt;
-	
+
 	&lt;list id="python/keyword" format="python:keyword"&gt;
 		&lt;word&gt;return&lt;/word&gt;
 		&lt;word&gt;if&lt;/word&gt;
