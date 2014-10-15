@@ -1,5 +1,30 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.8.2 -> 2.8.6
+-----------------------------------------
+- tab key inserts tab or indents, depending on cursor selection
+- error table can be filtered and sorted
+- tooltips on package names show a short description of the package
+- support [txs-app-dir] and [txs-settings-dir] in commands (allows portable paths when using MikTeX portable and TXS portable on an USB stick)
+- enable the possibility to remove shortcuts from qeditor
+- sort shortcuts for editor in order of operation name
+- more robust text width calculation in pdf
+- mark section beyond end of document with orange background
+- removed pdf printing (did never work well. Please use an external PDF viewer of your choice for printing.)
+- detect fonts containing ligatures
+- fix: remember removed shortcuts e.g. tab for insertSelection
+- fix: completer opening in special cases for keyval completion
+- fix: find next in pdf viewer
+- fix: do not interpret % in verbatim as comment
+- fix: user command names might be lost
+- fix: update of monchrome/color settings in pdf viewer
+- fix: help not working on OS X
+- fix: make case conversion work for systems with old Qt 4.6
+- fix: case conversion work also for cursor mirrors
+- fix: broken cursor position for wrapped RTL text
+- fix: crash when switching between qt and normal rendering
+- updated cwls: yathesis, mervosym, mircotype, pifont, golssaries
+
 TeXstudio 2.8.2 -> 2.8.4
 -----------------------------------------
 - improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible
