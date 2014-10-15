@@ -23,7 +23,7 @@ TeXstudio 2.8.2 -> 2.8.6
 - fix: case conversion work also for cursor mirrors
 - fix: broken cursor position for wrapped RTL text
 - fix: crash when switching between qt and normal rendering
-- updated cwls: yathesis, mervosym, mircotype, pifont, golssaries
+- updated cwls: yathesis, marvosym, microtype, pifont, glossaries
 
 TeXstudio 2.8.2 -> 2.8.4
 -----------------------------------------
@@ -149,7 +149,7 @@ TeXstudio 2.5.2 -> TeXstudio 2.6.0
 - option to load package documentation into internal embedded pdf viewer
 - option to silently reload files on external changes
 - make %todo as well as %TODO marker for "to-do" list
-- "Align Table Columns" now works on many more enviroments such as 
+- "Align Table Columns" now works on many more enviroments such as
   matrix, align. align*, split, multline, multline*, gather, gather*, flalign, flalign*, alignat, alignat*
 - template resources are now configured via template_resources.xml (allows to customize resource locations)
 - template json files are now UTF-8
@@ -234,7 +234,7 @@ TexMakerX 2.2 -> TeXstudio 2.3  SVN 2459
 - complete file names in graphic including macros
 - improved graphics insertion (new assistant allows editing of existing code, insert by drag-and-drop and copy/paste)
 - improved BibTeX auto calling
-- more methods available for scripting 
+- more methods available for scripting
 - several bug fixes (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements
 
 TexMakerX 2.1 -> TeXstudio 2.2  SVN 2143
@@ -296,10 +296,10 @@ TexMakerX 1.9.3 -> TexMakerX 1.9.9
 - faster search (= optimized highlighting)
 - extended DDE syntax to start services which aren't running
 - if a called latex hangs it can be killed with escape after 2 seconds
-- fixed folding 
+- fixed folding
 - fixed single instance mode on mac (by replacing dsingleapplication with qtsingleapplication)
 - several other fixes
- 
+
 TexmakerX 1.9.2 -> TexMakerX 1.9.3
 --------------------------------------
 - added a find in open files dialog
@@ -344,7 +344,7 @@ version Texmaker 1.8 -> TexMakerX 1.8
 - interactive spell checking, spell checker based on hunspell-1.2.8 (fixing bug)
 - code completion adding descriptive texts
 - automatical detection of file encoding
-- --start-always command line option added 
+- --start-always command line option added
 - stdout is now listed in the list
 - text analysis
 - maintaining author changed, new name, new homepage: texmakerx.sourceforge.net
@@ -376,7 +376,7 @@ version 1.5 -> 1.6 :
 - german, russian and chinese translations has been added
 - external browser is now used for the documentation
 - a "-master" option to the program command line has been added. The new synopsis is :
-texmaker file [-master] [-line xxx] 
+texmaker file [-master] [-line xxx]
 - the documentation has been completed
 - parentheses matching is now disabled
 - the config file is now in the ini format
