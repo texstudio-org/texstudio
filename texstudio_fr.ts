@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2348,7 +2348,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Show All</source>
         <translation>Afficher tout</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="+340"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -5305,17 +5305,17 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <location line="+3"/>
         <source>Show Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;erreur</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;avertissement</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show BadBox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Affichere dépassement de marge</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -7655,11 +7655,12 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
         <translation>Sélection</translation>
     </message>
     <message>
+        <location line="+5"/>
         <source>previewSelection</source>
-        <translation type="vanished">Prévisualisation de la sélection</translation>
+        <translation>Prévisualisation de la sélection</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+10"/>
         <source>dtx:commands</source>
         <translation>dtx:commandes</translation>
     </message>
@@ -7764,7 +7765,7 @@ Do you want them to be saved?</source>
 Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-75"/>
+        <location filename="additionaltranslations.cpp" line="-76"/>
         <source>background</source>
         <translation>Fond</translation>
     </message>
@@ -7970,7 +7971,7 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
         <translation>Erreur grammaticale spéciale 4</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+19"/>
         <source>txs-test</source>
         <translation>Test TXS</translation>
     </message>
@@ -8014,12 +8015,12 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
         <translation>dtx: caractères spéciaux</translation>
     </message>
     <message>
-        <location line="-37"/>
+        <location line="-38"/>
         <source>math-delimiter</source>
         <translation>Délimiteur mathématique</translation>
     </message>
     <message>
-        <location line="+32"/>
+        <location line="+33"/>
         <source>txs-test-warn</source>
         <translation>Test TXS d&apos;avertissement</translation>
     </message>
