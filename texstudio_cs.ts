@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs_CZ">
+<TS version="2.1" language="cs_CZ">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2367,7 +2367,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
         <source>Show messages when starting compiling</source>
         <translation>Ukázat zprávy při spuštění překladu</translation>
     </message>
-    <message utf8="true">
+    <message>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Anglické uvozovky (unicode): “ ”</translation>
     </message>
@@ -4004,11 +4004,11 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Package present</source>
-        <translation>Balík přítomen</translation>
+        <translation type="vanished">Balík přítomen</translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation>Balík nenalezen</translation>
+        <translation type="vanished">Balík nenalezen</translation>
     </message>
     <message>
         <source>Open Document</source>
@@ -4021,6 +4021,22 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>Add to Dictionary</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Package</source>
+        <translation type="unfinished">Balíček</translation>
+    </message>
+    <message>
+        <source>Beamer Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>not found</source>
+        <translation type="unfinished">Nenalezeno</translation>
     </message>
 </context>
 <context>
@@ -4107,6 +4123,18 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
         <translation>Soubor se zápisem je příliš rozsáhlý (%1 MB). Jste si jistý, že jej chcete nahrát?</translation>
+    </message>
+    <message>
+        <source>Show Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show BadBox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5048,6 +5076,22 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
         <source>Grayscale</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Page Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PgDown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PgUp</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
@@ -5218,27 +5262,47 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     <name>PreviewWidget</name>
     <message>
         <source>left-align image</source>
-        <translation>Zarovnat obrázek vlevo</translation>
+        <translation type="vanished">Zarovnat obrázek vlevo</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation>Zarovnat obrázek na střed</translation>
+        <translation type="vanished">Zarovnat obrázek na střed</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation>Přiblížit</translation>
+        <translation type="vanished">Přiblížit</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation>Oddálit</translation>
+        <translation type="vanished">Oddálit</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation>Nastavit znovu zvětšení</translation>
+        <translation type="vanished">Nastavit znovu zvětšení</translation>
     </message>
     <message>
         <source>fit</source>
-        <translation>Přizpůsobit rámečku</translation>
+        <translation type="vanished">Přizpůsobit rámečku</translation>
+    </message>
+    <message>
+        <source>Zoom In</source>
+        <translation type="unfinished">Přiblížit</translation>
+    </message>
+    <message>
+        <source>Zoom Out</source>
+        <translation type="unfinished">Oddálit</translation>
+    </message>
+    <message>
+        <source>Reset Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Center</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5808,6 +5872,10 @@ Zásobník kroků zpět/znovu by byl automatickým znovunahráním zahozen.
 Chcete uchovat datum znovunahráním souboru?
 
 (Poznámka: Tiché znovunahrání můžete povolit ve volbách v nastavení.)</translation>
+    </message>
+    <message>
+        <source>Tab or Indent selection</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7573,7 +7641,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Print...</source>
-        <translation>Tisk...</translation>
+        <translation type="vanished">Tisk...</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -9654,6 +9722,10 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>Quick Beamer Presentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Print Source Code...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
