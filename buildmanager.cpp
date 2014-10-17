@@ -1817,8 +1817,8 @@ void ProcessX::onError(ProcessError error){
 		emit processNotification(tr("Error: Could not start the command: %1").arg(cmd));
 
 		if (!BuildManager_hadSuccessfulProcessStart)
-			emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La-)TeX distribution</b> e.g. MikTeX or TeXlive, and have set the correct paths to this distribution on the command configuration page.<br>"
-										"A (La-)TeX editor like TeXstudio cannot work without the (La-)TeX commands provided by such a distribution."));
+			emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
+										"A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
 
 	} else if (error == Crashed)
 		emit processNotification(tr("Error: Command crashed: %1").arg(cmd));
