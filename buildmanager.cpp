@@ -862,6 +862,7 @@ QString getCommandLineGhostscript(){ return ""; }
 #endif
 
 
+bool BuildManager_hadSuccessfulProcessStart;
 
 void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	cmi.registerOption("Tools/Quick Mode",&deprecatedQuickmode,-1);
@@ -879,7 +880,9 @@ void BuildManager::registerOptions(ConfigManagerInterface& cmi){
 	
 	cmi.registerOption("Tools/Display Names", &userToolDisplayNames, QStringList());
 	cmi.registerOption("Tools/User Order", &userToolOrder, QStringList());
-    cmi.registerOption("Tools/Preview Compile Time Out", &previewCompileTimeOut, 15000); //hidden option, 15s predefined
+	cmi.registerOption("Tools/Preview Compile Time Out", &previewCompileTimeOut, 15000); //hidden option, 15s predefined
+
+	cmi.registerOption("Tools/Had Successful Process Start", &BuildManager_hadSuccessfulProcessStart, false);
 }
 
 void removeDuplicateUserTools(QStringList &userToolOrder, QStringList &userToolDisplayNames) {
@@ -1804,14 +1807,20 @@ bool ProcessX::isRunning() const{
 void ProcessX::onStarted(){
 	if (isStarted) return; //why am I called twice?
 	isStarted=true;
+	BuildManager_hadSuccessfulProcessStart = true;
 	emit startedX();
 	emit processNotification(tr("Process started: %1").arg(cmd));
 }
 
 void ProcessX::onError(ProcessError error){
-	if (error == FailedToStart)
+	if (error == FailedToStart) {
 		emit processNotification(tr("Error: Could not start the command: %1").arg(cmd));
-	else if (error == Crashed)
+
+		if (!BuildManager_hadSuccessfulProcessStart)
+			emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La-)TeX distribution</b> e.g. MikTeX or TeXlive, and have set the correct paths to this distribution on the command configuration page.<br>"
+										"A (La-)TeX editor like TeXstudio cannot work without the (La-)TeX commands provided by such a distribution."));
+
+	} else if (error == Crashed)
 		emit processNotification(tr("Error: Command crashed: %1").arg(cmd));
 }
 
