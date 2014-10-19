@@ -2854,7 +2854,7 @@ void QEditor::paintEvent(QPaintEvent *e)
 
 		p.fillRect(	0,
 					m_doc->height(),
-					viewport()->width(),
+					qMax(viewport()->width(), m_doc->width()),
 					viewport()->height() - m_doc->height(),
 					bg
 				);
