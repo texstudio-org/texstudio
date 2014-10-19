@@ -1977,7 +1977,6 @@ QSizeF PDFWidget::maxPageSizeF() const{
 // Only the horizontal values of the returned QRectF have meaning.
 QRectF PDFWidget::horizontalTextRangeF() const{
 	REQUIRE_RET(document && pdfdocument, QRectF());
-	if (pdfdocument->isCompiling) return QRectF();
 
 	qreal textXmin = +1.e99;
 	qreal textXmax = -1.e99;
@@ -1989,7 +1988,7 @@ QRectF PDFWidget::horizontalTextRangeF() const{
 		for(int page=0;page<docPages;page++){
 			progress.setValue(page); //this is like the fire nation
 			if (horizontalTextRange.isValid()) return horizontalTextRange;
-			if (progress.wasCanceled() || !document || !pdfdocument || pdfdocument->isCompiling) break;
+			if (progress.wasCanceled() || !document || !pdfdocument) break;
 			Poppler::Page *popplerPage=document->page(page);
 
 			if (!popplerPage) break;
@@ -2813,6 +2812,7 @@ void PDFDocument::loadCurrentFile(bool fillCache)
 		delete renderManager;
 		renderManager = 0;
 		pdfWidget->hide();
+		pdfWidget->setDocument(document);
 		if(error==PDFRenderManager::FileIncomplete)
 			reloadWhenIdle();
 	} else {
