@@ -245,7 +245,9 @@ void LatexLogWidget::setInfo(const QString &message) {
 
 QList<QAction *> LatexLogWidget::displayActions(){
     QList<QAction *> result=displayPartsActions->actions();
-    result<<filterErrorAction<<filterWarningAction<<filterBadBoxAction;
+	QAction *separator = new QAction(this);
+	separator->setSeparator(true);
+	result << filterErrorAction << filterWarningAction << filterBadBoxAction << separator;
     return result;
 }
 
