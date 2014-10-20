@@ -169,9 +169,11 @@ bool LatexLogWidget::logEntryNumberValid(int logEntryNumber) {
 
 void LatexLogWidget::selectLogEntry(int logEntryNumber){
 	if (!logEntryNumberValid(logEntryNumber)) return;
-	errorTable->scrollTo(logModel->index(logEntryNumber,1),QAbstractItemView::PositionAtCenter);
-	errorTable->selectRow(logEntryNumber);
-	log->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
+    QModelIndex index=proxyModel->mapFromSource(logModel->index(logEntryNumber,1));
+    errorTable->scrollTo(index,QAbstractItemView::PositionAtCenter);
+    //errorTable->selectRow(logEntryNumber);
+    errorTable->selectRow(index.row());
+    log->setCursorPosition(logModel->at(logEntryNumber).logline, 0);
 }
 
 void LatexLogWidget::copy() {
@@ -203,7 +205,8 @@ void LatexLogWidget::gotoLogEntry(int logEntryNumber) {
 }
 
 void LatexLogWidget::clickedOnLogModelIndex(const QModelIndex& index){
-	gotoLogEntry(index.row());
+    QModelIndex idx=proxyModel->mapToSource(index);
+    gotoLogEntry(idx.row());
 }
 
 void LatexLogWidget::gotoLogLine(int logLine){
