@@ -214,7 +214,7 @@ void LatexLogWidget::gotoLogLine(int logLine){
 }
 
 void LatexLogWidget::copyMessage(){
-	QModelIndex curMessage = errorTable->currentIndex();
+    QModelIndex curMessage = proxyModel->mapToSource(errorTable->currentIndex());
 	if (!curMessage.isValid()) return;
 	curMessage = logModel->index(curMessage.row(), 3);
 	REQUIRE(QApplication::clipboard());
