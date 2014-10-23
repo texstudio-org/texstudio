@@ -12,6 +12,7 @@ TeXstudio 2.8.2 -> 2.8.6
 - mark section beyond end of document with orange background
 - removed pdf printing (did never work well. Please use an external PDF viewer of your choice for printing.)
 - detect fonts containing ligatures
+- maintain cursor position (line and column) when using "Align Columns" for tables
 - fix: remember removed shortcuts e.g. tab for insertSelection
 - fix: completer opening in special cases for keyval completion
 - fix: find next in pdf viewer
@@ -23,6 +24,7 @@ TeXstudio 2.8.2 -> 2.8.6
 - fix: case conversion work also for cursor mirrors
 - fix: broken cursor position for wrapped RTL text
 - fix: crash when switching between qt and normal rendering
+- fix: text background was not always drawn with the correct background color
 - updated cwls: yathesis, marvosym, microtype, pifont, glossaries
 
 TeXstudio 2.8.2 -> 2.8.4
