@@ -2164,9 +2164,14 @@ void Texmaker::insertTableTemplate() {
 void Texmaker::alignTableCols() {
   if (!currentEditor()) return;
   QDocumentCursor cur(currentEditor()->cursor());
+  int linenr = cur.lineNumber();
+  int col = cur.columnNumber();
   if(!cur.isValid())
       return;
   LatexTables::alignTableCols(cur);
+  cur.setLineNumber(linenr);
+  cur.setColumnNumber(col);
+  currentEditor()->setCursor(cur);
 }
 
 void Texmaker::fileOpen() {
