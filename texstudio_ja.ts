@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ja_JP">
+<TS version="2.0" language="ja_JP">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -413,12 +413,12 @@
         <translation>コマンドが%1レベルに展開されています。&quot;%2&quot;の展開を続けますか?</translation>
     </message>
     <message>
-        <location line="+847"/>
+        <location line="+850"/>
         <source>Internal Pdf Viewer</source>
         <translation>組み込みPDFビューア</translation>
     </message>
     <message>
-        <location line="-1217"/>
+        <location line="-1220"/>
         <location line="+25"/>
         <source>DVI-&gt;PDF Chain</source>
         <translation>DVI-&gt;PDFチェーン</translation>
@@ -442,12 +442,12 @@
     <message>
         <location line="-119"/>
         <location line="+20"/>
-        <location line="+1342"/>
+        <location line="+1345"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unknown&gt;</translation>
     </message>
     <message>
-        <location line="-1286"/>
+        <location line="-1289"/>
         <source>Stop Compile</source>
         <translation>コンパイルを停止</translation>
     </message>
@@ -525,12 +525,12 @@
         <translation>既定の用語集作成ツール</translation>
     </message>
     <message>
-        <location line="+1405"/>
+        <location line="+1408"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>非推奨の2つのスラッシュのコマンドdde://を用いています。さらにスラッシュを加えて3つのスラッシュコマンドdde:///に変更してください。</translation>
     </message>
     <message>
-        <location line="-997"/>
+        <location line="-1000"/>
         <location line="+1"/>
         <source>Command %1 not defined</source>
         <translation>コマンド%1は定義されていません</translation>
@@ -576,12 +576,12 @@
         <translation>Makeglossaries</translation>
     </message>
     <message>
-        <location line="+842"/>
+        <location line="+845"/>
         <source>Error: No command given</source>
         <translation>エラー: コマンドが与えられていません</translation>
     </message>
     <message>
-        <location line="-854"/>
+        <location line="-857"/>
         <location line="+3"/>
         <source>Internal PDF Viewer (Embedded)</source>
         <translation>組み込みPDFビューア（埋め込み）</translation>
@@ -780,7 +780,7 @@ Then you can select a new shortcut by one of the following ways:
         <source>Package</source>
         <translation>パッケージ</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="-62"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>英語の引用符(unicode): “ ”</translation>
@@ -869,7 +869,8 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+7"/>
         <source>Check non tex files</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>非texファイルの確認</translation>
     </message>
     <message>
         <location line="+233"/>
@@ -891,17 +892,20 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+8"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>項目をコンテキストメニューへ直接追加</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Create Dedicated Submenu</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>専用のサブメニューを作成</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>コンテキストメニューからのスペルチェック:</translation>
     </message>
     <message>
         <location line="+91"/>
@@ -939,6 +943,10 @@ Then you can select a new shortcut by one of the following ways:
         <location line="+479"/>
         <source>Show Placeholders</source>
         <translation>プレースホルダーを表示</translation>
+    </message>
+    <message>
+        <source>Preview with embedded PDF-viewer</source>
+        <translation type="obsolete">埋め込みPDFビューワーでプレビュー</translation>
     </message>
     <message>
         <location line="+577"/>
@@ -986,6 +994,17 @@ Then you can select a new shortcut by one of the following ways:
         <location line="+3"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this option, if you want to use Poppler for loading PDFs, in order to reduce memory consumption.&lt;/p&gt;&lt;p&gt;This option increases the likelihood that TeXstudio crashes when loading a PDF which is changed in the background.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;You have been warned !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check this option, if you want to use Poppler for loading PDFs, in order to reduce memory consumption.&lt;/p&gt;&lt;p&gt;This options increases the likelihood that TeXstudio crashes when loading a PDF which is changed in the background.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;You have been warned !&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDFを読み込むためにPopplerを使用する場合、メモリ消費を減らすためこのオプションを確認するべき。&lt;/p&gt;&lt;p&gt;このオプションを有効化すると、バックグラウンドで変更されたPDFを読み込む際にTeXstudioがクラッシュする可能性が高くなる。&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;注意するように！&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Don&apos;t read complete PDF at once</source>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation type="obsolete">一度で完全なPDFを読み込まない</translation>
     </message>
     <message>
         <location line="-3323"/>
@@ -1140,7 +1159,7 @@ However this path is not contained in the dictionary path list. Do you want to a
     <message>
         <location line="-63"/>
         <source>Preview with pdflatex</source>
-        <translation type="unfinished"></translation>
+        <translation>pdflatexでプレビュー</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -1151,32 +1170,36 @@ However this path is not contained in the dictionary path list. Do you want to a
         <location line="+39"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>埋め込みビューワーに表示</translation>
     </message>
     <message>
         <location line="+340"/>
         <source>Load Strategy:</source>
-        <translation type="unfinished"></translation>
+        <translation>読み込み方法:</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDFが読み込まれる方法の決定:&lt;/p&gt;&lt;p&gt;&lt;b&gt;バッファリング:&lt;/b&gt; ファイルをバッファに読み込み完全性を確認する。そしてPopplerへとデータを渡す。これは主にスレッドセーフでない古いバージョンのPoppler(&amp;lt;0.24)に対する高速化のため導入された。Popplerは大きなバッファを読み込む際にクラッシュする可能性が報告されている。このオプションは非推奨である。&lt;/p&gt;&lt;p&gt;&lt;b&gt;ダイレクト:&lt;/b&gt; Poppler本来のファイル読み込みを使用する。これは最速であるが、不完全なファイルに対する確認を行うことはできない。&lt;/p&gt;&lt;p&gt;&lt;b&gt;ハイブリッド（推奨）:&lt;/b&gt; はじめにファイルをバッファに読み込み、完全性を確認する。小さな文書(&amp;lt; 50MB)に対してはそのバッファを使用する。大きなファイルはPoppler本来のファイル読み込みを用いて読み込む。これは大きなPDFファイルに伴う問題を防ぎつつファイルチェックを行う。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Buffered</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>バッファリング</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Direct</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>ダイレクト</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Hybrid</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>ハイブリッド</translation>
     </message>
     <message>
         <location line="+45"/>
@@ -3828,7 +3851,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">パッケージが見つかりません</translation>
+        <translation type="obsolete">パッケージが見つかりません</translation>
     </message>
     <message>
         <location line="+466"/>
@@ -3880,22 +3903,23 @@ Missing \includegraphics options.</source>
     <message>
         <location line="+1558"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>クラス</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Package</source>
-        <translation type="unfinished">パッケージ</translation>
+        <translation>パッケージ</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Beamer Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Beamerテーマ</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>not found</source>
-        <translation type="unfinished">見つかりませんでした</translation>
+        <translation>見つかりませんでした</translation>
     </message>
     <message>
         <location line="+516"/>
@@ -3910,7 +3934,8 @@ Missing \includegraphics options.</source>
     <message>
         <location line="-1743"/>
         <source>Spelling</source>
-        <translation type="unfinished">スペル</translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>スペル</translation>
     </message>
     <message>
         <location line="+124"/>
@@ -3925,7 +3950,7 @@ Missing \includegraphics options.</source>
     <message>
         <location line="+961"/>
         <source>Add to Dictionary</source>
-        <translation type="unfinished"></translation>
+        <translation>辞書へ追加</translation>
     </message>
     <message>
         <location line="+193"/>
@@ -3935,7 +3960,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <source>Package present</source>
-        <translation type="vanished">パッケージが見つかりました</translation>
+        <translation type="obsolete">パッケージが見つかりました</translation>
     </message>
     <message>
         <location line="+543"/>
@@ -4092,17 +4117,17 @@ Missing \includegraphics options.</source>
     <message>
         <location line="+3"/>
         <source>Show Error</source>
-        <translation type="unfinished"></translation>
+        <translation>エラーを表示</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>警告を表示</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show BadBox</source>
-        <translation type="unfinished"></translation>
+        <translation>悪いボックスを表示</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -4265,17 +4290,17 @@ Do you want to overwrite it?</source>
     <message>
         <location line="-193"/>
         <source>Current Doc</source>
-        <translation type="unfinished"></translation>
+        <translation>現在の文書</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>All Docs</source>
-        <translation type="unfinished"></translation>
+        <translation>全ての文書</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Project</source>
-        <translation type="unfinished"></translation>
+        <translation>プロジェクト</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -4582,7 +4607,7 @@ Do you want to overwrite it?</source>
         <translation>戻る</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+2219"/>
+        <location filename="PDFDocument.cpp" line="+2218"/>
         <source>Grid</source>
         <translation>グリッド</translation>
     </message>
@@ -4637,12 +4662,12 @@ Do you want to overwrite it?</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location line="+1433"/>
+        <location line="+1434"/>
         <source>Print</source>
         <translation>印刷</translation>
     </message>
     <message>
-        <location line="-1266"/>
+        <location line="-1267"/>
         <source>Scale</source>
         <translation>スケール</translation>
     </message>
@@ -4655,22 +4680,22 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+160"/>
         <source>Page Down</source>
-        <translation type="unfinished"></translation>
+        <translation>次のページへ移動</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>PgDown</source>
-        <translation type="unfinished"></translation>
+        <translation>次のページへ移動</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Page Up</source>
-        <translation type="unfinished"></translation>
+        <translation>前のページへ移動</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>PgUp</source>
-        <translation type="unfinished"></translation>
+        <translation>前のページへ移動</translation>
     </message>
     <message>
         <location line="+176"/>
@@ -4692,15 +4717,16 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
     <message>
         <location line="+12"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>bad allocのためファイル&quot;%1&quot;の読み込みに失敗しました; 有効なPDFドキュメントではないと思われます。</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"></translation>
+        <translation>例外が発生してファイル&quot;%1&quot;の読み込みに失敗しました; 有効なPDFドキュメントではないと思われます。</translation>
     </message>
     <message>
-        <location line="+332"/>
+        <location line="+333"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
@@ -4720,7 +4746,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>テンプレートから新規作成</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-928"/>
+        <location filename="PDFDocument.cpp" line="-929"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
@@ -4760,7 +4786,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>貼り付け(&amp;P)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+837"/>
+        <location filename="PDFDocument.cpp" line="+838"/>
         <source>No SyncTeX data available</source>
         <translation>利用できるSyncTeXデータがありません</translation>
     </message>
@@ -4770,7 +4796,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>左側に配置</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-332"/>
+        <location filename="PDFDocument.cpp" line="-333"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>ファイル&quot;%1&quot;が見つかりません; 消去されていると思われます。</translation>
     </message>
@@ -4940,7 +4966,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>ウィンドウ化/埋め込み化</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+1132"/>
+        <location filename="PDFDocument.cpp" line="+1133"/>
         <source>Page %1 of %2</source>
         <translation>%2のうちの%1ページ目</translation>
     </message>
@@ -4995,7 +5021,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>拡大(&amp;I)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-946"/>
+        <location filename="PDFDocument.cpp" line="-947"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
@@ -5015,7 +5041,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>メーリングリストにEmailを送る</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+972"/>
+        <location filename="PDFDocument.cpp" line="+973"/>
         <source>Open PDF</source>
         <translation>PDFを開く</translation>
     </message>
@@ -5059,7 +5085,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>指定ページヘ移動(&amp;G)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-266"/>
+        <location filename="PDFDocument.cpp" line="-267"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>ファイル&quot;%1&quot;の読み込みに失敗しました; 有効なPDFドキュメントではないと思われます。</translation>
     </message>
@@ -5157,7 +5183,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     <message>
         <location line="+8"/>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>グレースケール</translation>
     </message>
     <message>
         <location line="-742"/>
@@ -5262,7 +5288,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>ソースへ移動(&amp;G)</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+971"/>
+        <location filename="PDFDocument.cpp" line="+972"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
@@ -5273,7 +5299,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-914"/>
+        <location filename="PDFDocument.cpp" line="-915"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>/</translation>
@@ -5338,7 +5364,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>PDFMovie</name>
     <message>
-        <location filename="PDFDocument.cpp" line="-1988"/>
+        <location filename="PDFDocument.cpp" line="-1987"/>
         <source>&amp;Play</source>
         <translation>再生(&amp;P)</translation>
     </message>
@@ -5460,7 +5486,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>ページへ移動</translation>
     </message>
     <message>
-        <location line="+307"/>
+        <location line="+306"/>
         <source>Calculating text width</source>
         <translation>テキスト幅の計算</translation>
     </message>
@@ -5478,63 +5504,70 @@ Either the file is corrupt or it is in the process of creation. You may retry af
     <name>PreviewWidget</name>
     <message>
         <source>fit</source>
-        <translation type="vanished">合わせる</translation>
+        <translation type="obsolete">合わせる</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">中揃え画像</translation>
+        <translation type="obsolete">中揃え画像</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">拡大</translation>
+        <translation type="obsolete">拡大</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">縮小</translation>
+        <translation type="obsolete">縮小</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">左揃え画像</translation>
+        <translation type="obsolete">左揃え画像</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">拡大縮小をリセット</translation>
+        <translation type="obsolete">拡大縮小をリセット</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-252"/>
         <source>Zoom In</source>
-        <translation type="unfinished">拡大</translation>
+        <translation>拡大</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Zoom Out</source>
-        <translation type="unfinished">縮小</translation>
+        <translation>縮小</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>拡大縮小をリセット</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Fit</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>表示領域に合わせる</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Center</source>
-        <translation type="unfinished">中揃え</translation>
+        <translation>中揃え</translation>
     </message>
 </context>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="+1592"/>
+        <location filename="buildmanager.cpp" line="+1596"/>
         <source>Process started: %1</source>
         <translation>開始されたプロセス: %1</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+8"/>
+        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>&lt;b&gt;(La)TeXディストリビューション（例：MiKTeXやTeX Live）がインストールされていること&lt;/b&gt;と、TeXstudioコマンド設定ページでそのディストリビューション（のコマンド）へのパスが正しく設定されていることを確認してください。&lt;br&gt;TeXstudioのような(La)TeXエディタはそうしたディストリビューションが提供している(La)TeXコマンドなしでは機能しません。</translation>
+    </message>
+    <message>
+        <location line="+4"/>
         <source>Error: Command crashed: %1</source>
         <translation>エラー: コマンド%1がクラッシュしました</translation>
     </message>
@@ -5544,12 +5577,12 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>プロセスは正常に終了しました</translation>
     </message>
     <message>
-        <location line="-11"/>
+        <location line="-16"/>
         <source>Error: Could not start the command: %1</source>
         <translation>エラー: コマンド%1を開始できませんでした</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+13"/>
         <source>Process exited with error(s)</source>
         <translation>プロセスはエラー終了しました</translation>
     </message>
@@ -6034,7 +6067,7 @@ Should I save the document as it is to restore the file?
     <message>
         <location line="+3210"/>
         <source>Tab or Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation>タブまたはインデントの選択</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -6281,7 +6314,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>優先度は複数の書式が適応された場合にどの書式で描画されるかを決定します。</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+60"/>
+        <location filename="additionaltranslations.cpp" line="+61"/>
         <source>txs-test-pass</source>
         <translation>txsのテストの通過</translation>
     </message>
@@ -6301,7 +6334,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>lua:キーワード</translation>
     </message>
     <message>
-        <location line="-54"/>
+        <location line="-55"/>
         <source>keyword</source>
         <translation>キーワード</translation>
     </message>
@@ -6316,17 +6349,17 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>波下線</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+66"/>
+        <location filename="additionaltranslations.cpp" line="+67"/>
         <source>txs-test-qdebug</source>
         <translation>txsのテストのデバッグ</translation>
     </message>
     <message>
-        <location line="-9"/>
+        <location line="-10"/>
         <source>selection</source>
         <translation>選択</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+14"/>
         <source>dtx:specialchar</source>
         <translation>dtx: 特殊文字</translation>
     </message>
@@ -6341,7 +6374,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>テキストの色（前景色）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-20"/>
+        <location filename="additionaltranslations.cpp" line="-21"/>
         <source>referenceMultiple</source>
         <translation>参照の重複</translation>
     </message>
@@ -6451,7 +6484,7 @@ Possible causes include disk failure or a full harddisk.</source>
         <translation>数学キーワード</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+52"/>
         <source>dtx:commands</source>
         <translation>dtx:コマンド</translation>
     </message>
@@ -6473,7 +6506,7 @@ Do you want them to be saved?</source>
 それらを保存しますか?</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-71"/>
+        <location filename="additionaltranslations.cpp" line="-72"/>
         <source>line:bookmark</source>
         <translation>行: ブックマーク</translation>
     </message>
@@ -6577,7 +6610,13 @@ Do you want them to be saved?</source>
         <translation>文書の構造</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+7"/>
+        <source>previewSelection</source>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>プレビュー選択</translation>
+    </message>
+    <message>
+        <location line="+12"/>
         <source>lua:comment</source>
         <translation>lua:コメント</translation>
     </message>
@@ -6587,7 +6626,7 @@ Do you want them to be saved?</source>
         <translation>dtx: verbatim</translation>
     </message>
     <message>
-        <location line="-32"/>
+        <location line="-33"/>
         <source>wordRepetition</source>
         <translation>単語の繰り返し</translation>
     </message>
@@ -6644,7 +6683,7 @@ Do you want them to be saved?</source>
         <translation>&lt;default&gt;</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+19"/>
+        <location filename="additionaltranslations.cpp" line="+20"/>
         <source>dtx:guard</source>
         <translation>dtx: 保護</translation>
     </message>
@@ -6654,7 +6693,7 @@ Do you want them to be saved?</source>
         <translation>dtx: マクロ</translation>
     </message>
     <message>
-        <location line="-52"/>
+        <location line="-53"/>
         <source>commentTodo</source>
         <translation>Todoコメント</translation>
     </message>
@@ -6698,12 +6737,12 @@ Note: If the size is larger that the line spacing, characters may be clipped.</s
         <translation>線の色（すべての線形式に用いられる: 下線、オーバーライン、…）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+43"/>
+        <location filename="additionaltranslations.cpp" line="+44"/>
         <source>txs-test</source>
         <translation>txsのテスト</translation>
     </message>
     <message>
-        <location line="-47"/>
+        <location line="-48"/>
         <source>magicComment</source>
         <translation>magicコメント</translation>
     </message>
@@ -7033,52 +7072,54 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickbeamerdialog.ui" line="+14"/>
         <source>Dialog</source>
-        <translation type="unfinished">ダイアログ</translation>
+        <translation>ダイアログ</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>AMS Packages</source>
-        <translation type="unfinished">AMSパッケージの使用</translation>
+        <translation>AMSパッケージの使用</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Encoding</source>
-        <translation type="unfinished">エンコーディング</translation>
+        <translation>エンコーディング</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Typeface Size</source>
-        <translation type="unfinished">フォントサイズ</translation>
+        <translation>フォントサイズ</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>babel Package</source>
-        <translation type="unfinished"></translation>
+        <translation>babelパッケージの使用</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>graphicx Package</source>
-        <translation type="unfinished">graphicxパッケージの使用</translation>
+        <translation>graphicxパッケージの使用</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Title</source>
-        <translation type="unfinished">タイトル</translation>
+        <translation>タイトル</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Author</source>
-        <translation type="unfinished">文書の作者</translation>
+        <translation>文書の著者</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Theme</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>テーマ</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.cpp" line="+26"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>簡単beamerプレゼンテーション作成</translation>
     </message>
 </context>
 <context>
@@ -7617,7 +7658,8 @@ Do you trust this script?</source>
         <location line="+8"/>
         <source>Show User Words</source>
         <oldsource>Show Ignore List</oldsource>
-        <translation type="unfinished">無視するリストを表示</translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>ユーザー定義の単語を表示</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="+37"/>
@@ -7632,7 +7674,8 @@ Do you trust this script?</source>
     <message>
         <location line="+21"/>
         <source>User-added Words</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>ユーザーが追加した単語</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -7642,7 +7685,8 @@ Do you trust this script?</source>
     <message>
         <location line="+42"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>追加した単語を隠す</translation>
     </message>
     <message>
         <location line="-162"/>
@@ -7686,7 +7730,8 @@ Do you trust this script?</source>
         <location filename="spellerdialog.cpp" line="+142"/>
         <source>Hide User Words</source>
         <oldsource>Hide Ignore List</oldsource>
-        <translation type="unfinished">無視するリストを非表示</translation>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>ユーザー定義の単語を隠す</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -8222,7 +8267,7 @@ failed.</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+38"/>
+        <location filename="additionaltranslations.cpp" line="+39"/>
         <source>Diff</source>
         <translation>差分</translation>
     </message>
@@ -8750,7 +8795,18 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>衝突解決を宣言する</translation>
     </message>
     <message>
-        <location line="+71"/>
+        <location line="+38"/>
+        <source>To Titlecase (strict)</source>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>厳密なタイトルケース（先頭は大文字で他は小文字）化</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>To Titlecase (smart)</source>
+        <translation>スマートなタイトルケース（先頭は大文字で他は小文字）化</translation>
+    </message>
+    <message>
+        <location line="+32"/>
         <location line="+5"/>
         <source>Bookmark %1</source>
         <translation>ブックマーク %1</translation>
@@ -9350,7 +9406,7 @@ Otherwise there might be random errors and crashes.</source>
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">印刷</translation>
+        <translation type="obsolete">印刷</translation>
     </message>
     <message>
         <location line="+136"/>
@@ -10222,7 +10278,13 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>テンプレートを用いて表を再構築する</translation>
     </message>
     <message>
-        <location line="+95"/>
+        <location line="+13"/>
+        <source>Quick &amp;Beamer Presentation...</source>
+        <translatorcomment>訳がこれで良いのか不明</translatorcomment>
+        <translation>簡単beamerプレゼンテーション作成(&amp;B)</translation>
+    </message>
+    <message>
+        <location line="+82"/>
         <source>Show embedded PDF large</source>
         <translation>埋め込みPDFを大きく表示</translation>
     </message>
@@ -10306,7 +10368,7 @@ Do you want to keep the program running? This may cause data corruption.</source
     <message>
         <location line="+1886"/>
         <source>Quick Beamer Presentation</source>
-        <translation type="unfinished"></translation>
+        <translation>簡単beamerプレゼンテーション作成</translation>
     </message>
     <message>
         <location line="+424"/>
@@ -10430,7 +10492,7 @@ Do you want to create it?</source>
     <message>
         <location line="+23"/>
         <source>Print Source Code...</source>
-        <translation type="unfinished"></translation>
+        <translation>ソースコードの印刷</translation>
     </message>
     <message>
         <location line="+26"/>
@@ -10448,19 +10510,12 @@ Do you want to create it?</source>
         <translation>大文字化</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>To Titlecase (strict)</source>
-        <oldsource>To Titlecase</oldsource>
+        <source>To Titlecase</source>
         <translatorcomment>訳がこれで良いのか不明</translatorcomment>
-        <translation type="unfinished">タイトルケース（先頭は大文字で他は小文字）化</translation>
+        <translation type="obsolete">タイトルケース（先頭は大文字で他は小文字）化</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>To Titlecase (smart)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+69"/>
+        <location line="+71"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>選択部 / 括弧内 をプレビュー(&amp;v)</translation>
     </message>
@@ -10487,17 +10542,17 @@ Do you want to create it?</source>
     <message>
         <location line="+21"/>
         <source>&amp;Bibtex</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bibtex</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Bibtex 8-Bit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Bibe&amp;r</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibe&amp;r</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -10520,12 +10575,7 @@ Do you want to create it?</source>
         <translation>TeXコメントとして文書コーディングを挿入</translation>
     </message>
     <message>
-        <location line="+8"/>
-        <source>Quick &amp;Beamer Presentation...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+163"/>
+        <location line="+171"/>
         <source>Packages Help...</source>
         <translation>パッケージヘルプ</translation>
     </message>
