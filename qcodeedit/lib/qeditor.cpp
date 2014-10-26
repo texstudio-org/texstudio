@@ -1914,6 +1914,18 @@ QDocumentCursor QEditor::cursorMirror(int i) const
 }
 
 /*!
+	\return the current cursor and all mirrors
+
+	Not slow, but also not the fastest. Best to avoid in loops
+*/
+QList<QDocumentCursor> QEditor::cursors() const{
+	QList<QDocumentCursor> res;
+	if (m_cursor.isValid()) res << m_cursor;
+	res << m_mirrors;
+	return res;
+}
+
+/*!
 	\brief Clear all placeholders
 */
 void QEditor::clearPlaceHolders()
@@ -2023,6 +2035,20 @@ void QEditor::removePlaceHolder(int id)
 }
 
 /*!
+	\brief Replaces all placeholders with new ones.
+
+	\note New placeholders will not be initialized
+*/
+void QEditor::replacePlaceHolders(const QList<PlaceHolder>& newPlaceholders){
+	clearPlaceHolders();//is this needed?
+	m_placeHolders = newPlaceholders;
+	if ( m_curPlaceHolder >= m_placeHolders.size() )
+		m_curPlaceHolder = m_placeHolders.size() - 1;
+	m_lastPlaceHolder = -1;
+	viewport()->update();
+}
+
+/*!
 	\return the number of placeholders currently set
 */
 int QEditor::placeHolderCount() const
@@ -2038,6 +2064,9 @@ int QEditor::currentPlaceHolder() const
 }
 const PlaceHolder& QEditor::getPlaceHolder(int i) const{
 	return m_placeHolders.at(i);
+}
+QList<PlaceHolder> QEditor::getPlaceHolders(){
+	return m_placeHolders;
 }
 
 /*! Checks if there exists a placeholder that will be auto overridden by inserting string s
@@ -2477,6 +2506,15 @@ static void removeFromStart(const QDocumentCursor& cur, const QString& txt)
 					QDocumentCursor::NextCharacter,
 					QDocumentCursor::KeepAnchor);
 	c.removeSelectedText();
+}
+
+void QEditor::tabOrIndentSelection()
+{
+    if(m_cursor.hasSelection()){
+        indentSelection();
+    }else{
+        m_cursor.insertText("\t");
+    }
 }
 
 /*!
@@ -3029,7 +3067,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	case NextPlaceHolder: nextPlaceHolder(); break;
 	case PreviousPlaceHolder: previousPlaceHolder(); break;
 
-
+    case TabOrIndentSelection: tabOrIndentSelection(); break;
 	case IndentSelection: indentSelection(); break;
 	case UnindentSelection: unindentSelection(); break;
 
@@ -4216,7 +4254,7 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
 	#endif
 
-		addEditOperation(IndentSelection, Qt::NoModifier, Qt::Key_Tab);
+        addEditOperation(TabOrIndentSelection, Qt::NoModifier, Qt::Key_Tab);
 		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
 
 		addEditOperation(Undo, QKeySequence::Undo);
@@ -4234,36 +4272,18 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	}
 	if (!excludeDefault) return m_registeredKeys;
 	else {
-        QHash<QString,int> result;
-		result = m_registeredKeys;
-        QSet<int> opsCount;
-        QList<int> zw=m_registeredKeys.values();
-        qSort(zw);
-        int cnt=0;
-        int key=-1;
-        foreach(const int elem,zw){
-            if(key==elem)
-                cnt++;
-            if(key==-1){
-                key=elem;
-            }
-            if(key!=elem){
-                if(cnt>0)
-                    opsCount.insert(key);
-                key=elem;
-                cnt=0;
-            }
+        QHash<QString, int> result = m_registeredKeys;
+        foreach(QString key,m_registeredDefaultKeys.keys()){
+                if(result.contains(key)){
+                    if(result.value(key)==m_registeredDefaultKeys.value(key)){
+                        result.remove(key);
+                    }
+                }else{
+                    // add for removal
+                    result.insert("#"+key,m_registeredDefaultKeys.value(key));
+                }
         }
-
-        QHash<QString, int>::const_iterator i = m_registeredDefaultKeys.begin();
-		while (i != m_registeredDefaultKeys.constEnd()) {
-            if(!opsCount.contains(i.value())){ // don't remove keys when an operation is defined various times
-                QHash<QString, int>::iterator j = result.find(i.key());
-                if (j!=result.end() && j.value() == i.value()) result.erase(j);
-            }
-			++i;
-		}
-		return result;
+        return result;
 	}
 }
 
@@ -4330,6 +4350,7 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case PreviousPlaceHolder: return tr("Previous placeholder");
 	case NextPlaceHolderOrWord: return tr("Next placeholder or one word right");
 	case PreviousPlaceHolderOrWord: return tr("Previous placeholder or one word left");
+    case TabOrIndentSelection: return tr("Tab or Indent selection");
 	case IndentSelection: return tr("Indent selection");
 	case UnindentSelection: return tr("Unindent selection");
 
@@ -4794,6 +4815,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 					 || cm.selectedText() != autoBracket //bracket mismatch
 					 || (!previousBracketMatch.isNull() &&
 					     cm.anchorLineNumber() == cm.lineNumber() &&
+
 					     cm.selectionEnd() == previousBracketMatch.selectionEnd());
 		}
 

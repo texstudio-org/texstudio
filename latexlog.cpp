@@ -92,9 +92,9 @@ void LatexLogModel::parseLogDocument(QTextDocument* doc, QString baseFileName) {
 	log.clear();
 	QList<LatexLogEntry> laterLog;
 	for (int i = 0; i <outputFilter.m_infoList.count(); i++) {
-		LatexLogEntry cur = outputFilter.m_infoList.at(i);
-		if (cur.type == LT_ERROR) log << cur;
-		else laterLog << cur;
+        LatexLogEntry cur = outputFilter.m_infoList.at(i);
+        if (cur.type == LT_ERROR) log << cur;
+        else laterLog << cur;
 	}
 	log << laterLog;
 
@@ -150,4 +150,17 @@ QString LatexLogModel::htmlErrorTable(const QList<int> &errors) {
 		msg.append(at(error).niceMessage());
 	}
 	return msg.append("</table>");
+}
+
+QString LatexLogModel::returnString(LogType type){
+    switch (type) {
+    case LT_ERROR:
+        return tr("error");
+    case LT_WARNING:
+        return tr("warning");
+    case LT_BADBOX:
+        return tr("bad box");
+    default:
+        return QString();
+    }
 }

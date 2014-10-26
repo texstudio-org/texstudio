@@ -1,7 +1,8 @@
 # microtype.cwl
 # Edson 27-12-2010
+# doncherry/2014-10-03 for microtype v. 2.5a
 
-\microsetup{key=value}
+\microtypesetup{key=value}
 
 \DeclareMicrotypeSet[features]{name}{fonts}
 \UseMicrotypeSet[features]{name}
@@ -27,3 +28,6 @@
 \DisableLigatures[charac]{fonts}
 \DisableLigatures{fonts}
 
+\textls[amount]{text}
+\lsstyle
+\lslig{ligature}

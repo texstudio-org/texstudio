@@ -30,6 +30,7 @@ public:
 	bool existsReRunWarning() const;
 	QStringList getMissingCitations() const;
 	QString htmlErrorTable(const QList<int> &errors);
+    QString returnString(LogType type);
 };
 
 #endif

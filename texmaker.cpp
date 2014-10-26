@@ -647,7 +647,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu,"closeall",tr("Clos&e All"), SLOT(fileCloseAll()));
 	
 	menu->addSeparator();
-	newManagedEditorAction(menu, "print",tr("Print..."), "print", Qt::CTRL+Qt::Key_P);
+	newManagedEditorAction(menu, "print",tr("Print Source Code..."), "print", Qt::CTRL+Qt::Key_P);
 	
 	menu->addSeparator();
 	newManagedAction(menu,"exit",tr("Exit"), SLOT(fileExit()), Qt::CTRL+Qt::Key_Q)->setMenuRole(QAction::QuitRole);
@@ -3453,24 +3453,29 @@ void Texmaker::editSectionPasteBefore(int line) {
 	currentEditorView()->paste();
 }
 
+void changeCase(QEditor* editor, QString(QString::*method)() const) {
+	if (!editor) return;
+	QList<QDocumentCursor> cs = editor->cursors();
+	bool allEmpty = true;
+	foreach (QDocumentCursor c, cs)
+		if (!c.selectedText().isEmpty()) {
+			allEmpty = false;
+			break;
+		}
+	if (allEmpty) return;
+
+	editor->document()->beginMacro();
+	foreach (QDocumentCursor c, editor->cursors())
+		c.replaceSelectedText( (c.selectedText().*method)() );
+	editor->document()->endMacro();
+}
+
 void Texmaker::editTextToLowercase() {
-	if (!currentEditorView()) return;
-	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
-	QString text = m_cursor.selectedText();
-	if (text.isEmpty()) return;
-	m_cursor.beginEditBlock();
-	m_cursor.insertText(text.toLower());
-	m_cursor.endEditBlock();
+	changeCase(currentEditor(), &QString::toLower);
 }
 
 void Texmaker::editTextToUppercase() {
-	if (!currentEditorView()) return;
-	QDocumentCursor m_cursor=currentEditorView()->editor->cursor();
-	QString text = m_cursor.selectedText();
-	if (text.isEmpty()) return;
-	m_cursor.beginEditBlock();
-	m_cursor.insertText(text.toUpper());
-	m_cursor.endEditBlock();
+	changeCase(currentEditor(), &QString::toUpper);
 }
 
 /*!
@@ -3491,9 +3496,9 @@ void Texmaker::editTextToTitlecase(bool smart) {
 		"	* To Title Case 2.1  http://individed.com/code/to-title-case/ \n" \
 		"	* Copyright © 20082013 David Gouch. Licensed under the MIT License.\n" \
 		"*/ \n" \
-		"String.prototype.toTitleCase = function(){\n" \
+        "toTitleCase = function(text){\n" \
 		"var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|nor|of|on|or|per|the|to|vs?\\.?|via)$/i;\n" \
-		"return this.replace(/[A-Za-z0-9\\u00C0-\\u00FF]+[^\\s-]*/g, function(match, index, title){\n" \
+        "return text.replace(/[A-Za-z0-9\\u00C0-\\u00FF]+[^\\s-]*/g, function(match, index, title){\n" \
 		"if (index > 0 && index + match.length !== title.length &&\n" \
 		"  match.search(smallWords) > -1 && title.charAt(index - 2) !== \":\" &&\n" \
 		"  (title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&\n" \
@@ -3513,7 +3518,7 @@ void Texmaker::editTextToTitlecase(bool smart) {
 	script +=
 		"});\n" \
 		"};\n" \
-		"cursor.insertText(cursor.selectedText().toTitleCase())";
+	   "editor.replaceSelectedText(toTitleCase)";
 	eng->setScript(script);
 	eng->run();
 	if (!eng->globalObject) delete eng;
@@ -3649,16 +3654,24 @@ void Texmaker::ReadSettings(bool reread) {
 		foreach (const QString& key, sl) {
             if (key.isEmpty()) continue;
 			int operationID = config->value(key).toInt();
-            if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
-                QStringList defaultKeys = configManager.editorKeys.keys(operationID);
-                if (!defaultKeys.isEmpty()) {
-                    foreach(const QString elem,defaultKeys){
-                        configManager.editorKeys.remove(elem);
-                    }
-                    manipulatedOps.insert(operationID);
+            if(key.startsWith("#")){
+                // remove predefined key
+                QString realKey=key.mid(1);
+                if(configManager.editorKeys.value(realKey)==operationID){
+                    configManager.editorKeys.remove(realKey);
                 }
+            }else{
+                if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                    QStringList defaultKeys = configManager.editorKeys.keys(operationID);
+                    if (!defaultKeys.isEmpty()) {
+                        foreach(const QString elem,defaultKeys){
+                            configManager.editorKeys.remove(elem);
+                        }
+                        manipulatedOps.insert(operationID);
+                    }
+                }
+                configManager.editorKeys.insert(key, operationID);
             }
-			configManager.editorKeys.insert(key, operationID);
 		}
 		QEditor::setEditOperations(configManager.editorKeys);
 	}
@@ -5699,8 +5712,8 @@ void Texmaker::GeneralOptions() {
 			else
 				marks[i].color = Qt::transparent;
 		// update all docuemnts views as spellcheck may be different
-		QEditor::setEditOperations(configManager.editorKeys,true);
-		foreach (LatexEditorView *edView, EditorTabs->editors()) {
+        QEditor::setEditOperations(configManager.editorKeys,false); // true -> false, otherwise edit operation can't be removed, e.g. tab for indentSelection
+        foreach (LatexEditorView *edView, EditorTabs->editors()) {
 			QEditor* ed = edView->editor;
 			ed->document()->markFormatCacheDirty();
 			ed->update();
@@ -8154,12 +8167,18 @@ void Texmaker::loadProfile(){
 					}
 					continue;
 				}
-				if((key=="texmaker/Tools/User Order")||(key=="texmaker/Tools/Display Names")){
+				if(key == "texmaker/Tools/User Order"){
 					// logic assumes that the user command name is exclusive
-					QStringList order=config->value(key).toStringList()<<profile->value(key).toStringList();
+					QStringList order=config->value(key).toStringList() << profile->value(key).toStringList();
 					config->setValue(key,order);
 					userCommand=true;
+					QString nameKey("texmaker/Tools/Display Names");
+					QStringList displayNames = config->value(nameKey).toStringList() << profile->value(nameKey).toStringList();
+					config->setValue(nameKey, displayNames);
 					continue;
+				}
+				if (key == "texmaker/Tools/Display Names") {
+					continue;  // handled above
 				}
 				config->setValue(key,profile->value(key));
 			}

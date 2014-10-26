@@ -22,6 +22,7 @@
 #include:textcase
 #include:translator
 #include:fixltx2e
+#include:iftex
 #include:epigraph
 #include:tcolorbox
 #include:marvosym
@@ -38,7 +39,6 @@
 #include:draftwatermark
 #include:babel
 #include:iflang
-#include:datenumber
 #include:datetime
 #include:hypcap
 #include:bookmark
@@ -77,6 +77,15 @@ noabstract
 nomakeabstract
 notableofcontents
 noprintbibliography
+graphicx
+adjustbox
+setspace
+xcolor
+datatool
+titleps
+draftwatermark
+babel
+datetime
 #endkeyvals
 #
 \yadsetup{%<options%>}#n
@@ -235,13 +244,14 @@ juniorresearcher*
 # Misc
 \ordernumber[%<numéro d'ordre%>]#n
 \ordernumber#n*
+\submissiondate{%<jour%>}{%<mois%>}{%<année%>}#n
 #
 # Preliminary pages
 #
 \disclaimer{%<clause%>}#n
 \makedisclaimer#n
 \makedisclaimer*#n
-\keywords{%<mots clés dans la langue secondaire%>}{%<mots clés dans la langue principale%>}#n
+\keywords{%<mots clés dans la langue principale%>}{%<mots clés dans la langue secondaire%>}#n
 \makekeywords#n
 \makekeywords*#n
 \makelaboratory#n

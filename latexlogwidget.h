@@ -4,6 +4,8 @@
 #include "logeditor.h"
 #include "latexlog.h"
 
+#include <QSortFilterProxyModel>
+
 #include "mostQtHeaders.h"
 
 class LatexLogWidget : public QWidget
@@ -26,7 +28,7 @@ public:
 	void setDisplayParts(DisplayParts parts);
 
 	bool childHasFocus() const {return log->hasFocus() || errorTable->hasFocus();}
-	QList<QAction *> displayActions() const {return displayPartsActions->actions();}
+    QList<QAction *> displayActions();
 signals:
 	void logEntryActivated(int);
 	void logLoaded();
@@ -42,6 +44,7 @@ private slots:
 	void copyAllMessagesWithLineNumbers();
 	void changeDisplay(QAction *act);
 	void setInfo(const QString &message);
+    void filterChanged(bool);
 private:
 	QTableView *errorTable;
 	LogEditor *log;
@@ -50,9 +53,11 @@ private:
 	LatexLogModel *logModel;
 
 	QActionGroup *displayPartsActions;
-	QAction *displayTableAction, *displayLogAction, *displayLogAndTableAction;
+    QAction *displayTableAction, *displayLogAction, *displayLogAndTableAction,*filterErrorAction,*filterWarningAction,*filterBadBoxAction;
 
 	bool logpresent;
+
+    QSortFilterProxyModel *proxyModel;
 };
 
 Q_DECLARE_METATYPE(LatexLogWidget::DisplayParts)

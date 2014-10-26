@@ -1,6 +1,8 @@
 #include "help.h"
 #include "texdocdialog.h"
 #include "smallUsefulFunctions.h"
+#include "utilsSystem.h"
+#include "configmanager.h"
 #include <QMutex>
 
 
@@ -9,6 +11,11 @@ Help * Help::m_Instance = 0;
 Help::Help() :
 	QObject(0)
 {
+}
+
+QString Help::getAdditionalCmdSearchPath()
+{
+	return ConfigManagerInterface::getInstance()->getOption("Tools/Search Paths").toString();
 }
 
 void Help::execTexdocDialog(const QStringList &packages, const QString &defaultPackage)
@@ -33,6 +40,7 @@ void Help::viewTexdoc(QString package)
 	}
 	if (!package.isEmpty()) {
 		QProcess proc(this);
+		updatePathSettings(&proc, getAdditionalCmdSearchPath());
 		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(viewTexdocError()));
 		proc.start("texdoc", QStringList() << "--view" << package);
 		if (!proc.waitForFinished(2000)) {
@@ -64,6 +72,7 @@ QString Help::packageDocFile(const QString &package) {
 	}
 	args << package;
 	QProcess proc;
+	updatePathSettings(&proc, getAdditionalCmdSearchPath());
 	proc.start("texdoc", args);
 	if (!proc.waitForFinished(2000)) {
 		txsWarning(QString(tr("texdoc did not respond to query on package:")+"\n%1").arg(package));
@@ -102,6 +111,7 @@ void Help::texdocAvailableRequest(const QString &package)
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}
 	QProcess *proc = new QProcess(this);
+	updatePathSettings(proc, getAdditionalCmdSearchPath());
 	proc->setProperty("package", package);
 	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
 	proc->start("texdoc", args);

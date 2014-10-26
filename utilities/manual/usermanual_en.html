@@ -453,11 +453,25 @@ TeXstudio can auto detect utf-8 and latin1 encoded files, but if you use a diffe
 </ul>
 <p><IMG src="configure_editor.png" border="1" alt="Configure Editor"></p>
 <h2 id="SECTION02">1.2 Configuring the latex related commands</h2>
-<p>TeXstudio can't compile yours documents if the paths to the LaTeX related commands are wrong.<br>
-The default settings should work with the recent and standard LaTeX distributions, but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change a command, just click on the button at the end of the corresponding line and select the command in the file browser : TeXstudio will adapt automatically the syntax of the command.<br>
-The <strong>%</strong> character represents the name of the file without the extension and the <strong>@</strong> character will be replaced by the current line number. If you need more options (e.g. absolute paths) use ? and  look at the instruction on the bottom of the configuration dialog. <br>
-Section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.<br>
-You can always restore the original settings using the revert button to the right.
+<p>LaTeX comes with a number of command line tools to compile and manipulate LaTeX
+documents. The commands section defines there location and arguments.</p>
+<p>The default settings should work with the recent and standard LaTeX distributions,
+but you could have to modify them ("Configure TeXstudio" -> "Commands"). To change
+a command, just click on the button at the end of the corresponding line and select
+the command in the file browser : TeXstudio will automatically adapt the syntax of
+the command.</p>
+<p>You can use a number of special characters / character sequences to address the
+context of the current document. They are expanded at runtime:
+<table>
+<tr><th>Special Character</th><th>Expands to</th></tr>
+<tr><td><code>%</code></td><td>master filename (root) for of current document without extension</td></tr>
+<tr><td><code>@</code></td><td>current line number</td></tr>
+<tr><td><code>?</code> followed by further characters</td><td>See the instruction at the bottom of the configuration dialog.</td></tr>
+<tr><td><code>[txs-app-dir]</code></td><td>Location of the TeXstudio executable (useful for portable settings)</td></tr>
+<tr><td><code>[txs-settings-dir]</code></td><td>Location of the settings file (texstudio.ini)</td></tr>
+</table>
+<p>The section <a href="#SECTION37">Forward/Inverse search</a> gives some example commands for common viewers.</p>
+<p>You can always restore the original settings using the revert button to the right.
 </p>
 <p><IMG src="configure_commands.png" border="1" alt="Configure Commands"></p>
 <h2 id="SECTION02a">1.3 Configuring the build system</h2>
@@ -640,13 +654,15 @@ For this menu items can be renamed and a new Latex-Code can be placed. The aprop
 Since many of those item don't have icons, user icons can be loaded as well. This is achieved by applying "load other icon" from the context menu on a item in the custom toolbar list in the configure dialog.
 </p>
 <p><IMG src="configure_customToolbar.png" border="1" alt="Customize Toolbars"></p>
-<h2 id="SECTION08">1.8 Configuring SVN support</h2>
-<p>To provide documenten versioning, TeXstudio makes use of SVN (subversion). To make use of it, the SVN commandline tools need to be installed.
+<h2 id="SECTION08">1.9 Configuring SVN support</h2>
+<p>To supports SVN (subversion) for document versioning. To make use of it, the SVN commandline tools need to be installed.
 Linux and Mac OSX normally provide already svn tools, for Windows, the installation of "SlikSVN" is recommended.
 </p>
-<p>
-The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the svn configure page, see below.
-Furthermore the user can choose the degree of automation, which TeXstudio provides.
+<p>The complete path to the command "svn" and "svnadmin" need to be adjusted in the aprioriate field of the Commands page in the options. 
+On the SVN page you can can choose the degree of automation (see below) WSVN, see below.
+</p>
+<p>Note: You cannot checkout a repository via TeXstudio. Just use the normal tools for this (either svn checkout on the commmand line or the GUI of your choice). 
+Once you have a working copy, TeXstudio can operate on it.
 </p>
 <p>
 "Automatically check in after save" allows TeXstudio to perform an svn check in after every save of a document, thus providing a very complete history of the creation of a document.
@@ -948,6 +964,24 @@ To access the document these objects are introduced:
   	<td> This function searches and replaces something in the editor. It behaves like editor.search apart from the replaceWith argument which can be a simple string or a callback function. If it is a function the return value of replaceWith is used to replace the match described by the cursor passed to replaceWith.  </td>
   </tr>
   <tr>
+  	<td> editor.replaceSelectedText(newText, [options]) </td>
+  	<td>  This function replaces the current selections with newText or inserts newText, if nothing is selected. <br>
+  	     If newText is a function, it will be called with the selected text and corresponding cursor, and the return value will be the newText.<br>
+  	     It is recommended to use this function for all text replacements/insertions, since it is the easiest way to handle multiple cursors/block selections correctly. Though it is only available in txs >= 2.8.5.<br><br>
+  	     
+  	    Options is an object that can have the following properties:
+  	    <ul>
+  	    <li><code>{"noEmpty": true}</code>    only replaces; does not insert anything if the selection is empty</li>
+  	    <li><code>{"onlyEmpty": true}</code>  only inserts at the cursor position; does not change non empty selected text</li>
+  	    <li><code>{"append": true}</code>     appends newText to the current selection, does not remove the old text</li>
+  	    <li><code>{"prepend": true}</code>    prepends newText to the current selection, does not remove the old text</li> 
+  	    <li><code>{"macro": true}</code>      Treats newText as normal macro text, e.g. inserting %&lt; %&gt; placeholders </li> 
+  	    </ul><br>
+  	    Examples:<br>
+  	    <code>editor.replaceSelectedText("world", {"append": true} )</code> Appends "world" to the current selections.<br>
+  	    <code>editor.replaceSelectedText(function(s){return s.toUpperCase();})</code> Converts the current selection to uppercase.  </td>
+  </tr>
+  <tr>
     <td> editor.undo();</td>
     <td>undo last command in editor</td>
   </tr>
@@ -1041,7 +1075,7 @@ To access the document these objects are introduced:
   </tr>
   <tr>
     <td> editor.insertText(str) </td>
-    <td> inserts str at the current cursor position (cursor mirrors are ignored)</td>
+    <td> inserts str at the current cursor position (cursor mirrors are ignored, so it is preferable to use replaceSelectedText or write instead) </td>
   </tr>
   <!--
   <tr>

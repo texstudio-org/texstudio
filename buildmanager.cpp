@@ -2,6 +2,7 @@
 
 #include "smallUsefulFunctions.h"
 #include "configmanagerinterface.h"
+#include "utilsSystem.h"
 
 #include "userquickdialog.h"
 
@@ -253,6 +254,7 @@ QString BuildManager::getCommandLine(const QString& id, bool* user){
 }
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
+	str = ConfigManagerInterface::getInstance()->parseDir(str);
 	str=str+" "; //end character  so str[i++] is always defined
 	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {
@@ -903,28 +905,26 @@ void BuildManager::readSettings(QSettings &settings){
 		if (rerunCommandsUnexpanded[i].startsWith(TXS_CMD_PREFIX))
 			rerunCommandsUnexpanded[i] = rerunCommandsUnexpanded[i].mid(TXS_CMD_PREFIX.size());
 
+	removeDuplicateUserTools(userToolOrder, userToolDisplayNames);
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
 	QStringList cmds = settings.childKeys();
 	foreach (const QString& id, cmds) {
 		QString cmd = settings.value(id).toString();
-		if (cmd.isEmpty()) continue;
 		CommandMapping::iterator it = commands.find(id);
-		if (it == commands.end()) registerCommand(id, "", id, "", "", 0, true).commandLine = cmd;
-		else {
+		if (it == commands.end()) {
+			// command not known by default -> user command
+			QString displayName(id);
+			int idx = userToolOrder.indexOf(id);
+			if (idx >= 0 && idx < userToolDisplayNames.length()) {
+				displayName = userToolDisplayNames[idx];
+			}
+			registerCommand(id, "", displayName, "", "", 0, true).commandLine = cmd;
+		} else {
+			// default command
 			it.value().commandLine = cmd;
 		}
 	}
-
-	removeDuplicateUserTools(userToolOrder, userToolDisplayNames);
-	for (int i=0; i<qMin(userToolOrder.size(), userToolDisplayNames.size()); ++i) {
-		QString id = userToolOrder[i];
-		CommandMapping::iterator it = commands.find(id);
-		if (it == commands.end()) {  // only use if there is not a standard command with the same name
-			registerCommand(id, "", userToolDisplayNames[i], "", "", 0, true);
-		}
-	}
-
 	settings.endGroup();
 	settings.endGroup();
 	
@@ -1167,30 +1167,8 @@ ProcessX* BuildManager::newProcessInternal(const QString &cmd, const QFileInfo& 
 		proc->setWorkingDirectory(mainFile.absolutePath());
 	if (cmd.startsWith(TXS_CMD_PREFIX)) 
 		connect(proc, SIGNAL(startedX()), SLOT(runInternalCommandThroughProcessX()));
-	
-	QString addPaths = additionalSearchPaths;
-#ifdef Q_OS_MAC
-#if (QT_VERSION >= 0x040600)
-	QProcess *myProcess = new QProcess();
-	myProcess->start("bash -l -c \"echo $PATH\"");
-	myProcess->waitForFinished(3000);
-	if(myProcess->exitStatus()==QProcess::NormalExit){
-		QByteArray res=myProcess->readAllStandardOutput();
-		delete myProcess;
-		QString path(res);
-		if (addPaths.isEmpty()) addPaths = path;
-		else addPaths += ":" + path;
-	}
-#endif
-#endif
-	
 
-	if (!addPaths.isEmpty()) {
-		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-		env.insert("PATH", env.value("PATH") + getPathListSeparator() + addPaths); //apply user path as well
-		proc->setProcessEnvironment(env);		
-	}	
-	
+	updatePathSettings(proc, additionalSearchPaths);
 	return proc;
 }
 
