@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es">
+<TS version="2.0" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -4031,17 +4031,17 @@ El asistente no admite órdenes </translation>
     <message>
         <location line="-60"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Clase</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Package</source>
-        <translation type="unfinished">Paquete</translation>
+        <translation>Paquete</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Beamer Theme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tema de Beamer</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -4115,7 +4115,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">Paquete no encontrado</translation>
+        <translation>Paquete no encontrado</translation>
     </message>
     <message>
         <location line="+2059"/>
@@ -4224,17 +4224,17 @@ El asistente no admite órdenes </translation>
     <message>
         <location line="+3"/>
         <source>Show Error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar errores</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show Warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar Advertencias</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show BadBox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar BadBox</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -5262,22 +5262,22 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+160"/>
         <source>Page Down</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Avanzar Página</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>PgDown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Av Pág</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Page Up</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Retroceder Página </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>PgUp</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Re Pág</translation>
     </message>
     <message>
         <location line="+176"/>
@@ -5575,27 +5575,27 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <name>PreviewWidget</name>
     <message>
         <source>fit</source>
-        <translation type="vanished">Ajustar</translation>
+        <translation>Ajustar</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">Acercar</translation>
+        <translation>Acercar</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">Alejar</translation>
+        <translation>Alejar</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">Restablecer zoom</translation>
+        <translation>Restablecer zoom</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">Alinear la imagen a la izquierda</translation>
+        <translation>Alinear la imagen a la izquierda</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">Centrar Imagen</translation>
+        <translation>Centrar Imagen</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
@@ -5610,12 +5610,12 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Restablecer zoom</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Fit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ajustar</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -6308,7 +6308,7 @@ La Opción Deshacer/Rehacer sería descartada por el auto-recargado.
     <message>
         <location line="+1"/>
         <source>Tab or Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">selección de sangría o pestaña</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8840,7 +8840,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Imprimir...</translation>
+        <translation>Imprimir...</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
@@ -9457,7 +9457,7 @@ Do you want to create it?</source>
     <message>
         <location line="+7"/>
         <source>Print Source Code...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Imprimir Código Fuente...</translation>
     </message>
     <message>
         <location line="+10"/>
