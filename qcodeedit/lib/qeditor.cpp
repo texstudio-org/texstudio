@@ -4228,6 +4228,9 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 
 		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRight, Qt::NoModifier, Qt::Key_Delete);
+	#ifndef Q_OSX
+		addEditOperation(DeleteLeft, Qt::ShiftModifier, Qt::Key_Backspace);
+	#endif
 	#ifdef Q_OSX
 		addEditOperation(DeleteLeftWord, Qt::AltModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRightWord, Qt::AltModifier, Qt::Key_Delete);
