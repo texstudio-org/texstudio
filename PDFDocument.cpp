@@ -3786,6 +3786,14 @@ void PDFDocument::showToolbars()
 	}
 }
 
+void PDFDocument::showMessage(const QString &text)
+{
+	QAction *closeAction = new QAction(tr("Close"), this);
+	closeAction->setToolTip(tr("Close Message"));
+	connect(closeAction, SIGNAL(triggered()), messageFrame, SLOT(hide()));
+	messageFrame->showText(text, QList<QAction *>() << closeAction);
+}
+
 void PDFDocument::setToolbarsVisible(bool visible)
 {
 	toolBar->setVisible(visible);

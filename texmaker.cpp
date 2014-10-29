@@ -2309,6 +2309,13 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 			EditorTabs->setCurrentEditor(currentEdView);
 		}
 		
+		// show message in viewer
+		if (currentEditor()->fileInfo() != QFileInfo(fn)) {
+			foreach (PDFDocument *viewer,PDFDocument::documentList())
+				if (viewer->getMasterFile() == currentEditor()->fileInfo())
+					viewer->showMessage(tr("This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result."));
+		}
+
 		// save file
         removeDiffMarkers();// clean document from diff markers first
 		currentEditor()->save(fn);
@@ -2835,6 +2842,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress, bool warnMiss
 	cursorHistory->setInsertionEnabled(true);
 
 	if (!s.PDFFile().isEmpty()) {
+		qDebug() << s.PDFFile() << s.PDFEmbedded();
 		runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded()?"--embedded":"--windowed");
 	}
     // update completer
