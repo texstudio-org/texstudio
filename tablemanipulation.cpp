@@ -91,9 +91,11 @@ void LatexTables::addColumn(QDocument *doc,const int lineNumber,const int afterC
 	QStringList pasteBuffer;
 	QStringList nTokens;
 	nTokens << "\\\\" << "\\&" << "&";
-	if(cutBuffer) pasteBuffer=*cutBuffer;
-    if(pasteBuffer.size()==0)
-          return;
+    if(cutBuffer) {
+        pasteBuffer=*cutBuffer;
+        if(pasteBuffer.size()==0)
+            return;
+    }
 	cur.beginEditBlock();
 	cur.moveTo(lineNumber,0);
 	QString def=getDef(cur);
