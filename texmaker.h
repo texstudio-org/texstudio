@@ -566,6 +566,8 @@ protected slots:
 
     void openInternalDocViewer(QString package,const QString command="");
 
+    void colonTyped();
+
 private slots:
 	void importPackage(QString name);
 	void packageScanCompleted(QString name);
