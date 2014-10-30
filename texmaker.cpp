@@ -1520,7 +1520,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
 	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
-	connect(edit, SIGNAL(colonTyped()), this, SLOT(NormalCompletion()));
+    connect(edit, SIGNAL(colonTyped()), this, SLOT(colonTyped()));
     connect(edit, SIGNAL(openInternalDocViewer(QString,QString)),this,SLOT(openInternalDocViewer(QString,QString)));
     connect(edit, SIGNAL(searchExtendToggled(bool)),this,SLOT(searchExtendToggled(bool)));
 
@@ -9280,4 +9280,26 @@ void Texmaker::searchExtendToggled(bool toggled){
 
     updateFindGlobal(outputView->getSearchScope());
     outputView->setSearchEditors(docs);
+}
+
+void Texmaker::colonTyped(){
+    if (!currentEditorView())	return;
+    LatexEditorView *view=currentEditorView();
+    // complete text if no command is present
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    QString eow=getCommonEOW();
+    int i=0;
+    //int col=c.columnNumber();
+    QString word=c.line().text();
+    while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
+        c.movePosition(1,QDocumentCursor::PreviousCharacter);
+        i++;
+    }
+
+    QString command,value;
+    LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
+    QList<LatexParser::ContextType>lst;
+    lst<<LatexParser::Package<<LatexParser::Keyval<<LatexParser::KeyvalValue<<LatexParser::Citation;
+    if(lst.contains(ctx))
+        NormalCompletion();
 }
