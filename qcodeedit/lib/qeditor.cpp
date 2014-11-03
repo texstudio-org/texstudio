@@ -2513,7 +2513,16 @@ void QEditor::tabOrIndentSelection()
     if(m_cursor.hasSelection()){
         indentSelection();
     }else{
-        m_cursor.insertText("\t");
+		QDocumentCursor cur(m_cursor);
+		// insert \t only if there is non-space before the cursor, otherwise indent
+		while (!cur.atLineStart()) {
+			if (!cur.previousChar().isSpace()) {
+				m_cursor.insertText( "\t");
+				return;
+			}
+			cur.movePosition(1, QDocumentCursor::PreviousCharacter);
+		}
+		indentSelection();
     }
 }
 
