@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -3753,7 +3753,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">A csomag nem található</translation>
+        <translation>A csomag nem található</translation>
     </message>
     <message>
         <location line="+1627"/>
@@ -3799,7 +3799,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Package present</source>
-        <translation type="vanished">Csomag létezik</translation>
+        <translation>Csomag létezik</translation>
     </message>
     <message>
         <location line="+267"/>
@@ -3849,22 +3849,22 @@ Invalid \caption command.</source>
     <message>
         <location line="+1666"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Osztály</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Package</source>
-        <translation type="unfinished">Csomag</translation>
+        <translation>Csomag</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Beamer Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Beamer téma</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>not found</source>
-        <translation type="unfinished">Nem található</translation>
+        <translation>Nem található</translation>
     </message>
     <message>
         <location line="+345"/>
@@ -3973,17 +3973,17 @@ Invalid \caption command.</source>
     <message>
         <location line="+3"/>
         <source>Show Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hibák megjelenítése</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Figyelmeztetések megjelenítése</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show BadBox</source>
-        <translation type="unfinished"></translation>
+        <translation>Rossz szövegdobozok megjelenítése</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -4645,22 +4645,22 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+160"/>
         <source>Page Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Page Down</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>PgDown</source>
-        <translation type="unfinished"></translation>
+        <translation>PgDown</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Page Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Page Up</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>PgUp</source>
-        <translation type="unfinished"></translation>
+        <translation>PgUp</translation>
     </message>
     <message>
         <location line="+176"/>
@@ -5277,52 +5277,52 @@ Megnyitása programösszeomlást okozhat. Két másodpercenként megpróbálkozu
     <name>PreviewWidget</name>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">nagyítás</translation>
+        <translation>nagyítás</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">kicsinyítés</translation>
+        <translation>kicsinyítés</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">alaphelyzet</translation>
+        <translation>alaphelyzet</translation>
     </message>
     <message>
         <source>fit</source>
-        <translation type="vanished">illesztés</translation>
+        <translation>illesztés</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">balra rendezett kép</translation>
+        <translation>balra rendezett kép</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">középre rendezett kép</translation>
+        <translation>középre rendezett kép</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
         <source>Zoom In</source>
-        <translation type="unfinished">Nagyítás</translation>
+        <translation>Nagyítás</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Zoom Out</source>
-        <translation type="unfinished">Kicsinyítés</translation>
+        <translation>Kicsinyítés</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Alaphelyzet</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Fit</source>
-        <translation type="unfinished"></translation>
+        <translation>Illesztés</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Középre</translation>
     </message>
 </context>
 <context>
@@ -5916,7 +5916,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location line="+1"/>
         <source>Tab or Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulátor vagy behúzás kiválasztása</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7945,7 +7945,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Nyomtatás...</translation>
+        <translation>Nyomtatás...</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -9354,7 +9354,7 @@ included document in %1</source>
     <message>
         <location line="+23"/>
         <source>Print Source Code...</source>
-        <translation type="unfinished"></translation>
+        <translation>Forráskód nyomtatása...</translation>
     </message>
     <message>
         <location line="+26"/>
