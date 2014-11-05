@@ -3671,7 +3671,7 @@ void Texmaker::ReadSettings(bool reread) {
                     configManager.editorKeys.remove(realKey);
                 }
             }else{
-                if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                /*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
                     QStringList defaultKeys = configManager.editorKeys.keys(operationID);
                     if (!defaultKeys.isEmpty()) {
                         foreach(const QString elem,defaultKeys){
@@ -3679,7 +3679,8 @@ void Texmaker::ReadSettings(bool reread) {
                         }
                         manipulatedOps.insert(operationID);
                     }
-                }
+                }*/
+                // replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
                 configManager.editorKeys.insert(key, operationID);
             }
 		}
