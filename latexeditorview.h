@@ -159,7 +159,8 @@ private:
 	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
 	packagePresentFormat,packageMissingFormat,packageUndefinedFormat,
 	wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
-	numbersFormat, verbatimFormat, commentFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat;
+	numbersFormat, verbatimFormat, commentFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat,
+	asymptoteBlockFormat;
 	static QList<int> grammarFormats;
 	static QVector<bool> grammarFormatsDisabled;
 	static QList<int> formatsList;

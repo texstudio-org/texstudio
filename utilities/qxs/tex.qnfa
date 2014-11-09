@@ -224,7 +224,7 @@ environments in smallUsefulFunctions.cpp)
 
 	<!-- ========================= PICTURES ====================== -->
 	<foreach loopVar="$env">
-		<e>tikzpicture</e> <e>pspicture</e> <e>pspicture\*</e> <e>picture</e> <e>picture\*</e> <e>asy</e>
+		<e>tikzpicture</e> <e>pspicture</e> <e>pspicture\*</e> <e>picture</e> <e>picture\*</e>
 		<body>
 		<context id="$env" format="picture" transparency="true">	
 			<start parenthesis="$env:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{$env}</start>
@@ -232,7 +232,16 @@ environments in smallUsefulFunctions.cpp)
 		</context>        
 		</body>
 	</foreach>
-       
+	
+	<!-- ========================= Asymptote ===================== -->
+
+	<context id="asy" format="asymptote:block" transparency="false">	
+		<start parenthesis="asy:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{asy}</start>
+		<stop parenthesis="asy:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{asy}</stop>
+		<embed target="Asymptote" />
+	</context>        
+
+	
 	<!-- ========================= GENERAL BLOCKS ====================== -->
 		
 	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
