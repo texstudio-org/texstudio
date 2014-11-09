@@ -382,7 +382,8 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <foreground>#10C010</foreground>
-    </format>	
+    </format>
+<!-- Lua -->
     <format id="lua:keyword" >
         <bold>false</bold>
         <italic>false</italic>
@@ -401,6 +402,26 @@
         <waveUnderline>false</waveUnderline>
         <foreground>#808080</foreground>
     </format>
+<!-- Asymptote -->
+    <format id="asymptote:block" >
+        <foreground>#804000</foreground>
+    </format>
+    <format id="asymptote:keyword" >
+        <foreground>#800080</foreground>
+    </format>
+    <format id="asymptote:type" >
+        <foreground>#808000</foreground>
+    </format>
+    <format id="asymptote:numbers" >
+        <foreground>#008000</foreground>
+    </format>
+    <format id="asymptote:string" >
+        <foreground>#000080</foreground>
+    </format>
+    <format id="asymptote:comment" >
+        <foreground>#808080</foreground>
+    </format>
+<!-- Preedit -->
     <format id="preedit" >
         <bold>false</bold>
         <italic>false</italic>

@@ -318,6 +318,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
   filters << tr("Plaintext files")+" (*.txt)";
   filters << tr("Pweave files")+" (*.Pnw)";
   filters << tr("Sweave files")+" (*.Snw *.Rnw)";
+  filters << tr("Asymptote files")+" (*.asy)";
   filters << tr("PDF files")+" (*.pdf)";
   filters << tr("All files")+" (*)";
   fileFilters = filters.join(";;");
