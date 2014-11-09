@@ -1948,7 +1948,7 @@ println("\\end{"+env+"}")
 
 <p>The .qnfa file specifies the syntax of the language. The actual format information is specified in a .qxf file. You can either use the formats specified in <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">defaultFormats.qxf</a> or provide your own .qxf file along with the .qnfa file.<p>
 
-<p>You should read the <a href="http://qcodeedit.edyuk.org/docs/qce_examples.html">syntax format specification</a> and have a look at the <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">formats shipped with TeXstudio</a>.<p>
+<p>You should read the <a href="http://texstudio.sourceforge.net/manual/qce/QNFA.html">syntax format specification</a> and have a look at the <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">formats shipped with TeXstudio</a>.<p>
 
 
 <p>Note: We expose the language specification to you as end-user to give you more flexibility in adapting TeXstudio to your needs. But you should take it as is, because we don't have the capacity to give support here. It's a powerful API, but neither polished nor fully featured. You might find some constructs in the shipped .qnfa files, which are not documented in the syntax format specification. Additionally, the regular-expression based formatting of QNFA is not sufficient to define all the highlighting we wanted for LaTeX. Therefore we have extra highlighting functionality directly implemented in the sourcecode for the "(La)TeX" language, e.g. the highlighting inside the parentheses of <code>\begin</code> and <code>\end</code>. You won't be able to modify this or add it to other languages.<p>
