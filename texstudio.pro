@@ -647,7 +647,7 @@ exists(./.svn/entries)|exists(./.svn/wc.db){
 }
 
 # add mercurial revision
-exists(./.hg2) {
+exists(./.hg2) || exists(./.hg) {
   win32: {
     message(HG)
     QMAKE_PRE_LINK += \"$${PWD}/hg_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
