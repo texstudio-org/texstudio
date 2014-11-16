@@ -428,7 +428,6 @@ unix {
         utilities/CHANGELOG.txt
     manual.files = \
         utilities/manual/usermanual_en.html \
-        utilities/manual/usermanual_fr.html \
         utilities/manual/usermanual.css \
         utilities/manual/doc1.png \
         utilities/manual/doc10.png \
