@@ -334,7 +334,7 @@ QString findAbsoluteFilePath(const QString & relName, const QString &extension, 
 
 void updatePathSettings(QProcess* proc, QString additionalPaths)
 {
-#ifndef Q_OS_MAC
+#ifdef Q_OS_MAC
 #if (QT_VERSION >= 0x040600)
 	QProcess *myProcess = new QProcess();
 	myProcess->start("bash -l -c \"echo $PATH\"");
