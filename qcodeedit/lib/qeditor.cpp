@@ -4635,6 +4635,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 
 	bool hasSelection = c.hasSelection();
+	if (hasSelection && c.selectedText() == text) return;  // replacing a selection with itself -> nothing to do. (It's more safe to directly stop here, because the below indentation correction does not get all cases right).
 
 	bool beginNewMacro = !m_doc->hasMacros() && (hasSelection || flag(Overwrite) || lines.size()>1);
 	if (beginNewMacro)
