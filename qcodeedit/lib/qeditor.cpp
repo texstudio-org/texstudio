@@ -4747,7 +4747,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	 
 		c.insertText(text);
 	} else {
-		
+		bool originallyAtLineStart = c.atLineStart();
 		preInsertUnindent(c, lines.first(), 0);
 
 		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
@@ -4759,8 +4759,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		c.insertText(lines.takeFirst());
 		
 		
-		foreach ( QString l, lines )
-			{
+		for (int i=0; i<lines.length(); i++)
+		{
+			QString l = lines[i];
 
 			int additionalUnindent = 0;
 			
@@ -4786,7 +4787,15 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 				}
 			}
 			c.insertLine();
-			c.insertText(indent);
+			if (i<lines.length()-1 || !l.isEmpty() || !originallyAtLineStart)
+			// always indent line except last line if it is empty and the cursor was at line start
+			// in that case, the original indentation is still present from the first line
+			// example:
+			// >....a
+			// >|...c (and insert '....b\n'
+			{
+				c.insertText(indent);
+			}
 			
 			preInsertUnindent(c, l, additionalUnindent);
 
