@@ -2636,6 +2636,10 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Asymptote</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -5081,11 +5085,11 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>PgDown</source>
+        <source>Page Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Page Up</source>
+        <source>Close Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5326,6 +5330,10 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     <message>
         <source>Process exited normally</source>
         <translation>Proces ukončen jako obvykle</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6311,6 +6319,22 @@ Poznámka: Pokud je velikost větší než rozestupy řádků, mohou být znaky 
     <message>
         <source>dtx:commands</source>
         <translation>dtx:příkazy</translation>
+    </message>
+    <message>
+        <source>asymptote:type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asymptote:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asymptote:number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>asymptote:string</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9726,6 +9750,14 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>Print Source Code...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

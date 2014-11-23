@@ -806,7 +806,8 @@ bool LatexEditorView::isNonTextFormat(int format){
 			|| format == pweaveBlockFormat
 			|| format == sweaveDelimiterFormat
 			|| format == sweaveBlockFormat
-			|| format == math_DelimiterFormat;
+			|| format == math_DelimiterFormat
+			|| format == asymptoteBlockFormat;
 }
 
 void LatexEditorView::selectOptionInLatexArg(QDocumentCursor &cur) {
@@ -1256,7 +1257,8 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,LatexEditorView::packageMissingFormat,LatexEditorView::packagePresentFormat,LatexEditorView::packageUndefinedFormat,
 LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
 LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::commentFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat,
-LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat;
+LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat,
+LatexEditorView::asymptoteBlockFormat;
 int LatexEditorView::syntaxErrorFormat,LatexEditorView::preEditFormat;
 int LatexEditorView::deleteFormat,LatexEditorView::insertFormat,LatexEditorView::replaceFormat;
 
@@ -1337,6 +1339,7 @@ void LatexEditorView::updateFormatSettings(){
 							 &sweaveDelimiterFormat, "sweave-delimiter",
 							 &sweaveBlockFormat, "sweave-block",
 							 &math_DelimiterFormat, "math-delimiter",
+							 &asymptoteBlockFormat, "asymptote:block",
 							 &preEditFormat,"preedit",
 							 0, 0
 							};

@@ -42,11 +42,13 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	// do layout
 	value = model->data(index, Qt::DecorationRole);
 	QPixmap pixmap = decoration(opt, value);
-#if QT_VERSION >= 0x050000
+/*#if QT_VERSION >= 0x050000
+ * pixmap size is fixed and it is determined at start-up
+ * so, it can't handle change of devicePixelratio during run time when changing to normal res screen
     int overScale= painter->device()->devicePixelRatio();
-#else
+#else*/
     int overScale= isRetinaMac() ? 2 : 1;
-#endif
+//#endif
 
     QSize pixmapSize= pixmap.size()/overScale;
     QRect pixmapRect(QPoint(0,0),pixmapSize);

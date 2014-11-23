@@ -35,6 +35,12 @@ h4 {
 
 p, table {margin-left: 2em;}
 
+.news li {
+    padding-left: 1em;
+	margin-left: 0.5em;
+	margin-bottom: 0.5em;
+}
+
 table, caption {
   font-size: inherit;
   font-weight: inherit;

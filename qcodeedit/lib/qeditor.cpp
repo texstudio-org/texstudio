@@ -2513,7 +2513,16 @@ void QEditor::tabOrIndentSelection()
     if(m_cursor.hasSelection()){
         indentSelection();
     }else{
-        m_cursor.insertText("\t");
+		QDocumentCursor cur(m_cursor);
+		// insert \t only if there is non-space before the cursor, otherwise indent
+		while (!cur.atLineStart()) {
+			if (!cur.previousChar().isSpace()) {
+				m_cursor.insertText( "\t");
+				return;
+			}
+			cur.movePosition(1, QDocumentCursor::PreviousCharacter);
+		}
+		indentSelection();
     }
 }
 
@@ -4228,6 +4237,9 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 
 		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRight, Qt::NoModifier, Qt::Key_Delete);
+	#ifndef Q_OSX
+		addEditOperation(DeleteLeft, Qt::ShiftModifier, Qt::Key_Backspace);
+	#endif
 	#ifdef Q_OSX
 		addEditOperation(DeleteLeftWord, Qt::AltModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRightWord, Qt::AltModifier, Qt::Key_Delete);
@@ -4623,6 +4635,10 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	QStringList lines = text.split('\n', QString::KeepEmptyParts);
 
 	bool hasSelection = c.hasSelection();
+	if (hasSelection && c.selectedText() == text) {
+		c.clearSelection();
+		return;  // replacing a selection with itself -> nothing to do. (It's more safe to directly stop here, because the below indentation correction does not get all cases right).
+	}
 
 	bool beginNewMacro = !m_doc->hasMacros() && (hasSelection || flag(Overwrite) || lines.size()>1);
 	if (beginNewMacro)
@@ -4735,7 +4751,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	 
 		c.insertText(text);
 	} else {
-		
+		bool originallyAtLineStart = c.atLineStart();
 		preInsertUnindent(c, lines.first(), 0);
 
 		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
@@ -4747,8 +4763,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		c.insertText(lines.takeFirst());
 		
 		
-		foreach ( QString l, lines )
-			{
+		for (int i=0; i<lines.length(); i++)
+		{
+			QString l = lines[i];
 
 			int additionalUnindent = 0;
 			
@@ -4774,7 +4791,15 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 				}
 			}
 			c.insertLine();
-			c.insertText(indent);
+			if (i<lines.length()-1 || !l.isEmpty() || !originallyAtLineStart)
+			// always indent line except last line if it is empty and the cursor was at line start
+			// in that case, the original indentation is still present from the first line
+			// example:
+			// >....a
+			// >|...c (and insert '....b\n'
+			{
+				c.insertText(indent);
+			}
 			
 			preInsertUnindent(c, l, additionalUnindent);
 

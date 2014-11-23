@@ -1,6 +1,24 @@
 (you may also want to check the usermanual)
 
-TeXstudio 2.8.2 -> 2.8.6
+TeXstudio 2.8.6 -> 2.8.8
+-----------------------------------------
+- basic Asymptote highlighting
+- improved parsing of command options
+- notify that syncing between PDF and .tex won't work anymore after "File Save As..." (need to recompile)
+- fix: crash in column handling of table parser
+- fix: crash in math preview generation
+- fix: txs finds resource in app if it is not installed under /Applications... (OSX)
+- fix: open completer on typing comma only when the context suggests it
+- fix: tab replacement was only performed for tabOrIndent if there was a selection
+- fix: shortcut saving, so that added shortcuts (editor) are saved
+- fix: too large symbol on non-retina screen with retina notebook
+- fix: shortcut Shift+Backspace works like Backspace (Win+Linux)
+- fix: indentation increasing if pasting with newline at and and cursor is at line start
+- fix: replacing a selection by itself should not change anything (fixes indentation issues for some cases of selection-self-replacement)
+- fix: rendering results may be slightly differerent depending on the usage of the line cache.
+- some updates to the manual
+
+TeXstudio 2.8.4 -> 2.8.6
 -----------------------------------------
 - tab key inserts tab or indents, depending on cursor selection
 - error table can be filtered and sorted

@@ -402,6 +402,7 @@ public slots:
 	void setAutoHideToolbars(bool enabled);
 	void hideToolbars();
 	void showToolbars();
+	void showMessage(const QString &text);
 private slots:
 	void fileOpen();
 	
