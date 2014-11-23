@@ -6586,10 +6586,11 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                     px->fill(bg.color());
                 }
 				pr = new QPainter(px);
+				pr->setRenderHints(p->renderHints());
+				pr->setFont(p->font());
 			} else {
 				pr = p;
 			}
-			pr->setFont(p->font());
 			if (useLineCache) {
 				pr->translate(-cxt.xoffset,0);
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
