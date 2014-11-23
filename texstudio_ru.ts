@@ -436,7 +436,7 @@
     <message>
         <location filename="buildmanager.cpp" line="+66"/>
         <location line="+20"/>
-        <location line="+1342"/>
+        <location line="+1345"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;не определено&gt;</translation>
     </message>
@@ -453,7 +453,7 @@
         <translation type="obsolete">Быстрое построение</translation>
     </message>
     <message>
-        <location line="-1238"/>
+        <location line="-1241"/>
         <source>Default Compiler</source>
         <translation>Компилятор по умолчанию</translation>
     </message>
@@ -524,7 +524,7 @@
         <translation>Не удалось понять команду %1</translation>
     </message>
     <message>
-        <location line="+363"/>
+        <location line="+366"/>
         <source>Error: No command given</source>
         <translation>Ошибка: нет команды</translation>
     </message>
@@ -539,7 +539,7 @@
         <translation>Вы используете dde:// команду с двумя слэшами, что не рекомендуется. Пожалуйста, измените ее на команду dde:/// с трея слэшами, добавив еще один слэш.</translation>
     </message>
     <message>
-        <location line="-1003"/>
+        <location line="-1006"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation>Вы используете следующие модификаторы комант: txs:///command[... или txs:///command{... , однако мы поддерживает только модификаторы вида: txs:///command/[... или txs:///command/{... с суффиксом в виде слэша, чтобы сохранить более ясный синтаксис.</translation>
     </message>
@@ -901,7 +901,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+84"/>
+        <location filename="configdialog.ui" line="+102"/>
         <source>OK</source>
         <translation></translation>
     </message>
@@ -911,8 +911,8 @@
         <translation>Отмена</translation>
     </message>
     <message>
-        <location line="+74"/>
-        <location line="+1395"/>
+        <location line="+83"/>
+        <location line="+1458"/>
         <source>Appearance</source>
         <translation>Внешний вид</translation>
     </message>
@@ -945,7 +945,7 @@
         <translation type="obsolete">современная</translation>
     </message>
     <message>
-        <location line="-1250"/>
+        <location line="-1313"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Табличный вывод Структуры/Просмотра</translation>
     </message>
@@ -1015,7 +1015,7 @@
         <translation></translation>
     </message>
     <message>
-        <location line="+159"/>
+        <location line="+168"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Команды (%: имя файла без расширения - @: номер строки - ?: параметры расширенного имени файла)</translation>
     </message>
@@ -1060,7 +1060,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показывать протокол после компиляции, если есть ошибки</translation>
     </message>
     <message>
-        <location line="+1013"/>
+        <location line="+1067"/>
         <source>Show Whitespace</source>
         <translation>Показывать символ пробела</translation>
     </message>
@@ -1069,7 +1069,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Пробел табуляции :</translation>
     </message>
     <message>
-        <location line="+849"/>
+        <location line="+879"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Автозамена команд  LaTeX</translation>
     </message>
@@ -1082,8 +1082,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Удалить строку</translation>
     </message>
     <message>
-        <location line="-1532"/>
-        <location filename="configdialog.cpp" line="+420"/>
+        <location line="-1598"/>
+        <location filename="configdialog.cpp" line="+421"/>
         <source>Shortcuts</source>
         <translation>Горячие клавиши</translation>
     </message>
@@ -1097,12 +1097,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <location line="+24"/>
-        <location line="+170"/>
+        <location line="+188"/>
         <source>1</source>
         <translation></translation>
     </message>
     <message>
-        <location line="-165"/>
+        <location line="-183"/>
         <source>2</source>
         <translation></translation>
     </message>
@@ -1126,14 +1126,14 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Меню LaTeX</translation>
     </message>
     <message>
-        <location line="+63"/>
+        <location line="+81"/>
         <source>Toolbar Customization</source>
         <translation>Настройка панели инструментов</translation>
     </message>
     <message>
-        <location line="+117"/>
+        <location line="+126"/>
         <location filename="configdialog.cpp" line="+3"/>
-        <location filename="configmanager.cpp" line="+1135"/>
+        <location filename="configmanager.cpp" line="+1132"/>
         <source>Editor</source>
         <translation>Редактор</translation>
     </message>
@@ -1142,7 +1142,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показывать превью в виде подсказки, если панель скрыта</translation>
     </message>
     <message>
-        <location line="+1854"/>
+        <location line="+1911"/>
         <source>Always show preview in preview panel</source>
         <translation>Всегда показывать превью в панели предварительного просмотра</translation>
     </message>
@@ -1172,7 +1172,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Предпросмотр с помощью dvips/ghostscript</translation>
     </message>
     <message>
-        <location line="-1318"/>
+        <location line="-1366"/>
         <source>Close search and replace panel together</source>
         <translation>Закрывать панели поиска и замены одновременно</translation>
     </message>
@@ -1201,7 +1201,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Автоопределение кодировки загружаемых файлов</translation>
     </message>
     <message>
-        <location line="-438"/>
+        <location line="-447"/>
         <source>Folding</source>
         <translation>Свертка</translation>
     </message>
@@ -1218,12 +1218,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показывать номера важных строк</translation>
     </message>
     <message>
-        <location line="+974"/>
+        <location line="+995"/>
         <source>Formats</source>
         <translation>Форматы</translation>
     </message>
     <message>
-        <location line="-571"/>
+        <location line="-583"/>
         <source>Show Line Change State</source>
         <translation>Показывать статус изменения строк</translation>
     </message>
@@ -1242,12 +1242,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Использовать выделение строки как образец поиска</translation>
     </message>
     <message>
-        <location line="-404"/>
+        <location line="-413"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>можно выбирать тлько между utf16/utf-8 и ISO 8859-1 !</translation>
     </message>
     <message>
-        <location line="+955"/>
+        <location line="+985"/>
         <source>Custom Environment</source>
         <translation>Окружение пользователя</translation>
     </message>
@@ -1257,7 +1257,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Тип окружения</translation>
     </message>
     <message>
-        <location line="+109"/>
+        <location line="+118"/>
         <source>Case Sensitive</source>
         <translation>Учитывать регистр</translation>
     </message>
@@ -1297,7 +1297,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Использовать варианты SVN для отмен перед последним сохраненным вариантом ?</translation>
     </message>
     <message>
-        <location line="+892"/>
+        <location line="+919"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>в svnдобавлять executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
@@ -1319,7 +1319,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показать расширенные параметры</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-241"/>
+        <location filename="configdialog.cpp" line="-242"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>Введеная быстрая клавиша некорректна.</translation>
     </message>
@@ -1341,18 +1341,23 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Получить словари в: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2445"/>
-        <location filename="configdialog.cpp" line="+148"/>
+        <location filename="configdialog.ui" line="-2529"/>
+        <location filename="configdialog.cpp" line="+149"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-34"/>
+        <location filename="configdialog.cpp" line="-35"/>
         <source>Download additional dictionaries from %1 or %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+34"/>
+        <location line="+24"/>
+        <source>Asymptote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+11"/>
         <source>Default Shortcut</source>
         <translation>По умолчанию</translation>
     </message>
@@ -1423,7 +1428,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Подсветка (доп.)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1307"/>
+        <location filename="configdialog.ui" line="+1364"/>
         <location filename="configdialog.cpp" line="+1"/>
         <source>Completion</source>
         <translation>Завершение команд</translation>
@@ -1473,7 +1478,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Мастер</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-385"/>
+        <location filename="configdialog.cpp" line="-386"/>
         <source>Basic highlighting</source>
         <translation>Базовая подсветка</translation>
     </message>
@@ -1488,7 +1493,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1581"/>
+        <location filename="configdialog.ui" line="-1656"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Не запускать новый экземпляр просмотрщика, если dvi/ps/pdf файл уже открыт</translation>
     </message>
@@ -1501,7 +1506,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">никогда</translation>
     </message>
     <message>
-        <location line="+1025"/>
+        <location line="+1070"/>
         <source>5 minutes</source>
         <translation>5 минут</translation>
     </message>
@@ -1533,7 +1538,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Параметры предпросмотра</translation>
     </message>
     <message>
-        <location line="+1179"/>
+        <location line="+1227"/>
         <source>Command:</source>
         <translation>Команда:</translation>
     </message>
@@ -1579,8 +1584,8 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Масштабированный размер</translation>
     </message>
     <message>
-        <location line="-1889"/>
-        <location line="+1902"/>
+        <location line="-1946"/>
+        <location line="+1959"/>
         <source>%</source>
         <translation></translation>
     </message>
@@ -1599,18 +1604,18 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Круг</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+26"/>
+        <location filename="configdialog.cpp" line="+27"/>
         <source>Adv. Editor</source>
         <translation>Редактор (доп.)</translation>
     </message>
     <message>
-        <location line="-24"/>
-        <location line="+29"/>
+        <location line="-25"/>
+        <location line="+30"/>
         <source>Preview</source>
         <translation>Предпросмотр</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1584"/>
+        <location filename="configdialog.ui" line="-1632"/>
         <source>Search Panel</source>
         <translation>Панель поиска</translation>
     </message>
@@ -1629,7 +1634,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Финты/Заплатки</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+67"/>
         <source>Disable fixed pitch mode</source>
         <translation>Отменить моноширинный режим</translation>
     </message>
@@ -1639,7 +1644,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Отменить кэш ширины символов</translation>
     </message>
     <message>
-        <location line="-365"/>
+        <location line="-412"/>
         <source>Auto Complete Parentheses</source>
         <translation>Автозавершение скобок</translation>
     </message>
@@ -1653,12 +1658,12 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Отменить &quot;заплатку&quot; набора акцентов (только Mac OS X)</translation>
     </message>
     <message>
-        <location line="+588"/>
+        <location line="+618"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Автозавершение команд LaTeX&apos;а при вводе</translation>
     </message>
     <message>
-        <location line="+655"/>
+        <location line="+673"/>
         <source>Preview with pdflatex</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1691,9 +1696,9 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Автоматический предпросмотр:</translation>
     </message>
     <message>
-        <location line="-2336"/>
-        <location line="+999"/>
-        <location line="+1288"/>
+        <location line="-2429"/>
+        <location line="+1044"/>
+        <location line="+1336"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
@@ -1739,7 +1744,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">жесткий перенос слов после макс. числа символов</translation>
     </message>
     <message>
-        <location line="-778"/>
+        <location line="-805"/>
         <source>Additional Commands</source>
         <translation>Дополнительная команда</translation>
     </message>
@@ -1804,7 +1809,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Немецкие кавычки:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location line="-480"/>
+        <location line="-501"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Предпросмотр формул в редакторе в виде подсказок</translation>
     </message>
@@ -1846,7 +1851,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">третий</translation>
     </message>
     <message>
-        <location line="-1752"/>
+        <location line="-1842"/>
         <source>Configure TeXstudio</source>
         <translation>Конфигурация TeXstudio</translation>
     </message>
@@ -1859,7 +1864,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">Обратные французские кавычки: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location line="+1716"/>
+        <location line="+1806"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Ограничить область поиска существующим выделением</translation>
     </message>
@@ -1873,12 +1878,12 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">Относительный размер шрифта табулятора:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-30"/>
+        <location filename="configdialog.cpp" line="-31"/>
         <source>Diff</source>
         <translation>Различия</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+24"/>
         <source>Toolbars</source>
         <translation>Панели инструментов</translation>
     </message>
@@ -1925,7 +1930,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation>Пытаться автоматически выбрать лучшие параметры дисплея</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+44"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>Если активирован кэш обрабатываемых строк, то отакие строки сохранияются в кэше, что отменяет необходимость их повтроной обработки. Целью этого является ускорение скорости обработки (особенно на Mac) за счет более высокого использования памяти.</translation>
     </message>
@@ -1939,7 +1944,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">Встроенная проверка:</translation>
     </message>
     <message>
-        <location line="-716"/>
+        <location line="-748"/>
         <source>Spelling</source>
         <translation>Орфография</translation>
     </message>
@@ -1965,7 +1970,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation>Синтаксис</translation>
     </message>
     <message>
-        <location line="+1201"/>
+        <location line="+1249"/>
         <source>Internal</source>
         <translation>Внутренний</translation>
     </message>
@@ -2044,7 +2049,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">Специальное правило 4:</translation>
     </message>
     <message>
-        <location line="-183"/>
+        <location line="-184"/>
         <source>LaTeX checking</source>
         <translation>Проверка LaTeX&apos;а</translation>
     </message>
@@ -2137,8 +2142,8 @@ to set the key anyway?</source>
         <translation type="obsolete">Команды пользователя</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1884"/>
-        <location filename="configdialog.cpp" line="+233"/>
+        <location filename="configdialog.ui" line="-1950"/>
+        <location filename="configdialog.cpp" line="+234"/>
         <source>Menus</source>
         <translation>Меню</translation>
     </message>
@@ -2161,7 +2166,7 @@ to set the key anyway?</source>
         <translation type="obsolete">Показать все</translation>
     </message>
     <message>
-        <location line="-326"/>
+        <location line="-344"/>
         <source>Build Options</source>
         <translation>Параметры построения</translation>
     </message>
@@ -2193,22 +2198,22 @@ to set the key anyway?</source>
         <translation type="obsolete">Расстояние между строками</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-20"/>
+        <location filename="configdialog.cpp" line="-21"/>
         <source>DTX files</source>
         <translation>Файлы DTX</translation>
     </message>
     <message>
-        <location line="+241"/>
+        <location line="+242"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;неизвестно&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-724"/>
+        <location filename="configdialog.ui" line="-751"/>
         <source>Show Advanced Options</source>
         <translation>Показать расширенные параметры</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+142"/>
         <source>Style:</source>
         <translation>Стиль:</translation>
     </message>
@@ -2219,12 +2224,12 @@ to set the key anyway?</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1139"/>
+        <location line="+1193"/>
         <source>Font Size:</source>
         <translation>Размер шрифта:</translation>
     </message>
     <message>
-        <location line="-1165"/>
+        <location line="-1219"/>
         <source>Language:</source>
         <translation>Язык:</translation>
     </message>
@@ -2283,7 +2288,7 @@ to set the key anyway?</source>
         <translation>Язык по умолчанию:</translation>
     </message>
     <message>
-        <location line="+285"/>
+        <location line="+303"/>
         <source>Meta Commands</source>
         <translation>Метакоманды</translation>
     </message>
@@ -2313,7 +2318,7 @@ to set the key anyway?</source>
         <translation>Всегда (если нет перенаправления &gt; /dev/null)</translation>
     </message>
     <message>
-        <location line="+167"/>
+        <location line="+176"/>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -2326,12 +2331,12 @@ Then you can select a new shortcut by one of the following ways:
 (3) ввести строку для горячей клавиши</translation>
     </message>
     <message>
-        <location line="+89"/>
+        <location line="+98"/>
         <source>Show All</source>
         <translation>Показать все</translation>
     </message>
     <message>
-        <location line="+340"/>
+        <location line="+358"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Английские кавычки (unicode): “ ”</translation>
     </message>
@@ -2433,7 +2438,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Скрывать орфографические ошибки вне текста</translation>
     </message>
     <message>
-        <location line="+282"/>
+        <location line="+291"/>
         <source>Show Line Numbers:</source>
         <translation>Показывать номера строк:</translation>
     </message>
@@ -2493,7 +2498,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Отменить &quot;заплатку&quot; набора акцентов (только Mac OS X)</translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+33"/>
         <source>QCE (recommended)</source>
         <translation>QCE (рекомендуемый)</translation>
     </message>
@@ -2513,7 +2518,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Режим формирования изображения:</translation>
     </message>
     <message>
-        <location line="+113"/>
+        <location line="+155"/>
         <location line="+47"/>
         <source>Add Line</source>
         <translation>Добавить строку</translation>
@@ -2525,7 +2530,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Удалить строку</translation>
     </message>
     <message>
-        <location line="+70"/>
+        <location line="+79"/>
         <source>In First Character</source>
         <translation>В первом символе</translation>
     </message>
@@ -2539,7 +2544,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="obsolete">Относительный размер шрифта табулятора:</translation>
     </message>
     <message>
-        <location line="+100"/>
+        <location line="+109"/>
         <source>Check for Word Repetitions</source>
         <translation>Проверка повтора слов</translation>
     </message>
@@ -2604,7 +2609,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Специальное правило 4:</translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+46"/>
         <source>Segment Preview</source>
         <translation>Параметры предпросмотра</translation>
     </message>
@@ -2755,7 +2760,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+40"/>
         <source>Automatically check in after save</source>
         <translation>Автоматически проверять после сохранения</translation>
     </message>
@@ -2769,7 +2774,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Заменять ключевые слова их значениями (при добавлении к SVN)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-429"/>
+        <location filename="configdialog.cpp" line="-430"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
         <translation>Быстрая клавиша &lt;%1&gt; уже присвоена команде:</translation>
     </message>
@@ -2788,7 +2793,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation></translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+18"/>
         <source>Build</source>
         <translation>Построение</translation>
     </message>
@@ -2798,7 +2803,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Подсветка синтаксиса</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2955"/>
+        <location filename="configdialog.ui" line="-3075"/>
         <source>Update</source>
         <translation>Обновление</translation>
     </message>
@@ -2828,17 +2833,17 @@ Then you can select a new shortcut by one of the following ways:
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2892"/>
+        <location filename="configdialog.ui" line="+3012"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Использовать варианты SVN для отмен перед последним сохраненным вариантом</translation>
     </message>
     <message>
-        <location line="-2658"/>
+        <location line="-2760"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Максимальное число повторов компиляции:</translation>
     </message>
     <message>
-        <location line="+1143"/>
+        <location line="+1188"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Сохранять отступы элементов в дереве структуры</translation>
     </message>
@@ -2853,17 +2858,17 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Отменить закрытие полнооконного режима при нажатии клавиши  &apos;Esc&apos;</translation>
     </message>
     <message>
-        <location line="-1437"/>
+        <location line="-1500"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Запомнить фильтр выделения файлов в диалоге открытия/сохранения</translation>
     </message>
     <message>
-        <location line="+1057"/>
+        <location line="+1111"/>
         <source>Package</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+394"/>
+        <location line="+403"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Перезагружать сохраненные файлы при внешних изменениях (очищается стек команд отмены/повтора)</translation>
     </message>
@@ -2883,7 +2888,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1412"/>
+        <location line="-1475"/>
         <source>Spelling Dictionary Directories:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2898,12 +2903,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+374"/>
+        <location line="+392"/>
         <source>PDF File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+392"/>
+        <location line="+428"/>
         <source>Automatic Encoding Detection:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2928,7 +2933,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+233"/>
+        <location line="+242"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2998,7 +3003,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Визуально-колоночный режим курсора (т.е. курсор перемещается в направлении стрелоr в rtl-тексте)</translation>
     </message>
     <message>
-        <location line="+264"/>
+        <location line="+294"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Запустить компилятор как только будет введен символ &apos;\&apos; . Альтернативно, компилятор всегда может быть запущен вручную с помощью Ctrl+Space.</translation>
     </message>
@@ -3105,7 +3110,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Размер маркера табуляции внизу или вверху процедуры завершения</translation>
     </message>
     <message>
-        <location line="-1877"/>
+        <location line="-1961"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: имя файла без расширения &lt;b&gt;@&lt;/b&gt;: номер строки; &lt;b&gt;?[селектор][конечный символ]&lt;/b&gt;: форматированное имя файла
@@ -3133,7 +3138,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 </translation>
     </message>
     <message>
-        <location line="+274"/>
+        <location line="+283"/>
         <source>Additional Search Paths:</source>
         <translation>Дополнительные пути поиска:</translation>
     </message>
@@ -3167,7 +3172,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>Путь поиска команд</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2455"/>
+        <location filename="configdialog.ui" line="+2548"/>
         <source>Cache Size:</source>
         <translation>Размер кэша:</translation>
     </message>
@@ -3177,12 +3182,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation></translation>
     </message>
     <message>
-        <location line="-1955"/>
+        <location line="-2012"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>Пакет csquotes: \enquote{  }</translation>
     </message>
     <message>
-        <location line="+275"/>
+        <location line="+284"/>
         <source>Draw cursor as a thick line</source>
         <translation>Отображать курсор как толстую линию</translation>
     </message>
@@ -3192,7 +3197,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>Жирный курсор</translation>
     </message>
     <message>
-        <location line="-265"/>
+        <location line="-274"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Показывать только моноширинные шрифты</translation>
     </message>
@@ -3207,7 +3212,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>Вставить разделитель</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+563"/>
+        <location filename="configdialog.ui" line="+572"/>
         <source>Table Autoformating</source>
         <translation>Автоформатирование таблиц</translation>
     </message>
@@ -3246,12 +3251,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="obsolete">автоматически загружать включаемые файлы</translation>
     </message>
     <message>
-        <location line="-773"/>
+        <location line="-782"/>
         <source>Automatically load included files</source>
         <translation>Автоматически загружать включаемые файлы</translation>
     </message>
     <message>
-        <location line="-588"/>
+        <location line="-633"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -3266,12 +3271,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;?m&quot;&lt;/b&gt; заключенное в двойные кавычки имя файла без расширения (равносильно &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; имя файла с расширением (напр. example.tex)</translation>
     </message>
     <message>
-        <location line="-338"/>
+        <location line="-347"/>
         <source>MRU Document Chooser</source>
         <translation>Селектор часто используемых документов</translation>
     </message>
     <message>
-        <location line="+1521"/>
+        <location line="+1584"/>
         <source>Smooth Scrolling</source>
         <translation>Плавная прокрутка</translation>
     </message>
@@ -4760,7 +4765,7 @@ Invalid \caption command.</source>
         <translation>Новая запись BibTeX %1</translation>
     </message>
     <message>
-        <location line="+1653"/>
+        <location line="+1656"/>
         <source>label missing!</source>
         <translation>метка отсутствует!</translation>
     </message>
@@ -4795,7 +4800,7 @@ Invalid \caption command.</source>
         <translation type="obsolete">цитата отсутствует!</translation>
     </message>
     <message>
-        <location line="-1668"/>
+        <location line="-1671"/>
         <source>Open %1</source>
         <translation>Открыть %1</translation>
     </message>
@@ -4825,7 +4830,7 @@ Invalid \caption command.</source>
         <translation type="obsolete">Верная цитата</translation>
     </message>
     <message>
-        <location line="+1627"/>
+        <location line="+1630"/>
         <source>Citation missing</source>
         <translation>Цитата отсутствует</translation>
     </message>
@@ -4844,7 +4849,7 @@ Invalid \caption command.</source>
         <translation>Верная цитата (чтение ...)</translation>
     </message>
     <message>
-        <location line="-1581"/>
+        <location line="-1584"/>
         <source>Go to PDF</source>
         <translation>Перейти к PDF</translation>
     </message>
@@ -4855,18 +4860,18 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="+135"/>
-        <location filename="texmaker.cpp" line="+6862"/>
+        <location filename="texmaker.cpp" line="+6877"/>
         <location line="+6"/>
         <source>Go to Definition</source>
         <translation>Перейти к определению</translation>
     </message>
     <message>
-        <location line="+380"/>
+        <location line="+381"/>
         <source>untitled</source>
         <translation>без названия</translation>
     </message>
     <message>
-        <location line="+961"/>
+        <location line="+963"/>
         <source>Add to Dictionary</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4945,7 +4950,7 @@ Invalid \caption command.</source>
         <translation>Изображения</translation>
     </message>
     <message>
-        <location line="-2026"/>
+        <location line="-2029"/>
         <source>Open Bibliography</source>
         <translation>Открыть библиографию</translation>
     </message>
@@ -5495,7 +5500,7 @@ Do you want to overwrite it?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+2248"/>
+        <location filename="PDFDocument.cpp" line="+2247"/>
         <source>Show</source>
         <translation>Показать</translation>
     </message>
@@ -5790,32 +5795,23 @@ Do you want to overwrite it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>PgDown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Page Up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>PgUp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+176"/>
+        <location line="+177"/>
         <source>Retry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+3"/>
+        <location line="+999"/>
         <source>Close</source>
         <translation type="unfinished">Закрыть</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="-996"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation type="unfinished"></translation>
@@ -5831,7 +5827,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+329"/>
+        <location line="+330"/>
         <source>No SyncTeX data available</source>
         <translation>Недоступные данные SyncTeX</translation>
     </message>
@@ -5846,11 +5842,16 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation></translation>
     </message>
     <message>
+        <location line="+517"/>
+        <source>Close Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>page %1 of %2</source>
         <translation type="obsolete">страница %1 из %2</translation>
     </message>
     <message>
-        <location line="-1060"/>
+        <location line="-1578"/>
         <source>&amp;Help</source>
         <translation>&amp;Справка</translation>
     </message>
@@ -6125,7 +6126,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
         <translation>Не удалось найти файл &quot;%1&quot;; возможно, он был удален.</translation>
     </message>
     <message>
-        <location line="+569"/>
+        <location line="+570"/>
         <source>Open PDF</source>
         <translation>Открыть PDF</translation>
     </message>
@@ -6198,7 +6199,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 Либо файл поврежден, либо он находится в процессе создания. Вы можете повторить попытку после того, как компиляция завершится. Попытка открытия испорченного документа может привести к аварии. Хотите, тем не менее, открыть его?</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="-1248"/>
+        <location filename="PDFDocument.cpp" line="-1249"/>
         <source>Zoom Out</source>
         <translation>Уменьшить</translation>
     </message>
@@ -6234,7 +6235,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>Масштаб</translation>
     </message>
     <message>
-        <location line="+964"/>
+        <location line="+965"/>
         <source>Page %1 of %2</source>
         <translation>Страница %1 из %2</translation>
     </message>
@@ -6244,7 +6245,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>Страницы %1 - %2 из %3</translation>
     </message>
     <message>
-        <location line="-1049"/>
+        <location line="-1050"/>
         <source>Windowed Viewer</source>
         <translation>Оконный просмотрщик</translation>
     </message>
@@ -6254,7 +6255,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>Панельный просмотрщик</translation>
     </message>
     <message>
-        <location line="+769"/>
+        <location line="+770"/>
         <source>Searching for</source>
         <translation>Поиск образца</translation>
     </message>
@@ -6420,7 +6421,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>Не удается открыть ссылку:</translation>
     </message>
     <message>
-        <location line="+998"/>
+        <location line="+997"/>
         <source>Calculating text width</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6434,7 +6435,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation type="obsolete">Перейти к источнику</translation>
     </message>
     <message>
-        <location line="-307"/>
+        <location line="-306"/>
         <source>Go to Page</source>
         <translation>Перейти к странице</translation>
     </message>
@@ -6513,7 +6514,7 @@ Either the file is corrupt or it is in the process of creation. You may retry af
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="+1607"/>
+        <location filename="buildmanager.cpp" line="+1611"/>
         <source>Process started: %1</source>
         <translation>Процесс стартовал: %1</translation>
     </message>
@@ -6523,7 +6524,12 @@ Either the file is corrupt or it is in the process of creation. You may retry af
         <translation>Ошибка: не удается выполнить команду: %1</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
+        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
         <source>Error: Command crashed: %1</source>
         <translation>Ошибка: авария в команде: %1</translation>
     </message>
@@ -6868,7 +6874,7 @@ Do you wish to keep up to date by reloading the file?
         <translation></translation>
     </message>
     <message>
-        <location line="+2784"/>
+        <location line="+2796"/>
         <source>None</source>
         <translation>Нет</translation>
     </message>
@@ -7135,7 +7141,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <location line="-3383"/>
+        <location line="-3395"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -7389,6 +7395,26 @@ TeXstudio попытается сохранить файл в указанном
     </message>
     <message>
         <location line="+3"/>
+        <source>asymptote:type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>asymptote:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>asymptote:number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>asymptote:string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>preedit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7484,7 +7510,7 @@ Do you want them to be saved?</source>
 Хотите их сохранить?</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-75"/>
+        <location filename="additionaltranslations.cpp" line="-79"/>
         <source>background</source>
         <translation></translation>
     </message>
@@ -8626,7 +8652,7 @@ Do you trust this script?</source>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-737"/>
+        <location filename="configdialog.cpp" line="-738"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;по умолчанию&gt;</translation>
     </message>
@@ -9106,7 +9132,7 @@ Should TeXstudio move the existing user templates there?If not, they will not be
 Разрешить программе TeXstudio переместить туда существующие шаблоны пользователя? В противном случае они не будут доступны через диалог &quot;Создать шаблон&quot;.</translation>
     </message>
     <message>
-        <location filename="templatemanager.cpp" line="+72"/>
+        <location filename="templatemanager.cpp" line="+77"/>
         <source>Copying template from
 %1
 to
@@ -9324,19 +9350,19 @@ If not, they will not be available via the Make Template dialog.</source>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-6598"/>
-        <location line="+1091"/>
+        <location filename="texmaker.cpp" line="-6613"/>
+        <location line="+1092"/>
         <source>Normal Mode</source>
         <translation>Нормальная мода</translation>
     </message>
     <message>
-        <location line="-1090"/>
-        <location line="+5044"/>
+        <location line="-1091"/>
+        <location line="+5059"/>
         <source>Ready</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location line="-4868"/>
+        <location line="-4882"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -9441,18 +9467,18 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="obsolete">Восстановить предыдущую сессию</translation>
     </message>
     <message>
-        <location line="+1687"/>
+        <location line="+1692"/>
         <source>Save As</source>
         <translation>Сохранить как</translation>
     </message>
     <message>
-        <location line="-1666"/>
+        <location line="-1671"/>
         <source>Save &amp;As...</source>
         <translation>Сохранить &amp;как...</translation>
     </message>
     <message>
         <location line="+33"/>
-        <location line="+7676"/>
+        <location line="+7690"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрыть</translation>
     </message>
@@ -9461,7 +9487,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="vanished">Печать...</translation>
     </message>
     <message>
-        <location line="-7669"/>
+        <location line="-7683"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -9472,19 +9498,19 @@ If not, they will not be available via the Make Template dialog.</source>
     </message>
     <message>
         <location line="+435"/>
-        <location line="+1304"/>
-        <location line="+4451"/>
+        <location line="+1316"/>
+        <location line="+4453"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location line="-5754"/>
-        <location line="+5755"/>
+        <location line="-5768"/>
+        <location line="+5769"/>
         <source>Cut</source>
         <translation>Вырезать</translation>
     </message>
     <message>
-        <location line="-6100"/>
+        <location line="-6114"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Вс&amp;тавить как LaTeX</translation>
     </message>
@@ -9698,12 +9724,12 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>&amp;Мастера</translation>
     </message>
     <message>
-        <location line="+3801"/>
+        <location line="+3815"/>
         <source>Quick Start</source>
         <translation>Быстрый старт</translation>
     </message>
     <message>
-        <location line="-3800"/>
+        <location line="-3814"/>
         <source>Quick &amp;Start...</source>
         <translation>Быстрый &amp;старт...</translation>
     </message>
@@ -9926,7 +9952,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="obsolete">Тэги &amp;пользователя</translation>
     </message>
     <message>
-        <location line="+3873"/>
+        <location line="+3887"/>
         <source>Edit User &amp;Tags</source>
         <translation>Изменить &amp;тэги пользователя</translation>
     </message>
@@ -9939,7 +9965,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="obsolete">Изменить команды &amp;пользователя</translation>
     </message>
     <message>
-        <location line="-3997"/>
+        <location line="-4011"/>
         <location line="+155"/>
         <source>&amp;View</source>
         <translation>&amp;Просмотр</translation>
@@ -10006,12 +10032,12 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>Определить текущий документ как &apos;&amp;мастер-документ&apos;</translation>
     </message>
     <message>
-        <location line="+7080"/>
+        <location line="+7094"/>
         <source>Load Profile</source>
         <translation>Загрузить профиль</translation>
     </message>
     <message>
-        <location line="-6781"/>
+        <location line="-6795"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
         <translation>Определить текущий документ как &apos;мастер-документ&apos;</translation>
     </message>
@@ -10045,18 +10071,18 @@ If not, they will not be available via the Make Template dialog.</source>
     </message>
     <message>
         <location line="+31"/>
-        <location line="+5753"/>
+        <location line="+5767"/>
         <source>Indent Section</source>
         <translation>Сделать отступ секции</translation>
     </message>
     <message>
-        <location line="-5752"/>
-        <location line="+5753"/>
+        <location line="-5766"/>
+        <location line="+5767"/>
         <source>Unindent Section</source>
         <translation>Удалить отступ секции</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+3"/>
+        <location filename="additionaltranslations.cpp" line="+7"/>
         <source>Custom</source>
         <translation>Настройка</translation>
     </message>
@@ -10081,7 +10107,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>Формат</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-5537"/>
+        <location filename="texmaker.cpp" line="-5551"/>
         <source>Click to jump to the bookmark</source>
         <translation>Щелкните для перехода к закладке</translation>
     </message>
@@ -10091,8 +10117,8 @@ If not, they will not be available via the Make Template dialog.</source>
     </message>
     <message>
         <location line="+391"/>
-        <location line="+1534"/>
-        <location line="+1774"/>
+        <location line="+1547"/>
+        <location line="+1775"/>
         <location line="+402"/>
         <location line="+132"/>
         <location line="+2"/>
@@ -10133,8 +10159,8 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="obsolete">Шаблоны</translation>
     </message>
     <message>
-        <location line="-8448"/>
-        <location line="+7809"/>
+        <location line="-8462"/>
+        <location line="+7823"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Все файлы</translation>
@@ -10151,8 +10177,8 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location line="-5188"/>
-        <location line="+6426"/>
+        <location line="-5197"/>
+        <location line="+6435"/>
         <source>Open Files</source>
         <translation>Открыть файлы</translation>
     </message>
@@ -10161,7 +10187,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="obsolete">Документ содержит несохраненные изменения. Хотите сохранить его перед закрытием?</translation>
     </message>
     <message>
-        <location line="-6112"/>
+        <location line="-6114"/>
         <location line="+47"/>
         <source>Save and Close</source>
         <translation>Сохранить и закрыть</translation>
@@ -10179,14 +10205,14 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location line="+683"/>
-        <location line="+2116"/>
+        <location line="+684"/>
+        <location line="+2117"/>
         <location line="+28"/>
         <source>No document open</source>
         <translation>Нет открытого документа</translation>
     </message>
     <message>
-        <location line="-2128"/>
+        <location line="-2129"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Не удается загрузить база данных тезауруса</translation>
     </message>
@@ -10195,7 +10221,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="obsolete">&lt;текущий файл&gt;</translation>
     </message>
     <message>
-        <location line="+1617"/>
+        <location line="+1618"/>
         <source>Labels:</source>
         <translation>Метки:</translation>
     </message>
@@ -10247,7 +10273,7 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">Файл протокола не найден !</translation>
     </message>
     <message>
-        <location line="-4653"/>
+        <location line="-4667"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>Ошибок LaTeX не обнаружено !</translation>
@@ -10265,7 +10291,7 @@ You have to save a document before you can compile it.</source>
         <translation>&quot;Bad boxes&quot; не найдены !</translation>
     </message>
     <message>
-        <location line="+4780"/>
+        <location line="+4794"/>
         <location line="+10"/>
         <source>File not found</source>
         <translation>Файл не найден</translation>
@@ -10275,18 +10301,18 @@ You have to save a document before you can compile it.</source>
         <translation type="obsolete">Нормальная мода (текущий мастер-документ :</translation>
     </message>
     <message>
-        <location line="-4194"/>
+        <location line="-4208"/>
         <source>Master Document</source>
         <translation>Мастер-документ</translation>
     </message>
     <message>
-        <location line="+1128"/>
+        <location line="+1140"/>
         <location line="+47"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>Документ &quot;%1&quot; содержит несохраненные изменения. Хотите сохранить его перед закрытием?</translation>
     </message>
     <message>
-        <location line="+2605"/>
+        <location line="+2607"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10388,12 +10414,12 @@ Do you want to allow and run the new, overriding command?
         <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
-        <location line="-7503"/>
+        <location line="-7518"/>
         <source>TeX files</source>
         <translation>Файл TeX</translation>
     </message>
     <message>
-        <location line="+2894"/>
+        <location line="+2908"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Вставлять жесткий разрыв строки после указанного числа символов:</translation>
     </message>
@@ -10413,18 +10439,18 @@ Do you want to allow and run the new, overriding command?
         <translation>Таблица</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-2474"/>
+        <location filename="texmaker.cpp" line="-2487"/>
         <source>Insert Unicode Character...</source>
         <translation>Вставить символ Unicode...</translation>
     </message>
     <message>
-        <location line="+5199"/>
+        <location line="+5213"/>
         <source>You have to save the file before switching to master mode!</source>
         <translation>Вы должны сохранить файл прежде чем переключиться в мастер-моду!</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texmaker.cpp" line="-5742"/>
+        <location filename="texmaker.cpp" line="-5757"/>
         <source>Central</source>
         <translation>Центральный</translation>
     </message>
@@ -10441,12 +10467,12 @@ Do you want to allow and run the new, overriding command?
         <translation type="obsolete">&amp;Найти предыдущее</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+669"/>
+        <location filename="texmaker.cpp" line="+670"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>К&amp;онвертировать источник в HTML...</translation>
     </message>
     <message>
-        <location line="+7440"/>
+        <location line="+7454"/>
         <source>Problem</source>
         <translation>Проблема</translation>
     </message>
@@ -10512,7 +10538,7 @@ Do you want to allow and run the new, overriding command?
         <translation>Не удается открыть браузер</translation>
     </message>
     <message>
-        <location line="-4929"/>
+        <location line="-4943"/>
         <source>SVN &amp;update...</source>
         <translation>&amp;Обновить SVN...</translation>
     </message>
@@ -10562,12 +10588,12 @@ Do you want to allow and run the new, overriding command?
         <translation>Открыть документы</translation>
     </message>
     <message>
-        <location line="-660"/>
+        <location line="-661"/>
         <source>Plaintext files</source>
         <translation>Текстовые файлы</translation>
     </message>
     <message>
-        <location line="+280"/>
+        <location line="+281"/>
         <source>Open &amp;Recent</source>
         <translation>Открыть &amp;последний</translation>
     </message>
@@ -10577,12 +10603,12 @@ Do you want to allow and run the new, overriding command?
         <translation>О&amp;чистить предпросмотр</translation>
     </message>
     <message>
-        <location line="+6788"/>
+        <location line="+6802"/>
         <source>check in whole directory ?</source>
         <translation>зарегистрировать целую директорию?</translation>
     </message>
     <message>
-        <location line="-6749"/>
+        <location line="-6763"/>
         <source>Parenthesis</source>
         <translation>Скобки</translation>
     </message>
@@ -10604,7 +10630,7 @@ Do you want to allow and run the new, overriding command?
         <translation>Со&amp;хранить профиль...</translation>
     </message>
     <message>
-        <location line="+4236"/>
+        <location line="+4250"/>
         <source>Could not start %1.</source>
         <translation>Не удается запуститьt %1.</translation>
     </message>
@@ -10624,7 +10650,7 @@ Do you want to allow and run the new, overriding command?
         <translation>Сохранить профиль</translation>
     </message>
     <message>
-        <location line="-7448"/>
+        <location line="-7462"/>
         <source>&amp;Searching</source>
         <translation>&amp;Поиск</translation>
     </message>
@@ -10695,7 +10721,7 @@ Are you sure you want to continue?</source>
 Вы уверены, что хотите продолжить?</translation>
     </message>
     <message>
-        <location line="+4055"/>
+        <location line="+4069"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Вы вызвали команду для открытия встроенного просмотрщика PDF.
@@ -10706,7 +10732,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">Файлы PDF</translation>
     </message>
     <message>
-        <location line="-4491"/>
+        <location line="-4505"/>
         <source>Show difference between two files</source>
         <translation>Показать различия между двумя файлами</translation>
     </message>
@@ -10739,7 +10765,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation type="obsolete">Устаеовить &amp;подсветку...</translation>
     </message>
     <message>
-        <location line="+6154"/>
+        <location line="+6168"/>
         <source>Move document to &amp;front</source>
         <translation>Переместить документ на &amp;передний план</translation>
     </message>
@@ -10761,12 +10787,12 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Различия</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8491"/>
+        <location filename="texmaker.cpp" line="-8506"/>
         <source>Sweave files</source>
         <translation>Файлы Sweave</translation>
     </message>
     <message>
-        <location line="+317"/>
+        <location line="+318"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Показать разницу между двумя файлами относительно базового файла</translation>
     </message>
@@ -10807,7 +10833,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Язык</translation>
     </message>
     <message>
-        <location line="+4032"/>
+        <location line="+4046"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Вы не можете компилировать документ в директории, защищенной от записи.</translation>
     </message>
@@ -10945,7 +10971,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Обычный текст</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8422"/>
+        <location filename="texmaker.cpp" line="-8436"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Закладки</translation>
@@ -11013,7 +11039,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Выровнять столбцы</translation>
     </message>
     <message>
-        <location line="+4319"/>
+        <location line="+4333"/>
         <source>Unknown internal command: %1</source>
         <translation>Неизвестная внутренняя команда: %1</translation>
     </message>
@@ -11036,7 +11062,7 @@ Do you trust this document?</source>
         <translation type="obsolete">Нет, использовать команду по умолчанию</translation>
     </message>
     <message>
-        <location line="-4359"/>
+        <location line="-4373"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>&amp;Пользователь</translation>
@@ -11072,7 +11098,7 @@ Do you trust this document?</source>
         <translation type="obsolete">Да, всегда выполнять перезаписываемую команду</translation>
     </message>
     <message>
-        <location line="+7471"/>
+        <location line="+7485"/>
         <source>Reached beginning of text.</source>
         <translation>Достигнуто начало текста.</translation>
     </message>
@@ -11141,7 +11167,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Я попытался &quot;умереть&quot;, но ничего не получилось.</translation>
     </message>
     <message>
-        <location line="-8760"/>
+        <location line="-8774"/>
         <source>PDF files</source>
         <translation>Файлы PDF</translation>
     </message>
@@ -11157,7 +11183,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Файл TeX&apos;а DTX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+7976"/>
+        <location filename="texmaker.cpp" line="+7990"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
         <translation>Программа TeXstudio была приостановлен из-за возможного зацикливания.
@@ -11172,7 +11198,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation type="obsolete">Да, продолжить цикл.</translation>
     </message>
     <message>
-        <location line="-7969"/>
+        <location line="-7983"/>
         <source>Highlighting</source>
         <translation>Подсветка</translation>
     </message>
@@ -11235,7 +11261,7 @@ included document in %1</source>
         <translation></translation>
     </message>
     <message>
-        <location line="+3830"/>
+        <location line="+3844"/>
         <source>Type: %1</source>
         <translation>Тип: %1</translation>
     </message>
@@ -11274,12 +11300,12 @@ included document in %1</source>
         <translation>Да, продолжить цикл</translation>
     </message>
     <message>
-        <location line="-8298"/>
+        <location line="-8312"/>
         <source>Previous Change</source>
         <translation>Предыдущее изменение</translation>
     </message>
     <message>
-        <location line="-384"/>
+        <location line="-385"/>
         <source>LilyPond files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11289,7 +11315,7 @@ included document in %1</source>
         <translation>Файлы Pweave</translation>
     </message>
     <message>
-        <location line="+299"/>
+        <location line="+300"/>
         <source>Fifi&amp;x</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11586,18 +11612,23 @@ included document in %1</source>
     </message>
     <message>
         <location line="+105"/>
-        <location line="+5755"/>
+        <location line="+5769"/>
         <source>Paste Before</source>
         <translation>Вставить перед</translation>
     </message>
     <message>
-        <location line="-5754"/>
-        <location line="+5755"/>
+        <location line="-5768"/>
+        <location line="+5769"/>
         <source>Paste After</source>
         <translation>Вставить после</translation>
     </message>
     <message>
-        <location line="-4454"/>
+        <location line="-4547"/>
+        <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+91"/>
         <source>Rename/Move</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11629,12 +11660,12 @@ included document in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+124"/>
+        <location line="+125"/>
         <source>The following files could not be loaded:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1886"/>
+        <location line="+1887"/>
         <source>Quick Beamer Presentation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11688,7 +11719,7 @@ included document in %1</source>
         <translation type="obsolete">Вставить \ref на следующую метку</translation>
     </message>
     <message>
-        <location line="-6239"/>
+        <location line="-6253"/>
         <source>New From &amp;Template...</source>
         <translation>Новый из &amp;шаблона...</translation>
     </message>
@@ -11737,7 +11768,7 @@ included document in %1</source>
         <translation>Проверить установку LaTeX</translation>
     </message>
     <message>
-        <location line="+7039"/>
+        <location line="+7053"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Файл &quot;%1&quot; не существует.
@@ -11759,7 +11790,7 @@ Do you want to create it?</source>
         <translation>&amp;Найти предыдущее</translation>
     </message>
     <message>
-        <location line="-7312"/>
+        <location line="-7326"/>
         <source>Long-range Word Repetition</source>
         <translation>&quot;Далекие&quot; повторы</translation>
     </message>
@@ -11768,12 +11799,12 @@ Do you want to create it?</source>
         <translation type="obsolete">&amp;Построение+просмотр</translation>
     </message>
     <message>
-        <location line="+2222"/>
+        <location line="+2235"/>
         <source>No dictionary available.</source>
         <translation>Нето доступных словарей.</translation>
     </message>
     <message>
-        <location line="-2414"/>
+        <location line="-2427"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Построение &amp;&amp; просмотр</translation>
     </message>
@@ -11788,7 +11819,7 @@ Do you want to create it?</source>
         <translation>Просмотр &amp;DVI</translation>
     </message>
     <message>
-        <location line="+6004"/>
+        <location line="+6018"/>
         <source>Create Label</source>
         <translation>Создать метку</translation>
     </message>
@@ -11807,7 +11838,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Файл протокола не найден!</translation>
     </message>
     <message>
-        <location line="-4364"/>
+        <location line="-4378"/>
         <source>Ma&amp;cros</source>
         <translation>&amp;Макросы</translation>
     </message>
@@ -11972,7 +12003,7 @@ this other file before you can overwrite it.</source>
         <translation>Сохранить сессию...</translation>
     </message>
     <message>
-        <location line="+1614"/>
+        <location line="+1619"/>
         <source>Loading of last session failed.</source>
         <translation>Не удалось загрузить последнюю сессию.</translation>
     </message>
@@ -11990,7 +12021,7 @@ this other file before you can overwrite it.</source>
 этот второй файл, прежде чем сможете его перезаписать.</translation>
     </message>
     <message>
-        <location line="+451"/>
+        <location line="+458"/>
         <source>Load Session</source>
         <translation>Загрузить сессию</translation>
     </message>
@@ -12016,7 +12047,7 @@ this other file before you can overwrite it.</source>
         <translation>Не удалось сохранить сессию.</translation>
     </message>
     <message>
-        <location line="-1785"/>
+        <location line="-1797"/>
         <source>List Of Open Documents</source>
         <translation>Список открытых документов</translation>
     </message>

@@ -428,7 +428,6 @@ unix {
         utilities/CHANGELOG.txt
     manual.files = \
         utilities/manual/usermanual_en.html \
-        utilities/manual/usermanual_fr.html \
         utilities/manual/usermanual.css \
         utilities/manual/doc1.png \
         utilities/manual/doc10.png \
@@ -485,7 +484,7 @@ include(quazip/quazip/quazip.pri)
 debug{
     message(Creating debug version)
     CONFIG -= release
-    QT += testlib
+#    QT += testlib
 
     SOURCES += tests/testmanager.cpp \
         tests/testutil.cpp \
@@ -520,7 +519,7 @@ debug{
     !greaterThan(QT_MAJOR_VERSION, 4) {
         win32:LIBS += -lQtTestd4
     } else {
-        win32:LIBS += -lQt5Testd
+#        win32:LIBS += -lQt5Testd
     }
     #unix:!macx:LIBS += -lQtTest
     macx:LIBS += -framework QtTest
@@ -647,7 +646,7 @@ exists(./.svn/entries)|exists(./.svn/wc.db){
 }
 
 # add mercurial revision
-exists(./.hg2) {
+exists(./.hg2) || exists(./.hg) {
   win32: {
     message(HG)
     QMAKE_PRE_LINK += \"$${PWD}/hg_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"

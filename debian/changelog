@@ -1,8 +1,12 @@
-texstudio (2.8.6) natty; urgency=low
+texstudio (2.8.8) natty; urgency=low
 
-  * 2.8.6 new release
+  * 2.8.8 new release
 
- -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 7 Sep 2014 20:00:00 +0200
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 23 Nov 2014 20:00:00 +0200
+
+ * 2.8.6 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 26 Okt 2014 20:00:00 +0200
 
 texstudio (2.8.4) natty; urgency=low
 

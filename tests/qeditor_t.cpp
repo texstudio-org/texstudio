@@ -576,12 +576,6 @@ void QEditorTest::indentation_data(){
 		<< "\n"
 		<< "  \n   \nworld\n";
 
-	QTest::newRow("space test + weak")
-		<< "   \nworld\n"
-		<< true << 0 << 2 << -1 << -1
-		<< "\n"
-		<< "  \n   \nworld\n";
-
 	QTest::newRow("block indentation")
 		<< "   hello\nworld\n"
 		<< true << 0 << 6 << -1 << -1
@@ -636,6 +630,30 @@ void QEditorTest::indentation_data(){
 		<< "}}"
 		<< "\t\thello}}\n\t\tworld\n"; //no prapagation yet
 
+	QTest::newRow("pasting non-indented text with newline at end weak")
+		<< "\tfoo\n\tbar\n"
+		<< true << 1 << 0 << -1 << -1
+		<< "baz\n"
+		<< "\tfoo\nbaz\n\tbar\n";
+
+	QTest::newRow("pasting non-indented text with newline at end")
+		<< "\tfoo\n\tbar\n"
+		<< false << 1 << 0 << -1 << -1
+		<< "baz\n"
+		<< "\tfoo\nbaz\n\tbar\n";
+
+	QTest::newRow("pasting indented text with newline at end weak")
+		<< "\tfoo\n\tbar\n"
+		<< true << 1 << 0 << -1 << -1
+		<< "\tbaz\n"
+		<< "\tfoo\n\tbaz\n\tbar\n";
+
+	QTest::newRow("pasting indented text with newline at end")
+		<< "\tfoo\n\tbar\n"
+		<< false << 1 << 0 << -1 << -1
+		<< "\tbaz\n"
+		<< "\tfoo\n\tbaz\n\tbar\n";
+
 	QTest::newRow("selection block self replacement (line start) weak")
 			<< "\tAA\n\tBB\n\tCC\n"
 			<< true << 2 << 0 << 1 << 0
@@ -659,22 +677,22 @@ void QEditorTest::indentation_data(){
 	QTest::newRow("selection block self replacement (text start) weak")
 			<< "\tAA\n\tBB\n\tCC\n"
 			<< true << 2 << 1 << 1 << 1
-			<< "\tBB\n"
+			<< "BB\n\t"
 			<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("selection block self replacement (text start)")
 			<< "\tAA\n\tBB\n\tCC\n"
 			<< false << 2 << 1 << 1 << 1
-			<< "\tBB\n"
+			<< "BB\n\t"
 			<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("reversed selection block self replacement (text start) weak")
 			<< "\tAA\n\tBB\n\tCC\n"
 			<< true << 1 << 1 << 2 << 1
-			<< "\tBB\n"
+			<< "BB\n\t"
 			<< "\tAA\n\tBB\n\tCC\n";
 	QTest::newRow("reversed selection block self replacement (text start)")
 			<< "\tAA\n\tBB\n\tCC\n"
 			<< false << 1 << 1 << 2 << 1
-			<< "\tBB\n"
+			<< "BB\n\t"
 			<< "\tAA\n\tBB\n\tCC\n";
 
 	/*

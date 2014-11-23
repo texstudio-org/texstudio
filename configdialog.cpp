@@ -400,6 +400,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
     fmConfig->addCategory(tr("Preview")) <<"previewSelection";
 	fmConfig->addCategory(tr("DTX files")) << "dtx:guard" << "dtx:macro" << "dtx:verbatim" << "dtx:specialchar" << "dtx:commands";
 	fmConfig->addCategory(tr("Sweave / Pweave")) << "sweave-delimiter" << "sweave-block" << "pweave-delimiter" << "pweave-block";
+	fmConfig->addCategory(tr("Asymptote")) << "asymptote:block" << "asymptote:keyword" << "asymptote:type" << "asymptote:numbers" << "asymptote:string" << "asymptote:comment";
 	fmConfig->addCategory(tr("Lua")) << "lua:keyword" << "lua:comment";
 
 	connect(ui.spinBoxSize, SIGNAL(valueChanged(int)), fmConfig, SLOT(setBasePointSize(int)));

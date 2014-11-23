@@ -318,6 +318,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
   filters << tr("Plaintext files")+" (*.txt)";
   filters << tr("Pweave files")+" (*.Pnw)";
   filters << tr("Sweave files")+" (*.Snw *.Rnw)";
+  filters << tr("Asymptote files")+" (*.asy)";
   filters << tr("PDF files")+" (*.pdf)";
   filters << tr("All files")+" (*)";
   fileFilters = filters.join(";;");
@@ -1520,7 +1521,7 @@ void Texmaker::configureNewEditorView(LatexEditorView *edit) {
 	connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
 	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
-	connect(edit, SIGNAL(colonTyped()), this, SLOT(NormalCompletion()));
+    connect(edit, SIGNAL(colonTyped()), this, SLOT(colonTyped()));
     connect(edit, SIGNAL(openInternalDocViewer(QString,QString)),this,SLOT(openInternalDocViewer(QString,QString)));
     connect(edit, SIGNAL(searchExtendToggled(bool)),this,SLOT(searchExtendToggled(bool)));
 
@@ -2312,6 +2313,13 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 			EditorTabs->setCurrentEditor(currentEdView);
 		}
 		
+		// show message in viewer
+		if (currentEditor()->fileInfo() != QFileInfo(fn)) {
+			foreach (PDFDocument *viewer,PDFDocument::documentList())
+				if (viewer->getMasterFile() == currentEditor()->fileInfo())
+					viewer->showMessage(tr("This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result."));
+		}
+
 		// save file
         removeDiffMarkers();// clean document from diff markers first
 		currentEditor()->save(fn);
@@ -2838,6 +2846,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress, bool warnMiss
 	cursorHistory->setInsertionEnabled(true);
 
 	if (!s.PDFFile().isEmpty()) {
+		qDebug() << s.PDFFile() << s.PDFEmbedded();
 		runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded()?"--embedded":"--windowed");
 	}
     // update completer
@@ -3666,7 +3675,7 @@ void Texmaker::ReadSettings(bool reread) {
                     configManager.editorKeys.remove(realKey);
                 }
             }else{
-                if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
+                /*if(!manipulatedOps.contains(operationID)){ // remove predefined keys only once
                     QStringList defaultKeys = configManager.editorKeys.keys(operationID);
                     if (!defaultKeys.isEmpty()) {
                         foreach(const QString elem,defaultKeys){
@@ -3674,7 +3683,8 @@ void Texmaker::ReadSettings(bool reread) {
                         }
                         manipulatedOps.insert(operationID);
                     }
-                }
+                }*/
+                // replacement of keys needs to add/remove a key explicitely, as otherwise a simple addition can't be saved into .ini
                 configManager.editorKeys.insert(key, operationID);
             }
 		}
@@ -9275,4 +9285,26 @@ void Texmaker::searchExtendToggled(bool toggled){
 
     updateFindGlobal(outputView->getSearchScope());
     outputView->setSearchEditors(docs);
+}
+
+void Texmaker::colonTyped(){
+    if (!currentEditorView())	return;
+    LatexEditorView *view=currentEditorView();
+    // complete text if no command is present
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    QString eow=getCommonEOW();
+    int i=0;
+    //int col=c.columnNumber();
+    QString word=c.line().text();
+    while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
+        c.movePosition(1,QDocumentCursor::PreviousCharacter);
+        i++;
+    }
+
+    QString command,value;
+    LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
+    QList<LatexParser::ContextType>lst;
+    lst<<LatexParser::Package<<LatexParser::Keyval<<LatexParser::KeyvalValue<<LatexParser::Citation;
+    if(lst.contains(ctx))
+        NormalCompletion();
 }

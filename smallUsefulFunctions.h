@@ -72,7 +72,7 @@ QString findToken(const QString &line,const QString &token,int &start);
 QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
-bool findCommandWithArg(const QString &line, QString &cmd, QString &outName, QString &outArg, QString &remainder, int &argStart, QString &option);
+int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts=0, int offset=0);
 
 
 // generate multiple times used regexpression
@@ -115,6 +115,21 @@ void showTooltipLimited(QPoint tt,QString topic,int width=0);
 QString truncateLines(const QString & s, int maxLines);
 
 bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLength);
+
+/*!
+ * \brief The ArgumentList class holds lists of LaTeX command arguments
+ *
+ * An argument is enclosed either in curly or square brackets (mandatory/optional argument).
+ */
+class ArgumentList : public QStringList {
+public:
+	inline ArgumentList() {}
+	enum ArgType {Optional, Mandatory};
+	QString argContent(int index) const;
+	QString argContent(int index, ArgType type) const;
+	ArgType argType(int index) const;
+	int count(ArgType type) const;
+};
 
 class LatexParser{
 	friend class SmallUsefulFunctionsTest;
