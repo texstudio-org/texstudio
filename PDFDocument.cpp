@@ -2606,11 +2606,11 @@ void PDFDocument::init(bool embedded)
 	connect(pdfWidget, SIGNAL(changedPage(int, bool)), dw, SLOT(update()));
 
 	actionPage_Down = new QAction(tr("Page Down"), this);
-	actionPage_Down->setShortcut(QKeySequence(tr("PgDown")));
+	actionPage_Down->setShortcut(QKeySequence("PgDown"));
 	addAction(actionPage_Down);
 	connect(actionPage_Down, SIGNAL(triggered()), pdfWidget, SLOT(pageDownOrNext()));
 	actionPage_Up = new QAction(tr("Page Up"), this);
-	actionPage_Up->setShortcut(QKeySequence(tr("PgUp")));
+	actionPage_Up->setShortcut(QKeySequence("PgUp"));
 	connect(actionPage_Up, SIGNAL(triggered()), pdfWidget, SLOT(pageUpOrPrev()));
 	addAction(actionPage_Up);
 	//disable all action shortcuts when embedded
