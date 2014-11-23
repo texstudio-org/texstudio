@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+<script type="text/javascript" src="/static/js/analytics.js"></script>
+<link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>QCodeEdit: Examples</title>
+<link href="/web/20110203061140cs_/http://qcodeedit.edyuk.org/docs/doxygen.css" rel="stylesheet" type="text/css">
+<link href="/web/20110203061140cs_/http://qcodeedit.edyuk.org/docs/tabs.css" rel="stylesheet" type="text/css">
+</head><body>
+
+
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script> if (window.archive_analytics) { window.archive_analytics.values['server_name']="wwwb-app13.us.archive.org";}; </script>
+
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript" src="/static/jflot/jquery.min.js" ></script>
+<script type="text/javascript">
+var __wm = (function(){
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http://qcodeedit.edyuk.org/docs/qce_examples.html";
+
+var firstYear = 1996;
+var imgWidth = 475,imgHeight = 27;
+var yearImgWidth = 25,monthImgWidth = 2;
+var displayDay = "3";
+var displayMonth = "Feb";
+var displayYear = "2011";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var $D=document,$=function(n){return document.getElementById(n)};
+var trackerVal,curYear = -1,curMonth = -1;
+var yearTracker,monthTracker;
+function showTrackers(val) {
+  if (val===trackerVal) return;
+  var $ipp=$("wm-ipp");
+  var $y=$("displayYearEl"),$m=$("displayMonthEl"),$d=$("displayDayEl");
+  if (val) {
+    $ipp.className="hi";
+  } else {
+    $ipp.className="";
+    $y.innerHTML=displayYear;$m.innerHTML=displayMonth;$d.innerHTML=displayDay;
+  }
+  yearTracker.style.display=val?"inline":"none";
+  monthTracker.style.display=val?"inline":"none";
+  trackerVal = val;
+}
+function getElementX2(obj) {
+  var $e=jQuery(obj);
+  return (typeof $e=="undefined"||typeof $e.offset=="undefined")?
+    getElementX(obj):Math.round($e.offset().left);
+}
+function trackMouseMove(event,element) {
+  var eventX = getEventX(event);
+  var elementX = getElementX2(element);
+  var xOff = Math.min(Math.max(0, eventX - elementX),imgWidth);
+  var monthOff = xOff % yearImgWidth;
+
+  var year = Math.floor(xOff / yearImgWidth);
+  var monthOfYear = Math.min(11,Math.floor(monthOff / monthImgWidth));
+  // 1 extra border pixel at the left edge of the year:
+  var month = (year * 12) + monthOfYear;
+  var day = monthOff % 2==1?15:1;
+  var dateString = zeroPad(year + firstYear) + zeroPad(monthOfYear+1,2) +
+    zeroPad(day,2) + "000000";
+
+  $("displayYearEl").innerHTML=year+firstYear;
+  $("displayMonthEl").innerHTML=prettyMonths[monthOfYear];
+  // looks too jarring when it changes..
+  //$("displayDayEl").innerHTML=zeroPad(day,2);
+  var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+  $("wm-graph-anchor").href=url;
+
+  if(curYear != year) {
+    var yrOff = year * yearImgWidth;
+    yearTracker.style.left = yrOff + "px";
+    curYear = year;
+  }
+  if(curMonth != month) {
+    var mtOff = year + (month * monthImgWidth) + 1;
+    monthTracker.style.left = mtOff + "px";
+    curMonth = month;
+  }
+}
+function hideToolbar() {
+  $("wm-ipp").style.display="none";
+}
+function bootstrap() {
+  var $spk=$("wm-ipp-sparkline");
+  yearTracker=$D.createElement('div');
+  yearTracker.className='yt';
+  with(yearTracker.style){
+    display='none';width=yearImgWidth+"px";height=imgHeight+"px";
+  }
+  monthTracker=$D.createElement('div');
+  monthTracker.className='mt';
+  with(monthTracker.style){
+    display='none';width=monthImgWidth+"px";height=imgHeight+"px";
+  }
+  $spk.appendChild(yearTracker);
+  $spk.appendChild(monthTracker);
+
+  var $ipp=$("wm-ipp");
+  $ipp&&disclaimElement($ipp);
+}
+return{st:showTrackers,mv:trackMouseMove,h:hideToolbar,bt:bootstrap};
+})();
+</script>
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  min-width:800px !important;
+}
+</style>
+<div id="wm-ipp" lang="en" style="display:none;">
+
+<div style="position:fixed;left:0;top:0;width:100%!important">
+<div id="wm-ipp-inside">
+   <table style="width:100%;"><tbody><tr>
+   <td id="wm-logo">
+       <a href="/web/" title="Wayback Machine home page"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0"></a>
+   </td>
+   <td class="c">
+       <table style="margin:0 auto;"><tbody><tr>
+       <td class="u" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://qcodeedit.edyuk.org/docs/qce_examples.html" style="width:400px;" onfocus="this.focus();this.select();"><input type="hidden" name="type" value="replay"><input type="hidden" name="date" value="20110203061140"><input type="submit" value="Go"><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td class="n" rowspan="2">
+           <table><tbody>
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr class="m">
+           	<td class="b" nowrap="nowrap">
+		
+		    Jan
+		
+		</td>
+		<td class="c" id="displayMonthEl" title="You are here: 6:11:40 Feb 3, 2011">FEB</td>
+		<td class="f" nowrap="nowrap">
+		
+		    Mrz
+		
+                </td>
+	    </tr>
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr class="d">
+               <td class="b" nowrap="nowrap">
+               
+                       <img src="/static/images/toolbar/wm_tb_prv_off.png" alt="Previous capture" width="14" height="16" border="0" />
+               
+               </td>
+               <td class="c" id="displayDayEl" style="width:34px;font-size:24px;" title="You are here: 6:11:40 Feb 3, 2011">3</td>
+	       <td class="f" nowrap="nowrap">
+               
+                   <img src="/static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0"/>
+               
+	       </td>
+           </tr>
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr class="y">
+	       <td class="b" nowrap="nowrap">
+               
+                   2010
+               
+               </td>
+               <td class="c" id="displayYearEl" title="You are here: 6:11:40 Feb 3, 2011">2011</td>
+	       <td class="f" nowrap="nowrap">
+               
+                   2012
+               
+	       </td>
+           </tr>
+           </tbody></table>
+       </td>
+       </tr>
+       <tr>
+       <td class="s">
+           <a class="t" href="/web/20110203061140*/http://qcodeedit.edyuk.org/docs/qce_examples.html" title="See a list of every capture for this URL">1 captures</a>
+           <div class="r" title="Timespan for captures of this URL">3 Feb 11 - 3 Feb 11</div>
+       </td>
+       <td class="k">
+       <a href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" title="Explore captures for this URL">
+	 <img id="sparklineImgId" alt="sparklines"
+		 onmouseover="__wm.st(1)" onmouseout="__wm.st(0)"
+		 onmousemove="__wm.mv(event,this)"
+		 width="475"
+		 height="27"
+		 border="0"
+		 src="/web/jsp/graph.jsp?graphdata=475_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:-1:000000000000_2003:-1:000000000000_2004:-1:000000000000_2005:-1:000000000000_2006:-1:000000000000_2007:-1:000000000000_2008:-1:000000000000_2009:-1:000000000000_2010:-1:000000000000_2011:1:010000000000_2012:-1:000000000000_2013:-1:000000000000_2014:-1:000000000000">
+       </div>
+       </a>
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td class="r">
+       <a href="#close" onclick="__wm.h();return false;" style="background-image:url(/static/images/toolbar/wm_tb_close.png);top:5px;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="background-image:url(/static/images/toolbar/wm_tb_help.png);bottom:5px;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+</div>
+</div>
+</div>
+<script type="text/javascript">__wm.bt();</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+
+<!-- Generated by Doxygen 1.5.7.1 -->
+<div class="navigation" id="top">
+  <div class="tabs">
+    <ul>
+      <li><a href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/index.html"><span>Main&nbsp;Page</span></a></li>
+      <li class="current"><a href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/pages.html"><span>Related&nbsp;Pages</span></a></li>
+      <li><a href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/modules.html"><span>Modules</span></a></li>
+      <li><a href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/annotated.html"><span>Classes</span></a></li>
+      <li><a href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/files.html"><span>Files</span></a></li>
+    </ul>
+  </div>
+  <div class="navpath"><a class="el" href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/index.html">QCodeEdit manual</a>
+  </div>
+</div>
+<div class="contents">
+<h1><a class="anchor" name="qce_examples">Examples </a></h1><table width="100%" border="0" frame="void" cellspacing="3" cellpadding="3">
+<tr width="100%">
+<td align="left"><a class="el" href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/tutorial.html">[Previous:Tutorial]</a> </td><td align="right"></td></tr>
+</table>
+<p>
+<h2>Sumarry :</h2>
+<p>
+<ol>
+<li>
+<a class="el" href="/web/20110203061140/http://qcodeedit.edyuk.org/docs/qce_examples.html#exSyntax">Creating a custom syntax file</a> </li>
+</ol>
+<h2><a class="anchor" name="exSyntax">
+Syntax files</a></h2>
+Syntax file creation is rather straightforward once you know how they are structured. The purpose of this small example is to cover that topic as extensively as possible.<p>
+<h3>Core concepts</h3>
+<p>
+There are two fundamental notions in QCE syntax files : contexts and "regular" matches.<p>
+The concept of context is extremely powerful while remaining extremely simple. The syntax engine enters a context when a given start token is matched and it leaves it when a stop token is matched. Within a context there can be any number of contexts and "regular" matches. contexts are typically used to match comments, strings or other special blocks of code.<p>
+"Regular" matches are what one would expect them to be : simple tokens. They can be matched from either regular expressions or plain strings. Start and stop tokens of context are "regular" matches in a way, except that they also trigger the context enter/leave event.<p>
+<h3>Syntax file structure</h3>
+<p>
+Now, on to the analysis of the structure of a syntax file.<p>
+The root element of the document is a &lt;QNFA&gt; tag. It provides various informations in its attributes.<p>
+<ul>
+<li>
+<b>language</b> : this attribute specifies the name of the language supported by the syntax file. </li>
+<li>
+<b>extensions</b> : this attribute specifies the file extensions matched by this language. </li>
+<li>
+<b>defaultLineMark</b> : this (optional) attribute specifies the name of the default line mark to be set on a line when clicking on the line mark panel (if any). If none is provided, "bookmark" is used. </li>
+</ul>
+<p>
+The QNFA tag represents the root context of the language. It can contain any number of the following tags :<p>
+<ul>
+<li>
+<b>context</b> : defines a context. To be valid, requires children tags of type <b>start</b> and <b>stop</b>.<p>
+</li>
+<li>
+<b>sequence</b> : defines a "regular" match. The value of this element is always assumed to be a regexp (no internal optimizations attempt for plain strings).<p>
+</li>
+<li>
+<b>word</b> : defines a "regular" match. The value of this element is checked to determine whether it can be matched as a plain string (internal optimizations). Additionally, this element will ONLY be matched at word boundaries. For instance, if the value of a word element is for, it will not be matched in "foreach" while it would have been, if declared using a <b>sequence</b> tag.<p>
+</li>
+<li>
+<b>list</b> : this is a "meta-element" used to group regular matches and give them the same attributes as they are propagated from the this element to its children. Subrouping (nesting <b>list</b> elements) is NOT supported.<p>
+</li>
+<li>
+<b>embed</b> : this is a "meta-element" which allows embedding of other languages or contexts to help reducing duplication of content and make maintenance of syntax files easier. The embedding target is specified through the <em>target</em> attribute. </li>
+</ul>
+<p>
+Additionally, the following tags are valid inside a <b>context</b> block (and, again, their number isn't limited). Also note that, while ordering of all tags above within a context DO matter, ordering of the tags below DO NOT matter.<p>
+<ul>
+<li>
+<b>start</b> : defines a context start token as a "regular" match (remarks made about the <b>word</b> tag apply to this one as well).<p>
+</li>
+<li>
+<b>stop</b> : defines a context stop token as a "regular" match (remarks made about the <b>word</b> tag apply to this one as well).<p>
+</li>
+<li>
+<b>escape</b> : defines a special token as a "regular" match (remarks made about the <b>sequence</b> tag apply to this one as well). This element is used for the very common case of escape sequences which may prevent a stop token from being one. In most case it is however recommended to favor explicit escape match through a <b>sequence</b>, for instance in C-like strings the following construct is used : <div class="fragment"><pre class="fragment"> &lt;sequence <span class="keywordtype">id</span>=<span class="stringliteral">"escape"</span> format=<span class="stringliteral">"escapeseq"</span> &gt;\\[nrtvf\\<span class="stringliteral">"'\n\n]&lt;/sequence&gt; </span>
+</pre></div> </li>
+</ul>
+<p>
+All these tags, except <b>embed</b>, support the following attributes :<p>
+<ul>
+<li>
+<b>format</b> : specifies the format to be applied to the matches (highlighting). This property is propagated.<p>
+</li>
+<li>
+<b>id</b> : assign an identifer to the element. This is only used for contexts at the moment however and the only "external" use of it occurs in the <b>embed</b> tag. </li>
+</ul>
+<p>
+Additionally all tags, except <b>context</b> and <b>list</b>, support the following extra attributes :<p>
+<ul>
+<li>
+<b>exclusive</b> : Indicate that the token may be matched multiple times. For instance some contexts have the same end token (a newline in many cases) and the innermost context must not prevent its parenth from matching the newline and exiting. This attribute is reserved to <b>start</b> and <b>stop</b> tag of a context. Valid values are "true", "false", "1" or "0".<p>
+</li>
+<li>
+<b>parenthesis</b> : specifies that the element is a parenthesis. The concept of parenthesis actually extends way beyond simple parentheses. Parentheses are tokens that may be matched (brace matching), delimit foldable block or trigger indentation.<p>
+The value of this attribute is a string formatted as follows : "$id:$type[@nomatch]". Where $id is the identifier for the parenthesis and type is its type, which can be either "open", "close" or "boundary". Finally the "@nomatch", if present, indicate that the parenthesis should not be taken into account for brace matching. The square brackets indicate that it is optional and should not be used in a syntax file.<p>
+While the "open" and "close" type of parenthesis are quite easy to understand, the "boundary" require more details. It indicates a parenthesis that acts as both "open" and "close". Typical use of such parentheses happen in C++ for visibility keywords (public, protected, private) or in Latex for chapter tags, section tags and so on. There are of course many more cases where this type of parenthesis is the right choice but there is no point in listing them all.<p>
+</li>
+<li>
+<b>fold</b> : element will delimit foldable block(s). Valid values are "true", "false", "1" or "0".<p>
+</li>
+<li>
+<b>indent</b> : element will trigger indentation. Valid values are "true", "false", "1" or "0". </li>
+</ul>
+<p>
+The <b>context</b> tag however supports the following extra attributes : <ul>
+<li>
+<b>transparency</b> : specifies whether the contexts and matches declared before this context should also be matched inside that context (with no need to declare them again). Valid values are "true", "false", "1" or "0".<p>
+</li>
+<li>
+<b>stayOnLine</b> : this attribute is provided to handle special cases of context nesting where the innermost context may span over several lines whereas the outer contexts cannot, e.g in C, comments are accepted inside preprocessor directives. This attribute indicates that no matter what happens to subcontexts, this context will not span beyond the line it started in. </li>
+</ul>
+<p>
+<h3>Regexp format</h3>
+<p>
+The regexp format used by QCE is near to that used by QRegExp but with some slight variations.<p>
+First of all, a list of QRegExp features not supported in syntax files : <ul>
+<li>
+grouping and alternation (ban parentheses and | from your mind). </li>
+<li>
+Assertions (such as word boundaries) </li>
+<li>
+lookahead operators </li>
+<li>
+'.' to match any character </li>
+</ul>
+<p>
+Then, character classes (word, space, digit and their negation) use the same "specific character" (respectively w, s, d and uppercase) but a different prefix character ($ instead of \).<p>
+C-style escaping is used. Simple C escapes (for newlines and tab) are converted properly and C-style escaping is used to escape control characters.<p>
+Sets and negated sets are supported, using the same syntax as QRegExp.<p>
+Regular regexp operator '?', '*' and '+' are supported.<p>
+A revision of the syntax format may bring grouping and alternation support (and possibly other niceties) in a future version but as this would break backward compat (due to escaping issues among other things) and require a rewrite of the syntax engine a new (but very similar) syntax file format would be used.<p>
+<h3>Getting your hands dirty (coming soon)</h3>
+<p>
+Now that the fundamentals have been covered, let's use them to create a small syntax file for an imaginary language.<p>
+More examples availables in the qxs/ directory where all syntax files reside. </div>
+<hr size="1"><address style="text-align: right;"><small>Generated on Sun Feb 15 22:50:19 2009 for QCodeEdit by&nbsp;
+<a href="/web/20110203061140/http://www.doxygen.org/index.html">
+<img src="/web/20110203061140im_/http://qcodeedit.edyuk.org/docs/doxygen.png" alt="doxygen" align="middle" border="0"></a> 1.5.7.1 </small></address>
+</body>
+</html>
+
+
+
+
+
+<!--
+     FILE ARCHIVED ON 6:11:40 Feb 3, 2011 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 19:48:06 Nov 9, 2014.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
