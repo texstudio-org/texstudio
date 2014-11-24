@@ -10687,7 +10687,12 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
         <translation>Arquivos LilyPond</translation>
     </message>
     <message>
-        <location line="+334"/>
+        <location line="+4"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+330"/>
         <source>Print Source Code...</source>
         <translation type="unfinished"></translation>
     </message>
