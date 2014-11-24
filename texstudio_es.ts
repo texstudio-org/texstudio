@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es">
+<TS version="2.0" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2516,7 +2516,7 @@ la clave de todos modos?</translation>
     <message>
         <location line="-27"/>
         <source>Asymptote</source>
-        <translation type="unfinished"></translation>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -4120,7 +4120,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">Paquete no encontrado</translation>
+        <translation>Paquete no encontrado</translation>
     </message>
     <message>
         <location line="+2062"/>
@@ -5272,7 +5272,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+1184"/>
         <source>Close Message</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cerrar Mensaje</translation>
     </message>
     <message>
         <source>PgDown</source>
@@ -5584,27 +5584,27 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <name>PreviewWidget</name>
     <message>
         <source>fit</source>
-        <translation type="vanished">Ajustar</translation>
+        <translation>Ajustar</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">Acercar</translation>
+        <translation>Acercar</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">Alejar</translation>
+        <translation>Alejar</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">Restablecer zoom</translation>
+        <translation>Restablecer zoom</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">Alinear la imagen a la izquierda</translation>
+        <translation>Alinear la imagen a la izquierda</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">Centrar Imagen</translation>
+        <translation>Centrar Imagen</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
@@ -5647,7 +5647,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location line="+3"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;b&gt;Asegúrese de que tiene instalado una distribución de (La)TeX&lt;/b&gt; por ejemplo, MiKTeX  o TeX Live, y además que estén establecidas las rutas correctas a esta distribución en la página de configuración de órdenes. &lt;br&gt;Un editor de (La)TeX como TeXstudio no puede funcionar sin las órdenes (La)TeX proporcionadas por tal distribución.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -6802,22 +6802,22 @@ Do you want them to be saved?</source>
     <message>
         <location line="+1"/>
         <source>asymptote:type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">asymptote:tipo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:keyword</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">asymptote:palabra clave</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:number</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">asymptote:número</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:string</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">asymptote:cadena</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8874,7 +8874,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Imprimir...</translation>
+        <translation>Imprimir...</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
@@ -9336,12 +9336,7 @@ Do you want to create it?</source>
         <translation>Archivos Sweave</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Asymptote files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>PDF files</source>
         <translation>Archivos PDF</translation>
     </message>
@@ -10137,7 +10132,7 @@ Do you want to create it?</source>
     <message>
         <location line="-4547"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Este pdf no se puede sincronizar más  con el código  fuente tex porque el nombre del archivo de origen se ha cambiado debido a una operación de Guardar como. Se debe volver a compilar el archivo renombrado y ver su resultado.</translation>
     </message>
     <message>
         <location line="+91"/>
