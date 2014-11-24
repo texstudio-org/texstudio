@@ -519,7 +519,7 @@ debug{
     !greaterThan(QT_MAJOR_VERSION, 4) {
         win32:LIBS += -lQtTestd4
     } else {
-#        win32:LIBS += -lQt5Testd
+        win32:LIBS += -lQt5Testd
     }
     #unix:!macx:LIBS += -lQtTest
     macx:LIBS += -framework QtTest
