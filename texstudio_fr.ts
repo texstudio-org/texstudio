@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2353,7 +2353,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Show All</source>
         <translation>Afficher tout</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="+358"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -6057,7 +6057,7 @@ Voulez-vous l&apos;écraser ?</translation>
     </message>
     <message>
         <source>PgDown</source>
-        <translation type="obsolete">PageSuivante</translation>
+        <translation type="vanished">PageSuivante</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -6066,7 +6066,7 @@ Voulez-vous l&apos;écraser ?</translation>
     </message>
     <message>
         <source>PgUp</source>
-        <translation type="obsolete">Pageprecedente</translation>
+        <translation type="vanished">Pageprecedente</translation>
     </message>
     <message>
         <location line="+177"/>
@@ -7670,12 +7670,16 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
         <translation>Sélection</translation>
     </message>
     <message>
-        <location line="+5"/>
-        <source>previewSelection</source>
-        <translation>Prévisualisation de la sélection</translation>
+        <location line="+19"/>
+        <source>asymptote:number</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+10"/>
+        <source>previewSelection</source>
+        <translation type="vanished">Prévisualisation de la sélection</translation>
+    </message>
+    <message>
+        <location line="-5"/>
         <source>dtx:commands</source>
         <translation>Commande</translation>
     </message>
@@ -7683,27 +7687,25 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
         <location line="+4"/>
         <source>asymptote:keyword</source>
         <oldsource>asymptote:block</oldsource>
-        <translation>Mot clé</translation>
+        <translation type="unfinished">Bloc</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-1"/>
         <source>asymptote:type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>asymptote:numbers</source>
-        <translation>Nombre</translation>
+        <translation type="vanished">Nombre</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+3"/>
         <source>asymptote:string</source>
         <translation>Chaîne de caractère</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>asymptote:comment</source>
-        <translation>Commentaire</translation>
+        <translation type="vanished">Commentaire</translation>
     </message>
     <message>
         <source>dtx:environment</source>
@@ -7806,7 +7808,7 @@ Do you want them to be saved?</source>
 Voulez-vous l&apos;enregistrer ?</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="-82"/>
+        <location filename="additionaltranslations.cpp" line="-79"/>
         <source>background</source>
         <translation>Fond</translation>
     </message>
@@ -8012,7 +8014,7 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
         <translation>Erreur grammaticale spéciale 4</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+18"/>
         <source>txs-test</source>
         <translation>Test TXS</translation>
     </message>
@@ -8056,12 +8058,12 @@ Note: Sizes &gt; 100% may result in clipped characters.</source>
         <translation>Caractère spécial</translation>
     </message>
     <message>
-        <location line="-38"/>
+        <location line="-37"/>
         <source>math-delimiter</source>
         <translation>Délimiteur mathématique</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+32"/>
         <source>txs-test-warn</source>
         <translation>Test TXS d&apos;avertissement</translation>
     </message>
@@ -10395,7 +10397,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Désindenter Section</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+9"/>
+        <location filename="additionaltranslations.cpp" line="+7"/>
         <source>Custom</source>
         <translation>Personnalisée</translation>
     </message>
@@ -11243,13 +11245,12 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <translation type="obsolete">Nouveau surlignement</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="+2"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation>Asymptote</translation>
+        <translation type="vanished">Asymptote</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location filename="additionaltranslations.cpp" line="+2"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
