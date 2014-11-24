@@ -7982,7 +7982,12 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>Gotowy</translation>
     </message>
     <message>
-        <location line="-4882"/>
+        <location line="-5008"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+126"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>

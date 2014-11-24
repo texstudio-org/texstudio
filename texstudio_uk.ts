@@ -10067,7 +10067,12 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Файли Pweave</translation>
     </message>
     <message>
-        <location line="+300"/>
+        <location line="+2"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+298"/>
         <source>Fifi&amp;x</source>
         <translation type="unfinished"></translation>
     </message>

@@ -9936,6 +9936,11 @@ Desideri comunque usare questa cartella?</translation>
         <translation>Apri file</translation>
     </message>
     <message>
+        <location filename="texmaker.cpp" line="321"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="texmaker.cpp" line="860"/>
         <source>Show Log Markers</source>
         <translation type="unfinished"></translation>

@@ -7670,11 +7670,16 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
         <translation>Sélection</translation>
     </message>
     <message>
+        <location line="+19"/>
+        <source>asymptote:number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>previewSelection</source>
         <translation type="vanished">Prévisualisation de la sélection</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="-5"/>
         <source>dtx:commands</source>
         <translation>Commande</translation>
     </message>
@@ -7683,11 +7688,6 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
         <source>asymptote:keyword</source>
         <oldsource>asymptote:block</oldsource>
         <translation type="unfinished">Bloc</translation>
-    </message>
-    <message>
-        <location line="+0"/>
-        <source>asymptote:keyword</source>
-        <translation>Mot clé</translation>
     </message>
     <message>
         <location line="-1"/>

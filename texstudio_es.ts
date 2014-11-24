@@ -9336,7 +9336,12 @@ Do you want to create it?</source>
         <translation>Archivos Sweave</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
         <source>PDF files</source>
         <translation>Archivos PDF</translation>
     </message>
