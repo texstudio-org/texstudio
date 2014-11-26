@@ -107,7 +107,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	latexReference->setFile(findResourceFile("latex2e.html"));
 
     qRegisterMetaType<QSet<QString> >();
-    readinAllPackageNames(); // asynchrnous read in of all available sty/cls
 	
 	txsInstance = this;
 	static int crashHandlerType = 1;
@@ -371,6 +370,13 @@ Texmaker::~Texmaker(){
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "deleteLater", Qt::BlockingQueuedConnection);
 	grammarCheckThread.quit();
 	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
+}
+
+void Texmaker::startupCompleted() {
+	// package reading (at least with Miktex) apparently slows down the startup
+	// the first rendering of lines in QDocumentPrivate::draw() gets very slow
+	// therefore we defer it until the main window is completely loaded
+	readinAllPackageNames(); // asynchrnous read in of all available sty/cls
 }
 
 QAction* Texmaker::newManagedAction(QWidget* menu, const QString &id,const QString &text, const char* slotName, const QKeySequence &shortCut, const QString & iconFile, const QList<QVariant>& args) {
