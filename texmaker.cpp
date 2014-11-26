@@ -8468,25 +8468,30 @@ void Texmaker::packageParserFinished(){
 void Texmaker::readinAllPackageNames(){
 	if (!packageListReader) {
 		// preliminarily use cached packages
-		QSet<QString> cachedPackages = PackageScanner::readPackageList(QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat").absoluteFilePath());
-		packageListReadCompleted(cachedPackages);
-		// start reading actually installed packages
-		QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
-		QString baseDir;
-		if (!QFileInfo(cmd_latex).isRelative())
-			baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
+		QFileInfo cacheFileInfo = QFileInfo(QDir(configManager.configBaseDir), "packageCache.dat");
+		if (cacheFileInfo.exists()) {
+			QSet<QString> cachedPackages = PackageScanner::readPackageList(cacheFileInfo.absoluteFilePath());
+			packageListReadCompleted(cachedPackages);
+		}
+		if (configManager.scanInstalledLatexPackages) {
+			// start reading actually installed packages
+			QString cmd_latex=buildManager.getCommandInfo(BuildManager::CMD_LATEX).commandLine;
+			QString baseDir;
+			if (!QFileInfo(cmd_latex).isRelative())
+				baseDir=QFileInfo(cmd_latex).absolutePath()+"/";
 #ifdef Q_OS_WIN
-		bool isMiktex = baseDir.contains("miktex", Qt::CaseInsensitive)
-				|| (!baseDir.contains("texlive", Qt::CaseInsensitive) && execCommand(baseDir+"latex.exe --version").contains("miktex", Qt::CaseInsensitive));
-		if (isMiktex)
-			packageListReader = new MiktexPackageScanner(quotePath(baseDir+"mpm.exe"), configManager.configBaseDir, this);
-		else
-			packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this); // TeXlive on windows uses kpsewhich
+			bool isMiktex = baseDir.contains("miktex", Qt::CaseInsensitive)
+					|| (!baseDir.contains("texlive", Qt::CaseInsensitive) && execCommand(baseDir+"latex.exe --version").contains("miktex", Qt::CaseInsensitive));
+			if (isMiktex)
+				packageListReader = new MiktexPackageScanner(quotePath(baseDir+"mpm.exe"), configManager.configBaseDir, this);
+			else
+				packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this); // TeXlive on windows uses kpsewhich
 #else
-		packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this);
+			packageListReader = new KpathSeaParser(quotePath(baseDir+"kpsewhich"), this);
 #endif
-		connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
-		packageListReader->start();
+			connect(packageListReader, SIGNAL(scanCompleted(QSet<QString>)), this, SLOT(packageListReadCompleted(QSet<QString>)));
+			packageListReader->start();
+		}
 	}
 }
 
