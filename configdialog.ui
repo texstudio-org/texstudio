@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>6</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>479</width>
+            <height>550</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -896,7 +896,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>860</width>
+               <width>193</width>
                <height>76</height>
               </rect>
              </property>
@@ -1505,6 +1505,45 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
+          <item row="7" column="1" colspan="2">
+           <widget class="QComboBox" name="comboBoxAutoIndent">
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>Ignore Indentation</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Keep Indentation</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Indent and Unindent Automatically</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="7" column="3">
+           <widget class="QCheckBox" name="checkBoxReplaceTabByWhitespace">
+            <property name="text">
+             <string>Replace Tab by Whitespace</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
+            <property name="text">
+             <string>Check non tex files</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item row="10" column="1" colspan="4">
            <widget class="QGroupBox" name="groupBoxInlineChecking">
             <property name="sizePolicy">
@@ -1562,39 +1601,10 @@ Then you can select a new shortcut by one of the following ways:
             </layout>
            </widget>
           </item>
-          <item row="7" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxAutoIndent">
-            <property name="advancedOption" stdset="0">
-             <bool>false</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Ignore Indentation</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Keep Indentation</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Indent and Unindent Automatically</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="7" column="3">
-           <widget class="QCheckBox" name="checkBoxReplaceTabByWhitespace">
+          <item row="14" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxScanInstalledLatexPackages">
             <property name="text">
-             <string>Replace Tab by Whitespace</string>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
-            <property name="text">
-             <string>Check non tex files</string>
+             <string>Scan LaTeX distribution for installed packages</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -1632,7 +1642,7 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-452</y>
+            <y>0</y>
             <width>863</width>
             <height>1069</height>
            </rect>
