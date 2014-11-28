@@ -7,7 +7,7 @@ GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error
 GrammarError::GrammarError(int offset, int length, const GrammarError& other):offset(offset),length(length),error(other.error),message(other.message),corrections(other.corrections){}
 
 GrammarCheck::GrammarCheck(QObject *parent) :
-QObject(parent), backend(0), ticket(0)
+	QObject(parent), backend(0), ticket(0), pendingProcessing(false)
 {
 	latexParser = new LatexParser();
 }
@@ -86,7 +86,19 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	requests << CheckRequest(lang,doc,inlines,firstLineNr,ticket);
 
 	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
-	QTimer::singleShot(50, this, SLOT(process()));
+	if (!pendingProcessing) {
+		pendingProcessing = true;
+		QTimer::singleShot(50, this, SLOT(processLoop()));
+	}
+}
+
+void GrammarCheck::processLoop() {
+	for (int i=requests.size()-1;i>=0;i--)
+		if (requests[i].pending) {
+			requests[i].pending = false;
+			process(i);
+		}
+	pendingProcessing = false;
 }
 
 const QString uselessPunctation = "!:?,.;-"; //useful: \"(
@@ -98,18 +110,9 @@ const QString noSpacePunctation = "!:?,.;)";
   if ((words)[i-1].length() == 1 && ((words)[i-1] == "(" || (words)[i-1] == "\"")) continue; \
   if ((words)[i-1].length() == 2 && (words)[i-1][1] == '.' && (words)[i].length() == 2 && (words)[i][1] == '.') continue; /* abbeviations like "e.g." */ \
 
-void GrammarCheck::process(){
+void GrammarCheck::process(int reqId){
 	REQUIRE(latexParser);
 	REQUIRE(!requests.isEmpty());
-		
-	int reqId = -1;
-	for (int i=requests.size()-1;i>=0;i--)
-		if (requests[i].pending) {
-			reqId = i;
-			requests[i].pending = false;
-			break;
-		}
-	REQUIRE(reqId != -1);
 	
 	CheckRequest &cr = requests[reqId];
 	

@@ -60,7 +60,8 @@ public slots:
 	void init(const LatexParser& lp, const GrammarCheckerConfig& config);
 	void check(const QString& language, const void* doc, const QList<LineInfo>& lines, int firstLineNr);
 private slots:
-	void process();
+	void processLoop();
+	void process(int reqId);
 	void backendChecked(uint ticket, int subticket, const QList<GrammarError>& errors, bool directCall = false);
 private:
 	LatexParser* latexParser;
@@ -69,6 +70,7 @@ private:
 	QMap<QString, LanguageGrammarData> languages;
 
 	uint ticket;
+	bool pendingProcessing;
 	TicketHash tickets;
 	QList<CheckRequest> requests;
 	QSet<QString> floatingEnvs;
