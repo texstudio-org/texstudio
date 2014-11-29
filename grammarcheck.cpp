@@ -224,6 +224,17 @@ void GrammarCheck::process(int reqId){
 	}
 	while (blocks.size()) cr.blocks << blocks.takeLast();
 	
+
+	for (int b = 0; b < cr.blocks.size(); b++) {
+		TokenizedBlock &tb = cr.blocks[b];
+		while (!tb.words.isEmpty() && tb.words.first().length() == 1 && uselessPunctation.contains(tb.words.first()[0])) {
+			tb.words.removeFirst();
+			tb.indices.removeFirst();
+			tb.endindices.removeFirst();
+			tb.lines.removeFirst();
+		}
+	}
+
 	bool backendAvailable = backend->isAvailable();
 
 	QList<TokenizedBlock> crBlocks = cr.blocks; //cr itself might become invalid during the following loop
@@ -232,13 +243,6 @@ void GrammarCheck::process(int reqId){
 
 	for (int b = 0; b < crBlocks.size(); b++) {
 		TokenizedBlock &tb = crBlocks[b];
-		while (!tb.words.isEmpty() && tb.words.first().length() == 1 && uselessPunctation.contains(tb.words.first()[0])) {
-			tb.words.removeFirst();
-			tb.indices.removeFirst();
-			tb.endindices.removeFirst();
-			tb.lines.removeFirst();
-		}
-
 		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			QString joined;
