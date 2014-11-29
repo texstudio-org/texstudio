@@ -242,11 +242,11 @@ void GrammarCheck::process(int reqId){
 	QString crLanguage = cr.language;
 
 	for (int b = 0; b < crBlocks.size(); b++) {
-		TokenizedBlock &tb = crBlocks[b];
+		const TokenizedBlock &tb = crBlocks.at(b);
 		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			QString joined;
-			QStringList & words = tb.words;
+			const QStringList & words = tb.words;
 			int expectedLength = 0; foreach (const QString& s, words) expectedLength += s.length();
 			joined.reserve(expectedLength+words.length());
 			for (int i=0;;) {
