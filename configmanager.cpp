@@ -422,7 +422,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Check Citations", &editorConfig->inlineCitationChecking, true, &pseudoDialog->checkBoxInlineCitationCheck);
 	registerOption("Editor/Check References", &editorConfig->inlineReferenceChecking, true, &pseudoDialog->checkBoxInlineReferenceCheck);
 	registerOption("Editor/Check Syntax", &editorConfig->inlineSyntaxChecking, true, &pseudoDialog->checkBoxInlineSyntaxCheck);
-	registerOption("Editor/Check Grammar", &editorConfig->inlineGrammarChecking, false, &pseudoDialog->checkBoxInlineGrammarCheck);
+	registerOption("Editor/Check Grammar", &editorConfig->inlineGrammarChecking, true, &pseudoDialog->checkBoxInlineGrammarCheck);
 	registerOption("Editor/Check Package", &editorConfig->inlinePackageChecking, true, &pseudoDialog->checkBoxInlinePackageCheck);
 	registerOption("Editor/Check In Non TeX Files", &editorConfig->inlineCheckNonTeXFiles, true, &pseudoDialog->checkBoxInlineCheckNonTeXFiles);
 	registerOption("Editor/Hide Spelling Errors in Non Text", &editorConfig->hideNonTextSpellingErrors, true, &pseudoDialog->checkBoxHideSpellingErrorsInNonText);
@@ -489,7 +489,11 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Grammar/Very Long Repetition Check Distance", &grammarCheckerConfig->maxRepetitionLongRangeDelta, 10, &pseudoDialog->spinBoxGrammarLongRangeRepetition);
 	registerOption("Grammar/Very Long Repetition Check Min Length", &grammarCheckerConfig->maxRepetitionLongRangeMinWordLength, 6, &pseudoDialog->spinBoxGrammarLongRangeRepetitionMinLength);
 	registerOption("Grammar/Word Lists Dir", &grammarCheckerConfig->wordlistsDir, "", &pseudoDialog->lineEditGrammarWordlists);
+#ifdef Q_OS_WIN
+	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "", &pseudoDialog->lineEditGrammarLTUrl);
+#else
 	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "http://localhost:8081/",&pseudoDialog->lineEditGrammarLTUrl);
+#endif
 	registerOption("Grammar/Language Tool Path", &grammarCheckerConfig->languageToolPath, "", &pseudoDialog->lineEditGrammarLTPath);
 	registerOption("Grammar/Language Tool Java Path", &grammarCheckerConfig->languageToolJavaPath, "java", &pseudoDialog->lineEditGrammarLTJava);
 	registerOption("Grammar/Language Tool Autorun", &grammarCheckerConfig->languageToolAutorun, true, &pseudoDialog->checkBoxGrammarLTAutorun);
