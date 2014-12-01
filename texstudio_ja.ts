@@ -10466,7 +10466,12 @@ Do you want to create it?</source>
         <translation>Pweaveファイル</translation>
     </message>
     <message>
-        <location line="+283"/>
+        <location line="+2"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+281"/>
         <source>Load Session...</source>
         <translation>セッションを読み込む</translation>
     </message>

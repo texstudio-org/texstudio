@@ -64,7 +64,11 @@ void SyntaxCheck::run(){
 		// do syntax check
 		newLine.dlh->lockForRead();
 		QString line=newLine.dlh->text();
-		newLine.dlh->removeCookie(3); //remove possible errors from unclosed envs
+		if (newLine.dlh->hasCookie(3)) {
+		  newLine.dlh->unlock();
+		  newLine.dlh->lockForWrite();
+		  newLine.dlh->removeCookie(3); //remove possible errors from unclosed envs
+		}
 		newLine.dlh->unlock();
 		QVector<int>fmts=newLine.dlh->getFormats();
 		for(int i=0;i<line.length() && i < fmts.size();i++){

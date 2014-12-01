@@ -11315,7 +11315,12 @@ included document in %1</source>
         <translation>Файлы Pweave</translation>
     </message>
     <message>
-        <location line="+300"/>
+        <location line="+2"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+298"/>
         <source>Fifi&amp;x</source>
         <translation type="unfinished"></translation>
     </message>

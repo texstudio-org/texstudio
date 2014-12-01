@@ -404,17 +404,24 @@ int QDocumentLine::getFormatAt(int pos){
 
 QVariant QDocumentLine::getCookie(int type){
     if(!m_handle) return QVariant();
-    return m_handle->getCookie(type);
+    m_handle->lockForRead();
+    QVariant result=m_handle->getCookie(type);
+    m_handle->unlock();
+    return result;
 }
 
 void QDocumentLine::setCookie(int type,QVariant data){
 	if(!m_handle) return;
+    m_handle->lockForWrite();
 	m_handle->setCookie(type,data);
+    m_handle->unlock();
 }
 
 void QDocumentLine::removeCookie(int type){
 	if (!m_handle) return;
+    m_handle->lockForWrite();
 	m_handle->removeCookie(type);
+    m_handle->unlock();
 }
 
 bool QDocumentLine::isRTL() const{

@@ -294,7 +294,7 @@ public:
 	void resetHighlight();
 	void setSingleDocMode(bool singleMode);
 	bool getSingleDocMode();
-    void moveDocs(int from,int to);
+	void moveDocs(int from,int to);
 private slots:
 	void structureUpdated(LatexDocument* document,StructureEntry *highlight=0);
 	void structureLost(LatexDocument* document);
