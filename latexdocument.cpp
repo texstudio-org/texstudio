@@ -1712,12 +1712,18 @@ void LatexDocumentsModel::setSingleDocMode(bool singleMode){
 	structureUpdated(documents.currentDocument,0);
 }
 
-void LatexDocumentsModel::moveDocs(int from,int to){ //work only for adjacent elements !!!
-  Q_ASSERT(abs(from-to)==1);
-  StructureEntry *se=documents.documents.at(from)->baseStructure;
-  changePersistentIndex(index(se),createIndex(to,0,se));
-  se=documents.documents.at(to)->baseStructure;
-  changePersistentIndex(index(se),createIndex(from,0,se));
+void LatexDocumentsModel::moveDocs(int from,int to){
+	REQUIRE(from >= 0 && to >= 0
+		   && from < documents.documents.length()
+		   && to < documents.documents.length() );
+	QModelIndexList fl, tl;
+	int d = from < to ? 1 : -1;
+	for (int i=from; i != to + d ; i += d )
+		fl.append(createIndex(i, 0, documents.documents.at(i)->baseStructure));
+	tl.append(createIndex(to, 0, documents.documents.at(from)->baseStructure));
+	for (int i=from + d; i != to + d; i += d )
+		tl.append(createIndex(i - d, 0, documents.documents.at(i)->baseStructure));
+	changePersistentIndexList(fl, tl);
 }
 
 bool LatexDocumentsModel::getSingleDocMode(){

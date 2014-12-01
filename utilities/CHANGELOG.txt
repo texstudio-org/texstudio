@@ -5,6 +5,7 @@ TeXstudio 2.8.6 -> 2.8.8
 - basic Asymptote highlighting
 - improved parsing of command options
 - notify that syncing between PDF and .tex won't work anymore after "File Save As..." (need to recompile)
+- improved startup speed compared to 2.8.6
 - fix: crash in column handling of table parser
 - fix: crash in math preview generation
 - fix: txs finds resource in app if it is not installed under /Applications... (OSX)

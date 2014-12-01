@@ -10954,7 +10954,12 @@ Do you want to allow and run the new, overriding command?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+692"/>
+        <location line="+2"/>
+        <source>Asymptote files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+690"/>
         <source>Grammar Mistake</source>
         <translation type="unfinished"></translation>
     </message>

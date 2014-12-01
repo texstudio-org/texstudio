@@ -16,14 +16,13 @@
 		<stop parenthesis="sweave:close@nocomplete" parenthesisWeight="30" fold="1" format="sweave-delimiter">@</stop>
 	</context>
 
+	<embed target="(La)TeX">
+
   <!-- need to have a single line comment for selection commenting (embed does not copy the editor information, only highlighting ) -->
 	<context id="comment/single" format="comment" stayOnLine="true" ambiguous="true"> 
 		<start>%</start>
 		<stop exclusive="false">\n</stop>
 	</context>
-	
-	<embed target="(La)TeX">
-
 
 
 </QNFA>

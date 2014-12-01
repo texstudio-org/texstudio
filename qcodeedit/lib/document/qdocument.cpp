@@ -6553,17 +6553,23 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 		// draw text with caching
 		int pseudoWrap = 0;
+		h->lockForRead();
 		if (h->hasCookie(QDocumentLine::PICTURE_COOKIE)){
-			const QPixmap& pm = h->getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>();
+			QPixmap pm = h->getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>();
 
 			int ph = h->getPictureCookieHeight();
+			h->unlock();
 
 			pseudoWrap = ph/m_lineSpacing;
 			int x = (cxt.width - pm.width())/2;
 			int y = m_lineSpacing*(wrap+1-pseudoWrap) + (ph - pm.height()) / 2;
 			p->drawPixmap(x, y, pm);
+
+			h->lockForWrite();
 			h->setCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS, QRect(QPoint(x, y+pos), pm.size())); // +pos : correct for painter translation, saved point is in doc coordinates
+			h->unlock();
 		}
+		h->unlock();
 
 		bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
 		

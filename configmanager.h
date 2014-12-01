@@ -170,6 +170,7 @@ public:
     bool disableEscForClosingFullscreen;
 	bool goToErrorWhenDisplayingLog;
 	bool showLogMarkersWhenClickingLogEntry;
+	bool scanInstalledLatexPackages;
 
     // input unicode instead of latex command from symbolgrid (if available)
     bool insertUTF;
