@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!DOCTYPE KileSymbolSources>
+<symbols>
+
+   <formatVersion major="0" minor ="22" />
+
+   <symbolGroupName>user</symbolGroupName>
+
+   <preamble>
+      <class>article</class>
+      <arguments>12pt</arguments>
+      <additional>\pagestyle{empty}
+		  \setlength{\parindent}{0cm}
+		  \usepackage[T1]{fontenc}
+      </additional>
+   </preamble>
+
+   <unicodeCommandPackages>
+      <package>
+         <name>inputenc</name>
+         <arguments>utf8</arguments>
+      </package>
+   </unicodeCommandPackages>
+
+   <!-- insert stuff here    -->
+<symbolGroupName>greek</symbolGroupName>
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \alpha  -->
+<commandDefinition>
+   <latexCommand>\alpha</latexCommand>
+   <unicodeCommand>α</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \beta  -->
+<commandDefinition>
+   <latexCommand>\beta</latexCommand>
+   <unicodeCommand>β</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \gamma  -->
+<commandDefinition>
+   <latexCommand>\gamma</latexCommand>
+   <unicodeCommand>γ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \delta  -->
+<commandDefinition>
+   <latexCommand>\delta</latexCommand>
+   <unicodeCommand>δ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \epsilon  -->
+<commandDefinition>
+   <latexCommand>\epsilon</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varepsilon  -->
+<commandDefinition>
+   <latexCommand>\varepsilon</latexCommand>
+   <unicodeCommand>ε</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \zeta  -->
+<commandDefinition>
+   <latexCommand>\zeta</latexCommand>
+   <unicodeCommand>ζ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \eta  -->
+<commandDefinition>
+   <latexCommand>\eta</latexCommand>
+   <unicodeCommand>η</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \theta  -->
+<commandDefinition>
+   <latexCommand>\theta</latexCommand>
+   <unicodeCommand>θ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \vartheta  -->
+<commandDefinition>
+   <latexCommand>\vartheta</latexCommand>
+   <unicodeCommand>ϑ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \iota  -->
+<commandDefinition>
+   <latexCommand>\iota</latexCommand>
+   <unicodeCommand>ι</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \kappa  -->
+<commandDefinition>
+   <latexCommand>\kappa</latexCommand>
+   <unicodeCommand>κ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \lambda  -->
+<commandDefinition>
+   <latexCommand>\lambda</latexCommand>
+   <unicodeCommand>λ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \mu  -->
+<commandDefinition>
+   <latexCommand>\mu</latexCommand>
+   <unicodeCommand>μ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \nu  -->
+<commandDefinition>
+   <latexCommand>\nu</latexCommand>
+   <unicodeCommand>ν</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \xi  -->
+<commandDefinition>
+   <latexCommand>\xi</latexCommand>
+   <unicodeCommand>ξ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math o  -->
+<commandDefinition>
+   <latexCommand>o</latexCommand>
+   <unicodeCommand>ο</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \pi  -->
+<commandDefinition>
+   <latexCommand>\pi</latexCommand>
+   <unicodeCommand>π</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varpi  -->
+<commandDefinition>
+   <latexCommand>\varpi</latexCommand>
+   <unicodeCommand>ϖ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \rho  -->
+<commandDefinition>
+   <latexCommand>\rho</latexCommand>
+   <unicodeCommand>ρ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varrho  -->
+<commandDefinition>
+   <latexCommand>\varrho</latexCommand>
+   <unicodeCommand>ϱ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \sigma  -->
+<commandDefinition>
+   <latexCommand>\sigma</latexCommand>
+   <unicodeCommand>σ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varsigma  -->
+<commandDefinition>
+   <latexCommand>\varsigma</latexCommand>
+   <unicodeCommand>ς</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \tau  -->
+<commandDefinition>
+   <latexCommand>\tau</latexCommand>
+   <unicodeCommand>τ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \upsilon  -->
+<commandDefinition>
+   <latexCommand>\upsilon</latexCommand>
+   <unicodeCommand>υ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \phi  -->
+<commandDefinition>
+   <latexCommand>\phi</latexCommand>
+   <unicodeCommand>ϕ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varphi  -->
+<commandDefinition>
+   <latexCommand>\varphi</latexCommand>
+   <unicodeCommand>φ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \chi  -->
+<commandDefinition>
+   <latexCommand>\chi</latexCommand>
+   <unicodeCommand>χ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \psi  -->
+<commandDefinition>
+   <latexCommand>\psi</latexCommand>
+   <unicodeCommand>ψ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \omega  -->
+<commandDefinition>
+   <latexCommand>\omega</latexCommand>
+   <unicodeCommand>ω</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math A  -->
+<commandDefinition>
+   <latexCommand>A</latexCommand>
+   <unicodeCommand>Α</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math B  -->
+<commandDefinition>
+   <latexCommand>B</latexCommand>
+   <unicodeCommand>Β</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Gamma  -->
+<commandDefinition>
+   <latexCommand>\Gamma</latexCommand>
+   <unicodeCommand>Γ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varGamma  -->
+<commandDefinition>
+   <latexCommand>\varGamma</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Delta  -->
+<commandDefinition>
+   <latexCommand>\Delta</latexCommand>
+   <unicodeCommand>Δ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varDelta  -->
+<commandDefinition>
+   <latexCommand>\varDelta</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math E  -->
+<commandDefinition>
+   <latexCommand>E</latexCommand>
+   <unicodeCommand>Ε</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math Z  -->
+<commandDefinition>
+   <latexCommand>Z</latexCommand>
+   <unicodeCommand>Ζ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math H  -->
+<commandDefinition>
+   <latexCommand>H</latexCommand>
+   <unicodeCommand>Η</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Theta  -->
+<commandDefinition>
+   <latexCommand>\Theta</latexCommand>
+   <unicodeCommand>Θ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varTheta  -->
+<commandDefinition>
+   <latexCommand>\varTheta</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math I  -->
+<commandDefinition>
+   <latexCommand>I</latexCommand>
+   <unicodeCommand>Ι</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math K  -->
+<commandDefinition>
+   <latexCommand>K</latexCommand>
+   <unicodeCommand>Κ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Lambda  -->
+<commandDefinition>
+   <latexCommand>\Lambda</latexCommand>
+   <unicodeCommand>Λ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varLambda  -->
+<commandDefinition>
+   <latexCommand>\varLambda</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math M  -->
+<commandDefinition>
+   <latexCommand>M</latexCommand>
+   <unicodeCommand>Μ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math N  -->
+<commandDefinition>
+   <latexCommand>N</latexCommand>
+   <unicodeCommand>Ν</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Xi  -->
+<commandDefinition>
+   <latexCommand>\Xi</latexCommand>
+   <unicodeCommand>Ξ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varXi  -->
+<commandDefinition>
+   <latexCommand>\varXi</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math O  -->
+<commandDefinition>
+   <latexCommand>O</latexCommand>
+   <unicodeCommand>Ο</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Pi  -->
+<commandDefinition>
+   <latexCommand>\Pi</latexCommand>
+   <unicodeCommand>Π</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varPi  -->
+<commandDefinition>
+   <latexCommand>\varPi</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math P  -->
+<commandDefinition>
+   <latexCommand>P</latexCommand>
+   <unicodeCommand>Ρ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Sigma  -->
+<commandDefinition>
+   <latexCommand>\Sigma</latexCommand>
+   <unicodeCommand>Σ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varSigma  -->
+<commandDefinition>
+   <latexCommand>\varSigma</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math T  -->
+<commandDefinition>
+   <latexCommand>T</latexCommand>
+   <unicodeCommand>Τ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Upsilon  -->
+<commandDefinition>
+   <latexCommand>\Upsilon</latexCommand>
+   <unicodeCommand>ϒ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varUpsilon  -->
+<commandDefinition>
+   <latexCommand>\varUpsilon</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Phi  -->
+<commandDefinition>
+   <latexCommand>\Phi</latexCommand>
+   <unicodeCommand>Φ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varPhi  -->
+<commandDefinition>
+   <latexCommand>\varPhi</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math X  -->
+<commandDefinition>
+   <latexCommand>X</latexCommand>
+   <unicodeCommand>Χ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Psi  -->
+<commandDefinition>
+   <latexCommand>\Psi</latexCommand>
+   <unicodeCommand>Ψ</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varPsi  -->
+<commandDefinition>
+   <latexCommand>\varPsi</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Omega  -->
+<commandDefinition>
+   <latexCommand>\Omega</latexCommand>
+   <unicodeCommand>Ω</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amsmath ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \varOmega  -->
+<commandDefinition>
+   <latexCommand>\varOmega</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amsmath</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+</symbols>
