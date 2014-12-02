@@ -1566,11 +1566,11 @@ int LatexParser::lineEnd(const QByteArray& data, int index) {
 	else if (r<0) r=n;
 	n = qMin(n, r);
 
-	r = data.indexOf("\x20\x29",index);
+	r = data.indexOf("\x20\x29",index);  // unicode paragraph separator, note this is equivalent to " )" in ASCII but this duplication is ok for the current usecase of lineEnd()
 	if (n<0) n=r;
 	else if (r<0) r=n;
 	n = qMin(n, r);
-	if (n >= 0) return r;
+	if (n >= 0) return n;
 	return data.size();
 }
 
