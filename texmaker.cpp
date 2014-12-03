@@ -2286,25 +2286,28 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 	}
 	
 	// get a file name
-    QString fn =fileName;
-    if(!saveSilently || fn.isEmpty())
-        fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,fileFilters, &selectedFileFilter);
-	if (!fn.isEmpty()) {
-		static QRegExp fileExt("\\*(\\.[^ )]+)");
-		if (fileExt.indexIn(selectedFileFilter) > -1) {
-			//add
-			int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
-			int lastpoint=fn.lastIndexOf(".");
-			if (lastpoint <= lastsep) //if both aren't found or point is in directory name
-				fn.append(fileExt.cap(1));
+	QString fn =fileName;
+	if(!saveSilently || fn.isEmpty()) {
+		fn = QFileDialog::getSaveFileName(this,tr("Save As"),currentDir,fileFilters, &selectedFileFilter);
+		if (!fn.isEmpty()) {
+			static QRegExp fileExt("\\*(\\.[^ )]+)");
+			if (fileExt.indexIn(selectedFileFilter) > -1) {
+				//add
+				int lastsep=qMax(fn.lastIndexOf("/"),fn.lastIndexOf("\\"));
+				int lastpoint=fn.lastIndexOf(".");
+				if (lastpoint <= lastsep) //if both aren't found or point is in directory name
+					fn.append(fileExt.cap(1));
+			}
 		}
+	}
+	if (!fn.isEmpty()) {
 		if (getEditorViewFromFileName(fn) && getEditorViewFromFileName(fn) != currentEditorView()) {
 			// trying to save with same name as another already existing file
 			LatexEditorView *otherEdView = getEditorViewFromFileName(fn);
 			if (!otherEdView->document->isClean()) {
 				txsWarning(tr("Saving under the name\n"
 							  "%1\n"
-                              "is currently not possible because a modified version of a file\n"
+							  "is currently not possible because a modified version of a file\n"
 							  "with this name is open in TeXstudio. You have to save or close\n"
 							  "this other file before you can overwrite it.").arg(fn));
 				return;

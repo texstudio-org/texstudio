@@ -14,7 +14,7 @@
 \csname#S
 \end{minted}#S
 \expandafter#S
-\inputminted[options]{language}{file}#i
+\inputminted[options]{language}{file}#
 \listingscaption#S
 \listoflistings#S
 \listoflistingscaption#S

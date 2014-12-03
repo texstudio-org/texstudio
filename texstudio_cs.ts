@@ -5092,6 +5092,10 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
         <source>Close Message</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>PgUp</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PDFFontsDock</name>
