@@ -1666,6 +1666,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap>0);
 			documents.deleteDocument(existingView->document,true);
 			existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
+            existingView->editor->setHidden(false);
 			documents.addDocument(existingView->document,false);
 			EditorTabs->insertEditor(existingView);
 			updateOpenDocumentMenu(false);

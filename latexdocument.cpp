@@ -1750,6 +1750,7 @@ void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
             if(ed){
                 document->remeberAutoReload=ed->silentReloadOnExternalChanges();
                 ed->setSilentReloadOnExternalChanges(true);
+                ed->setHidden(true);
             }
         }
     }else{
@@ -1831,6 +1832,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
                 if(ed){
                     document->remeberAutoReload=ed->silentReloadOnExternalChanges();
                     ed->setSilentReloadOnExternalChanges(true);
+                    ed->setHidden(true);
                 }
             }
         }else{
