@@ -1135,7 +1135,7 @@ void QEditor::fileChanged(const QString& file)
 	{
 		watcher()->removeWatch(QString(), this); //no duplicated questions
 
-		if(mSilentReloadOnExternalChanges){ // if hidden, just close the editor
+        if(isHidden() && mSilentReloadOnExternalChanges){ // if hidden, just close the editor
             emit requestClose();
             return;
         }
