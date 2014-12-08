@@ -1566,11 +1566,11 @@ int LatexParser::lineEnd(const QByteArray& data, int index) {
 	else if (r<0) r=n;
 	n = qMin(n, r);
 
-	r = data.indexOf("\x20\x29",index);
+	r = data.indexOf("\x20\x29",index);  // unicode paragraph separator, note this is equivalent to " )" in ASCII but this duplication is ok for the current usecase of lineEnd()
 	if (n<0) n=r;
 	else if (r<0) r=n;
 	n = qMin(n, r);
-	if (n >= 0) return r;
+	if (n >= 0) return n;
 	return data.size();
 }
 
@@ -2094,6 +2094,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     if(rxCom.cap(1)=="\\begin"){
                         QString envName=rxCom.cap(3);
                         if(!envName.isEmpty()){
+							if (envName == "align" || envName == "foob" || envName == "barf") qDebug() << "*" << envName << "*" << env;
                             foreach(const QString& elem,env)
                                 package.environmentAliases.insert(rxCom.cap(3),elem);
                         }
@@ -2319,3 +2320,4 @@ bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLe
 	if (mostRecentList.count() > maxLength) mostRecentList.removeLast();
 	return changed;
 }
+
