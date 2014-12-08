@@ -2319,14 +2319,14 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 			fileClose();
 			EditorTabs->setCurrentEditor(currentEdView);
 		}
-		
+#ifndef NO_POPPLER_PREVIEW
 		// show message in viewer
 		if (currentEditor()->fileInfo() != QFileInfo(fn)) {
 			foreach (PDFDocument *viewer,PDFDocument::documentList())
 				if (viewer->getMasterFile() == currentEditor()->fileInfo())
 					viewer->showMessage(tr("This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result."));
 		}
-
+#endif
 		// save file
         removeDiffMarkers();// clean document from diff markers first
 		currentEditor()->save(fn);
