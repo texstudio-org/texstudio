@@ -1289,7 +1289,8 @@ void LatexEditorView::updateSettings(){
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);
 	editor->setFlag(QEditor::ShowPlaceholders, config->showPlaceholders);
-	editor->setSilentReloadOnExternalChanges(config->silentReload);
+    editor->setSilentReloadOnExternalChanges(config->silentReload);
+    editor->setHidden(false);
 	editor->setCursorSurroundingLines(config->cursorSurroundLines);
 	editor->setCursorBold(config->boldCursor);
 	lineMarkPanelAction->setChecked((config->showlinemultiples!=0) ||config->folding||config->showlinestate);
@@ -2407,6 +2408,36 @@ QDocumentCursor LatexEditorView::parenthizedTextSelection(const QDocumentCursor 
 	if (!from.hasSelection() || !to.hasSelection()) return QDocumentCursor();
 	QDocumentCursor::sort(from, to);
 	return QDocumentCursor(from.selectionStart(), to.selectionEnd());
+}
+
+/*
+ * finds the beginning of the specified allowedFormats
+ * additional formats can be allowed at the line end (e.g. comments)
+ */
+QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats)
+{
+	QDocumentCursor c(cursor);
+	QVector<int> lineFormats = c.line().getFormats();
+	int col = c.columnNumber();
+	if ((col > 0 && allowedFormats.contains(lineFormats[col-1]))  // prev char or next char is allowed
+        || (col<lineFormats.size() && allowedFormats.contains(lineFormats[col]))
+		) {
+		while (true) {
+			while (col>0 && allowedFormats.contains(lineFormats[col-1])) col--;
+			if (col > 0) break;
+			// continue on previous line
+			c.movePosition(1, QDocumentCursor::PreviousLine);
+			c.movePosition(1, QDocumentCursor::EndOfLine);
+			lineFormats = c.line().getFormats();
+			col = c.columnNumber();
+			QString text = c.line().text();
+			while (col>0 && (allowedLineEndFormats.contains(lineFormats[col-1]) || text[col-1].isSpace())) col--;
+
+		}
+		c.setColumnNumber(col);
+		return c;
+	}
+	return QDocumentCursor();
 }
 
 void LatexEditorView::triggeredThesaurus(){

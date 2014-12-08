@@ -132,6 +132,7 @@ public:
 	static void selectOptionInLatexArg(QDocumentCursor &cur);
     void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 	QDocumentCursor parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses=true);
+	QDocumentCursor findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats);
     void setLatexPackageList(QSet<QString> *lst){
         latexPackageList=lst;
     }

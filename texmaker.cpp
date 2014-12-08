@@ -1666,6 +1666,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap>0);
 			documents.deleteDocument(existingView->document,true);
 			existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
+            existingView->editor->setHidden(false);
 			documents.addDocument(existingView->document,false);
 			EditorTabs->insertEditor(existingView);
 			updateOpenDocumentMenu(false);
@@ -6951,15 +6952,34 @@ void Texmaker::previewLatex(){
 	if (c.hasSelection()) {
 		previewc = c; //X o riginalText = c.selectedText();
 	} else {
-		// if in math mode, move cursor to opening bracket
-		//TODO: Is there a more elegant solution to determine the beginning of a math environment.
-		QDocumentLine dl = c.line();
-		int col = c.columnNumber();
-		QList<int> mathFormats = QList<int>() << m_formats->id("numbers") << m_formats->id("math-keyword");
-		mathFormats.removeAll(0); // keep only valid entries in list
-		while(col>0 && mathFormats.contains(dl.getFormatAt(col-1))) col --;
-		c.setColumnNumber(col);
-		previewc = currentEditorView()->parenthizedTextSelection(c);
+		// math context
+		QSet<int> mathFormats = QSet<int>() << m_formats->id("numbers") << m_formats->id("math-keyword") << m_formats->id("align-ampersand");
+		QSet<int> lineEndFormats = QSet<int>() << m_formats->id("keyword") /* newline char */ << m_formats->id("comment");
+		mathFormats.remove(0); // keep only valid entries in list
+		lineEndFormats.remove(0);
+		previewc = currentEditorView()->findFormatsBegin(c, mathFormats, lineEndFormats);
+		previewc = currentEditorView()->parenthizedTextSelection(previewc);
+	}
+	if (!previewc.hasSelection()) {
+		// special handling for cusor in the middle of \[ or \]
+		if (c.previousChar()=='\\' and (c.nextChar()=='[' || c.nextChar() == ']')) {
+			c.movePosition(1, QDocumentCursor::PreviousCharacter);
+			previewc = currentEditorView()->parenthizedTextSelection(c);
+		}
+	}
+	if (!previewc.hasSelection()) {
+		// in environment delimiter (\begin{env} or \end{env})
+		QString command, value;
+		QString text = c.line().text();
+		LatexParser::getInstance().findContext(text, c.columnNumber(), command, value);
+		if (command == "\\begin" || command == "\\end") {
+			c.setColumnNumber(text.lastIndexOf(command, c.columnNumber()));
+			previewc = currentEditorView()->parenthizedTextSelection(c);
+		}
+	}
+	if (!previewc.hasSelection()) {
+		// already at parenthesis
+		previewc = currentEditorView()->parenthizedTextSelection(currentEditorView()->editor->cursor());
 	}
 	if (!previewc.hasSelection()) return;
 	

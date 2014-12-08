@@ -480,8 +480,7 @@ include(quazip/quazip/quazip.pri)
 
 # ###############################
 
-
-debug{
+CONFIG(debug, debug|release) {
     message(Creating debug version)
     CONFIG -= release
     QT += testlib
