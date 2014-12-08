@@ -2420,7 +2420,7 @@ QDocumentCursor LatexEditorView::findFormatsBegin(const QDocumentCursor &cursor,
 	QVector<int> lineFormats = c.line().getFormats();
 	int col = c.columnNumber();
 	if ((col > 0 && allowedFormats.contains(lineFormats[col-1]))  // prev char or next char is allowed
-		|| (col<lineFormats.length() && allowedFormats.contains(lineFormats[col]))
+        || (col<lineFormats.size() && allowedFormats.contains(lineFormats[col]))
 		) {
 		while (true) {
 			while (col>0 && allowedFormats.contains(lineFormats[col-1])) col--;
