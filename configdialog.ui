@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1937,13 +1937,6 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="4" column="2" colspan="2">
-               <widget class="QCheckBox" name="checkBoxToolTipPreview">
-                <property name="text">
-                 <string>Show preview as tooltip on formulas in editor</string>
-                </property>
-               </widget>
-              </item>
               <item row="5" column="0">
                <widget class="QCheckBox" name="checkBoxSmoothScrolling">
                 <property name="text">
@@ -2790,8 +2783,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3111,6 +3104,13 @@ them here.</string>
             </widget>
            </item>
            <item>
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="title">
+              <string>GroupBox</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer_4">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -3232,8 +3232,11 @@ them here.</string>
           </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_35">
+            <property name="toolTip">
+             <string>Update the preview on text change</string>
+            </property>
             <property name="text">
-             <string>Auto Preview:</string>
+             <string>Auto Update:</string>
             </property>
            </widget>
           </item>
@@ -3254,7 +3257,7 @@ them here.</string>
           <item row="3" column="0">
            <widget class="QLabel" name="label_36">
             <property name="text">
-             <string>Auto Preview Delay:</string>
+             <string>Auto Update Delay:</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
@@ -3297,6 +3300,13 @@ them here.</string>
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxToolTipPreview">
+            <property name="text">
+             <string>Show preview as tooltip on formulas in editor</string>
             </property>
            </widget>
           </item>
@@ -3601,6 +3611,13 @@ them here.</string>
            </widget>
           </item>
          </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_17">
+         <property name="title">
+          <string>GroupBox</string>
+         </property>
         </widget>
        </item>
        <item>
