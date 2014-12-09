@@ -7346,11 +7346,16 @@ void Texmaker::editInsertRefToNextLabel(const QString &refCmd, bool backward) {
 	if(m<0) return;
 	QDocumentLine dLine=currentEditor()->document()->line(m);
 	QString mLine=dLine.text();
-	QRegExp rx("\\\\label\\{(.*)\\}");
-	if(rx.indexIn(mLine)>-1){
-		currentEditor()->write(refCmd+"{"+rx.cap(1)+"}");
+	int col = mLine.indexOf("\\label");
+	if (col<0) return;
+	QString cmd;
+	ArgumentList args;
+	if (findCommandWithArgs(mLine, cmd, args, 0, col) >= 0) {
+		if (cmd != "\\label" || args.count(ArgumentList::Mandatory) < 1) return;
+		currentEditor()->write(refCmd+"{"+args.argContent(0, ArgumentList::Mandatory)+"}");
 	}
 }
+
 void Texmaker::editInsertRefToPrevLabel(const QString &refCmd) {
 	editInsertRefToNextLabel(refCmd, true);
 }
