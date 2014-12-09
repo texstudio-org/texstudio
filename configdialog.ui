@@ -3614,13 +3614,6 @@ them here.</string>
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_17">
-         <property name="title">
-          <string>GroupBox</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
