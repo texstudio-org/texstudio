@@ -1930,8 +1930,7 @@ QString LatexEditorView::extractMath(QDocumentCursor cursor) {
 }
 
 bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos) {
-     LatexParser ltxCommands=LatexParser::getInstance();
-     QStringList envAliases = ltxCommands.environmentAliases.values(environment);
+     QStringList envAliases = document->ltxCommands.environmentAliases.values(environment);
      if (((command=="\\begin" || command=="\\end") && envAliases.contains("math")) || command=="\\[" || command=="\\]") {
           while (!cursor.atLineStart() && cursor.nextChar()!='\\') {
                cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
