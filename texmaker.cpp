@@ -69,6 +69,8 @@
 
 
 
+const QString APPICON(":appicon");
+
 
 bool programStopped = false;
 Texmaker* txsInstance = 0;
@@ -1076,7 +1078,7 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	newManagedAction(menu, "checkinstall",tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
-    newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0,"appicon")->setMenuRole(QAction::AboutRole);
+    newManagedAction(menu, "appinfo",tr("About TeXstudio..."), SLOT(HelpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 	
 	//additional elements for development
 	
@@ -1159,7 +1161,7 @@ void Texmaker::setupToolBars() {
 				if (act) {
 					//Case 3: A normal QAction
 					if(act->icon().isNull())
-                        act->setIcon(QIcon("appicon"));
+                        act->setIcon(QIcon(APPICON));
 					mtb.toolbar->addAction(act);
 				} else {
 					QMenu* menu=qobject_cast<QMenu*>(obj);
