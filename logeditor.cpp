@@ -25,6 +25,16 @@ LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent) {
 LogEditor::~LogEditor() {
 }
 
+
+void LogEditor::wheelEvent(QWheelEvent* event) {
+	ConfigManagerInterface *config = ConfigManager::getInstance();
+	if (!config->getOption("Editor/Mouse Wheel Zoom").toBool()) {
+		event->setModifiers(event->modifiers() & ~Qt::ControlModifier);
+	}
+	QTextEdit::wheelEvent(event);
+}
+
+
 void LogEditor::insertLine(const QString& l) {
 	if (l.endsWith("\n")) append(l);
 	else append(l+"\n");
