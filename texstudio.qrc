@@ -31,7 +31,7 @@
         <file>images/egg.png</file>
         <file>images/splash.png</file>
         <file>images/splash_large.png</file>
-        <file>images/appicon.png</file>
+		<file alias="appicon">images/appicon.png</file>
         <file>images/previewicon.png</file>
         <file>images/include.png</file>
         <file>tags/asymptote_tags.xml</file>
