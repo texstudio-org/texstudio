@@ -22,6 +22,8 @@ public:
 	LogEditor(QWidget *parent);
 	~LogEditor();
 
+	void wheelEvent(QWheelEvent* event);
+
 public slots:
 	void insertLine(const QString& l);
 	void setCursorPosition(int parag, int index);
