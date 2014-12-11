@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -959,7 +959,7 @@ támogatott.</translation>
     <message>
         <location line="+5"/>
         <source>Asymptote</source>
-        <translation type="unfinished"></translation>
+        <translation>Aszimptota</translation>
     </message>
     <message>
         <location line="+377"/>
@@ -3758,7 +3758,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">A csomag nem található</translation>
+        <translation>A csomag nem található</translation>
     </message>
     <message>
         <location line="+1630"/>
@@ -3804,7 +3804,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Package present</source>
-        <translation type="vanished">Csomag létezik</translation>
+        <translation>Csomag létezik</translation>
     </message>
     <message>
         <location line="+267"/>
@@ -4654,7 +4654,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <source>PgDown</source>
-        <translation type="vanished">PgDown</translation>
+        <translation>PgDown</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -4663,7 +4663,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <source>PgUp</source>
-        <translation type="vanished">PgUp</translation>
+        <translation>PgUp</translation>
     </message>
     <message>
         <location line="+177"/>
@@ -4711,7 +4711,7 @@ Megnyitása programösszeomlást okozhat. Két másodpercenként megpróbálkozu
     <message>
         <location line="+517"/>
         <source>Close Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Üzenet bezárása</translation>
     </message>
     <message>
         <location filename="PDFDocument.ui" line="-444"/>
@@ -5286,27 +5286,27 @@ Megnyitása programösszeomlást okozhat. Két másodpercenként megpróbálkozu
     <name>PreviewWidget</name>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">nagyítás</translation>
+        <translation>nagyítás</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">kicsinyítés</translation>
+        <translation>kicsinyítés</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">alaphelyzet</translation>
+        <translation>alaphelyzet</translation>
     </message>
     <message>
         <source>fit</source>
-        <translation type="vanished">illesztés</translation>
+        <translation>illesztés</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">balra rendezett kép</translation>
+        <translation>balra rendezett kép</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">középre rendezett kép</translation>
+        <translation>középre rendezett kép</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
@@ -5349,7 +5349,7 @@ Megnyitása programösszeomlást okozhat. Két másodpercenként megpróbálkozu
     <message>
         <location line="+3"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX változatot,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a &quot;Parancsok&quot; beállítási fülön.&lt;br&gt; A(La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztés nélkül dolgozni.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -6223,22 +6223,22 @@ Akarja menteni ezeket?</translation>
     <message>
         <location line="+20"/>
         <source>asymptote:type</source>
-        <translation type="unfinished"></translation>
+        <translation>aszimptota:típus</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>aszimptota:kulcsszó</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:number</source>
-        <translation type="unfinished"></translation>
+        <translation>aszimptota:szám</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:string</source>
-        <translation type="unfinished"></translation>
+        <translation>aszimptota:szöveg</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7979,7 +7979,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Nyomtatás...</translation>
+        <translation>Nyomtatás...</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -9348,7 +9348,7 @@ included document in %1</source>
     <message>
         <location line="+2"/>
         <source>Asymptote files</source>
-        <translation type="unfinished"></translation>
+        <translation>Aszimptota fájlok</translation>
     </message>
     <message>
         <location line="+298"/>
@@ -9673,7 +9673,7 @@ included document in %1</source>
     <message>
         <location line="-4547"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ezt a pdf fájlt nem lehet többé szinkronizálni a tex forrásával, mert az át lett nevezve egy &quot;Mentés másként&quot; művelet során. Az átnevezett tex fájlt fordítsa le és annak eretményét nézze.</translation>
     </message>
     <message>
         <location line="+91"/>
