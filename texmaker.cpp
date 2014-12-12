@@ -2596,7 +2596,8 @@ bool Texmaker::canCloseNow(){
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
 		viewer->saveGeometryToConfig();
 #endif
-	SaveSettings();
+    SaveSettings(); // position not optimal, as unsaved documents might get a name later (closeAllFilesAsking)
+    // those documents are not taken into the stored session ...
 	bool accept = closeAllFilesAsking();
 	if (accept){
 		if (userMacroDialog) delete userMacroDialog;
@@ -2877,7 +2878,8 @@ Session Texmaker::getCurrentSession() {
 		f.cursorCol = edView->editor->cursor().columnNumber();
 		f.firstLine = edView->editor->getFirstVisibleLine();
 		f.foldedLines = edView->document->foldedLines();
-		s.addFile(f);
+        if(!f.fileName.isEmpty())
+            s.addFile(f);
 	}
 	s.setMasterFile(documents.singleMode()?"":documents.masterDocument->getFileName());
 	s.setCurrentFile(currentEditorView()?currentEditor()->fileName():"");
