@@ -673,7 +673,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 			              << "/usr/share/hunspell" << "/usr/share/myspell" ;
 #endif
 #ifdef Q_OS_MAC
-			fallBackPaths << "/Applications/texstudio.app/Contents/Resources";
+            fallBackPaths << parseDir("[txs-app-dir]/Contents/Resources")<< "/Applications/texstudio.app/Contents/Resources";
 #endif
 			dic=findResourceFile(QString(QLocale::system().name())+".dic", true, temp, fallBackPaths);
 			if (dic=="") spell_dic=findResourceFile("en_US.dic", true, temp, fallBackPaths);
@@ -2853,7 +2853,7 @@ void ConfigManager::getDefaultEncoding(const QByteArray&, QTextCodec*&guess, int
 }
 
 QString ConfigManager::parseDir(QString s) const {
-	QString cbd = configBaseDir;
+    //QString cbd = configBaseDir;
 	s.replace("[txs-settings-dir]", removePathDelim(configBaseDir));
 	s.replace("[txs-app-dir]", removePathDelim(QCoreApplication::applicationDirPath()));
 	return s;
