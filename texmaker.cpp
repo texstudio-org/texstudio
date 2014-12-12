@@ -425,6 +425,7 @@ SymbolGridWidget* Texmaker::addSymbolGrid(const QString& SymbolList,  const QStr
 	SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(leftPanel->widget(SymbolList));
 	if (!list) {
 		list=new SymbolGridWidget(this,SymbolList,MapForSymbols);
+        list->setSymbolSize(configManager.guiSymbolSize);
 		list->setProperty("isSymbolGrid",true);
 		connect(list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		connect(list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
@@ -5650,7 +5651,11 @@ void Texmaker::GeneralOptions() {
         configManager.possibleMenuSlots = configManager.possibleMenuSlots.filter(QRegExp("^[^*]+$"));
     }
 #endif
-	
+    // GUI scaling
+    connect(&configManager,SIGNAL(iconSizeChanged(int)),this,SLOT(changeIconSize(int)));
+    connect(&configManager,SIGNAL(centralIconSizeChanged(int)),this,SLOT(changeCentralIconSize(int)));
+    connect(&configManager,SIGNAL(symbolSizeChanged(int)),this,SLOT(changeSymbolSize(int)));
+
 	if (configManager.execConfigDialog()) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -5719,6 +5724,19 @@ void Texmaker::GeneralOptions() {
 		}
 		if (oldReplaceQuotes != configManager.replaceQuotes)
 			updateUserMacros();
+        // scale GUI
+        changeIconSize(configManager.guiToolbarIconSize);
+        changeCentralIconSize(configManager.guiSecondaryToolbarIconSize);
+        changeSymbolSize(configManager.guiSymbolSize,false);
+        /*setIconSize(QSize(configManager.guiToolbarIconSize,configManager.guiToolbarIconSize));
+        centralToolBar->setIconSize(QSize(configManager.guiSecondaryToolbarIconSize,configManager.guiSecondaryToolbarIconSize));
+        QList<QWidget*> lstOfWidgets=leftPanel->getWidgets();
+        foreach(QWidget *wdg,lstOfWidgets){
+            SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(wdg);
+            if(list){
+                list->setSymbolSize(configManager.guiSymbolSize);
+            }
+        }*/
 		//custom toolbar
 		setupToolBars();
 		// custom evironments
@@ -9326,6 +9344,32 @@ void Texmaker::searchExtendToggled(bool toggled){
     updateFindGlobal(outputView->getSearchScope());
     outputView->setSearchEditors(docs);
 }
+
+void Texmaker::changeIconSize(int value)
+{
+    setIconSize(QSize(value,value));
+}
+
+void Texmaker::changeCentralIconSize(int value)
+{
+    centralToolBar->setIconSize(QSize(value,value));
+}
+
+void Texmaker::changeSymbolSize(int value,bool changePanel)
+{
+    if(!qobject_cast<SymbolGridWidget*>(leftPanel->currentWidget())){
+        // no symbols visible
+        leftPanel->setCurrentWidget(leftPanel->widget("greek"));
+    }
+    QList<QWidget*> lstOfWidgets=leftPanel->getWidgets();
+    foreach(QWidget *wdg,lstOfWidgets){
+        SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(wdg);
+        if(list){
+            list->setSymbolSize(value);
+        }
+    }
+}
+
 
 void Texmaker::colonTyped(){
     if (!currentEditorView())	return;

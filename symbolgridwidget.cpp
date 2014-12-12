@@ -34,6 +34,11 @@ SymbolGridWidget::~SymbolGridWidget(){
 		delete(elem);
 	listOfItems.clear();
 }
+void SymbolGridWidget::setSymbolSize(int size){
+    setIconSize(QSize(size,size));
+    if(mLoadedSymbols)
+        adaptTable();
+}
 QString SymbolGridWidget::getCurrentSymbol(){
 	QTableWidgetItem * cur=currentItem();
 	if (!cur) return QString();
@@ -47,10 +52,11 @@ void SymbolGridWidget::loadSymbols(const QStringList& fileNames, QVariantMap *Ma
 	}
 	listOfItems.clear();
 	setColumnCount(4);
+    const int sz=iconSize().width()+4;
 	int rows=fileNames.isEmpty()?3:(fileNames.size()/4+1);
 	setRowCount(rows);
-	for (int j = 0; j < rows; ++j) setRowHeight(j,36);
-	for(int j=0;j < 4;++j) setColumnWidth(j,36);
+    for (int j = 0; j < rows; ++j) setRowHeight(j,sz);
+    for(int j=0;j < 4;++j) setColumnWidth(j,sz);
 	int cols=columnCount();
 	
 	countOfItems=fileNames.size();
@@ -197,22 +203,26 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent * event )
 
 	    loadSymbols(fullNames,mMap);
 	}
-	//qDebug("%d",event->size());
 	QTableWidget::resizeEvent(event);
-	// remove remaining old items
-	//	qDebug("1");
+    adaptTable();
+}
+
+void SymbolGridWidget::adaptTable(){
 	int numberOfColumns=columnCount();
 	for(int i=0;i<rowCount()*columnCount();i++){
 		//delete(item(i/numberOfColumns,i%numberOfColumns));
 		takeItem(i/numberOfColumns,i%numberOfColumns);
 	}
+
+    const int sz=iconSize().width()+4;
 	// add items with adapted number of columns
-	numberOfColumns=event->size().width()/36;
+    //numberOfColumns=event->size().width()/sz;
+    numberOfColumns=width()/sz;
 	//	qDebug("1.5");
 	setColumnCount(numberOfColumns);
 	setRowCount(countOfItems/numberOfColumns+1);
-	for(int j = 0; j < countOfItems/numberOfColumns+1; ++j) setRowHeight(j,36);
-	for(int j=0;j < numberOfColumns;++j) setColumnWidth(j,36);
+    for(int j = 0; j < countOfItems/numberOfColumns+1; ++j) setRowHeight(j,sz);
+    for(int j=0;j < numberOfColumns;++j) setColumnWidth(j,sz);
 
 	//	qDebug(qPrintable(QString("2:%1").arg((int)this)));
 	for (int i = 0; i < listOfItems.size(); ++i) {
