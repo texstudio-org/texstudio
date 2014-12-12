@@ -125,6 +125,7 @@ public:
 	QString hiddenWidgets() const; 
 	QWidget* widget(int i) const;
 	QWidget* widget(const QString& id) const;
+    QList<QWidget*> getWidgets() const;
 	void setCurrentWidget(QWidget* widget);
 	QWidget* currentWidget() const;
 	bool isNewLayoutStyleEnabled() const;

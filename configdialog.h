@@ -142,6 +142,8 @@ private slots:
 	void custSyntaxAddLine();
 	void custSyntaxRemoveLine();
 
+    void revertClicked();
+
 private:
 	bool askRiddle();
     void hideShowAdvancedOptions(QWidget* w, bool on);

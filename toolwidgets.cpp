@@ -660,6 +660,9 @@ QWidget* CustomWidgetList::widget(const QString& id) const{
 			return widgets[i];
 	return 0;
 }
+QList<QWidget*> CustomWidgetList::getWidgets() const{
+    return widgets;
+}
 void CustomWidgetList::setCurrentWidget(QWidget* widget){
 	if (newStyle) {
 		stack->setCurrentWidget(widget);

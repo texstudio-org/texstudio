@@ -421,6 +421,7 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
     createIcon(tr("Shortcuts"),getRealIcon("config_shortcut"));
     createIcon(tr("Menus"),getRealIcon("config_latexmenus"), true);
     createIcon(tr("Toolbars"),getRealIcon("config_toolbars"), true);
+    createIcon(tr("GUI Scaling"),getRealIcon("config_toolbars"), true);
     createIcon(tr("Editor"),getRealIcon("config_editor"));
     createIcon(tr("Adv. Editor"),getRealIcon("config_advancededitor"), true);
     createIcon(tr("Syntax Highlighting"),getRealIcon("config_highlighting"));
@@ -463,17 +464,6 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxUseSystemTheme->setVisible(false);
 #endif
 	
-	QRect screen = QApplication::desktop()->screenGeometry();
-	if (!screen.isEmpty()) {
-		int nwidth = width(), nheight = height();
-		if (nwidth > screen.width()) nwidth = screen.width();
-		if (nheight > screen.height()) nheight = screen.height();
-		if (nwidth == width() && nheight == height()) return;
-		resize(nwidth, nheight);
-		move(frameGeometry().right() > screen.right()?screen.left():x(),
-		     frameGeometry().bottom() > screen.bottom()?screen.left():y());
-	}
-
 #if QT_VERSION < 0x040800
 	ui.checkBoxVisualColumnMode->setChecked(false);
 	ui.checkBoxVisualColumnMode->setEnabled(false);
@@ -487,6 +477,24 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
     ui.comboBoxPreviewMode->removeItem(l-1);
     // maybe add some possibility to disable some preview modes in poppler mode
 #endif
+
+    // set-up GUI scaling
+    connect(ui.tbRevertIcon,SIGNAL(clicked()),this,SLOT(revertClicked()));
+    connect(ui.tbRevertCentralIcon,SIGNAL(clicked()),this,SLOT(revertClicked()));
+    connect(ui.tbRevertSymbol,SIGNAL(clicked()),this,SLOT(revertClicked()));
+
+    // limit dialog size
+    QRect screen = QApplication::desktop()->screenGeometry();
+    if (!screen.isEmpty()) {
+        int nwidth = width(), nheight = height();
+        if (nwidth > screen.width()) nwidth = screen.width();
+        if (nheight > screen.height()) nheight = screen.height();
+        if (nwidth == width() && nheight == height()) return;
+        resize(nwidth, nheight);
+        move(frameGeometry().right() > screen.right()?screen.left():x(),
+             frameGeometry().bottom() > screen.bottom()?screen.left():y());
+    }
+
 }
 
 ConfigDialog::~ConfigDialog() {
@@ -514,6 +522,20 @@ void ConfigDialog::changePage(QListWidgetItem *current, QListWidgetItem *previou
 	ui.pagesWidget->setCurrentIndex(lastUsedPage);
 }
 
+void ConfigDialog::revertClicked(){
+    QToolButton *bt=qobject_cast<QToolButton*>(sender());
+    if(bt){
+        if(bt->objectName()=="tbRevertIcon"){
+            ui.horizontalSliderIcon->setValue(22);
+        }
+        if(bt->objectName()=="tbRevertCentralIcon"){
+            ui.horizontalSliderCentraIcon->setValue(16);
+        }
+        if(bt->objectName()=="tbRevertSymbol"){
+            ui.horizontalSliderSymbol->setValue(32);
+        }
+    }
+}
 
 //sets the items of a combobox to the filenames and sub-directory names in the directory which name
 //is the current text of the combobox
@@ -965,4 +987,5 @@ bool ConfigDialog::askRiddle(){
 	return false;
 	*/
 }
+
 
