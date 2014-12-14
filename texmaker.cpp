@@ -1627,7 +1627,7 @@ void guessLanguageFromContent(QLanguageFactory* m_languages, QEditor* e){
 		m_languages->setLanguage(e, ".xml");
 }
 
-LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,bool recheck) {
+LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,bool recheck,bool dontAsk) {
 	QString f_real=f;
 #ifdef Q_OS_WIN32
 	QRegExp regcheck("/([a-zA-Z]:[/\\\\].*)");
@@ -1713,7 +1713,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	if (!QFile::exists(f_real)) return 0;
 	QFile file(f_real);
 	if (!file.open(QIODevice::ReadOnly)) {
-        if(!hidden)
+        if(!hidden && !dontAsk)
             QMessageBox::warning(this,tr("Error"), tr("You do not have read permission to the file %1.").arg(f_real));
 		return 0;
 	}
@@ -2825,7 +2825,7 @@ void Texmaker::restoreSession(const Session &s, bool showProgress, bool warnMiss
 			progress.setValue(i);
 			progress.setLabelText(QFileInfo(f.fileName).fileName());
 		}
-        LatexEditorView* edView=load(f.fileName, f.fileName==s.masterFile(),false,false);
+        LatexEditorView* edView=load(f.fileName, f.fileName==s.masterFile(),false,false,true);
 		if (edView) {
 			int line = f.cursorLine;
 			int col = f.cursorCol;
