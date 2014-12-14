@@ -2589,7 +2589,7 @@ repeatAfterFileSavingFailed:
 	return true;
 }
 
-bool Texmaker::closeAllFiles() {
+void Texmaker::closeAllFiles() {
 	while (currentEditorView())
 		documents.deleteDocument(currentEditorView()->document);
 	updateOpenDocumentMenu();
