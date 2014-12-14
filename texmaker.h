@@ -122,7 +122,8 @@ private:
 	void setupToolBars();
 	void createStatusBar();
 	bool ActivateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
-	bool closeAllFilesAsking(); //asks the user and close all files
+	bool saveAllFilesForClosing(); // checks for unsaved files and asks the user if they should be saved
+	void closeAllFiles();
 	bool canCloseNow(); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
 	

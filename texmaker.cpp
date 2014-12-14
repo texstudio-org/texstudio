@@ -2547,9 +2547,10 @@ repeatAfterFileSavingFailed:
 }
 
 void Texmaker::fileCloseAll() {
-	closeAllFilesAsking();
-	documents.setMasterDocument(0);
-	UpdateCaption();
+	bool accept = saveAllFilesForClosing();
+	if (accept) {
+		closeAllFiles();
+	}
 }
 
 void Texmaker::fileExit() {
@@ -2557,10 +2558,12 @@ void Texmaker::fileExit() {
 		qApp->quit();
 }
 
-bool Texmaker::closeAllFilesAsking(){
-	while (currentEditorView()) {
+bool Texmaker::saveAllFilesForClosing(){
+	LatexEditorView *savedCurrentEditorView = currentEditorView();
+	foreach(LatexEditorView *edView, EditorTabs->editors()) {
 repeatAfterFileSavingFailed:
-		if (currentEditorView()->editor->isContentModified()) {
+		if (edView->editor->isContentModified()) {
+			EditorTabs->setCurrentEditor(edView);
 			switch (QMessageBox::warning(this, TEXSTUDIO,
 																	 tr("The document \"%1\" contains unsaved work. "
 																			"Do you want to save it before closing?").arg(currentEditorView()->displayName()),
@@ -2571,43 +2574,48 @@ repeatAfterFileSavingFailed:
 				fileSave();
 				if (currentEditorView()->editor->isContentModified())
 					goto repeatAfterFileSavingFailed;
-				documents.deleteDocument(currentEditorView()->document);
 				break;
 			case 1:
-				documents.deleteDocument(currentEditorView()->document);
 				break;
 			case 2:
 			default:
 				updateOpenDocumentMenu();
+				EditorTabs->setCurrentEditor(savedCurrentEditorView);
 				return false;
 			}
-		} else
-			documents.deleteDocument(currentEditorView()->document);
+		}
 	}
+	EditorTabs->setCurrentEditor(savedCurrentEditorView);
+	return true;
+}
+
+bool Texmaker::closeAllFiles() {
+	while (currentEditorView())
+		documents.deleteDocument(currentEditorView()->document);
+	updateOpenDocumentMenu();
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
 		viewer->close();
 #endif
-	updateOpenDocumentMenu();
-	return true;
+	documents.setMasterDocument(0);
+	UpdateCaption();
 }
 
 bool Texmaker::canCloseNow(){
+	if(!saveAllFilesForClosing()) return false;
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
 		viewer->saveGeometryToConfig();
 #endif
-    SaveSettings(); // position not optimal, as unsaved documents might get a name later (closeAllFilesAsking)
-    // those documents are not taken into the stored session ...
-	bool accept = closeAllFilesAsking();
-	if (accept){
-		if (userMacroDialog) delete userMacroDialog;
-		spellerManager.unloadAll();  //this saves the ignore list
-	}
+	SaveSettings();
+	closeAllFiles();
+	if (userMacroDialog) delete userMacroDialog;
+	spellerManager.unloadAll();  //this saves the ignore list
 	programStopped = true;
     Guardian::shutdown();
-	return accept;
+	return true;
 }
+
 void Texmaker::closeEvent(QCloseEvent *e) {
 	if (canCloseNow())  e->accept();
 	else e->ignore();
