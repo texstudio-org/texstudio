@@ -724,9 +724,9 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 					ReferencePair elem;
 					elem.name=firstArg;
                     int optionStart = 0;
-                    for (int i=0; i<args.length(); i++) {
-                        if (args.argType(i) == ArgumentList::Mandatory) {
-							optionStart = arg_Starts[i];
+					for (int j=0; j<args.length(); j++) {
+						if (args.argType(j) == ArgumentList::Mandatory) {
+							optionStart = arg_Starts[j];
                             break;
                         }
                     }
