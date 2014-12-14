@@ -83,7 +83,7 @@ public:
 	bool tobemaximized,tobefullscreen;
 
 public slots:
-    LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false, bool recheck=true);
+    LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false, bool recheck=true,bool dontAsk=false);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
 	void startupCompleted();
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
