@@ -2565,11 +2565,11 @@ repeatAfterFileSavingFailed:
 		if (edView->editor->isContentModified()) {
 			EditorTabs->setCurrentEditor(edView);
 			switch (QMessageBox::warning(this, TEXSTUDIO,
-																	 tr("The document \"%1\" contains unsaved work. "
-																			"Do you want to save it before closing?").arg(currentEditorView()->displayName()),
-																	 tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
-																	 0,
-																	 2)) {
+										 tr("The document \"%1\" contains unsaved work. "
+												"Do you want to save it before closing?").arg(edView->displayName()),
+										 tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
+										 0,
+										 2)) {
 			case 0:
 				fileSave();
 				if (currentEditorView()->editor->isContentModified())
