@@ -28,7 +28,9 @@ bool Session::load(const QString &file) {
 			break;
 		s.beginGroup(QString("File%1").arg(i));
 		FileInSession f;
-		f.fileName = QDir::cleanPath(dir.filePath(s.value("FileName").toString()));
+		QString filename = s.value("FileName").toString();
+		if (filename.isEmpty()) continue;
+		f.fileName = QDir::cleanPath(dir.filePath(filename));
 		f.cursorLine = s.value("Line", 0).toInt();
 		f.cursorCol = s.value("Col", 0).toInt();
 		f.firstLine = s.value("FirstLine", 0).toInt();
