@@ -27,7 +27,7 @@ private slots:
 		QFETCH(QString, fileWithoutPath);
 		if (!globalExecuteAllTests) { qDebug("skip"); return; }
         QStringList lst=fileWithoutPath.split(";");
-		QString file = Help::packageDocFile(package);
+		QString file = Help::packageDocFile(package, true);
         bool found=false;
         for(int i=(lst.count()-1);i>0;i--){
             QString fileName=lst.at(i);

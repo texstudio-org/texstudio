@@ -63,7 +63,7 @@ bool Help::isMiktexTexdoc() {
 	return (texDocSystem==1);
 }
 
-QString Help::packageDocFile(const QString &package) {
+QString Help::packageDocFile(const QString &package, bool silent) {
 	QStringList args;
 	if (Help::isMiktexTexdoc()) {
 		args << "--list-only";
@@ -75,7 +75,9 @@ QString Help::packageDocFile(const QString &package) {
 	updatePathSettings(&proc, getAdditionalCmdSearchPath());
 	proc.start("texdoc", args);
 	if (!proc.waitForFinished(2000)) {
-		txsWarning(QString(tr("texdoc did not respond to query on package:")+"\n%1").arg(package));
+		if (!silent) {
+			txsWarning(QString(tr("texdoc did not respond to query on package:")+"\n%1").arg(package));
+		}
 		return QString();
 	}
 	QString output = proc.readAllStandardOutput();
