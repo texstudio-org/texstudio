@@ -11,7 +11,7 @@ public:
 
 	static bool isMiktexTexdoc();
 	static int texDocSystem;
-	static QString packageDocFile(const QString &package);
+	static QString packageDocFile(const QString &package, bool silent=false);
 
 	
 signals:
