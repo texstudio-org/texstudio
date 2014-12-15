@@ -217,7 +217,7 @@ void SymbolGridWidget::adaptTable(){
     const int sz=iconSize().width()+4;
 	// add items with adapted number of columns
     //numberOfColumns=event->size().width()/sz;
-    numberOfColumns=width()/sz;
+	numberOfColumns=qMax(1, width()/sz);
 	//	qDebug("1.5");
 	setColumnCount(numberOfColumns);
 	setRowCount(countOfItems/numberOfColumns+1);
