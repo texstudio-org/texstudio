@@ -2056,11 +2056,11 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Auto Preview:</source>
-        <translation>Automatický náhled:</translation>
+        <translation type="vanished">Automatický náhled:</translation>
     </message>
     <message>
         <source>Auto Preview Delay:</source>
-        <translation>Zpoždění automatického náhledu:</translation>
+        <translation type="vanished">Zpoždění automatického náhledu:</translation>
     </message>
     <message>
         <source>Full Page PDF Preview</source>
@@ -2638,6 +2638,50 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
     </message>
     <message>
         <source>Asymptote</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scaling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>scale central toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>revert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>scale symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>scale toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scan LaTeX distribution for installed packages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GroupBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update the preview on text change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Update:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Update Delay:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GUI Scaling</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5090,10 +5134,6 @@ nevypadá jako platný dokument PDF. Buď je soubor poškozen, nebo se právě v
     </message>
     <message>
         <source>Close Message</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PgUp</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
