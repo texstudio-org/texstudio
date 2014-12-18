@@ -5356,7 +5356,7 @@ void Texmaker::endRunningCommand(const QString& commandMain, bool latex, bool pd
 
 void Texmaker::processNotification(const QString& message){
     if(message.startsWith(tr("Error:")))
-        outputView->setVisible(true);
+        outputView->showPage(outputView->MESSAGES_PAGE);
 	outputView->insertMessageLine(message+"\n");
 }
 
