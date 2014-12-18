@@ -612,6 +612,10 @@ ExpandedCommands BuildManager::expandCommandLine(const QString& str, ExpandingOp
 			if (cmd.isEmpty()) { 
 				if (options.nestingDeep == 1) txsWarning(tr("Command %1 not defined").arg(subcmd)); 
 				else if (cmdName != "pre-compile") qDebug() << tr("Command %1 not defined").arg(subcmd); //pre-compile is expecte
+                if(cmdName != "pre-compile"){
+                    res.commands<<CommandToRun(""); // add empty command to provoke an error on higher level. Otherwise the missing of the command is simply ignoed e.g. txs:/quick without empty pdflatex
+                    res.primaryCommand="";
+                }
 				continue; 
 			}
 			
@@ -1050,7 +1054,30 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	ExpandingOptions options(mainFile, currentFile, currentLine);
 	ExpandedCommands expansion = expandCommandLine(unparsedCommandLine, options);
 	if (options.canceled) return false;
-	if (expansion.commands.isEmpty()) return true;
+    if (expansion.commands.isEmpty()) {
+        emit processNotification(tr("Error: No command expanded"));
+        if (!BuildManager_hadSuccessfulProcessStart){
+            emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
+                                        "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+        }
+
+        return false;
+    }
+    // check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
+    bool emptyCommand=false;
+    foreach(const CommandToRun elem,expansion.commands) {
+        if(elem.command.isEmpty())
+            emptyCommand=true;
+    }
+    if (emptyCommand) {
+        emit processNotification(tr("Error: One command expansion invalid."));
+        if (!BuildManager_hadSuccessfulProcessStart){
+            emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
+                                        "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+        }
+
+        return false;
+    }
 	
 	bool latexCompiled = false, pdfChanged = false;
 	for (int i=0;i<expansion.commands.size();i++){
