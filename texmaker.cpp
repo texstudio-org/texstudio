@@ -1125,11 +1125,10 @@ void Texmaker::setupToolBars() {
 	QMap<QString, QVariant>::const_iterator i = configManager.replacedIconsOnMenus.constBegin();
 	while (i != configManager.replacedIconsOnMenus.constEnd()) {
 		QString id=i.key();
-		QVariant zw=i.value();
+		QString iconFilename=configManager.parseDir(i.value().toString());
 		QObject *obj=configManager.menuParent->findChild<QObject*>(id);
 		QAction *act=qobject_cast<QAction*>(obj);
-		if (act && zw.canConvert<QString>()) act->setIcon(QIcon(zw.toString()));
-		//qDebug() << "Icon:" << id << zw.toString();
+		if (act && !iconFilename.isEmpty()) act->setIcon(QIcon(iconFilename));
 		++i;
 	}
 	//setup customizable toolbars
