@@ -5450,14 +5450,13 @@ bool Texmaker::LogExists() {
 bool Texmaker::loadLog() {
 	outputView->getLogWidget()->resetLog();
 	if (!documents.getCurrentDocument()) return false;
-	QString finame=documents.getTemporaryCompileFileName();
-	if (finame=="") {
-		QMessageBox::warning(this,tr("Error"),tr("File must be saved and compiling before you can view the log"));
+	QString compileFileName = documents.getTemporaryCompileFileName();
+	if (compileFileName == "") {
+		QMessageBox::warning(this tr("Error"), tr("File must be saved and compiling before you can view the log"));
 		return false;
 	}
-	QString logname=buildManager.findFile(getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log"), buildManager.additionalLogPaths);
-	QFileInfo fic(logname);
-	return outputView->getLogWidget()->loadLogFile(logname,documents.getTemporaryCompileFileName());
+	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), buildManager.additionalLogPaths);
+	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName);
 }
 
 void Texmaker::showLog() {

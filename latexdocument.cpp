@@ -75,6 +75,7 @@ LatexEditorView *LatexDocument::getEditorView() const{
 QString LatexDocument::getFileName() const{
 	return fileName;
 }
+
 bool LatexDocument::isHidden(){
     return parent->hiddenDocuments.contains(this);
 }
@@ -1997,6 +1998,17 @@ QString LatexDocuments::getTemporaryCompileFileName() const {
 	return "";
 }
 
+QString LatexDocuments::getLogFileName() const {
+	if (!currentDocument) return QString();
+	LatexDocument *mainDoc = currentDocument->getTopMasterDocument();
+	QString jobName = mainDoc->getMagicComment("-job-name");
+	if (!jobName.isEmpty()) {
+		return ensureTrailingDirSeparator(mainDoc->getFileInfo().absolutePath()) + jobName + ".log";
+	} else {
+		return replaceFileExtension(getTemporaryCompileFileName(), ".log");
+	}
+}
+
 QString LatexDocuments::getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths) const {
 	if (!currentDocument) return relName;
 	return currentDocument->getAbsoluteFilePath(relName, extension, additionalSearchPaths);
@@ -2761,7 +2773,7 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 	}
 }
 
-QString LatexDocument::getMagicComment(const QString& name) {
+QString LatexDocument::getMagicComment(const QString& name) const{
 	QString seName;
 	QString val;
 	StructureEntryIterator iter(magicCommentList);
@@ -2774,7 +2786,7 @@ QString LatexDocument::getMagicComment(const QString& name) {
 	return QString();
 }
 
-QDocumentLineHandle* LatexDocument::getMagicCommentLineHandle(const QString& name) {
+QDocumentLineHandle* LatexDocument::getMagicCommentLineHandle(const QString& name) const{
 	QString seName;
 	QString val;
 	
