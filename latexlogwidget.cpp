@@ -2,19 +2,31 @@
 #include "smallUsefulFunctions.h"
 #include "configmanager.h"
 
+/*
+ * row heights of tables are quite large by default. Experimentally detect the
+ * optimal row height in a portable way by resizing to contents and getting
+ * the resulting row height
+ */
+int getOptimalRowHeight(QTableView *tableView) {
+	QAbstractItemModel *model = tableView->model();
+	QStandardItemModel testModel;
+	QStandardItem item("Test");
+	testModel.appendRow(&item);
+	tableView->setModel(&testModel);
+	tableView->resizeRowsToContents();
+	int height = tableView->rowHeight(0);
+	tableView->setModel(model);
+	return height;
+}
+
 LatexLogWidget::LatexLogWidget(QWidget *parent) :
     QWidget(parent), logModel(0), displayPartsActions(0),filterErrorAction(0),filterWarningAction(0),filterBadBoxAction(0),logpresent(false)
 {
 	logModel = new LatexLogModel(this);//needs loaded line marks
 
 	errorTable = new QTableView(this);
-
-    proxyModel = new QSortFilterProxyModel(this);
-
-    //errorTable->setModel(logModel);
-    proxyModel->setSourceModel(logModel);
-    errorTable->setModel(proxyModel);
-
+	int rowHeight = getOptimalRowHeight(errorTable);
+	errorTable->verticalHeader()->setDefaultSectionSize(rowHeight);
 	QFontMetrics fm(QApplication::font());
 	errorTable->setSelectionBehavior(QAbstractItemView::SelectRows);
 	errorTable->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -26,9 +38,13 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	connect(errorTable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(clickedOnLogModelIndex(const QModelIndex &)));
 
 	errorTable->horizontalHeader()->setStretchLastSection(true);
-	errorTable->setMinimumHeight(5*(fm.lineSpacing()+4));
+	errorTable->setMinimumHeight(5*rowHeight);
 	errorTable->setFrameShape(QFrame::NoFrame);
-    errorTable->setSortingEnabled(true);
+	errorTable->setSortingEnabled(true);
+
+	proxyModel = new QSortFilterProxyModel(this);
+	proxyModel->setSourceModel(logModel);
+	errorTable->setModel(proxyModel);
 
 	QAction * act = new QAction(tr("&Copy"),errorTable);
 	connect(act, SIGNAL(triggered()), SLOT(copyMessage()));
