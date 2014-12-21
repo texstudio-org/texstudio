@@ -77,8 +77,6 @@ environments in smallUsefulFunctions.cpp)
 		</body>
 	</foreach>
 
-	<word id="keywords/single" format="align-ampersand">&amp;</word>
-
 	<!-- ========================= COMMAND ====================== -->
 
 	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
@@ -95,6 +93,10 @@ environments in smallUsefulFunctions.cpp)
 		<start>% !BIB</start>
 		<stop exclusive="false">\n</stop>
 	</context>
+	<context id="comment/parameters" format="magicComment" stayOnLine="true" >
+		<start>%&amp;</start>
+		<stop exclusive="false">\n</stop>
+	</context>
 	
 	<context id="comment/single" format="comment" stayOnLine="true" ambiguous="true">
 		<start>%</start>
@@ -109,6 +111,8 @@ environments in smallUsefulFunctions.cpp)
  
 	
 	<!-- ========================= MATH MODE ====================== -->
+
+	<word id="keywords/single" format="align-ampersand">&amp;</word>
 	
 	<context id="mathmode$$" format="numbers" transparency="true">
 		<start parenthesis="math:open$$" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</start>

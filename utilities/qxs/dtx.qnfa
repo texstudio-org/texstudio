@@ -55,8 +55,6 @@ environments in smallUsefulFunctions.cpp)
 		</body>
 	</foreach>
 
-	<word id="keywords/single" format="align-ampersand">&amp;</word>
-
 	<!-- ========================= COMMAND ====================== -->
 
 	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
@@ -111,6 +109,7 @@ environments in smallUsefulFunctions.cpp)
 	<word format="dtx:commands">\\end{macrocode}</word>
 
 	<!-- ========================= MATH MODE ====================== -->
+	<word id="keywords/single" format="align-ampersand">&amp;</word>
 	
 	<context id="mathmode$" format="numbers" transparency="true">
 		<start parenthesis="math:open" parenthesisWeight="40" fold="1" >\$</start>
