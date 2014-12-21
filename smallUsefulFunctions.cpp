@@ -2094,7 +2094,6 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     if(rxCom.cap(1)=="\\begin"){
                         QString envName=rxCom.cap(3);
                         if(!envName.isEmpty()){
-							if (envName == "align" || envName == "foob" || envName == "barf") qDebug() << "*" << envName << "*" << env;
                             foreach(const QString& elem,env)
                                 package.environmentAliases.insert(rxCom.cap(3),elem);
                         }
