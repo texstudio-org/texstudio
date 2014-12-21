@@ -800,8 +800,10 @@ void ConfigDialog::loadOtherIcon(){
 		return;
 	}
     QString fn = QFileDialog::getOpenFileName(this,tr("Select a File"),"",tr("Images") + " (*.png *.xpm *.jpg *.jpeg *.bmp *.svg)");
+
 	if(!fn.isEmpty()){
 		item->setIcon(QIcon(fn));
+		fn = ConfigManager::getInstance()->reverseParseDir(fn);
 		replacedIconsOnMenus->insert(item->data(Qt::UserRole).toString(),fn);
 		ui.listCustomToolBar->reset();
 		// set the same icon on other list

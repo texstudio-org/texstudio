@@ -85,6 +85,9 @@ virtual QVariant getOption(const QString& name, const QVariant &defaultValue=QVa
 	virtual void updateAllLinkedObjects(const void* optionStorage) = 0;
 	
 	virtual QString parseDir(QString s) const = 0;
+	virtual QStringList parseDirList(const QString & s) const = 0;
+	virtual QString reverseParseDir(QString s) const = 0;
+	virtual QString reverseParseDir(const QStringList & s) const = 0;
 
 	static ConfigManagerInterface* getInstance();
 };
