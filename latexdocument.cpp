@@ -422,6 +422,28 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
 			iter_todo.insert(newTodo);
 		}
+		//// parameter comment
+		if (curLine.startsWith("%&")) {
+			int start = curLine.indexOf("-job-name=");
+			if (start>=0) {
+				int end = start+10; // += "-job-name=".length;
+				if (end<curLine.length() && curLine[end]=='"') {
+					// quoted filename
+					end = curLine.indexOf('"', end+1);
+					if (end>=0) {
+						end += 1;  // include closing quotation mark
+						addMagicComment(curLine.mid(start, end-start), i, MapOfMagicComments, iter_magicComment);
+					}
+				} else {
+					end = curLine.indexOf(' ', end+1);
+					if (end>=0) {
+						addMagicComment(curLine.mid(start, end-start), i, MapOfMagicComments, iter_magicComment);
+					} else {
+						addMagicComment(curLine.mid(start), i, MapOfMagicComments, iter_magicComment);
+					}
+				}
+			}
+		}
 		//// magic comment
 		s=curLine;
 		l=s.indexOf("% !TeX",0,Qt::CaseInsensitive);
@@ -2357,13 +2379,10 @@ void LatexDocument::addMagicComment(const QString &text, int lineNr, QMultiHash<
   Formats the StructureEntry and modifies the document according to the MagicComment contents
   */
 void LatexDocument::parseMagicComment(const QString &name, const QString &val, StructureEntry* se) {
-	if (name.isEmpty()) {
-		se->tooltip = QString();
-		se->valid = false;
-	}
+	se->valid = false;
+	se->tooltip = QString();
+
 	QString lowerName = name.toLower();
-
-
 	if (lowerName == "spellcheck") {
 		mSpellingDictName = val;
 		emit spellingDictChanged(mSpellingDictName);
@@ -2390,11 +2409,15 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->valid = true;
 	} else if (lowerName == "program" || lowerName.startsWith("program:")) {
 		se->valid = true;
+	} else if (lowerName == "-job-name") {
+		if (!val.isEmpty()) {
+			se->valid = true;
+		} else {
+			se->tooltip = tr("Missing value for -job-name");
+		}
 	} else {
 		se->tooltip = tr("Unknown magic comment");
-		return;
 	}
-	se->valid = true;
 }
 
 
