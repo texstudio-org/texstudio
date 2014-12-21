@@ -5452,7 +5452,7 @@ bool Texmaker::loadLog() {
 	if (!documents.getCurrentDocument()) return false;
 	QString compileFileName = documents.getTemporaryCompileFileName();
 	if (compileFileName == "") {
-		QMessageBox::warning(this tr("Error"), tr("File must be saved and compiling before you can view the log"));
+		QMessageBox::warning(this, tr("Error"), tr("File must be saved and compiling before you can view the log"));
 		return false;
 	}
 	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), buildManager.additionalLogPaths);
