@@ -160,12 +160,12 @@ public:
 	Q_INVOKABLE QString spellingDictName() const {
 		return mSpellingDictName;
 	}
-	Q_INVOKABLE QString getMagicComment(const QString& name);
-	Q_INVOKABLE QDocumentLineHandle* getMagicCommentLineHandle(const QString &name);
+	Q_INVOKABLE QString getMagicComment(const QString& name) const;
+	Q_INVOKABLE QDocumentLineHandle* getMagicCommentLineHandle(const QString &name) const;
 	Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
 	
 	void updateMagicCommentScripts();
-    bool splitMagicComment(const QString &comment, QString &name, QString &val);
+	static bool splitMagicComment(const QString &comment, QString &name, QString &val);
 
     QString findFileName(QString fname);
     bool fileExits(QString fname);
@@ -336,6 +336,7 @@ public:
 	Q_INVOKABLE QString getCurrentFileName() const; //returns the absolute file name of the current file or "" if none is opened
 	Q_INVOKABLE QString getCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
 	Q_INVOKABLE QString getTemporaryCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
+	Q_INVOKABLE QString getLogFileName() const;
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension="", const QStringList &additionalSearchPaths=QStringList()) const;
 	
 	Q_INVOKABLE LatexDocument* findDocument(const QString& fileName, bool checkTemporaryNames = false) const;
