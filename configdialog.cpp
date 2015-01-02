@@ -651,6 +651,8 @@ void ConfigDialog::hideShowAdvancedOptions(QWidget* w, bool on){
 		if (!w) continue;
 		if (w->property("advancedOption").isValid() && w->property("advancedOption").toBool())
 			w->setVisible(on);
+        if (w->property("hideWidget").isValid() && w->property("hideWidget").toBool())
+            w->hide();
         // special treatment for metacommads
         static QStringList simpleMetaOptions = QStringList() << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
         if(simpleMetaOptions.contains(w->objectName())){

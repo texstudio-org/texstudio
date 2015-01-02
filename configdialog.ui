@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>11</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1783,7 +1783,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>833</width>
+            <width>866</width>
             <height>1257</height>
            </rect>
           </property>
@@ -2647,6 +2647,9 @@ Then you can select a new shortcut by one of the following ways:
             <property name="text">
              <string>Case Sensitive</string>
             </property>
+            <property name="hideWidget" stdset="0">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="2" column="0">
@@ -2673,6 +2676,9 @@ Then you can select a new shortcut by one of the following ways:
                <string>In First Character</string>
               </property>
               <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+              <property name="hideWidget" stdset="0">
                <bool>true</bool>
               </property>
              </widget>
