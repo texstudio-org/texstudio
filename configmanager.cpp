@@ -1064,7 +1064,9 @@ bool ConfigManager::execConfigDialog() {
 	//completion
 	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive!=LatexCompleterConfig::CCS_CASE_INSENSITIVE);
 	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completerConfig->caseSensitive==LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE);
-	
+    // hide options !!!!
+    confDlg->ui.checkBoxCaseSensitive->hide();
+    confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->hide();
 	
 	lastLanguage = language;
 	QStringList languageFiles=findResourceFiles("translations","texstudio_*.qm") << findResourceFiles("","texstudio_*.qm");
