@@ -2101,6 +2101,8 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
 
   //bool changed=false;
   if(updateFiles){
+    QString bibFileEncoding = ConfigManagerInterface::getInstance()->getOption("Bibliography/BibFileEncoding").toString();
+    QTextCodec *defaultCodec = QTextCodec::codecForName(bibFileEncoding.toLatin1());
     for (int i=0; i<mentionedBibTeXFiles.count();i++){
       QString &fileName=mentionedBibTeXFiles[i];
       QFileInfo fi(fileName);
@@ -2108,7 +2110,8 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
       if (!bibTeXFiles.contains(fileName))
         bibTeXFiles.insert(fileName,BibTeXFileInfo());
       BibTeXFileInfo& bibTex=bibTeXFiles[mentionedBibTeXFiles[i]];
-
+      // TODO: allow to use the encoding of the tex file which mentions the bib file (need to port this information from above)
+      bibTex.codec = defaultCodec;
       bibTex.loadIfModified(fileName);
 
       /*if (bibTex.loadIfModified(fileName))

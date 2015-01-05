@@ -352,12 +352,15 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	connect(ui.checkBoxShowOnlyMonospacedFonts, SIGNAL(toggled(bool)), this, SLOT(populateComboBoxFont(bool)));
 
 	ui.comboBoxEncoding->addItem("UTF-8");
+    ui.comboBoxBibFileEncoding->addItem("UTF-8");
 	foreach(int mib, QTextCodec::availableMibs()) {
 		QTextCodec *codec = QTextCodec::codecForMib(mib);
 		if (!codec) continue;
-		if (codec->name()!="UTF-8") ui.comboBoxEncoding->addItem(codec->name());
+        if (codec->name()!="UTF-8") {
+            ui.comboBoxEncoding->addItem(codec->name());
+            ui.comboBoxBibFileEncoding->addItem(codec->name());
+        }
 	}
-
 
 	ui.comboBoxThesaurusFileName->setCompleter(0);
 
