@@ -13,6 +13,7 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	tb->setUsesScrollButtons(true);
 	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
 	connect(tb, SIGNAL(currentTabAboutToChange(int,int)), this, SLOT(currentTabAboutToChange(int,int)));
+    connect(tb, SIGNAL(middleMouseButtonPressed(int)), this, SLOT(closeTab(int)));
 	setTabBar(tb);
 
 	if (hasAtLeastQt(4,5)){
@@ -129,6 +130,11 @@ void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event) {
 		if (toIndex >= 0) {
 			emit currentTabAboutToChange(currentIndex(), toIndex);
 		}
-	}
+    } else if (event->button() == Qt::MiddleButton) {
+        int tabNr = tabAt(event->pos());
+        if (tabNr >= 0) {
+            emit middleMouseButtonPressed(tabNr);
+        }
+    }
 	QTabBar::mousePressEvent(event);
 }
