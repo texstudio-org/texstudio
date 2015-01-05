@@ -1321,7 +1321,7 @@ void Texmaker::createStatusBar() {
 	status->addPermanentWidget(statusLabelMode, 0);
 	for (int i=1; i<=3; i++) {
         QPushButton* pb = new QPushButton(getRealIcon(QString("bookmark%1").arg(i)), "", status);
-		pb->setToolTip(tr("Click to jump to the bookmark"));
+        pb->setToolTip(tr("Go to bookmark") + QString(" %1").arg(i));
 		connect(pb, SIGNAL(clicked()), getManagedAction(QString("main/edit/gotoBookmark/bookmark%1").arg(i)), SIGNAL(triggered()));
 		pb->setMaximumSize(20,20);
 		pb->setFlat(true);
