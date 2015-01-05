@@ -3834,7 +3834,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing ) {
 					QColor color;
 					if (currentSelected) color = ht;
-					else if (newFont == fmts[0]) color = formats[0].foreground;
+                    // TODO: somehow this breaks extra highlighting of environment names such as "foo" in \begin{foo}
+                    else if (newFont == fmts[0]) color = formats[0].foreground;
 					else if (newFont == fmts[1]) color = formats[1].foreground;
 					else if (newFont == fmts[2]) color = formats[2].foreground;
 					if (!color.isValid()) color = pal.text().color();
