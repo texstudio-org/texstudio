@@ -47,6 +47,7 @@ public:
 
 signals:
 	void currentTabAboutToChange(int from, int to);
+    void middleMouseButtonPressed(int tabNr);
 
 protected:
 	virtual void mousePressEvent(QMouseEvent *event);
