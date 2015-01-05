@@ -5589,9 +5589,7 @@ void Texmaker::LatexHelp() {
 }
 
 void Texmaker::UserManualHelp() {
-	QString locale = QString(QLocale::system().name()).left(2);
-	if (locale.length() < 2 || locale!="fr") locale = "en";
-	QString latexHelp=findResourceFile("usermanual_"+locale+".html");
+    QString latexHelp=findResourceFile("usermanual_en.html");
 	if (latexHelp=="")
 		QMessageBox::warning(this,tr("Error"),tr("File not found"));
 	else if (!QDesktopServices::openUrl("file:///"+latexHelp))
