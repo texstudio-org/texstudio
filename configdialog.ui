@@ -424,13 +424,6 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
-               <widget class="QCheckBox" name="checkBoxParseBibTeX">
-                <property name="text">
-                 <string>Parse BibTeX</string>
-                </property>
-               </widget>
-              </item>
               <item row="4" column="1">
                <widget class="QCheckBox" name="checkBoxParseMaster">
                 <property name="text">
@@ -1265,42 +1258,42 @@ Then you can select a new shortcut by one of the following ways:
           <item row="1" column="0">
            <widget class="QLabel" name="label_71">
             <property name="text">
-             <string>scale central toolbar</string>
+             <string>Scale Central Toolbar</string>
             </property>
            </widget>
           </item>
           <item row="0" column="3">
            <widget class="QToolButton" name="tbRevertIcon">
             <property name="text">
-             <string>revert</string>
+             <string>Reset</string>
             </property>
            </widget>
           </item>
           <item row="1" column="3">
            <widget class="QToolButton" name="tbRevertCentralIcon">
             <property name="text">
-             <string>revert</string>
+             <string>Reset</string>
             </property>
            </widget>
           </item>
           <item row="4" column="3">
            <widget class="QToolButton" name="tbRevertSymbol">
             <property name="text">
-             <string>revert</string>
+             <string>Reset</string>
             </property>
            </widget>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="label_72">
             <property name="text">
-             <string>scale symbols</string>
+             <string>Scale Symbols</string>
             </property>
            </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
-             <string>scale toolbar</string>
+             <string>Scale Toolbar</string>
             </property>
            </widget>
           </item>
@@ -2214,25 +2207,41 @@ Then you can select a new shortcut by one of the following ways:
             </widget>
            </item>
            <item>
+            <widget class="QGroupBox" name="groupBoxBibliography">
+             <property name="title">
+              <string>Bibliography</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_73">
+                <property name="text">
+                 <string>bib File Encoding:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBoxParseBibTeX">
+                <property name="text">
+                 <string>Parse BibTeX</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="comboBoxBibFileEncoding"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
             <widget class="QGroupBox" name="gbTableAutoformat">
              <property name="title">
               <string>Table Autoformating</string>
              </property>
              <layout class="QGridLayout" name="gridLayoutTableAutoFormat">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_60">
+              <item row="2" column="0" colspan="2">
+               <widget class="QCheckBox" name="cbTableFormatingOneLinePerCell">
                 <property name="text">
-                 <string>Special Commands:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="leTableFormatingSpecialCommands"/>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_61">
-                <property name="text">
-                 <string>Special Commands Position:</string>
+                 <string>One Line Per Cell</string>
                 </property>
                </widget>
               </item>
@@ -2255,10 +2264,20 @@ Then you can select a new shortcut by one of the following ways:
                 </item>
                </widget>
               </item>
-              <item row="2" column="0" colspan="2">
-               <widget class="QCheckBox" name="cbTableFormatingOneLinePerCell">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_61">
                 <property name="text">
-                 <string>One Line Per Cell</string>
+                 <string>Special Commands Position:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="leTableFormatingSpecialCommands"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_60">
+                <property name="text">
+                 <string>Special Commands:</string>
                 </property>
                </widget>
               </item>
@@ -3864,7 +3883,6 @@ them here.</string>
   <tabstop>comboBoxLanguage</tabstop>
   <tabstop>spinBoxMaxRecentFiles</tabstop>
   <tabstop>spinBoxMaxRecentProjects</tabstop>
-  <tabstop>checkBoxParseBibTeX</tabstop>
   <tabstop>checkBoxParseMaster</tabstop>
   <tabstop>leDictDir</tabstop>
   <tabstop>pushButtonDictDir</tabstop>
