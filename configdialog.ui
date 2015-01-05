@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>11</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>630</height>
+            <width>880</width>
+            <height>644</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -896,8 +896,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>191</width>
-               <height>76</height>
+               <width>850</width>
+               <height>83</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -2929,8 +2929,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>341</width>
-            <height>567</height>
+            <width>365</width>
+            <height>587</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">

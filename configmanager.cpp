@@ -378,6 +378,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/RestoreSession", &sessionRestore);
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
+    registerOption("Bibliography/BibFileEncoding", &bibFileEncoding, "UTF-8", &pseudoDialog->comboBoxBibFileEncoding);
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
 	registerOption("Files/Autoload",&autoLoadChildren,false, &pseudoDialog->checkBoxAutoLoad);

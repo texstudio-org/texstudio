@@ -1,4 +1,5 @@
 #include "bibtexreader.h"
+#include "configmanagerinterface.h"
 
 bibtexReader::bibtexReader(QObject *parent) :
     SafeThread(parent)
@@ -9,7 +10,10 @@ void bibtexReader::searchSection(QString file, QString bibId){
     QFile f(file);
     if (!f.open(QFile::ReadOnly)) return; //ups...
     QTextStream stream(&f);
-	stream.setCodec("UTF-8");
+    QString bibFileEncoding = ConfigManagerInterface::getInstance()->getOption("Bibliography/BibFileEncoding").toString();
+    QTextCodec *codec = QTextCodec::codecForName(bibFileEncoding.toLatin1());
+    if (!codec) return;
+    stream.setCodec(codec);
     QString line;
     QString result;
     int found=-1;

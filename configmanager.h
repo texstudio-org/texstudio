@@ -138,6 +138,7 @@ public:
 	bool rememberFileFilter;
 	bool sessionRestore;
 	bool parseBibTeX, parseMaster;
+    QString bibFileEncoding;
     bool autoLoadChildren;
 
         //autosave

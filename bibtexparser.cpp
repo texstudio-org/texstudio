@@ -34,7 +34,7 @@ void BibTeXFileInfo::parse(QByteArray& data){
 		int bracketBalance = 0;
 		char bracketOpen = 0;
 		char bracketClose = 0;
-		QString curID;
+        QByteArray curID;
 		for (int j=0; j<data.count(); j++){
 			char c = data.at(j);
 			switch (state) {
@@ -61,8 +61,12 @@ void BibTeXFileInfo::parse(QByteArray& data){
 				case BTS_IN_ID:
 					if (c!=' '&& c!='\t' && c!='\n' && c!='\r') {
 						if (c==',' || c==bracketClose) {
-							if (!curID.isEmpty())
-								ids.append(curID); //**found id**
+                            if (!curID.isEmpty()) {
+                                if (codec)
+                                    ids.append(codec->toUnicode(curID)); //**found id**
+                                else
+                                    ids.append(curID);
+                            }
 							state=BTS_IN_DATA_KEY;
 						} else if (c=='=' || c=='"')
 							state=BTS_IN_DATA_KEY; //@string or @preamble (don't cite that)
