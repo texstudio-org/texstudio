@@ -601,9 +601,9 @@ void Texmaker::setupMenus() {
 	//file
 	QMenu *menu=newManagedMenu("main/file",tr("&File"));
 	getManagedMenu("main/file");
-	newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), Qt::CTRL+Qt::Key_N, "filenew");
+    newManagedAction(menu, "new",tr("&New"), SLOT(fileNew()), QKeySequence::New, "filenew");
 	newManagedAction(menu, "newfromtemplate",tr("New From &Template..."), SLOT(fileNewFromTemplate()));
-	newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), Qt::CTRL+Qt::Key_O, "fileopen");
+    newManagedAction(menu, "open",tr("&Open..."), SLOT(fileOpen()), QKeySequence::Open, "fileopen");
 	
 	QMenu *submenu=newManagedMenu(menu, "openrecent",tr("Open &Recent")); //only create the menu here, actions are created by config manager
 
@@ -619,7 +619,7 @@ void Texmaker::setupMenus() {
 	recentSessionList->updateMostRecentMenu();
 
 	menu->addSeparator();
-	actSave = newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), Qt::CTRL+Qt::Key_S, "filesave");
+    actSave = newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "filesave");
 	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
@@ -664,15 +664,15 @@ void Texmaker::setupMenus() {
 	
 	//edit
 	menu=newManagedMenu("main/edit",tr("&Edit"));
-	actUndo = newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), Qt::CTRL+Qt::Key_Z, "undo");
-	actRedo = newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), Qt::CTRL+Qt::Key_Y, "redo");
+    actUndo = newManagedAction(menu, "undo",tr("&Undo"), SLOT(editUndo()), QKeySequence::Undo, "undo");
+    actRedo = newManagedAction(menu, "redo",tr("&Redo"), SLOT(editRedo()), QKeySequence::Redo, "redo");
 #ifndef QT_NO_DEBUG
 	newManagedAction(menu, "debughistory",tr("Debug undo stack"), SLOT(editDebugUndoStack()));
 #endif
 	menu->addSeparator();
-	newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_C)<<Qt::CTRL+Qt::Key_Insert, "editcopy");
-	newManagedEditorAction(menu,"cut",tr("C&ut"), "cut", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_X)<<Qt::SHIFT+Qt::Key_Delete, "editcut");
-	newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
+    newManagedAction(menu,"copy",tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "editcopy");
+    newManagedEditorAction(menu,"cut",tr("C&ut"), "cut", QKeySequence::Cut, "editcut");
+    newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), QKeySequence::Paste, "editpaste");
 	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
 	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
 
@@ -691,7 +691,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
-	newManagedAction(submenu,"find", tr("&Find"), SLOT(editFind()), Qt::CTRL+Qt::Key_F);
+    newManagedAction(submenu,"find", tr("&Find"), SLOT(editFind()), QKeySequence::Find);
 	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", (QList<QKeySequence>()<< Qt::Key_F3)<<Qt::CTRL+Qt::Key_M);
 	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext", MAC_OTHER(Qt::CTRL+Qt::Key_G, 0));
 	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev", MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_G, 0));
@@ -1031,6 +1031,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"));
 	fullscreenModeAction->setCheckable(true);
+    fullscreenModeAction->setShortcut(QKeySequence::FullScreen);
 	connectUnique(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
 	connectUnique(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
 
