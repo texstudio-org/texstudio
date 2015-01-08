@@ -4122,26 +4122,27 @@ QSet<int> QEditor::getAvailableOperations(){
 QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 	if (!m_defaultKeysSet) { //todo: thread safe lock
 		m_defaultKeysSet = true;
+
+    addEditOperation(CursorUp, QKeySequence::MoveToPreviousLine);
+    addEditOperation(CursorDown, QKeySequence::MoveToNextLine);
+    addEditOperation(SelectCursorUp, QKeySequence::SelectPreviousLine);
+    addEditOperation(SelectCursorDown, QKeySequence::SelectNextLine);
+
+    addEditOperation(CursorLeft, QKeySequence::MoveToPreviousChar);
+    addEditOperation(CursorRight, QKeySequence::MoveToNextChar);
+    addEditOperation(SelectCursorLeft, QKeySequence::SelectPreviousChar);
+    addEditOperation(SelectCursorRight, QKeySequence::SelectNextChar);
+
+    addEditOperation(CursorStartOfDocument, QKeySequence::MoveToStartOfDocument);
+    addEditOperation(CursorEndOfDocument, QKeySequence::MoveToEndOfDocument);
+    addEditOperation(SelectCursorStartOfDocument, QKeySequence::SelectStartOfDocument);
+    addEditOperation(SelectCursorEndOfDocument, QKeySequence::SelectEndOfDocument);
+
     #ifndef Q_OS_MAC  // Use the default Windows bindings.
-		addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
-		addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
-		addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
-		addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
-
-		addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
-		addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
-		addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
-		addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
-
 		addEditOperation(CursorWordLeft, Qt::ControlModifier, Qt::Key_Left);
 		addEditOperation(CursorWordRight, Qt::ControlModifier, Qt::Key_Right);
 		addEditOperation(SelectCursorWordLeft, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Left);
 		addEditOperation(SelectCursorWordRight, Qt::ControlModifier | Qt::ShiftModifier, Qt::Key_Right);
-
-		addEditOperation(CursorStartOfLine, Qt::NoModifier, Qt::Key_Home);
-		addEditOperation(CursorEndOfLine, Qt::NoModifier, Qt::Key_End);
-		addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier, Qt::Key_Home);
-		addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier, Qt::Key_End);
 
 		addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Home);
 		addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_End);
@@ -4183,26 +4184,10 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 			addEditOperation(Invalid, mod , key);
        */
 
-		addEditOperation(CursorUp, Qt::NoModifier, Qt::Key_Up);
-		addEditOperation(CursorDown, Qt::NoModifier, Qt::Key_Down);
-		addEditOperation(SelectCursorUp, Qt::ShiftModifier, Qt::Key_Up);
-		addEditOperation(SelectCursorDown, Qt::ShiftModifier, Qt::Key_Down);
-
 		addEditOperation(CursorStartOfLine, Qt::AltModifier, Qt::Key_Up);
 		addEditOperation(CursorEndOfLine, Qt::AltModifier, Qt::Key_Down);
 		addEditOperation(SelectCursorStartOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Up);
 		addEditOperation(SelectCursorEndOfLine, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Down);
-
-		addEditOperation(CursorStartOfDocument, Qt::ControlModifier, Qt::Key_Up);
-		addEditOperation(CursorStartOfDocument, Qt::MetaModifier, Qt::Key_Up);
-		addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Up);
-		addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Up);
-
-		addEditOperation(CursorEndOfDocument, Qt::ControlModifier, Qt::Key_Down);
-		addEditOperation(CursorEndOfDocument, Qt::MetaModifier, Qt::Key_Down);
-		addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::ControlModifier, Qt::Key_Down);
-		addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier | Qt::MetaModifier, Qt::Key_Down);
-
 
 		addEditOperation(CursorStartOfLine, Qt::ControlModifier, Qt::Key_Left);
 		addEditOperation(CursorEndOfLine, Qt::ControlModifier, Qt::Key_Right);
@@ -4218,16 +4203,6 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(CursorWordRight, Qt::AltModifier, Qt::Key_Right);
 		addEditOperation(SelectCursorWordLeft, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Left);
 		addEditOperation(SelectCursorWordRight, Qt::ShiftModifier | Qt::AltModifier, Qt::Key_Right);
-
-		addEditOperation(CursorLeft, Qt::NoModifier, Qt::Key_Left);
-		addEditOperation(CursorRight, Qt::NoModifier, Qt::Key_Right);
-		addEditOperation(SelectCursorLeft, Qt::ShiftModifier, Qt::Key_Left);
-		addEditOperation(SelectCursorRight, Qt::ShiftModifier, Qt::Key_Right);
-
-		addEditOperation(CursorStartOfDocument, Qt::NoModifier, Qt::Key_Home);
-		addEditOperation(CursorEndOfDocument, Qt::NoModifier, Qt::Key_End);
-		addEditOperation(SelectCursorStartOfDocument, Qt::ShiftModifier, Qt::Key_Home);
-		addEditOperation(SelectCursorEndOfDocument, Qt::ShiftModifier, Qt::Key_End);
 	#endif
 
 		addEditOperation(CursorPageUp, Qt::NoModifier, Qt::Key_PageUp);
@@ -4236,7 +4211,7 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(SelectPageDown, Qt::ShiftModifier, Qt::Key_PageDown);
 
 		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
-		addEditOperation(DeleteRight, Qt::NoModifier, Qt::Key_Delete);
+        addEditOperation(DeleteRight, QKeySequence::Delete);
 	#ifndef Q_OSX
 		addEditOperation(DeleteLeft, Qt::ShiftModifier, Qt::Key_Backspace);
 	#endif
