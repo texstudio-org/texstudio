@@ -1031,7 +1031,9 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"));
 	fullscreenModeAction->setCheckable(true);
+#if QT_VERSION>0x050000
     fullscreenModeAction->setShortcut(QKeySequence::FullScreen);
+#endif
 	connectUnique(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
 	connectUnique(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
 
