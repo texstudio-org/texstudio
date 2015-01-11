@@ -332,27 +332,43 @@ QString findAbsoluteFilePath(const QString & relName, const QString &extension, 
 	return fbp + s; // fallback
 }
 
-void updatePathSettings(QProcess* proc, QString additionalPaths)
+QString getEnvironmentPath()
 {
+	static QString path;
+	if (path.isNull()) {
 #ifdef Q_OS_MAC
 #if (QT_VERSION >= 0x040600)
-	QProcess *myProcess = new QProcess();
-	myProcess->start("bash -l -c \"echo $PATH\"");
-	myProcess->waitForFinished(3000);
-	if(myProcess->exitStatus()==QProcess::NormalExit){
-		QByteArray res=myProcess->readAllStandardOutput();
-		delete myProcess;
-		QString path(res);
-		if (additionalPaths.isEmpty()) additionalPaths = path;
-		else additionalPaths += ":" + path;
+		QProcess *myProcess = new QProcess();
+		myProcess->start("bash -l -c \"echo $PATH\"");
+		myProcess->waitForFinished(3000);
+		if(myProcess->exitStatus()==QProcess::NormalExit) {
+			QByteArray res=myProcess->readAllStandardOutput();
+			delete myProcess;
+			path = QString(res);
+		}
+		path = "";
+#endif
+#else
+		path = QProcessEnvironment::systemEnvironment().value("PATH");
+#endif
 	}
-#endif
-#endif
+	return path;
+}
+
+QStringList getEnvironmentPathList() {
+	return getEnvironmentPath().split(getPathListSeparator());
+}
+
+void updatePathSettings(QProcess* proc, QString additionalPaths)
+{
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QString path(getEnvironmentPath());
 	if (!additionalPaths.isEmpty()) {
-		QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-		env.insert("PATH", env.value("PATH") + getPathListSeparator() + additionalPaths);
-		proc->setProcessEnvironment(env);
+		path += getPathListSeparator() + additionalPaths;
 	}
+	env.insert("PATH", path);
+	// Note: this modifies the path only for the context of the called program. It does not affect the search path for the program itself.
+	proc->setProcessEnvironment(env);
 }
 
 int x11desktop_env() {

@@ -2741,7 +2741,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 		QWidget *activeWindow = QApplication::activeWindow();
 		raise();
 		unminimize();
-		if (!focus) activeWindow->activateWindow(); // unminimize may change the activeWindow
+		if (!focus && activeWindow) activeWindow->activateWindow(); // unminimize may change the activeWindow
 	}
 	if (focus) {
 		setFocus();
