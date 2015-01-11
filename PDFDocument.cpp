@@ -2705,12 +2705,12 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QFileInfo& masterFi
 	if (!actionSynchronize_multiple_views->isChecked())
 		return;
 	if (pdfFile != curFile || this->masterFile != masterFile)
-		loadFile(pdfFile, masterFile, false);
+		loadFile(pdfFile, masterFile, false, false);
 	if (page != widget()->getPageIndex())
 		scrollArea->goToPage(page,false);
 }
 
-void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert)
+void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert, bool focus)
 {
 	// check if the file is already loaded
 	bool fileAlreadyLoaded=(this->masterFile == masterFile);
@@ -2738,8 +2738,12 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 			watcher->addPath(curFile);
 	}
 	if (alert) {
+		QWidget *activeWindow = QApplication::activeWindow();
 		raise();
 		unminimize();
+		if (!focus) activeWindow->activateWindow(); // unminimize may change the activeWindow
+	}
+	if (focus) {
 		setFocus();
 		if (scrollArea) scrollArea->setFocus();
 	}
@@ -3381,7 +3385,7 @@ void PDFDocument::goToSource()
 void PDFDocument::fileOpen(){
 	QString newFile = QFileDialog::getOpenFileName(this,tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
 	if (newFile.isEmpty()) return;
-	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), false);
+	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), false, false);
 }
 
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
