@@ -2933,7 +2933,10 @@ void PDFDocument::setStateEnlarged(bool state){
 	actionShrinkViewer->setVisible(state);
 }
 
-void PDFDocument::closeSomething(){
+/*!
+ * \return true if the document itself is closed, otherwise false
+ */
+bool PDFDocument::closeSomething(){
 	if(actionPresentation->isChecked()){
 		//restore state of docks
 		if(dwVisSearch)
@@ -2954,7 +2957,11 @@ void PDFDocument::closeSomething(){
 	else if (dwClock && dwClock->isVisible()) dwClock->hide();
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
-	else actionClose->trigger();
+	else {
+		actionClose->trigger();
+		return true;
+	}
+	return false;
 }
 
 void PDFDocument::tileWindows(){

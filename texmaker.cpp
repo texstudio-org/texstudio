@@ -6096,8 +6096,12 @@ void Texmaker::viewCloseSomething(){
 	if (qobject_cast<PDFDocument*>(w)) {
 		PDFDocument* focusedPdf = qobject_cast<PDFDocument*>(w);
 		if (focusedPdf->embeddedMode) {
-			focusedPdf->closeSomething();
-			focusedPdf->widget()->setFocus();
+			bool pdfClosed = focusedPdf->closeSomething();
+			if (pdfClosed) {
+				focusEditor();
+			} else {
+				focusedPdf->widget()->setFocus();
+			}
 			return;
 		}
 

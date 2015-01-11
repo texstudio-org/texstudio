@@ -422,7 +422,7 @@ private slots:
 	void setGrid();
 
 public slots:
-	void closeSomething();
+	bool closeSomething();
 private slots:
 	void tileWindows();
 	void stackWindows();
