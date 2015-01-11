@@ -5092,7 +5092,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (embedded) autoClose = ! ol.contains("no-auto-close");                  //Don't close the viewer, if the corresponding document is closed
 	else autoClose = ol.contains("auto-close");                                //Close the viewer, if the corresponding document is closed
 	
-	bool focus = 0; //1: always, 0: auto, -1: never
+	int focus = 0; //1: always, 0: auto, -1: never
 	if (ol.contains("focus")) focus = 1;
 	else if (ol.contains("no-focus")) focus = -1;
 	
@@ -5153,7 +5153,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	}
 	foreach (PDFDocument* viewer, oldPDFs) {
 		bool focusViewer = (focus == 1) || (focus == 0 && !viewer->embeddedMode);
-		viewer->loadFile(pdfFile, master, focusViewer);
+		viewer->loadFile(pdfFile, master, true, focusViewer);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln , focusViewer);
 		viewer->fillRenderCache(pg);
 		
@@ -6274,7 +6274,7 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 	
 	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
 	if (from) {
-		pdfviewerWindow->loadFile(from->fileName(), from->getMasterFile(), true);
+		pdfviewerWindow->loadFile(from->fileName(), from->getMasterFile(), true, true);
 		pdfviewerWindow->goToPage(from->widget()->getPageIndex());
 	}//load file before enabling sync or it will jump to the first page
 	
