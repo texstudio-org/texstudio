@@ -13,9 +13,9 @@ Help::Help() :
 {
 }
 
-QString Help::getAdditionalCmdSearchPath()
+QStringList Help::getAdditionalCmdSearchPathList()
 {
-	return ConfigManagerInterface::getInstance()->getOption("Tools/Search Paths").toString();
+	return ConfigManagerInterface::getInstance()->getOption("Tools/Search Paths").toString().split(getPathListSeparator());
 }
 
 void Help::execTexdocDialog(const QStringList &packages, const QString &defaultPackage)
@@ -39,10 +39,10 @@ void Help::viewTexdoc(QString package)
 		package = act->data().toString();
 	}
 	if (!package.isEmpty()) {
+		if (texdocCommand().isEmpty()) txsWarning(tr("texdoc not found."));
 		QProcess proc(this);
-		updatePathSettings(&proc, getAdditionalCmdSearchPath());
 		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(viewTexdocError()));
-		proc.start("texdoc", QStringList() << "--view" << package);
+		proc.start(texdocCommand(), QStringList() << "--view" << package);
 		if (!proc.waitForFinished(2000)) {
 			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
 			return;
@@ -53,9 +53,9 @@ void Help::viewTexdoc(QString package)
 int Help::texDocSystem=0;
 
 bool Help::isMiktexTexdoc() {
-    if (!texDocSystem) {
+	if (!texDocSystem && !texdocCommand().isEmpty()) {
 		QProcess proc;
-		proc.start("texdoc --version");
+		proc.start(texdocCommand(), QStringList() << "--version");
 		proc.waitForFinished(1000);
 		QString answer = QString(proc.readAll());
         texDocSystem = answer.startsWith("MiKTeX") ? 1 : 2;
@@ -63,7 +63,30 @@ bool Help::isMiktexTexdoc() {
 	return (texDocSystem==1);
 }
 
+
+QString Help::m_texdocCommand;
+
+QString Help::texdocCommand()
+{
+	if (m_texdocCommand.isEmpty()) {
+		QStringList paths;
+		paths.append(getEnvironmentPathList());
+		paths.append(getAdditionalCmdSearchPathList());
+#ifdef Q_OS_WIN
+		QString cmd = findAbsoluteFilePath("texdoc", "exe", paths, "not_found");
+#else
+		QString cmd = findAbsoluteFilePath("texdoc", "", paths, "not_found");
+#endif
+		m_texdocCommand = cmd.startsWith("not_found") ? "" : cmd;
+	}
+	return m_texdocCommand;
+}
+
 QString Help::packageDocFile(const QString &package, bool silent) {
+	if (texdocCommand().isEmpty()) {
+		if (!silent) txsWarning(tr("texdoc not found."));
+		return QString();
+	}
 	QStringList args;
 	if (Help::isMiktexTexdoc()) {
 		args << "--list-only";
@@ -72,8 +95,7 @@ QString Help::packageDocFile(const QString &package, bool silent) {
 	}
 	args << package;
 	QProcess proc;
-	updatePathSettings(&proc, getAdditionalCmdSearchPath());
-	proc.start("texdoc", args);
+	proc.start(texdocCommand(), args);
 	if (!proc.waitForFinished(2000)) {
 		if (!silent) {
 			txsWarning(QString(tr("texdoc did not respond to query on package:")+"\n%1").arg(package));
@@ -102,6 +124,10 @@ void Help::texdocAvailableRequest(const QString &package)
 {
 	if (package.isEmpty())
 		return;
+	if (texdocCommand().isEmpty()) {
+		emit texdocAvailableReply(package, false, tr("texdoc not found."));
+		return;
+	}
 
 	QStringList args;
 	if (isMiktexTexdoc()) {
@@ -113,10 +139,9 @@ void Help::texdocAvailableRequest(const QString &package)
 		// Alternative: texdoc --list -M and parse the first line for the package name
 	}
 	QProcess *proc = new QProcess(this);
-	updatePathSettings(proc, getAdditionalCmdSearchPath());
 	proc->setProperty("package", package);
 	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
-	proc->start("texdoc", args);
+	proc->start(texdocCommand(), args);
 }
 
 void Help::texdocAvailableRequestFinished(int exitCode)
@@ -127,7 +152,7 @@ void Help::texdocAvailableRequestFinished(int exitCode)
 	QString package = proc->property("package").toString();
 	QString docCommand = proc->readAll();
 
-	emit texdocAvailableReply(package, !docCommand.isEmpty());
+	emit texdocAvailableReply(package, !docCommand.isEmpty(), QString());
 	proc->deleteLater();
 }
 

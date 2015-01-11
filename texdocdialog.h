@@ -25,7 +25,7 @@ private slots:
 	void searchTermChanged(const QString &text);
 	void delayedCheckDocAvailable(const QString &package);
 	void checkDockAvailable();
-	void updateDocAvailableInfo(const QString &package, bool available);
+	void updateDocAvailableInfo(const QString &package, bool available, QString customWarning=QString());
 
 private:
 	Ui::TexdocDialog *ui;

@@ -48,6 +48,8 @@ QString getRelativeBaseNameToPath(const QString & file, QString basepath, bool b
 QString getPathfromFilename(const QString &compFile);
 QString findAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &searchPaths, const QString& fallbackPath);
 
+QString getEnvironmentPath();
+QStringList getEnvironmentPathList();
 void updatePathSettings(QProcess* proc, QString additionalPaths);
 
 //returns kde version 0,3,4

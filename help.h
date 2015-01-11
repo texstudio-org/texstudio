@@ -10,12 +10,12 @@ public:
 	static Help *instance();
 
 	static bool isMiktexTexdoc();
-	static int texDocSystem;
+	static QString texdocCommand();
 	static QString packageDocFile(const QString &package, bool silent=false);
 
 	
 signals:
-	void texdocAvailableReply(const QString &package, bool available);
+	void texdocAvailableReply(const QString &package, bool available, QString errorMessage);
 
 
 public slots:
@@ -31,11 +31,11 @@ private:
 	Help();
 	Help(const Help &);
 	Help& operator=(const Help &);
-
-	static QString getAdditionalCmdSearchPath();
+	static QStringList getAdditionalCmdSearchPathList();
 
 	static Help *m_Instance;
-
+	static int texDocSystem;
+	static QString m_texdocCommand;
 };
 
 class LatexReference : public QObject
