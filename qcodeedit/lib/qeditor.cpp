@@ -4133,6 +4133,11 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
     addEditOperation(SelectCursorLeft, QKeySequence::SelectPreviousChar);
     addEditOperation(SelectCursorRight, QKeySequence::SelectNextChar);
 
+    addEditOperation(CursorStartOfLine, QKeySequence::MoveToStartOfLine);
+    addEditOperation(CursorEndOfLine, QKeySequence::MoveToEndOfLine);
+    addEditOperation(SelectCursorStartOfLine, QKeySequence::SelectStartOfLine);
+    addEditOperation(SelectCursorEndOfLine, QKeySequence::SelectEndOfLine);
+
     addEditOperation(CursorStartOfDocument, QKeySequence::MoveToStartOfDocument);
     addEditOperation(CursorEndOfDocument, QKeySequence::MoveToEndOfDocument);
     addEditOperation(SelectCursorStartOfDocument, QKeySequence::SelectStartOfDocument);
