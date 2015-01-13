@@ -1112,9 +1112,9 @@ void LatexTableLine::setColLine(const QString line) {
 
 QString LatexTableLine::colText(int col, int width, const QChar &alignment) {
 	int spaceLength = width-cols.at(col).length();
-	if (alignment == 'r') {
+	if (alignment.toLower() == 'r') {  // 'R' is used in tabulary
 		return QString(spaceLength, ' ') + cols.at(col);
-	} else if (alignment == 'c') {
+	} else if (alignment.toLower() == 'c') {
 		return QString(spaceLength/2, ' ') + cols.at(col) + QString((spaceLength+1)/2, ' ');
 	} // else  'l'
 	return cols.at(col) + QString(spaceLength, ' ');
