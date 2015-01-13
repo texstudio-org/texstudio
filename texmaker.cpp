@@ -6880,6 +6880,8 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		menu.addSeparator();
 		menu.addAction(tr("Expand Subitems"), this, SLOT(structureContextMenuExpandSubitems()));
 		menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
+		menu.addAction(tr("Expand all documents"), this, SLOT(structureContextMenuExpandAllDocuments()));
+		menu.addAction(tr("Collapse all documents"), this, SLOT(structureContextMenuCollapseAllDocuments()));
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 	if (!entry->parent) return;
@@ -6971,6 +6973,14 @@ void Texmaker::structureContextMenuExpandSubitems() {
 
 void Texmaker::structureContextMenuCollapseSubitems() {
 	setSubtreeExpanded(structureTreeView, structureTreeView->currentIndex(), false);
+}
+
+void Texmaker::structureContextMenuExpandAllDocuments() {
+	setSubtreeExpanded(structureTreeView, structureTreeView->rootIndex(), true);
+}
+
+void Texmaker::structureContextMenuCollapseAllDocuments() {
+	setSubtreeExpanded(structureTreeView, structureTreeView->rootIndex(), false);
 }
 
 void Texmaker::editPasteRef() {
