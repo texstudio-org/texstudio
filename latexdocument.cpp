@@ -459,7 +459,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			QString val;
 			splitMagicComment(s, name, val);
 			if ((name=="TS-program" || name=="program") && (val=="biber" || val=="bibtex")) {
-				addMagicComment(QString("program:bibliography = txs:///%1").arg(val), i, MapOfMagicComments, iter_magicComment);
+				addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, MapOfMagicComments, iter_magicComment);
 			}
 		}
 		////Ref
@@ -2422,7 +2422,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->valid = true;
 	} else if (lowerName == "txs-script") {
 		se->valid = true;
-	} else if (lowerName == "program" || lowerName.startsWith("program:")) {
+	} else if (lowerName == "program" || lowerName.startsWith("txs-program:")) {
 		se->valid = true;
 	} else if (lowerName == "-job-name") {
 		if (!val.isEmpty()) {
