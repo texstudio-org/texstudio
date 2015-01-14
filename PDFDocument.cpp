@@ -1748,7 +1748,10 @@ void PDFWidget::fitTextWidth(bool checked)
 			qreal portWidth = scrollArea->viewport()->width();
 
 			QRectF textRect = horizontalTextRangeF();
-			scaleFactor = portWidth / ((textRect.width() * dpi / 72.0) + 2*margin);
+			qreal targetWidth = gridSizeF(true).width() - (maxPageSizeF().width() - textRect.width());
+			// total with of all pages in the grid - textMargin of a single page
+			// for a 1x grid, targetWith is the same as textRect.width()
+			scaleFactor = portWidth / ((targetWidth * dpi / 72.0) + 2*margin);
 			if (scaleFactor < kMinScaleFactor)
 				scaleFactor = kMinScaleFactor;
 			else if (scaleFactor > kMaxScaleFactor)
