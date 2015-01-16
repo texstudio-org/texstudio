@@ -2721,11 +2721,11 @@ bool LatexEditorView::getSearchIsWords(){
 }
 
 bool LatexEditorView::getSearchIsCase(){
-	return searchReplacePanel->getSearchIsWords();
+    return searchReplacePanel->getSearchIsCase();
 }
 
 bool LatexEditorView::getSearchIsRegExp(){
-	return searchReplacePanel->getSearchIsWords();
+    return searchReplacePanel->getSearchIsRegExp();
 }
 
 

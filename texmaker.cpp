@@ -7552,8 +7552,8 @@ void Texmaker::updateFindGlobal(int scope){
         break;
     }
 
-    bool isWord=edView->getSearchIsCase();
-    bool isCase=edView->getSearchIsWords();
+    bool isWord=edView->getSearchIsWords();
+    bool isCase=edView->getSearchIsCase();
     bool isReg=edView->getSearchIsRegExp();
 
     bool linesShown=false;
