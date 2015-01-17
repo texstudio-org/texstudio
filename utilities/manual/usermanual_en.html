@@ -1641,6 +1641,9 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 % TXS-SCRIPT-END
 </code>
 <p>This defines a temporary javascript macro which is executed, when the file is loaded, and which in turns loads the two files in /tmp/test. .
+<p>The macros defined via TXS-SCRIPT are active in all files of a document (e.g. included files). You cannot run them manually. They are run via
+the trigger (regular expression or special trigger, see section on triggers). The macro is just read once, when the file is opened.
+Changes during an edit session will only take effect when you reopen the file.
 </li>
 <li>
 <code>% !BIB program = biber</code>
