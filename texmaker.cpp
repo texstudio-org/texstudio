@@ -5073,11 +5073,16 @@ bool Texmaker::runCommand(const QString& commandline, QString* buffer, QTextCode
 
 void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& options){
 #ifndef NO_POPPLER_PREVIEW
-	QStringList ol = options.split(" ");
-	for (int i=ol.size()-1;i>=0;i--)
-		if (!ol[i].startsWith("-")) ol.removeAt(i);
+	QStringList ol = options.split(" ", QString::SkipEmptyParts);
+	QString pdfFile;
+	for (int i=ol.size()-1;i>=0;i--) {
+		if (!ol[i].startsWith("-")) {
+			if (pdfFile.isNull()) pdfFile = dequoteStr(ol[i]);
+			ol.removeAt(i);
+		}
 		else if (ol[i].startsWith("--")) ol[i] = ol[i].mid(2);
 		else ol[i] = ol[i].mid(1);
+	}
 	bool preserveExisting = ol.contains("preserve-existing");                  //completely ignore all existing internal viewers
 	bool preserveExistingEmbedded = ol.contains("preserve-existing-embedded"); //completely ignore all existing embedded internal viewers
 	bool preserveExistingWindowed = ol.contains("preserve-existing-windowed"); //completely ignore all existing windowed internal viewers
@@ -5146,8 +5151,9 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		oldPDFs << doc;
 	}
 	
-	QString pdfDefFile = BuildManager::parseExtendedCommandLine("?am.pdf", master).first();
-	QString pdfFile = buildManager.findFile(pdfDefFile, buildManager.additionalPdfPaths);
+	if (pdfFile.isNull()) pdfFile = "?am.pdf";  // no file was explicitly specified in the command
+	QString pdfDefFile = BuildManager::parseExtendedCommandLine(pdfFile, master).first();
+	pdfFile = buildManager.findFile(pdfDefFile, buildManager.additionalPdfPaths);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
 	int ln = 0;
 	if (currentEditorView()) {
