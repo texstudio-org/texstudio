@@ -354,7 +354,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 		QVector<int> fmts=line(i).getFormats();
 		
 		for(int j=0;j<curLine.length() && j < fmts.size();j++){
-			if(fmts[j]==verbatimFormat || fmts[j]==commentFormat){
+			if(fmts[j]==verbatimFormat || (fmts[j]==commentFormat && !parent->showCommentedElementsInStructure) ){
 				curLine[j]=QChar(' ');
 			}
 		}
@@ -531,16 +531,12 @@ bool LatexDocument::patchStructure(int linenr, int count) {
             oldLineBeyond=mBeyondEnd;
             mBeyondEnd=0;
         }
-		//let %\include be processed
-		if(curLine.startsWith("%\\include")||curLine.startsWith("%\\input")||curLine.startsWith("%\\import")){
-			curLine.replace(0,1,' ');
-		}
         int offset = 0;
 		while(true) {
 			QString cmd;
 			ArgumentList args;
 			QList<int> arg_Starts;
-			int cmdStart = findCommandWithArgs(curLine, cmd, args, &arg_Starts, offset);
+			int cmdStart = findCommandWithArgs(curLine, cmd, args, &arg_Starts, offset, parent->showCommentedElementsInStructure);
 			if (cmdStart < 0) break;
 			// offset is the starting point for the next search. Currently this is behind cmd.
 			// It could be improved to be behind the arguments.

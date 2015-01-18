@@ -182,6 +182,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 
 	// TAB WIDGET EDITEUR
 	documents.indentationInStructure=configManager.indentationInStructure;
+	documents.showCommentedElementsInStructure=configManager.showCommentedElementsInStructure;
 	documents.indentIncludesInStructure=configManager.indentIncludesInStructure;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
@@ -5740,7 +5741,9 @@ void Texmaker::GeneralOptions() {
 				QDocument::setFont(QDocument::font(), true);
 			UpdateCaption();
 
-			if (documents.indentIncludesInStructure!=configManager.indentIncludesInStructure) {
+			if (documents.indentIncludesInStructure!=configManager.indentIncludesInStructure ||
+				documents.showCommentedElementsInStructure!=configManager.showCommentedElementsInStructure) {
+				documents.showCommentedElementsInStructure = configManager.showCommentedElementsInStructure;
 				documents.indentIncludesInStructure = configManager.indentIncludesInStructure;
 				foreach (LatexDocument* doc, documents.documents)
 					updateStructure(false, doc);

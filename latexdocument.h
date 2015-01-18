@@ -360,6 +360,7 @@ public:
 	
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
+	bool showCommentedElementsInStructure;
 	bool indentIncludesInStructure; //pointer! those above should be changed as well
 
 	QHash<QString,LatexPackage> cachedPackages;

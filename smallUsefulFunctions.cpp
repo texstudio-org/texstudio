@@ -588,13 +588,13 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
  *
  * Returns the starting position of cmd in line, or -1 if no command was found.
  */
-int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts, int offset) {
+int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts, int offset, bool parseComment) {
 	// true means that a command is found, with or without arguments ...
 	// otherwise a command before the interesting command leads to quiting the loop
 	static QRegExp rxCmd("\\\\\\w+\\*?");
 	static QRegExp rxComment("(^|[^\\\\])%");
 	int cmdStart = rxCmd.indexIn(line, offset);
-	int commentStart = rxComment.indexIn(line);
+	int commentStart = parseComment ? -1 : rxComment.indexIn(line);
 	if (cmdStart==-1 || (commentStart >= 0 && commentStart < cmdStart)) {
         return -1;  // no command found
 	}
