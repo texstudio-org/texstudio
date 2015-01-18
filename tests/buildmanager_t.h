@@ -88,6 +88,28 @@ private slots:
 		for (int i=0;i<expectedcommands.size();i++)
 			QEQUAL(result.commands[i].command, expectedcommands[i]);
 	}
+	void splitOptions_data() {
+		QTest::addColumn<QString>("line");
+		QTest::addColumn<QStringList>("expectedOptions");
+
+		QTest::newRow("empty") << "" << QStringList();
+		QTest::newRow("spaces") << " " << QStringList();
+		QTest::newRow("simple") << "cmd" << (QStringList() << "cmd");
+		QTest::newRow("simple2") << " cmd" << (QStringList() << "cmd");
+		QTest::newRow("simple3") << "cmd " << (QStringList() << "cmd");
+		QTest::newRow("option") << "cmd --arg" << (QStringList() << "cmd" << "--arg");
+		QTest::newRow("option2") << "cmd   --arg" << (QStringList() << "cmd" << "--arg");
+		QTest::newRow("option3") << "cmd --arg " << (QStringList() << "cmd" << "--arg");
+		QTest::newRow("quoted") << "cmd \"arg with space\"" << (QStringList() << "cmd" << "arg with space");
+		QTest::newRow("quoted2")<< "cmd \"arg with space\" --other" << (QStringList() << "cmd" << "arg with space" << "--other");
+		QTest::newRow("quotedQuote")<< "cmd \"arg \\\"with space\" --other" << (QStringList() << "cmd" << "arg \"with space" << "--other");
+	}
+	void splitOptions() {
+		QFETCH(QString, line);
+		QFETCH(QStringList, expectedOptions);
+		QEQUAL(BuildManager::splitOptions(line).join("|"), expectedOptions.join("|"));
+	}
+
 public slots:
 	void commandLineRequested(const QString& cmdId, QString* result){
 		if (cmdId == "mocka") *result = "coffee";

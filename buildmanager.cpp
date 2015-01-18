@@ -129,7 +129,35 @@ QString BuildManager::chainCommands(const QString& a, const QString& b) { return
 QString BuildManager::chainCommands(const QString& a, const QString& b, const QString& c) { return a + "|" + b + "|" + c; }
 QString BuildManager::chainCommands(const QString& a, const QString& b, const QString& c, const QString& d)  { return a + "|" + b + "|" + c + "|" + d;  }
 
-
+/** splits a string into options. Splitting occurs at spaces, except in quotes. **/
+QStringList BuildManager::splitOptions(const QString &s)
+{
+	QStringList options;
+	QChar c;
+	bool inQuote = false;
+	int start = 0;
+	int i;
+	for (i=0; i<s.length(); i++) {
+		c = s[i];
+		if (inQuote) {
+			if (c == '"' && s[i-1]!='\\') {
+				inQuote = false;
+			}
+		} else {
+			if (c == '"') {
+				inQuote = true;
+			} else if (c == ' ') {
+				if (start == i) start = i+1; // multiple spaces;
+				else {
+					options << dequoteStr(s.mid(start, i-start));
+					start = i+1;
+				}
+			}
+		}
+	}
+	if (start < i) options << dequoteStr(s.mid(start, i-start));
+	return options;
+}
 
 BuildManager::BuildManager(): processWaitedFor(0)
      #ifdef Q_OS_WIN32
