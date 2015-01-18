@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>644</height>
+            <width>479</width>
+            <height>550</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -889,8 +889,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>850</width>
-               <height>83</height>
+               <width>194</width>
+               <height>76</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1775,9 +1775,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
-            <width>866</width>
-            <height>1257</height>
+            <y>-177</y>
+            <width>863</width>
+            <height>1174</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2200,10 +2200,18 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="checkBoxShowCommentedElementsInStructure">
+                <property name="text">
+                 <string>Show elements in comments</string>
+                </property>
+               </widget>
+              </item>
              </layout>
              <zorder>checkBoxIndentIncludesInStructureTree</zorder>
              <zorder>label_64</zorder>
              <zorder>leReferenceCommandsInContextMenu</zorder>
+             <zorder>checkBoxShowCommentedElementsInStructure</zorder>
             </widget>
            </item>
            <item>
@@ -2948,8 +2956,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>365</width>
-            <height>587</height>
+            <width>314</width>
+            <height>487</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
