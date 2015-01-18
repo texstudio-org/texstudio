@@ -211,7 +211,7 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 	mUsepackageList.remove(dlh);
 	
 	if(dlh==mAppendixLine){
-		updateAppendix(mAppendixLine,0);
+		updateContext(mAppendixLine, 0, StructureEntry::InAppendix);
 		mAppendixLine=0;
 	}
 	
@@ -901,10 +901,8 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			int level = latexParser.structureCommandLevel(cmd);
 			if (level>-1 && !isDefinitionArgument(firstArg)) {
                 StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
-                if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->appendix=true;
-                else newSection->appendix=false;
-                if(mBeyondEnd &&indexOf(mBeyondEnd)<i) newSection->hide=true;
-                else newSection->hide=false;
+				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->setContext(StructureEntry::InAppendix);
+				if(mBeyondEnd &&indexOf(mBeyondEnd)<i) newSection->setContext(StructureEntry::BeyondEnd);
 				newSection->title=parseTexOrPDFString(firstArg);
                 newSection->level=level;
                 newSection->setLine(line(i).handle(), i);
@@ -937,11 +935,11 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 
         //update appendix change
         if(oldLine!=mAppendixLine){
-            updateAppendix(oldLine,mAppendixLine);
+			updateContext(oldLine, mAppendixLine, StructureEntry::InAppendix);
         }
         //update end document change
         if(oldLineBeyond!=mBeyondEnd){
-            updateBeyondEnd(oldLineBeyond,mBeyondEnd);
+			updateContext(oldLineBeyond,mBeyondEnd, StructureEntry::BeyondEnd);
         }
 
         // rehighlight current cursor position
@@ -1306,7 +1304,7 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
  
 }
 */
-StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), parent(0), document(doc),appendix(false),hide(false), parentRow(-1), lineHandle(0), lineNumber(-1){
+StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), parent(0), document(doc), parentRow(-1), lineHandle(0), lineNumber(-1), m_contexts(0) {
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(document);
 	document->StructureContent.insert(this);
@@ -1493,8 +1491,8 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		}
 	case Qt::BackgroundRole:
         if (index==mHighlightIndex) return QVariant(QColor(Qt::lightGray));
-        if (entry->hide) return QVariant(QColor(255,170,0));
-        if (entry->appendix) return QVariant(QColor(200,230,200));
+		if (entry->hasContext(StructureEntry::BeyondEnd)) return QVariant(QColor(255,170,0));
+		if (entry->hasContext(StructureEntry::InAppendix)) return QVariant(QColor(200,230,200));
         return QVariant();
 	case Qt::ForegroundRole:
         if(entry->type==StructureEntry::SE_INCLUDE) {
@@ -2431,8 +2429,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 	}
 }
 
-
-void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
+void LatexDocument::updateContext(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine, StructureEntry::Context context){
 	int endLine=newLine?indexOf(newLine):-1 ;
 	int startLine=-1;
 	if(oldLine){
@@ -2440,70 +2437,33 @@ void LatexDocument::updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHan
 		if(endLine<0 || endLine>startLine){
 			// remove appendic marker
 			StructureEntry *se=baseStructure;
-			setAppendix(se,startLine,endLine,false);
+			setContextForLines(se,startLine,endLine,context,false);
 		}
 	}
-	
+
 	if(endLine>-1 && (endLine<startLine || startLine<0)){
 		StructureEntry *se=baseStructure;
-		setAppendix(se,endLine,startLine,true);
+		setContextForLines(se,endLine,startLine,context,true);
 	}
 }
 
-void LatexDocument::updateBeyondEnd(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine){
-    int endLine=newLine?indexOf(newLine):-1 ;
-    int startLine=-1;
-    if(oldLine){
-        startLine=indexOf(oldLine);
-        if(endLine<0 || endLine>startLine){
-            // remove appendic marker
-            StructureEntry *se=baseStructure;
-            setAppendix(se,startLine,endLine,false);
-        }
-    }
-
-    if(endLine>-1 && (endLine<startLine || startLine<0)){
-        StructureEntry *se=baseStructure;
-        setAppendix(se,endLine,startLine,true);
-    }
-}
-
-void LatexDocument::setAppendix(StructureEntry *se,int startLine,int endLine,bool state){
+void LatexDocument::setContextForLines(StructureEntry *se, int startLine, int endLine, StructureEntry::Context context, bool state){
 	bool first=false;
 	for(int i=0;i<se->children.size();i++){
 		StructureEntry *elem=se->children[i];
 		if(endLine>=0 && elem->getLineHandle() && elem->getRealLineNumber()>endLine) break;
 		if(elem->type==StructureEntry::SE_SECTION && elem->getRealLineNumber()>startLine){
-			if(!first && i>0) setAppendix(se->children[i-1],startLine,endLine,state);
-			elem->appendix=state;
+			if(!first && i>0) setContextForLines(se->children[i-1],startLine,endLine,context,state);
+			elem->setContext(context, state);
 			emit updateElement(elem);
-			setAppendix(se->children[i],startLine,endLine,state);
+			setContextForLines(se->children[i],startLine,endLine,context,state);
 			first=true;
 		}
 	}
 	if(!first && !se->children.isEmpty()) {
 		StructureEntry *elem=se->children.last();
-		if(elem->type==StructureEntry::SE_SECTION) setAppendix(elem,startLine,endLine,state);
+		if(elem->type==StructureEntry::SE_SECTION) setContextForLines(elem,startLine,endLine,context,state);
 	}
-}
-
-void LatexDocument::setDocumentEnd(StructureEntry *se,int startLine,int endLine,bool state){
-    bool first=false;
-    for(int i=0;i<se->children.size();i++){
-        StructureEntry *elem=se->children[i];
-        if(endLine>=0 && elem->getLineHandle() && elem->getRealLineNumber()>endLine) break;
-        if(elem->type==StructureEntry::SE_SECTION && elem->getRealLineNumber()>startLine){
-            if(!first && i>0) setDocumentEnd(se->children[i-1],startLine,endLine,state);
-            elem->hide=state;
-            emit updateElement(elem);
-            setDocumentEnd(se->children[i],startLine,endLine,state);
-            first=true;
-        }
-    }
-    if(!first && !se->children.isEmpty()) {
-        StructureEntry *elem=se->children.last();
-        if(elem->type==StructureEntry::SE_SECTION) setDocumentEnd(elem,startLine,endLine,state);
-    }
 }
 
 bool LatexDocument::fileExits(QString fname){
@@ -2730,7 +2690,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 }
 
 void LatexDocument::emitUpdateCompleter(){
-    emit updateCompleter();
+	emit updateCompleter();
 }
 
 void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){
