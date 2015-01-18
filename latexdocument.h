@@ -17,6 +17,11 @@ struct QDocumentSelection;
 
 struct StructureEntry{
 	enum Type {SE_DOCUMENT_ROOT,SE_OVERVIEW,SE_SECTION,SE_BIBTEX,SE_TODO,SE_MAGICCOMMENT,SE_INCLUDE,SE_LABEL,SE_BLOCK=SE_LABEL};
+	enum Context {
+		 InAppendix = 0x0001,
+		 BeyondEnd = 0x0010
+	};
+	Q_DECLARE_FLAGS(Contexts, Context)
 	Type type;
 	QString title;
 	QString tooltip; // optional because most tooltips are automatically generated.
@@ -25,8 +30,6 @@ struct StructureEntry{
 	QList<StructureEntry*> children;
 	StructureEntry* parent;
 	LatexDocument* document;
-	bool appendix;
-    bool hide;
 	
 	StructureEntry(LatexDocument* doc, Type newType);
 	~StructureEntry();
@@ -39,12 +42,16 @@ struct StructureEntry{
 	int getCachedLineNumber() const;
 	int getRealLineNumber() const;
 	int getRealParentRow() const;
+
+	bool hasContext(Context c) const { return m_contexts & c; }
+	void setContext(Context c, bool b=true) { if (b) m_contexts |= c; else m_contexts &= ~c; }
 	
 	void debugPrint(const char* message) const;
 private:
 	mutable int parentRow;
 	QDocumentLineHandle* lineHandle;
 	mutable int lineNumber;
+	Contexts m_contexts;
 };
 
 Q_DECLARE_METATYPE(StructureEntry*)
@@ -214,10 +221,8 @@ private:
 	
     QDocumentLineHandle *mAppendixLine,*mBeyondEnd;
 	
-	void updateAppendix(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
-    void updateBeyondEnd(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine);
-	void setAppendix(StructureEntry *se,int startLine,int endLine,bool state);
-    void setDocumentEnd(StructureEntry *se,int startLine,int endLine,bool state);
+	void updateContext(QDocumentLineHandle *oldLine,QDocumentLineHandle *newLine, StructureEntry::Context context);
+	void setContextForLines(StructureEntry *se, int startLine, int endLine, StructureEntry::Context context, bool state);
 
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry*> &iter,QMultiHash<QDocumentLineHandle*,StructureEntry*> &MapOfElemnts,int linenr,int count);
 	void mergeStructure(StructureEntry* se, QVector<StructureEntry*> &parent_level, QList<StructureEntry*>& flatStructure, const int linenr, const int count);
