@@ -117,6 +117,7 @@ public:
 	static QString chainCommands(const QString& a, const QString& b, const QString& c);
 	static QString chainCommands(const QString& a, const QString& b, const QString& c, const QString& d);
 	
+	static QStringList splitOptions(const QString &s);
 	static QString findFileInPath(QString fileName);
 	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine=0);
 	ExpandedCommands expandCommandLine(const QString& str, ExpandingOptions& expandingOptions);
