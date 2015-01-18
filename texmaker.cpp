@@ -5133,6 +5133,10 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	
 	//open new
 	if (!embedded && !windowed) return;
+
+    if(embedded && configManager.viewerEnlarged){
+        centralVSplitter->hide();
+    }
 	
 	if (reuse) oldPDFs.insert(0, reuse);
 	if (oldPDFs.isEmpty()){
@@ -5153,9 +5157,13 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	}
 	foreach (PDFDocument* viewer, oldPDFs) {
 		bool focusViewer = (focus == 1) || (focus == 0 && !viewer->embeddedMode);
+
 		viewer->loadFile(pdfFile, master, true, focusViewer);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln , focusViewer);
 		viewer->fillRenderCache(pg);
+        if(embedded && configManager.viewerEnlarged){
+            viewer->setStateEnlarged(true);
+        }
 		
 		if (preserveDuplicates) break;
     }
@@ -5163,10 +5171,7 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
     if(embedded)
         setMenuBar(configManager.menuParentsBar);
 #endif
-    if(embedded){
-        if(configManager.viewerEnlarged)
-            enlargeEmbeddedPDFViewer();
-    }
+
 #else
 	txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
 #endif
