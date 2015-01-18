@@ -5074,7 +5074,7 @@ bool Texmaker::runCommand(const QString& commandline, QString* buffer, QTextCode
 
 void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& options){
 #ifndef NO_POPPLER_PREVIEW
-	QStringList ol = options.split(" ", QString::SkipEmptyParts);
+	QStringList ol = BuildManager::splitOptions(options);
 	QString pdfFile;
 	for (int i=ol.size()-1;i>=0;i--) {
 		if (!ol[i].startsWith("-")) {
