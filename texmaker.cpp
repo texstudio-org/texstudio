@@ -8205,9 +8205,12 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
 	if(doc->getMasterDocument())
 		curPaths << ensureTrailingDirSeparator(doc->getTopMasterDocument()->getFileInfo().absolutePath());
 	curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
+	if (defaultExt == "bib") {
+		curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
+	}
 	bool loaded = false;
 	for(int i=0;i<curPaths.count();i++){
-		const QString& curPath=curPaths.value(i);
+		const QString& curPath=ensureTrailingDirSeparator(curPaths.value(i));
 		if ((loaded=load(getAbsoluteFilePath(curPath+name,defaultExt))))
 			break;
 		if ((loaded=load(getAbsoluteFilePath(curPath+name,""))))
