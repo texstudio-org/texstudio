@@ -1344,7 +1344,7 @@ To access the document these objects are introduced:
   <tr><td>dialog.add(defaultValue, [description, [id]])</td><td>Adds a new variable with the given default value, optional description and id to the dialog; and returns the corresponding qt component. <br> A string default value becomes a QLineEdit, a number a QSpinBox and an array a QComboBox.</td></tr>
   <tr><td>dialog.get(nr/id)</td><td>Returns the current value of the nr-th added variable or the variable with a certain id.</td></tr>
   <tr><td>dialog.getAll()</td><td>Returns the value of all variables as combined numerical/associative array. You can use returnvalue[i] to get the i-th variable, and returnvalue.id to get the variable with a certain id.</td></tr>
-  <tr><td>dialog.exec()</td><td>Displays the dialog. Returns null, if the user cancels it, and the values of getAll(), if he accepts it.</td></tr>
+  <tr><td>dialog.exec()</td><td>Displays the dialog. Returns 1 if the user accepted the dialog, 0 if it was canceled.</td></tr>
   <tr><td>dialog.show()</td><td>Displays the dialog asynchronously.</td></tr>
   <tr><td>UniversalInputDialog([[defaultValue_0, description_0, id_0], [defaultValue_1, description_1, id_1], ...])</td><td>Short form: Creates a new dialog, adds all variables of the array and call exec on it.</td></tr>
   <tr><th colspan=2>FileChooser object</th></tr>
