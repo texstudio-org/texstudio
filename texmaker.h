@@ -262,6 +262,7 @@ private slots:
 	void fileCheckinPdf(QString filename="");
 	void fileUpdate(QString filename="");
 	void fileUpdateCWD(QString filename="");
+	void checkinAfterSave(QString filename);
 	void checkin(QString fn,QString text="txs auto checkin",bool blocking=false);
 	bool svnadd(QString fn,int stage=0);
 	void svncreateRep(QString fn);
