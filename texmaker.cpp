@@ -334,11 +334,11 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
     autosaveTimer.start(configManager.autosaveEveryMinutes*1000*60);
   }
 
+  connect(this, SIGNAL(infoFileSaved(QString)), this, SLOT(checkinAfterSave(QString)));
 
   //script things
   setProperty("applicationName",TEXSTUDIO);
   QTimer::singleShot(500, this, SLOT(autoRunScripts()));
-
   connectWithAdditionalArguments(this, SIGNAL(infoNewFile()), this, "runScripts", QList<QVariant>() << Macro::ST_NEW_FILE);
   connectWithAdditionalArguments(this, SIGNAL(infoNewFromTemplate()), this, "runScripts", QList<QVariant>() << Macro::ST_NEW_FROM_TEMPLATE);
   connectWithAdditionalArguments(this, SIGNAL(infoLoadFile(QString)), this, "runScripts", QList<QVariant>() << Macro::ST_LOAD_FILE);
@@ -2346,24 +2346,6 @@ void Texmaker::fileSaveAs(const QString& fileName,const bool saveSilently) {
 		//update Master/Child relations
 		LatexDocument *doc=currentEditorView()->document;
 		documents.updateMasterSlaveRelations(doc);
-		
-		
-		if(configManager.autoCheckinAfterSave){
-			if(svnadd(currentEditor()->fileName())){
-				checkin(currentEditor()->fileName(),"txs auto checkin",configManager.svnKeywordSubstitution);
-			} else {
-				//create simple repository
-				svncreateRep(currentEditor()->fileName());
-				svnadd(currentEditor()->fileName());
-				checkin(currentEditor()->fileName(),"txs auto checkin",configManager.svnKeywordSubstitution);
-			}
-			// set SVN Properties if desired
-			if(configManager.svnKeywordSubstitution){
-				QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \""+currentEditor()->fileName()+"\"";
-				statusLabelProcess->setText(QString(" svn propset svn:keywords "));
-				runCommand(cmd, 0);
-			}
-		}
 		
 		EditorTabs->setTabText(EditorTabs->currentIndex(),currentEditor()->name().replace("&","&&"));
 		EditorTabs->setTabToolTip(EditorTabs->currentIndex(), QDir::toNativeSeparators(currentEditor()->fileName()));
@@ -7717,6 +7699,25 @@ void Texmaker::fileUpdateCWD(QString filename){
 	QString buffer;
 	runCommand(cmd, &buffer);
 	outputView->insertMessageLine(buffer);
+}
+
+void Texmaker::checkinAfterSave(QString filename) {
+	if(configManager.autoCheckinAfterSave){
+		if(svnadd(filename)){
+			checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+		} else {
+			//create simple repository
+			svncreateRep(filename);
+			svnadd(filename);
+			checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+		}
+		// set SVN Properties if desired
+		if(configManager.svnKeywordSubstitution){
+			QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \""+filename+"\"";
+			statusLabelProcess->setText(QString(" svn propset svn:keywords "));
+			runCommand(cmd, 0);
+		}
+	}
 }
 
 void Texmaker::checkin(QString fn, QString text, bool blocking){
