@@ -259,6 +259,11 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 			case LinkOverlay::FileOverlay:
 				edView->openFile(lo.text());
 				return true;
+			case LinkOverlay::UrlOverlay:
+				if (!QDesktopServices::openUrl(lo.text())) {
+					txsWarning(edView->tr("Could not open url:") + "\n" + lo.text());
+				}
+				return true;
 			case LinkOverlay::UsepackageOverlay:
 				edView->openPackageDocumentation(lo.text());
 				return true;
@@ -753,14 +758,17 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 		LatexParser::ContextType context = LatexParser::Unknown;
 		QString ctxCommand, ctxValue;
 		QString line=cursor.line().text();
-		context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
+		LatexParser &latexParser = LatexParser::getInstance();
+		context = latexParser.findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
 		if (context == LatexParser::Reference) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::RefOverlay));
-		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%include"].contains(ctxCommand)) {
+		} else if (context==LatexParser::Option && latexParser.possibleCommands["%include"].contains(ctxCommand)) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::FileOverlay));
+		} else if (context==LatexParser::Option && latexParser.possibleCommands["%url"].contains(ctxCommand)) {
+			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UrlOverlay));
 		} else if (context==LatexParser::Package) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UsepackageOverlay));
-		} else if (context==LatexParser::Option && LatexParser::getInstance().possibleCommands["%bibliography"].contains(ctxCommand)) {
+		} else if (context==LatexParser::Option && latexParser.possibleCommands["%bibliography"].contains(ctxCommand)) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::BibFileOverlay));
 		} else if (context==LatexParser::Citation) {
 			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::CiteOverlay));
