@@ -72,6 +72,7 @@ public:
 private:
 	bool runMacros(QKeyEvent *event, QEditor *editor);
 	bool autoInsertLRM(QKeyEvent *event, QEditor *editor);
+	void checkLinkOverlay(QPoint mousePos, Qt::KeyboardModifiers modifiers, QEditor *editor);
 	friend class LatexEditorView;
 	const LatexCompleterConfig* completerConfig;
 	const LatexEditorViewConfig* editorViewConfig;
@@ -146,6 +147,18 @@ bool DefaultInputBinding::autoInsertLRM(QKeyEvent *event, QEditor *editor) {
 	return false;
 }
 
+void DefaultInputBinding::checkLinkOverlay(QPoint mousePos, Qt::KeyboardModifiers modifiers, QEditor *editor) {
+	if (modifiers == Qt::ControlModifier) {
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
+		QDocumentCursor cursor = editor->cursorForPosition(mousePos);
+		edView->checkForLinkOverlay(cursor);
+	} else {
+		// reached for example when Ctrl+Shift is pressed
+		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
+		edView->removeLinkOverlay();
+	}
+}
+
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
 			(editor->currentPlaceHolder() < 0 || editor->currentPlaceHolder() >= editor->placeHolderCount() || editor->getPlaceHolder(editor->currentPlaceHolder()).mirrors.isEmpty() ||  editor->getPlaceHolder(editor->currentPlaceHolder()).affector != BracketInvertAffector::instance()))  {
@@ -181,6 +194,8 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 	} else {
 		if (event->key() == Qt::Key_Control) {
 			editor->setMouseTracking(true);
+			QPoint mousePos(editor->mapToFrame(editor->mapFromGlobal(QCursor::pos())));
+			checkLinkOverlay(mousePos, event->modifiers(), editor);
 		}
 	}
 	if (LatexEditorView::hideTooltipWhenLeavingLine!=-1 && editor->cursor().lineNumber()!=LatexEditorView::hideTooltipWhenLeavingLine) {
@@ -545,15 +560,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 }
 
 bool DefaultInputBinding::mouseMoveEvent(QMouseEvent *event, QEditor *editor) {
-	if(event->modifiers() == Qt::ControlModifier) {
-		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget());
-		QDocumentCursor cursor = editor->cursorForPosition(editor->mapToContents(event->pos()));
-		edView->checkForLinkOverlay(cursor);
-	} else {
-		// reached for example when Ctrl+Shift is pressed
-		LatexEditorView *edView=qobject_cast<LatexEditorView *>(editor->parentWidget()); //a qobject is necessary to retrieve events
-		edView->removeLinkOverlay();
-	}
+	checkLinkOverlay(editor->mapToContents(event->pos()), event->modifiers(), editor);
 	return false;
 }
 
