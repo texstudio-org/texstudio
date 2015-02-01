@@ -1,5 +1,41 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.8.8 -> 2.x.x
+-----------------------------------------
+- link overlays for urls
+- close editor tab by pressing middle mouse button
+- more standard shortcuts (in particular for OS X)
+- support optional filename argument in txs:///view-pdf-internal
+- add "expand/collapse all documents" to context menu of structure
+- add tabulary support
+- open correct log file if output filenames are changed due to "%& -job-name=targetfile" (note: changed pdf filename not yet supported)
+- user-defined icons are now portable: if possible icon paths are stored relative to settings dir or application dir
+- windowed pdf viewer now support --no-focus argument
+- improved detection of label name for "Insert \ref to Next Label"
+- improved context detection for preview (multi-line math, cursor inside multi-char delimiter)
+- improved search for texdoc location
+- new option: Advanced Editor -> Structure Panel -> Show elements in comments
+- new option: mouse wheel zoom also controls the log editor (patch by Paulo Silva)
+- new option: encoding of bib files
+- new options: some GUI elements are now scalable (for better hi-res display support)
+- some cleanup in the options dialog
+- fix: caseSensistivity for global search
+- fix: sync scrolling in enlarged embedded pdf viewer
+- fix: interpretation of % !BIB program = biber
+- fix: fit to text width in multi-page grid of pdf viewer
+- fix: unsaved documents could create false entries when saving a session
+- fix: forgotten editor shortcuts
+- fix: linecache on retina display
+- fix: on OSX: the dictionary default path relative to app
+- fix: compilation on freebsd patch by Abilio
+- fix: display user command icon (patch by Paulo Silva)
+- fix: svn auto-checkin was not executed after some types of save operations
+- fix: link-click on bib file also searches in additionalBibPaths
+- fix: some sections were incorrectly marked as "beyond end of document"
+- fix: crash when file is removed and silent reload is activated
+- fix: failed "! TeX encoding" detection due to bug in line end detection
+- removed: case insensitive completion (due to complexity/performance issues)
+
 TeXstudio 2.8.6 -> 2.8.8
 -----------------------------------------
 - basic Asymptote highlighting
