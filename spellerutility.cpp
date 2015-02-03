@@ -243,7 +243,7 @@ void SpellerManager::scanForDictionaries(const QString & path) {
 	while (iterator.hasNext()) {
 		iterator.next();
 		if (!iterator.fileInfo().isDir()) {
-			if (iterator.fileName().endsWith(".dic")) {
+			if (iterator.fileName().endsWith(".dic") && !iterator.fileName().startsWith("hyph_")) {
 				QFileInfo fi(iterator.fileInfo());
 				QString realDictFile = (fi.isSymLink()) ? QFileInfo(fi.symLinkTarget()).canonicalFilePath() : fi.canonicalFilePath();
 				if (dictFiles.contains(fi.baseName()))
