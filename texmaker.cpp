@@ -290,11 +290,6 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	TemplateManager::ensureUserTemplateDirExists();
 	TemplateManager::checkForOldUserTemplates();
 
-    if (configManager.sessionRestore) {
-		fileRestoreSession(false, false);
-		ToggleRememberAct->setChecked(true);
-	}
-	
 	/* The encoding detection works as follow:
 		If QDocument detects the file is UTF16LE/BE, use that encoding
 		Else If QDocument detects UTF-8 {
@@ -347,6 +342,11 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
   connectWithAdditionalArguments(&documents, SIGNAL(masterDocumentChanged(LatexDocument*)), this, "runScripts", QList<QVariant>() << Macro::ST_MASTER_CHANGED);
   connectWithAdditionalArguments(this, SIGNAL(infoAfterTypeset()), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_TYPESET);
   connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString,bool,bool,bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
+
+  if (configManager.sessionRestore) {
+	  fileRestoreSession(false, false);
+	  ToggleRememberAct->setChecked(true);
+  }
 }
 
 
