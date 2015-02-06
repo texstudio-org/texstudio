@@ -567,6 +567,18 @@
         <source>Default Glossary Tool</source>
         <translation>Výchozí program pro slovníček</translation>
     </message>
+    <message>
+        <source>Error: No command expanded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error: One command expansion invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -2645,22 +2657,6 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>scale central toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>revert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>scale symbols</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>scale toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Scan LaTeX distribution for installed packages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2682,6 +2678,34 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
     </message>
     <message>
         <source>GUI Scaling</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale Central Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale Symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scale Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show elements in comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bibliography</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bib File Encoding:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3593,6 +3617,10 @@ Musíte se ujistit, že kódování souboru a hodnota poslaná balíčku inputen
         <source>texdoc did not respond to query on package:</source>
         <translation>Texdoc neodpověděl na dotaz k balíčku:</translation>
     </message>
+    <message>
+        <source>texdoc not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>InsertGraphics</name>
@@ -3887,6 +3915,10 @@ Neplatný příkaz \caption.</translation>
         <source>BIBLIOGRAPHY</source>
         <translation>Bibliografie</translation>
     </message>
+    <message>
+        <source>Missing value for -job-name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LatexDocumentsModel</name>
@@ -4085,6 +4117,10 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>not found</source>
         <translation type="unfinished">Nenalezeno</translation>
+    </message>
+    <message>
+        <source>Could not open url:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7869,7 +7905,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
-        <translation>Klepněte kvůli skoku na záložku</translation>
+        <translation type="vanished">Klepněte kvůli skoku na záložku</translation>
     </message>
     <message>
         <source>Error</source>
@@ -9798,6 +9834,22 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Go to bookmark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand all documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collapse all documents</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
