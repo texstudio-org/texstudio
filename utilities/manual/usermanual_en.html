@@ -12,6 +12,7 @@
 <ul class="two-columns">
 <li><a href="#SECTIONNEW">0. What's new</a>
 	<ul>
+	<li><a href="#SECTIONNEW290">Version 2.8.8 -> Version 2.9.0</a></li>
 	<li><a href="#SECTIONNEW288">Version 2.8.6 -> Version 2.8.8</a></li>
 	<li><a href="#SECTIONNEW286">Version 2.8.4 -> Version 2.8.6</a></li>
 	<li><a href="#SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</a></li>
@@ -102,6 +103,48 @@
 </ul>
 <hr>
 <h1 id="SECTIONNEW">0. What's new</h1>
+
+<h2 id="SECTIONNEW290">Version 2.8.0 -> Version 2.9.0</h2>
+<ul class="news">
+<li>basic Asymptote highlighting</li>
+<li>improved parsing of command options</li>
+<li>link overlays for urls</li>
+<li>close editor tab by pressing middle mouse button</li>
+<li>more standard shortcuts (in particular for OS X)</li>
+<li>support optional filename argument in txs:///view-pdf-internal</li>
+<li>add "expand/collapse all documents" to context menu of structure</li>
+<li>add tabulary support</li>
+<li>open correct log file if output filenames are changed due to "%& -job-name=targetfile" (note: changed pdf filename not yet supported)</li>
+<li>user-defined icons are now portable: if possible icon paths are stored relative to settings dir or application dir</li>
+<li>windowed pdf viewer now support --no-focus argument</li>
+<li>improved detection of label name for "Insert \ref to Next Label"</li>
+<li>improved context detection for preview (multi-line math, cursor inside multi-char delimiter)</li>
+<li>improved search for texdoc location</li>
+<li>new option: Advanced Editor -> Structure Panel -> Show elements in comments</li>
+<li>new option: mouse wheel zoom also controls the log editor (patch by Paulo Silva)</li>
+<li>new option: encoding of bib files</li>
+<li>new options: some GUI elements are now scalable (for better hi-res display support)</li>
+<li>some cleanup in the options dialog</li>
+<li>fix: caseSensistivity for global search</li>
+<li>fix: sync scrolling in enlarged embedded pdf viewer</li>
+<li>fix: interpretation of % !BIB program = biber</li>
+<li>fix: fit to text width in multi-page grid of pdf viewer</li>
+<li>fix: unsaved documents could create false entries when saving a session</li>
+<li>fix: forgotten editor shortcuts</li>
+<li>fix: linecache on retina display</li>
+<li>fix: on OSX: the dictionary default path relative to app</li>
+<li>fix: compilation on freebsd patch by Abilio</li>
+<li>fix: display user command icon (patch by Paulo Silva)</li>
+<li>fix: svn auto-checkin was not executed after some types of save operations</li>
+<li>fix: link-click on bib file also searches in additionalBibPaths</li>
+<li>fix: some sections were incorrectly marked as "beyond end of document"</li>
+<li>fix: crash when file is removed and silent reload is activated</li>
+<li>fix: failed "! TeX encoding" detection due to bug in line end detection</li>
+<li>fix: ignore hyph_*.dic files when looking for hunspell dictionaries</li>
+<li>fix: trigger ?load-file for files opened with the session at startup</li>
+<li>removed: case insensitive completion (due to complexity/performance issues)</li>
+
+</ul>
 
 <h2 id="SECTIONNEW288">Version 2.8.6 -> Version 2.8.8</h2>
 <ul class="news">
