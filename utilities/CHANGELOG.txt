@@ -34,6 +34,8 @@ TeXstudio 2.8.8 -> 2.x.x
 - fix: some sections were incorrectly marked as "beyond end of document"
 - fix: crash when file is removed and silent reload is activated
 - fix: failed "! TeX encoding" detection due to bug in line end detection
+- fix: ignore hyph_*.dic files when looking for hunspell dictionaries
+- fix: trigger ?load-file for files opened with the session at startup
 - removed: case insensitive completion (due to complexity/performance issues)
 
 TeXstudio 2.8.6 -> 2.8.8
