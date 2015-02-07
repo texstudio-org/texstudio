@@ -130,11 +130,14 @@ void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event) {
 		if (toIndex >= 0) {
 			emit currentTabAboutToChange(currentIndex(), toIndex);
 		}
-    } else if (event->button() == Qt::MiddleButton) {
+    }
+#if QT_VERSION>=0x040700
+    else if (event->button() == Qt::MiddleButton) {
         int tabNr = tabAt(event->pos());
         if (tabNr >= 0) {
             emit middleMouseButtonPressed(tabNr);
         }
     }
+#endif
 	QTabBar::mousePressEvent(event);
 }
