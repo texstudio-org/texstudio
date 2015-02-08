@@ -3754,7 +3754,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 						rwidth += toff * currentSpaceWidth;
 						tcol += toff;
 					} else {
-						rwidth += currentSpaceWidth;
+						rwidth += d->textWidth(newFont, c);
 						++tcol;
 					}
 				}
@@ -3852,6 +3852,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                             mergeText+=QString(toff,' ');
                         }
 					} else {
+						QChar spaceChar(m_text.at(i));
+						int spaceWidth = d->textWidth(newFont, spaceChar);
 						++column;
 
 						if (
@@ -3874,16 +3876,18 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                             // old: manually drawn dot
                             //use old solution as qt5 is sh***y when finding font substitution
 #if (QT_VERSION >= 0x050000) && defined(Q_OS_MAC) && (QT_VERSION < 0x050200)
-                            p->drawPoint(xpos + currentSpaceWidth/2, ypos + QDocumentPrivate::m_lineHeight/2);
+							p->drawPoint(xpos + width/2, ypos + QDocumentPrivate::m_lineHeight/2);
 #else
-							p->drawText(QPoint(xpos, baseline), QString((ushort)0xb7));
+							QTextOption to;
+							to.setAlignment(Qt::AlignHCenter);
+							p->drawText(QPoint(xpos+spaceWidth/2, baseline), QString((ushort)0xb7));
 #endif
 							p->restore();
 						}
 
-						xpos += currentSpaceWidth;
+						xpos += spaceWidth;
                         if(mergeXpos>=0){
-                            mergeText+=" ";
+							mergeText += spaceChar;
                         }
 					}
 				}
