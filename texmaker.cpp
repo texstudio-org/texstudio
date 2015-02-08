@@ -1565,7 +1565,6 @@ void Texmaker::configureNewEditorViewEnd(LatexEditorView *edit,bool reloadFromDo
 
 		edit->editor->setFocus();
 		UpdateCaption();
-		NewDocumentStatus();
 	}
 }
 
@@ -1667,7 +1666,6 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
             updateStructure(false,existingView->document,true);
 			existingView->editor->setFocus();
 			UpdateCaption();
-			NewDocumentStatus();
 			return existingView;
 		}
 		EditorTabs->setCurrentEditor(existingView);
