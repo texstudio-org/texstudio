@@ -1353,11 +1353,8 @@ void Texmaker::UpdateCaption() {
 		if (file.isEmpty() && EditorTabs->currentIndex()>=0)
 			file = EditorTabs->tabText(EditorTabs->currentIndex());
 		title = file + " - " + TEXSTUDIO;
-		if (currentEditorView()->editor) {
-			NewDocumentStatus();
-			NewDocumentLineEnding();
-			//currentEditorView()->editor->setFocus();
-		}
+		NewDocumentStatus();
+		NewDocumentLineEnding();
 	}
 	setWindowTitle(title);
 	//updateStructure();
@@ -1387,10 +1384,8 @@ void Texmaker::currentEditorChanged() {
 	if (!currentEditorView()) return;
 	if (configManager.watchedMenus.contains("main/view/documents"))
 		updateToolBarMenu("main/view/documents");
-	if (currentEditorView()) {
-		EditorSpellerChanged(currentEditorView()->getSpeller());
-		currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
-	}
+	EditorSpellerChanged(currentEditorView()->getSpeller());
+	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
