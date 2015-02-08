@@ -43,6 +43,7 @@
  * - win32-g++ (MinGW)
  * - win32-msvc2010 (MS VS 2010 Express, Qt 4.8.4)
  * - win32-msvc2010 (Qt Creator, Qt 5.0.1)
+ * - win32-msvc2012 (Qt Creator, Qt 5.2.0)
  * - some Symbian version, reportedly
  * 
  * No testing has been officially done on other systems. Of course, patches to
@@ -115,10 +116,7 @@ $ make install
  *
  * Binary compatibility is guaranteed between minor releases starting
  * with version 0.5, thanks to the Pimpl idiom. That is, the next binary
- * incompatible version will be 1.x, and if zip64 support is ever
- * introduced, then there will be a build option to compile either as
- * non-zip64 (binary compatible with the old releases) or as zip64
- * (which will be binary incompatible due to different file size types).
+ * incompatible version will be 1.x.
  *
  * \section test Testing
  *
@@ -175,5 +173,5 @@ $ ./qztest
  * my mail for that kind of stuff, so if a bug reported by mail isn't
  * fixed immediately, it will likely be forgotten forever.
  *
- * Copyright (C) 2005-2012 Sergey A. Tachenov and contributors
+ * Copyright (C) 2005-2014 Sergey A. Tachenov and contributors
  **/

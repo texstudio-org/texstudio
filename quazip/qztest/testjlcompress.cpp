@@ -1,3 +1,27 @@
+/*
+Copyright (C) 2005-2014 Sergey A. Tachenov
+
+This file is part of QuaZIP test suite.
+
+QuaZIP is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+QuaZIP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+
+See COPYING file for the full LGPL text.
+
+Original ZIP package is copyrighted by Gilles Vollant and contributors,
+see quazip/(un)zip.h files for details. Basically it's the zlib license.
+*/
+
 #include "testjlcompress.h"
 
 #include "qztest.h"
@@ -120,10 +144,20 @@ void TestJlCompress::extractFile_data()
     QTest::addColumn<QStringList>("fileNames");
     QTest::addColumn<QString>("fileToExtract");
     QTest::addColumn<QString>("destName");
+    QTest::addColumn<QByteArray>("encoding");
     QTest::newRow("simple") << "jlextfile.zip" << (
             QStringList() << "test0.txt" << "testdir1/test1.txt"
             << "testdir2/test2.txt" << "testdir2/subdir/test2sub.txt")
-        << "testdir2/test2.txt" << "test2.txt";
+        << "testdir2/test2.txt" << "test2.txt" << QByteArray();
+    QTest::newRow("russian") << "jlextfilerus.zip" << (
+            QStringList() << "test0.txt" << "testdir1/test1.txt"
+            << QString::fromUtf8("testdir2/тест2.txt")
+            << "testdir2/subdir/test2sub.txt")
+        << QString::fromUtf8("testdir2/тест2.txt")
+        << QString::fromUtf8("тест2.txt") << QByteArray("IBM866");
+    QTest::newRow("extract dir") << "jlextdir.zip" << (
+            QStringList() << "testdir1/")
+        << "testdir1/" << "testdir1/" << QByteArray();
 }
 
 void TestJlCompress::extractFile()
@@ -132,6 +166,7 @@ void TestJlCompress::extractFile()
     QFETCH(QStringList, fileNames);
     QFETCH(QString, fileToExtract);
     QFETCH(QString, destName);
+    QFETCH(QByteArray, encoding);
     QDir curDir;
     if (!curDir.mkpath("jlext/jlfile")) {
         QFAIL("Couldn't mkpath jlext/jlfile");
@@ -139,9 +174,20 @@ void TestJlCompress::extractFile()
     if (!createTestFiles(fileNames)) {
         QFAIL("Couldn't create test files");
     }
-    if (!JlCompress::compressDir(zipName, "tmp")) {
-        QFAIL("Couldn't create test archive");
+    QFile srcFile("tmp/" + fileToExtract);
+    QFile::Permissions srcPerm = srcFile.permissions();
+    // Invert the "write other" flag so permissions
+    // are NOT default any more. Otherwise it's impossible
+    // to figure out whether the permissions were set correctly
+    // or JlCompress failed to set them completely,
+    // thus leaving them at the default setting.
+    srcPerm ^= QFile::WriteOther;
+    QVERIFY(srcFile.setPermissions(srcPerm));
+    if (!createTestArchive(zipName, fileNames,
+                           QTextCodec::codecForName(encoding))) {
+        QFAIL("Can't create test archive");
     }
+    QuaZip::setDefaultFileNameCodec(encoding);
     QVERIFY(!JlCompress::extractFile(zipName, fileToExtract,
                 "jlext/jlfile/" + destName).isEmpty());
     QFileInfo destInfo("jlext/jlfile/" + destName), srcInfo("tmp/" +
@@ -149,9 +195,16 @@ void TestJlCompress::extractFile()
     QCOMPARE(destInfo.size(), srcInfo.size());
     QCOMPARE(destInfo.permissions(), srcInfo.permissions());
     curDir.remove("jlext/jlfile/" + destName);
-    curDir.mkdir("jlext/jlfile/" + destName);
-    QVERIFY(JlCompress::extractFile(zipName, fileToExtract,
-                "jlext/jlfile/" + destName).isEmpty());
+    if (!fileToExtract.endsWith("/")) {
+        // If we aren't extracting a directory, we need to check
+        // that extractFile() fails if there is a directory
+        // with the same name as the file being extracted.
+        curDir.mkdir("jlext/jlfile/" + destName);
+        QVERIFY(JlCompress::extractFile(zipName, fileToExtract,
+                    "jlext/jlfile/" + destName).isEmpty());
+    }
+    // Here we either delete the target dir or the dir created in the
+    // test above.
     curDir.rmpath("jlext/jlfile/" + destName);
     removeTestFiles(fileNames);
     curDir.remove(zipName);
@@ -243,4 +296,21 @@ void TestJlCompress::extractDir()
     curDir.rmpath("jlext/jldir");
     removeTestFiles(fileNames);
     curDir.remove(zipName);
+}
+
+void TestJlCompress::zeroPermissions()
+{
+    QuaZip zipCreator("zero.zip");
+    QVERIFY(zipCreator.open(QuaZip::mdCreate));
+    QuaZipFile zeroFile(&zipCreator);
+    QuaZipNewInfo newInfo("zero.txt");
+    newInfo.externalAttr = 0; // should be zero anyway, but just in case
+    QVERIFY(zeroFile.open(QIODevice::WriteOnly, newInfo));
+    zeroFile.close();
+    zipCreator.close();
+    QVERIFY(!JlCompress::extractFile("zero.zip", "zero.txt").isEmpty());
+    QVERIFY(QFile("zero.txt").permissions() != 0);
+    QDir curDir;
+    curDir.remove("zero.zip");
+    curDir.remove("zero.txt");
 }

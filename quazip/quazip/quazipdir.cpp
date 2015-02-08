@@ -1,3 +1,27 @@
+/*
+Copyright (C) 2005-2014 Sergey A. Tachenov
+
+This file is part of QuaZIP.
+
+QuaZIP is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+QuaZIP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+
+See COPYING file for the full LGPL text.
+
+Original ZIP package is copyrighted by Gilles Vollant and contributors,
+see quazip/(un)zip.h files for details. Basically it's the zlib license.
+*/
+
 #include "quazipdir.h"
 
 #include <QSet>
@@ -138,11 +162,11 @@ QString QuaZipDir::dirName() const
     return QDir(d->dir).dirName();
 }
 
-QuaZipFileInfo QuaZipDir_getFileInfo(QuaZip *zip, bool *ok, 
+QuaZipFileInfo64 QuaZipDir_getFileInfo(QuaZip *zip, bool *ok,
                                   const QString &relativeName,
                                   bool isReal)
 {
-    QuaZipFileInfo info;
+    QuaZipFileInfo64 info;
     if (isReal) {
         *ok = zip->getCurrentFileInfo(&info);
     } else {
@@ -161,23 +185,33 @@ QuaZipFileInfo QuaZipDir_getFileInfo(QuaZip *zip, bool *ok,
     return info;
 }
 
-template<typename TFileInfoList>
-void QuaZipDir_convertInfoList(const QList<QuaZipFileInfo> &from, TFileInfoList &to);
-
-template<>
-void QuaZipDir_convertInfoList(const QList<QuaZipFileInfo> &from, QList<QuaZipFileInfo> &to)
+static void QuaZipDir_convertInfoList(const QList<QuaZipFileInfo64> &from,
+                                      QList<QuaZipFileInfo64> &to)
 {
     to = from;
 }
 
-template<>
-void QuaZipDir_convertInfoList(const QList<QuaZipFileInfo> &from, QStringList &to)
+static void QuaZipDir_convertInfoList(const QList<QuaZipFileInfo64> &from,
+                                      QStringList &to)
 {
     to.clear();
-    for (QList<QuaZipFileInfo>::const_iterator i = from.constBegin();
+    for (QList<QuaZipFileInfo64>::const_iterator i = from.constBegin();
             i != from.constEnd();
             ++i) {
         to.append(i->name);
+    }
+}
+
+static void QuaZipDir_convertInfoList(const QList<QuaZipFileInfo64> &from,
+                                      QList<QuaZipFileInfo> &to)
+{
+    to.clear();
+    for (QList<QuaZipFileInfo64>::const_iterator i = from.constBegin();
+            i != from.constEnd();
+            ++i) {
+        QuaZipFileInfo info32;
+        i->toQuaZipFileInfo(info32);
+        to.append(info32);
     }
 }
 
@@ -208,7 +242,7 @@ class QuaZipDirComparator
         int compareStrings(const QString &string1, const QString &string2);
     public:
         inline QuaZipDirComparator(QDir::SortFlags sort): sort(sort) {}
-        bool operator()(const QuaZipFileInfo &info1, const QuaZipFileInfo &info2);
+        bool operator()(const QuaZipFileInfo64 &info1, const QuaZipFileInfo64 &info2);
 };
 
 QString QuaZipDirComparator::getExtension(const QString &name)
@@ -236,8 +270,8 @@ int QuaZipDirComparator::compareStrings(const QString &string1,
     }
 }
 
-bool QuaZipDirComparator::operator()(const QuaZipFileInfo &info1,
-        const QuaZipFileInfo &info2)
+bool QuaZipDirComparator::operator()(const QuaZipFileInfo64 &info1,
+        const QuaZipFileInfo64 &info2)
 {
     QDir::SortFlags order = sort
         & (QDir::Name | QDir::Time | QDir::Size | QDir::Type);
@@ -307,7 +341,7 @@ bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
     if (nmfltr.isEmpty())
         nmfltr = this->nameFilters;
     QSet<QString> dirsFound;
-    QList<QuaZipFileInfo> list;
+    QList<QuaZipFileInfo64> list;
     do {
         QString name = zip->getCurrentFileName();
         if (!name.startsWith(basePath))
@@ -334,7 +368,7 @@ bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
         if (!nmfltr.isEmpty() && !QDir::match(nmfltr, relativeName))
             continue;
         bool ok;
-        QuaZipFileInfo info = QuaZipDir_getFileInfo(zip, &ok, relativeName,
+        QuaZipFileInfo64 info = QuaZipDir_getFileInfo(zip, &ok, relativeName,
             isReal);
         if (!ok) {
             return false;
@@ -346,7 +380,7 @@ bool QuaZipDirPrivate::entryInfoList(QStringList nameFilters,
         srt = sorting;
 #ifdef QUAZIP_QUAZIPDIR_DEBUG
     qDebug("QuaZipDirPrivate::entryInfoList(): before sort:");
-    foreach (QuaZipFileInfo info, list) {
+    foreach (QuaZipFileInfo64 info, list) {
         qDebug("%s\t%s", info.name.toUtf8().constData(),
                 info.dateTime.toString(Qt::ISODate).toUtf8().constData());
     }
@@ -380,6 +414,22 @@ QList<QuaZipFileInfo> QuaZipDir::entryInfoList(QDir::Filters filters,
     return entryInfoList(QStringList(), filters, sort);
 }
 
+QList<QuaZipFileInfo64> QuaZipDir::entryInfoList64(const QStringList &nameFilters,
+    QDir::Filters filters, QDir::SortFlags sort) const
+{
+    QList<QuaZipFileInfo64> result;
+    if (d->entryInfoList(nameFilters, filters, sort, result))
+        return result;
+    else
+        return QList<QuaZipFileInfo64>();
+}
+
+QList<QuaZipFileInfo64> QuaZipDir::entryInfoList64(QDir::Filters filters,
+    QDir::SortFlags sort) const
+{
+    return entryInfoList64(QStringList(), filters, sort);
+}
+
 QStringList QuaZipDir::entryList(const QStringList &nameFilters,
     QDir::Filters filters, QDir::SortFlags sort) const
 {
@@ -398,7 +448,7 @@ QStringList QuaZipDir::entryList(QDir::Filters filters,
 
 bool QuaZipDir::exists(const QString &filePath) const
 {
-    if (filePath == "/")
+    if (filePath == "/" || filePath.isEmpty())
         return true;
     QString fileName = filePath;
     if (fileName.endsWith('/'))
@@ -444,8 +494,7 @@ bool QuaZipDir::exists(const QString &filePath) const
 
 bool QuaZipDir::exists() const
 {
-    QDir thisDir(d->dir);
-    return QuaZipDir(d->zip, thisDir.filePath("..")).exists(thisDir.dirName());
+    return QuaZipDir(d->zip).exists(d->dir);
 }
 
 QString QuaZipDir::filePath(const QString &fileName) const
@@ -475,7 +524,7 @@ QString QuaZipDir::path() const
 
 QString QuaZipDir::relativeFilePath(const QString &fileName) const
 {
-    return QDir(d->dir).relativeFilePath(fileName);
+    return QDir("/" + d->dir).relativeFilePath(fileName);
 }
 
 void QuaZipDir::setCaseSensitivity(QuaZip::CaseSensitivity caseSensitivity)

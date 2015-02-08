@@ -64,6 +64,10 @@ QByteArray {\bf extra}\label{structQuaZipFileInfo_affc7b097de2c3c2ef5801c60f96ad
 \subsection{Detailed Description}
 Information about a file inside archive. 
 
+\begin{Desc}
+\item[{\bf Deprecated}]Use \doxyref{QuaZipFileInfo64}{p.}{structQuaZipFileInfo64} instead. Not only it supports large files, but also more convenience methods as well.\end{Desc}
+
+
 Call \doxyref{QuaZip::getCurrentFileInfo()}{p.}{classQuaZip_a9c91a53ed4c2038e153c64bdc097ebe8} or \doxyref{QuaZipFile::getFileInfo()}{p.}{classQuaZipFile_ad3f5807329321be21b12c1ba5798b359} to fill this structure. 
 
 \subsection{Member Function Documentation}
@@ -79,10 +83,6 @@ Call \doxyref{QuaZip::getCurrentFileInfo()}{p.}{classQuaZip_a9c91a53ed4c2038e153
 Get the file permissions. 
 
 Returns the high 16 bits of external attributes converted to QFile::Permissions. 
-
-References externalAttr.
-
-
 
 The documentation for this struct was generated from the following files:\begin{DoxyCompactItemize}
 \item 

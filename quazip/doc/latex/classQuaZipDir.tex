@@ -47,6 +47,10 @@ QList$<$ {\bf QuaZipFileInfo} $>$ {\bf entryInfoList} (const QStringList \&nameF
 \begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory. \end{DoxyCompactList}\item 
 QList$<$ {\bf QuaZipFileInfo} $>$ {\bf entryInfoList} (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
 \begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory. \end{DoxyCompactList}\item 
+QList$<$ {\bf QuaZipFileInfo64} $>$ {\bf entryInfoList64} (const QStringList \&nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory with zip64 support. \end{DoxyCompactList}\item 
+QList$<$ {\bf QuaZipFileInfo64} $>$ {\bf entryInfoList64} (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory with zip64 support. \end{DoxyCompactList}\item 
 QStringList {\bf entryList} (const QStringList \&nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
 \begin{DoxyCompactList}\small\item\em Returns the list of the entry names in the directory. \end{DoxyCompactList}\item 
 QStringList {\bf entryList} (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
@@ -68,8 +72,7 @@ QStringList {\bf nameFilters} () const \label{classQuaZipDir_a00f18e23abb8cac04f
 \begin{DoxyCompactList}\small\item\em Return the default name filter. \end{DoxyCompactList}\item 
 QString {\bf path} () const 
 \begin{DoxyCompactList}\small\item\em Returns the path to the current dir. \end{DoxyCompactList}\item 
-QString {\bf relativeFilePath} (const QString \&fileName) const \label{classQuaZipDir_a2ae89c2b85786a0168656fc7a3faaf01}
-
+QString {\bf relativeFilePath} (const QString \&fileName) const 
 \begin{DoxyCompactList}\small\item\em Returns the path to the specified file relative to the current dir. \end{DoxyCompactList}\item 
 void {\bf setCaseSensitivity} ({\bf QuaZip::CaseSensitivity} caseSensitivity)\label{classQuaZipDir_ad53c720975bb0c49a823355f7d518793}
 
@@ -102,6 +105,7 @@ The only significant difference from QDir is that the root path is not '/', but 
 \item In the \doxyref{cd()}{p.}{classQuaZipDir_aa829afc0243f1d307302f1167edecc7b} function.
 \item In the constructor.
 \item In the \doxyref{exists()}{p.}{classQuaZipDir_aacb488fec6e951ac80e5d473534fee97} function.
+\item In the relativePath() function.
 \end{DoxyItemize}
 
 Note that since ZIP uses '/' on all platforms, the '$\backslash$' separator is not supported. 
@@ -205,7 +209,7 @@ Returns the list of the entries in the directory.
 \hline
 {\em filters} & The entry type filters, only Files and Dirs are accepted. \\
 \hline
-{\em sort} & Sorting mode (not supported yet).\\
+{\em sort} & Sorting mode.\\
 \hline
 \end{DoxyParams}
 
@@ -227,6 +231,48 @@ Returns the list of the entries in the directory.
 This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. The same as entryInfoList(QStringList(), filters, sort). 
 
 References entryInfoList().
+
+\index{QuaZipDir@{QuaZipDir}!entryInfoList64@{entryInfoList64}}
+\index{entryInfoList64@{entryInfoList64}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryInfoList64}]{\setlength{\rightskip}{0pt plus 5cm}QList$<$ {\bf QuaZipFileInfo64} $>$ QuaZipDir::entryInfoList64 (
+\begin{DoxyParamCaption}
+\item[{const QStringList \&}]{nameFilters, }
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_ae2b5a4b251db7aeb165c6656da0e3431}
+
+
+Returns the list of the entries in the directory with zip64 support. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nameFilters} & The list of file patterns to list, uses the same syntax as QDir. \\
+\hline
+{\em filters} & The entry type filters, only Files and Dirs are accepted. \\
+\hline
+{\em sort} & Sorting mode. \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by entryInfoList64().
+
+\index{QuaZipDir@{QuaZipDir}!entryInfoList64@{entryInfoList64}}
+\index{entryInfoList64@{entryInfoList64}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryInfoList64}]{\setlength{\rightskip}{0pt plus 5cm}QList$<$ {\bf QuaZipFileInfo64} $>$ QuaZipDir::entryInfoList64 (
+\begin{DoxyParamCaption}
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_a8c38ec214c300049685cbf71486636d5}
+
+
+Returns the list of the entries in the directory with zip64 support. 
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. The same as entryInfoList64(QStringList(), filters, sort). 
+
+References entryInfoList64().
 
 \index{QuaZipDir@{QuaZipDir}!entryList@{entryList}}
 \index{entryList@{entryList}!QuaZipDir@{QuaZipDir}}
@@ -321,6 +367,27 @@ The path never starts with '/', and the root path is an empty string.
 
 Referenced by cd(), and setPath().
 
+\index{QuaZipDir@{QuaZipDir}!relativeFilePath@{relativeFilePath}}
+\index{relativeFilePath@{relativeFilePath}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{relativeFilePath}]{\setlength{\rightskip}{0pt plus 5cm}QString QuaZipDir::relativeFilePath (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{fileName}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_a2ae89c2b85786a0168656fc7a3faaf01}
+
+
+Returns the path to the specified file relative to the current dir. 
+
+This function is mostly useless, provided only for the sake of completeness.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fileName} & The path to the file, should start with "/" if relative to the archive root. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Path relative to the current dir. 
+\end{DoxyReturn}
 \index{QuaZipDir@{QuaZipDir}!setPath@{setPath}}
 \index{setPath@{setPath}!QuaZipDir@{QuaZipDir}}
 \subsubsection[{setPath}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipDir::setPath (

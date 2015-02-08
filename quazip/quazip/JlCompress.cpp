@@ -1,3 +1,28 @@
+/*
+Copyright (C) 2010 Roberto Pompermaier
+Copyright (C) 2005-2014 Sergey A. Tachenov
+
+This file is part of QuaZIP.
+
+QuaZIP is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+QuaZIP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+
+See COPYING file for the full LGPL text.
+
+Original ZIP package is copyrighted by Gilles Vollant and contributors,
+see quazip/(un)zip.h files for details. Basically it's the zlib license.
+*/
+
 #include "JlCompress.h"
 #include <QDebug>
 
@@ -159,16 +184,25 @@ bool JlCompress::extractFile(QuaZip* zip, QString fileName, QString fileDest) {
 
     // Controllo esistenza cartella file risultato
     QDir curDir;
-    if (!curDir.mkpath(QFileInfo(fileDest).absolutePath())) {
-        return false;
+    if (fileDest.endsWith('/')) {
+        if (!curDir.mkpath(fileDest)) {
+            return false;
+        }
+    } else {
+        if (!curDir.mkpath(QFileInfo(fileDest).absolutePath())) {
+            return false;
+        }
     }
 
-    QuaZipFileInfo info;
+    QuaZipFileInfo64 info;
     if (!zip->getCurrentFileInfo(&info))
         return false;
 
+    QFile::Permissions srcPerm = info.getPermissions();
     if (fileDest.endsWith('/') && QFileInfo(fileDest).isDir()) {
-        QFile(fileDest).setPermissions(info.getPermissions());
+        if (srcPerm != 0) {
+            QFile(fileDest).setPermissions(srcPerm);
+        }
         return true;
     }
 
@@ -192,7 +226,9 @@ bool JlCompress::extractFile(QuaZip* zip, QString fileName, QString fileDest) {
         return false;
     }
 
-    outFile.setPermissions(info.getPermissions());
+    if (srcPerm != 0) {
+        outFile.setPermissions(srcPerm);
+    }
     return true;
 }
 
@@ -463,7 +499,7 @@ QStringList JlCompress::getFileList(QString fileCompressed) {
 
     // Estraggo i nomi dei file
     QStringList lst;
-    QuaZipFileInfo info;
+    QuaZipFileInfo64 info;
     for(bool more=zip->goToFirstFile(); more; more=zip->goToNextFile()) {
       if(!zip->getCurrentFileInfo(&info)) {
           delete zip;

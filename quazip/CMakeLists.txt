@@ -10,6 +10,10 @@ endif()
 
 if (Qt5Core_FOUND)
     set(QTCORE_LIBRARIES ${Qt5Core_LIBRARIES})
+    # if there is no QT_ROOT, try to deduce it from Qt QtCore include
+    if ("${QT_ROOT}" STREQUAL "")
+        set(QT_ROOT ${QT_QTCORE_INCLUDE_DIR}/../..)
+    endif()    
     include_directories(${Qt5Core_INCLUDE_DIRS})
 
     macro(qt_wrap_cpp)

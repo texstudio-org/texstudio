@@ -22,6 +22,7 @@ QuaZIP has been currently tested on the following platforms:
 \item win32-\/g++ (MinGW)
 \item win32-\/msvc2010 (MS VS 2010 Express, Qt 4.8.4)
 \item win32-\/msvc2010 (Qt Creator, Qt 5.0.1)
+\item win32-\/msvc2012 (Qt Creator, Qt 5.2.0)
 \item some Symbian version, reportedly
 \end{DoxyItemize}
 
@@ -62,7 +63,7 @@ By default, QuaZIP compiles as a DLL/SO, but you have other options:
 \item Compile it as a static library using CONFIG += staticlib qmake option. QUAZIP\_\-STATIC is defined automatically by qmake in this case.
 \end{DoxyItemize}
 
-Binary compatibility is guaranteed between minor releases starting with version 0.5, thanks to the Pimpl idiom. That is, the next binary incompatible version will be 1.x, and if zip64 support is ever introduced, then there will be a build option to compile either as non-\/zip64 (binary compatible with the old releases) or as zip64 (which will be binary incompatible due to different file size types).\section{Testing}\label{index_test}
+Binary compatibility is guaranteed between minor releases starting with version 0.5, thanks to the Pimpl idiom. That is, the next binary incompatible version will be 1.x.\section{Testing}\label{index_test}
 To check if QuaZIP's basic features work OK on your platform, you may wish to compile the test suite provided in test directory: \begin{DoxyVerb}
 $ cd /wherever/quazip/source/is/quazip-x.y.z/qztest
 $ qmake
@@ -85,4 +86,4 @@ To report bugs or to post ideas about what should be done, use SourceForge.net's
 
 Do not use e-\/mail to report bugs, please. Reporting bugs and problems with the SourceForge.net's bug report system has that advantage that it is visible to public, and I can always search for open tickets that were created long ago. It is highly unlikely that I will search my mail for that kind of stuff, so if a bug reported by mail isn't fixed immediately, it will likely be forgotten forever.
 
-Copyright (C) 2005-\/2012 Sergey A. Tachenov and contributors 
+Copyright (C) 2005-\/2014 Sergey A. Tachenov and contributors 

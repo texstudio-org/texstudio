@@ -6,6 +6,8 @@
  * \ref faq-non-QIODevice "Q. Is there any way to use QuaZipFile in Qt where you are supposed to use normal (non-zipped) file, but not through QIODevice API?"
  * \ref faq-zip64 "Q. Can QuaZIP handle files larger than 4GB? What about zip64 standard?"
  *
+ * \ref faq-seekable "Q. Can QuaZIP write archives to a sequential QIODevice like QTcpSocket?"
+ *
  * -->
  *
  * \anchor faq-non-QIODevice Q. Is there any way to use QuaZipFile in Qt
@@ -25,8 +27,19 @@
  * \anchor faq-zip64 Q. Can QuaZIP handle files larger than 4GB? What
  * about zip64 standard?
  *
- * A. It isn't supported yet. QuaZIP is a wrapper around minizip. The minizip
- * version QuaZIP was based on didn't support zip64. The newer version
- * that appeared around 2010 reportedly does. But it will take some time
- * and effort to integrate this version with QuaZIP.
+ * A. Starting with version 0.6, QuaZIP uses Minizip 1.1 with zip64
+ * support which should handle large files perfectly. The zip64 support
+ * in Minizip looks like it's not 100% conforming to the standard, but
+ * 3rd party tools seem to have no problem with the resulting archives.
+ *
+ * \anchor faq-seekable Q. Can QuaZIP write archives to a sequential QIODevice like QTcpSocket?
+ *
+ * A. Not yet. It is not supported by vanilla Minizip (the back-end
+ * QuaZIP uses), although theoretically possible according to the ZIP
+ * standard. It would require some Minizip modifications that would
+ * allow it to detect non-seekable I/O and produce necessary output
+ * structures. QuaZIP already writes data descriptor which is necessary
+ * for non-seekable I/O. The only thing that is apparently left is to
+ * make Minizip fill local headers with correct values and forget about
+ * seeking after closing the file.
  **/

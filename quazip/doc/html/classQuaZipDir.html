@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-7-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -89,6 +89,10 @@ uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of the entries in the directory.  <a href="#aef966735a146fc10c9527c236aa89261"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structQuaZipFileInfo.html">QuaZipFileInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#abec530f15597ddf8c8d1f340a333f7aa">entryInfoList</a> (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of the entries in the directory.  <a href="#abec530f15597ddf8c8d1f340a333f7aa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#ae2b5a4b251db7aeb165c6656da0e3431">entryInfoList64</a> (const QStringList &amp;nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of the entries in the directory with zip64 support.  <a href="#ae2b5a4b251db7aeb165c6656da0e3431"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#a8c38ec214c300049685cbf71486636d5">entryInfoList64</a> (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of the entries in the directory with zip64 support.  <a href="#a8c38ec214c300049685cbf71486636d5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#a4a32faa77c4120cd3c6db4b683fa16d9">entryList</a> (const QStringList &amp;nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of the entry names in the directory.  <a href="#a4a32faa77c4120cd3c6db4b683fa16d9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#ab20e9d3de675b74fcacc98accbc1d766">entryList</a> (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const </td></tr>
@@ -110,9 +114,8 @@ QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the default name filter. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#a68ac82ad605c0b10f9ee1a2d6d474f52">path</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the path to the current dir.  <a href="#a68ac82ad605c0b10f9ee1a2d6d474f52"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ae89c2b85786a0168656fc7a3faaf01"></a><!-- doxytag: member="QuaZipDir::relativeFilePath" ref="a2ae89c2b85786a0168656fc7a3faaf01" args="(const QString &amp;fileName) const " -->
-QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#a2ae89c2b85786a0168656fc7a3faaf01">relativeFilePath</a> (const QString &amp;fileName) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the path to the specified file relative to the current dir. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#a2ae89c2b85786a0168656fc7a3faaf01">relativeFilePath</a> (const QString &amp;fileName) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the path to the specified file relative to the current dir.  <a href="#a2ae89c2b85786a0168656fc7a3faaf01"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad53c720975bb0c49a823355f7d518793"></a><!-- doxytag: member="QuaZipDir::setCaseSensitivity" ref="ad53c720975bb0c49a823355f7d518793" args="(QuaZip::CaseSensitivity caseSensitivity)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipDir.html#ad53c720975bb0c49a823355f7d518793">setCaseSensitivity</a> (<a class="el" href="classQuaZip.html#a6053a1d249ed210a85c9d5eb7cf9cdbe">QuaZip::CaseSensitivity</a> caseSensitivity)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the default case sensitivity mode. <br/></td></tr>
@@ -139,6 +142,7 @@ QDir::SortFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 <li>In the <a class="el" href="classQuaZipDir.html#aa829afc0243f1d307302f1167edecc7b" title="Changes the &#39;current&#39; directory.">cd()</a> function.</li>
 <li>In the constructor.</li>
 <li>In the <a class="el" href="classQuaZipDir.html#aacb488fec6e951ac80e5d473534fee97" title="Returns true if the entry with the specified name exists.">exists()</a> function.</li>
+<li>In the relativePath() function.</li>
 </ul>
 <p>Note that since ZIP uses '/' on all platforms, the '\' separator is not supported. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
@@ -295,7 +299,7 @@ QDir::SortFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
   <table class="params">
     <tr><td class="paramname">nameFilters</td><td>The list of file patterns to list, uses the same syntax as QDir. </td></tr>
     <tr><td class="paramname">filters</td><td>The entry type filters, only Files and Dirs are accepted. </td></tr>
-    <tr><td class="paramname">sort</td><td>Sorting mode (not supported yet).</td></tr>
+    <tr><td class="paramname">sort</td><td>Sorting mode.</td></tr>
   </table>
   </dd>
 </dl>
@@ -333,6 +337,83 @@ QDir::SortFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 <p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. The same as entryInfoList(QStringList(), filters, sort). </p>
 
 <p>References <a class="el" href="classQuaZipDir.html#aef966735a146fc10c9527c236aa89261">entryInfoList()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2b5a4b251db7aeb165c6656da0e3431"></a><!-- doxytag: member="QuaZipDir::entryInfoList64" ref="ae2b5a4b251db7aeb165c6656da0e3431" args="(const QStringList &amp;nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> &gt; QuaZipDir::entryInfoList64 </td>
+          <td>(</td>
+          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramname"><em>nameFilters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QDir::Filters&#160;</td>
+          <td class="paramname"><em>filters</em> = <code>QDir::NoFilter</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QDir::SortFlags&#160;</td>
+          <td class="paramname"><em>sort</em> = <code>QDir::NoSort</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the list of the entries in the directory with zip64 support. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nameFilters</td><td>The list of file patterns to list, uses the same syntax as QDir. </td></tr>
+    <tr><td class="paramname">filters</td><td>The entry type filters, only Files and Dirs are accepted. </td></tr>
+    <tr><td class="paramname">sort</td><td>Sorting mode. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Referenced by <a class="el" href="classQuaZipDir.html#a8c38ec214c300049685cbf71486636d5">entryInfoList64()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8c38ec214c300049685cbf71486636d5"></a><!-- doxytag: member="QuaZipDir::entryInfoList64" ref="a8c38ec214c300049685cbf71486636d5" args="(QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> &gt; QuaZipDir::entryInfoList64 </td>
+          <td>(</td>
+          <td class="paramtype">QDir::Filters&#160;</td>
+          <td class="paramname"><em>filters</em> = <code>QDir::NoFilter</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QDir::SortFlags&#160;</td>
+          <td class="paramname"><em>sort</em> = <code>QDir::NoSort</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the list of the entries in the directory with zip64 support. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. The same as entryInfoList64(QStringList(), filters, sort). </p>
+
+<p>References <a class="el" href="classQuaZipDir.html#ae2b5a4b251db7aeb165c6656da0e3431">entryInfoList64()</a>.</p>
 
 </div>
 </div>
@@ -492,6 +573,33 @@ QDir::SortFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 
 </div>
 </div>
+<a class="anchor" id="a2ae89c2b85786a0168656fc7a3faaf01"></a><!-- doxytag: member="QuaZipDir::relativeFilePath" ref="a2ae89c2b85786a0168656fc7a3faaf01" args="(const QString &amp;fileName) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString QuaZipDir::relativeFilePath </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns the path to the specified file relative to the current dir. </p>
+<p>This function is mostly useless, provided only for the sake of completeness.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>The path to the file, should start with "/" if relative to the archive root. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Path relative to the current dir. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ae82d06e43856414c30583205d337c111"></a><!-- doxytag: member="QuaZipDir::setPath" ref="ae82d06e43856414c30583205d337c111" args="(const QString &amp;path)" -->
 <div class="memitem">
 <div class="memproto">
@@ -520,7 +628,7 @@ QDir::SortFlags&#160;</td><td class="memItemRight" valign="bottom"><a class="el"
 <li>quazip/quazipdir.cpp</li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 7 2015 08:37:18 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

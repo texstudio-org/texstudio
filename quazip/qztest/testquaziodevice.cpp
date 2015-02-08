@@ -1,3 +1,27 @@
+/*
+Copyright (C) 2005-2014 Sergey A. Tachenov
+
+This file is part of QuaZIP test suite.
+
+QuaZIP is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+QuaZIP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+
+See COPYING file for the full LGPL text.
+
+Original ZIP package is copyrighted by Gilles Vollant and contributors,
+see quazip/(un)zip.h files for details. Basically it's the zlib license.
+*/
+
 #include "testquaziodevice.h"
 #include <quazip/quaziodevice.h>
 #include <QBuffer>
@@ -33,11 +57,12 @@ void TestQuaZIODevice::write()
     QByteArray buf(256, 0);
     QBuffer testBuffer(&buf);
     testBuffer.open(QIODevice::WriteOnly);
-    QuaZIODevice testDevice(&testBuffer);
-    QVERIFY(testDevice.open(QIODevice::WriteOnly));
-    QCOMPARE(testDevice.write("test", 4), static_cast<qint64>(4));
-    testDevice.close();
-    QVERIFY(!testDevice.isOpen());
+    QuaZIODevice *testDevice = new QuaZIODevice(&testBuffer);
+    QCOMPARE(testDevice->getIoDevice(), &testBuffer);
+    QVERIFY(testDevice->open(QIODevice::WriteOnly));
+    QCOMPARE(testDevice->write("test", 4), static_cast<qint64>(4));
+    testDevice->close();
+    QVERIFY(!testDevice->isOpen());
     z_stream zins;
     zins.zalloc = (alloc_func) NULL;
     zins.zfree = (free_func) NULL;
@@ -54,4 +79,5 @@ void TestQuaZIODevice::write()
     QCOMPARE(size, 4);
     outBuf[4] = '\0';
     QCOMPARE(static_cast<const char*>(outBuf), "test");
+    delete testDevice; // Test D0 destructor
 }
