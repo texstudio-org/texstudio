@@ -267,6 +267,7 @@ signals:
 	void toBeChanged();
 	void importPackage(QString name);
 	void spellingDictChanged(const QString &name);
+	void encodingChanged();
     void bookmarkLineUpdated(int lineNr);
 };
 

@@ -2413,6 +2413,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		}
 		setCodec(codec);
 		if (!hasUndo) clearUndo(); // changing the codec pushes an entry to the undo/redo stack we don't want this for the first parsing at loading
+		emit encodingChanged();
 		se->valid = true;
 	} else if (lowerName == "txs-script") {
 		se->valid = true;
