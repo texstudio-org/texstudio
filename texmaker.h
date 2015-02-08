@@ -408,6 +408,7 @@ protected slots:
 	void EditorSpellerChanged(const QString &name);
 	void ChangeEditorSpeller();
 	void InsertSpellcheckMagicComment();
+	void updateStatusBarEncoding();
     void addMagicRoot();
     void addMagicCoding();
 	
