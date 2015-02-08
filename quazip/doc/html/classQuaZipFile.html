@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-7-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -116,6 +116,8 @@ virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns uncompressed file size.  <a href="#a4814b5e6e39fb254737b81ea10964f50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipFile.html#ad3f5807329321be21b12c1ba5798b359">getFileInfo</a> (<a class="el" href="structQuaZipFileInfo.html">QuaZipFileInfo</a> *info)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets information about current file.  <a href="#ad3f5807329321be21b12c1ba5798b359"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipFile.html#af35876a5ac6e9c35234275a9e503110d">getFileInfo</a> (<a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> *info)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets information about current file with zip64 support.  <a href="#af35876a5ac6e9c35234275a9e503110d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classQuaZipFile.html#a42a39b12619bccd3d419ee60bbb3fcf6">close</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the file.  <a href="#a42a39b12619bccd3d419ee60bbb3fcf6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26d2ee56aad947193b73052f80597ef0"></a><!-- doxytag: member="QuaZipFile::getZipError" ref="a26d2ee56aad947193b73052f80597ef0" args="() const " -->
@@ -743,7 +745,7 @@ Sequential or random-access?</h2>
 <p>If <em>raw</em> is <code>true</code>, no compression is performed. In this case, <em>crc</em> and uncompressedSize field of the <em>info</em> are required.</p>
 <p>Arguments <em>windowBits</em>, <em>memLevel</em>, <em>strategy</em> provide zlib algorithms tuning. See deflateInit2() in zlib. </p>
 
-<p>References <a class="el" href="structQuaZipNewInfo.html#ae24b1d38c3550b4724862ffcf8f20924">QuaZipNewInfo::comment</a>, <a class="el" href="structQuaZipNewInfo.html#aec7f3ac72c72a2e10b82ad64c2fa3453">QuaZipNewInfo::dateTime</a>, <a class="el" href="structQuaZipNewInfo.html#affd1a9700d302e1395bd04f0864da7d0">QuaZipNewInfo::externalAttr</a>, <a class="el" href="structQuaZipNewInfo.html#abda207eb3949db3a88761c1b06e6bd58">QuaZipNewInfo::extraGlobal</a>, <a class="el" href="structQuaZipNewInfo.html#ab377a81c51cf495c7aeee4f19340a43f">QuaZipNewInfo::extraLocal</a>, <a class="el" href="classQuaZip.html#a008260161781d8b5d2a0a28493fddaf4">QuaZip::getCommentCodec()</a>, <a class="el" href="classQuaZip.html#a27b866aa2c75ea6f9c438cbb6e32b43c">QuaZip::getFileNameCodec()</a>, <a class="el" href="classQuaZip.html#a129ceff04d28fb00531f7bf7f9329664">QuaZip::getMode()</a>, <a class="el" href="classQuaZip.html#a425043a4d7cc31e2fe2bba73d954f15c">QuaZip::getZipFile()</a>, <a class="el" href="structQuaZipNewInfo.html#a59ce9776c2ac7547ade8cb4c404c77ab">QuaZipNewInfo::internalAttr</a>, <a class="el" href="classQuaZip.html#ae5c665a59447c2d30e63e9c6df48ebb7">QuaZip::isDataDescriptorWritingEnabled()</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a22c745f349f06add449af523254fdaec">QuaZip::mdAdd</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4ab807f0c65653a16d77b365801fd25582">QuaZip::mdAppend</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a25ae05b12590540af8c66ae8298b928e">QuaZip::mdCreate</a>, <a class="el" href="structQuaZipNewInfo.html#a2bdef01b6ac3326e48598e32bfa5fbe8">QuaZipNewInfo::name</a>, and <a class="el" href="structQuaZipNewInfo.html#a18c079b3f2f5ab6eecdd61d6dbe93be6">QuaZipNewInfo::uncompressedSize</a>.</p>
+<p>References <a class="el" href="structQuaZipNewInfo.html#ae24b1d38c3550b4724862ffcf8f20924">QuaZipNewInfo::comment</a>, <a class="el" href="structQuaZipNewInfo.html#aec7f3ac72c72a2e10b82ad64c2fa3453">QuaZipNewInfo::dateTime</a>, <a class="el" href="structQuaZipNewInfo.html#affd1a9700d302e1395bd04f0864da7d0">QuaZipNewInfo::externalAttr</a>, <a class="el" href="structQuaZipNewInfo.html#abda207eb3949db3a88761c1b06e6bd58">QuaZipNewInfo::extraGlobal</a>, <a class="el" href="structQuaZipNewInfo.html#ab377a81c51cf495c7aeee4f19340a43f">QuaZipNewInfo::extraLocal</a>, <a class="el" href="classQuaZip.html#a008260161781d8b5d2a0a28493fddaf4">QuaZip::getCommentCodec()</a>, <a class="el" href="classQuaZip.html#a27b866aa2c75ea6f9c438cbb6e32b43c">QuaZip::getFileNameCodec()</a>, <a class="el" href="classQuaZip.html#a129ceff04d28fb00531f7bf7f9329664">QuaZip::getMode()</a>, <a class="el" href="classQuaZip.html#a425043a4d7cc31e2fe2bba73d954f15c">QuaZip::getZipFile()</a>, <a class="el" href="structQuaZipNewInfo.html#a59ce9776c2ac7547ade8cb4c404c77ab">QuaZipNewInfo::internalAttr</a>, <a class="el" href="classQuaZip.html#ae5c665a59447c2d30e63e9c6df48ebb7">QuaZip::isDataDescriptorWritingEnabled()</a>, <a class="el" href="classQuaZip.html#a1b638566390d7599ba5982e844b151f4">QuaZip::isZip64Enabled()</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a22c745f349f06add449af523254fdaec">QuaZip::mdAdd</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4ab807f0c65653a16d77b365801fd25582">QuaZip::mdAppend</a>, <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a25ae05b12590540af8c66ae8298b928e">QuaZip::mdCreate</a>, <a class="el" href="structQuaZipNewInfo.html#a2bdef01b6ac3326e48598e32bfa5fbe8">QuaZipNewInfo::name</a>, and <a class="el" href="structQuaZipNewInfo.html#a18c079b3f2f5ab6eecdd61d6dbe93be6">QuaZipNewInfo::uncompressedSize</a>.</p>
 
 </div>
 </div>
@@ -891,7 +893,32 @@ Sequential or random-access?</h2>
 <p>Gets information about current file. </p>
 <p>This function does the same thing as calling <a class="el" href="classQuaZip.html#a9c91a53ed4c2038e153c64bdc097ebe8" title="Retrieves information about the current file.">QuaZip::getCurrentFileInfo()</a> on the associated <a class="el" href="classQuaZip.html" title="ZIP archive.">QuaZip</a> object, but you can not call getCurrentFileInfo() if the associated <a class="el" href="classQuaZip.html" title="ZIP archive.">QuaZip</a> is internal (because you do not have access to it), while you still can call this function in that case.</p>
 <p>File must be open for reading before calling this function.</p>
-<p>Returns <code>false</code> in the case of an error. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><code>false</code> in the case of an error.</dd></dl>
+<p>This function doesn't support zip64, but will still work fine on zip64 archives if file sizes are below 4 GB, otherwise the values will be set as if converted using <a class="el" href="structQuaZipFileInfo64.html#ada29945c7ee4c9df6fbe95864793aade" title="Converts to QuaZipFileInfo.">QuaZipFileInfo64::toQuaZipFileInfo()</a>.</p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classQuaZipFile.html#af35876a5ac6e9c35234275a9e503110d" title="Gets information about current file with zip64 support.">getFileInfo(QuaZipFileInfo64*)</a> </dd></dl>
+
+<p>References <a class="el" href="structQuaZipFileInfo64.html#ada29945c7ee4c9df6fbe95864793aade">QuaZipFileInfo64::toQuaZipFileInfo()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af35876a5ac6e9c35234275a9e503110d"></a><!-- doxytag: member="QuaZipFile::getFileInfo" ref="af35876a5ac6e9c35234275a9e503110d" args="(QuaZipFileInfo64 *info)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QuaZipFile::getFileInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> *&#160;</td>
+          <td class="paramname"><em>info</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets information about current file with zip64 support. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classQuaZipFile.html#ad3f5807329321be21b12c1ba5798b359" title="Gets information about current file.">getFileInfo(QuaZipFileInfo*)</a> </dd></dl>
 
 <p>References <a class="el" href="classQuaZip.html#a9c91a53ed4c2038e153c64bdc097ebe8">QuaZip::getCurrentFileInfo()</a>, <a class="el" href="classQuaZip.html#a129ceff04d28fb00531f7bf7f9329664">QuaZip::getMode()</a>, <a class="el" href="classQuaZip.html#a28b91a6282ddd9382c96a069572c6fb4">QuaZip::getZipError()</a>, and <a class="el" href="classQuaZip.html#a47e28d4116ee716fdd6b431b821d0be4a803a371910c2dc830d111e9ce5b58897">QuaZip::mdUnzip</a>.</p>
 
@@ -925,7 +952,7 @@ Sequential or random-access?</h2>
 <li>quazip/quazipfile.cpp</li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 7 2015 08:37:18 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

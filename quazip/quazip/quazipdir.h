@@ -1,6 +1,30 @@
 #ifndef QUAZIP_QUAZIPDIR_H
 #define QUAZIP_QUAZIPDIR_H
 
+/*
+Copyright (C) 2005-2014 Sergey A. Tachenov
+
+This file is part of QuaZIP.
+
+QuaZIP is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+QuaZIP is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with QuaZIP.  If not, see <http://www.gnu.org/licenses/>.
+
+See COPYING file for the full LGPL text.
+
+Original ZIP package is copyrighted by Gilles Vollant and contributors,
+see quazip/(un)zip.h files for details. Basically it's the zlib license.
+*/
+
 class QuaZipDirPrivate;
 
 #include "quazip.h"
@@ -22,6 +46,7 @@ class QuaZipDirPrivate;
 * - In the cd() function.
 * - In the constructor.
 * - In the exists() function.
+* - In the relativePath() function.
 *
 * Note that since ZIP uses '/' on all platforms, the '\' separator is
 * not supported.
@@ -84,7 +109,7 @@ public:
       syntax as QDir.
       \param filters The entry type filters, only Files and Dirs are
       accepted.
-      \param sort Sorting mode (not supported yet).
+      \param sort Sorting mode.
       */
     QList<QuaZipFileInfo> entryInfoList(const QStringList &nameFilters,
         QDir::Filters filters = QDir::NoFilter,
@@ -96,6 +121,25 @@ public:
       The same as entryInfoList(QStringList(), filters, sort).
       */
     QList<QuaZipFileInfo> entryInfoList(QDir::Filters filters = QDir::NoFilter,
+        QDir::SortFlags sort = QDir::NoSort) const;
+    /// Returns the list of the entries in the directory with zip64 support.
+    /**
+      \param nameFilters The list of file patterns to list, uses the same
+      syntax as QDir.
+      \param filters The entry type filters, only Files and Dirs are
+      accepted.
+      \param sort Sorting mode.
+      */
+    QList<QuaZipFileInfo64> entryInfoList64(const QStringList &nameFilters,
+        QDir::Filters filters = QDir::NoFilter,
+        QDir::SortFlags sort = QDir::NoSort) const;
+    /// Returns the list of the entries in the directory with zip64 support.
+    /**
+      \overload
+
+      The same as entryInfoList64(QStringList(), filters, sort).
+      */
+    QList<QuaZipFileInfo64> entryInfoList64(QDir::Filters filters = QDir::NoFilter,
         QDir::SortFlags sort = QDir::NoSort) const;
     /// Returns the list of the entry names in the directory.
     /**
@@ -144,6 +188,14 @@ public:
       */
     QString path() const;
     /// Returns the path to the specified file relative to the current dir.
+    /**
+     * This function is mostly useless, provided only for the sake of
+     *  completeness.
+     *
+     * @param fileName The path to the file, should start with &quot;/&quot;
+     *  if relative to the archive root.
+     * @return Path relative to the current dir.
+     */
     QString relativeFilePath(const QString &fileName) const;
     /// Sets the default case sensitivity mode.
     void setCaseSensitivity(QuaZip::CaseSensitivity caseSensitivity);

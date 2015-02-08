@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-7-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -62,6 +62,7 @@ Platforms supported</h2>
 <li>win32-g++ (MinGW)</li>
 <li>win32-msvc2010 (MS VS 2010 Express, Qt 4.8.4)</li>
 <li>win32-msvc2010 (Qt Creator, Qt 5.0.1)</li>
+<li>win32-msvc2012 (Qt Creator, Qt 5.2.0)</li>
 <li>some Symbian version, reportedly</li>
 </ul>
 <p>No testing has been officially done on other systems. Of course, patches to make it work on any platform that it currently does not work on are always welcome!</p>
@@ -94,7 +95,7 @@ $ make install
 <li>Just copy appropriate source files to your project and use them, but you need to define QUAZIP_STATIC before including any QuaZIP headers (best done as a compiler option). This will save you from possible side effects of importing/exporting QuaZIP symbols.</li>
 <li>Compile it as a static library using CONFIG += staticlib qmake option. QUAZIP_STATIC is defined automatically by qmake in this case.</li>
 </ul>
-<p>Binary compatibility is guaranteed between minor releases starting with version 0.5, thanks to the Pimpl idiom. That is, the next binary incompatible version will be 1.x, and if zip64 support is ever introduced, then there will be a build option to compile either as non-zip64 (binary compatible with the old releases) or as zip64 (which will be binary incompatible due to different file size types).</p>
+<p>Binary compatibility is guaranteed between minor releases starting with version 0.5, thanks to the Pimpl idiom. That is, the next binary incompatible version will be 1.x.</p>
 <h2><a class="anchor" id="test"></a>
 Testing</h2>
 <p>To check if QuaZIP's basic features work OK on your platform, you may wish to compile the test suite provided in test directory: </p>
@@ -115,9 +116,9 @@ Authors and contacts</h2>
 <p>If you have anything to say to me about QuaZIP library, feel free to do so (read the <a class="el" href="faq.html">QuaZip FAQ</a> first, though). I can not promise, though, that I fix all the bugs you report in, add any features you want, or respond to your critics, or respond to your feedback at all. I may be busy, I may be tired of working on QuaZIP, I may be even dead already (you never know...).</p>
 <p>To report bugs or to post ideas about what should be done, use SourceForge.net's <a href="http://sourceforge.net/tracker/?group_id=142688">trackers</a>. If you want to send me a private message, use my e-mail address <a href="mailto:stachenov@gmail.com">stachenov@gmail.com</a>.</p>
 <p>Do not use e-mail to report bugs, please. Reporting bugs and problems with the SourceForge.net's bug report system has that advantage that it is visible to public, and I can always search for open tickets that were created long ago. It is highly unlikely that I will search my mail for that kind of stuff, so if a bug reported by mail isn't fixed immediately, it will likely be forgotten forever.</p>
-<p>Copyright (C) 2005-2012 Sergey A. Tachenov and contributors </p>
+<p>Copyright (C) 2005-2014 Sergey A. Tachenov and contributors </p>
 </div></div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 7 2015 08:37:18 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

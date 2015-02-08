@@ -1,5 +1,46 @@
 QuaZIP changes
 
+* 2014-01-07 0.7.1
+        * Fixed licensing issues (bug #45).
+        * Added the convenience method QuaZipFileInfo::isEncrypted().
+* 2014-07-24 0.7
+        * It is now possible to write ZIP files to sequential devices
+          like sockets (only in mdCreate mode, so no self-extract, sorry).
+        * A few zip64 fixes.
+        * Several bug fixes and portability improvements.
+
+* 2014-02-09 0.6.2
+        * QuaZipNewInfo / QuaZipFileInfo64 now provide API to access/set
+          NTFS time stamps - useful even on non-NTFS systems if you 
+          need more precise dates and times than default ones.
+        * QuaZipNewInfo may now be initialized from QuaZipFileInfo64.
+        * No more crashes when using QSaveFile as QIODevice for ZIP.
+        * The new QuaZip::setAutoClose() method allows to leave the
+          QIODevice open when you close the QuaZip instance.
+        * qztest now depends on quazip, no longer breaking the build.
+
+* 2014-01-26 0.6.1
+        * Improved zip64 support.
+        * A LOT more tests thanks to g++ --coverage / lcov.
+        * JlCompress extraction methods now create files with default
+          permissions if they are zero in the original archive.
+        * Some QuaZipDir fixes (thanks to the new tests).
+
+* 2014-01-22 0.6
+        * Minizip updated to 1.1 (with all the necessary modifications
+          re-done), and that means that...
+        * the long-awaited zip64 support is now available!
+        * A few rather minor fixes.
+
+* 2014-01-19 0.5.2
+        * Some minor bug fixes.
+        * API to access file permissions subfield of the external
+          attributes.
+        * MS VS 2012 Express support.
+        * API to set the default codec used to encode/decode file names
+          (mainly for use by various wrappers such as JlCompress, when
+          you don't have direct access to the underlying QuaZip instance).
+
 * 2013-03-02 0.5.1
         * Lots of QuaZipDir fixes, thanks to all bug reporters.
         * Full Qt Creator support.

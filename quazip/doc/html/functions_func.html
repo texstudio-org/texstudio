@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-7-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -62,6 +62,7 @@
       <li><a href="#index_q"><span>q</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
       <li><a href="#index_u"><span>u</span></a></li>
       <li><a href="#index_v"><span>v</span></a></li>
       <li><a href="#index_w"><span>w</span></a></li>
@@ -139,11 +140,14 @@
 <li>entryInfoList()
 : <a class="el" href="classQuaZipDir.html#aef966735a146fc10c9527c236aa89261">QuaZipDir</a>
 </li>
+<li>entryInfoList64()
+: <a class="el" href="classQuaZipDir.html#a8c38ec214c300049685cbf71486636d5">QuaZipDir</a>
+</li>
 <li>entryList()
-: <a class="el" href="classQuaZipDir.html#ab20e9d3de675b74fcacc98accbc1d766">QuaZipDir</a>
+: <a class="el" href="classQuaZipDir.html#a4a32faa77c4120cd3c6db4b683fa16d9">QuaZipDir</a>
 </li>
 <li>exists()
-: <a class="el" href="classQuaZipDir.html#aacb488fec6e951ac80e5d473534fee97">QuaZipDir</a>
+: <a class="el" href="classQuaZipDir.html#a22c8f63ce874f5c0e958ae5f42e6d004">QuaZipDir</a>
 </li>
 <li>extractDir()
 : <a class="el" href="classJlCompress.html#a365a153baa4c11812d93cbca60b6a293">JlCompress</a>
@@ -199,6 +203,9 @@
 <li>getFileInfoList()
 : <a class="el" href="classQuaZip.html#a7486af66bede8e131db0cd2e81881387">QuaZip</a>
 </li>
+<li>getFileInfoList64()
+: <a class="el" href="classQuaZip.html#a474e66b1b696a9e00edcc067484c36ad">QuaZip</a>
+</li>
 <li>getFileList()
 : <a class="el" href="classJlCompress.html#ab42422be913f817d7e04c1b1cd5d0156">JlCompress</a>
 </li>
@@ -213,14 +220,24 @@
 : <a class="el" href="classQuaZip.html#abb38d8b4c9c4ae0728b48caae9dd82de">QuaZip</a>
 </li>
 <li>getIoDevice()
-: <a class="el" href="classQuaZip.html#afd3ba12fe68748acbf8b7cc14a5a1c29">QuaZip</a>
-, <a class="el" href="classQuaZIODevice.html#ad63e7f1717c7d91b3c2c5ace908c98b7">QuaZIODevice</a>
+: <a class="el" href="classQuaZIODevice.html#ad63e7f1717c7d91b3c2c5ace908c98b7">QuaZIODevice</a>
+, <a class="el" href="classQuaZip.html#afd3ba12fe68748acbf8b7cc14a5a1c29">QuaZip</a>
 </li>
 <li>getMode()
 : <a class="el" href="classQuaZip.html#a129ceff04d28fb00531f7bf7f9329664">QuaZip</a>
 </li>
+<li>getNTFSaTime()
+: <a class="el" href="structQuaZipFileInfo64.html#afe4c454de7d067a0095da0223f0cbec2">QuaZipFileInfo64</a>
+</li>
+<li>getNTFScTime()
+: <a class="el" href="structQuaZipFileInfo64.html#a409dcbbe1ecd88dadb51be1aec48819d">QuaZipFileInfo64</a>
+</li>
+<li>getNTFSmTime()
+: <a class="el" href="structQuaZipFileInfo64.html#af4b19399367cf5bf24026344e0631ccb">QuaZipFileInfo64</a>
+</li>
 <li>getPermissions()
-: <a class="el" href="structQuaZipFileInfo.html#af87f96a64d7c02b002622f81d13accdb">QuaZipFileInfo</a>
+: <a class="el" href="structQuaZipFileInfo64.html#a099216bd8991a983168d91c06a689f61">QuaZipFileInfo64</a>
+, <a class="el" href="structQuaZipFileInfo.html#af87f96a64d7c02b002622f81d13accdb">QuaZipFileInfo</a>
 </li>
 <li>getUnzFile()
 : <a class="el" href="classQuaZip.html#a3b78a652f296ff4a678a791e8294e642">QuaZip</a>
@@ -256,8 +273,14 @@
 
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>isAutoClose()
+: <a class="el" href="classQuaZip.html#adc2cc762ab5744720ae4d33290b5f5bf">QuaZip</a>
+</li>
 <li>isDataDescriptorWritingEnabled()
 : <a class="el" href="classQuaZip.html#ae5c665a59447c2d30e63e9c6df48ebb7">QuaZip</a>
+</li>
+<li>isEncrypted()
+: <a class="el" href="structQuaZipFileInfo64.html#a8c93235e4a13ee5461023a5f3fe03e26">QuaZipFileInfo64</a>
 </li>
 <li>isOpen()
 : <a class="el" href="classQuaZip.html#a5b869a9c0d4f49955b759592fec08888">QuaZip</a>
@@ -269,9 +292,12 @@
 : <a class="el" href="classQuaZipDir.html#a598fdf23f1b37e1876476e5969040a32">QuaZipDir</a>
 </li>
 <li>isSequential()
-: <a class="el" href="classQuaZipFile.html#a64430ec50820c8096f963a7e5f53001f">QuaZipFile</a>
+: <a class="el" href="classQuaGzipFile.html#ae97f4e15d86c965c156df33d00318176">QuaGzipFile</a>
 , <a class="el" href="classQuaZIODevice.html#af2697f58c228741d3715801bf48a9a8b">QuaZIODevice</a>
-, <a class="el" href="classQuaGzipFile.html#ae97f4e15d86c965c156df33d00318176">QuaGzipFile</a>
+, <a class="el" href="classQuaZipFile.html#a64430ec50820c8096f963a7e5f53001f">QuaZipFile</a>
+</li>
+<li>isZip64Enabled()
+: <a class="el" href="classQuaZip.html#a1b638566390d7599ba5982e844b151f4">QuaZip</a>
 </li>
 </ul>
 
@@ -330,7 +356,7 @@
 : <a class="el" href="classQuaZipDir.html#a6c9cc8b74c52d3fe997b753370566690">QuaZipDir</a>
 </li>
 <li>QuaZipFile()
-: <a class="el" href="classQuaZipFile.html#ac6e883b5a5d3a58c9c56eb497dd91220">QuaZipFile</a>
+: <a class="el" href="classQuaZipFile.html#a1349ad27f1947bc3e346d83dbf9586c4">QuaZipFile</a>
 </li>
 <li>QuaZipNewInfo()
 : <a class="el" href="structQuaZipNewInfo.html#ad47cf11f4277edcb09a8ba2b2963f2a9">QuaZipNewInfo</a>
@@ -356,6 +382,9 @@
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>setAutoClose()
+: <a class="el" href="classQuaZip.html#a54bfc924762774ccf9f99be075ba7b0e">QuaZip</a>
+</li>
 <li>setCaseSensitivity()
 : <a class="el" href="classQuaZipDir.html#ad53c720975bb0c49a823355f7d518793">QuaZipDir</a>
 </li>
@@ -363,13 +392,16 @@
 : <a class="el" href="classQuaZip.html#a1b5d936a203859340574d5908ffa2222">QuaZip</a>
 </li>
 <li>setCommentCodec()
-: <a class="el" href="classQuaZip.html#a413f3c56b54a9a47258d53802cb606e7">QuaZip</a>
+: <a class="el" href="classQuaZip.html#a1c81fca7215a4374f6f03872ade4885b">QuaZip</a>
 </li>
 <li>setCurrentFile()
 : <a class="el" href="classQuaZip.html#a6c657bfcfccb59d728e0da24c677d899">QuaZip</a>
 </li>
 <li>setDataDescriptorWritingEnabled()
 : <a class="el" href="classQuaZip.html#a6c23a12af88f7ea5edd4f9c0a24b9453">QuaZip</a>
+</li>
+<li>setDefaultFileNameCodec()
+: <a class="el" href="classQuaZip.html#a317f5db89d84a80417338a3ab89770da">QuaZip</a>
 </li>
 <li>setFileDateTime()
 : <a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85">QuaZipNewInfo</a>
@@ -380,6 +412,18 @@
 </li>
 <li>setFileNameCodec()
 : <a class="el" href="classQuaZip.html#a339010b5566704ba3c9cafbfe848d8fb">QuaZip</a>
+</li>
+<li>setFileNTFSaTime()
+: <a class="el" href="structQuaZipNewInfo.html#a1042ac3d55a9deed760eb357aaa8284c">QuaZipNewInfo</a>
+</li>
+<li>setFileNTFScTime()
+: <a class="el" href="structQuaZipNewInfo.html#a44675ac1e306eddefcaa35972c294d15">QuaZipNewInfo</a>
+</li>
+<li>setFileNTFSmTime()
+: <a class="el" href="structQuaZipNewInfo.html#a3af07365df1d67502ab1d0ca0d45df79">QuaZipNewInfo</a>
+</li>
+<li>setFileNTFSTimes()
+: <a class="el" href="structQuaZipNewInfo.html#a663a37c5a7a2d18900ba8b0199617eff">QuaZipNewInfo</a>
 </li>
 <li>setFilePermissions()
 : <a class="el" href="structQuaZipNewInfo.html#a08bee5211eb0b49da260c7a9e7a266b8">QuaZipNewInfo</a>
@@ -405,6 +449,9 @@
 <li>setZip()
 : <a class="el" href="classQuaZipFile.html#ab7939a26d1e8de2f6aca54f49a12b980">QuaZipFile</a>
 </li>
+<li>setZip64Enabled()
+: <a class="el" href="classQuaZip.html#ab99a22efae02ebb4b5c9cd8eedc1c0b0">QuaZip</a>
+</li>
 <li>setZipName()
 : <a class="el" href="classQuaZip.html#aa80b661de1262af905d1677dbcb008cc">QuaZip</a>
 , <a class="el" href="classQuaZipFile.html#ac8109e9a5c19bea75982ff6986b5cb1e">QuaZipFile</a>
@@ -414,6 +461,13 @@
 </li>
 <li>sorting()
 : <a class="el" href="classQuaZipDir.html#a4000523c961ab9e0cad08641ff10e3fa">QuaZipDir</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>toQuaZipFileInfo()
+: <a class="el" href="structQuaZipFileInfo64.html#ada29945c7ee4c9df6fbe95864793aade">QuaZipFileInfo64</a>
 </li>
 </ul>
 
@@ -466,7 +520,7 @@
 </li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 7 2015 08:37:18 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

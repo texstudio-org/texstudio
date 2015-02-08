@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-7-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -59,12 +59,24 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs <a class="el" href="structQuaZipNewInfo.html" title="Information about a file to be created.">QuaZipNewInfo</a> instance.  <a href="#a46c0f551cf9e6b2131929beb39187aac"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#ad47cf11f4277edcb09a8ba2b2963f2a9">QuaZipNewInfo</a> (const QString &amp;<a class="el" href="structQuaZipNewInfo.html#a2bdef01b6ac3326e48598e32bfa5fbe8">name</a>, const QString &amp;file)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs <a class="el" href="structQuaZipNewInfo.html" title="Information about a file to be created.">QuaZipNewInfo</a> instance.  <a href="#ad47cf11f4277edcb09a8ba2b2963f2a9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a5f1a867f3b0d29d076f9014f70b59e5a">QuaZipNewInfo</a> (const <a class="el" href="structQuaZipFileInfo.html">QuaZipFileInfo</a> &amp;existing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the new instance from existing file info.  <a href="#a5f1a867f3b0d29d076f9014f70b59e5a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a4afa2e8c282a801fc216f79026c2d062">QuaZipNewInfo</a> (const <a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> &amp;existing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the new instance from existing file info.  <a href="#a4afa2e8c282a801fc216f79026c2d062"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85">setFileDateTime</a> (const QString &amp;file)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file timestamp from the existing file.  <a href="#a2b18b554d056877a2f33ffb9d241ed85"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a08bee5211eb0b49da260c7a9e7a266b8">setFilePermissions</a> (const QString &amp;file)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file permissions from the existing file.  <a href="#a08bee5211eb0b49da260c7a9e7a266b8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#aed68dc20f7dc42b5056491cf3c1d2d20">setPermissions</a> (QFile::Permissions permissions)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file permissions.  <a href="#aed68dc20f7dc42b5056491cf3c1d2d20"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a663a37c5a7a2d18900ba8b0199617eff">setFileNTFSTimes</a> (const QString &amp;fileName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the NTFS times from an existing file.  <a href="#a663a37c5a7a2d18900ba8b0199617eff"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a3af07365df1d67502ab1d0ca0d45df79">setFileNTFSmTime</a> (const QDateTime &amp;mTime, int fineTicks=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the NTFS modification time.  <a href="#a3af07365df1d67502ab1d0ca0d45df79"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a1042ac3d55a9deed760eb357aaa8284c">setFileNTFSaTime</a> (const QDateTime &amp;aTime, int fineTicks=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the NTFS access time.  <a href="#a1042ac3d55a9deed760eb357aaa8284c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a44675ac1e306eddefcaa35972c294d15">setFileNTFScTime</a> (const QDateTime &amp;cTime, int fineTicks=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the NTFS creation time.  <a href="#a44675ac1e306eddefcaa35972c294d15"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structQuaZipNewInfo.html#a2bdef01b6ac3326e48598e32bfa5fbe8">name</a></td></tr>
@@ -89,7 +101,8 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Information about a file to be created. </p>
-<p>This structure holds information about a file to be created inside ZIP archive. At least name should be set to something correct before passing this structure to QuaZipFile::open(OpenMode,const QuaZipNewInfo&amp;,int,int,bool). </p>
+<p>This structure holds information about a file to be created inside ZIP archive. At least name should be set to something correct before passing this structure to QuaZipFile::open(OpenMode,const QuaZipNewInfo&amp;,int,int,bool).</p>
+<p>Zip64 support of this structure is slightly limited: in the raw mode (when a pre-compressed file is written into a ZIP file as-is), it is necessary to specify the uncompressed file size and the appropriate field is 32 bit. Since the raw mode is used extremely rare, there is no real need to have a separate QuaZipNewInfo64 structure like <a class="el" href="structQuaZipFileInfo64.html" title="Information about a file inside archive (with zip64 support).">QuaZipFileInfo64</a>. It may be added in the future though, if there is a demand for the raw mode with zip64 archives. </p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a46c0f551cf9e6b2131929beb39187aac"></a><!-- doxytag: member="QuaZipNewInfo::QuaZipNewInfo" ref="a46c0f551cf9e6b2131929beb39187aac" args="(const QString &amp;name)" -->
 <div class="memitem">
@@ -141,6 +154,60 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="structQuaZipNewInfo.html#a2b18b554d056877a2f33ffb9d241ed85" title="Sets the file timestamp from the existing file.">setFileDateTime()</a> </dd></dl>
 
 <p>References <a class="el" href="structQuaZipNewInfo.html#aec7f3ac72c72a2e10b82ad64c2fa3453">dateTime</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5f1a867f3b0d29d076f9014f70b59e5a"></a><!-- doxytag: member="QuaZipNewInfo::QuaZipNewInfo" ref="a5f1a867f3b0d29d076f9014f70b59e5a" args="(const QuaZipFileInfo &amp;existing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QuaZipNewInfo::QuaZipNewInfo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structQuaZipFileInfo.html">QuaZipFileInfo</a> &amp;&#160;</td>
+          <td class="paramname"><em>existing</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Initializes the new instance from existing file info. </p>
+<p>Mainly used when copying files between archives.</p>
+<p>Both extra fields are initialized to existing.extra. <a class="el" href="structQuaZipNewInfo.html" title="Information about a file to be created.">QuaZipNewInfo</a> </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">existing</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4afa2e8c282a801fc216f79026c2d062"></a><!-- doxytag: member="QuaZipNewInfo::QuaZipNewInfo" ref="a4afa2e8c282a801fc216f79026c2d062" args="(const QuaZipFileInfo64 &amp;existing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QuaZipNewInfo::QuaZipNewInfo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structQuaZipFileInfo64.html">QuaZipFileInfo64</a> &amp;&#160;</td>
+          <td class="paramname"><em>existing</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Initializes the new instance from existing file info. </p>
+<p>Mainly used when copying files between archives.</p>
+<p>Both extra fields are initialized to existing.extra. <a class="el" href="structQuaZipNewInfo.html" title="Information about a file to be created.">QuaZipNewInfo</a> </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">existing</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -213,6 +280,159 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Modifies the highest 16 bits of external attributes. The type part is set to dir if the name ends with a slash, and to regular file otherwise. </p>
 
 <p>References <a class="el" href="structQuaZipNewInfo.html#a2bdef01b6ac3326e48598e32bfa5fbe8">name</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a663a37c5a7a2d18900ba8b0199617eff"></a><!-- doxytag: member="QuaZipNewInfo::setFileNTFSTimes" ref="a663a37c5a7a2d18900ba8b0199617eff" args="(const QString &amp;fileName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QuaZipNewInfo::setFileNTFSTimes </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the NTFS times from an existing file. </p>
+<p>If the file doesn't exist, a warning is printed to the stderr and nothing is done. Otherwise, all three times, as reported by QFileInfo::lastModified(), QFileInfo::lastRead() and QFileInfo::created(), are written to the NTFS extra field record.</p>
+<p>The NTFS record is written to both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field.</p>
+<p>The microseconds will be zero, as they aren't reported by QFileInfo. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="structQuaZipNewInfo.html#a1042ac3d55a9deed760eb357aaa8284c">setFileNTFSaTime()</a>, <a class="el" href="structQuaZipNewInfo.html#a44675ac1e306eddefcaa35972c294d15">setFileNTFScTime()</a>, and <a class="el" href="structQuaZipNewInfo.html#a3af07365df1d67502ab1d0ca0d45df79">setFileNTFSmTime()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3af07365df1d67502ab1d0ca0d45df79"></a><!-- doxytag: member="QuaZipNewInfo::setFileNTFSmTime" ref="a3af07365df1d67502ab1d0ca0d45df79" args="(const QDateTime &amp;mTime, int fineTicks=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QuaZipNewInfo::setFileNTFSmTime </td>
+          <td>(</td>
+          <td class="paramtype">const QDateTime &amp;&#160;</td>
+          <td class="paramname"><em>mTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fineTicks</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the NTFS modification time. </p>
+<p>The time is written into the NTFS record in both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field. When updating an existing record, all other fields are left intact. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mTime</td><td>The new modification time. </td></tr>
+    <tr><td class="paramname">fineTicks</td><td>The fractional part of milliseconds, in 100-nanosecond ticks (i. e. 9999 ticks = 999.9 microsecond). Values greater than 9999 will add milliseconds or even seconds, but this can be confusing and therefore is discouraged. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="structQuaZipNewInfo.html#abda207eb3949db3a88761c1b06e6bd58">extraGlobal</a>, and <a class="el" href="structQuaZipNewInfo.html#ab377a81c51cf495c7aeee4f19340a43f">extraLocal</a>.</p>
+
+<p>Referenced by <a class="el" href="structQuaZipNewInfo.html#a663a37c5a7a2d18900ba8b0199617eff">setFileNTFSTimes()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1042ac3d55a9deed760eb357aaa8284c"></a><!-- doxytag: member="QuaZipNewInfo::setFileNTFSaTime" ref="a1042ac3d55a9deed760eb357aaa8284c" args="(const QDateTime &amp;aTime, int fineTicks=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QuaZipNewInfo::setFileNTFSaTime </td>
+          <td>(</td>
+          <td class="paramtype">const QDateTime &amp;&#160;</td>
+          <td class="paramname"><em>aTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fineTicks</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the NTFS access time. </p>
+<p>The time is written into the NTFS record in both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field. When updating an existing record, all other fields are left intact. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aTime</td><td>The new access time. </td></tr>
+    <tr><td class="paramname">fineTicks</td><td>The fractional part of milliseconds, in 100-nanosecond ticks (i. e. 9999 ticks = 999.9 microsecond). Values greater than 9999 will add milliseconds or even seconds, but this can be confusing and therefore is discouraged. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="structQuaZipNewInfo.html#abda207eb3949db3a88761c1b06e6bd58">extraGlobal</a>, and <a class="el" href="structQuaZipNewInfo.html#ab377a81c51cf495c7aeee4f19340a43f">extraLocal</a>.</p>
+
+<p>Referenced by <a class="el" href="structQuaZipNewInfo.html#a663a37c5a7a2d18900ba8b0199617eff">setFileNTFSTimes()</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a44675ac1e306eddefcaa35972c294d15"></a><!-- doxytag: member="QuaZipNewInfo::setFileNTFScTime" ref="a44675ac1e306eddefcaa35972c294d15" args="(const QDateTime &amp;cTime, int fineTicks=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QuaZipNewInfo::setFileNTFScTime </td>
+          <td>(</td>
+          <td class="paramtype">const QDateTime &amp;&#160;</td>
+          <td class="paramname"><em>cTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fineTicks</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the NTFS creation time. </p>
+<p>The time is written into the NTFS record in both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field. When updating an existing record, all other fields are left intact. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cTime</td><td>The new creation time. </td></tr>
+    <tr><td class="paramname">fineTicks</td><td>The fractional part of milliseconds, in 100-nanosecond ticks (i. e. 9999 ticks = 999.9 microsecond). Values greater than 9999 will add milliseconds or even seconds, but this can be confusing and therefore is discouraged. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>References <a class="el" href="structQuaZipNewInfo.html#abda207eb3949db3a88761c1b06e6bd58">extraGlobal</a>, and <a class="el" href="structQuaZipNewInfo.html#ab377a81c51cf495c7aeee4f19340a43f">extraLocal</a>.</p>
+
+<p>Referenced by <a class="el" href="structQuaZipNewInfo.html#a663a37c5a7a2d18900ba8b0199617eff">setFileNTFSTimes()</a>.</p>
 
 </div>
 </div>
@@ -312,7 +532,7 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <li>quazip/quazipnewinfo.cpp</li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 7 2015 08:37:18 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

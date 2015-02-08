@@ -14,7 +14,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-5-1</span></div>
+   <div id="projectname">QuaZIP&#160;<span id="projectnumber">quazip-0-7-1</span></div>
   </td>
  </tr>
  </tbody>
@@ -104,6 +104,7 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Information about a file inside archive. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Use <a class="el" href="structQuaZipFileInfo64.html" title="Information about a file inside archive (with zip64 support).">QuaZipFileInfo64</a> instead. Not only it supports large files, but also more convenience methods as well.</dd></dl>
 <p>Call <a class="el" href="classQuaZip.html#a9c91a53ed4c2038e153c64bdc097ebe8" title="Retrieves information about the current file.">QuaZip::getCurrentFileInfo()</a> or <a class="el" href="classQuaZipFile.html#ad3f5807329321be21b12c1ba5798b359" title="Gets information about current file.">QuaZipFile::getFileInfo()</a> to fill this structure. </p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="af87f96a64d7c02b002622f81d13accdb"></a><!-- doxytag: member="QuaZipFileInfo::getPermissions" ref="af87f96a64d7c02b002622f81d13accdb" args="() const " -->
@@ -123,8 +124,6 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <p>Get the file permissions. </p>
 <p>Returns the high 16 bits of external attributes converted to QFile::Permissions. </p>
 
-<p>References <a class="el" href="structQuaZipFileInfo.html#afeb65ffdacc4fc0ba7848d4b37f62ecf">externalAttr</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
@@ -132,7 +131,7 @@ QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <li>quazip/quazipfileinfo.cpp</li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sat Mar 2 2013 11:05:10 for QuaZIP by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 7 2015 08:37:18 for QuaZIP by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

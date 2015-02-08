@@ -75,6 +75,8 @@ qint64 {\bf usize} () const
 \begin{DoxyCompactList}\small\item\em Returns uncompressed file size. \end{DoxyCompactList}\item 
 bool {\bf getFileInfo} ({\bf QuaZipFileInfo} $\ast$info)
 \begin{DoxyCompactList}\small\item\em Gets information about current file. \end{DoxyCompactList}\item 
+bool {\bf getFileInfo} ({\bf QuaZipFileInfo64} $\ast$info)
+\begin{DoxyCompactList}\small\item\em Gets information about current file with zip64 support. \end{DoxyCompactList}\item 
 virtual void {\bf close} ()
 \begin{DoxyCompactList}\small\item\em Closes the file. \end{DoxyCompactList}\item 
 int {\bf getZipError} () const \label{classQuaZipFile_a26d2ee56aad947193b73052f80597ef0}
@@ -500,7 +502,7 @@ If {\itshape raw\/} is {\ttfamily true}, no compression is performed. In this ca
 
 Arguments {\itshape windowBits\/}, {\itshape memLevel\/}, {\itshape strategy\/} provide zlib algorithms tuning. See deflateInit2() in zlib. 
 
-References QuaZipNewInfo::comment, QuaZipNewInfo::dateTime, QuaZipNewInfo::externalAttr, QuaZipNewInfo::extraGlobal, QuaZipNewInfo::extraLocal, QuaZip::getCommentCodec(), QuaZip::getFileNameCodec(), QuaZip::getMode(), QuaZip::getZipFile(), QuaZipNewInfo::internalAttr, QuaZip::isDataDescriptorWritingEnabled(), QuaZip::mdAdd, QuaZip::mdAppend, QuaZip::mdCreate, QuaZipNewInfo::name, and QuaZipNewInfo::uncompressedSize.
+References QuaZipNewInfo::comment, QuaZipNewInfo::dateTime, QuaZipNewInfo::externalAttr, QuaZipNewInfo::extraGlobal, QuaZipNewInfo::extraLocal, QuaZip::getCommentCodec(), QuaZip::getFileNameCodec(), QuaZip::getMode(), QuaZip::getZipFile(), QuaZipNewInfo::internalAttr, QuaZip::isDataDescriptorWritingEnabled(), QuaZip::isZip64Enabled(), QuaZip::mdAdd, QuaZip::mdAppend, QuaZip::mdCreate, QuaZipNewInfo::name, and QuaZipNewInfo::uncompressedSize.
 
 \index{QuaZipFile@{QuaZipFile}!pos@{pos}}
 \index{pos@{pos}!QuaZipFile@{QuaZipFile}}
@@ -637,7 +639,33 @@ This function does the same thing as calling \doxyref{QuaZip::getCurrentFileInfo
 
 File must be open for reading before calling this function.
 
-Returns {\ttfamily false} in the case of an error. 
+\begin{DoxyReturn}{Returns}
+{\ttfamily false} in the case of an error.
+\end{DoxyReturn}
+This function doesn't support zip64, but will still work fine on zip64 archives if file sizes are below 4 GB, otherwise the values will be set as if converted using \doxyref{QuaZipFileInfo64::toQuaZipFileInfo()}{p.}{structQuaZipFileInfo64_ada29945c7ee4c9df6fbe95864793aade}.
+
+\begin{DoxySeeAlso}{See also}
+\doxyref{getFileInfo(QuaZipFileInfo64$\ast$)}{p.}{classQuaZipFile_af35876a5ac6e9c35234275a9e503110d} 
+\end{DoxySeeAlso}
+
+
+References QuaZipFileInfo64::toQuaZipFileInfo().
+
+\index{QuaZipFile@{QuaZipFile}!getFileInfo@{getFileInfo}}
+\index{getFileInfo@{getFileInfo}!QuaZipFile@{QuaZipFile}}
+\subsubsection[{getFileInfo}]{\setlength{\rightskip}{0pt plus 5cm}bool QuaZipFile::getFileInfo (
+\begin{DoxyParamCaption}
+\item[{{\bf QuaZipFileInfo64} $\ast$}]{info}
+\end{DoxyParamCaption}
+)}\label{classQuaZipFile_af35876a5ac6e9c35234275a9e503110d}
+
+
+Gets information about current file with zip64 support. 
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \begin{DoxySeeAlso}{See also}
+\doxyref{getFileInfo(QuaZipFileInfo$\ast$)}{p.}{classQuaZipFile_ad3f5807329321be21b12c1ba5798b359} 
+\end{DoxySeeAlso}
+
 
 References QuaZip::getCurrentFileInfo(), QuaZip::getMode(), QuaZip::getZipError(), and QuaZip::mdUnzip.
 
