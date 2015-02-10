@@ -18,16 +18,22 @@ LogHighlighter::LogHighlighter(QTextDocument *parent)
 }
 
 void LogHighlighter::highlightBlock(const QString &text) {
-	QRegExp rxLatexError("^\\s*! (.*)");
-	QRegExp rxBadBox("^\\s*(Over|Under)(full \\\\[hv]box .*)");
-	QRegExp rxWarning("^\\s*(((! )?(La|pdf|Lua)TeX)|Package) .*Warning.*:(.*)");
-	if (rxLatexError.indexIn(text)!=-1) {
+	static QRegExp rxLatexError("\\s*! (.*)");
+	static QRegExp rxBadBox("\\s*(Over|Under)(full \\\\[hv]box .*)");
+	static QRegExp rxWarning("\\s*(((! )?(La|pdf|Lua)TeX)|Package) .*Warning.*:(.*)");
+	static QRegExp rxOnlyStars("\\*+\\s*");
+	static QRegExp rxOnlyExclMarks("!+\\s*");
+	static QRegExp rxExclDots("!\\.+\\s*");
+	static QRegExp rxOnlyDots("\\.+\\s*");
+	if (rxLatexError.exactMatch(text) || text == "! " || rxOnlyExclMarks.exactMatch(text) || rxExclDots.exactMatch(text)) {
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_ERROR));
-	} else if (rxBadBox.indexIn(text)!=-1) {
+	} else if (rxBadBox.exactMatch(text)) {
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_BADBOX));
-	} else if (rxWarning.indexIn(text)!=-1) {
+	} else if (rxWarning.exactMatch(text) || text.startsWith("* ") || rxOnlyStars.exactMatch(text)) {
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_WARNING));
-	} else if (text.indexOf(".tex",0)!=-1 && !text.startsWith("Error:")) {
+	} else if (text.startsWith(". ") || rxOnlyDots.exactMatch(text)) {
+		setFormat(0, text.length(), LatexLogEntry::textColor(LT_INFO));
+	} else if (text.indexOf(".tex", 0)!=-1 && !text.startsWith("Error:")) {
 		setFormat(0, text.length(), ColorFile);
 	}
 }

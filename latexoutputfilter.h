@@ -19,7 +19,7 @@
 
 #include "mostQtHeaders.h"
 
-enum LogType {LT_NONE = 0, LT_ERROR=1, LT_WARNING=2, LT_BADBOX=3, LT_MAX};
+enum LogType {LT_NONE = 0, LT_ERROR=1, LT_WARNING=2, LT_BADBOX=3, LT_INFO, LT_MAX};
 struct LatexLogEntry {
 	static QColor textColors[LT_MAX];
 	static QColor textColor(LogType lt) {return textColors[lt];}
