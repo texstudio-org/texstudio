@@ -116,9 +116,9 @@ class LatexOutputFilter : public OutputFilter
 	//void sendProblems();
 	//void updateInfoLists(const QString &texfilename, int selrow, int docrow);
 
-	enum {Start = 0, FileName, HeuristicSearch, Error, Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
+	enum {Start = 0, FileName, HeuristicSearch, Error, Latex3Error, Latex3ErrorEnd, Warning, Latex3Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
 		  // the following states are only used in updateFileStackHeuristic2
-		  ExpectingFileName=10, InFileName, InQuotedFileName};
+		  ExpectingFileName=100, InFileName, InQuotedFileName};
 
     protected:
         /**

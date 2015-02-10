@@ -22,7 +22,7 @@
 
 using namespace std;
 
-QColor LatexLogEntry::textColors[LT_MAX] = {QColor(Qt::black), QColor(230, 32, 32), QColor(234, 136, 32), QColor(58, 58, 230)};
+QColor LatexLogEntry::textColors[LT_MAX] = {QColor(Qt::black), QColor(230, 32, 32), QColor(234, 136, 32), QColor(58, 58, 230), QColor(Qt::darkBlue)};
 
 /*textColors[LT_NONE] = QColor(Qt::black);
 textColors[LT_ERROR] = QColor(230, 32, 32);
@@ -594,11 +594,19 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 	static QRegExp rePDFLaTeXError("^Error: (?:lua|pdf)latex (.*)$", Qt::CaseInsensitive);
 	static QRegExp reTeXError("^! (.*)$");
 	static QRegExp rePackageError("^! Package (.*) Error:(.*)$", Qt::CaseInsensitive);
+	static QRegExp reLatex3Error("^!\\s+(\\S.*)");
+	static QRegExp reLatex3ErrorHeader("^1\\s*(.*error:\\s*.*)", Qt::CaseInsensitive);
     static QRegExp reLineNumber("^(\\.{3} )?l\\.([0-9]+)(.*)");
 
 	switch (dwCookie) {
 		case Start :
-			if(reLaTeXError.indexIn(strLine) != -1) {
+			if(strLine.startsWith("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")) {
+				found = true;
+				dwCookie = Latex3Error;
+				m_currentItem.message = QString();
+				m_currentItem.logline=GetCurrentOutputLine();
+			}
+			else if(reLaTeXError.indexIn(strLine) != -1) {
 				//KILE_DEBUG() << "\tError : " <<  reLaTeXError.cap(1) << endl;
 				m_currentItem.message=reLaTeXError.cap(1);
 				found = true;
@@ -618,7 +626,7 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 				m_currentItem.message=rePackageError.cap(1)+":"+rePackageError.cap(2);
 				found = true;
 			}
-			if(found) {
+			if(found && dwCookie != Latex3Error) {  // already handled for Latex3Error above
 				dwCookie = strLine.endsWith('.') ? LineNumber : Error;
 				m_currentItem.logline=GetCurrentOutputLine();
 			}
@@ -636,7 +644,34 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 				flush = true;
 			}
 		break;
-
+		case Latex3Error:
+			if (!strLine.startsWith('!') || strLine.startsWith("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!") || strLine.startsWith("!.......................................")) {
+				found = false;
+				flush = false;
+				dwCookie = Latex3ErrorEnd;
+			} else {
+				if (strLine.contains("documentation for further information.") || strLine.contains("Type <return> to continue.")) {
+					// ignore these lines:
+					//  ! See the mymodule documentation for further information.
+					// 	! Type <return> to continue.
+					found = true;
+				} else if (reLatex3ErrorHeader.indexIn(strLine)!=-1) {
+					if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+					m_currentItem.message += reLatex3ErrorHeader.cap(1);
+					found = true;
+				} else if (reLatex3Error.indexIn(strLine)!=-1) {
+					if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+					m_currentItem.message += reLatex3Error.cap(1);
+					found = true;
+				}
+			}
+		break;
+		case Latex3ErrorEnd:
+			if (strLine.trimmed().isEmpty()) {
+				found = true;
+			} else {
+				dwCookie = LineNumber;
+			}
 		case LineNumber :
 			//KILE_DEBUG() << "\tLineNumber " << endl;
 			if(reLineNumber.indexIn(strLine) != -1) {
@@ -659,7 +694,6 @@ bool LatexOutputFilter::detectError(const QString & strLine, short &dwCookie)
 
 	if(found) {
 		m_currentItem.type=LT_ERROR;
-		m_currentItem.logline=GetCurrentOutputLine();
 	}
 
 	if(flush) {
@@ -678,21 +712,26 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 	QString warning;
 
 	static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX)|Package|Class) .*Warning.*:(.*)", Qt::CaseInsensitive);
+	static QRegExp reLatex3Warning("^\\*\\s+(\\S.*)");
+	static QRegExp reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", Qt::CaseInsensitive);
 	static QRegExp reNoFile("No file (.*)");
 	static QRegExp reNoAsyFile("File .* does not exist."); // FIXME can be removed when http://sourceforge.net/tracker/index.php?func=detail&aid=1772022&group_id=120000&atid=685683 has promoted to the users
 
 	switch(dwCookie) {
 		//detect the beginning of a warning
 		case Start :
-			if(reLaTeXWarning.indexIn(strLine) != -1) {
+			if(strLine.startsWith("****************************************")) {
+				found = true;
+				dwCookie = Latex3Warning;
+				m_currentItem.message = QString();
+				m_currentItem.logline = GetCurrentOutputLine();
+			}
+			else if(reLaTeXWarning.indexIn(strLine) != -1) {
 				warning = reLaTeXWarning.cap(5);
  				//KILE_DEBUG() << "\tWarning found: " << warning << endl;
-
 				found = true;
 				dwCookie = Start;
-
 				m_currentItem.logline=GetCurrentOutputLine();
-
 				//do we expect a line number?
 				flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
 				m_currentItem.message=warning;
@@ -721,14 +760,29 @@ bool LatexOutputFilter::detectWarning(const QString & strLine, short &dwCookie)
 			flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
 			m_currentItem.message=(warning);
 		break;
-
+		case Latex3Warning:
+			if (!strLine.startsWith('*') || strLine.startsWith("****************************************")) {
+				found = false;
+				flush = true;
+				dwCookie = Start;
+			} else {
+				if (reLatex3WarningHeader.indexIn(strLine)!=-1) {
+					if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+					m_currentItem.message += reLatex3WarningHeader.cap(1);
+					found = true;
+				} else if (reLatex3Warning.indexIn(strLine)!=-1) {
+					if (!m_currentItem.message.isEmpty()) m_currentItem.message += ' ';
+					m_currentItem.message += reLatex3Warning.cap(1);
+					found = true;
+				}
+			}
+		break;
 		default:
 			break;
 	}
 
 	if(found) {
 		m_currentItem.type=LT_WARNING;
-		m_currentItem.logline=GetCurrentOutputLine();
 	}
 
 	if(flush) {
@@ -890,11 +944,11 @@ short LatexOutputFilter::parseLine(const QString & strLine, short dwCookie)
 			}
 		break;
 
-		case Warning :
+		case Warning : case Latex3Warning :
 			detectWarning(strLine, dwCookie);
 		break;
 
-		case Error : case LineNumber :
+		case Error : case Latex3Error : case Latex3ErrorEnd : case LineNumber :
 			detectError(strLine, dwCookie);
 		break;
 
