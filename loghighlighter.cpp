@@ -18,9 +18,9 @@ LogHighlighter::LogHighlighter(QTextDocument *parent)
 }
 
 void LogHighlighter::highlightBlock(const QString &text) {
-	QRegExp rxLatexError("! (.*)");
-	QRegExp rxBadBox("(Over|Under)(full \\\\[hv]box .*)");
-	QRegExp rxWarning("(((! )?(La|pdf|Lua)TeX)|Package) .*Warning.*:(.*)");
+	QRegExp rxLatexError("^\\s*! (.*)");
+	QRegExp rxBadBox("^\\s*(Over|Under)(full \\\\[hv]box .*)");
+	QRegExp rxWarning("^\\s*(((! )?(La|pdf|Lua)TeX)|Package) .*Warning.*:(.*)");
 	if (rxLatexError.indexIn(text)!=-1) {
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_ERROR));
 	} else if (rxBadBox.indexIn(text)!=-1) {
