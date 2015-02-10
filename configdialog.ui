@@ -1251,7 +1251,7 @@ Then you can select a new shortcut by one of the following ways:
          <property name="title">
           <string>Scaling</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout">
           <property name="horizontalSpacing">
            <number>60</number>
           </property>
@@ -2658,7 +2658,7 @@ Then you can select a new shortcut by one of the following ways:
          <property name="title">
           <string>Completion</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout7" rowstretch="0,0,0,0,0,0" columnstretch="1,1">
+         <layout class="QGridLayout" rowstretch="0,0,0,0,0,0" columnstretch="1,1">
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxCompletion">
             <property name="toolTip">
