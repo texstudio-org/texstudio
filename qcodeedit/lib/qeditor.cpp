@@ -484,6 +484,7 @@ void QEditor::init(bool actions,QDocument *doc)
 	m_cursor = QDocumentCursor(m_doc);
 	m_cursor.setAutoUpdated(true);
 
+	m_cursorLinesFromViewTop=0;
 	m_lastColumn=-2;
 	m_lastLine=-2;
 	m_hoverCount=-2;
@@ -2330,6 +2331,7 @@ void QEditor::setCursorPosition(const QPoint& p, bool moveView)
 */
 void QEditor::emitCursorPositionChanged()
 {
+	m_cursorLinesFromViewTop = m_cursor.documentPosition().y() / m_doc->getLineSpacing() - verticalScrollBar()->value();
 	emit cursorPositionChanged();
 	emit copyAvailable(m_cursor.hasSelection());
 
@@ -2759,7 +2761,7 @@ bool QEditor::event(QEvent *e)
 	{
 		//qDebug("resize adjust (1) : wrapping to %i", viewport()->width());
 		m_doc->setWidthConstraint(wrapWidth());
-		ensureCursorVisible();
+		ensureCursorVisible(KeepDistanceFromViewTop);
 	}
 
 	return r;
@@ -4992,6 +4994,12 @@ bool QEditor::isCursorVisible() const
 */
 void QEditor::ensureCursorVisible(const QDocumentCursor& cursor, MoveFlags mflags){
 	QPoint pos = cursor.documentPosition();
+
+	if (mflags & KeepDistanceFromViewTop && cursor == m_cursor) {
+		int linesFromDocStart = pos.y() / m_doc->getLineSpacing();
+		verticalScrollBar()->setValue(linesFromDocStart - m_cursorLinesFromViewTop);
+	}
+
 	int surrounding = (mflags&KeepSurrounding) ? m_cursorSurroundingLines : 0;
 
 	const int ls = document()->getLineSpacing();
