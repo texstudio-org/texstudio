@@ -192,7 +192,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 			// semantic abbreviations
 			Navigation = Animated | KeepSurrounding | ExpandFold,
-			NavigationToHeader = Animated | KeepSurrounding | ExpandFold | AllowScrollToTop
+			NavigationToHeader = Animated | KeepSurrounding | ExpandFold | AllowScrollToTop,
+
+			KeepDistanceFromViewTop = 0x1000
 		};
 		Q_DECLARE_FLAGS(MoveFlags, MoveFlagsEnum)
 
@@ -636,6 +638,7 @@ public slots:
 		QPointer<QCodeCompletionEngine> m_completionEngine;
 		
 		QDocumentCursor m_cursor, m_doubleClick, m_dragAndDrop;
+		int m_cursorLinesFromViewTop;
 		
 		QList<QDocumentCursor> m_mirrors;
 		
