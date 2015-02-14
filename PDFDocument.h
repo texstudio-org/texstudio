@@ -436,6 +436,7 @@ private slots:
 public:
 	void search(const QString& searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
 	void search();
+	static QString debugSyncTeX(const QString& filename);
 private slots:
 	void gotoAnnotation(const PDFAnnotation *ann);
 
