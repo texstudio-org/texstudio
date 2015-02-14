@@ -236,6 +236,7 @@ synctex_node_t synctex_node_sheet(synctex_node_t node);
 synctex_node_t synctex_node_child(synctex_node_t node);
 synctex_node_t synctex_node_sibling(synctex_node_t node);
 synctex_node_t synctex_node_next(synctex_node_t node);
+synctex_node_t synctex_first_sheet(synctex_scanner_t scanner);
 synctex_node_t synctex_sheet(synctex_scanner_t scanner,int page);
 synctex_node_t synctex_sheet_content(synctex_scanner_t scanner,int page);
 
@@ -275,8 +276,10 @@ synctex_charindex_t synctex_node_charindex(synctex_node_t node);
  *  The latter is not yet fully supported in TeX, the default implementation returns 0 which means the whole line.
  *  When the tag is known, the scanner of the node will give the corresponding file name.
  *  When the tag is known, the scanner of the node will give the name.
+ *  The name can only be accessed for input nodes, not nodes on a sheet.
  */
 int synctex_node_tag(synctex_node_t node);
+const char * synctex_node_name(synctex_node_t node);
 int synctex_node_line(synctex_node_t node);
 int synctex_node_column(synctex_node_t node);
 

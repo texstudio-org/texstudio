@@ -3135,6 +3135,60 @@ void PDFDocument::search(){
 	dwSearch->setFocus();
 }
 
+QString PDFDocument::debugSyncTeX(const QString& filename){
+	int pos = filename.indexOf(SYNCTEX_EXT);
+	QString baseName = pos < 0 ? filename : filename.left(pos);
+	QString pdfFile;
+	foreach (PDFDocument* pdf, documentList()) {
+		if (pdf->fileName().startsWith(baseName)) {
+			pdfFile = pdf->fileName();
+			break;
+		}
+	}
+	if (pdfFile.isEmpty() && QFile::exists(baseName + ".pdf")) pdfFile = baseName + ".pdf";
+	else pdfFile = filename;
+
+	synctex_scanner_t scanner = synctex_scanner_new_with_output_file(QFile::encodeName(pdfFile).data(), NULL, 1);
+	if (!scanner) return "Failed to load file";
+
+
+	QStringList result;
+
+	synctex_scanner_display(scanner);
+
+	result.append("Inputs:");
+	synctex_node_t node = synctex_scanner_input(scanner);
+	while (node != NULL) {
+		result.append(QString("Input:%1:%2").arg(synctex_node_tag(node)).arg(synctex_node_name(node)));
+		node = synctex_node_sibling(node);
+	}
+
+	result.append("");
+	result.append("Sheets:");
+	node = synctex_first_sheet(scanner);
+	while (node != NULL) {
+		synctex_node_t cur = synctex_node_child(node);
+		int page = synctex_node_page(cur);
+		QSet<int> inputs;
+		while (cur != NULL) {
+			inputs.insert(synctex_node_tag(cur));
+			cur = synctex_node_next(cur);
+		}
+		node = synctex_node_sibling(node);
+
+		QString x = QString("Page:%1:").arg(page);
+		foreach (int i, inputs)
+			x.append(QString("%1 ").arg(i));
+		result.append(x);
+	}
+
+
+	synctex_scanner_free(scanner);
+
+
+	return result.join("\n");
+}
+
 void PDFDocument::gotoAnnotation(const PDFAnnotation *ann) {
 	if (!pdfWidget) return;
 	QPoint topLeft = pdfWidget->mapFromScaledPosition(ann->pageNum(), ann->popplerAnnotation()->boundary().topLeft()) / pdfWidget->totalScaleFactor();

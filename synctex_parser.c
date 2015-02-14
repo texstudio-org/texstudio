@@ -3397,6 +3397,9 @@ synctex_charindex_t synctex_node_charindex(synctex_node_t node) {
 int synctex_node_tag(synctex_node_t node) {
 	return node?SYNCTEX_TAG(node):-1;
 }
+const char* synctex_node_name(synctex_node_t node) {
+	return node?SYNCTEX_NAME(node):NULL;
+}
 int synctex_node_line(synctex_node_t node) {
 	return node?SYNCTEX_LINE(node):-1;
 }
@@ -3418,6 +3421,11 @@ int synctex_node_column(synctex_node_t node) {
 #       pragma mark -
 #       pragma mark Sheet
 #   endif
+
+synctex_node_t synctex_first_sheet(synctex_scanner_t scanner) {
+	if (scanner) return scanner->sheet;
+	return NULL;
+}
 
 synctex_node_t synctex_sheet(synctex_scanner_t scanner,int page) {
 	if (scanner) {

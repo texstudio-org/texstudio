@@ -1634,6 +1634,13 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 		PDFDocument::documentList().first()->setFocus();
 		return 0;
 	}
+	if ((f_real.endsWith(".synctex.gz",Qt::CaseInsensitive) ||
+		f_real.endsWith(".synctex",Qt::CaseInsensitive))
+			&& txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
+		fileNewInternal();
+		currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
+		return currentEditorView();
+	}
 #endif
 	
 	if (f_real.endsWith(".log",Qt::CaseInsensitive) &&
