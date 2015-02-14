@@ -160,8 +160,9 @@ void DefaultInputBinding::checkLinkOverlay(QPoint mousePos, Qt::KeyboardModifier
 }
 
 bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
-	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text()) &&
-			(editor->currentPlaceHolder() < 0 || editor->currentPlaceHolder() >= editor->placeHolderCount() || editor->getPlaceHolder(editor->currentPlaceHolder()).mirrors.isEmpty() ||  editor->getPlaceHolder(editor->currentPlaceHolder()).affector != BracketInvertAffector::instance()))  {
+	if (LatexEditorView::completer && LatexEditorView::completer->acceptTriggerString(event->text())
+			&& (editor->currentPlaceHolder() < 0 || editor->currentPlaceHolder() >= editor->placeHolderCount() || editor->getPlaceHolder(editor->currentPlaceHolder()).mirrors.isEmpty() ||  editor->getPlaceHolder(editor->currentPlaceHolder()).affector != BracketInvertAffector::instance())
+			&& !editor->flag(QEditor::Overwrite))  {
 		//update completer if necessary
 		editor->emitNeedUpdatedCompleter();
 		bool autoOverriden = editor->isAutoOverrideText(event->text());
@@ -174,7 +175,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		return true;
 	}
 	if (!event->text().isEmpty()) {
-		if (runMacros(event, editor))
+		if (!editor->flag(QEditor::Overwrite) && runMacros(event, editor))
 			return true;
 		if (autoInsertLRM(event, editor))
 			return true;
