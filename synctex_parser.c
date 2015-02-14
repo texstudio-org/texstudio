@@ -1952,37 +1952,37 @@ synctex_status_t _synctex_hbox_setup_visible(synctex_node_t node,int h, int v) {
  *  of \includegraphics option. Here we use arbitrary level of depth.
  */
 synctex_status_t _synctex_scan_nested_sheet(synctex_scanner_t scanner) {
-    unsigned int depth = 0;
+	unsigned int depth = 0;
 deeper:
-    ++depth;
-    if (_synctex_next_line(scanner)<SYNCTEX_STATUS_OK) {
-        _synctex_error("Unexpected end of nested sheet (1).");
-        SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
-    }
+	++depth;
+	if (_synctex_next_line(scanner)<SYNCTEX_STATUS_OK) {
+		_synctex_error("Unexpected end of nested sheet (1).");
+		SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
+	}
 scan_next_line:
-    if (SYNCTEX_CUR<SYNCTEX_END) {
+	if (SYNCTEX_CUR<SYNCTEX_END) {
 		if (*SYNCTEX_CUR == SYNCTEX_CHAR_END_SHEET) {
 			++SYNCTEX_CUR;
 			if (_synctex_next_line(scanner)<SYNCTEX_STATUS_OK) {
 				_synctex_error("Unexpected end of nested sheet (2).");
 				SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
 			}
-            if (--depth>0) {
-                goto scan_next_line;
-            } else {
-            	SYNCTEX_RETURN(SYNCTEX_STATUS_OK);
-            }
+			if (--depth>0) {
+				goto scan_next_line;
+			} else {
+				SYNCTEX_RETURN(SYNCTEX_STATUS_OK);
+			}
 		} else if (*SYNCTEX_CUR == SYNCTEX_CHAR_BEGIN_SHEET) {
 			++SYNCTEX_CUR;
 			goto deeper;
-            
 		} else if (_synctex_next_line(scanner)<SYNCTEX_STATUS_OK) {
-            _synctex_error("Unexpected end of nested sheet (3).");
-            SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
-        }
-    }
-    _synctex_error("Unexpected end of nested sheet (4).");
-    SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
+			_synctex_error("Unexpected end of nested sheet (3).");
+			SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
+		} else 
+			goto scan_next_line;
+	}
+	_synctex_error("Unexpected end of nested sheet (4).");
+	SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
 }
 
 /*  Used when parsing the synctex file.
@@ -2573,6 +2573,14 @@ sibling_loop:
 				SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
 			}
 			goto sibling_loop;
+		} else if (*SYNCTEX_CUR == SYNCTEX_CHAR_BEGIN_SHEET) {
+			/*  Addendum to manage nested sheets  */
+			++SYNCTEX_CUR;
+			if (_synctex_scan_nested_sheet(scanner)<SYNCTEX_STATUS_OK) {
+				_synctex_error("Unexpected nested sheet.");
+				SYNCTEX_RETURN(SYNCTEX_STATUS_ERROR);
+			}
+			goto sibling_loop;
 		} else {
 			++SYNCTEX_CUR;
 			/* _synctex_error("Ignored record %c(2)\n",*SYNCTEX_CUR); */
@@ -2637,6 +2645,14 @@ content_not_found:
 	}
 next_sheet:
 	if (*SYNCTEX_CUR != SYNCTEX_CHAR_BEGIN_SHEET) {
+		/*  Now read the list of Inputs between 2 sheets. */
+		do {
+			status = _synctex_scan_input(scanner);
+			if (status<SYNCTEX_STATUS_EOF) {
+				_synctex_error("Bad input section.");
+				return status;
+			}
+		} while(status >= SYNCTEX_STATUS_OK);
 		status = _synctex_scan_postamble(scanner);
 		if (status < SYNCTEX_STATUS_EOF) {
 			_synctex_error("Bad content.");
@@ -2673,15 +2689,6 @@ bail:
 	}
 	SYNCTEX_APPEND_SHEET(scanner,sheet);
 	sheet = NULL;
-	/*  Now read the list of Inputs between 2 sheets. */
-	do {
-		status = _synctex_scan_input(scanner);
-		if (status<SYNCTEX_STATUS_EOF) {
-			_synctex_error("Bad input section.");
-			goto bail;
-		}
-	}
-	while(status >= SYNCTEX_STATUS_OK);
 	goto next_sheet;
 }
 
