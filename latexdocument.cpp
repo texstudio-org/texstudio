@@ -2405,14 +2405,12 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		}
 		se->valid = true;
 	} else if (lowerName == "encoding") {
-		bool hasUndo = canUndo();
 		QTextCodec *codec = QTextCodec::codecForName(val.toLatin1());
 		if (!codec) {
 			se->tooltip = tr("Invalid codec");
 			return;
 		}
-		setCodec(codec);
-		if (!hasUndo) clearUndo(); // changing the codec pushes an entry to the undo/redo stack we don't want this for the first parsing at loading
+		setCodecDirect(codec);
 		emit encodingChanged();
 		se->valid = true;
 	} else if (lowerName == "txs-script") {
@@ -2746,7 +2744,7 @@ QString LatexDocument::getMagicComment(const QString& name) const{
 	return QString();
 }
 
-QDocumentLineHandle* LatexDocument::getMagicCommentLineHandle(const QString& name) const{
+StructureEntry* LatexDocument::getMagicCommentEntry(const QString& name) const{
 	QString seName;
 	QString val;
 	
@@ -2756,8 +2754,7 @@ QDocumentLineHandle* LatexDocument::getMagicCommentLineHandle(const QString& nam
 	while (iter.hasNext()) {
 		StructureEntry *se = iter.next();
 		splitMagicComment(se->title, seName, val);
-		if (seName==name)
-			return se->getLineHandle();
+		if (seName==name) return se;
 	}
 	return NULL;
 }
@@ -2768,18 +2765,20 @@ QDocumentLineHandle* LatexDocument::getMagicCommentLineHandle(const QString& nam
 void LatexDocument::updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting) {
 	QString line(QString("\% !TeX %1 = %2").arg(name).arg(val));
 	
-	QDocumentLineHandle* dlh = getMagicCommentLineHandle(name);
+	StructureEntry* se = getMagicCommentEntry(name);
+	QDocumentLineHandle* dlh = se ? se->getLineHandle() : NULL;
 	if(dlh) {
-		QDocumentCursor cur(this, indexOf(dlh));
-		cur.select(QDocumentCursor::LineUnderCursor);
-		cur.replaceSelectedText(line);
+		QString n, v;
+		splitMagicComment(se->title, n, v);
+		if (v != val) {
+			QDocumentCursor cur(this, indexOf(dlh));
+			cur.select(QDocumentCursor::LineUnderCursor);
+			cur.replaceSelectedText(line);
+		}
 	} else {
 		if (createIfNonExisting) {
 			QDocumentCursor cur(this);
-			cur.beginEditBlock();
-			cur.insertText(line);
-			cur.insertLine();
-			cur.endEditBlock();
+			cur.insertText(line+"\n");
 		}
 	}
 }

@@ -168,7 +168,7 @@ public:
 		return mSpellingDictName;
 	}
 	Q_INVOKABLE QString getMagicComment(const QString& name) const;
-	Q_INVOKABLE QDocumentLineHandle* getMagicCommentLineHandle(const QString &name) const;
+	Q_INVOKABLE StructureEntry* getMagicCommentEntry(const QString &name) const;
 	Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting=false);
 	
 	void updateMagicCommentScripts();
