@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es">
+<TS version="2.0" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -624,7 +624,7 @@
     <message>
         <location line="+5"/>
         <source>Error: No command expanded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Error: No se expandió la orden</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -635,7 +635,7 @@
     <message>
         <location line="-2"/>
         <source>Error: One command expansion invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Error: Una orden de expansión es inválida.</translation>
     </message>
     <message>
         <location line="+359"/>
@@ -761,17 +761,17 @@
     <message>
         <location line="+55"/>
         <source>Update the preview on text change</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Actualizar la vista previa cuando el texto cambie</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Auto Update:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Actualización automática:</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Auto Update Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Retraso de la actualización automática:</translation>
     </message>
     <message>
         <location line="+163"/>
@@ -1785,19 +1785,19 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="-1151"/>
         <source>Scale Central Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Escalar la barra de tareas central</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+7"/>
         <location line="+7"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Restablecer</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Scale Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Escalar símbolos</translation>
     </message>
     <message>
         <location line="+1131"/>
@@ -1948,13 +1948,13 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+307"/>
         <source>Scaling</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Escalar</translation>
     </message>
     <message>
         <location line="+44"/>
         <source>Scale Toolbar</source>
         <oldsource>scale symbols</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Escalar la barra de herramientas</translation>
     </message>
     <message>
         <location line="+217"/>
@@ -1984,7 +1984,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+67"/>
         <source>Scan LaTeX distribution for installed packages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Revisar la distribución de LaTeX para paquetes instalados</translation>
     </message>
     <message>
         <location line="+242"/>
@@ -2029,17 +2029,17 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+17"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar elementos en los comentarios</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bibliografía</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>bib File Encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Codificación de los archivos bib:</translation>
     </message>
     <message>
         <location line="+72"/>
@@ -2232,7 +2232,7 @@ aquí.</translation>
     <message>
         <location line="+13"/>
         <source>GroupBox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cuadro de grupo</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -2297,7 +2297,7 @@ aquí.</translation>
     </message>
     <message>
         <source>Auto Preview:</source>
-        <translation type="vanished">Vista previa automática:</translation>
+        <translation>Vista previa automática:</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -2603,7 +2603,7 @@ la clave de todos modos?</translation>
     <message>
         <location line="+21"/>
         <source>GUI Scaling</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Escalar elementos GUI</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -3665,7 +3665,7 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
         <location line="+45"/>
         <location line="+41"/>
         <source>texdoc not found.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">texdoc no encontrado.</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -3999,7 +3999,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location line="+14"/>
         <source>Missing value for -job-name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valor no disponible para -job-name</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4059,7 +4059,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location line="-248"/>
         <source>Could not open url:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No se pudo abrir la url:</translation>
     </message>
     <message>
         <location line="+1791"/>
@@ -4224,7 +4224,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">Paquete no encontrado</translation>
+        <translation>Paquete no encontrado</translation>
     </message>
     <message>
         <location line="+2087"/>
@@ -5688,27 +5688,27 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <name>PreviewWidget</name>
     <message>
         <source>fit</source>
-        <translation type="vanished">Ajustar</translation>
+        <translation>Ajustar</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">Acercar</translation>
+        <translation>Acercar</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">Alejar</translation>
+        <translation>Alejar</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">Restablecer zoom</translation>
+        <translation>Restablecer zoom</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">Alinear la imagen a la izquierda</translation>
+        <translation>Alinear la imagen a la izquierda</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">Centrar Imagen</translation>
+        <translation>Centrar Imagen</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
@@ -8880,7 +8880,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
-        <translation type="vanished">Clic para ir al marcador</translation>
+        <translation>Clic para ir al marcador</translation>
     </message>
     <message>
         <location line="+6344"/>
@@ -8977,7 +8977,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Imprimir...</translation>
+        <translation>Imprimir...</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
@@ -9441,7 +9441,7 @@ Do you want to create it?</source>
     <message>
         <location line="+1"/>
         <source>Asymptote files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Archivos Asymptote</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -10240,7 +10240,7 @@ Do you want to create it?</source>
     <message>
         <location line="-5579"/>
         <source>Go to bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ir al marcador</translation>
     </message>
     <message>
         <location line="+1005"/>
@@ -10311,7 +10311,7 @@ confía en este documento)
     <message>
         <location line="+176"/>
         <source>Error:</source>
-        <translation type="unfinished"></translation>
+        <translation>Error:</translation>
     </message>
     <message>
         <location line="+1519"/>
@@ -10328,12 +10328,12 @@ confía en este documento)
     <message>
         <location line="-39"/>
         <source>Expand all documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Expandir todos los documentos</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Contraer todos los documentos</translation>
     </message>
     <message>
         <location line="+20"/>
