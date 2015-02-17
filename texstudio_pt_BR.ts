@@ -711,18 +711,18 @@
     <message>
         <location line="+5"/>
         <source>Error: No command expanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Nenhum comando expandido</translation>
     </message>
     <message>
         <location line="+2"/>
         <location line="+15"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Certifique-se de que instalou uma distribuição (La)TeX&lt;/b&gt; e.g. MiKTeX ou TeX Live, e que configurou corretamente os caminhos para elas na página de configuração de comando.&lt;br&gt;Um editor de (La)TeX como TeXstudio não pode funcionar sem os comandos (La)TeX fornecidos por tal distribuição.</translation>
     </message>
     <message>
         <location line="-2"/>
         <source>Error: One command expansion invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Comando de expansão inválido</translation>
     </message>
     <message>
         <location line="+359"/>
@@ -1331,7 +1331,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+307"/>
         <source>Scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimensionamento</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1339,13 +1339,13 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <location line="+7"/>
         <source>Reset</source>
         <oldsource>revert</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Reinicia</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Scale Toolbar</source>
         <oldsource>scale symbols</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Barra de ferramentas de redimensionamento</translation>
     </message>
     <message>
         <location line="+217"/>
@@ -1375,7 +1375,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+67"/>
         <source>Scan LaTeX distribution for installed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar distribuição LaTeX para pacotes instalados</translation>
     </message>
     <message>
         <location line="+242"/>
@@ -1455,27 +1455,27 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="-991"/>
         <source>Scale Central Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimensionar barra de ferramentas central</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Scale Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimensionar Símbolos</translation>
     </message>
     <message>
         <location line="+917"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar elementos nos comentários</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibliografia</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>bib File Encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Codificação de Arquivo bib</translation>
     </message>
     <message>
         <location line="+72"/>
@@ -1591,22 +1591,22 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+406"/>
         <source>GroupBox</source>
-        <translation type="unfinished"></translation>
+        <translation>Caixa Agrupada</translation>
     </message>
     <message>
         <location line="+127"/>
         <source>Update the preview on text change</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualiza a visualização ao alterar texto</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Auto Update:</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualização Automática</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Auto Update Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Atraso na Atualização Automática</translation>
     </message>
     <message>
         <location line="+318"/>
@@ -3005,7 +3005,7 @@ Você não conseguirá mais inserir este caractere em seu texto. Deseja realment
     <message>
         <location line="+1"/>
         <source>Asymptote</source>
-        <translation type="unfinished"></translation>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3020,7 +3020,7 @@ Você não conseguirá mais inserir este caractere em seu texto. Deseja realment
     <message>
         <location line="+4"/>
         <source>GUI Scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>GUI de Redimensionamento</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -4425,7 +4425,7 @@ Você deseja desfazer as alterações?</translation>
         <location line="+45"/>
         <location line="+41"/>
         <source>texdoc not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>texdoc não encontrado.</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -4790,7 +4790,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+14"/>
         <source>Missing value for -job-name</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor inexistente para -job-name</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4942,27 +4942,27 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="-1816"/>
         <source>Could not open url:</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível abrir a url:</translation>
     </message>
     <message>
         <location line="+1821"/>
         <source>Class</source>
-        <translation type="unfinished"></translation>
+        <translation>Classe</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Package</source>
-        <translation type="unfinished">Pacote</translation>
+        <translation>Pacote</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Beamer Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema do Beamer</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>not found</source>
-        <translation type="unfinished">não encontrado</translation>
+        <translation>não encontrado</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -5127,7 +5127,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+14"/>
         <source>Issues</source>
-        <translation type="unfinished"></translation>
+        <translation>Questões</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -5137,22 +5137,22 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+3"/>
         <source>Issues and Log</source>
-        <translation></translation>
+        <translation>Questões e Log</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Show Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Erro</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar Aviso</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show BadBox</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar BadBox</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -6219,17 +6219,17 @@ Você deseja substituí-lo?</translation>
     <message>
         <location line="+160"/>
         <source>Page Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Página Abaixo</translation>
     </message>
     <message>
         <location line="+1195"/>
         <source>Close Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar Mensagem</translation>
     </message>
     <message>
         <location line="-1191"/>
         <source>Page Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Página Acima</translation>
     </message>
     <message>
         <location line="+181"/>
@@ -6570,27 +6570,27 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
         <source>Zoom In</source>
-        <translation type="unfinished">Ampliar</translation>
+        <translation>Ampliar</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Zoom Out</source>
-        <translation type="unfinished">Reduzir</translation>
+        <translation>Reduzir</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Reiniciar Zoom</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Fit</source>
-        <translation type="unfinished"></translation>
+        <translation>Encaixar</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Centro</translation>
     </message>
 </context>
 <context>
@@ -6608,7 +6608,7 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location line="+3"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Certifique-se de que instalou uma distribuição (La)TeX&lt;/b&gt; e.g. MiKTeX ou TeX Live, e que configurou corretamente os caminhos para elas na página de configuração de comando.&lt;br&gt;Um editor de (La)TeX como TeXstudio não pode funcionar sem os comandos (La)TeX fornecidos por tal distribuição.</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -7294,7 +7294,7 @@ Você deseja atualizar recarregando o arquivo?
     <message>
         <location line="+1"/>
         <source>Tab or Indent selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleção de Tabulação ou Indentação</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7715,22 +7715,22 @@ Você deseja atualizar recarregando o arquivo?
     <message>
         <location line="+1"/>
         <source>asymptote:type</source>
-        <translation type="unfinished"></translation>
+        <translation>asymptote:tipo</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>asymptote:palavra-chave</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:number</source>
-        <translation type="unfinished"></translation>
+        <translation>asymptote:número</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:string</source>
-        <translation type="unfinished"></translation>
+        <translation>asymptote:string</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9702,7 +9702,7 @@ falhou.</translation>
     <message>
         <location line="+3"/>
         <source>Fifi&amp;x</source>
-        <translation type="unfinished"></translation>
+        <translation>Fifi&amp;x</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -9928,7 +9928,7 @@ falhou.</translation>
     <message>
         <location line="+1"/>
         <source>To Titlecase (smart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Estilo De Título</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -10167,12 +10167,12 @@ falhou.</translation>
     <message>
         <location line="+309"/>
         <source>Go to bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir para bookmark</translation>
     </message>
     <message>
         <location line="+1005"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este pdf não pode mais ser sincronizado com o arquivo tex pois o arquivo fonte foi renomeado por uma operação Salvar Como. Você deve recompilar o arquivo renomeado e visualizar o resultado.</translation>
     </message>
     <message>
         <location line="+73"/>
@@ -10236,7 +10236,7 @@ Voce deseja permitir e executar o novo comando?
     <message>
         <location line="+176"/>
         <source>Error:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro:</translation>
     </message>
     <message>
         <location line="+1519"/>
@@ -10253,12 +10253,12 @@ Voce deseja permitir e executar o novo comando?
     <message>
         <location line="-39"/>
         <source>Expand all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir todos documentos</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Colapsar todos documentos</translation>
     </message>
     <message>
         <location line="+20"/>
@@ -10814,12 +10814,12 @@ Você deseja continuar executando TeXstudio ? Isso pode ocasionar perda de dados
     <message>
         <location line="+4"/>
         <source>Asymptote files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos Asymptote</translation>
     </message>
     <message>
         <location line="+343"/>
         <source>Print Source Code...</source>
-        <translation type="unfinished"></translation>
+        <translation>Imprimir Código Fonte...</translation>
     </message>
     <message>
         <location line="+328"/>
