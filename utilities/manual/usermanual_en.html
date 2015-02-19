@@ -120,6 +120,8 @@
 <li>improved detection of label name for "Insert \ref to Next Label"</li>
 <li>improved context detection for preview (multi-line math, cursor inside multi-char delimiter)</li>
 <li>improved search for texdoc location</li>
+<li>improved log parsing including support for LaTeX3 warnings and errors</li>
+<li>resize with soft line warp: keep vertical cursor position constant</li>
 <li>new option: Advanced Editor -> Structure Panel -> Show elements in comments</li>
 <li>new option: mouse wheel zoom also controls the log editor (patch by Paulo Silva)</li>
 <li>new option: encoding of bib files</li>
@@ -142,6 +144,11 @@
 <li>fix: failed "! TeX encoding" detection due to bug in line end detection</li>
 <li>fix: ignore hyph_*.dic files when looking for hunspell dictionaries</li>
 <li>fix: trigger ?load-file for files opened with the session at startup</li>
+<li>fix: update encoding in status bar when a % !TeX encoding = ... magic comment is typed</li>
+<li>fix: issue with opening some template zip files by updating QuaZip to 0.7.1</li>
+<li>fix: parsing of synctex file with nested sheets</li>
+<li>fix: crash when undoing insertion of magic comments</li>
+<li>completer is disabled in overwrite mode (because it does not work correctly while overwriting)</li>
 <li>removed: case insensitive completion (due to complexity/performance issues)</li>
 
 </ul>
