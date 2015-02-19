@@ -9409,8 +9409,8 @@ void Texmaker::changeCentralIconSize(int value)
 
 void Texmaker::changeSymbolSize(int value,bool changePanel)
 {
-    if(!qobject_cast<SymbolGridWidget*>(leftPanel->currentWidget())){
-        // no symbols visible
+	if(changePanel && !qobject_cast<SymbolGridWidget*>(leftPanel->currentWidget())){
+		// no symbols visible - make them visible for the life-updates
         leftPanel->setCurrentWidget(leftPanel->widget("greek"));
     }
     QList<QWidget*> lstOfWidgets=leftPanel->getWidgets();
