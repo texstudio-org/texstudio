@@ -170,6 +170,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			SelectAll,
 			Find,
 			FindNext,
+			FindPrevious,
 			Replace,
 
 			CreateMirrorUp = 0x5000,

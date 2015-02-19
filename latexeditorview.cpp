@@ -2381,6 +2381,7 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 		QEditor::SelectAll,
 		QEditor::Find,
 		QEditor::FindNext,
+		QEditor::FindPrevious,
 		QEditor::Replace,
 
 		QEditor::CreateMirrorUp,
