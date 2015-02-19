@@ -3091,6 +3091,7 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	case SelectAll: selectAll(); break;
 	case Find: find(); break;
 	case FindNext: findNext(); break;
+	case FindPrevious: findPrev(); break;
 	case Replace: replacePanel(); break;
 
 	case NoOperation:
@@ -4260,6 +4261,7 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(SelectAll, QKeySequence::SelectAll);
 		addEditOperation(Find, QKeySequence::Find);
 		addEditOperation(FindNext, QKeySequence::FindNext);
+		addEditOperation(FindPrevious, QKeySequence::FindPrevious);
 		addEditOperation(Replace, QKeySequence::Replace);
 
 		m_registeredDefaultKeys = m_registeredKeys;
@@ -4336,6 +4338,7 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case SelectAll: return tr("Select all");
 	case Find: return tr("Find");
 	case FindNext: return tr("Find next");
+	case FindPrevious: return tr("Find previous");
 	case Replace: return tr("Replace");
 
 	case CreateMirrorUp: return tr("Create cursor mirror up");
