@@ -1716,9 +1716,11 @@ Note: The most common tests are run automatically, if there were changes to the 
 
 <h2 id="SECTION39">4.12 Keyboard shortcuts</h2>
 <p>
-Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "Editor") -->:
+The keyboard shortcuts can be modified at Options -> Shortcuts.
+<p>
+The following list is a rough overview of the defaults keyboard shortcuts. Depending on the operating system, there may be some deviations to adapt for OS-specific shortcut conventions.
 </p>
-<ul>
+<ul class='two-columns'>
 <li> "File" menu :
 	<ul>
 	<li>New : Ctrl+N</li>
@@ -1727,7 +1729,7 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 	<li>Save as: Ctrl+Alt+S</li>
 	<li>Save all: Ctrl+Shift+Alt+S</li>
 	<li>Close : Ctrl+W</li>
-	<li>Print : Ctrl+P</li>
+	<li>Print Source Code : Ctrl+P</li>
 	<li>Exit : Ctrl+Q</li>
 	</ul>
 </li>
@@ -1738,44 +1740,58 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 	<li>Copy : Ctrl+C</li>
 	<li>Cut : Ctrl+X</li>
 	<li>Paste : Ctrl+V</li>
-	<li>Paste as latex: Ctrl+Shift+V</li>
-	<li>Select all : Ctrl+A</li>
-	<li>Remove line : Ctrl+K</li>
-	<li>Show preview : Alt+P</li>
+	<li>Select All : Ctrl+A</li>
+	<li>Remove Line : Ctrl+K</li>
+	<li>Erase until End of Line : Alt+K</li>
 	<li>Find : Ctrl+F</li>
-	<li>Find next : Ctrl+M</li>
+	<li>Find next : F3 / Ctrl+G</li>
 	<li>Replace : CTrl+R</li>
-	<li>Goto line : Ctrl+G</li>
-	<li>Jump to last change: Ctrl+H</li>
-	<li>Jump to previous change: Ctrl+Shift+H</li>
+	<li>Go to line : Ctrl+G</li>
+	<li>Go to previous change: Ctrl+H</li>
+	<li>Go to to next change: Ctrl+Shift+H</li>
+	<li>Go to Bookmark 0..9: Ctrl+0..9</li>
 	<li>Set Bookmark 0..9: Ctrl+Shift+0..9</li>
-	<li>Jump to Bookmark 0..9: Ctrl+0..9</li>
+	<li>Set Unnamed Bookmark: Ctrl+Shift+B</li>
 	<li>Next Marker: Ctrl+Down</li>
-	<li>Previous Marker: Ctrl+Shift+Up</li>
-	<li>Next Latex Error: Ctrl+Shift+Down</li>
-	<li>Previous Latex Error: Ctrl+Shift+Up</li>
-	<li>Next Latex Bad Box: Shift+Alt+Down</li>
-	<li>Previous Latex Bad Box: Shift+Alt+Up</li>
-	<li>Go to definition: Ctrl+Alt+F</li>
+	<li>Previous Marker: Ctrl+Up</li>
+	<li>Go Back : Alt+Left</li>
+	<li>Go Forward : Alt+Right</li>
 	<li>Check spelling (from cursor) : Ctrl+Shift+F7</li>
 	<li>Open Thesaurus : Ctrl+Shift+F8</li>
 	<li>Refresh Structure View : F12</li>
 	<li>Remove placeholders : Ctrl+Shift+K</li>
 	</ul>
 </li>
+<li> "Idefix" menu :
+	<ul>
+	<li>Erase Word/Cmd/Env: Alt+Del</li>
+	<li>Paste as LaTeX: Ctrl+Shift+V</li>
+	<li>Show preview : Alt+P</li>
+	<li>Comment : Ctrl+T</li>
+	<li>Uncomment : Ctrl+U</li>
+	<li>Next Latex Error: Ctrl+Shift+Down</li>
+	<li>Previous Latex Error: Ctrl+Shift+Up</li>
+	<li>Next Latex Bad Box: Shift+Alt+Down</li>
+	<li>Previous Latex Bad Box: Shift+Alt+Up</li>
+	<li>Go to definition: Ctrl+Alt+F</li>
+	<li>Normal Completion: Ctrl+Space</li>
+	<li>\begin Completion: Ctrl+Alt+Space</li>
+	<li>Normal Text Completion: Alt+Shift+Space</li>
+	<li>Close Last Open Environment: Alt+Return</li>
+	<li>Remove Placeholders: Ctrl+Shift+K</li>
+	</ul>
+</li>
+
 <li> "Tools" menu :
 	<ul>
-	<li>Quick build : F1</li>
-	<li>Latex : F2</li>
-	<li>View dvi : F3</li>
-	<li>Dvi->PS : F4</li>
-	<li>View PS : F5</li>
-	<li>Pdflatex : F6</li>
+	<li>Build & View : F1</li>
+	<li>Compile : F6</li>
 	<li>View Pdf : F7</li>
-	<li>PS->Pdf : F8</li>
-	<li>Dvi->Pdf : F9</li>
-	<li>Bibtex : F11</li>
-	<li>Make index : F12</li>
+	<li>Glossary : F9</li>
+	<li>Bibliography : F11</li>
+	<li>Index : F12</li>
+	<li>Check spelling : Ctrl+:</li>
+	<li>Thesaurus : Ctrl+Shift+F8</li>
 	</ul>
 </li>
 <li>"LaTeX" menu :
@@ -1783,7 +1799,7 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 	<li>item : Ctrl+Shift+I</li>
 	<li>Italic : Ctrl+I</li>
 	<li>Slanted : Ctrl+Shift+S</li>
-	<li>Bold : Ctrl+O</li>
+	<li>Bold : Ctrl+B</li>
 	<li>Typewriter : Ctrl+Shift+T</li>
 	<li>Small caps : Ctrl+Shift+C</li>
 	<li>Emphasis : Ctrl+Shift+E</li>
@@ -1814,9 +1830,13 @@ Defaults keyboard shortcuts <!--(*:can be modified - "Configure TeXstudio" -> "E
 </li>
 <li>"View" menu :
 	<ul>
-	<li>Next Document : Alt+PgUp</li>
-	<li>Previous Document : Alt+PgDown</li>
-	<li>View log : F10</li>
+	<li>Previous Document : Ctrl+PgDown</li>
+	<li>Next Document : Ctrl+PgUp</li>
+	<li>Focus Editor : Ctrl+Alt+Left</li>
+	<li>Focus Viewer : Ctrl+Alt+Right</li>
+	<li>Close Something : Esc</li>
+	<li>Next Document : Ctrl+PgUp</li>
+	<li>Fullscreeen Mode : F11</li>
 	</ul>
 </li>
 </ul>
