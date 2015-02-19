@@ -14,6 +14,8 @@ TeXstudio 2.8.8 -> 2.x.x
 - improved detection of label name for "Insert \ref to Next Label"
 - improved context detection for preview (multi-line math, cursor inside multi-char delimiter)
 - improved search for texdoc location
+- improved log parsing including support for LaTeX3 warnings and errors
+- resize with soft line warp: keep vertical cursor position constant
 - new option: Advanced Editor -> Structure Panel -> Show elements in comments
 - new option: mouse wheel zoom also controls the log editor (patch by Paulo Silva)
 - new option: encoding of bib files
@@ -36,6 +38,11 @@ TeXstudio 2.8.8 -> 2.x.x
 - fix: failed "! TeX encoding" detection due to bug in line end detection
 - fix: ignore hyph_*.dic files when looking for hunspell dictionaries
 - fix: trigger ?load-file for files opened with the session at startup
+- fix: update encoding in status bar when a % !TeX encoding = ... magic comment is typed
+- fix: issue with opening some template zip files by updating QuaZip to 0.7.1
+- fix: parsing of synctex file with nested sheets
+- fix: crash when undoing insertion of magic comments
+- completer is disabled in overwrite mode (because it does not work correctly while overwriting)
 - removed: case insensitive completion (due to complexity/performance issues)
 
 TeXstudio 2.8.6 -> 2.8.8
