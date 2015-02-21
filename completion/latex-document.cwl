@@ -2,6 +2,7 @@
 # dani/2006-02-18
 # tbraun/2006-08-03 removed dup inserted by me ...
 # tbraun/2007-02-24 added left/right variants
+# dbitouze/2015-02-21 obsolete font style commands made unusual
 #include:latex-dev
 \abstractname{name}#*
 \addcontentsline{file}{secunit}{entry}#*
@@ -139,8 +140,8 @@
 \end{vmatrix}
 \ensuremath{text}
 \bezier{n}(x1,y1)(x2,y2)(x3,y3)#*/picture
-\bf
-\bfseries#*
+\bf#*
+\bfseries
 \bibitem{citekey}
 \bibitem[label]{citekey}
 \bibliographystyle{style}
@@ -235,11 +236,11 @@
 \indexspace
 \index{entry}
 \inputlineno#*
-\it
+\it#*
 \item
 \item[text]
 \iterate#*
-\itshape#*
+\itshape
 \kill#T
 \label{key}
 \language#*
@@ -364,6 +365,7 @@
 \righthyphenmin
 \rightmargin
 \rightmark
+\rm#*
 \rmfamily
 \Roman{counter}
 \roman{counter}
@@ -371,7 +373,7 @@
 \rule{width}{thickness}
 \samepage
 \sbox{cmd}[text]
-\sc
+\sc#*
 \scriptsize
 \scshape
 \section{title}
@@ -380,11 +382,11 @@
 \sectionmark{code}#*
 \selectfont
 \setlength{cmd}{length}
-\sf
+\sf#*
 \sffamily
 \shortstack[position]{text\\text}
 \shortstack{text\\text}
-\sl
+\sl#*
 \slshape
 \small
 \smash
@@ -468,7 +470,7 @@
 \tiny
 \title{text}
 \today
-\tt
+\tt#*
 \ttfamily
 \twocolumn[text]
 \typein[cmd]{msg}#*
