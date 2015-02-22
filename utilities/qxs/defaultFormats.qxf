@@ -136,7 +136,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-		<background>#ffff00</background>
+		<background>#ffff40</background>
 		<foreground>#000000</foreground>
     </format>
     <format id="numbers" >
