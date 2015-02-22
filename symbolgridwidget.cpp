@@ -27,7 +27,17 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 	if(SymbolList.startsWith("!")){
 	    loadSymbols(QStringList(),mMap);
 	}
-
+	qreal minLightness = 0.5;
+	if (viewport()->palette().base().color().lightnessF() < minLightness) {
+		// workaound: svgs are black glyphs on transparent backgound
+		// if the widget background is too dark they cannot be read so we enforce a minimum lightness
+		// Note: ideally one would not change the background, but the color of the svg dynamically, so
+		// that the symbol would be rendered in text color. But that does not seem to be possible.
+		QPalette p = viewport()->palette();
+		QColor bc = p.base().color();
+		p.setColor(QPalette::Base, QColor::fromHslF(bc.hslHueF(), bc.hslSaturationF(), minLightness, bc.alphaF()));
+		viewport()->setPalette(p);
+	}
 }
 SymbolGridWidget::~SymbolGridWidget(){
 	foreach(QTableWidgetItem* elem,listOfItems)
