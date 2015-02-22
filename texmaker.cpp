@@ -3865,6 +3865,59 @@ void Texmaker::ShowStructure() {
 	leftPanel->setCurrentWidget(structureTreeView);
 }
 
+/*
+ * creates a (hopefully) unique string for a StructureEntry
+ */
+QString makeTag(StructureEntry *se, QString baseTag) {
+	return QString("%1:::%2**%3**%4**%5").arg(baseTag).arg(se->type).arg(se->title).arg(se->type==StructureEntry::SE_SECTION?int(se->getLineHandle()):0).arg(se->columnNumber);
+}
+
+/*
+ * adds unique tags for all expanded StructureEntries in structureTreeView to expandedEntryTags
+ */
+void Texmaker::getExpandedStructureEntries(const QModelIndex & index, QSet<QString> & expandedEntryTags, QString baseTag) {
+	QTreeView *view = structureTreeView;
+	QAbstractItemModel *model = view->model();
+	if (model->hasChildren(index))	{
+		int nRows = model->rowCount(index);
+		int nCols = model->columnCount(index);
+		for (int row=0; row < nRows; row++ ) {
+			for (int col=0; col < nCols; col++ ) {
+				QModelIndex childIdx = model->index(row, col, index);
+				StructureEntry *se = LatexDocumentsModel::indexToStructureEntry(childIdx);
+				QString tag = makeTag(se, baseTag);
+				if (view->isExpanded(childIdx)) {
+					expandedEntryTags.insert(tag);
+				}
+				getExpandedStructureEntries(childIdx, expandedEntryTags, tag);
+			}
+		}
+	}
+}
+
+/*
+ * expands all StructureEntries in structureTreeView whoes unique tags are included in expandedEntryTags
+ */
+void Texmaker::expandStructureEntries(const QModelIndex index, const QSet<QString> & expandedEntryTags, QString baseTag) {
+	QTreeView *view = structureTreeView;
+	QAbstractItemModel *model = view->model();
+	if (model->hasChildren(index))	{
+		int nRows = model->rowCount(index);
+		int nCols = model->columnCount(index);
+		for (int row=0; row < nRows; row++ ) {
+			for (int col=0; col < nCols; col++ ) {
+				QModelIndex childIdx = model->index(row, col, index);
+				StructureEntry *se = LatexDocumentsModel::indexToStructureEntry(childIdx);
+				QString tag = makeTag(se, baseTag);
+				if (expandedEntryTags.contains(tag)) {
+					view->setExpanded(childIdx, true);
+				}
+				expandStructureEntries(childIdx, expandedEntryTags, tag);
+			}
+		}
+	}
+}
+
 void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
 	// collect user define tex commands for completer
 	// initialize List
@@ -3883,14 +3936,21 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
 		updateUserMacros();
 	}
 	else {
-        doc->updateStructure();
+		// updateStructure() rebuilds the complete structure model. Therefore, all expansion states in the view are lost
+		// to work around this, we save the a tag (unique idetifier) of all expanded entries and restore the expansion state after update
+		QSet<QString> expandedEntryTags;
+		getExpandedStructureEntries(structureTreeView->rootIndex(), expandedEntryTags);
+		structureTreeView->setUpdatesEnabled(false);
+		doc->updateStructure();
+		expandStructureEntries(structureTreeView->rootIndex(), expandedEntryTags);
+		structureTreeView->setUpdatesEnabled(true);
 	}
-	
-    if(!hidden){
-        updateCompleter(doc->getEditorView());
-        cursorPositionChanged();
-    }
-	
+
+	if(!hidden){
+		updateCompleter(doc->getEditorView());
+		cursorPositionChanged();
+	}
+
 	//structureTreeView->reset();
 }
 
