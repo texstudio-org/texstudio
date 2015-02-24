@@ -5151,11 +5151,11 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (ol.contains("focus")) focus = 1;
 	else if (ol.contains("no-focus")) focus = -1;
 	
-    if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
+	if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
 	
 	//embedded/windowed are mutual exclusive
 	//no viewer will be opened, if one already exist (unless it was closed by a explicitely given close command)
-	
+
 
 	QList<PDFDocument*> oldPDFs = PDFDocument::documentList();
 	
@@ -5189,9 +5189,9 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	//open new
 	if (!embedded && !windowed) return;
 
-    if(embedded && configManager.viewerEnlarged){
-        centralVSplitter->hide();
-    }
+	if(embedded && configManager.viewerEnlarged){
+		centralVSplitter->hide();
+	}
 	
 	if (reuse) oldPDFs.insert(0, reuse);
 	if (oldPDFs.isEmpty()){
@@ -5219,12 +5219,12 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		viewer->loadFile(pdfFile, master, true, focusViewer);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln , focusViewer);
 		viewer->fillRenderCache(pg);
-        if(embedded && configManager.viewerEnlarged){
-            viewer->setStateEnlarged(true);
-        }
+		if(embedded && configManager.viewerEnlarged){
+			viewer->setStateEnlarged(true);
+		}
 		
 		if (preserveDuplicates) break;
-    }
+	}
 #if QT_VERSION>=0x050000 && defined Q_OS_MAC
     if(embedded)
         setMenuBar(configManager.menuParentsBar);
