@@ -619,7 +619,7 @@ This also means that you can change every command as you want, ignoring its old 
 <tr><td>--preserve-duplicates</td><td>Only opens the pdf in the first opened viewer</td></tr>
 <tr><td>--(no-)auto-close</td><td>If the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
 <tr><td>--(no-)focus</td><td>If the viewer should be focused, when it is opened (default: focus iff windowed)</td></tr>
-<tr><td>filename</td><td>Determines the file to open. Like in other commands, <a href="#SECTION02">file patterns</a> are supported. If this parameter is not provided, TXS uses <code>"?am.pdf"</code>, i.e. the absolute path of the main file.</td></tr>
+<tr><td>filename</td><td>Determines the file to open. Like in other commands, <a href="#SECTION02">file patterns</a> are supported. If this parameter is not provided, TXS uses <code>"?am.pdf"</code>, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in <code>Options -> Build -> Build Options -> Additional Serach Paths -> PDF Files</code></td></tr>
 </table>
 
 <p>It is also possible to modify the arguments of called subcommands with argument modifiers or  by adding a new argument . These modifiers are passed through called lists, so it will always change the arguments of the finally called program, even if the directly called subcommand is just a wrapper around another command:<br><br>
