@@ -38,6 +38,11 @@ QChar getPathListSeparator() {
 #endif
 }
 
+QStringList splitPaths(const QString &paths) {
+	if (paths.isEmpty()) return QStringList();
+	return paths.split(getPathListSeparator());
+}
+
 QString getUserName() {
 #ifdef Q_OS_WIN32
 	return QString(qgetenv("USERNAME"));
@@ -246,7 +251,7 @@ bool isExistingFileRealWritable(const QString& filename) {
 }
 
 QString ensureTrailingDirSeparator(const QString& dirPath){
-    if (dirPath.endsWith("/")) return dirPath;
+	if (dirPath.isEmpty() || dirPath.endsWith("/")) return dirPath;
     if (dirPath.endsWith(QDir::separator())) return dirPath;
 #ifdef Q_OS_WIN32
     if (dirPath.endsWith("\\")) return dirPath; //you can create a directory named \ on linux

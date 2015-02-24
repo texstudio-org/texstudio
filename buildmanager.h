@@ -211,7 +211,7 @@ public:
 	static QString autoRerunCommands;
 	static QString additionalSearchPaths, additionalLogPaths, additionalPdfPaths;
 	
-	QString findFile(const QString& baseName, const QString& searchPaths);
+	QString findFile(const QString& baseName, const QStringList& searchPaths);
     void addPreviewFileName(QString fn){
         if(!previewFileNames.contains(fn))
             previewFileNames.append(fn);
