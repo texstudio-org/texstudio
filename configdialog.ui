@@ -1775,9 +1775,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-177</y>
+            <y>-237</y>
             <width>863</width>
-            <height>1174</height>
+            <height>1220</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2183,6 +2183,13 @@ Then you can select a new shortcut by one of the following ways:
               <string>Structure Panel</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_2">
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBoxMarkStructureElementsBeyondEnd">
+                <property name="text">
+                 <string>Mark structure elements beyond \end{document}</string>
+                </property>
+               </widget>
+              </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_64">
                 <property name="text">
@@ -2207,11 +2214,20 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBoxMarkStructureElementsInAppendix">
+                <property name="text">
+                 <string>Mark structure elements in appendix</string>
+                </property>
+               </widget>
+              </item>
              </layout>
              <zorder>checkBoxIndentIncludesInStructureTree</zorder>
              <zorder>label_64</zorder>
              <zorder>leReferenceCommandsInContextMenu</zorder>
              <zorder>checkBoxShowCommentedElementsInStructure</zorder>
+             <zorder>checkBoxMarkStructureElementsBeyondEnd</zorder>
+             <zorder>checkBoxMarkStructureElementsInAppendix</zorder>
             </widget>
            </item>
            <item>

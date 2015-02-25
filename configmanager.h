@@ -74,6 +74,8 @@ public:
 	int indentationInStructure;
 	bool indentIncludesInStructure;
 	bool showCommentedElementsInStructure;
+	bool markStructureElementsBeyondEnd;
+	bool markStructureElementsInAppendix;
 	QString referenceCommandsInContextMenu;
 	
 	//update

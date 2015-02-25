@@ -354,6 +354,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("StructureView/Indentation", &indentationInStructure, -1);
 	registerOption("StructureView/IndentIncludes", &indentIncludesInStructure, false, &pseudoDialog->checkBoxIndentIncludesInStructureTree);
 	registerOption("Structure/ShowElementsInComments", &showCommentedElementsInStructure, false, &pseudoDialog->checkBoxShowCommentedElementsInStructure);
+	registerOption("Structure/MarkStructureElementsBeyondEnd", &markStructureElementsBeyondEnd, true, &pseudoDialog->checkBoxMarkStructureElementsBeyondEnd);
+	registerOption("Structure/MarkStructureElementsInAppendix", &markStructureElementsInAppendix, true, &pseudoDialog->checkBoxMarkStructureElementsInAppendix);
 	registerOption("StructureView/ReferenceCommandsInContextMenu", &referenceCommandsInContextMenu, "\\ref", &pseudoDialog->leReferenceCommandsInContextMenu);
 	
 	enviromentModes << "verbatim" << "numbers" << "picture" << "comment";

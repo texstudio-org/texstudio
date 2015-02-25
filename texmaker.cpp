@@ -184,6 +184,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	documents.indentationInStructure=configManager.indentationInStructure;
 	documents.showCommentedElementsInStructure=configManager.showCommentedElementsInStructure;
 	documents.indentIncludesInStructure=configManager.indentIncludesInStructure;
+	documents.markStructureElementsBeyondEnd = configManager.markStructureElementsBeyondEnd;
+	documents.markStructureElementsInAppendix = configManager.markStructureElementsInAppendix;
 	documents.showLineNumbersInStructure=configManager.showLineNumbersInStructure;
 	connect(&documents,SIGNAL(masterDocumentChanged(LatexDocument *)), SLOT(masterDocumentChanged(LatexDocument *)));
 	connect(&documents,SIGNAL(aboutToDeleteDocument(LatexDocument*)), SLOT(aboutToDeleteDocument(LatexDocument*)));
@@ -5793,9 +5795,13 @@ void Texmaker::GeneralOptions() {
 			UpdateCaption();
 
 			if (documents.indentIncludesInStructure!=configManager.indentIncludesInStructure ||
-				documents.showCommentedElementsInStructure!=configManager.showCommentedElementsInStructure) {
-				documents.showCommentedElementsInStructure = configManager.showCommentedElementsInStructure;
+				documents.showCommentedElementsInStructure!=configManager.showCommentedElementsInStructure ||
+				documents.markStructureElementsBeyondEnd != configManager.markStructureElementsBeyondEnd ||
+				documents.markStructureElementsInAppendix != configManager.markStructureElementsInAppendix) {
 				documents.indentIncludesInStructure = configManager.indentIncludesInStructure;
+				documents.showCommentedElementsInStructure = configManager.showCommentedElementsInStructure;
+				documents.markStructureElementsBeyondEnd = configManager.markStructureElementsBeyondEnd;
+				documents.markStructureElementsInAppendix = configManager.markStructureElementsInAppendix;
 				foreach (LatexDocument* doc, documents.documents)
 					updateStructure(false, doc);
 			}
