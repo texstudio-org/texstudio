@@ -367,7 +367,10 @@ public:
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
 	bool showCommentedElementsInStructure;
+	bool markStructureElementsBeyondEnd;
+	bool markStructureElementsInAppendix;
 	bool indentIncludesInStructure; //pointer! those above should be changed as well
+
 
 	QHash<QString,LatexPackage> cachedPackages;
     void addDocToLoad(QString filename);

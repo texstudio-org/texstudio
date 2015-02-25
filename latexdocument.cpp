@@ -1491,8 +1491,8 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		}
 	case Qt::BackgroundRole:
         if (index==mHighlightIndex) return QVariant(QColor(Qt::lightGray));
-		if (entry->hasContext(StructureEntry::BeyondEnd)) return QVariant(QColor(255,170,0));
-		if (entry->hasContext(StructureEntry::InAppendix)) return QVariant(QColor(200,230,200));
+		if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd)) return QVariant(QColor(255,170,0));
+		if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix)) return QVariant(QColor(200,230,200));
         return QVariant();
 	case Qt::ForegroundRole:
         if(entry->type==StructureEntry::SE_INCLUDE) {
