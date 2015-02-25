@@ -6,6 +6,7 @@ parenthesis weights:
 40: \[ \]  $   \(  \[
 30: \begin{..}
 20: \verb*  *
+15: %BEGIN_FOLD %END_FOLD
 10: { }
 8-2: \part, \chapter, \section, ...  (very low weight, because they are difficult to match, e.g in { \n .. \section \n .. })
 0: (, ), \{, \}, [, ]
@@ -19,8 +20,8 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
 	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
 
-	<sequence parenthesis="foldcomment:open" parenthesisWeight="00" fold="true" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
-	<sequence parenthesis="foldcomment:close" parenthesisWeight="00" fold="true" format="magicComment">%[\ \t]*END_FOLD</sequence>
+	<sequence parenthesis="foldcomment:open" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
+	<sequence parenthesis="foldcomment:close" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*END_FOLD</sequence>
 	
 	<!-- ========================= VERBATIM ====================== -->
 	
