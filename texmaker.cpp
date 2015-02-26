@@ -3871,7 +3871,7 @@ void Texmaker::ShowStructure() {
  * creates a (hopefully) unique string for a StructureEntry
  */
 QString makeTag(StructureEntry *se, QString baseTag) {
-	return QString("%1:::%2**%3**%4**%5").arg(baseTag).arg(se->type).arg(se->title).arg(se->type==StructureEntry::SE_SECTION?int(se->getLineHandle()):0).arg(se->columnNumber);
+    return QString("%1:::%2**%3**%4**%5").arg(baseTag).arg(se->type).arg(se->title).arg(se->type==StructureEntry::SE_SECTION?long(se->getLineHandle()):0).arg(se->columnNumber);
 }
 
 /*
