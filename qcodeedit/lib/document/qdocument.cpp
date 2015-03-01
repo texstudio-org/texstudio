@@ -7131,7 +7131,7 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 		bool containsAsianChars = false;
 		foreach (const QChar& c, text){
 			const QChar::Category cat = c.category();
-			if (cat == QChar::Letter_Other)
+            if (cat == QChar::Letter_Other || cat == QChar::Punctuation_Other)
 				containsAsianChars = true; //character which can have a different width even in fixed pitch fonts
 			else if (cat == QChar::Other_Surrogate || cat == QChar::Mark_Enclosing || cat == QChar::Mark_NonSpacing || cat == QChar::Mark_SpacingCombining)
 				containsSurrogates = true; //strange characters (e.g.  0xbcd, 0x1d164)
@@ -7139,6 +7139,8 @@ int QDocumentPrivate::textWidth(int fid, const QString& text){
 				containsAsianChars = true;
 		}
 		if (!containsAsianChars && !containsSurrogates)
+            // TODO: we've blacklisted certain characters from which we know they may have non-standard text width
+            // so they are not treated here. However it would be more safe to whilelist standard characters
 			return text.length() * QDocumentPrivate::m_spaceWidth;
 	} else {
 		//only check for the strange characters
