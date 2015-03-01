@@ -2708,6 +2708,14 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
         <source>bib File Encoding:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Mark structure elements beyond \end{document}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mark structure elements in appendix</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -5960,6 +5968,10 @@ Chcete uchovat datum znovunahráním souboru?
     <message>
         <source>Tab or Indent selection</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find previous</source>
+        <translation type="unfinished">Najít předchozí</translation>
     </message>
 </context>
 <context>
@@ -9850,6 +9862,10 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>Collapse all documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you want to debug a SyncTeX file?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
