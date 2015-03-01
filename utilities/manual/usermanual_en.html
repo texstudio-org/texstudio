@@ -10,32 +10,6 @@
 <h1 align=center id="top">TeXstudio : User manual</h1>
 <h2 id="sommaire">Contents:</h2>
 <ul class="two-columns">
-<li><a href="#SECTIONNEW">0. What's new</a>
-	<ul>
-	<li><a href="#SECTIONNEW290">Version 2.8.8 -> Version 2.9.0</a></li>
-	<li><a href="#SECTIONNEW288">Version 2.8.6 -> Version 2.8.8</a></li>
-	<li><a href="#SECTIONNEW286">Version 2.8.4 -> Version 2.8.6</a></li>
-	<li><a href="#SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</a></li>
-	<li><a href="#SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</a></li>
-	<li><a href="#SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</a></li>
-	<li><a href="#SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</a></li>
-	<li><a href="#SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</a></li>
-	<li><a href="#SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</a></li>
-	<li><a href="#SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</a></li>
-	<li><a href="#SECTIONNEW260">Version 2.5.2 -> Version 2.6.0</a></li>
-	<li><a href="#SECTIONNEW252">Version 2.5.1 -> Version 2.5.2</a></li>
-	<li><a href="#SECTIONNEW251">Version 2.5 -> Version 2.5.1</a></li>
-	<li><a href="#SECTIONNEW241">Version 2.4 -> Version 2.5</a></li>
-	<li><a href="#SECTIONNEW24">Version 2.3 -> Version 2.4</a></li>
-	<li><a href="#SECTIONNEW23">Version 2.2 -> Version 2.3</a></li>
-	<li><a href="#SECTIONNEW22">Version 2.1 -> Version 2.2</a></li>
-	<li><a href="#SECTIONNEW201">Version 2.0 -> Version 2.1</a></li>
-	<li><a href="#SECTIONNEW199a">Version 1.9.9 -> Version 1.9.9a</a></li>
-	<li><a href="#SECTIONNEW20">Version 1.9.9a -> Version 2.0</a></li>
-	<li><a href="#SECTIONNEW199">Version 1.9.3 -> Version 1.9.9</a></li>
-	<li><a href="#SECTIONNEW19">Version 1.8.1 -> Version 1.9</a></li>
-	</ul>
-</li>
 <li><a href="#SECTION0">1. Configuring TeXstudio</a>
 	<ul>
 	<li><a href="#SECTION01">1.1 Configuring the editor</a></li>
@@ -100,444 +74,34 @@
 	<li><a href="#LANGUAGEDEF">4.15 Writing your own language definitions</a></li>
 	</ul>
 </li>
+<li><a href="#SECTIONNEW">Changelog</a>
+	<ul>
+	<li><a href="#SECTIONNEW290">Changes in Version 2.9.0</a></li>
+	<li><a href="#SECTIONNEW288">Changes in Version 2.8.8</a></li>
+	<li><a href="#SECTIONNEW286">Changes in Version 2.8.6</a></li>
+	<li><a href="#SECTIONNEW284">Changes in Version 2.8.4</a></li>
+	<li><a href="#SECTIONNEW282">Changes in Version 2.8.2</a></li>
+	<li><a href="#SECTIONNEW280">Changes in Version 2.8.0</a></li>
+	<li><a href="#SECTIONNEW270">Changes in Version 2.7.0</a></li>
+	<li><a href="#SECTIONNEW266">Changes in Version 2.6.6</a></li>
+	<li><a href="#SECTIONNEW264">Changes in Version 2.6.4</a></li>
+	<li><a href="#SECTIONNEW262">Changes in Version 2.6.2</a></li>
+	<li><a href="#SECTIONNEW260">Changes in Version 2.6.0</a></li>
+	<li><a href="#SECTIONNEW252">Changes in Version 2.5.2</a></li>
+	<li><a href="#SECTIONNEW251">Changes in Version 2.5.1</a></li>
+	<li><a href="#SECTIONNEW241">Changes in Version 2.5</a></li>
+	<li><a href="#SECTIONNEW24">Changes in Version 2.4</a></li>
+	<li><a href="#SECTIONNEW23">Changes in Version 2.3</a></li>
+	<li><a href="#SECTIONNEW22">Changes in Version 2.2</a></li>
+	<li><a href="#SECTIONNEW201">Changes in Version 2.1</a></li>
+	<li><a href="#SECTIONNEW199a">Changes in Version 1.9.9a</a></li>
+	<li><a href="#SECTIONNEW20">Changes in Version 2.0</a></li>
+	<li><a href="#SECTIONNEW199">Changes in Version 1.9.9</a></li>
+	<li><a href="#SECTIONNEW19">Changes in Version 1.9</a></li>
+	</ul>
+</li>
 </ul>
 <hr>
-<h1 id="SECTIONNEW">0. What's new</h1>
-
-<h2 id="SECTIONNEW290">Version 2.8.0 -> Version 2.9.0</h2>
-<ul class="news">
-<li>basic Asymptote highlighting</li>
-<li>improved parsing of command options</li>
-<li>link overlays for urls</li>
-<li>close editor tab by pressing middle mouse button</li>
-<li>more standard shortcuts (in particular for OS X)</li>
-<li>support optional filename argument in txs:///view-pdf-internal</li>
-<li>add "expand/collapse all documents" to context menu of structure</li>
-<li>add tabulary support</li>
-<li>open correct log file if output filenames are changed due to "%& -job-name=targetfile" (note: changed pdf filename not yet supported)</li>
-<li>user-defined icons are now portable: if possible icon paths are stored relative to settings dir or application dir</li>
-<li>windowed pdf viewer now support --no-focus argument</li>
-<li>improved detection of label name for "Insert \ref to Next Label"</li>
-<li>improved context detection for preview (multi-line math, cursor inside multi-char delimiter)</li>
-<li>improved search for texdoc location</li>
-<li>improved log parsing including support for LaTeX3 warnings and errors</li>
-<li>resize with soft line warp: keep vertical cursor position constant</li>
-<li>new option: Advanced Editor -> Structure Panel -> Show elements in comments</li>
-<li>new option: mouse wheel zoom also controls the log editor (patch by Paulo Silva)</li>
-<li>new option: encoding of bib files</li>
-<li>new options: some GUI elements are now scalable (for better hi-res display support)</li>
-<li>some cleanup in the options dialog</li>
-<li>fix: caseSensistivity for global search</li>
-<li>fix: sync scrolling in enlarged embedded pdf viewer</li>
-<li>fix: interpretation of % !BIB program = biber</li>
-<li>fix: fit to text width in multi-page grid of pdf viewer</li>
-<li>fix: unsaved documents could create false entries when saving a session</li>
-<li>fix: forgotten editor shortcuts</li>
-<li>fix: linecache on retina display</li>
-<li>fix: on OSX: the dictionary default path relative to app</li>
-<li>fix: compilation on freebsd patch by Abilio</li>
-<li>fix: display user command icon (patch by Paulo Silva)</li>
-<li>fix: svn auto-checkin was not executed after some types of save operations</li>
-<li>fix: link-click on bib file also searches in additionalBibPaths</li>
-<li>fix: some sections were incorrectly marked as "beyond end of document"</li>
-<li>fix: crash when file is removed and silent reload is activated</li>
-<li>fix: failed "! TeX encoding" detection due to bug in line end detection</li>
-<li>fix: ignore hyph_*.dic files when looking for hunspell dictionaries</li>
-<li>fix: trigger ?load-file for files opened with the session at startup</li>
-<li>fix: update encoding in status bar when a % !TeX encoding = ... magic comment is typed</li>
-<li>fix: issue with opening some template zip files by updating QuaZip to 0.7.1</li>
-<li>fix: parsing of synctex file with nested sheets</li>
-<li>fix: crash when undoing insertion of magic comments</li>
-<li>completer is disabled in overwrite mode (because it does not work correctly while overwriting)</li>
-<li>removed: case insensitive completion (due to complexity/performance issues)</li>
-
-</ul>
-
-<h2 id="SECTIONNEW288">Version 2.8.6 -> Version 2.8.8</h2>
-<ul class="news">
-<li>basic Asymptote highlighting</li>
-<li>improved parsing of command options</li>
-<li>notify that syncing between PDF and .tex won't work anymore after "File Save As..." (need to recompile)</li>
-<li>improved startup speed compared to 2.8.6</li>
-<li>fix: txs finds resource in app if it is not installed under /Applications...</li>
-<li>fix: open completer with typing comma only when the context suggests it</li>
-<li>fix: crash in column handling of table parser</li>
-<li>fix: tab replacement was only performed for tabOrIndent if there was a selection</li>
-<li>fix: shortcut saving, so that added shortcuts (editor) are saved</li>
-<li>fix: too large symbol on non-retina screen with retina notebook</li>
-<li>fix: shortcut Shift+Backspace works like Backspace (Win+Linux)</li>
-<li>fix: indentation increasing if pasting with newline at and and cursor is at line start</li>
-<li>fix: replacing a selection by itself should not change anything (fixes indentation issues for some cases of selection-self-replacement)</li>
-<li>fix: rendering results may be slightly differerent depending on the usage of the line cache.
-some updates to the manual</li>
-</ul>
-
-<h2 id="SECTIONNEW286">Version 2.8.4 -> Version 2.8.6</h2>
-<ul class="news">
-<li>tab key inserts tab or indents, depending on cursor selection</li>
-<li>error table can be filtered and sorted</li>
-<li>tooltips on package names show a short description of the package</li>
-<li>support [txs-app-dir] and [txs-settings-dir] in commands (allows portable paths when using MikTeX portable and TXS portable on an USB stick)</li>
-<li>enable the possibility to remove shortcuts from qeditor</li>
-<li>sort shortcuts for editor in order of operation name</li>
-<li>more robust text width calculation in pdf</li>
-<li>mark section beyond end of document with orange background</li>
-<li>removed pdf printing (did never work well. Please use an external PDF viewer of your choice for printing.)</li>
-<li>detect fonts containing ligatures</li>
-<li>maintain cursor position (line and column) when using "Align Columns" for tables</li>
-<li>fix: remember removed shortcuts e.g. tab for insertSelection</li>
-<li>fix: completer opening in special cases for keyval completion</li>
-<li>fix: find next in pdf viewer</li>
-<li>fix: do not interpret % in verbatim as comment</li>
-<li>fix: user command names might be lost</li>
-<li>fix: update of monchrome/color settings in pdf viewer</li>
-<li>fix: help not working on OS X</li>
-<li>fix: make case conversion work for systems with old Qt 4.6</li>
-<li>fix: case conversion work also for cursor mirrors</li>
-<li>fix: broken cursor position for wrapped RTL text</li>
-<li>fix: crash when switching between qt and normal rendering</li>
-<li>fix: text background was not always drawn with the correct background color</li>
-<li>updated cwls: yathesis, marvosym, microtype, pifont, glossaries</li>
-</ul>
-
-<h2 id="SECTIONNEW284">Version 2.8.2 -> Version 2.8.4</h2>
-<ul class="news">
-<li>improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible</li>
-<li>support command detection for \DeclareRobustCommand</li>
-<li>persistently store fit and center options of preview panel</li>
-<li>support more environments for table auto-formatting</li>
-<li>remember scope when deleting auxiliary files</li>
-<li>improved handling of incomplete options in the syntax checker</li>
-<li>new/improved cwls: mathtools, circuitikz</li>
-<li>fix: crash with RTL text input</li>
-<li>fix: some shortcuts couldn't be assigned on OSX</li>
-<li>fix: multi-cursor edits are now grouped into a single undo action</li>
-<li>fix: lost scroll position when previewing large images</li>
-<li>fix: assignment of multiple shortcuts to editor operations</li>
-<li>fix: unindent per shortcut without selection</li>
-<li>fix: more consistent behavior for PgUp/PgDown in PDF viewer</li>
-<li>fix: immediately generate cursor mirrors when inserting via the menu</li>
-<li>fix: commands defined in one file included by many documents were only known in the completion list  of one them</li>
-<li>fix: compile option without poppler</li>
-<li>fix: crash with \newcommands{xyz}{123456789}</li>
-<li>fix: %BEGIN_FOLD could not be folded</li>
-<li>fix: apply grayscale and invert color settings also to magnifier</li>
-<li>fix: incorrect search hightlight region in PDF viewer with Qt5</li>
-<li>fix: drag&amp;drop of text already started +/-5 lines from the border (now 1 line)</li>
-</ul>
-
-<h2 id="SECTIONNEW282">Version 2.8.0 -> Version 2.8.2</h2>
-<ul class="news">
-<li>color completion</li>
-<li>some more predefined completions for tikz</li>
-<li>region preview with pdflatex and the embedded viewer (activate in options)</li>
-<li>more consistent visual for search/region preview range</li>
-<li>PDF can be shown in grayscale (as a preview how a grayscale print would look like)</li>
-<li>improved input method support</li>
-<li>improved \todo highlighting</li>
-<li>texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize</li>
-<li>portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version</li>
-<li>several bugfixes</li>
-</ul>
-
-<h2 id="SECTIONNEW280">Version 2.7.0 -> Version 2.8.0</h2>
-<ul class="news">
-<li>completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)</li>
-<li>search and replace over several documents improved</li>
-<li>improved parser for log files (better detection of filenames)</li>
-<li>todo-style commands (e.g. <code>\todo{}</code>) are added to the list of todos</li>
-<li>better compliance with standard shortcuts on OSX</li>
-<li>the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini
-"Editor/ContextMenuKeyboardModifiers"<p></li>
-<li>use Consolas as default editor font on Windows if available</li>
-<li>improved auto-hide toolbars feature in embedded viewer</li>
-<li>users can overwrite the default language definitions and add own ones</li>
-<li>makeglossaries support</li>
-<li>allow quoted filenames in include-like commands to support filenames and directories containing spaces</li>
-<li>windows version compiles now with Qt5</li>
-<li>updated LaTeX reference manual</li>
-<li>several bugfixes</li>
-</ul>
-
-<h2 id="SECTIONNEW270">Version 2.6.6 -> Version 2.7.0</h2>
-<ul class="news">
-<li>added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)</li>
-<li>added list of recent sessions</li>
-<li>speedup of saving for large documents</li>
-<li>added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)</li>
-<li>added button to stop a running compilation</li>
-<li>the dictionary search path can now contain of multiple directories</li>
-<li>Dictionaries in the OpenOffice/LibreOffice Extension format (*.oxt) can now be imported</li>
-<li>Updated the latex reference manual to to a recent version</li>
-<li>new option for maximum image tooltip width</li>
-<li>new option "Reference commands in context menu"</li>
-<li>new options for additional search paths in editor logic</li>
-<li>new option for automatic encoding detection: make latex and character based detection selectable separately</li>
-<li>new options for pdf highlight color and duration</li>
-<li>find dialog: search in all loaded documents i.e. also in hidden</li>
-<li>improved synchonization PDF -> source</li>
-<li>support "% !BIB = biber" syntax for compatibility with TeXShop and TeXWorks</li>
-<li>added several new cwl files</li>
-<li>several bugfixes</li>
-</ul>
-
-<h2 id="SECTIONNEW266">Version 2.6.4 -> Version 2.6.6</h2>
-<ul class="news">
-<li>fix bug that home/end don't work properly if the embedded pdf viewer is open</li>
-<li>fix macro abbreviation</li>
-<li>fix log entry locations not updated in editor</li>
-<li>signed windows installer</li>
-</ul>
-
-<h2 id="SECTIONNEW264">Version 2.6.2 -> Version 2.6.4</h2>
-<ul class="news">
-<li>package scanner: queries the tex istallation for installed packages and highlights missing packages</li>
-<li>package completion</li>
-<li>basic annotation support in internal pdf viewer</li>
-<li>improved render speed, especially on mac</li>
-<li>speed-up loading of hidden documents (option: automatically load included files)</li>
-<li>speed-up command completion window, especially citations</li>
-<li>improved log panel</li>
-<li>improved dtx highlighting</li>
-<li>added support for LilyPond book (.lytex)</li>
-<li>Edit -> Line operations now also work with selections</li>
-<li>updated hunspell library to 1.3.2</li>
-<li>fix: input method bug</li>
-<li>fix: shortcuts containing arrow keys did not work in japanese</li>
-<li>more bug fixes, e.g. tooltip does not disappear instantly anymore</li>
-</ul>
-
-<h2 id="SECTIONNEW262">Version 2.6.0 -> Version 2.6.2</h2>
-<ul class="news">
-<li>updated poppler and on Windows Qt (4.8.5)</li>
-<li>structure tree view: context menu entries to recursively collapse/expand the structure</li>
-<li>improved hard line wrap with joining lines</li>
-<li>View -> Focus Viewer now also works for the windowed viewer</li>
-<li>better detection of LanguageTool and dictionaries</li>
-<li>"Align Table Columns" now works also for tabu/longtabu</li>
-<li>many bug fixes: editable user templates, for } in rtl-languages, pinyin input method problem on mac, ...</li>
-</ul>
-
-<h2 id="SECTIONNEW260">Version 2.5.2 -> Version 2.6</h2>
-<ul class="news">
-<li>the documentation pdf of a package can be displayed in the internal PDF viewer</li>
-<li>retina support on mac complete for modern style</li>
-<li>embedded viewer can be enlarged/reduced to take the whole screen for better reading</li>
-<li>last open (and unclosed) environment can be closed by alt+enter</li>
-<li>"Align Table Columns" does now work with more environments</li>
-<li>template resources are now configured via template_resources.xml and are in utf-8</li>
-<li>basic Pweave highlighting</li>
-<li>added <code>% !TeX spellcheck = ... magic comment</code></li>
-<li>new macro trigger depending on the current syntax highlighting</li>
-<li>improved bidi support for rtl languages</li>
-<li>several small corrections</li>
-</ul>
-
-<h2 id="SECTIONNEW252">Version 2.5.1 -> Version 2.5.2</h2>
-<ul class="news">
-<li>new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable</li>
-<li>add support to display CJK and Cyrillic in PDF viewer</li>
-<li>increased maximum possible tab width to 32</li>
-<li>fix basic input method support</li>
-<li>fix missing templates on Linux and Mac OS X</li>
-<li>fix vanishing menu bar on Mac OS X</li>
-<li>fix crash when saving as an already open file</li>
-<li>fix viewer might change size because of long status messages</li>
-<li>changed shortcuts for next/prev document to Ctrl+PgDown/Up</li>
-<li>several small corrections</li>
-</ul>
-
-<h2 id="SECTIONNEW251">Version 2.5 -> Version 2.5.1</h2>
-<ul class="news">
-<li>new template system</li>
-<li>improved fold panel</li>
-<li>added support for forward/backward mouse buttons in editor and viewer</li>
-<li>context menu for inline preview (allows copying of preview image)</li>
-<li>option to load all included files in order to have a complete ref/commands overview</li>
-<li>added "Open" context menu entry and link overlay for \bibliography{} commands</li>
-<li>show image preview on hover over graphic name</li>
-<li>several bug fixes (pdf scolling range, user template path, OSX-related bugs, ...)</li>
-</ul>
-
-<h2 id="SECTIONNEW241">Version 2.4 -> Version 2.5</h2>
-<ul class="news">
-<li>cursor history (go back/forward)</li>
-<li>references, packages and included file names become links on Ctrl+MouseOver</li>
-<li>insertion of handwritten equations (Windows 7 only, using TexTablet)</li>
-<li>improved table-code formating, including options to specify the desired format</li>
-<li>metadata support in LaTeX templates and table templates</li>
-<li>checking for the correct version of the runtime library</li>
-<li>more context menus (fold panel, bookmark panel)</li>
-<li>optionally more bold cursor for better visibility</li>
-<li>line operations: move up/down, duplicate</li>
-<li>windows installer: add possibility to associate .tex files with TXS</li>
-<li>several bug fixes (crashes, compilation, focus, ...)</li>
-</ul>
-
-<h2 id="SECTIONNEW24">Version 2.3 -> Version 2.4</h2>
-<ul class="news">
-<li>new build system which allows easier combination of several commands</li>
-<li>support many new tools: xelatex, lualatex, biber, latexmk, texindy</li>
-<li>embedded pdf viewer</li>
-<li>bookmark manager and persistent bookmarks</li>
-<li>inline grammar checking using LanguageTool</li>
-<li>basic syntax highlighting for lua and for dtx files</li>
-<li>biblatex support</li>
-<li>citation API to insert citations from other applications (JabRef plugin available)</li>
-<li>table autoformating</li>
-<li>improved appearance</li>
-<li>update checker</li>
-<li>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</li>
-<li>crash protection</li>
-<li>many small improvements</li>
-<li>several bug fixes</li>
-</ul>
-
-<h2 id="SECTIONNEW23">Version 2.2 -> Version 2.3</h2>
-<ul class="news">
-<li>list of commands accepting \ref/\cite-references can be changed</li>
-<li>remember search history</li>
-<li>support for different dictionaries per document</li>
-<li>find-invalid-bracket feature</li>
-<li>almost word level inverse pdf search</li>
-<li>complete file names in graphic including macros</li>
-<li>improved BibTeX auto calling</li>
-<li>more methods available for scripting </li>
-<li>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</li>
-</ul>
-
-<h2 id="SECTIONNEW22">Version 2.1 -> Version 2.2</h2>
-<ul class="news">
-	<li>improved preview:</p>
-	    <ul class="news"><li>Pdf viewer can show multiple pages in continous fashion</li>
-	        <li>Pdf viewer works non-blocking (multi-threaded)</li>
-  	<li>preview works with included files</li>
-	    </ul>
-	</li>
-	<li>key replacements can trigger arbitrary user macros</li>
-	<li>double quote replacement can easily be selected from predefined list</li>
-	<li>completer distinguishes between usual, most often used and all possible commands</li>
-	<li>saving/loading profiles working
-	<li>more environments are syntax highlighted</li>
-	<li>as always, bug fixes and small improvements</li>
-</ul>
-
-<h2 id="SECTIONNEW201">Version 2.0 -> Version 2.1</h2>
-<ul class="news">
-	<li>online latex syntax check has been extended</p>
-	    <ul class="news">
-	      <li>number of columns is checked in tabulars</p>
-	      <li>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</p>
-	      <li>new commands added</li>
-	    </ul>
-	</li>
-	<li>TXS automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.</p>
-	<li>improved preview:</p>
-	    <ul class="news"><li>Pdf viewer can show multiple pages</li>
-	        <li>Pdf viewer supports a presentation mode and multiple views</li>
-                <li>Pdf viewer has a new overview and clock dock</li>
-	        <li>Selection preview become faster and is shown within the text</li>
-	    </ul>
-	</li>
-	<li>easy parenthesis selection</li>
-	<li>as always, bug fixes and small improvements</p>
-</ul>
-
-<h2 id="SECTIONNEW20">Version 1.9.9a -> Version 2.0</h2>
-<ul class="news">
-	<li>integrated pdf viewer with forward/reverse search</p>
-	<li>online latex syntax check (for simple errors)</p>
-	<li>support to manipulate tables (add/remove lines,columns or \hline)</p>
-	<li>inserted brackets are automatically closed</p>
-	<li>option to limit line length with hard wraps</p>
-	<li>word repetitions are marked as possible style error</p>
-	<li>as always, bug fixes and small improvements</p>
-</ul>
-
-<h2 id="SECTIONNEW199a">Version 1.9.9 -> Version 1.9.9a</h2>
-<ul class="news">
-    <li>some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.</p>
-    <li>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p>
-	<li>command replacement in completed commands was added</p>
-	<li>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p>
-	<li>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p>
-	<li>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
-	<li>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
-	<li>delete word, a command or an environment by typing ALT-del</p>
-	<li>spell checking is only done in known text commands</p>
-	<li>some dialogs adapted to cope better with small screen sizes</p>
-    <li>lots of bugs removed after user feedback</p>
-</ul>
-
-<h2 id="SECTIONNEW199">0.2 Version 1.9.3 -> Version 1.9.9</h2>
-<ul class="news">
-    <li>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
-    <li>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.</p>
-    <li>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
-    <li>a customizable tool bar is available</p>
-    <li>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
-    <li>global find over all open documents improved</p>
-    <li>support of transparent versioning of text documents via svn</p>
-    <li>structure view and custom command completer are updated as you type</p>
-    <li>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
-    <li>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking</p>
-    <li>dde commands can be modified to start a corresponding program if it is not running</p>
-    <li>if a started latex freezes up, you can kill it by pressing escape after 2 seconds</p>
-    <li>the folding is now  actually useful: mismatched brackets will not disturb it anymore and folded blocks can be edited</p>
-    <li>lots of bugs removed after user feedback</p>
-</ul>
-
-<h2 id="SECTIONNEW19">Version 1.8.1 -> Version 1.9</h2>
-
-<P>TeXstudio has been diligently extended for the last months. The
-subsequent list gives a probably incomplete overview of new and
-changed functionality:</P>
-<ul class="news">
-	<li>First steps for dynamic syntax highlighting have been
-	implemented. For example references in in commands like \label or
-	\ref are checked and are marked especially if the reference does not
-	exist (in case of referencing) or if it has been defined multiple
-	times.</P>
-	<li>The word completion system has been extended. It now uses
-	&ldquo;kile&rdquo;-word lists which extend the number of known
-	commands considerably. The key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells.
-	Furthermore it can also complete normal text
-	by proposing earlier used text parts. The two modes are
-	distinguished by a backslash as starting letter. And finally &ldquo;User
-	Tags&rdquo; (user defined text blocks) can be inserted  by using
-	user defined abbreviations which replaced in the completion process.
-	The old behavior of using key sequences for inserting user tags
-	certainly is still available. And lastly user defined latex commands
-	are automatically scanned and can be used for command completion.</P>
-	<li>Apart from using wizards, new documents can be created by
-	using templates. User can add own templates which can be edited or
-	removed later on if necessary.</P>
-	<li>The symbol panel was extended. It was also extended by &ldquo;kile&rdquo;
-	symbol list. It also can insert &ldquo;tags&rdquo; from textual
-	lists. And finally the column count automatically adapts to the
-	available horizontal space. Not to mention that unwanted symbol
-	lists can be hidden.</P>
-	<li>The symbol list selector was moved to the left edge to give
-	more room for the symbols, like it was done in texmaker.</P>
-	<li>Hover help was implemented. Hovering the cursor over standard
-	latex commands will present tool tip help. If it is hovers over
-	references, the corresponding text passage which contains the label
-	is shown as tool tip.</P>
-	<li>A preview for selected text can be shown either in the status
-	panel or as tool tip.</P>
-	<li>The status/log/error panel can also be used in a tabbed
-	manner if desired.</P>
-	<li>The online spell checker handles escaped chars like &ldquo;a
-	or \&rdquo;{a} now correctly. It also refrain from spell checking in
-	(some) latex command options like \ref{label} and some more.</P>
-	<li>The context menu of the structure view gives some useful
-	option like selecting a complete section or indenting a section
-	which means changing \section to \subsection and accordingly all
-	included headings as well.</P>
-	<li>A thesaurus was added. It allows search for word parts as well.</p>
-	<li>For sure, lots of bugs have been squashed !</P>
-</ul>
-
 
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
 <p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advancde options" in the lower left corner.</p>
@@ -2100,6 +1664,444 @@ println("\\end{"+env+"}")
 <p>The results is the following highlighting:</p>
 <img src="format_example.png" border=1>
 
+<h1 id="SECTIONNEW">Changelog</h1>
+
+<h2 id="SECTIONNEW290">Changes in Version 2.9.0</h2>
+<ul class="news">
+<li>link overlays for urls</li>
+<li>close editor tab by pressing middle mouse button</li>
+<li>more standard shortcuts (in particular for OS X)</li>
+<li>support optional filename argument in txs:///view-pdf-internal</li>
+<li>add "expand/collapse all documents" to context menu of structure</li>
+<li>add tabulary support</li>
+<li>open correct log file if output filenames are changed due to "%& -job-name=targetfile" (note: changed pdf filename not yet supported)</li>
+<li>user-defined icons are now portable: if possible icon paths are stored relative to settings dir or application dir</li>
+<li>windowed pdf viewer now supports --no-focus argument</li>
+<li>improved detection of label name for "Insert \ref to Next Label"</li>
+<li>improved context detection for preview (multi-line math, cursor inside multi-char delimiter)</li>
+<li>improved search for texdoc location</li>
+<li>improved log parsing including support for LaTeX3 warnings and errors</li>
+<li>resize with soft line warp: keep vertical cursor position constant</li>
+<li>support .tikz files (treated like .tex files)</li>
+<li>new options: Advanced Editor -> Structure Panel ("Show elements in comments", "Mark structure elements beyond \end{document}" and "Mark structure elements in appendix")</li>
+<li>new option: mouse wheel zoom also controls the log editor (patch by Paulo Silva)</li>
+<li>new option: encoding of bib files</li>
+<li>new options: some GUI elements are now scalable (for better hi-res display support)</li>
+<li>some cleanup in the options dialog</li>
+<li>fix: maintain expansion of the Structure View in more situations</li>
+<li>fix: caseSensistivity for global search</li>
+<li>fix: sync scrolling in enlarged embedded pdf viewer</li>
+<li>fix: interpretation of % !BIB program = biber</li>
+<li>fix: fit to text width in multi-page grid of pdf viewer</li>
+<li>fix: unsaved documents could create false entries when saving a session</li>
+<li>fix: forgotten editor shortcuts</li>
+<li>fix: linecache on retina display</li>
+<li>fix: on OSX: the dictionary default path is relative to app</li>
+<li>fix: compilation on freebsd (patch by Abilio)</li>
+<li>fix: display user command icon (patch by Paulo Silva)</li>
+<li>fix: svn auto-checkin was not executed after some types of save operations</li>
+<li>fix: link-click on bib file also searches in additionalBibPaths</li>
+<li>fix: some sections were incorrectly marked as "beyond end of document"</li>
+<li>fix: crash when file is removed and silent reload is activated</li>
+<li>fix: failed "! TeX encoding" detection due to bug in line end detection</li>
+<li>fix: ignore hyph_*.dic files when looking for hunspell dictionaries</li>
+<li>fix: trigger ?load-file for files opened with the session at startup</li>
+<li>fix: update encoding in status bar when a % !TeX encoding = ... magic comment is typed</li>
+<li>fix: issue with opening some template zip files by updating QuaZip to 0.7.1</li>
+<li>fix: parsing of synctex file with nested sheets</li>
+<li>fix: crash when undoing insertion of magic comments</li>
+<li>fix: make symbol grid visible on dark-themed desktops</li>
+<li>fix: handle multiple existing assignments when checking the change of a shortcut</li>
+<li>fix: broken folding of %BEGIN_FOLD if the special math-close-comment %$ was used in the folded area</li>
+<li>fix: incorrect wrapping if chinese punctuation characters are on the line</li>
+<li>completer is disabled in overwrite mode (because it does not work correctly while overwriting)</li>
+<li>removed: case insensitive completion (due to complexity/performance issues)</li>
+</ul>
+
+<h2 id="SECTIONNEW288">Changes in Version 2.8.8</h2>
+<ul class="news">
+<li>basic Asymptote highlighting</li>
+<li>improved parsing of command options</li>
+<li>notify that syncing between PDF and .tex won't work anymore after "File Save As..." (need to recompile)</li>
+<li>improved startup speed compared to 2.8.6</li>
+<li>fix: txs finds resource in app if it is not installed under /Applications...</li>
+<li>fix: open completer with typing comma only when the context suggests it</li>
+<li>fix: crash in column handling of table parser</li>
+<li>fix: tab replacement was only performed for tabOrIndent if there was a selection</li>
+<li>fix: shortcut saving, so that added shortcuts (editor) are saved</li>
+<li>fix: too large symbol on non-retina screen with retina notebook</li>
+<li>fix: shortcut Shift+Backspace works like Backspace (Win+Linux)</li>
+<li>fix: indentation increasing if pasting with newline at and and cursor is at line start</li>
+<li>fix: replacing a selection by itself should not change anything (fixes indentation issues for some cases of selection-self-replacement)</li>
+<li>fix: rendering results may be slightly differerent depending on the usage of the line cache.
+some updates to the manual</li>
+</ul>
+
+<h2 id="SECTIONNEW286">Changes in Version 2.8.6</h2>
+<ul class="news">
+<li>tab key inserts tab or indents, depending on cursor selection</li>
+<li>error table can be filtered and sorted</li>
+<li>tooltips on package names show a short description of the package</li>
+<li>support [txs-app-dir] and [txs-settings-dir] in commands (allows portable paths when using MikTeX portable and TXS portable on an USB stick)</li>
+<li>enable the possibility to remove shortcuts from qeditor</li>
+<li>sort shortcuts for editor in order of operation name</li>
+<li>more robust text width calculation in pdf</li>
+<li>mark section beyond end of document with orange background</li>
+<li>removed pdf printing (did never work well. Please use an external PDF viewer of your choice for printing.)</li>
+<li>detect fonts containing ligatures</li>
+<li>maintain cursor position (line and column) when using "Align Columns" for tables</li>
+<li>fix: remember removed shortcuts e.g. tab for insertSelection</li>
+<li>fix: completer opening in special cases for keyval completion</li>
+<li>fix: find next in pdf viewer</li>
+<li>fix: do not interpret % in verbatim as comment</li>
+<li>fix: user command names might be lost</li>
+<li>fix: update of monchrome/color settings in pdf viewer</li>
+<li>fix: help not working on OS X</li>
+<li>fix: make case conversion work for systems with old Qt 4.6</li>
+<li>fix: case conversion work also for cursor mirrors</li>
+<li>fix: broken cursor position for wrapped RTL text</li>
+<li>fix: crash when switching between qt and normal rendering</li>
+<li>fix: text background was not always drawn with the correct background color</li>
+<li>updated cwls: yathesis, marvosym, microtype, pifont, glossaries</li>
+</ul>
+
+<h2 id="SECTIONNEW284">Changes in Version 2.8.4</h2>
+<ul class="news">
+<li>improved syncing to PDF: don't scroll PDF to top of page if the highlighted area is already visible</li>
+<li>support command detection for \DeclareRobustCommand</li>
+<li>persistently store fit and center options of preview panel</li>
+<li>support more environments for table auto-formatting</li>
+<li>remember scope when deleting auxiliary files</li>
+<li>improved handling of incomplete options in the syntax checker</li>
+<li>new/improved cwls: mathtools, circuitikz</li>
+<li>fix: crash with RTL text input</li>
+<li>fix: some shortcuts couldn't be assigned on OSX</li>
+<li>fix: multi-cursor edits are now grouped into a single undo action</li>
+<li>fix: lost scroll position when previewing large images</li>
+<li>fix: assignment of multiple shortcuts to editor operations</li>
+<li>fix: unindent per shortcut without selection</li>
+<li>fix: more consistent behavior for PgUp/PgDown in PDF viewer</li>
+<li>fix: immediately generate cursor mirrors when inserting via the menu</li>
+<li>fix: commands defined in one file included by many documents were only known in the completion list  of one them</li>
+<li>fix: compile option without poppler</li>
+<li>fix: crash with \newcommands{xyz}{123456789}</li>
+<li>fix: %BEGIN_FOLD could not be folded</li>
+<li>fix: apply grayscale and invert color settings also to magnifier</li>
+<li>fix: incorrect search hightlight region in PDF viewer with Qt5</li>
+<li>fix: drag&amp;drop of text already started +/-5 lines from the border (now 1 line)</li>
+</ul>
+
+<h2 id="SECTIONNEW282">Changes in Version 2.8.2</h2>
+<ul class="news">
+<li>color completion</li>
+<li>some more predefined completions for tikz</li>
+<li>region preview with pdflatex and the embedded viewer (activate in options)</li>
+<li>more consistent visual for search/region preview range</li>
+<li>PDF can be shown in grayscale (as a preview how a grayscale print would look like)</li>
+<li>improved input method support</li>
+<li>improved \todo highlighting</li>
+<li>texstudio.ini settings GUI/ToobarIconSize and GUI/SecondaryToobarIconSize</li>
+<li>portable version uses relative paths to dictionaries, so they stay valid independent of the current location of the portable version</li>
+<li>several bugfixes</li>
+</ul>
+
+<h2 id="SECTIONNEW280">Changes in Version 2.8.0</h2>
+<ul class="news">
+<li>completion and syntax check on keyval options, e.g. \includegraphics (graphicx!)</li>
+<li>search and replace over several documents improved</li>
+<li>improved parser for log files (better detection of filenames)</li>
+<li>todo-style commands (e.g. <code>\todo{}</code>) are added to the list of todos</li>
+<li>better compliance with standard shortcuts on OSX</li>
+<li>the keyboard modifier key for the context menu (spellcheck suppression) is configurable via texstudio.ini
+"Editor/ContextMenuKeyboardModifiers"<p></li>
+<li>use Consolas as default editor font on Windows if available</li>
+<li>improved auto-hide toolbars feature in embedded viewer</li>
+<li>users can overwrite the default language definitions and add own ones</li>
+<li>makeglossaries support</li>
+<li>allow quoted filenames in include-like commands to support filenames and directories containing spaces</li>
+<li>windows version compiles now with Qt5</li>
+<li>updated LaTeX reference manual</li>
+<li>several bugfixes</li>
+</ul>
+
+<h2 id="SECTIONNEW270">Changes in Version 2.7.0</h2>
+<ul class="news">
+<li>added Edit -> Text Operations (To Lowercase / To Uppercase / To Titlecase)</li>
+<li>added list of recent sessions</li>
+<li>speedup of saving for large documents</li>
+<li>added recognition in filetree for import subimport importfrom and subimportfrom (Thanks to Steven Vandekerckhove)</li>
+<li>added button to stop a running compilation</li>
+<li>the dictionary search path can now contain of multiple directories</li>
+<li>Dictionaries in the OpenOffice/LibreOffice Extension format (*.oxt) can now be imported</li>
+<li>Updated the latex reference manual to to a recent version</li>
+<li>new option for maximum image tooltip width</li>
+<li>new option "Reference commands in context menu"</li>
+<li>new options for additional search paths in editor logic</li>
+<li>new option for automatic encoding detection: make latex and character based detection selectable separately</li>
+<li>new options for pdf highlight color and duration</li>
+<li>find dialog: search in all loaded documents i.e. also in hidden</li>
+<li>improved synchonization PDF -> source</li>
+<li>support "% !BIB = biber" syntax for compatibility with TeXShop and TeXWorks</li>
+<li>added several new cwl files</li>
+<li>several bugfixes</li>
+</ul>
+
+<h2 id="SECTIONNEW266">Changes in Version 2.6.6</h2>
+<ul class="news">
+<li>fix bug that home/end don't work properly if the embedded pdf viewer is open</li>
+<li>fix macro abbreviation</li>
+<li>fix log entry locations not updated in editor</li>
+<li>signed windows installer</li>
+</ul>
+
+<h2 id="SECTIONNEW264">Changes in Version 2.6.4</h2>
+<ul class="news">
+<li>package scanner: queries the tex istallation for installed packages and highlights missing packages</li>
+<li>package completion</li>
+<li>basic annotation support in internal pdf viewer</li>
+<li>improved render speed, especially on mac</li>
+<li>speed-up loading of hidden documents (option: automatically load included files)</li>
+<li>speed-up command completion window, especially citations</li>
+<li>improved log panel</li>
+<li>improved dtx highlighting</li>
+<li>added support for LilyPond book (.lytex)</li>
+<li>Edit -> Line operations now also work with selections</li>
+<li>updated hunspell library to 1.3.2</li>
+<li>fix: input method bug</li>
+<li>fix: shortcuts containing arrow keys did not work in japanese</li>
+<li>more bug fixes, e.g. tooltip does not disappear instantly anymore</li>
+</ul>
+
+<h2 id="SECTIONNEW262">Changes in Version 2.6.2</h2>
+<ul class="news">
+<li>updated poppler and on Windows Qt (4.8.5)</li>
+<li>structure tree view: context menu entries to recursively collapse/expand the structure</li>
+<li>improved hard line wrap with joining lines</li>
+<li>View -> Focus Viewer now also works for the windowed viewer</li>
+<li>better detection of LanguageTool and dictionaries</li>
+<li>"Align Table Columns" now works also for tabu/longtabu</li>
+<li>many bug fixes: editable user templates, for } in rtl-languages, pinyin input method problem on mac, ...</li>
+</ul>
+
+<h2 id="SECTIONNEW260">Changes in Version 2.6</h2>
+<ul class="news">
+<li>the documentation pdf of a package can be displayed in the internal PDF viewer</li>
+<li>retina support on mac complete for modern style</li>
+<li>embedded viewer can be enlarged/reduced to take the whole screen for better reading</li>
+<li>last open (and unclosed) environment can be closed by alt+enter</li>
+<li>"Align Table Columns" does now work with more environments</li>
+<li>template resources are now configured via template_resources.xml and are in utf-8</li>
+<li>basic Pweave highlighting</li>
+<li>added <code>% !TeX spellcheck = ... magic comment</code></li>
+<li>new macro trigger depending on the current syntax highlighting</li>
+<li>improved bidi support for rtl languages</li>
+<li>several small corrections</li>
+</ul>
+
+<h2 id="SECTIONNEW252">Changes in Version 2.5.2</h2>
+<ul class="news">
+<li>new %BEGIN_FOLD ... %END_FOLD comment to mark arbitrary regions as foldable</li>
+<li>add support to display CJK and Cyrillic in PDF viewer</li>
+<li>increased maximum possible tab width to 32</li>
+<li>fix basic input method support</li>
+<li>fix missing templates on Linux and Mac OS X</li>
+<li>fix vanishing menu bar on Mac OS X</li>
+<li>fix crash when saving as an already open file</li>
+<li>fix viewer might change size because of long status messages</li>
+<li>changed shortcuts for next/prev document to Ctrl+PgDown/Up</li>
+<li>several small corrections</li>
+</ul>
+
+<h2 id="SECTIONNEW251">Changes in Version 2.5.1</h2>
+<ul class="news">
+<li>new template system</li>
+<li>improved fold panel</li>
+<li>added support for forward/backward mouse buttons in editor and viewer</li>
+<li>context menu for inline preview (allows copying of preview image)</li>
+<li>option to load all included files in order to have a complete ref/commands overview</li>
+<li>added "Open" context menu entry and link overlay for \bibliography{} commands</li>
+<li>show image preview on hover over graphic name</li>
+<li>several bug fixes (pdf scolling range, user template path, OSX-related bugs, ...)</li>
+</ul>
+
+<h2 id="SECTIONNEW241">Changes in Version 2.5</h2>
+<ul class="news">
+<li>cursor history (go back/forward)</li>
+<li>references, packages and included file names become links on Ctrl+MouseOver</li>
+<li>insertion of handwritten equations (Windows 7 only, using TexTablet)</li>
+<li>improved table-code formating, including options to specify the desired format</li>
+<li>metadata support in LaTeX templates and table templates</li>
+<li>checking for the correct version of the runtime library</li>
+<li>more context menus (fold panel, bookmark panel)</li>
+<li>optionally more bold cursor for better visibility</li>
+<li>line operations: move up/down, duplicate</li>
+<li>windows installer: add possibility to associate .tex files with TXS</li>
+<li>several bug fixes (crashes, compilation, focus, ...)</li>
+</ul>
+
+<h2 id="SECTIONNEW24">Changes in Version 2.4</h2>
+<ul class="news">
+<li>new build system which allows easier combination of several commands</li>
+<li>support many new tools: xelatex, lualatex, biber, latexmk, texindy</li>
+<li>embedded pdf viewer</li>
+<li>bookmark manager and persistent bookmarks</li>
+<li>inline grammar checking using LanguageTool</li>
+<li>basic syntax highlighting for lua and for dtx files</li>
+<li>biblatex support</li>
+<li>citation API to insert citations from other applications (JabRef plugin available)</li>
+<li>table autoformating</li>
+<li>improved appearance</li>
+<li>update checker</li>
+<li>extended scripting: gui/dialog creation, access to other documents/programs/menus, background mode and events</li>
+<li>crash protection</li>
+<li>many small improvements</li>
+<li>several bug fixes</li>
+</ul>
+
+<h2 id="SECTIONNEW23">Changes in Version 2.3</h2>
+<ul class="news">
+<li>list of commands accepting \ref/\cite-references can be changed</li>
+<li>remember search history</li>
+<li>support for different dictionaries per document</li>
+<li>find-invalid-bracket feature</li>
+<li>almost word level inverse pdf search</li>
+<li>complete file names in graphic including macros</li>
+<li>improved BibTeX auto calling</li>
+<li>more methods available for scripting </li>
+<li>several bug fix (especially crashs in the pdf viewer/syntax check/structure view) and minor improvements</li>
+</ul>
+
+<h2 id="SECTIONNEW22">Changes in Version 2.2</h2>
+<ul class="news">
+	<li>improved preview:</p>
+	    <ul class="news"><li>Pdf viewer can show multiple pages in continous fashion</li>
+	        <li>Pdf viewer works non-blocking (multi-threaded)</li>
+  	<li>preview works with included files</li>
+	    </ul>
+	</li>
+	<li>key replacements can trigger arbitrary user macros</li>
+	<li>double quote replacement can easily be selected from predefined list</li>
+	<li>completer distinguishes between usual, most often used and all possible commands</li>
+	<li>saving/loading profiles working
+	<li>more environments are syntax highlighted</li>
+	<li>as always, bug fixes and small improvements</li>
+</ul>
+
+<h2 id="SECTIONNEW201">Changes in Version 2.1</h2>
+<ul class="news">
+	<li>online latex syntax check has been extended</p>
+	    <ul class="news">
+	      <li>number of columns is checked in tabulars</p>
+	      <li>\usepackage and \documentclass are interpreted to decide which commands are valid in the document</p>
+	      <li>new commands added</li>
+	    </ul>
+	</li>
+	<li>TXS automatically detects parent/child relation in loaded documents and acts accordingly. So normally no master mode is needed anymore.</p>
+	<li>improved preview:</p>
+	    <ul class="news"><li>Pdf viewer can show multiple pages</li>
+	        <li>Pdf viewer supports a presentation mode and multiple views</li>
+                <li>Pdf viewer has a new overview and clock dock</li>
+	        <li>Selection preview become faster and is shown within the text</li>
+	    </ul>
+	</li>
+	<li>easy parenthesis selection</li>
+	<li>as always, bug fixes and small improvements</p>
+</ul>
+
+<h2 id="SECTIONNEW20">Changes in Version 2.0</h2>
+<ul class="news">
+	<li>integrated pdf viewer with forward/reverse search</p>
+	<li>online latex syntax check (for simple errors)</p>
+	<li>support to manipulate tables (add/remove lines,columns or \hline)</p>
+	<li>inserted brackets are automatically closed</p>
+	<li>option to limit line length with hard wraps</p>
+	<li>word repetitions are marked as possible style error</p>
+	<li>as always, bug fixes and small improvements</p>
+</ul>
+
+<h2 id="SECTIONNEW199a">Changes in Version 1.9.9a</h2>
+<ul class="news">
+    <li>some performance issues on mac have been adressed. It should feel faster for long sible lines on mac.</p>
+    <li>more than one overlay can be shown at the same time e.g. for syntax highlighting and spell checking</p>
+	<li>command replacement in completed commands was added</p>
+	<li>a cut buffer was added. If selected text is replaced with a command via completion, the removed text is used as argument for the inserted command (if applicable)</p>
+	<li>tool tip in completer shows the surrounding of the label to which the selected reference is pointing</p>
+	<li>profiles containing predefined short cuts, menu redefinition, editor settings can be imported from a file</p>
+	<li>when waiting with text cursor on an environment name, a mirror cursor is generated which allows the renaming of the environment (\begin and \end simultaneously)</p>
+	<li>delete word, a command or an environment by typing ALT-del</p>
+	<li>spell checking is only done in known text commands</p>
+	<li>some dialogs adapted to cope better with small screen sizes</p>
+    <li>lots of bugs removed after user feedback</p>
+</ul>
+
+<h2 id="SECTIONNEW199">0.2 Changes in Version 1.9.9</h2>
+<ul class="news">
+    <li>User Tags can use java script to manipulate the current document. The manipulation is done via direct cursor handling. If further functionality is needed, feel free to open a feature request.</p>
+    <li>some performance issues on mac have been addressed. Still not perfect, but it should feel much faster on mac.</p>
+    <li>math constructs can be previewed with mouse hover over the expression limit ($, begin{equation},...)</p>
+    <li>a customizable tool bar is available</p>
+    <li>the latex expressions in the Math/Latex-Menus can be changed to user preferred versions.</p>
+    <li>global find over all open documents improved</p>
+    <li>support of transparent versioning of text documents via svn</p>
+    <li>structure view and custom command completer are updated as you type</p>
+    <li>the structure view marks some aspects with colours like being part of the appendix or missing include files</p>
+    <li>if a master document is defined, references and labels from open (!) subdocuments can be used for completion as well as for interactive label checking</p>
+    <li>dde commands can be modified to start a corresponding program if it is not running</p>
+    <li>if a started latex freezes up, you can kill it by pressing escape after 2 seconds</p>
+    <li>the folding is now  actually useful: mismatched brackets will not disturb it anymore and folded blocks can be edited</p>
+    <li>lots of bugs removed after user feedback</p>
+</ul>
+
+<h2 id="SECTIONNEW19">Changes in Version 1.9</h2>
+
+<P>TeXstudio has been diligently extended for the last months. The
+subsequent list gives a probably incomplete overview of new and
+changed functionality:</P>
+<ul class="news">
+	<li>First steps for dynamic syntax highlighting have been
+	implemented. For example references in in commands like \label or
+	\ref are checked and are marked especially if the reference does not
+	exist (in case of referencing) or if it has been defined multiple
+	times.</P>
+	<li>The word completion system has been extended. It now uses
+	&ldquo;kile&rdquo;-word lists which extend the number of known
+	commands considerably. The key Tab can be used to complete common word bases in the present suggestion list like it is done in bash shells.
+	Furthermore it can also complete normal text
+	by proposing earlier used text parts. The two modes are
+	distinguished by a backslash as starting letter. And finally &ldquo;User
+	Tags&rdquo; (user defined text blocks) can be inserted  by using
+	user defined abbreviations which replaced in the completion process.
+	The old behavior of using key sequences for inserting user tags
+	certainly is still available. And lastly user defined latex commands
+	are automatically scanned and can be used for command completion.</P>
+	<li>Apart from using wizards, new documents can be created by
+	using templates. User can add own templates which can be edited or
+	removed later on if necessary.</P>
+	<li>The symbol panel was extended. It was also extended by &ldquo;kile&rdquo;
+	symbol list. It also can insert &ldquo;tags&rdquo; from textual
+	lists. And finally the column count automatically adapts to the
+	available horizontal space. Not to mention that unwanted symbol
+	lists can be hidden.</P>
+	<li>The symbol list selector was moved to the left edge to give
+	more room for the symbols, like it was done in texmaker.</P>
+	<li>Hover help was implemented. Hovering the cursor over standard
+	latex commands will present tool tip help. If it is hovers over
+	references, the corresponding text passage which contains the label
+	is shown as tool tip.</P>
+	<li>A preview for selected text can be shown either in the status
+	panel or as tool tip.</P>
+	<li>The status/log/error panel can also be used in a tabbed
+	manner if desired.</P>
+	<li>The online spell checker handles escaped chars like &ldquo;a
+	or \&rdquo;{a} now correctly. It also refrain from spell checking in
+	(some) latex command options like \ref{label} and some more.</P>
+	<li>The context menu of the structure view gives some useful
+	option like selecting a complete section or indenting a section
+	which means changing \section to \subsection and accordingly all
+	included headings as well.</P>
+	<li>A thesaurus was added. It allows search for word parts as well.</p>
+	<li>For sure, lots of bugs have been squashed !</P>
+</ul>
 
 
 </body></html>
