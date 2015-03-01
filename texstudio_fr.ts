@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2406,7 +2406,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation>Taille des symboles</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="+340"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -2669,7 +2669,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location line="+6"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer les éléments de structure au-delà de \end{document}</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2679,12 +2679,12 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location line="+17"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les éléments commentés</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquer les éléments de structure en annexe</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -4688,7 +4688,7 @@ Continuer tout de même ?</translation>
         <location line="+45"/>
         <location line="+41"/>
         <source>texdoc not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>texdoc introuvable.</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -5187,7 +5187,7 @@ la commande \caption n&apos;est pas valide.</translation>
     <message>
         <location line="-204"/>
         <source>Could not open url:</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;ouvrir l&apos;URL :</translation>
     </message>
     <message>
         <location line="+124"/>
@@ -7488,7 +7488,7 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
     <message>
         <location line="+1"/>
         <source>Find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Trouver le précédent</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7800,16 +7800,16 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
         <location line="+18"/>
         <source>asymptote:keyword</source>
         <oldsource>asymptote:block</oldsource>
-        <translation type="unfinished">Bloc</translation>
+        <translation>Mot clé</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:number</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <source>previewSelection</source>
-        <translation type="vanished">Prévisualisation de la sélection</translation>
+        <translation type="obsolete">Prévisualisation de la sélection</translation>
     </message>
     <message>
         <location line="-5"/>
@@ -7823,7 +7823,7 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     </message>
     <message>
         <source>asymptote:numbers</source>
-        <translation type="vanished">Nombre</translation>
+        <translation type="obsolete">Nombre</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -7832,7 +7832,7 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     </message>
     <message>
         <source>asymptote:comment</source>
-        <translation type="vanished">Commentaire</translation>
+        <translation type="obsolete">Commentaire</translation>
     </message>
     <message>
         <source>dtx:environment</source>
@@ -10751,7 +10751,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
     <message>
         <location line="+261"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez-vous déboguer un fichier SyncTeX ?</translation>
     </message>
     <message>
         <location line="+687"/>
@@ -10837,12 +10837,12 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location line="+12"/>
         <source>Expand all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Développer tous les documents</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Réduire tous les documents</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -11395,7 +11395,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation type="vanished">Asymptote</translation>
+        <translation type="obsolete">Asymptote</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
