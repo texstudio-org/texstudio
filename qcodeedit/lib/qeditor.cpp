@@ -3242,7 +3242,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
             i=preEditColumnNumber;
             m_cursor.movePosition(preEditLength,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
         }else{
-            i=m_cursor.columnNumber();
+            i=qMin(m_cursor.columnNumber(), m_cursor.anchorColumnNumber());
         }
         m_cursor.insertText(preEdit);
         m_cursor.line().addOverlay(QFormatRange(i,preEdit.length(),m_preEditFormat));
