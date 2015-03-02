@@ -3238,6 +3238,7 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
     QString preEdit=e->preeditString();
     if( !preEdit.isEmpty()){
         int i=-1;
+        m_cursor.beginEditBlock();
         if(preEditSet){
             i=preEditColumnNumber;
             m_cursor.movePosition(preEditLength,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
@@ -3246,11 +3247,12 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
         }
         m_cursor.insertText(preEdit);
         m_cursor.line().addOverlay(QFormatRange(i,preEdit.length(),m_preEditFormat));
+        m_cursor.endEditBlock();
         preEditSet=true;
         preEditColumnNumber=i;
         preEditLength=preEdit.length();
         preEditLineNumber=m_cursor.lineNumber();
-		updateMicroFocus();
+        updateMicroFocus();
     }
 //#endif
 
