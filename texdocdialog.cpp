@@ -89,7 +89,7 @@ void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available
 
 	bool showWarning = !package.isEmpty() && !available;
 	QString warning = customWarning.isNull() ? tr("No Documentation Available") : customWarning;
-	if (openButton) openButton->setEnabled(available);
+    if (openButton) openButton->setEnabled(available);
 	ui->lbInfo->setText(showWarning ? warning : "");
 	ui->lbWarnIcon->setVisible(showWarning);
 }

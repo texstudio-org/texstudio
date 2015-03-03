@@ -75,10 +75,11 @@ void CommandInfo::setCommandLine(const QString& cmdString){
 		                   && (!unquote.contains(" ") || (!unquote.contains('"') && unquote != trimmed)) //spaces mean options, if not everything is quoted
 		                   && (QFileInfo(unquote).exists())		      
 		                   )
-		               ))
+                       )){
 			commandLine = cmdString + " " + defaultArgs;
-		else
+        } else {
 			commandLine = cmdString;
+        }
 	}
 }
 

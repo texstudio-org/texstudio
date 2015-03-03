@@ -350,8 +350,9 @@ QString getEnvironmentPath()
 			QByteArray res=myProcess->readAllStandardOutput();
 			delete myProcess;
 			path = QString(res);
-		}
-		path = "";
+        } else {
+            path = "";
+        }
 #endif
 #else
 		path = QProcessEnvironment::systemEnvironment().value("PATH");

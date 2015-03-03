@@ -42,7 +42,14 @@ void Help::viewTexdoc(QString package)
 		if (texdocCommand().isEmpty()) txsWarning(tr("texdoc not found."));
 		QProcess proc(this);
 		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(viewTexdocError()));
-		proc.start(texdocCommand(), QStringList() << "--view" << package);
+#ifdef Q_OS_OSX
+        QStringList paths;
+        paths.append(getEnvironmentPathList());
+        paths.append(getAdditionalCmdSearchPathList());
+
+        updatePathSettings(&proc,paths.join(':'));
+#endif
+        proc.start(texdocCommand(), QStringList() << "--view" << package);
 		if (!proc.waitForFinished(2000)) {
 			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
 			return;
@@ -83,7 +90,8 @@ QString Help::texdocCommand()
 }
 
 QString Help::packageDocFile(const QString &package, bool silent) {
-	if (texdocCommand().isEmpty()) {
+    QString cmd=texdocCommand();
+    if (cmd.isEmpty()) {
 		if (!silent) txsWarning(tr("texdoc not found."));
 		return QString();
 	}
@@ -91,11 +99,21 @@ QString Help::packageDocFile(const QString &package, bool silent) {
 	if (Help::isMiktexTexdoc()) {
 		args << "--list-only";
 	} else {
-		args << "--list" << "--machine";
+        args << "--list" << "--machine";
 	}
-	args << package;
+    args << package;
 	QProcess proc;
-	proc.start(texdocCommand(), args);
+
+#ifdef Q_OS_OSX
+    QStringList paths;
+    paths.append(getEnvironmentPathList());
+    paths.append(getAdditionalCmdSearchPathList());
+
+    updatePathSettings(&proc,paths.join(':'));
+#endif
+
+    proc.start(cmd, args);
+
 	if (!proc.waitForFinished(2000)) {
 		if (!silent) {
 			txsWarning(QString(tr("texdoc did not respond to query on package:")+"\n%1").arg(package));
@@ -141,6 +159,13 @@ void Help::texdocAvailableRequest(const QString &package)
 	QProcess *proc = new QProcess(this);
 	proc->setProperty("package", package);
 	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
+#ifdef Q_OS_OSX
+    QStringList paths;
+    paths.append(getEnvironmentPathList());
+    paths.append(getAdditionalCmdSearchPathList());
+
+    updatePathSettings(proc,paths.join(':'));
+#endif
 	proc->start(texdocCommand(), args);
 }
 
@@ -304,4 +329,5 @@ void LatexReference::makeIndex() {
 	//qDebug() << "Found entries in index:" << m_anchors.count();
 
 }
+
 
