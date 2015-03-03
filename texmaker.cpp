@@ -9300,7 +9300,10 @@ void Texmaker::checkLatexInstall(){
 	statusLabelProcess->setText(QString("check pdflatex"));
 	QString buffer;
 	CommandInfo cmdInfo=buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
-	QString cmd=cmdInfo.getBaseName();
+    QString cmd=cmdInfo.getBaseName();
+    int index=cmdInfo.commandLine.indexOf(cmd);
+    if(index>-1)
+        cmd=cmdInfo.commandLine.left(index)+cmd;
 	// where is pdflatex located
 #ifdef Q_OS_WIN
 	runCommand("where "+cmd, &buffer);
