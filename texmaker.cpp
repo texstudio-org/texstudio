@@ -2064,20 +2064,31 @@ void Texmaker::fileNewFromTemplate() {
 		LatexEditorView *edit = currentEditorView();
 
 		QString mTemplate;
+		bool loadAsSnippet = false;
 		QTextStream in(&file);
 		in.setCodec(QTextCodec::codecForMib(MIB_UTF8));
+		QString line = in.readLine();
+		if (line.contains(QRegExp("^%\\s*!TXS\\s+template"))) {
+			loadAsSnippet = true;
+		} else {
+			mTemplate += line + '\n';
+		}
 		while (!in.atEnd()) {
-			QString line = in.readLine();
+			line = in.readLine();
 			mTemplate+=line+"\n";
 		}
-		CodeSnippet toInsert(mTemplate, false);
-		bool flag=edit->editor->flag(QEditor::AutoIndent);
-		edit->editor->setFlag(QEditor::AutoIndent,false);
-		toInsert.insert(edit->editor);
-		edit->editor->setFlag(QEditor::AutoIndent,flag);
-		edit->editor->setCursorPosition(0,0, false);
-		edit->editor->nextPlaceHolder();
-		edit->editor->ensureCursorVisible(QEditor::KeepSurrounding);
+		if (loadAsSnippet) {
+			bool flag = edit->editor->flag(QEditor::AutoIndent);
+			edit->editor->setFlag(QEditor::AutoIndent, false);
+			CodeSnippet toInsert(mTemplate, false);
+			toInsert.insert(edit->editor);
+			edit->editor->setFlag(QEditor::AutoIndent, flag);
+			edit->editor->setCursorPosition(0, 0, false);
+			edit->editor->nextPlaceHolder();
+			edit->editor->ensureCursorVisible(QEditor::KeepSurrounding);
+		} else {
+			edit->editor->setText(mTemplate, false);
+		}
 
 		emit infoNewFromTemplate();
 	}
