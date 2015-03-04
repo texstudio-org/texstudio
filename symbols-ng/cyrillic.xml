@@ -1552,6 +1552,7 @@
 <commandDefinition>
    <latexCommand>\CYRZHDSC</latexCommand>
    <unicodeCommand>Җ</unicodeCommand>
+   <forcePNG>true</forcePNG>
    <package>
       <name>inputenc</name>
       <arguments>koi8-r</arguments>
@@ -1567,6 +1568,7 @@
       <name>babel</name>
       <arguments>ukrainian</arguments>
    </package>
+   
 </commandDefinition>
 
 <!-- pkgs=babel,inputenc,fontenc,mathtext ,pkgsarg=ukrainian,koi8-r,T2A, ,savepkgs=babel,inputenc,fontenc,mathtext ,savepkgsarg=ukrainian,koi8-r,T2A,-->
