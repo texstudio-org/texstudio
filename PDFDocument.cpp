@@ -605,7 +605,8 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			if (globalConfig->invertColors || globalConfig->grayscale)
 				image = convertImage(image, globalConfig->invertColors, globalConfig->grayscale);
 			fillRectBorder(painter, drawTo, newRect);
-			painter.drawPixmap(event->rect(), image, event->rect().translated(-drawTo.topLeft()));
+			QRect source = event->rect().translated(-drawTo.topLeft());
+			painter.drawPixmap(event->rect(), image, QRect(source.left() * overScale, source.top() * overScale, source.width() * overScale, source.height() * overScale));
 			if (pageNr==highlightPage && !highlightPath.isEmpty() ) {
 				painter.setRenderHint(QPainter::Antialiasing);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
