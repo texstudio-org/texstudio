@@ -1,0 +1,212 @@
+\section{QuaZipFileInfo64 Struct Reference}
+\label{structQuaZipFileInfo64}\index{QuaZipFileInfo64@{QuaZipFileInfo64}}
+
+
+Information about a file inside archive (with zip64 support).  
+
+
+
+
+{\ttfamily \#include $<$quazipfileinfo.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+QFile::Permissions {\bf getPermissions} () const 
+\begin{DoxyCompactList}\small\item\em Get the file permissions. \end{DoxyCompactList}\item 
+bool {\bf toQuaZipFileInfo} ({\bf QuaZipFileInfo} \&info) const 
+\begin{DoxyCompactList}\small\item\em Converts to \doxyref{QuaZipFileInfo}{p.}{structQuaZipFileInfo}. \end{DoxyCompactList}\item 
+QDateTime {\bf getNTFSmTime} (int $\ast$fineTicks=NULL) const 
+\begin{DoxyCompactList}\small\item\em Returns the NTFS modification time. \end{DoxyCompactList}\item 
+QDateTime {\bf getNTFSaTime} (int $\ast$fineTicks=NULL) const 
+\begin{DoxyCompactList}\small\item\em Returns the NTFS access time. \end{DoxyCompactList}\item 
+QDateTime {\bf getNTFScTime} (int $\ast$fineTicks=NULL) const 
+\begin{DoxyCompactList}\small\item\em Returns the NTFS creation time. \end{DoxyCompactList}\item 
+bool {\bf isEncrypted} () const \label{structQuaZipFileInfo64_a8c93235e4a13ee5461023a5f3fe03e26}
+
+\begin{DoxyCompactList}\small\item\em Checks whether the file is encrypted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QString {\bf name}\label{structQuaZipFileInfo64_a2cadad4cb9a765e90b5422dae2388762}
+
+\begin{DoxyCompactList}\small\item\em File name. \end{DoxyCompactList}\item 
+quint16 {\bf versionCreated}\label{structQuaZipFileInfo64_a95aeb06b080e483fde874ba2d06f203c}
+
+\begin{DoxyCompactList}\small\item\em Version created by. \end{DoxyCompactList}\item 
+quint16 {\bf versionNeeded}\label{structQuaZipFileInfo64_a27654f5ce3a75331e9c9a7900b407169}
+
+\begin{DoxyCompactList}\small\item\em Version needed to extract. \end{DoxyCompactList}\item 
+quint16 {\bf flags}\label{structQuaZipFileInfo64_a6aa533dd4e02f52459e1e1a0df31e992}
+
+\begin{DoxyCompactList}\small\item\em General purpose flags. \end{DoxyCompactList}\item 
+quint16 {\bf method}\label{structQuaZipFileInfo64_a445967ecbb5a3dd2a9d516db3e14a34a}
+
+\begin{DoxyCompactList}\small\item\em Compression method. \end{DoxyCompactList}\item 
+QDateTime {\bf dateTime}
+\begin{DoxyCompactList}\small\item\em Last modification date and time. \end{DoxyCompactList}\item 
+quint32 {\bf crc}\label{structQuaZipFileInfo64_aeb7b2757a0efa814b196b5280d000a14}
+
+\begin{DoxyCompactList}\small\item\em CRC. \end{DoxyCompactList}\item 
+quint64 {\bf compressedSize}\label{structQuaZipFileInfo64_add8733946ea4af23aa32d85f10955b0f}
+
+\begin{DoxyCompactList}\small\item\em Compressed file size. \end{DoxyCompactList}\item 
+quint64 {\bf uncompressedSize}\label{structQuaZipFileInfo64_a571ca077fe282c908e57b0bc82528d49}
+
+\begin{DoxyCompactList}\small\item\em Uncompressed file size. \end{DoxyCompactList}\item 
+quint16 {\bf diskNumberStart}\label{structQuaZipFileInfo64_ac8945cf1ff54d39d28e755685b91e941}
+
+\begin{DoxyCompactList}\small\item\em Disk number start. \end{DoxyCompactList}\item 
+quint16 {\bf internalAttr}\label{structQuaZipFileInfo64_aeb895613e76a4cc63f861b010c9e92c0}
+
+\begin{DoxyCompactList}\small\item\em Internal file attributes. \end{DoxyCompactList}\item 
+quint32 {\bf externalAttr}\label{structQuaZipFileInfo64_a3a8bc40f1aa0cb0985c4e2f8a9678430}
+
+\begin{DoxyCompactList}\small\item\em External file attributes. \end{DoxyCompactList}\item 
+QString {\bf comment}\label{structQuaZipFileInfo64_aba3f5b982087c3e0343bb61e8814c7d1}
+
+\begin{DoxyCompactList}\small\item\em Comment. \end{DoxyCompactList}\item 
+QByteArray {\bf extra}\label{structQuaZipFileInfo64_acf0b1b97f377208847c6912cd1bf1332}
+
+\begin{DoxyCompactList}\small\item\em Extra field. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Information about a file inside archive (with zip64 support). 
+
+Call \doxyref{QuaZip::getCurrentFileInfo()}{p.}{classQuaZip_a9c91a53ed4c2038e153c64bdc097ebe8} or \doxyref{QuaZipFile::getFileInfo()}{p.}{classQuaZipFile_ad3f5807329321be21b12c1ba5798b359} to fill this structure. 
+
+\subsection{Member Function Documentation}
+\index{QuaZipFileInfo64@{QuaZipFileInfo64}!getPermissions@{getPermissions}}
+\index{getPermissions@{getPermissions}!QuaZipFileInfo64@{QuaZipFileInfo64}}
+\subsubsection[{getPermissions}]{\setlength{\rightskip}{0pt plus 5cm}QFile::Permissions QuaZipFileInfo64::getPermissions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{structQuaZipFileInfo64_a099216bd8991a983168d91c06a689f61}
+
+
+Get the file permissions. 
+
+Returns the high 16 bits of external attributes converted to QFile::Permissions. \index{QuaZipFileInfo64@{QuaZipFileInfo64}!toQuaZipFileInfo@{toQuaZipFileInfo}}
+\index{toQuaZipFileInfo@{toQuaZipFileInfo}!QuaZipFileInfo64@{QuaZipFileInfo64}}
+\subsubsection[{toQuaZipFileInfo}]{\setlength{\rightskip}{0pt plus 5cm}bool QuaZipFileInfo64::toQuaZipFileInfo (
+\begin{DoxyParamCaption}
+\item[{{\bf QuaZipFileInfo} \&}]{info}
+\end{DoxyParamCaption}
+) const}\label{structQuaZipFileInfo64_ada29945c7ee4c9df6fbe95864793aade}
+
+
+Converts to \doxyref{QuaZipFileInfo}{p.}{structQuaZipFileInfo}. 
+
+If any of the fields are greater than 0xFFFFFFFFu, they are set to 0xFFFFFFFFu exactly, not just truncated. This function should be mainly used for compatibility with the old code expecting \doxyref{QuaZipFileInfo}{p.}{structQuaZipFileInfo}, in the cases when it's impossible or otherwise unadvisable (due to ABI compatibility reasons, for example) to modify that old code to use \doxyref{QuaZipFileInfo64}{p.}{structQuaZipFileInfo64}.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if all fields converted correctly, {\ttfamily false} if an overflow occured. 
+\end{DoxyReturn}
+
+
+References comment, QuaZipFileInfo::comment, QuaZipFileInfo::compressedSize, compressedSize, crc, QuaZipFileInfo::crc, dateTime, QuaZipFileInfo::dateTime, diskNumberStart, QuaZipFileInfo::diskNumberStart, externalAttr, QuaZipFileInfo::externalAttr, extra, QuaZipFileInfo::extra, flags, QuaZipFileInfo::flags, internalAttr, QuaZipFileInfo::internalAttr, method, QuaZipFileInfo::method, name, QuaZipFileInfo::name, QuaZipFileInfo::uncompressedSize, uncompressedSize, versionCreated, QuaZipFileInfo::versionCreated, versionNeeded, and QuaZipFileInfo::versionNeeded.
+
+
+
+Referenced by QuaZip::getCurrentFileInfo(), and QuaZipFile::getFileInfo().
+
+\index{QuaZipFileInfo64@{QuaZipFileInfo64}!getNTFSmTime@{getNTFSmTime}}
+\index{getNTFSmTime@{getNTFSmTime}!QuaZipFileInfo64@{QuaZipFileInfo64}}
+\subsubsection[{getNTFSmTime}]{\setlength{\rightskip}{0pt plus 5cm}QDateTime QuaZipFileInfo64::getNTFSmTime (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{fineTicks = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+) const}\label{structQuaZipFileInfo64_af4b19399367cf5bf24026344e0631ccb}
+
+
+Returns the NTFS modification time. 
+
+The getNTFS$\ast$Time() functions only work if there is an NTFS extra field present. Otherwise, they all return invalid null timestamps. 
+\begin{DoxyParams}{Parameters}
+{\em fineTicks} & If not NULL, the fractional part of milliseconds returned there, measured in 100-\/nanosecond ticks. Will be set to zero if there is no NTFS extra field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxyref{dateTime}{p.}{structQuaZipFileInfo64_a4d77c6aa6076703e858c938efeb551e4} 
+
+\doxyref{getNTFSaTime()}{p.}{structQuaZipFileInfo64_afe4c454de7d067a0095da0223f0cbec2} 
+
+\doxyref{getNTFScTime()}{p.}{structQuaZipFileInfo64_a409dcbbe1ecd88dadb51be1aec48819d} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+The NTFS modification time, UTC 
+\end{DoxyReturn}
+\index{QuaZipFileInfo64@{QuaZipFileInfo64}!getNTFSaTime@{getNTFSaTime}}
+\index{getNTFSaTime@{getNTFSaTime}!QuaZipFileInfo64@{QuaZipFileInfo64}}
+\subsubsection[{getNTFSaTime}]{\setlength{\rightskip}{0pt plus 5cm}QDateTime QuaZipFileInfo64::getNTFSaTime (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{fineTicks = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+) const}\label{structQuaZipFileInfo64_afe4c454de7d067a0095da0223f0cbec2}
+
+
+Returns the NTFS access time. 
+
+The getNTFS$\ast$Time() functions only work if there is an NTFS extra field present. Otherwise, they all return invalid null timestamps. 
+\begin{DoxyParams}{Parameters}
+{\em fineTicks} & If not NULL, the fractional part of milliseconds returned there, measured in 100-\/nanosecond ticks. Will be set to zero if there is no NTFS extra field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxyref{dateTime}{p.}{structQuaZipFileInfo64_a4d77c6aa6076703e858c938efeb551e4} 
+
+\doxyref{getNTFSmTime()}{p.}{structQuaZipFileInfo64_af4b19399367cf5bf24026344e0631ccb} 
+
+\doxyref{getNTFScTime()}{p.}{structQuaZipFileInfo64_a409dcbbe1ecd88dadb51be1aec48819d} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+The NTFS access time, UTC 
+\end{DoxyReturn}
+\index{QuaZipFileInfo64@{QuaZipFileInfo64}!getNTFScTime@{getNTFScTime}}
+\index{getNTFScTime@{getNTFScTime}!QuaZipFileInfo64@{QuaZipFileInfo64}}
+\subsubsection[{getNTFScTime}]{\setlength{\rightskip}{0pt plus 5cm}QDateTime QuaZipFileInfo64::getNTFScTime (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{fineTicks = {\ttfamily NULL}}
+\end{DoxyParamCaption}
+) const}\label{structQuaZipFileInfo64_a409dcbbe1ecd88dadb51be1aec48819d}
+
+
+Returns the NTFS creation time. 
+
+The getNTFS$\ast$Time() functions only work if there is an NTFS extra field present. Otherwise, they all return invalid null timestamps. 
+\begin{DoxyParams}{Parameters}
+{\em fineTicks} & If not NULL, the fractional part of milliseconds returned there, measured in 100-\/nanosecond ticks. Will be set to zero if there is no NTFS extra field. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxyref{dateTime}{p.}{structQuaZipFileInfo64_a4d77c6aa6076703e858c938efeb551e4} 
+
+\doxyref{getNTFSmTime()}{p.}{structQuaZipFileInfo64_af4b19399367cf5bf24026344e0631ccb} 
+
+\doxyref{getNTFSaTime()}{p.}{structQuaZipFileInfo64_afe4c454de7d067a0095da0223f0cbec2} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+The NTFS creation time, UTC 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{QuaZipFileInfo64@{QuaZipFileInfo64}!dateTime@{dateTime}}
+\index{dateTime@{dateTime}!QuaZipFileInfo64@{QuaZipFileInfo64}}
+\subsubsection[{dateTime}]{\setlength{\rightskip}{0pt plus 5cm}QDateTime {\bf QuaZipFileInfo64::dateTime}}\label{structQuaZipFileInfo64_a4d77c6aa6076703e858c938efeb551e4}
+
+
+Last modification date and time. 
+
+This is the time stored in the standard ZIP header. This format only allows to store time with 2-\/second precision, so the seconds will always be even and the milliseconds will always be zero. If you need more precise date and time, you can try to call the \doxyref{getNTFSmTime()}{p.}{structQuaZipFileInfo64_af4b19399367cf5bf24026344e0631ccb} function or its siblings, provided that the archive itself contains these NTFS times. 
+
+Referenced by QuaZip::getCurrentFileInfo(), and toQuaZipFileInfo().
+
+
+
+The documentation for this struct was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+quazip/quazipfileinfo.h\item 
+quazip/quazipfileinfo.cpp\end{DoxyCompactItemize}
