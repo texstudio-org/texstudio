@@ -1978,12 +1978,29 @@ void Texmaker::fileMakeTemplate() {
 	if (templateDialog.exec()) {
 		// save file
 		QString fn = templateDialog.suggestedFile();
+        LatexDocument *doc=currentEditorView()->document;
+        QString txt=doc->text();
+        txt.replace("%","%%");
+        QFile file_txt(fn);
+        if (!file_txt.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            txsInformation(tr("Could not write template data:") + "\n" + fn);
+            return;
+        } else {
+            QTextStream out(&file_txt);
+            out.setCodec("UTF-8");
+            out << txt;
+            file_txt.close();
+        }
+
+        /* alternate code in order to double %
+
 		QString old_name=currentEditor()->fileName();
 		QTextCodec *mCodec=currentEditor()->getFileCodec();
 		currentEditor()->setFileCodec(QTextCodec::codecForName("utf-8"));
 		currentEditor()->save(fn);
 		currentEditor()->setFileName(old_name);
 		currentEditor()->setFileCodec(mCodec);
+        */
 
 		// save metaData
 		QFileInfo fi(fn);
