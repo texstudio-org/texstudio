@@ -22,6 +22,7 @@ TeXstudio 2.8.8 -> 2.9.0
 - new option: encoding of bib files
 - new options: some GUI elements are now scalable (for better hi-res display support)
 - some cleanup in the options dialog
+- change: LaTeX templates need to have "% !TXS template" on the first line if placeholders should be interpreted, otherwise files are loaded as plain LaTeX
 - fix: maintain expansion of the Structure View in more situations
 - fix: caseSensistivity for global search
 - fix: sync scrolling in enlarged embedded pdf viewer
@@ -30,7 +31,7 @@ TeXstudio 2.8.8 -> 2.9.0
 - fix: unsaved documents could create false entries when saving a session
 - fix: forgotten editor shortcuts
 - fix: linecache on retina display
-- fix: on OSX: the dictionary default is path relative to app
+- fix: on OS X: the dictionary default is path relative to app
 - fix: compilation on freebsd /patch by Abilio)
 - fix: display user command icon (patch by Paulo Silva)
 - fix: svn auto-checkin was not executed after some types of save operations
@@ -49,6 +50,10 @@ TeXstudio 2.8.8 -> 2.9.0
 - fix: broken folding of %BEGIN_FOLD if the special math-close-comment %$ was used in the folded area
 - fix: incorrect wrapping if chinese punctuation characters are on the line
 - completer is disabled in overwrite mode (because it does not work correctly while overwriting)
+- fix: incorrect behavior of input method with forward selections
+- fix: texdoc usage on OS X
+- fix: rendering of 1x1 non-continouos pdf page on retina display
+- fix: some missing symbols
 - removed: case insensitive completion (due to complexity/performance issues)
 
 TeXstudio 2.8.6 -> 2.8.8
