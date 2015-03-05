@@ -1980,7 +1980,7 @@ void Texmaker::fileMakeTemplate() {
 		QString fn = templateDialog.suggestedFile();
         LatexDocument *doc=currentEditorView()->document;
         QString txt=doc->text();
-        txt.replace("%","%%");
+        //txt.replace("%","%%"); not necessary any more
         QFile file_txt(fn);
         if (!file_txt.open(QIODevice::WriteOnly | QIODevice::Text)) {
             txsInformation(tr("Could not write template data:") + "\n" + fn);
