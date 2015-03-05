@@ -1688,6 +1688,7 @@ println("\\end{"+env+"}")
 <li>new option: encoding of bib files</li>
 <li>new options: some GUI elements are now scalable (for better hi-res display support)</li>
 <li>some cleanup in the options dialog</li>
+<li>change: LaTeX templates need to have "% !TXS template" on the first line if placeholders should be interpreted, otherwise files are loaded as plain LaTeX</li>
 <li>fix: maintain expansion of the Structure View in more situations</li>
 <li>fix: caseSensistivity for global search</li>
 <li>fix: sync scrolling in enlarged embedded pdf viewer</li>
@@ -1696,7 +1697,7 @@ println("\\end{"+env+"}")
 <li>fix: unsaved documents could create false entries when saving a session</li>
 <li>fix: forgotten editor shortcuts</li>
 <li>fix: linecache on retina display</li>
-<li>fix: on OSX: the dictionary default path is relative to app</li>
+<li>fix: on OS X: the dictionary default path is relative to app</li>
 <li>fix: compilation on freebsd (patch by Abilio)</li>
 <li>fix: display user command icon (patch by Paulo Silva)</li>
 <li>fix: svn auto-checkin was not executed after some types of save operations</li>
@@ -1715,6 +1716,10 @@ println("\\end{"+env+"}")
 <li>fix: broken folding of %BEGIN_FOLD if the special math-close-comment %$ was used in the folded area</li>
 <li>fix: incorrect wrapping if chinese punctuation characters are on the line</li>
 <li>completer is disabled in overwrite mode (because it does not work correctly while overwriting)</li>
+<li>fix: incorrect behavior of input method with forward selections</li>
+<li>fix: texdoc usage on OS X</li>
+<li>fix: rendering of 1x1 non-continouos pdf page on retina display</li>
+<li>fix: some missing symbols</li>
 <li>removed: case insensitive completion (due to complexity/performance issues)</li>
 </ul>
 
