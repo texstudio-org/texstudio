@@ -149,6 +149,9 @@ public:
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths=QStringList()) const;
 	
     void setMasterDocument(LatexDocument* doc, bool recheck=true);
+    void addChild(LatexDocument* doc);
+    void removeChild(LatexDocument* doc);
+    bool containsChild(LatexDocument* doc) const;
 	Q_INVOKABLE LatexDocument* getMasterDocument() const{
 		return masterDocument;
 	}
@@ -195,6 +198,7 @@ private:
 	LatexEditorView* edView;
 	
 	LatexDocument* masterDocument;
+    QSet<LatexDocument*> childDocs;
 	
 	StructureEntry* magicCommentList;
 	StructureEntry* labelList;

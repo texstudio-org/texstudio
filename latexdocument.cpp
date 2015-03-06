@@ -856,8 +856,10 @@ bool LatexDocument::patchStructure(int linenr, int count) {
                 removedIncludes.removeAll(fname);
                 mIncludedFilesList.insert(line(i).handle(),fname);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
-                if(dc)	dc->setMasterDocument(this,recheckLabels);
-                else {
+                if(dc){
+                    childDocs.insert(dc);
+                    dc->setMasterDocument(this,recheckLabels);
+                }else {
                     lstFilesToLoad << fname;
                     //parent->addDocToLoad(fname);
                 }
@@ -881,8 +883,10 @@ bool LatexDocument::patchStructure(int linenr, int count) {
                 removedIncludes.removeAll(fname);
                 mIncludedFilesList.insert(line(i).handle(),fname);
 				LatexDocument* dc=parent->findDocumentFromName(fname);
-                if(dc)	dc->setMasterDocument(this,recheckLabels);
-                else {
+                if(dc){
+                    childDocs.insert(dc);
+                    dc->setMasterDocument(this,recheckLabels);
+                } else {
                     lstFilesToLoad << fname;
                     //parent->addDocToLoad(fname);
                 }
@@ -1174,6 +1178,19 @@ void LatexDocument::setMasterDocument(LatexDocument* doc,bool recheck){
     }
 }
 
+void LatexDocument::addChild(LatexDocument* doc){
+    childDocs.insert(doc);
+}
+
+void LatexDocument::removeChild(LatexDocument* doc){
+    childDocs.remove(doc);
+}
+
+bool LatexDocument::containsChild(LatexDocument *doc) const{
+    return childDocs.contains(doc);
+}
+
+
 QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visitedDocs){
 	QList<LatexDocument *>listOfDocs;
 	bool deleteVisitedDocs=false;
@@ -1186,12 +1203,8 @@ QList<LatexDocument *>LatexDocument::getListOfDocs(QSet<LatexDocument*> *visited
 			deleteVisitedDocs=true;
 		}
         foreach(LatexDocument *elem,parent->getDocuments()){ // check children
-            if(elem!=master && elem->masterDocument!=master) continue;
-            /* reenabled by sdm.
-             * WAS disabled; if a doc is included in many master documents it needs to be known in all of them
-             * this "fix" breaks the complete functionality of this method !!!! (Bug 1102 e.g.)
-             * if it is really important that a document can be child of several masters, the logic has to be changed completely
-             */
+            if(elem!=master && !master->childDocs.contains(elem)) continue;
+
 			if(visitedDocs && !visitedDocs->contains(elem)){
 				listOfDocs << elem;
 				visitedDocs->insert(elem);
@@ -1806,6 +1819,11 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
         if(purge){
             LatexDocument *master=document->getTopMasterDocument();
             hiddenDocuments.removeAll(document);
+            foreach(LatexDocument *elem,getDocuments()){
+                if(elem->containsChild(document)){
+                       elem->removeChild(document);
+                }
+            }
             //update children (connection to parents is severed)
             foreach(LatexDocument *elem,lstOfDocs){
                 if(elem->getMasterDocument()==document){
@@ -1853,19 +1871,12 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
                 }
             }
         }else{
-            /*
-            // set document.masterdocument = 0
-            foreach(LatexDocument* elem,lstOfDocs){
-                if(elem->getMasterDocument()==document){
-                    elem->setMasterDocument(0);
+            // no open document remains, remove all others as well
+            foreach(LatexDocument *elem,getDocuments()){
+                if(elem->containsChild(document)){
+                       elem->removeChild(document);
                 }
             }
-            //document->setMasterDocument(0);
-            //recheck labels in all open documents connected to this document
-            foreach(LatexDocument* elem,lstOfDocs){
-                elem->recheckRefsLabels();
-            }*/
-            // no open document remains, remove all others as well
             foreach(LatexDocument* elem,lstOfDocs){
                 if(elem->isHidden()){
                     hiddenDocuments.removeAll(elem);
@@ -2134,6 +2145,13 @@ void LatexDocuments::updateBibFiles(bool updateFiles){
 void LatexDocuments::removeDocs(QStringList removeIncludes){
     foreach(QString fname,removeIncludes){
         LatexDocument* dc=findDocumentFromName(fname);
+        if(dc){
+            foreach(LatexDocument *elem,getDocuments()){
+                if(elem->containsChild(dc)){
+                    elem->removeChild(dc);
+                }
+            }
+        }
         if(dc && dc->isHidden()){
             QStringList toremove=dc->includedFiles();
             dc->setMasterDocument(0);
@@ -2399,8 +2417,10 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 	} else if ((lowerName == "texroot")||(lowerName == "root")){
 		QString fname=findFileName(val);
 		LatexDocument* dc=parent->findDocumentFromName(fname);
-		if(dc)	setMasterDocument(dc);
-		else {
+        if(dc){
+            dc->childDocs.insert(this);
+            setMasterDocument(dc);
+        } else {
 			parent->addDocToLoad(fname);
 		}
 		se->valid = true;
@@ -2538,6 +2558,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
     foreach(LatexDocument* elem,docs){
 		if(elem->getMasterDocument()==doc){
             elem->setMasterDocument(0,recheckRefs);
+            doc->removeChild(elem);
             //elem->recheckRefsLabels();
 		}
 	}
@@ -2549,8 +2570,8 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 			continue;
 		QStringList includedFiles=elem->includedFiles();
 		if(includedFiles.contains(fname)){
+            elem->addChild(doc);
             doc->setMasterDocument(elem,recheckRefs);
-            break;
 		}
 	}
 	
@@ -2559,6 +2580,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 	foreach(const QString& fname,includedFiles){
 		LatexDocument* child=this->findDocumentFromName(fname);
 		if(child){
+            doc->addChild(child);
             child->setMasterDocument(doc,recheckRefs);
 			LatexEditorView *edView=child->getEditorView();
             if(edView && recheckRefs)
