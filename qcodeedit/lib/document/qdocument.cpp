@@ -2441,10 +2441,21 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 				if ( x + cwidth > maxWidth )
 				{
 
-					if ( lastBreak <= lastActualBreak )
+					ushort uc = c.unicode();
+					bool isCJK = (0x4E00 <= uc && uc <= 0x9FFF ||   // CJK Unified Ideographs
+					              0x3000 <= uc && uc <= 0x4DBF ||   // CJK Punctuation, ..., Unified Ideographs Extension
+					              0x20000 <= uc && uc <= 0x2B81F || // CJK Unified Ideographs Extension B-D
+					              0xF900 <= uc && uc <= 0xFAFF ||   // CJK Compatibility Ideographs
+					              0x2F800 <= uc && uc <= 0x2FA1F);  // CJK Compatibility Ideographs Supplement
+					                                                // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
+				if ( lastBreak <= lastActualBreak || isCJK )
 					{
-						/* word is longer than maximal available line space - no reasonable wrapping possible
-						   Two possible stratigies:
+						/* a single regular word is longer than maximal available line space - no reasonable wrapping possible
+						 * or Chinese/Japanese/Korean char (in which case we may wrap inside the "word" not only at breaks (e.g. spaces))
+						 * Note: there are more complex rules in CJK which characters may not appear at the start or at the end of a line
+						 *       but supporting these would be quite complex (http://en.wikipedia.org/wiki/Line_breaking_rules_in_East_Asian_languages)
+						 *
+						   Two possible strategies:
 						   i) allow the word to exceed the line width
 						   ii) agressively wrap inside the word.
 
@@ -2463,7 +2474,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 					} else {
 						Q_ASSERT(lastBreak <= idx);
 						Q_ASSERT(lastBreak > 0);
-						// word cut at a non-ideal position
+						// wrap at last possible break
 						m_frontiers << qMakePair(lastBreak, lastX);
 						lastActualBreak = lastBreak;
 						x = minx + (rx - lastX);
