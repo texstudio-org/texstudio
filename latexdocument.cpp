@@ -875,9 +875,9 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			if (latexParser.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
-				QDir dir(args.argContent(1, ArgumentList::Mandatory));
-				QFileInfo fi(dir, firstArg);
-                QString file = fi.filePath();
+				QDir dir(firstArg);
+				QFileInfo fi(dir, args.argContent(1, ArgumentList::Mandatory));
+				QString file = fi.filePath();
 				newInclude->title = file;
                 QString fname=findFileName(file);
                 removedIncludes.removeAll(fname);
