@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu_HU">
+<TS version="2.0" language="hu_HU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -421,18 +421,18 @@
     <message>
         <location line="+5"/>
         <source>Error: No command expanded</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba: Nincs végrehajtható parancs</translation>
     </message>
     <message>
         <location line="+2"/>
         <location line="+15"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished">&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX változatot,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a &quot;Parancsok&quot; beállítási fülön.&lt;br&gt; A(La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztés nélkül dolgozni.</translation>
+        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX változatot,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a &quot;Parancsok&quot; beállítási fülön.&lt;br&gt; A(La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztés nélkül dolgozni.</translation>
     </message>
     <message>
         <location line="-2"/>
         <source>Error: One command expansion invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba: Az egyik parancs végrehajtásanem lehetséges.</translation>
     </message>
     <message>
         <location line="+359"/>
@@ -885,19 +885,19 @@ támogatott.</translation>
     <message>
         <location line="-1307"/>
         <source>Scale Central Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Központi eszköztár méretezése</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+7"/>
         <location line="+7"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Visszaállítás</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Scale Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Méret szimbólumok</translation>
     </message>
     <message>
         <location line="+1284"/>
@@ -997,7 +997,7 @@ támogatott.</translation>
     <message>
         <location line="+21"/>
         <source>GUI Scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>A GUI méretezése</translation>
     </message>
     <message>
         <location line="+380"/>
@@ -1835,13 +1835,13 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+307"/>
         <source>Scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Méretezés</translation>
     </message>
     <message>
         <location line="+44"/>
         <source>Scale Toolbar</source>
         <oldsource>scale symbols</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Eszköztár méretezése</translation>
     </message>
     <message>
         <location line="+217"/>
@@ -1871,7 +1871,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+67"/>
         <source>Scan LaTeX distribution for installed packages</source>
-        <translation type="unfinished"></translation>
+        <translation>A LaTeX disztribúció felderítése telepített csomagok után</translation>
     </message>
     <message>
         <location line="+242"/>
@@ -1911,7 +1911,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+6"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"></translation>
+        <translation>A \end{document}-en túli lévő szerkezeti elemek megjelölése</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1921,22 +1921,22 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+17"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Megmutatja a megjegyzések elemeit</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"></translation>
+        <translation>A függelékben lévő szerkezeti elemek megjelölése</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Bibliography</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibliográfia</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>bib File Encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>bib Tex fájl kódolása:</translation>
     </message>
     <message>
         <location line="+72"/>
@@ -2063,16 +2063,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location line="+13"/>
         <source>GroupBox</source>
-        <translation type="unfinished"></translation>
+        <translation>Csoportpanel</translation>
     </message>
     <message>
         <location line="+40"/>
         <source>Segment Preview</source>
         <translation>Részleges előnézet</translation>
-    </message>
-    <message>
-        <source>Preview with embedded PDF-viewer</source>
-        <translation type="obsolete">Előnézet belső PDF nézővel</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -2092,11 +2088,11 @@ Then you can select a new shortcut by one of the following ways:
     </message>
     <message>
         <source>Auto Preview:</source>
-        <translation type="vanished">Automatikus előnézet:</translation>
+        <translation>Automatikus előnézet:</translation>
     </message>
     <message>
         <source>Auto Preview Delay:</source>
-        <translation type="vanished">Késleltetett automatikus előnézet:</translation>
+        <translation>Késleltetett automatikus előnézet:</translation>
     </message>
     <message>
         <location line="+91"/>
@@ -2470,17 +2466,17 @@ options again to only view the most common settings.</oldsource>
     <message>
         <location line="+55"/>
         <source>Update the preview on text change</source>
-        <translation type="unfinished"></translation>
+        <translation>Előnézet frissítése a szöveg változásakor</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Auto Update:</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatikus frissítés:</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Auto Update Delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Késleltetett automatikus frissítés:</translation>
     </message>
     <message>
         <location line="+253"/>
@@ -3443,7 +3439,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
         <location line="+45"/>
         <location line="+41"/>
         <source>texdoc not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>A texdoc nem található.</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -3769,7 +3765,7 @@ Invalid \caption command.</source>
     <message>
         <location line="+14"/>
         <source>Missing value for -job-name</source>
-        <translation type="unfinished"></translation>
+        <translation>A job-name értéke hiányzik</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3867,7 +3863,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">A csomag nem található</translation>
+        <translation>A csomag nem található</translation>
     </message>
     <message>
         <location line="+1625"/>
@@ -3913,7 +3909,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <source>Package present</source>
-        <translation type="vanished">Csomag létezik</translation>
+        <translation>Csomag létezik</translation>
     </message>
     <message>
         <location line="+266"/>
@@ -3963,7 +3959,7 @@ Invalid \caption command.</source>
     <message>
         <location line="-157"/>
         <source>Could not open url:</source>
-        <translation type="unfinished"></translation>
+        <translation>Az alábbi url nem nyitható meg:</translation>
     </message>
     <message>
         <location line="+1821"/>
@@ -4768,7 +4764,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <source>PgDown</source>
-        <translation type="vanished">PgDown</translation>
+        <translation>PgDown</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -4777,7 +4773,7 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <source>PgUp</source>
-        <translation type="vanished">PgUp</translation>
+        <translation>PgUp</translation>
     </message>
     <message>
         <location line="+181"/>
@@ -5400,27 +5396,27 @@ Megnyitása programösszeomlást okozhat. Két másodpercenként megpróbálkozu
     <name>PreviewWidget</name>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">nagyítás</translation>
+        <translation>nagyítás</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">kicsinyítés</translation>
+        <translation>kicsinyítés</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">alaphelyzet</translation>
+        <translation>alaphelyzet</translation>
     </message>
     <message>
         <source>fit</source>
-        <translation type="vanished">illesztés</translation>
+        <translation>illesztés</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">balra rendezett kép</translation>
+        <translation>balra rendezett kép</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">középre rendezett kép</translation>
+        <translation>középre rendezett kép</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
@@ -6009,7 +6005,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location line="+1"/>
         <source>Find previous</source>
-        <translation type="unfinished">Előző keresése</translation>
+        <translation>Előző keresése</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8098,7 +8094,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Nyomtatás...</translation>
+        <translation>Nyomtatás...</translation>
     </message>
     <message>
         <location line="+39"/>
@@ -8506,7 +8502,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     <message>
         <location line="+3"/>
         <source>Collapse</source>
-        <translation>Összezárás</translation>
+        <translation>Összecsukás</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8660,7 +8656,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
-        <translation type="vanished">A könyvjelzőre ugráshoz kattintson</translation>
+        <translation>A könyvjelzőre ugráshoz kattintson</translation>
     </message>
     <message>
         <location filename="texmaker.cpp" line="+1516"/>
@@ -9791,12 +9787,12 @@ included document in %1</source>
     <message>
         <location line="-5652"/>
         <source>Go to bookmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugrás könyvjelzőre</translation>
     </message>
     <message>
         <location line="+307"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hibát akar keresni egy SyncTeX fájlban?</translation>
     </message>
     <message>
         <location line="+687"/>
@@ -9869,7 +9865,7 @@ included document in %1</source>
     <message>
         <location line="+168"/>
         <source>Error:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiba:</translation>
     </message>
     <message>
         <location line="+1523"/>
@@ -9886,12 +9882,12 @@ included document in %1</source>
     <message>
         <location line="-39"/>
         <source>Expand all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindent dokumentumot szétnyit</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindent dokumentumot összecsuk</translation>
     </message>
     <message>
         <location line="+16"/>
