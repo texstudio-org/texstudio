@@ -61,6 +61,7 @@
 <file>completion/fancyunits-per.cwl</file>
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
+<file>completion/fixme.cwl</file>
 <file>completion/float.cwl</file>
 <file>completion/fontspec.cwl</file>
 <file>completion/geometry.cwl</file>
