@@ -1802,6 +1802,9 @@ void ProcessX::startCommand() {
 	QProcess::start(cmd);
 	qputenv("PATH", path); // restore
 
+    if (error() == FailedToStart || error() == Crashed)
+        isStarted = ended = true; //prevent call of waitForStarted, if it failed to start (see QTBUG-33021)
+
 #ifdef PROFILE_PROCESSES
 	connect(this, SIGNAL(finished(int)), SLOT(finished()));
 	time.start();
