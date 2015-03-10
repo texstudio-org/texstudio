@@ -1632,7 +1632,7 @@ QString BuildManager::findFile(const QString& defaultName, const QStringList& se
 	
 	foreach (QString p, searchPaths) {
 		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && (p[2] == '\\' || p[2] == '/'))) {
-			QFileInfo fi(QDir(p), defaultName);
+			QFileInfo fi(QDir(p), base.fileName());
 			if (fi.exists()) return fi.absoluteFilePath();
 		} else {
 			// ?? seems a bit weird: if p is not an absolute path, then interpret p as directory
