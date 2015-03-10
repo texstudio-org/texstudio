@@ -1834,19 +1834,21 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
                 }
             }
             delete document;
-            // update parents
-            lstOfDocs=master->getListOfDocs();
-            int n=0;
-            foreach(LatexDocument* elem,lstOfDocs){
-                if(!elem->isHidden()){
-                    n++;
-                    break;
+            if (master != document) {
+                // update parents
+                lstOfDocs=master->getListOfDocs();
+                int n=0;
+                foreach(LatexDocument* elem,lstOfDocs){
+                    if(!elem->isHidden()){
+                        n++;
+                        break;
+                    }
                 }
+                if(n==0)
+                    deleteDocument(master,true,true);
+                else
+                    updateMasterSlaveRelations(master,true,true);
             }
-            if(n==0)
-                deleteDocument(master,true,true);
-            else
-                updateMasterSlaveRelations(master,true,true);
             return;
         }
         // count open related (child/parent) documents
