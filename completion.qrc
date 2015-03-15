@@ -106,6 +106,7 @@
 <file>completion/minted.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multido.cwl</file>
+<file>completion/multirow.cwl</file>
 <file>completion/multimedia.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>
