@@ -538,11 +538,14 @@ freebsd-* {
 # Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
 isEmpty(NO_POPPLER_PREVIEW) {
     !win32 {
-    poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
+	macx { # PATH to pkgconfig needs to be present in build PATH
+	    QT_CONFIG -= no-pkg-config
+	}
+	poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
 
-    CONFIG += link_pkgconfig
-    PKGCONFIG += $${poppler_qt_pkg}
-    system(pkg-config --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
+	CONFIG += link_pkgconfig
+	PKGCONFIG += $${poppler_qt_pkg}
+	system(pkg-config --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
     } else: {
 	!greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
 	   # unix:!macx {

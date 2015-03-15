@@ -3,7 +3,7 @@
 
 #include "configmanager.h"
 
-QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,ilg,toc,ind,out,blg";
+QString CleanDialog::defaultExtensions = "log,aux,dvi,lof,lot,bit,idx,glo,bbl,bcf,ilg,toc,ind,out,blg";
 QString CleanDialog::currentExtensions = CleanDialog::defaultExtensions;
 int CleanDialog::scopeID = 0;
 
