@@ -1,0 +1,72 @@
+% !TXS template
+\documentclass[11pt,a4paper,sans,french]{moderncv}        % autres options possibles : taille de fonte ('10pt', '11pt' et '12pt'), format de papier ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') et famille de fonte ('sans' and 'roman')
+\moderncvstyle{casual}                             % autres styles : 'casual' (défaut), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue}                               % autres couleurs : 'blue' (défaut), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\nopagenumbers{}                                  % décommenter pour supprimer la numérotation automatique des pages pour les CVs de plus d'une page
+\usepackage[utf8]{inputenc}                       % si vous n'utilisez pas xelatex ou lualatex, remplacer par le codage d'entrée que vous utilisez
+\usepackage[scale=0.75,a4paper]{geometry}
+\usepackage{babel}
+%----------------------------------------------------------------------------------
+%            informations personnelles
+%----------------------------------------------------------------------------------
+\firstname{}%<Prénom%:columnShift:-1,persistent%>
+\familyname{}%<Nom%:columnShift:-1,persistent%>
+\title{}%<Titre du CV%:columnShift:-1,persistent%>                               % optionnel : supprimer ou commenter si non souhaité
+\address{}{}{}%<Numéro et rue%:columnShift:-5,persistent%>%<Code postal et ville%:columnShift:-3,persistent%>%<Pays%:columnShift:-1,persistent%> % optionnel : supprimer ou commenter si non souhaité; l'argument « Pays » peut être omis ou vide
+\mobile{}%<Numéro de portable%:columnShift:-1,persistent%>                          % optionnel : supprimer ou commenter si non souhaité
+\phone{}%<Numéro de téléphone%:columnShift:-1,persistent%>                           % optionnel : supprimer ou commenter si non souhaité
+\fax{}%<Numéro de fax%:columnShift:-1,persistent%>                             % optionnel : supprimer ou commenter si non souhaité
+\email{}%<Courriel%:columnShift:-1,persistent%>                               % optionnel : supprimer ou commenter si non souhaité
+\homepage{}%<Page Web personnelle%:columnShift:-1,persistent%>                         % optionnel : supprimer ou commenter si non souhaité
+\extrainfo{}%<Information supplémentaire%:columnShift:-1,persistent%>                 % optionnel : supprimer ou commenter si non souhaité
+% \photo[64pt][0.4pt]{}%<Image%:columnShift:-1,persistent%> % optionnel : décommenter si souhaité ; '64pt' est un exemple de hauteur que doit avoir la photo, 0.4pt est un exemple d'épaisseur que doit avoir le cadre qui l'entoure (à mettre à 0pt pour supprimer le cadre) et « Image » est le nom du fichier de la photo
+\quote{}%<Citation%:columnShift:-1,persistent%>                                 % optionnel : supprimer ou commenter si non souhaité
+%
+\begin{document}
+\makecvtitle
+\section{Formation}
+\cventry{--}{}{}{}{}{}%<Année%:columnShift:-13,persistent%>%<Année%:columnShift:-11,persistent%>%<Diplôme%:columnShift:-9,persistent%>%<École%:columnShift:-7,persistent%>%<Ville%:columnShift:-5,persistent%>%<Mention%:columnShift:-3,persistent%>%<Description%:columnShift:-1,persistent%>                      % les arguments 3 à 6 peuvent être laissés vides
+\cventry{--}{}{}{}{}{}%<Année%:columnShift:-13,persistent%>%<Année%:columnShift:-11,persistent%>%<Diplôme%:columnShift:-9,persistent%>%<École%:columnShift:-7,persistent%>%<Ville%:columnShift:-5,persistent%>%<Mention%:columnShift:-3,persistent%>%<Description%:columnShift:-1,persistent%>
+\section{Expérience}
+\subsection{Principale}
+\cventry{--}{}{}{}{}{}%<Année%:columnShift:-13,persistent%>%<Année%:columnShift:-11,persistent%>%<Emploi%:columnShift:-9,persistent%>%<Employeur%:columnShift:-7,persistent%>%<Ville%:columnShift:-5,persistent%>%<%:columnShift:-3,persistent%>%<Description générale d'au plus 1 ou 2 lignes%:columnShift:-1,persistent%>
+\cventry{--}{}{}{}{}{}%<Année%:columnShift:-13,persistent%>%<Année%:columnShift:-11,persistent%>%<Emploi%:columnShift:-9,persistent%>%<Employeur%:columnShift:-7,persistent%>%<Ville%:columnShift:-5,persistent%>%<%:columnShift:-3,persistent%>%<Description générale d'au plus 1 ou 2 lignes%:columnShift:-1,persistent%>
+\subsection{Divers}
+\cventry{--}{}{}{}{}{}%<Année%:columnShift:-13,persistent%>%<Année%:columnShift:-11,persistent%>%<Emploi%:columnShift:-9,persistent%>%<Employeur%:columnShift:-7,persistent%>%<Ville%:columnShift:-5,persistent%>%<%:columnShift:-3,persistent%>%<Description générale d'au plus 1 ou 2 lignes%:columnShift:-1,persistent%>
+\section{Langues}
+\cvitemwithcomment{}{}{}%<Langue 1%:columnShift:-5,persistent%>%<Niveau%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+\cvitemwithcomment{}{}{}%<Langue 2%:columnShift:-5,persistent%>%<Niveau%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+\cvitemwithcomment{}{}{}%<Langue 3%:columnShift:-5,persistent%>%<Niveau%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+\section{Compétences informatiques}
+\cvdoubleitem{}{}{}{}%<Catégorie 1%:columnShift:-7,persistent%>%<Commentaire%:columnShift:-5,persistent%>%<Catégorie 4%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+\cvdoubleitem{}{}{}{}%<Catégorie 2%:columnShift:-7,persistent%>%<Commentaire%:columnShift:-5,persistent%>%<Catégorie 5%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+\cvdoubleitem{}{}{}{}%<Catégorie 3%:columnShift:-7,persistent%>%<Commentaire%:columnShift:-5,persistent%>%<Catégorie 6%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+\section{Centres d'intérêt}
+\cvitem{}{}%<Loisir 1%:columnShift:-3,persistent%>%<Description%:columnShift:-1,persistent%>
+\cvitem{}{}%<Loisir 2%:columnShift:-3,persistent%>%<Description%:columnShift:-1,persistent%>
+\cvitem{}{}%<Loisir 3%:columnShift:-3,persistent%>%<Description%:columnShift:-1,persistent%>
+\section{Extra 1}
+\cvlistitem{}%<Item 1%:columnShift:-1,persistent%>
+\cvlistitem{}%<Item 2%:columnShift:-1,persistent%>
+\cvlistitem{}%<Item 3%:columnShift:-1,persistent%>
+\section{Extra 2}
+\cvlistdoubleitem{}{}%<Item 1%:columnShift:-3,persistent%>%<Item 4%:columnShift:-1,persistent%>
+\cvlistdoubleitem{}{}%<Item 2%:columnShift:-3,persistent%>%<Item 5%:columnShift:-1,persistent%>
+\cvlistdoubleitem{}{}%<Item 3%:columnShift:-3,persistent%>%<Item 6%:columnShift:-1,persistent%>
+\section{References}
+\begin{cvcolumns}
+  \cvcolumn{}{}%<Catégorie 1%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+  \cvcolumn{}{}%<Catégorie 2%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+  \cvcolumn{}{}%<Catégorie 3%:columnShift:-3,persistent%>%<Commentaire%:columnShift:-1,persistent%>
+\end{cvcolumns}
+\clearpage
+%-----       letter       ---------------------------------------------------------
+% recipient data
+\recipient{}{\\\\}%<DRH de l'entreprise%:columnShift:-7,persistent%>%<Nom de l'entreprise%:columnShift:-5,persistent%>%<Numéro et rue%:columnShift:-3,persistent%>%<Code postal et ville%:columnShift:-1,persistent%>
+\date{}%<Date%:columnShift:-1,persistent%>
+\opening{}%<Chère madame, cher monsieur,%:columnShift:-1,persistent%>
+\closing{}%<Veuillez agréer,%:columnShift:-1,persistent%>
+\enclosure{}%<Pièces jointes%:columnShift:-1,persistent%>          %  utiliser l'argument optionnel pour spécifier un autre mot que "Enclosure", ou redéfinir \enclname
+\makelettertitle
+\makeletterclosing
+\end{document}
