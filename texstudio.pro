@@ -144,7 +144,8 @@ HEADERS += texmaker.h \
     pdfannotation.h \
     kpathseaParser.h \
     tests/latexoutputfilter_t.h \
-    sessionlist.h
+    sessionlist.h \
+    pdfsplittool.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     dsingleapplication.cpp \
@@ -238,7 +239,8 @@ SOURCES += main.cpp \
     pdfannotation.cpp \
     kpathseaParser.cpp \
     tests/latexoutputfilter_t.cpp \
-    sessionlist.cpp
+    sessionlist.cpp \
+    pdfsplittool.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
@@ -269,7 +271,8 @@ FORMS += structdialog.ui \
     cleandialog.ui \
     maketemplatedialog.ui \
     texdocdialog.ui \
-    pdfannotationdlg.ui
+    pdfannotationdlg.ui \
+    pdfsplittool.ui
 TRANSLATIONS += texstudio_cs.ts \
     texstudio_de.ts \
     texstudio_es.ts \

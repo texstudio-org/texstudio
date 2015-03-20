@@ -403,6 +403,8 @@ public slots:
 	void hideToolbars();
 	void showToolbars();
 	void showMessage(const QString &text);
+
+    void splitMergeTool();
 private slots:
 	void fileOpen();
 	

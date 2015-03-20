@@ -41,6 +41,8 @@
 #include "pdfannotation.h"
 #include "titledpanel.h"
 
+#include "pdfsplittool.h"
+
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
@@ -2162,6 +2164,7 @@ void PDFDocument::setupMenus(){
     menuHelp->addSeparator();
     menuHelp->addAction(actionAbout_TW);
     menuFile->addAction(actionFileOpen);
+    menuFile->addAction(actionSplitMerge);
     //menuFile->addAction(action_Print); //disable incomplete print support
     menuFile->addAction(actionClose);
     menuFile->addSeparator();
@@ -2477,7 +2480,8 @@ void PDFDocument::init(bool embedded)
 	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), this, SLOT(enablePageActions(int,bool)));
 	connect(actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
-	connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
+    connect(actionSplitMerge, SIGNAL(triggered()), SLOT(splitMergeTool()));
+    connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
@@ -3869,5 +3873,9 @@ void PDFDocument::setToolbarsVisible(bool visible)
 	statusbar->setVisible(visible);
 }
 
+void PDFDocument::splitMergeTool()
+{
+    (new PDFSplitMergeTool())->exec();
+}
 
 #endif  // ndef NO_POPPLER_PREVIEW
