@@ -15,6 +15,12 @@ class InsertGraphicsConfig;
 struct PDFDocumentConfig;
 class GrammarCheckerConfig;
 
+#ifdef Q_OS_WIN
+	const QKeySequence::SequenceFormat SHORTCUT_FORMAT = QKeySequence::PortableText;
+#else
+	const QKeySequence::SequenceFormat SHORTCUT_FORMAT = QKeySequence::NativeText;
+#endif
+
 struct ManagedToolBar{
 	QString name;
 	QStringList defaults;
