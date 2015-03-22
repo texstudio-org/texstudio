@@ -1,5 +1,16 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.9.0 -> 2.9.2
+-----------------------------------------
+- allow word wrapping at all CJK characters
+- simplified latexmk call (thanks to YoungFrog)
+- fix: incorrect interpretation of dir/file arguments in import commands
+- fix: crash when hidden implicit master document is deleted
+- fix: incorrect merging of absolute files with additional search paths
+- fix: make pkg-config work on osx again
+- fix: crash when reopening hidden document in singleDocMode
+- fix: basic shortcuts (like "Left") might be overwritten when using TXS in certain languages (Japanese, Italian, ...)
+
 TeXstudio 2.8.8 -> 2.9.0
 -----------------------------------------
 - link overlays for urls
