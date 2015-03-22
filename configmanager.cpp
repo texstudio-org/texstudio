@@ -1166,7 +1166,7 @@ bool ConfigManager::execConfigDialog() {
 			if(listEmpty){
 				twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << tr("<none>"));
 			} else {
-                twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << QKeySequence::fromString(key).toString(QKeySequence::NativeText));
+                twi = new QTreeWidgetItem(editorKeys, QStringList() << LatexEditorViewConfig::translateEditOperation(elem) << "" << QKeySequence::fromString(key).toString(SHORTCUT_FORMAT));
 			}
 			twi->setData(0, editorKeys_EditOperationRole, elem);
 			twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
@@ -1494,7 +1494,7 @@ bool ConfigManager::execConfigDialog() {
 		this->editorKeys.clear();
 		for (int i=0;i<editorKeys->childCount();i++) {
 			int editOperation = editorKeys->child(i)->data(0, editorKeys_EditOperationRole).toInt();
-			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2),QKeySequence::NativeText);
+			QKeySequence kSeq = QKeySequence::fromString(editorKeys->child(i)->text(2), QKeySequence::PortableText);
 			if (!kSeq.isEmpty() && editOperation > 0) /* not QEditor::Invalid or QEditor::NoOperation*/
                 this->editorKeys.insert(kSeq.toString(), editOperation);
 		}
@@ -2080,7 +2080,7 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
         else {
             QTreeWidgetItem* twi=new QTreeWidgetItem(menuitem, QStringList() << acts[i]->text().replace("&","")
                                                      << managedMenuShortcuts.value(acts[i]->objectName() + "0", QKeySequence()).toString()
-                                                     << acts[i]->shortcut().toString(QKeySequence::NativeText));
+                                                     << acts[i]->shortcut().toString(SHORTCUT_FORMAT));
 			if (!acts[i]->isSeparator()) {
 				twi->setIcon(0,acts[i]->icon());
 				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled);
@@ -2088,7 +2088,7 @@ void ConfigManager::managedMenuToTreeWidget(QTreeWidgetItem* parent, QMenu* menu
 				twi->setIcon(0,QIcon(":/images/separator.png"));
 			}
 			twi->setData(0,Qt::UserRole,acts[i]->objectName());
-			if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(QKeySequence::NativeText));
+			if (acts[i]->shortcuts().size()>1) twi->setText(3,acts[i]->shortcuts()[1].toString(SHORTCUT_FORMAT));
 		}
 }
 void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
@@ -2105,7 +2105,7 @@ void ConfigManager::treeWidgetToManagedMenuTo(QTreeWidgetItem* item) {
 				QString mseq = item->text(2+num);
 				QString ns = QString::number(num);
 				if(mseq==tr("<none>")) mseq="";
-				if(mseq==tr("<default>")) mseq=managedMenuShortcuts.value(act->objectName()+ns,QKeySequence()).toString(QKeySequence::NativeText);
+				if(mseq==tr("<default>")) mseq=managedMenuShortcuts.value(act->objectName()+ns,QKeySequence()).toString(SHORTCUT_FORMAT);
 				QKeySequence sc(mseq);
 				setManagedShortCut(act, num, sc);
 				if (sc!=managedMenuShortcuts.value(act->objectName()+ns,QKeySequence()))

@@ -32,26 +32,26 @@ ShortcutComboBox::ShortcutComboBox(QWidget *parent):QComboBox(parent){
 	addItem(tr("<default>"));
 	addItem(tr("<none>"));
 	for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
-		addItem(QKeySequence(k).toString(QKeySequence::NativeText));
+		addItem(QKeySequence(k).toString(SHORTCUT_FORMAT));
 	for (int m=0; m<=1; m++)
 		for (int c=0; c<=1; c++)
 			for (int s=0; s<=1; s++)
 				for (int a=0; a<=1; a++) {
 					if (a || c || s || m) {
 						for (int k=Qt::Key_F1; k<=Qt::Key_F12; k++)
-							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(SHORTCUT_FORMAT));
 						for (int k=Qt::Key_0; k<=Qt::Key_9; k++)
-							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(SHORTCUT_FORMAT));
 						for (int k=Qt::Key_A; k<=Qt::Key_Z; k++)
-							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+							addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(SHORTCUT_FORMAT));
 						if (a || c) {
 							for (int k=Qt::Key_Left; k<=Qt::Key_Down; k++)
-								addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+								addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(SHORTCUT_FORMAT));
 							for (int k=Qt::Key_PageUp; k<=Qt::Key_PageDown; k++)
-								addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(QKeySequence::NativeText));
+								addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+k).toString(SHORTCUT_FORMAT));
 						}
 					}
-					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+Qt::Key_Tab).toString(QKeySequence::NativeText));
+					addItem(QKeySequence(c*Qt::CTRL+s*Qt::SHIFT+a*Qt::ALT+m*Qt::META+Qt::Key_Tab).toString(SHORTCUT_FORMAT));
 				}
 	setEditable(true);
 }
@@ -70,7 +70,7 @@ void ShortcutComboBox::keyPressEvent(QKeyEvent *e){
 		// FIXME: Qt currently does not handle KeypadModifier correctly.
 		// as a workaround we just take it away, so there is no difference between keypad and non-keypad keys,
 		// but at least keypad keys don't produce rubbish. See also sf.net bug item 3525266
-		QString newShortCut = QKeySequence((e->modifiers() | e->key()) & ~Qt::KeypadModifier).toString(QKeySequence::NativeText);
+		QString newShortCut = QKeySequence((e->modifiers() | e->key()) & ~Qt::KeypadModifier).toString(SHORTCUT_FORMAT);
 		int index = findText(newShortCut);
 		if (index != -1) setCurrentIndex(index);
 		else setEditText(newShortCut);
@@ -136,7 +136,7 @@ void ShortcutDelegate::setEditorData(QWidget *editor,
 	QString value = index.model()->data(index, Qt::EditRole).toString();
 	//menu shortcut key
 	if (box) {
-		QString normalized=QKeySequence(value).toString(QKeySequence::NativeText);
+		QString normalized=QKeySequence(value).toString(SHORTCUT_FORMAT);
 		int pos=box->findText(normalized);
 		if (pos==-1) box->setEditText(value);
 		else box->setCurrentIndex(pos);
@@ -177,7 +177,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 	if (value=="" || value=="none" || value==tr("<none>")) value="";
 	else if (value=="<default>") ;
 	else {
-		value=QKeySequence(box->currentText()).toString(QKeySequence::NativeText);
+		value=QKeySequence(box->currentText()).toString(SHORTCUT_FORMAT);
 		if (value=="" || (value.endsWith("+") && !value.endsWith("++"))) { //Alt+wrong=>Alt+
 			txsWarning(ConfigDialog::tr("The shortcut you entered is invalid."));
 			return;
