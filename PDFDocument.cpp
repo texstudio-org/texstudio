@@ -3875,7 +3875,9 @@ void PDFDocument::setToolbarsVisible(bool visible)
 
 void PDFDocument::splitMergeTool()
 {
-    (new PDFSplitMergeTool())->exec();
+    PDFSplitMergeTool *psmt = new PDFSplitMergeTool(0, fileName());
+    connect(psmt, SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)), SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)));
+    psmt->show();
 }
 
 #endif  // ndef NO_POPPLER_PREVIEW
