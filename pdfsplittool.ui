@@ -6,94 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>334</width>
-    <height>188</height>
+    <width>691</width>
+    <height>174</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Split &amp; Merge</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="4" column="2">
-    <widget class="QPushButton" name="outputFileButton">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1" colspan="2">
-    <widget class="QSpinBox" name="firstPage">
-     <property name="minimum">
-      <number>1</number>
-     </property>
-     <property name="maximum">
-      <number>1</number>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Last Page:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1" colspan="2">
-    <widget class="QSpinBox" name="lastPage">
-     <property name="maximum">
-      <number>9999999</number>
-     </property>
-     <property name="value">
-      <number>999</number>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Input file:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>First Page:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Output file:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
+   <item row="0" column="1" colspan="2">
     <widget class="QLineEdit" name="outputFileEdit"/>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="inputFileEdit"/>
+   <item row="2" column="0" colspan="4">
+    <layout class="QVBoxLayout" name="inputFileLayout"/>
    </item>
-   <item row="0" column="2">
-    <widget class="QPushButton" name="inputFileButton">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="images.qrc">
-       <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="3">
+   <item row="4" column="0" colspan="4">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="go">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Split &amp;&amp; Merge</string>
        </property>
@@ -123,6 +65,37 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Output file:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="addInput">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Add input file</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QPushButton" name="outputFileButton">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="images.qrc">
+       <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
