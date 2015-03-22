@@ -3914,6 +3914,8 @@ void Texmaker::getExpandedStructureEntries(const QModelIndex & index, QSet<QStri
 		for (int row=0; row < nRows; row++ ) {
 			for (int col=0; col < nCols; col++ ) {
 				QModelIndex childIdx = model->index(row, col, index);
+                if(!childIdx.isValid())
+                    continue;
 				StructureEntry *se = LatexDocumentsModel::indexToStructureEntry(childIdx);
 				QString tag = makeTag(se, baseTag);
 				if (view->isExpanded(childIdx)) {
@@ -3937,6 +3939,8 @@ void Texmaker::expandStructureEntries(const QModelIndex index, const QSet<QStrin
 		for (int row=0; row < nRows; row++ ) {
 			for (int col=0; col < nCols; col++ ) {
 				QModelIndex childIdx = model->index(row, col, index);
+                if(!childIdx.isValid())
+                    continue;
 				StructureEntry *se = LatexDocumentsModel::indexToStructureEntry(childIdx);
 				QString tag = makeTag(se, baseTag);
 				if (expandedEntryTags.contains(tag)) {

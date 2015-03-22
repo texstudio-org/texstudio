@@ -206,7 +206,7 @@ void BuildManager::initDefaultCommandNames(){
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
 	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
 	QStringList ltxmk_cmds;
-	ltxmk_cmds << "latexmk -pdf -silent -pdflatex=\"pdflatex -synctex=1 %%O %%S\" %" << "latexmk -dvi -silent -latex=\"latex -src %%O %%S\" %";
+	ltxmk_cmds << "latexmk -pdf -silent -latexoption=\"-synctex=1\" %" << "latexmk -dvi -silent %";
 	registerCommand("latexmk",     "Latexmk", ltxmk_cmds,"",false);
 	
 	
@@ -1632,7 +1632,7 @@ QString BuildManager::findFile(const QString& defaultName, const QStringList& se
 	
 	foreach (QString p, searchPaths) {
 		if (p.startsWith('/') || p.startsWith("\\\\") || (p.length() > 2 && p[1] == ':' && (p[2] == '\\' || p[2] == '/'))) {
-			QFileInfo fi(QDir(p), defaultName);
+			QFileInfo fi(QDir(p), base.fileName());
 			if (fi.exists()) return fi.absoluteFilePath();
 		} else {
 			// ?? seems a bit weird: if p is not an absolute path, then interpret p as directory
@@ -1801,6 +1801,9 @@ void ProcessX::startCommand() {
     qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 	QProcess::start(cmd);
 	qputenv("PATH", path); // restore
+
+    if (error() == FailedToStart || error() == Crashed)
+        isStarted = ended = true; //prevent call of waitForStarted, if it failed to start (see QTBUG-33021)
 
 #ifdef PROFILE_PROCESSES
 	connect(this, SIGNAL(finished(int)), SLOT(finished()));

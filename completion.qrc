@@ -61,6 +61,7 @@
 <file>completion/fancyunits-per.cwl</file>
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
+<file>completion/fixme.cwl</file>
 <file>completion/float.cwl</file>
 <file>completion/fontspec.cwl</file>
 <file>completion/geometry.cwl</file>
@@ -105,6 +106,7 @@
 <file>completion/minted.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multido.cwl</file>
+<file>completion/multirow.cwl</file>
 <file>completion/multimedia.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>

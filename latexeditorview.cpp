@@ -681,6 +681,31 @@ void LatexEditorView::updateLtxCommands(bool updateAll){
 				view->reCheckSyntax();
 			}
 		}
+        // check if other document have this doc as child as well (reused doc...)
+        LatexDocuments* docs=document->parent;
+        QList<LatexDocument*>lstOfAllDocs=docs->getDocuments();
+        foreach(LatexDocument* elem,lstOfAllDocs){
+            if(listOfDocs.contains(elem))
+                continue; // already handled
+            if(elem->containsChild(document)){
+                // unhandled parent/child
+                LatexParser lp;
+                lp.init();
+                lp.append(LatexParser::getInstance()); // append commands set in config
+                QList<LatexDocument *>listOfDocs=elem->getListOfDocs();
+                foreach(const LatexDocument *elem,listOfDocs){
+                    lp.append(elem->ltxCommands);
+                }
+                foreach(const LatexDocument *elem,listOfDocs){
+
+                    LatexEditorView *view=elem->getEditorView();
+                    if(view){
+                        view->setLtxCommands(lp);
+                        view->reCheckSyntax();
+                    }
+                }
+            }
+        }
 	}else{
 		SynChecker.setLtxCommands(lp);
 	}
