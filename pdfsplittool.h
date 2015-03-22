@@ -5,14 +5,13 @@
 #include <QList>
 #include <QPair>
 #include <QString>
+#include <QFileInfo>
 
 namespace Ui {
 class PDFSplitTool;
 }
 
 typedef QPair<int, int> PageRange;
-
-class QFileInfo;
 
 class PDFSplitMergeTool : public QDialog
 {
@@ -49,9 +48,10 @@ class MultiProcessX: public QObject
 	Q_OBJECT
 protected:
 	//cache commands and run them all at once, because we do not have access to the build manager here
-	QStringList pendingCmds, temporaryFiles;
+	QStringList temporaryFiles;
+	QList<QPair<QString, QFileInfo> > pendingCmds;
 	QString createTemporaryFileName(const QString& extension);
-	void run(const QString& cmd);
+	void run(const QString& cmd, const QFileInfo& master = QFileInfo());
 	void execute();
 	virtual ~MultiProcessX();
 signals:
@@ -72,6 +72,12 @@ public:
 	PDFSplitMergeGS();
 	virtual void split(const QString& outputFile, const QString& inputFile, const PageRange& range);
 	virtual void merge(const QString& outputFile, const QStringList& inputFiles);
+};
+
+class PDFSplitMergePDFPages: public PDFSplitMerge
+{
+public:
+	virtual void splitMerge(const QString& outputFile, const QList<QPair<QString, QList<PageRange> > >& inputs);
 };
 
 #endif // PDFSPLITTOOL_H
