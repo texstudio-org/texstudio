@@ -10,6 +10,7 @@ TeXstudio 2.9.0 -> 2.9.2
 - fix: make pkg-config work on osx again
 - fix: crash when reopening hidden document in singleDocMode
 - fix: basic shortcuts (like "Left") might be overwritten when using TXS in certain languages (Japanese, Italian, ...)
+- fix: positioning of completer tooltip when using multiple screens
 
 TeXstudio 2.8.8 -> 2.9.0
 -----------------------------------------
