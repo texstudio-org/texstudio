@@ -1,10 +1,11 @@
+#include "utilsSystem.h"
+
 #include "pdfsplittool.h"
 #include "ui_pdfsplittool.h"
 
 
 #include <QFileDialog>
 #include <QFileInfo>
-#include "utilsSystem.h"
 
 Q_DECLARE_METATYPE(QLayout*);
 
@@ -267,7 +268,9 @@ void PDFSplitMergeTool::addPageRange(QLayout* parentLayout){
 
 
 void PDFSplitMergeTool::go(){
-	PDFSplitMerge * sm = new PDFSplitMergeGS();
+	PDFSplitMerge * sm = 0;
+	if (ui->backendGS->isChecked()) sm = new PDFSplitMergeGS();
+	else if (ui->backendPDFLatex->isChecked()) sm = new PDFSplitMergePDFPages();
 	connect(sm, SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)), SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)));
 	QList < QPair< QString, QList < PageRange> > > splits;
 	for (int i=0;i<ui->inputFileLayout->count();i++) {
@@ -293,146 +296,6 @@ void PDFSplitMergeTool::go(){
 	delete sm;
 }
 
-/*void ConfigManager::addCommandRow(QGridLayout* gl, const CommandInfo& cmd, int row){
-	static QStringList simpleMetaOptions = QStringList() << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
-	QWidget * parent = gl->parentWidget();
-
-	// ID
-	QWidget *nameWidget;
-	if (cmd.user) nameWidget = new QLineEdit(cmd.id+":"+cmd.displayName, parent);
-	else {
-	   QString lbl=qApp->translate("BuildManager",qPrintable(cmd.displayName));
-		nameWidget = new QLabel(lbl, parent);
-		if (configShowAdvancedOptions) nameWidget->setToolTip("ID: txs:///"+cmd.id);
-		nameWidget->setProperty(PROPERTY_COMMAND_ID, cmd.id);
-	}
-	nameWidget->setProperty(PROPERTY_WIDGET_TYPE, CG_ID);
-
-
-	// cmd Widget
-	QWidget* cmdWidget;
-	if (cmd.metaSuggestionList.isEmpty()) {
-		cmdWidget = new QLineEdit(cmd.getPrettyCommand(), parent);
-		if (cmd.id == "pdflatex") pdflatexEdit = qobject_cast<QLineEdit*>(cmdWidget);
-	} else {
-		cmdWidget = new QComboBox(parent);
-		cmdWidget->setObjectName(cmd.id);
-	   if(!configShowAdvancedOptions && simpleMetaOptions.contains(cmd.id) && cmd.metaSuggestionList.contains(cmd.getPrettyCommand())){
-		  foreach(QString elem,cmd.simpleDescriptionList){
-			 elem=qApp->translate("BuildManager",qPrintable(elem));
-				static_cast<QComboBox*>(cmdWidget)->addItem(elem);
-		  }
-			static_cast<QComboBox*>(cmdWidget)->setEditable(false);
-#ifndef QT_NO_DEBUG
-               int i=cmd.metaSuggestionList.indexOf(cmd.getPrettyCommand());
-            Q_ASSERT(i>=0);
-#endif
-            //static_cast<QComboBox*>(w)->setEditText();
-        }else{
-               static_cast<QComboBox*>(cmdWidget)->addItems(cmd.metaSuggestionList);
-               static_cast<QComboBox*>(cmdWidget)->setEditable(true);
-               static_cast<QComboBox*>(cmdWidget)->setEditText(cmd.getPrettyCommand());
-        }
-
-		int index = cmd.metaSuggestionList.indexOf(cmd.commandLine);
-		if (index >= 0) static_cast<QComboBox*>(cmdWidget)->setCurrentIndex(index);
-	}
-	assignNameWidget(cmdWidget, nameWidget);
-	cmdWidget->setProperty(PROPERTY_WIDGET_TYPE, CG_CMD);
-
-	QList<QPushButton*> buttons;
-
-	QPushButton *pb;
-	if (cmd.user || cmd.meta) {
-	   pb = new QPushButton(getRealIcon("configure"), QString(), parent);
-		pb->setToolTip(tr("Configure"));
-		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_CONFIG);
-		connect(pb, SIGNAL(clicked()), SLOT(editCommand()));
-		buttons << pb;
-	}
-
-	pb = new QPushButton(getRealIcon("fileopen"), "", parent);
-	pb->setToolTip(tr("Select Program"));
-	pb->setProperty(PROPERTY_WIDGET_TYPE, CG_PROGRAM);
-	connect(pb, SIGNAL(clicked()), SLOT(browseCommand()));
-	buttons << pb;
-
-	if (!cmd.user && cmd.metaSuggestionList.isEmpty()) {
-		pb = new QPushButton(getRealIcon("undo"), "", parent);
-		pb->setToolTip(tr("Restore Default"));
-		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_RESET);
-		connect(pb, SIGNAL(clicked()), SLOT(undoCommand()));
-		buttons << pb;
-	}
-	if (cmd.user) {
-		pb = new QPushButton(getRealIcon("list-remove"), "", parent);
-		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_DEL);
-		connect(pb,SIGNAL(clicked()),SLOT(removeCommand()));
-		buttons << pb;
-		pb = new QPushButton(getRealIcon("up"), "", parent);
-		if (row == 0) pb->setEnabled(false);
-		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_MOVEUP);
-		connect(pb,SIGNAL(clicked()),SLOT(moveUpCommand()));
-		buttons << pb;
-		pb = new QPushButton(getRealIcon("down"), "", parent);
-		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_MOVEDOWN);
-		connect(pb,SIGNAL(clicked()),SLOT(moveDownCommand()));
-		buttons << pb;
-	}
-	bool advanced = cmd.meta && !simpleMetaOptions.contains(cmd.id);
-	QList<QWidget*> temp; temp << nameWidget << cmdWidget; foreach (QWidget* w, buttons) temp << w;
-	foreach (QWidget* x, temp) {
-		x->setMinimumHeight(x->sizeHint().height());
-		if (x != cmdWidget) x->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-		advanced |= (cmd.user && buttons.indexOf(static_cast<QPushButton*>(x)) >= 3);
-		x->setProperty("advancedOption", advanced);
-		if (advanced && !configShowAdvancedOptions) x->setVisible(false);
-	}
-	cmdWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Maximum);
-	gl->setRowStretch(row, 1);
-	gl->addWidget(nameWidget, row, CG_ID);
-	int off = 1;
-
-	// rerun button
-	static QStringList rerunnable = QStringList() << "latex" << "pdflatex" << "lualatex" << "xelatex" << "quick" << "compile" << "ps-chain" << "dvi-chain" << "pdf-chain" << "dvi-pdf-chain" << "dvi-ps-pdf-chain" << "asy-dvi-chain" << "asy-pdf-chain" << "pre-compile" << "internal-pre-compile" << "recompile-bibliography";
-	if (cmd.user || rerunnable.contains(cmd.id)) {
-		QIcon icon;
-		pb = new QPushButton();
-		//icon=getRealIcon("repeat-compile");
-		icon.addFile(getRealIconFile("repeat-compile"), QSize(), QIcon::Normal, QIcon::On);
-		icon.addFile(getRealIconFile("repeat-compile"), QSize(), QIcon::Active, QIcon::On);
-		icon.addFile(getRealIconFile("repeat-compile-off"), QSize(), QIcon::Normal, QIcon::Off);
-		icon.addFile(getRealIconFile("repeat-compile-off"), QSize(), QIcon::Active, QIcon::Off);
-		pb->setIcon(icon);
-		pb->setToolTip(tr("Repeat contained compilation commands"));
-		pb->setCheckable(true);
-		pb->setChecked(cmd.rerunCompiler);
-		assignNameWidget(pb, nameWidget);
-		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_RERUN);
-		pb->setProperty("advancedOption", true);
-	   if (!configShowAdvancedOptions) pb->setVisible(false);
-		gl->addWidget(pb, row, CG_RERUN, 1, 1);
-		if (!cmd.user)
-			rerunButtons << pb;
-	}
-
-	gl->addWidget(cmdWidget,row,1+off,1,1);
-	for (int i = 0; i < buttons.size(); i++){
-		gl->addWidget(buttons[i],row,2+off+i, 1, 1);
-		buttons[i]->setProperty(PROPERTY_ASSOCIATED_INPUT, QVariant::fromValue<QWidget*>(cmdWidget));
-		assignNameWidget(buttons[i], nameWidget);
-	}
-
-	QPushButton *addButton = gl->property(PROPERTY_ADD_BUTTON).value<QPushButton*>();
-	if (cmd.user && addButton)
-		QWidget::setTabOrder(buttons.last(), addButton);
-
-	if (!cmd.user)
-		commandInputs << cmdWidget;
-}
-
-*/
-
 PDFSplitMergeTool::~PDFSplitMergeTool()
 {
 	delete ui;
@@ -456,17 +319,22 @@ QString MultiProcessX::createTemporaryFileName(const QString& extension){
 	return tempName;
 }
 
-void MultiProcessX::run(const QString& cmd){
-	pendingCmds << cmd;
+void MultiProcessX::run(const QString& cmd, const QFileInfo& master){
+	pendingCmds << QPair<QString, QFileInfo> (cmd, master);
 }
 
 void MultiProcessX::execute(){
 #ifdef Q_OS_WIN32
-	pendingCmds.append("cmd /k \" del "  + joinEscape(temporaryFiles).replace('"', "\"\"") + "  \"");
+	pendingCmds.append(QPair<QString, QFileInfo> ( "cmd /k \" del "  + joinEscape(temporaryFiles).replace('"', "\"\"") + "  \"", QFileInfo()));
 #else
-	pendingCmds.append("rm " + joinEscape(temporaryFiles));
+	pendingCmds.append(QPair<QString, QFileInfo> ("rm " + joinEscape(temporaryFiles), QFileInfo()));
 #endif
-	emit runCommand( pendingCmds.join("|"), QFileInfo(), QFileInfo(), 0 );
+	QString s;
+	for (int i=0;i<pendingCmds.size();i++) {
+		if (i) s += "|";
+		s += pendingCmds[i].first;
+	}
+	emit runCommand( s , pendingCmds.size() ? pendingCmds[0].second : QFileInfo(), QFileInfo(), 0 );
 	pendingCmds.clear();
 	temporaryFiles.clear();
 }
@@ -534,3 +402,45 @@ void PDFSplitMergeGS::merge(const QString& outputFile, const QStringList& inputF
 	    .arg(outputFile)
 	    .arg(joinEscape(inputFiles)));
 }
+
+void PDFSplitMergePDFPages::splitMerge(const QString& outputFile, const QList<QPair<QString, QList<PageRange> > >& inputs){
+	QStringList doc;
+	doc << "\\documentclass{article}"
+	    << "\\usepackage[utf8]{inputenc}"
+	    << "\\usepackage{pdfpages}"
+	    << "\\begin{document}";
+	for (int i=0;i<inputs.size();i++) {
+		QString input = "\\includepdf[pages=";
+		if (inputs[i].second.isEmpty()) input += "-]";
+		else {
+			input += "{";
+			for (int j=0;j<inputs[i].second.size();j++) {
+				if (j != 0) input += ",";
+				input += QString("%1-%2").arg(inputs[i].second[j].first + 1).arg(inputs[i].second[j].second + 1);
+			}
+			input += "}]";
+		}
+		input += "{" + QString(inputs[i].first).replace(QDir::separator(), "/") + "}";
+		doc << input;
+	}
+	doc << "\\end{document}";
+
+	QString tempLatex = createTemporaryFileName(".tex");
+	QFile file(tempLatex);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return;
+
+	QTextStream out(&file);
+	out.setCodec("UTF-8");
+	out << doc.join("\n");
+	file.close();
+
+	run("txs:///pdflatex", QFileInfo(tempLatex));
+#ifdef Q_OS_WIN32
+	QString cp = "xcopy";
+#else
+	QString cp = "mv";
+#endif
+	tempLatex.chop(4);
+	run( QString( "%1 \"%2\"  \"%3\"  ").arg(cp).arg(tempLatex+".pdf").arg(outputFile));
+};
