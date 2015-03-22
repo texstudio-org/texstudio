@@ -2229,7 +2229,7 @@ QString getImageAsText(const QPixmap &AImage,const int w) {
 
 void showTooltipLimited(QPoint tt,QString topic,int width){
     topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
-    QRect screen = QApplication::desktop()->availableGeometry();
+    QRect screen = QApplication::desktop()->availableGeometry(tt);
     // estimate width of coming tooltip
     // rather dirty code
     QLabel lLabel(0,Qt::ToolTip);
@@ -2245,17 +2245,19 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
 
     int textWidthInPixels = lLabel.width()+10; // +10 good guess
 
-    if (screen.width()-textWidthInPixels>=tt.x()) {
-        QToolTip::showText(tt, topic);//-90
+    if (tt.x() - screen.x() + textWidthInPixels <= screen.width()) {
+        // tooltip fits at the requested position
+        QToolTip::showText(tt, topic);
     } else {
-        //list->mapToGlobal
-        QPoint tt2(tt.x()-textWidthInPixels-width, tt.y());
-
+        QPoint tt2(tt.x() - textWidthInPixels - width, tt.y());
         // check if text left from list would fit
         bool reCalc=false;
-        if(tt2.x()<0){
-            //determine max usable width
-            int w=tt.x()-width;
+        if(tt2.x()<screen.x()){
+            // text does not fit to the left
+            // determine max usable width to the left
+            // TODO: the code in this block does not account for multiple screens
+            //       we have to subtract screen.x() from tt.x() in various places
+            int w=tt.x()-width; // widthToTheLeft
             if(screen.width()-tt.x()>w){
                 w=screen.width()-tt.x();
                 tt2=tt;
