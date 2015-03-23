@@ -1,5 +1,9 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.9.2 -> 2.9.4
+-----------------------------------------
+- fix: bug concerning overwritten shortcuts on Linux and OSX
+
 TeXstudio 2.9.0 -> 2.9.2
 -----------------------------------------
 - allow word wrapping at all CJK characters
