@@ -2447,7 +2447,6 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 					bool isCJK = (!c.isSurrogate() &&
 					              ((0x4E00 <= uc && uc <= 0x9FFF) ||   // CJK Unified Ideographs
 					               (0x3000 <= uc && uc <= 0x4DBF) ||   // CJK Punctuation, ..., Unified Ideographs Extension
-					               (0x20000 <= uc && uc <= 0x2B81F) || // CJK Unified Ideographs Extension B-D
 					               (0xF900 <= uc && uc <= 0xFAFF))     // CJK Compatibility Ideographs
 					             );                                  // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
 					// additionally check if its a surrogate
