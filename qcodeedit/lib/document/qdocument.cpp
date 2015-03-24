@@ -2442,13 +2442,25 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 				{
 
 					ushort uc = c.unicode();
-					bool isCJK = (0x4E00 <= uc && uc <= 0x9FFF ||   // CJK Unified Ideographs
-					              0x3000 <= uc && uc <= 0x4DBF ||   // CJK Punctuation, ..., Unified Ideographs Extension
-					              0x20000 <= uc && uc <= 0x2B81F || // CJK Unified Ideographs Extension B-D
-					              0xF900 <= uc && uc <= 0xFAFF ||   // CJK Compatibility Ideographs
-					              0x2F800 <= uc && uc <= 0x2FA1F);  // CJK Compatibility Ideographs Supplement
-					                                                // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
-				if ( lastBreak <= lastActualBreak || isCJK )
+					// CJK char detection for wrapping
+					// first check if its part of the unicode BMP
+					bool isCJK = (!c.isSurrogate() &&
+					              ((0x4E00 <= uc && uc <= 0x9FFF) ||   // CJK Unified Ideographs
+					               (0x3000 <= uc && uc <= 0x4DBF) ||   // CJK Punctuation, ..., Unified Ideographs Extension
+					               (0x20000 <= uc && uc <= 0x2B81F) || // CJK Unified Ideographs Extension B-D
+					               (0xF900 <= uc && uc <= 0xFAFF))     // CJK Compatibility Ideographs
+					             );                                  // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
+					// additionally check if its a surrogate
+					if (!isCJK && c.isHighSurrogate() && idx+1 < m_text.count()) {
+						QChar cLow = m_text.at(idx+1);
+						if (cLow.isLowSurrogate()) {
+							uint uic = joinUnicodeSurrogate(c, cLow);
+							isCJK = ((0x20000 <= uic && uic <= 0x2B81F) || // CJK Unified Ideographs Extension B-D)
+									 (0x2F800 <= uc && uc <= 0x2FA1F));    // CJK Compatibility Ideographs Supplement
+						}
+					}
+
+					if ( lastBreak <= lastActualBreak || isCJK )
 					{
 						/* a single regular word is longer than maximal available line space - no reasonable wrapping possible
 						 * or Chinese/Japanese/Korean char (in which case we may wrap inside the "word" not only at breaks (e.g. spaces))

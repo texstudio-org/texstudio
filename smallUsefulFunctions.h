@@ -12,6 +12,7 @@
 #define SMALLUSEFULFUNCTIONS_H
 
 #include "mostQtHeaders.h"
+#include "qglobal.h"
 
 // subgroups of utility functions:
 #include "utilsUI.h"
@@ -98,6 +99,8 @@ QString dequoteStr(const QString &s);
 QString quotePath(const QString &s);
 QString removeQuote(const QString &s);
 QString removePathDelim(const QString &s);
+
+uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate);
 
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
