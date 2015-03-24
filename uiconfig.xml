@@ -145,9 +145,12 @@
     <insert id="footnote" text="footnote" insert="\footnote{%&lt;text%|%>}" info="\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page."/>
   </menu>
   
-  <insert id="bibliographystyle" text="\bibliographystyle{}" insert="\bibliographystyle{%|}" info="The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look"/>
+  <menu id="bibliographyMenu" text="Bibliography">
+	<insert id="bibliographystyle" text="\bibliographystyle{}" insert="\bibliographystyle{%|}" info="The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look"/>
+	<action id="bibliography" text="\bibliography{}" slot="1InsertBib()"/> 
+    <insert id="addbibresource" text="\addbibresource{}" insert="\addbibresource{%&lt;bibfile%>}" info="\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. '\addbibresource{mybibliography.bib}'). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands."/>
+  </menu>
   
-  <action id="bibliography" text="\bibliography{}" slot="1InsertBib()"/> 
 </menu>
 
 <menu id="main/math" text="&amp;Math">
