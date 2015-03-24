@@ -1265,6 +1265,15 @@ QString removePathDelim(const QString &s) {
 	return s;
 }
 
+uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate) {
+	uint uhigh = highSurrogate.unicode();
+	uint ulow = lowSurrogate.unicode();
+	uint code = 0x10000;
+	code += (uhigh & 0x03FF) << 10;
+	code += (ulow & 0x03FF);
+	return code;
+}
+
 QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
 	//copied and modified from texworks
 	if (enc == "utf-8 unicode") return QTextCodec::codecForName("UTF-8");
