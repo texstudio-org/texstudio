@@ -8722,6 +8722,23 @@ int Texmaker::getVersion() const{
 	return TXSVERSION_NUMERIC;
 }
 
+/*!
+ * This function is mainly intended for use in scripting
+ * \a shortcut: textual representation of the keysequence, e.g. simulateKeyPress("Shift+Up")
+ */
+void Texmaker::simulateKeyPress(const QString &shortcut) {
+	QKeySequence seq(shortcut, QKeySequence::PortableText);
+	if (seq.count() > 0) {
+		int key = seq[0] & ~Qt::KeyboardModifierMask;
+		Qt::KeyboardModifiers modifiers = static_cast<Qt::KeyboardModifiers>(seq[0]) & Qt::KeyboardModifierMask;
+		// TODO: we could additionally provide the text for the KeyEvent (necessary for actually typing characters
+		QKeyEvent *event = new QKeyEvent(QEvent::KeyPress, key, modifiers);
+		QApplication::postEvent(QApplication::focusWidget(), event);
+		event = new QKeyEvent(QEvent::KeyRelease, key, modifiers);
+		QApplication::postEvent(QApplication::focusWidget(), event);
+	}
+}
+
 void Texmaker::updateTexQNFA() {
 	QLanguageFactory::LangData m_lang=m_languages->languageData("(La)TeX");
 

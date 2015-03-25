@@ -954,6 +954,7 @@ To access the document these objects are introduced:
   <tr><td>app.createUI(file, [parent])</td><td>Loads a certain ui file and creates a QWidget* from it</td></tr>
   <tr><td>app.createUIFromString(string, [parent])</td><td>Creates a QWidget* described in the string</td></tr>
   <tr><td>app.slowOperationStarted()/slowOperationEnded()</td><td>Notify txs about the start/end of a slow operation to temporary disable the endless loop detection.</td></tr>
+  <tr><td>app.simulateKeyPress(shortcut)</td><td>Trigger a KeyPress event for the given shortcut, e.g. <code>app.simulateKeyPress("Shift+Up")</code>. <i>Note</i>: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text.</td></tr>
 
   <tr><th colspan=2>UniversalInputDialog class</th></tr>
   <tr><td>new UniversalInputDialog()</td><td>Creates a new dialog</td></tr>
