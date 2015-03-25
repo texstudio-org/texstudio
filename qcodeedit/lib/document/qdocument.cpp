@@ -2444,7 +2444,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 					ushort uc = c.unicode();
 					// CJK char detection for wrapping
 					// first check if its part of the unicode BMP
-					bool isCJK = (!c.isSurrogate() &&
+                    bool isCJK = (!(c.isLowSurrogate()||c.isHighSurrogate()) && // compatibility with qt4
 					              ((0x4E00 <= uc && uc <= 0x9FFF) ||   // CJK Unified Ideographs
 					               (0x3000 <= uc && uc <= 0x4DBF) ||   // CJK Punctuation, ..., Unified Ideographs Extension
 					               (0xF900 <= uc && uc <= 0xFAFF))     // CJK Compatibility Ideographs
