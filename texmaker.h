@@ -81,7 +81,7 @@ public:
     Q_INVOKABLE QString getRelativeFileName(const QString & file, QString basepath, bool keepSuffix=false); //provide function for scripts
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
-
+	
 public slots:
     LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false, bool recheck=true,bool dontAsk=false);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
@@ -653,6 +653,7 @@ public:
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode& mode = QClipboard::Clipboard) const;
 	Q_INVOKABLE void setClipboardText(const QString& text, const QClipboard::Mode& mode = QClipboard::Clipboard);
 	Q_INVOKABLE int getVersion() const;
+	Q_INVOKABLE void simulateKeyPress(const QString &shortcut);
 	
 	static void recoverFromCrash();
 	
