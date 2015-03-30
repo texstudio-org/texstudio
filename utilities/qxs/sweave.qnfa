@@ -15,14 +15,42 @@
 		<start parenthesis="sweave:open@nocomplete" parenthesisWeight="30" fold="1" format="sweave-delimiter">&lt;&lt;[^>]*>>=</start>
 		<stop parenthesis="sweave:close@nocomplete" parenthesisWeight="30" fold="1" format="sweave-delimiter">@</stop>
 	</context>
+
+	<!-- Workaround for limitations concerning embedding
+	
+	We need to define comment/single in the main file for selection commenting to work, because
+	embed does not copy the editor information, only highlighting
+	comment/single has to be included before <embed>. Otherwise it won't take effect.
+	
+	Additionally, we have to define all other more specialized comments before comment/single.
+	If not, the comment/single pattern would already match the texts of the more specialized ones,
+	so that specialized comments would only be detected as regular comments.
+	-->
+	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
+		<start>%TODO</start>
+		<start>%todo</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	<context id="comment/magic" format="magicComment" stayOnLine="true" >
+		<start>% !TeX</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	<context id="comment/magic-bib" format="magicComment" stayOnLine="true" >
+		<start>% !BIB</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	<context id="comment/parameters" format="magicComment" stayOnLine="true" >
+		<start>%&amp;</start>
+		<stop exclusive="false">\n</stop>
+	</context>
 	<context id="comment/single" format="comment" stayOnLine="true" ambiguous="true"> 
 		<start>%</start>
 		<stop exclusive="false">\n</stop>
 	</context>
+	<!-- end workaround -->
 
 	<embed target="(La)TeX">
 
-  <!-- need to have a single line comment for selection commenting (embed does not copy the editor information, only highlighting ) -->
 	
 
 
