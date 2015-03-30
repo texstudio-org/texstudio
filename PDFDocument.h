@@ -174,7 +174,7 @@ public:
 	QRect pageRect(int page) const;
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
-	QRectF horizontalTextRangeF() const;
+	QRectF horizontalTextRangeF();
 
 	Q_INVOKABLE void zoom(qreal scale);
 
@@ -251,6 +251,8 @@ private:
 	PDFScrollArea* getScrollArea();
 	
 	QSharedPointer<Poppler::Document> document;
+	QMutex textwidthCalculationMutex;
+	
 	//QList<int> pages;
 	Poppler::Link		*clickedLink;
 	Poppler::Annotation	*clickedAnnotation;
