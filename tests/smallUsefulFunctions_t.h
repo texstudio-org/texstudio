@@ -744,10 +744,11 @@ private slots:
 		QTest::newRow("noExtensionAdd") << true << "c:/test" << "log" << "c:/test.log";
 		QTest::newRow("simple") << false << "c:/test.tex" << "log" << "c:/test.log";
 		QTest::newRow("relative") << false << "../dir/test.tex" << "log" << "../dir/test.log";
-		QTest::newRow("doubleExtSrc") << false << "test.synctex.gz" << "log" << "test.log";
+		QTest::newRow("doubleExtSrc") << false << "test.synctex.gz" << "log" << "test.synctex.log";
 		QTest::newRow("doubleExtTarget") << false << "test.tex" << "synctex.gz" << "test.synctex.gz";
 		QTest::newRow("dotExt") << false << "test.tex" << ".log" << "test.log";
 		QTest::newRow("dotExtAdd") << true << "c:/test" << ".log" << "c:/test.log";
+		QTest::newRow("multiDot") << false << "c:/a.b.c.tex" << ".log" << "c:/a.b.c.log";
 	}
 	void test_replaceFileExtension() {
 		QFETCH(bool, appendIfNoExtension);

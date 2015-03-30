@@ -268,8 +268,9 @@ QString replaceFileExtension(const QString& filename, const QString& newExtensio
         else
             return QString();
     }
-
-    return filename.left(filename.length()-fi.completeSuffix().length()) + ext;
+    // exchange the suffix explicitly instead of using fi.completeBaseName()
+    // so that the filename stays exactly the same
+    return filename.left(filename.length()-fi.suffix().length()) + ext;
 }
 
 QString getRelativeBaseNameToPath(const QString & file,QString basepath,bool baseFile,bool keepSuffix){
