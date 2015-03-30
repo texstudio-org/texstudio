@@ -1,0 +1,45 @@
+<!DOCTYPE QNFA>
+<QNFA language="BibTeX" extensions="bib" defaultLineMark="">
+<!--	<sequence parenthesis="curly:open" indent="1" fold="1">{</sequence>
+	<sequence parenthesis="curly:close" indent="1" fold="1">}</sequence>-->
+
+	<context id="string" format="text" >
+		<start parenthesis="string:open">&quot;</start>
+		<stop parenthesis="string:close">&quot;</stop>
+	</context>
+
+	<context id="entry" format="keyword">
+		<start parenthesis="curly:open" indent="1" fold="1">{</start>
+		<stop parenthesis="curly:close" indent="1" fold="1">}</stop>
+
+		<context id="substring" format="text" >
+			<start parenthesis="curly2:open">{</start>
+			<stop parenthesis="curly2:close">}</stop>
+
+
+			<!--workaround to support {{{}}} in bibtex files -->
+			<context id="subsubstring" format="text" >
+				<start parenthesis="curly3:open">{</start>
+				<stop parenthesis="curly3:close">}</stop>
+					<context id="subsubsubstring" format="text" >
+						<start parenthesis="curly4:open">{</start>
+						<stop parenthesis="curly4:close">}</stop>
+						<context id="subsubsubsubstring" format="text" >
+							<start parenthesis="curly5:open">{</start>
+							<stop parenthesis="curly5:close">}</stop>
+						</context>
+					</context>
+			</context>
+		</context>
+	</context>
+
+	<context id="comment" format="comment" >
+		<start parenthesis="comment:open" fold="1" >@comment$s*{</start>
+		<stop parenthesis="comment:close" fold="1" >}</stop>
+	</context>
+	
+	<word id="keywords/single" format="extra-keyword">@[a-zA-Z]+</word>
+	
+	
+
+</QNFA>
