@@ -5545,8 +5545,8 @@ bool Texmaker::LogExists() {
 	QString finame=documents.getTemporaryCompileFileName();
 	if (finame=="")
 		return false;
-	QString logname=getAbsoluteFilePath(QFileInfo(finame).completeBaseName(),".log");
-	QFileInfo fic(logname);
+	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(buildManager.additionalLogPaths));
+	QFileInfo fic(logFileName);
 	if (fic.exists() && fic.isReadable()) return true;
 	else return false;
 }
