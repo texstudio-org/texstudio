@@ -1751,6 +1751,7 @@ void PDFWidget::fitTextWidth(bool checked)
 			qreal portWidth = scrollArea->viewport()->width();
 
 			QRectF textRect = horizontalTextRangeF();
+			if (!textRect.isValid()) return;
 			qreal targetWidth = gridSizeF(true).width() - (maxPageSizeF().width() - textRect.width());
 			// total with of all pages in the grid - textMargin of a single page
 			// for a 1x grid, targetWith is the same as textRect.width()
@@ -1981,12 +1982,22 @@ QSizeF PDFWidget::maxPageSizeF() const{
 // Therefore the value is cached.
 // TODO: Replace TextBoxes with the ArtBox of the page once this becomes available via the poppler-qt interface.
 // Only the horizontal values of the returned QRectF have meaning.
-QRectF PDFWidget::horizontalTextRangeF() const{
+QRectF PDFWidget::horizontalTextRangeF() {
 	REQUIRE_RET(document && pdfdocument, QRectF());
 
 	qreal textXmin = +1.e99;
 	qreal textXmax = -1.e99;
 	if(!horizontalTextRange.isValid()){
+		// horitontalTextRangeF() may be called concurrently, in particular during startup
+		// see e.g. https://sourceforge.net/p/texstudio/bugs/1292/
+		// The crash therein is probably caused by a simultaneous access to poppler, so one
+		// could limit the access there. However, since textWidth calculation is currently
+		// quite expensive, we do not want to do it multiple times. I assume that the call
+		// which locks the calculation will finally lead to an update of the displayed width.
+		// This justifies to discard all width requests in between.
+		if (!textwidthCalculationMutex.tryLock()) {
+			return QRectF();
+		}
 		QProgressDialog progress(tr("Calculating text width"), tr("Cancel"), 0, docPages);
 		progress.setWindowModality(Qt::WindowModal);
 		progress.setMinimumDuration(500);
@@ -2009,6 +2020,7 @@ QRectF PDFWidget::horizontalTextRangeF() const{
 		if (textXmax > textXmin) {
 			horizontalTextRange = QRectF(textXmin, 0, textXmax - textXmin, 1);
 		}
+		textwidthCalculationMutex.unlock();
 	}
 	return horizontalTextRange;
 }
