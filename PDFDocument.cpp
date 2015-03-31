@@ -2350,10 +2350,10 @@ void PDFDocument::init(bool embedded)
 
 	comboZoom=0;
 
+    int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+    toolBar->setIconSize(QSize(sz,sz));
 	if(embedded){
-		int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
-		toolBar->setIconSize(QSize(sz,sz));
-		QWidget *spacer = new QWidget(toolBar);
+        QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 		toolBar->insertWidget(actionClose, spacer);
 	}
@@ -3869,6 +3869,9 @@ void PDFDocument::showToolbars()
 		QPoint posChange = scrollArea->mapToGlobal(QPoint(0, 0)) - widgetPos;
 		scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() + posChange.y());
 	}
+}
+void PDFDocument::setToolbarIconSize(int sz){
+    toolBar->setIconSize(QSize(sz,sz));
 }
 
 void PDFDocument::showMessage(const QString &text)
