@@ -404,6 +404,7 @@ public slots:
 	void setAutoHideToolbars(bool enabled);
 	void hideToolbars();
 	void showToolbars();
+    void setToolbarIconSize(int sz);
 	void showMessage(const QString &text);
 
     void splitMergeTool();
