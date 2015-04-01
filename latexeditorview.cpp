@@ -2439,6 +2439,14 @@ void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
 	}
 }
 
+QString LatexEditorView::getLastEnvName(int lineNumber){
+    StackEnvironment env;
+    getEnv(lineNumber,env);
+    if(env.isEmpty())
+        return "";
+    return env.top().name;
+}
+
 /*
  * If the cursor is at the border of a parenthesis, this returns a QDocumentCursor with a selection of the parenthized text.
  * Otherwise, a default QDocumentCursor is returned.

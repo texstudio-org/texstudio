@@ -131,6 +131,7 @@ public:
 
 	static void selectOptionInLatexArg(QDocumentCursor &cur);
     void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
+    Q_INVOKABLE QString getLastEnvName(int lineNumber); // special function to use with javascript (insert "\item" from menu)
 	QDocumentCursor parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses=true);
 	QDocumentCursor findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats);
     void setLatexPackageList(QSet<QString> *lst){
