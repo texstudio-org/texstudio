@@ -38,7 +38,9 @@ public:
 	int usageCount;
 	uint index;
 	int snippetLength;
-
+	
+	QString expandCode(const QString &code);
+	QString environmentContent(const QString &envName);
 	void insert(QEditor* editor) const;
 	void insertAt(QEditor* editor, QDocumentCursor* cursor, PlaceholderMode placeholderMode=PlacehodersActive, bool byCompleter=false, bool isKeyVal=false) const;
 

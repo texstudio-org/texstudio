@@ -78,23 +78,7 @@ bool CodeSnippet::autoReplaceCommands=true;
 bool CodeSnippet::debugDisableAutoTranslate = false;
 
 CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
-	QString realNewWord=newWord;
-	// \begin magic
-	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>" ||
-	    newWord == "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"){
-		realNewWord = "\\begin{%<"+QObject::tr("*environment-name*")+"%:select,id:2%>}\n"
-			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
-			      "\\end{%<"+QObject::tr("*environment-name*")+"%:mirror,id:2%>}";
-	} else if (realNewWord.startsWith("\\begin{")&&
-		!realNewWord.contains("\n")&&!realNewWord.contains("%n") //only a single line
-	    && realNewWord.lastIndexOf("\\") == 0) //only one latex command in the line
-	{
-		int p=newWord.indexOf("{");
-		QString environmentName=realNewWord.mid(p,newWord.indexOf("}")-p+1); //contains the {}
-		QString content="%<"+QObject::tr("content...")+"%:multiline%>";
-		realNewWord+="\n"+content+"\n\\end"+environmentName;
-	}
-
+	QString realNewWord = expandCode(newWord);
 	cursorLine=-1;
 	cursorOffset=-1;
 	anchorOffset=-1;
@@ -222,6 +206,45 @@ bool CodeSnippet::operator== (const CodeSnippet &cw) const {
 	return cw.word == word;
 }
 
+/*!
+ * expands special snipets such as environment templates
+ */
+QString CodeSnippet::expandCode(const QString &code)
+{
+	if (code == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>" ||
+	    code == "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>")
+	{
+		// environment template
+		return "\\begin{%<"+QObject::tr("*environment-name*")+"%:select,id:2%>}\n"
+			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
+			      "\\end{%<"+QObject::tr("*environment-name*")+"%:mirror,id:2%>}";
+	} else if (code.startsWith("\\begin{") &&
+			   !code.contains("\n") && !code.contains("%n") &&  // only a single line
+			   code.lastIndexOf("\\") == 0)                     // only one latex command in the line
+	{
+		// plain \begin{env}
+		int p = code.indexOf("{") + 1;
+		QString environmentName = code.mid(p, code.indexOf("}")-p); //contains the {}
+		return code + "\n" + environmentContent(environmentName) + "\n\\end{" + environmentName + "}";
+	}
+	return code;
+	
+}
+
+/*!
+ * returns the content to be inserted into an environment upon environment snippet expansion
+ * This is currently hard coded for the most common cases. Might become user-definable in the future
+ * (via addition to the snippet code (what would that imply for cwls?) or other means
+ */
+QString CodeSnippet::environmentContent(const QString &envName) {
+	if (envName == "enumerate" || envName == "itemize") {
+		return "\\item %<"+QObject::tr("content...")+"%:multiline%>";
+	} else if (envName == "description") {
+		return "\\item[%<"+QObject::tr("label")+"%:multiline%>]";
+	} else {
+		return "%<"+QObject::tr("content...")+"%:multiline%>";
+	}
+}
 
 void CodeSnippet::insert(QEditor* editor) const{
 	if (!editor) return;
