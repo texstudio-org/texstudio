@@ -1248,6 +1248,7 @@ void QEditor::print()
 
 	// TODO : create a custom print dialog, page range sucks, lines range would be better
 	QPrintDialog dialog(&printer, this);
+	dialog.setWindowTitle(tr("Print Source Code"));
 	dialog.setEnabledOptions(QPrintDialog::PrintToFile | QPrintDialog::PrintPageRange);
 
 	if ( dialog.exec() == QDialog::Accepted )
