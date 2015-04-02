@@ -368,14 +368,14 @@ QStringList getEnvironmentPathList() {
 
 void updatePathSettings(QProcess* proc, QString additionalPaths)
 {
-	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	QString path(getEnvironmentPath());
 	if (!additionalPaths.isEmpty()) {
 		path += getPathListSeparator() + additionalPaths;
-	}
-	env.insert("PATH", path);
+    }
+    env.insert("PATH", path);
 	// Note: this modifies the path only for the context of the called program. It does not affect the search path for the program itself.
-	proc->setProcessEnvironment(env);
+    proc->setProcessEnvironment(env);
 }
 
 int x11desktop_env() {
