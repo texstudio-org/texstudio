@@ -238,9 +238,9 @@ QString CodeSnippet::expandCode(const QString &code)
  */
 QString CodeSnippet::environmentContent(const QString &envName) {
 	if (envName == "enumerate" || envName == "itemize") {
-		return "\\item %<"+QObject::tr("content...")+"%:multiline%>";
+        return "\\item %|";
 	} else if (envName == "description") {
-		return "\\item[%<"+QObject::tr("label")+"%:multiline%>]";
+        return "\\item[%<"+QObject::tr("label")+"%:multiline%>] %<"+QObject::tr("description")+"%>";
 	} else {
 		return "%<"+QObject::tr("content...")+"%:multiline%>";
 	}

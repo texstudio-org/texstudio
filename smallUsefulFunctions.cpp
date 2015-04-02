@@ -1822,7 +1822,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
         QRegExp rxCom3("^(\\\\\\w+\\*?)");
 	    rxCom.setMinimal(true);
 	    QStringList keywords;
-	    keywords << "text" << "title";
+        keywords << "text" << "title" << "%<text%>" << "%<title%>";
         QStringList specialTreatment;
         specialTreatment << "color";
         QString keyvals;
