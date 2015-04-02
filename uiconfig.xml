@@ -52,7 +52,7 @@
     var env=editorView.getLastEnvName(ln);
     var ins=&quot;\\item&quot;
     if(env==&quot;description&quot;){
-	ins=ins+&quot;[%&lt;desc%&gt;] %&lt;text%&gt;&quot;
+	ins=ins+&quot;[%&lt;label%&gt;] %&lt;description%&gt;&quot;
     }else{
 	ins=ins+&quot; &quot;
     }
