@@ -9,6 +9,7 @@ UpdateChecker * UpdateChecker::m_Instance = 0;
 UpdateChecker::UpdateChecker() :
 	QObject(0), silent(true)
 {
+	QNetworkProxyFactory::setUseSystemConfiguration(true);
 	networkManager = new QNetworkAccessManager();
 }
 
