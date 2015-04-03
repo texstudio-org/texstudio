@@ -428,7 +428,7 @@ SymbolGridWidget* Texmaker::addSymbolGrid(const QString& SymbolList,  const QStr
 	SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(leftPanel->widget(SymbolList));
 	if (!list) {
 		list=new SymbolGridWidget(this,SymbolList,MapForSymbols);
-        list->setSymbolSize(configManager.guiSymbolSize);
+        list->setSymbolSize(configManager.guiSymbolGridIconSize);
 		list->setProperty("isSymbolGrid",true);
 		connect(list, SIGNAL(itemClicked(QTableWidgetItem*)), this, SLOT(InsertSymbol(QTableWidgetItem*)));
 		connect(list, SIGNAL(itemPressed(QTableWidgetItem*)), this, SLOT(InsertSymbolPressed(QTableWidgetItem*)));
@@ -5763,8 +5763,8 @@ void Texmaker::GeneralOptions() {
 #endif
     // GUI scaling
     connect(&configManager,SIGNAL(iconSizeChanged(int)),this,SLOT(changeIconSize(int)));
-    connect(&configManager,SIGNAL(centralIconSizeChanged(int)),this,SLOT(changeCentralIconSize(int)));
-    connect(&configManager,SIGNAL(symbolSizeChanged(int)),this,SLOT(changeSymbolSize(int)));
+    connect(&configManager,SIGNAL(secondaryIconSizeChanged(int)),this,SLOT(changeSecondaryIconSize(int)));
+    connect(&configManager,SIGNAL(symbolGridIconSizeChanged(int)),this,SLOT(changeSymbolGridIconSize(int)));
 
 	if (configManager.execConfigDialog()) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -5842,15 +5842,15 @@ void Texmaker::GeneralOptions() {
 			updateUserMacros();
         // scale GUI
         changeIconSize(configManager.guiToolbarIconSize);
-        changeCentralIconSize(configManager.guiSecondaryToolbarIconSize);
-        changeSymbolSize(configManager.guiSymbolSize,false);
+        changeSecondaryIconSize(configManager.guiSecondaryToolbarIconSize);
+        changeSymbolGridIconSize(configManager.guiSymbolGridIconSize,false);
         /*setIconSize(QSize(configManager.guiToolbarIconSize,configManager.guiToolbarIconSize));
         centralToolBar->setIconSize(QSize(configManager.guiSecondaryToolbarIconSize,configManager.guiSecondaryToolbarIconSize));
         QList<QWidget*> lstOfWidgets=leftPanel->getWidgets();
         foreach(QWidget *wdg,lstOfWidgets){
             SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(wdg);
             if(list){
-                list->setSymbolSize(configManager.guiSymbolSize);
+                list->setSymbolSize(configManager.guiSymbolGridIconSize);
             }
         }*/
 		//custom toolbar
@@ -9528,18 +9528,18 @@ void Texmaker::changeIconSize(int value)
 #endif
 }
 
-void Texmaker::changeCentralIconSize(int value)
+void Texmaker::changeSecondaryIconSize(int value)
 {
-    centralToolBar->setIconSize(QSize(value,value));
+	centralToolBar->setIconSize(QSize(value,value));
+	leftPanel->setToolbarIconSize(value);
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
 		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(value);
 	}
-	leftPanel->setToolbarIconSize(value);
 #endif
 }
 
-void Texmaker::changeSymbolSize(int value,bool changePanel)
+void Texmaker::changeSymbolGridIconSize(int value,bool changePanel)
 {
 	if(changePanel && !qobject_cast<SymbolGridWidget*>(leftPanel->currentWidget())){
 		// no symbols visible - make them visible for the life-updates

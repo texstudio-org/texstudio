@@ -548,7 +548,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
 	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
-    registerOption("GUI/SymbolSize", &guiSymbolSize, 32);
+    registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
 	
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
@@ -1288,10 +1288,10 @@ bool ConfigManager::execConfigDialog() {
     // set scaling sizes
     confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
     confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
-    confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolSize);
+    confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
     connect(confDlg->ui.horizontalSliderIcon,SIGNAL(valueChanged(int)),SIGNAL(iconSizeChanged(int)));
-    connect(confDlg->ui.horizontalSliderCentraIcon,SIGNAL(valueChanged(int)),SIGNAL(centralIconSizeChanged(int)));
-    connect(confDlg->ui.horizontalSliderSymbol,SIGNAL(valueChanged(int)),SIGNAL(symbolSizeChanged(int)));
+    connect(confDlg->ui.horizontalSliderCentraIcon,SIGNAL(valueChanged(int)),SIGNAL(secondaryIconSizeChanged(int)));
+    connect(confDlg->ui.horizontalSliderSymbol,SIGNAL(valueChanged(int)),SIGNAL(symbolGridIconSizeChanged(int)));
 	
 	//EXECUTE IT
 	bool executed = confDlg->exec();
@@ -1558,7 +1558,7 @@ bool ConfigManager::execConfigDialog() {
         // GUI scaling
         guiToolbarIconSize=confDlg->ui.horizontalSliderIcon->value();
         guiSecondaryToolbarIconSize=confDlg->ui.horizontalSliderCentraIcon->value();
-        guiSymbolSize=confDlg->ui.horizontalSliderSymbol->value();
+        guiSymbolGridIconSize=confDlg->ui.horizontalSliderSymbol->value();
 		
 	}
 	delete confDlg;
