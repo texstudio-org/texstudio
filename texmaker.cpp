@@ -9535,6 +9535,7 @@ void Texmaker::changeCentralIconSize(int value)
 	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
 		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(value);
 	}
+	leftPanel->setToolbarIconSize(value);
 #endif
 }
 
