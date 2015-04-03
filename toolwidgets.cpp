@@ -595,8 +595,7 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 		toolbar->setOrientation(Qt::Vertical);
 		toolbar->setMovable(false);
 
-		int sz = qMax(16, ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
-		toolbar->setIconSize(QSize(sz, sz));
+		setToolbarIconSize(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
 
 		stack=new QStackedWidget(this);
 
@@ -633,6 +632,10 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 	}
 	if (!widgets.empty()) //name after active (first) widget
 		setWindowTitle(widgets.first()->property("Name").toString());
+}
+void CustomWidgetList::setToolbarIconSize(int sz)
+{
+	toolbar->setIconSize(QSize(sz, sz));
 }
 int CustomWidgetList::widgetCount() const{
 	return widgets.count();

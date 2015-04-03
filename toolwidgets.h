@@ -133,6 +133,7 @@ signals:
 	void widgetContextMenuRequested(QWidget* widget, const QPoint& globalPosition);
 public slots:
 	void showWidgets(bool newLayoutStyle);
+	void setToolbarIconSize(int sz);
 private slots:
 	void showPageFromAction();
 	void currentWidgetChanged(int i);
