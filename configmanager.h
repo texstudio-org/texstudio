@@ -68,7 +68,7 @@ public:
 	QPalette systemPalette; 
 	QString interfaceStyle;
 	QString interfaceFontFamily;
-    int guiToolbarIconSize,guiSymbolSize;
+    int guiToolbarIconSize,guiSymbolGridIconSize;
 	int guiSecondaryToolbarIconSize;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
@@ -238,8 +238,8 @@ signals:
 	void newLeftPanelLayoutChanged(bool newValue);
 	void watchedMenuChanged(const QString& menuId);
     void iconSizeChanged(int value);
-    void centralIconSizeChanged(int value);
-    void symbolSizeChanged(int value);
+    void secondaryIconSizeChanged(int value);
+    void symbolGridIconSizeChanged(int value);
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName,configBaseDir;

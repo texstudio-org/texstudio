@@ -430,8 +430,8 @@ protected slots:
     void searchExtendToggled(bool toggled);
 
     void changeIconSize(int value);
-    void changeCentralIconSize(int value);
-    void changeSymbolSize(int value, bool changePanel=true);
+    void changeSecondaryIconSize(int value);
+    void changeSymbolGridIconSize(int value, bool changePanel=true);
 
 public slots:
 	void connectSubCommand(ProcessX* p, bool showStdoutLocallyDefault);
