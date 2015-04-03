@@ -9189,6 +9189,7 @@ void recover(){
 }
 void Texmaker::recoverFromCrash(){
 	bool wasLoop;
+	QString backtraceFilename;
 	QString name = getLastCrashInformation(wasLoop);
 	if (QThread::currentThread() != QCoreApplication::instance()->thread()) {
 		QThread* t = QThread::currentThread();
@@ -9200,7 +9201,7 @@ void Texmaker::recoverFromCrash(){
 			if (t &&  t == killAtCrashedThread) {
 				name += QString(" forced kill in %1").arg((long int)t, sizeof(long int)*2, 16,QChar('0'));
 				name += QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_HG_REVISION).arg(COMPILED_DEBUG_OR_RELEASE);
-				print_backtrace(name);
+				backtraceFilename = print_backtrace(name);
 				exit(1);
 			}
 		};
@@ -9217,7 +9218,7 @@ void Texmaker::recoverFromCrash(){
 	fprintf(stderr, "crashed with signal %s\n", qPrintable(name));
 	
 	if (nestedCrashes <= 2) {
-		print_backtrace(name + QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_HG_REVISION).arg(COMPILED_DEBUG_OR_RELEASE));
+		backtraceFilename = print_backtrace(name + QString(" (TXS-Version %1 %2 )").arg(TEXSTUDIO_HG_REVISION).arg(COMPILED_DEBUG_OR_RELEASE));
 	}
 
 	//hide editor views in case the error occured during drawing
@@ -9235,12 +9236,17 @@ void Texmaker::recoverFromCrash(){
 	
 	QMessageBox * mb = new QMessageBox(); //Don't use the standard methods like ::critical, because they load an icon, which will cause a crash again with gtk. ; mb must be on the heap, or continuing a paused loop can crash
 	mb->setWindowTitle(tr("TeXstudio Emergency"));
+	QString backtraceMsg;
+	if (QFileInfo(backtraceFilename).exists()) {
+		qDebug() << backtraceFilename;
+		backtraceMsg = tr("A backtrace was written to\n%1\nPlease provide this file if you send a bug report.\n\n").arg(QDir::toNativeSeparators(backtraceFilename));
+	}
 	if (!wasLoop) {
-		mb->setText(tr( "TeXstudio has CRASHED due to a %1.\nDo you want to keep it running? This may cause data corruption.").arg(name));
+		mb->setText(tr( "TeXstudio has CRASHED due to a %1.\n\n%2Do you want to keep TeXstudio running? This may cause data corruption.").arg(name).arg(backtraceMsg));
 		mb->setDefaultButton(mb->addButton(tr("Yes, try to recover"), QMessageBox::AcceptRole));
 		mb->addButton(tr("No, kill the program"), QMessageBox::RejectRole); //can't use destructiverole, it always becomes rejectrole
 	} else {
-		mb->setText(tr( "TeXstudio has been paused due to a possible endless loop.\nDo you want to keep the program running? This may cause data corruption."));
+		mb->setText(tr( "TeXstudio has been paused due to a possible endless loop.\n\n%1Do you want to keep the program running? This may cause data corruption.").arg(backtraceMsg));
 		mb->setDefaultButton(mb->addButton(tr("Yes, stop the loop and try to recover"), QMessageBox::AcceptRole));
 		mb->addButton(tr("Yes, continue the loop"), QMessageBox::RejectRole);
 		mb->addButton(tr("No, kill the program"), QMessageBox::DestructiveRole);

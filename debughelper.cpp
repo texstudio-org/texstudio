@@ -411,7 +411,7 @@ QStringList backtrace_symbols_win(void**, int){
 
 
 
-void print_backtrace(const SimulatedCPU& state, const QString& message){
+QString print_backtrace(const SimulatedCPU& state, const QString& message){
 #ifdef Q_OS_WIN32
 	qDebug("%s", qPrintable(message));
 #define PRINT(...) do { qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__);  } while (0)
@@ -422,7 +422,8 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 #endif
 	static int count = 0;
 	count++;
-	FILE* logFile = fopen(qPrintable(temporaryFileNameFormat().arg(count)), "w");
+	QString backtraceFilename = temporaryFileNameFormat().arg(count);
+	FILE* logFile = fopen(qPrintable(backtraceFilename), "w");
 	PRINT("%s\n", qPrintable(message));
 
 	void *trace[48];
@@ -451,12 +452,13 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 	}
 
 	if (logFile) fclose(logFile);
+	return backtraceFilename;
 }
 
-void print_backtrace(const QString& message){
+QString print_backtrace(const QString& message){
 	SimulatedCPU cpu;
 	cpu.set_from_real();
-	print_backtrace(cpu, message);
+	return print_backtrace(cpu, message);
 }
 
 
