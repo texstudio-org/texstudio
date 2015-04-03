@@ -6349,7 +6349,7 @@ void Texmaker::restoreMacMenuBar(){
 QObject* Texmaker::newPdfPreviewer(bool embedded){
 #ifndef NO_POPPLER_PREVIEW
     PDFDocument* pdfviewerWindow=new PDFDocument(configManager.pdfDocumentConfig,embedded);
-    pdfviewerWindow->setToolbarIconSize(configManager.guiToolbarIconSize);
+    pdfviewerWindow->setToolbarIconSize(pdfviewerWindow->embeddedMode ? configManager.guiSecondaryToolbarIconSize : configManager.guiToolbarIconSize);
 	if(embedded){
 		mainHSplitter->addWidget(pdfviewerWindow);
 		QList<int> sz=mainHSplitter->sizes(); // set widths to 50%, eventually restore user setting
@@ -9520,16 +9520,22 @@ void Texmaker::searchExtendToggled(bool toggled){
 
 void Texmaker::changeIconSize(int value)
 {
-    setIconSize(QSize(value,value));
+	setIconSize(QSize(value,value));
 #ifndef NO_POPPLER_PREVIEW
-    if(!PDFDocument::documentList().isEmpty())
-        PDFDocument::documentList().first()->setToolbarIconSize(value);
+	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
+		if (!pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(value);
+	}
 #endif
 }
 
 void Texmaker::changeCentralIconSize(int value)
 {
     centralToolBar->setIconSize(QSize(value,value));
+#ifndef NO_POPPLER_PREVIEW
+	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
+		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(value);
+	}
+#endif
 }
 
 void Texmaker::changeSymbolSize(int value,bool changePanel)
