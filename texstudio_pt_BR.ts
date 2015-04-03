@@ -1345,7 +1345,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <location line="+14"/>
         <source>Scale Toolbar</source>
         <oldsource>scale symbols</oldsource>
-        <translation>Barra de ferramentas de redimensionamento</translation>
+        <translation>Redimensionar barra de ferramentas</translation>
     </message>
     <message>
         <location line="+217"/>
@@ -1460,12 +1460,12 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+28"/>
         <source>Scale Symbols</source>
-        <translation>Redimensionar Símbolos</translation>
+        <translation>Redimensionar símbolos</translation>
     </message>
     <message>
         <location line="+900"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar elementos estruturais após \end{document}</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -1475,7 +1475,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+7"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"></translation>
+        <translation>Marcar elementos estruturais no apêndice</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -7269,7 +7269,7 @@ Você deseja atualizar recarregando o arquivo?
     <message>
         <location line="+1"/>
         <source>Find previous</source>
-        <translation type="unfinished">Localizar anterior</translation>
+        <translation>Localizar anterior</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -10187,7 +10187,7 @@ falhou.</translation>
     <message>
         <location line="+307"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja depurar um arquivo SyncTeX?</translation>
     </message>
     <message>
         <location line="+687"/>
@@ -10217,7 +10217,7 @@ falhou.</translation>
     <message>
         <location line="+1"/>
         <source>Verbose permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>Permissões verbose</translation>
     </message>
     <message>
         <location line="+171"/>
