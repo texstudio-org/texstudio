@@ -5,7 +5,7 @@
 #include "smallUsefulFunctions.h"
 
 
-void print_backtrace(const QString& message);
+QString print_backtrace(const QString& message);
 
 void recover(); //defined in texmaker.cpp
 
