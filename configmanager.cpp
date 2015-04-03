@@ -573,6 +573,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Geometries/PdfViewerHeight", &pdfDocumentConfig->windowHeight, screen.height()-100);
 	registerOption("Geometries/PdfViewerMaximized", &pdfDocumentConfig->windowMaximized, false);
 	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
+	registerOption("Preview/ToolbarVisible", &pdfDocumentConfig->toolbarVisible, true);
+	registerOption("Preview/AnnotationPanelVisible", &pdfDocumentConfig->annotationPanelVisible, false);
 	
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
 	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);

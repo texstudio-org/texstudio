@@ -2103,9 +2103,9 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		resize(w,h); //important to first resize then move
 		move(x,y);
 		if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
-		setToolbarsVisible(true);
+		toolBar->setVisible(globalConfig->toolbarVisible);
+		statusbar->setVisible(true);
 	}
-
 	if (embeddedMode && globalConfig->autoHideToolbars) {
 		setAutoHideToolbars(true);
 	}
@@ -2462,7 +2462,7 @@ void PDFDocument::init(bool embedded)
 
 	annotationPanel = new TitledPanel();
 	annotationPanel->toggleViewAction()->setText(tr("Annotations"));
-	annotationPanel->setVisible(false);
+	annotationPanel->setVisible(globalConfig->annotationPanelVisible);
 	annotationTable = new PDFAnnotationTableView();
 	TitledPanelPage * annotationPage = new TitledPanelPage(annotationTable, "pdfannotations", tr("Annotations"));
 	annotationPanel->appendPage(annotationPage);
@@ -3380,6 +3380,8 @@ void PDFDocument::saveGeometryToConfig()
 	globalConfig->windowHeight = height();
 	globalConfig->windowMaximized = isMaximized();
 	globalConfig->windowState = saveState();
+	globalConfig->toolbarVisible = toolBar->isVisible();
+	globalConfig->annotationPanelVisible = annotationPanel->isVisible();
 }
 
 void PDFDocument::zoomToRight(QWidget *otherWindow)
