@@ -2,6 +2,7 @@
 #include "smallUsefulFunctions.h"
 #include "configmanager.h"
 #include <QNetworkReply>
+#include <QNetworkProxyFactory>
 #include <QMutex>
 
 UpdateChecker * UpdateChecker::m_Instance = 0;
