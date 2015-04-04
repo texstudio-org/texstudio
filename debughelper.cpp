@@ -1185,7 +1185,7 @@ void catchUnhandledException(){
  // defined NO_CRASH_HANDLER
  
 
-void print_backtrace(const QString& message){Q_UNUSED(message)}
+QString print_backtrace(const QString& message){Q_UNUSED(message) return "";}
 void registerCrashHandler(int mode){Q_UNUSED(mode)}
 QString getLastCrashInformation(bool & wasLoop){Q_UNUSED(wasLoop); return "";}
 void catchUnhandledException(){}
