@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>13</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -3333,487 +3333,518 @@ them here.</string>
         <number>0</number>
        </property>
        <item>
-        <widget class="QGroupBox" name="groupBox_5">
-         <property name="title">
-          <string>Segment Preview</string>
+        <widget class="QScrollArea" name="scrollArea_4">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_31">
-            <property name="text">
-             <string>Command:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxDvi2PngMode">
-            <property name="advancedOption" stdset="0">
-             <bool>false</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Preview with dvipng</string>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_6">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>880</width>
+            <height>617</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_13">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QGroupBox" name="groupBox_5">
+             <property name="title">
+              <string>Segment Preview</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Preview with dvipng --follow (parallel)</string>
+             <layout class="QGridLayout" name="gridLayout_5">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_31">
+                <property name="text">
+                 <string>Command:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="comboBoxDvi2PngMode">
+                <property name="advancedOption" stdset="0">
+                 <bool>false</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Preview with dvipng</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Preview with dvipng --follow (parallel)</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Preview with dvips/ghostscript</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Preview with pdflatex</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_32">
+                <property name="text">
+                 <string>Display Mode:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QComboBox" name="comboBoxPreviewMode">
+                <property name="advancedOption" stdset="0">
+                 <bool>false</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Show preview as tooltip if panel is hidden</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Always show preview in preview panel</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Always show preview as tool tip</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Always show both</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Inline</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string extracomment="Only available if pdflatex is used for compilation">Show in embedded viewer</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_35">
+                <property name="toolTip">
+                 <string>Update the preview on text change</string>
+                </property>
+                <property name="text">
+                 <string>Auto Update:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QComboBox" name="comboBoxAutoPreview">
+                <item>
+                 <property name="text">
+                  <string>Never</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Previously previewed text</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_36">
+                <property name="text">
+                 <string>Auto Update Delay:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSpinBox" name="spinBoxAutoPreviewDelay">
+                <property name="minimum">
+                 <number>40</number>
+                </property>
+                <property name="maximum">
+                 <number>3000</number>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QCheckBox" name="checkBoxReplaceBeamer">
+                <property name="text">
+                 <string>Replace beamer class by article</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
+                <property name="text">
+                 <string>Precompile Preamble</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipPreview">
+                <property name="text">
+                 <string>Show preview as tooltip on formulas in editor</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_8">
+             <property name="title">
+              <string>Full Page PDF Preview</string>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Preview with dvips/ghostscript</string>
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_66">
+                <property name="text">
+                 <string>Highlight Duration</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QSpinBox" name="spinBoxHighlightDuration">
+                <property name="specialValueText">
+                 <string>Infinite</string>
+                </property>
+                <property name="suffix">
+                 <string notr="true"> ms</string>
+                </property>
+                <property name="maximum">
+                 <number>86400000</number>
+                </property>
+                <property name="value">
+                 <number>2000</number>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>Scale Option:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="comboBoxPreviewScale">
+                <item>
+                 <property name="text">
+                  <string>Original Size</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Fit to Window Width</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Fit to Window Size</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Scaled Size</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Fit to Text Width</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_29">
+                <property name="text">
+                 <string>Scaling:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewScale">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="suffix">
+                 <string>%</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string>Screen Resolution:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewDPI">
+                <property name="suffix">
+                 <string> dpi</string>
+                </property>
+                <property name="maximum">
+                 <number>600</number>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_26">
+                <property name="text">
+                 <string>Magnifier Shape:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QComboBox" name="comboBoxPreviewMagnifierShape">
+                <item>
+                 <property name="text">
+                  <string>Square</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Circle</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_25">
+                <property name="text">
+                 <string>Magnifier Size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
+                <property name="suffix">
+                 <string> px</string>
+                </property>
+                <property name="prefix">
+                 <string/>
+                </property>
+                <property name="minimum">
+                 <number>50</number>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+                <property name="singleStep">
+                 <number>50</number>
+                </property>
+                <property name="value">
+                 <number>300</number>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
+                <property name="text">
+                 <string>Border</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_34">
+                <property name="text">
+                 <string>Synchronized Files Types:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QLineEdit" name="lineEditPreviewSyncFileMask">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>Cache Size:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QSpinBox" name="spinBoxCacheSizeMB">
+                <property name="suffix">
+                 <string> MB</string>
+                </property>
+                <property name="minimum">
+                 <number>100</number>
+                </property>
+                <property name="maximum">
+                 <number>1024</number>
+                </property>
+                <property name="singleStep">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>512</number>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0">
+               <widget class="QCheckBox" name="autoHideToolbars">
+                <property name="text">
+                 <string>Auto-hide Toolbars in Embedded Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_67">
+                <property name="text">
+                 <string>Highlight Color</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QLineEdit" name="lineEditHighlightColor">
+                <property name="toolTip">
+                 <string>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</string>
+                </property>
+                <property name="inputMask">
+                 <string>\#HHHHHHHH;_</string>
+                </property>
+                <property name="text">
+                 <string notr="true">#</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_69">
+                <property name="text">
+                 <string>Load Strategy:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="1">
+               <widget class="QComboBox" name="comboBoxPDFLoadStrategy">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="currentIndex">
+                 <number>2</number>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Buffered</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Direct</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Hybrid</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
              </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Preview with pdflatex</string>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>1</height>
+              </size>
              </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_32">
-            <property name="text">
-             <string>Display Mode:</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="comboBoxPreviewMode">
-            <property name="advancedOption" stdset="0">
-             <bool>false</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Show preview as tooltip if panel is hidden</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always show preview in preview panel</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always show preview as tool tip</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Always show both</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Inline</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string extracomment="Only available if pdflatex is used for compilation">Show in embedded viewer</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_35">
-            <property name="toolTip">
-             <string>Update the preview on text change</string>
-            </property>
-            <property name="text">
-             <string>Auto Update:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="comboBoxAutoPreview">
-            <item>
-             <property name="text">
-              <string>Never</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Previously previewed text</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_36">
-            <property name="text">
-             <string>Auto Update Delay:</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QSpinBox" name="spinBoxAutoPreviewDelay">
-            <property name="minimum">
-             <number>40</number>
-            </property>
-            <property name="maximum">
-             <number>3000</number>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QCheckBox" name="checkBoxReplaceBeamer">
-            <property name="text">
-             <string>Replace beamer class by article</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
-            <property name="text">
-             <string>Precompile Preamble</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxToolTipPreview">
-            <property name="text">
-             <string>Show preview as tooltip on formulas in editor</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
         </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_8">
-         <property name="title">
-          <string>Full Page PDF Preview</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_4">
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_66">
-            <property name="text">
-             <string>Highlight Duration</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QSpinBox" name="spinBoxHighlightDuration">
-            <property name="specialValueText">
-             <string>Infinite</string>
-            </property>
-            <property name="suffix">
-             <string notr="true"> ms</string>
-            </property>
-            <property name="maximum">
-             <number>86400000</number>
-            </property>
-            <property name="value">
-             <number>2000</number>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_28">
-            <property name="text">
-             <string>Scale Option:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="comboBoxPreviewScale">
-            <item>
-             <property name="text">
-              <string>Original Size</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fit to Window Width</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fit to Window Size</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Scaled Size</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fit to Text Width</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_29">
-            <property name="text">
-             <string>Scaling:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="spinBoxPreviewScale">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="suffix">
-             <string>%</string>
-            </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>10000</number>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_27">
-            <property name="text">
-             <string>Screen Resolution:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QSpinBox" name="spinBoxPreviewDPI">
-            <property name="suffix">
-             <string> dpi</string>
-            </property>
-            <property name="maximum">
-             <number>600</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_26">
-            <property name="text">
-             <string>Magnifier Shape:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="comboBoxPreviewMagnifierShape">
-            <item>
-             <property name="text">
-              <string>Square</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Circle</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_25">
-            <property name="text">
-             <string>Magnifier Size:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
-            <property name="suffix">
-             <string> px</string>
-            </property>
-            <property name="prefix">
-             <string/>
-            </property>
-            <property name="minimum">
-             <number>50</number>
-            </property>
-            <property name="maximum">
-             <number>10000</number>
-            </property>
-            <property name="singleStep">
-             <number>50</number>
-            </property>
-            <property name="value">
-             <number>300</number>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
-            <property name="text">
-             <string>Border</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label_34">
-            <property name="text">
-             <string>Synchronized Files Types:</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1">
-           <widget class="QLineEdit" name="lineEditPreviewSyncFileMask">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0">
-           <widget class="QLabel" name="label_18">
-            <property name="text">
-             <string>Cache Size:</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
-           <widget class="QSpinBox" name="spinBoxCacheSizeMB">
-            <property name="suffix">
-             <string> MB</string>
-            </property>
-            <property name="minimum">
-             <number>100</number>
-            </property>
-            <property name="maximum">
-             <number>1024</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
-            </property>
-            <property name="value">
-             <number>512</number>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0">
-           <widget class="QCheckBox" name="autoHideToolbars">
-            <property name="text">
-             <string>Auto-hide Toolbars in Embedded Mode</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_67">
-            <property name="text">
-             <string>Highlight Color</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QLineEdit" name="lineEditHighlightColor">
-            <property name="toolTip">
-             <string>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</string>
-            </property>
-            <property name="inputMask">
-             <string>\#HHHHHHHH;_</string>
-            </property>
-            <property name="text">
-             <string notr="true">#</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="label_69">
-            <property name="text">
-             <string>Load Strategy:</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="1">
-           <widget class="QComboBox" name="comboBoxPDFLoadStrategy">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="currentIndex">
-             <number>2</number>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Buffered</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Direct</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hybrid</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>359</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
