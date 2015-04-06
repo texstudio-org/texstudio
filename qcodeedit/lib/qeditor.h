@@ -90,6 +90,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			LineWrap		= 0x00001000,
 			HardLineWrap		= 0x00002000,
 			LineWidthConstraint	= 0x00004000,
+			// 0x00008000 used by ReplaceTextTabs below
 			
 			CtrlNavigation		= 0x00010000,
 			CursorJumpPastWrap	= 0x00020000,
@@ -97,7 +98,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			SmoothScrolling		= 0x00040000,
 			MouseWheelZoom		= 0x00080000,
 
-			ReplaceTabs		= 0x00100000,
+			ReplaceIndentTabs		= 0x00100000,
+			ReplaceTextTabs		= 0x00008000,
 			RemoveTrailing		= 0x00200000,
 			PreserveTrailingIndent	= 0x00400000,
 			AdjustIndent		= 0x00800000,
@@ -179,7 +181,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			PreviousPlaceHolder,
 			NextPlaceHolderOrWord,
 			PreviousPlaceHolderOrWord,
-            TabOrIndentSelection,
+			TabOrIndentSelection,
+			InsertTab,
 			IndentSelection,
 			UnindentSelection
 		};
@@ -386,7 +389,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void gotoLine();
 		
-        void tabOrIndentSelection();
+		void tabOrIndentSelection();
+		void insertTab();
 		void indentSelection();
 		void unindentSelection();
 		

@@ -10,7 +10,8 @@ class LatexEditorViewConfig
 public:
 	bool parenmatch, parenComplete;
 	bool autoindent, weakindent;
-	bool indentWithSpaces;
+	bool replaceIndentTabs;
+	bool replaceTextTabs;
 	bool showWhitespace;
 	int tabStop;
 	int showlinemultiples;
