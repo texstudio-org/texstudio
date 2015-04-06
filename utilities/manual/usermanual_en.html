@@ -106,7 +106,7 @@
 <hr>
 
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
-<p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advancde options" in the lower left corner.</p>
+<p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advanced options" in the lower left corner.</p>
 <h2 id="SECTION01">1.1 Configuring the editor</h2>
 <p>
 You may change the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
@@ -1227,27 +1227,27 @@ To launch TeXstudio from skim : Command: <span class="command">/applications/tex
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 </p>
 <h2 id="SECTION_TEXCOM">4.10 Advanced header usage</h2>
-<p>Texstudio can use special, "magic" comments in the text to adapt options for that document.
+<p>So called "magic comments" are a way to adapt the options of the editor on a per-document level. The concept was <a href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a> and has been adopted in a number of editors since. TeXstudio supports the following magic comments:</p>
 <ul class="magiccomments">
 <li>
 <code>% !TeX spellcheck = de_DE</code>
-<p>This special comment tells txs that this document is written in German and German spell checking is to be used, independent on any general settings.
+<p>Defines the language used for spell checking of the document. This overrides the global spellchecking settings. Nevertheless, an appropriate dictionary has to be installed.</p>
 </li>
 <li>
 <code>% !TeX encoding = utf8</code>
-<p>The code defines the character encoding of a document.
+<p>Defines the character encoding of a document.
 </li>
 <li>
 <code>% !TeX root = filename</code>
-<p>The code defines the master document for this file.
+<p>Defines the master document for this file (i.e. the file which will be passed to the LaTeX compiler when building).
 </li>
 <li>
 <code>% !TeX program = pdflatex</code>
-<p>This marks the document as to be compiled with pdflatex. (i.e. overrides the default txs:///quick command)
+<p>Defines the compiler to be used for the document. To be precise, it overrides the default compiler (command <code>txs:///compile</code>) which is used in the actions "Build & View" as well as "Compile".
 </li>
 <li>
-<code>% !TeX TXS-program:latex = txs:///xelatex %</code>
-<p>This overrides the default txs:///latex command to call xelatex instead
+<code>% !TeX TXS-program:bibliography = txs:///biber</code>
+<p>This is a TeXstudio-specific setting. It overrides the build-system command specified to the left by the one on the right. In the example, we tell TXS to use the biber command (<code>txs:///biber</code>) for the general "Bibliography command (txs:///bibliography). See also the <a href="SECTION02a1">description of the build system</a>.</p>
 </li>
 <li>
 <code>
