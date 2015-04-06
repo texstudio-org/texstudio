@@ -417,7 +417,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
 	registerOption("Editor/Weak Indent", &editorConfig->weakindent, false);
-	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false, &pseudoDialog->checkBoxReplaceTabByWhitespace);
+	registerOption("Editor/Indent with Spaces", &editorConfig->replaceIndentTabs, false, &pseudoDialog->checkBoxReplaceIndentTabByWhitespace);
+	registerOption("Editor/ReplaceTextTabs", &editorConfig->replaceTextTabs, false, &pseudoDialog->checkBoxReplaceTextTabByWhitespace);
 	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
 	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
 	registerOption("Editor/Show Cursor State", &editorConfig->showcursorstate, true, &pseudoDialog->checkBoxState);

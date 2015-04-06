@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>13</number>
+      <number>7</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1660,13 +1660,6 @@ Then you can select a new shortcut by one of the following ways:
             </item>
            </widget>
           </item>
-          <item row="7" column="3">
-           <widget class="QCheckBox" name="checkBoxReplaceTabByWhitespace">
-            <property name="text">
-             <string>Replace Tab by Whitespace</string>
-            </property>
-           </widget>
-          </item>
           <item row="12" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
             <property name="text">
@@ -1741,6 +1734,20 @@ Then you can select a new shortcut by one of the following ways:
             </property>
             <property name="advancedOption" stdset="0">
              <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxReplaceIndentTabByWhitespace">
+            <property name="text">
+             <string>Replace Indentation Tab by Spaces</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxReplaceTextTabByWhitespace">
+            <property name="text">
+             <string>Replace Tab in Text by Spaces</string>
             </property>
            </widget>
           </item>

@@ -509,9 +509,47 @@ void QEditorTest::activeFolding(){
 	compareLists(editor->document()->impl()->testGetHiddenLines(), newHiddenLines);
 }
 
+void QEditorTest::insertTab_data() {
+	QTest::addColumn<bool>("replaceTextTabs");
+	QTest::addColumn<int>("tabWidth");
+	QTest::addColumn<QString>("line");
+	QTest::addColumn<int>("cursorCol");
+	QTest::addColumn<QString>("resultLine");
+	
+	QTest::newRow("no replace")  << false << 4 << "fooobar"     << 4 << "fooo\tbar";
+	QTest::newRow("4 char tab 1") << true << 4 << "fooobar"     << 4 << "fooo    bar";
+	QTest::newRow("4 char tab 2") << true << 4 << "fooo1bar"    << 5 << "fooo1   bar";
+	QTest::newRow("4 char tab 3") << true << 4 << "fooo12bar"   << 6 << "fooo12  bar";
+	QTest::newRow("4 char tab 4") << true << 4 << "fooo123bar"  << 7 << "fooo123 bar";
+	QTest::newRow("4 char tab 5") << true << 4 << "fooo1234bar" << 8 << "fooo1234    bar";
+	QTest::newRow("5 char tab 1") << true << 5 << "fooobar"     << 4 << "fooo bar";
+}
+
+void QEditorTest::insertTab()
+{
+	bool savedReplaceTextTabs = editor->flag(QEditor::ReplaceTextTabs);
+	int savedTabWidth = QDocument::tabStop();
+	
+	QFETCH(bool, replaceTextTabs);
+	QFETCH(int, tabWidth);
+	QFETCH(QString, line);
+	QFETCH(int, cursorCol);
+	QFETCH(QString, resultLine);
+	editor->setFlag(QEditor::ReplaceTextTabs, replaceTextTabs);
+	QDocument::setTabStop(tabWidth);
+	
+	editor->setText(line);
+	editor->setCursorPosition(0, cursorCol);
+	editor->insertTab();
+	QEQUAL(editor->text(), resultLine);
+	
+	editor->setFlag(QEditor::ReplaceTextTabs, savedReplaceTextTabs);
+	QDocument::setTabStop(savedTabWidth);
+}
+
 void QEditorTest::indentation_data(){
 	editor->setFlag(QEditor::AutoIndent,true);
-	editor->setFlag(QEditor::ReplaceTabs,false);
+	editor->setFlag(QEditor::ReplaceIndentTabs,false);
 
 	QTest::addColumn<QString>("baseText");
 	QTest::addColumn<bool>("weak");
@@ -726,7 +764,7 @@ void QEditorTest::indentation(){
 void QEditorTest::autoClosing_data(){
 	editor->setFlag(QEditor::AutoIndent,true);
 	//editor->setFlag(QEditor::WeakIndent,false);
-	editor->setFlag(QEditor::ReplaceTabs,false);
+	editor->setFlag(QEditor::ReplaceIndentTabs,false);
 
 	QTest::addColumn<QString>("baseText");
 	QTest::addColumn<int>("line");

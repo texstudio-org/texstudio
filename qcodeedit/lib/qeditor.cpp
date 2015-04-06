@@ -2520,13 +2520,23 @@ void QEditor::tabOrIndentSelection()
 		// insert \t only if there is non-space before the cursor, otherwise indent
 		while (!cur.atLineStart()) {
 			if (!cur.previousChar().isSpace()) {
-				m_cursor.insertText( "\t");
+				insertTab();
 				return;
 			}
 			cur.movePosition(1, QDocumentCursor::PreviousCharacter);
 		}
 		indentSelection();
-    }
+	}
+}
+
+void QEditor::insertTab()
+{
+	if (flag(ReplaceTextTabs)) {
+		int spaceCount = m_doc->tabStop() - m_cursor.columnNumber() % m_doc->tabStop();
+		m_cursor.insertText(QString(spaceCount, ' '));
+	} else {
+		m_cursor.insertText("\t");
+	}
 }
 
 /*!
@@ -2536,7 +2546,7 @@ void QEditor::indentSelection()
 {
 	// TODO : respect tab stops in case of screwed up indent (correct it?)
 
-	QString txt = flag(ReplaceTabs) ? QString(m_doc->tabStop(), ' ') : QString("\t");
+	QString txt = flag(ReplaceIndentTabs) ? QString(m_doc->tabStop(), ' ') : QString("\t");
 	
 	if ( m_mirrors.count() )
 	{
@@ -3079,7 +3089,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	case NextPlaceHolder: nextPlaceHolder(); break;
 	case PreviousPlaceHolder: previousPlaceHolder(); break;
 
-    case TabOrIndentSelection: tabOrIndentSelection(); break;
+	case TabOrIndentSelection: tabOrIndentSelection(); break;
+	case InsertTab: insertTab(); break;
 	case IndentSelection: indentSelection(); break;
 	case UnindentSelection: unindentSelection(); break;
 
@@ -4350,7 +4361,8 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case PreviousPlaceHolder: return tr("Previous placeholder");
 	case NextPlaceHolderOrWord: return tr("Next placeholder or one word right");
 	case PreviousPlaceHolderOrWord: return tr("Previous placeholder or one word left");
-    case TabOrIndentSelection: return tr("Tab or Indent selection");
+	case TabOrIndentSelection: return tr("Tab or Indent selection");
+	case InsertTab: return tr("Insert tab");
 	case IndentSelection: return tr("Indent selection");
 	case UnindentSelection: return tr("Unindent selection");
 
@@ -4541,7 +4553,7 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	{
 		QString text = e->text();
 
-		if ( flag(ReplaceTabs) )
+		if ( flag(ReplaceIndentTabs) )
 		{
 			text.replace("\t", QString(m_doc->tabStop(), ' '));
 		}
@@ -4732,7 +4744,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	{
 		preInsertUnindent(c, lines.first(), 0);
 		
-		if ( flag(ReplaceTabs) )
+		if ( flag(ReplaceIndentTabs) )
 		{
 			// TODO : replace tabs by spaces properly
 		}
@@ -4774,7 +4786,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 					indent = m_definition->indent(c, &indentCount);
 					if (indentCount < 0) additionalUnindent = - indentCount;
 
-					if ( flag(ReplaceTabs) )
+					if ( flag(ReplaceIndentTabs) )
 						indent.replace("\t", QString(m_doc->tabStop(), ' '));
 				}
 			}
