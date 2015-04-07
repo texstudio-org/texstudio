@@ -412,6 +412,13 @@ Section can be indented/unindented which means that the hierarchy level is chang
 <li>To Titlecase (smart)</li>
 </ul>
 <p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronymes which require a fixed capitalization (e.g. "TeXstudio").</p>
+<h3>Escaping reserved characters</h3>
+<p>If you have text containing reserved TeX characters and want the text to appear literally in your document, you have to escape the reserved charaters to prevent LaTeX from interpreting them. The following functions take care of that (Menu: Idefix)</p>
+<ul>
+<li>Paste to LaTeX: Takes the text from the clipboard and escapes reserved characters prior to pasting into the editor.</li>
+<li>Convert to LaTeX: Escapes the reserved characters in the current selection.</li>
+</ul>
+<p>For example: "Less than 10% of computer users know the meaning of $PATH." will be converted to "Less than 10\% of computer users know the meaning of \$PATH."</p>
 <h2 id="SECTION16">2.6 Spacings</h2>
 <p>The usual "spacing" commands are available in the "LaTeX" and "Math" menus. To insert quickly the "new line" LaTeX command, you can use the corresponding command in the toolbar (shortcut : Ctrl+Alt+return) </p>
 <h2 id="SECTION17">2.7 Inserting a list</h2>
