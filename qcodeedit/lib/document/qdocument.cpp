@@ -2474,14 +2474,14 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 						   it would introduce a newline into the word which changes its meaning.
 						*/
 
-                        //if (!d->m_hardLineWrap) { // unavoidable as text CAN'T be wider than the text width, the user gets exactly what he asks for by activating hard wrap ... (bug 671)
+						if (!d->m_hardLineWrap) {
 							// agressive wrap inside the word
 							m_frontiers << qMakePair(idx, rx);
 							lastActualBreak = idx;
 							lastBreak = idx;
 							lastX = rx;
 							x = minx;
-                        //}
+						}
 					} else {
 						Q_ASSERT(lastBreak <= idx);
 						Q_ASSERT(lastBreak > 0);
