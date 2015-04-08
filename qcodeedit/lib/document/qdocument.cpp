@@ -5323,24 +5323,35 @@ void QDocumentCursorHandle::eraseLine()
 
 	if((m_begLine>m_doc->lineCount())||(m_begLine<0)) return; // return if cursor is out of range
 	if((m_endLine>m_doc->lineCount())) m_endLine=m_doc->lineCount()-1;
+	
+	int cursorLine = m_begLine;
+	int anchorLine = m_endLine < 0 ? m_begLine : m_endLine;
+	int startLine = qMin(cursorLine, anchorLine);
+	int endLine = qMax(cursorLine, anchorLine);
 
-	if ( m_endLine == -1 )
+	if (endLine < m_doc->lineCount()-1)
 	{
 		command = new QDocumentEraseCommand(
-										m_begLine,
+										startLine,
 										0,
-										m_begLine + 1,
+										endLine + 1,
 										0,
+										m_doc
+									);
+	} else if (startLine > 0) {
+		// special handling to remove a selection including the last line
+		// QDocumentEraseCommand leaves an empty line if the end (==endLine+1)
+		// is beyond the last line. As a workaround, we change the selection
+		// range and include the newline before the selection in the erase action
+		command = new QDocumentEraseCommand(
+										startLine-1,
+										m_doc->line(startLine-1).length(),
+										endLine,
+										m_doc->line(endLine).length(),
 										m_doc
 									);
 	} else {
-		command = new QDocumentEraseCommand(
-										qMin(m_begLine, m_endLine),
-										0,
-										qMax(m_begLine, m_endLine) + 1,
-										0,
-										m_doc
-									);
+		return;
 	}
 	command->setTargetCursor(this);
 	execute(command);
