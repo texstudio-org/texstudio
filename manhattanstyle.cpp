@@ -319,7 +319,10 @@ void ManhattanStyle::polish(QWidget *widget)
     if (panelWidget(widget)) {
         if (qobject_cast<QToolButton*>(widget)) {
             widget->setAttribute(Qt::WA_Hover);
-            widget->setMaximumHeight(StyleHelper::navigationWidgetHeight() - 2);
+// NOTE: we do not really use the concept of navigation/panel widgets but we have
+//       regular toolbars that would be affected by the height limitation
+//       so we deactivate it
+//            widget->setMaximumHeight(StyleHelper::navigationWidgetHeight() - 2);
             widget->setAttribute(Qt::WA_Hover);
         }
         else if (qobject_cast<QLineEdit*>(widget)) {
