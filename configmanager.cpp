@@ -2622,7 +2622,13 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 		if (acts[i]->menu()) twi = managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
 			subAdvanced |= !acts[i]->data().isValid();
-			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << acts[i]->data().toString() << prettySlotName(acts[i]));
+			QString actionData = acts[i]->data().toString();
+			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << actionData << prettySlotName(acts[i]));
+			if (actionData.contains('\n')) {
+				// limit item height to prevent vertically very large items for actions with %SCRIPTs
+				twi->setSizeHint(1, QSize(-1, QFontMetrics(twi->font(1)).height()));
+				twi->setTextAlignment(1, (twi->textAlignment(1)&Qt::AlignHorizontal_Mask) | Qt::AlignTop);
+			}
 			if (!acts[i]->isSeparator()) {
 				twi->setIcon(0,acts[i]->icon());
 				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);
