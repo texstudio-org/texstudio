@@ -127,6 +127,8 @@ public:
 	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(QSettings &settings);
 	void saveSettings(QSettings &settings);
+	
+	void checkLatexConfiguration(bool &noWarnAgain);
 
 	QAction * stopBuildAction() {return m_stopBuildAction;}
 	

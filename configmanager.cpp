@@ -349,6 +349,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog*) 0;
 
+	registerOption("Startup/CheckLatexConfiguration", &checkLatexConfiguration, true, &pseudoDialog->checkBoxCheckLatexConfiguration);
+	
 	registerOption("ToolBar/CentralVisible", &centralVisible, true);
 	registerOption("StructureView/ShowLinenumbers", &showLineNumbersInStructure, false);
 	registerOption("StructureView/Indentation", &indentationInStructure, -1);

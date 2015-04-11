@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>7</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -614,6 +614,22 @@
                <widget class="QPushButton" name="pushButtonUpdateCheckNow">
                 <property name="text">
                  <string>Check Now</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="title">
+              <string>Startup</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <widget class="QCheckBox" name="checkBoxCheckLatexConfiguration">
+                <property name="text">
+                 <string>Check LaTeX Configuration</string>
                 </property>
                </widget>
               </item>
