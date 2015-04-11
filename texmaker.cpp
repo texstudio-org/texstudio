@@ -378,6 +378,11 @@ Texmaker::~Texmaker(){
 }
 
 void Texmaker::startupCompleted() {
+	if (configManager.checkLatexConfiguration) {
+		bool noWarnAgain = false;
+		buildManager.checkLatexConfiguration(noWarnAgain);
+		configManager.checkLatexConfiguration = !noWarnAgain;
+	}
 	// package reading (at least with Miktex) apparently slows down the startup
 	// the first rendering of lines in QDocumentPrivate::draw() gets very slow
 	// therefore we defer it until the main window is completely loaded

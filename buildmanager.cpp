@@ -993,7 +993,6 @@ void BuildManager::readSettings(QSettings &settings){
 		}
 		cmd.commandLine = cmd.guessCommandLine();
 	}
-	
 	if (commands.value("quick").commandLine.isEmpty()) {
 		//Choose suggestion that actually exists
 		CommandInfo &quick = commands.find("quick").value();
@@ -1075,6 +1074,28 @@ void BuildManager::saveSettings(QSettings &settings){
 	autoRerunCommands = rerunCmds.join("|");
 	settings.endGroup();
 	settings.endGroup();
+}
+
+void BuildManager::checkLatexConfiguration(bool &noWarnAgain) {
+	if (commands.contains("pdflatex") && commands["pdflatex"].commandLine.isEmpty()) {
+		QString message = tr("No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).");
+		
+#ifdef Q_OS_WIN
+		message += "<br><br>"
+				+ tr("Popular LaTeX distributions on windows are %1 and %2.").arg("<a href='http://miktex.org/'>MikTeX</a>").arg("<a href='https://www.tug.org/texlive/'>TeXLive</a>")
+				+ "<br><br>"
+				+ tr("If you intend to work with LaTeX, you'll most certainly want to install one of those.");
+#elif defined(Q_OS_MAC)
+		message += "<br><br>"
+				+ tr("A popular LaTeX distribution on OSX is %1.").arg("<a href='https://tug.org/mactex/'>MacTeX</a>")
+				+ "<br><br>"
+				+ tr("If you intend to work with LaTeX, you'll most certainly want to install it.");
+#else
+		message += "<br><br>"
+				+ tr("If you intend to work with LaTeX, you'll most certainly want to install a LaTeX distribution.");
+#endif
+		txsWarning(message, noWarnAgain);
+	}
 }
 
 bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString* buffer, QTextCodec* codecForBuffer ){

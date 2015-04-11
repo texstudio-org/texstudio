@@ -51,6 +51,9 @@ public:
     QHash<QString, int> editorKeys;
 	QSet<int> editorAvailableOperations;
 
+	//startup
+	bool checkLatexConfiguration;
+	
 	//build
 	BuildManager* buildManager; 
 	bool singleViewerInstance;
