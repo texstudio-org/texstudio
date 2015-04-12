@@ -124,7 +124,7 @@ private:
 	bool ActivateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
 	bool saveAllFilesForClosing(); // checks for unsaved files and asks the user if they should be saved
 	void closeAllFiles();
-	bool canCloseNow(); //asks the user and close all files, and prepares to exit txs
+	bool canCloseNow(bool saveSettings=true); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
 	
 	void updateUserMacros(bool updateMenu = true);
@@ -354,6 +354,7 @@ protected slots:
 private slots:	
 	void ReadSettings(bool reread=false);
 	void SaveSettings(const QString& configName="");
+	void restoreDefaultSettings();
 	
 protected slots:	
 	void showMarkTooltipForLogMessage(QList<int> errors);
