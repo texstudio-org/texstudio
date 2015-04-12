@@ -14,6 +14,11 @@ UpdateChecker::UpdateChecker() :
 	networkManager = new QNetworkAccessManager();
 }
 
+UpdateChecker::~UpdateChecker()
+{
+	m_Instance = 0;
+}
+
 // compares two versions strings
 // Meaning of result: v1 [result] v2, e.g. v1 Older than v2
 UpdateChecker::VersionCompareResult UpdateChecker::versionCompare(const QString &v1, const QString &v2) {

@@ -17,6 +17,12 @@ LatexParser::LatexParser(){
 	}
 }
 
+LatexParser::~LatexParser(){
+	if (LatexParserInstance == this) {
+		LatexParserInstance = 0;
+	}
+}
+
 LatexParser& LatexParser::getInstance(){
 	Q_ASSERT(LatexParserInstance);
 	return *LatexParserInstance;
