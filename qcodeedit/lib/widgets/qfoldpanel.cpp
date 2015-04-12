@@ -271,33 +271,35 @@ bool QFoldPanel::event(QEvent *e) {
 
 			QHelpEvent* helpEvent = static_cast<QHelpEvent*>(e);
 			int line = mapRectPosToLine(helpEvent->pos());
-			if ( def && line != -1 && doc->line(line).hasFlag(QDocumentLine::CollapsedBlockStart) ){
+			if ( def && line != -1){
 				QFoldedLineIterator it = def->foldedLineIterator(doc, line);
 				it.incrementUntilBlockEnd();
-				QString tooltip;
+				if (doc->line(line).hasFlag(QDocumentLine::CollapsedBlockStart) || (editor()->getLastVisibleLine() < it.lineNr)) {
+					QString tooltip;
 
 
-				int lineWidth = 80;
-				int maxShownLines = 9;
-				int wrapCount = 2;
-				if (editor()->flag(QEditor::HardLineWrap)) {
-					lineWidth = -1; // rely on wrapping of editor
-					maxShownLines = 15;
-					wrapCount = 0;
+					int lineWidth = 80;
+					int maxShownLines = 9;
+					int wrapCount = 2;
+					if (editor()->flag(QEditor::HardLineWrap)) {
+						lineWidth = -1; // rely on wrapping of editor
+						maxShownLines = 15;
+						wrapCount = 0;
+					}
+	
+					if (it.lineNr - line < maxShownLines)
+						tooltip = doc->exportAsHtml(doc->cursor(line,0,it.lineNr),true,true,lineWidth,wrapCount);
+					else {
+						tooltip = doc->exportAsHtml(doc->cursor(line,0,line+maxShownLines/2),true,true,lineWidth,wrapCount);
+						tooltip.replace("</body></html>","");
+						tooltip += "<br>...<br>";
+						tooltip += doc->exportAsHtml(doc->cursor(it.lineNr-maxShownLines/2,0,it.lineNr),false,true,lineWidth,wrapCount);
+						tooltip +=  "</body></html>";
+					}
+					if (tooltip.isEmpty()) QToolTip::hideText();
+					else QToolTip::showText(helpEvent->globalPos(), tooltip);
+					e->setAccepted(true);
 				}
-
-				if (it.lineNr - line < maxShownLines)
-					tooltip = doc->exportAsHtml(doc->cursor(line,0,it.lineNr),true,true,lineWidth,wrapCount);
-				else {
-					tooltip = doc->exportAsHtml(doc->cursor(line,0,line+maxShownLines/2),true,true,lineWidth,wrapCount);
-					tooltip.replace("</body></html>","");
-					tooltip += "<br>...<br>";
-					tooltip += doc->exportAsHtml(doc->cursor(it.lineNr-maxShownLines/2,0,it.lineNr),false,true,lineWidth,wrapCount);
-					tooltip +=  "</body></html>";
-				}
-				if (tooltip.isEmpty()) QToolTip::hideText();
-				else QToolTip::showText(helpEvent->globalPos(), tooltip);
-				e->setAccepted(true);
 			}
 		}
 	}
