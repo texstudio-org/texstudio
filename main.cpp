@@ -109,8 +109,7 @@ bool TexmakerApp::event(QEvent * event) {
 	return QApplication::event(event);
 }
 
-int main(int argc, char ** argv) {
-// This is a dummy constructor so that the programs loads fast.
+QString generateAppId() {
 	QStringList environment = QProcess::systemEnvironment();
 	QString user=environment.filter(QRegExp("^USERNAME=|^USER=",Qt::CaseInsensitive)).first();
 
@@ -118,15 +117,10 @@ int main(int argc, char ** argv) {
 		int l=user.indexOf("=",0);
 		user="_"+user.right(user.length()-l-1);
 	}
-	user=TEXSTUDIO+user;
-#if QT_VERSION >= 0x040400
-	TexmakerApp a(user,argc, argv);
-#else
-    TexmakerApp a(argc, argv);
-	DSingleApplication instance(user);
-#endif
-	bool startAlways=false;
-	QStringList args = QCoreApplication::arguments();
+	return TEXSTUDIO+user;
+}
+
+QStringList parseArguments(const QStringList &args, bool &outStartAlways) {
 	QStringList cmdLine;
 	for (int i = 1; i < args.count(); ++i) {
 		QString cmdArgument =  args[i];
@@ -134,7 +128,7 @@ int main(int argc, char ** argv) {
 		if (cmdArgument.startsWith('-')) {
 			// various commands
 			if (cmdArgument == "--start-always")
-				startAlways = true;
+				outStartAlways = true;
 			else if ((cmdArgument == "-line" || cmdArgument == "--line") && (++i < args.count()))
 				cmdLine << "--line" << args[i];
 			else if ((cmdArgument == "-page" || cmdArgument == "--page") && (++i < args.count()))
@@ -144,12 +138,26 @@ int main(int argc, char ** argv) {
 			else if (cmdArgument == "--ini-file" && (++i < args.count()))
 				ConfigManager::iniFileOverride = args[i];
 			else if (cmdArgument.startsWith("-"))
-				cmdLine << cmdArgument;			
+				cmdLine << cmdArgument;
 		} else
 			cmdLine << QFileInfo(cmdArgument).absoluteFilePath();
 	}
+	return cmdLine;
+}
 
-	if (!startAlways)
+int main(int argc, char ** argv) {
+	QString appId = generateAppId();
+	// This is a dummy constructor so that the programs loads fast.
+#if QT_VERSION >= 0x040400
+	TexmakerApp a(appId, argc, argv);
+#else
+	TexmakerApp a(argc, argv);
+	DSingleApplication instance(appId);
+#endif
+	bool startAlways=false;
+	QStringList cmdLine = parseArguments(QCoreApplication::arguments(), startAlways);
+
+	if (!startAlways) {
 #if QT_VERSION >= 0x040400
 		if (a.isRunning()) {
 #else
@@ -159,7 +167,6 @@ int main(int argc, char ** argv) {
 			AllowSetForegroundWindowFunc asfw = (AllowSetForegroundWindowFunc)GetProcAddress(GetModuleHandleA("user32.dll"),"AllowSetForegroundWindow");
 			if (asfw) asfw(/*ASFW_ANY*/(DWORD)(-1));
 #endif
-
 #if QT_VERSION >= 0x040400
 			a.sendMessage(cmdLine.join("#!#"));
 #else
@@ -167,6 +174,7 @@ int main(int argc, char ** argv) {
 #endif
 			return 0;
 		}
+	}
 
 	a.setApplicationName( TEXSTUDIO );
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
