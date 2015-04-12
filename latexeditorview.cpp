@@ -975,7 +975,8 @@ void LatexEditorView::jumpToBookmark(int bookmarkNumber) {
 	int markLine=editor->document()->findNextMark(bookMarkId(bookmarkNumber),editor->cursor().lineNumber(),editor->cursor().lineNumber()-1);
 	if (markLine>=0) {
 		emit saveCurrentCursorToHistoryRequested();
-		editor->setCursorPosition(markLine,0);
+		editor->setCursorPosition(markLine, 0, false);
+		editor->ensureCursorVisible(QEditor::NavigationToHeader);
 		editor->setFocus();
 	}
 }
