@@ -9374,8 +9374,6 @@ void Texmaker::slowOperationEnded(){
 }
 
 void Texmaker::checkLatexInstall(){
-	fileNew(tr("System Report") + ".txt");
-	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 
 	QString result;
 	// run pdflatex
@@ -9429,7 +9427,8 @@ void Texmaker::checkLatexInstall(){
 	result+= "    Log: "+buildManager.additionalLogPaths+"\n";
 	result+= "    Pdf: "+buildManager.additionalPdfPaths+"\n";
 
-
+	fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
+	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(result, false);
 }
 
