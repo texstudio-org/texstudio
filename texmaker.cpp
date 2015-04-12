@@ -726,12 +726,14 @@ void Texmaker::setupMenus() {
 	cursorHistory->setForwardAction(newManagedAction(submenu,"goforward",tr("Go Forward"), SLOT(goForward()), MAC_OTHER(0, Qt::ALT+Qt::Key_Right), "forward"));
 	
 	submenu=newManagedMenu(menu, "gotoBookmark",tr("Goto Bookmark"));
-	for (int i=0; i<=9; i++)
+	QList<int> bookmarkIndicies = QList<int>() << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 0;
+	foreach (int i, bookmarkIndicies)
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"jumpToBookmark",Qt::CTRL+Qt::Key_0+i,"",QList<QVariant>() << i);
+	
 	
 	submenu=newManagedMenu(menu, "toggleBookmark",tr("Toggle Bookmark"));
 	newManagedEditorAction(submenu,QString("bookmark"),tr("Unnamed Bookmark"),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_B,"",QList<QVariant>() <<-1);
-	for (int i=0; i<=9; i++)
+	foreach (int i, bookmarkIndicies)
 		newManagedEditorAction(submenu,QString("bookmark%1").arg(i),tr("Bookmark %1").arg(i),"toggleBookmark",Qt::CTRL+Qt::SHIFT+Qt::Key_0+i,"",QList<QVariant>() << i);
 	
 	
