@@ -24,9 +24,6 @@ public:
 
 	void copy();
 
-	enum DisplayParts {DisplayTable, DisplayLog, DisplayLogAndTable};
-	void setDisplayParts(DisplayParts parts);
-
 	bool childHasFocus() const {return log->hasFocus() || errorTable->hasFocus();}
     QList<QAction *> displayActions();
 signals:
@@ -42,7 +39,7 @@ private slots:
 	void copyMessage();
 	void copyAllMessages();
 	void copyAllMessagesWithLineNumbers();
-	void changeDisplay(QAction *act);
+	void setWidgetVisibleFromAction(bool visible);
 	void setInfo(const QString &message);
     void filterChanged(bool);
 private:
@@ -52,14 +49,11 @@ private:
 	
 	LatexLogModel *logModel;
 
-	QActionGroup *displayPartsActions;
-    QAction *displayTableAction, *displayLogAction, *displayLogAndTableAction,*filterErrorAction,*filterWarningAction,*filterBadBoxAction;
+	QAction *displayTableAction, *displayLogAction,*filterErrorAction,*filterWarningAction,*filterBadBoxAction;
 
 	bool logpresent;
 
     QSortFilterProxyModel *proxyModel;
 };
-
-Q_DECLARE_METATYPE(LatexLogWidget::DisplayParts)
 
 #endif // LATEXLOGWIDGET_H
