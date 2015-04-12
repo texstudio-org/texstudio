@@ -1080,7 +1080,8 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	newManagedAction(menu, "loadProfile",tr("Load &Profile..."), SLOT(loadProfile()));
 	newManagedAction(menu, "saveProfile",tr("S&ave Profile..."), SLOT(saveProfile()));
-	newManagedAction(menu, "saveSettings",tr("Save Current Settings","menu"), SLOT(SaveSettings()));
+	newManagedAction(menu, "saveSettings",tr("Save &Current Settings","menu"), SLOT(SaveSettings()));
+	newManagedAction(menu, "restoreDefaultSettings", tr("Restore &Default Settings..."), SLOT(restoreDefaultSettings()));
 	menu->addSeparator();
 	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as '&Master Document'"), SLOT(ToggleMode()));
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically Restore &Session at Next Start"));
@@ -2614,7 +2615,7 @@ void Texmaker::closeAllFiles() {
 	UpdateCaption();
 }
 
-bool Texmaker::canCloseNow(){
+bool Texmaker::canCloseNow(bool saveSettings){
 	if(!saveAllFilesForClosing()) return false;
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
@@ -3893,6 +3894,24 @@ void Texmaker::SaveSettings(const QString& configName) {
 	
 	if (asProfile)
 		delete config;
+}
+
+void Texmaker::restoreDefaultSettings() {
+	if (!txsConfirmWarning("This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.\n\nDo you want to continue?")) {
+		return;
+	}
+	if (canCloseNow(false)) {
+		QFile f(configManager.configFileName);
+		if (f.exists()) {
+			if (f.open(QFile::WriteOnly)) {
+				f.write("\n");  // delete contents of settings file
+				f.close();
+			} else {
+				txsWarning(tr("Unable to write to settings file %1").arg(QDir::toNativeSeparators(f.fileName())));
+			}
+		}
+		qApp->exit(0);
+	}
 }
 
 ////////////////// STRUCTURE ///////////////////
