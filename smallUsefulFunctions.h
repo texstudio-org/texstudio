@@ -138,6 +138,7 @@ class LatexParser{
 	friend class SmallUsefulFunctionsTest;
 public:
 	LatexParser();
+	~LatexParser();
 	void init();
 
     enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package,Keyval,KeyvalValue,OptionEx,ArgEx};

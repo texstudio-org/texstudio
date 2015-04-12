@@ -613,6 +613,7 @@ ConfigManager::~ConfigManager(){
 	delete webPublishDialogConfig;
 	delete insertGraphicsConfig;
 	if (persistentConfig) delete persistentConfig;
+	globalConfigManager = 0;
 }
 
 QSettings* ConfigManager::readSettings(bool reread) {

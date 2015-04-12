@@ -8,6 +8,8 @@ class UpdateChecker : public QObject
 {
 	Q_OBJECT
 public:
+	~UpdateChecker();
+	
 	static UpdateChecker *instance();
 
 	enum VersionCompareResult {Invalid=-2, Lower=-1, Same=0, Higher=1};
