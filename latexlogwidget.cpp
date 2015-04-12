@@ -20,7 +20,7 @@ int getOptimalRowHeight(QTableView *tableView) {
 }
 
 LatexLogWidget::LatexLogWidget(QWidget *parent) :
-    QWidget(parent), logModel(0), displayPartsActions(0),filterErrorAction(0),filterWarningAction(0),filterBadBoxAction(0),logpresent(false)
+	QWidget(parent), logModel(0), filterErrorAction(0),filterWarningAction(0),filterBadBoxAction(0),logpresent(false)
 {
 	logModel = new LatexLogModel(this);//needs loaded line marks
 
@@ -79,18 +79,14 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	vLayout->addWidget(splitter);
 	setLayout(vLayout);
 
-	displayPartsActions = new QActionGroup(this);
-	displayPartsActions->setExclusive(true);
-	connect(displayPartsActions, SIGNAL(triggered(QAction*)), this, SLOT(changeDisplay(QAction *)));
-	displayTableAction = new QAction(tr("Issues"), displayPartsActions);
-	displayTableAction->setData(qVariantFromValue(DisplayTable));
+	displayTableAction = new QAction(tr("Issues"), this);
+	displayTableAction->setData(qVariantFromValue(errorTable));
 	displayTableAction->setCheckable(true);
-	displayLogAction = new QAction(tr("Log File"), displayPartsActions);
-	displayLogAction->setData(qVariantFromValue(DisplayLog));
+	connect(displayTableAction, SIGNAL(triggered(bool)), this, SLOT(setWidgetVisibleFromAction(bool)));
+	displayLogAction = new QAction(tr("Log File"), this);
+	displayLogAction->setData(qVariantFromValue(log));
 	displayLogAction->setCheckable(true);
-	displayLogAndTableAction = new QAction(tr("Issues and Log"), displayPartsActions);
-	displayLogAndTableAction->setData(qVariantFromValue(DisplayLogAndTable));
-	displayLogAndTableAction->setCheckable(true);
+	connect(displayLogAction, SIGNAL(triggered(bool)), this, SLOT(setWidgetVisibleFromAction(bool)));
     filterErrorAction = new QAction(QIcon(":/images-ng/error.svgz"),tr("Show Error"),this);
     filterErrorAction->setCheckable(true);
     filterErrorAction->setChecked(true);
@@ -104,7 +100,11 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
     filterBadBoxAction->setChecked(true);
     connect(filterBadBoxAction,SIGNAL(toggled(bool)),this,SLOT(filterChanged(bool)));
 
-	setDisplayParts(DisplayTable);
+	// initialize visibility
+	displayTableAction->setChecked(true);
+	errorTable->setVisible(true);
+	displayLogAction->setChecked(false);
+	log->setVisible(false);
 }
 
 bool LatexLogWidget::loadLogFile(const QString &logname, const QString & compiledFileName){
@@ -193,20 +193,10 @@ void LatexLogWidget::selectLogEntry(int logEntryNumber){
 }
 
 void LatexLogWidget::copy() {
-	if (displayLogAction->isChecked() || displayLogAndTableAction->isChecked())
+	if (log->isVisible())
 		log->copy();
 	else
 		copyMessage();
-}
-
-void LatexLogWidget::setDisplayParts(DisplayParts parts) {
-	errorTable->setVisible( parts == DisplayTable || parts == DisplayLogAndTable);
-	log->setVisible( parts == DisplayLog || parts == DisplayLogAndTable);
-	switch(parts) {
-		case DisplayTable:       displayTableAction->setChecked(true); break;
-		case DisplayLog:         displayLogAction->setChecked(true); break;
-		case DisplayLogAndTable: displayLogAndTableAction->setChecked(true); break;
-	}
 }
 
 // TODO what is this for?
@@ -251,9 +241,20 @@ void LatexLogWidget::copyAllMessagesWithLineNumbers(){
 	QApplication::clipboard()->setText(result.join("\n"));
 }
 
-void LatexLogWidget::changeDisplay(QAction *act) {
-	if(act) {
-		setDisplayParts(act->data().value<LatexLogWidget::DisplayParts>());
+void LatexLogWidget::setWidgetVisibleFromAction(bool visible) {
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act == displayTableAction) {
+		errorTable->setVisible(visible);
+		if (!visible && !log->isVisible()) {
+			displayLogAction->setChecked(true); // fallback, one widget should always be visible
+			log->setVisible(true);
+		}
+	} else if (act == displayLogAction) {
+		log->setVisible(visible);
+		if (!visible && !errorTable->isVisible()) {
+			displayTableAction->setChecked(true);  // fallback, one widget should always be visible
+			errorTable->setVisible(true);
+		}
 	}
 }
 
@@ -263,11 +264,13 @@ void LatexLogWidget::setInfo(const QString &message) {
 }
 
 QList<QAction *> LatexLogWidget::displayActions(){
-    QList<QAction *> result=displayPartsActions->actions();
-	QAction *separator = new QAction(this);
-	separator->setSeparator(true);
-	result << filterErrorAction << filterWarningAction << filterBadBoxAction << separator;
-    return result;
+    QList<QAction *> result;
+	QAction *sep1 = new QAction(this);
+	sep1->setSeparator(true);
+	QAction *sep2 = new QAction(this);
+	sep2->setSeparator(true);
+	result << displayLogAction << displayTableAction << sep1 << filterErrorAction << filterWarningAction << filterBadBoxAction << sep2;
+	return result;
 }
 
 void LatexLogWidget::filterChanged(bool ){
