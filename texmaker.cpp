@@ -312,7 +312,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
  */
 
   QStringList filters;
-  filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp *.dtx *.cfg *.ins *.ltx *.tikz)";
+  filters << tr("TeX files")+" (*.tex *.bib *.sty *.cls *.mp *.dtx *.cfg *.ins *.ltx *.tikz *.pdf_tex)";
   filters << tr("LilyPond files")+" (*.lytex)";
   filters << tr("Plaintext files")+" (*.txt)";
   filters << tr("Pweave files")+" (*.Pnw)";
