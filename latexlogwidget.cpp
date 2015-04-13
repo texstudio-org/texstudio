@@ -80,11 +80,9 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	setLayout(vLayout);
 
 	displayTableAction = new QAction(tr("Issues"), this);
-	displayTableAction->setData(qVariantFromValue(errorTable));
 	displayTableAction->setCheckable(true);
 	connect(displayTableAction, SIGNAL(triggered(bool)), this, SLOT(setWidgetVisibleFromAction(bool)));
 	displayLogAction = new QAction(tr("Log File"), this);
-	displayLogAction->setData(qVariantFromValue(log));
 	displayLogAction->setCheckable(true);
 	connect(displayLogAction, SIGNAL(triggered(bool)), this, SLOT(setWidgetVisibleFromAction(bool)));
     filterErrorAction = new QAction(QIcon(":/images-ng/error.svgz"),tr("Show Error"),this);
