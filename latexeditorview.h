@@ -225,11 +225,12 @@ public slots:
 	void foldBlockAt(bool unFold, int line);
 	
 	void documentContentChanged(int linenr, int count);
+private slots:
 	void lineDeleted(QDocumentLineHandle* l);
-	void spellCheckingReplace();
+    void textReplaceFromAction();
 	void spellCheckingAlwaysIgnore();
 	void populateSpellingMenu();
-	void addListToMenu(const QStringList& list, QMenu *menu, bool italic, const char* action);
+    void addReplaceActions(QMenu *menu, const QStringList &replacements, bool italic);
 	void addSpellingActions(QMenu *menu, QString word, bool dedicatedMenu);
 public slots:
 	void spellRemoveMarkers(const QString& newIgnoredWord);
