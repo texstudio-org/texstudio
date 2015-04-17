@@ -17,13 +17,9 @@
 \backslash#m
 \bar{a}#m
 \beta#m
-\Big#m
-\big#m
 \bigcap#m
 \bigcirc#m
 \bigcup#m
-\Bigg#m
-\bigg#m
 \Biggl#m
 \Biggl..\Biggr#m
 \biggl#m
