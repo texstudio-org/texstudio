@@ -159,6 +159,7 @@ public:
 	Q_INVOKABLE LatexDocument* getTopMasterDocument(); 
 	
 	Q_INVOKABLE QStringList includedFiles();
+	Q_INVOKABLE QStringList includedFilesAndParent();
 	Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument*> *visitedDocs=0);
 	
 	LatexParser ltxCommands;
@@ -296,6 +297,7 @@ public:
 	QModelIndex parent ( const QModelIndex & index ) const;
 	
 	static StructureEntry* indexToStructureEntry(const QModelIndex & index );
+	static LatexDocument* indexToDocument(const QModelIndex & index );
 	static StructureEntry* labelForStructureEntry(const StructureEntry* entry);
 	QModelIndex highlightedEntry();
 	void setHighlightedEntry(StructureEntry* entry);
