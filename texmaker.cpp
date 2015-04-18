@@ -997,6 +997,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "nextdocument",tr("Next Document"), SLOT(gotoNextDocument()), QList<QKeySequence>() << Qt::CTRL+Qt::Key_PageDown << Qt::CTRL+Qt::Key_Tab);
 	newManagedMenu(menu, "documents",tr("Open Documents"));
 	newManagedAction(menu, "documentlist",tr("List Of Open Documents"), SLOT(viewDocumentList()));
+	newManagedAction(menu, "documentlisthidden",tr("List Of Hidden Documents"), SLOT(viewDocumentListHidden()));
 
 	newManagedAction(menu, "focuseditor", tr("Focus Editor"), SLOT(focusEditor()), QList<QKeySequence>() << Qt::ALT+Qt::CTRL+Qt::Key_Left);
 	newManagedAction(menu, "focusviewer", tr("Focus Viewer"), SLOT(focusViewer()), QList<QKeySequence>() << Qt::ALT+Qt::CTRL+Qt::Key_Right);
@@ -2687,6 +2688,20 @@ void Texmaker::fileRecentList(){
 	centerFileSelector();
 }
 
+void Texmaker::viewDocumentListHidden(){
+	if (fileSelector) fileSelector.data()->deleteLater();
+	fileSelector = new FileSelector(this, true);
+
+	QStringList hiddenDocs;
+	foreach (LatexDocument* d, documents.hiddenDocuments)
+		hiddenDocs << d->getFileName();
+	fileSelector.data()->init(hiddenDocs, 0);
+
+	connect(fileSelector.data(), SIGNAL(fileChoosen(QString,int,int,int)), SLOT(fileDocumentOpenFromChoosen(QString,int,int,int)));
+	fileSelector.data()->setVisible(true);
+	centerFileSelector();
+}
+
 void Texmaker::fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column){
 	Q_UNUSED(duplicate);
 	if (!QFile::exists(doc)) {
@@ -2754,6 +2769,9 @@ void Texmaker::viewDocumentOpenFromChoosen(const QString& doc, int duplicate, in
 		}
 	}
 }
+
+
+
 
 void Texmaker::fileOpenFirstNonOpen(){
 	foreach (const QString& f, configManager.recentFilesList)

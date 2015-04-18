@@ -244,6 +244,7 @@ protected slots:
 	void fileOpenRecent();
 	void fileOpenAllRecent();
 	void fileRecentList();
+	void viewDocumentListHidden();
 	void fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column);
 	void viewDocumentList();
 	void viewDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column);
