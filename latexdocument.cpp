@@ -1623,6 +1623,11 @@ StructureEntry* LatexDocumentsModel::indexToStructureEntry(const QModelIndex & i
 	return result;
 }
 
+LatexDocument* LatexDocumentsModel::indexToDocument(const QModelIndex & index ){
+	StructureEntry* se = indexToStructureEntry(index);
+	return se ? se->document : 0;
+}
+
 /*!
  Returns an associated SE_LABEL entry for a structure element if one exists, otherwise 0.
  TODO: currently association is checked, by checking, if the label is on the same line or on the next.
@@ -1806,6 +1811,8 @@ void LatexDocuments::addDocument(LatexDocument* document,bool hidden){
     if(!hidden)
         model->structureUpdated(document,0);
 }
+
+
 void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool purge){
     if(!hidden)
         emit aboutToDeleteDocument(document);
@@ -1817,6 +1824,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
 		QList<LatexDocument*> lstOfDocs=document->getListOfDocs();
         // special treatment to remove document in purge mode (hidden doc was deleted on disc)
         if(purge){
+            Q_ASSERT(hidden); //purging non-hidden doc crashes.
             LatexDocument *master=document->getTopMasterDocument();
             hiddenDocuments.removeAll(document);
             foreach(LatexDocument *elem,getDocuments()){
@@ -2639,6 +2647,17 @@ QStringList LatexDocument::includedFiles(){
     }
 
     return result;
+}
+
+QStringList LatexDocument::includedFilesAndParent(){
+     QStringList result = includedFiles();
+     QString t = getMagicComment("root");
+     if (!t.isEmpty() && !result.contains(t)) result << t;
+     t = getMagicComment("texroot");
+     if (!t.isEmpty() && !result.contains(t)) result << t;
+     if (masterDocument && !result.contains(masterDocument->getFileName()))
+          result << masterDocument->getFileName();
+     return result;
 }
 
 QSet<QString> LatexDocument::additionalCommandsList(){

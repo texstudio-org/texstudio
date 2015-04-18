@@ -2575,8 +2575,12 @@ void Texmaker::fileExit() {
 }
 
 bool Texmaker::saveAllFilesForClosing(){
+	return saveFilesForClosing(EditorTabs->editors());
+}
+
+bool Texmaker::saveFilesForClosing(const QList<LatexEditorView*>& editors){
 	LatexEditorView *savedCurrentEditorView = currentEditorView();
-	foreach(LatexEditorView *edView, EditorTabs->editors()) {
+	foreach(LatexEditorView *edView, editors) {
 repeatAfterFileSavingFailed:
 		if (edView->editor->isContentModified()) {
 			EditorTabs->setCurrentEditor(edView);
@@ -6997,6 +7001,8 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		if (entry->document != documents.masterDocument) {
 			menu.addAction(tr("Close document"), this, SLOT(structureContextMenuCloseDocument()));
 			menu.addAction(tr("Set this document as master document"), this, SLOT(structureContextMenuSwitchMasterDocument()));
+			menu.addAction(tr("Open all related documents"), this, SLOT(structureContextMenuOpenAllRelatedDocuments()));
+			menu.addAction(tr("Close all related documents"), this, SLOT(structureContextMenuCloseAllRelatedDocuments()));
 		} else
 			menu.addAction(tr("Remove master document role"), this, SLOT(structureContextMenuSwitchMasterDocument()));
 		if(documents.model->getSingleDocMode()){
@@ -7077,23 +7083,63 @@ void Texmaker::openExternalFile(){
 }
 
 void Texmaker::structureContextMenuCloseDocument(){
-	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry) return;
-	LatexDocument* document = entry->document;
+	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
 	if (!document) return;
 	if (document->getEditorView()) EditorTabs->closeTab(document->getEditorView());
 	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
 }
+
 void Texmaker::structureContextMenuSwitchMasterDocument(){
-	StructureEntry *entry=LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry) return;
-	LatexDocument* document = entry->document;
+	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
+	if (!document) return;
 	if (document == documents.masterDocument) documents.setMasterDocument(0);
 	else if (document->getFileName()!="") documents.setMasterDocument(document);
 	else if (document->getEditorView()) { //we have to save the document before
 		documents.setMasterDocument(0);
 		EditorTabs->setCurrentEditor(document->getEditorView());
 		ToggleMode();
+	}
+}
+
+void Texmaker::structureContextMenuOpenAllRelatedDocuments(){
+	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
+	if (!document) return;
+
+	QSet<QString> checkedFiles, filesToCheck;
+	filesToCheck.insert(document->getFileName());
+
+	while (!filesToCheck.isEmpty()) {
+		QString f = *filesToCheck.begin();
+		filesToCheck.erase(filesToCheck.begin());
+		if (checkedFiles.contains(f)) continue;
+		checkedFiles.insert(f);
+		document = documents.findDocument(f);
+		if (!document) {
+			LatexEditorView* lev = load(f);
+			document = lev ? lev->document : 0;
+		}
+		if (!document) continue;
+		foreach (const QString & fn, document->includedFilesAndParent()) {
+			QString t = document->findFileName(fn);
+			if (!t.isEmpty()) filesToCheck.insert(t);
+		}
+	}
+}
+
+void Texmaker::structureContextMenuCloseAllRelatedDocuments(){
+	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
+	if (!document) return;
+	QList<LatexDocument*> l = document->getListOfDocs();
+	QList<LatexEditorView*> viewsToClose;
+	foreach (LatexDocument* d, l)
+		if (d->getEditorView())
+			viewsToClose << d->getEditorView();
+	if (!saveFilesForClosing(viewsToClose)) return;
+	foreach (LatexDocument* d, l) {
+		if (documents.documents.contains(d))
+			documents.deleteDocument(d); //this might hide the document
+		if (documents.hiddenDocuments.contains(d))
+			documents.deleteDocument(d, d->isHidden(), d->isHidden());
 	}
 }
 

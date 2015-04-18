@@ -123,6 +123,7 @@ private:
 	void createStatusBar();
 	bool ActivateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
 	bool saveAllFilesForClosing(); // checks for unsaved files and asks the user if they should be saved
+	bool saveFilesForClosing(const QList<LatexEditorView*>& editors); // checks for unsaved files and asks the user if they should be saved
 	void closeAllFiles();
 	bool canCloseNow(bool saveSettings=true); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
@@ -335,6 +336,8 @@ protected slots:
 	void StructureContextMenu(const QPoint& point);
 	void structureContextMenuCloseDocument();
 	void structureContextMenuSwitchMasterDocument();
+	void structureContextMenuOpenAllRelatedDocuments();
+	void structureContextMenuCloseAllRelatedDocuments();
 	void structureContextMenuExpandSubitems();
 	void structureContextMenuCollapseSubitems();
 	void structureContextMenuExpandAllDocuments();
