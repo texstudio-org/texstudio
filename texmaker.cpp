@@ -7413,7 +7413,7 @@ void Texmaker::showImgPreview(const QString& fname){
         //render pdf preview
         PDFRenderManager *renderManager=new PDFRenderManager(this,1);
         PDFRenderManager::Error error = PDFRenderManager::NoError;
-        QSharedPointer<Poppler::Document> document = renderManager->loadDocument(imageName, error);
+        QSharedPointer<Poppler::Document> document = renderManager->loadDocument(imageName, error, "");
         if(error==PDFRenderManager::NoError){
             renderManager->renderToImage(0,this,"showImgPreviewFinished",20,20,-1,-1,-1,-1,false,true);
         }else{
