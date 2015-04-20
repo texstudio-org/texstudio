@@ -2455,7 +2455,7 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 						if (cLow.isLowSurrogate()) {
 							uint uic = joinUnicodeSurrogate(c, cLow);
 							isCJK = ((0x20000 <= uic && uic <= 0x2B81F) || // CJK Unified Ideographs Extension B-D)
-									 (0x2F800 <= uc && uc <= 0x2FA1F));    // CJK Compatibility Ideographs Supplement
+                                     (0x2F800 <= uic && uic <= 0x2FA1F));    // CJK Compatibility Ideographs Supplement
 						}
 					}
 
