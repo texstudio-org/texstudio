@@ -145,6 +145,7 @@
 <file>completion/siunitx-special.cwl</file>
 <file>completion/subcaption.cwl</file>
 <file>completion/subfig.cwl</file>
+<file>completion/subfiles.cwl</file>
 <file>completion/subfigure.cwl</file>
 <file>completion/supertabular.cwl</file>
 <file>completion/svninfo.cwl</file>
