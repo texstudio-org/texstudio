@@ -886,10 +886,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "analysetext",tr("A&nalyse Text..."), SLOT(AnalyseText()));
 	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text..."), SLOT(GenerateRandomText()));
 	menu->addSeparator();
-	act = newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()),Qt::CTRL+Qt::SHIFT+Qt::Key_F7);
-#ifndef QT_OS_MAC
-	act->setShortcut(Qt::CTRL+Qt::Key_Colon);
-#endif
+	act = newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()), MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_F7, Qt::CTRL+Qt::Key_Colon));
 	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 	newManagedAction(menu,"wordrepetions",tr("Find Word Repetitions..."),SLOT(findWordRepetions()));
 	
@@ -1040,15 +1037,12 @@ void Texmaker::setupMenus() {
 	
 	menu->addSeparator();
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
-	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"));
-	fullscreenModeAction->setCheckable(true);
 #if QT_VERSION>=0x050000
-    fullscreenModeAction->setShortcut(QKeySequence::FullScreen);
+	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), 0, QKeySequence::FullScreen);
 #else
-#ifdef Q_OS_MAC
-	fullscreenModeAction->setShortcut(Qt::CTRL + Qt::META + Qt::Key_F);
+	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), 0, MAC_OTHER(Qt::CTRL + Qt::META + Qt::Key_F, Qt::Key_F11));
 #endif
-#endif
+	fullscreenModeAction->setCheckable(true);
 	connectUnique(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
 	connectUnique(menuBar(), SIGNAL(doubleClicked()), fullscreenModeAction, SLOT(toggle()));
 
