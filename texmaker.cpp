@@ -886,7 +886,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "analysetext",tr("A&nalyse Text..."), SLOT(AnalyseText()));
 	newManagedAction(menu, "generaterandomtext",tr("Generate &Random Text..."), SLOT(GenerateRandomText()));
 	menu->addSeparator();
-	act = newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()), MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_F7, Qt::CTRL+Qt::Key_Colon));
+	newManagedAction(menu,"spelling",tr("Check Spelling..."),SLOT(editSpell()), MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_F7, Qt::CTRL+Qt::Key_Colon));
 	newManagedAction(menu,"thesaurus",tr("Thesaurus..."),SLOT(editThesaurus()),Qt::CTRL+Qt::SHIFT+Qt::Key_F8);
 	newManagedAction(menu,"wordrepetions",tr("Find Word Repetitions..."),SLOT(findWordRepetions()));
 	
