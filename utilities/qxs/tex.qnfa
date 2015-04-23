@@ -113,7 +113,7 @@ environments in smallUsefulFunctions.cpp)
 	
 	<!-- ========================= MATH MODE ====================== -->
 
-	<word id="keywords/single" format="align-ampersand">&amp;</word>
+	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
 	
 	<context id="mathmode$$" format="numbers" transparency="true">
 		<start parenthesis="math:open$$" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</start>

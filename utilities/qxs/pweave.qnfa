@@ -85,7 +85,7 @@
 		</body>
 	</foreach>
 
-	<word id="keywords/single" format="align-ampersand">&amp;</word>
+	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
 
 	<!-- ========================= COMMAND ====================== -->
 
