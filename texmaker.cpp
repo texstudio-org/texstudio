@@ -5808,7 +5808,7 @@ void Texmaker::GeneralOptions() {
     connect(&configManager,SIGNAL(secondaryIconSizeChanged(int)),this,SLOT(changeSecondaryIconSize(int)));
     connect(&configManager,SIGNAL(symbolGridIconSizeChanged(int)),this,SLOT(changeSymbolGridIconSize(int)));
 
-	if (configManager.execConfigDialog()) {
+	if (configManager.execConfigDialog(this)) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
 
 		configManager.editorConfig->settingsChanged();

@@ -1044,8 +1044,8 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	return config;
 }
 
-bool ConfigManager::execConfigDialog() {
-	ConfigDialog *confDlg = new ConfigDialog(qobject_cast<QWidget*>(parent()));
+bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
+	ConfigDialog *confDlg = new ConfigDialog(parentToDialog);
 	confDlg->riddled = configRiddled;
 	//----------managed properties--------------------
 	foreach (const ManagedProperty& mp, managedProperties)

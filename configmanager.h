@@ -38,7 +38,7 @@ public:
 	QSettings* readSettings(bool reread=false);
 	QSettings* saveSettings(const QString& saveName="");
 
-	bool execConfigDialog();
+	bool execConfigDialog(QWidget *parentToDialog);
 
 //public configuration
 
