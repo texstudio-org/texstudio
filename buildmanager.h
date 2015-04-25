@@ -136,6 +136,7 @@ public slots:
 	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 	Q_INVOKABLE void killCurrentProcess();
 private:
+	bool checkExpandedCommands(const ExpandedCommands& expandedCommands);
 	bool runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)

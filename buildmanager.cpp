@@ -1104,30 +1104,7 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	ExpandingOptions options(mainFile, currentFile, currentLine);
 	ExpandedCommands expansion = expandCommandLine(unparsedCommandLine, options);
 	if (options.canceled) return false;
-    if (expansion.commands.isEmpty()) {
-        emit processNotification(tr("Error: No command expanded"));
-        if (!BuildManager_hadSuccessfulProcessStart){
-            emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
-                                        "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
-        }
-
-        return false;
-    }
-    // check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
-    bool emptyCommand=false;
-    foreach(const CommandToRun elem,expansion.commands) {
-        if(elem.command.isEmpty())
-            emptyCommand=true;
-    }
-    if (emptyCommand) {
-        emit processNotification(tr("Error: One command expansion invalid."));
-        if (!BuildManager_hadSuccessfulProcessStart){
-            emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
-                                        "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
-        }
-
-        return false;
-    }
+	if (!checkExpandedCommands(expansion)) return false;
 	
 	bool latexCompiled = false, pdfChanged = false;
 	for (int i=0;i<expansion.commands.size();i++){
@@ -1147,6 +1124,30 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	bool result = runCommandInternal(expansion, mainFile, buffer, codecForBuffer);
 	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
 	return result;
+}
+
+bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion) {
+	if (expansion.commands.isEmpty()) {
+		emit processNotification(tr("Error: No command expanded"));
+		if (!BuildManager_hadSuccessfulProcessStart){
+			emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
+			                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+		}
+		return false;
+	}
+	
+	// check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
+	foreach(const CommandToRun elem, expansion.commands) {
+		if(elem.command.isEmpty()) {
+			emit processNotification(tr("Error: One command expansion invalid."));
+			if (!BuildManager_hadSuccessfulProcessStart){
+				emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
+				                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+			}
+			return false;
+		}
+	}
+	return true;
 }
 
 bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer, QTextCodec* codecForBuffer){
