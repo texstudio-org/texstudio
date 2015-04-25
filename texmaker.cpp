@@ -55,6 +55,7 @@
 #include "session.h"
 #include "help.h"
 #include "fileselector.h"
+#include "utilsUI.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -5767,7 +5768,9 @@ void Texmaker::TexdocHelp() {
 }
 
 void Texmaker::HelpAbout() {
-	AboutDialog *abDlg = new AboutDialog(0); //if parent!=0 the focus is wrong after pdf viewer about call
+	// The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window). 
+	QWidget *parentWindow = windowForObject(sender(), this);
+	AboutDialog *abDlg = new AboutDialog(parentWindow);
 	abDlg->exec();
 	delete abDlg;
 }
@@ -5808,7 +5811,10 @@ void Texmaker::GeneralOptions() {
     connect(&configManager,SIGNAL(secondaryIconSizeChanged(int)),this,SLOT(changeSecondaryIconSize(int)));
     connect(&configManager,SIGNAL(symbolGridIconSizeChanged(int)),this,SLOT(changeSymbolGridIconSize(int)));
 
-	if (configManager.execConfigDialog(this)) {
+	// The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window). 
+	QWidget *parentWindow = windowForObject(sender(), this);
+
+	if (configManager.execConfigDialog(parentWindow)) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
 
 		configManager.editorConfig->settingsChanged();
