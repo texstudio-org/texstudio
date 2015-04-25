@@ -2725,12 +2725,12 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QFileInfo& masterFi
 	if (!actionSynchronize_multiple_views->isChecked())
 		return;
 	if (pdfFile != curFile || this->masterFile != masterFile)
-		loadFile(pdfFile, masterFile, false, false);
+		loadFile(pdfFile, masterFile, NoDisplayFlags);
 	if (page != widget()->getPageIndex())
 		scrollArea->goToPage(page,false);
 }
 
-void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert, bool focus)
+void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, DisplayFlags displayFlags)
 {
 	// check if the file is already loaded
 	bool fileAlreadyLoaded=(this->masterFile == masterFile);
@@ -2757,16 +2757,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 		if (curFile != "")
 			watcher->addPath(curFile);
 	}
-	if (alert) {
-		QWidget *activeWindow = QApplication::activeWindow();
-		raise();
-		unminimize();
-		if (!focus && activeWindow) activeWindow->activateWindow(); // unminimize may change the activeWindow
-	}
-	if (focus) {
-		setFocus();
-		if (scrollArea) scrollArea->setFocus();
-	}
+	updateDisplayState(displayFlags);
 }
 
 void PDFDocument::fillRenderCache(int pg){
@@ -3018,6 +3009,29 @@ void PDFDocument::unminimize(){
 	} else {
 		show();
 	}
+}
+
+void PDFDocument::updateDisplayState(DisplayFlags displayFlags)
+{
+	displayFlags &= (embeddedMode) ? FilterEmbedded : FilterWindowed;
+	QWidget *activeWindow = QApplication::activeWindow();
+	unminimize();
+	if (displayFlags & Raise) {
+		raise();
+	} else if (activeWindow) {  // unminimize() may have brought the viewer to Front
+		activeWindow->raise();
+	}
+	if (displayFlags & Focus) {
+		if (embeddedMode) {
+			setFocus();
+		} else {
+			activateWindow();
+		}
+		if (scrollArea) scrollArea->setFocus();
+	} else if (activeWindow) {  // unminimize may have made the viewer active
+		activeWindow->activateWindow();
+	}
+	
 }
 
 void PDFDocument::arrangeWindows(bool tile){
@@ -3304,7 +3318,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 	}
 }
 
-int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview)
+int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, DisplayFlags displayFlags)
 {
 	lineNo++; //input 0 based, synctex 1 based
 
@@ -3350,12 +3364,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 			if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
-			if (activatePreview) {
-				unminimize();
-				raise();
-				activateWindow();
-				pdfWidget->setFocus();
-			}
+			updateDisplayState(displayFlags);
 			syncToSourceBlock = false;
 			//pdfWidget->repaint();
 			return page-1;
@@ -3473,7 +3482,7 @@ void PDFDocument::goToSource()
 void PDFDocument::fileOpen(){
 	QString newFile = QFileDialog::getOpenFileName(this,tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
 	if (newFile.isEmpty()) return;
-	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), false, false);
+	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), NoDisplayFlags);
 }
 
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
