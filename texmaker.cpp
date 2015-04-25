@@ -5223,9 +5223,11 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 	if (embedded) autoClose = ! ol.contains("no-auto-close");                  //Don't close the viewer, if the corresponding document is closed
 	else autoClose = ol.contains("auto-close");                                //Close the viewer, if the corresponding document is closed
 	
-	int focus = 0; //1: always, 0: auto, -1: never
-	if (ol.contains("focus")) focus = 1;
-	else if (ol.contains("no-focus")) focus = -1;
+	PDFDocument::DisplayFlags displayPolicy = PDFDocument::FocusWindowed | PDFDocument::Raise;
+	if (ol.contains("no-focus")) displayPolicy &= ~PDFDocument::Focus;
+	else if (ol.contains("focus")) displayPolicy |= PDFDocument::Focus;
+	if (ol.contains("no-foreground")) displayPolicy &= ~PDFDocument::Raise;
+	else if (ol.contains("foreground")) displayPolicy |= PDFDocument::Raise;
 	
 	if (!(embedded || windowed || closeEmbedded || closeWindowed)) windowed = true; //default
 	
@@ -5290,10 +5292,8 @@ void Texmaker::runInternalPdfViewer(const QFileInfo& master, const QString& opti
 		if (originalLineNumber >= 0) ln = originalLineNumber;
 	}
 	foreach (PDFDocument* viewer, oldPDFs) {
-		bool focusViewer = (focus == 1) || (focus == 0 && !viewer->embeddedMode);
-
-		viewer->loadFile(pdfFile, master, true, focusViewer);
-		int pg = viewer->syncFromSource(getCurrentFileName(), ln , focusViewer);
+		viewer->loadFile(pdfFile, master, displayPolicy);
+		int pg = viewer->syncFromSource(getCurrentFileName(), ln, displayPolicy);
 		viewer->fillRenderCache(pg);
 		if(embedded && configManager.viewerEnlarged){
 			viewer->setStateEnlarged(true);
@@ -6420,7 +6420,7 @@ QObject* Texmaker::newPdfPreviewer(bool embedded){
 	
 	PDFDocument* from = qobject_cast<PDFDocument*>(sender());
 	if (from) {
-		pdfviewerWindow->loadFile(from->fileName(), from->getMasterFile(), true, true);
+		pdfviewerWindow->loadFile(from->fileName(), from->getMasterFile(), PDFDocument::Raise|PDFDocument::Focus);
 		pdfviewerWindow->goToPage(from->widget()->getPageIndex());
 	}//load file before enabling sync or it will jump to the first page
 	
@@ -7805,10 +7805,9 @@ void Texmaker::syncPDFViewer(QDocumentCursor cur, bool inForeground) {
 				int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
 				if (originalLineNumber >= 0) lineNumber = originalLineNumber;
 			}
-			viewer->syncFromSource(getCurrentFileName(), lineNumber, false);
-		}
-		if (inForeground) {
-			viewer->raise();
+			PDFDocument::DisplayFlags displayPolicy = PDFDocument::NoDisplayFlags;
+			if (inForeground) displayPolicy = PDFDocument::Raise | PDFDocument::Focus;
+			viewer->syncFromSource(getCurrentFileName(), lineNumber, displayPolicy);
 		}
 	}
 #endif

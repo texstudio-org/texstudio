@@ -335,6 +335,20 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
 public:
     explicit PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded=false);
 	virtual ~PDFDocument();
+	
+	enum DisplayFlagsEnum {
+		NoDisplayFlags = 0x0000,
+		FocusEmbedded = 0x0001,
+		FocusWindowed = 0x0010,
+		Raise = 0x0100,
+
+		// window state independent combinations
+		Focus = FocusEmbedded | FocusWindowed,
+		// filter
+		FilterEmbedded = 0xFF0F,
+		FilterWindowed = 0xFFF0,
+	};
+	Q_DECLARE_FLAGS(DisplayFlags, DisplayFlagsEnum)
 
 	static PDFDocument *findDocument(const QString &fileName);
 	static QList<PDFDocument*> documentList()
@@ -397,9 +411,9 @@ public slots:
 	void doFindAgain();
 	void goToSource();
 	void toggleFullScreen(const bool fullscreen);
-	int syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
+	int syncFromSource(const QString& sourceFile, int lineNo, DisplayFlags displayFlags);  // lineNo is 0-based
 	void syncFromView(const QString& pdfFile, const QFileInfo& masterFile, int page);
-	void loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert = true, bool focus = true);
+	void loadFile(const QString &fileName, const QFileInfo& masterFile, DisplayFlags displayFlags=DisplayFlagsEnum(Raise|Focus));
 	void printPDF();
 	void setAutoHideToolbars(bool enabled);
 	void hideToolbars();
@@ -432,6 +446,7 @@ private slots:
 	void tileWindows();
 	void stackWindows();
 	void unminimize();
+	void updateDisplayState(DisplayFlags displayFlags);
 	void arrangeWindows(bool tile);
 	void updateToolBarForOrientation(Qt::Orientation orientation);
 
@@ -542,6 +557,7 @@ private:
 	bool syncFromSourceBlock;  //temporary disable sync from source
 	bool syncToSourceBlock;    //temporary disable sync to source (only for continuous scrolling)
 };
+Q_DECLARE_OPERATORS_FOR_FLAGS(PDFDocument::DisplayFlags)
 
 #endif
 

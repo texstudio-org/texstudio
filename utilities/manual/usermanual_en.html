@@ -183,8 +183,9 @@ This also means that you can change every command as you want, ignoring its old 
 <tr><td>--preserve-existing</td><td>Does not change any existing viewers (i.e. always opens a new one)</td></tr>
 <tr><td>--preserve-(embedded|windowed)</td><td>Does not change any existing embedded/windowed viewers</td></tr>
 <tr><td>--preserve-duplicates</td><td>Only opens the pdf in the first opened viewer</td></tr>
-<tr><td>--(no-)auto-close</td><td>If the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
-<tr><td>--(no-)focus</td><td>If the viewer should be focused, when it is opened (default: focus iff windowed)</td></tr>
+<tr><td>--(no-)auto-close</td><td>Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
+<tr><td>--(no-)focus</td><td>Determines whether the viewer should be focused (default: focus iff windowed)</td></tr>
+<tr><td>--(no-)foreground</td><td>Determines whether the viewer should be brought to front (default: foreground)</td></tr>
 <tr><td>filename</td><td>Determines the file to open. Like in other commands, <a href="#SECTION02">file patterns</a> are supported. If this parameter is not provided, TXS uses <code>"?am.pdf"</code>, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in <code>Options -> Build -> Build Options -> Additional Serach Paths -> PDF Files</code></td></tr>
 </table>
 
