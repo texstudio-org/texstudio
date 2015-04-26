@@ -1406,21 +1406,21 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
 			else  ++it;
 		for (int i=0;i<commandInputs.size();i++){
 			CommandMapping::iterator it = tempCommands.find(commandInputs[i]->property(PROPERTY_COMMAND_ID).toString());
-            if (it != tempCommands.end()) {
-                QString text = getText(commandInputs[i]);
-                QComboBox *cb=qobject_cast<QComboBox*>(commandInputs[i]);
-                if(cb) {
-                    // TODO: does this anything useful at all?
-                    // It seems that all the values in the suggestion list are identical to the combo box.
-                    // This would imply that text would only be replaced by itself.
-                    // Note: there may be additional entires in the combo box
-                    int i = cb->findText(text);
-                    if (i>=0 && i<it.value().metaSuggestionList.count()) {
-                        text = it.value().metaSuggestionList.value(i);
-                    }
-                }
-                it.value().commandLine =text;
-            }
+			if (it != tempCommands.end()) {
+				QString text = getText(commandInputs[i]);
+				QComboBox *cb = qobject_cast<QComboBox*>(commandInputs[i]);
+				if (cb) {
+					// TODO: does this anything useful at all?
+					// It seems that all the values in the suggestion list are identical to the combo box.
+					// This would imply that text would only be replaced by itself.
+					// Note: there may be additional entires in the combo box
+					int i = cb->findText(text);
+					if (i>=0 && i<it.value().metaSuggestionList.count()) {
+						text = it.value().metaSuggestionList.value(i);
+					}
+				}
+				it.value().commandLine = text;
+			}
 		}
 		for (int i=0;i<rerunButtons.size();i++){
 			CommandMapping::iterator it = tempCommands.find(getCmdID(rerunButtons[i]));
