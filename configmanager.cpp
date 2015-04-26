@@ -1412,8 +1412,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
                 if(cb) {
                     // TODO: does this anything useful at all?
                     // It seems that all the values in the suggestion list are identical to the combo box.
+                    // This would imply that text would only be replaced by itself.
+                    // Note: there may be additional entires in the combo box
                     int i = cb->findText(text);
-                    if (i>=0) {
+                    if (i>=0 && i<it.value().metaSuggestionList.count()) {
                         text = it.value().metaSuggestionList.value(i);
                     }
                 }
