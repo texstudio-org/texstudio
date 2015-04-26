@@ -1409,11 +1409,14 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
             if (it != tempCommands.end()) {
                 QString text = getText(commandInputs[i]);
                 QComboBox *cb=qobject_cast<QComboBox*>(commandInputs[i]);
-                int i=-1;
-                if(cb)
-                    i=cb->findText(text);
-                if(i>=0)
-                    text=it.value().metaSuggestionList.value(i);
+                if(cb) {
+                    // TODO: does this anything useful at all?
+                    // It seems that all the values in the suggestion list are identical to the combo box.
+                    int i = cb->findText(text);
+                    if (i>=0) {
+                        text = it.value().metaSuggestionList.value(i);
+                    }
+                }
                 it.value().commandLine =text;
             }
 		}
