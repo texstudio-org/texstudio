@@ -453,6 +453,7 @@ private slots:
 protected slots:	
 	void processNotification(const QString& message);
 	void CleanAll();
+	void checkShortcutChangeNotification(QAction *act);
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 	
 	void WebPublish();
