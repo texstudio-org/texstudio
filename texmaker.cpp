@@ -834,14 +834,14 @@ void Texmaker::setupMenus() {
 	
 	menu=newManagedMenu("main/tools",tr("&Tools"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(commandFromAction())));
-	newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), Qt::Key_F1, "build")->setData(BuildManager::CMD_QUICK);
+	newManagedAction(menu, "quickbuild",tr("&Build && View"), SLOT(commandFromAction()), (QList<QKeySequence>() << Qt::Key_F5 << Qt::Key_F1), "build")->setData(BuildManager::CMD_QUICK);
 	newManagedAction(menu, "compile",tr("&Compile"), SLOT(commandFromAction()), Qt::Key_F6,"compile")->setData(BuildManager::CMD_COMPILE);
 	newManagedAction(menu, "stopcompile", buildManager.stopBuildAction())->setText(buildManager.tr("Stop Compile")); // resetting text necessary for language updates
 	buildManager.stopBuildAction()->setParent(menu);  // actions need to be a child of the menu in order to be configurable in toolbars
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,"viewer")->setData(BuildManager::CMD_VIEW);
-	newManagedAction(menu, "glossary",tr("&Glossary"), SLOT(commandFromAction()), Qt::Key_F10)->setData(BuildManager::CMD_GLOSSARY);
-	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F11)->setData(BuildManager::CMD_BIBLIOGRAPHY);
-	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()), Qt::Key_F12)->setData(BuildManager::CMD_INDEX);
+	newManagedAction(menu, "glossary",tr("&Glossary"), SLOT(commandFromAction()))->setData(BuildManager::CMD_GLOSSARY);
+	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()))->setData(BuildManager::CMD_BIBLIOGRAPHY);
+	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()))->setData(BuildManager::CMD_INDEX);
 
 	menu->addSeparator();
 	submenu=newManagedMenu(menu, "commands",tr("&Commands", "menu"));
@@ -5509,7 +5509,56 @@ void Texmaker::processNotification(const QString& message){
 void Texmaker::commandFromAction(){
 	QAction* act = qobject_cast<QAction*>(sender());
 	if (!act) return;
+	checkShortcutChangeNotification(act);
 	runCommand(act->data().toString());
+}
+
+void Texmaker::checkShortcutChangeNotification(QAction *act) {
+	bool showDialog = configManager.getOption("NotifyShortcutChange", true).toBool();
+	if (!showDialog) return;
+	if (act->data().toString() == BuildManager::CMD_QUICK && act->shortcuts().contains(Qt::Key_F1)) {
+		QWidget *dialog = new QWidget();
+		QVBoxLayout *layout = new QVBoxLayout();
+		dialog->setLayout(layout);
+		
+		QTextEdit *te = new QTextEdit();
+		te->setReadOnly(true);
+		te->setText(tr("<b>Change of Default Shortcuts</b><br>"
+						"<p>Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys.</p>"
+						"<p>We've decided to set this right in favor of more a consistent layout:</p>"
+						"<ul>"
+						"<li>The main <code>Build & View</code> shortcut will move from F1 to F5.</li>"
+						"<li>The tools <code>Glossary</code>, <code>Bibliography</code> and <code>Index</code> won't have default shortcuts anymore (formerly F10-F12).</li>"
+						"<li>F8 is intentionally left free, so that you can assign the next-most important tool of your choice.</li>"
+						"</ul>"
+						"<p>We are sorry, that you have to relearn the most used shortcut for <code>Build & View</code>. For a transition period, both F1 and F5 will work. "
+						"In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.</p>"
+					 ));
+		layout->addWidget(te);
+		QLabel *image = new QLabel();
+		image->setPixmap(QPixmap(":/images-ng/shortcut_change.svg"));
+		layout->addWidget(image);
+		layout->setAlignment(image, Qt::AlignHCenter);
+		QCheckBox *cbNoShowAgain = new QCheckBox(tr("Do not show this message again."));
+		configManager.getOption("NotifyShortcutChange", true).toBool();
+		layout->addWidget(cbNoShowAgain);
+		QPushButton *okButton = new QPushButton(tr("OK"));
+		okButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+		layout->addWidget(okButton);
+		layout->setAlignment(okButton, Qt::AlignHCenter);
+		connect(okButton, SIGNAL(clicked()), dialog, SLOT(close()));
+		//dialog->setWindowTitle(tr("Change of Default Shortcuts"));
+		dialog->setWindowModality(Qt::ApplicationModal);
+		dialog->resize(420, 450);
+		dialog->show();
+		while (dialog->isVisible()) {
+			QApplication::processEvents();
+		}
+		if (cbNoShowAgain->isChecked()) {
+			configManager.setOption("NotifyShortcutChange", false);
+		}
+		delete dialog;
+	}
 }
 
 void Texmaker::CleanAll() {
