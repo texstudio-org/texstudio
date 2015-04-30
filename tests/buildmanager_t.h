@@ -13,6 +13,41 @@ public:
 		connect(bm, SIGNAL(commandLineRequested(QString,QString*)), SLOT(commandLineRequested(QString,QString*)));
 	}
 private slots:
+	void replaceEnvironmentVariables_data() {
+		QTest::addColumn<QString>("command");
+		QTest::addColumn<QString>("result");
+		QTest::newRow("no variables") << "foo bar baz" << "foo bar baz";
+		QTest::newRow("TXSpercent1") << "foo %" << "foo %";
+		QTest::newRow("TXSpercent2") << "foo % to %" << "foo % to %";
+#ifdef Q_OS_WIN
+		QTest::newRow("caseinsens1") << "foo %lowercase% bar" << "foo result/lower bar";
+		QTest::newRow("caseinsens2") << "foo %loweRCase% bar" << "foo result/lower bar";
+		QTest::newRow("caseinsene3") << "foo %mIXEdcase% bar" << "foo result/mixed bar";
+		QTest::newRow("underscore") << "foo %with_underscore% bar" << "foo result/underscore bar";
+		QTest::newRow("number") << "foo %number99%" << "foo 99 bars";
+		QTest::newRow("nonexistentVariable") << "foo %bar% baz" << "foo  baz";
+		QTest::newRow("multiple") << "%lowercase%%mixedcase% %with_underscore%" << "result/lowerresult/mixed result/underscore";
+#endif
+	}
+	void replaceEnvironmentVariables() {
+		QFETCH(QString, command);
+		QFETCH(QString, result);
+		QHash<QString, QString> variables;
+		variables.insert("lowercase", "result/lower");
+		variables.insert("miXedCase", "result/mixed");
+		variables.insert("with_underscore", "result/underscore");
+		variables.insert("number99", "99 bars");
+#ifdef Q_OS_WIN
+		QHash<QString, QString> upperVariables;
+		foreach (const QString &name, variables.keys()) {
+			upperVariables.insert(name.toUpper(), variables.value(name));
+		}
+		QEQUAL(BuildManager::replaceEnvironmentVariables(command, upperVariables, true), result);
+#else
+		QEQUAL(BuildManager::replaceEnvironmentVariables(command, variables, false), result);
+#endif
+	}
+	
 	void parseExtendedCommandLine_data(){ 
 		QTest::addColumn<QString >("str");
 		QTest::addColumn<QString >("fileName");

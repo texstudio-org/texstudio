@@ -204,12 +204,21 @@ This also means that you can change every command as you want, ignoring its old 
 Finally, there are also hidden options, which can only be changed by modifing the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
 </p>
 <h2 id="SECTION02a2">1.3.2 Details of the execution environment</h2>
-<p>
-The PATH for the execution is the same as the PATH used when executing TeXstudio. On Linux/OS X the PATH may depend on the way you started TeXstudio. Programs started from the GUI may have a different PATH setting than programs started from a shell.
+<h3>Environment Variables</h3>
+<p>The environment variables available within the execution are the same as the ones that are available in the context in which TeXstudio was started.
+In particular this is true for the PATH. On Linux/OS X the PATH may depend on the way you started TeXstudio. Programs started from the GUI may have a different PATH
+setting than programs started from a shell (because some variables may only defined in the context of a shell (e.g. via ~/.bashrc).
 </p>
+<p>
+By default, TeXstudio parses environment variables in your commands. The syntax is adapted to the according operating system. A variable MYVAR would be written as <code>%MYVAR%</code> on
+Windows and <code>$MYVAR</code> on Linux and OS X. Windows environment variables are case-insensitive, whereas they are case-sensitive on Linux and OS X. Parsing of environment variables
+can be deactivated in the Build section of the options.
+</p> 
+<h3>Working Directory</h3>
 <p>
 The working directory is set to the path of the master document, or to the path of the current file if there is no master document.
 </p>
+<h3>Execution Context</h3>
 <p>
 All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So output redirection and other shell functionality does not work.
 </p>
