@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1017,6 +1017,23 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
             </property>
            </widget>
           </item>
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="checkBoxReplaceEnvironmentVariables">
+            <property name="toolTip">
+             <string>Replaces environment variables in commands.The behavior is OS-specific.
+
+Windows:
+Variables are written as: %MYVAR%. They are case-insensitive.
+
+Linux, OS X:
+Variables are written as: $MYVAR. They are case-sensitive.
+</string>
+            </property>
+            <property name="text">
+             <string>Replace Environment Variables</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1799,7 +1816,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>668</width>
             <height>1220</height>
            </rect>
           </property>
@@ -2995,8 +3012,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3361,8 +3378,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>356</width>
+            <height>554</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">

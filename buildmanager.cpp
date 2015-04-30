@@ -23,6 +23,7 @@ static const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-v
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
+bool BuildManager::m_replaceEnvironmentVariables = true;
 QString BuildManager::autoRerunCommands;
 QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
 
@@ -160,6 +161,43 @@ QStringList BuildManager::splitOptions(const QString &s)
 	return options;
 }
 
+QHash<QString, QString> getEnvVariables(bool uppercaseNames) {
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QHash<QString, QString> result;
+	foreach (const QString &name, env.keys()) {
+		if (uppercaseNames) {
+			result.insert(name.toUpper(), env.value(name));
+		} else {
+			result.insert(name, env.value(name));
+		}
+	}
+	return result;
+}
+
+QString BuildManager::replaceEnvironmentVariables(const QString &command, const QHash<QString, QString> &variables, bool compareNamesToUpper)
+{
+	QString result(command);
+#ifdef Q_OS_WIN
+	QRegExp rxEnvVar("%(\\w+)%");
+#else
+	QRegExp rxEnvVar("\$(\\w+)");
+#endif
+	int i=0;
+	while (i>=0 && i<result.length()) {
+		i = result.indexOf(rxEnvVar, i);
+		if (i>=0) {
+			QString varName = rxEnvVar.cap(1);
+			if (compareNamesToUpper) {
+				varName = varName.toUpper();
+			}
+			QString varContent = variables.value(varName, "");
+			result.replace(rxEnvVar.cap(0), varContent);
+			i += varContent.length();
+		}
+	}
+	return result;
+}
+
 BuildManager::BuildManager(): processWaitedFor(0)
      #ifdef Q_OS_WIN32
      , pidInst(0)
@@ -284,6 +322,16 @@ QString BuildManager::getCommandLine(const QString& id, bool* user){
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
 	str = ConfigManagerInterface::getInstance()->parseDir(str);
+	if (m_replaceEnvironmentVariables) {
+#ifdef Q_OS_WIN
+		Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+#else
+		Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+#endif
+		static QHash<QString, QString> envVariables = getEnvVariables(caseSensitivity);  // environment variables can be static because they do not change during program execution.
+		str = replaceEnvironmentVariables(str, envVariables, caseSensitivity==Qt::CaseInsensitive);
+	}
+	
 	str=str+" "; //end character  so str[i++] is always defined
 	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {

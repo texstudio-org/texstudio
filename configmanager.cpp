@@ -519,6 +519,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Show Messages When Compiling", &showMessagesWhenCompiling, true, &pseudoDialog->checkBoxShowMessagesOnCompile);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
+	registerOption("Tools/ReplaceEnvironmentVariables", &BuildManager::m_replaceEnvironmentVariables, true, &pseudoDialog->checkBoxReplaceEnvironmentVariables);
 
 	//Paths
 #ifdef Q_OS_MAC
