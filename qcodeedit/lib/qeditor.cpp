@@ -4234,10 +4234,13 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 
 		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
         addEditOperation(DeleteRight, QKeySequence::Delete);
-	#ifndef Q_OSX
-		addEditOperation(DeleteLeft, Qt::ShiftModifier, Qt::Key_Backspace);
-	#endif
-	#ifdef Q_OSX
+    #ifdef Q_OS_MAC
+        addEditOperation(DeleteRight, Qt::ShiftModifier, Qt::Key_Backspace);
+    #else
+        addEditOperation(DeleteLeft, Qt::ShiftModifier, Qt::Key_Backspace);
+    #endif
+
+    #ifdef Q_OS_MAC
 		addEditOperation(DeleteLeftWord, Qt::AltModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRightWord, Qt::AltModifier, Qt::Key_Delete);
 	#else
