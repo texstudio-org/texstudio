@@ -29,10 +29,55 @@ struct CommandArgument {
 Q_DECLARE_METATYPE( CommandArgument )
 
 //void txs_assert(const char *assertion, const char *file, int line);
+class QDocumentLineHandle;
 
 
 class LatexCompleterConfig;
 
+class Tokens{
+public:
+    int start;
+    int length;
+    int level;
+    QDocumentLineHandle *dlh;
+
+    enum TokenType {none=0,word=1,
+    command=2,braces=3,bracket=4,
+    squareBracket=5,math=6,openBrace=7,
+    openBracket=8,openSquare=9,closeBrace=10,
+    closeBracket=11,closeSquareBracket=12,comment=13,
+    commandUnknown=14,label=15,bibItem=16,file=17,
+    keyValArg=18,list=19,text=20,env=21,def=22,labelRef=23,package=24,width=25,placement=26,colDef=27};
+    TokenType type;
+    // subtype is used to determine the type of argument
+    TokenType subtype;
+    int argLevel; // number of argument (>0) or option (<0, =-numberOfOption)
+    static QSet<TokenType> tkArg();
+    static QSet<TokenType> tkOption();
+    static QSet<TokenType> tkBraces();
+    static QSet<TokenType> tkOpen();
+    static QSet<TokenType> tkClose();
+    static TokenType opposite(TokenType type);
+    static TokenType closed(TokenType type);
+    bool operator==(const Tokens &v);
+};
+
+typedef QList<Tokens> TokenList;
+typedef QStack<Tokens> TokenStack;
+
+Q_DECLARE_METATYPE(TokenList);
+Q_DECLARE_METATYPE(TokenStack);
+
+class CommandDescription {
+public:
+    CommandDescription();
+    int optionalArgs;
+    int args;
+    QList<Tokens::TokenType> argTypes;
+    QList<Tokens::TokenType> optTypes;
+};
+
+typedef QHash<QString,CommandDescription> CommandDescriptionHash;
 
 typedef QString (QObject::*StringToStringCallback)(const QString&) ;
 
@@ -74,6 +119,7 @@ QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts=0, int offset=0, bool parseComment=false);
+int findCommandWithArgsFromTL(const TokenList &tl,Tokens &cmd, TokenList &args, int offset, bool parseComment=false);
 
 
 // generate multiple times used regexpression
@@ -172,6 +218,8 @@ public:
     QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
     QHash<QString,QString> specialDefCommands;
 	
+    CommandDescriptionHash commandDefs;
+
 	void append(const LatexParser& elem);
 	void substract(const LatexParser& elem);
 	void importCwlAliases();
@@ -268,9 +316,21 @@ public:
 	QSet<QString> optionCommands;
     QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
 	QMultiHash<QString,QString> environmentAliases;
+    CommandDescriptionHash commandDescriptions;
 	void unite(LatexPackage &add);
 };
 
 LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config=0, QStringList conditions=QStringList());
+
+class QDocumentLineHandle;
+
+QString getArg(TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
+QString findRestArg(QDocumentLineHandle* dlh,Tokens::TokenType type,int count=5);
+TokenList lexLatexLine(QDocumentLineHandle *dlh, TokenStack &stack);
+void updateSubsequentRemainders(QDocumentLineHandle* dlh, TokenStack stack);
+void latexDetermineContexts(QDocumentLineHandle *dlh, const LatexParser &lp);
+CommandDescription extractCommandDef(QString line);
+TokenList getArgContent(Tokens &tk);
+TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention=10);
 
 #endif

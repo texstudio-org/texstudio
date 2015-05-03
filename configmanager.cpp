@@ -742,6 +742,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		latexParser.optionCommands.unite(pck.optionCommands);
         latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
+        latexParser.commandDefs.unite(pck.commandDescriptions);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
 		foreach(const QString& elem,pck.possibleCommands.keys()){
 			QSet<QString> set2=pck.possibleCommands[elem];
@@ -1381,6 +1382,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
 			latexParser.optionCommands.unite(pck.optionCommands);
             latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 			latexParser.environmentAliases.unite(pck.environmentAliases);
+            latexParser.commandDefs.unite(pck.commandDescriptions);
 			
 			//ltxCommands->possibleCommands.unite(pck.possibleCommands); qt bug
 			foreach(const QString& elem,pck.possibleCommands.keys()){

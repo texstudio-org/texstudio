@@ -342,16 +342,41 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 	QStringList addedUsepackages;
 	QStringList removedUserCommands,addedUserCommands;
     QStringList lstFilesToLoad;
-	
-	//TODO: This assumes one command per line, which is not necessary true
-	for (int i=linenr; i<linenr+count; i++) {
+
+    //first pass: lex
+    // get remainder
+    TokenStack remainder;
+    int lineNrStart=linenr;
+    if(linenr>0){
+        QDocumentLineHandle *previous=line(linenr-1).handle();
+        remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        if(!remainder.isEmpty()){
+            QDocumentLineHandle *lh=remainder.top().dlh;
+            lineNrStart=lh->document()->indexOf(lh);
+        }
+    }
+    TokenStack oldRemainder=line(linenr+count-1).handle()->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+    for (int i=linenr; i<linenr+count; i++) {
+        lexLatexLine(line(i).handle(),remainder);
+    }
+    if(oldRemainder!=remainder && linenr+count<lines()){
+        // update subsequent remainders
+        updateSubsequentRemainders(line(linenr+count).handle(),remainder);
+    }
+    for (int i=linenr; i<linenr+count; i++) {
+        latexDetermineContexts(line(i).handle(),latexParser);
+    }
+    // force command from all line of which the actual line maybe subsequent lines (multiline commands)
+    for (int i=lineNrStart; i<linenr+count; i++) {
 		//update bookmarks
 		if(edView && edView->hasBookmark(i,-1)){
 			emit bookmarkLineUpdated(i);
 		}
 
 		QString curLine = line(i).text(); //TODO: use this instead of s
-		QVector<int> fmts=line(i).getFormats();
+        QDocumentLineHandle *dlh=line(i).handle();
+        TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+        QVector<int> fmts=line(i).getFormats();
 		
 		for(int j=0;j<curLine.length() && j < fmts.size();j++){
 			if(fmts[j]==verbatimFormat || (fmts[j]==commentFormat && !parent->showCommentedElementsInStructure) ){
@@ -360,8 +385,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 		}
 		
 		// remove command,bibtex,labels at from this line
-		QDocumentLineHandle* dlh=line(i).handle();
-		QStringList commands=mUserCommandList.values(dlh);
+        QStringList commands=mUserCommandList.values(dlh);
 		foreach(QString elem,commands){
 			int i=elem.indexOf("{");
 			if(i>=0) elem=elem.left(i);
@@ -533,15 +557,16 @@ bool LatexDocument::patchStructure(int linenr, int count) {
         }
         int offset = 0;
 		while(true) {
-			QString cmd;
-			ArgumentList args;
-			QList<int> arg_Starts;
-			int cmdStart = findCommandWithArgs(curLine, cmd, args, &arg_Starts, offset, parent->showCommentedElementsInStructure);
+            Tokens tkCmd;
+            TokenList args;
+            QString cmd;
+            int cmdStart = findCommandWithArgsFromTL(tl, tkCmd, args, offset, parent->showCommentedElementsInStructure);
 			if (cmdStart < 0) break;
+            cmd=curLine.mid(tkCmd.start,tkCmd.length);
 			// offset is the starting point for the next search. Currently this is behind cmd.
 			// It could be improved to be behind the arguments.
-			offset = cmdStart + cmd.length();
-			QString firstArg = args.argContent(0, ArgumentList::Mandatory);
+            offset = cmdStart+1;
+            QString firstArg = getArg(args, dlh,0,ArgumentList::Mandatory);
 
 			if (latexParser.possibleCommands["%todo"].contains(cmd)) {
 				bool reuse=false;
@@ -564,46 +589,20 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			
 			//// newcommand ////
 			//TODO: handle optional arguments
-			if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
-                QString remainder = curLine.mid(cmdStart+cmd.length());
-				if(firstArg.isEmpty()){ //special treament if argument is not in brackets
-                    QString test=remainder.simplified();
-                    test.remove(' ');
-                    if(test.startsWith('\\')){
-					   int i=getCommand(remainder,firstArg);
-                       remainder=remainder.mid(i);
-                    }else{
-                        continue;
-                    }
-                }
-				completerNeedsUpdate=true;
-				QRegExp rx("^\\s*(\\[.+\\])?");
-				int optionCount = args.argContent(0, ArgumentList::Optional).toInt();  // results in 0 if there is no optional argument or conversion fails
+			if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {				completerNeedsUpdate=true;
+                int optionCount = getArg(args,dlh,0, ArgumentList::Optional).toInt();  // results in 0 if there is no optional argument or conversion fails
 				if (optionCount>9 || optionCount<0) optionCount = 0;  // limit number of options
-				int def=0;
-				if(rx.indexIn(remainder)>-1){
-					if(!rx.cap(1).isEmpty())
-						def=1;
-				}
-				ltxCommands.possibleCommands["user"].insert(firstArg);
-				if(!removedUserCommands.removeAll(firstArg)){
+                bool def=!getArg(args,dlh,1, ArgumentList::Optional).isEmpty();
+
+                ltxCommands.possibleCommands["user"].insert(firstArg);
+
+                if(!removedUserCommands.removeAll(firstArg)){
 					addedUserCommands << firstArg;
                 }
-                // why twice ??
-                /*if(def==1){
-					QString helper=name;
-					for (int j=0; j<options; j++) {
-						if (j==1)
-							helper.append("{%<arg1%|%>}");
-						if(j>1)
-							helper.append(QString("{%<arg%1%>}").arg(j));
-					}
-					mUserCommandList.insert(line(i).handle(),helper);
-					
-                }*/
+
 				for (int j=0; j<optionCount; j++) {
 					if (j==0) {
-						if(def==0)
+                        if(!def)
 							firstArg.append("{%<arg1%|%>}");
 						else
 							firstArg.append("[%<opt. arg1%|%>]");
@@ -661,7 +660,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
 			if (envTokens.contains(cmd)) {
 				completerNeedsUpdate=true;
-				int optionCount = args.argContent(0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
+                int optionCount = getArg(args,dlh,0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount>9 || optionCount<0) optionCount = 0;  // limit number of options
 				firstArg.append("}");
 				mUserCommandList.insert(line(i).handle(),"\\end{"+firstArg);
@@ -744,8 +743,8 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 					elem.name=firstArg;
                     int optionStart = 0;
 					for (int j=0; j<args.length(); j++) {
-						if (args.argType(j) == ArgumentList::Mandatory) {
-							optionStart = arg_Starts[j];
+                        if (args[j].type == Tokens::braces) {
+                            optionStart =args[j].start;
                             break;
                         }
                     }
@@ -767,7 +766,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 					packagesHelper.replaceInStrings(QRegExp("^"),preambel);
 				}
 
-				QString firstOptArg = args.argContent(0, ArgumentList::Optional);
+                QString firstOptArg = getArg(args,dlh,0, ArgumentList::Optional);
                 if(cmd=="\\documentclass"){
                     //special treatment for documentclass, especially for the class options
                     // at the moment a change here soes not automatically lead to an update of corresponding definitions, here babel
@@ -839,7 +838,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 				}else{
 					newBlock=new StructureEntry(this, StructureEntry::SE_BLOCK);
 				}
-				newBlock->title=args.argContent(1, ArgumentList::Mandatory);
+                newBlock->title=getArg(args,dlh,1, ArgumentList::Mandatory);
 				newBlock->setLine(line(i).handle(), i);
 				newBlock->parent=blockList;
 				iter_block.insert(newBlock);
@@ -876,7 +875,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
 				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
 				QDir dir(firstArg);
-				QFileInfo fi(dir, args.argContent(1, ArgumentList::Mandatory));
+                QFileInfo fi(dir, getArg(args,dlh,1, ArgumentList::Mandatory));
 				QString file = fi.filePath();
 				newInclude->title = file;
                 QString fname=findFileName(file);
@@ -903,7 +902,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
 			int level = latexParser.structureCommandLevel(cmd);
-			if (level>-1 && args.count(ArgumentList::Mandatory) >= 1 && !isDefinitionArgument(firstArg)) {
+            if (level>-1 && !firstArg.isEmpty() && !isDefinitionArgument(firstArg)) {
                 StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->setContext(StructureEntry::InAppendix);
 				if(mBeyondEnd &&indexOf(mBeyondEnd)<i) newSection->setContext(StructureEntry::BeyondEnd);
@@ -2951,3 +2950,5 @@ QString LatexDocuments::findPackageByCommand(const QString command){
     }
     return result;
 }
+
+

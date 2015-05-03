@@ -145,11 +145,11 @@
 \pretocmd{command}{code}{success}{failure}#*
 \protecting{code}#*
 \providebool{name}#*
-\providerobustcmd{command}[arguments}{code}#*
-\providerobustcmd*{command}[arguments}{code}#*
+\providerobustcmd{command}[arguments]{code}#*
+\providerobustcmd*{command}[arguments]{code}#*
 \providetoggle{name}#*
-\renewrobustcmd{command}[arguments}{code}#*
-\renewrobustcmd*{command}[arguments}{code}#*
+\renewrobustcmd{command}[arguments]{code}#*
+\renewrobustcmd*{command}[arguments]{code}#*
 \robustify{command}#*
 \setbool{name}{value}#*
 \settoggle{name}{value}#*
