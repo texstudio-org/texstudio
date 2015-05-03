@@ -1,0 +1,108 @@
+\section{QuaAdler32 Class Reference}
+\label{classQuaAdler32}\index{QuaAdler32@{QuaAdler32}}
+
+
+Adler32 checksum.  
+
+
+
+
+{\ttfamily \#include $<$quazip/quaadler32.h$>$}
+
+
+
+Inheritance diagram for QuaAdler32:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classQuaAdler32__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for QuaAdler32:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classQuaAdler32__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+quint32 {\bf calculate} (const QByteArray \&data)
+\begin{DoxyCompactList}\small\item\em Calculates the checksum for data. \end{DoxyCompactList}\item 
+void {\bf reset} ()\label{classQuaAdler32_a2fe6ac9eb289bafda6a9fd20e6472ab5}
+
+\begin{DoxyCompactList}\small\item\em Resets the calculation on a checksun for a stream. \end{DoxyCompactList}\item 
+void {\bf update} (const QByteArray \&buf)
+\begin{DoxyCompactList}\small\item\em Updates the calculated checksum for the stream. \end{DoxyCompactList}\item 
+quint32 {\bf value} ()
+\begin{DoxyCompactList}\small\item\em Value of the checksum calculated for the stream passed throw \doxyref{update()}{p.}{classQuaAdler32_aba24f7b16aa0cdc26f81a9ad687fc653}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Adler32 checksum. 
+
+This class wrappers the adler32 function with the \doxyref{QuaChecksum32}{p.}{classQuaChecksum32} interface. See \doxyref{QuaChecksum32}{p.}{classQuaChecksum32} for more info. 
+
+\subsection{Member Function Documentation}
+\index{QuaAdler32@{QuaAdler32}!calculate@{calculate}}
+\index{calculate@{calculate}!QuaAdler32@{QuaAdler32}}
+\subsubsection[{calculate}]{\setlength{\rightskip}{0pt plus 5cm}quint32 QuaAdler32::calculate (
+\begin{DoxyParamCaption}
+\item[{const QByteArray \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [virtual]}}\label{classQuaAdler32_a350e84fd000ebfa3c33503336a7b21bb}
+
+
+Calculates the checksum for data. 
+
+{\itshape data\/} source data \begin{DoxyReturn}{Returns}
+data checksum
+\end{DoxyReturn}
+This function has no efect on the value returned by \doxyref{value()}{p.}{classQuaAdler32_a2022e1db95c23cef220b335e44d74fb1}. 
+
+Implements {\bf QuaChecksum32} \doxyref{}{p.}{classQuaChecksum32_a14d800fcfd55b2ae11ef07d3924fe0b1}.
+
+\index{QuaAdler32@{QuaAdler32}!update@{update}}
+\index{update@{update}!QuaAdler32@{QuaAdler32}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void QuaAdler32::update (
+\begin{DoxyParamCaption}
+\item[{const QByteArray \&}]{buf}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [virtual]}}\label{classQuaAdler32_aba24f7b16aa0cdc26f81a9ad687fc653}
+
+
+Updates the calculated checksum for the stream. 
+
+{\itshape buf\/} next portion of data from the stream 
+
+Implements {\bf QuaChecksum32} \doxyref{}{p.}{classQuaChecksum32_a63a6ed3171f9243214d307da67557f7e}.
+
+\index{QuaAdler32@{QuaAdler32}!value@{value}}
+\index{value@{value}!QuaAdler32@{QuaAdler32}}
+\subsubsection[{value}]{\setlength{\rightskip}{0pt plus 5cm}quint32 QuaAdler32::value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [virtual]}}\label{classQuaAdler32_a2022e1db95c23cef220b335e44d74fb1}
+
+
+Value of the checksum calculated for the stream passed throw \doxyref{update()}{p.}{classQuaAdler32_aba24f7b16aa0cdc26f81a9ad687fc653}. 
+
+\begin{DoxyReturn}{Returns}
+checksum 
+\end{DoxyReturn}
+
+
+Implements {\bf QuaChecksum32} \doxyref{}{p.}{classQuaChecksum32_afd836e7534194fce08356be6a8336da7}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+quazip/quaadler32.h\item 
+quazip/quaadler32.cpp\end{DoxyCompactItemize}

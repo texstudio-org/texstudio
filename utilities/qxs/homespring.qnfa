@@ -1,0 +1,60 @@
+<!DOCTYPE QNFA>
+<QNFA language="Homespring" extensions="hs" defaultLineMark="">
+	<word format="keyword" caseSensitive="false">hatchery</word>
+	<sequence format="keyword" caseSensitive="false">hydro[.] power</sequence>
+	<word format="keyword" caseSensitive="false">snowmelt</word>
+	<word format="keyword" caseSensitive="false">shallows</word>
+	<word format="keyword" caseSensitive="false">rapids</word>
+	<sequence format="keyword" caseSensitive="false">append[.] down</sequence>
+	<word format="keyword" caseSensitive="false">bear</word>
+	<sequence format="keyword" caseSensitive="false">force[.] field</sequence>
+	<word format="keyword" caseSensitive="false">sense</word>
+	<word format="keyword" caseSensitive="false">clone</word>
+	<sequence format="keyword" caseSensitive="false">young[.] bear</sequence>
+	<word format="keyword" caseSensitive="false">bird</word>
+	<sequence format="keyword" caseSensitive="false">upstream[.] killing[.] device</sequence>
+	<word format="keyword" caseSensitive="false">waterfall</word>
+	<word format="keyword" caseSensitive="false">universe</word>
+	<word format="keyword" caseSensitive="false">powers</word>
+	<word format="keyword" caseSensitive="false">marshy</word>
+	<word format="keyword" caseSensitive="false">insulated</word>
+	<sequence format="keyword" caseSensitive="false">upstream[.] sense</sequence>
+	<sequence format="keyword" caseSensitive="false">downstream[.] sense</sequence>
+	<word format="keyword" caseSensitive="false">evaporates</word>
+	<sequence format="keyword" caseSensitive="false">youth[.] fountain</sequence>
+	<word format="keyword" caseSensitive="false">oblivion</word>
+	<word format="keyword" caseSensitive="false">pump</word>
+	<sequence format="keyword" caseSensitive="false">range[.] sense</sequence>
+	<word format="keyword" caseSensitive="false">fear</word>
+	<sequence format="keyword" caseSensitive="false">reverse[.] up</sequence>
+	<sequence format="keyword" caseSensitive="false">reverse[.] down</sequence>
+	<word format="keyword" caseSensitive="false">time</word>
+	<word format="keyword" caseSensitive="false">lock</word>
+	<sequence format="keyword" caseSensitive="false">inverse[.] lock</sequence>
+	<sequence format="keyword" caseSensitive="false">young[.] sense</sequence>
+	<word format="keyword" caseSensitive="false">switch</word>
+	<sequence format="keyword" caseSensitive="false">young[.] switch</sequence>
+	<word format="keyword" caseSensitive="false">narrows</word>
+	<sequence format="keyword" caseSensitive="false">append[.] up</sequence>
+	<sequence format="keyword" caseSensitive="false">young[.] range[.] sense</sequence>
+	<word format="keyword" caseSensitive="false">net</word>
+	<sequence format="keyword" caseSensitive="false">force[.] down</sequence>
+	<sequence format="keyword" caseSensitive="false">force[.] up</sequence>
+	<word format="keyword" caseSensitive="false">spawn</word>
+	<sequence format="keyword" caseSensitive="false">power[.] invert</sequence>
+	<word format="keyword" caseSensitive="false">current</word>
+	<word format="keyword" caseSensitive="false">bridge</word>
+	<word format="keyword" caseSensitive="false">split</word>
+	<word format="keyword" caseSensitive="false">range[.] switch</word>
+	<sequence format="keyword" caseSensitive="false">young[.] range[.] switch</sequence>
+	
+	
+	<context id="comment/single" format="comment" stayOnLine="true" >
+		<start>[.]%</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">[.][{]</sequence>
+	<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">[.][}]</sequence>
+	<word format="extra-keyword" ambiguous="true">[.]</word>
+</QNFA>
+

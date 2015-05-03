@@ -1,0 +1,360 @@
+\section{QuaZipNewInfo Struct Reference}
+\label{structQuaZipNewInfo}\index{QuaZipNewInfo@{QuaZipNewInfo}}
+
+
+Information about a file to be created.  
+
+
+
+
+{\ttfamily \#include $<$quazipnewinfo.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf QuaZipNewInfo} (const QString \&{\bf name})
+\begin{DoxyCompactList}\small\item\em Constructs \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} instance. \end{DoxyCompactList}\item 
+{\bf QuaZipNewInfo} (const QString \&{\bf name}, const QString \&file)
+\begin{DoxyCompactList}\small\item\em Constructs \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} instance. \end{DoxyCompactList}\item 
+{\bf QuaZipNewInfo} (const {\bf QuaZipFileInfo} \&existing)
+\begin{DoxyCompactList}\small\item\em Initializes the new instance from existing file info. \end{DoxyCompactList}\item 
+{\bf QuaZipNewInfo} (const {\bf QuaZipFileInfo64} \&existing)
+\begin{DoxyCompactList}\small\item\em Initializes the new instance from existing file info. \end{DoxyCompactList}\item 
+void {\bf setFileDateTime} (const QString \&file)
+\begin{DoxyCompactList}\small\item\em Sets the file timestamp from the existing file. \end{DoxyCompactList}\item 
+void {\bf setFilePermissions} (const QString \&file)
+\begin{DoxyCompactList}\small\item\em Sets the file permissions from the existing file. \end{DoxyCompactList}\item 
+void {\bf setPermissions} (QFile::Permissions permissions)
+\begin{DoxyCompactList}\small\item\em Sets the file permissions. \end{DoxyCompactList}\item 
+void {\bf setFileNTFSTimes} (const QString \&fileName)
+\begin{DoxyCompactList}\small\item\em Sets the NTFS times from an existing file. \end{DoxyCompactList}\item 
+void {\bf setFileNTFSmTime} (const QDateTime \&mTime, int fineTicks=0)
+\begin{DoxyCompactList}\small\item\em Sets the NTFS modification time. \end{DoxyCompactList}\item 
+void {\bf setFileNTFSaTime} (const QDateTime \&aTime, int fineTicks=0)
+\begin{DoxyCompactList}\small\item\em Sets the NTFS access time. \end{DoxyCompactList}\item 
+void {\bf setFileNTFScTime} (const QDateTime \&cTime, int fineTicks=0)
+\begin{DoxyCompactList}\small\item\em Sets the NTFS creation time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QString {\bf name}
+\begin{DoxyCompactList}\small\item\em File name. \end{DoxyCompactList}\item 
+QDateTime {\bf dateTime}
+\begin{DoxyCompactList}\small\item\em File timestamp. \end{DoxyCompactList}\item 
+quint16 {\bf internalAttr}\label{structQuaZipNewInfo_a59ce9776c2ac7547ade8cb4c404c77ab}
+
+\begin{DoxyCompactList}\small\item\em File internal attributes. \end{DoxyCompactList}\item 
+quint32 {\bf externalAttr}
+\begin{DoxyCompactList}\small\item\em File external attributes. \end{DoxyCompactList}\item 
+QString {\bf comment}
+\begin{DoxyCompactList}\small\item\em File comment. \end{DoxyCompactList}\item 
+QByteArray {\bf extraLocal}\label{structQuaZipNewInfo_ab377a81c51cf495c7aeee4f19340a43f}
+
+\begin{DoxyCompactList}\small\item\em File local extra field. \end{DoxyCompactList}\item 
+QByteArray {\bf extraGlobal}\label{structQuaZipNewInfo_abda207eb3949db3a88761c1b06e6bd58}
+
+\begin{DoxyCompactList}\small\item\em File global extra field. \end{DoxyCompactList}\item 
+ulong {\bf uncompressedSize}
+\begin{DoxyCompactList}\small\item\em Uncompressed file size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Information about a file to be created. 
+
+This structure holds information about a file to be created inside ZIP archive. At least name should be set to something correct before passing this structure to QuaZipFile::open(OpenMode,const QuaZipNewInfo\&,int,int,bool).
+
+Zip64 support of this structure is slightly limited: in the raw mode (when a pre-\/compressed file is written into a ZIP file as-\/is), it is necessary to specify the uncompressed file size and the appropriate field is 32 bit. Since the raw mode is used extremely rare, there is no real need to have a separate QuaZipNewInfo64 structure like \doxyref{QuaZipFileInfo64}{p.}{structQuaZipFileInfo64}. It may be added in the future though, if there is a demand for the raw mode with zip64 archives. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{QuaZipNewInfo}]{\setlength{\rightskip}{0pt plus 5cm}QuaZipNewInfo::QuaZipNewInfo (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{name}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a46c0f551cf9e6b2131929beb39187aac}
+
+
+Constructs \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} instance. 
+
+Initializes name with {\itshape name\/}, dateTime with current date and time. Attributes are initialized with zeros, comment and extra field with null values. \index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{QuaZipNewInfo}]{\setlength{\rightskip}{0pt plus 5cm}QuaZipNewInfo::QuaZipNewInfo (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{name, }
+\item[{const QString \&}]{file}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_ad47cf11f4277edcb09a8ba2b2963f2a9}
+
+
+Constructs \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} instance. 
+
+Initializes name with {\itshape name\/}. Timestamp and permissions are taken from the specified file. If the {\itshape file\/} does not exists or its timestamp is inaccessible (e. g. you do not have read permission for the directory file in), uses current time and zero permissions. Other attributes are initialized with zeros, comment and extra field with null values.
+
+\begin{DoxySeeAlso}{See also}
+\doxyref{setFileDateTime()}{p.}{structQuaZipNewInfo_a2b18b554d056877a2f33ffb9d241ed85} 
+\end{DoxySeeAlso}
+
+
+References dateTime.
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{QuaZipNewInfo}]{\setlength{\rightskip}{0pt plus 5cm}QuaZipNewInfo::QuaZipNewInfo (
+\begin{DoxyParamCaption}
+\item[{const {\bf QuaZipFileInfo} \&}]{existing}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a5f1a867f3b0d29d076f9014f70b59e5a}
+
+
+Initializes the new instance from existing file info. 
+
+Mainly used when copying files between archives.
+
+Both extra fields are initialized to existing.extra. \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} 
+\begin{DoxyParams}{Parameters}
+{\em existing} & \\
+\hline
+\end{DoxyParams}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{QuaZipNewInfo}]{\setlength{\rightskip}{0pt plus 5cm}QuaZipNewInfo::QuaZipNewInfo (
+\begin{DoxyParamCaption}
+\item[{const {\bf QuaZipFileInfo64} \&}]{existing}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a4afa2e8c282a801fc216f79026c2d062}
+
+
+Initializes the new instance from existing file info. 
+
+Mainly used when copying files between archives.
+
+Both extra fields are initialized to existing.extra. \doxyref{QuaZipNewInfo}{p.}{structQuaZipNewInfo} 
+\begin{DoxyParams}{Parameters}
+{\em existing} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!setFileDateTime@{setFileDateTime}}
+\index{setFileDateTime@{setFileDateTime}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setFileDateTime}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setFileDateTime (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{file}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a2b18b554d056877a2f33ffb9d241ed85}
+
+
+Sets the file timestamp from the existing file. 
+
+Use this function to set the file timestamp from the existing file. Use it like this: 
+\begin{DoxyCode}
+ QuaZipFile zipFile(&zip);
+ QFile file("file-to-add");
+ file.open(QIODevice::ReadOnly);
+ QuaZipNewInfo info("file-name-in-archive");
+ info.setFileDateTime("file-to-add"); // take the timestamp from file
+ zipFile.open(QIODevice::WriteOnly, info);
+\end{DoxyCode}
+
+
+This function does not change dateTime if some error occured (e. g. file is inaccessible). 
+
+References dateTime.
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!setFilePermissions@{setFilePermissions}}
+\index{setFilePermissions@{setFilePermissions}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setFilePermissions}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setFilePermissions (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{file}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a08bee5211eb0b49da260c7a9e7a266b8}
+
+
+Sets the file permissions from the existing file. 
+
+Takes permissions from the file and sets the high 16 bits of external attributes. Uses QFileInfo to get permissions on all platforms. \index{QuaZipNewInfo@{QuaZipNewInfo}!setPermissions@{setPermissions}}
+\index{setPermissions@{setPermissions}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setPermissions}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setPermissions (
+\begin{DoxyParamCaption}
+\item[{QFile::Permissions}]{permissions}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_aed68dc20f7dc42b5056491cf3c1d2d20}
+
+
+Sets the file permissions. 
+
+Modifies the highest 16 bits of external attributes. The type part is set to dir if the name ends with a slash, and to regular file otherwise. 
+
+References name.
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!setFileNTFSTimes@{setFileNTFSTimes}}
+\index{setFileNTFSTimes@{setFileNTFSTimes}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setFileNTFSTimes}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setFileNTFSTimes (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{fileName}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a663a37c5a7a2d18900ba8b0199617eff}
+
+
+Sets the NTFS times from an existing file. 
+
+If the file doesn't exist, a warning is printed to the stderr and nothing is done. Otherwise, all three times, as reported by QFileInfo::lastModified(), QFileInfo::lastRead() and QFileInfo::created(), are written to the NTFS extra field record.
+
+The NTFS record is written to both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field.
+
+The microseconds will be zero, as they aren't reported by QFileInfo. 
+\begin{DoxyParams}{Parameters}
+{\em fileName} & \\
+\hline
+\end{DoxyParams}
+
+
+References setFileNTFSaTime(), setFileNTFScTime(), and setFileNTFSmTime().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!setFileNTFSmTime@{setFileNTFSmTime}}
+\index{setFileNTFSmTime@{setFileNTFSmTime}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setFileNTFSmTime}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setFileNTFSmTime (
+\begin{DoxyParamCaption}
+\item[{const QDateTime \&}]{mTime, }
+\item[{int}]{fineTicks = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a3af07365df1d67502ab1d0ca0d45df79}
+
+
+Sets the NTFS modification time. 
+
+The time is written into the NTFS record in both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field. When updating an existing record, all other fields are left intact. 
+\begin{DoxyParams}{Parameters}
+{\em mTime} & The new modification time. \\
+\hline
+{\em fineTicks} & The fractional part of milliseconds, in 100-\/nanosecond ticks (i. e. 9999 ticks = 999.9 microsecond). Values greater than 9999 will add milliseconds or even seconds, but this can be confusing and therefore is discouraged. \\
+\hline
+\end{DoxyParams}
+
+
+References extraGlobal, and extraLocal.
+
+
+
+Referenced by setFileNTFSTimes().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!setFileNTFSaTime@{setFileNTFSaTime}}
+\index{setFileNTFSaTime@{setFileNTFSaTime}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setFileNTFSaTime}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setFileNTFSaTime (
+\begin{DoxyParamCaption}
+\item[{const QDateTime \&}]{aTime, }
+\item[{int}]{fineTicks = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a1042ac3d55a9deed760eb357aaa8284c}
+
+
+Sets the NTFS access time. 
+
+The time is written into the NTFS record in both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field. When updating an existing record, all other fields are left intact. 
+\begin{DoxyParams}{Parameters}
+{\em aTime} & The new access time. \\
+\hline
+{\em fineTicks} & The fractional part of milliseconds, in 100-\/nanosecond ticks (i. e. 9999 ticks = 999.9 microsecond). Values greater than 9999 will add milliseconds or even seconds, but this can be confusing and therefore is discouraged. \\
+\hline
+\end{DoxyParams}
+
+
+References extraGlobal, and extraLocal.
+
+
+
+Referenced by setFileNTFSTimes().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!setFileNTFScTime@{setFileNTFScTime}}
+\index{setFileNTFScTime@{setFileNTFScTime}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{setFileNTFScTime}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipNewInfo::setFileNTFScTime (
+\begin{DoxyParamCaption}
+\item[{const QDateTime \&}]{cTime, }
+\item[{int}]{fineTicks = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\label{structQuaZipNewInfo_a44675ac1e306eddefcaa35972c294d15}
+
+
+Sets the NTFS creation time. 
+
+The time is written into the NTFS record in both the local and the global extra fields, updating the existing record if there is one, or creating a new one and appending it to the end of each extra field. When updating an existing record, all other fields are left intact. 
+\begin{DoxyParams}{Parameters}
+{\em cTime} & The new creation time. \\
+\hline
+{\em fineTicks} & The fractional part of milliseconds, in 100-\/nanosecond ticks (i. e. 9999 ticks = 999.9 microsecond). Values greater than 9999 will add milliseconds or even seconds, but this can be confusing and therefore is discouraged. \\
+\hline
+\end{DoxyParams}
+
+
+References extraGlobal, and extraLocal.
+
+
+
+Referenced by setFileNTFSTimes().
+
+
+
+\subsection{Member Data Documentation}
+\index{QuaZipNewInfo@{QuaZipNewInfo}!name@{name}}
+\index{name@{name}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}QString {\bf QuaZipNewInfo::name}}\label{structQuaZipNewInfo_a2bdef01b6ac3326e48598e32bfa5fbe8}
+
+
+File name. 
+
+This field holds file name inside archive, including path relative to archive root. 
+
+Referenced by QuaZipFile::open(), and setPermissions().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!dateTime@{dateTime}}
+\index{dateTime@{dateTime}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{dateTime}]{\setlength{\rightskip}{0pt plus 5cm}QDateTime {\bf QuaZipNewInfo::dateTime}}\label{structQuaZipNewInfo_aec7f3ac72c72a2e10b82ad64c2fa3453}
+
+
+File timestamp. 
+
+This is the last file modification date and time. Will be stored in the archive central directory. It is a good practice to set it to the source file timestamp instead of archive creating time. Use \doxyref{setFileDateTime()}{p.}{structQuaZipNewInfo_a2b18b554d056877a2f33ffb9d241ed85} or \doxyref{QuaZipNewInfo(const QString\&, const QString\&)}{p.}{structQuaZipNewInfo_ad47cf11f4277edcb09a8ba2b2963f2a9}. 
+
+Referenced by QuaZipFile::open(), QuaZipNewInfo(), and setFileDateTime().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!externalAttr@{externalAttr}}
+\index{externalAttr@{externalAttr}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{externalAttr}]{\setlength{\rightskip}{0pt plus 5cm}quint32 {\bf QuaZipNewInfo::externalAttr}}\label{structQuaZipNewInfo_affd1a9700d302e1395bd04f0864da7d0}
+
+
+File external attributes. 
+
+The highest 16 bits contain Unix file permissions and type (dir or file). The constructor \doxyref{QuaZipNewInfo(const QString\&, const QString\&)}{p.}{structQuaZipNewInfo_ad47cf11f4277edcb09a8ba2b2963f2a9} takes permissions from the provided file. 
+
+Referenced by QuaZipFile::open().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!comment@{comment}}
+\index{comment@{comment}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{comment}]{\setlength{\rightskip}{0pt plus 5cm}QString {\bf QuaZipNewInfo::comment}}\label{structQuaZipNewInfo_ae24b1d38c3550b4724862ffcf8f20924}
+
+
+File comment. 
+
+Will be encoded using \doxyref{QuaZip::getCommentCodec()}{p.}{classQuaZip_a008260161781d8b5d2a0a28493fddaf4}. 
+
+Referenced by QuaZipFile::open().
+
+\index{QuaZipNewInfo@{QuaZipNewInfo}!uncompressedSize@{uncompressedSize}}
+\index{uncompressedSize@{uncompressedSize}!QuaZipNewInfo@{QuaZipNewInfo}}
+\subsubsection[{uncompressedSize}]{\setlength{\rightskip}{0pt plus 5cm}ulong {\bf QuaZipNewInfo::uncompressedSize}}\label{structQuaZipNewInfo_a18c079b3f2f5ab6eecdd61d6dbe93be6}
+
+
+Uncompressed file size. 
+
+This is only needed if you are using raw file zipping mode, i. e. adding precompressed file in the zip archive. 
+
+Referenced by QuaZipFile::open().
+
+
+
+The documentation for this struct was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+quazip/quazipnewinfo.h\item 
+quazip/quazipnewinfo.cpp\end{DoxyCompactItemize}
