@@ -2388,7 +2388,7 @@ bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLe
 	return changed;
 }
 
-QString getArg(TokenList &tl,QDocumentLineHandle* dlh,int argNumber,ArgumentList::ArgType type){
+QString getArg(const TokenList &tl,QDocumentLineHandle* dlh,int argNumber,ArgumentList::ArgType type){
     QList<Tokens::TokenType> tkTypes;
     QString line=dlh->text();
     if(type==ArgumentList::Mandatory){
@@ -2715,6 +2715,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
         return;
      dlh->lockForWrite();
      TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+     TokenStack ts=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
      QString line=dlh->text();
      for(int i=0;i<tl.length();i++){
          Tokens& tk=tl[i];
@@ -2741,8 +2742,11 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                         if(Tokens::tkArg().contains(elem.type)){
                             argFound++;
                             if(cd.argTypes.length()>=argFound){
+                                int tsPos=ts.indexOf(elem);
                                 elem.subtype=cd.argTypes.value(argFound-1);
                                 elem.argLevel=argFound;
+                                if(tsPos>=0)
+                                    ts[tsPos]=elem;
                             }
                             if(argFound>=args)
                                 break; // all arguments found, optional arguments don't count
@@ -2752,8 +2756,11 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                 if(optFound>opts)
                                     break;
                                 if(cd.optTypes.length()>=optFound){
+                                    int tsPos=ts.indexOf(elem);
                                     elem.subtype=cd.optTypes.value(optFound-1);
                                     elem.argLevel=optFound;
+                                    if(tsPos>=0)
+                                        ts[tsPos]=elem;
                                 }
 
                             }
@@ -2768,6 +2775,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
          }
      }
      dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(tl));
+     dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(ts));
      dlh->unlock();
 }
 
@@ -2915,4 +2923,66 @@ TokenList getArgContent(TokenList &tl,int pos,int level,int runAwayPrevention)
             result.append(getArgContent(tl,-1,level-tk.level,runAwayPrevention-1));
     }
     return result;
+}
+
+
+TokenStack getContext(QDocumentLineHandle *dlh, int pos)
+{
+    dlh->lockForRead();
+    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    QDocument *doc=dlh->document();
+    int lineNr=doc->indexOf(dlh);
+    TokenStack stack;
+    if(lineNr>0){
+        QDocumentLineHandle *previous=doc->line(lineNr-1).handle();
+        previous->lockForRead();
+        stack=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        previous->unlock();
+    }
+    // find innermost token at pos
+    TokenStack ts;
+    for(int i=0;i<tl.length();i++){
+        Tokens tk=tl.at(i);
+        if(tk.start>pos){
+            break;
+        }
+        if(Tokens::tkOpen().contains(tk.type)){
+            stack.push(tk);
+        }
+        if(Tokens::tkClose().contains(tk.type) && !stack.isEmpty()){
+            if(stack.top().type==Tokens::opposite(tk.type)){
+                stack.pop();
+            }
+        }
+
+
+
+        if(ts.isEmpty()){
+            ts.push(tk);
+        }else{
+            // if level identical, replace top
+            // if level > , add
+            // if level < , remove and replace
+            if(ts.top().level==tk.level){
+                ts.pop();
+                ts.push(tk);
+            }else{
+                if(ts.top().level<tk.level){
+                    ts.push(tk);
+                }else{
+                    ts.pop();
+                    if(ts.isEmpty()){
+                        ts.push(tk);
+                    }else{
+                        ts.pop();
+                        ts.push(tk);
+                    }
+                }
+            }
+
+        }
+    } //for
+    stack<<ts;
+    return stack;
 }
