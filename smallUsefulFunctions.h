@@ -47,7 +47,7 @@ public:
     openBracket=8,openSquare=9,closeBrace=10,
     closeBracket=11,closeSquareBracket=12,comment=13,
     commandUnknown=14,label=15,bibItem=16,file=17,
-    keyValArg=18,list=19,text=20,env=21,def=22,labelRef=23,package=24,width=25,placement=26,colDef=27,title=28};
+    keyValArg=18,list=19,text=20,env=21,def=22,labelRef=23,package=24,width=25,placement=26,colDef=27,title=28,url=29};
     TokenType type;
     // subtype is used to determine the type of argument
     TokenType subtype;

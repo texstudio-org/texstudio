@@ -1,6 +1,6 @@
 # tbraun 5.01.2007
 # ctan url package
-\url{}#U
+\url{URL}#U
 \urldef{\newurlcmd}\url{}#*
 \DeclareUrlCommand{}{}#*
 \urlstyle{}#*

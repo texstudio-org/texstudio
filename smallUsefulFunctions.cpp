@@ -2813,6 +2813,9 @@ CommandDescription extractCommandDef(QString line){
         if(def=="file"){
             type=Tokens::file;
         }
+        if(def.contains("URL")){
+            type=Tokens::url;
+        }
         if(def=="placement" || def=="position"){
             type=Tokens::placement;
         }

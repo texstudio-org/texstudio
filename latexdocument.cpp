@@ -2696,6 +2696,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     ltxCommands.specialDefCommands=pck.specialDefCommands;
 	ltxCommands.possibleCommands=pck.possibleCommands;
 	ltxCommands.environmentAliases=pck.environmentAliases;
+    ltxCommands.commandDefs=pck.commandDescriptions;
 	
 	// user commands
 	QStringList commands=mUserCommandList.values();
@@ -2721,6 +2722,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 			}
 		}
 	}
+    latexParser.commandDefs=pck.commandDescriptions; // TODO:best way ?
 	if(!newCmds.isEmpty()){
 		patchLinesContaining(newCmds);
 	}
