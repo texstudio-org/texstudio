@@ -2751,7 +2751,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                 optFound++;
                                 if(optFound>opts)
                                     break;
-                                if(cd.optTypes.length()>optFound){
+                                if(cd.optTypes.length()>=optFound){
                                     elem.subtype=cd.optTypes.value(optFound-1);
                                     elem.argLevel=optFound;
                                 }
@@ -2792,8 +2792,11 @@ CommandDescription extractCommandDef(QString line){
         if(loop==1 &&(command=="\\begin" || command=="\\end")){
             type=Tokens::env;
         }
-        if(def=="text" || def=="title"){
+        if(def=="text"){
             type=Tokens::text;
+        }
+        if(def=="title" || def=="short title"){
+            type=Tokens::title;
         }
         if(def=="package"){
             type=Tokens::package;
