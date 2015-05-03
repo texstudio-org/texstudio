@@ -1767,6 +1767,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
             if(tk.type==Tokens::comment)
                 break;
             if (latexLikeChecking) {
+                if (tk.subtype==Tokens::title){
+                    line.addOverlay(QFormatRange(tk.start+1,tk.length-2,structureFormat));
+                    addedOverlayStructure = true;
+                }
                 if (tk.subtype==Tokens::env) {
                     line.addOverlay(QFormatRange(tk.start+1,tk.length-2,environmentFormat));
                     addedOverlayEnvironment = true;
@@ -1859,115 +1863,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
         } // for Tokenslist
         } // for local var def
 
-
-        // old context detection, replaced functions deactivated
-		const LatexParser& lp = LatexParser::getInstance();
-		LatexReader lr(LatexParser::getInstance(), lineText, mReplacementList);
-		while ((status=lr.nextWord(false))){
-			if (latexLikeChecking) {
-				int format = line.getFormatAt(lr.wordStartIndex);
-				if(format==verbatimFormat || format==commentFormat) continue;
-				// hack to color the environment given in \begin{environment}...
-				if (lp.structureCommandLevel(lr.lastCommand) >= 0){
-					//QString secName=extractSectionName(lineText.mid(lr.lr.wordStartIndex),true);
-					//line.addOverlay(QFormatRange(lr.wordStartIndex,secName.length(),structureFormat));
-					QStringList result;
-					QList<int> starts;
-
-					int optStart = lr.wordStartIndex-1;
-					QString stopChars = "{["; // find start of option (wordStartIndex is already inside)
-					for (; optStart > 0; optStart--) {
-						if (stopChars.contains(lineText.at(optStart))) break;
-					}
-					LatexParser::resolveCommandOptions(lineText,optStart,result,&starts);
-					for(int j=0;j<starts.count() && j<2;j++){
-						QString text=result.at(j);
-						line.addOverlay(QFormatRange(starts.at(j)+1,text.length()-2,structureFormat));
-						if(text.startsWith("{")) break;
-					}
-					addedOverlayStructure = true;
-				}
-                /*if (status==LatexReader::NW_ENVIRONMENT) {
-					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,environmentFormat));
-					QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
-					rx.setMinimal(true);
-					int l=rx.indexIn(lineText,lr.index);
-					if (l==lr.index+1) lr.index=lr.index+rx.cap(0).length();
-					addedOverlayEnvironment = true;
-                }*/
-                /*if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
-					QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
-					if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
-					int cnt=document->countLabels(ref);
-					if(cnt>1) {
-						line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
-					}else if (cnt==1) line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referencePresentFormat));
-					else line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMissingFormat));
-					addedOverlayReference = true;
-                }*/
-                /*if (status==LatexReader::NW_LABEL && config->inlineReferenceChecking) {
-					QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
-
-					int cnt=document->countLabels(ref);
-					if(cnt>1) {
-						line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMultipleFormat));
-					}else line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referencePresentFormat));
-					// look for corresponding reeferences and adapt format respectively
-					//containedLabels->updateByKeys(QStringList(ref),containedReferences);
-					document->updateRefsLabels(ref);
-					addedOverlayReference = true;
-                }*/
-                /*if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
-					if (lr.word.contains('#')) continue;  // don't highlight cite in definitions e.g. in \newcommand*{\MyCite}[1]{see~\cite{#1}}
-					QStringList citations=lr.word.split(",");
-					int pos=lr.wordStartIndex;
-					foreach ( const QString &cit, citations) {
-						QString rcit =  trimLeft(cit); // left spaces are ignored by \cite, right space not
-						//check and highlight
-						if(document->bibIdValid(rcit))
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationPresentFormat));
-						else
-							line.addOverlay(QFormatRange(pos+cit.length()-rcit.length(),rcit.length(),citationMissingFormat));
-						pos+=cit.length()+1;
-					}
-					addedOverlayCitation = true;
-                }*/
-                /*if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
-					QStringList packages=lr.word.split(",");
-					int pos=lr.wordStartIndex;
-					QString preambel;
-					if(lr.lastCommand.endsWith("theme")){ // special treatment for  \usetheme
-						preambel=lr.lastCommand;
-						preambel.remove(0,4);
-						preambel.prepend("beamer");
-					}
-					foreach ( const QString &pck, packages) {
-						QString rpck =  trimLeft(pck); // left spaces are ignored by \cite, right space not
-						//check and highlight
-						if (latexPackageList->isEmpty())
-							line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packageUndefinedFormat));
-						else if(latexPackageList->contains(preambel+rpck))
-							line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packagePresentFormat));
-						else
-							line.addOverlay(QFormatRange(pos+pck.length()-rpck.length(),rpck.length(),packageMissingFormat));
-						pos+=pck.length()+1;
-					}
-					addedOverlayPackage = true;
-                }*/
-				if (status==LatexReader::NW_COMMENT) break;
-			}
-            /*if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller
-					&& (!config->hideNonTextSpellingErrors || (!isNonTextFormat(line.getFormatAt(lr.wordStartIndex)) && !isNonTextFormat(line.getFormatAt(lr.index-1)) ))
-					&& !speller->check(lr.word) ) {
-				if(lr.word.endsWith('-') && speller->check(lr.word.left(lr.word.length()-1)))
-					continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
-				if(lr.word.endsWith('.')) lr.index--;
-				line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,SpellerUtility::spellcheckErrorFormat));
-				addedOverlaySpellCheckError = true;
-            }*/
-		}// while
-		
-		//update wrapping if the an overlay changed the width of the text
+        //update wrapping if the an overlay changed the width of the text
 		//TODO: should be handled by qce to be consistent (with syntax check and search)
 		if (!editor->document()->getFixedPitch() && editor->flag(QEditor::LineWrap)) {
 			bool updateWrapping = false;

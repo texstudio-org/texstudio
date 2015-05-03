@@ -167,10 +167,10 @@
 \botfigrule#*
 \cal
 \caption{title}
-\caption[short]{title}
+\caption[short title]{title}
 \chapter{title}
 \chapter*{title}
-\chapter[short]{title}
+\chapter[short title]{title}
 \chaptermark{code}#*
 \chaptername{name}#*
 \cite{keylist}#c
@@ -357,13 +357,13 @@
 \pagestyle{option}
 \pagetotal
 \paragraph*{title}
-\paragraph[short]{title}
+\paragraph[short title]{title}
 \paragraphmark
 \paragraph{title}
 \parbox[position]{width}{text}
 \parbox{width}{text}
 \part*{title}
-\part[short]{title}
+\part[short title]{title}
 \partname{name}
 \part{title}
 \pdfinfo{info}
@@ -394,7 +394,7 @@
 \scshape
 \section{title}
 \section*{title}
-\section[short]{title}
+\section[short title]{title}
 \sectionmark{code}#*
 \selectfont
 \setlength{cmd}{length}
@@ -414,16 +414,16 @@
 \stop
 \subitem
 \subparagraph*{title}
-\subparagraph[short]{title}
+\subparagraph[short title]{title}
 \subparagraphmark{code}
 \subparagraph{title}
 \subsection{title}
 \subsection*{title}
-\subsection[short]{title}
+\subsection[short title]{title}
 \subsectionmark{code}
 \subsubitem
 \subsubsection*{title}
-\subsubsection[short]{title}
+\subsubsection[short title]{title}
 \subsubsectionmark{code}
 \subsubsection{title}
 \suppressfloats
