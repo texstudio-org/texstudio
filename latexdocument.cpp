@@ -349,7 +349,9 @@ bool LatexDocument::patchStructure(int linenr, int count) {
     int lineNrStart=linenr;
     if(linenr>0){
         QDocumentLineHandle *previous=line(linenr-1).handle();
+        previous->lockForRead();
         remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        previous->unlock();
         if(!remainder.isEmpty()){
             QDocumentLineHandle *lh=remainder.top().dlh;
             lineNrStart=lh->document()->indexOf(lh);
@@ -357,8 +359,11 @@ bool LatexDocument::patchStructure(int linenr, int count) {
     }
     TokenStack oldRemainder;
     QDocumentLineHandle *lastHandle=line(linenr+count-1).handle();
-    if(lastHandle)
+    if(lastHandle){
+        lastHandle->lockForRead();
         oldRemainder=lastHandle->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        lastHandle->unlock();
+    }
     for (int i=linenr; i<linenr+count; i++) {
         lexLatexLine(line(i).handle(),remainder);
     }

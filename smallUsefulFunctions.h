@@ -325,7 +325,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config=0,
 
 class QDocumentLineHandle;
 
-QString getArg(TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
+QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
 QString findRestArg(QDocumentLineHandle* dlh,Tokens::TokenType type,int count=5);
 TokenList lexLatexLine(QDocumentLineHandle *dlh, TokenStack &stack);
 void updateSubsequentRemainders(QDocumentLineHandle* dlh, TokenStack stack);
@@ -333,5 +333,6 @@ void latexDetermineContexts(QDocumentLineHandle *dlh, const LatexParser &lp);
 CommandDescription extractCommandDef(QString line);
 TokenList getArgContent(Tokens &tk);
 TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention=10);
+TokenStack getContext(QDocumentLineHandle *dlh,int pos);
 
 #endif

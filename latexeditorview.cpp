@@ -1664,7 +1664,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
     int lineNrStart=linenr;
     if(linenr>0){
         QDocumentLineHandle *previous=editor->document()->line(linenr-1).handle();
+        previous->lockForRead();
         remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        previous->unlock();
         if(!remainder.isEmpty()){
             QDocumentLineHandle *lh=remainder.top().dlh;
             lineNrStart=lh->document()->indexOf(lh);
@@ -1720,13 +1722,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 			SynChecker.putLine(line.handle(),env,false);
 		}
 		
-		
-		if (line.length()<=3) continue;
-		//if (!config->realtimespellchecking) continue;
-		
-		
-		QString lineText = line.text();
-		int status;
         // alternative context detection
         QDocumentLineHandle *dlh=line.handle();
         TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
@@ -2104,9 +2099,103 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			return;
 		}
 	}
-	
+    // new way
+    QDocumentLineHandle *dlh=cursor.line().handle();
+    TokenStack ts=getContext(dlh,cursor.columnNumber());
+    dlh->lockForRead();
+    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    LatexParser &lp=LatexParser::getInstance();
+    QString command, value;
+    bool handled=false;
+    if(!ts.isEmpty()){
+        Tokens tk=ts.top();
+        int tkPos=ts.indexOf(tk);
+        if(tk.type==Tokens::command){
+            handled=true;
+            command=line.mid(tk.start,tk.length);
+            CommandDescription cd=lp.commandDefs.value(command);
+            if(cd.args>0)
+                value=getArg(tl.mid(tkPos+1),dlh,0,ArgumentList::Mandatory);
+            if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
+                ; // action is already performed as a side effect
+            } else if (config->toolTipHelp && completer->getLatexReference()) {
+                QString topic = completer->getLatexReference()->getTextForTooltip(command);
+                if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+            }
+        }
+        if(ts.length()>1){
+            Tokens tk2=ts.value(ts.length()-2);
+            value=line.mid(tk.start,tk.length);
+            if(tk2.subtype==Tokens::env){
+                handled=true;
+                if (config->toolTipPreview && showMathEnvPreview(cursor, "\\begin", value, pos)) {
+                    ; // action is already performed as a side effect
+                } else if (config->toolTipHelp && completer->getLatexReference()) {
+                    QString topic = completer->getLatexReference()->getTextForTooltip("\\begin{"+value);
+                    if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
+                }
+            }
+            if(tk2.subtype==Tokens::labelRef){
+                handled=true;
+                int cnt=document->countLabels(value);
+                QString mText="";
+                if(cnt==0){
+                    mText=tr("label missing!");
+                } else if(cnt>1) {
+                    mText=tr("label multiple times defined!");
+                } else {
+                    QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
+                    QDocumentLineHandle *mLine=result.keys().first();
+                    int l=mLine->document()->indexOf(mLine);
+                    LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
+                    if(mLine->document()!=editor->document()){
+                        doc=document->parent->findDocument(mLine->document());
+                        if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                    }
+                    if(doc)
+                        mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
+                  }
+                  QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+            }
+            if(tk2.subtype==Tokens::label){
+                handled=true;
+                if(document->countLabels(value)>1){
+                     QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
+                } else {
+                     int cnt=document->countRefs(value);
+                     QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+                }
+            }
+            if(tk2.subtype==Tokens::package){
+                handled=true;
+                 QString command="\\usepackage"; // TODO: get from arg
+                 QString type = (command=="\\documentclass") ? tr("Class") : tr("Package");
+                 QString preambel;
+                 if(command.endsWith("theme")){ // special treatment for  \usetheme
+                      preambel=command;
+                      preambel.remove(0,4);
+                      preambel.prepend("beamer");
+                      type = tr("Beamer Theme");
+                      type.replace(' ', "&nbsp;");
+                 }
+                 QString text = QString("%1:&nbsp;<b>%2</b>").arg(type).arg(value);
+                 if(latexPackageList->contains(preambel+value)){
+                     QString description = LatexPackages::instance()->shortDescription(value);
+                     if (!description.isEmpty()) text += "<br>" + description;
+                     QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
+                 } else {
+                     text += "<br><b>(" + tr("not found") + ")";
+                      QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
+                 }
+            }
+
+        }//if ts.length >1
+    }// ts.lenght>0
+    if(handled)
+        return;
 	// do rest
-	QString command, value;
+
 	switch (LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value)){
 	case LatexParser::Unknown:
 		if (config->toolTipPreview) {
@@ -2119,66 +2208,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
 			}
 		}
 		break;
-	case LatexParser::Command:
-		// workaround: The latex parser returns "\" as command if the cursor is on the brackets of \[ or \]
-		// TODO: should be fixed in the parser itself
-		if (command == "\\") {
-			if (cursor.nextChar()=='[') command = "\\[";
-			else if (cursor.nextChar()==']') command = "\\]";
-		}
 
-		if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
-			; // action is already performed as a side effect
-		} else if (config->toolTipHelp && completer->getLatexReference()) {
-			QString topic = completer->getLatexReference()->getTextForTooltip(command);
-			if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
-		}
-		break;
-	case LatexParser::Environment:
-		if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
-			; // action is already performed as a side effect
-		} else if (config->toolTipHelp && completer->getLatexReference()) {
-			QString topic = completer->getLatexReference()->getTextForTooltip("\\begin{"+value);
-			if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
-		}
-		break;
-	case LatexParser::Reference:
-	{
-		//l=editor->document()->findLineContaining("\\label{"+ref+"}",0,Qt::CaseSensitive);
-		//QList<QDocumentLineHandle*> lst=containedLabels->values(value);
-		int cnt=document->countLabels(value);
-		QString mText="";
-		if(cnt==0){
-			mText=tr("label missing!");
-		} else if(cnt>1) {
-			mText=tr("label multiple times defined!");
-		} else {
-			QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
-			QDocumentLineHandle *mLine=result.keys().first();
-			int l=mLine->document()->indexOf(mLine);
-			LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
-			if(mLine->document()!=editor->document()){
-				doc=document->parent->findDocument(mLine->document());
-				if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-			}
-			if(doc)
-				mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
-			/*for(int i=qMax(0,l-2);i<qMin(mLine->document()->lines(),l+3);i++){
-  mText+=mLine->document()->line(i).text();
-  if(i<l+2) mText+="\n";
-  }*/
-          }
-          QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
-          break;
-     }
-     case LatexParser::Label:
-          if(document->countLabels(value)>1){
-               QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
-          } else {
-               int cnt=document->countRefs(value);
-               QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
-          }
-          break;
      case LatexParser::Package:
      {
 		  QString type = (command=="\\documentclass") ? tr("Class") : tr("Package");
