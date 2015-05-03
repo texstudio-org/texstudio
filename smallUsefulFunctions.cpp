@@ -2536,9 +2536,11 @@ Tokens::TokenType Tokens::closed(TokenType type){
 }
 
 TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
+    TokenList lexed;
+    if(!dlh)
+        return lexed;
     dlh->lockForWrite();
     QString s=dlh->text();
-    TokenList lexed;
     Tokens present;
     present.type=Tokens::none;
     present.dlh=dlh;
@@ -2701,8 +2703,16 @@ void updateSubsequentRemainders(QDocumentLineHandle* dlh,TokenStack stack){
 bool Tokens::operator ==(const Tokens &v){
     return (this->dlh==v.dlh)&&(this->length==v.length)&&(this->level==v.level)&&(this->type==v.type);
 }
+QString Tokens::getText(){
+    dlh->lockForRead();
+    QString result=dlh->text().mid(start,length);
+    dlh->unlock();
+    return result;
+}
 
 void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
+    if(!dlh)
+        return;
      dlh->lockForWrite();
      TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
      QString line=dlh->text();

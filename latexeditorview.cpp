@@ -1730,35 +1730,95 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
         // alternative context detection
         QDocumentLineHandle *dlh=line.handle();
         TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-        for(int i=0;i<tl.length();i++){
-            Tokens tk=tl.at(i);
-            if(tk.subtype==Tokens::package&& config->inlinePackageChecking) {
-                // package
-                TokenList tlArg=getArgContent(tl,i,tk.level+1);
+        for(int tkNr=0;tkNr<tl.length();tkNr++){
+            Tokens tk=tl.at(tkNr);
+            if (latexLikeChecking) {
+                if(tk.subtype==Tokens::package&& config->inlinePackageChecking) {
+                    // package
+                    TokenList tlArg=getArgContent(tl,tkNr,tk.level+1);
 
-                QString preambel;
-                /* TODO
+                    QString preambel;
+                    /* TODO
                 if(lr.lastCommand.endsWith("theme")){ // special treatment for  \usetheme
                     preambel=lr.lastCommand;
                     preambel.remove(0,4);
                     preambel.prepend("beamer");
                 }*/
-                foreach ( const Tokens &tk, tlArg) {
-                    QDocumentLineHandle *dlh=tk.dlh;
-                    QString text=dlh->text();
-                    QString rpck =  trimLeft(text.mid(tk.start,tk.length)); // left spaces are ignored by \cite, right space not
-                    //check and highlight
-                    if (latexPackageList->isEmpty())
-                        dlh->addOverlay(QFormatRange(tk.start,tk.length,packageUndefinedFormat));
-                    else if(latexPackageList->contains(preambel+rpck))
-                        dlh->addOverlay(QFormatRange(tk.start,tk.length,packagePresentFormat));
-                    else
-                        dlh->addOverlay(QFormatRange(tk.start,tk.length,packageMissingFormat));
+                    foreach ( const Tokens &tk, tlArg) {
+                        QDocumentLineHandle *dlh=tk.dlh;
+                        QString text=dlh->text();
+                        QString rpck =  trimLeft(text.mid(tk.start,tk.length)); // left spaces are ignored by \cite, right space not
+                        //check and highlight
+                        if (latexPackageList->isEmpty())
+                            dlh->addOverlay(QFormatRange(tk.start,tk.length,packageUndefinedFormat));
+                        else if(latexPackageList->contains(preambel+rpck))
+                            dlh->addOverlay(QFormatRange(tk.start,tk.length,packagePresentFormat));
+                        else
+                            dlh->addOverlay(QFormatRange(tk.start,tk.length,packageMissingFormat));
+                    }
+                    addedOverlayPackage = true;
                 }
-                addedOverlayPackage = true;
+                if (tk.subtype==Tokens::labelRef && config->inlineReferenceChecking) {
+                    TokenList tlArg=getArgContent(tl,tkNr,tk.level+1);
+                    foreach ( const Tokens &tk, tlArg) {
+                        QDocumentLineHandle *dlh=tk.dlh;
+                        QString ref=dlh->text().mid(tk.start,tk.length);
+                        if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
+                        int cnt=document->countLabels(ref);
+                        if(cnt>1) {
+                            dlh->addOverlay(QFormatRange(tk.start,tk.length,referenceMultipleFormat));
+                        }else if (cnt==1) dlh->addOverlay(QFormatRange(tk.start,tk.length,referencePresentFormat));
+                        else dlh->addOverlay(QFormatRange(tk.start,tk.length,referenceMissingFormat));
+                        addedOverlayReference = true;
+                    }
+                }
+                if (tk.subtype==Tokens::label && config->inlineReferenceChecking) {
+                    TokenList tlArg=getArgContent(tl,tkNr,tk.level+1);
+                    foreach ( const Tokens &tk, tlArg) {
+                        QDocumentLineHandle *dlh=tk.dlh;
+                        QString ref=dlh->text().mid(tk.start,tk.length);
+                        int cnt=document->countLabels(ref);
+                        if(cnt>1) {
+                            dlh->addOverlay(QFormatRange(tk.start,tk.length,referenceMultipleFormat));
+                        }else dlh->addOverlay(QFormatRange(tk.start,tk.length,referencePresentFormat));
+                        // look for corresponding reeferences and adapt format respectively
+                        //containedLabels->updateByKeys(QStringList(ref),containedReferences);
+                        document->updateRefsLabels(ref);
+                        addedOverlayReference = true;
+                    }
+                }
+                if (tk.subtype==Tokens::bibItem && config->inlineCitationChecking) {
+                    TokenList tlArg=getArgContent(tl,tkNr,tk.level+1);
+                    foreach ( const Tokens &tk, tlArg) {
+                        QDocumentLineHandle *dlh=tk.dlh;
+                        QString text=dlh->text().mid(tk.start,tk.length);
+                        if (text.contains('#')) continue; // don't highlight cite in definitions e.g. in \newcommand*{\MyCite}[1]{see~\cite{#1}}
+                        QString rcit =  trimLeft(text); // left spaces are ignored by \cite, right space not
+                        //check and highlight
+                        if(document->bibIdValid(rcit))
+                            dlh->addOverlay(QFormatRange(tk.start,tk.length,citationPresentFormat));
+                        else
+                            dlh->addOverlay(QFormatRange(tk.start,tk.length,citationMissingFormat));
+                        addedOverlayCitation = true;
+                    }
+                }
+            }// if latexLineCheking
+            if (tk.type==Tokens::word && tk.subtype==Tokens::none && config->inlineSpellChecking && tk.length>=3 && speller){
+                QString word=tk.getText();
+                if (config->hideNonTextSpellingErrors && (isNonTextFormat(line.getFormatAt(tk.start)) || isNonTextFormat(line.getFormatAt(tk.start+tk.length-1)) )) // TODO:needs to be adapted
+                    continue;
+                if(!speller->check(word) ) {
+                    if(word.endsWith('-') && speller->check(word.left(word.length()-1)))
+                        continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
+                    int l=tk.length;
+                    if(word.endsWith('.')) l--;
+                    line.addOverlay(QFormatRange(tk.start,l,SpellerUtility::spellcheckErrorFormat));
+                    addedOverlaySpellCheckError = true;
+                }
             }
+        } // for Tokenslist
 
-        }
+
         // old context detection, replaced functions deactivated
 		const LatexParser& lp = LatexParser::getInstance();
 		LatexReader lr(LatexParser::getInstance(), lineText, mReplacementList);
@@ -1794,7 +1854,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					if (l==lr.index+1) lr.index=lr.index+rx.cap(0).length();
 					addedOverlayEnvironment = true;
 				}
-				if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
+                /*if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
 					QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
 					if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
 					int cnt=document->countLabels(ref);
@@ -1803,8 +1863,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					}else if (cnt==1) line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referencePresentFormat));
 					else line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,referenceMissingFormat));
 					addedOverlayReference = true;
-				}
-				if (status==LatexReader::NW_LABEL && config->inlineReferenceChecking) {
+                }*/
+                /*if (status==LatexReader::NW_LABEL && config->inlineReferenceChecking) {
 					QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
 
 					int cnt=document->countLabels(ref);
@@ -1815,8 +1875,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					//containedLabels->updateByKeys(QStringList(ref),containedReferences);
 					document->updateRefsLabels(ref);
 					addedOverlayReference = true;
-				}
-				if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
+                }*/
+                /*if (status==LatexReader::NW_CITATION && config->inlineCitationChecking) {
 					if (lr.word.contains('#')) continue;  // don't highlight cite in definitions e.g. in \newcommand*{\MyCite}[1]{see~\cite{#1}}
 					QStringList citations=lr.word.split(",");
 					int pos=lr.wordStartIndex;
@@ -1830,7 +1890,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 						pos+=cit.length()+1;
 					}
 					addedOverlayCitation = true;
-				}
+                }*/
                 /*if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
 					QStringList packages=lr.word.split(",");
 					int pos=lr.wordStartIndex;
@@ -1855,7 +1915,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                 }*/
 				if (status==LatexReader::NW_COMMENT) break;
 			}
-			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller
+            /*if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller
 					&& (!config->hideNonTextSpellingErrors || (!isNonTextFormat(line.getFormatAt(lr.wordStartIndex)) && !isNonTextFormat(line.getFormatAt(lr.index-1)) ))
 					&& !speller->check(lr.word) ) {
 				if(lr.word.endsWith('-') && speller->check(lr.word.left(lr.word.length()-1)))
@@ -1863,7 +1923,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				if(lr.word.endsWith('.')) lr.index--;
 				line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,SpellerUtility::spellcheckErrorFormat));
 				addedOverlaySpellCheckError = true;
-			}
+            }*/
 		}// while
 		
 		//update wrapping if the an overlay changed the width of the text
