@@ -60,6 +60,7 @@ public:
     static TokenType opposite(TokenType type);
     static TokenType closed(TokenType type);
     bool operator==(const Tokens &v);
+    QString getText();
 };
 
 typedef QList<Tokens> TokenList;

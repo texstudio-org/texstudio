@@ -355,7 +355,10 @@ bool LatexDocument::patchStructure(int linenr, int count) {
             lineNrStart=lh->document()->indexOf(lh);
         }
     }
-    TokenStack oldRemainder=line(linenr+count-1).handle()->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+    TokenStack oldRemainder;
+    QDocumentLineHandle *lastHandle=line(linenr+count-1).handle();
+    if(lastHandle)
+        oldRemainder=lastHandle->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
     for (int i=linenr; i<linenr+count; i++) {
         lexLatexLine(line(i).handle(),remainder);
     }
@@ -375,6 +378,8 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 
 		QString curLine = line(i).text(); //TODO: use this instead of s
         QDocumentLineHandle *dlh=line(i).handle();
+        if(!dlh)
+            continue; //non-existing line ...
         TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList >();
         QVector<int> fmts=line(i).getFormats();
 		
