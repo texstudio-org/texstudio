@@ -1,6 +1,7 @@
 #include "smallUsefulFunctions.h"
 #include "latexcompleter_config.h"
-#include "qdocumentline.h"
+#include "qdocumentline_p.h"
+#include "qdocument.h"
 #include <QBuffer>
 
 const QString CommonEOW=QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
@@ -59,6 +60,7 @@ void LatexParser::init(){
     possibleCommands["%ref"] << "\\ref" << "\\pageref";
     possibleCommands["%include"] << "\\include" << "\\input";
     possibleCommands["%import"] << "\\import" << "\\importfrom" << "\\subimport" << "\\subimportfrom";
+    commandDefs.clear();
 }
 
 int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
@@ -609,6 +611,34 @@ int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QL
 	cmd = rxCmd.cap(0);
 	LatexParser::resolveCommandOptions(line, cmdStart, args, argStarts);
 	return cmdStart;
+}
+
+int findCommandWithArgsFromTL(const TokenList &tl,Tokens &cmd, TokenList &args, int offset, bool parseComment){
+    int result=-1;
+    for(int i=0;i<tl.length();i++){
+        cmd=tl.at(i);
+        if(!parseComment && cmd.type==Tokens::comment)
+            return -1;
+        if(i<offset)
+            continue;
+        if(cmd.type!=Tokens::command)
+            continue;
+        // Token is command
+        result=i;
+        // now, collect arguments
+        i++;
+        int level=cmd.level;
+        for(;i<tl.length();i++){
+            Tokens tk=tl.at(i);
+            if(tk.type==Tokens::comment)
+                break;
+            if(tk.level==level){
+                args.append(tk);
+            }
+        }
+        break;
+    }
+    return result;
 }
 
 // returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
@@ -1632,6 +1662,7 @@ void LatexParser::append(const LatexParser& elem){
 	}
     specialTreatmentCommands.unite(elem.specialTreatmentCommands);
     specialDefCommands.unite(elem.specialDefCommands);
+    commandDefs.unite(elem.commandDefs);
 }
 
 void LatexParser::clear(){
@@ -1646,6 +1677,9 @@ void LatexParser::substract(const LatexParser& elem){
 		possibleCommands[key].subtract(set);
 		++i;
 	}
+    foreach(QString key,elem.commandDefs.keys()){
+        commandDefs.remove(key);
+    }
 }
 
 void LatexParser::importCwlAliases(){
@@ -1917,16 +1951,30 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 					valid.remove('S');
 				}
 		    }
+
             // parse for spell checkable commands
             int res=rxCom.indexIn(line);
             if(keywords.contains(rxCom.cap(3))){
                 package.optionCommands << rxCom.cap(1);
             }
+
             if(specialTreatment.contains(rxCom.cap(3))){
                 package.specialTreatmentCommands[rxCom.cap(1)].insert(qMakePair(rxCom.cap(3),1));
             }
             rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
             int res3=rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
+
+            // get commandDefinition
+            CommandDescription cd=extractCommandDef(line);
+            if(package.commandDescriptions.contains(rxCom3.cap(1))){
+                CommandDescription cd_old=package.commandDescriptions.value(rxCom3.cap(1));
+                if(cd_old.args>cd.args || cd_old.optionalArgs>cd.optionalArgs){
+                    cd=cd_old;
+                }
+            }
+            package.commandDescriptions.insert(rxCom3.cap(1),cd);
+
+
             if(keywords.contains(rxCom2.cap(2))){
                 package.optionCommands << rxCom2.cap(1);
             }
@@ -2186,7 +2234,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 	QApplication::restoreOverrideCursor();
 	package.completionWords=words;
 	return package;
-    }
+}
 
 LatexPackage::LatexPackage() : notFound(false) {
 	completionWords.clear();
@@ -2225,6 +2273,7 @@ void LatexPackage::unite(LatexPackage &add){
 	environmentAliases.unite(add.environmentAliases);
     specialTreatmentCommands.unite(add.specialTreatmentCommands);
     specialDefCommands.unite(add.specialDefCommands);
+    commandDescriptions.unite(add.commandDescriptions);
 	//possibleCommands.unite(add.possibleCommands);
 	foreach(const QString& elem,add.possibleCommands.keys()){
 		QSet<QString> set2=add.possibleCommands[elem];
@@ -2339,3 +2388,515 @@ bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLe
 	return changed;
 }
 
+QString getArg(TokenList &tl,QDocumentLineHandle* dlh,int argNumber,ArgumentList::ArgType type){
+    QList<Tokens::TokenType> tkTypes;
+    QString line=dlh->text();
+    if(type==ArgumentList::Mandatory){
+        tkTypes.append(Tokens::braces);
+        tkTypes.append(Tokens::word);
+        tkTypes.append(Tokens::openBrace);
+    }else{
+        tkTypes.append(Tokens::squareBracket);
+        tkTypes.append(Tokens::openSquare);
+    }
+    int k=0;
+    for (int i=0; i<tl.length(); i++) {
+        Tokens tk=tl.at(i);
+
+        if (tkTypes.contains(tk.type)) {
+            QString result;
+            if(Tokens::tkBraces().contains(tk.type)){
+                result=line.mid(tk.start+1,tk.length-2);
+            }
+            if(tk.type==Tokens::word){
+                    result=line.mid(tk.start,tk.length);
+            }
+            if(Tokens::tkOpen().contains(tk.type)){
+                    result=line.mid(tk.start+1,tk.length)+findRestArg(dlh,Tokens::opposite(tk.type),5);
+            }
+            if(Tokens::tkClose().contains(tk.type)){
+                    result=line.mid(tk.start+1,tk.length);
+            }
+            if(k==argNumber)
+                return result;
+            else
+                k++;
+        }else{
+            if(type==ArgumentList::Optional)
+                return QString(); //optional argument can't follow mandatory one
+        }
+    }
+    return QString();
+}
+
+QString findRestArg(QDocumentLineHandle* dlh, Tokens::TokenType type, int count){
+    // dlh is current line, next line will be checked here!!!
+    if(count<0)
+        return QString(); // limit search depth
+    QDocument *document=dlh->document();
+    int index = document->indexOf(dlh);
+    if(index+1>=document->lines())
+        return QString(); // last line reached
+    dlh=document->line(index+1).handle();
+    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    QString result=dlh->text();
+    for (int i=0; i<tl.length(); i++) {
+        Tokens tk=tl.at(i);
+        if(tk.type==type){
+            // closing found
+            return result.left(tk.start);
+        }
+        if(Tokens::tkClose().contains(tk.type)){
+            // wrong closing found/ syntax problem
+            //return value anyway
+            return result.left(tk.start+1);
+        }
+    }
+    return result+findRestArg(dlh,type,count-1);
+}
+
+
+QSet<Tokens::TokenType> Tokens::tkBraces(){
+    QSet<TokenType> result;
+    result.insert(braces);
+    result.insert(bracket);
+    result.insert(squareBracket);
+    return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkArg(){
+    QSet<TokenType> result;
+    result.insert(openBrace);
+    result.insert(braces);
+    result.insert(word);
+    return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkOption(){
+    QSet<TokenType> result;
+    result.insert(squareBracket);
+    result.insert(openSquare);
+    return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkOpen(){
+    QSet<TokenType> result;
+    result.insert(openBrace);
+    result.insert(openBracket);
+    result.insert(openSquare);
+    return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkClose(){
+    QSet<TokenType> result;
+    result.insert(closeBrace);
+    result.insert(closeBracket);
+    result.insert(closeSquareBracket);
+    return result;
+}
+
+Tokens::TokenType Tokens::opposite(TokenType type){
+    switch(type){
+    case closeBrace:
+        return openBrace;
+    case closeBracket:
+        return openBracket;
+    case closeSquareBracket:
+        return openSquare;
+    case openBrace:
+        return closeBrace;
+    case openBracket:
+        return closeBracket;
+    case openSquare:
+        return closeSquareBracket;
+    default:
+        return none;
+    }
+
+}
+
+Tokens::TokenType Tokens::closed(TokenType type){
+    switch(type){
+    case closeBrace:
+        return braces;
+    case closeBracket:
+        return bracket;
+    case closeSquareBracket:
+        return squareBracket;
+    case openBrace:
+        return braces;
+    case openBracket:
+        return bracket;
+    case openSquare:
+        return squareBracket;
+    default:
+        return none;
+    }
+
+}
+
+TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
+    dlh->lockForWrite();
+    QString s=dlh->text();
+    TokenList lexed;
+    Tokens present;
+    present.type=Tokens::none;
+    present.dlh=dlh;
+    int level=0;
+    const QString specialChars="\\{[()]}$";
+    int i=0;
+    for(;i<s.length();i++){
+        QChar c=s.at(i);
+        if(c=='%' && present.type!=Tokens::command){
+            if(present.type!=Tokens::none){
+                present.length=i-present.start;
+                present.level=level;
+                lexed.append(present);
+            }
+            present.type=Tokens::comment;
+            present.level=0;
+            present.length=s.length()-i;
+            lexed.append(present);
+            level=1;
+            present.type=Tokens::none;
+            continue;
+        }
+        if(present.type==Tokens::command&& present.start==i-1 && c.isSymbol()){
+            // handle \$ etc
+            present.length=i-present.start;
+            present.level=level;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+        if(specialChars.contains(c) || c.isSpace() || c.isPunct()){
+            //close token
+            if(present.type!=Tokens::none){
+                present.length=i-present.start;
+                present.level=level;
+                lexed.append(present);
+                present.type=Tokens::none;
+            }
+        }else{
+            if(present.type==Tokens::none){
+                present.type=Tokens::word;
+                present.start=i;
+                present.level=level;
+
+            }
+            continue;
+        }
+        //start new Token
+        present.start=i;
+        if(c=='\\')
+            present.type=Tokens::command;
+
+        QMap<QChar,int> openCharacters;
+        openCharacters.insert('{',Tokens::openBrace);
+        openCharacters.insert('(',Tokens::openBracket);
+        openCharacters.insert('[',Tokens::openSquare);
+        if(openCharacters.contains(c)){
+            present.type=Tokens::TokenType(openCharacters.value(c));
+            present.length=1;
+            present.level=level;
+            level++;
+            lexed.append(present);
+            stack.push(present);
+            present.type=Tokens::none;
+        }
+        if(c=='$')
+            present.type=Tokens::math;
+        // previous token
+        QMap<QChar,int> closeCharacters;
+        closeCharacters.insert('}',Tokens::openBrace);
+        closeCharacters.insert(')',Tokens::openBracket);
+        closeCharacters.insert(']',Tokens::openSquare);
+        if(closeCharacters.contains(c)){
+            if(!stack.isEmpty() && stack.top().type==Tokens::TokenType(closeCharacters.value(c))){
+                Tokens::TokenType tkType=Tokens::opposite(Tokens::TokenType(closeCharacters.value(c)));
+                Tokens tk=stack.pop();
+                if(tk.dlh==dlh){
+                    int j=lexed.length()-1;
+                    while(j>=0 && lexed.at(j).start>tk.start)
+                        j--;
+                    if(j>=0 && lexed.at(j).start==tk.start){
+                        lexed[j].length=i-tk.start+1;
+                        lexed[j].type=Tokens::closed(Tokens::TokenType(closeCharacters.value(c)));
+                        level--;
+                    }else{
+                        present.type=tkType;
+                        present.start=i;
+                        present.length=1;
+                        level--;
+                        present.level=level;
+                        lexed.append(present);
+                    }
+                    present.type=Tokens::none;
+                }else{
+                    present.type=tkType;
+                    present.length=1;
+                    level--;
+                    present.level=level;
+                    lexed.append(present);
+                    present.type=Tokens::none;
+                }
+            }
+        }
+    }
+    if(present.type!=Tokens::none){
+        present.length=i-present.start;
+        present.level=level;
+        lexed.append(present);
+    }
+    if(!stack.isEmpty()){
+        // set length for open...
+        for(int l=0;l<stack.size();l++){
+            if(stack.at(l).dlh!=dlh)
+                continue;
+            int j=lexed.length()-1;
+            while(j>=0 && lexed.at(j).start>stack[l].start)
+                j--;
+            if(j>=0 && lexed.at(j).start==stack[l].start){
+                lexed[j].length=i-stack[l].start+1;
+                stack[l].length=i-stack[l].start+1;
+            }
+        }
+    }
+    dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
+    dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(lexed));
+    dlh->unlock();
+    return lexed;
+}
+
+void updateSubsequentRemainders(QDocumentLineHandle* dlh,TokenStack stack){
+    dlh->lockForWrite();
+    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    TokenStack oldRemainder=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
+    for(int i=0;i<tl.length();i++){
+        Tokens tk=tl.at(i);
+        if(Tokens::tkOpen().contains(tk.type)){
+            stack.push(tk);
+        }
+        if(Tokens::tkClose().contains(tk.type) && !stack.isEmpty()){
+            if(stack.top().type==Tokens::opposite(tk.type)){
+                stack.pop();
+            }
+        }
+    }
+    if(!(stack==oldRemainder)){
+        dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
+    }
+    dlh->unlock();
+    if(stack==oldRemainder)
+        return;
+    QDocument *document=dlh->document();
+    int index = document->indexOf(dlh);
+    if(index+1>=document->lines())
+        return ; // last line reached
+    dlh=document->line(index+1).handle();
+    updateSubsequentRemainders(dlh,stack);
+
+}
+
+bool Tokens::operator ==(const Tokens &v){
+    return (this->dlh==v.dlh)&&(this->length==v.length)&&(this->level==v.level)&&(this->type==v.type);
+}
+
+void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
+     dlh->lockForWrite();
+     TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+     QString line=dlh->text();
+     for(int i=0;i<tl.length();i++){
+         Tokens& tk=tl[i];
+/* parse tokenlist, check commands (1. syn check)
+ * tie options/arguments to commands
+ * lex otpions (key/val, comma separation,words,single arg,label etc)
+ * => reclassification of arguments
+ */
+         if(tk.type==Tokens::comment)
+             break; // stop at comment start
+         if(tk.type==Tokens::command){
+             QString command=line.mid(tk.start,tk.length);
+             if(lp.commandDefs.contains(command)){
+                CommandDescription cd=lp.commandDefs.value(command);
+                int opts=cd.optionalArgs;
+                int args=cd.args;
+                int optFound=0;
+                int argFound=0;
+                // handle args/options
+                int j=i+1;
+                while(j<tl.length()){
+                    Tokens &elem=tl[j];
+                    if(elem.level==tk.level){
+                        if(Tokens::tkArg().contains(elem.type)){
+                            argFound++;
+                            if(cd.argTypes.length()>=argFound){
+                                elem.subtype=cd.argTypes.value(argFound-1);
+                                elem.argLevel=argFound;
+                            }
+                            if(argFound>=args)
+                                break; // all arguments found, optional arguments don't count
+                        }else{
+                            if(Tokens::tkOption().contains(elem.type)){
+                                optFound++;
+                                if(optFound>opts)
+                                    break;
+                                if(cd.optTypes.length()>optFound){
+                                    elem.subtype=cd.optTypes.value(optFound-1);
+                                    elem.argLevel=optFound;
+                                }
+
+                            }
+                        }
+                    }
+                    j++;
+                }
+
+             }else{
+                tk.type=Tokens::commandUnknown;
+             }
+         }
+     }
+     dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(tl));
+     dlh->unlock();
+}
+
+CommandDescription extractCommandDef(QString line){
+    QRegExp rxCom("^(\\\\\\w+\\*?)");
+    int i=rxCom.indexIn(line);
+    QString command=rxCom.cap();
+    line=line.mid(command.length());
+    const QString specialChars="{[(";
+    const QString specialChars2="}])";
+    CommandDescription cd;
+    if(line.isEmpty())
+        return cd;
+    QChar c=line.at(0);
+    int loop=1;
+    while(specialChars.contains(c)){
+        int j=specialChars.indexOf(c);
+        QChar closingChar=specialChars2.at(j);
+        i=line.indexOf(closingChar);
+        QString def=line.mid(1,i-1);
+        Tokens::TokenType type=Tokens::none;
+        if(loop==1 &&(command=="\\begin" || command=="\\end")){
+            type=Tokens::env;
+        }
+        if(def=="text" || def=="title"){
+            type=Tokens::text;
+        }
+        if(def=="package"){
+            type=Tokens::package;
+        }
+        if(def=="cols"){
+            type=Tokens::colDef;
+        }
+        if(def=="width" || def=="length"){
+            type=Tokens::width;
+        }
+        if(def=="citekey"){
+            type=Tokens::bibItem;
+        }
+        if(def=="file"){
+            type=Tokens::file;
+        }
+        if(def=="placement" || def=="position"){
+            type=Tokens::placement;
+        }
+        if(def=="key"){
+            type=Tokens::labelRef;
+            if(command=="\\label")
+                type=Tokens::label;
+        }
+        switch (j) {
+        case 0: cd.args=cd.args+1;
+            cd.argTypes.append(type);
+            break;
+        case 1: cd.optionalArgs=cd.optionalArgs+1;
+            cd.optTypes.append(type);
+            break;
+        default:
+            break;
+        }
+        if(i<0)
+            break;
+        line=line.mid(i+1);
+        if(line.isEmpty())
+            break;
+        c=line.at(0);
+        loop++;
+    }
+    return cd;
+}
+
+
+CommandDescription::CommandDescription():optionalArgs(0),args(0)
+{
+
+}
+
+
+TokenList getArgContent(Tokens &tk)
+{
+    TokenList results;
+    QDocumentLineHandle *dlh=tk.dlh;
+    dlh->lockForRead();
+    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    dlh->unlock();
+    for(int i=0;i<tl.length();i++){
+        if(tk==tl.at(i)){
+            results=getArgContent(tl,i,tk.level);
+            break;
+        }
+    }
+    return results;
+}
+
+TokenList getArgContent(TokenList &tl,int pos,int level,int runAwayPrevention)
+{
+    TokenList result;
+    if(runAwayPrevention<0)
+        return result;
+    bool finished=false;
+    Tokens tk;
+    // adapt strategy after token type (word, closed , open)
+    if(pos>=0 && pos<tl.length()){
+        tk=tl.at(pos);
+        if(tk.type==Tokens::word){
+            result.append(tk);
+            return result;
+        }
+        if(Tokens::tkBraces().contains(tk.type)){
+            //closed , no spill in next line
+            runAwayPrevention=0; // in case there is no token after the last usable one
+        }
+    }
+
+    for(int i=pos+1;i<tl.length();i++){
+        tk=tl.at(i);
+        if(tk.level<level){
+            finished=true;
+            break; // end reached
+        }
+        if(tk.level==level){
+            result.append(tk);
+        }
+        //ignore other levels
+    }
+    if(!finished){
+        //getRestArgfrom
+        QDocument *document=tk.dlh->document();
+        int index = document->indexOf(tk.dlh);
+        TokenList tl;
+        while(index+1<document->lines()){
+            QDocumentLineHandle *dlh=document->line(index+1).handle();
+            tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            if(!tl.isEmpty())
+                break;
+            index++;
+        }
+        if(!tl.isEmpty())
+            result.append(getArgContent(tl,-1,level-tk.level,runAwayPrevention-1));
+    }
+    return result;
+}

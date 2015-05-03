@@ -2623,7 +2623,8 @@ bool Texmaker::canCloseNow(bool saveSettings){
 	foreach (PDFDocument* viewer, PDFDocument::documentList())
 		viewer->saveGeometryToConfig();
 #endif
-	SaveSettings();
+    if(saveSettings)
+        SaveSettings();
 	closeAllFiles();
 	if (userMacroDialog) delete userMacroDialog;
 	spellerManager.unloadAll();  //this saves the ignore list

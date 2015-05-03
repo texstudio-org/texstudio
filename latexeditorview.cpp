@@ -1658,7 +1658,23 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		
 		//remove all overlays used for latex things, in descending frequency
 		line.clearOverlays(formatsList); //faster as it avoids multiple lock/unlock operations
-		
+    }
+    // get remainder
+    TokenStack remainder;
+    int lineNrStart=linenr;
+    if(linenr>0){
+        QDocumentLineHandle *previous=editor->document()->line(linenr-1).handle();
+        remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        if(!remainder.isEmpty()){
+            QDocumentLineHandle *lh=remainder.top().dlh;
+            lineNrStart=lh->document()->indexOf(lh);
+        }
+    }
+
+    for (int i=lineNrStart; i<linenr+count; i++) {
+        QDocumentLine line = editor->document()->line(i);
+        if (!line.isValid()) continue;
+
 		bool addedOverlaySpellCheckError = false;
 		bool addedOverlayReference = false;
 		bool addedOverlayCitation = false;
@@ -1711,6 +1727,39 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		
 		QString lineText = line.text();
 		int status;
+        // alternative context detection
+        QDocumentLineHandle *dlh=line.handle();
+        TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        for(int i=0;i<tl.length();i++){
+            Tokens tk=tl.at(i);
+            if(tk.subtype==Tokens::package&& config->inlinePackageChecking) {
+                // package
+                TokenList tlArg=getArgContent(tl,i,tk.level+1);
+
+                QString preambel;
+                /* TODO
+                if(lr.lastCommand.endsWith("theme")){ // special treatment for  \usetheme
+                    preambel=lr.lastCommand;
+                    preambel.remove(0,4);
+                    preambel.prepend("beamer");
+                }*/
+                foreach ( const Tokens &tk, tlArg) {
+                    QDocumentLineHandle *dlh=tk.dlh;
+                    QString text=dlh->text();
+                    QString rpck =  trimLeft(text.mid(tk.start,tk.length)); // left spaces are ignored by \cite, right space not
+                    //check and highlight
+                    if (latexPackageList->isEmpty())
+                        dlh->addOverlay(QFormatRange(tk.start,tk.length,packageUndefinedFormat));
+                    else if(latexPackageList->contains(preambel+rpck))
+                        dlh->addOverlay(QFormatRange(tk.start,tk.length,packagePresentFormat));
+                    else
+                        dlh->addOverlay(QFormatRange(tk.start,tk.length,packageMissingFormat));
+                }
+                addedOverlayPackage = true;
+            }
+
+        }
+        // old context detection, replaced functions deactivated
 		const LatexParser& lp = LatexParser::getInstance();
 		LatexReader lr(LatexParser::getInstance(), lineText, mReplacementList);
 		while ((status=lr.nextWord(false))){
@@ -1782,7 +1831,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					}
 					addedOverlayCitation = true;
 				}
-				if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
+                /*if (status==LatexReader::NW_PACKAGE && config->inlinePackageChecking) {
 					QStringList packages=lr.word.split(",");
 					int pos=lr.wordStartIndex;
 					QString preambel;
@@ -1803,7 +1852,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 						pos+=pck.length()+1;
 					}
 					addedOverlayPackage = true;
-				}
+                }*/
 				if (status==LatexReader::NW_COMMENT) break;
 			}
 			if (status==LatexReader::NW_TEXT && config->inlineSpellChecking && lr.word.length()>=3 && speller

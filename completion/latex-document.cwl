@@ -116,7 +116,7 @@
 \end{matrix}
 \end{minipage}
 \end{normalsize}
-\end{picture
+\end{picture}
 \end{pmatrix}
 \end{quotation}
 \end{quote}
