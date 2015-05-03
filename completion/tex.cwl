@@ -83,7 +83,6 @@
 \eject#*
 \else#*
 \empty#*
-\end#*
 \endcsname#*
 \endgraf#*
 \endgroup#*

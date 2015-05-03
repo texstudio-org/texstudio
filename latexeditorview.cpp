@@ -1730,9 +1730,47 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
         // alternative context detection
         QDocumentLineHandle *dlh=line.handle();
         TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        {
+        TokenStack ts;
         for(int tkNr=0;tkNr<tl.length();tkNr++){
             Tokens tk=tl.at(tkNr);
+            if(ts.isEmpty()){
+                ts.push(tk);
+            }else{
+                // if level identical, replace top
+                // if level > , add
+                // if level < , remove and replace
+                if(ts.top().level==tk.level){
+                    ts.pop();
+                    ts.push(tk);
+                }else{
+                    if(ts.top().level<tk.level){
+                        ts.push(tk);
+                    }else{
+                        ts.pop();
+                        if(ts.isEmpty()){
+                            ts.push(tk);
+                        }else{
+                            ts.pop();
+                            ts.push(tk);
+                        }
+                    }
+                }
+
+            }
+            Tokens argToken;
+            argToken.start=-1;
+            if(ts.length()>1){
+                argToken=ts.value(ts.length()-2);
+            }
+
+            if(tk.type==Tokens::comment)
+                break;
             if (latexLikeChecking) {
+                if (tk.subtype==Tokens::env) {
+                    line.addOverlay(QFormatRange(tk.start+1,tk.length-2,environmentFormat));
+                    addedOverlayEnvironment = true;
+                }
                 if(tk.subtype==Tokens::package&& config->inlinePackageChecking) {
                     // package
                     TokenList tlArg=getArgContent(tl,tkNr,tk.level+1);
@@ -1804,6 +1842,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                 }
             }// if latexLineCheking
             if (tk.type==Tokens::word && tk.subtype==Tokens::none && config->inlineSpellChecking && tk.length>=3 && speller){
+                if(argToken.start>-1 && argToken.subtype!=Tokens::none && argToken.subtype!=Tokens::text)
+                    continue;
                 QString word=tk.getText();
                 if (config->hideNonTextSpellingErrors && (isNonTextFormat(line.getFormatAt(tk.start)) || isNonTextFormat(line.getFormatAt(tk.start+tk.length-1)) )) // TODO:needs to be adapted
                     continue;
@@ -1817,6 +1857,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                 }
             }
         } // for Tokenslist
+        } // for local var def
 
 
         // old context detection, replaced functions deactivated
@@ -1846,14 +1887,14 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 					}
 					addedOverlayStructure = true;
 				}
-				if (status==LatexReader::NW_ENVIRONMENT) {
+                /*if (status==LatexReader::NW_ENVIRONMENT) {
 					line.addOverlay(QFormatRange(lr.wordStartIndex,lr.index-lr.wordStartIndex,environmentFormat));
 					QRegExp rx("[ ]*(\\[.*\\])*\\{.+\\}");
 					rx.setMinimal(true);
 					int l=rx.indexIn(lineText,lr.index);
 					if (l==lr.index+1) lr.index=lr.index+rx.cap(0).length();
 					addedOverlayEnvironment = true;
-				}
+                }*/
                 /*if (status==LatexReader::NW_REFERENCE && config->inlineReferenceChecking) {
 					QString ref=lr.word;//lineText.mid(lr.wordStartIndex,lr.index-lr.wordStartIndex);
 					if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
