@@ -2494,6 +2494,19 @@ QSet<Tokens::TokenType> Tokens::tkClose(){
     result.insert(closeSquareBracket);
     return result;
 }
+QSet<Tokens::TokenType> Tokens::tkSingleArg(){
+    QSet<TokenType> result;
+    result.insert(label);
+    result.insert(labelRef);
+    result.insert(url);
+    return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkCommalist(){
+    QSet<TokenType> result;
+    result.insert(bibItem);
+    return result;
+}
 
 Tokens::TokenType Tokens::opposite(TokenType type){
     switch(type){
@@ -2734,6 +2747,8 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                 int args=cd.args;
                 int optFound=0;
                 int argFound=0;
+                int startArg=-1;
+                Tokens::TokenType lastType=Tokens::TokenType(0);
                 // handle args/options
                 int j=i+1;
                 while(j<tl.length()){
@@ -2741,15 +2756,17 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                     if(elem.level==tk.level){
                         if(Tokens::tkArg().contains(elem.type)){
                             argFound++;
+                            if(argFound>args)
+                                break; // all arguments found, optional arguments don't count
                             if(cd.argTypes.length()>=argFound){
                                 int tsPos=ts.indexOf(elem);
                                 elem.subtype=cd.argTypes.value(argFound-1);
+                                lastType=elem.subtype;
+                                startArg=-1;
                                 elem.argLevel=argFound;
                                 if(tsPos>=0)
                                     ts[tsPos]=elem;
                             }
-                            if(argFound>=args)
-                                break; // all arguments found, optional arguments don't count
                         }else{
                             if(Tokens::tkOption().contains(elem.type)){
                                 optFound++;
@@ -2758,11 +2775,29 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                 if(cd.optTypes.length()>=optFound){
                                     int tsPos=ts.indexOf(elem);
                                     elem.subtype=cd.optTypes.value(optFound-1);
+                                    lastType=elem.subtype;
                                     elem.argLevel=optFound;
+                                    startArg=-1;
                                     if(tsPos>=0)
                                         ts[tsPos]=elem;
                                 }
-
+                            }
+                        }
+                    }else{
+                        if(elem.level<tk.level)
+                            break;
+                        if(elem.level==tk.level+1){
+                            // direkt arg content
+                            if(Tokens::tkSingleArg().contains(lastType)){
+                                // join all subArgs
+                                if(startArg<0){
+                                    startArg=j;
+                                    elem.type=lastType;
+                                }else{
+                                    tl[startArg].length=tl[j].start+tl[j].length-tl[startArg].start;
+                                    tl.removeAt(j);
+                                    j--;
+                                }
                             }
                         }
                     }

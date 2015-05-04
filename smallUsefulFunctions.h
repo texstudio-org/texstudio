@@ -57,6 +57,8 @@ public:
     static QSet<TokenType> tkBraces();
     static QSet<TokenType> tkOpen();
     static QSet<TokenType> tkClose();
+    static QSet<TokenType> tkCommalist();
+    static QSet<TokenType> tkSingleArg();
     static TokenType opposite(TokenType type);
     static TokenType closed(TokenType type);
     bool operator==(const Tokens &v);
