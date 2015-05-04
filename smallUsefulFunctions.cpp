@@ -2815,7 +2815,7 @@ CommandDescription extractCommandDef(QString line){
         if(def=="width" || def=="length"){
             type=Tokens::width;
         }
-        if(def=="citekey"){
+        if(def=="citekey" || def=="bibid"){
             type=Tokens::bibItem;
         }
         if(def=="file"){
