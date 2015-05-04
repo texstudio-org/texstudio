@@ -1,36 +1,39 @@
 <!DOCTYPE QNFA>
 <QNFA language="QtScript" extensions="js;qs" >
-	<context id="comment/single" format="comment" >
+
+	<word id="tag/script" format="qtscript:comment">%SCRIPT</word>
+
+	<context id="comment/single" format="qtscript:comment" >
 		<start>//</start>
 		<stop exclusive="false">\n</stop>
 	</context>
 	
-	<context id="comment/single" format="comment" >
+	<context id="comment/single" format="qtscript:comment" >
 		<start parenthesis="jscomment:open" indent="1" fold="1">/\*</start>
 		<stop parenthesis="jscomment:close" indent="1" fold="1">\*/</stop>
 	</context>
 	
-	<context id="data/string1" format="text" >
+	<context id="data/string1" format="qtscript:string" >
 		<start parenthesis="string:open">&quot;</start>
 		<stop parenthesis="string:close">&quot;</stop>
 		<stop exclusive="false">\n</stop>
 		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
 	</context>
 	
-	<context id="data/string2" format="text" >
+	<context id="data/string2" format="qtscript:string" >
 		<start parenthesis="simplestring:open">&apos;</start>
 		<stop parenthesis="simplestring:close">&apos;</stop>
 		<stop exclusive="false">\n</stop>
 		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
 	</context>
 	
-	<context id="data/regexp" format="text" >
+	<context id="data/regexp" format="qtscript:string" >
 		<start>\(/</start>
 		<stop>/</stop>
 		<stop exclusive="false">\n</stop>
 		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
 	</context>
-	<context id="data/regexpb" format="text" >
+	<context id="data/regexpb" format="qtscript:string" >
 		<start>/[^0-9 ]</start>
 		<stop>/</stop>
 		<stop exclusive="false">\n</stop>
@@ -39,12 +42,12 @@
 
 	<sequence parenthesis="round:open">\(</sequence>
 	<sequence parenthesis="round:close">\)</sequence>
-	<sequence parenthesis="curly:open">\{</sequence>
-	<sequence parenthesis="curly:close">\}</sequence>
+	<sequence parenthesis="curly:open" fold="true">\{</sequence>
+	<sequence parenthesis="curly:close" fold="true">\}</sequence>
 	<sequence parenthesis="square:open">\[</sequence>
 	<sequence parenthesis="square:close">\]</sequence>
 	
-	<list id="keywords" format="keyword">
+	<list id="keywords" format="qtscript:keyword">
 		<word>Infinity</word>
 		<word>NaN</word>
 		<word>abstract</word>
@@ -108,7 +111,42 @@
 		<word>with</word>
 		<word>while</word>
 	</list>
+
+	<list id="txs-variables" format="qtscript:txs-variable">
+		<word>editor</word>
+		<word>documentManager</word>
+		<word>documents</word>
+		<word>cursor</word>
+		<word>app</word>
+		<word>pdfs</word>
+		<word>triggerMatches</word>
+		<word>triggerId</word>
+		<word>fileChooser</word>
+	</list>
+
+	<list id="txs-functions" format="qtscript:txs-function">
+		<word>alert</word>
+		<word>information</word>
+		<word>critical</word>
+		<word>confirm</word>
+		<word>confirmWarning</word>
+		<word>debug</word>
+		<word>writeFile</word>
+		<word>readFile</word>
+		<word>system</word>
+		<word>setGlobal</word>
+		<word>getGlobal</word>
+		<word>hasGlobal</word>
+		<word>setPersistent</word>
+		<word>getPersistent</word>
+		<word>hasPersistent</word>
+		<word>hasPriviledges</word>
+		<word>hasWritePriviledges</word>
+		<word>registerAsBackgroundScript</word>
+		<word>include</word>
+	</list>
+
 	
-	<word id="data/float" format="numbers">-?[0-9]*.[0-9]+</word>
-	<word id="data/decimal" format="numbers">-?[0-9]+</word>
+	<word id="data/float" format="qtscript:number">-?[0-9]*.[0-9]+</word>
+	<word id="data/decimal" format="qtscript:number">-?[0-9]+</word>
 </QNFA>

@@ -421,6 +421,25 @@
     <format id="asymptote:comment" >
         <foreground>#808080</foreground>
     </format>
+    <format id="qtscript:comment" >
+        <foreground>#808080</foreground>
+    </format>
+    <format id="qtscript:string" >
+        <foreground>#008000</foreground>
+    </format>
+    <format id="qtscript:number" >
+        <foreground>#000080</foreground>
+    </format>
+    <format id="qtscript:keyword" >
+        <foreground>#808000</foreground>
+    </format>
+    <format id="qtscript:txs-variable" >
+        <foreground>#800000</foreground>
+    </format>
+    <format id="qtscript:txs-function" >
+		<italic>true</italic>
+        <!--<foreground>#800080</foreground>-->
+    </format>
 <!-- Preedit -->
     <format id="preedit" >
         <bold>false</bold>
