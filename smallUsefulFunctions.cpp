@@ -2859,6 +2859,15 @@ CommandDescription extractCommandDef(QString line){
         if(def.contains("URL")){
             type=Tokens::url;
         }
+        if(def.contains("options")){
+            type=Tokens::packageoption;
+        }
+        if(def.contains("class")){
+            type=Tokens::documentclass;
+        }
+        if(def.contains("beamertheme")){
+            type=Tokens::beamertheme;
+        }
         if(def=="placement" || def=="position"){
             type=Tokens::placement;
         }

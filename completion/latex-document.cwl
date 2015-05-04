@@ -188,8 +188,8 @@
 \date{text}
 \depth#*
 \descriptionlabel{code}#*
-\documentclass[options]{style}
-\documentclass{style}
+\documentclass[options]{class}
+\documentclass{class}
 \em
 \emph{text}
 \enlargethispage*{size}
