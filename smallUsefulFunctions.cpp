@@ -2499,6 +2499,8 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg(){
     result.insert(label);
     result.insert(labelRef);
     result.insert(url);
+    result.insert(file);
+    result.insert(imagefile);
     return result;
 }
 
@@ -2794,7 +2796,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                     startArg=j;
                                     elem.type=lastType;
                                 }else{
-                                    tl[startArg].length=tl[j].start+tl[j].length-tl[startArg].start;
+                                    tl[startArg].length=tl[j].start+tl[j].length-tk.start-1; // start directly after brace
                                     tl.removeAt(j);
                                     j--;
                                 }
@@ -2856,16 +2858,22 @@ CommandDescription extractCommandDef(QString line){
         if(def=="file"){
             type=Tokens::file;
         }
+        if(def=="imagefile"){
+            type=Tokens::imagefile;
+        }
         if(def.contains("URL")){
             type=Tokens::url;
         }
-        if(def.contains("options")){
+        if(def.contains("keys")){
+            type=Tokens::keyValArg;
+        }
+        if(def=="options"){
             type=Tokens::packageoption;
         }
-        if(def.contains("class")){
+        if(def=="class"){
             type=Tokens::documentclass;
         }
-        if(def.contains("beamertheme")){
+        if(def=="beamertheme"){
             type=Tokens::beamertheme;
         }
         if(def=="placement" || def=="position"){
