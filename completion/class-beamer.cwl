@@ -431,8 +431,8 @@
 \action<action specification>{text}
 \action{text}
 \beamerdefaultoverlayspecification{default overlay specification}
-\usetheme[options]{name list}
-\usetheme{name list}#u
+\usetheme[options]{beamertheme}
+\usetheme{beamertheme}#u
 \usecolortheme[options]{name list}
 \usecolortheme{name list}#u
 \usefonttheme[options]{name}

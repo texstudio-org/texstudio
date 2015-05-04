@@ -41,13 +41,10 @@ public:
     int level;
     QDocumentLineHandle *dlh;
 
-    enum TokenType {none=0,word=1,
-    command=2,braces=3,bracket=4,
-    squareBracket=5,math=6,openBrace=7,
-    openBracket=8,openSquare=9,closeBrace=10,
-    closeBracket=11,closeSquareBracket=12,comment=13,
-    commandUnknown=14,label=15,bibItem=16,file=17,
-    keyValArg=18,list=19,text=20,env=21,def=22,labelRef=23,package=24,width=25,placement=26,colDef=27,title=28,url=29};
+    enum TokenType {none,word,command,braces,bracket,
+    squareBracket,math,openBrace,openBracket,openSquare,closeBrace,
+    closeBracket,closeSquareBracket,comment,commandUnknown,label,bibItem,file,
+    keyValArg,list,text,env,def,labelRef,package,width,placement,colDef,title,url,documentclass,beamertheme,packageoption};
     TokenType type;
     // subtype is used to determine the type of argument
     TokenType subtype;

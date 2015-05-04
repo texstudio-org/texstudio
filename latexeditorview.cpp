@@ -1770,17 +1770,14 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                     line.addOverlay(QFormatRange(tk.start+1,tk.length-2,environmentFormat));
                     addedOverlayEnvironment = true;
                 }
-                if(tk.subtype==Tokens::package&& config->inlinePackageChecking) {
+                if((tk.subtype==Tokens::package||tk.subtype==Tokens::beamertheme||tk.subtype==Tokens::documentclass)&& config->inlinePackageChecking) {
                     // package
                     TokenList tlArg=getArgContent(tl,tkNr,tk.level+1);
 
                     QString preambel;
-                    /* TODO
-                if(lr.lastCommand.endsWith("theme")){ // special treatment for  \usetheme
-                    preambel=lr.lastCommand;
-                    preambel.remove(0,4);
-                    preambel.prepend("beamer");
-                }*/
+                    if(tk.subtype==Tokens::beamertheme){ // special treatment for  \usetheme
+                        preambel="beamertheme";
+                    }
                     foreach ( const Tokens &tk, tlArg) {
                         QDocumentLineHandle *dlh=tk.dlh;
                         QString text=dlh->text();
@@ -2167,15 +2164,12 @@ void LatexEditorView::mouseHovered(QPoint pos){
                      QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
                 }
             }
-            if(tk2.subtype==Tokens::package){
+            if(tk2.subtype==Tokens::package||tk2.subtype==Tokens::beamertheme||tk2.subtype==Tokens::documentclass){
                 handled=true;
-                 QString command="\\usepackage"; // TODO: get from arg
-                 QString type = (command=="\\documentclass") ? tr("Class") : tr("Package");
+                 QString type = (tk2.subtype==Tokens::documentclass) ? tr("Class") : tr("Package");
                  QString preambel;
-                 if(command.endsWith("theme")){ // special treatment for  \usetheme
-                      preambel=command;
-                      preambel.remove(0,4);
-                      preambel.prepend("beamer");
+                 if(tk2.subtype==Tokens::beamertheme){ // special treatment for  \usetheme
+                      preambel="beamertheme";
                       type = tr("Beamer Theme");
                       type.replace(' ', "&nbsp;");
                  }
