@@ -1755,8 +1755,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
             }
             Tokens argToken;
             argToken.start=-1;
-            if(ts.length()>1){
-                argToken=ts.value(ts.length()-2);
+            if(ts.size()>1){
+                argToken=ts.value(ts.size()-2);
             }
 
             if(tk.type==Tokens::comment)
@@ -2124,8 +2124,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
                 if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
             }
         }
-        if(ts.length()>1){
-            Tokens tk2=ts.value(ts.length()-2);
+        if(ts.size()>1){
+            Tokens tk2=ts.value(ts.size()-2);
             value=line.mid(tk.start,tk.length);
             if(tk2.subtype==Tokens::env){
                 handled=true;
