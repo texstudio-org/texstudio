@@ -244,9 +244,6 @@
 \i
 \include{file}#i
 \input{file}#i
-\includegraphics[options]{name}
-\includegraphics[scale=%<1%>]{%<file%>}#*
-\includegraphics{name}
 \includeonly{filelist}
 \indexname{name}
 \indexspace

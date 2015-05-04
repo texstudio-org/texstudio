@@ -2183,15 +2183,80 @@ void LatexEditorView::mouseHovered(QPoint pos){
                       QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
                  }
             }
+            if(tk2.subtype==Tokens::bibItem){
+                handled=true;
+                 QString tooltip(tr("Citation correct (reading ...)"));
+                 QString bibID;
+
+                 bibID = value;
+
+                 if(!document->bibIdValid(bibID)) {
+                      tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
+
+                      if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
+                           tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX."));
+                      }
+                 } else {
+                      if (document->isBibItem(bibID)) {
+                           // by bibitem defined citation
+                           tooltip.clear();
+                           QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
+                           if(result.keys().isEmpty())
+                                return;
+                           QDocumentLineHandle *mLine=result.keys().first();
+                           if(!mLine)
+                                return;
+                           int l=mLine->document()->indexOf(mLine);
+                           LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
+                           if (mLine->document()!=editor->document()) {
+                                doc=document->parent->findDocument(mLine->document());
+                                if (doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                           }
+                           if (doc)
+                                tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
+                      } else {
+                           // read entry in bibtex file
+                           if (!bibReader) {
+                                bibReader=new bibtexReader(this);
+                                connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
+                                connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+                                bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
+                           }
+                           QString file=document->findFileFromBibId(bibID);
+                           lastPos=pos;
+                           if(!file.isEmpty())
+                                emit searchBibtexSection(file,bibID);
+                           return;
+                      }
+                 }
+                 QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
+            }
+            if(tk2.subtype==Tokens::imagefile && config->toolTipPreview){
+                handled=true;
+                 QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
+                 QString fname;
+                 QFileInfo fi;
+                 QStringList imagePaths = ConfigManagerInterface::getInstance()->getOption("Files/Image Paths").toString().split(getPathListSeparator());
+                 foreach (const QString &ext, imageExtensions) {
+                      fname=getDocument()->getAbsoluteFilePath(value, ext, imagePaths);
+                      fi.setFile(fname);
+                      if (fi.exists()) break;
+                 }
+                 if (!fi.exists()) return;
+                 m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+                 emit showImgPreview(fname);
+            }
 
         }//if ts.length >1
     }// ts.lenght>0
     if(handled)
         return;
-	// do rest
 
+    QToolTip::hideText();
+
+/*
 	switch (LatexParser::getInstance().findContext(line, cursor.columnNumber(), command, value)){
-	case LatexParser::Unknown:
+    case LatexParser::Unknown: // when does this happen ????
 		if (config->toolTipPreview) {
 			QString command = extractMath(cursor);
 			if (!command.isEmpty()) {
@@ -2203,109 +2268,8 @@ void LatexEditorView::mouseHovered(QPoint pos){
 		}
 		break;
 
-     case LatexParser::Package:
-     {
-		  QString type = (command=="\\documentclass") ? tr("Class") : tr("Package");
-		  QString preambel;
-          if(command.endsWith("theme")){ // special treatment for  \usetheme
-               preambel=command;
-               preambel.remove(0,4);
-               preambel.prepend("beamer");
-			   type = tr("Beamer Theme");
-			   type.replace(' ', "&nbsp;");
-          }
-		  QString text = QString("%1:&nbsp;<b>%2</b>").arg(type).arg(value);
-		  if(latexPackageList->contains(preambel+value)){
-			  QString description = LatexPackages::instance()->shortDescription(value);
-			  if (!description.isEmpty()) text += "<br>" + description;
-			  QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
-          } else {
-			  text += "<br><b>(" + tr("not found") + ")";
-			   QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
-          }
-     }
-          break;
-     case LatexParser::Citation:;
-     case LatexParser::Citation_Ext:
-     {
-          QString tooltip(tr("Citation correct (reading ...)"));
-          QString bibID;
-          // get bibID at cursor
-          int col_start=cursor.columnNumber();
-          if(col_start>=line.length())
-               col_start=line.length()-1;
-          if (QString("{,}").contains(line[col_start])) break;
 
-          int col_stop=col_start;
-          QString eow="{,";
-          while(col_start>=0 && !eow.contains(line[col_start]))
-               col_start--;
-          eow="},";
-          while(col_stop<line.length() && !eow.contains(line[col_stop]))
-               col_stop++;
-          bibID = trimLeft(line.mid(col_start+1,col_stop-col_start-1));
-
-          if(!document->bibIdValid(bibID)) {
-               tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
-
-               if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
-                    tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX."));
-               }
-          } else {
-               if (document->isBibItem(bibID)) {
-                    // by bibitem defined citation
-                    tooltip.clear();
-                    QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
-                    if(result.keys().isEmpty())
-                         return;
-                    QDocumentLineHandle *mLine=result.keys().first();
-                    if(!mLine)
-                         return;
-                    int l=mLine->document()->indexOf(mLine);
-                    LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
-                    if (mLine->document()!=editor->document()) {
-                         doc=document->parent->findDocument(mLine->document());
-                         if (doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-                    }
-                    if (doc)
-                         tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
-               } else {
-                    // read entry in bibtex file
-                    if (!bibReader) {
-                         bibReader=new bibtexReader(this);
-                         connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
-                         connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-                         bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
-                    }
-                    QString file=document->findFileFromBibId(bibID);
-                    lastPos=pos;
-                    if(!file.isEmpty())
-                         emit searchBibtexSection(file,bibID);
-                    return;
-               }
-          }
-          QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
-     }
-          break;
-     case LatexParser::Graphics:
-          if(config->toolTipPreview){
-               QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
-               QString fname;
-               QFileInfo fi;
-               QStringList imagePaths = ConfigManagerInterface::getInstance()->getOption("Files/Image Paths").toString().split(getPathListSeparator());
-               foreach (const QString &ext, imageExtensions) {
-                    fname=getDocument()->getAbsoluteFilePath(value, ext, imagePaths);
-                    fi.setFile(fname);
-                    if (fi.exists()) break;
-               }
-               if (!fi.exists()) return;
-               m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-               emit showImgPreview(fname);
-          }
-          break;
-     default:
-          QToolTip::hideText();
-     }
+     }*/
      //QToolTip::showText(editor->mapToGlobal(pos), line);
 }
 

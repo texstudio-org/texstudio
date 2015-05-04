@@ -43,7 +43,7 @@ public:
 
     enum TokenType {none,word,command,braces,bracket,
     squareBracket,math,openBrace,openBracket,openSquare,closeBrace,
-    closeBracket,closeSquareBracket,comment,commandUnknown,label,bibItem,file,
+    closeBracket,closeSquareBracket,comment,commandUnknown,label,bibItem,file,imagefile,
     keyValArg,list,text,env,def,labelRef,package,width,placement,colDef,title,url,documentclass,beamertheme,packageoption};
     TokenType type;
     // subtype is used to determine the type of argument

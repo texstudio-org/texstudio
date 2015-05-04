@@ -4,8 +4,8 @@
 \DeclareGraphicsExtensions{ext-list}
 \DeclareGraphicsRule{ext}{type}{read-file}{command}
 \graphicspath{dir-list}
-\includegraphics*[graphicx keys]{file}
-\includegraphics[graphicx keys]{file}
+\includegraphics*[graphicx keys]{imagefile}
+\includegraphics[graphicx keys]{imagefile}
 \reflectbox{text}
 \resizebox*{h-length}{v-length}{text}
 \resizebox{h-length}{v-length}{text}
