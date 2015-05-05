@@ -2750,6 +2750,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                 int optFound=0;
                 int argFound=0;
                 int startArg=-1;
+                int lastPos=-1;
                 Tokens::TokenType lastType=Tokens::TokenType(0);
                 // handle args/options
                 int j=i+1;
@@ -2764,6 +2765,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                 int tsPos=ts.indexOf(elem);
                                 elem.subtype=cd.argTypes.value(argFound-1);
                                 lastType=elem.subtype;
+                                lastPos=j;
                                 startArg=-1;
                                 elem.argLevel=argFound;
                                 if(tsPos>=0)
@@ -2778,6 +2780,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                     int tsPos=ts.indexOf(elem);
                                     elem.subtype=cd.optTypes.value(optFound-1);
                                     lastType=elem.subtype;
+                                    lastPos=j;
                                     elem.argLevel=optFound;
                                     startArg=-1;
                                     if(tsPos>=0)
@@ -2796,7 +2799,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                     startArg=j;
                                     elem.type=lastType;
                                 }else{
-                                    tl[startArg].length=tl[j].start+tl[j].length-tk.start-1; // start directly after brace
+                                    tl[startArg].length=tl[j].start+tl[j].length-tl[lastPos].start-1; // start directly after brace
                                     tl.removeAt(j);
                                     j--;
                                 }
