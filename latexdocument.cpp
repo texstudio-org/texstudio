@@ -310,25 +310,45 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 	
 	QDocumentLineHandle *oldLine=mAppendixLine; // to detect a change in appendix position
     QDocumentLineHandle *oldLineBeyond=mBeyondEnd; // to detect a change in end document position
+
+    // get remainder
+    TokenStack remainder;
+    int lineNrStart=linenr;
+    int newCount=count;
+    if(linenr>0){
+        QDocumentLineHandle *previous=line(linenr-1).handle();
+        previous->lockForRead();
+        remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        previous->unlock();
+        if(!remainder.isEmpty() && remainder.top().argLevel>0){
+            QDocumentLineHandle *lh=remainder.top().dlh;
+            lineNrStart=lh->document()->indexOf(lh);
+            if(linenr-lineNrStart>10) // limit search depth
+                lineNrStart=linenr;
+            if(linenr>lineNrStart){
+                newCount=linenr+count-lineNrStart;
+            }
+        }
+    }
 	
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfMagicComments;
 	QMutableListIterator<StructureEntry*> iter_magicComment(magicCommentList->children);
-	findStructureEntryBefore(iter_magicComment,MapOfMagicComments,linenr,count);
+    findStructureEntryBefore(iter_magicComment,MapOfMagicComments,lineNrStart,newCount);
 	
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfLabels;
 	QMutableListIterator<StructureEntry*> iter_label(labelList->children);
-	findStructureEntryBefore(iter_label,MapOfLabels,linenr,count);
+    findStructureEntryBefore(iter_label,MapOfLabels,lineNrStart,newCount);
 	
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfTodo;
 	QMutableListIterator<StructureEntry*> iter_todo(todoList->children);
-	findStructureEntryBefore(iter_todo,MapOfTodo,linenr,count);
+    findStructureEntryBefore(iter_todo,MapOfTodo,lineNrStart,newCount);
 	
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBlock;
 	QMutableListIterator<StructureEntry*> iter_block(blockList->children);
-	findStructureEntryBefore(iter_block,MapOfBlock,linenr,count);
+    findStructureEntryBefore(iter_block,MapOfBlock,lineNrStart,newCount);
 	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBibtex;
 	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
-	findStructureEntryBefore(iter_bibTeX,MapOfBibtex,linenr,count);
+    findStructureEntryBefore(iter_bibTeX,MapOfBibtex,lineNrStart,newCount);
 	
 	LatexParser& latexParser = LatexParser::getInstance();
 	int verbatimFormat=getFormatId("verbatim");
@@ -344,21 +364,6 @@ bool LatexDocument::patchStructure(int linenr, int count) {
     QStringList lstFilesToLoad;
 
     //first pass: lex
-    // get remainder
-    TokenStack remainder;
-    int lineNrStart=linenr;
-    if(linenr>0){
-        QDocumentLineHandle *previous=line(linenr-1).handle();
-        previous->lockForRead();
-        remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        previous->unlock();
-        if(!remainder.isEmpty() && remainder.top().argLevel>0){
-            QDocumentLineHandle *lh=remainder.top().dlh;
-            lineNrStart=lh->document()->indexOf(lh);
-            if(linenr-lineNrStart>10) // limit search depth
-                lineNrStart=linenr;
-        }
-    }
     TokenStack oldRemainder;
     QDocumentLineHandle *lastHandle=line(linenr+count-1).handle();
     if(lastHandle){
