@@ -2559,6 +2559,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
     Tokens present;
     present.type=Tokens::none;
     present.dlh=dlh;
+    present.argLevel=0;
     int level=0;
     const QString specialChars="\\{[()]}$";
     int i=0;
