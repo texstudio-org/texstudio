@@ -352,9 +352,11 @@ bool LatexDocument::patchStructure(int linenr, int count) {
         previous->lockForRead();
         remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
         previous->unlock();
-        if(!remainder.isEmpty()){
+        if(!remainder.isEmpty() && remainder.top().argLevel>0){
             QDocumentLineHandle *lh=remainder.top().dlh;
             lineNrStart=lh->document()->indexOf(lh);
+            if(linenr-lineNrStart>10) // limit search depth
+                lineNrStart=linenr;
         }
     }
     TokenStack oldRemainder;
