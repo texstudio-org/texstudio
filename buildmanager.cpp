@@ -180,7 +180,7 @@ QString BuildManager::replaceEnvironmentVariables(const QString &command, const 
 #ifdef Q_OS_WIN
 	QRegExp rxEnvVar("%(\\w+)%");
 #else
-	QRegExp rxEnvVar("\$(\\w+)");
+    QRegExp rxEnvVar("\\$(\\w+)");
 #endif
 	int i=0;
 	while (i>=0 && i<result.length()) {
