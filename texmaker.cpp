@@ -701,9 +701,9 @@ void Texmaker::setupMenus() {
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
     newManagedAction(submenu,"find", tr("&Find"), SLOT(editFind()), QKeySequence::Find);
-	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", (QList<QKeySequence>()<< Qt::Key_F3)<<Qt::CTRL+Qt::Key_M);
-	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext", MAC_OTHER(Qt::CTRL+Qt::Key_G, 0));
-	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev", MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_G, 0));
+	newManagedEditorAction(submenu,"findnext",tr("Find &Next"), "findNext", MAC_OTHER(Qt::CTRL+Qt::Key_G, Qt::Key_F3));
+	newManagedEditorAction(submenu,"findprev",tr("Find &Prev"), "findPrev", MAC_OTHER(Qt::CTRL+Qt::SHIFT+Qt::Key_G, Qt::SHIFT+Qt::Key_F3));
+	newManagedEditorAction(submenu,"findinsamedir",tr("Continue F&ind"), "findInSameDir", Qt::CTRL+Qt::Key_M);
 	newManagedEditorAction(submenu,"findcount",tr("&Count"), "findCount");
 	newManagedEditorAction(submenu,"select",tr("&Select all matches..."), "selectAllMatches");
     //newManagedAction(submenu,"findglobal",tr("Find &Dialog..."), SLOT(editFindGlobal()));
