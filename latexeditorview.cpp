@@ -457,7 +457,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
         if( tk.type==Tokens::command){
 			QString command=ctxCommand;
 			if(ctxCommand=="\\begin"||ctxCommand=="\\end")
-                command=ctxCommand+getArg(tl.mid(i+1),dlh,1,ArgumentList::Mandatory);
+                command=ctxCommand+getArg(tl.mid(i+1),dlh,0,ArgumentList::Mandatory);
 			QString package=edView->document->parent->findPackageByCommand(command);
 			package.chop(4);
 			if(!package.isEmpty()){
