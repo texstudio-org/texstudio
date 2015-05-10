@@ -2859,6 +2859,9 @@ CommandDescription extractCommandDef(QString line){
         if(def=="citekey" || def=="bibid"){
             type=Tokens::bibItem;
         }
+        if(def=="bib files" || def=="bib file"){
+            type=Tokens::bibfile;
+        }
         if(def=="file"){
             type=Tokens::file;
         }

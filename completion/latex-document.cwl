@@ -145,7 +145,7 @@
 \bibitem{citekey}
 \bibitem[label]{citekey}
 \bibliographystyle{style}
-\bibliography{file}
+\bibliography{bib file}
 \Big
 \Big(%|\Big)
 \Big[%|\Big]

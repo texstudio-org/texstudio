@@ -25,7 +25,7 @@
 \nextcitenotitle{key1,key2,…}
 \nextcitereset{key1,key2,…}
 \nextciteshort{key1,key2,…}
-\nobibliography{bibfile}
+\nobibliography{bib file}
 \noibidem
 \noidem
 \nocite{key-or-*}

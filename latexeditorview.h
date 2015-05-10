@@ -40,11 +40,10 @@ struct LinkOverlay {
 	LinkOverlayType type;
 	QDocumentLine docLine;
 	QFormatRange formatRange;
-	LatexParser::ContextType context;
 
-	LinkOverlay() : type(Invalid), context(LatexParser::Unknown) {}
+    LinkOverlay() : type(Invalid) {}
 	LinkOverlay(const LinkOverlay &o);
-	LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ctx, LinkOverlayType ltype);
+    LinkOverlay(const QDocumentCursor &cur, LinkOverlayType ltype);
 
 	bool isValid() const { return type != Invalid; }
 	bool operator ==(const LinkOverlay& o) const { return (docLine == o.docLine) && (formatRange == o.formatRange); }
