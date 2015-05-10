@@ -2501,6 +2501,9 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg(){
     result.insert(url);
     result.insert(file);
     result.insert(imagefile);
+    result.insert(env);
+    result.insert(documentclass);
+    result.insert(beamertheme);
     return result;
 }
 
@@ -3087,4 +3090,21 @@ Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
             break;
     }
     return tk;
+}
+
+
+int getTokenAtCol(TokenList &tl, int pos, bool first)
+{
+    int result=-1;
+    for(int i=0;i<tl.length();i++){
+        Tokens elem=tl.at(i);
+        if(elem.start+elem.length>pos){
+            result=i; // get deepest element at col
+            if(first)
+                break;
+        }
+        if(elem.start>pos)
+            break;
+    }
+    return result;
 }
