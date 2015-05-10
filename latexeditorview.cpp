@@ -2077,16 +2077,17 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	}
     // new way
     QDocumentLineHandle *dlh=cursor.line().handle();
-    TokenStack ts=getContext(dlh,cursor.columnNumber());
+    //TokenStack ts=getContext(dlh,cursor.columnNumber());
 
     TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+
+    Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
 
     LatexParser &lp=LatexParser::getInstance();
     QString command, value;
     bool handled=false;
-    if(!ts.isEmpty()){
-        Tokens tk=ts.top();
-        int tkPos=ts.indexOf(tk);
+    if(tk.type!=Tokens::none){
+        int tkPos=tl.indexOf(tk);
         if(tk.type==Tokens::command){
             handled=true;
             command=line.mid(tk.start,tk.length);
@@ -2100,134 +2101,131 @@ void LatexEditorView::mouseHovered(QPoint pos){
                 if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
             }
         }
-        if(ts.size()>1){
-            Tokens tk2=ts.value(ts.size()-2);
-            value=line.mid(tk.start,tk.length);
-            if(tk2.subtype==Tokens::env){
-                handled=true;
-                if (config->toolTipPreview && showMathEnvPreview(cursor, "\\begin", value, pos)) {
-                    ; // action is already performed as a side effect
-                } else if (config->toolTipHelp && completer->getLatexReference()) {
-                    QString topic = completer->getLatexReference()->getTextForTooltip("\\begin{"+value);
-                    if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
-                }
+        value=tk.getText();
+        if(tk.type==Tokens::env){
+            handled=true;
+            if (config->toolTipPreview && showMathEnvPreview(cursor, "\\begin", value, pos)) {
+                ; // action is already performed as a side effect
+            } else if (config->toolTipHelp && completer->getLatexReference()) {
+                QString topic = completer->getLatexReference()->getTextForTooltip("\\begin{"+value);
+                if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
             }
-            if(tk2.subtype==Tokens::labelRef){
-                handled=true;
-                int cnt=document->countLabels(value);
-                QString mText="";
-                if(cnt==0){
-                    mText=tr("label missing!");
-                } else if(cnt>1) {
-                    mText=tr("label multiple times defined!");
-                } else {
-                    QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
+        }
+        if(tk.type==Tokens::labelRef){
+            handled=true;
+            int cnt=document->countLabels(value);
+            QString mText="";
+            if(cnt==0){
+                mText=tr("label missing!");
+            } else if(cnt>1) {
+                mText=tr("label multiple times defined!");
+            } else {
+                QMultiHash<QDocumentLineHandle*,int> result=document->getLabels(value);
+                QDocumentLineHandle *mLine=result.keys().first();
+                int l=mLine->document()->indexOf(mLine);
+                LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
+                if(mLine->document()!=editor->document()){
+                    doc=document->parent->findDocument(mLine->document());
+                    if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                }
+                if(doc)
+                    mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
+            }
+            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
+        }
+        if(tk.type==Tokens::label){
+            handled=true;
+            if(document->countLabels(value)>1){
+                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
+            } else {
+                int cnt=document->countRefs(value);
+                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+            }
+        }
+        if(tk.type==Tokens::package||tk.type==Tokens::beamertheme||tk.type==Tokens::documentclass){
+            handled=true;
+            QString type = (tk.type==Tokens::documentclass) ? tr("Class") : tr("Package");
+            QString preambel;
+            if(tk.subtype==Tokens::beamertheme){ // special treatment for  \usetheme
+                preambel="beamertheme";
+                type = tr("Beamer Theme");
+                type.replace(' ', "&nbsp;");
+            }
+            QString text = QString("%1:&nbsp;<b>%2</b>").arg(type).arg(value);
+            if(latexPackageList->contains(preambel+value)){
+                QString description = LatexPackages::instance()->shortDescription(value);
+                if (!description.isEmpty()) text += "<br>" + description;
+                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
+            } else {
+                text += "<br><b>(" + tr("not found") + ")";
+                QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
+            }
+        }
+        if(tk.type==Tokens::bibItem){
+            handled=true;
+            QString tooltip(tr("Citation correct (reading ...)"));
+            QString bibID;
+
+            bibID = value;
+
+            if(!document->bibIdValid(bibID)) {
+                tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
+
+                if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
+                    tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX."));
+                }
+            } else {
+                if (document->isBibItem(bibID)) {
+                    // by bibitem defined citation
+                    tooltip.clear();
+                    QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
+                    if(result.keys().isEmpty())
+                        return;
                     QDocumentLineHandle *mLine=result.keys().first();
+                    if(!mLine)
+                        return;
                     int l=mLine->document()->indexOf(mLine);
                     LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
-                    if(mLine->document()!=editor->document()){
+                    if (mLine->document()!=editor->document()) {
                         doc=document->parent->findDocument(mLine->document());
-                        if(doc) mText=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
+                        if (doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
                     }
-                    if(doc)
-                        mText+=doc->exportAsHtml(doc->cursor(qMax(0,l-2), 0, l+2),true,true,60);
-                  }
-                  QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
-            }
-            if(tk2.subtype==Tokens::label){
-                handled=true;
-                if(document->countLabels(value)>1){
-                     QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("label multiple times defined!"));
+                    if (doc)
+                        tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
                 } else {
-                     int cnt=document->countRefs(value);
-                     QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),tr("%n reference(s) to this label","",cnt));
+                    // read entry in bibtex file
+                    if (!bibReader) {
+                        bibReader=new bibtexReader(this);
+                        connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
+                        connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
+                        bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
+                    }
+                    QString file=document->findFileFromBibId(bibID);
+                    lastPos=pos;
+                    if(!file.isEmpty())
+                        emit searchBibtexSection(file,bibID);
+                    return;
                 }
             }
-            if(tk2.subtype==Tokens::package||tk2.subtype==Tokens::beamertheme||tk2.subtype==Tokens::documentclass){
-                handled=true;
-                 QString type = (tk2.subtype==Tokens::documentclass) ? tr("Class") : tr("Package");
-                 QString preambel;
-                 if(tk2.subtype==Tokens::beamertheme){ // special treatment for  \usetheme
-                      preambel="beamertheme";
-                      type = tr("Beamer Theme");
-                      type.replace(' ', "&nbsp;");
-                 }
-                 QString text = QString("%1:&nbsp;<b>%2</b>").arg(type).arg(value);
-                 if(latexPackageList->contains(preambel+value)){
-                     QString description = LatexPackages::instance()->shortDescription(value);
-                     if (!description.isEmpty()) text += "<br>" + description;
-                     QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
-                 } else {
-                     text += "<br><b>(" + tr("not found") + ")";
-                      QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
-                 }
+            QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
+        }
+        if(tk.type==Tokens::imagefile && config->toolTipPreview){
+            handled=true;
+            QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
+            QString fname;
+            QFileInfo fi;
+            QStringList imagePaths = ConfigManagerInterface::getInstance()->getOption("Files/Image Paths").toString().split(getPathListSeparator());
+            foreach (const QString &ext, imageExtensions) {
+                fname=getDocument()->getAbsoluteFilePath(value, ext, imagePaths);
+                fi.setFile(fname);
+                if (fi.exists()) break;
             }
-            if(tk2.subtype==Tokens::bibItem){
-                handled=true;
-                 QString tooltip(tr("Citation correct (reading ...)"));
-                 QString bibID;
+            if (!fi.exists()) return;
+            m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+            emit showImgPreview(fname);
+        }
 
-                 bibID = value;
-
-                 if(!document->bibIdValid(bibID)) {
-                      tooltip = "<b>" + tr("Citation missing") + ":</b> " + bibID;
-
-                      if (!bibID.isEmpty() && bibID[bibID.length()-1].isSpace()) {
-                           tooltip.append("<br><br><i>" + tr("Warning:") +"</i> " +tr("BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX."));
-                      }
-                 } else {
-                      if (document->isBibItem(bibID)) {
-                           // by bibitem defined citation
-                           tooltip.clear();
-                           QMultiHash<QDocumentLineHandle*,int> result=document->getBibItems(bibID);
-                           if(result.keys().isEmpty())
-                                return;
-                           QDocumentLineHandle *mLine=result.keys().first();
-                           if(!mLine)
-                                return;
-                           int l=mLine->document()->indexOf(mLine);
-                           LatexDocument *doc=qobject_cast<LatexDocument*> (editor->document());
-                           if (mLine->document()!=editor->document()) {
-                                doc=document->parent->findDocument(mLine->document());
-                                if (doc) tooltip=tr("<p style='white-space:pre'><b>Filename: %1</b>\n").arg(doc->getFileName());
-                           }
-                           if (doc)
-                                tooltip+=doc->exportAsHtml(doc->cursor(l, 0, l+4),true,true,60);
-                      } else {
-                           // read entry in bibtex file
-                           if (!bibReader) {
-                                bibReader=new bibtexReader(this);
-                                connect(bibReader,SIGNAL(sectionFound(QString)),this,SLOT(bibtexSectionFound(QString)));
-                                connect(this,SIGNAL(searchBibtexSection(QString,QString)),bibReader,SLOT(searchSection(QString,QString)));
-                                bibReader->start(); //The thread is started, but it is doing absolutely nothing! Signals/slots called in the thread object are execute in the emitting thread, not the thread itself.  TODO: fix
-                           }
-                           QString file=document->findFileFromBibId(bibID);
-                           lastPos=pos;
-                           if(!file.isEmpty())
-                                emit searchBibtexSection(file,bibID);
-                           return;
-                      }
-                 }
-                 QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
-            }
-            if(tk2.subtype==Tokens::imagefile && config->toolTipPreview){
-                handled=true;
-                 QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
-                 QString fname;
-                 QFileInfo fi;
-                 QStringList imagePaths = ConfigManagerInterface::getInstance()->getOption("Files/Image Paths").toString().split(getPathListSeparator());
-                 foreach (const QString &ext, imageExtensions) {
-                      fname=getDocument()->getAbsoluteFilePath(value, ext, imagePaths);
-                      fi.setFile(fname);
-                      if (fi.exists()) break;
-                 }
-                 if (!fi.exists()) return;
-                 m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
-                 emit showImgPreview(fname);
-            }
-
-        }//if ts.length >1
-    }// ts.lenght>0
+    }//if tk
     if(handled)
         return;
 
