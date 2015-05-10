@@ -395,11 +395,11 @@ bool LatexDocument::patchStructure(int linenr, int count) {
         TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList >();
         QVector<int> fmts=line(i).getFormats();
 		
-		for(int j=0;j<curLine.length() && j < fmts.size();j++){
+        /*for(int j=0;j<curLine.length() && j < fmts.size();j++){
 			if(fmts[j]==verbatimFormat || (fmts[j]==commentFormat && !parent->showCommentedElementsInStructure) ){
 				curLine[j]=QChar(' ');
 			}
-		}
+        }*/
 		
 		// remove command,bibtex,labels at from this line
         QStringList commands=mUserCommandList.values(dlh);
@@ -503,51 +503,6 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 				addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, MapOfMagicComments, iter_magicComment);
 			}
 		}
-		////Ref
-		//for reference counting (can be placed in command options as well ...
-		foreach(QString cmd,latexParser.possibleCommands["%ref"]){
-			QString name;
-			cmd.append('{');
-			int start=0;
-			do{
-				name=findToken(curLine,cmd,start);
-				if(!name.isEmpty() && !isDefinitionArgument(name)){
-					ReferencePair elem;
-					elem.name=name;
-					elem.start=start;
-					mRefItem.insert(line(i).handle(),elem);
-				}
-			}while(start>=0);
-		}
-		//// label ////
-		//TODO: Use label from dynamical reference checker
-		foreach(QString cmd,latexParser.possibleCommands["%label"]){
-			QString name;
-			cmd.append('{');
-			int start=0;
-			do{
-				name=findToken(curLine,cmd,start);
-				if(!name.isEmpty() && !isDefinitionArgument(name)){
-					ReferencePair elem;
-					elem.name=name;
-					elem.start=start;
-					mLabelItem.insert(line(i).handle(),elem);
-					completerNeedsUpdate=true;
-					StructureEntry *newLabel;
-					if(MapOfLabels.contains(dlh)){
-						newLabel=MapOfLabels.value(dlh);
-						newLabel->type=StructureEntry::SE_LABEL;
-						MapOfLabels.remove(dlh,newLabel);
-					}else{
-						newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
-					}
-					newLabel->title=name;
-					newLabel->setLine(line(i).handle(), i);
-					newLabel->parent=labelList;
-					iter_label.insert(newLabel);
-				}
-			}while(start>=0);
-		}
 
 
 		// check also in command argument, als references might be put there as well...
@@ -572,18 +527,58 @@ bool LatexDocument::patchStructure(int linenr, int count) {
             oldLineBeyond=mBeyondEnd;
             mBeyondEnd=0;
         }
+
         int offset = 0;
-		while(true) {
+        for(int j=0;j<tl.length();j++) {
+            Tokens tk=tl.at(j);
+            // break at comment start
+            if(tk.type==Tokens::comment)
+                break;
+            // work special args
+            ////Ref
+            //for reference counting (can be placed in command options as well ...
+            if(tk.type==Tokens::labelRef){
+                ReferencePair elem;
+                elem.name=tk.getText();
+                elem.start=tk.start;
+                mRefItem.insert(line(i).handle(),elem);
+            }
+
+            //// label ////
+            if(tk.type==Tokens::label && tk.length>0){
+                ReferencePair elem;
+                elem.name=tk.getText();
+                elem.start=tk.start;
+                mLabelItem.insert(line(i).handle(),elem);
+                completerNeedsUpdate=true;
+                StructureEntry *newLabel;
+                if(MapOfLabels.contains(dlh)){
+                    newLabel=MapOfLabels.value(dlh);
+                    newLabel->type=StructureEntry::SE_LABEL;
+                    MapOfLabels.remove(dlh,newLabel);
+                }else{
+                    newLabel=new StructureEntry(this, StructureEntry::SE_LABEL);
+                }
+                newLabel->title=elem.name;
+                newLabel->setLine(line(i).handle(), i);
+                newLabel->parent=labelList;
+                iter_label.insert(newLabel);
+            }
+            // work on general commands
+            if(tk.type!=Tokens::command && tk.type!=Tokens::commandUnknown)
+                continue; // not a command
             Tokens tkCmd;
             TokenList args;
             QString cmd;
-            int cmdStart = findCommandWithArgsFromTL(tl, tkCmd, args, offset, parent->showCommentedElementsInStructure);
+            int cmdStart = findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
 			if (cmdStart < 0) break;
             cmd=curLine.mid(tkCmd.start,tkCmd.length);
 			// offset is the starting point for the next search. Currently this is behind cmd.
 			// It could be improved to be behind the arguments.
             offset = cmdStart+1;
             QString firstArg = getArg(args, dlh,0,ArgumentList::Mandatory);
+
+
 
 			if (latexParser.possibleCommands["%todo"].contains(cmd)) {
 				bool reuse=false;
