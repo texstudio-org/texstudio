@@ -3137,6 +3137,7 @@ void Texmaker::editEraseWordCmdEnv(){
 	if (!currentEditorView()) return;
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
 	QString line=cursor.line().text();
+    QDocumentLineHandle *dlh=cursor.line().handle();
 	QString command, value;
 
 	// Hack to fix problem problem reported in bug report 3443336 (see also detailed description there):
@@ -3159,18 +3160,26 @@ void Texmaker::editEraseWordCmdEnv(){
 	// If the case |\cmd is encountered, we shift the
 	// cursor by one to \|cmd so the regular erase approach works.
 	int col = cursor.columnNumber();
-	if ((col < line.count())						// not at end of line
-			&& (line.at(col) == '\\')					// likely a command/env - check further
-			&& (col==0 || line.at(col-1).isSpace()))	// cmd is at start or previous char is space: non-ambiguous situation like word|\cmd
-		// don't need to finally check for command |\c should be handled like \|c for any c (even space and empty)
-	{
-		cursor.movePosition(1);
-	}
+    if ((col < line.count())						// not at end of line
+            && (line.at(col) == '\\')					// likely a command/env - check further
+            && (col==0 || line.at(col-1).isSpace()))	// cmd is at start or previous char is space: non-ambiguous situation like word|\cmd
+        // don't need to finally check for command |\c should be handled like \|c for any c (even space and empty)
+    {
+        cursor.movePosition(1);
+    }
 
-	switch (latexParser.findContext(line, cursor.columnNumber(), command, value)){
+    TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    int tkPos=getTokenAtCol(tl, cursor.columnNumber());
+    Tokens tk;
+    if(tkPos>-1)
+        tk=tl.at(tkPos);
+
+    switch (tk.type){
 	
-	case LatexParser::Command:
+    case Tokens::command:
+        command=tk.getText();
 		if (command=="\\begin" || command=="\\end"){
+            value=getArg(tl.mid(tkPos+1),dlh,0,ArgumentList::Mandatory);
 			//remove environment (surrounding)
 			currentEditorView()->editor->document()->beginMacro();
 			cursor.movePosition(1,QDocumentCursor::EndOfWord);

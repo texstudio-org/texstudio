@@ -2389,6 +2389,7 @@ bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLe
 }
 
 QString getArg(const TokenList &tl,QDocumentLineHandle* dlh,int argNumber,ArgumentList::ArgType type){
+    // argNumber 0 -> first argument
     QList<Tokens::TokenType> tkTypes;
     QString line=dlh->text();
     if(type==ArgumentList::Mandatory){
@@ -3098,13 +3099,13 @@ int getTokenAtCol(TokenList &tl, int pos, bool first)
     int result=-1;
     for(int i=0;i<tl.length();i++){
         Tokens elem=tl.at(i);
+        if(elem.start>pos)
+            break;
         if(elem.start+elem.length>pos){
             result=i; // get deepest element at col
             if(first)
                 break;
         }
-        if(elem.start>pos)
-            break;
     }
     return result;
 }
