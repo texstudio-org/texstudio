@@ -87,7 +87,7 @@ void Macro::initTriggerFormats() {
 	REQUIRE(fs);
 	foreach (const QString& f,	triggerFormatsUnprocessed.split('|')) {
 		int fid = fs->id(f);
-		if ( fid > 0)
+		if ( fid > 0 || (fid == 0 && f == "normal"))
 			triggerFormats << fid;
 	}
 	triggerFormatsUnprocessed.clear();
