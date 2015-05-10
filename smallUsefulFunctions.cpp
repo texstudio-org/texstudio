@@ -3070,3 +3070,21 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
     stack<<ts;
     return stack;
 }
+
+
+Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
+{
+    TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    Tokens tk;
+    for(int i=0;i<tl.length();i++){
+        Tokens elem=tl.at(i);
+        if(elem.start+elem.length>pos){
+            tk=elem; // get deepest element at col
+            if(first)
+                break;
+        }
+        if(elem.start>pos)
+            break;
+    }
+    return tk;
+}

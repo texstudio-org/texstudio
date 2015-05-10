@@ -3235,22 +3235,22 @@ void Texmaker::editEraseWordCmdEnv(){
 void Texmaker::editGotoDefinition(QDocumentCursor c) {
 	if (!currentEditorView())	return;
 	if (!c.isValid()) c=currentEditor()->cursor();
-	QString command, value;
 	saveCurrentCursorToHistory();
-	switch (latexParser.findContext(c.line().text(), c.columnNumber(), command, value)) {
-	case LatexParser::Reference:
+    Tokens tk=getTokenAtCol(c.line().handle(),c.columnNumber());
+    switch (tk.type) {
+    case Tokens::labelRef:
 	{
-		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), value);
+        LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), tk.getText());
 		if (!edView) return;
 		if (edView != currentEditorView()) {
 			EditorTabs->setCurrentEditor(edView);
 		}
-		edView->gotoToLabel(value);
+        edView->gotoToLabel(tk.getText());
 		break;
 	}
-	case LatexParser::Citation:
+    case Tokens::bibItem:
 	{
-		QString bibID = trimLeft(getParamItem(c.line().text(), c.columnNumber()));
+        QString bibID = trimLeft(tk.getText());
 		// try local \bibitems
 		bool found = currentEditorView()->gotoToBibItem(bibID);
 		if (found) break;
