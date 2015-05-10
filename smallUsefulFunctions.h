@@ -331,6 +331,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh, TokenStack &stack);
 void updateSubsequentRemainders(QDocumentLineHandle* dlh, TokenStack stack);
 void latexDetermineContexts(QDocumentLineHandle *dlh, const LatexParser &lp);
 CommandDescription extractCommandDef(QString line);
+Tokens getTokenAtCol(QDocumentLineHandle *dlh,int pos,bool first=false);
 TokenList getArgContent(Tokens &tk);
 TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention=10);
 TokenStack getContext(QDocumentLineHandle *dlh,int pos);
