@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2014 Tim Hoffmann -->
+<application>
+ <id type="desktop">texstudio.desktop</id>
+ <metadata_license>CC0-1.0</metadata_license>
+ <project_license>GPL-2.0</project_license>
+ <name>TeXstudio</name>
+ <summary>LaTeX editor</summary>
+ <description>
+  <p>
+   TeXstudio is an integrated writing environment for creating LaTeX documents.
+   It integrates editing, building and viewing into a single frontend.
+  </p>
+  <p>Our goal is to make writing LaTeX as easy and comfortable as possible.
+  This is achieved through a rich feature set including:
+   <ul>
+   <li>Easy source code navigation: Structure view, links, cursor history</li>
+   <li>Detailed syntax highlighting</li>
+   <li>Auto-completion</li>
+   <li>Live checking for spelling, grammar, citations, references, syntax and packages</li>
+   <li>Innovative table editing</li>
+   <li>Clear display of LaTeX errors and warnings (in editor and as list)</li>
+   <li>Integrated PDF viewer with (almost) word-level syncing</li>
+   <li>Live-updating inline preview for formulas and code segments</li>
+   <li>Scripting support</li>
+   </ul>
+  </p>
+ </description>
+ <screenshots>
+  <screenshot type="default" width="1344" height="756">http://texstudio.sourceforge.net/resources/appdata/txs_screenshot_application.png</screenshot>
+ </screenshots>
+ <url type="homepage">http://texstudio.sourceforge.net/</url>
+ <updatecontact>texstudio-list_at_lists.sourceforge.net</updatecontact>
+</application>
