@@ -686,11 +686,12 @@ void Texmaker::setupMenus() {
 	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
 
 	submenu = newManagedMenu(menu, "lineoperations", tr("&Line Operations"));
-	newManagedAction(submenu,"eraseLine",tr("Erase &Line"), SLOT(editEraseLine()), (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_K));
-	newManagedAction(submenu,"eraseEndLine",tr("Erase until E&nd of Line"), SLOT(editEraseEndLine()), (QList<QKeySequence>()<< Qt::AltModifier+Qt::Key_K));
-	newManagedAction(submenu,"moveLineUp",tr("Move Line &Up"), SLOT(editMoveLineUp()));
-	newManagedAction(submenu,"moveLineDown",tr("Move Line &Down"), SLOT(editMoveLineDown()));
-	newManagedAction(submenu,"duplicateLine",tr("Duplicate Line"), SLOT(editDuplicateLine()));
+	newManagedAction(submenu, "deleteLine", tr("Delete &Line"), SLOT(editDeleteLine()), Qt::CTRL+Qt::Key_K);
+	newManagedAction(submenu, "deleteToEndOfLine", tr("Delete To &End Of Line"), SLOT(editDeleteToEndOfLine()), MAC_OTHER(Qt::CTRL+Qt::Key_Delete,  Qt::AltModifier+Qt::Key_K));
+	newManagedAction(submenu, "deleteFromStartOfLine", tr("Delete From &Start Of Line"), SLOT(editDeleteFromStartOfLine()), MAC_OTHER(Qt::CTRL+Qt::Key_Backspace, 0));
+	newManagedAction(submenu, "moveLineUp", tr("Move Line &Up"), SLOT(editMoveLineUp()));
+	newManagedAction(submenu, "moveLineDown", tr("Move Line &Down"), SLOT(editMoveLineDown()));
+	newManagedAction(submenu, "duplicateLine", tr("Du&plicate Line"), SLOT(editDuplicateLine()));
 
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
 	newManagedAction(submenu,"textToLowercase", tr("To Lowercase"), SLOT(editTextToLowercase()));
@@ -3047,7 +3048,7 @@ void Texmaker::convertToLatex() {
 	currentEditor()->write(newText);
 }
 
-void Texmaker::editEraseLine() {
+void Texmaker::editDeleteLine() {
 	if (!currentEditorView()) return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	c.beginEditBlock();
@@ -3055,12 +3056,25 @@ void Texmaker::editEraseLine() {
 	c.eraseLine();
 	c.endEditBlock();
 }
-void Texmaker::editEraseEndLine() {
-  if (!currentEditorView()) return;
-  QDocumentCursor c = currentEditorView()->editor->cursor();
-  c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
-  currentEditorView()->editor->setCursor(c);
-  currentEditorView()->editor->cut();
+void Texmaker::editDeleteToEndOfLine() {
+	if (!currentEditorView()) return;
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	c.beginEditBlock();
+	if (!c.hasSelection()) {
+	c.movePosition(1,QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
+	}
+	c.removeSelectedText();
+	c.endEditBlock();
+}
+void Texmaker::editDeleteFromStartOfLine() {
+	if (!currentEditorView()) return;
+	QDocumentCursor c = currentEditorView()->editor->cursor();
+	c.beginEditBlock();
+	if (!c.hasSelection()) {
+		c.movePosition(1, QDocumentCursor::StartOfLine,QDocumentCursor::KeepAnchor);
+	}
+	c.removeSelectedText();
+	c.endEditBlock();
 }
 void Texmaker::editMoveLineUp() {
 	if (!currentEditorView()) return;

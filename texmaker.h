@@ -314,8 +314,9 @@ protected slots:
 	void editUnIndentSection();
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
-	void editEraseLine();
-	void editEraseEndLine();
+	void editDeleteLine();
+	void editDeleteToEndOfLine();
+	void editDeleteFromStartOfLine();
 	void editMoveLineUp();
 	void editMoveLineDown();
 	void editDuplicateLine();
