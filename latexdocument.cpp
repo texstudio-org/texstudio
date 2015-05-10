@@ -317,9 +317,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
     int newCount=count;
     if(linenr>0){
         QDocumentLineHandle *previous=line(linenr-1).handle();
-        previous->lockForRead();
-        remainder=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        previous->unlock();
+        remainder=previous->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
         if(!remainder.isEmpty() && remainder.top().argLevel>0){
             QDocumentLineHandle *lh=remainder.top().dlh;
             lineNrStart=lh->document()->indexOf(lh);
@@ -367,9 +365,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
     TokenStack oldRemainder;
     QDocumentLineHandle *lastHandle=line(linenr+count-1).handle();
     if(lastHandle){
-        lastHandle->lockForRead();
-        oldRemainder=lastHandle->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        lastHandle->unlock();
+        oldRemainder=lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
     }
     for (int i=linenr; i<linenr+count; i++) {
         lexLatexLine(line(i).handle(),remainder);
@@ -392,7 +388,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
         QDocumentLineHandle *dlh=line(i).handle();
         if(!dlh)
             continue; //non-existing line ...
-        TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
         QVector<int> fmts=line(i).getFormats();
 		
         /*for(int j=0;j<curLine.length() && j < fmts.size();j++){

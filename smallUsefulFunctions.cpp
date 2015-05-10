@@ -2507,6 +2507,9 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg(){
 QSet<Tokens::TokenType> Tokens::tkCommalist(){
     QSet<TokenType> result;
     result.insert(bibItem);
+    result.insert(package);
+    result.insert(packageoption);
+    result.insert(bibfile);
     return result;
 }
 
@@ -2803,6 +2806,28 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                     tl[startArg].length=tl[j].start+tl[j].length-tl[lastPos].start-1; // start directly after brace
                                     tl.removeAt(j);
                                     j--;
+                                }
+                            }
+                            if(Tokens::tkCommalist().contains(lastType)){
+                                if(startArg<0){
+                                    startArg=j;
+                                    elem.type=lastType;
+                                }else{
+                                    // join Tokens if they are not separated by a comma (all other characters don't count)
+                                    // punctation character at token start are not handled correctly ...
+                                    int end=tl[startArg].start+tl[startArg].length;
+                                    QString interposer=line.mid(end,elem.start-end); // get text between the tokens
+                                    int firstComma=interposer.indexOf(',');
+                                    if(firstComma<0){
+                                        //no comma -> join tokens
+                                        tl[startArg].length=tl[j].start+tl[j].length-tl[startArg].start; // start directly after brace
+                                        tl.removeAt(j);
+                                        j--;
+                                    }else{
+                                        tl[startArg].length=end+firstComma-tl[startArg].start;
+                                        startArg=j;
+                                        elem.type=lastType;
+                                    }
                                 }
                             }
                         }
