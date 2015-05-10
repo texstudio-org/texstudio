@@ -2501,6 +2501,9 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg(){
     result.insert(url);
     result.insert(file);
     result.insert(imagefile);
+    result.insert(env);
+    result.insert(documentclass);
+    result.insert(beamertheme);
     return result;
 }
 
