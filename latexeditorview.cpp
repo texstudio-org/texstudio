@@ -357,7 +357,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	// normal context menu
 	bool validPosition = cursor.isValid() && cursor.line().isValid();
 	LatexParser::ContextType context = LatexParser::Unknown;
-	QString ctxCommand, ctxValue;
+    QString ctxCommand;
 	if (validPosition) {
 		QFormatRange fr;
 		//spell checking
@@ -423,20 +423,12 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		//check input/include
 		//find context of cursor
         QDocumentLineHandle *dlh=cursor.line().handle();
-        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
-        //context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
-		//static const QStringList inputTokens = QStringList() << "\\input" << "\\include" << "\\includeonly";
+        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        int i=getTokenAtCol(tl,cursor.columnNumber());
         Tokens tk;
-        int col=cursor.columnNumber();
-        int i=-1;
-        for(i=0;i<tl.length();i++){
-            Tokens elem=tl.at(i);
-            if(elem.start+elem.length>col){
-                tk=elem; // get deepest element at col
-            }
-            if(elem.start>col)
-                break;
-        }
+        if(i>=0)
+            tk=tl.at(i);
+
         if( tk.type==Tokens::file){
             QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(tk.getText()),contextMenu);
             act->setData(tk.getText());
@@ -777,31 +769,20 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 	bool validPosition = cursor.isValid() && cursor.line().isValid();
 	if (validPosition) {
         QDocumentLineHandle *dlh=cursor.line().handle();
-        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
-        int tkPos=-1;
-        int col=cursor.columnNumber();
-        Tokens tk;
-        for(int i=0;i<tl.length();i++){
-            tk=tl.at(i);
-            if(tk.start+tk.length>col){
-                tkPos=i;
-                break;
-            }
-        }
-        if(tkPos<0)
-            tk.subtype=Tokens::none;
 
-        if (tk.subtype==Tokens::labelRef) {
+        Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
+
+        if (tk.type==Tokens::labelRef) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::RefOverlay));
-        } else if (tk.subtype==Tokens::file) {
+        } else if (tk.type==Tokens::file) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::FileOverlay));
-        } else if (tk.subtype==Tokens::url) {
+        } else if (tk.type==Tokens::url) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UrlOverlay));
-        } else if (tk.subtype==Tokens::package) {
+        } else if (tk.type==Tokens::package) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UsepackageOverlay));
-        } else if (tk.subtype==Tokens::bibfile) {
+        } else if (tk.type==Tokens::bibfile) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::BibFileOverlay));
-        } else if (tk.subtype==Tokens::bibItem) {
+        } else if (tk.type==Tokens::bibItem) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::CiteOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
