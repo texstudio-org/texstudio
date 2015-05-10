@@ -422,62 +422,50 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		}
 		//check input/include
 		//find context of cursor
-		QString line=cursor.line().text();
-		context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
+        QDocumentLineHandle *dlh=cursor.line().handle();
+        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+        //context = LatexParser::getInstance().findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
 		//static const QStringList inputTokens = QStringList() << "\\input" << "\\include" << "\\includeonly";
-		LatexParser ltxCommands=LatexParser::getInstance();
-		if( (context==LatexParser::Command || context==LatexParser::Option) && ltxCommands.possibleCommands["%include"].contains(ctxCommand)){
-			QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(ctxValue),contextMenu);
-			act->setData(ctxValue);
+        Tokens tk;
+        int col=cursor.columnNumber();
+        int i=-1;
+        for(i=0;i<tl.length();i++){
+            Tokens elem=tl.at(i);
+            if(elem.start+elem.length>col){
+                tk=elem; // get deepest element at col
+            }
+            if(elem.start>col)
+                break;
+        }
+        if( tk.type==Tokens::file){
+            QAction* act=new QAction(LatexEditorView::tr("Open %1").arg(tk.getText()),contextMenu);
+            act->setData(tk.getText());
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
 		// bibliography command
-		if ( (context==LatexParser::Command || context==LatexParser::Option) && ltxCommands.possibleCommands["%bibliography"].contains(ctxCommand)) {
+        if ( tk.type==Tokens::bibfile) {
 			QAction *act = new QAction(LatexEditorView::tr("Open Bibliography"),contextMenu);
 			QString bibFile;
-			if (context == LatexParser::Option) {
-				QDocumentCursor c(cursor);
-				LatexEditorView::selectOptionInLatexArg(c);
-				bibFile = c.selectedText() + ".bib";
-			} else {
-				// context==LatexParser::Command -> open first entry in arg list.
-				bibFile = ctxValue.split(',').first() + ".bib";
-			}
+            bibFile = tk.getText() + ".bib";
 			act->setData(bibFile);
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
 		//package help
-		if( (context==LatexParser::Command && ctxCommand=="\\usepackage") || context==LatexParser::Package){
+        if( tk.type==Tokens::package){
 			QAction* act=new QAction(LatexEditorView::tr("Open package documentation"),contextMenu);
-			QString packageName;
-			if (ctxValue.contains(',')) {
-				// multiple packages included in one \usepackage command
-				QStringList packages;
-				foreach (const QString& pkg, ctxValue.split(',')) {
-					packages.append(pkg.simplified());
-				}
-				QDocumentCursor wordCursor = cursor;
-				wordCursor.select(QDocumentCursor::WordUnderCursor);
-				if (packages.contains(wordCursor.selectedText())) {
-					packageName = wordCursor.selectedText();
-				} else {
-					packageName = packages.first();
-				}
-			} else {
-				packageName = ctxValue;
-			}
+            QString packageName=tk.getText();
 			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
 			act->setData(packageName);
 			edView->connect(act,SIGNAL(triggered()),edView,SLOT(openPackageDocumentation()));
 			contextMenu->addAction(act);
 		}
 		// help for any "known" command
-		if( context==LatexParser::Command){
+        if( tk.type==Tokens::command){
 			QString command=ctxCommand;
 			if(ctxCommand=="\\begin"||ctxCommand=="\\end")
-				command=ctxCommand+"{"+ctxValue+"}";
+                command=ctxCommand+getArg(tl.mid(i+1),dlh,1,ArgumentList::Mandatory);
 			QString package=edView->document->parent->findPackageByCommand(command);
 			package.chop(4);
 			if(!package.isEmpty()){
@@ -789,7 +777,7 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 	bool validPosition = cursor.isValid() && cursor.line().isValid();
 	if (validPosition) {
         QDocumentLineHandle *dlh=cursor.line().handle();
-        TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
         int tkPos=-1;
         int col=cursor.columnNumber();
         Tokens tk;

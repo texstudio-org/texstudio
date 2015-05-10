@@ -36,6 +36,7 @@ class LatexCompleterConfig;
 
 class Tokens{
 public:
+    Tokens():start(-1),length(-1),level(-1),dlh(0),type(none),subtype(none),argLevel(0){}
     int start;
     int length;
     int level;
