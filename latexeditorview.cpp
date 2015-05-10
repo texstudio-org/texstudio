@@ -788,23 +788,33 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 
 	bool validPosition = cursor.isValid() && cursor.line().isValid();
 	if (validPosition) {
-		LatexParser::ContextType context = LatexParser::Unknown;
-		QString ctxCommand, ctxValue;
-		QString line=cursor.line().text();
-		LatexParser &latexParser = LatexParser::getInstance();
-		context = latexParser.findContext(line, cursor.columnNumber(), ctxCommand, ctxValue);
-		if (context == LatexParser::Reference) {
-			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::RefOverlay));
-		} else if (context==LatexParser::Option && latexParser.possibleCommands["%include"].contains(ctxCommand)) {
-			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::FileOverlay));
-		} else if (context==LatexParser::Option && latexParser.possibleCommands["%url"].contains(ctxCommand)) {
-			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UrlOverlay));
-		} else if (context==LatexParser::Package) {
-			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::UsepackageOverlay));
-		} else if (context==LatexParser::Option && latexParser.possibleCommands["%bibliography"].contains(ctxCommand)) {
-			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::BibFileOverlay));
-		} else if (context==LatexParser::Citation) {
-			setLinkOverlay(LinkOverlay(cursor, context, LinkOverlay::CiteOverlay));
+        QDocumentLineHandle *dlh=cursor.line().handle();
+        TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+        int tkPos=-1;
+        int col=cursor.columnNumber();
+        Tokens tk;
+        for(int i=0;i<tl.length();i++){
+            tk=tl.at(i);
+            if(tk.start+tk.length>col){
+                tkPos=i;
+                break;
+            }
+        }
+        if(tkPos<0)
+            tk.subtype=Tokens::none;
+
+        if (tk.subtype==Tokens::labelRef) {
+            setLinkOverlay(LinkOverlay(cursor, LinkOverlay::RefOverlay));
+        } else if (tk.subtype==Tokens::file) {
+            setLinkOverlay(LinkOverlay(cursor, LinkOverlay::FileOverlay));
+        } else if (tk.subtype==Tokens::url) {
+            setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UrlOverlay));
+        } else if (tk.subtype==Tokens::package) {
+            setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UsepackageOverlay));
+        } else if (tk.subtype==Tokens::bibfile) {
+            setLinkOverlay(LinkOverlay(cursor, LinkOverlay::BibFileOverlay));
+        } else if (tk.subtype==Tokens::bibItem) {
+            setLinkOverlay(LinkOverlay(cursor, LinkOverlay::CiteOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
 		}
@@ -2763,13 +2773,12 @@ LinkOverlay::LinkOverlay(const LinkOverlay &o) {
 	type = o.type;
 	if (o.isValid()) {
 		docLine = o.docLine;
-		context = o.context;
 		formatRange = o.formatRange;
 	}
 }
 
-LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ctx, LinkOverlay::LinkOverlayType ltype) :
-	type(ltype), context(ctx)
+LinkOverlay::LinkOverlay(const QDocumentCursor &cur, LinkOverlay::LinkOverlayType ltype) :
+    type(ltype)
 {
 	if (type == Invalid) return;
 
