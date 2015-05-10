@@ -3088,3 +3088,20 @@ Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
     }
     return tk;
 }
+
+
+int getTokenAtCol(TokenList &tl, int pos, bool first)
+{
+    int result=-1;
+    for(int i=0;i<tl.length();i++){
+        Tokens elem=tl.at(i);
+        if(elem.start+elem.length>pos){
+            result=i; // get deepest element at col
+            if(first)
+                break;
+        }
+        if(elem.start>pos)
+            break;
+    }
+    return result;
+}
