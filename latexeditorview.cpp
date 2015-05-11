@@ -2077,7 +2077,6 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	}
     // new way
     QDocumentLineHandle *dlh=cursor.line().handle();
-    //TokenStack ts=getContext(dlh,cursor.columnNumber());
 
     TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 
