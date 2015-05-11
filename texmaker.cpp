@@ -4128,87 +4128,95 @@ void Texmaker::editRemoveCurrentPlaceHolder() {
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
-    LatexEditorView *view=currentEditorView();
+    //LatexEditorView *view=currentEditorView();
 	// complete text if no command is present
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
 	int i=0;
 	int col=c.columnNumber();
 	QString word=c.line().text();
+    QDocumentLineHandle *dlh=c.line().handle();
 	while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
 		c.movePosition(1,QDocumentCursor::PreviousCharacter);
 		i++;
 	}
 	
-	QString command,value;
-    LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
-	switch(ctx){
-	case LatexParser::Command:
+    QString command;
+    //LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
+    TokenStack ts=getContext(dlh,c.columnNumber());
+    Tokens tk;
+    if(!ts.isEmpty()){
+        tk=ts.top();
+        if(tk.type==Tokens::word && tk.subtype==Tokens::none && ts.size()>1){
+            // set brace type
+            ts.pop();
+            tk=ts.top();
+        }
+    }
+
+    Tokens::TokenType type=tk.type;
+    if(tk.subtype!=Tokens::none)
+        type=tk.subtype;
+    switch(type){
+    case Tokens::command:
+    case Tokens::commandUnknown:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
-	case LatexParser::Environment:
+    case Tokens::env:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
-	case LatexParser::Reference:
+    case Tokens::labelRef:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
-	case LatexParser::Citation:
+    case Tokens::bibItem:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
 		break;
-    case LatexParser::Graphics:
+    case Tokens::imagefile:
         {QString fn=documents.getCompileFileName();
         QFileInfo fi(fn);
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
-    case LatexParser::ArgEx:
-    {
-        QSet<QPair<QString,int> > helper=view->lp.specialTreatmentCommands[command];
-        QPair<QString,int> elem;
-        int pos=1;
-        bool found=false;
-        foreach(elem,helper){
-            if(elem.second==pos){
-                found=true;
-                break;
-            }
-        }
-        if(found){
-            if(mCompleterNeedsUpdate) updateCompleter();
-            QString context="%"+elem.first;
-            completer->setWorkPath(context);
-            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);}
-        }
+    case Tokens::color:
+        if(mCompleterNeedsUpdate) updateCompleter();
+        completer->setWorkPath("%color");
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION); //TODO: complete support for special opt
         break;
-    case LatexParser::OptionEx:
+    case Tokens::keyValArg:
     {
-        QSet<QPair<QString,int> > helper=view->lp.specialTreatmentCommands[command];
-        QPair<QString,int> elem;
-        int pos=0;
-        bool found=false;
-        foreach(elem,helper){
-            if(elem.second==pos){
-                found=true;
-                break;
+        command=getCommandFromToken(tk);
+        if(command.isEmpty()&&ts.size()>1){
+            Tokens t=ts.at(ts.size()-2);
+            command=getCommandFromToken(t);
+        }
+        bool existValues=true;
+        // check if c is after keyval
+        if(col>tk.start+tk.length){
+            QString interposer=word.mid(tk.start+tk.length,col-tk.start-tk.length);
+            if(!interposer.contains(",") && interposer.contains("=")){
+                //assume val for being after key
+                command=command+"/"+tk.getText();
+                completer->setWorkPath(command);
+                existValues=completer->existValues();
             }
-        }
-        if(found){
-            if(mCompleterNeedsUpdate) updateCompleter();
-            QString context="%"+elem.first;
-            completer->setWorkPath(context);
-            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);}
-        }
-        break;
-    case LatexParser::Keyval:
-        if(command.endsWith("#c")){
-            command.chop(2);
+        }else{
+            if(ts.size()>1){
+                Tokens elem=ts.at(ts.size()-2);
+                if(elem.type==Tokens::keyValArg && elem.level==tk.level-1){
+                    command=command+"/"+elem.getText();
+                    completer->setWorkPath(command);
+                    existValues=completer->existValues();
+                }
+            }
         }
         completer->setWorkPath(command);
-        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+        if(existValues)
+            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+    }
         break;
     case LatexParser::KeyvalValue:{
         //figure out keyval
@@ -4229,26 +4237,23 @@ void Texmaker::NormalCompletion() {
         }
         break;
     }
-    case LatexParser::Package:
-        if(latexParser.possibleCommands["%usepackage"].contains(command)){
-            QString preambel;
-            if(command.endsWith("theme")){ // special treatment for  \usetheme
-                preambel=command;
-                preambel.remove(0,4);
-                preambel.prepend("beamer");
-                currentPackageList.clear();
-                foreach(QString elem,latexPackageList){
-                    if(elem.startsWith(preambel))
-                        currentPackageList<<elem.mid(preambel.length());
-                }
-                completer->setPackageList(&currentPackageList);
-            }else{
-                completer->setPackageList(&latexPackageList);
+
+    case Tokens::beamertheme:
+        {QString preambel="beamertheme";
+            currentPackageList.clear();
+            foreach(QString elem,latexPackageList){
+                if(elem.startsWith(preambel))
+                    currentPackageList<<elem.mid(preambel.length());
             }
-            currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
-            break;
         }
-	default:
+        completer->setPackageList(&currentPackageList);
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
+        break;
+    case Tokens::package:
+        completer->setPackageList(&latexPackageList);
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
+        break;
+    default:
 		if (i>1) {
 			QString my_text=currentEditorView()->editor->text();
 			int end=0;
@@ -7288,13 +7293,18 @@ void Texmaker::previewLatex(){
 	}
 	if (!previewc.hasSelection()) {
 		// in environment delimiter (\begin{env} or \end{env})
-		QString command, value;
-		QString text = c.line().text();
-		LatexParser::getInstance().findContext(text, c.columnNumber(), command, value);
-		if (command == "\\begin" || command == "\\end") {
-			c.setColumnNumber(text.lastIndexOf(command, c.columnNumber()));
+        QString command;
+        Tokens tk=getTokenAtCol(c.line().handle(), c.columnNumber());
+        if(tk.type!=Tokens::none)
+            command=tk.getText();
+        if (tk.type==Tokens::env ) {
+            c.setColumnNumber(tk.start);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
+        if(tk.type==Tokens::command&&(command == "\\begin" || command == "\\end")){
+            c.setColumnNumber(tk.start+tk.length+1);
+            previewc = currentEditorView()->parenthizedTextSelection(c);
+        }
 	}
 	if (!previewc.hasSelection()) {
 		// already at parenthesis
@@ -8288,19 +8298,20 @@ bool Texmaker::generateMirror(bool setCur){
 	QDocumentCursor oldCursor = cursor;
 	QString line=cursor.line().text();
 	QString command, value;
-	LatexParser::ContextType result=latexParser.findContext(line, cursor.columnNumber(), command, value);
-	if(result==LatexParser::Environment){
-		if ((command=="\\begin" || command=="\\end")&& !value.isEmpty()){
+    Tokens tk=getTokenAtCol(cursor.line().handle(),cursor.columnNumber());
+
+    if(tk.type==Tokens::env){
+        if (tk.length>0){
+            value=tk.getText();
+            command=getCommandFromToken(tk);
 			//int l=cursor.lineNumber();
 			if (currentEditor()->currentPlaceHolder()!=-1 &&
 					currentEditor()->getPlaceHolder(currentEditor()->currentPlaceHolder()).cursor.isWithinSelection(cursor))
 				currentEditor()->removePlaceHolder(currentEditor()->currentPlaceHolder()); //remove currentplaceholder to prevent nesting
 			//move cursor to env name
-			int pos = line.lastIndexOf(command, cursor.columnNumber()) + command.length() + 1;
-			cursor.selectColumns(pos, pos+value.length());
-			if (cursor.atLineEnd()||cursor.nextChar()!='}'||cursor.selectedText() != value)  // closing brace is missing or wrong env
-				return false;
-			//currentEditorView()->editor->setCursor(cursor);
+            int pos = tk.start;
+            cursor.selectColumns(pos, pos+tk.length);
+
 			LatexDocument* doc=currentEditorView()->document;
 			
 			PlaceHolder ph;
@@ -8385,18 +8396,7 @@ bool Texmaker::generateMirror(bool setCur){
                 int offset=searchWord.indexOf("{");
                 ph.mirrors << currentEditor()->document()->cursor(ln,start+offset+1,ln,start+searchWord.length()-1);
             }
-            /*int endLine=doc->findLineContaining(searchWord,startLine+step,Qt::CaseSensitive,backward);
-			int inhibitLine=doc->findLineContaining(inhibitor,startLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
-			while (inhibitLine>0 && endLine>0 && inhibitLine*step<endLine*step) {
-				endLine=doc->findLineContaining(searchWord,endLine+step,Qt::CaseSensitive,backward); // not perfect (same line end/start ...)
-				inhibitLine=doc->findLineContaining(inhibitor,inhibitLine+step,Qt::CaseSensitive,backward);
-			}
-			if(endLine>-1){
-				line=doc->line(endLine).text();
-				int start=line.indexOf(searchWord);
-				int offset=searchWord.indexOf("{");
-				ph.mirrors << currentEditor()->document()->cursor(endLine,start+offset+1,endLine,start+searchWord.length()-1);
-            }*/
+
 			currentEditor()->addPlaceHolder(ph);
 			currentEditor()->setPlaceHolder(currentEditor()->placeHolderCount()-1);
 			if(setCur)

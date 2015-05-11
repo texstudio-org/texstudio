@@ -613,6 +613,12 @@ int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QL
 	return cmdStart;
 }
 
+/*
+ * returns the position of the first command token after offset
+ * args  Tokenlist with all token after command at the same level (top level args, no content)
+ *
+ */
+
 int findCommandWithArgsFromTL(const TokenList &tl,Tokens &cmd, TokenList &args, int offset, bool parseComment){
     int result=-1;
     for(int i=0;i<tl.length();i++){
@@ -2594,7 +2600,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
             present.type=Tokens::none;
             continue;
         }
-        if(specialChars.contains(c) || c.isSpace() || c.isPunct()){
+        if(specialChars.contains(c) || c.isSpace() || c.isPunct() || c.isSymbol()){
             //close token
             if(present.type!=Tokens::none){
                 present.length=i-present.start;
@@ -2834,6 +2840,27 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                                     }
                                 }
                             }
+                            if(lastType==Tokens::keyValArg){
+                                if(startArg<0){
+                                    startArg=j;
+                                    elem.type=lastType;
+                                }else{
+                                    // check if separation is done by comma or equal (comma prevails if both!)
+                                    int end=tl[startArg].start+tl[startArg].length;
+                                    QString interposer=line.mid(end,elem.start-end); // get text between the tokens
+                                    int firstComma=interposer.indexOf(',');
+                                    if(firstComma<0){
+                                        //no comma, assume equal
+                                        // level is increased as it if "argument/value" of key
+                                        elem.level++;
+                                        elem.subtype=lastType;
+                                    }else{
+                                        // next key
+                                        startArg=j;
+                                        elem.type=lastType;
+                                    }
+                                }
+                            }
                         }
                     }
                     j++;
@@ -2882,6 +2909,9 @@ CommandDescription extractCommandDef(QString line){
         if(def=="cols"){
             type=Tokens::colDef;
         }
+        if(def=="color"){
+            type=Tokens::color;
+        }
         if(def=="width" || def=="length"){
             type=Tokens::width;
         }
@@ -2900,7 +2930,7 @@ CommandDescription extractCommandDef(QString line){
         if(def.contains("URL")){
             type=Tokens::url;
         }
-        if(def.contains("keys")){
+        if(def.contains("keys")||def=="keyvals"||def=="%<options%>"){
             type=Tokens::keyValArg;
         }
         if(def=="options"){
@@ -3082,13 +3112,13 @@ Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
     Tokens tk;
     for(int i=0;i<tl.length();i++){
         Tokens elem=tl.at(i);
+        if(elem.start>pos)
+            break;
         if(elem.start+elem.length>pos){
             tk=elem; // get deepest element at col
             if(first)
                 break;
         }
-        if(elem.start>pos)
-            break;
     }
     return tk;
 }
@@ -3108,4 +3138,30 @@ int getTokenAtCol(TokenList &tl, int pos, bool first)
         }
     }
     return result;
+}
+
+/*
+ * tk is an argument token (inner content)
+ * it assumes that the command is at level--
+ * at the moment, only single line detection
+ */
+QString getCommandFromToken(Tokens tk)
+{
+    QString cmd;
+    QDocumentLineHandle *dlh=tk.dlh;
+    if(dlh){
+        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        int tkPos=tl.indexOf(tk);
+        int level=tk.level-1;
+        for(int i=tkPos-1;i>=0;i--){
+            Tokens elem=tl.at(i);
+            if(elem.level==level && (elem.type==Tokens::command || elem.type==Tokens::command) ){
+                cmd=elem.getText();
+                break;
+            }
+            if(elem.level<level)
+                break;
+        }
+    }
+    return cmd;
 }

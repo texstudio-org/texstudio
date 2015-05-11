@@ -4,12 +4,12 @@
 \DeclareGraphicsExtensions{ext-list}
 \DeclareGraphicsRule{ext}{type}{read-file}{command}
 \graphicspath{dir-list}
-\includegraphics*[graphicx keys]{imagefile}
-\includegraphics[graphicx keys]{imagefile}
+\includegraphics*[keyvals]{imagefile}
+\includegraphics[keyvals]{imagefile}
 \reflectbox{text}
 \resizebox*{h-length}{v-length}{text}
 \resizebox{h-length}{v-length}{text}
-\rotatebox[key val list]{angle}{text}
+\rotatebox[keyvals]{angle}{text}
 \scalebox{h-scale}{text}
 \scalebox{h-scale}[v-scale]{text}
 \setkeys{Gin}{key val}
