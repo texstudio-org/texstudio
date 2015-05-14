@@ -266,13 +266,12 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	createStatusBar();
 	completer=0;
 	UpdateCaption();
+	updateMasterDocumentCaption();
+	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	
 	show();
 	if (splash)
 		splash->raise();
-	
-	statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
-	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
 	
 	setAcceptDrops(true);
     //installEventFilter(this);
@@ -1082,7 +1081,21 @@ void Texmaker::setupMenus() {
 	newManagedAction(menu, "saveSettings",tr("Save &Current Settings","menu"), SLOT(SaveSettings()));
 	newManagedAction(menu, "restoreDefaultSettings", tr("Restore &Default Settings..."), SLOT(restoreDefaultSettings()));
 	menu->addSeparator();
-	ToggleAct=newManagedAction(menu, "masterdocument",tr("Define Current Document as '&Master Document'"), SLOT(ToggleMode()));
+	
+	submenu=newManagedMenu(menu, "rootdoc", tr("Root Document", "menu"));
+	actgroupRootDocMode = new QActionGroup(this);
+	actgroupRootDocMode->setExclusive(true);
+	actRootDocAutomatic = newManagedAction(submenu, "auto", tr("Detect &Automatically"), SLOT(setAutomaticRootDetection()));
+	actRootDocAutomatic->setCheckable(true);
+	actRootDocAutomatic->setChecked(true);
+	actgroupRootDocMode->addAction(actRootDocAutomatic);
+	actRootDocExplicit = newManagedAction(submenu, "currentExplicit", "Shows Current Explicit Root");
+	actRootDocExplicit->setCheckable(true);
+	actRootDocExplicit->setVisible(false);
+	actgroupRootDocMode->addAction(actRootDocExplicit);
+	actRootDocSetExplicit = newManagedAction(submenu, "setExplicit", tr("Set Current Document As Explicit Root"), SLOT(setCurrentDocAsExplicitRoot()));
+	menu->addSeparator();
+	
 	ToggleRememberAct=newManagedAction(menu, "remembersession",tr("Automatically Restore &Session at Next Start"));
 	ToggleRememberAct->setCheckable(true);
 	
@@ -1376,13 +1389,18 @@ void Texmaker::UpdateCaption() {
 }
 
 void Texmaker::updateMasterDocumentCaption(){
-	if (documents.singleMode()){
-		ToggleAct->setText(tr("Define Current Document as 'Master Document'"));
-		statusLabelMode->setText(QString(" %1 ").arg(tr("Normal Mode")));
+	if (documents.singleMode()) {
+		actRootDocAutomatic->setChecked(true);
+		actRootDocExplicit->setVisible(false);
+		statusLabelMode->setText(QString(" %1 ").arg(tr("Automatic")));
+		statusLabelMode->setToolTip(tr("Automatic root document detection active"));
 	} else {
 		QString shortName = documents.masterDocument->getFileInfo().fileName();
-		ToggleAct->setText(tr("Normal Mode (current master document: ")+shortName+")");
-		statusLabelMode->setText(QString(" %1 ").arg(tr("Master Document")+ ": "+shortName));
+		actRootDocExplicit->setChecked(true);
+		actRootDocExplicit->setVisible(true);
+		actRootDocExplicit->setText(tr("&Explicit") + ": " + shortName);
+		statusLabelMode->setText(QString(" %1 ").arg(tr("Root", "explicit root document")+ ": " + shortName));
+		statusLabelMode->setToolTip(QString(tr("Explict root document:\n%1")).arg(shortName));
 	}
 }
 
@@ -6082,11 +6100,7 @@ void Texmaker::executeCommandLine(const QStringList& args, bool realCmdLine) {
 			} else if (ftl.absoluteDir().exists()) {
 				fileNew(ftl.absoluteFilePath());
 				if (activateMasterMode) {
-					if (documents.singleMode()) ToggleMode(); //will save the new file
-					else {
-						ToggleMode();
-						ToggleMode();
-					}
+					setExplicitRootDocument(currentEditorView()->getDocument());
 				}
 				//return ;
 			}
@@ -6215,20 +6229,33 @@ void Texmaker::onOtherInstanceMessage(const QString &msg) { // Added slot for me
 	activateWindow();
 	executeCommandLine(msg.split("#!#"),false);
 }
-void Texmaker::ToggleMode() {
-	//QAction *action = qobject_cast<QAction *>(sender());
-	if (!documents.singleMode()) documents.setMasterDocument(0);
-	else if (currentEditorView()) {
-		if (getCurrentFileName()=="")
-			fileSave();
-		if (getCurrentFileName()=="") {
-			QMessageBox::warning(this,tr("Error"),tr("You have to save the file before switching to master mode!"));
-			return;
-		}
-		documents.setMasterDocument(currentEditorView()->document);
-	}
-	completerNeedsUpdate();
+
+void Texmaker::setAutomaticRootDetection() {
+	documents.setMasterDocument(0);
 }
+
+void Texmaker::setExplicitRootDocument(LatexDocument *doc) {
+	if (!doc) {
+		setAutomaticRootDetection();
+		return;
+	}
+	if (doc->getFileName().isEmpty() && doc->getEditorView()) {
+		EditorTabs->setCurrentEditor(doc->getEditorView());
+		fileSave();
+	}
+	if (doc->getFileName().isEmpty()) {
+		txsWarning(tr("You have to save the file before it can be defined as root document."));
+		return;
+	}
+	documents.setMasterDocument(currentEditorView()->document);
+}
+
+void Texmaker::setCurrentDocAsExplicitRoot() {
+	if (currentEditorView()) {
+		setExplicitRootDocument(currentEditorView()->document);
+	}
+}
+
 ////////////////// VIEW ////////////////
 void Texmaker::gotoNextDocument() {
 	// TODO check: can we have managed action connecting to the EditorView slot directly? Then we could remove this slot
@@ -6531,6 +6558,7 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 
 	updateMasterDocumentCaption();
 	updateOpenDocumentMenu();
+	completerNeedsUpdate();
 }
 
 void Texmaker::aboutToDeleteDocument(LatexDocument * doc){
@@ -7095,11 +7123,11 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		QMenu menu;
 		if (entry->document != documents.masterDocument) {
 			menu.addAction(tr("Close document"), this, SLOT(structureContextMenuCloseDocument()));
-			menu.addAction(tr("Set this document as master document"), this, SLOT(structureContextMenuSwitchMasterDocument()));
+			menu.addAction(tr("Set as explicit root document"), this, SLOT(structureContextMenuSwitchMasterDocument()));
 			menu.addAction(tr("Open all related documents"), this, SLOT(structureContextMenuOpenAllRelatedDocuments()));
 			menu.addAction(tr("Close all related documents"), this, SLOT(structureContextMenuCloseAllRelatedDocuments()));
 		} else
-			menu.addAction(tr("Remove master document role"), this, SLOT(structureContextMenuSwitchMasterDocument()));
+			menu.addAction(tr("Remove explicit root document role"), this, SLOT(structureContextMenuSwitchMasterDocument()));
 		if(documents.model->getSingleDocMode()){
 			menu.addAction(tr("Show all open documents in this tree"), this, SLOT(latexModelViewMode()));
 		}else{
@@ -7187,13 +7215,8 @@ void Texmaker::structureContextMenuCloseDocument(){
 void Texmaker::structureContextMenuSwitchMasterDocument(){
 	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
 	if (!document) return;
-	if (document == documents.masterDocument) documents.setMasterDocument(0);
-	else if (document->getFileName()!="") documents.setMasterDocument(document);
-	else if (document->getEditorView()) { //we have to save the document before
-		documents.setMasterDocument(0);
-		EditorTabs->setCurrentEditor(document->getEditorView());
-		ToggleMode();
-	}
+	if (document == documents.masterDocument) setExplicitRootDocument(0);
+	else setExplicitRootDocument(document);
 }
 
 void Texmaker::structureContextMenuOpenAllRelatedDocuments(){

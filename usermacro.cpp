@@ -85,10 +85,10 @@ void Macro::init(const QString& nname, const QString& ntag, const QString& nabbr
 void Macro::initTriggerFormats() {
 	QFormatScheme *fs = QDocument::defaultFormatScheme();
 	REQUIRE(fs);
-	foreach (const QString& f,	triggerFormatsUnprocessed.split('|')) {
-		int fid = fs->id(f);
-		if ( fid > 0 || (fid == 0 && f == "normal"))
-			triggerFormats << fid;
+	foreach (const QString& formatName,	triggerFormatsUnprocessed.split('|')) {
+		if (fs->exists(formatName)) {
+			triggerFormats << fs->id(formatName);
+		}
 	}
 	triggerFormatsUnprocessed.clear();
 }
