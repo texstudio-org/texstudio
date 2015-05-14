@@ -144,10 +144,11 @@ UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory*
 	//editor options
 	ui.tagEdit->setLayout(new QVBoxLayout());
 	codeedit = new QCodeEdit(ui.tagEdit);
-	QLineMarkPanel* lineMarkPanel=new QLineMarkPanel;
-	QAction* lineMarkPanelAction=codeedit->addPanel(lineMarkPanel, QCodeEdit::West, false);
-	Q_UNUSED(lineMarkPanelAction)
+	//QLineMarkPanel* lineMarkPanel=new QLineMarkPanel;
+	//QAction* lineMarkPanelAction=codeedit->addPanel(lineMarkPanel, QCodeEdit::West, false);
+	//Q_UNUSED(lineMarkPanelAction)
 	QLineNumberPanel* lineNumberPanel=new QLineNumberPanel;
+	lineNumberPanel->setVerboseMode(true);
 	QAction* lineNumberPanelAction=codeedit->addPanel(lineNumberPanel, QCodeEdit::West, false);;
 	Q_UNUSED(lineNumberPanelAction)
 	QAction* lineFoldPanelAction=codeedit->addPanel(new QFoldPanel, QCodeEdit::West, false);
