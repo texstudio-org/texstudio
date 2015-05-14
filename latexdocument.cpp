@@ -1851,7 +1851,7 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
         // special treatment to remove document in purge mode (hidden doc was deleted on disc)
         if(purge){
             Q_ASSERT(hidden); //purging non-hidden doc crashes.
-            LatexDocument *master=document->getTopMasterDocument();
+            LatexDocument *rootDoc=document->getRootDocument();
             hiddenDocuments.removeAll(document);
             foreach(LatexDocument *elem,getDocuments()){
                 if(elem->containsChild(document)){
@@ -1868,9 +1868,9 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
                 }
             }
             delete document;
-            if (master != document) {
+            if (rootDoc != document) {
                 // update parents
-                lstOfDocs=master->getListOfDocs();
+                lstOfDocs=rootDoc->getListOfDocs();
                 int n=0;
                 foreach(LatexDocument* elem,lstOfDocs){
                     if(!elem->isHidden()){
@@ -1879,9 +1879,9 @@ void LatexDocuments::deleteDocument(LatexDocument* document,bool hidden,bool pur
                     }
                 }
                 if(n==0)
-                    deleteDocument(master,true,true);
+                    deleteDocument(rootDoc,true,true);
                 else
-                    updateMasterSlaveRelations(master,true,true);
+                    updateMasterSlaveRelations(rootDoc,true,true);
             }
             return;
         }
@@ -2025,10 +2025,10 @@ QString LatexDocuments::getCompileFileName() const {
         return currentDocument->findFileName(curDocFile);
     }
     //
-	const LatexDocument* masterDoc=currentDocument->getTopMasterDocument();
+	const LatexDocument* rootDoc=currentDocument->getRootDocument();
     curDocFile = currentDocument->getFileName();
-	if(masterDoc)
-		curDocFile=masterDoc->getFileName();
+	if(rootDoc)
+		curDocFile=rootDoc->getFileName();
 	return curDocFile;
 }
 QString LatexDocuments::getTemporaryCompileFileName() const {
@@ -2041,10 +2041,10 @@ QString LatexDocuments::getTemporaryCompileFileName() const {
 
 QString LatexDocuments::getLogFileName() const {
 	if (!currentDocument) return QString();
-	LatexDocument *mainDoc = currentDocument->getTopMasterDocument();
-	QString jobName = mainDoc->getMagicComment("-job-name");
+	LatexDocument *rootDoc = currentDocument->getRootDocument();
+	QString jobName = rootDoc->getMagicComment("-job-name");
 	if (!jobName.isEmpty()) {
-		return ensureTrailingDirSeparator(mainDoc->getFileInfo().absolutePath()) + jobName + ".log";
+		return ensureTrailingDirSeparator(rootDoc->getFileInfo().absolutePath()) + jobName + ".log";
 	} else {
 		return replaceFileExtension(getTemporaryCompileFileName(), ".log");
 	}
@@ -2631,7 +2631,7 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
         doc->emitUpdateCompleter();
 }
 
-const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocument*> *visitedDocs) const {
+const LatexDocument* LatexDocument::getRootDocument(QSet<const LatexDocument*> *visitedDocs) const {
 	const LatexDocument *result=this;
 	bool deleteVisitedDocs=false;
 	if(!visitedDocs){
@@ -2640,7 +2640,7 @@ const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocumen
 	}
 	visitedDocs->insert(this);
 	if(masterDocument && !visitedDocs->contains(masterDocument))
-		result=masterDocument->getTopMasterDocument(visitedDocs);
+		result=masterDocument->getRootDocument(visitedDocs);
 	if (result->getFileName().endsWith("bib"))
 		foreach (const LatexDocument* d, parent->documents) {
 			QMultiHash<QDocumentLineHandle*,FileNamePair>::const_iterator it = d->mentionedBibTeXFiles().constBegin();
@@ -2648,7 +2648,7 @@ const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocumen
 			for (; it != itend; ++it) {
 				//qDebug() << it.value().absolute << " <> "<<result->getFileName();
 				if (it.value().absolute == result->getFileName()){
-					result = d->getTopMasterDocument(visitedDocs);
+					result = d->getRootDocument(visitedDocs);
 					break;
 				}
 			}
@@ -2659,8 +2659,8 @@ const LatexDocument* LatexDocument::getTopMasterDocument(QSet<const LatexDocumen
 	return result;
 }
 
-LatexDocument* LatexDocument::getTopMasterDocument(){
-	return const_cast<LatexDocument*>(getTopMasterDocument(0));
+LatexDocument* LatexDocument::getRootDocument(){
+	return const_cast<LatexDocument*>(getRootDocument(0));
 }
 
 QStringList LatexDocument::includedFiles(){
@@ -2783,7 +2783,7 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
 		}
 		if(zw.notFound){
             QString name=elem;
-            LatexDocument *masterDoc=getTopMasterDocument();
+            LatexDocument *masterDoc=getRootDocument();
             if(masterDoc){
                 QString fn=masterDoc->getFileInfo().absolutePath();
 				name+="/"+fn;
@@ -2913,14 +2913,14 @@ LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const
 		current=doc;
 	if(!current)
 		return current;
-	return current->getTopMasterDocument();
+	return current->getRootDocument();
 }
 
 QString LatexDocument::getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths) const {
 	QStringList searchPaths;
-	const LatexDocument* realMaster = getTopMasterDocument();
-	QString compileFileName = realMaster->getFileName();
-	if (compileFileName.isEmpty()) compileFileName = realMaster->getTemporaryFileName();
+	const LatexDocument* rootDoc = getRootDocument();
+	QString compileFileName = rootDoc->getFileName();
+	if (compileFileName.isEmpty()) compileFileName = rootDoc->getTemporaryFileName();
 	QString fallbackPath;
 	if (!compileFileName.isEmpty()) {
 		fallbackPath = QFileInfo(compileFileName).absolutePath(); //when the file does not exist, resolve it relative to document (e.g. to create it there)
