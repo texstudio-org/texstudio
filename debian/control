@@ -1,0 +1,16 @@
+Source: texstudio
+Section: editors
+Priority: extra
+Maintainer: J. Sundermeyer <jsundermeyer@user.sourceforge.net>
+Build-Depends: debhelper (>= 7.0.50~), qt4-qmake, libpoppler-qt4-dev
+Standards-Version: 3.9.1
+Homepage: texstudio.sf.net
+#Vcs-Git: git://git.debian.org/collab-maint/texstudio.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/texstudio.git;a=summary
+
+Package: texstudio
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: texlive-latex-base, texlive-latex-extra, texlive-latex-recommended, texlive-base, latex-beamer, dvipng
+Description: Latex Editor
+ TeXstudio is a program based on Texmaker, that integrates many tools needed to develop documents with LaTeX, in just one application. Using its editor you can write your documents with the help of interactive spell checking, syntax highlighting, automatically code completion and more...
