@@ -49,7 +49,7 @@
     <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%n\item %|%n\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
     <insert id="item" text="\item" insert="%SCRIPT&#10;
     var ln=cursor.lineNumber();
-    var env=editorView.getLastEnvName(ln);
+    var env=editor.document().getLastEnvName(ln);
     var ins=&quot;\\item&quot;
     if(env==&quot;description&quot;){
 	ins=ins+&quot;[%&lt;label%&gt;] %&lt;description%&gt;&quot;
