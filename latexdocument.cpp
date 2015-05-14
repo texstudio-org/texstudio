@@ -2905,7 +2905,7 @@ bool LatexDocument::containsPackage(const QString& name){
     return helper.contains(name);
 }
 
-LatexDocument *LatexDocuments::getMasterDocumentForDoc(LatexDocument *doc) const { // doc==0 means current document
+LatexDocument *LatexDocuments::getRootDocumentForDoc(LatexDocument *doc) const { // doc==0 means current document
 	if(masterDocument)
 		return masterDocument;
 	LatexDocument *current=currentDocument;
