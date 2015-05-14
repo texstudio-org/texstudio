@@ -451,13 +451,21 @@ QString QFormatScheme::id(int ifid) const
 }
 
 /*!
-	\return The integer format id associated to format key \a fid
+	\return The integer format id associated to format key \a sfid
 */
 int QFormatScheme::id(const QString& sfid) const
 {
 	int idx = m_formatKeys.indexOf(sfid);
 	
 	return (idx == -1) ? 0 : idx;
+}
+
+/*!
+ * \return true if the format key \a sfid is valid
+ */
+bool QFormatScheme::exists(const QString& sfid) const
+{
+	return m_formatKeys.contains(sfid);
 }
 
 /*!
