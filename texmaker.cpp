@@ -5395,16 +5395,15 @@ void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){
 	if (!configManager.runLaTeXBibTeXLaTeX) return;
 	if (runBibliographyIfNecessaryEntered) return;
 	
-	//LatexDocument* master = currentEditorView()->document->getTopMasterDocument(); //crashes if masterdoc is defined but closed
-	LatexDocument* master = documents.getMasterDocumentForDoc(); //TODO: use mainFile master
-	REQUIRE(master);
+	LatexDocument* rootDoc = documents.getRootDocumentForDoc();
+	REQUIRE(rootDoc);
 	
-	QList<LatexDocument*> docs = master->getListOfDocs();
+	QList<LatexDocument*> docs = rootDoc->getListOfDocs();
 	QSet<QString> bibFiles;
 	foreach (const LatexDocument* doc, docs)
 		foreach (const FileNamePair& bf, doc->mentionedBibTeXFiles())
 			bibFiles.insert(bf.absolute);
-	if (bibFiles == master->lastCompiledBibTeXFiles) {
+	if (bibFiles == rootDoc->lastCompiledBibTeXFiles) {
 		QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
 		if (bbl.exists()) {
 			bool bibFilesChanged = false;
@@ -5419,7 +5418,7 @@ void Texmaker::runBibliographyIfNecessary(const QFileInfo& mainFile){
 			}
 			if (!bibFilesChanged) return;
 		} else return;
-	} else master->lastCompiledBibTeXFiles = bibFiles;
+	} else rootDoc->lastCompiledBibTeXFiles = bibFiles;
 
 	runBibliographyIfNecessaryEntered = true;
 	buildManager.runCommand(BuildManager::CMD_RECOMPILE_BIBLIOGRAPHY, mainFile);
@@ -5440,17 +5439,17 @@ void Texmaker::runInternalCommand(const QString& cmd, const QFileInfo& mainfile,
 }
 
 void Texmaker::commandLineRequested(const QString& cmdId, QString* result, bool *){
-	LatexDocument* master = documents.getMasterDocumentForDoc();
-	if (!master) return;
-	QString magic = master->getMagicComment("TXS-program:"+cmdId);
+	LatexDocument* rootDoc = documents.getRootDocumentForDoc();
+	if (!rootDoc) return;
+	QString magic = rootDoc->getMagicComment("TXS-program:"+cmdId);
 	if (!magic.isEmpty()) {
-		if (!checkProgramPermission(magic, cmdId, master)) return;
+		if (!checkProgramPermission(magic, cmdId, rootDoc)) return;
 		*result = magic;
 		return;
 	}
 	if (cmdId != "quick" && cmdId != "compile" && cmdId != "view") return;
-	QString program = master->getMagicComment("program");
-	if (program.isEmpty()) program = master->getMagicComment("TS-program");
+	QString program = rootDoc->getMagicComment("program");
+	if (program.isEmpty()) program = rootDoc->getMagicComment("TS-program");
 	if (program.isEmpty()) return;
 	if (program == "pdflatex" || program == "latex" || program == "xelatex" || program == "luatex"  || program == "lualatex") {
 		//TODO: don't replicate build logic here
@@ -5464,7 +5463,7 @@ void Texmaker::commandLineRequested(const QString& cmdId, QString* result, bool 
 		if (cmdId == "quick") *result = BuildManager::chainCommands(compiler, viewer);
 		else if (cmdId == "compile") *result = compiler;
 		else if (cmdId == "view") *result = viewer;
-	} else if (cmdId == "quick" && checkProgramPermission(program, cmdId, master)) *result = program;
+	} else if (cmdId == "quick" && checkProgramPermission(program, cmdId, rootDoc)) *result = program;
 }
 
 void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool pdf, bool async){
@@ -6311,9 +6310,9 @@ void Texmaker::focusViewer(){
 			}
 		}
 		// try: PDF for master file
-		LatexDocument *masterDoc = documents.getMasterDocumentForDoc(0);
-		if (masterDoc) {
-			QFileInfo masterFile = masterDoc->getFileInfo();
+		LatexDocument *rootDoc = documents.getRootDocumentForDoc(0);
+		if (rootDoc) {
+			QFileInfo masterFile = rootDoc->getFileInfo();
 			foreach (PDFDocument* viewer, viewers) {
 				if (viewer->getMasterFile() == masterFile) {
 					viewer->focus();
@@ -7602,8 +7601,8 @@ void Texmaker::showPreview(const QDocumentCursor& previewc, bool addToList){
 	if (originalText=="") return;
 	// get document definitions
 	//preliminary code ...
-	const LatexDocument *doc=documents.getMasterDocumentForDoc();
-	LatexEditorView* edView=(doc && doc->getEditorView())?doc->getEditorView():currentEditorView();
+	const LatexDocument *rootDoc = documents.getRootDocumentForDoc();
+	LatexEditorView* edView = (rootDoc && rootDoc->getEditorView()) ? rootDoc->getEditorView() : currentEditorView();
 	if (!edView) return;
 	int m_endingLine=edView->editor->document()->findLineContaining("\\begin{document}",0,Qt::CaseSensitive);
 	if (m_endingLine<0) return; // can't create header

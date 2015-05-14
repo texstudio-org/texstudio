@@ -803,7 +803,7 @@ To access the document these objects are introduced:
 <tr><td>editor.document().expandParents(lineNr)</td><td>  Expand all parents of the line until it is visible     </td></tr>
 <tr><td>editor.document().foldBlockAt(bool unFold, lineNr);</td><td>  Collapses or expands the first block before lineNr     </td></tr>
 <tr><td>editor.document().getMasterDocument();</td><td>  Returns the open document which directly includes this document  </td></tr>
-<tr><td><s>editor.document().getTopMasterDocument();</s></td><td><i>Deprecated:</i> Use getRootDocument() instead.</td></tr>
+<tr><td><s>editor.document().getTopMasterDocument();</s></td><td><i>Deprecated:</i> Use getRootDocument() instead</td></tr>
 <tr><td>editor.document().getRootDocument();</td><td>  Returns the open document which indireclty includes this document and is not itself included by any other document </td></tr>
 <tr><td>editor.document().getMagicComment(name);</td><td>  Returns the content of a magic comment, if it exists   </td></tr>
 <tr><td>editor.document().updateMagicComment(name, value, [create = false]);</td><td>  Changes a magic comment  </td></tr>
@@ -816,7 +816,8 @@ To access the document these objects are introduced:
   <tr><td>[documentManager.]documents</td><td>   Array of all open documents     </td></tr>
   <tr><td>documentManager.findDocument(fileName) </td><td>   Returns the open document with a certain file name  </td></tr>
   <tr><td>documentManager.singleMode() </td><td>   Returns if there is no explicit master document  </td></tr>
-  <tr><td>documentManager.getMasterDocumentForDoc(document) </td><td>   Returns the open document (possibly indirectly) including the given document </td></tr>
+  <tr><td><s>documentManager.getMasterDocumentForDoc(document)</s></td><td>  <i>Deprecated:</i> Use getRootDocumentForDoc(document) instead </td></tr>
+  <tr><td>documentManager.getRootDocumentForDoc(document)</td><td>   Returns the open document (possibly indirectly) including the given document </td></tr>
   <tr><td>documentManager.findFileFromBibId(id) </td><td>   Returns the file name of the bib file containing an entry with the given id  </td></tr>
 
 
