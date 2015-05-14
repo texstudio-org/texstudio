@@ -803,7 +803,8 @@ To access the document these objects are introduced:
 <tr><td>editor.document().expandParents(lineNr)</td><td>  Expand all parents of the line until it is visible     </td></tr>
 <tr><td>editor.document().foldBlockAt(bool unFold, lineNr);</td><td>  Collapses or expands the first block before lineNr     </td></tr>
 <tr><td>editor.document().getMasterDocument();</td><td>  Returns the open document which directly includes this document  </td></tr>
-<tr><td>editor.document().getTopMasterDocument();</td><td>  Returns the open document which indireclty includes this document and is not itself included by any other document </td></tr>
+<tr><td><s>editor.document().getTopMasterDocument();</s></td><td><i>Deprecated:</i> Use getRootDocument() instead.</td></tr>
+<tr><td>editor.document().getRootDocument();</td><td>  Returns the open document which indireclty includes this document and is not itself included by any other document </td></tr>
 <tr><td>editor.document().getMagicComment(name);</td><td>  Returns the content of a magic comment, if it exists   </td></tr>
 <tr><td>editor.document().updateMagicComment(name, value, [create = false]);</td><td>  Changes a magic comment  </td></tr>
 <tr><td>editor.document().labelItems/refItems/bibItems</td><td>  Returns the ids of all labels/references or included bibliography files. </td></tr>
