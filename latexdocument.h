@@ -201,6 +201,10 @@ public:
     void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
     Q_INVOKABLE QString getLastEnvName(int lineNumber); // special function to use with javascript (insert "\item" from menu)
 	
+    void enableSyntaxCheck(bool enable){
+        latexLikeChecking=enable;
+    }
+
 private:
 	QString fileName; //absolute
 	QString temporaryFileName; //absolute, temporary

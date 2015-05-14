@@ -1930,6 +1930,7 @@ void Texmaker::runScriptsInList(int trigger, const QList<Macro> &scripts) {
 
 void Texmaker::fileNewInternal(QString fileName) {
 	LatexDocument *doc = new LatexDocument(this);
+    doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
 	LatexEditorView *edit = new LatexEditorView (0, configManager.editorConfig, doc);
     edit->setLatexPackageList(&latexPackageList);
 	if (configManager.newFileEncoding)

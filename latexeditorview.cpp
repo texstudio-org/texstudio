@@ -1320,7 +1320,7 @@ void LatexEditorView::updateFormatSettings(){
 		grammarFormatsDisabled.resize(9);
 		grammarFormatsDisabled.fill(false);
 		formatsList<<SpellerUtility::spellcheckErrorFormat<<referencePresentFormat<<citationPresentFormat<<referenceMissingFormat;
-		formatsList<<referenceMultipleFormat<<citationMissingFormat<<packageMissingFormat<<packagePresentFormat<<packageUndefinedFormat<<environmentFormat<<syntaxErrorFormat;
+        formatsList<<referenceMultipleFormat<<citationMissingFormat<<packageMissingFormat<<packagePresentFormat<<packageUndefinedFormat<<environmentFormat;
 		formatsList<<wordRepetitionFormat<<structureFormat<<insertFormat<<deleteFormat<<replaceFormat;
         LatexDocument::syntaxErrorFormat=syntaxErrorFormat;
 	}
@@ -1500,7 +1500,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
 	bool latexLikeChecking = editor->languageDefinition() && checkedLanguages.contains(editor->languageDefinition()->language());
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
-	
+
 	if (config->inlineGrammarChecking) {
 		QList<LineInfo> changedLines;
 		int lookBehind = 0;

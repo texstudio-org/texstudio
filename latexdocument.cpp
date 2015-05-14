@@ -362,7 +362,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
     findStructureEntryBefore(iter_bibTeX,MapOfBibtex,lineNrStart,newCount);
 	
-    LatexParser& latexParser = LatexParser::getInstance(); //TODO: better LP, update of all corresponding lines
+    LatexParser& latexParser = LatexParser::getInstance();
 	int verbatimFormat=getFormatId("verbatim");
 	int commentFormat=getFormatId("comment");
 	bool updateSyntaxCheck=false;
@@ -400,7 +400,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			emit bookmarkLineUpdated(i);
 		}
 
-		QString curLine = line(i).text(); //TODO: use this instead of s
+        QString curLine = line(i).text();
         QDocumentLineHandle *dlh=line(i).handle();
         if(!dlh)
             continue; //non-existing line ...
@@ -592,7 +592,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 
 
 
-			if (latexParser.possibleCommands["%todo"].contains(cmd)) {
+            if (lp.possibleCommands["%todo"].contains(cmd)) {
 				bool reuse=false;
 				StructureEntry *newTodo;
 				if(MapOfTodo.contains(dlh)){
@@ -612,8 +612,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			}
 			
 			//// newcommand ////
-			//TODO: handle optional arguments
-			if (latexParser.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {				completerNeedsUpdate=true;
+            if (lp.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {				completerNeedsUpdate=true;
                 int optionCount = getArg(args,dlh,0, ArgumentList::Optional).toInt();  // results in 0 if there is no optional argument or conversion fails
 				if (optionCount>9 || optionCount<0) optionCount = 0;  // limit number of options
                 bool def=!getArg(args,dlh,1, ArgumentList::Optional).isEmpty();
@@ -752,7 +751,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
                                 continue;
                             }
                         }
-                        latexParser.possibleCommands[definition].insert(elem);
+                        lp.possibleCommands[definition].insert(elem);
                         if(!removedUserCommands.removeAll(elem)){
                             addedUserCommands << elem;
                         }
@@ -761,7 +760,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
                 }
             }
 			/// bibitem ///
-			if(latexParser.possibleCommands["%bibitem"].contains(cmd)){
+            if(lp.possibleCommands["%bibitem"].contains(cmd)){
 				if(!firstArg.isEmpty() && !isDefinitionArgument(firstArg)){
 					ReferencePair elem;
 					elem.name=firstArg;
@@ -779,7 +778,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 				}
 			}
 			///usepackage
-			if (latexParser.possibleCommands["%usepackage"].contains(cmd)) {
+            if (lp.possibleCommands["%usepackage"].contains(cmd)) {
 				completerNeedsUpdate=true;
 				QStringList packagesHelper=firstArg.split(",");
 
@@ -810,8 +809,8 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 				QStringList packages;
                 foreach(QString elem,packagesHelper){
                     elem=elem.simplified();
-					if(latexParser.packageAliases.contains(elem))
-						packages << latexParser.packageAliases.values(elem);
+                    if(lp.packageAliases.contains(elem))
+                        packages << lp.packageAliases.values(elem);
 					else
 						packages << elem;
                 }
@@ -824,7 +823,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 				continue;
 			}
 			//// bibliography ////
-			if (latexParser.possibleCommands["%bibliography"].contains(cmd)) {
+            if (lp.possibleCommands["%bibliography"].contains(cmd)) {
 				QStringList additionalBibPaths = ConfigManagerInterface::getInstance()->getOption("Files/Bib Paths").toString().split(getPathListSeparator());
 				QStringList bibs=firstArg.split(',',QString::SkipEmptyParts);
 				//add new bibs and set bibTeXFilesNeedsUpdate if there was any change
@@ -870,9 +869,9 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			}
 			
 			//// include,input,import ////
-			if (latexParser.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(firstArg)) {
+            if (lp.possibleCommands["%include"].contains(cmd) && !isDefinitionArgument(firstArg)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
+                newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
 				firstArg = removeQuote(firstArg);
 				newInclude->title=firstArg;
 				QString fname=findFileName(firstArg);
@@ -895,9 +894,9 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 				continue;
 			}
 			
-			if (latexParser.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
+            if (lp.possibleCommands["%import"].contains(cmd) && !isDefinitionArgument(firstArg)) {
 				StructureEntry *newInclude=new StructureEntry(this, StructureEntry::SE_INCLUDE);
-				newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : latexParser.structureDepth() - 1;
+                newInclude->level = parent && !parent->indentIncludesInStructure ? 0 : lp.structureDepth() - 1;
 				QDir dir(firstArg);
                 QFileInfo fi(dir, getArg(args,dlh,1, ArgumentList::Mandatory));
 				QString file = fi.filePath();
@@ -925,7 +924,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			//// all sections ////
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
-			int level = latexParser.structureCommandLevel(cmd);
+            int level = lp.structureCommandLevel(cmd);
             if (level>-1 && !firstArg.isEmpty() && !isDefinitionArgument(firstArg)) {
                 StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->setContext(StructureEntry::InAppendix);
@@ -936,12 +935,6 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 				newSection->columnNumber = cmdStart;
                 flatStructure << newSection;
 			}
-            if(latexLikeChecking) {
-                StackEnvironment env;
-                getEnv(i,env);
-
-                SynChecker.putLine(line(i).handle(),env,false);
-            }
 		} // while(findCommandWithArgs())
 		
 		if (!oldBibs.isEmpty())
@@ -951,8 +944,14 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             parent->removeDocs(removedIncludes);
             parent->updateMasterSlaveRelations(this);
         }
+        if(latexLikeChecking) {
+            StackEnvironment env;
+            getEnv(i,env);
+
+            SynChecker.putLine(line(i).handle(),env,true);
+        }
 	}//for each line handle
-	QVector<StructureEntry*> parent_level(latexParser.structureDepth());
+    QVector<StructureEntry*> parent_level(lp.structureDepth());
     if(!isHidden()){
         mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
 
