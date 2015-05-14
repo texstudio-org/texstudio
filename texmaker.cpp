@@ -6551,7 +6551,7 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 	if (documents.singleMode()){
 		outputView->resetMessagesAndLog();
 	} else {
-		configManager.addRecentFile(documents.masterDocument->getFileName(),true);
+		configManager.addRecentFile(documents.masterDocument->getFileName(), true);
 		int pos=EditorTabs->currentIndex();
 		EditorTabs->moveTab(pos,0);
 	}
@@ -7215,7 +7215,7 @@ void Texmaker::structureContextMenuCloseDocument(){
 void Texmaker::structureContextMenuSwitchMasterDocument(){
 	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
 	if (!document) return;
-	if (document == documents.masterDocument) setExplicitRootDocument(0);
+	if (document == documents.masterDocument) setAutomaticRootDetection();
 	else setExplicitRootDocument(document);
 }
 
