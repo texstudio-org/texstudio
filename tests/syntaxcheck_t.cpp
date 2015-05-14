@@ -164,12 +164,12 @@ void SyntaxCheckTest::checktabular(){
 
 	edView->editor->setText(text, false);
 	do{
-		edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 		QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
-	}while(edView->SynChecker.queuedLines());
+    }while(edView->document->SynChecker.queuedLines());
 	StackEnvironment env;
-	edView->getEnv(row,env);
-	QString message=edView->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env);
+    edView->document->getEnv(row,env);
+    QString message=edView->document->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env);
 	QEQUAL(message, expectedMessage);
 	
 	edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
@@ -233,11 +233,12 @@ void SyntaxCheckTest::checkkeyval(){
     text="\\usepackage{siunitx}\n"+text;
 
     edView->editor->setText(text, false);
-    do{
-        edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
-    }while(edView->SynChecker.queuedLines());
     LatexDocument *doc=edView->getDocument();
+    do{
+        doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+    }while(doc->SynChecker.queuedLines());
+
     QDocumentLineHandle *dlh=doc->line(1).handle();
     QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
     QEQUAL(!formats.isEmpty(),error);

@@ -107,7 +107,9 @@ public:
 	QSet<QString> lastCompiledBibTeXFiles;
 	
 	QList<Macro> localMacros;
-	
+
+    friend class SyntaxCheckTest;
+
 private:	
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle*,ReferencePair>& list);
 public:
@@ -162,7 +164,7 @@ public:
 	Q_INVOKABLE QStringList includedFilesAndParent();
 	Q_INVOKABLE QList<LatexDocument *> getListOfDocs(QSet<LatexDocument*> *visitedDocs=0);
 	
-	LatexParser ltxCommands;
+    LatexParser ltxCommands,lp;
 	
 	Q_INVOKABLE bool containsPackage(const QString& name);
     Q_INVOKABLE QStringList containedPackages();
@@ -190,6 +192,14 @@ public:
     bool mayHaveDiffMarkers;
 
     void emitUpdateCompleter();
+
+    static int syntaxErrorFormat;
+
+    void reCheckSyntax(int linenr=0, int count=-1);
+    QString getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous);
+
+    void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
+    Q_INVOKABLE QString getLastEnvName(int lineNumber); // special function to use with javascript (insert "\item" from menu)
 	
 private:
 	QString fileName; //absolute
@@ -245,6 +255,11 @@ private:
 	
 	void gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck);
 
+    SyntaxCheck SynChecker;
+    Environment unclosedEnv;
+
+    bool latexLikeChecking;
+
 
 #ifndef QT_NO_DEBUG
 public:
@@ -254,9 +269,13 @@ public:
 	
 public slots:
 	void updateStructure();
-	bool patchStructure(int linenr, int count);
+    bool patchStructure(int linenr, int count, bool recheck=false);
 	void patchStructureRemoval(QDocumentLineHandle* dlh);
 	void initClearStructure();
+    void updateLtxCommands(bool updateAll=false);
+    void setLtxCommands(const LatexParser& cmds);
+    void updateSettings();
+    void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket);
 	
 signals:
 	void hasBeenIncluded(const LatexDocument& newMasterDocument);

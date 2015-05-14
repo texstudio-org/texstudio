@@ -1766,7 +1766,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
     documents.updateMasterSlaveRelations(doc,recheck);
 
     if(recheck){
-        edit->updateLtxCommands();
+        doc->updateLtxCommands();
     }
 	
     if(!hidden){
@@ -1946,7 +1946,7 @@ void Texmaker::fileNewInternal(QString fileName) {
 	documents.addDocument(edit->document);
 
 	configureNewEditorViewEnd(edit);
-	edit->updateLtxCommands();
+    doc->updateLtxCommands();
     if(!fileName.isEmpty())
         fileSave(true);
 }
@@ -2241,11 +2241,8 @@ void Texmaker::fileOpen() {
             doc->recheckRefsLabels();
             if(completedDocs.contains(doc))
                 continue;
-            LatexEditorView *edView=doc->getEditorView();
-            if(edView){
-                edView->updateLtxCommands(true);
-                completedDocs<<doc->getListOfDocs();
-            }
+            doc->updateLtxCommands(true);
+            completedDocs<<doc->getListOfDocs();
         }
     }
     recheckLabels=true;
@@ -2885,11 +2882,9 @@ void Texmaker::restoreSession(const Session &s, bool showProgress, bool warnMiss
         doc->recheckRefsLabels();
         if(completedDocs.contains(doc))
             continue;
-        LatexEditorView *edView=doc->getEditorView();
-        if(edView){
-            edView->updateLtxCommands(true);
-            completedDocs<<doc->getListOfDocs();
-        }
+
+        doc->updateLtxCommands(true);
+        completedDocs<<doc->getListOfDocs();
     }
     recheckLabels=true;
 
@@ -4028,7 +4023,7 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
 	if(initial){
         //int len=doc->lineCount();
         if(doc->patchStructure(0,-1))
-            doc->patchStructure(0,-1); // do a second run, if packages are load (which might define new commands)
+            doc->patchStructure(0,-1,true); // do a second run, if packages are load (which might define new commands)
         // admitedly this solution is expensive (though working)
         //TODO: does not working when entering \usepackage in text ... !
 
@@ -5942,7 +5937,7 @@ void Texmaker::GeneralOptions() {
 				edView->updateSettings();
 				if(updateHighlighting){
 					if(configManager.editorConfig->realtimeChecking){
-						edView->updateLtxCommands();
+                        edView->document->updateLtxCommands();
 						edView->documentContentChanged(0,edView->document->lines());
                         edView->document->updateCompletionFiles(false,true);
 					}else{
@@ -6421,7 +6416,7 @@ void Texmaker::viewSetHighlighting(QAction *act) {
 	currentEditorView()->clearOverlays();
 	m_languages->setLanguageFromName(currentEditor(), act->data().toString());
 	// TODO: Check if reCheckSyntax is really necessary. Setting the language emits (among others) contentsChange(0, lines)
-	currentEditorView()->reCheckSyntax();
+    currentEditorView()->document->reCheckSyntax();
 }
 
 void Texmaker::showHighlightingMenu() {
@@ -9617,8 +9612,8 @@ void Texmaker::CloseEnv(){
         return;
     QDocumentCursor cursor=m_edit->cursor();
     StackEnvironment env;
-    edView->getEnv(cursor.lineNumber(),env);
     LatexDocument *doc=edView->document;
+    doc->getEnv(cursor.lineNumber(),env);
     int lineCount=doc->lineCount();
     if(lineCount<1)
         return;

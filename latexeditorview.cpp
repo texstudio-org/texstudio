@@ -617,84 +617,22 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig
 	//containedLabels.setPattern("(\\\\label)\\{(.+)\\}");
 	//containedReferences.setPattern("(\\\\ref|\\\\pageref)\\{(.+)\\}");
 	updateSettings();
-	SynChecker.verbatimFormat=editor->document()->getFormatId("verbatim");
-	SynChecker.setLtxCommands(LatexParser::getInstance());
-	SynChecker.start();
-	unclosedEnv.id=-1;
+
 	lp=LatexParser::getInstance();
 	
-	connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int)), Qt::QueuedConnection);
 }
 
 LatexEditorView::~LatexEditorView() {
 	delete searchReplacePanel; // to force deletion of m_search before document. Otherwise crashes can come up (linux)
 	delete codeeditor; //explicit call destructor of codeeditor (although it has a parent, it is no qobject itself, but passed it to editor)
 	
-	SynChecker.stop();
-	SynChecker.wait();
 	if(bibReader){
 		bibReader->quit();
 		bibReader->wait();
 	}
 }
 
-void LatexEditorView::updateLtxCommands(bool updateAll){
-	if(!document)
-		return;
-	if(!document->parent)
-		return;
-	
-	//LatexParser ltxCommands=LatexParser::getInstance();
-	lp.init();
-	lp.append(LatexParser::getInstance()); // append commands set in config
-	QList<LatexDocument *>listOfDocs=document->getListOfDocs();
-	foreach(const LatexDocument *elem,listOfDocs){
-		lp.append(elem->ltxCommands);
-	}
-
-	if(updateAll){
-		foreach(const LatexDocument *elem,listOfDocs){
-
-			LatexEditorView *view=elem->getEditorView();
-			if(view){
-				view->setLtxCommands(lp);
-				view->reCheckSyntax();
-			}
-		}
-        // check if other document have this doc as child as well (reused doc...)
-        LatexDocuments* docs=document->parent;
-        QList<LatexDocument*>lstOfAllDocs=docs->getDocuments();
-        foreach(LatexDocument* elem,lstOfAllDocs){
-            if(listOfDocs.contains(elem))
-                continue; // already handled
-            if(elem->containsChild(document)){
-                // unhandled parent/child
-                LatexParser lp;
-                lp.init();
-                lp.append(LatexParser::getInstance()); // append commands set in config
-                QList<LatexDocument *>listOfDocs=elem->getListOfDocs();
-                foreach(const LatexDocument *elem,listOfDocs){
-                    lp.append(elem->ltxCommands);
-                }
-                foreach(const LatexDocument *elem,listOfDocs){
-
-                    LatexEditorView *view=elem->getEditorView();
-                    if(view){
-                        view->setLtxCommands(lp);
-                        view->reCheckSyntax();
-                    }
-                }
-            }
-        }
-	}else{
-		SynChecker.setLtxCommands(lp);
-	}
-
-}
-
-void LatexEditorView::setLtxCommands(const LatexParser& cmds){
-     SynChecker.setLtxCommands(cmds);
-
+void LatexEditorView::updateReplamentList(const LatexParser& cmds,bool forceUpdate){
      QMap<QString,QString> replacementList;
      bool differenceExists=false;
      foreach(QString elem,cmds.possibleCommands["%replace"].values()){
@@ -705,7 +643,7 @@ void LatexEditorView::setLtxCommands(const LatexParser& cmds){
                     differenceExists=true;
           }
      }
-     if(differenceExists || replacementList.count()!=mReplacementList.count()){
+     if(differenceExists || replacementList.count()!=mReplacementList.count() || forceUpdate){
           mReplacementList=replacementList;
           documentContentChanged(0,editor->document()->lines()); //force complete spellcheck
      }
@@ -1327,7 +1265,6 @@ void LatexEditorView::updateSettings(){
 	QDocument::setTabStop(config->tabStop);
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
 
-	SynChecker.setErrFormat(syntaxErrorFormat);
 	editor->m_preEditFormat=preEditFormat;
 	
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
@@ -1336,6 +1273,9 @@ void LatexEditorView::updateSettings(){
 
 	QDocument::setWorkAround(QDocument::ForceQTextLayout, config->hackRenderingMode == 1);
 	QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, config->hackRenderingMode == 2);
+    LatexDocument::syntaxErrorFormat=syntaxErrorFormat;
+    if(document)
+        document->updateSettings();
 }
 
 void LatexEditorView::updateFormatSettings(){
@@ -1382,6 +1322,7 @@ void LatexEditorView::updateFormatSettings(){
 		formatsList<<SpellerUtility::spellcheckErrorFormat<<referencePresentFormat<<citationPresentFormat<<referenceMissingFormat;
 		formatsList<<referenceMultipleFormat<<citationMissingFormat<<packageMissingFormat<<packagePresentFormat<<packageUndefinedFormat<<environmentFormat<<syntaxErrorFormat;
 		formatsList<<wordRepetitionFormat<<structureFormat<<insertFormat<<deleteFormat<<replaceFormat;
+        LatexDocument::syntaxErrorFormat=syntaxErrorFormat;
 	}
 }
 
@@ -1499,48 +1440,7 @@ void LatexEditorView::lineMarkToolTip(int line, int mark){
 	if (!errors.isEmpty())
 		emit showMarkTooltipForLogMessage(errors);
 }
-void LatexEditorView::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket){
-	Q_ASSERT_X(dlh!=0,"checkNextLine","empty dlh used in checkNextLine");
-	if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
-		StackEnvironment env;
-		QVariant envVar=dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
-		if(envVar.isValid())
-			env=envVar.value<StackEnvironment>();
-		int index = document->indexOf(dlh);
-		if (index == -1) return; //deleted
-		REQUIRE(dlh->document() == document);
-		if (index + 1 >= document->lines()) {
-			//remove old errror marker
-			if(unclosedEnv.id!=-1){
-				unclosedEnv.id = -1;
-				int unclosedEnvIndex = document->indexOf(unclosedEnv.dlh);
-				if (unclosedEnvIndex >= 0 && unclosedEnv.dlh->getCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE).isValid()){
-					StackEnvironment env;
-					Environment newEnv;
-					newEnv.name="normal";
-					newEnv.id=1;
-					env.push(newEnv);
-					if (unclosedEnvIndex >= 1) {
-						QDocumentLineHandle *prev = document->line(unclosedEnvIndex-1).handle();
-						QVariant result=prev->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
-						if(result.isValid())
-							env=result.value<StackEnvironment>();
-					}
-					SynChecker.putLine(unclosedEnv.dlh, env, true);
-				}
-			}
-			if(env.size()>1){
-				//at least one env has not been closed
-				Environment environment=env.top();
-				unclosedEnv=env.top();
-				SynChecker.markUnclosedEnv(environment);
-			}
-			return;
-		}
-		SynChecker.putLine(document->line(index+1).handle(), env, clearOverlay);
-	}
-	dlh->deref();
-}
+
 
 void LatexEditorView::clearOverlays(){
 	for (int i=0; i<editor->document()->lineCount(); i++) {
@@ -1687,6 +1587,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 		}
 		
 		// start syntax checking
+        /*
 		if(latexLikeChecking && config->inlineSyntaxChecking) {
 			StackEnvironment env;
 			getEnv(i,env);
@@ -1699,7 +1600,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 				}
 			}
 			SynChecker.putLine(line.handle(),env,false);
-		}
+        }
+        */
 		
         // alternative context detection
         QDocumentLineHandle *dlh=line.handle();
@@ -1961,29 +1863,6 @@ void LatexEditorView::closeCompleter(){
 	completer->close();
 }
 
-void LatexEditorView::reCheckSyntax(int linenr, int count){
-	// expensive function ... however if \newcommand is changed valid commands become invalid and vice versa
-	if(!config->inlineSyntaxChecking || !config->realtimeChecking) return;
-	if(!editor->languageDefinition())
-		return;
-	if (!checkedLanguages.contains(editor->languageDefinition()->language())) return; // no online checking in other files than tex
-
-	if(linenr<0 || linenr>=editor->document()->lineCount()) linenr=0;
-	QDocumentLine line=editor->document()->line(linenr);
-	QDocumentLine prev;
-	if (linenr > 0) prev = editor->document()->line(linenr - 1);
-	int lineNrEnd = count < 0 ? editor->document()->lineCount() : qMin(count + linenr, editor->document()->lineCount());
-	for (int i=linenr; i < lineNrEnd; i++) {
-		Q_ASSERT(line.isValid());
-		StackEnvironment env;
-		getEnv(i,env);
-		SynChecker.putLine(line.handle(),env,true);
-		prev = line;
-		line = editor->document()->line(i+1);
-	}
-}
-
-
 /*
  * Extracts the math formula at the given cursor position including math delimiters.
  * Current limitations: the cursor needs to be on one of the delimiters. This does
@@ -2067,10 +1946,10 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	fr = cursor.line().getOverlayAt(cursor.columnNumber(),syntaxErrorFormat);
 	if (fr.length>0 && fr.format==syntaxErrorFormat) {
 		StackEnvironment env;
-		getEnv(cursor.lineNumber(),env);
+        document->getEnv(cursor.lineNumber(),env);
 		QString text=l.text();
 		if(!text.isEmpty()){
-			QString message=SynChecker.getErrorAt(l.handle(),cursor.columnNumber(),env);
+            QString message=document->getErrorAt(l.handle(),cursor.columnNumber(),env);
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
 			return;
 		}
@@ -2445,28 +2324,6 @@ QList<int> LatexEditorViewConfig::possibleEditOperations(){
 	for (int i=0;i<operationCount;i++)
 		res << temp[i];
 	return res;
-}
-
-void LatexEditorView::getEnv(int lineNumber,StackEnvironment &env){
-	Environment newEnv;
-	newEnv.name="normal";
-	newEnv.id=1;
-	env.push(newEnv);
-	if (lineNumber > 0) {
-		QDocumentLine prev = editor->document()->line(lineNumber - 1);
-		REQUIRE(prev.isValid());
-		QVariant result=prev.getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
-		if(result.isValid())
-			env=result.value<StackEnvironment>();
-	}
-}
-
-QString LatexEditorView::getLastEnvName(int lineNumber){
-    StackEnvironment env;
-    getEnv(lineNumber,env);
-    if(env.isEmpty())
-        return "";
-    return env.top().name;
 }
 
 /*

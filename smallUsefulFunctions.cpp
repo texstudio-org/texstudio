@@ -2755,7 +2755,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
  */
          if(tk.type==Tokens::comment)
              break; // stop at comment start
-         if(tk.type==Tokens::command){
+         if(tk.type==Tokens::command || tk.type==Tokens::commandUnknown){
              QString command=line.mid(tk.start,tk.length);
              if(lp.commandDefs.contains(command)){
                 CommandDescription cd=lp.commandDefs.value(command);
@@ -2868,6 +2868,21 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
 
              }else{
                 tk.type=Tokens::commandUnknown;
+                // remove arg level from all corresponding options
+                // assumption is that a valid command was removed by excluding from usepackage
+                int j=i+1;
+                while(j<tl.length()){
+                    Tokens &elem=tl[j];
+                    if(elem.level==tk.level){
+                        if(elem.argLevel!=0){
+                            elem.argLevel=0;
+                            elem.subtype=Tokens::none;
+                            //TODO: change option content as well ???
+                        } else
+                            break;
+                    }
+                    j++;
+                }
              }
          }
      }

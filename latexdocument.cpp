@@ -32,8 +32,22 @@ LatexDocument::LatexDocument(QObject *parent):QDocument(parent),remeberAutoReloa
 	mMentionedBibTeXFiles.clear();
 	masterDocument=0;
 	this->parent=0;
+
+    unclosedEnv.id=-1;
+    latexLikeChecking=true; //TODO: needs to bne changeable
+
+    lp=LatexParser::getInstance();
+
+    SynChecker.verbatimFormat=getFormatId("verbatim");
+    SynChecker.setLtxCommands(LatexParser::getInstance());
+    SynChecker.setErrFormat(syntaxErrorFormat);
+    SynChecker.start();
+
+    connect(&SynChecker, SIGNAL(checkNextLine(QDocumentLineHandle*,bool,int)), SLOT(checkNextLine(QDocumentLineHandle *,bool,int)), Qt::QueuedConnection);
 }
 LatexDocument::~LatexDocument(){
+    SynChecker.stop();
+    SynChecker.wait();
 	if (!magicCommentList->parent) delete magicCommentList;
 	if (!labelList->parent) delete labelList;
 	if (!todoList->parent) delete todoList;
@@ -285,7 +299,7 @@ inline bool isDefinitionArgument(const QString &arg) {
 	return (pos >= 0 && pos<arg.length()-1 && arg[pos+1].isDigit());
 }
 
-bool LatexDocument::patchStructure(int linenr, int count) {
+bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
     /* true means a second run is suggested as packages are loadeed which change the outcome
      * e.g. definition of specialDef command, but packages are load at the end of this method.
      */
@@ -348,7 +362,7 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
     findStructureEntryBefore(iter_bibTeX,MapOfBibtex,lineNrStart,newCount);
 	
-	LatexParser& latexParser = LatexParser::getInstance();
+    LatexParser& latexParser = LatexParser::getInstance(); //TODO: better LP, update of all corresponding lines
 	int verbatimFormat=getFormatId("verbatim");
 	int commentFormat=getFormatId("comment");
 	bool updateSyntaxCheck=false;
@@ -364,18 +378,20 @@ bool LatexDocument::patchStructure(int linenr, int count) {
     //first pass: lex
     TokenStack oldRemainder;
     QDocumentLineHandle *lastHandle=line(linenr+count-1).handle();
-    if(lastHandle){
-        oldRemainder=lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+    if(!recheck){
+        if(lastHandle){
+            oldRemainder=lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        }
+        for (int i=linenr; i<linenr+count; i++) {
+            lexLatexLine(line(i).handle(),remainder);
+        }
+        if(oldRemainder!=remainder && linenr+count<lines()){
+            // update subsequent remainders
+            updateSubsequentRemainders(line(linenr+count).handle(),remainder);
+        }
     }
     for (int i=linenr; i<linenr+count; i++) {
-        lexLatexLine(line(i).handle(),remainder);
-    }
-    if(oldRemainder!=remainder && linenr+count<lines()){
-        // update subsequent remainders
-        updateSubsequentRemainders(line(linenr+count).handle(),remainder);
-    }
-    for (int i=linenr; i<linenr+count; i++) {
-        latexDetermineContexts(line(i).handle(),latexParser);
+        latexDetermineContexts(line(i).handle(),lp);
     }
     // force command from all line of which the actual line maybe subsequent lines (multiline commands)
     for (int i=lineNrStart; i<linenr+count; i++) {
@@ -920,6 +936,12 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 				newSection->columnNumber = cmdStart;
                 flatStructure << newSection;
 			}
+            if(latexLikeChecking) {
+                StackEnvironment env;
+                getEnv(i,env);
+
+                SynChecker.putLine(line(i).handle(),env,false);
+            }
 		} // while(findCommandWithArgs())
 		
 		if (!oldBibs.isEmpty())
@@ -1004,10 +1026,8 @@ bool LatexDocument::patchStructure(int linenr, int count) {
 		emit updateCompleter();
 
 
-    if(updateSyntaxCheck || updateLtxCommands) {
-        if(edView){
-            edView->updateLtxCommands(true);
-        }
+    if(!recheck && (updateSyntaxCheck || updateLtxCommands)) {
+            this->updateLtxCommands(true);
 	}
 
 	//update view
@@ -2599,9 +2619,8 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 		if(child){
             doc->addChild(child);
             child->setMasterDocument(doc,recheckRefs);
-			LatexEditorView *edView=child->getEditorView();
-            if(edView && recheckRefs)
-				edView->reCheckSyntax(); // redo syntax checking (in case of defined commands)
+            if(recheckRefs)
+                child->reCheckSyntax(); // redo syntax checking (in case of defined commands)
 		}
 	}
 	
@@ -2725,17 +2744,16 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 			}
 		}
 	}
-    latexParser.commandDefs=pck.commandDescriptions; // TODO:best way ?
-	if(!newCmds.isEmpty()){
+
+    if(!newCmds.isEmpty()){
 		patchLinesContaining(newCmds);
-	}
+    }
 	
     if(delayUpdate)
         return update;
 
 	if(update){
-        LatexEditorView *edView=getEditorView();
-        edView->updateLtxCommands(true);
+        updateLtxCommands(true);
 	}
     return false;
 }
@@ -2962,3 +2980,146 @@ QString LatexDocuments::findPackageByCommand(const QString command){
 }
 
 
+void LatexDocument::updateLtxCommands(bool updateAll){
+    lp.init();
+    lp.append(LatexParser::getInstance()); // append commands set in config
+    QList<LatexDocument *>listOfDocs=getListOfDocs();
+    foreach(const LatexDocument *elem,listOfDocs){
+        lp.append(elem->ltxCommands);
+    }
+
+    if(updateAll){
+        foreach(LatexDocument *elem,listOfDocs){
+            elem->setLtxCommands(lp);
+            elem->reCheckSyntax();
+        }
+        // check if other document have this doc as child as well (reused doc...)
+        LatexDocuments* docs=parent;
+        QList<LatexDocument*>lstOfAllDocs=docs->getDocuments();
+        foreach(LatexDocument* elem,lstOfAllDocs){
+            if(listOfDocs.contains(elem))
+                continue; // already handled
+            if(elem->containsChild(this)){
+                // unhandled parent/child
+                LatexParser lp;
+                lp.init();
+                lp.append(LatexParser::getInstance()); // append commands set in config
+                QList<LatexDocument *>listOfDocs=elem->getListOfDocs();
+                foreach(const LatexDocument *elem,listOfDocs){
+                    lp.append(elem->ltxCommands);
+                }
+                foreach(LatexDocument *elem,listOfDocs){
+                    elem->setLtxCommands(lp);
+                    elem->reCheckSyntax();
+                }
+            }
+        }
+    }else{
+        SynChecker.setLtxCommands(lp);
+    }
+}
+
+void LatexDocument::setLtxCommands(const LatexParser& cmds){
+     SynChecker.setLtxCommands(cmds);
+     lp=cmds;
+
+     LatexEditorView *view=getEditorView();
+     if(view){
+         view->updateReplamentList(cmds,true);
+     }
+}
+
+void LatexDocument::updateSettings()
+{
+    SynChecker.setErrFormat(syntaxErrorFormat);
+}
+void LatexDocument::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket){
+    Q_ASSERT_X(dlh!=0,"checkNextLine","empty dlh used in checkNextLine");
+    if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
+        StackEnvironment env;
+        QVariant envVar=dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+        if(envVar.isValid())
+            env=envVar.value<StackEnvironment>();
+        int index = indexOf(dlh);
+        if (index == -1) return; //deleted
+        REQUIRE(dlh->document() == this);
+        if (index + 1 >= lines()) {
+            //remove old errror marker
+            if(unclosedEnv.id!=-1){
+                unclosedEnv.id = -1;
+                int unclosedEnvIndex = indexOf(unclosedEnv.dlh);
+                if (unclosedEnvIndex >= 0 && unclosedEnv.dlh->getCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE).isValid()){
+                    StackEnvironment env;
+                    Environment newEnv;
+                    newEnv.name="normal";
+                    newEnv.id=1;
+                    env.push(newEnv);
+                    if (unclosedEnvIndex >= 1) {
+                        QDocumentLineHandle *prev = line(unclosedEnvIndex-1).handle();
+                        QVariant result=prev->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+                        if(result.isValid())
+                            env=result.value<StackEnvironment>();
+                    }
+                    SynChecker.putLine(unclosedEnv.dlh, env, true);
+                }
+            }
+            if(env.size()>1){
+                //at least one env has not been closed
+                Environment environment=env.top();
+                unclosedEnv=env.top();
+                SynChecker.markUnclosedEnv(environment);
+            }
+            return;
+        }
+        SynChecker.putLine(line(index+1).handle(), env, clearOverlay);
+    }
+    dlh->deref();
+}
+
+void LatexDocument::reCheckSyntax(int linenr, int count){
+
+    if(linenr<0 || linenr>=lineCount()) linenr=0;
+    //patchStructure(0,-1,true);
+
+    QDocumentLine line=this->line(linenr);
+    QDocumentLine prev;
+    if (linenr > 0) prev = this->line(linenr - 1);
+    int lineNrEnd = count < 0 ? lineCount() : qMin(count + linenr, lineCount());
+    for (int i=linenr; i < lineNrEnd; i++) {
+        Q_ASSERT(line.isValid());
+        StackEnvironment env;
+        getEnv(i,env);
+        SynChecker.putLine(line.handle(),env,true);
+        prev = line;
+        line = this->line(i+1);
+    }
+}
+
+QString LatexDocument::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous)
+{
+    return SynChecker.getErrorAt(dlh,pos,previous);
+}
+
+int LatexDocument::syntaxErrorFormat;
+
+void LatexDocument::getEnv(int lineNumber,StackEnvironment &env){
+    Environment newEnv;
+    newEnv.name="normal";
+    newEnv.id=1;
+    env.push(newEnv);
+    if (lineNumber > 0) {
+        QDocumentLine prev = this->line(lineNumber - 1);
+        REQUIRE(prev.isValid());
+        QVariant result=prev.getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+        if(result.isValid())
+            env=result.value<StackEnvironment>();
+    }
+}
+
+QString LatexDocument::getLastEnvName(int lineNumber){
+    StackEnvironment env;
+    getEnv(lineNumber,env);
+    if(env.isEmpty())
+        return "";
+    return env.top().name;
+}
