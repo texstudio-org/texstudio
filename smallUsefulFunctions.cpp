@@ -1972,13 +1972,17 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 
             // get commandDefinition
             CommandDescription cd=extractCommandDef(line);
-            if(package.commandDescriptions.contains(rxCom3.cap(1))){
-                CommandDescription cd_old=package.commandDescriptions.value(rxCom3.cap(1));
+            QString cmd=rxCom3.cap(1);
+            if(cmd=="\\begin"){
+                cmd=rxCom.cap();
+            }
+            if(package.commandDescriptions.contains(cmd)){
+                CommandDescription cd_old=package.commandDescriptions.value(cmd);
                 if(cd_old.args>cd.args || cd_old.optionalArgs>cd.optionalArgs){
                     cd=cd_old;
                 }
             }
-            package.commandDescriptions.insert(rxCom3.cap(1),cd);
+            package.commandDescriptions.insert(cmd,cd);
 
 
             if(keywords.contains(rxCom2.cap(2))){
@@ -2746,6 +2750,7 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
      TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
      TokenStack ts=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
      QString line=dlh->text();
+
      for(int i=0;i<tl.length();i++){
          Tokens& tk=tl[i];
 /* parse tokenlist, check commands (1. syn check)
@@ -2757,10 +2762,13 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
              break; // stop at comment start
          if(tk.type==Tokens::command || tk.type==Tokens::commandUnknown){
              QString command=line.mid(tk.start,tk.length);
-             if(lp.commandDefs.contains(command)){
+             bool beginCmd=(command=="\\begin");
+             if(lp.commandDefs.contains(command) ||beginCmd){
                 CommandDescription cd=lp.commandDefs.value(command);
                 int opts=cd.optionalArgs;
                 int args=cd.args;
+                if(beginCmd)
+                    args=qMax(args,1);
                 int optFound=0;
                 int argFound=0;
                 int startArg=-1;
@@ -2773,6 +2781,13 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
                     if(elem.level==tk.level){
                         if(Tokens::tkArg().contains(elem.type)){
                             argFound++;
+                            if(beginCmd && argFound==1 && elem.type==Tokens::braces){
+                                // special treatment for \begin ...
+                                command=command+line.mid(elem.start,elem.length);
+                                cd=lp.commandDefs.value(command,cd);
+                                opts=cd.optionalArgs;
+                                args=cd.args;
+                            }
                             if(argFound>args)
                                 break; // all arguments found, optional arguments don't count
                             if(cd.argTypes.length()>=argFound){
