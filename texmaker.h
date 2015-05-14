@@ -161,9 +161,13 @@ private:
 	QActionGroup *biblatexEntryActions;
 	QActionGroup *bibTypeActions;
 	QActionGroup *highlightLanguageActions;
-
+	QActionGroup *actgroupRootDocMode;
+	QAction *actRootDocAutomatic;
+	QAction *actRootDocExplicit;
+	QAction *actRootDocSetExplicit;
+	
 	//toolbars
-	QAction *ToggleAct, *ToggleRememberAct;
+	QAction *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
 	
 	QLabel *statusLabelMode, *statusLabelProcess;
@@ -481,7 +485,9 @@ protected slots:
 	void HelpAbout();
 	
 	void GeneralOptions();
-	void ToggleMode();
+	void setAutomaticRootDetection();
+	void setExplicitRootDocument(LatexDocument * doc);
+	void setCurrentDocAsExplicitRoot();
 	
 	void gotoNextDocument();
 	void gotoPrevDocument();
