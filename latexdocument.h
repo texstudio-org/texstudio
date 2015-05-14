@@ -157,8 +157,9 @@ public:
 	Q_INVOKABLE LatexDocument* getMasterDocument() const{
 		return masterDocument;
 	}
-	const LatexDocument* getTopMasterDocument(QSet<const LatexDocument*> *visitedDocs=0) const; 
-	Q_INVOKABLE LatexDocument* getTopMasterDocument(); 
+	const LatexDocument* getRootDocument(QSet<const LatexDocument*> *visitedDocs=0) const; 
+	Q_INVOKABLE LatexDocument* getRootDocument(); 
+	Q_INVOKABLE LatexDocument* getTopMasterDocument() {return getRootDocument();}   // DEPRECATED: only the for backward compatibility of user scripts
 	
 	Q_INVOKABLE QStringList includedFiles();
 	Q_INVOKABLE QStringList includedFilesAndParent();
