@@ -129,7 +129,7 @@ the command.</p>
 context of the current document. They are expanded at runtime:
 <table>
 <tr><th>Special Character</th><th>Expands to</th></tr>
-<tr><td><code>%</code></td><td>master filename (root) for of current document without extension</td></tr>
+<tr><td><code>%</code></td><td>filename of the root document for of current document without extension</td></tr>
 <tr><td><code>@</code></td><td>current line number</td></tr>
 <tr><td><code>?</code> followed by further characters</td><td>See the instruction at the bottom of the configuration dialog.</td></tr>
 <tr><td><code>[txs-app-dir]</code></td><td>Location of the TeXstudio executable (useful for portable settings)</td></tr>
@@ -216,7 +216,7 @@ can be deactivated in the Build section of the options.
 </p> 
 <h3>Working Directory</h3>
 <p>
-The working directory is set to the path of the master document, or to the path of the current file if there is no master document.
+The working directory is set to the path of root document.
 </p>
 <h3>Execution Context</h3>
 <p>
@@ -520,12 +520,21 @@ Remark : a summary of the latex errors and warnings is displayed before the full
 A tool tip will show more details of the mistake if you jump to a line (it is also shown if you move the mouse over the mark left from the line numbers).</p>
 <h1 id="SECTION3">4. Other features</h1>
 <h2 id="SECTION31">4.1 About documents separated in several files</h2>
-<p>TeXstudio allows you to work onto documents separated in several files.<br>
-To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TeXstudio will open it.</p>
-<p>TeXstudio now understands parent/child relations of loaded documents (1 level only !). Therefore, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
-<p>You can still define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
-If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TeXstudio.
-<br>Note : you can leave the "master" mode with the "Options" menu.</p>
+<p>LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the detection of the root document and knowledge on defined labels and commands.</p>
+
+<h3 id="sec:rootdocument">4.1.1 Root Document</h3>
+<p>The root document is the top-most file in a multi-file document. For a single-file document this is the file itself. By default, all calls to LaTeX will be performed on the root document.</p>
+<p>TeXstudio automatically detects the root document. If that does not work, you can place a magic comment <code>% !TeX root = root-filename</code> at the top of your included files.</p>
+<p>As a last resort, you may set an <i>explicit root document</i> via <code>Options -> Root Document -> Set Current Document As Explicit Root</code>. This setting takes absolute precence. All the commands of the "Tools" menu will be called on this document (to be more precise the build system will expland the placeholder <code>%</code> to the root document), no matter which document is active in the editor. Additionally, labels and usercommands which are defined in any open document, can be used for completion in any open document.</p>
+<p>In earlier versions, the <i>explicit root document</i> was somewhat misleadingly called <i>master document</i>.</p>
+
+<h3 id="sec:rootdocument">4.1.2 Loaded Documents</h3>
+<p>Obviously, TeXstudio can only use information (defined commands, labels, document hirachy, etc.) that it is aware of. We use the information in all opened files, but if a label in a multi-file document is defined in a not-loaded files, TeXstudio does not know about it and will mark it as missing in references. To remedy this, you can just open the corresponding file as well.</p>
+
+<p>More recent versions of TeXstudio have an advanced option <code>Editor -> Automatically load included files</code>. It's disabled by default for performance reasons with older systems. When you enable this option, TeXstudio will automatically load and parse all files of multi-file-documents as soon as one of the files is opened. You may have to set the magic comment <code>% !TeX root = root-filename</code> if you do not have the root document open.
+With this option enabled TeXstudio will allways know about your complete document and act accordingly when performing highlighting or completion.</p>
+
+
 <h2 id="SECTION32a">4.2 Syntax Check</h2>
 <p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
 The completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br>
@@ -1256,7 +1265,7 @@ A possible value for <i>(your Skim path)</i> is <span class="command">/Applicati
 </li>
 <li>
 <code>% !TeX root = filename</code>
-<p>Defines the master document for this file (i.e. the file which will be passed to the LaTeX compiler when building).
+<p>Defines the root document for this file (i.e. the file which will be passed to the LaTeX compiler when building). This setting override the automatic root detection in TeXstudio. In turn, it's overridden, if an <i>explict root document</i> is set at <code>Options -> Root Document</code>.</p>
 </li>
 <li>
 <code>% !TeX program = pdflatex</code>
@@ -1288,7 +1297,7 @@ Changes during an edit session will only take effect when you reopen the file.
 <p>
 <code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
 <table>
-<tr><td><code>--master</code></td><td>defines the document as master document.</td></tr>
+<tr><td><code>--master</code></td><td>defines the document as <i>explicit root document</i> (formerly called <i>master document</i>).</td></tr>
 <tr><td><code>--line xx[:cc]</code></td><td>TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
 <tr><td><code>--insert-cite citation</code></td><td>Pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
 <tr><td><code>--start-always</code></td><td>TeXstudio will start, even if another instance of it is already running. This allows using of multiple instances.</td></tr>
