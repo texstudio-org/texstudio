@@ -668,6 +668,24 @@ void QEditorTest::indentation_data(){
 		<< "}}"
 		<< "\t\thello}}\n\t\tworld\n"; //no prapagation yet
 
+	QTest::newRow("2 openings and closings per line")
+		<< "A\nB"
+		<< false << 1 << 0 << -1 << -1
+		<< "{{\nTEXT\n}}\n"
+		<< "A\n{{\n\t\tTEXT\n}}\nB";
+
+	QTest::newRow("3 openings and closings per line")
+		<< "A\nB"
+		<< false << 1 << 0 << -1 << -1
+		<< "{{{\nTEXT\n}}}\n"
+		<< "A\n{{{\n\t\t\tTEXT\n}}}\nB";
+	
+	QTest::newRow("multiple closings with unindent on a line")
+		<< "A\nB"
+		<< false << 1 << 0 << -1 << -1
+		<< "\\cmd{\\begin{env}\nTEXT\n\\end{env}}\nMORE\n"
+		<< "\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
+
 	QTest::newRow("pasting non-indented text with newline at end weak")
 		<< "\tfoo\n\tbar\n"
 		<< true << 1 << 0 << -1 << -1
@@ -758,6 +776,10 @@ void QEditorTest::indentation(){
 	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col,anchorLine,anchorCol);
 	editor->insertText(c, insert);
+
+	QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
+	QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
+	QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
 	QEQUAL(editor->document()->text(), result);
 }
 
