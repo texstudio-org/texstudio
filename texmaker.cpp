@@ -2939,8 +2939,8 @@ Session Texmaker::getCurrentSession() {
         if(!f.fileName.isEmpty())
             s.addFile(f);
 	}
-	s.setMasterFile(documents.singleMode()?"":documents.masterDocument->getFileName());
-	s.setCurrentFile(currentEditorView()?currentEditor()->fileName():"");
+	s.setMasterFile(documents.masterDocument ? documents.masterDocument->getFileName() : "");
+	s.setCurrentFile(currentEditorView() ? currentEditor()->fileName() : "");
 
 	s.setBookmarks(bookmarks->getBookmarks());
 #ifndef NO_POPPLER_PREVIEW
