@@ -1458,10 +1458,10 @@ void Texmaker::NewDocumentStatus() {
 	}
 	// child ?
 	LatexDocument *doc=edView->document;
-	LatexDocument *masterDoc=doc->getTopMasterDocument();
+	LatexDocument *rootDoc=doc->getRootDocument();
 	QString tooltip=QDir::toNativeSeparators(ed->fileName());
-	if(masterDoc!=doc){
-		tooltip+=tr("\nincluded document in %1").arg(masterDoc->getName());
+	if(rootDoc!=doc){
+		tooltip+=tr("\nincluded document in %1").arg(rootDoc->getName());
 	}
 	EditorTabs->setTabToolTip(index, tooltip);
 	// TODO: This is probably called way too often.
@@ -1816,10 +1816,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	}
 	if (!bibTeXmodified)
 		documents.bibTeXFilesModified=false; //loading a file can change the list of included bib files, but we won't consider that as a modification of them, because then they don't have to be recompiled
-	LatexDocument* master = edit->document->getTopMasterDocument();
-	if (master) foreach (const FileNamePair& fnp, edit->document->mentionedBibTeXFiles().values()) {
+	LatexDocument* rootDoc = edit->document->getRootDocument();
+	if (rootDoc) foreach (const FileNamePair& fnp, edit->document->mentionedBibTeXFiles().values()) {
 		Q_ASSERT(!fnp.absolute.isEmpty());
-		master->lastCompiledBibTeXFiles.insert(fnp.absolute);
+		rootDoc->lastCompiledBibTeXFiles.insert(fnp.absolute);
 	}
 	
 	
@@ -2939,8 +2939,8 @@ Session Texmaker::getCurrentSession() {
         if(!f.fileName.isEmpty())
             s.addFile(f);
 	}
-	s.setMasterFile(documents.singleMode()?"":documents.masterDocument->getFileName());
-	s.setCurrentFile(currentEditorView()?currentEditor()->fileName():"");
+	s.setMasterFile(documents.masterDocument ? documents.masterDocument->getFileName() : "");
+	s.setCurrentFile(currentEditorView() ? currentEditor()->fileName() : "");
 
 	s.setBookmarks(bookmarks->getBookmarks());
 #ifndef NO_POPPLER_PREVIEW
@@ -5204,7 +5204,7 @@ void Texmaker::addMagicRoot() {
     if (currentEditorView()) {
         LatexDocument *doc=currentEditorView()->getDocument();
         if(!doc) return;
-        QString name=doc->getTopMasterDocument()->getFileName();
+        QString name=doc->getRootDocument()->getFileName();
         name=getRelativeFileName(name,doc->getFileName(),true);
         currentEditorView()->document->updateMagicComment("root", name, true);
     }
@@ -6551,7 +6551,7 @@ void Texmaker::masterDocumentChanged(LatexDocument * doc){
 	if (documents.singleMode()){
 		outputView->resetMessagesAndLog();
 	} else {
-		configManager.addRecentFile(documents.masterDocument->getFileName(),true);
+		configManager.addRecentFile(documents.masterDocument->getFileName(), true);
 		int pos=EditorTabs->currentIndex();
 		EditorTabs->moveTab(pos,0);
 	}
@@ -7215,7 +7215,7 @@ void Texmaker::structureContextMenuCloseDocument(){
 void Texmaker::structureContextMenuSwitchMasterDocument(){
 	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
 	if (!document) return;
-	if (document == documents.masterDocument) setExplicitRootDocument(0);
+	if (document == documents.masterDocument) setAutomaticRootDetection();
 	else setExplicitRootDocument(document);
 }
 
@@ -8496,7 +8496,7 @@ void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,La
 	if(documents.masterDocument)
 		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
 	if(doc->getMasterDocument())
-		curPaths << ensureTrailingDirSeparator(doc->getTopMasterDocument()->getFileInfo().absolutePath());
+		curPaths << ensureTrailingDirSeparator(doc->getRootDocument()->getFileInfo().absolutePath());
 	curPaths << ensureTrailingDirSeparator(doc->getFileInfo().absolutePath());
 	if (defaultExt == "bib") {
 		curPaths << configManager.additionalBibPaths.split(getPathListSeparator());
