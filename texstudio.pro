@@ -628,32 +628,6 @@ CONFIG(team):!CONFIG(build_pass) {
 }
 OTHER_FILES += universalinputdialog.*
 
-# add SVN revision (deprecated)
-exists(./.svn/entries)|exists(./.svn/wc.db){
-  win32: {
-    QMAKE_PRE_LINK += \"$${PWD}/svn_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
-    LIBS += svn_revision.o
-  } else: {
-    svn_revision.target = svn_revision.cpp
-    exists(./.svn/wc.db){
-      svn_revision.depends = .svn/entries .svn/wc.db  # storage of information changed from entries to wc.db in SVN 1.7, entries is kept for compatibility with earlier versions
-    }else{
-      svn_revision.depends = .svn/entries
-    }
-    svn_revision.commands = echo \"const char* TEXSTUDIO_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
-    QMAKE_EXTRA_TARGETS += svn_revision
-    !exists(./svn_revision.cpp): message("svn_revision.cpp was not found and will be created. Don't worry about repeated warnings.")
-    SOURCES += svn_revision.cpp
-  }
-} else {
-  !exists(./svn_revision.cpp){
-    win32: system(echo const char * TEXSTUDIO_SVN_VERSION = 0; > svn_revision.cpp)
-    else: system(echo \"const char * TEXSTUDIO_SVN_VERSION = 0;\" > svn_revision.cpp)
-  }
-  SOURCES += svn_revision.cpp
-
-}
-
 # add mercurial revision
 exists(./.hg2) | exists(./.hg) {
   win32: {
@@ -661,7 +635,6 @@ exists(./.hg2) | exists(./.hg) {
     QMAKE_PRE_LINK += \"$${PWD}/hg_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
     LIBS += hg_revision.o
   } else {
-    # Just as a fall back. TODO: implement this analogous to the svn_revision an linux and mac
     QMAKE_PRE_LINK += \"$${PWD}/hg_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\"
     LIBS += hg_revision.o
   }
