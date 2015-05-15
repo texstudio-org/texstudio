@@ -362,9 +362,6 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
     findStructureEntryBefore(iter_bibTeX,MapOfBibtex,lineNrStart,newCount);
 	
-    LatexParser& latexParser = LatexParser::getInstance();
-	int verbatimFormat=getFormatId("verbatim");
-	int commentFormat=getFormatId("comment");
 	bool updateSyntaxCheck=false;
 	
 	QList<StructureEntry*> flatStructure;
