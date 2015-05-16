@@ -451,10 +451,9 @@ QString BuildManager::findFileInPath(QString fileName) {
 	delete myProcess;
 	QString path(res);
 #else*/
-	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
-	int i=env.indexOf(QRegExp("^PATH=.*", Qt::CaseInsensitive));
-	if (i==-1) return "";
-	QString path=env[i].mid(5); //skip path=
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QString path = env.value("PATH");
+	if (path.isNull()) return "";
 //#endif
 #ifdef Q_OS_WIN32
 	if (!fileName.contains('.')) fileName+=".exe";
@@ -564,10 +563,10 @@ QString findGhostscriptDLL() { //called dll, may also find an exe
 			}
 		}
 	//environment
-	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
-	int i=env.indexOf(QRegExp("^GS_DLL=.*", Qt::CaseInsensitive));
-	if (i>-1)
-		return env[i].mid(7); //skip gs_dll=
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	if (env.contains("GS_DLL")) {
+		return env.value("GS_DLL");
+	}
 	//file search
 	foreach (const QString& p, getProgramFilesPaths())
 		if (QDir(p+"gs").exists())
