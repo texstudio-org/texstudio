@@ -2578,10 +2578,22 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
     present.dlh=dlh;
     present.argLevel=0;
     int level=0;
+    QChar verbatimSymbol;
     const QString specialChars="\\{[()]}$";
     int i=0;
     for(;i<s.length();i++){
         QChar c=s.at(i);
+        if(!verbatimSymbol.isNull()){
+            if(c==verbatimSymbol){
+                present.length=i-present.start;
+                present.level=level;
+                lexed.append(present);
+                present.type=Tokens::none;
+                verbatimSymbol=QChar();
+            }else{
+                continue;
+            }
+        }
         if(c=='%' && present.type!=Tokens::command){
             if(present.type!=Tokens::none){
                 present.length=i-present.start;
@@ -2598,13 +2610,22 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
         }
         if(present.type==Tokens::command&& present.start==i-1 && c.isSymbol()){
             // handle \$ etc
-            present.length=i-present.start;
-            present.level=level;
             lexed.append(present);
             present.type=Tokens::none;
             continue;
         }
         if(specialChars.contains(c) || c.isSpace() || c.isPunct() || c.isSymbol()){
+            // special treatment for \verb| etc
+            if(s.mid(present.start,i-present.start)=="\\verb"){
+                present.type=Tokens::verbatimStart;
+                verbatimSymbol=c;
+                present.length=i-present.start;
+                present.level=level;
+                lexed.append(present);
+                present.type=Tokens::verbatim;
+                present.start=i+1;
+                continue;
+            }
             //close token
             if(present.type!=Tokens::none){
                 present.length=i-present.start;
