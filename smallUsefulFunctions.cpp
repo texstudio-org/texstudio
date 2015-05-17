@@ -2615,8 +2615,10 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
             continue;
         }
         if(specialChars.contains(c) || c.isSpace() || c.isPunct() || c.isSymbol()){
+            if(c=='*' && present.type == Tokens::command)
+                continue; // include * into command e.g. \verb*
             // special treatment for \verb| etc
-            if(s.mid(present.start,i-present.start)=="\\verb"){
+            if(s.mid(present.start,i-present.start)=="\\verb" || s.mid(present.start,i-present.start)=="\\verb*"){
                 present.type=Tokens::verbatimStart;
                 verbatimSymbol=c;
                 present.length=i-present.start;
