@@ -812,6 +812,13 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("mixed") << ">([{}]))<" << 0 << 2 << "(" << ">(()[{}]))<"; //TODO: THIS IS A BUG!
 	QTest::newRow("mixed") << ">({[]}))<" << 0 << 2 << "(" << ">((){[]}))<";//TODO: THIS IS A BUG!
 	QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "((((((())))))";
+	QTest::newRow("following") << " ()" << 0 << 0 << "(" << "() ()";
+	QTest::newRow("following2") << " \\(\\)" << 0 << 0 << "\\(" << "\\(\\) \\(\\)";
+	QTest::newRow("following2withExistingMismatch") << " {\\(\\)" << 0 << 0 << "\\(" << "\\(\\) {\\(\\)";
+	QTest::newRow("mismatch") << "}" << 0 << 0 << "(" << "()}";
+	QTest::newRow("mismatch2") << "}" << 0 << 0 << "\\(" << "\\(\\)}";
+	QTest::newRow("inner") << "(..)" << 0 << 2 << "(" << "(.().)";
+	QTest::newRow("inner2") << "\\(..\\)" << 0 << 3 << "\\(" << "\\(.\\(\\).\\)";
 }
 
 void QEditorTest::autoClosing(){
