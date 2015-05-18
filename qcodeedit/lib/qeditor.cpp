@@ -4829,22 +4829,43 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		autoComplete = false;
 		if (!autoBracket.isEmpty()) {
 			QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(c);
-			QDocumentCursor cm;
+			QDocumentCursor matchingCloseBracket;
 			for (int i=0; i < matches.size(); i++) {
 				if (matches[i][0].selectedText() == writtenBracket) {
-					cm = matches[i][1];
+					matchingCloseBracket = matches[i][1];
 					break;
 				} else if (matches[i][1].selectedText() == writtenBracket) {
-					cm = matches[i][0];
+					matchingCloseBracket = matches[i][0];
 					break;
 				}
 			}
-			autoComplete = cm.isNull()
-					 || cm.selectedText() != autoBracket //bracket mismatch
+			
+			autoComplete = matchingCloseBracket.isNull()
+					 || matchingCloseBracket.selectedText() != autoBracket //bracket mismatch
 					 || (!previousBracketMatch.isNull() &&
-					     cm.anchorLineNumber() == cm.lineNumber() &&
-
-					     cm.selectionEnd() == previousBracketMatch.selectionEnd());
+					     matchingCloseBracket.anchorLineNumber() == matchingCloseBracket.lineNumber() &&
+					     matchingCloseBracket.selectionEnd() == previousBracketMatch.selectionEnd());
+			if (!autoComplete && matchingCloseBracket.isValid()) {
+				// inserting a bracket may steal the closing bracket from a following pair.
+				// If that's the case, we have a matching close for the new insert, but a unmatched open bracket
+				// of the same type between the newly inserted bracket and its now-matching closing bracket.
+				// Then, auto-insertion of a closing bracket is required as well.
+				QDocumentCursor mismatch = languageDefinition()->getNextMismatch(c);
+				while (mismatch.isValid()
+					   && (mismatch.lineNumber() < matchingCloseBracket.lineNumber() 
+					       || (mismatch.lineNumber() == matchingCloseBracket.lineNumber() && mismatch.columnNumber() < matchingCloseBracket.columnNumber()))
+				){
+					if (writtenBracket.endsWith(mismatch.selectedText())) {
+						// subsequent opening bracket found, that has now a mismatch
+						// note: endsWith is a workaround, because in "\( \( \)" the unmatched bracket is detected as "("
+						autoComplete = true;
+						break;
+					}
+					QDocumentCursor cEnd = mismatch.selectionEnd();
+					cEnd.movePosition(1);
+					mismatch = languageDefinition()->getNextMismatch(cEnd);
+				}
+			}
 		}
 
 		if (autoComplete) {
