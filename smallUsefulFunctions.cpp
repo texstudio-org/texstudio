@@ -2574,11 +2574,17 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
     dlh->lockForWrite();
     QString s=dlh->text();
     Tokens present;
+    Tokens previous;
     present.type=Tokens::none;
     present.dlh=dlh;
     present.argLevel=0;
     int level=0;
     QChar verbatimSymbol;
+    bool verbatim=false;
+    if(!stack.isEmpty() && stack.top().type==Tokens::verbatim){
+        verbatim=true;
+        present.subtype=Tokens::verbatim; // in verbatim env, add all Tokens as subtype verbatim
+    }
     const QString specialChars="\\{[()]}$";
     int i=0;
     for(;i<s.length();i++){
@@ -2594,7 +2600,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
                 continue;
             }
         }
-        if(c=='%' && present.type!=Tokens::command){
+        if(c=='%' && present.type!=Tokens::command && !verbatim){
             if(present.type!=Tokens::none){
                 present.length=i-present.start;
                 present.level=level;
@@ -2604,11 +2610,12 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
             present.level=0;
             present.length=s.length()-i;
             lexed.append(present);
+            previous=present;
             level=1;
             present.type=Tokens::none;
             continue;
         }
-        if(present.type==Tokens::command&& present.start==i-1 && c.isSymbol()){
+        if(present.type==Tokens::command&& present.start==i-1 && c.isSymbol() && !verbatim){
             // handle \$ etc
             lexed.append(present);
             present.type=Tokens::none;
@@ -2618,12 +2625,12 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
             if(c=='*' && present.type == Tokens::command)
                 continue; // include * into command e.g. \verb*
             // special treatment for \verb| etc
-            if(s.mid(present.start,i-present.start)=="\\verb" || s.mid(present.start,i-present.start)=="\\verb*"){
-                present.type=Tokens::verbatimStart;
+            if((s.mid(present.start,i-present.start)=="\\verb" || s.mid(present.start,i-present.start)=="\\verb*")&&!verbatim){
                 verbatimSymbol=c;
                 present.length=i-present.start;
                 present.level=level;
                 lexed.append(present);
+                previous=present;
                 present.type=Tokens::verbatim;
                 present.start=i+1;
                 continue;
@@ -2632,8 +2639,36 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
             if(present.type!=Tokens::none){
                 present.length=i-present.start;
                 present.level=level;
+                if(previous.type==Tokens::command){
+                    QString cmd=s.mid(previous.start,previous.length);
+                    QString env=s.mid(present.start,present.length);
+                    if(cmd=="\\begin" && env=="verbatim"){
+                        Tokens zw=stack.pop(); //pop open brace
+                        Tokens zw2=present;
+                        zw2.type=Tokens::verbatim;
+                        stack.push(zw2);
+                        stack.push(zw); // push to allow normal handling
+                        // TODO: wrong in case of wrong closing !!!!
+                        verbatim=true;
+                    }
+                    if(cmd=="\\end" && env=="verbatim" && stack.size()>0 && stack.top().type==Tokens::verbatim){
+                        stack.pop();
+                        verbatim=false;
+                        present.subtype=Tokens::none;
+                        lexed.last().subtype=Tokens::none;
+                        stack.push(lexed.last());
+                        level++;
+                        present.level++;
+                        if(lexed.size()>1){
+                            lexed[lexed.size()-2].subtype=Tokens::none; // command
+                        }
+                    }
+                }
                 lexed.append(present);
+                previous=present;
                 present.type=Tokens::none;
+                if(verbatim)
+                    present.subtype=Tokens::verbatim;
             }
         }else{
             if(present.type==Tokens::none){
@@ -2657,9 +2692,11 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
             present.type=Tokens::TokenType(openCharacters.value(c));
             present.length=1;
             present.level=level;
-            level++;
             lexed.append(present);
-            stack.push(present);
+            if(!verbatim){ // hierarchy detection with verbatim ????? how to detect \end{verbatim} ?
+                level++;
+                stack.push(present);
+            }
             present.type=Tokens::none;
         }
         if(c=='$')
@@ -2688,6 +2725,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
                         level--;
                         present.level=level;
                         lexed.append(present);
+                        previous=present;
                     }
                     present.type=Tokens::none;
                 }else{
@@ -2696,6 +2734,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
                     level--;
                     present.level=level;
                     lexed.append(present);
+                    previous=present;
                     present.type=Tokens::none;
                 }
             }
@@ -2705,6 +2744,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
         present.length=i-present.start;
         present.level=level;
         lexed.append(present);
+        previous=present;
     }
     if(!stack.isEmpty()){
         // set length for open...
@@ -2781,6 +2821,8 @@ void latexDetermineContexts(QDocumentLineHandle *dlh,const LatexParser &lp){
  * lex otpions (key/val, comma separation,words,single arg,label etc)
  * => reclassification of arguments
  */
+         if(tk.subtype==Tokens::verbatim)
+             continue; //ignore Tokens in verbatim
          if(tk.type==Tokens::comment)
              break; // stop at comment start
          if(tk.type==Tokens::command || tk.type==Tokens::commandUnknown){

@@ -1548,7 +1548,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
         previous->unlock();
         if(!remainder.isEmpty()){
             QDocumentLineHandle *lh=remainder.top().dlh;
-            lineNrStart=lh->document()->indexOf(lh);
+            if(remainder.top().subtype!=Tokens::verbatim){
+                lineNrStart=lh->document()->indexOf(lh);
+            }
         }
     }
 
@@ -1639,7 +1641,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
             if(ts.size()>1){
                 argToken=ts.value(ts.size()-2);
             }
-
+            if(tk.subtype==Tokens::verbatim)
+                continue;
             if(tk.type==Tokens::comment)
                 break;
             if (latexLikeChecking) {
