@@ -801,17 +801,22 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("-\\begin{verbatim}-") << "><" << 0 << 1 << "\\begin{verbatim}" << ">\\begin{verbatim}<"; //too
 	QTest::newRow("existing )") << ">)<" << 0 << 1 << "(" << ">()<";
 	QTest::newRow("existing 2-)") << ">))<" << 0 << 1 << "(" << ">())<";
-	//QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">(()<"; disabled to prevent clipboard completion
-	QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">((<"; //disabled to prevent clipboard completion
+	QTest::newRow("inserting-multiple-brackets") << "><" << 0 << 1 << "((" << ">((<";  // currently not supported - what would one expect?
 	QTest::newRow("counting 1") << ">())<" << 0 << 1 << "(" << ">(())<";
 	QTest::newRow("counting 2") << ">((())))<" << 0 << 1 << "(" << ">(((())))<";
 	QTest::newRow("counting 3") << ">((()()))())<" << 0 << 1 << "(" << ">(((()()))())<";
 	QTest::newRow("multi line search") << ">\n\n\\]<" << 0 << 1 << "\\[" << ">\\[\n\n\\]<";
-	QTest::newRow("mixed") << ">[{}])<" << 0 << 1 << "(" << ">([{}])<";
-//	QTest::newRow("mixed") << ">([{}]))<" << 0 << 2 << "(" << ">(([{}]))<";
-	QTest::newRow("mixed") << ">([{}]))<" << 0 << 2 << "(" << ">(()[{}]))<"; //TODO: THIS IS A BUG!
-	QTest::newRow("mixed") << ">({[]}))<" << 0 << 2 << "(" << ">((){[]}))<";//TODO: THIS IS A BUG!
+	QTest::newRow("insert-match-to-close-mixed") << ">[{}])<" << 0 << 1 << "(" << ">([{}])<";
+	QTest::newRow("insert-match-to-close-mixed-with-same") << ">([{}]))<" << 0 << 1 << "(" << ">(([{}]))<";
+	QTest::newRow("insert-match-to-close-mixed-with-same2") << ">([{}]))<" << 0 << 2 << "(" << ">(([{}]))<";
 	QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "((((((())))))";
+	QTest::newRow("following") << " ()" << 0 << 0 << "(" << "() ()";
+	QTest::newRow("following2") << " \\(\\)" << 0 << 0 << "\\(" << "\\(\\) \\(\\)";
+	QTest::newRow("following2withExistingMismatch") << " {\\(\\)" << 0 << 0 << "\\(" << "\\(\\) {\\(\\)";
+	QTest::newRow("mismatch") << "}" << 0 << 0 << "(" << "()}";
+	QTest::newRow("mismatch2") << "}" << 0 << 0 << "\\(" << "\\(\\)}";
+	QTest::newRow("inner") << "(..)" << 0 << 2 << "(" << "(.().)";
+	QTest::newRow("inner2") << "\\(..\\)" << 0 << 3 << "\\(" << "\\(.\\(\\).\\)";
 }
 
 void QEditorTest::autoClosing(){
@@ -821,6 +826,8 @@ void QEditorTest::autoClosing(){
 	QFETCH(QString, insert);
 	QFETCH(QString, result);
 
+	QEXPECT_FAIL("insert-match-to-close-mixed-with-same2", "currently not properly supported", Continue);
+	
 	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
 	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col);
