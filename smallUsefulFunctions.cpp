@@ -2754,7 +2754,7 @@ TokenList lexLatexLine(QDocumentLineHandle *dlh,TokenStack &stack){
             int j=lexed.length()-1;
             while(j>=0 && lexed.at(j).start>stack[l].start)
                 j--;
-            if(j>=0 && lexed.at(j).start==stack[l].start){
+            if(j>=0 && lexed.at(j).start==stack[l].start && Tokens::tkOpen().contains(lexed.at(j).type)){
                 lexed[j].length=i-stack[l].start+1;
                 stack[l].length=i-stack[l].start+1;
             }
