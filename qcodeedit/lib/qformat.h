@@ -185,4 +185,35 @@ struct QFormatRange
 
 Q_DECLARE_TYPEINFO(QFormatRange, Q_PRIMITIVE_TYPE);
 
+
+class QLineFormatAnalyzer {
+	/*!
+	 * Utility class for fast checking if certain formats are contained in a line
+	 */
+public:
+	QLineFormatAnalyzer(const QVector<int> &formats) : m_formats(formats) {
+		for (int col=0; col<m_formats.length(); col++) {
+			if (!firstColForFormat.contains(m_formats[col])) {
+				firstColForFormat.insert(m_formats[col], col);
+			}
+		}
+	}
+	
+	/*! returns the column in which a format occurs or -1 */
+	inline int firstCol(int format) {return firstColForFormat.value(format, -1);}
+	
+	/*! returns the length of a format counting from startCol */
+	int formatLength(int startCol) {
+		int fmt = m_formats[startCol];
+		int endCol = startCol+1;
+		while (endCol < m_formats.length() && m_formats[endCol] == fmt) endCol++;
+		return endCol - startCol;
+		
+	}
+	
+private:
+	const QVector<int> &m_formats;
+	QHash<int, int> firstColForFormat;
+};
+
 #endif
