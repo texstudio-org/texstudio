@@ -402,7 +402,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
         if(!dlh)
             continue; //non-existing line ...
         TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
-        QVector<int> fmts=line(i).getFormats();
+        QLineFormatAnalyzer lineFormatAnaylzer(line(i).getFormats());
 		
         /*for(int j=0;j<curLine.length() && j < fmts.size();j++){
 			if(fmts[j]==verbatimFormat || (fmts[j]==commentFormat && !parent->showCommentedElementsInStructure) ){
@@ -447,32 +447,32 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			oldBibs.append(it.value().relative);
 			mMentionedBibTeXFiles.erase(it);
 		}
-		
-		//find entries prior to changed lines
-		
 
-        //// TODO marker
-		QString s=curLine;
-        int l=s.indexOf("%todo",0,Qt::CaseInsensitive);
-		if (l>=0) {
-			s=s.mid(l+6,s.length());
-			bool reuse=false;
-			StructureEntry *newTodo;
-			if(MapOfTodo.contains(dlh)){
-				newTodo=MapOfTodo.value(dlh);
-				//parent->add(newTodo);
-				newTodo->type=StructureEntry::SE_TODO;
-				MapOfTodo.remove(dlh,newTodo);
-				reuse=true;
-			}else{
-				newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
+		int col;
+		//// TODO marker
+		col = lineFormatAnaylzer.firstCol(getFormatId("commentTodo"));
+		if (col >= 0) {
+			QString text = curLine.mid(col, lineFormatAnaylzer.formatLength(col));
+			if (text.startsWith("%")) {  // other todos like \todo are handled by the tokenizer below.
+				bool reuse=false;
+				StructureEntry *newTodo;
+				if(MapOfTodo.contains(dlh)){
+					newTodo=MapOfTodo.value(dlh);
+					//parent->add(newTodo);
+					newTodo->type=StructureEntry::SE_TODO;
+					MapOfTodo.remove(dlh,newTodo);
+					reuse=true;
+				}else{
+					newTodo=new StructureEntry(this, StructureEntry::SE_TODO);
+				}
+				newTodo->title=text.mid(1).trimmed();
+				newTodo->setLine(line(i).handle(), i);
+				newTodo->parent=todoList;
+				if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
+				iter_todo.insert(newTodo);
 			}
-			newTodo->title=s;
-			newTodo->setLine(line(i).handle(), i);
-			newTodo->parent=todoList;
-			if(!reuse) emit addElement(todoList,todoList->children.size()); //todo: why here but not in label?
-			iter_todo.insert(newTodo);
 		}
+		
 		//// parameter comment
 		if (curLine.startsWith("%&")) {
 			int start = curLine.indexOf("-job-name=");
@@ -495,6 +495,8 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 				}
 			}
 		}
+
+		QString s=curLine;
 		//// magic comment
 		s=curLine;
 		l=s.indexOf("% !TeX",0,Qt::CaseInsensitive);

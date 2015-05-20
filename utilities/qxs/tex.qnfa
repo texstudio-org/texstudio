@@ -81,7 +81,7 @@ environments in smallUsefulFunctions.cpp)
 	<!-- ========================= COMMAND ====================== -->
 
 	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
-		<start>%TODO</start>
+		<start>%$s?[A-Z][A-Z_\-]+</start>
 		<start>%todo</start>
 		<stop exclusive="false">\n</stop>
 	</context>
