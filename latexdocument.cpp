@@ -496,25 +496,23 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			}
 		}
 
-		QString s=curLine;
 		//// magic comment
-		s=curLine;
-		l=s.indexOf("% !TeX",0,Qt::CaseInsensitive);
-		if (l>=0) {
-			addMagicComment(s.mid(l+6).trimmed(), i, MapOfMagicComments, iter_magicComment);
-		}
-		l=s.indexOf("% !BIB",0,Qt::CaseInsensitive);
-		if (l>=0) {
-			// workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
-			s=s.mid(l+6).trimmed();
-			QString name;
-			QString val;
-			splitMagicComment(s, name, val);
-			if ((name=="TS-program" || name=="program") && (val=="biber" || val=="bibtex")) {
-				addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, MapOfMagicComments, iter_magicComment);
+		col = lineFormatAnaylzer.firstCol(getFormatId("magicComment"));
+		if (col >= 0) {
+			QString text = curLine.mid(col);
+			if (text.startsWith("% !TeX", Qt::CaseInsensitive)) {
+				addMagicComment(text.mid(6).trimmed(), i, MapOfMagicComments, iter_magicComment);
+			} else if (text.startsWith("% !BIB", Qt::CaseInsensitive)) {
+				// workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
+				text = text.mid(6).trimmed();
+				QString name;
+				QString val;
+				splitMagicComment(text, name, val);
+				if ((name=="TS-program" || name=="program") && (val=="biber" || val=="bibtex")) {
+					addMagicComment(QString("TXS-program:bibliography = txs:///%1").arg(val), i, MapOfMagicComments, iter_magicComment);
+				}
 			}
 		}
-
 
 		// check also in command argument, als references might be put there as well...
 		//// Appendix keyword
