@@ -2546,7 +2546,7 @@ repeatAfterFileSavingFailed:
 		switch (QMessageBox::warning(this, TEXSTUDIO,
 																 tr("The document \"%1\" contains unsaved work. "
 																		"Do you want to save it before closing?").arg(currentEditorView()->displayName()),
-																 tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
+																 tr("Save and Close"), tr("Close without Saving"), tr("Cancel"),
 																 0,
 																 2)) {
 		case 0:
@@ -2600,7 +2600,7 @@ repeatAfterFileSavingFailed:
 			switch (QMessageBox::warning(this, TEXSTUDIO,
 										 tr("The document \"%1\" contains unsaved work. "
 												"Do you want to save it before closing?").arg(edView->displayName()),
-										 tr("Save and Close"), tr("Don't Save and Close"), tr("Cancel"),
+										 tr("Save and Close"), tr("Close without Saving"), tr("Cancel"),
 										 0,
 										 2)) {
 			case 0:
