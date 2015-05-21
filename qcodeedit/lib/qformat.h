@@ -192,7 +192,7 @@ class QLineFormatAnalyzer {
 	 */
 public:
 	QLineFormatAnalyzer(const QVector<int> &formats) : m_formats(formats) {
-		for (int col=0; col<m_formats.length(); col++) {
+        for (int col=0; col<m_formats.size(); col++) {
 			if (!firstColForFormat.contains(m_formats[col])) {
 				firstColForFormat.insert(m_formats[col], col);
 			}
@@ -206,7 +206,7 @@ public:
 	int formatLength(int startCol) {
 		int fmt = m_formats[startCol];
 		int endCol = startCol+1;
-		while (endCol < m_formats.length() && m_formats[endCol] == fmt) endCol++;
+        while (endCol < m_formats.size() && m_formats[endCol] == fmt) endCol++;
 		return endCol - startCol;
 		
 	}
