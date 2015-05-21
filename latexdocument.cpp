@@ -1093,6 +1093,10 @@ QString LatexDocument::getTemporaryFileName() const{
 	return temporaryFileName;
 }
 
+QFileInfo LatexDocument::getTemporaryFileInfo() const {
+	return QFileInfo(temporaryFileName);
+}
+
 int LatexDocument::countLabels(const QString& name){
 	int result=0;
 	foreach(const LatexDocument *elem,getListOfDocs()){
@@ -2075,44 +2079,38 @@ LatexDocument* LatexDocuments::findDocument(const QString& fileName, bool checkT
 		LatexDocument* temp = findDocument(fileName, false);
 		if (temp) return temp;
 	}
-	QString fnorm = fileName;
-	fnorm.replace("/",QDir::separator()).replace("\\",QDir::separator());
-	//fast check for absolute file names
-#ifdef Q_OS_WIN32
-	Qt::CaseSensitivity cs = Qt::CaseInsensitive;
-#else
-	Qt::CaseSensitivity cs = Qt::CaseSensitive;
-#endif
-    QList<LatexDocument*> docs=getDocuments();
-    foreach (LatexDocument* document, docs)
-		if (document->getFileName().compare(fnorm,cs)==0)
-			return document;
-	
-	if (checkTemporaryNames)
-		foreach (LatexDocument* document, documents)
-			if (document->getFileName().isEmpty() &&
-					document->getTemporaryFileName().compare(fnorm,cs)==0)
+
+	QFileInfo fi(fileName);
+	if (fi.exists()) {
+		foreach (LatexDocument* document, documents) {
+			if (document->getFileInfo() == fi) {
 				return document;
+			}
+		}
+		if (checkTemporaryNames) {
+			foreach (LatexDocument* document, documents) {
+				if (document->getFileName().isEmpty() && document->getTemporaryFileInfo() == fi) {
+					return document;
+				}
+			}
+		}
+	}
 	
 	//check for relative file names
-	QFileInfo fi(getAbsoluteFilePath(fileName));
+	fi.setFile(getAbsoluteFilePath(fileName));
 	if (!fi.exists()) {
-		if (QFileInfo(getAbsoluteFilePath(fileName),".tex").exists())
-			fi=QFileInfo(getAbsoluteFilePath(fileName),".tex");
-		else if (QFileInfo(getAbsoluteFilePath(fileName),".bib").exists())
-			fi=QFileInfo(getAbsoluteFilePath(fileName),".bib");
-		else return 0;
+		fi.setFile(getAbsoluteFilePath(fileName), ".tex");
 	}
-	//check for same file infos (is not reliable in qt < 4.5, because they just compare absoluteFilePath)
-    foreach (LatexDocument* document, docs)
-		if (document->getFileInfo().exists() && document->getFileInfo()==fi)
-			return document;
-	
-	//check for canonical file path (unnecessary in qt 4.5)
-	fnorm = fi.canonicalFilePath();
-    foreach (LatexDocument* document, docs)
-		if (document->getFileInfo().canonicalFilePath().compare(fnorm,cs)==0)
-			return document;
+	if (!fi.exists()) {
+		fi.setFile(getAbsoluteFilePath(fileName), ".bib");
+	}
+	if (fi.exists()) {
+		foreach (LatexDocument* document, documents) {
+			if (document->getFileInfo().exists() && document->getFileInfo()==fi) {
+				return document;
+			}
+		}
+	}
 	
 	return 0;
 }

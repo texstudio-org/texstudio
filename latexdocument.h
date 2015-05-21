@@ -148,6 +148,7 @@ public:
 	
 	void setTemporaryFileName(const QString& fileName);
 	Q_INVOKABLE QString getTemporaryFileName() const;
+	Q_INVOKABLE QFileInfo getTemporaryFileInfo() const;
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &additionalSearchPaths=QStringList()) const;
 	
     void setMasterDocument(LatexDocument* doc, bool recheck=true);
