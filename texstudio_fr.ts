@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -436,7 +436,7 @@
     <message>
         <location filename="buildmanager.cpp" line="+67"/>
         <location line="+21"/>
-        <location line="+1469"/>
+        <location line="+1468"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;introuvable&gt;</translation>
     </message>
@@ -453,7 +453,7 @@
         <translation type="obsolete">Compilation rapide</translation>
     </message>
     <message>
-        <location line="-1300"/>
+        <location line="-1299"/>
         <source>Default Compiler</source>
         <translation>Compilation par défaut</translation>
     </message>
@@ -513,7 +513,7 @@
         <translation type="obsolete">La commande a été développée en %1 niveaux. Voulez-vous continuer le développement « %2 » ?</translation>
     </message>
     <message>
-        <location line="+424"/>
+        <location line="+423"/>
         <location line="+1"/>
         <source>Command %1 not defined</source>
         <translation>Commande %1 non définie</translation>
@@ -662,7 +662,7 @@
         <translation type="obsolete">Utiliser l&apos;afficheur PDF externe</translation>
     </message>
     <message>
-        <location line="-425"/>
+        <location line="-424"/>
         <location line="+4"/>
         <source>PDF Viewer</source>
         <translation>Afficheur PDF</translation>
@@ -784,7 +784,7 @@
         <translation type="obsolete">Utiliser l&apos;afficheur PDF interne embarqué dans TeXstudio</translation>
     </message>
     <message>
-        <location line="+363"/>
+        <location line="+362"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>La commande a été développée en %1 niveaux. Voulez-vous continuer le développement « %2 » ?</translation>
     </message>
@@ -793,7 +793,7 @@
         <translation type="obsolete">Compilation + visualisation</translation>
     </message>
     <message>
-        <location line="-380"/>
+        <location line="-379"/>
         <source>Compile &amp; View</source>
         <translation>Compiler &amp; voir</translation>
     </message>
@@ -2439,7 +2439,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="+347"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -4771,19 +4771,19 @@ Continuer tout de même ?</translation>
 <context>
     <name>Help</name>
     <message>
-        <location filename="help.cpp" line="+42"/>
-        <location line="+53"/>
+        <location filename="help.cpp" line="+43"/>
+        <location line="+65"/>
         <location line="+51"/>
         <source>texdoc not found.</source>
         <translation>texdoc introuvable.</translation>
     </message>
     <message>
-        <location line="-92"/>
+        <location line="-103"/>
         <source>texdoc took too long to open the documentation for the package:</source>
         <translation>texdoc met trop de temps à ouvrir la documentation du package :</translation>
     </message>
     <message>
-        <location line="+65"/>
+        <location line="+76"/>
         <source>texdoc did not respond to query on package:</source>
         <translation>texdoc ne répond pas à la requête sur le package :</translation>
     </message>
@@ -5152,7 +5152,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Format de langage non valide</translation>
     </message>
     <message>
-        <location line="+2442"/>
+        <location line="+2437"/>
         <source>Invalid codec</source>
         <translation>Codec non valide</translation>
     </message>
@@ -5168,7 +5168,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Commentaire magique inconnu</translation>
     </message>
     <message>
-        <location line="-2456"/>
+        <location line="-2451"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHIE</translation>
     </message>
@@ -5176,7 +5176,7 @@ la commande \caption n&apos;est pas valide.</translation>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location line="+1452"/>
+        <location line="+1453"/>
         <source>untitled</source>
         <translation>sans nom</translation>
     </message>
@@ -5213,7 +5213,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Nouvel entrée BibTeX %1</translation>
     </message>
     <message>
-        <location line="+1387"/>
+        <location line="+1390"/>
         <source>Delete</source>
         <translation>Effacer</translation>
     </message>
@@ -5261,7 +5261,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">citation manquante !</translation>
     </message>
     <message>
-        <location line="-1587"/>
+        <location line="-1590"/>
         <source>Open %1</source>
         <translation>Ouvrir %1</translation>
     </message>
@@ -5301,7 +5301,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Citation correcte</translation>
     </message>
     <message>
-        <location line="+1553"/>
+        <location line="+1556"/>
         <source>Citation missing</source>
         <translation>Citation manquante</translation>
     </message>
@@ -5320,7 +5320,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Citation correcte (lecture en cours...)</translation>
     </message>
     <message>
-        <location line="-1519"/>
+        <location line="-1522"/>
         <source>Go to PDF</source>
         <translation>Atteindre le PDF</translation>
     </message>
@@ -5349,7 +5349,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Package non reconnu !</translation>
     </message>
     <message>
-        <location line="+1168"/>
+        <location line="+1171"/>
         <source>Class</source>
         <translation>Classe</translation>
     </message>
@@ -5423,7 +5423,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Images</translation>
     </message>
     <message>
-        <location line="-1964"/>
+        <location line="-1967"/>
         <source>Open Bibliography</source>
         <translation>Ouvrir la bibliographie</translation>
     </message>
@@ -7103,7 +7103,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="+1679"/>
+        <location filename="buildmanager.cpp" line="+1678"/>
         <source>Process started: %1</source>
         <translation>Processus en cours : %1</translation>
     </message>
@@ -10858,8 +10858,8 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="-54"/>
         <location line="+54"/>
-        <source>Don&apos;t Save and Close</source>
-        <translation>Fermer sans enregistrer</translation>
+        <source>Close without Saving</source>
+        <translation type="unfinished">Fermer sans enregistrer</translation>
     </message>
     <message>
         <location line="-54"/>
