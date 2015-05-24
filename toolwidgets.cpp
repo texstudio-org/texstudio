@@ -1,8 +1,6 @@
 #include "toolwidgets.h"
 #include "math.h"
 #include "smallUsefulFunctions.h"
-#include "qdocument.h"
-#include "latexdocument.h"
 #include "utilsSystem.h"
 #include "configmanagerinterface.h"
 
@@ -161,139 +159,17 @@ OutputViewWidget::OutputViewWidget(QWidget * parent) :
 	appendPage(new TitledPanelPage(previewWidget, PREVIEW_PAGE, tr("Preview")), false);
 
 	// global search results
-	searchResultModel = new SearchResultModel(this);
 
-	SearchTreeDelegate *searchDelegate=new SearchTreeDelegate(this);
-
-    QHBoxLayout *horz=new QHBoxLayout;
-	horz->setContentsMargins(4,2,4,2);
-	horz->setSpacing(8);
-
-    searchScopeBox=new QComboBox;
-    searchScopeBox->setEditable(false);
-	searchScopeBox->addItem(tr("Current Doc"));
-	searchScopeBox->addItem(tr("All Docs"));
-	searchScopeBox->addItem(tr("Project"));
-    connect(searchScopeBox,SIGNAL(currentIndexChanged(int)),SIGNAL(updateTheSearch(int)));
-
-
-    QLabel *lbl=new QLabel;
-    lbl->setText(tr("Search text:"));
-    searchTextLabel=new QLabel;
-    //searchTextEdit->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Fixed);
-    QPushButton *btn=new QPushButton(tr("Update Search"));
-    connect(btn,SIGNAL(clicked()),this,SLOT(updateSearch()));
-    QLabel *lbl2=new QLabel;
-    lbl2->setText(tr("Replace by:"));
-    replaceTextEdit=new QLineEdit;
-    connect(replaceTextEdit,SIGNAL(textChanged(QString)),this,SLOT(replaceTextChanged(QString)));
-    //replaceTextEdit->setSizePolicy(QSizePolicy::Maximum,QSizePolicy::Fixed);
-    QPushButton *btn2=new QPushButton(tr("Replace all"));
-    connect(btn2,SIGNAL(clicked()),this,SLOT(replaceAll()));
-
-    horz->addWidget(searchScopeBox);
-    horz->addWidget(lbl);
-    horz->addWidget(searchTextLabel,1);
-    horz->addWidget(btn);
-    horz->addWidget(lbl2);
-    horz->addWidget(replaceTextEdit,1);
-    horz->addWidget(btn2);
-
-	OutputSearchTree= new QTreeView(this);
-    OutputSearchTree->header()->hide();
-	OutputSearchTree->setUniformRowHeights(true);
-	OutputSearchTree->setModel(searchResultModel);
-    OutputSearchTree->setItemDelegate(searchDelegate);
-	OutputSearchTree->setFrameShape(QFrame::NoFrame);
-
-    QVBoxLayout *vert=new QVBoxLayout;
-	vert->setContentsMargins(0,0,0,0);
-	vert->setSpacing(0);
-
-    vert->addLayout(horz);
-	QFrame *hLine = new QFrame();
-	hLine->setFrameShape(QFrame::HLine);
-	vert->addWidget(hLine);
-    vert->addWidget(OutputSearchTree,1);
-
-
-    QWidget *wgt=new QWidget;
-    wgt->setLayout(vert);
-
-	connect(OutputSearchTree,SIGNAL(clicked(QModelIndex)),this,SLOT(clickedSearchResult(QModelIndex)));
+	searchResultWidget = new SearchResultWidget(this);
 
     //appendPage(new TitledPanelPage(OutputSearchTree, SEARCH_RESULT_PAGE, tr("Search Results")));
-    appendPage(new TitledPanelPage(wgt, SEARCH_RESULT_PAGE, tr("Search Results")));
+    appendPage(new TitledPanelPage(searchResultWidget, SEARCH_RESULT_PAGE, tr("Search Results")));
 }
 void OutputViewWidget::previewLatex(const QPixmap& pixmap){
 	previewWidget->previewLatex(pixmap);
 	//showPreview();	
 }
 
-void OutputViewWidget::replaceTextChanged(QString text){
-    searchResultModel->setReplacementText(text);
-}
-
-void OutputViewWidget::updateSearch(){
-    emit updateTheSearch(searchScopeBox->currentIndex());
-}
-
-void OutputViewWidget::replaceAll(){
-    QList<SearchInfo> searches=searchResultModel->getSearches();
-    QString replaceText=replaceTextEdit->text();
-    bool isWord,isCase,isReg;
-    searchResultModel->getSearchConditions(isCase,isWord,isReg);
-    foreach(SearchInfo search,searches){
-        LatexDocument *doc=qobject_cast<LatexDocument*>(search.doc.data());
-        if(!doc)
-            continue;
-        QDocumentCursor *cur=new QDocumentCursor(doc);
-        for(int i=0;i<search.checked.size();i++){
-            if(search.checked.value(i,false)){
-                QDocumentLineHandle *dlh=search.lines.value(i,0);
-                if(dlh){
-                    QList<QPair<int,int> > results=searchResultModel->getSearchResults(dlh->text());
-                    if(!results.isEmpty()){
-                        QPair<int,int> elem;
-                        int offset=0;
-                        foreach(elem,results){
-                            if(isReg){
-                                QRegExp rx(searchResultModel->searchExpression(),isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);
-                                QString txt=dlh->text();
-                                QString newText=txt.replace(rx,replaceText);
-                                int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
-                                cur->select(lineNr,elem.first+offset,lineNr,elem.second+offset);
-                                newText=newText.mid(elem.first);
-                                newText.chop(txt.length()-elem.second-1);
-                                cur->replaceSelectedText(newText);
-                                offset+=newText.length()-elem.second+elem.first;
-                            }else{
-                                // simple replacement
-                                int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
-                                cur->select(lineNr,elem.first+offset,lineNr,elem.second+offset);
-                                cur->replaceSelectedText(replaceText);
-                                offset+=replaceText.length()-elem.second+elem.first;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        delete cur;
-    }
-}
-
-void OutputViewWidget::clickedSearchResult(const QModelIndex& index){
-	QDocument* doc = searchResultModel->getDocument(index);
-    if(!searchResultModel->parent(index).isValid())
-        return;
-	if (!doc) return;
-	emit jumpToSearch(doc,searchResultModel->getLineNumber(index));
-}
-
-void OutputViewWidget::copySearchResult() {
-	QApplication::clipboard()->setText(OutputSearchTree->currentIndex().data(Qt::DisplayRole).toString());
-}
 
 //copied and modified from qbytearray.cpp
 //should be an optimization for qtextstream, but doesn't really improve anything
@@ -343,7 +219,7 @@ void OutputViewWidget::copy() {
 	if (pageId == LOG_PAGE) {
 		logWidget->copy();
 	} else if (pageId == SEARCH_RESULT_PAGE) {
-		copySearchResult();
+		searchResultWidget->copySearchResult();
 	}
 }
 
@@ -376,41 +252,10 @@ void OutputViewWidget::gotoLogLine(int logLine){
 }*/
 
 
-void OutputViewWidget::addSearch(QList<QDocumentLineHandle *> lines, QDocument* doc){
-	SearchInfo search;
-	search.doc = doc;
-	search.lines = lines;
-    for(int i=0;i<lines.count();i++){
-        search.checked << true;
-    }
-	searchResultModel->addSearch(search);
-}
-void OutputViewWidget::clearSearch(){
-	searchResultModel->clear();
-}
-void OutputViewWidget::setSearchExpression(QString exp,QString replaceText,bool isCase,bool isWord,bool isRegExp){
-    replaceTextEdit->setText(replaceText);
-    searchTextLabel->setText(exp);
-    searchResultModel->setSearchExpression(exp,replaceText,isCase,isWord,isRegExp);
-}
-
-void OutputViewWidget::setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp){
-    searchTextLabel->setText(exp);
-    searchResultModel->setSearchExpression(exp,isCase,isWord,isRegExp);
-}
-QString OutputViewWidget::searchExpression() const {
-	return searchResultModel->searchExpression();
-}
-int OutputViewWidget::getNextSearchResultColumn(QString text,int col){
-	return searchResultModel->getNextSearchResultColumn(text,col);
-}
-int OutputViewWidget::getSearchScope() const {
-    return searchScopeBox->currentIndex();
-}
 bool OutputViewWidget::childHasFocus(){
 	return logWidget->childHasFocus()
 			|| OutputMessages->hasFocus()
-			|| OutputSearchTree->hasFocus();
+			|| searchResultWidget->childHasFocus();
 }
 
 void OutputViewWidget::changeEvent(QEvent *event){
@@ -423,68 +268,6 @@ void OutputViewWidget::changeEvent(QEvent *event){
 	}	
 }
 
-//====================================================================
-// CustomDelegate for search results
-//====================================================================
-SearchTreeDelegate::SearchTreeDelegate(QObject *parent):QItemDelegate(parent)
-{
-    ;
-}
-
-void SearchTreeDelegate::paint( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const
-{
-    QPalette::ColorGroup    cg  = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
-
-    /*if( cg == QPalette::Normal && !(option.state & QStyle::State_Active) )
-        cg = QPalette::Inactive;*/
-
-    if( option.state & QStyle::State_Selected )
-    {
-        painter->fillRect( option.rect, option.palette.brush(cg, QPalette::Highlight) );
-        painter->setPen( option.palette.color(cg, QPalette::HighlightedText) );
-    }
-    else
-    {
-        painter->setPen( option.palette.color(cg, QPalette::Text) );
-    }
-
-    QSize size;
-    if(index.data(Qt::CheckStateRole).isValid()){
-#if QT_VERSION >= 0x050201  /* QItemDelegate::check is an internal function which has been renamed (maybe already in Qt5.2?) */
-		size = doCheck(option, option.rect, Qt::Checked).size();
-#else
-        size = check(option, option.rect, Qt::Checked).size();
-#endif
-        QRect checkboxRect(option.rect.x(),option.rect.y(),size.width(),size.height());
-        QItemDelegate::drawCheck(painter, option, checkboxRect, (Qt::CheckState) index.data(Qt::CheckStateRole).toInt());
-    }
-
-    if( index.data().toString().isEmpty() )
-        return;
-    painter->save();
-    QString text=index.data().toString();
-    QRect r=option.rect;
-    r.adjust(size.width(),0,0,0);
-    QStringList textList=text.split("|");
-    for(int i=0;i<textList.size();i++){
-        QString temp=textList.at(i);
-        int w=option.fontMetrics.width(temp);
-        if(i%2) {
-            painter->fillRect( QRect(r.left(),r.top(),w,r.height()), QBrush(Qt::yellow) );
-        }
-        painter->drawText(r,Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
-        r.setLeft(r.left()+w+1);
-    }
-    painter->restore();
-}
-
-QSize SearchTreeDelegate::sizeHint(const QStyleOptionViewItem &option,
-                              const QModelIndex &index) const
- {
-       QFontMetrics fontMetrics = option.fontMetrics;
-       QRect rect = fontMetrics.boundingRect(index.data().toString());
-       return QSize(rect.width(), rect.height());
-}
 
 //====================================================================
 // CustomWidgetList (for left panel)

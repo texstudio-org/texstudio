@@ -34,6 +34,7 @@
 #include "textanalysis.h"
 #include "toolwidgets.h"
 #include "txstabwidget.h"
+#include "searchresultwidget.h"
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
 #include "PDFDocument.h"
@@ -337,6 +338,7 @@ protected slots:
     void updateFindGlobal(int scope);
 	void findLabelUsages();
 	void findLabelUsages(LatexDocument *doc, const QString &labelText);
+	SearchResultWidget * searchResultWidget();
 	
 	void findWordRepetions();
 	void findNextWordRepetion();
