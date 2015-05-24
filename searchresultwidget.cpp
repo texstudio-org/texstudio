@@ -6,7 +6,6 @@
 
 SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent) {
 	searchResultModel = new SearchResultModel(this);
-
 	SearchTreeDelegate *searchDelegate = new SearchTreeDelegate(this);
 
 	QHBoxLayout *hLayout = new QHBoxLayout;
@@ -22,17 +21,20 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent) {
 
 
 	searchTextLabel = new QLabel;
-	QPushButton *updateButton = new QPushButton(tr("Update Search"));
-	connect(updateButton, SIGNAL(clicked()), this, SLOT(updateSearch()));
+	QFont font = searchTextLabel->font();
+	font.setItalic(true);
+	searchTextLabel->setFont(font);
+	searchAgainButton = new QPushButton(tr("Search Again"));
+	connect(searchAgainButton, SIGNAL(clicked()), this, SLOT(updateSearch()));
 	replaceTextEdit = new QLineEdit;
 	connect(replaceTextEdit, SIGNAL(textChanged(QString)), this, SLOT(replaceTextChanged(QString)));
-	QPushButton *replaceButton = new QPushButton(tr("Replace all"));
+	replaceButton = new QPushButton(tr("Replace all"));
 	connect(replaceButton, SIGNAL(clicked()), this, SLOT(replaceAll()));
 
 	hLayout->addWidget(searchScopeBox);
 	hLayout->addWidget(new QLabel(tr("Search:")));
 	hLayout->addWidget(searchTextLabel, 1);
-	hLayout->addWidget(updateButton);
+	hLayout->addWidget(searchAgainButton);
 	hLayout->addWidget(new QLabel(tr("Replace by:")));
 	hLayout->addWidget(replaceTextEdit, 1);
 	hLayout->addWidget(replaceButton);
@@ -136,9 +138,27 @@ void SearchResultWidget::addSearch(QList<QDocumentLineHandle *> lines, QDocument
 	}
 	searchResultModel->addSearch(search);
 }
+
 void SearchResultWidget::clearSearch() {
 	searchResultModel->clear();
+	setScopeChangeAllowed(true);
+	setSearchAgainAllowed(true);
+	setReplaceAllowed(true);
 }
+
+void SearchResultWidget::setScopeChangeAllowed(bool b) {
+	searchScopeBox->setEnabled(b);
+}
+
+void SearchResultWidget::setSearchAgainAllowed(bool b) {
+	searchAgainButton->setEnabled(b);
+}
+
+void SearchResultWidget::setReplaceAllowed(bool b) {
+	replaceTextEdit->setEnabled(b);
+	replaceButton->setEnabled(b);
+}
+
 void SearchResultWidget::setSearchExpression(QString exp, QString replaceText, bool isCase, bool isWord,
         bool isRegExp) {
 	replaceTextEdit->setText(replaceText);
@@ -150,12 +170,15 @@ void SearchResultWidget::setSearchExpression(QString exp, bool isCase, bool isWo
 	searchTextLabel->setText(exp);
 	searchResultModel->setSearchExpression(exp, isCase, isWord, isRegExp);
 }
+
 QString SearchResultWidget::searchExpression() const {
 	return searchResultModel->searchExpression();
 }
+
 int SearchResultWidget::getNextSearchResultColumn(QString text, int col) {
 	return searchResultModel->getNextSearchResultColumn(text, col);
 }
+
 int SearchResultWidget::getSearchScope() const {
 	return searchScopeBox->currentIndex();
 }
