@@ -218,8 +218,6 @@ void OutputViewWidget::copy() {
 
 	if (pageId == LOG_PAGE) {
 		logWidget->copy();
-	} else if (pageId == SEARCH_RESULT_PAGE) {
-		searchResultWidget->copySearchResult();
 	}
 }
 
@@ -254,8 +252,7 @@ void OutputViewWidget::gotoLogLine(int logLine){
 
 bool OutputViewWidget::childHasFocus(){
 	return logWidget->childHasFocus()
-			|| OutputMessages->hasFocus()
-			|| searchResultWidget->childHasFocus();
+			|| OutputMessages->hasFocus();
 }
 
 void OutputViewWidget::changeEvent(QEvent *event){

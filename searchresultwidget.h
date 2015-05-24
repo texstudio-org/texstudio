@@ -19,7 +19,6 @@ public:
 	QString searchExpression() const;
     int getSearchScope() const;
 	int getNextSearchResultColumn(QString text,int col);
-	bool childHasFocus();
 	
 signals:
 	void jumpToSearch(QDocument* doc,int lineNumber);
@@ -31,7 +30,6 @@ public slots:
     void setSearchEditors(QList<LatexDocument *> docs){
         mDocs=docs;
     }
-	void copySearchResult();
 
 private slots:
 	void clickedSearchResult(const QModelIndex& index);
