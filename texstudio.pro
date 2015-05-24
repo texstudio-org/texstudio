@@ -144,7 +144,8 @@ HEADERS += texmaker.h \
     kpathseaParser.h \
     tests/latexoutputfilter_t.h \
     sessionlist.h \
-    pdfsplittool.h
+    pdfsplittool.h \
+    searchresultwidget.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     texmaker.cpp \
@@ -238,7 +239,8 @@ SOURCES += main.cpp \
     kpathseaParser.cpp \
     tests/latexoutputfilter_t.cpp \
     sessionlist.cpp \
-    pdfsplittool.cpp
+    pdfsplittool.cpp \
+    searchresultwidget.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
