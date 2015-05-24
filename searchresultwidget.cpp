@@ -127,10 +127,6 @@ void SearchResultWidget::clickedSearchResult(const QModelIndex &index) {
 	emit jumpToSearch(doc, searchResultModel->getLineNumber(index));
 }
 
-void SearchResultWidget::copySearchResult() {
-	QApplication::clipboard()->setText(searchTree->currentIndex().data(Qt::DisplayRole).toString());
-}
-
 void SearchResultWidget::addSearch(QList<QDocumentLineHandle *> lines, QDocument *doc) {
 	SearchInfo search;
 	search.doc = doc;
@@ -162,10 +158,6 @@ int SearchResultWidget::getNextSearchResultColumn(QString text, int col) {
 }
 int SearchResultWidget::getSearchScope() const {
 	return searchScopeBox->currentIndex();
-}
-
-bool SearchResultWidget::childHasFocus() {
-	return searchTree->hasFocus();
 }
 
 
