@@ -7148,6 +7148,10 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		menu.addAction(tr("Insert"),this, SLOT(editPasteRef()))->setData(entry->title);
 		menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(entry->title));
 		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\pageref{%1}").arg(entry->title));
+		menu.addSeparator();
+		QAction *act = menu.addAction(tr("Find Usages"), this, SLOT(findLabelUsages()));
+		act->setData(entry->title);
+		act->setProperty("doc", QVariant::fromValue<LatexDocument *>(entry->document));
 		menu.exec(structureTreeView->mapToGlobal(point));
 	}
 	if (entry->type==StructureEntry::SE_SECTION) {
@@ -7876,6 +7880,36 @@ void Texmaker::updateFindGlobal(int scope){
     if(!linesShown){
         outputView->showPage(outputView->SEARCH_RESULT_PAGE);
     }
+}
+
+void Texmaker::findLabelUsages() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+	
+	QString labelText = action->data().toString();
+	LatexDocument *doc = action->property("doc").value<LatexDocument *>();
+	
+	findLabelUsages(doc, labelText);
+}
+
+void Texmaker::findLabelUsages(LatexDocument *contextDoc, const QString &labelText) {
+	if (!contextDoc) return;
+	QMultiHash<QDocumentLineHandle*,int> usages = contextDoc->getLabels(labelText);
+	usages += contextDoc->getRefs(labelText);
+	QHash<QDocument*, QList<QDocumentLineHandle*> > usagesByDocument;
+	foreach (QDocumentLineHandle *dlh, usages.keys()) {
+		QDocument *doc = dlh->document();
+		QList<QDocumentLineHandle*> dlhs = usagesByDocument[doc];
+		dlhs.append(dlh);
+		usagesByDocument.insert(doc, dlhs);
+	}
+	
+	outputView->clearSearch();
+	outputView->setSearchExpression(labelText, labelText, true, true, false);
+	foreach (QDocument *doc, usagesByDocument.keys()) {
+		outputView->addSearch(usagesByDocument.value(doc), doc);
+	}
+	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 }
 
 // show current cursor position in structure view
