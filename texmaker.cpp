@@ -7904,6 +7904,10 @@ void Texmaker::findLabelUsages(LatexDocument *contextDoc, const QString &labelTe
 	}
 	
 	searchResultWidget()->clearSearch();
+	searchResultWidget()->setScopeChangeAllowed(false);
+	searchResultWidget()->setSearchAgainAllowed(false);
+	searchResultWidget()->setReplaceAllowed(false);
+	
 	searchResultWidget()->setSearchExpression(labelText, labelText, true, true, false);
 	foreach (QDocument *doc, usagesByDocument.keys()) {
 		searchResultWidget()->addSearch(usagesByDocument.value(doc), doc);

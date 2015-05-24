@@ -27,6 +27,9 @@ signals:
 public slots:
 	void addSearch(QList<QDocumentLineHandle *> search, QDocument *doc);
 	void clearSearch();
+	void setScopeChangeAllowed(bool b);
+	void setSearchAgainAllowed(bool b);
+	void setReplaceAllowed(bool b);
 	void setSearchEditors(QList<LatexDocument *> docs) {
 		mDocs = docs;
 	}
@@ -39,7 +42,9 @@ private slots:
 
 private:
 	QLabel *searchTextLabel;
+	QPushButton *searchAgainButton;
 	QLineEdit *replaceTextEdit;
+	QPushButton *replaceButton;
 	QComboBox *searchScopeBox;
 	SearchResultModel *searchResultModel;
 	QTreeView *searchTree;
