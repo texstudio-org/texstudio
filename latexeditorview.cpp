@@ -468,6 +468,12 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				contextMenu->addAction(act);
 			}
 		}
+		if (/* tk.type==Tokens::bibRef || TODO: bibliography references not yet handled by token system */ tk.type==Tokens::labelRef) {
+			QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
+			act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
+			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
+			contextMenu->addAction(act);
+		}
 		if (tk.type==Tokens::label || tk.type==Tokens::labelRef) {
 			QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
 			act->setData(tk.getText());
@@ -521,13 +527,6 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 	contextMenu->addActions(baseActions);
 	if (validPosition) {
 		contextMenu->addSeparator();
-
-		if (context == LatexParser::Citation || context == LatexParser::Reference) {
-			QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
-			act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
-			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
-			contextMenu->addAction(act);
-		}
 
 		QAction *act = new QAction(LatexEditorView::tr("Go to PDF"), contextMenu);
 		act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
