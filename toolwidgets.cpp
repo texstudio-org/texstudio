@@ -170,35 +170,6 @@ void OutputViewWidget::previewLatex(const QPixmap& pixmap){
 	//showPreview();	
 }
 
-
-//copied and modified from qbytearray.cpp
-//should be an optimization for qtextstream, but doesn't really improve anything
-QByteArray simplifyLineConserving(const QByteArray& ba)
-{
-	if (ba.size() == 0)
-		return QByteArray();
-	QByteArray result(ba.size(), Qt::Uninitialized);
-	const char *from = ba.constData();
-	const char *fromend = from + ba.size();
-	int outc=0;
-	char *to = result.data();
-	for (;;) {
-		while (from!=fromend && isspace(uchar(*from)))
-			from++;
-		while (from!=fromend && !isspace(uchar(*from)))
-			to[outc++] = *from++;
-		if (from!=fromend) {
-			if (uchar(*from) == '\n' || uchar(*from) == '\r') to[outc++] = '\n';
-			else to[outc++] = ' ';
-		} else
-			break;
-	}
-	if (outc > 0 && to[outc-1] == ' ')
-		outc--;
-	result.resize(outc);
-	return result;
-}
-
 bool OutputViewWidget::isPreviewPanelVisible(){
 	if (!isVisible()) return false;
 	return currentPageId() == PREVIEW_PAGE;
