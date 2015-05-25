@@ -138,11 +138,52 @@ const
 	} else return QModelIndex();
 }
 
+QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lineIndex, int role) const {
+	if (!search.doc) return QVariant();
+	bool lineIndexValid = (lineIndex >= 0 && lineIndex < search.lines.size() && lineIndex < search.lineNumberHints.size());
+	switch (role) {
+	case Qt::CheckStateRole:
+		if (!lineIndexValid) return QModelIndex();
+		return (search.checked.value(lineIndex, true) ? Qt::Checked : Qt::Unchecked);
+	case Qt::DisplayRole:
+	case Qt::ToolTipRole:
+		if (!lineIndexValid) return "";
+		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
+		if (search.lineNumberHints[lineIndex] < 0) return "";
+		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
+		if (role==Qt::DisplayRole) {
+			return QString("Line %1: ").arg(search.lineNumberHints[lineIndex]+1)+prepareResultText(ln.text());
+		} else {  // tooltip role
+			return prepareReplacedText(ln.text());
+		}
+	}
+	return QModelIndex();
+}
+
+QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int role) const {
+	switch (role) {
+	case Qt::ToolTipRole:
+		return QVariant();
+	case Qt::CheckStateRole:
+	{
+		if(search.checked.isEmpty())
+			return QVariant();
+		bool state = search.checked.first();
+		int cnt = search.checked.count(state);
+		if (cnt==search.checked.size()) {
+			return state ? Qt::Checked : Qt::Unchecked;
+		}else{
+			return Qt::PartiallyChecked;
+		}
+	}
+	case Qt::DisplayRole:
+		return (search.doc ? search.doc->getFileName() : tr("File closed")) + QString(" (%1)").arg(search.lines.size());
+	}
+	return QVariant();
+}
+
 QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	if (!index.isValid()) return QVariant();
-	//if (index.row() >= log.count() || index.row() < 0) return QVariant();
-    //if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
-
 	if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole) return QVariant();
 
 	int iid = index.internalId();
@@ -150,47 +191,9 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	if (searchIndex < 0 || searchIndex >= m_searches.size()) return QVariant();
 	const SearchInfo& search = m_searches.at(searchIndex); 
 	if (iidIsResultEntry(iid)) {
-		if (!search.doc) return QVariant();
-		int lineIndex = index.row();
-        if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()){
-            if(role==Qt::CheckStateRole)
-                return QVariant();
-            return "";
-        }
-        if(role==Qt::CheckStateRole){
-            return (search.checked.value(lineIndex,true) ? Qt::Checked : Qt::Unchecked);
-        }
-
-		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
-        if(search.lineNumberHints[lineIndex] < 0) {
-            return "";
-        }
-		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
-        QString temp;
-        if(role==Qt::DisplayRole){
-            temp=QString("Line %1: ").arg(search.lineNumberHints[lineIndex]+1)+prepareResultText(ln.text());
-        }else{
-            // tooltip role
-            temp=prepareReplacedText(ln.text());
-        }
-
-        return temp;
+		return dataForResultEntry(search, index.row(), role);
 	} else {
-        if(role==Qt::ToolTipRole)
-            return QVariant();
-        if(role==Qt::CheckStateRole){
-            if(search.checked.isEmpty())
-                return QVariant();
-            bool state=search.checked.first();
-            int cnt=search.checked.count(state);
-            if(cnt==search.checked.size()){
-                return state ? Qt::Checked : Qt::Unchecked;
-            }else{
-                return Qt::PartiallyChecked;
-            }
-        }
-        REQUIRE_RET(index.row() == searchIndex, QVariant());
-		return (search.doc?search.doc->getFileName():tr("File closed")) + QString(" (%1)").arg(search.lines.size());
+		return dataForSearchResult(search, role);
 	}
 }
 
