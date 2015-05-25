@@ -221,17 +221,33 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		return;
 	}
 	painter->save();
-	QString text = index.data().toString();
+	
 	QRect r = option.rect;
-	r.adjust(size.width(), 0, 0, 0);
+	int spacing = 2;
+	r.adjust(size.width() + spacing, 0, 0, 0);
+	bool isSelected = option.state & QStyle::State_Selected;
+	
+	// draw line number 
+	QVariant vLineNumber = index.data(SearchResultModel::LineNumberRole);
+	if (vLineNumber.isValid()) {
+		int lwidth = option.fontMetrics.width("00000");
+		QRect lineNumberRect = QRect(r.left(), r.top(), lwidth, r.height());
+		if (!isSelected) {
+			painter->fillRect(lineNumberRect, option.palette.alternateBase());
+		}
+		painter->drawText(lineNumberRect, Qt::AlignRight | Qt::AlignTop | Qt::TextSingleLine, vLineNumber.toString());
+		r.adjust(lwidth + spacing, 0, 0, 0);
+	}
+	// draw text
+	QString text = index.data().toString();
 	QStringList textList = text.split("|");
 	for (int i=0; i<textList.size(); i++) {
 		QString temp = textList.at(i);
 		int w = option.fontMetrics.width(temp);
-		if (i % 2) {
+		if (i % 2 && !isSelected) {
 			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(Qt::yellow));
 		}
-		painter->drawText(r, Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
+		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 		r.setLeft(r.left() + w + 1);
 	}
 	painter->restore();
