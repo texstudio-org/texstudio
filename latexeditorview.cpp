@@ -481,6 +481,12 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindLabelUsagesFromAction()));
 			contextMenu->addAction(act);
 		}
+		if (tk.type==Tokens::word) {
+			QAction* act = new QAction(LatexEditorView::tr("Thesaurus..."), contextMenu);
+			act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
+			edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredThesaurus()));
+			contextMenu->addAction(act);
+		}
 
 		//resolve differences
 		if (edView){
@@ -517,11 +523,6 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				}
 			}
 		}
-		// add action to thesaurus
-		QAction* act=new QAction(LatexEditorView::tr("Thesaurus..."),contextMenu);
-		act->setData(QPoint(cursor.anchorLineNumber(),cursor.anchorColumnNumber()));
-		edView->connect(act,SIGNAL(triggered()),edView,SLOT(triggeredThesaurus()));
-		contextMenu->addAction(act);
 		contextMenu->addSeparator();
 	}
 	contextMenu->addActions(baseActions);
