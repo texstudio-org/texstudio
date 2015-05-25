@@ -50,6 +50,8 @@ public:
     QList<QPair<int,int> > getSearchResults(const QString &text) const;
 
 private:
+	QVariant dataForResultEntry(const SearchInfo &search, int lineIndex, int role) const;
+	QVariant dataForSearchResult(const SearchInfo &search, int role) const;
 	QString prepareResultText(const QString& text) const;
     QString prepareReplacedText(const QString& text) const;
 	
