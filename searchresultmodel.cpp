@@ -3,6 +3,7 @@
 #include "qdocumentsearch.h"
 #include "smallUsefulFunctions.h"
 
+const int SearchResultModel::LineNumberRole = Qt::UserRole;
 
 /* *** internal id (iid) semantics ***
  * the internal id associates QModelIndex with the internal data structure. The iid is structured as followed
@@ -145,6 +146,14 @@ QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lin
 	case Qt::CheckStateRole:
 		if (!lineIndexValid) return QModelIndex();
 		return (search.checked.value(lineIndex, true) ? Qt::Checked : Qt::Unchecked);
+	case LineNumberRole:
+	{
+		if (!lineIndexValid) return QModelIndex();
+		int lineNo = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
+		search.lineNumberHints[lineIndex] = lineNo;
+		if (lineNo < 0) return 0;
+		return lineNo+1;  // internal line number is 0-based
+	}
 	case Qt::DisplayRole:
 	case Qt::ToolTipRole:
 		if (!lineIndexValid) return "";
@@ -152,7 +161,7 @@ QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lin
 		if (search.lineNumberHints[lineIndex] < 0) return "";
 		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
 		if (role==Qt::DisplayRole) {
-			return QString("Line %1: ").arg(search.lineNumberHints[lineIndex]+1)+prepareResultText(ln.text());
+			return prepareResultText(ln.text());
 		} else {  // tooltip role
 			return prepareReplacedText(ln.text());
 		}
@@ -184,7 +193,7 @@ QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int ro
 
 QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	if (!index.isValid()) return QVariant();
-	if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole) return QVariant();
+	if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole && role != LineNumberRole) return QVariant();
 
 	int iid = index.internalId();
 	int searchIndex = searchIndexFromIid(iid);
@@ -317,6 +326,7 @@ QList<QPair<int,int> > SearchResultModel::getSearchResults(const QString &text) 
 	}
 	return result;
 }
+
 
 
 QDocument* SearchResultModel::getDocument(const QModelIndex &index){

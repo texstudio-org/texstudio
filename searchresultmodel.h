@@ -16,6 +16,8 @@ class SearchResultModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
+	static const int LineNumberRole;
+	
 	SearchResultModel(QObject *parent=0);
 	~SearchResultModel();
 	
@@ -58,6 +60,7 @@ private:
 	QList< SearchInfo > m_searches;
     QString mExpression,mReplacementText;
 	bool mIsWord,mIsCaseSensitive,mIsRegExp;
+	QFont mLineFont;
 };
 
 #endif // SEARCHRESULTMODEL_H
