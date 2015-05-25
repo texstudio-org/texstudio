@@ -10,7 +10,6 @@
 #include "usermacro.h"
 
 Q_DECLARE_METATYPE(QDocument*);
-Q_DECLARE_METATYPE(LatexDocument*);
 Q_DECLARE_METATYPE(LatexDocuments*);
 Q_DECLARE_METATYPE(LatexEditorView*);
 Q_DECLARE_METATYPE(BuildManager*);

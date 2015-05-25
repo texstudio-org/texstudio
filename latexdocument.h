@@ -300,6 +300,7 @@ signals:
 	void encodingChanged();
     void bookmarkLineUpdated(int lineNr);
 };
+Q_DECLARE_METATYPE(LatexDocument*)
 
 class LatexDocumentsModel: public QAbstractItemModel{
 	Q_OBJECT
