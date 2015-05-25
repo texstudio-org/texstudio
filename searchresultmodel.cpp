@@ -3,6 +3,52 @@
 #include "qdocumentsearch.h"
 #include "smallUsefulFunctions.h"
 
+
+/* *** internal id (iid) semantics ***
+ * the internal id associates QModelIndex with the internal data structure. The iid is structured as followed
+ *
+ * < search index >  < line index >
+ * 00000000 00000000 00000000 00000000
+ * 
+ * - The upper 16 bits encode the search (i.e. a top-level group):
+ *     m_seaches[i] maps to (i + 1) * (1 << 16)
+ * - Bit 16 (1<<15) is a flag indcating that the item is a result entry within a search
+ * - Bits 1-15 indicate the position of the result entry within the search
+ * 
+ * Example:
+ *  * tree structure *   ** iid **     * internal data *
+ *  Search in file A     0x00010000    searches[0]
+ *    Result entry a0    0x00018000    searches[0].lines[0]
+ *    Result entry a1    0x00018001    searches[0].lines[1]
+ *  Search in file B     0x00020000    seraches[1]
+ *    Result entry a0    0x00018000    searches[1].lines[0]
+ *    Result entry a1    0x00018001    searches[1].lines[1]
+ */
+
+#define RESULT_ENTRY_FLAG (1<<15)
+#define SEARCH_MASK 0xFFFF0000
+
+bool iidIsResultEntry(quint32 iid) {
+	return iid & RESULT_ENTRY_FLAG;
+}
+
+quint32 makeResultEntryIid(quint32 searchIid, int row) {
+	return searchIid + RESULT_ENTRY_FLAG + row;
+}
+
+quint32 searchIid(quint32 iid) {
+	return iid & SEARCH_MASK;
+}
+
+int searchIndexFromIid(quint32 iid) {
+	return int(iid >> 16) - 1;
+}
+
+quint32 iidFromSearchIndex(int searchIndex) {
+	return (searchIndex + 1) * (1 << 16);
+}
+
+
 SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(parent), mIsWord(false), mIsCaseSensitive(false), mIsRegExp(false)
 {
 	m_searches.clear();
@@ -17,7 +63,6 @@ void SearchResultModel::addSearch(const SearchInfo& search){
 #else
     beginResetModel();
 #endif
-
     m_searches.append(search);
     int lineNumber = 0;
     m_searches.last().lineNumberHints.clear();
@@ -68,29 +113,29 @@ int SearchResultModel::rowCount(const QModelIndex &parent) const {
 		return m_searches.size();
 	}else{
 		int i=parent.row();
-		if(i<m_searches.size()&&((parent.internalId()&(1<<15))==0)){
+		if (i<m_searches.size() && !iidIsResultEntry(parent.internalId())) {
 			return qMin(m_searches[i].lines.size(),1000); // maximum search results limited
 		} else return 0;
 	}
 }
+
 QModelIndex SearchResultModel::index(int row, int column, const QModelIndex &parent)
 const
 {
 	if(parent.isValid()){
-		int i=(parent.internalId()&0xFFFF0000)+(1<<15)+row;
-		return createIndex(row,column,i);
+		return createIndex(row, column, makeResultEntryIid(parent.internalId(), row));
 	}else{
-		return createIndex(row,column,(row+1)*(1<<16));
+		return createIndex(row, column, iidFromSearchIndex(row));
 	}
 }
 
 QModelIndex SearchResultModel::parent(const QModelIndex &index)
 const
 {
-	quint32 i=index.internalId();
-	if((i&(1<<15))>0){
-		return createIndex(int(i>>16)-1,0,i&0xFFFF0000);
-	}else return QModelIndex();
+	quint32 iid = index.internalId();
+	if (iidIsResultEntry(iid)) {
+		return createIndex(searchIndexFromIid(iid), 0, searchIid(iid));
+	} else return QModelIndex();
 }
 
 QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
@@ -98,13 +143,13 @@ QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	//if (index.row() >= log.count() || index.row() < 0) return QVariant();
     //if (role == Qt::ToolTipRole) return tr("Click to jump to the line");
 
-    if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole) return QVariant();
+	if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole) return QVariant();
 
-	int i=index.internalId();
-	int searchIndex = (i>>16)-1;
+	int iid = index.internalId();
+	int searchIndex = searchIndexFromIid(iid);
 	if (searchIndex < 0 || searchIndex >= m_searches.size()) return QVariant();
 	const SearchInfo& search = m_searches.at(searchIndex); 
-	if(i&(1<<15)){
+	if (iidIsResultEntry(iid)) {
 		if (!search.doc) return QVariant();
 		int lineIndex = index.row();
         if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()){
@@ -162,11 +207,11 @@ bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value,
     if (role != Qt::CheckStateRole )
         return false;
 
-    int i=index.internalId();
-    int searchIndex = (i>>16)-1;
+    int iid = index.internalId();
+    int searchIndex = searchIndexFromIid(iid);
     if (searchIndex < 0 || searchIndex >= m_searches.size()) return false;
     SearchInfo& search = m_searches[searchIndex];
-    if(i&(1<<15)){
+    if (iidIsResultEntry(iid)) {
         if (!search.doc) return false;
         int lineIndex = index.row();
         if (lineIndex < 0 || lineIndex > search.lines.size() || lineIndex > search.lineNumberHints.size()){
@@ -182,9 +227,8 @@ bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value,
         for(int l=0;l<search.checked.size();l++){
             search.checked.replace(l,state);
         }
-        int row=search.checked.size()-1;
-        int j=(i&0xFFFF0000)+(1<<15)+row;
-        QModelIndex endIndex=createIndex(row,0,j);
+        int lastRow = search.checked.size()-1;
+        QModelIndex endIndex=createIndex(lastRow, 0, makeResultEntryIid(iid, lastRow));
         emit dataChanged(index,endIndex);
     }
 
@@ -273,16 +317,15 @@ QList<QPair<int,int> > SearchResultModel::getSearchResults(const QString &text) 
 
 
 QDocument* SearchResultModel::getDocument(const QModelIndex &index){
-	int i=index.internalId();
-	i=(i>>16)-1;
+	int i = searchIndexFromIid(index.internalId());
 	if (i < 0 || i >= m_searches.size()) return 0;
 	if (!m_searches[i].doc) return 0;
 	return m_searches[i].doc;
 }
 int SearchResultModel::getLineNumber(const QModelIndex &index){
-	int i=index.internalId();
-	if (!(i&(1<<15))) return -1;
-	int searchIndex = (i>>16)-1;
+	int iid = index.internalId();
+	if (!iidIsResultEntry(iid)) return -1;
+	int searchIndex = searchIndexFromIid(iid);
 	if (searchIndex < 0 || searchIndex >= m_searches.size()) return -1;
 	const SearchInfo& search = m_searches.at(searchIndex); 
 	if (!search.doc) return -1;
