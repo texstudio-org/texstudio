@@ -317,7 +317,7 @@
 		<background>#FFFF50</background>
 	</format>
 	<format id="previewSelection" >
-		<background>#AAFFAA</background>
+		<background>#DDFFCC</background>
 		<wrapAround>true</wrapAround>
 	</format>
 <!-- txs tests -->
