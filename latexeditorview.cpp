@@ -980,9 +980,15 @@ bool LatexEditorView::gotoLineHandleAndSearchCommand(const QDocumentLineHandle* 
 		}
 	}
 	//Q_ASSERT(col >= 0);
+	bool colFound = (col >= 0);
 	if (col < 0) col = 0;
 	editor->setCursorPosition(ln, col, false);
 	editor->ensureCursorVisible(QEditor::Navigation);
+	if (colFound) {
+		QDocumentCursor highlightCursor(editor->cursor());
+		highlightCursor.movePosition(id.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+		temporaryHighlight(highlightCursor);
+	}
 	return true;
 
 }
