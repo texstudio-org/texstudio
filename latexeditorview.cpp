@@ -468,6 +468,13 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				contextMenu->addAction(act);
 			}
 		}
+		if (tk.type==Tokens::label || tk.type==Tokens::labelRef) {
+			QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
+			act->setData(tk.getText());
+			act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
+			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindLabelUsagesFromAction()));
+			contextMenu->addAction(act);
+		}
 
 		//resolve differences
 		if (edView){
@@ -1385,6 +1392,14 @@ void LatexEditorView::emitGotoDefinitionFromAction() {
 		c = act->data().value<QDocumentCursor>();
 	}
 	emit gotoDefinition(c);
+}
+
+void LatexEditorView::emitFindLabelUsagesFromAction() {
+	QAction *action = qobject_cast<QAction *>(sender());
+	if (!action) return;
+	QString labelText = action->data().toString();
+	LatexDocument *doc = action->property("doc").value<LatexDocument *>();
+	emit findLabelUsages(doc, labelText);
 }
 
 void LatexEditorView::emitSyncPDFFromAction() {
