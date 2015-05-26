@@ -430,6 +430,19 @@ bool connectUnique(const QObject * sender, const char * signal, const QObject * 
 #endif
 }
 
+// compatibility function for missing QProcessEnvironment::keys() in Qt < 4.8
+QStringList envKeys(const QProcessEnvironment &env) {
+#if QT_VERSION >= 0x040800
+	return env.keys();
+#else
+	QStringList keys;
+	foreach (const QString &s, env.toStringList()) {
+		keys.append(s.left(s.indexOf('=')));
+	}
+	return keys;
+#endif
+}
+
 // run the command in a separate process, wait and return the result
 // use for internal queries that should be silent. Not to be mixed up with BuildManager::runCommand
 QString execCommand(const QString & cmd) {

@@ -74,7 +74,7 @@ bool Help::isMiktexTexdoc() {
 bool Help::isTexdocExpectedToFinish() {
 	if (!isMiktexTexdoc()) return true;
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-	foreach (const QString &var, env.keys()) {
+	foreach (const QString &var, envKeys(env)) {
 		if (var.startsWith("MIKTEX_VIEW_")) {
 			// miktex texdoc will run as long as the viewer is opened when the MIKTEX_VIEW_* variables are set
 			// http://docs.miktex.org/manual/mthelp.html
