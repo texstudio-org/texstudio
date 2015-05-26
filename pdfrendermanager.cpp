@@ -111,9 +111,10 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	
 	Poppler::Document *docPtr;
 
+    HiddenByteArray ownerPassword; //for permission settings (not needed?)
+    HiddenByteArray userPassword(userPasswordStr);
+
 	try {
-		HiddenByteArray ownerPassword; //for permission settings (not needed?)
-		HiddenByteArray userPassword(userPasswordStr);
 
 		if (loadStrategy==DirectLoad) {
 			docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
