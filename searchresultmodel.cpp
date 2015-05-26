@@ -144,11 +144,11 @@ QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lin
 	bool lineIndexValid = (lineIndex >= 0 && lineIndex < search.lines.size() && lineIndex < search.lineNumberHints.size());
 	switch (role) {
 	case Qt::CheckStateRole:
-		if (!lineIndexValid) return QModelIndex();
+        if (!lineIndexValid) return QVariant();
 		return (search.checked.value(lineIndex, true) ? Qt::Checked : Qt::Unchecked);
 	case LineNumberRole:
 	{
-		if (!lineIndexValid) return QModelIndex();
+        if (!lineIndexValid) return QVariant();
 		int lineNo = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
 		search.lineNumberHints[lineIndex] = lineNo;
 		if (lineNo < 0) return 0;
@@ -166,7 +166,7 @@ QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lin
 			return prepareReplacedText(ln.text());
 		}
 	}
-	return QModelIndex();
+    return QVariant();
 }
 
 QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int role) const {
