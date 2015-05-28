@@ -6,6 +6,8 @@
 \titleformat{command}[shape]{format}{label}{sep}{before-code}{after-code}
 \chaptertitlename
 \titlespacing
+\titlespacing{command}{left}{before-sep}{after-sep}
+\titlespacing{command}{left}{before-sep}{after-sep}[right-sep]
 \titlespacing*
 \titlespacing*{command}{left}{before-sep}{after-sep}
 \titlespacing*{command}{left}{before-sep}{after-sep}[right-sep]

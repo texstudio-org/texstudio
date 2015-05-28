@@ -2515,6 +2515,7 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg(){
     result.insert(env);
     result.insert(documentclass);
     result.insert(beamertheme);
+    result.insert(def);
     return result;
 }
 
@@ -3015,6 +3016,9 @@ CommandDescription extractCommandDef(QString line){
         }
         if(def=="bib files" || def=="bib file"){
             type=Tokens::bibfile;
+        }
+        if(def=="command" || def=="cmd"){
+            type=Tokens::def;
         }
         if(def=="file"){
             type=Tokens::file;
