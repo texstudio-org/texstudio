@@ -208,7 +208,7 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
 	QSize size;
 	if (index.data(Qt::CheckStateRole).isValid()) {
-#if QT_VERSION >= 0x050201  /* QItemDelegate::check is an internal function which has been renamed (maybe already in Qt5.2?) */
+#if QT_VERSION >= 0x050200  /* QItemDelegate::check is an internal function which has been renamed (maybe already in Qt5.2?) */
 		size = doCheck(option, option.rect, Qt::Checked).size();
 #else
 		size = check(option, option.rect, Qt::Checked).size();
