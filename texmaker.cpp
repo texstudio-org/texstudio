@@ -8953,7 +8953,7 @@ int Texmaker::getVersion() const{
  * \a shortcut: textual representation of the keysequence, e.g. simulateKeyPress("Shift+Up")
  */
 void Texmaker::simulateKeyPress(const QString &shortcut) {
-	QKeySequence seq(shortcut, QKeySequence::PortableText);
+    QKeySequence seq=QKeySequence::fromString(shortcut, QKeySequence::PortableText);
 	if (seq.count() > 0) {
 		int key = seq[0] & ~Qt::KeyboardModifierMask;
 		Qt::KeyboardModifiers modifiers = static_cast<Qt::KeyboardModifiers>(seq[0]) & Qt::KeyboardModifierMask;
