@@ -1477,7 +1477,22 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <p>There are a few argument names that have special meaning:</p>
 <ul>
   <li><code>text</code> and <code>title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). This currently works only for the first command element.</li>
-  <li><code>bibid</code>: If used in a command classified as "C". See the classifier description below.</li>
+  <li><code>bibid</code> and <code>cite key</code>: If used in a command classified as "C". See the classifier description below.</li>
+  <li><code>cmd</code> and <code>command</code>: defintion for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
+  <li><code>package</code>:package name, e.g. \usepackage{package}</li>
+  <li><code>title</code> and <code>short title</code>:section name, e.g. \section{title}</li>
+  <li><code>color</code>:color name, e.g. \textcolor{color}</li>
+  <li><code>cols</code>:columns defintion in tabular,etc. , e.g. \begin{tabular}{cols}</li>
+  <li><code>file</code>:file name</li>
+  <li><code>URL</code>:URL</li>
+  <li><code>options</code>:package options, e.g. \usepackage[options]</li>
+  <li><code>imagefile</code>:file name of an image</li>
+  <li><code>key</code>:label/ref key</li>
+  <li><code>bib file</code> and <code>bib files</code>:bibliography file</li>
+  <li><code>class</code>:document class</li>
+  <li><code>placement</code> and <code>position</code>:position of env</li>
+  <li><code>beamertheme</code>:beamer theme, e.g. \usebeamertheme{beamertheme}</li>
+  <li><code>keys</code>,<code>keyvals</code> and <code>%&lt;options%&gt;</code>:key/value list</li>
 </ul>
 </p>
 <h3>4.13.3 Classification format</h3>
