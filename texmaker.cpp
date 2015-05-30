@@ -4041,8 +4041,8 @@ void Texmaker::updateStructure(bool initial,LatexDocument *doc,bool hidden) {
         doc = currentEditorView()->document;
 	if(initial){
         //int len=doc->lineCount();
-        if(doc->patchStructure(0,-1))
-            doc->patchStructure(0,-1,true); // do a second run, if packages are load (which might define new commands)
+        doc->patchStructure(0,-1);
+           // doc->patchStructure(0,-1,true); // do a second run, if packages are loaded (which might define new commands)
         // admitedly this solution is expensive (though working)
         //TODO: does not working when entering \usepackage in text ... !
 
