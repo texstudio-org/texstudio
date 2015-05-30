@@ -1039,6 +1039,8 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
         parent->addDocToLoad(fname);
     }
     //qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
+    if(reRunSuggested)
+        patchStructure(0,-1,true); // expensive solution for handling changed packages (and hence command definitions)
     return reRunSuggested;
 }
 
