@@ -638,6 +638,8 @@ int findCommandWithArgsFromTL(const TokenList &tl,Tokens &cmd, TokenList &args, 
             Tokens tk=tl.at(i);
             if(tk.type==Tokens::comment)
                 break;
+            if(tk.level<level)
+                break;
             if(tk.level==level){
                 args.append(tk);
             }
