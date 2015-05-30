@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es">
+<TS version="2.0" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -619,32 +619,32 @@
     <message>
         <location line="+365"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ninguna Distribución  LaTeX fue encontrada en su sistema. Como resultado, las órdenes correspondientes no están configuradas. Esto quiere decir, que no se puede compilar sus documentos al formato de salida deseado (por ejemplo, pdf).</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">En Windows las distribuciones LaTeX más populares son %1 y %2.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Si tiene la intención de trabajar con LaTeX, seguramente debería  instalar alguna de estas distribuciones.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">En OSX una de las distribuciones LaTeX más populares es %1.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Si tiene la intención de trabajar con LaTeX, seguramente debería  instalar esta distribución.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Si tiene la intención de trabajar con LaTeX, seguramente debería  instalar una distribución LaTeX.</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -1247,12 +1247,12 @@
     <message>
         <location line="+10"/>
         <source>Startup</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inicio</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Check LaTeX Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comprobar la  configuración de LaTeX</translation>
     </message>
     <message>
         <location line="+69"/>
@@ -1519,27 +1519,33 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reemplaza las variables de entorno en órdenes. El Funcionamiento es específico del SO.
+
+Windows:
+Las variables se escriben como: %MYVAR%. Estas distinguen entre mayúsculas y minúsculas.
+
+Linux, OS X:
+Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y minúsculas.</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Replace Environment Variables</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reemplazar las variables de entorno</translation>
     </message>
     <message>
         <location line="+261"/>
         <source>Secondary Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Barras de herramientas secundarias</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Symbol Grid</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cuadricula de símbolos</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Main Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Barra de herramientas principal</translation>
     </message>
     <message>
         <location line="+341"/>
@@ -2057,12 +2063,12 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+10"/>
         <source>Replace Indentation Tab by Spaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Reemplazar sangría usando tabuladores por espacios en blanco</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Replace Tab in Text by Spaces</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reemplazar la tabulación en textos por espacios</translation>
     </message>
     <message>
         <location line="+239"/>
@@ -2102,7 +2108,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+6"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar los elementos de estructura más allá de \end{document}</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2117,7 +2123,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+7"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar los elementos de estructura del apéndice</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -2384,7 +2390,7 @@ aquí.</translation>
     </message>
     <message>
         <source>Auto Preview:</source>
-        <translation type="vanished">Vista previa automática:</translation>
+        <translation>Vista previa automática:</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -4321,7 +4327,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">Paquete no encontrado</translation>
+        <translation>Paquete no encontrado</translation>
     </message>
     <message>
         <location line="+2003"/>
@@ -4424,7 +4430,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <source>Issues and Log</source>
-        <translation type="vanished">Problemas y registro</translation>
+        <translation>Problemas y registro</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -5425,7 +5431,7 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+5"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dividir &amp;&amp; Combinar...</translation>
     </message>
     <message>
         <location filename="PDFDocument.cpp" line="+80"/>
@@ -5477,18 +5483,19 @@ Do you want to overwrite it?</source>
     <message>
         <location line="+203"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">El archivo PDF &quot;%1&quot; está protegido.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>PDF password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Contraseña del PDF</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">El archivo PDF &quot;%1&quot; está protegido.
+Por favor ingrese la contraseña:</translation>
     </message>
     <message>
         <location line="+1070"/>
@@ -5742,7 +5749,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location filename="pdfsplittool.cpp" line="+41"/>
         <source>Save PDF</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Guardar PDF</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -5752,22 +5759,22 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location line="+65"/>
         <source>Input file:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Archivo de entrada:</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Add page range</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Añadir rango de páginas</translation>
     </message>
     <message>
         <location line="+101"/>
         <source>From:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Desde:</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>To:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hasta:</translation>
     </message>
 </context>
 <context>
@@ -5775,17 +5782,17 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location filename="pdfsplittool.ui" line="+14"/>
         <source>Split &amp; Merge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dividir &amp; combinar</translation>
     </message>
     <message>
         <location line="+26"/>
         <source>Split &amp;&amp; Merge</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dividir &amp;&amp; combinar</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Backend:</source>
-        <translation type="unfinished"></translation>
+        <translation>Backend:</translation>
     </message>
     <message>
         <location line="+40"/>
@@ -5795,12 +5802,12 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location line="+9"/>
         <source>Output file:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Archivo de salida:</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Add input file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Añadir archivo de entrada</translation>
     </message>
 </context>
 <context>
@@ -5870,27 +5877,27 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <name>PreviewWidget</name>
     <message>
         <source>fit</source>
-        <translation type="vanished">Ajustar</translation>
+        <translation>Ajustar</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">Acercar</translation>
+        <translation>Acercar</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">Alejar</translation>
+        <translation>Alejar</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">Restablecer zoom</translation>
+        <translation>Restablecer zoom</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">Alinear la imagen a la izquierda</translation>
+        <translation>Alinear la imagen a la izquierda</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">Centrar Imagen</translation>
+        <translation>Centrar Imagen</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="-255"/>
@@ -6396,7 +6403,7 @@ La Opción Deshacer/Rehacer sería descartada por el auto-recargado.
     <message>
         <location line="+76"/>
         <source>Print Source Code</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Imprimir Código Fuente</translation>
     </message>
     <message>
         <location line="+3054"/>
@@ -6623,7 +6630,7 @@ La Opción Deshacer/Rehacer sería descartada por el auto-recargado.
     <message>
         <location line="+1"/>
         <source>Insert tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Insertar pestaña</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7209,7 +7216,7 @@ Nota: si el tamaño es mayor que el espacio entre líneas, los caracteres se pue
     <message>
         <location line="+0"/>
         <source>description</source>
-        <translation type="unfinished"></translation>
+        <translation>descripción</translation>
     </message>
 </context>
 <context>
@@ -8136,12 +8143,12 @@ siguiente valor:
     <message>
         <location filename="spellerutility.cpp" line="+209"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">El archivo seleccionado no parece contener un diccionario Hunspell. ¿Sin embargo quieres importarlo?</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Dictionary import failed: No files could be extracted.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La importación del diccionario ha fallado: No hay archivos para ser extraídos.</translation>
     </message>
 </context>
 <context>
@@ -8815,7 +8822,7 @@ no pudo ser eliminado.</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
-        <translation type="vanished">Definir el documento actual como «Documento Maestro»</translation>
+        <translation>Definir el documento actual como «Documento Maestro»</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -9030,7 +9037,7 @@ Do you want to create it?</source>
     <message>
         <location line="-181"/>
         <source>Refresh Structure</source>
-        <translation>Actualizar  estructura</translation>
+        <translation type="unfinished">Actualizar estructura</translation>
     </message>
     <message>
         <location line="+6887"/>
@@ -9098,7 +9105,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
-        <translation type="vanished">Clic para ir al marcador</translation>
+        <translation>Clic para ir al marcador</translation>
     </message>
     <message>
         <location line="+6641"/>
@@ -9146,7 +9153,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Normal Mode</source>
-        <translation type="vanished">Modo Normal</translation>
+        <translation>Modo Normal</translation>
     </message>
     <message>
         <location line="+8272"/>
@@ -9164,7 +9171,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Don&apos;t Save and Close</source>
-        <translation type="vanished">No Guardar y Cerrar</translation>
+        <translation>No Guardar y Cerrar</translation>
     </message>
     <message>
         <location line="-445"/>
@@ -9191,7 +9198,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Imprimir...</translation>
+        <translation>Imprimir...</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
@@ -9416,7 +9423,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
-        <translation type="vanished">Definir el documento actual como «Documento &amp;Maestro»</translation>
+        <translation>Definir el documento actual como «Documento &amp;Maestro»</translation>
     </message>
     <message>
         <source>User &amp;Commands</source>
@@ -9465,7 +9472,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Master Document</source>
-        <translation type="vanished">Documento Maestro</translation>
+        <translation>Documento Maestro</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
@@ -9825,11 +9832,11 @@ Do you want to create it?</source>
     </message>
     <message>
         <source>Erase &amp;Line</source>
-        <translation type="vanished">Borrar &amp;Línea</translation>
+        <translation>Borrar &amp;Línea</translation>
     </message>
     <message>
         <source>Erase until E&amp;nd of Line</source>
-        <translation type="vanished">Borrar hasta fi&amp;nal de línea</translation>
+        <translation>Borrar hasta fi&amp;nal de línea</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -9842,13 +9849,7 @@ Do you want to create it?</source>
         <translation type="unfinished">Mover Líneas A&amp;bajo</translation>
     </message>
     <message>
-        <location line="-5"/>
-        <source>&amp;Line Operations</source>
-        <oldsource>Duplicate Line</oldsource>
-        <translation type="unfinished">Duplicar Línea</translation>
-    </message>
-    <message>
-        <location line="+8"/>
+        <location line="+3"/>
         <source>&amp;Text Operations</source>
         <translation>&amp;Operaciones de texto</translation>
     </message>
@@ -10342,7 +10343,7 @@ Do you want to create it?</source>
     <message>
         <location line="+2"/>
         <source>List Of Hidden Documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lista de documentos ocultos</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -10424,7 +10425,7 @@ Do you want to create it?</source>
     <message>
         <source>Save Current Settings</source>
         <comment>menu</comment>
-        <translation type="vanished">Guardar Ajustes Actuales</translation>
+        <translation>Guardar Ajustes Actuales</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -10461,39 +10462,40 @@ Do you want to create it?</source>
     <message>
         <location line="+43"/>
         <source>Automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Automatic root document detection active</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Activa la detección automática del documento principal</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>&amp;Explicit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Explícito</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Root</source>
         <comment>explicit root document</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Raíz</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Explict root document:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Documento principal:
+%1</translation>
     </message>
     <message>
         <location line="+261"/>
         <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"></translation>
+        <translation>¿Desea depurar un archivo SyncTeX?</translation>
     </message>
     <message>
         <location line="+346"/>
         <source>Could not write template data:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No se pudo escribir los datos de plantilla:</translation>
     </message>
     <message>
         <location line="+367"/>
@@ -10529,7 +10531,7 @@ Do you want to create it?</source>
         <location line="+49"/>
         <location line="+54"/>
         <source>Close without Saving</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cerrar sin guardar</translation>
     </message>
     <message>
         <location line="+73"/>
@@ -10546,7 +10548,7 @@ Do you want to create it?</source>
     <message>
         <location line="+1042"/>
         <source>Unable to write to settings file %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No se puede escribir en el archivo de configuración %1</translation>
     </message>
     <message>
         <location line="+955"/>
@@ -10580,42 +10582,42 @@ confía en este documento)
     <message>
         <location line="+23"/>
         <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;h4&gt;Cambio de los accesos directos predeterminados&lt;/h4&gt;&lt;p&gt;Conforme avanza el tiempo, los accesos directos de las herramientas principales se han convertido en algo fragmentado. Adicionalmente, en parte se superponen con teclas estándar. En particular, F1, F3, F10, F11 y F12 tienen reservada una función significativa en algunos sistemas.&lt;/p&gt;&lt;p&gt;Hemos decidido establecer esta asignación a favor de un diseño más coherente::&lt;/p&gt;&lt;ul&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt; se moverá de F1 a F5.&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Bibliografía&lt;/code&gt; se moverá de F11 a F8..&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Glosario&lt;/code&gt; se moverá de F10 a F9.&lt;li&gt;La herramienta &lt;code&gt;Índice&lt;/code&gt; no tendrá más un atajo (antes F12) debido a que esta no es utilizada muy a menudo.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Lamentamos, que tenga que volver a aprender el atajo más utilizado para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt;. Durante un período de transición, tanto F1 y F5 funcionarán. Al final, se reunirán las herramientas más importantes en el bloque central de F5-F8, lo cual  aumentará la usabilidad. Como de costumbre, todavía se puede personalizar totalmente los accesos directos en las opciones.&lt;/p&gt;</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>Do not show this message again.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No mostrar este mensaje nuevamente.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location line="+656"/>
         <source>You have to save the file before it can be defined as root document.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se debe  guardar el archivo antes de que pueda ser definido como un documento principal.</translation>
     </message>
     <message>
         <location line="+879"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Establecer como un documento principal</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Open all related documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Abrir todos los documentos relacionados</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Close all related documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cerrar todos los documentos relacionados</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Quitar como documento principal</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -10657,21 +10659,29 @@ confía en este documento)
 Please provide this file if you send a bug report.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Un backtrace fue escrito para
+%1
+Proporcione este archivo si se envía un informe de error.
+
+</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">TeXstudio se ha bloqueado debido a %1.
+
+%2¿Quieres mantener a TeXstudio en ejecución? Esto puede causar daños en los datos.</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">TeXstudio se ha detenido debido a un posible bucle sin fin.
+
+%1¿Quieres mantener el programa en ejecución? Esto puede causar daños en los datos.</translation>
     </message>
     <message>
         <location line="+155"/>
@@ -10701,7 +10711,7 @@ Please provide this file if you send a bug report.
     </message>
     <message>
         <source>Normal Mode (current master document: </source>
-        <translation type="vanished">Modo Normal (documento maestro actual: </translation>
+        <translation>Modo Normal (documento maestro actual: </translation>
     </message>
     <message>
         <location line="+433"/>
@@ -10836,7 +10846,7 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
     </message>
     <message>
         <source>You have to save the file before switching to master mode!</source>
-        <translation type="vanished">!Hay que guardar el archivo antes de cambiar al modo maestro!</translation>
+        <translation>!Hay que guardar el archivo antes de cambiar al modo maestro!</translation>
     </message>
     <message>
         <location line="+1287"/>
@@ -10845,11 +10855,11 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
     </message>
     <message>
         <source>Set this document as master document</source>
-        <translation type="vanished">Establezca este documento como documento maestro</translation>
+        <translation>Establezca este documento como documento maestro</translation>
     </message>
     <message>
         <source>Remove master document role</source>
-        <translation type="vanished">Retire el documento actual como documento maestro</translation>
+        <translation>Retire el documento actual como documento maestro</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -11007,7 +11017,7 @@ Pulse el botón &quot;Cancelar&quot; para no hacer nada.</translation>
     <message>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
-        <translation type="vanished">TeXstudio ha CRASHED debido a un %1.
+        <translation>TeXstudio ha CRASHED debido a un %1.
 ¿Quieres que siga funcionando? Esto puede causar daños en los datos.</translation>
     </message>
     <message>
@@ -11026,7 +11036,7 @@ Do you want to keep it running? This may cause data corruption.</source>
     <message>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
-        <translation type="vanished">TeXstudio se ha detenido debido a un posible bucle infinito.
+        <translation>TeXstudio se ha detenido debido a un posible bucle infinito.
 ¿Quieres mantener el programa en ejecución? Esto puede causar daños en los datos.</translation>
     </message>
     <message>
@@ -11081,22 +11091,22 @@ El mensaje ha sido detenido.
     <message>
         <location line="+68"/>
         <source>Delete &amp;Line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Borrar &amp;Línea</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Delete To &amp;End Of Line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Borrar al &amp;final de la línea</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Delete From &amp;Start Of Line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Borrar desde el &amp;inicio de la línea</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Du&amp;plicate Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Du&amp;plicar Línea</translation>
     </message>
     <message>
         <location line="+219"/>
@@ -11106,7 +11116,7 @@ El mensaje ha sido detenido.
     <message>
         <location line="+1"/>
         <source>Insert root document name as TeX comment</source>
-        <translation>Introducir el nombre del documento raíz como un comentario TeX</translation>
+        <translation type="unfinished">Introducir el nombre del documento principal como un comentario TeX</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -11117,28 +11127,28 @@ El mensaje ha sido detenido.
         <location line="+166"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Guardar &amp;ajustes actuales</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Restore &amp;Default Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Restaurar La Configuración &amp;Predeterminada...</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Root Document</source>
         <comment>menu</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Documento Principal</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Detect &amp;Automatically</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Detectar &amp;Automáticamente</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Set Current Document As Explicit Root</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Establecer el Documento actual Como Documento principal</translation>
     </message>
     <message>
         <location line="+10"/>
