@@ -3266,3 +3266,41 @@ QString getCommandFromToken(Tokens tk)
     }
     return cmd;
 }
+
+void updateSubsequentRemaindersLatex(QDocument *doc, int linenr, int lineCount, const LatexParser &lp){
+    int i=linenr;
+    if(i==0){
+        if(lineCount==1)
+            return;
+        i++;
+    }
+    QDocumentLineHandle *dlh=doc->line(i-1).handle();
+    dlh->lockForRead();
+    TokenStack ts=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
+    dlh->unlock();
+
+    for(i;i<linenr+lineCount;i++){
+        dlh=doc->line(i).handle();
+        dlh->lockForWrite();
+        if(!ts.isEmpty()){
+            TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            Tokens tk=ts.top();
+            bool changed=false;
+            if(Tokens::tkCommalist().contains(tk.subtype)){
+                for(int j=0;j<tl.size();j++){
+                    Tokens elem=tl.at(j);
+                    if(elem.type==Tokens::opposite(tk.type))
+                        break;
+                    tl[j].type=tk.subtype;
+                    changed=true;
+                }
+            }
+            if(changed){
+                dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(tl));
+            }
+        }
+        ts=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
+        dlh->unlock();
+    }
+
+}

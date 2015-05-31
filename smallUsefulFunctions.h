@@ -30,6 +30,7 @@ Q_DECLARE_METATYPE( CommandArgument )
 
 //void txs_assert(const char *assertion, const char *file, int line);
 class QDocumentLineHandle;
+class QDocument;
 
 
 class LatexCompleterConfig;
@@ -327,10 +328,11 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config=0,
 class QDocumentLineHandle;
 
 QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
-QString findRestArg(QDocumentLineHandle* dlh,Tokens::TokenType type,int count=5);
+QString findRestArg(QDocumentLineHandle* dlh, Tokens::TokenType type, int count=5);
 TokenList lexLatexLine(QDocumentLineHandle *dlh, TokenStack &stack);
 void updateSubsequentRemainders(QDocumentLineHandle* dlh, TokenStack stack);
 void latexDetermineContexts(QDocumentLineHandle *dlh, const LatexParser &lp);
+void updateSubsequentRemaindersLatex(QDocument *doc,int linenr,int lineCount,const LatexParser &lp);
 CommandDescription extractCommandDef(QString line);
 Tokens getTokenAtCol(QDocumentLineHandle *dlh,int pos,bool first=false);
 int getTokenAtCol(TokenList &tl,int pos,bool first=false);
