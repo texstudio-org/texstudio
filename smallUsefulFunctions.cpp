@@ -3004,7 +3004,7 @@ CommandDescription extractCommandDef(QString line){
         if(def=="package"){
             type=Tokens::package;
         }
-        if(def=="cols"){
+        if(def=="cols" || def=="preamble"){
             type=Tokens::colDef;
         }
         if(def=="color"){
