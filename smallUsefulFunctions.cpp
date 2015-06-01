@@ -3282,9 +3282,10 @@ void updateSubsequentRemaindersLatex(QDocument *doc, int linenr, int lineCount, 
     for(i;i<linenr+lineCount;i++){
         dlh=doc->line(i).handle();
         dlh->lockForWrite();
+        Tokens tk;
         if(!ts.isEmpty()){
             TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-            Tokens tk=ts.top();
+            tk=ts.top();
             bool changed=false;
             if(Tokens::tkCommalist().contains(tk.subtype)){
                 for(int j=0;j<tl.size();j++){
@@ -3300,6 +3301,11 @@ void updateSubsequentRemaindersLatex(QDocument *doc, int linenr, int lineCount, 
             }
         }
         ts=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
+        if(!ts.isEmpty() && tk.type==ts.top().type && tk.dlh==ts.top().dlh && tk.start==ts.top().start && tk.length==ts.top().length && tk.level==ts.top().level){
+            // everything matches, subtype is not compared
+            ts.top().subtype=tk.subtype;
+            dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(ts));
+        }
         dlh->unlock();
     }
 
