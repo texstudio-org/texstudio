@@ -3593,7 +3593,7 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 
 		if ( m_cursor.isValid() )
 		{
-			m_cursor.select(QDocumentCursor::WordUnderCursor);
+			m_cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
 
 			setClipboardSelection();
 			//emit clearAutoCloseStack();
