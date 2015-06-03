@@ -3196,9 +3196,7 @@ void Texmaker::editEraseWordCmdEnv(){
             value=getArg(tl.mid(tkPos+1),dlh,0,ArgumentList::Mandatory);
 			//remove environment (surrounding)
 			currentEditorView()->editor->document()->beginMacro();
-			cursor.movePosition(1,QDocumentCursor::EndOfWord);
-			cursor.movePosition(1,QDocumentCursor::StartOfWord,QDocumentCursor::KeepAnchor);
-			cursor.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
+			cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
 			cursor.removeSelectedText();
 			// remove curly brakets as well
 			if(cursor.nextChar()==QChar('{')){
@@ -3240,9 +3238,7 @@ void Texmaker::editEraseWordCmdEnv(){
 			currentEditorView()->editor->document()->endMacro();
 		}else{
 			currentEditorView()->editor->document()->beginMacro();
-			cursor.movePosition(1,QDocumentCursor::EndOfWord);
-			cursor.movePosition(1,QDocumentCursor::StartOfWord,QDocumentCursor::KeepAnchor);
-			cursor.movePosition(1,QDocumentCursor::PreviousCharacter,QDocumentCursor::KeepAnchor);
+			cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
 			cursor.removeSelectedText();
 			// remove curly brakets as well
 			if(cursor.nextChar()==QChar('{')){
@@ -3261,7 +3257,6 @@ void Texmaker::editEraseWordCmdEnv(){
 		break;
 		
 	default:
-		//cursor.movePosition(1,QDocumentCursor::StartOfWord);
 		cursor.select(QDocumentCursor::WordUnderCursor);
 		cursor.removeSelectedText();
 		break;
