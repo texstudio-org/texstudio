@@ -144,6 +144,33 @@ private slots:
 		QFETCH(QStringList, expectedOptions);
 		QEQUAL(BuildManager::splitOptions(line).join("|"), expectedOptions.join("|"));
 	}
+	void extractOutputRedirection_data() {
+		QTest::addColumn<QString>("commandLine");
+		QTest::addColumn<QString>("expectedRemainder");
+		QTest::addColumn<QString>("expectedStdOut");
+		QTest::addColumn<QString>("expectedStdErr");
+
+		QTest::newRow("pure")               << "pdflatex foo"                      << "pdflatex foo" << "" << "";
+		QTest::newRow("redirStdOut")        << "pdflatex foo > foo.txt"            << "pdflatex foo" << "foo.txt" << "";
+		QTest::newRow("redirStdOutNoSpace") << "pdflatex foo>foo.txt"              << "pdflatex foo" << "foo.txt" << "";
+		QTest::newRow("redirStdErr")        << "pdflatex foo 2> foo.txt"           << "pdflatex foo" << "" << "foo.txt";
+		QTest::newRow("redirStdErrNoSpace") << "pdflatex foo >foo.txt"             << "pdflatex foo" << "foo.txt" << "";
+		QTest::newRow("redirStdOutStdErr")  << "pdflatex foo 2>&1 >/dev/null"      << "pdflatex foo" << "/dev/null" << "&1";
+		QTest::newRow("ignoreExtra1")       << "pdflatex foo >/dev/null bar"       << "pdflatex foo" << "/dev/null" << "";
+		QTest::newRow("ignoreExtra2")       << "pdflatex foo 2>/dev/null bar"      << "pdflatex foo" << "" << "/dev/null";
+		QTest::newRow("ignoreExtra3")       << "pdflatex foo > /dev/null 2>&1 bar" << "pdflatex foo" << "/dev/null" << "&1";
+	}
+	void extractOutputRedirection() {
+		QFETCH(QString, commandLine);
+		QFETCH(QString, expectedRemainder);
+		QFETCH(QString, expectedStdOut);
+		QFETCH(QString, expectedStdErr);
+		QString stdOut, stdErr;
+		QString remainder = BuildManager::extractOutputRedirection(commandLine, stdOut, stdErr);
+		QEQUAL(remainder, expectedRemainder);
+		QEQUAL(stdOut, expectedStdOut);
+		QEQUAL(stdErr, expectedStdErr);
+	}
 
 public slots:
 	void commandLineRequested(const QString& cmdId, QString* result){

@@ -21,6 +21,16 @@
 
 //#inlcude "latexcompleter_config.h"
 
+// evaluates to j if i < 0
+//              i if j < 0
+//              qMin(i, j) if i, j >= 0
+// Usage example: 
+// find the first occuence of either A or B in a string
+// pos = indexMin(s.indexOf('A'), s.indexOf('B'))
+// pos is negative if s does not contain neither A nor B
+#define indexMin(i, j) ((i < 0) ? qMax(i, j) : (j < 0) ? qMax(i, j) : qMin(i, j))
+
+
 struct CommandArgument {
 	bool isOptional;
 	int number;

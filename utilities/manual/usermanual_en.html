@@ -218,24 +218,18 @@ can be deactivated in the Build section of the options.
 <p>
 The working directory is set to the path of root document.
 </p>
-<h3>Execution Context</h3>
+<h3>Shell Functionality</h3>
 <p>
-All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So output redirection and other shell functionality does not work.
+All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So most shell functionality does not work.
 </p>
-<p>
-You can see the difference with the following scipt:
-</p>
-<pre>
-#! /bin/sh
-# I am testscript
-echo "Working Directory"
-pwd
-echo "Arg1: $1"
-echo "Arg2: $2"
-echo "Arg3: $3"
-</pre>
-<p>When calling <code>/path/to/testscript foo > bar</code> from the shell, you will pass one argument (foo) and redirect the output to bar. When writing this as a user command in TeXstudio, you will have three arguments(foo, &gt; bar) and no redirection.</p>
-<p>If you need shell functionality, you have to explicitly run a shell. You can either do this directly in the user command.</p>
+<h4>Output Redirection</h4>
+<p>TeXstudio provides limited output redirection capabilities. You can only output to the message panel (<code>&gt; txs:///messages</code>) or suppress output (<code>&gt; /dev/null</code>). The default setting depends on the command. The same targets are allowed for stderr: <code>2&gt; txs:///messages</code>, <code>2&gt; /dev/null</code>. Additionally, you can redirect to the same target as stdout by using <code>2&gt;&1</code>.</p>
+<p>A typical usecase would be to suppress all output of a command: <code>&gt;/dev/null 2&gt;&1</code></p>
+
+
+
+<h4>Using other shell functionality</h4>
+<p>If you need shell functionality, you have to explicitly run a shell. You can either do this directly in the user command:</p>
 <pre>
 sh -c "/path/to/testscript foo > bar"
 </pre>
@@ -243,11 +237,11 @@ sh -c "/path/to/testscript foo > bar"
 <pre>
 cmd /C "/path/to/testscript.bat foo > bar"
 </pre>
-<p>or call a wrapper script in the user command</p>
+<p>Alternatively, you can call a wrapper script in the user command</p>
 <pre>/path/to/wrapperscript foo bar</pre>
 <p>and do the actual work inside the wrapper script:</p>
 <pre>
-#! /bin/sh
+#!/bin/sh
 # I am wrapperscript
 /path/to/testscript $1 > $2
 </pre>
