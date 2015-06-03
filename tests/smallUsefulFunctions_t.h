@@ -877,7 +877,26 @@ private slots:
 			QEQUAL(indices[i], result[i]);
 		}
 	}
+	
+	void test_indexMin_data() {
+		QTest::addColumn<int>("i");
+		QTest::addColumn<int>("j");
+		QTest::addColumn<int>("result");
 
+		QTest::newRow("i<j") << 3 << 5 << 3;
+		QTest::newRow("i=j") << 3 << 3 << 3;
+		QTest::newRow("i>j") << 5 << 3 << 3;
+		QTest::newRow("i<0") << -1 << 5 << 5;
+		QTest::newRow("j<0") << 5 << -1 << 5;
+		QTest::newRow("ij<0") << -1 << -1 << -1;
+	}
+
+	void test_indexMin() {
+		QFETCH(int, i);
+		QFETCH(int, j);
+		QFETCH(int, result);
+		QEQUAL(indexMin(i, j), result);
+	}
 
 };
 

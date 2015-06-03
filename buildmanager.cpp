@@ -439,7 +439,29 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 	return result;
 }
 
-
+/*!
+ * \brief extracts the
+ * \param s
+ * \param stdOut output parameter
+ * \param stdErr output parameter
+ * \return a copy of s truncated to the first occurence of an output redirection
+ */
+QString BuildManager::extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr)
+{
+	static QRegExp rxStdOut("[^2]>\\s*(\\S+)");
+	static QRegExp rxStdErr("2>\\s*(\\S+)");
+	
+	int stdErrStart = rxStdErr.indexIn(commandLine);
+	if (stdErrStart >= 0) {
+		stdErr = rxStdErr.cap(1);
+	}
+	int stdOutStart = rxStdOut.indexIn(commandLine);
+	if (stdOutStart >= 0) {
+		stdOutStart += 1; 
+		stdOut = rxStdOut.cap(1);
+	}
+	return commandLine.left(indexMin(stdErrStart, stdOutStart)).trimmed();
+}
 
 QString BuildManager::findFileInPath(QString fileName) {
 /*#ifdef Q_OS_MAC
@@ -1823,16 +1845,30 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
 	QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0), stdoutCodec(0) {
-	QString stdoutRedirection = cmd.mid(cmd.lastIndexOf(">") + 1).trimmed();
-	if (stdoutRedirection == "/dev/null" || stdoutRedirection == "txs:///messages"  )  {
-		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
-		if (stdoutRedirection == "/dev/null") stdoutEnabled = false;
-		else stdoutEnabledOverrideOn = true;
-	} //todo: stderr redirection
+	
+	QString stdoutRedirection, stderrRedirection;
+	cmd = BuildManager::extractOutputRedirection(cmd, stdoutRedirection, stderrRedirection);
+	if (stdoutRedirection == "/dev/null") {
+		stdoutEnabled = false;
+	} else if (stdoutRedirection == "txs:///messages") {
+		stdoutEnabledOverrideOn = true;
+	} else if (!stdoutRedirection.isEmpty()) {
+		parent->processNotification(tr("The sepecified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
+	}
+	if (stderrRedirection == "/dev/null") {
+		stderrEnabled = false;
+	} else if (stderrRedirection == "txs:///messages") {
+		// nothing to do because stderr goes to messages by default
+	} else if (stderrRedirection == "&1") {
+		stderrEnabled = stdoutEnabled || stdoutEnabledOverrideOn;
+	} else if (!stderrRedirection.isEmpty()) {
+		parent->processNotification(tr("The sepecified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
+	}
 	connect(this, SIGNAL(started()), SLOT(onStarted()));
 	connect(this, SIGNAL(finished(int)), SLOT(onFinished(int)));
 	connect(this, SIGNAL(error(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
 }
+
 void ProcessX::startCommand() {
 	ended = false;
 	
