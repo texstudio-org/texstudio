@@ -227,15 +227,16 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	r.adjust(size.width() + spacing, 0, 0, 0);
 	bool isSelected = option.state & QStyle::State_Selected;
 	
-	// draw line number 
+	// draw line number
 	QVariant vLineNumber = index.data(SearchResultModel::LineNumberRole);
 	if (vLineNumber.isValid()) {
-		int lwidth = option.fontMetrics.width("00000");
+		int hPadding = 1;
+		int lwidth = option.fontMetrics.width("00000") + 2*hPadding;
 		QRect lineNumberRect = QRect(r.left(), r.top(), lwidth, r.height());
 		if (!isSelected) {
-			painter->fillRect(lineNumberRect, option.palette.alternateBase());
+			painter->fillRect(lineNumberRect, option.palette.window());
 		}
-		painter->drawText(lineNumberRect, Qt::AlignRight | Qt::AlignTop | Qt::TextSingleLine, vLineNumber.toString());
+		painter->drawText(lineNumberRect.adjusted(hPadding, 0, -hPadding, 0), Qt::AlignRight | Qt::AlignTop | Qt::TextSingleLine, vLineNumber.toString());
 		r.adjust(lwidth + spacing, 0, 0, 0);
 	}
 	// draw text
