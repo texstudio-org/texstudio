@@ -63,9 +63,9 @@ void BibTeXFileInfo::parse(QByteArray& data){
 						if (c==',' || c==bracketClose) {
                             if (!curID.isEmpty()) {
                                 if (codec)
-                                    ids.append(codec->toUnicode(curID)); //**found id**
+                                    ids.insert(codec->toUnicode(curID)); //**found id**
                                 else
-                                    ids.append(curID);
+                                    ids.insert(curID);
                             }
 							state=BTS_IN_DATA_KEY;
 						} else if (c=='=' || c=='"')

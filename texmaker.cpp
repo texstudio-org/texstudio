@@ -5729,13 +5729,12 @@ void Texmaker::ViewLogOrReRun(LatexCompileResult* result){
 				for (int i=0; i<documents.mentionedBibTeXFiles.count();i++){
 					if (!documents.bibTeXFiles.contains(documents.mentionedBibTeXFiles[i])) continue;
 					BibTeXFileInfo& bibTex=documents.bibTeXFiles[documents.mentionedBibTeXFiles[i]];
-					for (int i=0; i<bibTex.ids.count();i++)
-						if (bibTex.ids[i] == s) {
-							runBibTeX = true;
-							break;
-						}
-					if (runBibTeX) break;
+					if (bibTex.ids.contains(s)) {
+						runBibTeX = true;
+						break;
+					}
 				}
+				if (runBibTeX) break;
 			}
 			if (runBibTeX)
 				*result = LCR_RERUN_WITH_BIBLIOGRAPHY;
@@ -6733,7 +6732,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 		}
 	}
 	if (configManager.parseBibTeX){
-		QStringList bibIds;
+		QSet<QString> bibIds;
 
         QStringList collected_mentionedBibTeXFiles;
         foreach(const LatexDocument* doc,docs){
@@ -6748,11 +6747,11 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             BibTeXFileInfo& bibTex=documents.bibTeXFiles[collected_mentionedBibTeXFiles[i]];
 
 			// add citation to completer for direct citation completion
-			bibIds<<bibTex.ids;
+			bibIds.unite(bibTex.ids);
 		}
 		//handle bibitem definitions
         foreach(const LatexDocument* doc,docs){
-            bibIds<<doc->bibItems();
+            bibIds.unite(doc->bibItems().toSet());
         }
 		//automatic use of cite commands
         QStringList citationCommands;
@@ -6769,7 +6768,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             words.insert(temp);
         }
         completer->setAdditionalWords(citationCommands.toSet(),CT_CITATIONCOMMANDS);
-		completer->setAdditionalWords(bibIds.toSet(),CT_CITATIONS);
+		completer->setAdditionalWords(bibIds,CT_CITATIONS);
 	}
 	
 	completionBaseCommandsUpdated=false;
