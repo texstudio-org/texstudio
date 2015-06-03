@@ -3281,6 +3281,7 @@ void updateSubsequentRemaindersLatex(QDocument *doc, int linenr, int lineCount, 
 
     for(i;i<linenr+lineCount;i++){
         dlh=doc->line(i).handle();
+        if (!dlh) break;
         dlh->lockForWrite();
         Tokens tk;
         if(!ts.isEmpty()){
