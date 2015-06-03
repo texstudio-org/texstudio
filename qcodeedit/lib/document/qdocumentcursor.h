@@ -70,6 +70,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 			StartOfLine,
 			StartOfBlock = StartOfLine,
 			StartOfWord,
+			StartOfWordOrCommand,
 			PreviousBlock,
 			PreviousLine = PreviousBlock,
 			PreviousWord,
@@ -79,6 +80,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 			EndOfLine,
 			EndOfBlock = EndOfLine,
 			EndOfWord,
+			EndOfWordOrCommand,
 			NextWord,
 			NextBlock,
 			NextLine = NextBlock
@@ -87,6 +89,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		enum SelectionType
 		{
 			WordUnderCursor,
+			WordOrCommandUnderCursor,
 			LineUnderCursor
 		};
 		

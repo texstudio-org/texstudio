@@ -4590,6 +4590,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 	int &line = m_begLine;
 	int &offset = m_begOffset;
 	static QRegExp wordStart("\\b\\w+$"), wordEnd("^\\w+\\b");
+	static QRegExp wordOrCommandStart("\\\\?\\b\\w+$"), wordOrCommandEnd("^\\\\?\\w+\\b");
 
 	if ( !(m & QDocumentCursor::KeepAnchor) )
 	{
@@ -5216,7 +5217,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				offset = x;
 			} else {
 				//qDebug("failed to find SOW : %i + %i != %i", x, wordStart.matchedLength(), offset);
-
 				return false;
 			}
 
@@ -5242,6 +5242,42 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 		}
 
+		case QDocumentCursor::StartOfWordOrCommand :
+		{
+			int x = wordOrCommandStart.indexIn(m_doc->line(line).text().left(offset+1));  // offset+1 because we would not match if we would cut-off at the cursor if it is directly behind a slash like this: \|command
+	
+			if ( x != -1 )
+			{
+				offset = x;
+			} else {
+				//qDebug("failed to find SOWC : %i + %i != %i", x, wordOrCommandStart.matchedLength(), offset);
+				return false;
+			}
+	
+			refreshColumnMemory();
+	
+			break;
+		}
+		
+		case QDocumentCursor::EndOfWordOrCommand :
+		{
+			
+			int x = wordOrCommandEnd.indexIn(m_doc->line(line).text(), offset, QRegExp::CaretAtOffset);
+
+			if ( x == offset )
+			{
+				offset += wordOrCommandEnd.matchedLength();
+			} else {
+				//qDebug("failed to find EOWC");
+				return false;
+			}
+	
+			refreshColumnMemory();
+	
+			break;
+		}
+		
+		
 		default:
 			qWarning("Unhandled move operation...");
 			return false;
@@ -5687,6 +5723,11 @@ void QDocumentCursorHandle::select(QDocumentCursor::SelectionType t)
 
 		movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::MoveAnchor);
 		movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+
+	} else if ( t == QDocumentCursor::WordOrCommandUnderCursor ) {
+
+		movePosition(1, QDocumentCursor::StartOfWordOrCommand, QDocumentCursor::MoveAnchor);
+		movePosition(1, QDocumentCursor::EndOfWordOrCommand, QDocumentCursor::KeepAnchor);
 	}
 }
 
