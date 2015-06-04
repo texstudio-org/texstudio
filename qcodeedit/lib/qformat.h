@@ -212,7 +212,7 @@ public:
 	}
 	
 private:
-	const QVector<int> &m_formats;
+	QVector<int> m_formats;
 	QHash<int, int> firstColForFormat;
 };
 
