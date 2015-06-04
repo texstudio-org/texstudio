@@ -968,12 +968,12 @@ void Texmaker::setupMenus() {
 		bibTypeActions->setExclusive(true);
 		act = newManagedAction(bibTypeMenu, "bibtex", tr("BibTeX"), SLOT(SetBibTypeFromAction()));
 		act->setData("bibtex");
-		act->setCheckable("true");
+		act->setCheckable(true);
 		act->setChecked(true);
 		bibTypeActions->addAction(act);
 		act = newManagedAction(bibTypeMenu, "biblatex", tr("BibLaTeX"), SLOT(SetBibTypeFromAction()));
 		act->setData("biblatex");
-		act->setCheckable("true");
+		act->setCheckable(true);
 		bibTypeActions->addAction(act);
 	}
 	act = newManagedAction(bibTypeMenu, "bibtex", tr("BibTeX"), SLOT(SetBibTypeFromAction()));
