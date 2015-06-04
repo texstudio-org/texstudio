@@ -562,7 +562,7 @@ int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
 Q_DECLARE_METATYPE(LatexEditorView*);
 
-LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),speller(0),curChangePos(-1),config(aconfig),bibReader(0) {
+LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig* aconfig,LatexDocument *doc) : QWidget(parent),document(0),latexPackageList(0),spellerManager(0),speller(0),useDefaultSpeller(True),curChangePos(-1),config(aconfig),bibReader(0) {
 	Q_ASSERT(config);
 
 	QVBoxLayout* mainlay = new QVBoxLayout(this);
