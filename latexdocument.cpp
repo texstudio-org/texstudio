@@ -111,8 +111,7 @@ QStringList LatexDocument::listOfMentionedBibTeXFiles() const{
 }
 
 QDocumentSelection LatexDocument::sectionSelection(StructureEntry* section){
-	QDocumentSelection result;
-	result.endLine=-1;result.startLine=-1;
+	QDocumentSelection result = {-1, -1, -1, -1};
 	
 	if (section->type!=StructureEntry::SE_SECTION) return result;
 	int startLine=section->getRealLineNumber();
