@@ -1853,7 +1853,7 @@ ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const Q
 	} else if (stdoutRedirection == "txs:///messages") {
 		stdoutEnabledOverrideOn = true;
 	} else if (!stdoutRedirection.isEmpty()) {
-		parent->processNotification(tr("The sepecified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
+		parent->processNotification(tr("The specified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
 	}
 	if (stderrRedirection == "/dev/null") {
 		stderrEnabled = false;
@@ -1862,7 +1862,7 @@ ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const Q
 	} else if (stderrRedirection == "&1") {
 		stderrEnabled = stdoutEnabled || stdoutEnabledOverrideOn;
 	} else if (!stderrRedirection.isEmpty()) {
-		parent->processNotification(tr("The sepecified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
+		parent->processNotification(tr("The specified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
 	}
 	connect(this, SIGNAL(started()), SLOT(onStarted()));
 	connect(this, SIGNAL(finished(int)), SLOT(onFinished(int)));
