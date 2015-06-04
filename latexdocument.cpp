@@ -1797,7 +1797,10 @@ bool LatexDocumentsModel::getSingleDocMode(){
 LatexDocuments::LatexDocuments(): model(new LatexDocumentsModel(*this)), masterDocument(0), currentDocument(0), bibTeXFilesModified(false){
 	showLineNumbersInStructure=false;
 	indentationInStructure=-1;
-	indentIncludesInStructure=0;
+	showCommentedElementsInStructure = false;
+	markStructureElementsBeyondEnd = true;
+	markStructureElementsInAppendix = true;
+	indentIncludesInStructure = false;
     m_patchEnabled=true;
 }
 
