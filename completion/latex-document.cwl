@@ -497,6 +497,7 @@
 \vdots
 \vector(xslope,yslope){length}#*/picture
 \verb|%<text%>|
+\verb#S
 \vline
 \vspace*{length}
 \vspace{length}
