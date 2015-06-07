@@ -3520,7 +3520,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              break; // stop at comment start
          if(tk.type==Tokens::command){
              QString command=line.mid(tk.start,tk.length);
-             if(command=="\\verb"){
+             if(tl.length()>i+1 && tl.at(i+1).type==Tokens::symbol && line.mid(tl.at(i+1).start,1)=="*"){
+                 // add * to command
+                 i++;
+                 command.append("*");
+             }
+             if(command=="\\verb" || command=="\\verb*"){
                  // special treament for verb
                  if(i+1<tl.length() && tl.at(i+1).type==Tokens::symbol && tl.at(i+1).start==tk.start+tk.length){
                      // well formed \verb
