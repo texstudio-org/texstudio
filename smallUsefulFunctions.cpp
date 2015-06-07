@@ -3455,7 +3455,7 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 
      QString verbatimSymbol;
      int lastComma=-1;
-     int lastEqual=-1;
+     int lastEqual=-1e6;
 
      for(int i=0;i<tl.length();i++){
          Tokens& tk=tl[i];
@@ -3599,7 +3599,9 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  }
                  if(tk1.subtype==Tokens::keyValArg){
                      lastComma=-1;
-                     lastEqual=-1;
+                     if(lastEqual>-1e6)
+                         level=lastEqual;
+                     lastEqual=-1e6;
                  }
                  if(tk1.dlh==dlh){ // same line
                      int j=lexed.length()-1;
@@ -3664,15 +3666,18 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              continue;
          }
          if(!stack.isEmpty() && stack.top().level==level-1 && stack.top().subtype==Tokens::keyValArg){
-             // handle commalist
+             // handle keyval
              if(tk.type==Tokens::punctuation && line.mid(tk.start,1)==","){
                 lastComma=-1;
-                lastEqual=-1;
+                if(lastEqual>-1e6)
+                    level=lastEqual;
+                lastEqual=-1e6;
                 continue;
              }
              if(tk.type==Tokens::symbol && line.mid(tk.start,1)=="="){
                 lastComma=1;
-                lastEqual=1;
+                lastEqual=level;
+                level++;
                 continue;
              }
              if(lastComma<0){
@@ -3681,7 +3686,7 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  lexed<<tk;
                  lastComma=lexed.length()-1;
              }else{
-                 if(lastEqual<0){
+                 if(lastEqual<=-1e6){
                     lexed[lastComma].length=tk.start+tk.length-lexed[lastComma].start;
                  }else{
                      tk.level=level;

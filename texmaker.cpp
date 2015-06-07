@@ -4197,6 +4197,8 @@ void Texmaker::NormalCompletion() {
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION); //TODO: complete support for special opt
         break;
     case Tokens::keyValArg:
+    case Tokens::keyVal_key:
+    case Tokens::keyVal_val:
     {
         command=getCommandFromToken(tk);
         if(command.isEmpty()&&ts.size()>1){
@@ -4228,6 +4230,7 @@ void Texmaker::NormalCompletion() {
             currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
     }
         break;
+    /*
     case LatexParser::KeyvalValue:{
         //figure out keyval
         if(command.endsWith("#c")){
@@ -4246,7 +4249,7 @@ void Texmaker::NormalCompletion() {
                 currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
         }
         break;
-    }
+    }*/
 
     case Tokens::beamertheme:
         {QString preambel="beamertheme";
