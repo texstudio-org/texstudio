@@ -54,10 +54,10 @@ public:
     QDocumentLineHandle *dlh;
 
     enum TokenType {none,word,command,braces,bracket,
-                    squareBracket,math,openBrace,openBracket,openSquare,closeBrace,
-                    closeBracket,closeSquareBracket,comment,commandUnknown,label,bibItem,file,imagefile,bibfile,
+                    squareBracket,openBrace,openBracket,openSquare,closeBrace,
+                    closeBracket,closeSquareBracket,math,comment,commandUnknown,label,bibItem,file,imagefile,bibfile,
                     keyValArg,list,text,env,def,labelRef,package,width,placement,colDef,title,url,documentclass,beamertheme,packageoption,
-                    color,verbatimStart,verbatimStop,verbatim};
+                    color,verbatimStart,verbatimStop,verbatim,symbol,punctuation};
     TokenType type;
     // subtype is used to determine the type of argument
     TokenType subtype;
@@ -86,6 +86,7 @@ public:
     CommandDescription();
     int optionalArgs;
     int args;
+    int level;
     QList<Tokens::TokenType> argTypes;
     QList<Tokens::TokenType> optTypes;
 };
@@ -350,5 +351,7 @@ TokenList getArgContent(Tokens &tk);
 TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention=10);
 TokenStack getContext(QDocumentLineHandle *dlh,int pos);
 QString getCommandFromToken(Tokens tk);
+TokenList simpleLexLatexLine(QDocumentLineHandle *dlh);
+void latexDetermineContexts2(QDocumentLineHandle *dlh,TokenStack &stack,const LatexParser &lp);
 
 #endif

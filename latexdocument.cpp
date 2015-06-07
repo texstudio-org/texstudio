@@ -373,23 +373,19 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 
     //first pass: lex
     TokenStack oldRemainder;
-    QDocumentLineHandle *lastHandle=line(linenr+count-1).handle();
     if(!recheck){
-        if(lastHandle){
-            oldRemainder=lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        }
         for (int i=linenr; i<linenr+count; i++) {
-            lexLatexLine(line(i).handle(),remainder);
+            simpleLexLatexLine(line(i).handle());
         }
-        if(oldRemainder!=remainder && linenr+count<lines()){
-            // update subsequent remainders
-            updateSubsequentRemainders(line(linenr+count).handle(),remainder);
-        }
+    }
+    QDocumentLineHandle *lastHandle=line(linenr-1).handle();
+    if(lastHandle){
+        oldRemainder=lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
     }
     for (int i=linenr; i<linenr+count; i++) {
-        latexDetermineContexts(line(i).handle(),lp);
+        latexDetermineContexts2(line(i).handle(),oldRemainder,lp);
     }
-    updateSubsequentRemaindersLatex(this,linenr,count,lp);
+    //updateSubsequentRemaindersLatex(this,linenr,count,lp);
     // force command from all line of which the actual line maybe subsequent lines (multiline commands)
     for (int i=lineNrStart; i<linenr+count; i++) {
 		//update bookmarks
