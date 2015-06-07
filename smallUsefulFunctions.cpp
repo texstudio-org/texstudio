@@ -3520,6 +3520,9 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  // not valid \verb
                  if(!stack.isEmpty()){
                      tk.subtype=stack.top().subtype;
+                     if(tk.subtype==Tokens::keyValArg && lastEqual>-1){
+                         tk.subtype=Tokens::keyVal_val;
+                     }
                  }
                  tk.level=level;
                  lexed<<tk;
@@ -3528,6 +3531,9 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              }else{
                  if(!stack.isEmpty()){
                      tk.subtype=stack.top().subtype;
+                     if(tk.subtype==Tokens::keyValArg && lastEqual>-1){
+                         tk.subtype=Tokens::keyVal_val;
+                     }
                  }
                  if(!commandStack.isEmpty() && commandStack.top().level==level){
                      //possible command argument without brackets
@@ -3591,6 +3597,10 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  if(Tokens::tkCommalist().contains(tk1.subtype)){
                      lastComma=-1;
                  }
+                 if(tk1.subtype==Tokens::keyValArg){
+                     lastComma=-1;
+                     lastEqual=-1;
+                 }
                  if(tk1.dlh==dlh){ // same line
                      int j=lexed.length()-1;
                      while(j>=0 && lexed.at(j).start>tk1.start)
@@ -3653,7 +3663,34 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              }
              continue;
          }
-         // TODO: handle arg Types (keyVal)
+         if(!stack.isEmpty() && stack.top().level==level-1 && stack.top().subtype==Tokens::keyValArg){
+             // handle commalist
+             if(tk.type==Tokens::punctuation && line.mid(tk.start,1)==","){
+                lastComma=-1;
+                lastEqual=-1;
+                continue;
+             }
+             if(tk.type==Tokens::symbol && line.mid(tk.start,1)=="="){
+                lastComma=1;
+                lastEqual=1;
+                continue;
+             }
+             if(lastComma<0){
+                 tk.level=level;
+                 tk.type=Tokens::keyVal_key;
+                 lexed<<tk;
+                 lastComma=lexed.length()-1;
+             }else{
+                 if(lastEqual<0){
+                    lexed[lastComma].length=tk.start+tk.length-lexed[lastComma].start;
+                 }else{
+                     tk.level=level;
+                     tk.subtype=Tokens::keyVal_val;
+                     lexed<<tk;
+                 }
+             }
+             continue;
+         }
          if(tk.type==Tokens::word){
              tk.level=level;
              if(!stack.isEmpty()){
