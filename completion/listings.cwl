@@ -1,6 +1,6 @@
 # mode: listings.sty
 # dani/2006-02-18
-\begin{lstlisting}
+\begin{lstlisting}#V
 \begin{lstlisting}[kv-list]
 \end{lstlisting}
 \lstalias{alias}{language}
