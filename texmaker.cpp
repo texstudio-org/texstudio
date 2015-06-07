@@ -839,7 +839,7 @@ void Texmaker::setupMenus() {
 	buildManager.stopBuildAction()->setParent(menu);  // actions need to be a child of the menu in order to be configurable in toolbars
 	newManagedAction(menu, "view",tr("&View"), SLOT(commandFromAction()), Qt::Key_F7,"viewer")->setData(BuildManager::CMD_VIEW);
 	newManagedAction(menu, "bibtex",tr("&Bibliography"), SLOT(commandFromAction()), Qt::Key_F8)->setData(BuildManager::CMD_BIBLIOGRAPHY);
-	newManagedAction(menu, "glossary",tr("&Glossary"), SLOT(commandFromAction()))->setData(BuildManager::CMD_GLOSSARY);
+	newManagedAction(menu, "glossary",tr("&Glossary"), SLOT(commandFromAction()), Qt::Key_F9)->setData(BuildManager::CMD_GLOSSARY);
 	newManagedAction(menu, "index",tr("&Index"), SLOT(commandFromAction()))->setData(BuildManager::CMD_INDEX);
 
 	menu->addSeparator();
