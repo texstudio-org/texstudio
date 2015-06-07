@@ -2195,7 +2195,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     continue; // command for spell checking only (auto parser)
                 if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
                 // remove special option classification e.g. %l
-                line.remove(QRegExp("%[a-zA-Z]"));
+                line.remove(QRegExp("%[a-mo-zA-Z]")); // not n
                 if (!line.contains("%")){
                     //add placeholders to brackets like () to (%<..%>)
                     const QString brackets = "{}[]()<>";
