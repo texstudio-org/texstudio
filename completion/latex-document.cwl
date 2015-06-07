@@ -79,8 +79,8 @@
 \begin{tiny}
 \begin{titlepage}
 \begin{trivlist}
-\begin{verbatim}
-\begin{verbatim*}
+\begin{verbatim}#V
+\begin{verbatim*}#V
 \begin{Vmatrix}#m\array
 \begin{vmatrix}#m\array
 \begin{verse}

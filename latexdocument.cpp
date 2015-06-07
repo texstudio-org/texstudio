@@ -336,30 +336,10 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             lineNrStart=lh->document()->indexOf(lh);
             if(linenr-lineNrStart>10) // limit search depth
                 lineNrStart=linenr;
-            if(linenr>lineNrStart){
-                newCount=linenr+count-lineNrStart;
-            }
         }
     }
 	
-	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfMagicComments;
-	QMutableListIterator<StructureEntry*> iter_magicComment(magicCommentList->children);
-    findStructureEntryBefore(iter_magicComment,MapOfMagicComments,lineNrStart,newCount);
-	
-	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfLabels;
-	QMutableListIterator<StructureEntry*> iter_label(labelList->children);
-    findStructureEntryBefore(iter_label,MapOfLabels,lineNrStart,newCount);
-	
-	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfTodo;
-	QMutableListIterator<StructureEntry*> iter_todo(todoList->children);
-    findStructureEntryBefore(iter_todo,MapOfTodo,lineNrStart,newCount);
-	
-	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBlock;
-	QMutableListIterator<StructureEntry*> iter_block(blockList->children);
-    findStructureEntryBefore(iter_block,MapOfBlock,lineNrStart,newCount);
-	QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBibtex;
-	QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
-    findStructureEntryBefore(iter_bibTeX,MapOfBibtex,lineNrStart,newCount);
+
 	
 	bool updateSyntaxCheck=false;
 	
@@ -382,9 +362,37 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
     if(lastHandle){
         oldRemainder=lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
     }
-    for (int i=linenr; i<linenr+count; i++) {
-        latexDetermineContexts2(line(i).handle(),oldRemainder,lp);
+    for (int i=linenr; i<lineCount() && i<linenr+count; i++) {
+        bool remainderChanged=latexDetermineContexts2(line(i).handle(),oldRemainder,lp);
+        if(remainderChanged && i+1==linenr+count && i+1<lineCount()){ // remainder changed in last line which is to be checked
+            count++; // check also next line ...
+        }
     }
+
+    if(linenr>lineNrStart){
+        newCount=linenr+count-lineNrStart;
+    }
+
+    QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfMagicComments;
+    QMutableListIterator<StructureEntry*> iter_magicComment(magicCommentList->children);
+    findStructureEntryBefore(iter_magicComment,MapOfMagicComments,lineNrStart,newCount);
+
+    QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfLabels;
+    QMutableListIterator<StructureEntry*> iter_label(labelList->children);
+    findStructureEntryBefore(iter_label,MapOfLabels,lineNrStart,newCount);
+
+    QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfTodo;
+    QMutableListIterator<StructureEntry*> iter_todo(todoList->children);
+    findStructureEntryBefore(iter_todo,MapOfTodo,lineNrStart,newCount);
+
+    QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBlock;
+    QMutableListIterator<StructureEntry*> iter_block(blockList->children);
+    findStructureEntryBefore(iter_block,MapOfBlock,lineNrStart,newCount);
+    QMultiHash<QDocumentLineHandle*,StructureEntry*> MapOfBibtex;
+    QMutableListIterator<StructureEntry*> iter_bibTeX(bibTeXList->children);
+    findStructureEntryBefore(iter_bibTeX,MapOfBibtex,lineNrStart,newCount);
+
+
     //updateSubsequentRemaindersLatex(this,linenr,count,lp);
     // force command from all line of which the actual line maybe subsequent lines (multiline commands)
     for (int i=lineNrStart; i<linenr+count; i++) {

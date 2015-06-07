@@ -2021,6 +2021,12 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     }
                     valid.remove('r');
                 }
+                if(valid.contains('V')){ // verbatim command
+                    if(res>-1){
+                        package.possibleCommands["%verbatimEnv"] << rxCom.cap(3);
+                    }
+                    valid.remove('V');
+                }
                 if(valid.contains('s')){ // special def
                     if(res>-1){
                         package.specialDefCommands.insert(rxCom.cap(1),definition);
@@ -3437,11 +3443,12 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
     return lexed;
 }
 
-void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp){
+bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp){
     if(!dlh)
-        return;
+        return false;
      dlh->lockForWrite();
      TokenList tl=dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
+     TokenStack oldRemainder=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
      QString line=dlh->text();
      bool verbatimMode=false;
      int level=0;
@@ -3500,7 +3507,7 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              Tokens tk3=tl.at(i+2);
              if(tk2.type==Tokens::openBrace && tk3.type==Tokens::word){
                  QString env=line.mid(tk3.start,tk3.length);
-                 if(env=="verbatim"){ // incomplete check if closing correspondents to open !
+                 if(lp.possibleCommands["%verbatimEnv"].contains(env)){ // incomplete check if closing correspondents to open !
                      verbatimMode=false;
                      stack.pop();
                  }else
@@ -3626,6 +3633,15 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                              if(tk2.type==Tokens::beginEnv){
                                  // special treatment for \begin ...
                                  QString env=line.mid(tk2.start,tk2.length);
+                                 // special treatment for verbatim
+                                 if(lp.possibleCommands["%verbatimEnv"].contains(env)){
+                                     verbatimMode=true;
+                                     Tokens tk3;
+                                     tk3.dlh=dlh;
+                                     tk3.level=level-1;
+                                     tk3.type=Tokens::verbatim;
+                                     stack.push(tk3);
+                                 }
                                  CommandDescription cd=lp.commandDefs.value("\\begin{"+env+"}",CommandDescription());
                                  if(cd.args>1){
                                      cd.args--;
@@ -3746,4 +3762,6 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(lexed));
      dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
      dlh->unlock();
+     bool remainderChanged=(stack!=oldRemainder);
+     return remainderChanged;
 }
