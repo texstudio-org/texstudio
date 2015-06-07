@@ -4173,6 +4173,7 @@ void Texmaker::NormalCompletion() {
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
     case Tokens::env:
+    case Tokens::beginEnv:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
@@ -7313,7 +7314,7 @@ void Texmaker::previewLatex(){
         Tokens tk=getTokenAtCol(c.line().handle(), c.columnNumber());
         if(tk.type!=Tokens::none)
             command=tk.getText();
-        if (tk.type==Tokens::env ) {
+        if (tk.type==Tokens::env || tk.type==Tokens::beginEnv ) {
             c.setColumnNumber(tk.start);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
@@ -8354,7 +8355,7 @@ bool Texmaker::generateMirror(bool setCur){
 	QString command, value;
     Tokens tk=getTokenAtCol(cursor.line().handle(),cursor.columnNumber());
 
-    if(tk.type==Tokens::env){
+    if(tk.type==Tokens::env || tk.type==Tokens::beginEnv){
         if (tk.length>0){
             value=tk.getText();
             command=getCommandFromToken(tk);
