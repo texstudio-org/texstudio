@@ -3073,7 +3073,7 @@ CommandDescription extractCommandDef(QString line){
 }
 
 
-CommandDescription::CommandDescription():optionalArgs(0),args(0)
+CommandDescription::CommandDescription():optionalArgs(0),args(0),level(0)
 {
 
 }
@@ -3310,4 +3310,377 @@ void updateSubsequentRemaindersLatex(QDocument *doc, int linenr, int lineCount, 
         dlh->unlock();
     }
 
+}
+
+TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
+    // dumbed down lexer in order to allow full parallelization and full change of verbatim/non-verbatim later on
+    TokenList lexed;
+    if(!dlh)
+        return lexed;
+    dlh->lockForWrite();
+    QString s=dlh->text();
+    Tokens present,previous;
+    present.type=Tokens::none;
+    present.dlh=dlh;
+    present.argLevel=0;
+    QChar verbatimSymbol;
+    const QString specialChars="{([})]";
+    int i=0;
+    for(;i<s.length();i++){
+        QChar c=s.at(i);
+        if(!verbatimSymbol.isNull()){
+            if(c==verbatimSymbol){
+                present.length=1;
+                lexed.append(present);
+                present.type=Tokens::none;
+                verbatimSymbol=QChar();
+                continue;
+            }
+        }
+        if(present.type==Tokens::command&& present.start==i-1 && (c.isSymbol()||c.isPunct())){
+            // handle \$ etc
+            present.length=i-present.start;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+        if(c=='%'){
+            if(present.type!=Tokens::none){
+                present.length=i-present.start;
+                lexed.append(present);
+            }
+            present.type=Tokens::comment;
+            present.length=1;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+        if(specialChars.contains(c) || c.isSpace() || c.isPunct() || c.isSymbol()){
+            //close token
+            if(present.type!=Tokens::none){
+                present.length=i-present.start;
+                lexed.append(present);
+                present.type=Tokens::none;
+            }
+        }else{
+            if(present.type==Tokens::none){
+                present.type=Tokens::word;
+                present.start=i;
+            }
+            continue;
+        }
+        //start new Token
+        present.start=i;
+        if(c=='\\'){
+            present.type=Tokens::command;
+            continue;
+        }
+
+        int l=specialChars.indexOf(c);
+        if(l>-1&&l<3){
+            present.type=Tokens::TokenType(int(Tokens::openBrace)+l);
+            present.length=1;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+        if(l>2){
+            present.type=Tokens::TokenType(int(Tokens::closeBrace)+(l-3));
+            present.length=1;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+        if(c=='$'){
+            present.type=Tokens::math;
+            present.length=1;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+        if(c.isSymbol()){
+            present.type=Tokens::symbol;
+            present.length=1;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+        if(c.isPunct()){
+            present.type=Tokens::punctuation;
+            present.length=1;
+            lexed.append(present);
+            present.type=Tokens::none;
+            continue;
+        }
+
+    }
+    if(present.type!=Tokens::none){
+        present.length=i-present.start;
+        lexed.append(present);
+        previous=present;
+    }
+    dlh->setCookie(QDocumentLine::LEXER_RAW_COOKIE,QVariant::fromValue<TokenList>(lexed));
+    dlh->unlock();
+    return lexed;
+}
+
+void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp){
+    if(!dlh)
+        return;
+     dlh->lockForWrite();
+     TokenList tl=dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
+     QString line=dlh->text();
+     bool verbatimMode=false;
+     int level=0;
+     if(!stack.isEmpty()){
+         if(stack.top().type==Tokens::verbatim){
+            verbatimMode=true;
+         }else{
+            level=stack.top().level+1;
+         }
+     }
+     TokenList lexed;
+     QStack<CommandDescription> commandStack;
+
+     bool beginCmd=false;
+     QString verbatimSymbol;
+     int lastComma=-1;
+     int lastEqual=-1;
+
+     for(int i=0;i<tl.length();i++){
+         Tokens& tk=tl[i];
+/* parse tokenlist
+ * check commands (1. syn check)
+ * tie options/arguments to commands
+ * lex otpions (key/val, comma separation,words,single arg,label etc)
+ * => reclassification of arguments
+ */
+         if(!verbatimSymbol.isNull()){
+             // handle \verb+ ... +  etc.
+             if(tk.type==Tokens::symbol){
+                 QString smb=line.mid(tk.start,1);
+                 if(smb==verbatimSymbol){
+                     // stop verbatimSymbol mode
+                     verbatimSymbol=QChar();
+                     continue;
+                 }
+             }
+             tk.type=Tokens::verbatim;
+             if(!stack.isEmpty()){
+                 tk.subtype=stack.top().subtype;
+             }
+             tk.level=level;
+             lexed<<tk;
+             continue;
+         }
+         // different handling for verbatimMode (verbatim-env, all content is practically ignored)
+         if(verbatimMode){
+             // verbatim handling
+             // just look for closing (\end{verbatim})
+             if(tk.type!=Tokens::command)
+                 continue;
+             QString cmd=line.mid(tk.start,tk.length);
+             if(cmd!="\\end")
+                 continue;
+             if(i+2>=tl.length()) // not enough tokens to handle \end{verbatim
+                 continue;
+             Tokens tk2=tl.at(i+1);
+             Tokens tk3=tl.at(i+2);
+             if(tk2.type==Tokens::openBrace && tk3.type==Tokens::word){
+                 QString env=line.mid(tk3.start,tk3.length);
+                 if(env=="verbatim"){ // incomplete check if closing correspondents to open !
+                     verbatimMode=false;
+                     stack.pop();
+                 }else
+                     continue;
+             }else
+                 continue;
+         }
+         // non-verbatim handling
+         if(tk.type==Tokens::comment)
+             break; // stop at comment start
+         if(tk.type==Tokens::command){
+             QString command=line.mid(tk.start,tk.length);
+             if(command=="\\verb"){
+                 // special treament for verb
+                 if(i+1<tl.length() && tl.at(i+1).type==Tokens::symbol && tl.at(i+1).start==tk.start+tk.length){
+                     // well formed \verb
+                     verbatimSymbol=line.mid(tl.at(i+1).start,1);
+                 }
+                 // not valid \verb
+                 if(!stack.isEmpty()){
+                     tk.subtype=stack.top().subtype;
+                 }
+                 tk.level=level;
+                 lexed<<tk;
+
+                 continue;
+             }else{
+                 beginCmd=(command=="\\begin");
+                 if(!stack.isEmpty()){
+                     tk.subtype=stack.top().subtype;
+                 }
+                 if(!commandStack.isEmpty() && commandStack.top().level==level){
+                     //possible command argument without brackets
+                     CommandDescription &cd=commandStack.top();
+                     if(cd.args>0){
+                         cd.optionalArgs=0; // no optional arguments after mandatory
+                         cd.args--;
+                         tk.subtype=cd.argTypes.takeFirst();
+                     }
+                     if(cd.args<=0){
+                         // unknown arg, stop handling this command
+                         commandStack.pop();
+                     }
+                 }
+                 if(lp.commandDefs.contains(command)&&!beginCmd){
+                     CommandDescription cd=lp.commandDefs.value(command);
+                     cd.level=level;
+                     if(cd.args>0)
+                        commandStack.push(cd);
+                 }else{
+                     tk.type=Tokens::commandUnknown;
+                 }
+                 tk.level=level;
+                 lexed<<tk;
+             }
+             continue;
+         }
+         if(Tokens::tkOpen().contains(tk.type)){
+             if(!commandStack.isEmpty() && commandStack.top().level==level){
+                 CommandDescription &cd=commandStack.top();
+                 if(tk.type==Tokens::openBrace){
+                    if(cd.args>0){
+                        cd.optionalArgs=0; // no optional arguments after mandatory
+                        cd.args--;
+                        tk.subtype=cd.argTypes.takeFirst();
+                    }
+                    if(cd.args<=0){
+                        // unknown arg, stop handling this command
+                        commandStack.pop();
+                    }
+                 }
+                 if(tk.type==Tokens::openSquare){
+                    if(cd.optionalArgs>0){
+                        cd.optionalArgs--;
+                        tk.subtype=cd.optTypes.takeFirst();
+                    }else{
+                        // unexpected optional argument
+                        // ignore
+                    }
+                 }
+             }
+             tk.level=level;
+             stack.push(tk);
+             lexed<<tk;
+             level++;
+             continue;
+         }
+         if(Tokens::tkClose().contains(tk.type)){
+             if(!stack.isEmpty() && stack.top().type==Tokens::opposite(tk.type)){
+                 Tokens tk1=stack.pop();
+                 if(Tokens::tkCommalist().contains(tk1.subtype)){
+                     lastComma=-1;
+                 }
+                 if(tk1.dlh==dlh){ // same line
+                     int j=lexed.length()-1;
+                     while(j>=0 && lexed.at(j).start>tk1.start)
+                         j--;
+                     if(j>=0 && lexed.at(j).start==tk1.start){
+                         if(Tokens::tkSingleArg().contains(tk1.subtype)){
+                             // join all args for intened single word argument
+                             // first remove all argument tokens
+                             for(int k=j+1;k<lexed.length();){
+                                lexed.removeAt(k);
+                             }
+                             Tokens tk2;
+                             tk2.dlh=dlh;
+                             tk2.start=lexed[j].start+1;
+                             tk2.length=tk.start-lexed[j].start-1;
+                             tk2.type=tk1.subtype;
+                             tk2.level=level;
+                             lexed<<tk2;
+                         }
+                         lexed[j].length=tk.start-tk1.start+1;
+                         lexed[j].type=Tokens::closed(tk.type);
+                         level--;
+                     }else{ // opening not found, whyever (should not happen)
+                         level--;
+                         tk.level=level;
+                         lexed.append(tk);
+                     }
+                 }else{
+                     level--;
+                     tk.level=level;
+                     lexed.append(tk);
+                 }
+                 continue;
+             }
+             // ignore unopened close
+         }
+         if(!stack.isEmpty() && stack.top().level==level-1 && Tokens::tkCommalist().contains(stack.top().subtype)){
+             // handle commalist
+             if(tk.type==Tokens::punctuation && line.mid(tk.start,1)==","){
+                lastComma=-1;
+                continue;
+             }
+             if(lastComma<0){
+                 tk.level=level;
+                 tk.type=stack.top().subtype;
+                 lexed<<tk;
+                 lastComma=lexed.length()-1;
+             }else{
+                 lexed[lastComma].length=tk.start+tk.length-lexed[lastComma].start;
+             }
+             continue;
+         }
+         // TODO: handle arg Types (keyVal)
+         if(tk.type==Tokens::word){
+             tk.level=level;
+             if(!stack.isEmpty()){
+                 tk.subtype=stack.top().subtype;
+             }
+             if(!commandStack.isEmpty() && commandStack.top().level==level){
+                 //possible command argument without brackets
+                 CommandDescription &cd=commandStack.top();
+                 if(cd.args>0){
+                     cd.optionalArgs=0; // no optional arguments after mandatory
+                     cd.args--;
+                     tk.subtype=cd.argTypes.takeFirst();
+                 }
+                 if(cd.args<=0){
+                     // unknown arg, stop handling this command
+                     commandStack.pop();
+                 }
+             }
+             lexed<<tk;
+         }
+     }
+     { // remove tokens from stack which are not intended for mulitline: ([
+         QMutableVectorIterator<Tokens> i(stack);
+         while (i.hasNext()) {
+             Tokens &tk = i.next();
+             if (tk.type==Tokens::openBracket || tk.type==Tokens::openSquare) {
+                 i.remove();
+             }
+             if(tk.type==Tokens::openBrace && tk.dlh==dlh){
+                 // set length to whole line after brace
+                 tk.length=line.length()-tk.start;
+             }
+         }
+     }
+     {  // change length of openBrace (length to end of line)
+        QMutableListIterator<Tokens> i(lexed);
+        while (i.hasNext()) {
+            Tokens &tk = i.next();
+            if(tk.type==Tokens::openBrace && tk.dlh==dlh){
+                // set length to whole line after brace
+                tk.length=line.length()-tk.start;
+            }
+        }
+     }
+
+     dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(lexed));
+     dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
+     dlh->unlock();
 }
