@@ -5,13 +5,13 @@
 \VerbatimFootnotes
 \DefineShortVerb{verb}
 \UndefineShortVerb{verb}
-\begin{Verbatim}
+\begin{Verbatim}#V
 \begin{Verbatim}[key=value]
 \end{Verbatim}
-\begin{Verbatim*}
+\begin{Verbatim*}#V
 \end{Verbatim*}
-\begin{BVerbatim}
+\begin{BVerbatim}#V
 \end{BVerbatim}
-\begin{BVerbatim*}
+\begin{BVerbatim*}#V
 \end{BVerbatim*}
 	
