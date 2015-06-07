@@ -1976,6 +1976,13 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                 CommandDescription cd=extractCommandDef(line);
                 QString cmd=rxCom3.cap(1);
                 if(cmd=="\\begin"){
+                    if(!package.commandDescriptions.contains(cmd)){
+                        // one insertion of a general \begin-command
+                        CommandDescription cd;
+                        cd.args=1;
+                        cd.argTypes<<Tokens::beginEnv;
+                        package.commandDescriptions.insert(cmd,cd);
+                    }
                     cmd=rxCom.cap();
                 }
                 if(package.commandDescriptions.contains(cmd)){
@@ -2515,6 +2522,7 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg(){
     result.insert(file);
     result.insert(imagefile);
     result.insert(env);
+    result.insert(beginEnv);
     result.insert(documentclass);
     result.insert(beamertheme);
     result.insert(def);
@@ -2992,7 +3000,10 @@ CommandDescription extractCommandDef(QString line){
         i=line.indexOf(closingChar);
         QString def=line.mid(1,i-1);
         Tokens::TokenType type=Tokens::none;
-        if(loop==1 &&(command=="\\begin" || command=="\\end")){
+        if(loop==1 &&command=="\\begin"){
+            type=Tokens::beginEnv;
+        }
+        if(loop==1 &&command=="\\end"){
             type=Tokens::env;
         }
         if(def=="text"){
@@ -3442,7 +3453,6 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      TokenList lexed;
      QStack<CommandDescription> commandStack;
 
-     bool beginCmd=false;
      QString verbatimSymbol;
      int lastComma=-1;
      int lastEqual=-1;
@@ -3516,7 +3526,6 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 
                  continue;
              }else{
-                 beginCmd=(command=="\\begin");
                  if(!stack.isEmpty()){
                      tk.subtype=stack.top().subtype;
                  }
@@ -3533,7 +3542,7 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                          commandStack.pop();
                      }
                  }
-                 if(lp.commandDefs.contains(command)&&!beginCmd){
+                 if(lp.commandDefs.contains(command)){
                      CommandDescription cd=lp.commandDefs.value(command);
                      cd.level=level;
                      if(cd.args>0)
@@ -3600,6 +3609,16 @@ void latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                              tk2.type=tk1.subtype;
                              tk2.level=level;
                              lexed<<tk2;
+                             if(tk2.type==Tokens::beginEnv){
+                                 // special treatment for \begin ...
+                                 QString env=line.mid(tk2.start,tk2.length);
+                                 CommandDescription cd=lp.commandDefs.value("\\begin{"+env+"}",CommandDescription());
+                                 if(cd.args>1){
+                                     cd.args--;
+                                     cd.argTypes.takeFirst();
+                                     commandStack.push(cd);
+                                 }
+                             }
                          }
                          lexed[j].length=tk.start-tk1.start+1;
                          lexed[j].type=Tokens::closed(tk.type);

@@ -1625,7 +1625,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
                     line.addOverlay(QFormatRange(tk.start+1,tk.length-2,structureFormat));
                     addedOverlayStructure = true;
                 }
-                if (tk.type==Tokens::env) {
+                if (tk.type==Tokens::env || tk.type==Tokens::beginEnv) {
                     line.addOverlay(QFormatRange(tk.start,tk.length,environmentFormat));
                     addedOverlayEnvironment = true;
                 }
@@ -1942,7 +1942,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
             }
         }
         value=tk.getText();
-        if(tk.type==Tokens::env){
+        if(tk.type==Tokens::env || tk.type==Tokens::beginEnv){
             handled=true;
             if (config->toolTipPreview && showMathEnvPreview(cursor, "\\begin", value, pos)) {
                 ; // action is already performed as a side effect
