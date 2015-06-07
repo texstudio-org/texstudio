@@ -2188,6 +2188,8 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                 if(hideFromCompletion)
                     continue; // command for spell checking only (auto parser)
                 if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
+                // remove special option classification e.g. %l
+                line.remove(QRegExp("%[a-zA-Z]"));
                 if (!line.contains("%")){
                     //add placeholders to brackets like () to (%<..%>)
                     const QString brackets = "{}[]()<>";
@@ -3021,7 +3023,7 @@ CommandDescription extractCommandDef(QString line){
         if(def=="color"){
             type=Tokens::color;
         }
-        if(def=="width" || def=="length"){
+        if(def=="width" || def=="length" || def=="height" || def.endsWith("%l")){
             type=Tokens::width;
         }
         if(def=="citekey" || def=="bibid"){
