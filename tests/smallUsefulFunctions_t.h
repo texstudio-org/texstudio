@@ -898,8 +898,11 @@ private slots:
 		QEQUAL(indexMin(i, j), result);
 	}
 
+    void test_simpleLexing_data();
+    void test_simpleLexing();
 };
 
 
 #endif
 #endif
+
