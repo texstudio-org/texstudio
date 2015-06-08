@@ -18,6 +18,10 @@ void SmallUsefulFunctionsTest::test_simpleLexing_data() {
     QTest::newRow("simple") << "bummerang" << (QList<int>()<<1) << (QList<int>()<<0)  << (QList<int>()<<9);
     QTest::newRow("command") << "\\bummerang" << (QList<int>()<<2) << (QList<int>()<<0)  << (QList<int>()<<10);
     QTest::newRow("command with arg") << "\\bummerang{abc}" << (QList<int>()<<2<<6<<1<<9) << (QList<int>()<<0<<10<<11<<14)  << (QList<int>()<<10<<1<<3<<1);
+    QTest::newRow("command with optional arg") << " \\bummerang  [abc  ]" << (QList<int>()<<2<<8<<1<<11) << (QList<int>()<<1<<13<<14<<19)  << (QList<int>()<<10<<1<<3<<1);
+    QTest::newRow("punctation") << "bummerang." << (QList<int>()<<1<<43) << (QList<int>()<<0<<9)  << (QList<int>()<<9<<1);
+    QTest::newRow("symbol") << " a = b " << (QList<int>()<<1<<42<<1) << (QList<int>()<<1<<3<<5)  << (QList<int>()<<1<<1<<1);
+    QTest::newRow("umlaut") << "\"uber" << (QList<int>()<<43<<1) << (QList<int>()<<0<<1)  << (QList<int>()<<1<<4);
 }
 
 void SmallUsefulFunctionsTest::test_simpleLexing() {
