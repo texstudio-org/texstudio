@@ -45,6 +45,7 @@ public:
 
 	bool overwriteOpeningBracketFollowedByPlaceholder;
 	bool overwriteClosingBracketFollowingPlaceholder;
+	bool doubleClickSelectionIncludeLeadingBackslash;
 	int contextMenuSpellcheckingEntryLocation;
 	int contextMenuKeyboardModifiers;  // actually this is a Qt::KeyboardModifiers flag (but we don't want to import the whole qt namespace here)
 

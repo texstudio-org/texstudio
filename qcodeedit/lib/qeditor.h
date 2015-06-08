@@ -562,6 +562,7 @@ public slots:
 		virtual void insertFromMimeData(const QMimeData *d);
 
 		void setFlag(EditFlag f, bool b);
+		void setDoubleClickSelectionType(QDocumentCursor::SelectionType type) {m_doubleClickSelectionType = type;}
 		
 	public slots:
 		void pageUp(QDocumentCursor::MoveMode moveMode);
@@ -643,6 +644,7 @@ public slots:
 		QPointer<QCodeCompletionEngine> m_completionEngine;
 		
 		QDocumentCursor m_cursor, m_doubleClick, m_dragAndDrop;
+		QDocumentCursor::SelectionType m_doubleClickSelectionType;
 		int m_cursorLinesFromViewTop;
 		
 		QList<QDocumentCursor> m_mirrors;

@@ -1262,6 +1262,7 @@ void LatexEditorView::updateSettings(){
 	//TODO: parenmatch
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);
 	editor->setFlag(QEditor::ShowPlaceholders, config->showPlaceholders);
+	editor->setDoubleClickSelectionType(config->doubleClickSelectionIncludeLeadingBackslash ? QDocumentCursor::WordOrCommandUnderCursor : QDocumentCursor::WordUnderCursor);
     editor->setSilentReloadOnExternalChanges(config->silentReload);
     editor->setHidden(false);
 	editor->setCursorSurroundingLines(config->cursorSurroundLines);
