@@ -240,7 +240,8 @@ SOURCES += main.cpp \
     tests/latexoutputfilter_t.cpp \
     sessionlist.cpp \
     pdfsplittool.cpp \
-    searchresultwidget.cpp
+    searchresultwidget.cpp \
+    tests/smallUsefulFunctions_t.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
