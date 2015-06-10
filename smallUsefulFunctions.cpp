@@ -3576,6 +3576,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              continue;
          }
          if(Tokens::tkOpen().contains(tk.type)){
+             // special treament for brackets as they don't have any syntaxtical meaning except with some commands
+             if(tk.type==Tokens::openBracket){
+                 if(!commandStack.isEmpty() && commandStack.top().level==level){
+                     // TODO: implement brackets detection
+                 }else{
+                     continue;
+                 }
+             }
              if(!commandStack.isEmpty() && commandStack.top().level==level){
                  CommandDescription &cd=commandStack.top();
                  if(tk.type==Tokens::openBrace){
@@ -3606,6 +3614,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              continue;
          }
          if(Tokens::tkClose().contains(tk.type)){
+             // special treament for brackets as they don't have any syntaxtical meaning except with some commands
+             if(tk.type==Tokens::closeBracket){
+                 continue; // for now ignore, until command with bracket can be detected
+             }
              if(!stack.isEmpty() && stack.top().type==Tokens::opposite(tk.type)){
                  Tokens tk1=stack.pop();
                  if(Tokens::tkCommalist().contains(tk1.subtype)){
