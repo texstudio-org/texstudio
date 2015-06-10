@@ -166,8 +166,8 @@
 \boldmath
 \botfigrule#*
 \cal
-\caption{title}
-\caption[short title]{title}
+\caption{text}
+\caption[short text]{text}
 \chapter{title}
 \chapter*{title}
 \chapter[short title]{title}
