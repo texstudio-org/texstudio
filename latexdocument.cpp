@@ -613,7 +613,12 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			}
 			
 			//// newcommand ////
-            if (lp.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {				completerNeedsUpdate=true;
+            if (lp.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
+                completerNeedsUpdate=true;
+                if(!args.isEmpty() && args.at(0).type==Tokens::braces){
+                    //remove first arg, contains new command name, already saved into "firstArg"
+                    args.takeFirst();
+                }
                 int optionCount = getArg(args,dlh,0, ArgumentList::Optional).toInt();  // results in 0 if there is no optional argument or conversion fails
 				if (optionCount>9 || optionCount<0) optionCount = 0;  // limit number of options
                 bool def=!getArg(args,dlh,1, ArgumentList::Optional).isEmpty();
@@ -2728,7 +2733,9 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 	foreach(QString elem,commands){
 		if(!elem.startsWith("\\begin{")&&!elem.startsWith("\\end{")){
 			int i=elem.indexOf("{");
+            int j=elem.indexOf("[");
 			if(i>=0) elem=elem.left(i);
+            if(j>=0 && j<i) elem=elem.left(j);
 		}
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
