@@ -557,7 +557,7 @@ protected slots:
 	void fileInConflict();
 	void fileAutoReloading(QString fname);
 	
-	void jumpToSearch(QDocument* doc,int lineNumber);
+	void jumpToSearchResult(QDocument* doc, int lineNumber, const SearchQuery *query);
 	
 	void cursorPositionChanged();
 	void syncPDFViewer(QDocumentCursor cur, bool inForeground = true);

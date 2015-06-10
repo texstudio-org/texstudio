@@ -145,7 +145,8 @@ HEADERS += texmaker.h \
     tests/latexoutputfilter_t.h \
     sessionlist.h \
     pdfsplittool.h \
-    searchresultwidget.h
+    searchresultwidget.h \
+    searchquery.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     texmaker.cpp \
@@ -241,7 +242,8 @@ SOURCES += main.cpp \
     sessionlist.cpp \
     pdfsplittool.cpp \
     searchresultwidget.cpp \
-    tests/smallUsefulFunctions_t.cpp
+    tests/smallUsefulFunctions_t.cpp \
+    searchquery.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
