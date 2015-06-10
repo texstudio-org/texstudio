@@ -186,7 +186,7 @@ QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int ro
 		}
 	}
 	case Qt::DisplayRole:
-		return (search.doc ? search.doc->getFileName() : tr("File closed")) + QString(" (%1)").arg(search.lines.size());
+		return (search.doc ? QDir::toNativeSeparators(search.doc->getFileName()) : tr("File closed")) + QString(" (%1)").arg(search.lines.size());
 	}
 	return QVariant();
 }
