@@ -54,6 +54,7 @@
 #include "updatechecker.h"
 #include "session.h"
 #include "help.h"
+#include "searchquery.h"
 #include "fileselector.h"
 #include "utilsUI.h"
 
@@ -535,7 +536,7 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView->getLogWidget(),SIGNAL(logLoaded()),this,SLOT(updateLogEntriesInEditors()));
 		connect(outputView->getLogWidget(),SIGNAL(logResetted()),this,SLOT(clearLogEntriesInEditors()));
 		connect(outputView,SIGNAL(pageChanged(QString)),this,SLOT(outputPageChanged(QString)));
-		connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearch(QDocument*,int)),this,SLOT(jumpToSearch(QDocument*,int)));
+		connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument*,int,const SearchQuery*)), this, SLOT(jumpToSearchResult(QDocument*,int,const SearchQuery*)));
 		connect(outputView->getSearchResultWidget(), SIGNAL(updateTheSearch(int)), this, SLOT(updateFindGlobal(int)));
 		
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const PreviewSource&)),this,SLOT(previewAvailable	(const QString&,const PreviewSource&)));
@@ -6817,25 +6818,25 @@ void Texmaker::outputPageChanged(const QString &id) {
 	}
 }
 
-void Texmaker::jumpToSearch(QDocument* doc, int lineNumber){
+void Texmaker::jumpToSearchResult(QDocument* doc, int lineNumber, const SearchQuery *query) {
 	REQUIRE(qobject_cast<LatexDocument*>(doc));
 	if(currentEditor() && currentEditor()->document()==doc && currentEditor()->cursor().lineNumber()==lineNumber)
 	{
 		QDocumentCursor c=currentEditor()->cursor();
 		int col=c.columnNumber();
 		gotoLine(lineNumber);
-		col=searchResultWidget()->getNextSearchResultColumn(c.line().text() ,col+1);
+		col=query->getNextSearchResultColumn(c.line().text() ,col+1);
 		currentEditor()->setCursorPosition(lineNumber,col,false);
 		currentEditor()->ensureCursorVisible(QEditor::Navigation);
 	} else {
 		gotoLine(lineNumber, doc->getFileName().size()?doc->getFileName():qobject_cast<LatexDocument*>(doc)->getTemporaryFileName());
-		int col=searchResultWidget()->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
+		int col=query->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
 		currentEditor()->setCursorPosition(lineNumber,col,false);
 		currentEditor()->ensureCursorVisible(QEditor::Navigation);
 		outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 	}
 	QDocumentCursor highlight = currentEditor()->cursor();
-	highlight.movePosition(searchResultWidget()->searchExpression().length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+	highlight.movePosition(query->searchExpression().length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 	currentEditorView()->temporaryHighlight(highlight);
 }
 
@@ -7825,7 +7826,6 @@ void Texmaker::editFindGlobal(){
 			break;
 		}
         //updateFindGlobal(docs,findDlg->getSearchWord(),findDlg->getReplaceWord(),findDlg->isCase(),findDlg->isWords(),findDlg->isRegExp());
-        searchResultWidget()->setSearchEditors(docs);
 	}
 }
 
@@ -7857,8 +7857,8 @@ void Texmaker::updateFindGlobal(int scope){
     bool isReg=edView->getSearchIsRegExp();
 
     bool linesShown=false;
-
-    searchResultWidget()->setSearchExpression(edView->getSearchText(),edView->getReplaceText(),isCase,isWord,isReg);
+    SearchQuery *query = new SearchQuery(edView->getSearchText(), edView->getReplaceText(), isCase, isWord, isReg);
+	searchResultWidget()->setQuery(query);
     foreach(LatexDocument *doc,docs){
         if (!doc) continue;
         QList<QDocumentLineHandle *> lines;
@@ -7871,7 +7871,7 @@ void Texmaker::updateFindGlobal(int scope){
         if(!lines.isEmpty()){ // don't add empty searches
             if (doc->getFileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
                 doc->setTemporaryFileName(buildManager.createTemporaryFileName());
-            searchResultWidget()->addSearch(lines, doc);
+            query->addDocSearchResult(doc, lines);
             outputView->showPage(outputView->SEARCH_RESULT_PAGE);
         }
     }
@@ -7902,14 +7902,10 @@ void Texmaker::findLabelUsages(LatexDocument *contextDoc, const QString &labelTe
 		usagesByDocument.insert(doc, dlhs);
 	}
 	
-	searchResultWidget()->clearSearch();
-	searchResultWidget()->setScopeChangeAllowed(false);
-	searchResultWidget()->setSearchAgainAllowed(false);
-	searchResultWidget()->setReplaceAllowed(false);
-	
-	searchResultWidget()->setSearchExpression(labelText, labelText, true, true, false);
+	LabelSearchQuery *query = new LabelSearchQuery(labelText);
+	searchResultWidget()->setQuery(query);
 	foreach (QDocument *doc, usagesByDocument.keys()) {
-		searchResultWidget()->addSearch(usagesByDocument.value(doc), doc);
+		query->addDocSearchResult(doc, usagesByDocument.value(doc));
 	}
 	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 }
@@ -9743,7 +9739,6 @@ void Texmaker::searchExtendToggled(bool toggled){
     docs << doc;
 
     updateFindGlobal(searchResultWidget()->getSearchScope());
-    searchResultWidget()->setSearchEditors(docs);
 }
 
 void Texmaker::changeIconSize(int value)
