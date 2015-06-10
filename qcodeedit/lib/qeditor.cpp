@@ -926,10 +926,6 @@ void QEditor::save()
 	//QTextStream s(&f);
 	//s << text();
 	// insert hard line breaks on modified lines (if desired)
-	if(flag(HardLineWrap)){
-		QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
-		m_doc->applyHardLineWrap(handles);
-	}
 
 	//remove all watches (on old and new file name (setfilename above could have create one!) )
 	Q_ASSERT(watcher());
