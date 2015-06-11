@@ -99,8 +99,9 @@ void SearchQuery::setReplacementText(QString text) {
 
 
 LabelSearchQuery::LabelSearchQuery(QString label) : 
-	SearchQuery(label, QString(), SearchQuery::IsWord | SearchQuery::IsCaseSensitive)
+	SearchQuery(label, QString(), IsWord | IsCaseSensitive | SearchAgainAllowed)
 {
+	mScope = ProjectScope;
 	mType = tr("Label Search");
 }
 
