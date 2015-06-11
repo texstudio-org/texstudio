@@ -3374,6 +3374,7 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
             present.type=Tokens::none;
             continue;
         }
+
         if(specialChars.contains(c) || c.isSpace() || c.isPunct() || c.isSymbol()){
             //close token
             if(present.type!=Tokens::none){
@@ -3383,8 +3384,27 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
             }
         }else{
             if(present.type==Tokens::none){
-                present.type=Tokens::word;
+                if(c.isLetter()){
+                    present.type=Tokens::word;
+                }else{
+                    present.type=Tokens::number;
+                }
                 present.start=i;
+            }else{ // separate numbers and text (latex considers \test1 as two tokens ...)
+                if(c.isDigit() && present.type!=Tokens::number){
+                    present.length=i-present.start;
+                    lexed.append(present);
+                    present.start=i;
+                    present.type=Tokens::number;
+                    continue;
+                }
+                if(c.isLetter() && present.type==Tokens::number){
+                    present.length=i-present.start;
+                    lexed.append(present);
+                    present.start=i;
+                    present.type=Tokens::word;
+                    continue;
+                }
             }
             continue;
         }

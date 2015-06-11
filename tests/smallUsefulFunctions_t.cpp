@@ -22,6 +22,12 @@ void SmallUsefulFunctionsTest::test_simpleLexing_data() {
     QTest::newRow("punctation") << "bummerang." << (QList<int>()<<1<<43) << (QList<int>()<<0<<9)  << (QList<int>()<<9<<1);
     QTest::newRow("symbol") << " a = b " << (QList<int>()<<1<<42<<1) << (QList<int>()<<1<<3<<5)  << (QList<int>()<<1<<1<<1);
     QTest::newRow("umlaut") << "\"uber" << (QList<int>()<<43<<1) << (QList<int>()<<0<<1)  << (QList<int>()<<1<<4);
+    QTest::newRow("numbers") << "1.2" << (QList<int>()<<44<<43<<44) << (QList<int>()<<0<<1<<2)  << (QList<int>()<<1<<1<<1);
+    QTest::newRow("numbers1") << "1em" << (QList<int>()<<44<<1) << (QList<int>()<<0<<1)  << (QList<int>()<<1<<2);
+    QTest::newRow("numbers2") << "em2a" << (QList<int>()<<1<<44<<1) << (QList<int>()<<0<<2<<3)  << (QList<int>()<<2<<1<<1);
+    QTest::newRow("numbers3") << "\\text1" << (QList<int>()<<2<<44) << (QList<int>()<<0<<5)  << (QList<int>()<<5<<1);
+    QTest::newRow("numbers4") << "45 \\text 4 em" << (QList<int>()<<44<<2<<44<<1) << (QList<int>()<<0<<3<<9<<11)  << (QList<int>()<<2<<5<<1<<2);
+    QTest::newRow("command with brackets") << "\\bummerang (abc,fgew)" << (QList<int>()<<2<<7<<1<<43<<1<<10) << (QList<int>()<<0<<11<<12<<15<<16<<20)  << (QList<int>()<<10<<1<<3<<1<<4<<1);
 }
 
 void SmallUsefulFunctionsTest::test_simpleLexing() {
@@ -46,4 +52,5 @@ void SmallUsefulFunctionsTest::test_simpleLexing() {
 }
 
 #endif
+
 

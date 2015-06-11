@@ -57,7 +57,7 @@ public:
                     squareBracket,openBrace,openBracket,openSquare,closeBrace,
                     closeBracket,closeSquareBracket,math,comment,commandUnknown,label,bibItem,file,imagefile,bibfile,
                     keyValArg,keyVal_key,keyVal_val,list,text,env,beginEnv,def,labelRef,package,width,placement,colDef,title,url,documentclass,beamertheme,packageoption,
-                    color,verbatimStart,verbatimStop,verbatim,symbol,punctuation};
+                    color,verbatimStart,verbatimStop,verbatim,symbol,punctuation,number};
     TokenType type;
     // subtype is used to determine the type of argument
     TokenType subtype;
