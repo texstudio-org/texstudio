@@ -32,6 +32,7 @@ public:
 	
 	void addSearch(const SearchInfo& search);
 	void removeSearch(const QDocument* doc);
+	void removeAllSearches();
     QList<SearchInfo> getSearches();
 	void clear();
 	QDocument* getDocument(const QModelIndex &index);

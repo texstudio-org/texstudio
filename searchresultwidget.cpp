@@ -12,10 +12,10 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 
 	searchScopeBox = new QComboBox;
 	searchScopeBox->setEditable(false);
-	searchScopeBox->addItem(tr("Current Doc"));
-	searchScopeBox->addItem(tr("All Docs"));
-	searchScopeBox->addItem(tr("Project"));
-	connect(searchScopeBox, SIGNAL(currentIndexChanged(int)), SIGNAL(updateTheSearch(int)));
+	searchScopeBox->addItem(tr("Current Doc"), static_cast<uint>(SearchQuery::CurrentDocumentScope));
+	searchScopeBox->addItem(tr("All Docs"), static_cast<uint>(SearchQuery::GlobalScope));
+	searchScopeBox->addItem(tr("Project"), static_cast<uint>(SearchQuery::ProjectScope));
+	connect(searchScopeBox, SIGNAL(currentIndexChanged(int)), SLOT(updateSearch()));
 
 	searchTypeLabel = new QLabel;
 	searchTextLabel = new QLabel;
@@ -71,6 +71,7 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 	searchTypeLabel->setText(query->type() + ":");
 	searchTextLabel->setText(query->searchExpression());
 	searchScopeBox->setEnabled(query->flag(SearchQuery::ScopeChangeAllowed));
+	updateSearchScopeBox(query->scope());
 	searchAgainButton->setEnabled(query->flag(SearchQuery::SearchAgainAllowed));
 	bool replaceAllowed = query->flag(SearchQuery::ReplaceAllowed);
 	replaceTextEdit->setEnabled(replaceAllowed);
@@ -81,7 +82,8 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 }
 
 void SearchResultWidget::updateSearch() {
-	emit updateTheSearch(searchScopeBox->currentIndex());
+	if (query) query->setScope(searchScope());
+	emit runSearch(query);
 }
 
 void SearchResultWidget::replaceAll() {
@@ -130,6 +132,13 @@ void SearchResultWidget::replaceAll() {
 	}
 }
 
+void SearchResultWidget::updateSearchScopeBox(SearchQuery::Scope sc)
+{
+	int index = searchScopeBox->findData(sc);
+	if (index >= 0)
+		searchScopeBox->setCurrentIndex(index);
+}
+
 void SearchResultWidget::clickedSearchResult(const QModelIndex &index) {
 	 
 	QDocument *doc = query->model()->getDocument(index);
@@ -144,8 +153,8 @@ void SearchResultWidget::clearSearch() {
 	setQuery(new SearchQuery("", "", SearchQuery::NoFlags));
 }
 
-int SearchResultWidget::getSearchScope() const {
-	return searchScopeBox->currentIndex();
+SearchQuery::Scope SearchResultWidget::searchScope() const {
+	return static_cast<SearchQuery::Scope>(searchScopeBox->itemData(searchScopeBox->currentIndex()).toUInt());
 }
 
 

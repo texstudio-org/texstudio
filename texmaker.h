@@ -335,7 +335,7 @@ protected slots:
 	void editInsertRefToNextLabel(const QString &refCmd="\\ref", bool backward=false);
 	void editInsertRefToPrevLabel(const QString &refCmd="\\ref");
 	void editFindGlobal();
-    void updateFindGlobal(int scope);
+	void runSearch(SearchQuery *query);
 	void findLabelUsages();
 	void findLabelUsages(LatexDocument *doc, const QString &labelText);
 	SearchResultWidget * searchResultWidget();
