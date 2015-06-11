@@ -100,11 +100,20 @@ void SearchResultModel::clear(){
 }
 
 void SearchResultModel::removeSearch(const QDocument* doc){
+	return;
+	// TODO: currently unused, also it requires beginResetModel() or similar
 	for (int i=m_searches.size()-1;i>=0;i--)
 		if (m_searches[i].doc == doc) 
 			m_searches.removeAt(i);
-	if(m_searches.isEmpty()) mExpression.clear();
 }
+
+void SearchResultModel::removeAllSearches()
+{
+	beginResetModel();
+	m_searches.clear();
+	endResetModel();
+}
+
 int SearchResultModel::columnCount(const QModelIndex & parent) const {
 	return parent.isValid()?1:1;
 }

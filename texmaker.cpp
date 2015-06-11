@@ -537,7 +537,7 @@ void Texmaker::setupDockWidgets(){
 		connect(outputView->getLogWidget(),SIGNAL(logResetted()),this,SLOT(clearLogEntriesInEditors()));
 		connect(outputView,SIGNAL(pageChanged(QString)),this,SLOT(outputPageChanged(QString)));
 		connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument*,int,const SearchQuery*)), this, SLOT(jumpToSearchResult(QDocument*,int,const SearchQuery*)));
-		connect(outputView->getSearchResultWidget(), SIGNAL(updateTheSearch(int)), this, SLOT(updateFindGlobal(int)));
+		connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery*)), this, SLOT(runSearch(SearchQuery*)));
 		
 		connect(&buildManager,SIGNAL(previewAvailable(const QString&, const PreviewSource&)),this,SLOT(previewAvailable	(const QString&,const PreviewSource&)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
@@ -7829,55 +7829,9 @@ void Texmaker::editFindGlobal(){
 	}
 }
 
-void Texmaker::updateFindGlobal(int scope){
-    // scope: 0 current doc, 1 all docs , 2 project
-    searchResultWidget()->clearSearch();
-    LatexEditorView *edView = currentEditorView();
-    if(!edView)
-        return;
-
-    QList<LatexDocument *> docs;
-    LatexDocument *doc = currentEditorView()->document;
-    switch (scope) {
-    case 0:
-        docs << doc;
-        break;
-    case 1:
-        docs << documents.getDocuments();
-        break;
-    case 2:
-        docs << doc->getListOfDocs();
-        break;
-    default:
-        break;
-    }
-
-    bool isWord=edView->getSearchIsWords();
-    bool isCase=edView->getSearchIsCase();
-    bool isReg=edView->getSearchIsRegExp();
-
-    bool linesShown=false;
-    SearchQuery *query = new SearchQuery(edView->getSearchText(), edView->getReplaceText(), isCase, isWord, isReg);
-	searchResultWidget()->setQuery(query);
-    foreach(LatexDocument *doc,docs){
-        if (!doc) continue;
-        QList<QDocumentLineHandle *> lines;
-        for(int l=0;l<doc->lineCount();l++){
-            l=doc->findLineRegExp(edView->getSearchText(),l,isCase ? Qt::CaseSensitive : Qt::CaseInsensitive,isWord,isReg);
-            if(l>-1) lines << doc->line(l).handle();
-            if(l==-1) break;
-        }
-
-        if(!lines.isEmpty()){ // don't add empty searches
-            if (doc->getFileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
-                doc->setTemporaryFileName(buildManager.createTemporaryFileName());
-            query->addDocSearchResult(doc, lines);
-            outputView->showPage(outputView->SEARCH_RESULT_PAGE);
-        }
-    }
-    if(!linesShown){
-        outputView->showPage(outputView->SEARCH_RESULT_PAGE);
-    }
+void Texmaker::runSearch(SearchQuery *query) {
+	if (!currentEditorView() || !query) return;
+	query->run(currentEditorView()->document);
 }
 
 void Texmaker::findLabelUsages() {
@@ -7892,21 +7846,9 @@ void Texmaker::findLabelUsages() {
 
 void Texmaker::findLabelUsages(LatexDocument *contextDoc, const QString &labelText) {
 	if (!contextDoc) return;
-	QMultiHash<QDocumentLineHandle*,int> usages = contextDoc->getLabels(labelText);
-	usages += contextDoc->getRefs(labelText);
-	QHash<QDocument*, QList<QDocumentLineHandle*> > usagesByDocument;
-	foreach (QDocumentLineHandle *dlh, usages.keys()) {
-		QDocument *doc = dlh->document();
-		QList<QDocumentLineHandle*> dlhs = usagesByDocument[doc];
-		dlhs.append(dlh);
-		usagesByDocument.insert(doc, dlhs);
-	}
-	
 	LabelSearchQuery *query = new LabelSearchQuery(labelText);
 	searchResultWidget()->setQuery(query);
-	foreach (QDocument *doc, usagesByDocument.keys()) {
-		query->addDocSearchResult(doc, usagesByDocument.value(doc));
-	}
+	query->run(contextDoc);
 	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 }
 
@@ -9734,11 +9676,17 @@ void Texmaker::searchExtendToggled(bool toggled){
         outputView->hide();
         return;
     }
-    QList<LatexDocument *> docs;
-    LatexDocument *doc = currentEditorView()->document;
-    docs << doc;
-
-    updateFindGlobal(searchResultWidget()->getSearchScope());
+	LatexEditorView *edView = currentEditorView();
+	if(!edView) return;
+	
+	bool isWord=edView->getSearchIsWords();
+	bool isCase=edView->getSearchIsCase();
+	bool isReg=edView->getSearchIsRegExp();
+	SearchQuery *query = new SearchQuery(edView->getSearchText(), edView->getReplaceText(), isCase, isWord, isReg);
+	query->setScope(searchResultWidget()->searchScope());
+	searchResultWidget()->setQuery(query);
+	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
+	runSearch(query);
 }
 
 void Texmaker::changeIconSize(int value)

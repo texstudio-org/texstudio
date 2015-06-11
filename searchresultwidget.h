@@ -14,11 +14,11 @@ public:
 	explicit SearchResultWidget(QWidget *parent = 0);
 	
 	void setQuery(SearchQuery *sq);
-	int getSearchScope() const;
+	SearchQuery::Scope searchScope() const;
 
 signals:
 	void jumpToSearchResult(QDocument *doc, int lineNumber, const SearchQuery *query);
-	void updateTheSearch(int);
+	void runSearch(SearchQuery *query);
 
 public slots:
 	void clearSearch();
@@ -40,6 +40,7 @@ private:
 	SearchQuery *query;
 
 	void retranslateUi();
+	void updateSearchScopeBox(SearchQuery::Scope sc);
 };
 
 
