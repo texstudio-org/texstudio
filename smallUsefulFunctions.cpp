@@ -3072,15 +3072,17 @@ CommandDescription extractCommandDef(QString line){
             if(command=="\\label")
                 type=Tokens::label;
         }
-        switch (j) {
-        case 0: cd.args=cd.args+1;
-            cd.argTypes.append(type);
-            break;
-        case 1: cd.optionalArgs=cd.optionalArgs+1;
-            cd.optTypes.append(type);
-            break;
-        default:
-            break;
+        if(!def.isEmpty()){ //ignore empty arguments
+            switch (j) {
+            case 0: cd.args=cd.args+1;
+                cd.argTypes.append(type);
+                break;
+            case 1: cd.optionalArgs=cd.optionalArgs+1;
+                cd.optTypes.append(type);
+                break;
+            default:
+                break;
+            }
         }
         if(i<0)
             break;
