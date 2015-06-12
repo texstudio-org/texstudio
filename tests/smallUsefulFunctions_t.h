@@ -900,6 +900,8 @@ private slots:
 
     void test_simpleLexing_data();
     void test_simpleLexing();
+    void test_latexLexing_data();
+    void test_latexLexing();
 };
 
 
