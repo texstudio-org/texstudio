@@ -226,7 +226,7 @@
 \insertappendixendpage
 \insertdocumentstartpage
 \insertdocumentendpage
-\setbeamersize{}
+\setbeamersize{sizes}
 \insertsectionhead
 \insertsectionheadnumber
 \insertpartheadnumber
