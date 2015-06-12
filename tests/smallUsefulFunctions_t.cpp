@@ -48,6 +48,7 @@ void SmallUsefulFunctionsTest::test_simpleLexing() {
         QVERIFY2(tk.start==start,"incorrect start");
         QVERIFY2(tk.length==length,"incorrect length");
     }
+    dlh->deref();
     delete doc;
 }
 
