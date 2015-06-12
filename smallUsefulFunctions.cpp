@@ -2209,13 +2209,15 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                             } else {
                                 if (lastOpen == -1 || openType != index/2)
                                     continue;
+                                if(i-lastOpen<2) // ignore empty arguments, feature request 888
+                                    continue;
                                 line.insert(lastOpen+1, "%<");
                                 i+=2;
                                 line.insert(i, "%>");
-                                if (lastOpen+2 == i-1) {
+                                /*if (lastOpen+2 == i-1) {  // deactivated, feature request 888
                                     line.insert(i, QApplication::translate("CodeSnippet", "something"));
                                     i+=QApplication::translate("CodeSnippet", "something").length();
-                                }
+                                }*/
                                 lastOpen = -1;
                                 i+=2;
                             }
