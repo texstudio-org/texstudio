@@ -70,9 +70,16 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
     QTest::newRow("usepackage command3") << "\\usepackage{text,\ntext}" << (QList<int>()<<2<<6<<29<<29<<9)<< (QList<int>()<<0<<29<<0<<0<<0) << (QList<int>()<<0<<11<<12<<0<<4)  << (QList<int>()<<11<<6<<4<<4<<1) << (QList<int>()<<0<<0<<1<<1<<0);
     QTest::newRow("newcommand command") << "\\newcommand{text}{test}" << (QList<int>()<<2<<3<<27<<3<<1)<< (QList<int>()<<0<<27<<0<<0<<0) << (QList<int>()<<0<<11<<12<<17<<18)  << (QList<int>()<<11<<6<<4<<6<<4) << (QList<int>()<<0<<0<<1<<0<<1);
     QTest::newRow("documentclass command") << "\\documentclass{text}" << (QList<int>()<<2<<3<<35)<< (QList<int>()<<0<<35<<0) << (QList<int>()<<0<<14<<15)  << (QList<int>()<<14<<6<<4) << (QList<int>()<<0<<0<<1);
+    QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}" << (QList<int>()<<2<<3<<1<<2<<3<<1<<1)<< (QList<int>()<<0<<24<<24<<24<<24<<24<<24) << (QList<int>()<<0<<7<<8<<10<<17<<18<<22)  << (QList<int>()<<7<<18<<2<<7<<4<<2<<2) << (QList<int>()<<0<<0<<1<<1<<1<<2<<1);
+    QTest::newRow("graphics command") << "\\includegraphics{file}" << (QList<int>()<<2<<3<<18)<< (QList<int>()<<0<<18<<0) << (QList<int>()<<0<<16<<17)  << (QList<int>()<<16<<6<<4) << (QList<int>()<<0<<0<<1);
+    QTest::newRow("graphics command with option") << "\\includegraphics[opt]{file}" << (QList<int>()<<2<<5<<21<<3<<18)<< (QList<int>()<<0<<20<<0<<18<<0) << (QList<int>()<<0<<16<<17<<21<<22)  << (QList<int>()<<16<<5<<3<<6<<4) << (QList<int>()<<0<<0<<1<<0<<1);
+    QTest::newRow("graphics command with keyval") << "\\includegraphics[opt,opt=text]{file}" << (QList<int>()<<2<<5<<21<<21<<1<<3<<18)<< (QList<int>()<<0<<20<<0<<0<<22<<18<<0) << (QList<int>()<<0<<16<<17<<21<<25<<30<<31)  << (QList<int>()<<16<<14<<3<<3<<4<<6<<4) << (QList<int>()<<0<<0<<1<<1<<2<<0<<1);
 }
 
 void SmallUsefulFunctionsTest::test_latexLexing() {
+    LatexParser lp=LatexParser::getInstance();
+    LatexPackage pkg_graphics=loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(QList<int>, types);
     QFETCH(QList<int>, subtypes);
@@ -88,7 +95,7 @@ void SmallUsefulFunctionsTest::test_latexLexing() {
     TokenStack stack;
     for(int i=0;i<doc->lines();i++){
             QDocumentLineHandle *dlh=doc->line(i).handle();
-            latexDetermineContexts2(dlh,stack,LatexParser::getInstance());
+            latexDetermineContexts2(dlh,stack,lp);
     }
     TokenList tl;
     for(int i=0;i<doc->lines();i++){

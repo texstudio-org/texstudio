@@ -3724,7 +3724,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              }
              continue;
          }
-         if(!stack.isEmpty() && stack.top().level==level-1 && stack.top().subtype==Tokens::keyValArg){
+         if(!stack.isEmpty() && stack.top().level<level && stack.top().subtype==Tokens::keyValArg){
              // handle keyval
              if(tk.type==Tokens::punctuation && line.mid(tk.start,1)==","){
                 lastComma=-1;
