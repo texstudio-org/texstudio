@@ -74,6 +74,7 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
     QTest::newRow("graphics command") << "\\includegraphics{file}" << (QList<int>()<<2<<3<<18)<< (QList<int>()<<0<<18<<0) << (QList<int>()<<0<<16<<17)  << (QList<int>()<<16<<6<<4) << (QList<int>()<<0<<0<<1);
     QTest::newRow("graphics command with option") << "\\includegraphics[opt]{file}" << (QList<int>()<<2<<5<<21<<3<<18)<< (QList<int>()<<0<<20<<0<<18<<0) << (QList<int>()<<0<<16<<17<<21<<22)  << (QList<int>()<<16<<5<<3<<6<<4) << (QList<int>()<<0<<0<<1<<0<<1);
     QTest::newRow("graphics command with keyval") << "\\includegraphics[opt,opt=text]{file}" << (QList<int>()<<2<<5<<21<<21<<1<<3<<18)<< (QList<int>()<<0<<20<<0<<0<<22<<18<<0) << (QList<int>()<<0<<16<<17<<21<<25<<30<<31)  << (QList<int>()<<16<<14<<3<<3<<4<<6<<4) << (QList<int>()<<0<<0<<1<<1<<2<<0<<1);
+    QTest::newRow("include command") << "\\include{text}" << (QList<int>()<<2<<3<<17)<< (QList<int>()<<0<<17<<0) << (QList<int>()<<0<<8<<9)  << (QList<int>()<<8<<6<<4) << (QList<int>()<<0<<0<<1);
 }
 
 void SmallUsefulFunctionsTest::test_latexLexing() {
