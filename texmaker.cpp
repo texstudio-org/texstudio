@@ -3796,30 +3796,6 @@ void Texmaker::ReadSettings(bool reread) {
 	m_formats->load(*config,true); //load customized formats
 	config->endGroup();
 	
-	// read usageCount from file of its own.
-	if (!reread) {
-		LatexCompleterConfig *conf=configManager.completerConfig;
-		QFile file(configManager.configBaseDir+"wordCount.usage");
-		if(file.open(QIODevice::ReadOnly)){
-			QDataStream in(&file);
-			quint32 magicNumer,version;
-			in >>  magicNumer >> version;
-			if (magicNumer==(quint32)0xA0B0C0D0 && version==1){
-				in.setVersion(QDataStream::Qt_4_0);
-				uint key;
-				int length,usage;
-
-				conf->usage.clear();
-				while (!in.atEnd()) {
-					in >> key >> length >> usage;
-					if(usage>0){
-						conf->usage.insert(key,qMakePair(length,usage));
-					}
-				}
-			}
-		}
-	}
-
 	documents.settingsRead();
 	
 	configManager.editorConfig->settingsChanged();
@@ -6705,7 +6681,7 @@ void Texmaker::SetMostUsedSymbols(QTableWidgetItem* item) {
 }
 
 void Texmaker::updateCompleter(LatexEditorView* edView) {
-    QSet<QString> words;
+    CodeSnippetList words;
 	
 	if (configManager.parseBibTeX) documents.updateBibFiles();
 	
@@ -6763,14 +6739,14 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 		foreach(const QString& citeCommand, latexParser.possibleCommands["%cite"]){
             QString temp='@'+citeCommand+"{@}";
             citationCommands.append(temp);
-            words.insert(temp);
+            //words.insert(temp);
             /*foreach (const QString &value, bibIds)
                 words.insert(temp.arg(value));*/
         }
         foreach(QString citeCommand, latexParser.possibleCommands["%citeExtended"]){
             QString temp='@'+citeCommand.replace("%<bibid%>","@");
             citationCommands.append(temp);
-            words.insert(temp);
+            //words.insert(temp);
         }
         completer->setAdditionalWords(citationCommands.toSet(),CT_CITATIONCOMMANDS);
 		completer->setAdditionalWords(bibIds,CT_CITATIONS);
@@ -6778,6 +6754,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	
 	completionBaseCommandsUpdated=false;
 	
+
 	completer->setAdditionalWords(words,CT_COMMANDS);
 
     // add keyval completion

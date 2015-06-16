@@ -40,7 +40,8 @@ public:
 	virtual ~LatexCompleter();
 	
 	void complete(QEditor *newEditor, const CompletionFlags &flags);
-	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType=CT_COMMANDS);
+    void setAdditionalWords(const CodeSnippetList &newwords, CompletionType completionType=CT_COMMANDS);
+    void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType);
     void setKeyValWords(const QString &name,const QSet<QString> &newwords);
     void setContextWords(const QSet<QString> &newwords,const QString &context);
 	void updateAbbreviations();

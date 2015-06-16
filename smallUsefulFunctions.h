@@ -19,6 +19,7 @@
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 
+#include "codesnippet.h"
 //#inlcude "latexcompleter_config.h"
 
 // evaluates to j if i < 0
@@ -324,7 +325,7 @@ public:
 	bool notFound;  // Workaround: explicit flag better than using a magic value in package name. TODO: Do we need not found packages?
 	QString packageName;
 	QStringList requiredPackages;
-	QStringList completionWords;
+    CodeSnippetList completionWords;
 	QHash<QString,QSet<QString> > possibleCommands;
     QHash<QString,QString> specialDefCommands;
 	QSet<QString> optionCommands;

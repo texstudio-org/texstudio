@@ -204,11 +204,12 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle* dlh) {
 		bibTeXFilesNeedsUpdate=true;
 	}
 
-	QStringList commands=mUserCommandList.values(dlh);
-	foreach(QString elem,commands){
-		int i=elem.indexOf("{");
-		if(i>=0) elem=elem.left(i);
-		ltxCommands.possibleCommands["user"].remove(elem);
+    QList<CodeSnippet> commands=mUserCommandList.values(dlh);
+    foreach(CodeSnippet elem,commands){
+        QString word=elem.word;
+        int i=word.indexOf("{");
+        if(i>=0) word=word.left(i);
+        ltxCommands.possibleCommands["user"].remove(word);
 		updateSyntaxCheck=true;
 	}
 	mUserCommandList.remove(dlh);
@@ -415,8 +416,9 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
         }*/
 		
 		// remove command,bibtex,labels at from this line
-        QStringList commands=mUserCommandList.values(dlh);
-		foreach(QString elem,commands){
+        QList<CodeSnippet> commands=mUserCommandList.values(dlh);
+        foreach(CodeSnippet cs,commands){
+            QString elem=cs.word;
 			int i=elem.indexOf("{");
 			if(i>=0) elem=elem.left(i);
 			ltxCommands.possibleCommands["user"].remove(elem);
@@ -2694,12 +2696,12 @@ QStringList LatexDocument::includedFilesAndParent(){
      return result;
 }
 
-QSet<QString> LatexDocument::additionalCommandsList(){
+CodeSnippetList LatexDocument::additionalCommandsList(){
     LatexPackage pck;
     QStringList loadedFiles,files;
     files=mCWLFiles.toList();
     gatherCompletionFiles(files,loadedFiles,pck);
-    return pck.completionWords.toSet();
+    return pck.completionWords;
 }
 
 bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate,bool delayUpdate){
@@ -2729,8 +2731,9 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     ltxCommands.commandDefs=pck.commandDescriptions;
 	
 	// user commands
-	QStringList commands=mUserCommandList.values();
-	foreach(QString elem,commands){
+    QList<CodeSnippet> commands=mUserCommandList.values();
+    foreach(CodeSnippet cs,commands){
+        QString elem=cs.word;
 		if(!elem.startsWith("\\begin{")&&!elem.startsWith("\\end{")){
 			int i=elem.indexOf("{");
             int j=elem.indexOf("[");

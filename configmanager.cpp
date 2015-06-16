@@ -737,6 +737,31 @@ QSettings* ConfigManager::readSettings(bool reread) {
     QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
 	//completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
 	LatexParser &latexParser = LatexParser::getInstance();
+
+    // read usageCount from file of its own.
+    // needs to be done before reading cwl files
+    if (!reread) {
+        QFile file(configBaseDir+"wordCount.usage");
+        if(file.open(QIODevice::ReadOnly)){
+            QDataStream in(&file);
+            quint32 magicNumer,version;
+            in >>  magicNumer >> version;
+            if (magicNumer==(quint32)0xA0B0C0D0 && version==1){
+                in.setVersion(QDataStream::Qt_4_0);
+                uint key;
+                int length,usage;
+
+                completerConfig->usage.clear();
+                while (!in.atEnd()) {
+                    in >> key >> length >> usage;
+                    if(usage>0){
+                        completerConfig->usage.insert(key,qMakePair(length,usage));
+                    }
+                }
+            }
+        }
+    }
+
 	foreach(const QString& cwlFile,cwlFiles){
 		LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
 		completerConfig->words.append(pck.completionWords);

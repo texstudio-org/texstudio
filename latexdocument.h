@@ -116,10 +116,10 @@ public:
 	Q_INVOKABLE QStringList labelItems() const;
 	Q_INVOKABLE QStringList refItems() const;
 	Q_INVOKABLE QStringList bibItems() const;
-	Q_INVOKABLE QSet<QString> userCommandList() const{
-		return mUserCommandList.values().toSet();
+    Q_INVOKABLE QList<CodeSnippet> userCommandList() const{
+        return mUserCommandList.values();
 	}
-    Q_INVOKABLE QSet<QString> additionalCommandsList();
+    Q_INVOKABLE CodeSnippetList additionalCommandsList();
     /*{
 		return mCompleterWords;
     }*/
@@ -227,7 +227,7 @@ private:
     QMultiHash<QDocumentLineHandle*,ReferencePair> mBibItem;
 	QMultiHash<QDocumentLineHandle*,ReferencePair> mRefItem;
 	QMultiHash<QDocumentLineHandle*,FileNamePair> mMentionedBibTeXFiles;
-	QMultiHash<QDocumentLineHandle*,QString> mUserCommandList;
+    QMultiHash<QDocumentLineHandle*,CodeSnippet> mUserCommandList;
 	QMultiHash<QDocumentLineHandle*,QString> mUsepackageList;
     QMultiHash<QDocumentLineHandle*,QString> mIncludedFilesList;
 

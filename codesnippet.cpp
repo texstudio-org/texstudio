@@ -539,3 +539,25 @@ QDocumentCursor CodeSnippet::getCursor(QEditor * editor, const CodeSnippetPlaceH
 	}
 	return cursor;
 }
+
+
+void CodeSnippetList::unite(CodeSnippetList &lst)
+{
+    this->append(lst);
+    CodeSnippetList::iterator middle=this->end()-lst.length();
+    std::inplace_merge(this->begin(),middle,this->end());
+}
+
+void CodeSnippetList::unite(const QList<CodeSnippet> &lst)
+{
+    this->append(lst);
+    CodeSnippetList::iterator middle=this->end()-lst.length();
+    std::inplace_merge(this->begin(),middle,this->end());
+}
+
+void CodeSnippetList::insert(const QString &elem)
+{
+    CodeSnippet cs(elem);
+    QList<CodeSnippet>::iterator it=qLowerBound(this->begin(),this->end(),cs);
+    QList<CodeSnippet>::insert(it,cs);
+}
