@@ -703,7 +703,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 		mostUsed=LatexCompleter::config->preferedCompletionTab;
     if (!word.isEmpty() && word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
 	mLastWord=word;
-	mLastMU=mostUsed;
+    mLastMU=mostUsed;
 	mCanFetchMore=false;
 	mostUsedUpdated=mostUsed;
 	if(!fetchMore)
@@ -927,9 +927,9 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, Co
 	baselist=wordsCommands;
 }
 
-void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const QSet<QString> &newwords, CompletionType completionType) {
-    QList<CompletionWord> newWordList;
-    newWordList.clear();
+void CompletionListModel::setBaseWords(const CodeSnippetList &baseCommands,const CodeSnippetList &newwords, CompletionType completionType) {
+    CodeSnippetList newWordList;
+    /*newWordList.clear();
     for(QSet<QString>::const_iterator i=baseCommands.constBegin();i!=baseCommands.constEnd();++i) {
         QString str=*i;
         CompletionWord cw(str);
@@ -950,8 +950,12 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
             cw.snippetLength=0;
         }
         newWordList.append(cw);
-    }
-    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
+    }*/
+    newWordList<<baseCommands<<newwords;
+    CodeSnippetList::iterator middle=newWordList.end()-newwords.length();
+    std::inplace_merge(newWordList.begin(),middle,newWordList.end());
+    std::unique(newWordList.begin(),newWordList.end());
+    /*for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
         QString str=*i;
         if(baseCommands.contains(str))
             continue;
@@ -977,7 +981,8 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
         }
         newWordList.append(cw);
     }
-    qSort(newWordList.begin(), newWordList.end());
+    qSort(newWordList.begin(), newWordList.end());*/
+
 
     switch(completionType){
     case CT_NORMALTEXT:
@@ -1090,8 +1095,44 @@ void LatexCompleter::insertText(QString txt){
 }
 
 void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType) {
-	QSet<QString> concated;
-	if (config && completionType==CT_COMMANDS) concated.unite(config->words.toSet());
+    // convert to codesnippets
+    CodeSnippetList newWordList;
+    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
+        QString str=*i;
+        bool isReference=str.startsWith('@');
+        if(isReference)
+            str=str.mid(1);
+        CompletionWord cw(str);
+        if(completionType==CT_COMMANDS){
+            cw.index=qHash(str);
+            cw.snippetLength=str.length();
+            cw.usageCount= isReference ? 2 : 0; // make reference always visible (most used) in completer
+            QList<QPair<int,int> >res=config->usage.values(cw.index);
+            foreach(const PairIntInt& elem,res){
+                if(elem.first==cw.snippetLength){
+                    cw.usageCount=elem.second;
+                    break;
+                }
+            }
+        }else{
+            cw.index=0;
+            cw.usageCount=-2;
+            cw.snippetLength=0;
+        }
+        newWordList.append(cw);
+    }
+    qSort(newWordList.begin(), newWordList.end());
+    //
+    CodeSnippetList concated;
+    if (config && completionType==CT_COMMANDS) concated.unite(config->words);
+    //concated.unite(newwords);
+    listModel->setBaseWords(concated,newWordList,completionType);
+    widget->resize(200,200);
+}
+
+void LatexCompleter::setAdditionalWords(const CodeSnippetList &newwords, CompletionType completionType) {
+    CodeSnippetList concated;
+    if (config && completionType==CT_COMMANDS) concated.unite(config->words);
 	//concated.unite(newwords);
 	listModel->setBaseWords(concated,newwords,completionType);
     widget->resize(200,200);

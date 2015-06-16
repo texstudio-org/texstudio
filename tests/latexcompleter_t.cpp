@@ -29,8 +29,8 @@ LatexCompleterTest::~LatexCompleterTest(){
 
 void LatexCompleterTest::initTestCase(){
 	edView->editor->emitNeedUpdatedCompleter();
-	QSet<QString> helper;
-	helper << "\\a{" << "\\b" << "\\begin{align*}\n\n\\end{align*}" << "\\begin{alignat}{n}\n\\end{alignat}" << "\\only<abc>{def}" << "\\only{abc}<def>";
+    CodeSnippetList helper;
+    helper << CodeSnippet("\\a{") << CodeSnippet("\\b") << CodeSnippet("\\begin{align*}\n\n\\end{align*}") << CodeSnippet("\\begin{alignat}{n}\n\\end{alignat}") << CodeSnippet("\\only<abc>{def}") << CodeSnippet("\\only{abc}<def>");
 	edView->getCompleter()->setAdditionalWords(helper); //extra words needed for test
 }
 

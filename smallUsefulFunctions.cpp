@@ -3,6 +3,7 @@
 #include "qdocumentline_p.h"
 #include "qdocument.h"
 #include <QBuffer>
+#include "codesnippet.h"
 
 const QString CommonEOW=QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
 const QString Punctation="!():\"?,.;-";
@@ -1851,8 +1852,10 @@ void LatexReader::setLine(const QString& line){
 	this->wordStartIndex = 0;
 }
 
+typedef QPair<int,int> PairIntInt;
+
 LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QStringList conditions) {
-	QStringList words;
+    CodeSnippetList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	LatexPackage package;
 	
@@ -2048,6 +2051,12 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                 if(valid.contains('c')){ // cite command
                     if(res>-1){
                         package.possibleCommands["%cite"] << rxCom.cap(1);
+                        // replace argument (possibly keylist) with @
+                        int p=rxCom.pos(3);
+                        int l=rxCom.cap(3).length();
+                        if(p>=0){
+                            line.replace(p,l,"@");
+                        }
                     }
                     valid.remove('c');
                 }
@@ -2211,6 +2220,8 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                                     continue;
                                 if(i-lastOpen<2) // ignore empty arguments, feature request 888
                                     continue;
+                                if(i-lastOpen==2 && line.mid(lastOpen+1,1)=="@") //ignore single @ (to be replaced with bibid in completer)
+                                    continue;
                                 line.insert(lastOpen+1, "%<");
                                 i+=2;
                                 line.insert(i, "%>");
@@ -2234,22 +2245,22 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     }
                 }
                 if(!words.contains(line)){
-                    words.append(line);
-                    if(uncommon && config){
-                        int hash=qHash(line);
-                        int len=line.length();
-                        QList<QPair<int,int> >res=config->usage.values(hash);
-                        for(int i=0;i<res.count();i++){
-                            QPair<int,int> elem=res.at(i);
-                            if(elem.first==len){
-                                uncommon=false;
+                    CodeSnippet cs=CodeSnippet(line);
+                    CodeSnippetList::iterator it=qLowerBound(words.begin(),words.end(),cs);
+                    it=words.insert(it,cs);
+                    uint hash=qHash(line);
+                    int len=line.length();
+                    it->index=hash;
+                    it->snippetLength=len;
+                    it->usageCount= uncommon ? -1 : 0;
+                    if(config){
+                         QList<QPair<int,int> >res=config->usage.values(hash);
+                        foreach(const PairIntInt& elem,res){
+                            if(elem.first==it->snippetLength){
+                                it->usageCount=elem.second;
                                 break;
                             }
                         }
-                        if(uncommon){
-                            config->usage.insert(hash,qMakePair(len,-1));
-                        }
-
                     }
                 }
             }
@@ -2297,7 +2308,7 @@ QString LatexPackage::keyToOptions(const QString &key) {
 }
 
 void LatexPackage::unite(LatexPackage &add){
-	completionWords.append(add.completionWords);
+    completionWords.unite(add.completionWords);
 	optionCommands.unite(add.optionCommands);
 	environmentAliases.unite(add.environmentAliases);
     specialTreatmentCommands.unite(add.specialTreatmentCommands);
@@ -3063,6 +3074,9 @@ CommandDescription extractCommandDef(QString line){
         }
         if(def=="beamertheme"){
             type=Tokens::beamertheme;
+        }
+        if(def=="keylist" || def=="bibid"){
+            type=Tokens::bibItem;
         }
         if(def=="placement" || def=="position"){
             type=Tokens::placement;

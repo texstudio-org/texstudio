@@ -58,4 +58,15 @@ private:
 
 Q_DECLARE_METATYPE(CodeSnippet);
 Q_DECLARE_METATYPE(CodeSnippet::PlaceholderMode);
+
+class CodeSnippetList: public QList<CodeSnippet> {
+public:
+    void unite(CodeSnippetList &lst);
+    void unite(const QList<CodeSnippet> &lst);
+    void insert(const QString &elem);
+    CodeSnippetList::iterator insert(CodeSnippetList::iterator before,const CodeSnippet &cs){
+        return QList<CodeSnippet>::insert(before,cs);
+    }
+};
+
 #endif // CODESNIPPET_H

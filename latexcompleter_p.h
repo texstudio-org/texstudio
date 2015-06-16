@@ -25,7 +25,7 @@ public:
     void setEnvironMode(bool mode);
 	void setBaseWords(const QSet<QString> &newwords,CompletionType completionType);
 	void setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType);
-    void setBaseWords(const QSet<QString> &baseCommands,const QSet<QString> &newwords, CompletionType completionType);
+    void setBaseWords(const CodeSnippetList &baseCommands, const CodeSnippetList &newwords, CompletionType completionType);
 	void setAbbrevWords(const QList<CompletionWord> &newwords);
 	void incUsage(const QModelIndex &index);
 	void setConfig(LatexCompleterConfig* newConfig);

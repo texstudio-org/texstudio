@@ -8,6 +8,7 @@
 #include "modifiedQObject.h"
 
 #include "usermacro.h"
+#include "codesnippet.h"
 
 
 class LatexCompleterConfig
@@ -23,7 +24,7 @@ public:
 	int tabRelFontSizePercent;
 	enum PreferedCompletionTab {CPC_TYPICAL,CPC_MOSTUSED,CPC_ALL};
 	PreferedCompletionTab preferedCompletionTab;
-	QStringList words;
+    CodeSnippetList words;
 	QMultiMap<uint,QPair<int,int> > usage;
     QSet<QString> specialCompletionKeys;
 
