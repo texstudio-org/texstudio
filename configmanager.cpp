@@ -764,7 +764,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 
 	foreach(const QString& cwlFile,cwlFiles){
 		LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
-		completerConfig->words.append(pck.completionWords);
+        completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
         latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
