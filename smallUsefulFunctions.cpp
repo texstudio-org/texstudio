@@ -2093,7 +2093,8 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                         package.possibleCommands["%citeExtended"] << line.simplified();
                         if(!line.startsWith("\\begin")) // HANDLE begin extra
                             package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
-                        hideFromCompletion=true;
+                        line.replace("%<bibid%>","@");
+                        //hideFromCompletion=true;
                     }
                     valid.remove('C');
                 }
@@ -2244,6 +2245,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
 
                     }
                 }
+
                 if(!words.contains(line)){
                     CodeSnippet cs=CodeSnippet(line);
                     CodeSnippetList::iterator it=qLowerBound(words.begin(),words.end(),cs);
