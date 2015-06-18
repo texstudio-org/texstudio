@@ -354,5 +354,5 @@ TokenStack getContext(QDocumentLineHandle *dlh,int pos);
 QString getCommandFromToken(Tokens tk);
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh);
 bool latexDetermineContexts2(QDocumentLineHandle *dlh,TokenStack &stack,const LatexParser &lp);
-
+int getCompleterContext(QDocumentLineHandle *dlh, int column);
 #endif
