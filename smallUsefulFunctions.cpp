@@ -3828,3 +3828,30 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      bool remainderChanged=(stack!=oldRemainder);
      return remainderChanged;
 }
+
+int getCompleterContext(QDocumentLineHandle *dlh,int column)
+{
+    TokenStack ts=getContext(dlh,column);
+    Tokens tk;
+    if(!ts.isEmpty()){
+        tk=ts.top();
+        if(tk.type==Tokens::word && tk.subtype==Tokens::none && ts.size()>1){
+            // set brace type
+            ts.pop();
+            tk=ts.top();
+        }
+    }
+
+    Tokens::TokenType type=tk.type;
+    if(tk.subtype!=Tokens::none)
+        type=tk.subtype;
+
+    int result=0;
+    switch(type){
+    case Tokens::width:
+        result=512;
+        break;
+    default:;
+    }
+    return result;
+}

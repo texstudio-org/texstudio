@@ -17,7 +17,7 @@
 #include "grammarcheck.h"
 #include "bibtexreader.h"
 #include "cursorposition.h"
-
+#include "latexcompleter.h"
 class QDocumentLineHandle;
 
 class LatexDocument;

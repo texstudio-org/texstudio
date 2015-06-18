@@ -171,7 +171,10 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor) {
 		else
 			editor->write(event->text());
 		if (autoOverriden) LatexEditorView::completer->complete(editor,LatexCompleter::CF_OVERRIDEN_BACKSLASH);
-		else LatexEditorView::completer->complete(editor,0);
+        else {
+            int flags=getCompleterContext(editor->cursor().line().handle(),editor->cursor().columnNumber());
+            LatexEditorView::completer->complete(editor,LatexCompleter::CompletionFlag(flags));
+        }
 		return true;
 	}
 	if (!event->text().isEmpty()) {
@@ -655,6 +658,8 @@ void LatexEditorView::updateReplamentList(const LatexParser& cmds,bool forceUpda
           documentContentChanged(0,editor->document()->lines()); //force complete spellcheck
      }
 }
+
+
 
 void LatexEditorView::paste(){
 	if(completer->isVisible()){
