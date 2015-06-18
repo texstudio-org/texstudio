@@ -14,21 +14,21 @@
 \scalebox{h-scale}[v-scale]{text}
 \setkeys{Gin}{key val}
 #keyvals:\includegraphics
-width=
-height=
+width=##L
+height=##L
 bb=
 bbllx=
 bbly=
 bburx=
 bbury=
-natwidth=
-natheight=
+natwidth=##L
+natheight=##L
 hiresbb#true,false
 angle=
 origin=
 trim=
 viewport=
-totalheight=
+totalheight=##L
 scale=
 clip#true,false
 draft#true,false

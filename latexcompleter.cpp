@@ -631,7 +631,7 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
     for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
         QString str=*i;
         QString validValues;
-        if(str.contains("#")){
+        if(str.contains("#") && !str.startsWith("#")){
             int j=str.indexOf("#");
             validValues=str.mid(j+1);
             str=str.left(j);
@@ -786,6 +786,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
                         cnt+=wordsCitations.length();
                     }else{
                         words.append(*it);
+                        qDebug()<<it-baselist.begin();
                     }
                 }
 				cnt++;
@@ -934,60 +935,12 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, Co
 
 void CompletionListModel::setBaseWords(const CodeSnippetList &baseCommands,const CodeSnippetList &newwords, CompletionType completionType) {
     CodeSnippetList newWordList;
-    /*newWordList.clear();
-    for(QSet<QString>::const_iterator i=baseCommands.constBegin();i!=baseCommands.constEnd();++i) {
-        QString str=*i;
-        CompletionWord cw(str);
-        if(completionType==CT_COMMANDS){
-            cw.index=qHash(str);
-            cw.snippetLength=str.length();
-            cw.usageCount=0;
-            QList<QPair<int,int> >res=config->usage.values(cw.index);
-            foreach(const PairIntInt& elem,res){
-                if(elem.first==cw.snippetLength){
-                    cw.usageCount=elem.second;
-                    break;
-                }
-            }
-        }else{
-            cw.index=0;
-            cw.usageCount=-2;
-            cw.snippetLength=0;
-        }
-        newWordList.append(cw);
-    }*/
-    newWordList<<baseCommands<<newwords;
-    CodeSnippetList::iterator middle=newWordList.end()-newwords.length();
-    std::inplace_merge(newWordList.begin(),middle,newWordList.end());
-    std::unique(newWordList.begin(),newWordList.end());
-    /*for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
-        QString str=*i;
-        if(baseCommands.contains(str))
-            continue;
-        bool isReference=str.startsWith('@');
-        if(isReference)
-            str=str.mid(1);
-        CompletionWord cw(str);
-        if(completionType==CT_COMMANDS){
-            cw.index=qHash(str);
-            cw.snippetLength=str.length();
-            cw.usageCount= isReference ? 2 : 0; // make reference always visible (most used) in completer
-            QList<QPair<int,int> >res=config->usage.values(cw.index);
-            foreach(const PairIntInt& elem,res){
-                if(elem.first==cw.snippetLength){
-                    cw.usageCount=elem.second;
-                    break;
-                }
-            }
-        }else{
-            cw.index=0;
-            cw.usageCount=-2;
-            cw.snippetLength=0;
-        }
-        newWordList.append(cw);
-    }
-    qSort(newWordList.begin(), newWordList.end());*/
 
+    newWordList<<baseCommands;
+    newWordList.unite(newwords);
+
+    CodeSnippetList::iterator last=std::unique(newWordList.begin(),newWordList.end());
+    newWordList.erase(last,newWordList.end());
 
     switch(completionType){
     case CT_NORMALTEXT:
@@ -1274,7 +1227,17 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
     }
     if(forcedKeyval){
         listModel->baselist.clear();
+        handled=true;
         foreach(const CompletionWord &cw,listModel->keyValLists.value(workingDir)){
+            if(cw.word.startsWith("#")){
+                if(cw.word=="#L"){
+                    // complete with length
+                    forcedLength=true;
+                    forcedKeyval=false;
+                    handled=false;
+                    break;
+                }
+            }
             if(cw.word.startsWith('%')){
                 QString specialList=cw.word;
                 if(listModel->contextLists.contains(specialList)){
@@ -1290,7 +1253,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
             }
         }
 
-        handled=true;
+
     }
     if(forcedSpecialOption){
         listModel->baselist=listModel->contextLists.value(workingDir);
