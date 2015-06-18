@@ -6711,7 +6711,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	// collect user commands and references
 	foreach(const LatexDocument* doc,docs){
 		foreach(const QString& refCommand, latexParser.possibleCommands["%ref"]){
-            QString temp='@'+refCommand+"{%1}";
+            QString temp=refCommand+"{%1}";
 			foreach (const QString& l, doc->labelItems())
 				words.insert(temp.arg(l));
 		}
