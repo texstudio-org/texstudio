@@ -1933,6 +1933,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                 QString definition;
                 bool uncommon=false;
                 bool hideFromCompletion=false;
+                CodeSnippet::Type type=CodeSnippet::none;
                 if(sep>-1){
                     valid=line.mid(sep+1);
                     line=line.left(sep);
@@ -2133,6 +2134,10 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     package.possibleCommands["%color"] << line;
                     hideFromCompletion=true;
                 }
+                if(valid.contains('L')){ // a length/height
+                    type=CodeSnippet::length;
+                    valid.remove('L');
+                }
                 // normal commands for syntax checking
                 // will be extended to distinguish between normal and math commands
                 if(valid.isEmpty() || valid.contains('n')){
@@ -2255,6 +2260,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     it->index=hash;
                     it->snippetLength=len;
                     it->usageCount= uncommon ? -1 : 0;
+                    it->type=type;
                     if(config){
                          QList<QPair<int,int> >res=config->usage.values(hash);
                         foreach(const PairIntInt& elem,res){

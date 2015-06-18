@@ -4162,6 +4162,10 @@ void Texmaker::NormalCompletion() {
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
 		break;
+    case Tokens::width:
+        if(mCompleterNeedsUpdate) updateCompleter();
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_LENGTH);
+        break;
     case Tokens::imagefile:
         {QString fn=documents.getCompileFileName();
         QFileInfo fi(fn);

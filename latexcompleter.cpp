@@ -617,7 +617,7 @@ bool CompletionListModel::canFetchMore(const QModelIndex &) const{
 }
 void CompletionListModel::fetchMore(const QModelIndex &){
 	beginInsertRows(QModelIndex(),words.count(),qMin(words.count()+100,mWordCount));
-	filterList(mLastWord,mLastMU,true);
+    filterList(mLastWord,mLastMU,true,mLastType);
 	endInsertRows();
 }
 CompletionWord CompletionListModel::getLastWord(){
@@ -698,12 +698,13 @@ void CompletionListModel::setEnvironMode(bool mode){
     mEnvMode=mode;
 }
 
-void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
+void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore,CodeSnippet::Type type) {
 	if(mostUsed<0)
 		mostUsed=LatexCompleter::config->preferedCompletionTab;
     if (!word.isEmpty() && word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
 	mLastWord=word;
     mLastMU=mostUsed;
+    mLastType=type;
 	mCanFetchMore=false;
 	mostUsedUpdated=mostUsed;
 	if(!fetchMore)
@@ -742,7 +743,11 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 		if (it->word.startsWith(word,cs) &&
 		              (!checkFirstChar || it->word[1] == word[1]) ){
 
-			if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
+            if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
+                if(mostUsed<2 && type!=CodeSnippet::none && it->type!=type){
+                    ++it;
+                    continue; // leave out words which don't have the proper type (except for all-mode)
+                }
                 if(mEnvMode){
                     CompletionWord cw=*it;
                     if(cw.word.startsWith("\\begin")||cw.word.startsWith("\\end")){
@@ -1200,6 +1205,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
     forcedPackage= flags & CF_FORCE_PACKAGE;
     forcedKeyval= flags & CF_FORCE_KEYVAL;
     forcedSpecialOption= flags & CF_FORCE_SPECIALOPTION;
+    forcedLength= flags & CF_FORCE_LENGTH;
 	startedFromTriggerKey= !(flags &CF_FORCE_VISIBLE_LIST);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -1429,7 +1435,10 @@ void LatexCompleter::filterList(QString word,int showMostUsed) {
 	QString cur=""; //needed to preserve selection
 	if (list->isVisible() && list->currentIndex().isValid())
 		cur=list->model()->data(list->currentIndex(),Qt::DisplayRole).toString();
-	listModel->filterList(word,showMostUsed);
+    CodeSnippet::Type type=CodeSnippet::none;
+    if(forcedLength)
+        type=CodeSnippet::length;
+    listModel->filterList(word,showMostUsed,false,type);
 	if (cur!="") {
 		int p=listModel->getWords().indexOf(cur);
 		if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));
