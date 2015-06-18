@@ -21,7 +21,7 @@ public:
 
 	const QList<CompletionWord> & getWords(){return words;}
 	bool isNextCharPossible(const QChar &c); //does this character lead to a new possible word
-	void filterList(const QString &word,int mostUsed=-1,bool fetchMore=false);
+    void filterList(const QString &word, int mostUsed=-1, bool fetchMore=false, CodeSnippet::Type type=CodeSnippet::none);
     void setEnvironMode(bool mode);
 	void setBaseWords(const QSet<QString> &newwords,CompletionType completionType);
 	void setBaseWords(const QList<CompletionWord> &newwords, CompletionType completionType);
@@ -50,6 +50,7 @@ private:
 	bool mCanFetchMore;
 	QString mLastWord;
 	int mLastMU;
+    CodeSnippet::Type mLastType;
 	CompletionWord mLastWordInList;
 
     bool mEnvMode;

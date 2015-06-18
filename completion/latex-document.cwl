@@ -269,7 +269,7 @@
 \linebreak
 \linebreak[number]
 \linethickness{dimension}
-\linewidth
+\linewidth#L
 \listfigurename{name}
 \listfiles
 \listoffigures
@@ -449,7 +449,7 @@
 \textendash
 \textexclamdown
 \textgreater
-\textheight
+\textheight#L
 \textit{text}
 \textless
 \textmd{text}
@@ -474,7 +474,7 @@
 \textunderscore
 \textup{text}
 \textvisiblespace
-\textwidth
+\textwidth#L
 \thanks{text}
 \thicklines
 \thinlines

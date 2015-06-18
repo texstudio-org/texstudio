@@ -20,8 +20,8 @@ struct CodeSnippetPlaceHolder{
 class CodeSnippet
 {
 public:
-	CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1),usageCount(0),index(0),snippetLength(0) {}
-	CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders),usageCount(cw.usageCount),index(cw.index),snippetLength(cw.snippetLength),name(cw.name) {}
+    CodeSnippet():cursorLine(-1), cursorOffset(-1),anchorOffset(-1),usageCount(0),index(0),snippetLength(0),type(none) {}
+    CodeSnippet(const CodeSnippet &cw):word(cw.word),sortWord(cw.sortWord),lines(cw.lines),cursorLine(cw.cursorLine),cursorOffset(cw.cursorOffset),anchorOffset(cw.anchorOffset),placeHolders(cw.placeHolders),usageCount(cw.usageCount),index(cw.index),snippetLength(cw.snippetLength),name(cw.name),type(cw.type) {}
 	CodeSnippet(const QString &newWord, bool replacePercentNewline = true);
 	bool operator< (const CodeSnippet &cw) const;
 	bool operator== (const CodeSnippet &cw) const;
@@ -38,6 +38,8 @@ public:
 	int usageCount;
 	uint index;
 	int snippetLength;
+    enum Type {none,length};
+    Type type;
 	
 	QString expandCode(const QString &code);
 	QString environmentContent(const QString &envName);
