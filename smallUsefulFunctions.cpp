@@ -2348,6 +2348,7 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
     // rather dirty code
     QLabel lLabel(0,Qt::ToolTip);
     lLabel.setFont(QToolTip::font());
+    qDebug()<<QToolTip::font().pointSize();
     lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
     lLabel.setFrameStyle(QFrame::StyledPanel);
     lLabel.setAlignment(Qt::AlignLeft);
@@ -2392,12 +2393,12 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
             maxLength=qMin(maxLength,w/averageWidth);
             while(textWidthInPixels>w && maxLength>10){
                 maxLength-=2;
-                lLabel.setText(maxLine.left(maxLength));
+                for(int i=0;i<lTopic.count();i++){
+                    lTopic[i]=lTopic[i].left(maxLength);
+                }
+                lLabel.setText(lTopic.join("\n"));
                 lLabel.adjustSize();
                 textWidthInPixels=lLabel.width()+10;
-            }
-            for(int i=0;i<lTopic.count();i++){
-                lTopic[i]=lTopic[i].left(maxLength);
             }
             topic=lTopic.join("\n");
         }
