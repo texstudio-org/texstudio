@@ -2348,7 +2348,6 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
     // rather dirty code
     QLabel lLabel(0,Qt::ToolTip);
     lLabel.setFont(QToolTip::font());
-    qDebug()<<QToolTip::font().pointSize();
     lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
     lLabel.setFrameStyle(QFrame::StyledPanel);
     lLabel.setAlignment(Qt::AlignLeft);

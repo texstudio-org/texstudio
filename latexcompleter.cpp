@@ -786,7 +786,6 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
                         cnt+=wordsCitations.length();
                     }else{
                         words.append(*it);
-                        qDebug()<<it-baselist.begin();
                     }
                 }
 				cnt++;
