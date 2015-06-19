@@ -844,26 +844,24 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 	if(curWord.usageCount<-1)
 		return; // don't count text words
 	
-	for (int i=0; i<wordsCommands.count(); i++) {
-		if(wordsCommands[i].word==curWord.word){
-			wordsCommands[i].usageCount++;
-			if(curWord.snippetLength<=0)
-				break; // no ref commands etc. are stored permanently
-			bool replaced=false;
-			QList<QPair<int,int> >res=config->usage.values(curWord.index);
-			for (int j = 0; j < res.size(); ++j) {
-				if (res.at(j).first == curWord.snippetLength){
-					config->usage.remove(curWord.index,res.at(j));
-					config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount));
-					replaced=true;
-					break;
-				}
-			}
-			if(!replaced)
-				config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount)); // new word
-			break;
-		}
-	}
+    CodeSnippetList::iterator it=qBinaryFind(wordsCommands.begin(),wordsCommands.end(),curWord);
+    if(it->word==curWord.word){
+        it->usageCount++;
+        if(curWord.snippetLength>0){
+            bool replaced=false;
+            QList<QPair<int,int> >res=config->usage.values(curWord.index);
+            for (int j = 0; j < res.size(); ++j) {
+                if (res.at(j).first == curWord.snippetLength){
+                    config->usage.remove(curWord.index,res.at(j));
+                    config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,it->usageCount));
+                    replaced=true;
+                    break;
+                }
+            }
+            if(!replaced)
+                config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,it->usageCount)); // new word
+        }
+    }
 }
 
 typedef QPair<int,int> PairIntInt;
