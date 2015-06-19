@@ -845,6 +845,8 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 		return; // don't count text words
 	
     CodeSnippetList::iterator it=qBinaryFind(wordsCommands.begin(),wordsCommands.end(),curWord);
+    if(it==wordsCommands.end()) // not found, e.g. citations
+        return;
     if(it->word==curWord.word){
         it->usageCount++;
         if(curWord.snippetLength>0){
