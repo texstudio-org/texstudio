@@ -2352,7 +2352,7 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
     lLabel.setFrameStyle(QFrame::StyledPanel);
     lLabel.setAlignment(Qt::AlignLeft);
     lLabel.setIndent(1);
-    lLabel.setWordWrap(true);
+    lLabel.setWordWrap(false);
     //lLabel.ensurePolished();
     lLabel.setText(topic);
     lLabel.adjustSize();
