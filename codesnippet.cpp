@@ -559,6 +559,7 @@ void CodeSnippetList::unite(const QList<CodeSnippet> &lst)
 void CodeSnippetList::insert(const QString &elem)
 {
     CodeSnippet cs(elem);
+    cs.usageCount=2;
     QList<CodeSnippet>::iterator it=qLowerBound(this->begin(),this->end(),cs);
     QList<CodeSnippet>::insert(it,cs);
 }
