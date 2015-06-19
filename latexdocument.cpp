@@ -2203,7 +2203,7 @@ void LatexDocuments::removeDocs(QStringList removeIncludes){
             QStringList toremove=dc->includedFiles();
             dc->setMasterDocument(0);
             hiddenDocuments.removeAll(dc);
-            qDebug()<<fname;
+            //qDebug()<<fname;
             delete dc->getEditorView();
             delete dc;
             if(!toremove.isEmpty())
