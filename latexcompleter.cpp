@@ -1105,7 +1105,7 @@ void LatexCompleter::setContextWords(const QSet<QString> &newwords,const QString
 }
 
 void LatexCompleter::adjustWidget(){
-	int newWordMax=0;
+    int newWordMax=0;
 	QFont f=QApplication::font();
 	f.setItalic(true);
 	QFontMetrics fm(f);
@@ -1119,7 +1119,7 @@ void LatexCompleter::adjustWidget(){
 	int wd=200>maxWordLen?200:maxWordLen;
 	QScrollBar *bar=list->verticalScrollBar();
 	if(bar && bar->isVisible()){
-		wd+=bar->width()*2;
+        wd+=bar->width()*4;
 	}
 	widget->resize(wd,200);
 }
@@ -1357,6 +1357,7 @@ void LatexCompleter::directoryLoaded(QString ,QSet<QString> content){
 	listModel->baselist=listModel->wordsText;
 	//setTab(2);
 	completerInputBinding->setMostUsed(2);
+    adjustWidget();
 }
 
 bool LatexCompleter::acceptTriggerString(const QString& trigger){
