@@ -2668,6 +2668,18 @@ CommandDescription extractCommandDef(QString line){
         if(def=="command" || def=="cmd"){
             type=Tokens::def;
         }
+        if(def=="def" || def=="definition" || def=="begdef" || def=="enddef"){
+            type=Tokens::definition; // actual definition: \newcommand def defArgNumber definition
+        }
+        if(def=="args"){
+            type=Tokens::defArgNumber;
+        }
+        if(def=="default"){
+            type=Tokens::optionalArgDefinition;
+        }
+        if(def=="newlength"){
+            type=Tokens::defWidth;
+        }
         if(def=="file"){
             type=Tokens::file;
         }

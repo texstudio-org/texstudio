@@ -312,7 +312,7 @@
 \multiput(xcoord,ycoord)(xdelta,ydelta){copies}{object}#*/picture
 \newblock#*
 \newlabel
-\newlength{\length}
+\newlength{newlength}
 \newline
 \newpage
 \newtheorem{envname}[numberedlike]{caption}
