@@ -180,7 +180,7 @@
 \cleardoublepage
 \clearpage
 \cline{i-j}#t
-\columnwidth
+\columnwidth#L
 \contentsline{type}{text}{page}
 \contentsname{name}
 \dag#*
