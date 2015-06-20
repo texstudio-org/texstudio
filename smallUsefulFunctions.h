@@ -58,7 +58,7 @@ public:
                     squareBracket,openBrace,openBracket,openSquare,closeBrace,
                     closeBracket,closeSquareBracket,math,comment,commandUnknown,label,bibItem,file,imagefile,bibfile,
                     keyValArg,keyVal_key,keyVal_val,list,text,env,beginEnv,def,labelRef,package,width,placement,colDef,title,url,documentclass,beamertheme,packageoption,
-                    color,verbatimStart,verbatimStop,verbatim,symbol,punctuation,number};
+                    color,verbatimStart,verbatimStop,verbatim,symbol,punctuation,number,generalArg};
     TokenType type;
     // subtype is used to determine the type of argument
     TokenType subtype;
@@ -341,10 +341,6 @@ class QDocumentLineHandle;
 
 QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
 QString findRestArg(QDocumentLineHandle* dlh, Tokens::TokenType type, int count=10);
-TokenList lexLatexLine(QDocumentLineHandle *dlh, TokenStack &stack);
-void updateSubsequentRemainders(QDocumentLineHandle* dlh, TokenStack stack);
-void latexDetermineContexts(QDocumentLineHandle *dlh, const LatexParser &lp);
-void updateSubsequentRemaindersLatex(QDocument *doc,int linenr,int lineCount,const LatexParser &lp);
 CommandDescription extractCommandDef(QString line);
 Tokens getTokenAtCol(QDocumentLineHandle *dlh,int pos,bool first=false);
 int getTokenAtCol(TokenList &tl,int pos,bool first=false);
