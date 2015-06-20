@@ -3299,6 +3299,12 @@ QString getCommandFromToken(Tokens tk)
         TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
         int tkPos=tl.indexOf(tk);
         int level=tk.level-1;
+        if(Tokens::tkBraces().contains(tk.type)||Tokens::tkOpen().contains(tk.type)||Tokens::tkClose().contains(tk.type)){
+            level=tk.level; //command is at same level
+        }
+        if(tk.subtype==Tokens::keyVal_val){
+            level=tk.level-2; // command is 2 levels up
+        }
         for(int i=tkPos-1;i>=0;i--){
             Tokens elem=tl.at(i);
             if(elem.level==level && (elem.type==Tokens::command || elem.type==Tokens::command) ){

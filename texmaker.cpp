@@ -4182,10 +4182,7 @@ void Texmaker::NormalCompletion() {
     case Tokens::keyVal_val:
     {
         command=getCommandFromToken(tk);
-        if(command.isEmpty()&&ts.size()>1){
-            Tokens t=ts.at(ts.size()-2);
-            command=getCommandFromToken(t);
-        }
+
         bool existValues=true;
         // check if c is after keyval
         if(col>tk.start+tk.length){
@@ -4199,7 +4196,7 @@ void Texmaker::NormalCompletion() {
         }else{
             if(ts.size()>1){
                 Tokens elem=ts.at(ts.size()-2);
-                if(elem.type==Tokens::keyValArg && elem.level==tk.level-1){
+                if(elem.type==Tokens::keyVal_key && elem.level==tk.level-1){
                     command=command+"/"+elem.getText();
                     completer->setWorkPath(command);
                     existValues=completer->existValues();
