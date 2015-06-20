@@ -195,7 +195,7 @@
 \headheight#*L
 \headsep#*L
 \height#*L
-\partopsep#*
+\partopsep#*L
 \parsep#*L
 \lineskiplimits#*
 \footheight#*L
