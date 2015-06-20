@@ -2924,51 +2924,6 @@ QString getCommandFromToken(Tokens tk)
     return cmd;
 }
 
-/*void updateSubsequentRemaindersLatex(QDocument *doc, int linenr, int lineCount, const LatexParser &lp){
-    int i=linenr;
-    if(i==0){
-        if(lineCount==1)
-            return;
-        i++;
-    }
-    QDocumentLineHandle *dlh=doc->line(i-1).handle();
-    dlh->lockForRead();
-    TokenStack ts=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
-    dlh->unlock();
-
-    for(i;i<linenr+lineCount;i++){
-        dlh=doc->line(i).handle();
-        if (!dlh) break;
-        dlh->lockForWrite();
-        Tokens tk;
-        if(!ts.isEmpty()){
-            TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-            tk=ts.top();
-            bool changed=false;
-            if(Tokens::tkCommalist().contains(tk.subtype)){
-                for(int j=0;j<tl.size();j++){
-                    Tokens elem=tl.at(j);
-                    if(elem.type==Tokens::opposite(tk.type))
-                        break;
-                    tl[j].type=tk.subtype;
-                    changed=true;
-                }
-            }
-            if(changed){
-                dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(tl));
-            }
-        }
-        ts=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack>();
-        if(!ts.isEmpty() && tk.type==ts.top().type && tk.dlh==ts.top().dlh && tk.start==ts.top().start && tk.length==ts.top().length && tk.level==ts.top().level){
-            // everything matches, subtype is not compared
-            ts.top().subtype=tk.subtype;
-            dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(ts));
-        }
-        dlh->unlock();
-    }
-
-}*/
-
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
     // dumbed down lexer in order to allow full parallelization and full change of verbatim/non-verbatim later on
     TokenList lexed;
@@ -3246,7 +3201,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  CommandDescription &cd=commandStack.top();
                  if(tk.type==Tokens::openBrace){
                     if(cd.args>0){
-                        cd.optionalArgs=0; // no optional arguments after mandatory
+                        //cd.optionalArgs=0; // argument order (option/mandatory) is not checked, e.g \newcommad{cmd}[argNumber][default]{definition}
                         cd.args--;
                         tk.subtype=cd.argTypes.takeFirst();
                     }
