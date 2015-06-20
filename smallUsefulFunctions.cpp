@@ -2634,7 +2634,7 @@ CommandDescription extractCommandDef(QString line){
         QChar closingChar=specialChars2.at(j);
         i=line.indexOf(closingChar);
         QString def=line.mid(1,i-1);
-        Tokens::TokenType type=Tokens::none;
+        Tokens::TokenType type=Tokens::generalArg; // assume that unknown argument is not a text
         if(loop==1 &&command=="\\begin"){
             type=Tokens::beginEnv;
         }
