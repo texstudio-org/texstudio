@@ -27,6 +27,7 @@
 
 #include "mostQtHeaders.h"
 
+#include <QGestureEvent>
 #include <QProgressDialog>
 
 //#include "FindDialog.h"
@@ -235,6 +236,11 @@ protected:
 	virtual void focusInEvent(QFocusEvent *event);
 
 	virtual void contextMenuEvent(QContextMenuEvent *event);
+
+	virtual bool event(QEvent *event);
+	bool gestureEvent(QGestureEvent *event);
+	void pinchEvent(QPinchGesture *gesture);
+	void tapEvent(QTapGesture *gesture);
 
 private:
 	void init();

@@ -483,6 +483,8 @@ PDFWidget::PDFWidget(bool embedded)
 	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
 	setScaledContents(true);
 	setMouseTracking(true);
+	grabGesture(Qt::PinchGesture);
+	grabGesture(Qt::TapGesture);
 
 	switch (globalConfig->scaleOption) {
 	default:
@@ -1133,7 +1135,35 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		doZoom(event->pos(), 1);
 	else if (action == ctxZoomOutAction)
 		doZoom(event->pos(), -1);
+	
+}
 
+bool PDFWidget::event(QEvent *event)
+{
+	if (event->type() == QEvent::Gesture)
+			return gestureEvent(static_cast<QGestureEvent*>(event));
+	return QLabel::event(event);
+}
+
+bool PDFWidget::gestureEvent(QGestureEvent *event)
+{
+	if (QGesture *gesture = event->gesture(Qt::PinchGesture))
+		pinchEvent(static_cast<QPinchGesture *>(gesture));
+	if (QGesture *gesture = event->gesture(Qt::TapGesture))
+		tapEvent(static_cast<QTapGesture *>(gesture));
+	return true;
+}
+
+void PDFWidget::pinchEvent(QPinchGesture *gesture)
+{
+	doZoom(mapFromGlobal(gesture->centerPoint().toPoint()), 0, gesture->scaleFactor()*scaleFactor);
+}
+
+void PDFWidget::tapEvent(QTapGesture *gesture)
+{
+	if (gesture->state() == Qt::GestureFinished) {
+		syncWindowClick(gesture->position().toPoint(), true);
+	}
 }
 
 void PDFWidget::jumpToSource()
@@ -1839,10 +1869,15 @@ void PDFWidget::doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor) //
 			scaleFactor = kMinScaleFactor;
 	}
 	else if (dir == 0) {
-		scaleFactor=newScaleFactor;
-	}
-	else {
-		return;
+		if (newScaleFactor < kMinScaleFactor) {
+			newScaleFactor = kMinScaleFactor;
+		} else if (newScaleFactor > kMaxScaleFactor) {
+			newScaleFactor = kMaxScaleFactor;
+		}
+		if (newScaleFactor == scaleFactor) {
+			return;
+		}
+		scaleFactor = newScaleFactor;
 	}
 
 	adjustSize();

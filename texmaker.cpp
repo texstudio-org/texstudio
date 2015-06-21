@@ -8442,12 +8442,13 @@ void Texmaker::findMissingBracket(){
 	if (c.isValid()) currentEditor()->setCursor(c);
 }
 
-void Texmaker::openExternalFile(const QString& name,const QString& defaultExt,LatexDocument *doc){
+void Texmaker::openExternalFile(QString name,const QString& defaultExt,LatexDocument *doc){
 	if (!doc) {
 		if (!currentEditor()) return;
 		doc=qobject_cast<LatexDocument*>(currentEditor()->document());
 	}
 	if (!doc) return;
+	name.remove('"');  // ignore quotes (http://sourceforge.net/p/texstudio/bugs/1366/)
 	QStringList curPaths;
 	if(documents.masterDocument)
 		curPaths << ensureTrailingDirSeparator(documents.masterDocument->getFileInfo().absolutePath());
