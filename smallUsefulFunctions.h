@@ -342,6 +342,7 @@ class QDocumentLineHandle;
 QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
 QString findRestArg(QDocumentLineHandle* dlh, Tokens::TokenType type, int count=10);
 CommandDescription extractCommandDef(QString line);
+CommandDescription extractCommandDefKeyVal(QString line,QString &key);
 Tokens getTokenAtCol(QDocumentLineHandle *dlh,int pos,bool first=false);
 int getTokenAtCol(TokenList &tl,int pos,bool first=false);
 TokenList getArgContent(Tokens &tk);

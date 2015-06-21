@@ -1917,6 +1917,13 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
             if(!keyvals.isEmpty()){
                 // read keyval (name stored in "keyvals")
                 package.possibleCommands["key%"+keyvals] << line;
+                QString key;
+                CommandDescription cd=extractCommandDefKeyVal(line,key);
+                if(cd.args>0){
+                    if(key.endsWith("="))
+                        key.chop(1);
+                    package.commandDescriptions.insert(keyvals+"/"+key,cd);
+                }
                 continue;
             }
             if(line.startsWith("#repl:")){
@@ -3086,10 +3093,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      }
      TokenList lexed;
      QStack<CommandDescription> commandStack;
+     QStack<QString> commandNames;
 
      QString verbatimSymbol;
      int lastComma=-1;
      int lastEqual=-1e6;
+     QString keyName;
 
      for(int i=0;i<tl.length();i++){
          Tokens& tk=tl[i];
@@ -3172,6 +3181,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                      tk.subtype=stack.top().subtype;
                      if(tk.subtype==Tokens::keyValArg && lastEqual>-1){
                          tk.subtype=Tokens::keyVal_val;
+                         if(lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
+                             CommandDescription cd=lp.commandDefs.value(commandNames.top()+"/"+keyName);
+                             tk.subtype=cd.argTypes.value(0,Tokens::keyVal_val);
+                         }
                      }
                  }
                  if(!commandStack.isEmpty() && commandStack.top().level==level){
@@ -3185,6 +3198,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                      if(cd.args<=0){
                          // unknown arg, stop handling this command
                          commandStack.pop();
+                         commandNames.pop();
                      }
                  }
                  if(lp.commandDefs.contains(command)){
@@ -3192,6 +3206,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                      cd.level=level;
                      if(cd.args>0)
                         commandStack.push(cd);
+                        commandNames.push(command);
                  }else{
                      tk.type=Tokens::commandUnknown;
                  }
@@ -3220,6 +3235,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                     if(cd.args<=0){
                         // unknown arg, stop handling this command
                         commandStack.pop();
+                        commandNames.pop();
                     }
                  }
                  if(tk.type==Tokens::openSquare){
@@ -3289,6 +3305,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                                      cd.args--;
                                      cd.argTypes.takeFirst();
                                      commandStack.push(cd);
+                                     commandNames.push("\\begin{"+env+"}");
                                  }
                              }
                          }
@@ -3343,6 +3360,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              if(lastComma<0){
                  tk.level=level;
                  tk.type=Tokens::keyVal_key;
+                 keyName=line.mid(tk.start,tk.length);
                  lexed<<tk;
                  lastComma=lexed.length()-1;
              }else{
@@ -3351,6 +3369,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  }else{
                      tk.level=level;
                      tk.subtype=Tokens::keyVal_val;
+                     if(lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
+                         CommandDescription cd=lp.commandDefs.value(commandNames.top()+"/"+keyName);
+                         tk.subtype=cd.argTypes.value(0,Tokens::keyVal_val);
+                     }
                      lexed<<tk;
                  }
              }
@@ -3372,6 +3394,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  if(cd.args<=0){
                      // unknown arg, stop handling this command
                      commandStack.pop();
+                     commandNames.pop();
                  }
              }
              lexed<<tk;
@@ -3433,4 +3456,18 @@ int getCompleterContext(QDocumentLineHandle *dlh,int column)
     default:;
     }
     return result;
+}
+
+CommandDescription extractCommandDefKeyVal(QString line,QString &key){
+    CommandDescription cd;
+    int i=line.indexOf("#");
+    if(i<0)
+        return cd;
+    key=line.left(i);
+    QString vals=line.mid(i+1);
+    if(vals=="#L"){
+        cd.args=1;
+        cd.argTypes<<Tokens::width;
+    }
+    return cd;
 }
