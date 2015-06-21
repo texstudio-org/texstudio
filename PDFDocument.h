@@ -28,6 +28,8 @@
 #include "mostQtHeaders.h"
 
 #include <QGestureEvent>
+#include <QPinchGesture>
+#include <QTapGesture>
 #include <QProgressDialog>
 
 //#include "FindDialog.h"
