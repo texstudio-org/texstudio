@@ -292,7 +292,7 @@ private slots:
 	void declareConflictResolved();
 protected slots:	
     void openExternalFile();
-	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
+	void openExternalFile(QString name, const QString& defaultExt="tex", LatexDocument *doc=0); // signaled by latexViewer to open specific file
 	
 	void editUndo();
 	void editRedo();
