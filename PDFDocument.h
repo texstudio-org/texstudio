@@ -238,9 +238,11 @@ protected:
 	virtual void contextMenuEvent(QContextMenuEvent *event);
 
 	virtual bool event(QEvent *event);
+#if QT_VERSION >= 0x050000
 	bool gestureEvent(QGestureEvent *event);
 	void pinchEvent(QPinchGesture *gesture);
 	void tapEvent(QTapGesture *gesture);
+#endif
 
 private:
 	void init();

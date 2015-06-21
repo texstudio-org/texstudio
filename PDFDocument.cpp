@@ -1140,11 +1140,13 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 
 bool PDFWidget::event(QEvent *event)
 {
+#if QT_VERSION >= 0x050000
 	if (event->type() == QEvent::Gesture)
 			return gestureEvent(static_cast<QGestureEvent*>(event));
+#endif
 	return QLabel::event(event);
 }
-
+#if QT_VERSION >= 0x050000
 bool PDFWidget::gestureEvent(QGestureEvent *event)
 {
 	if (QGesture *gesture = event->gesture(Qt::PinchGesture))
@@ -1165,6 +1167,7 @@ void PDFWidget::tapEvent(QTapGesture *gesture)
 		syncWindowClick(gesture->position().toPoint(), true);
 	}
 }
+#endif
 
 void PDFWidget::jumpToSource()
 {
