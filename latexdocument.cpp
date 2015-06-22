@@ -617,9 +617,10 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			//// newcommand ////
             if (lp.possibleCommands["%definition"].contains(cmd)||ltxCommands.possibleCommands["%definition"].contains(cmd)) {
                 completerNeedsUpdate=true;
+                Tokens cmdName;
                 if(!args.isEmpty() && args.at(0).type==Tokens::braces){
                     //remove first arg, contains new command name, already saved into "firstArg"
-                    args.takeFirst();
+                    cmdName=args.takeFirst();
                 }
                 int optionCount = getArg(args,dlh,0, ArgumentList::Optional).toInt();  // results in 0 if there is no optional argument or conversion fails
 				if (optionCount>9 || optionCount<0) optionCount = 0;  // limit number of options
@@ -640,7 +641,10 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 					} else
 						firstArg.append(QString("{%<arg%1%>}").arg(j+1));
 				}
-				mUserCommandList.insert(line(i).handle(),firstArg);
+                CodeSnippet cs(firstArg);
+                if(cmdName.subtype==Tokens::defWidth)
+                    cs.type=CodeSnippet::length;
+                mUserCommandList.insert(line(i).handle(),cs);
 				// remove obsolete Overlays (maybe this can be refined
                 //updateSyntaxCheck=true;
 				continue;
