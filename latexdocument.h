@@ -117,7 +117,9 @@ public:
 	Q_INVOKABLE QStringList refItems() const;
 	Q_INVOKABLE QStringList bibItems() const;
     Q_INVOKABLE QList<CodeSnippet> userCommandList() const{
-        return mUserCommandList.values();
+        QList<CodeSnippet> csl=mUserCommandList.values();
+        qSort(csl);
+        return csl;
 	}
     Q_INVOKABLE CodeSnippetList additionalCommandsList();
     /*{
