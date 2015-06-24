@@ -8,6 +8,7 @@
 #include "latexcompleter.h"
 #include "latexcompleter_config.h"
 #include "smallUsefulFunctions.h"
+#include <QtConcurrentMap>
 
 //FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 FileNamePair::FileNamePair(const QString& rel, const QString& abs):relative(rel),absolute(abs){};
@@ -355,9 +356,11 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
     //first pass: lex
     TokenStack oldRemainder;
     if(!recheck){
+        QList<QDocumentLineHandle*> l_dlh;
         for (int i=linenr; i<linenr+count; i++) {
-            simpleLexLatexLine(line(i).handle());
+            l_dlh<<line(i).handle();
         }
+        QtConcurrent::blockingMap(l_dlh,simpleLexLatexLine);
     }
     QDocumentLineHandle *lastHandle=line(linenr-1).handle();
     if(lastHandle){
