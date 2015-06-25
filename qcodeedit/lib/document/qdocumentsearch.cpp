@@ -643,7 +643,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 		m_editor->document()->endDelayedUpdateBlock();
 		m_editor->document()->endMacro();
 		if (!hasOption(Silent)){
-			m_editor->setCursor(lastSelection, false);
+            //m_editor->setCursor(lastSelection, false);
 			m_editor->ensureCursorVisible(QEditor::Navigation);
 		}
 	}
