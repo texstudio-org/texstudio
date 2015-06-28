@@ -50,7 +50,7 @@ quint32 iidFromSearchIndex(int searchIndex) {
 }
 
 
-SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(parent), mIsWord(false), mIsCaseSensitive(false), mIsRegExp(false)
+SearchResultModel::SearchResultModel(QObject * parent): QAbstractItemModel(parent), mIsWord(false), mIsCaseSensitive(false), mIsRegExp(false), mAllowPartialSelection(true)
 {
 	m_searches.clear();
 	mExpression.clear();
@@ -90,6 +90,7 @@ void SearchResultModel::clear(){
 
     m_searches.clear();
 	mExpression.clear();
+	mAllowPartialSelection = true;
 
 #if QT_VERSION<0x050000
     reset();
@@ -203,6 +204,7 @@ QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int ro
 QVariant SearchResultModel::data(const QModelIndex &index, int role) const {
 	if (!index.isValid()) return QVariant();
 	if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole && role != LineNumberRole) return QVariant();
+	if (role == Qt::CheckStateRole && !mAllowPartialSelection) return QVariant();
 
 	int iid = index.internalId();
 	int searchIndex = searchIndexFromIid(iid);
@@ -225,7 +227,7 @@ Qt::ItemFlags SearchResultModel::flags(const QModelIndex &index) const
 
 bool SearchResultModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (role != Qt::CheckStateRole )
+    if (role != Qt::CheckStateRole || !mAllowPartialSelection )
         return false;
 
     int iid = index.internalId();

@@ -1215,6 +1215,76 @@ QMultiHash<QDocumentLineHandle*,int> LatexDocument::getRefs(const QString& name)
 	return result;
 }
 
+/*!
+ * replace all given items by newName
+ * an optional QDocumentCursor may be passed in, if the operation should be 
+ * part of a larger editBlock of that cursor.
+ */
+void LatexDocument::replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor)
+{
+	QDocumentCursor *cur = cursor;
+	if (!cursor) {
+		cur = new QDocumentCursor(this);
+		cur->beginEditBlock();
+	}
+	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+	for (it = items.constBegin(); it != items.constEnd(); ++it){
+		QDocumentLineHandle *dlh = it.key();
+		ReferencePair rp = it.value();
+		int lineNo = indexOf(dlh);
+		if(lineNo >= 0){
+			cur->setLineNumber(lineNo);
+			cur->setColumnNumber(rp.start);
+			cur->movePosition(rp.name.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+			cur->replaceSelectedText(newName);
+		}
+	}
+	if (!cursor) {
+		cur->endEditBlock();
+		delete cur;
+	}
+}
+
+/*!
+ * replace all labels name by newName
+ * an optional QDocumentCursor may be passed in, if the operation should be 
+ * part of a larger editBlock of that cursor.
+ */
+void LatexDocument::replaceLabel(const QString& name, const QString& newName, QDocumentCursor *cursor){
+	QMultiHash<QDocumentLineHandle*,ReferencePair> labelItemsMatchingName;
+	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+	for (it = mLabelItem.constBegin(); it != mLabelItem.constEnd(); ++it) {
+		if (it.value().name == name) {
+			labelItemsMatchingName.insertMulti(it.key(), it.value());
+		}
+	}
+	replaceItems(labelItemsMatchingName, newName, cursor);
+}
+
+/*!
+ * replace all references name by newName
+ * an optional QDocumentCursor may be passed in, if the operation should be 
+ * part of a larger editBlock of that cursor.
+ */
+void LatexDocument::replaceRefs(const QString& name, const QString& newName, QDocumentCursor *cursor){
+	QMultiHash<QDocumentLineHandle*,ReferencePair> refItemsMatchingName;
+	QMultiHash<QDocumentLineHandle*,ReferencePair>::const_iterator it;
+	for (it = mRefItem.constBegin(); it != mRefItem.constEnd(); ++it) {
+		if (it.value().name == name) {
+			refItemsMatchingName.insertMulti(it.key(), it.value());
+		}
+	}
+	replaceItems(refItemsMatchingName, newName, cursor);
+}
+
+void LatexDocument::replaceLabelsAndRefs(const QString &name, const QString &newName){
+	QDocumentCursor cursor(this);
+	cursor.beginEditBlock();
+	replaceLabel(name, newName, &cursor);
+	replaceRefs(name, newName, &cursor);
+	cursor.endEditBlock();
+}
+
 void LatexDocument::setMasterDocument(LatexDocument* doc,bool recheck){
 	masterDocument=doc;
     if(recheck){
