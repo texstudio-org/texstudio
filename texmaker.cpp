@@ -4183,7 +4183,32 @@ void Texmaker::NormalCompletion() {
     {
         command=getCommandFromToken(tk);
 
-        bool existValues=true;
+        completer->setWorkPath(command);
+        if(!completer->existValues()){
+            // no keys found for command
+            // command/arg structure ? (yathesis)
+            TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            QString subcommand;
+            int add=(type==Tokens::keyVal_val)?2:1;
+            if(tk.type==Tokens::braces || tk.type==Tokens::squareBracket)
+                add=0;
+            for(int k=tl.indexOf(tk)+1;k<tl.length();k++){
+                Tokens tk_elem=tl.at(k);
+                if(tk_elem.level>tk.level-add)
+                    continue;
+                if(tk_elem.level<tk.level-add)
+                    break;
+                if(tk_elem.type==Tokens::braces){
+                    subcommand=word.mid(tk_elem.start+1,tk_elem.length-2);
+                    break;
+                }
+            }
+            if(!subcommand.isEmpty())
+                command=command+"/"+subcommand;
+                completer->setWorkPath(command);
+        }
+
+        bool existValues=completer->existValues();
         // check if c is after keyval
         if(col>tk.start+tk.length){
             QString interposer=word.mid(tk.start+tk.length,col-tk.start-tk.length);
