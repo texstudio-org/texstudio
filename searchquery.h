@@ -50,6 +50,7 @@ public slots:
 	virtual void run(LatexDocument *doc);
 	void addDocSearchResult(QDocument *doc, QList<QDocumentLineHandle *> search);
 	void setReplacementText(QString text);
+	virtual void replaceAll();
 	
 protected:
 	void setFlag(SearchFlag f, bool b=true);
