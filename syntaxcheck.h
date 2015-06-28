@@ -93,6 +93,7 @@ signals:
 protected:
 	void run();
     void checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,int ticket);
+    void checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,TokenList tl,int ticket);
 	
 private:
 	QQueue<SyntaxLine> mLines;

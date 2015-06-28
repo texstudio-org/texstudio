@@ -349,6 +349,7 @@ TokenList getArgContent(Tokens &tk);
 TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention=10);
 TokenStack getContext(QDocumentLineHandle *dlh,int pos);
 QString getCommandFromToken(Tokens tk);
+Tokens getCommandTokenFromToken(TokenList tl,Tokens tk);
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh);
 bool latexDetermineContexts2(QDocumentLineHandle *dlh,TokenStack &stack,const LatexParser &lp);
 int getCompleterContext(QDocumentLineHandle *dlh, int column);
