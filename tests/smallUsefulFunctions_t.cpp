@@ -68,7 +68,7 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
     QTest::newRow("usepackage command") << "\\usepackage{text}" << (QList<int>()<<2<<3<<29)<< (QList<int>()<<0<<29<<0) << (QList<int>()<<0<<11<<12)  << (QList<int>()<<11<<6<<4) << (QList<int>()<<0<<0<<1);
     QTest::newRow("usepackage command2") << "\\usepackage{text,text}" << (QList<int>()<<2<<3<<29<<29)<< (QList<int>()<<0<<29<<0<<0) << (QList<int>()<<0<<11<<12<<17)  << (QList<int>()<<11<<11<<4<<4) << (QList<int>()<<0<<0<<1<<1);
     QTest::newRow("usepackage command3") << "\\usepackage{text,\ntext}" << (QList<int>()<<2<<6<<29<<29<<9)<< (QList<int>()<<0<<29<<0<<0<<0) << (QList<int>()<<0<<11<<12<<0<<4)  << (QList<int>()<<11<<6<<4<<4<<1) << (QList<int>()<<0<<0<<1<<1<<0);
-    QTest::newRow("newcommand command") << "\\newcommand{text}{test}" << (QList<int>()<<2<<3<<27<<3<<1)<< (QList<int>()<<0<<27<<0<<0<<0) << (QList<int>()<<0<<11<<12<<17<<18)  << (QList<int>()<<11<<6<<4<<6<<4) << (QList<int>()<<0<<0<<1<<0<<1);
+    QTest::newRow("newcommand command") << "\\newcommand{text}{test}" << (QList<int>()<<2<<3<<27<<3<<1)<< (QList<int>()<<0<<27<<0<<48<<48) << (QList<int>()<<0<<11<<12<<17<<18)  << (QList<int>()<<11<<6<<4<<6<<4) << (QList<int>()<<0<<0<<1<<0<<1);
     QTest::newRow("documentclass command") << "\\documentclass{text}" << (QList<int>()<<2<<3<<35)<< (QList<int>()<<0<<35<<0) << (QList<int>()<<0<<14<<15)  << (QList<int>()<<14<<6<<4) << (QList<int>()<<0<<0<<1);
     QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}" << (QList<int>()<<2<<3<<1<<2<<3<<1<<1)<< (QList<int>()<<0<<24<<24<<24<<24<<24<<24) << (QList<int>()<<0<<7<<8<<10<<17<<18<<22)  << (QList<int>()<<7<<18<<2<<7<<4<<2<<2) << (QList<int>()<<0<<0<<1<<1<<1<<2<<1);
     QTest::newRow("graphics command") << "\\includegraphics{file}" << (QList<int>()<<2<<3<<18)<< (QList<int>()<<0<<18<<0) << (QList<int>()<<0<<16<<17)  << (QList<int>()<<16<<6<<4) << (QList<int>()<<0<<0<<1);
@@ -89,6 +89,7 @@ void SmallUsefulFunctionsTest::test_latexLexing() {
     QFETCH(QList<int>, starts);
     QFETCH(QList<int>, lengths);
     QFETCH(QList<int>, levels);
+
     QDocument *doc=new QDocument();
     doc->setText(lines,false);
     for(int i=0;i<doc->lines();i++){
