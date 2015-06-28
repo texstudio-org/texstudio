@@ -188,7 +188,7 @@
 \date{text}
 \depth#*
 \descriptionlabel{code}#*
-\documentclass[options]{class}
+\documentclass[keyvals]{class}
 \documentclass{class}
 \em
 \emph{text}

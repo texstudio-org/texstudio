@@ -5,8 +5,8 @@
 
 #include:nameref
 
-\hypersetup{options}
-#keyvals:1\hypersetup
+\hypersetup{keyvals}
+#keyvals:\hypersetup
 backref
 pdfpagemode=#FullScreen,UseNone,UseOutlines,UseOC,UseAttachments,UseThumbs
 colorlinks#true,false

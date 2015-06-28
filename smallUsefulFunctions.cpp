@@ -2922,25 +2922,35 @@ QString getCommandFromToken(Tokens tk)
     QDocumentLineHandle *dlh=tk.dlh;
     if(dlh){
         TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-        int tkPos=tl.indexOf(tk);
-        int level=tk.level-1;
-        if(Tokens::tkBraces().contains(tk.type)||Tokens::tkOpen().contains(tk.type)||Tokens::tkClose().contains(tk.type)){
-            level=tk.level; //command is at same level
-        }
-        if(tk.subtype==Tokens::keyVal_val){
-            level=tk.level-2; // command is 2 levels up
-        }
-        for(int i=tkPos-1;i>=0;i--){
-            Tokens elem=tl.at(i);
-            if(elem.level==level && (elem.type==Tokens::command || elem.type==Tokens::command) ){
-                cmd=elem.getText();
-                break;
-            }
-            if(elem.level<level)
-                break;
+        Tokens result=getCommandTokenFromToken(tl,tk);
+        if(result.type==Tokens::command){
+            cmd=result.getText();
         }
     }
     return cmd;
+}
+
+Tokens getCommandTokenFromToken(TokenList tl,Tokens tk)
+{
+    Tokens result;
+    int tkPos=tl.indexOf(tk);
+    int level=tk.level-1;
+    if(Tokens::tkBraces().contains(tk.type)||Tokens::tkOpen().contains(tk.type)||Tokens::tkClose().contains(tk.type)){
+        level=tk.level; //command is at same level
+    }
+    if(tk.subtype==Tokens::keyVal_val){
+        level=tk.level-2; // command is 2 levels up
+    }
+    for(int i=tkPos-1;i>=0;i--){
+        Tokens elem=tl.at(i);
+        if(elem.level==level && (elem.type==Tokens::command || elem.type==Tokens::command) ){
+            result=elem;
+            break;
+        }
+        if(elem.level<level)
+            break;
+    }
+    return result;
 }
 
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
@@ -2970,7 +2980,7 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
         }
         if(present.type==Tokens::command&& present.start==i-1 && (c.isSymbol()||c.isPunct())){
             // handle \$ etc
-            present.length=i-present.start;
+            present.length=i-present.start+1;
             lexed.append(present);
             present.type=Tokens::none;
             continue;
@@ -3037,13 +3047,6 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
         }
         if(l>2){
             present.type=Tokens::TokenType(int(Tokens::closeBrace)+(l-3));
-            present.length=1;
-            lexed.append(present);
-            present.type=Tokens::none;
-            continue;
-        }
-        if(c=='$'){
-            present.type=Tokens::math;
             present.length=1;
             lexed.append(present);
             present.type=Tokens::none;
@@ -3232,11 +3235,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                         cd.args--;
                         tk.subtype=cd.argTypes.takeFirst();
                     }
-                    if(cd.args<=0){
+                    /*
+                     * handle in close brace, in order to keep command name until then
+                     * if(cd.args<=0){
                         // unknown arg, stop handling this command
                         commandStack.pop();
                         commandNames.pop();
-                    }
+                    }*/
                  }
                  if(tk.type==Tokens::openSquare){
                     if(cd.optionalArgs>0){
@@ -3261,6 +3266,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              }
              if(!stack.isEmpty() && stack.top().type==Tokens::opposite(tk.type)){
                  Tokens tk1=stack.pop();
+
+
                  if(Tokens::tkCommalist().contains(tk1.subtype)){
                      lastComma=-1;
                  }
@@ -3322,6 +3329,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                      tk.level=level;
                      lexed.append(tk);
                  }
+                 if(!commandStack.isEmpty() && commandStack.top().level==level){
+                     CommandDescription &cd=commandStack.top();
+                     if(cd.args<=0){
+                         // all args handled, stop handling this command
+                         commandStack.pop();
+                         commandNames.pop();
+                     }
+                 }
                  continue;
              }
              // ignore unopened close
@@ -3378,7 +3393,25 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              }
              continue;
          }
-         if(tk.type==Tokens::word){
+         if(tk.type==Tokens::symbol){
+             // special treatment for $ as mathstart
+             if(line.mid(tk.start,1)=="$"){
+                 tk.type=Tokens::command;
+                 tk.level=level;
+                 lexed<<tk;
+                 continue;
+             }
+         }
+         if(tk.type==Tokens::punctuation){
+             // special treatment for & in tabular
+             if(line.mid(tk.start,1)=="&"){
+                 tk.type=Tokens::command;
+                 tk.level=level;
+                 lexed<<tk;
+                 continue;
+             }
+         }
+         if(tk.type==Tokens::word || tk.type==Tokens::number || tk.type==Tokens::symbol|| tk.type==Tokens::punctuation){
              tk.level=level;
              if(!stack.isEmpty()){
                  tk.subtype=stack.top().subtype;

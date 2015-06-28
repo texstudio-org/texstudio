@@ -45,8 +45,8 @@
 \pgfmatrixemptycode#*
 \tikzdeclarecoordinatesystem{arg1}#*
 \tikzaliascoordinatesystem{arg1}#*
-\usetikzlibrary#
-#keyvals:1\usetikzlibrary#c
+\usetikzlibrary{keyvals}#
+#keyvals:\usetikzlibrary#c
 shapes
 arrows
 positioning
