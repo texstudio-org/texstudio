@@ -755,23 +755,55 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
             QString value=line.mid(tk.start,tk.length);
 
             // search stored keyvals
-            QString elem="key%"+command;
-            QStringList lst=ltxCommands->possibleCommands[elem].values();
-            QStringList::iterator iterator;
-            for (iterator = lst.begin(); iterator != lst.end();++iterator){
-                int i=iterator->indexOf("#");
-                if(i>-1)
-                    *iterator=iterator->left(i);
-
-                if(iterator->endsWith("=")){
-                    iterator->chop(1);
+            QString elem;
+            foreach(elem,ltxCommands->possibleCommands.keys()){
+                if(elem.startsWith("key%") && elem.mid(4)==command)
+                    break;
+                if(elem.startsWith("key%") && elem.mid(4,command.length())==command&&elem.mid(4+command.length(),1)=="/"&&!elem.endsWith("#c")){
+                    // special treatment for distinguishing \command[keyvals]{test} where argument needs to equal test (used in yathesis.cwl)
+                    // now find mandatory argument
+                    QString subcommand;
+                    for(int k=i+1;k<tl.length();k++){
+                        Tokens tk_elem=tl.at(k);
+                        if(tk_elem.level>tk.level-1)
+                            continue;
+                        if(tk_elem.level<tk.level-1)
+                            break;
+                        if(tk_elem.type==Tokens::braces){
+                            subcommand=line.mid(tk_elem.start+1,tk_elem.length-2);
+                            if(elem=="key%"+command+"/"+subcommand){
+                                break;
+                            }else{
+                                subcommand.clear();
+                            }
+                        }
+                    }
+                    if(!subcommand.isEmpty())
+                        elem="key%"+command+"/"+subcommand;
+                    else
+                        elem.clear();
+                    break;
                 }
+                elem.clear();
             }
-            if(!lst.contains(value)){
-                Error elem;
-                elem.range=QPair<int,int>(tk.start,tk.length);
-                elem.type=ERR_unrecognizedKey;
-                newRanges.append(elem);
+            if(!elem.isEmpty()){
+                QStringList lst=ltxCommands->possibleCommands[elem].values();
+                QStringList::iterator iterator;
+                for (iterator = lst.begin(); iterator != lst.end();++iterator){
+                    int i=iterator->indexOf("#");
+                    if(i>-1)
+                        *iterator=iterator->left(i);
+
+                    if(iterator->endsWith("=")){
+                        iterator->chop(1);
+                    }
+                }
+                if(!lst.contains(value)){
+                    Error elem;
+                    elem.range=QPair<int,int>(tk.start,tk.length);
+                    elem.type=ERR_unrecognizedKey;
+                    newRanges.append(elem);
+                }
             }
         }
         if(tk.subtype==Tokens::keyVal_val){
@@ -796,6 +828,29 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
             foreach(elem,ltxCommands->possibleCommands.keys()){
                 if(elem.startsWith("key%") && elem.mid(4)==command)
                     break;
+                if(elem.startsWith("key%") && elem.mid(4,command.length())==command&&elem.mid(4+command.length(),1)=="/"&&!elem.endsWith("#c")){
+                    // special treatment for distinguishing \command[keyvals]{test} where argument needs to equal test (used in yathesis.cwl)
+                    // now find mandatory argument
+                    QString subcommand;
+                    for(int k=i+1;k<tl.length();k++){
+                        Tokens tk_elem=tl.at(k);
+                        if(tk_elem.level>tk.level-2)
+                            continue;
+                        if(tk_elem.level<tk.level-2)
+                            break;
+                        if(tk_elem.type==Tokens::braces){
+                            subcommand=line.mid(tk_elem.start+1,tk_elem.length-2);
+                            if(elem=="key%"+command+"/"+subcommand){
+                                break;
+                            }else{
+                                subcommand.clear();
+                            }
+                        }
+                    }
+                    if(!subcommand.isEmpty())
+                        elem="key%"+command+"/"+subcommand;
+                    break;
+                }
                 elem.clear();
             }
             if(!elem.isEmpty()){
