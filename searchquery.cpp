@@ -98,6 +98,11 @@ void SearchQuery::setReplacementText(QString text)
 	mModel->setReplacementText(text);
 }
 
+QString SearchQuery::replacementText()
+{
+	return mModel->replacementText();
+}
+
 void SearchQuery::replaceAll()
 {
 	QList<SearchInfo> searches = mModel->getSearches();
@@ -147,10 +152,11 @@ void SearchQuery::replaceAll()
 
 
 LabelSearchQuery::LabelSearchQuery(QString label) : 
-	SearchQuery(label, QString(), IsWord | IsCaseSensitive | SearchAgainAllowed)
+	SearchQuery(label, label, IsWord | IsCaseSensitive | SearchAgainAllowed | ReplaceAllowed)
 {
 	mScope = ProjectScope;
 	mType = tr("Label Search");
+	mModel->setAllowPartialSelection(false);
 }
 
 void LabelSearchQuery::run(LatexDocument *doc)
@@ -169,6 +175,18 @@ void LabelSearchQuery::run(LatexDocument *doc)
 	
 	foreach (QDocument *doc, usagesByDocument.keys()) {
 		addDocSearchResult(doc, usagesByDocument.value(doc));
+	}
+}
+void LabelSearchQuery::replaceAll()
+{
+	QList<SearchInfo> searches = mModel->getSearches();
+	QString oldLabel = searchExpression();
+	QString newLabel = mModel->replacementText();
+	foreach (SearchInfo search, searches) {
+		LatexDocument *doc = qobject_cast<LatexDocument *>(search.doc.data());
+		if (doc) {
+			doc->replaceLabelsAndRefs(oldLabel, newLabel);
+		}
 	}
 }
 

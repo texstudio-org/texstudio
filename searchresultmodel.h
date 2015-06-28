@@ -48,6 +48,8 @@ public:
     }
     void setReplacementText(QString text) { mReplacementText=text; }
 	QString replacementText() { return mReplacementText; }
+	
+	void setAllowPartialSelection(bool b) { mAllowPartialSelection=b; }
 
     QList<QPair<int,int> > getSearchResults(const QString &text) const;
 
@@ -60,6 +62,7 @@ private:
 	QList< SearchInfo > m_searches;
     QString mExpression,mReplacementText;
 	bool mIsWord,mIsCaseSensitive,mIsRegExp;
+	bool mAllowPartialSelection;
 	QFont mLineFont;
 };
 

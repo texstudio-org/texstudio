@@ -135,6 +135,10 @@ public:
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getLabels(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getRefs(const QString& name);
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle*,int> getBibItems(const QString& name);
+	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle*,ReferencePair> items, const QString& newName, QDocumentCursor *cursor=0);
+	Q_INVOKABLE void replaceLabel(const QString& name, const QString& newName, QDocumentCursor *cursor=0);
+	Q_INVOKABLE void replaceRefs(const QString& name, const QString& newName, QDocumentCursor *cursor=0);
+	Q_INVOKABLE void replaceLabelsAndRefs(const QString& name, const QString& newName);
 	
 	void patchLinesContaining(const QStringList cmds);
 	

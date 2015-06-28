@@ -50,6 +50,7 @@ public slots:
 	virtual void run(LatexDocument *doc);
 	void addDocSearchResult(QDocument *doc, QList<QDocumentLineHandle *> search);
 	void setReplacementText(QString text);
+	QString replacementText();
 	virtual void replaceAll();
 	
 protected:
@@ -70,6 +71,7 @@ class LabelSearchQuery : public SearchQuery {
 public:
 	LabelSearchQuery(QString label);
 	virtual void run(LatexDocument *doc);
+	virtual void replaceAll();
 };
 
 

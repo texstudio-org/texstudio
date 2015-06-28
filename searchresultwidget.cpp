@@ -74,8 +74,10 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 	searchAgainButton->setEnabled(query->flag(SearchQuery::SearchAgainAllowed));
 	bool replaceAllowed = query->flag(SearchQuery::ReplaceAllowed);
 	replaceTextEdit->setEnabled(replaceAllowed);
+	replaceTextEdit->setText(query->replacementText());
 	replaceButton->setEnabled(replaceAllowed);
 	connect(replaceTextEdit, SIGNAL(textChanged(QString)), query, SLOT(setReplacementText(QString)));
+	connect(replaceTextEdit, SIGNAL(returnPressed()), query, SLOT(replaceAll()));
 	connect(replaceButton, SIGNAL(clicked()), query, SLOT(replaceAll()));
 	
 	searchTree->setModel(query->model());
