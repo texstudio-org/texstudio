@@ -46,9 +46,8 @@ public:
         isCaseSensitive=mIsCaseSensitive;
         isRegExp=mIsRegExp;
     }
-    void setReplacementText(QString text){
-        mReplacementText=text;
-    }
+    void setReplacementText(QString text) { mReplacementText=text; }
+	QString replacementText() { return mReplacementText; }
 
     QList<QPair<int,int> > getSearchResults(const QString &text) const;
 

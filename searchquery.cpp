@@ -93,8 +93,56 @@ void SearchQuery::run(LatexDocument *doc)
 	}
 }
 
-void SearchQuery::setReplacementText(QString text) {
+void SearchQuery::setReplacementText(QString text)
+{
 	mModel->setReplacementText(text);
+}
+
+void SearchQuery::replaceAll()
+{
+	QList<SearchInfo> searches = mModel->getSearches();
+	QString replaceText = mModel->replacementText();
+	bool isWord, isCase, isReg;
+	mModel->getSearchConditions(isCase, isWord, isReg);
+	foreach (SearchInfo search, searches) {
+		LatexDocument *doc = qobject_cast<LatexDocument *>(search.doc.data());
+		if (!doc) {
+			continue;
+		}
+		QDocumentCursor *cur = new QDocumentCursor(doc);
+		for (int i=0; i<search.checked.size(); i++) {
+			if (search.checked.value(i, false)) {
+				QDocumentLineHandle *dlh = search.lines.value(i, 0);
+				if (dlh) {
+					QList<QPair<int, int> > results = mModel->getSearchResults(dlh->text());
+					if (!results.isEmpty()) {
+						QPair<int, int> elem;
+						int offset = 0;
+						foreach (elem, results) {
+							if (isReg) {
+								QRegExp rx(searchExpression(), isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);
+								QString txt = dlh->text();
+								QString newText = txt.replace(rx, replaceText);
+								int lineNr = doc->indexOf(dlh, search.lineNumberHints.value(i, -1));
+								cur->select(lineNr, elem.first + offset, lineNr, elem.second + offset);
+								newText = newText.mid(elem.first);
+								newText.chop(txt.length() - elem.second - 1);
+								cur->replaceSelectedText(newText);
+								offset += newText.length() - elem.second + elem.first;
+							} else {
+								// simple replacement
+								int lineNr = doc->indexOf(dlh, search.lineNumberHints.value(i, -1));
+								cur->select(lineNr, elem.first + offset, lineNr, elem.second + offset);
+								cur->replaceSelectedText(replaceText);
+								offset += replaceText.length() - elem.second + elem.first;
+							}
+						}
+					}
+				}
+			}
+		}
+		delete cur;
+	}
 }
 
 

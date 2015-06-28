@@ -26,7 +26,6 @@ public slots:
 private slots:
 	void clickedSearchResult(const QModelIndex &index);
 	void updateSearch();
-	void replaceAll();
 
 private:
 	QLabel *searchTypeLabel;
