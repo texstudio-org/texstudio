@@ -2978,6 +2978,9 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
                 continue;
             }
         }
+        if(present.type==Tokens::command&& c=='@'){
+            continue; // add @ as letter to command
+        }
         if(present.type==Tokens::command&& present.start==i-1 && (c.isSymbol()||c.isPunct())){
             // handle \$ etc
             present.length=i-present.start+1;

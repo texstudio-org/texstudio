@@ -1915,9 +1915,13 @@ void LatexEditorView::mouseHovered(QPoint pos){
 	if (fr.length>0 && fr.format==syntaxErrorFormat) {
 		StackEnvironment env;
         document->getEnv(cursor.lineNumber(),env);
+        TokenStack remainder;
+        int i=cursor.lineNumber();
+        if(document->line(i-1).handle())
+            remainder=document->line(i-1).handle()->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
 		QString text=l.text();
 		if(!text.isEmpty()){
-            QString message=document->getErrorAt(l.handle(),cursor.columnNumber(),env);
+            QString message=document->getErrorAt(l.handle(),cursor.columnNumber(),env,remainder);
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)),message);
 			return;
 		}

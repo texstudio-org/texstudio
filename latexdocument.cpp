@@ -962,8 +962,13 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
         if(latexLikeChecking) {
             StackEnvironment env;
             getEnv(i,env);
+            QDocumentLineHandle *lastHandle=line(i-1).handle();
+            TokenStack oldRemainder;
+            if(lastHandle){
+                oldRemainder=lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+            }
 
-            SynChecker.putLine(line(i).handle(),env,true);
+            SynChecker.putLine(line(i).handle(),env,oldRemainder,true);
         }
 	}//for each line handle
     QVector<StructureEntry*> parent_level(lp.structureDepth());
@@ -3127,7 +3132,7 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int
     Q_ASSERT_X(dlh!=0,"checkNextLine","empty dlh used in checkNextLine");
     if(dlh->getRef()>1 && dlh->getCurrentTicket()==ticket){
         StackEnvironment env;
-        QVariant envVar=dlh->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+        QVariant envVar=dlh->getCookieLocked(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
         if(envVar.isValid())
             env=envVar.value<StackEnvironment>();
         int index = indexOf(dlh);
@@ -3138,19 +3143,21 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int
             if(unclosedEnv.id!=-1){
                 unclosedEnv.id = -1;
                 int unclosedEnvIndex = indexOf(unclosedEnv.dlh);
-                if (unclosedEnvIndex >= 0 && unclosedEnv.dlh->getCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE).isValid()){
+                if (unclosedEnvIndex >= 0 && unclosedEnv.dlh->getCookieLocked(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE).isValid()){
                     StackEnvironment env;
                     Environment newEnv;
                     newEnv.name="normal";
                     newEnv.id=1;
                     env.push(newEnv);
+                    TokenStack remainder;
                     if (unclosedEnvIndex >= 1) {
                         QDocumentLineHandle *prev = line(unclosedEnvIndex-1).handle();
-                        QVariant result=prev->getCookie(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
+                        QVariant result=prev->getCookieLocked(QDocumentLine::STACK_ENVIRONMENT_COOKIE);
                         if(result.isValid())
                             env=result.value<StackEnvironment>();
+                        remainder=prev->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
                     }
-                    SynChecker.putLine(unclosedEnv.dlh, env, true);
+                    SynChecker.putLine(unclosedEnv.dlh, env,remainder, true);
                 }
             }
             if(env.size()>1){
@@ -3161,7 +3168,8 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int
             }
             return;
         }
-        SynChecker.putLine(line(index+1).handle(), env, clearOverlay);
+        TokenStack remainder=dlh->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        SynChecker.putLine(line(index+1).handle(), env,remainder, clearOverlay);
     }
     dlh->deref();
 }
@@ -3179,15 +3187,18 @@ void LatexDocument::reCheckSyntax(int linenr, int count){
         Q_ASSERT(line.isValid());
         StackEnvironment env;
         getEnv(i,env);
-        SynChecker.putLine(line.handle(),env,true);
+        TokenStack remainder;
+        if(prev.handle())
+            remainder=prev.handle()->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        SynChecker.putLine(line.handle(),env,remainder,true);
         prev = line;
         line = this->line(i+1);
     }
 }
 
-QString LatexDocument::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous)
+QString LatexDocument::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous,TokenStack stack)
 {
-    return SynChecker.getErrorAt(dlh,pos,previous);
+    return SynChecker.getErrorAt(dlh,pos,previous,stack);
 }
 
 int LatexDocument::syntaxErrorFormat;
