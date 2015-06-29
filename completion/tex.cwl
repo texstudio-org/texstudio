@@ -144,6 +144,7 @@
 \if#*
 \ifcase#*
 \ifcat#*
+\ifdefined#*
 \ifdim#*
 \ifeof#*
 \iffalse#*
