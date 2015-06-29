@@ -17,13 +17,14 @@ void SyntaxCheck::setErrFormat(int errFormat){
 	syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QDocumentLineHandle* dlh,StackEnvironment previous,bool clearOverlay){
+void SyntaxCheck::putLine(QDocumentLineHandle* dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay){
 	REQUIRE(dlh);
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
 	dlh->lockForRead();
 	newLine.ticket=dlh->getCurrentTicket();
 	dlh->unlock();
+    newLine.stack=stack;
 	newLine.dlh=dlh;
 	newLine.prevEnv=previous;
 	newLine.clearOverlay=clearOverlay;
@@ -75,7 +76,7 @@ void SyntaxCheck::run(){
 		StackEnvironment activeEnv=newLine.prevEnv;
 		Ranges newRanges;
 		
-        checkLine(line,newRanges,activeEnv,newLine.dlh,tl,newLine.ticket);
+        checkLine(line,newRanges,activeEnv,newLine.dlh,tl,newLine.stack,newLine.ticket);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 		//if(newRanges.isEmpty()) continue;
@@ -396,15 +397,15 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 	}
 }
 
-QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous){
+QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous,TokenStack stack){
 	// do syntax check
 	QString line=dlh->text();
 	QStack<Environment> activeEnv=previous;
-    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	Ranges newRanges;
-    checkLine(line,newRanges,activeEnv,dlh,tl,dlh->getCurrentTicket());
+    checkLine(line,newRanges,activeEnv,dlh,tl,stack,dlh->getCurrentTicket());
 	// add Error for unclosed env
-	QVariant var=dlh->getCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE);
+    QVariant var=dlh->getCookieLocked(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE);
 	if(var.isValid()){
 		activeEnv=var.value<StackEnvironment>();
 		Q_ASSERT_X(activeEnv.size()==1,"SyntaxCheck","Cookie error");
@@ -540,15 +541,38 @@ void SyntaxCheck::markUnclosedEnv(Environment env){
 	dlh->unlock();
 }
 
-void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,TokenList tl,int ticket){
+void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,TokenList tl,TokenStack stack,int ticket){
     // do syntax check on that line
     int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
 
     // check command-words
     for(int i=0;i<tl.length();i++) {
         Tokens tk=tl.at(i);
+        // ignore commands in definition arguments e.g. \newcommand{cmd}{definition}
+        if(!stack.isEmpty()&& stack.top().subtype==Tokens::definition){
+            Tokens top=stack.top();
+            if(top.dlh!=tk.dlh){
+                if(tk.type==Tokens::closeBrace){
+                    stack.pop();
+                }else
+                    continue;
+            }else{
+                if(tk.start<top.start+top.length)
+                    continue;
+                else
+                    stack.pop();
+            }
+        }
+        if(tk.subtype==Tokens::definition && (tk.type==Tokens::braces||tk.type==Tokens::openBrace)){
+            stack.push(tk);
+            continue;
+        }
+
         if(tk.type==Tokens::commandUnknown){
             QString word=line.mid(tk.start,tk.length);
+            if(word.contains('@')){
+                continue; //ignore commands containg @
+            }
             if(ltxCommands->possibleCommands["user"].contains(word)||ltxCommands->customCommands.contains(word))
                 continue;
             if(word=="\\\\"&&topEnv("tabular",activeEnv)!=0){
@@ -731,9 +755,6 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                 }
 
             }
-            // ignore commands containing @
-            if(word.contains('@'))
-                continue;
 
             if(!checkCommand(word,activeEnv)){
                 Error elem;
