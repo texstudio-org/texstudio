@@ -1894,7 +1894,6 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
             if(skipSection) // skip conditional sections (if condition is not met)
                 continue;
 
-
             if(line.startsWith("#include:")){
                 //include additional cwl file
                 QString fn=line.mid(9);
@@ -2458,6 +2457,9 @@ QString getArg(const TokenList &tl,QDocumentLineHandle* dlh,int argNumber,Argume
     if(type==ArgumentList::Mandatory){
         tkTypes.append(Tokens::braces);
         tkTypes.append(Tokens::word);
+        tkTypes.append(Tokens::command);
+        tkTypes.append(Tokens::commandUnknown);
+        tkTypes.append(Tokens::number);
         tkTypes.append(Tokens::openBrace);
     }else{
         tkTypes.append(Tokens::squareBracket);
@@ -2472,14 +2474,14 @@ QString getArg(const TokenList &tl,QDocumentLineHandle* dlh,int argNumber,Argume
             if(Tokens::tkBraces().contains(tk.type)){
                 result=line.mid(tk.start+1,tk.length-2);
             }
-            if(tk.type==Tokens::word){
-                    result=line.mid(tk.start,tk.length);
-            }
             if(Tokens::tkOpen().contains(tk.type)){
                     result=line.mid(tk.start+1,tk.length)+findRestArg(dlh,Tokens::opposite(tk.type),5);
             }
             if(Tokens::tkClose().contains(tk.type)){
                     result=line.mid(tk.start+1,tk.length);
+            }
+            if(result.isEmpty()){
+                    result=line.mid(tk.start,tk.length);
             }
             if(k==argNumber)
                 return result;
