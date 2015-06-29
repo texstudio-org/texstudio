@@ -940,7 +940,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 			if(cmd.endsWith("*"))
 				cmd=cmd.left(cmd.length()-1);
             int level = lp.structureCommandLevel(cmd);
-            if (level>-1 && !firstArg.isEmpty() && !isDefinitionArgument(firstArg)) {
+            if (level>-1 && !firstArg.isEmpty() && tkCmd.subtype==Tokens::none) {
                 StructureEntry *newSection = new StructureEntry(this,StructureEntry::SE_SECTION);
 				if(mAppendixLine &&indexOf(mAppendixLine)<i) newSection->setContext(StructureEntry::InAppendix);
 				if(mBeyondEnd &&indexOf(mBeyondEnd)<i) newSection->setContext(StructureEntry::BeyondEnd);
