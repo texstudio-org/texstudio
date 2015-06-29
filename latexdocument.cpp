@@ -333,7 +333,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
     if(linenr>0){
         QDocumentLineHandle *previous=line(linenr-1).handle();
         remainder=previous->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        if(!remainder.isEmpty() && remainder.top().argLevel>0){
+        if(!remainder.isEmpty() && remainder.top().subtype!=Tokens::none){
             QDocumentLineHandle *lh=remainder.top().dlh;
             lineNrStart=lh->document()->indexOf(lh);
             if(linenr-lineNrStart>10) // limit search depth
