@@ -2155,7 +2155,10 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                             package.possibleCommands["normal"] << rxCom.cap(1);
                         }
                     } else {
-                        package.possibleCommands["normal"] << line.simplified();
+                        if(!cmd.isEmpty())
+                            package.possibleCommands["normal"] << cmd;
+                        else
+                            package.possibleCommands["normal"] << line.simplified();
                     }
                 }
                 if(valid.contains('m')){ // math commands
@@ -2166,7 +2169,10 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                             package.possibleCommands["math"] << rxCom.cap(1);
                         }
                     } else {
-                        package.possibleCommands["math"] << line.simplified();
+                        if(!cmd.isEmpty())
+                            package.possibleCommands["math"] << cmd;
+                        else
+                            package.possibleCommands["math"] << line.simplified();
                     }
                 }
                 if(valid.contains('t')){ // tabular commands
@@ -2179,8 +2185,10 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                             package.possibleCommands["array"] << rxCom.cap(1);
                         }
                     } else {
-                        package.possibleCommands["tabular"] << line.simplified();
-                        package.possibleCommands["array"] << line.simplified();
+                        if(cmd.isEmpty())
+                            cmd=line.simplified();
+                        package.possibleCommands["tabular"] << cmd;
+                        package.possibleCommands["array"] << cmd;
                     }
                 }
                 if(valid.contains('T')){ // tabbing support
