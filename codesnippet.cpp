@@ -395,7 +395,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 
 	// on single line commands only: replace command
     if(byCompleter && autoReplaceCommands && lines.size()==1 && (line.startsWith('\\')||isKeyVal) ){
-		if(cursor->nextChar().isLetterOrNumber()||cursor->nextChar()==QChar('{')){
+        if(cursor->nextChar().isLetterOrNumber()||cursor->nextChar()==QChar('{')||cursor->nextChar()==QChar('=')){
 			QString curLine=cursor->line().text();
             int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
             int wordBreakEqual=curLine.indexOf("=",cursor->columnNumber());
