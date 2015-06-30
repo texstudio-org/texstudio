@@ -3267,6 +3267,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  }
              }
              tk.level=level;
+             tk.argLevel=10; // run-away prevention
              stack.push(tk);
              lexed<<tk;
              level++;
@@ -3471,6 +3472,17 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      }
 
      dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(lexed));
+     // run-away prevention
+     // reduce argLevel by 1, remove all elements with level <0
+     for(int i=0;i<stack.size();i++){
+         if(stack[i].type==Tokens::verbatim)
+             continue;
+         stack[i].argLevel=stack[i].argLevel-1;
+         if(stack[i].argLevel<0){
+             stack.remove(i);
+             i--;
+         }
+     }
      dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
      dlh->unlock();
      bool remainderChanged=(stack!=oldRemainder);
