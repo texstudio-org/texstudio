@@ -541,6 +541,14 @@ void SyntaxCheck::markUnclosedEnv(Environment env){
 	dlh->unlock();
 }
 
+bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const{
+    for(int i=0;i<stack.size();i++){
+        if(stack[i].subtype==Tokens::definition)
+            return true;
+    }
+    return false;
+}
+
 void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,TokenList tl,TokenStack stack,int ticket){
     // do syntax check on that line
     int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
@@ -549,7 +557,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
     for(int i=0;i<tl.length();i++) {
         Tokens tk=tl.at(i);
         // ignore commands in definition arguments e.g. \newcommand{cmd}{definition}
-        if(!stack.isEmpty()&& stack.top().subtype==Tokens::definition){
+        if(stackContainsDefinition(stack)){
             Tokens top=stack.top();
             if(top.dlh!=tk.dlh){
                 if(tk.type==Tokens::closeBrace){
