@@ -107,6 +107,7 @@ private:
 	LatexParser newLtxCommands;
 	bool newLtxCommandsAvailable;
 	QMutex mLtxCommandLock;
+    bool stackContainsDefinition(const TokenStack &stack) const;
 };
 
 #endif // SYNTAXCHECK_H
