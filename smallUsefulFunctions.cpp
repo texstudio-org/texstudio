@@ -3202,6 +3202,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                              tk.subtype=cd.argTypes.value(0,Tokens::keyVal_val);
                          }
                      }
+
                  }
                  if(!commandStack.isEmpty() && commandStack.top().level==level){
                      //possible command argument without brackets
@@ -3220,7 +3221,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  if(lp.commandDefs.contains(command)){
                      CommandDescription cd=lp.commandDefs.value(command);
                      cd.level=level;
-                     if(cd.args>0)
+                     if(cd.args>0 && tk.subtype!=Tokens::def) // don't interpret commands in defintion (\newcommand{def})
                         commandStack.push(cd);
                         commandNames.push(command);
                  }else{
@@ -3333,6 +3334,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                          lexed[j].length=tk.start-tk1.start+1;
                          lexed[j].type=Tokens::closed(tk.type);
                          level--;
+                         // remove commands from commandstack with higher level, as they can't have any valid arguments anymore
+                         while(!commandStack.isEmpty() && commandStack.top().level>level){
+                             commandStack.pop();
+                             commandNames.pop();
+                         }
                      }else{ // opening not found, whyever (should not happen)
                          level--;
                          tk.level=level;
