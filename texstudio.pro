@@ -413,6 +413,8 @@ unix {
 	utilities/dictionaries/en_GB.dic \
 	utilities/dictionaries/en_US.aff \
 	utilities/dictionaries/en_US.dic \
+	utilities/dictionaries/es_ES.aff \
+	utilities/dictionaries/es_ES.dic \
 	utilities/dictionaries/fr_FR.aff \
 	utilities/dictionaries/fr_FR.dic \
 	utilities/dictionaries/de_DE.aff \
