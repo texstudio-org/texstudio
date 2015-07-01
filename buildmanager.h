@@ -242,6 +242,7 @@ class ProcessX: public QProcess{
 	Q_OBJECT
 public:
 	ProcessX(BuildManager* parent=0, const QString &assignedCommand="", const QString& fileToCompile="");
+	static QString reformatShellLiteralQuotes(QString cmd);
 	void startCommand();
 	bool waitForStarted(int timeOut=30000);
 	const QString& getFile();

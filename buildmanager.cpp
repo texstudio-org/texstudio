@@ -1869,6 +1869,14 @@ ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const Q
 	connect(this, SIGNAL(error(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
 }
 
+/*!
+ * Reformats shell-style literal quotes (\") to QProcess-style literal quotes (""")
+ * e.g. "Epic 12\" singles" -> "Epic 12""" singles"
+ */
+QString ProcessX::reformatShellLiteralQuotes(QString cmd) {
+	return cmd.replace("\\\"", "\"\"\"");
+}
+
 void ProcessX::startCommand() {
 	ended = false;
 	
@@ -1910,7 +1918,7 @@ void ProcessX::startCommand() {
 #else
     qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #endif
-	QProcess::start(cmd);
+	QProcess::start(reformatShellLiteralQuotes(cmd));
 	qputenv("PATH", path); // restore
 
     if (error() == FailedToStart || error() == Crashed)
