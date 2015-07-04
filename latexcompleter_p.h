@@ -40,7 +40,7 @@ private:
 	QString curWord;
 
 	QList<CompletionWord> baselist;
-    QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsCitations,wordsCitationCommands;
+    QList<CompletionWord> wordsText, wordsCommands,wordsAbbrev,wordsLabels,wordsCitations,wordsCitationCommands;
 
     int mostUsedUpdated;
 

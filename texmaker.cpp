@@ -4156,10 +4156,13 @@ void Texmaker::NormalCompletion() {
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
     case Tokens::labelRef:
-    case Tokens::labelRefList:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
+    case Tokens::labelRefList:
+        if(mCompleterNeedsUpdate) updateCompleter();
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF | LatexCompleter::CF_FORCE_REFLIST);
+        break;
     case Tokens::bibItem:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
@@ -6733,7 +6736,9 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 	}
 	
 	// collect user commands and references
+    QSet<QString> collected_labels;
 	foreach(const LatexDocument* doc,docs){
+        collected_labels.unite(doc->labelItems().toSet());
 		foreach(const QString& refCommand, latexParser.possibleCommands["%ref"]){
             QString temp=refCommand+"{%1}";
 			foreach (const QString& l, doc->labelItems())
@@ -6781,6 +6786,8 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 		completer->setAdditionalWords(bibIds,CT_CITATIONS);
 	}
 	
+    completer->setAdditionalWords(collected_labels,CT_LABELS);
+
 	completionBaseCommandsUpdated=false;
 	
 

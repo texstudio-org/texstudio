@@ -109,8 +109,8 @@ public:
 				{
 					cursor.deleteChar();
 				}
-				if(cursor.nextChar()=='}')
-					cursor.deleteChar();
+                //if(cursor.nextChar()=='}')
+                //	cursor.deleteChar();
 			}
 			if(completer->forcedCite){
 				QString line = cursor.line().text();
@@ -951,6 +951,9 @@ void CompletionListModel::setBaseWords(const CodeSnippetList &baseCommands,const
     case CT_CITATIONCOMMANDS:
         wordsCitationCommands=newWordList;
         break;
+    case CT_LABELS:
+        wordsLabels=newWordList;
+        break;
     default:
         wordsCommands=newWordList;
     }
@@ -1219,6 +1222,10 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         listModel->baselist=listModel->wordsCitations;
         handled=true;
     }
+    if(forcedRef){
+        listModel->baselist=listModel->wordsLabels;
+        handled=true;
+    }
     if(forcedPackage){
         listModel->setBaseWords(*packageList,CT_NORMALTEXT);
         listModel->baselist=listModel->wordsText;
@@ -1295,7 +1302,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         }
         if(flags == CF_FORCE_VISIBLE_LIST)
             eow.remove("{");
-		if (flags & CF_FORCE_REF) eow="\\";
+        if (flags & CF_FORCE_REF) eow="{}\\";
+        if (flags & CF_FORCE_REFLIST) eow="{}\\,";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
 			if ((lineText.at(i)==QChar('\\'))&&!(flags & CF_FORCE_GRAPHIC)) {
@@ -1305,6 +1313,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 				if (flags & CF_NORMAL_TEXT) start=i+1;
 				if (flags & CF_FORCE_GRAPHIC) start=i+1;
 				if (flags & CF_FORCE_CITE) start=i+1;
+                if (flags & CF_FORCE_REF) start=i+1;
                 if (flags & CF_FORCE_PACKAGE) start=i+1;
                 if (flags & CF_FORCE_KEYVAL) start=i+1;
                 if (flags & CF_FORCE_SPECIALOPTION) start=i+1;
