@@ -478,7 +478,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
 			contextMenu->addAction(act);
 		}
-		if (tk.type==Tokens::label || tk.type==Tokens::labelRef) {
+        if (tk.type==Tokens::label || tk.type==Tokens::labelRef || tk.type==Tokens::labelRefList) {
 			QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
 			act->setData(tk.getText());
 			act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
@@ -723,7 +723,7 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor) {
 
         Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
 
-        if (tk.type==Tokens::labelRef) {
+        if (tk.type==Tokens::labelRef || tk.type==Tokens::labelRefList) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::RefOverlay));
         } else if (tk.type==Tokens::file) {
             setLinkOverlay(LinkOverlay(cursor, LinkOverlay::FileOverlay));
@@ -1654,7 +1654,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
 
                     addedOverlayPackage = true;
                 }
-                if (tk.type==Tokens::labelRef && config->inlineReferenceChecking) {
+                if ((tk.type==Tokens::labelRef || tk.type==Tokens::labelRefList) && config->inlineReferenceChecking) {
                     QDocumentLineHandle *dlh=tk.dlh;
                     QString ref=dlh->text().mid(tk.start,tk.length);
                     if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
@@ -1962,7 +1962,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
                 if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
             }
         }
-        if(tk.type==Tokens::labelRef){
+        if(tk.type==Tokens::labelRef || tk.type==Tokens::labelRefList){
             handled=true;
             int cnt=document->countLabels(value);
             QString mText="";

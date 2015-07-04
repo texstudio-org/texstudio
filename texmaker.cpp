@@ -3272,6 +3272,7 @@ void Texmaker::editGotoDefinition(QDocumentCursor c) {
     Tokens tk=getTokenAtCol(c.line().handle(),c.columnNumber());
     switch (tk.type) {
     case Tokens::labelRef:
+    case Tokens::labelRefList:
 	{
         LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), tk.getText());
 		if (!edView) return;
@@ -4155,6 +4156,7 @@ void Texmaker::NormalCompletion() {
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
     case Tokens::labelRef:
+    case Tokens::labelRefList:
         if(mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;

@@ -2581,6 +2581,7 @@ QSet<Tokens::TokenType> Tokens::tkCommalist(){
     result.insert(package);
     result.insert(packageoption);
     result.insert(bibfile);
+    result.insert(labelRefList);
     return result;
 }
 
@@ -2724,10 +2725,13 @@ CommandDescription extractCommandDef(QString line){
         if(def=="placement" || def=="position"){
             type=Tokens::placement;
         }
-        if(def=="key"){
+        if(def=="key"||def=="key1"||def=="key2"){
             type=Tokens::labelRef;
             if(command=="\\label")
                 type=Tokens::label;
+        }
+        if(def=="keylist"){
+            type=Tokens::labelRefList;
         }
         if(!def.isEmpty()){ //ignore empty arguments
             switch (j) {

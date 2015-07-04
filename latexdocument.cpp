@@ -555,7 +555,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             // work special args
             ////Ref
             //for reference counting (can be placed in command options as well ...
-            if(tk.type==Tokens::labelRef){
+            if(tk.type==Tokens::labelRef||tk.type==Tokens::labelRefList){
                 ReferencePair elem;
                 elem.name=tk.getText();
                 elem.start=tk.start;
