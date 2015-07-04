@@ -2677,9 +2677,6 @@ CommandDescription extractCommandDef(QString line){
         if(def=="width" || def=="length" || def=="height" || def.endsWith("%l")){
             type=Tokens::width;
         }
-        if(def=="citekey" || def=="bibid"){
-            type=Tokens::bibItem;
-        }
         if(def=="bib files" || def=="bib file"){
             type=Tokens::bibfile;
         }
@@ -2719,7 +2716,7 @@ CommandDescription extractCommandDef(QString line){
         if(def=="beamertheme"){
             type=Tokens::beamertheme;
         }
-        if(def=="keylist" || def=="bibid"){
+        if(def=="citekey" || def=="keylist" || def=="bibid"){
             type=Tokens::bibItem;
         }
         if(def=="placement" || def=="position"){
@@ -2730,7 +2727,7 @@ CommandDescription extractCommandDef(QString line){
             if(command=="\\label")
                 type=Tokens::label;
         }
-        if(def=="keylist"){
+        if(def=="labellist"){
             type=Tokens::labelRefList;
         }
         if(!def.isEmpty()){ //ignore empty arguments

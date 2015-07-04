@@ -4118,15 +4118,15 @@ void Texmaker::NormalCompletion() {
     //LatexEditorView *view=currentEditorView();
 	// complete text if no command is present
 	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QString eow=getCommonEOW();
+    //QString eow=getCommonEOW();
 	int i=0;
 	int col=c.columnNumber();
 	QString word=c.line().text();
     QDocumentLineHandle *dlh=c.line().handle();
-	while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
+    /*while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
 		c.movePosition(1,QDocumentCursor::PreviousCharacter);
 		i++;
-	}
+    }*/
 	
     QString command;
     //LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
@@ -9742,6 +9742,37 @@ void Texmaker::changeSymbolGridIconSize(int value,bool changePanel)
 
 void Texmaker::colonTyped(){
     if (!currentEditorView())	return;
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    QDocumentLineHandle *dlh=c.line().handle();
+    if(!dlh)
+        return;
+    TokenStack ts=getContext(dlh,c.columnNumber());
+    Tokens tk;
+    if(!ts.isEmpty()){
+        tk=ts.top();
+        if(tk.type==Tokens::word && tk.subtype==Tokens::none && ts.size()>1){
+            // set brace type
+            ts.pop();
+            tk=ts.top();
+        }
+    }
+
+    Tokens::TokenType type=tk.type;
+    if(tk.subtype!=Tokens::none)
+        type=tk.subtype;
+
+    QList<Tokens::TokenType>lst;
+    lst<<Tokens::package<<Tokens::keyValArg<<Tokens::keyVal_val<<Tokens::keyVal_key<<Tokens::bibItem<<Tokens::labelRefList;
+    if(lst.contains(type))
+        NormalCompletion();
+    ts.pop();
+    if(!ts.isEmpty()){ // check next level if 1. check fails (e.g. key vals are set to real value)
+        tk=ts.top();
+        type=tk.type;
+        if(lst.contains(type))
+            NormalCompletion();
+    }
+    /* old code
     LatexEditorView *view=currentEditorView();
     // complete text if no command is present
     QDocumentCursor c = currentEditorView()->editor->cursor();
@@ -9759,5 +9790,6 @@ void Texmaker::colonTyped(){
     QList<LatexParser::ContextType>lst;
     lst<<LatexParser::Package<<LatexParser::Keyval<<LatexParser::KeyvalValue<<LatexParser::Citation;
     if(lst.contains(ctx))
-        NormalCompletion();
+        NormalCompletion(); */
+
 }

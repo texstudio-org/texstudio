@@ -1476,6 +1476,8 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>text</code> and <code>title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). This currently works only for the first command element.</li>
   <li><code>bibid</code> and <code>cite key</code>: If used in a command classified as "C". See the classifier description below.</li>
   <li><code>cmd</code> and <code>command</code>: defintion for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
+  <li><code>def</code> and <code>definition</code>: actual defintion for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
+  <li><code>args</code>: number of arguments for command, e.g. \newcommand{cmd}[args]{definition}.</li>
   <li><code>package</code>:package name, e.g. \usepackage{package}</li>
   <li><code>title</code> and <code>short title</code>:section name, e.g. \section{title}</li>
   <li><code>color</code>:color name, e.g. \textcolor{color}</li>
@@ -1486,6 +1488,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>options</code>:package options, e.g. \usepackage[options]</li>
   <li><code>imagefile</code>:file name of an image</li>
   <li><code>key</code>:label/ref key</li>
+  <li><code>labellist</code>:list of labels as employed by cleveref</li>
   <li><code>bib file</code> and <code>bib files</code>:bibliography file</li>
   <li><code>class</code>:document class</li>
   <li><code>placement</code> and <code>position</code>:position of env</li>
