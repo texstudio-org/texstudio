@@ -1831,7 +1831,9 @@ void LatexDocumentsModel::removeElement(StructureEntry *se,int row){
 		beginRemoveRows(QModelIndex(),row,row); // remove from root (documents)
 	else {
 		if(row<0) row=se->getRealParentRow();
-		else Q_ASSERT(row < se->parent->children.size()), Q_ASSERT(se->parent->children[row] == se);
+        else {Q_ASSERT(row < se->parent->children.size());
+              Q_ASSERT(se->parent->children[row] == se);
+        }
 		beginRemoveRows(index(se->parent),row,row);
 	}
 }
