@@ -3092,6 +3092,13 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
     return lexed;
 }
 
+
+#define GCC_VERSION (__GNUC__ * 10000 \
+                               + __GNUC_MINOR__ * 100 \
+                               + __GNUC_PATCHLEVEL__)
+
+
+
 bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp){
     if(!dlh)
         return false;
@@ -3492,7 +3499,21 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      }
      dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
      dlh->unlock();
+     /* Test for GCC > 4..0 */
+#if GCC_VERSION >= 40500
      bool remainderChanged=(stack!=oldRemainder);
+#else
+     bool remainderChanged=true;
+     if(stack.size()==oldRemainder.size()){
+         for(int i=0;i<stack.size();i++){
+            remainderChanged=true;
+            if(stack[i].start==oldRemainder[i].start && stack[i].length==oldRemainder[i].length && stack[i].type==oldRemainder[i].type)
+                remainderChanged=false;
+            else
+                break;
+         }
+     }
+#endif
      return remainderChanged;
 }
 
