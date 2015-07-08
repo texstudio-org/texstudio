@@ -3505,6 +3505,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 #else
      bool remainderChanged=true;
      if(stack.size()==oldRemainder.size()){
+         remainderChanged=false;
          for(int i=0;i<stack.size();i++){
             remainderChanged=true;
             if(stack[i].start==oldRemainder[i].start && stack[i].length==oldRemainder[i].length && stack[i].type==oldRemainder[i].type)
