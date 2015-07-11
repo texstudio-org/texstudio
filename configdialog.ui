@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>13</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>699</height>
+            <width>479</width>
+            <height>606</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -905,7 +905,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>191</width>
+               <width>194</width>
                <height>76</height>
               </rect>
              </property>
@@ -1816,8 +1816,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>866</width>
-            <height>1463</height>
+            <width>863</width>
+            <height>1243</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3019,8 +3019,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>341</width>
-            <height>528</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3385,8 +3385,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>437</width>
-            <height>640</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3575,7 +3575,7 @@ them here.</string>
               <string>Full Page PDF Preview</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
-              <item row="6" column="0">
+              <item row="7" column="0">
                <widget class="QLabel" name="label_66">
                 <property name="text">
                  <string>Highlight Duration</string>
@@ -3585,7 +3585,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="7" column="1">
                <widget class="QSpinBox" name="spinBoxHighlightDuration">
                 <property name="specialValueText">
                  <string>Infinite</string>
@@ -3640,14 +3640,14 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="label_29">
                 <property name="text">
                  <string>Scaling:</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="2" column="1">
                <widget class="QSpinBox" name="spinBoxPreviewScale">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -3666,14 +3666,14 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="label_27">
                 <property name="text">
                  <string>Screen Resolution:</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="3" column="1">
                <widget class="QSpinBox" name="spinBoxPreviewDPI">
                 <property name="suffix">
                  <string> dpi</string>
@@ -3683,14 +3683,14 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="label_26">
                 <property name="text">
                  <string>Magnifier Shape:</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="QComboBox" name="comboBoxPreviewMagnifierShape">
                 <item>
                  <property name="text">
@@ -3704,14 +3704,14 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="5" column="0">
                <widget class="QLabel" name="label_25">
                 <property name="text">
                  <string>Magnifier Size:</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="5" column="1">
                <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
                 <property name="suffix">
                  <string> px</string>
@@ -3733,14 +3733,14 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="6" column="1">
                <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
                 <property name="text">
                  <string>Border</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
+              <item row="9" column="0">
                <widget class="QLabel" name="label_34">
                 <property name="text">
                  <string>Synchronized Files Types:</string>
@@ -3750,7 +3750,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
+              <item row="9" column="1">
                <widget class="QLineEdit" name="lineEditPreviewSyncFileMask">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -3763,7 +3763,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
+              <item row="10" column="0">
                <widget class="QLabel" name="label_18">
                 <property name="text">
                  <string>Cache Size:</string>
@@ -3773,7 +3773,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="9" column="1">
+              <item row="10" column="1">
                <widget class="QSpinBox" name="spinBoxCacheSizeMB">
                 <property name="suffix">
                  <string> MB</string>
@@ -3795,14 +3795,14 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="0">
+              <item row="12" column="0">
                <widget class="QCheckBox" name="autoHideToolbars">
                 <property name="text">
                  <string>Auto-hide Toolbars in Embedded Mode</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="0">
+              <item row="8" column="0">
                <widget class="QLabel" name="label_67">
                 <property name="text">
                  <string>Highlight Color</string>
@@ -3812,7 +3812,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="1">
+              <item row="8" column="1">
                <widget class="QLineEdit" name="lineEditHighlightColor">
                 <property name="toolTip">
                  <string>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</string>
@@ -3828,7 +3828,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="10" column="0">
+              <item row="11" column="0">
                <widget class="QLabel" name="label_69">
                 <property name="text">
                  <string>Load Strategy:</string>
@@ -3838,7 +3838,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="10" column="1">
+              <item row="11" column="1">
                <widget class="QComboBox" name="comboBoxPDFLoadStrategy">
                 <property name="toolTip">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -3864,6 +3864,16 @@ them here.</string>
                   <string>Hybrid</string>
                  </property>
                 </item>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QCheckBox" name="checkBoxDisableHorizontalScrollingForFitToTextWidth">
+                <property name="text">
+                 <string>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
              </layout>

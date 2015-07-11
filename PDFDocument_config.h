@@ -17,6 +17,7 @@ struct PDFDocumentConfig{
 	int dpi;
 	int scaleOption;
 	int scale;
+	bool disableHorizontalScrollingForFitToTextWidth;
 
 	double zoomStepFactor;
 
