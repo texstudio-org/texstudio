@@ -1801,8 +1801,8 @@ void PDFWidget::fitTextWidth(bool checked)
 				scaleFactor = kMinScaleFactor;
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
-			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
 			adjustSize();
+			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
 			update();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
