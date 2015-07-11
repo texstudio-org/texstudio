@@ -1062,8 +1062,10 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 			scrollClickPos = event->globalPos();
 			QAbstractScrollArea*	scrollArea = getScrollArea();
 			if (scrollArea) {
-				int oldX = scrollArea->horizontalScrollBar()->value();
-				scrollArea->horizontalScrollBar()->setValue(oldX - delta.x());
+				if (scaleOption != kFitTextWidth || !globalConfig->disableHorizontalScrollingForFitToTextWidth) {
+					int oldX = scrollArea->horizontalScrollBar()->value();
+					scrollArea->horizontalScrollBar()->setValue(oldX - delta.x());
+				}
 				int oldY = scrollArea->verticalScrollBar()->value();
 				scrollArea->verticalScrollBar()->setValue(oldY - delta.y());
 			}
