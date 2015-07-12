@@ -682,7 +682,11 @@ void Texmaker::setupMenus() {
     newManagedEditorAction(menu,"cut",tr("C&ut"), "cut", QKeySequence::Cut, "editcut");
     newManagedAction(menu,"paste",tr("&Paste"), SLOT(editPaste()), QKeySequence::Paste, "editpaste");
 	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
-	newManagedEditorAction(menu,"selectall",tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
+
+	submenu = newManagedMenu(menu, "selection", tr("&Selection"));
+	newManagedEditorAction(submenu,"selectAll", tr("Select &All"), "selectAll", Qt::CTRL+Qt::Key_A);
+	newManagedEditorAction(submenu, "expandSelectionToWord", tr("Expand Selection to Word"), "selectExpandToNextWord", Qt::CTRL+Qt::Key_D);
+	newManagedEditorAction(submenu, "expandSelectionToLine", tr("Expand Selection to Line"), "selectExpandToNextLine", Qt::CTRL+Qt::Key_L);
 
 	submenu = newManagedMenu(menu, "lineoperations", tr("&Line Operations"));
 	newManagedAction(submenu, "deleteLine", tr("Delete &Line"), SLOT(editDeleteLine()), Qt::CTRL+Qt::Key_K);
@@ -697,6 +701,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu,"textToUppercase", tr("To Uppercase"), SLOT(editTextToUppercase()));
 	newManagedAction(submenu,"textToTitlecaseStrict", tr("To Titlecase (strict)"), SLOT(editTextToTitlecase()));
 	newManagedAction(submenu,"textToTitlecaseSmart", tr("To Titlecase (smart)"), SLOT(editTextToTitlecaseSmart()));
+
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "searching", tr("&Searching"));
@@ -1118,7 +1123,7 @@ void Texmaker::setupMenus() {
 		QAction *sep = new QAction(menu);
 		sep->setSeparator(true);
 		baseContextActions << getManagedActions(QStringList() << "copy" << "cut" << "paste", "main/edit/");
-		baseContextActions << getManagedActions(QStringList() << "main/edit2/pasteAsLatex" << "main/edit2/convertTo" << "main/edit/selectall");
+		baseContextActions << getManagedActions(QStringList() << "main/edit2/pasteAsLatex" << "main/edit2/convertTo" << "main/edit/selection/selectAll");
 		baseContextActions << sep;
 		baseContextActions << getManagedActions(QStringList() << "previewLatex" << "removePreviewLatex", "main/edit2/");
 		LatexEditorView::setBaseActions(baseContextActions);

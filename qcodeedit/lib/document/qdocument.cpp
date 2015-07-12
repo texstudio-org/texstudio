@@ -5678,6 +5678,19 @@ void QDocumentCursorHandle::clearSelection()
 	}
 }
 
+void QDocumentCursorHandle::flipSelection()
+{
+	if ( m_doc && m_doc->line(m_endLine).isValid() )
+	{
+		int tmpLine = m_begLine;
+		int tmpOffset = m_begOffset;
+		m_begLine = m_endLine;
+		m_begOffset = m_endOffset;
+		m_endLine = tmpLine;
+		m_endOffset = tmpOffset;
+	}
+}
+
 void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 {
 	int begline, begcol;
