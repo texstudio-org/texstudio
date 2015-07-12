@@ -373,6 +373,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void selectNothing();
 		void selectExpandToNextWord();
 		void selectExpandToNextLine();
+		void selectAllOccurences();
 		
 		void relayPanelCommand(const QString& panel, const QString& command, const QList<QVariant>& args = QList<QVariant>());
 
