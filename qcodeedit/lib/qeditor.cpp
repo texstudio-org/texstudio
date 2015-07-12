@@ -2807,6 +2807,45 @@ void QEditor::selectExpandToNextLine()
 }
 
 /*!
+ * \brief Select all occurences of the current selection or the word/command under cursor
+ * Note: if the selection is a word, matches are limited to complete words.
+ */
+void QEditor::selectAllOccurences()
+{
+	if (!m_cursor.hasSelection()) {
+		m_cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
+	}
+	if (!m_cursor.hasSelection()) {
+		return;
+	}
+	QString text = m_cursor.selectedText();
+	bool isWord = true;
+	foreach (const QChar &c, text) {
+		if (!c.isLetterOrNumber()) {
+			isWord = false;
+			break;
+		}
+	}
+	QDocumentCursor cStart(m_cursor.document(), m_cursor.startLineNumber(), m_cursor.startColumnNumber());
+	QDocumentCursor cEnd(m_cursor.document(), m_cursor.endLineNumber(), m_cursor.endColumnNumber());
+	bool atBoundaries = (cStart.atLineStart() || !cStart.previousChar().isLetterOrNumber())
+	                 && (cEnd.atLineEnd() || !cEnd.nextChar().isLetterOrNumber());
+
+	// TODO: this is a quick solution: using the search panel to select all matches
+	//       1. initialize the search with the required parameters
+	//       2. select all matches
+	//       3. close the search panel which was opened as a side effect of 1.
+	// It would be better to be able to perform the seach and select without interfering 
+	// with the search panel UI.
+	find(text, false, false, isWord && atBoundaries, true);
+	selectAllMatches();
+	relayPanelCommand("Search", "closeSomething", QList<QVariant>() << true);
+
+	emitCursorPositionChanged();
+	viewport()->update();
+}
+
+/*!
 	\internal
 */
 bool QEditor::event(QEvent *e)
