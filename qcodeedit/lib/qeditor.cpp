@@ -2742,7 +2742,68 @@ void QEditor::selectAll()
 void QEditor::selectNothing(){
     QDocumentCursor cur=cursor();
     cur.clearSelection();
-    setCursor(cur);
+	setCursor(cur);
+}
+
+/*!
+ * \brief searches for the next occurence of the text in the last selection and
+ * selects this additionally. If there is no selection, the word or command under
+ * the cursor is selected.
+ */
+void QEditor::selectExpandToNextWord()
+{
+	if (!m_cursor.hasSelection()) {
+		m_cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
+	} else {
+		QDocumentCursor &lastCursor = m_cursor;
+		foreach (const QDocumentCursor &cm, m_mirrors) {
+			if (cm > lastCursor) lastCursor = cm;
+		}
+		QString selectedText = lastCursor.selectedText();
+		QDocumentCursor searchCursor(lastCursor.document(), lastCursor.endLineNumber(), lastCursor.endColumnNumber());
+		while (!searchCursor.atEnd()) {
+			int col = searchCursor.line().text().indexOf(selectedText, searchCursor.columnNumber());
+			if (col < 0) {
+				searchCursor.movePosition(1, QDocumentCursor::EndOfLine);  // ensure searchCursor.atEnd() if no further matches are found
+				searchCursor.movePosition(1, QDocumentCursor::NextLine);
+			} else {
+				QDocumentCursor c(m_cursor);
+				m_cursor.setLineNumber(searchCursor.lineNumber());
+				m_cursor.setColumnNumber(col);
+				m_cursor.movePosition(selectedText.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+				// need to add the cursor mirror after changing m_cursor (if c == m_cursor, addCursorMirror does nothing)
+				addCursorMirror(c);
+				break;
+			}
+		}
+	}
+
+	emitCursorPositionChanged();
+	viewport()->update();
+}
+
+/*!
+ * \brief Expands the selection to include the full line.
+ * If the selection does already span full lines, the next line will be added.
+ * If there is no selection, the current line will be selected.
+ */
+void QEditor::selectExpandToNextLine()
+{
+	if (!m_cursor.hasSelection()) {
+		m_cursor.movePosition(1, QDocumentCursor::StartOfLine);
+		m_cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+		m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+		return;
+	}
+	if (!m_cursor.isForwardSelection()) {
+		m_cursor.flipSelection();
+	}
+	m_cursor.setAnchorColumnNumber(0);
+	m_cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+	m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+
+	emitCursorPositionChanged();
+	viewport()->update();
 }
 
 /*!

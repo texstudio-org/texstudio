@@ -138,6 +138,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE bool atLineStart() const;
 		
 		Q_INVOKABLE bool hasSelection() const;
+		Q_INVOKABLE bool isForwardSelection() const;
 		
 		Q_INVOKABLE bool isSilent() const;
 		void setSilent(bool y);
@@ -198,6 +199,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE QString selectedText() const;
 		
 		Q_INVOKABLE void clearSelection();
+		Q_INVOKABLE void flipSelection();
 		Q_INVOKABLE void removeSelectedText();
 		Q_INVOKABLE void replaceSelectedText(const QString& text);
 		
