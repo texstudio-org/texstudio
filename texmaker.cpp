@@ -7674,6 +7674,7 @@ void Texmaker::updateEmphasizedRegion(QDocumentCursor c,int sid){
         int beg = i==ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
         int en = i==se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
         if(sid>0){
+            doc->line(i).clearOverlays(sid);
             doc->line(i).addOverlay(QFormatRange(beg, en-beg, sid));
         }else{
             // remove overlay if sid <0 (removes -sid)
