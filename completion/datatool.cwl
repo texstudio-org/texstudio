@@ -178,8 +178,3 @@ omitlines=
 \end{DTLenvforeach*}
 \ifdtlnoheader#S
 \ifdtlverbose#S
-dtlnoheaderfalse#S
-dtlnoheadertrue#S
-dtlverbosefalse#S
-dtlverbosetrue#S
-ifDTLnewdbonload#S

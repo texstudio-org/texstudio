@@ -1672,6 +1672,7 @@ void LatexParser::append(const LatexParser& elem){
     specialTreatmentCommands.unite(elem.specialTreatmentCommands);
     specialDefCommands.unite(elem.specialDefCommands);
     commandDefs.unite(elem.commandDefs);
+    mapSpecialArgs.unite(elem.mapSpecialArgs);
 }
 
 void LatexParser::clear(){
@@ -3316,8 +3317,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                      while(j>=0 && lexed.at(j).start>tk1.start)
                          j--;
                      if(j>=0 && lexed.at(j).start==tk1.start){
-                         if(Tokens::tkSingleArg().contains(tk1.subtype)){
-                             // join all args for intened single word argument
+                         if(Tokens::tkSingleArg().contains(tk1.subtype) || tk1.subtype>=Tokens::specialArg){ // all special args are assumed single word arguments
+                             // join all args for intended single word argument
                              // first remove all argument tokens
                              for(int k=j+1;k<lexed.length();){
                                 lexed.removeAt(k);

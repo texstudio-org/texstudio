@@ -778,6 +778,16 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                 newRanges.append(elem);
             }
         }
+        if(tk.type>=Tokens::specialArg){
+            QString value=line.mid(tk.start,tk.length);
+            QString special=ltxCommands->mapSpecialArgs.value(int(tk.type-Tokens::specialArg));
+            if(!ltxCommands->possibleCommands[special].contains(value)){
+                Error elem;
+                elem.range=QPair<int,int>(tk.start,tk.length);
+                elem.type=ERR_unrecognizedKey;
+                newRanges.append(elem);
+            }
+        }
         if(tk.type==Tokens::keyVal_key){
             // special treatment for key val checking
             QString command=getCommandFromToken(tk);
