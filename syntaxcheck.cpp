@@ -824,8 +824,9 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                     if(i>-1)
                         *iterator=iterator->left(i);
 
-                    if(iterator->endsWith("=")){
-                        iterator->chop(1);
+                    i=iterator->indexOf("=");
+                    if(i>-1){
+                        *iterator=iterator->left(i);
                     }
                     if(iterator->startsWith("%")){
                         toAppend<<ltxCommands->possibleCommands[*iterator].values();

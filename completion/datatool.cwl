@@ -53,7 +53,13 @@ lastfoot
 \DTLifnullorempty{cmd seq}{true case}{false case}#*
 \DTLifoddrow{true case}{false case}#*
 \DTLinttype#*
-\DTLloaddb[options]{db}{filename}#s#%db
+\DTLloaddb[keyvals]{db}{filename}#s#%db
+#keyvals:\DTLloaddb
+noheader#true,false
+keys={%|}
+headers={%|}
+omitlines=
+#endkeyvals
 \DTLloadsbtex{cmd}{filename}#*
 \DTLloadrawdb[options]{db}{filename}#s#%db
 \DTLmaxforcolumn{db%special}{key list}{cmd}#
