@@ -766,7 +766,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
                                 continue;
                             }
                         }
-                        lp.possibleCommands[definition].insert(elem);
+                        ltxCommands.possibleCommands[definition].insert(elem);
                         if(!removedUserCommands.removeAll(elem)){
                             addedUserCommands << elem;
                         }
@@ -2804,6 +2804,12 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     gatherCompletionFiles(files,loadedFiles,pck);
 	update=true;
 	
+    // special treatment for special defs
+    QHash<QString,QSet<QString> > possibleCommands;
+    foreach(const QString elem,ltxCommands.specialDefCommands.values()){
+        possibleCommands.insert(elem,ltxCommands.possibleCommands[elem]);
+    }
+
     //completerConfig->words=pck.completionWords;
     //mCompleterWords=pck.completionWords.toSet();
     mCWLFiles=loadedFiles.toSet();
@@ -2826,6 +2832,11 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 		}
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
+
+    // special treatment for special defs
+    foreach(const QString elem,ltxCommands.specialDefCommands.values()){
+        ltxCommands.possibleCommands.insert(elem,ltxCommands.possibleCommands[elem].unite(possibleCommands[elem]));
+    }
 
 	//patch lines for new commands (ref,def, etc)
 	LatexParser& latexParser = LatexParser::getInstance();

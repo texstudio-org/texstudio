@@ -2704,7 +2704,7 @@ CommandDescription extractCommandDef(QString line){
         if(def.contains("URL")){
             type=Tokens::url;
         }
-        if(def.contains("keys")||def=="keyvals"||def=="%<options%>"){
+        if(def.contains("keys")||def=="keyvals"||def=="%<options%>"|| def.endsWith("%keyvals")){
             type=Tokens::keyValArg;
         }
         if(def=="options"){
