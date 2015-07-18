@@ -64,7 +64,10 @@ lastfoot
 \DTLminforkeys{[condition][assign list]{db}{key list}{cmd}#
 \DTLnewdbentry{db}{dbkey}{value}#
 \DTLnewdb{db}#s#%datatoolDB
-\DTLnewrow{db}#
+\DTLnewrow{db%keyvals}#
+#keyvals:\DTLnewrow
+%datatoolDB
+#endkeyvals
 \DTLnewdbonloadfalse#*
 \DTLnewdbonloadtrue#*
 \DTLnumbernull#*

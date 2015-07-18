@@ -818,6 +818,7 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
             if(!elem.isEmpty()){
                 QStringList lst=ltxCommands->possibleCommands[elem].values();
                 QStringList::iterator iterator;
+                QStringList toAppend;
                 for (iterator = lst.begin(); iterator != lst.end();++iterator){
                     int i=iterator->indexOf("#");
                     if(i>-1)
@@ -826,7 +827,11 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
                     if(iterator->endsWith("=")){
                         iterator->chop(1);
                     }
+                    if(iterator->startsWith("%")){
+                        toAppend<<ltxCommands->possibleCommands[*iterator].values();
+                    }
                 }
+                lst<<toAppend;
                 if(!lst.contains(value)){
                     Error elem;
                     elem.range=QPair<int,int>(tk.start,tk.length);
