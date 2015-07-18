@@ -5,20 +5,20 @@
 #include:substr
 #include:xfor
 #include:xkeyval
-\DTLaddcolumn{db}{dbkey}#
-\DTLaddentryforrow{db}{assign list}{condition}{dbkey}{value}#
+\DTLaddcolumn{db%special}{dbkey}#
+\DTLaddentryforrow{db%special}{assign list}{condition}{dbkey}{value}#
 \DTLappendtorow{dbkey}{value}#
-\DTLassign{db}{row index}{assign list}#*
-\DTLassignfirstmatch{db}{dbkey}{value}{assign list}#*
-\xDTLassignfirstmatch{db}{dbkey}{value}{assign list}#*
-\DTLcleardb{db}#
-\DTLcolumncount{db}#
-\DTLcomputebounds{db}{x key}{y key}{minX%cmd}{minY%cmd}{maxX%cmd}{maxY%cmd}#*
+\DTLassign{db%special}{row index}{assign list}#*
+\DTLassignfirstmatch{db%special}{dbkey}{value}{assign list}#*
+\xDTLassignfirstmatch{db%special}{dbkey}{value}{assign list}#*
+\DTLcleardb{db%special}#
+\DTLcolumncount{db%special}#
+\DTLcomputebounds{db%special}{x key}{y key}{minX%cmd}{minY%cmd}{maxX%cmd}{maxY%cmd}#*
 \DTLcurrencytype#*
 \DTLcurrentindex
-\DTLdeletedb{db}#
-\DTLdisplaydb[omit list]{db}#
-\DTLdisplaylongdb[keyvals]{db}#
+\DTLdeletedb{db%special}#
+\DTLdisplaydb[omit list]{db%special}#
+\DTLdisplaylongdb[keyvals]{db%special}#
 #keyvals:\DTLdisplaylongdb
 caption
 label
@@ -28,46 +28,43 @@ omit
 foot
 lastfoot
 #endkeyvals
-\DTLfetch{db}{dbkey}{value}{dkey2}
-\DTLforeach[condition]{db}{assign list}{text}
-\DTLforeach*[condition]{db}{assign list}{text}
+\DTLfetch{db%special}{dbkey}{value}{dkey2}
+\DTLforeach[condition]{db%special}{assign list}{text}
+\DTLforeach*[condition]{db%special}{assign list}{text}
 \DTLforeachkeyinrow{cmd}{text}
-\DTLgcleardb{db}
-\DTLgdeletedb{db}#
-\DTLgetcolumnindex{cmd}{db}{dbkey}
-\DTLgetdatatype{cmd}{db}{dbkey}
-\DTLgetkeydata{dbkey}{db}{col cs%cmd}{type cs%cmd}{header cs%cmd}
-\DTLgetkeyforcolumn{cmd}{db}{column index}
-\DTLgetlocation{row cs%cmd}{column cs%cmd}{db}{value}#*
+\DTLgcleardb{db%special}
+\DTLgdeletedb{db%special}#
+\DTLgetcolumnindex{cmd}{db%special}{dbkey}
+\DTLgetdatatype{cmd}{db%special}{dbkey}
+\DTLgetkeydata{dbkey}{db%special}{col cs%cmd}{type cs%cmd}{header cs%cmd}
+\DTLgetkeyforcolumn{cmd}{db%special}{column index}
+\DTLgetlocation{row cs%cmd}{column cs%cmd}{db%special}{value}#*
 \DTLgetrowforkey{arg}{arg2}{arg3}{arg4}#S
-\DTLgetrowindex{row cs%cmd}{db}{col idx}{value}#*
-\DTLgetvalueforkey{cmd}{dbkey}{db}{ref key}{ref value}#*
-\DTLgetvalue{cmd}{db}{row}{column}#*
-\DTLgnewdb{db}#s#%datatoolDB
-\DTLifdbempty{db}{true case}{false case}#*
-\DTLifdbexists{db}{true case}{false case}#*
+\DTLgetrowindex{row cs%cmd}{db%special}{col idx}{value}#*
+\DTLgetvalueforkey{cmd}{dbkey}{db%special}{ref key}{ref value}#*
+\DTLgetvalue{cmd}{db%special}{row}{column}#*
+\DTLgnewdb{db}#s#%db
+\DTLifdbempty{db%special}{true case}{false case}#*
+\DTLifdbexists{db%special}{true case}{false case}#*
 \DTLiffirstrow{true case}{false case}#*
-\DTLifhaskey{db}{dbkey}{true case}{false case}#*
+\DTLifhaskey{db%special}{dbkey}{true case}{false case}#*
 \DTLiflastrow{true case}{false case}#*
 \DTLifnull{cmd seq}{true case}{false case}#*
 \DTLifnullorempty{cmd seq}{true case}{false case}#*
 \DTLifoddrow{true case}{false case}#*
 \DTLinttype#*
-\DTLloaddb[options]{db}{filename}#s#%datatoolDB
+\DTLloaddb[options]{db}{filename}#s#%db
 \DTLloadsbtex{cmd}{filename}#*
-\DTLloadrawdb[options]{db}{filename}#s#%datatoolDB
-\DTLmaxforcolumn{db}{key list}{cmd}#
-\DTLmaxforkeys[condition][assign list]{db}{key list}{cmd}#
-\DTLmeanforcolumn{db}{key list}{cmd}#
-\DTLmeanforkeys[condition][assign list]{db}{key list}{cmd}#
-\DTLminforcolumn{db}{key list}{cmd}#
-\DTLminforkeys{[condition][assign list]{db}{key list}{cmd}#
-\DTLnewdbentry{db}{dbkey}{value}#
-\DTLnewdb{db}#s#%datatoolDB
-\DTLnewrow{db%keyvals}#
-#keyvals:\DTLnewrow
-%datatoolDB
-#endkeyvals
+\DTLloadrawdb[options]{db}{filename}#s#%db
+\DTLmaxforcolumn{db%special}{key list}{cmd}#
+\DTLmaxforkeys[condition][assign list]{db%special}{key list}{cmd}#
+\DTLmeanforcolumn{db%special}{key list}{cmd}#
+\DTLmeanforkeys[condition][assign list]{db%special}{key list}{cmd}#
+\DTLminforcolumn{db%special}{key list}{cmd}#
+\DTLminforkeys[condition][assign list]{db%special}{key list}{cmd}#
+\DTLnewdbentry{db%special}{dbkey}{value}#
+\DTLnewdb{db%special}#s#%db
+\DTLnewrow{db%special}#
 \DTLnewdbonloadfalse#*
 \DTLnewdbonloadtrue#*
 \DTLnumbernull#*
@@ -75,31 +72,31 @@ lastfoot
 \DTLrealtype#*
 \DTLremovecurrentrow#
 \DTLremoveentryfromrow{dbkey}#
-\DTLremoverow{db}{row index}
+\DTLremoverow{db%special}{row index}
 \DTLreplaceentryforrow{dbkey}{value}
-\DTLrowcount{db}#*
-\DTLsavedb{db}{filename}
+\DTLrowcount{db%special}#*
+\DTLsavedb{db%special}{filename}
 \DTLsavelastrowcount{cmd}#*
-\DTLsaverawdb{db}{filename}
-\DTLprotectedsaverawdb{db}{filename}
-\DTLsavetexdb{db}{filename}
-\DTLsdforcolumn{db}{key list}{cmd}#
-\DTLsdforkeys[condition][assign list]{db}{key list}{cmd}#
+\DTLsaverawdb{db%special}{filename}
+\DTLprotectedsaverawdb{db%special}{filename}
+\DTLsavetexdb{db%special}{filename}
+\DTLsdforcolumn{db%special}{key list}{cmd}#
+\DTLsdforkeys[condition][assign list]{db%special}{key list}{cmd}#
 \DTLsetdelimiter{character}#*
-\DTLsetheader{db}{dbkey}{header}#
+\DTLsetheader{db%special}{dbkey}{header}#
 \DTLsetseparator{character}#*
 \DTLsettabseparator#*
-\DTLsort{sort criteria}{db}
-\DTLsort[replacement key list]{sort criteria}{db}
-\DTLsort*[replacement key list]{sort criteria}{db}
+\DTLsort{sort criteria}{db%special}
+\DTLsort[replacement key list]{sort criteria}{db%special}
+\DTLsort*[replacement key list]{sort criteria}{db%special}
 \DTLstringnull#*
 \DTLstringtype#*
-\DTLsumcolumn{db}{key list}{cmd}#
-\DTLsumforkeys[condition][assign list]{db}{key list}{cmd}#
-\DTLswaprows{db}{row1 index}{row2 index}#*
+\DTLsumcolumn{db%special}{key list}{cmd}#
+\DTLsumforkeys[condition][assign list]{db%special}{key list}{cmd}#
+\DTLswaprows{db%special}{row1 index}{row2 index}#*
 \DTLunsettype#*
-\DTLvarianceforcolumn{db}{key list}{cmd}#
-\DTLvarianceforkeys{[condition][assign list]{db}{key list}{cmd}#
+\DTLvarianceforcolumn{db%special}{key list}{cmd}#
+\DTLvarianceforkeys[condition][assign list]{db%special}{key list}{cmd}#
 \datatoolpersoncomma#*
 \datatoolplacecomma#*
 \datatoolsubjectcomma#*
@@ -112,7 +109,7 @@ lastfoot
 \dtlbeforerow#*
 \dtlbetweencols#*
 \dtlbreak#*
-\dtlcolumnindex{db}{dbkey}#*
+\dtlcolumnindex{db%special}{dbkey}#*
 \dtlcurrencyalign#*
 \dtlcurrencyformat{format}#*
 \dtldefaultkey#*
@@ -124,17 +121,17 @@ lastfoot
 \dtldisplaystarttab#*
 \dtldisplayvalign#*
 \dtlexpandnewvalue#*
-\dtlforcolumn{cmd}{db}{dbkey}{body}#*
-\dtlforcolumnidx{cmd}{db}{col index}{body}#*
+\dtlforcolumn{cmd}{db%special}{dbkey}{body}#*
+\dtlforcolumnidx{cmd}{db%special}{col index}{body}#*
 \dtlforeachkey(key cs,col cs,type cs,header cs)#*
-\in{db}#*
+\in{db%special}#*
 \do{body}#*
 \dtlgetentryfromcurrentrow{cmd}{col idx}#*
 \dtlgetentryfromrow{arg1}{arg2}{arg3}#S
-\dtlgetrowforvalue{db}{col idx}{value}#*
-\edtlgetrowforvalue{db}{col idx}{value}#*
-\dtlgetrowindex{row cs%cmd}{db}{col idx}{value}#*
-\dtlgetrow{db}{row idx}#*
+\dtlgetrowforvalue{db%special}{col idx}{value}#*
+\edtlgetrowforvalue{db%special}{col idx}{value}#*
+\dtlgetrowindex{row cs%cmd}{db%special}{col idx}{value}#*
+\dtlgetrow{db%special}{row idx}#*
 \dtlheaderformat{format}#*
 \dtlintalign#*
 \dtlintformat{format}#*
@@ -150,7 +147,7 @@ lastfoot
 \dtlshowdbkeys{arg1}#S
 \dtlshowdb{arg1}#S
 \dtlshowtype{arg1}{arg2}#S
-\dtlsort[replacement list]{sort criteria}{db}{handler}
+\dtlsort[replacement list]{sort criteria}{db%special}{handler}
 \dtlsplitrow{arg1}{arg2}{arg3}{arg4}#S
 \dtlstringalign#*
 \dtlstringformat{arg1}#S
@@ -169,8 +166,8 @@ lastfoot
 \theHDTLrowiii#*
 \DTLgetvalue#S
 \DTLpar#*
-\begin{DTLenvforeach}[condition]{db}{assign list}
-\begin{DTLenvforeach*}[condition]{db}{assign list}
+\begin{DTLenvforeach}[condition]{db%special}{assign list}
+\begin{DTLenvforeach*}[condition]{db%special}{assign list}
 \dtlshowdb#S
 \end{DTLenvforeach*}
 \ifdtlnoheader#S

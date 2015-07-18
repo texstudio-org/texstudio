@@ -75,7 +75,7 @@ void CodeSnippetTest::insert_data(){
 	QTest::newRow("multirow") 
 		<< "abcd\nefgh"
 		<< 0 << 0 << 0 << 2
-		<< "1%n2%n3" 
+        << "1%\\2%\\3"
 		<< "ab1\n2\n3cd\nefgh"
 		<< CP(2,1);
 	QTest::newRow("cursor") 
@@ -93,31 +93,31 @@ void CodeSnippetTest::insert_data(){
 	QTest::newRow("multirow") 
 		<< "abcd\nefgh"
 		<< 0 << 0 << 0 << 2
-		<< "1%n2%n3" 
+        << "1%\\2%\\3"
 		<< "ab1\n2\n3cd\nefgh"
 		<< CP(2,1) ;
 	QTest::newRow("multirow cursor 0") 
 		<< "abcd\nefgh"
 		<< 0 << 0 << 0 << 2
-		<< "%|1%n2%n3" 
+        << "%|1%\\2%\\3"
 		<< "ab1\n2\n3cd\nefgh"
 		<< CP(0,2);
 	QTest::newRow("multirow cursor 1") 
 		<< "abcd\nefgh"
 		<< 0 << 0 << 0 << 2
-		<< "1%n2%|%n3x" 
+        << "1%\\2%|%\\3x"
 		<< "ab1\n2\n3xcd\nefgh"
 		<< CP(1,1);
 	QTest::newRow("multirow cursor 2") 
 		<< "abcd\nefgh"
 		<< 0 << 0 << 0 << 2
-		<< "1%n2%n3y%|" 
+        << "1%\\2%\\3y%|"
 		<< "ab1\n2\n3ycd\nefgh"
 		<< CP(2,2);
 	/*QTest::newRow("multirow selection") 
 		<< "abcd\nefgh"
 		<< 0 << 2
-		<< "1%|%n2%n3%|y" 
+        << "1%|%\\2%\\3%|y"
 		<< "ab1\n2\n3ycd\nefgh"
 		<< CP(0,1,2,1) 
 		<< QList<CP>();*/

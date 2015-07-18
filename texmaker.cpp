@@ -4150,6 +4150,12 @@ void Texmaker::NormalCompletion() {
     Tokens::TokenType type=tk.type;
     if(tk.subtype!=Tokens::none)
         type=tk.subtype;
+    if(type>=Tokens::specialArg){
+        int df=int(type-Tokens::specialArg);
+        QString cmd=latexParser.mapSpecialArgs.value(df);
+        completer->setWorkPath(cmd);
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+    }
     switch(type){
     case Tokens::command:
     case Tokens::commandUnknown:
@@ -4244,27 +4250,6 @@ void Texmaker::NormalCompletion() {
             currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
     }
         break;
-    /*
-    case LatexParser::KeyvalValue:{
-        //figure out keyval
-        if(command.endsWith("#c")){
-            command.chop(2);
-        }
-        int i=c.columnNumber();
-        while(i>0 && word.at(i-1).isLetter())
-            i--;
-        if(word.at(i-1)==QChar('=')){
-            int j=--i;
-            while(i>0 && (word.at(i-1).isLetter()||word.at(i-1)==' '))
-                i--;
-            QString key=word.mid(i,j-i).simplified();
-            completer->setWorkPath(command+"/"+key);
-            if(completer->existValues())
-                currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
-        }
-        break;
-    }*/
-
     case Tokens::beamertheme:
         {QString preambel="beamertheme";
             currentPackageList.clear();
@@ -6799,7 +6784,7 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
 
 	completer->setAdditionalWords(words,CT_COMMANDS);
 
-    // add keyval completion
+    // add keyval completion, add special lists
     foreach(const QString &elem,ltxCommands.possibleCommands.keys()){
         if(elem.startsWith("key%")){
             QString name=elem.mid(4);
@@ -6808,6 +6793,9 @@ void Texmaker::updateCompleter(LatexEditorView* edView) {
             if(!name.isEmpty()){
                 completer->setKeyValWords(name,ltxCommands.possibleCommands[elem]);
             }
+        }
+        if(elem.startsWith("%") && latexParser.mapSpecialArgs.values().contains(elem)){
+            completer->setKeyValWords(elem,ltxCommands.possibleCommands[elem]);
         }
     }
     // add context completion
