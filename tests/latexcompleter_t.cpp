@@ -358,6 +358,18 @@ void LatexCompleterTest::keyval_data(){
                                 << "a:>>{a,a}<<"
                                 << "\n:>>{a,abc1}<<"
                                 );
+    QTest::newRow("key-replace") << ">>{gh}<<" << "key%\\test" <<  0 << 3 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{agh}<<"
+                                << "\n:>>{abc1}<<"
+                                );
+    QTest::newRow("key-replace2") << ">>{gh,}<<" << "key%\\test" <<  0 << 3 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{agh,}<<"
+                                << "\n:>>{abc1,}<<"
+                                );
     QTest::newRow("keyval") << ">>{}<<" << "key%\\test/abc" <<  0 << 3 << 129
                             << "" << ""
                             << (QStringList()

@@ -350,7 +350,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 	// usepackage list
 	QStringList removedUsepackages;
 	QStringList addedUsepackages;
-	QStringList removedUserCommands,addedUserCommands;
+    QStringList removedUserCommands,addedUserCommands;
     QStringList lstFilesToLoad;
 
     //first pass: lex
