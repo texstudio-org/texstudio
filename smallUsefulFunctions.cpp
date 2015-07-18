@@ -2659,7 +2659,7 @@ CommandDescription extractCommandDef(QString line){
         if(loop==1 &&command=="\\end"){
             type=Tokens::env;
         }
-        if(def=="text"){
+        if(def=="text" || def.endsWith("%text")){
             type=Tokens::text;
         }
         if(def=="title" || def=="short title"){
@@ -2680,7 +2680,7 @@ CommandDescription extractCommandDef(QString line){
         if(def=="bib files" || def=="bib file"){
             type=Tokens::bibfile;
         }
-        if(def=="command" || def=="cmd"){
+        if(def=="command" || def=="cmd" || def.endsWith("%cmd")){
             type=Tokens::def;
         }
         if(def=="def" || def=="definition" || def=="begdef" || def=="enddef"){

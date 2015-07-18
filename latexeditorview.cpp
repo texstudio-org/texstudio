@@ -359,7 +359,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 
 	// normal context menu
 	bool validPosition = cursor.isValid() && cursor.line().isValid();
-	LatexParser::ContextType context = LatexParser::Unknown;
+    //LatexParser::ContextType context = LatexParser::Unknown;
     QString ctxCommand;
 	if (validPosition) {
 		QFormatRange fr;
