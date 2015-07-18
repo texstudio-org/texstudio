@@ -382,11 +382,17 @@ void LatexCompleterTest::keyval_data(){
                                 << "a:>>{a}<<"
                                 << "\n:>>{abc3}<<"
                                 );
-    QTest::newRow("special2") << ">>{}<<" << "%abca" <<  0 << 3 << 257
+    QTest::newRow("special2") << ">>{}<<" << "%abca" <<  0 << 3 << 257 // maybe unite keyval with context list ??? context does not replace old content ...
                             << "" << ""
                             << (QStringList()
                                 << "a:>>{a}<<"
                                 << "\n:>>{abc4}<<"
+                                );
+    QTest::newRow("special-replacement") << ">>{gh}<<" << "%abca" <<  0 << 3 << 257 // maybe unite keyval with context list ??? context does not replace old content ...
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{agh}<<"
+                                << "\n:>>{abc4gh}<<"
                                 );
     QTest::newRow("special3") << ">>{}<<" << "%abcd" <<  0 << 3 << 129 // keyvals refer to special
                             << "" << ""
