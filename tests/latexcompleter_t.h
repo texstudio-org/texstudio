@@ -20,6 +20,8 @@ class LatexCompleterTest: public QObject{
 		void initTestCase();
 		void simple_data();
 		void simple();
+        void keyval_data();
+        void keyval();
 };
 
 #endif
