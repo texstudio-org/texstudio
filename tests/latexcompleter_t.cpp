@@ -32,6 +32,9 @@ void LatexCompleterTest::initTestCase(){
     CodeSnippetList helper;
     helper << CodeSnippet("\\a{") << CodeSnippet("\\b") << CodeSnippet("\\begin{align*}\n\n\\end{align*}") << CodeSnippet("\\begin{alignat}{n}\n\\end{alignat}") << CodeSnippet("\\only<abc>{def}") << CodeSnippet("\\only{abc}<def>");
 	edView->getCompleter()->setAdditionalWords(helper); //extra words needed for test
+    QSet<QString> labels;
+    labels<<"abc"<<"bcd";
+    edView->getCompleter()->setAdditionalWords(labels,CT_LABELS);
 }
 
 void LatexCompleterTest::simple_data(){
@@ -294,6 +297,77 @@ void LatexCompleterTest::simple(){
  
 	edView->editor->clearPlaceHolders();
 	edView->editor->clearCursorMirrors();
+}
+
+void LatexCompleterTest::keyval_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<int>("line");
+    QTest::addColumn<int>("offset");
+    QTest::addColumn<int>("completerFlag");
+    QTest::addColumn<QString>("preinsert");
+    QTest::addColumn<QString>("preres");
+    QTest::addColumn<QStringList>("log");
+
+    QTest::newRow("simple") << ">><<" <<  0 << 2 << 0
+                            << "" << ""
+                            << (QStringList()
+                                << "\\:>>\\<<"
+                                << "b:>>\\b<<"
+                                << "e:>>\\be<<"
+                                << "g:>>\\beg<<"
+                                << "\n:>>\\begin{*environment-name*}\n\tcontent...\n\\end{*environment-name*}<<");
+
+    QTest::newRow("ref") << ">>{}<<" <<  0 << 3 << 5
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a}<<"
+                                << "\n:>>{abc}<<"
+                                );
+    QTest::newRow("ref-replace") << ">>{hj}<<" <<  0 << 3 << 5
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{ahj}<<"
+                                << "\n:>>{abc}<<"
+                                );
+
+
+}
+void LatexCompleterTest::keyval(){
+    QFETCH(QString, text);
+    QFETCH(QString, preinsert);
+    QFETCH(QString, preres);
+    QFETCH(int, completerFlag);
+    QFETCH(int, line);
+    QFETCH(int, offset);
+    QFETCH(QStringList, log);
+
+    config->eowCompletes = false;
+
+    edView->editor->cutBuffer = "";
+
+    edView->editor->setFlag(QEditor::AutoCloseChars, false);
+    edView->editor->setText(text, false);
+    edView->editor->setCursor(edView->editor->document()->cursor(line,offset));
+
+    if (!preinsert.isEmpty()) {
+        edView->editor->insertText(preinsert);
+        QEQUAL(edView->editor->text(), preres);
+    }
+    edView->complete(completerFlag);
+    foreach (const QString& s, log){
+        char key = s.at(0).toLatin1();
+        if(key=='\n'){
+            QTest::keyClick(edView->editor, Qt::Key_Return);
+        }else{
+            QTest::keyClick(edView->editor, key);
+        }
+        QString text = s.mid(2);
+        QString ist=edView->editor->text();
+        QEQUAL(ist, text);
+    }
+
+    edView->editor->clearPlaceHolders();
+    edView->editor->clearCursorMirrors();
 }
 
 #endif
