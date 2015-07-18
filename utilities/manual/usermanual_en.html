@@ -1473,7 +1473,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <p>The argument names are visible in the completer window and after completion as placeholders in the editor. In general, you are free to name the arguments as you like. We encurage to provide meaningful names e.g. <code>\parbox[position]{width}{text}</code> instead of <code>\parbox[arg1]{arg2}{arg3}</code>.</p>
 <p>There are a few argument names that have special meaning:</p>
 <ul>
-  <li><code>text</code> or ends with <code>%cmd</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked).</li>
+  <li><code>text</code> or ends with <code>%text</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked).</li>
   <li><code>title</code> or <code>short title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section)</li>
   <li><code>bibid</code> and <code>cite key</code>: If used in a command classified as "C". See the classifier description below.</li>
   <li><code>cmd</code> and <code>command</code> or ends with <code>%cmd</code>: defintion for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
