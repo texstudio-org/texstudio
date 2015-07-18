@@ -2224,7 +2224,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                     continue; // command for spell checking only (auto parser)
                 if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
                 // remove special option classification e.g. %l
-                line.remove(QRegExp("%[a-mo-zA-Z]")); // not n
+                line.remove(QRegExp("%[a-zA-Z]+")); // not n
                 if (!line.contains("%")){
                     //add placeholders to brackets like () to (%<..%>)
                     const QString brackets = "{}[]()<>";
@@ -2706,6 +2706,17 @@ CommandDescription extractCommandDef(QString line){
         }
         if(def.contains("keys")||def=="keyvals"||def=="%<options%>"|| def.endsWith("%keyvals")){
             type=Tokens::keyValArg;
+        }
+        if(def.endsWith("%special")){
+            type=Tokens::specialArg;
+            def.chop(8);
+            if(LatexParserInstance){
+                if(!LatexParserInstance->mapSpecialArgs.values().contains("%"+def)){
+                    int cnt=LatexParserInstance->mapSpecialArgs.count();
+                    LatexParserInstance->mapSpecialArgs.insert(cnt,"%"+def);
+                    type=Tokens::TokenType(type+cnt);
+                }
+            }
         }
         if(def=="options"){
             type=Tokens::packageoption;

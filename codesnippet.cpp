@@ -151,7 +151,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
 			case '\n':
 				curLine += "%"; word += "%";
 				// no break
-			case 'n':
+            case '\\':
                 if (currentChar.toLatin1() == '\n' || replacePercentNewline) {
 					lines.append(curLine);
 					placeHolders.append(QList<CodeSnippetPlaceHolder>());
@@ -220,7 +220,7 @@ QString CodeSnippet::expandCode(const QString &code)
 			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
 			      "\\end{%<"+QObject::tr("*environment-name*")+"%:mirror,id:2%>}";
 	} else if (code.startsWith("\\begin{") &&
-			   !code.contains("\n") && !code.contains("%n") &&  // only a single line
+               !code.contains("\n") && !code.contains("%\\") &&  // only a single line
 			   code.lastIndexOf("\\") == 0)                     // only one latex command in the line
 	{
 		// plain \begin{env}
