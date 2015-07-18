@@ -35,6 +35,21 @@ void LatexCompleterTest::initTestCase(){
     QSet<QString> labels;
     labels<<"abc"<<"bcd";
     edView->getCompleter()->setAdditionalWords(labels,CT_LABELS);
+    labels.clear();
+    labels<<"abc1"<<"bcd1";
+    edView->getCompleter()->setKeyValWords("key%\\test",labels);
+    labels.clear();
+    labels<<"abc2"<<"bcd2";
+    edView->getCompleter()->setKeyValWords("key%\\test/abc",labels);
+    labels.clear();
+    labels<<"abc3"<<"bcd3";
+    edView->getCompleter()->setKeyValWords("%abc",labels);
+    labels.clear();
+    labels<<"abc4"<<"bcd4";
+    edView->getCompleter()->setContextWords(labels,"%abca");
+    labels.clear();
+    labels<<"%abca"<<"bcd3";
+    edView->getCompleter()->setKeyValWords("%abcd",labels);
 }
 
 void LatexCompleterTest::simple_data(){
@@ -301,6 +316,7 @@ void LatexCompleterTest::simple(){
 
 void LatexCompleterTest::keyval_data(){
     QTest::addColumn<QString>("text");
+    QTest::addColumn<QString>("workingDir");
     QTest::addColumn<int>("line");
     QTest::addColumn<int>("offset");
     QTest::addColumn<int>("completerFlag");
@@ -308,7 +324,7 @@ void LatexCompleterTest::keyval_data(){
     QTest::addColumn<QString>("preres");
     QTest::addColumn<QStringList>("log");
 
-    QTest::newRow("simple") << ">><<" <<  0 << 2 << 0
+    QTest::newRow("simple") << ">><<" << "" <<  0 << 2 << 0
                             << "" << ""
                             << (QStringList()
                                 << "\\:>>\\<<"
@@ -317,23 +333,72 @@ void LatexCompleterTest::keyval_data(){
                                 << "g:>>\\beg<<"
                                 << "\n:>>\\begin{*environment-name*}\n\tcontent...\n\\end{*environment-name*}<<");
 
-    QTest::newRow("ref") << ">>{}<<" <<  0 << 3 << 5
+    QTest::newRow("ref") << ">>{}<<" << "" <<  0 << 3 << 5
                             << "" << ""
                             << (QStringList()
                                 << "a:>>{a}<<"
                                 << "\n:>>{abc}<<"
                                 );
-    QTest::newRow("ref-replace") << ">>{hj}<<" <<  0 << 3 << 5
+    QTest::newRow("ref-replace") << ">>{hj}<<" << "" <<  0 << 3 << 5
                             << "" << ""
                             << (QStringList()
                                 << "a:>>{ahj}<<"
                                 << "\n:>>{abc}<<"
                                 );
 
+    QTest::newRow("key") << ">>{}<<" << "key%\\test" <<  0 << 3 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a}<<"
+                                << "\n:>>{abc1}<<"
+                                );
+    QTest::newRow("key2") << ">>{a,}<<" << "key%\\test" <<  0 << 5 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a,a}<<"
+                                << "\n:>>{a,abc1}<<"
+                                );
+    QTest::newRow("keyval") << ">>{}<<" << "key%\\test/abc" <<  0 << 3 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a}<<"
+                                << "\n:>>{abc2}<<"
+                                );
+    QTest::newRow("keyval2") << ">>{a=}<<" << "key%\\test/abc" <<  0 << 5 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a=a}<<"
+                                << "\n:>>{a=abc2}<<"
+                                );
+    QTest::newRow("keyval-replace") << ">>{a=f,bbb}<<" << "key%\\test/abc" <<  0 << 5 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a=af,bbb}<<"
+                                << "\n:>>{a=abc2,bbb}<<"
+                                );
+    QTest::newRow("special") << ">>{}<<" << "%abc" <<  0 << 3 << 129
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a}<<"
+                                << "\n:>>{abc3}<<"
+                                );
+    QTest::newRow("special2") << ">>{}<<" << "%abca" <<  0 << 3 << 257
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a}<<"
+                                << "\n:>>{abc4}<<"
+                                );
+    QTest::newRow("special3") << ">>{}<<" << "%abcd" <<  0 << 3 << 129 // keyvals refer to special
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{a}<<"
+                                << "\n:>>{abc4}<<"
+                                );
 
 }
 void LatexCompleterTest::keyval(){
     QFETCH(QString, text);
+    QFETCH(QString, workingDir);
     QFETCH(QString, preinsert);
     QFETCH(QString, preres);
     QFETCH(int, completerFlag);
@@ -353,6 +418,7 @@ void LatexCompleterTest::keyval(){
         edView->editor->insertText(preinsert);
         QEQUAL(edView->editor->text(), preres);
     }
+    edView->getCompleter()->setWorkPath(workingDir);
     edView->complete(completerFlag);
     foreach (const QString& s, log){
         char key = s.at(0).toLatin1();
