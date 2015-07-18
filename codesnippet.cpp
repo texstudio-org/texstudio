@@ -407,7 +407,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 				if(closeCurl<0) closeCurl=1e9;
 				if(openCurl<0) openCurl=1e9;
                 if(wordBreakEqual<0) wordBreakEqual=1e9;
-				if(wordBreak<openBracket && wordBreak<closeCurl &&wordBreak<openCurl){
+                if(wordBreak<=openBracket && wordBreak<=closeCurl &&wordBreak<=openCurl){
 					if(wordBreak<0)
 						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
                     else {
