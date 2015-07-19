@@ -4153,6 +4153,7 @@ void Texmaker::NormalCompletion() {
     if(type>=Tokens::specialArg){
         int df=int(type-Tokens::specialArg);
         QString cmd=latexParser.mapSpecialArgs.value(df);
+        if(mCompleterNeedsUpdate) updateCompleter();
         completer->setWorkPath(cmd);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
     }
