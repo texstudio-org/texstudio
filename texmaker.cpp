@@ -4190,6 +4190,12 @@ void Texmaker::NormalCompletion() {
         completer->setWorkPath(fi.absolutePath());
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
         break;
+    case Tokens::file:
+        {QString fn=documents.getCompileFileName();
+        QFileInfo fi(fn);
+        completer->setWorkPath(fi.absolutePath());
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);}
+        break;
     case Tokens::color:
         if(mCompleterNeedsUpdate) updateCompleter();
         completer->setWorkPath("%color");
