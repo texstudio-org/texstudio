@@ -766,7 +766,8 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
                                 continue;
                             }
                         }
-                        ltxCommands.possibleCommands[definition].insert(elem);
+                        //ltxCommands.possibleCommands[definition].insert(elem);
+                        mUserCommandList.insert(line(i).handle(),definition+"%"+elem);
                         if(!removedUserCommands.removeAll(elem)){
                             addedUserCommands << elem;
                         }
@@ -2804,11 +2805,12 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     gatherCompletionFiles(files,loadedFiles,pck);
 	update=true;
 	
+    /*
     // special treatment for special defs
     QHash<QString,QSet<QString> > possibleCommands;
     foreach(const QString elem,ltxCommands.specialDefCommands.values()){
         possibleCommands.insert(elem,ltxCommands.possibleCommands[elem]);
-    }
+    }*/
 
     //completerConfig->words=pck.completionWords;
     //mCompleterWords=pck.completionWords.toSet();
@@ -2824,6 +2826,13 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     QList<CodeSnippet> commands=mUserCommandList.values();
     foreach(CodeSnippet cs,commands){
         QString elem=cs.word;
+        if(elem.startsWith("%")){ // insert specialArgs
+            int i=elem.indexOf('%',1);
+            QString category=elem.left(i);
+            elem=elem.mid(i+1);
+            ltxCommands.possibleCommands[category].insert(elem);
+            continue;
+        }
 		if(!elem.startsWith("\\begin{")&&!elem.startsWith("\\end{")){
 			int i=elem.indexOf("{");
             int j=elem.indexOf("[");
@@ -2832,11 +2841,11 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 		}
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
-
+    /*
     // special treatment for special defs
     foreach(const QString elem,ltxCommands.specialDefCommands.values()){
         ltxCommands.possibleCommands.insert(elem,ltxCommands.possibleCommands[elem].unite(possibleCommands[elem]));
-    }
+    }*/
 
 	//patch lines for new commands (ref,def, etc)
 	LatexParser& latexParser = LatexParser::getInstance();
