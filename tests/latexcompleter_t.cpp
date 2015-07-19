@@ -36,6 +36,9 @@ void LatexCompleterTest::initTestCase(){
     labels<<"abc"<<"bcd";
     edView->getCompleter()->setAdditionalWords(labels,CT_LABELS);
     labels.clear();
+    labels<<"abcq"<<"bcdq";
+    edView->getCompleter()->setAdditionalWords(labels,CT_CITATIONS);
+    labels.clear();
     labels<<"abc1"<<"bcd1";
     edView->getCompleter()->setKeyValWords("key%\\test",labels);
     labels.clear();
@@ -412,6 +415,28 @@ void LatexCompleterTest::keyval_data(){
                                 << "a:>>{a}<<"
                                 << "\n:>>{abc4}<<"
                                 );
+    QTest::newRow("cite") << ">>\\cit<<" << "" <<  0 << 6 << 0
+                            << "" << ""
+                            << (QStringList()
+                                << "\n:>>\\cite{abcq}<<"
+                                );
+    QTest::newRow("cite2") << ">>{a}<<" << "" <<  0 << 4 << 32
+                            << "" << ""
+                            << (QStringList()
+                                << "#:>>{abcq}<<"
+                                );
+    QTest::newRow("cite2") << ">>{ag,}<<" << "" <<  0 << 6 << 32
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{ag,a}<<"
+                                << "\n:>>{ag,abcq}<<"
+                                );
+    QTest::newRow("cite-replace") << ">>{ag}<<" << "" <<  0 << 3 << 32
+                            << "" << ""
+                            << (QStringList()
+                                << "a:>>{aag}<<"
+                                << "\n:>>{abcq}<<"
+                                );
 
 }
 void LatexCompleterTest::keyval(){
@@ -443,7 +468,9 @@ void LatexCompleterTest::keyval(){
         if(key=='\n'){
             QTest::keyClick(edView->editor, Qt::Key_Return);
         }else{
-            QTest::keyClick(edView->editor, key);
+            if(key!='#'){ // # means no input
+                QTest::keyClick(edView->editor, key);
+            }
         }
         QString text = s.mid(2);
         QString ist=edView->editor->text();
