@@ -67,6 +67,66 @@ void LatexEditorViewBenchmark::documentChange(){
 #endif
 }
 
+void LatexEditorViewBenchmark::patch_data(){
+#if QT_VERSION >= 0x040500
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<int>("start");
+    QTest::addColumn<int>("count");
+
+
+    //-------------cursor without selection--------------
+    QTest::newRow("one line update")
+        << "abcdefg\nhallo welt\nabcdefg"
+        << 0 << 1;
+
+    if (!all) {
+        qDebug() << "skipped benchmark data";
+        return;
+    }
+    QTest::newRow("multi line update")
+        << "abcdefga\nabcdefg\nabcdefg\nxyz\nc"
+        << 0 << 3;
+    QTest::newRow("long line update")
+        << "abcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefgaabcdefga\nabcdefg\nabcdefg\nxyz\nc"
+        << 0 << 3;
+    QTest::newRow("labels")
+            << "\\label{ab} \\label{cd}\nhallo welt\nabcdefg"
+        << 0 << 1;
+    QTest::newRow("refs")
+            << "\\ref{ab} \\ref{cd}\nhallo welt\nabcdefg"
+        << 0 << 1;
+    QTest::newRow("no spellcheck in command") // does a complete recheck as package is concerned
+            << "\\usepackage{graphicx} \\usepackage{graphicx}\nhallo welt\nabcdefg"
+        << 0 << 1;
+    QTest::newRow("no spellcheck in command2")
+            << "\\begin{document} \\includegraphics{test}\nhallo welt\nabcdefg"
+        << 0 << 1;
+    QTest::newRow("spellcheck in command")
+            << "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
+        << 0 << 1;
+    QTest::newRow("multi-line command")
+            << "\\textbf{graphicx} \\textbf{graphicx}\nhallo welt\nabcdefg"
+        << 0 << 4;
+#endif
+}
+void LatexEditorViewBenchmark::patch(){
+#if QT_VERSION >= 0x040500
+    QFETCH(QString, text);
+    QFETCH(int, start);
+    QFETCH(int, count);
+
+    if (!all) {
+        qDebug() << "skipped benchmark";
+        return;
+    }
+
+    edView->editor->setText(text, false);
+    QBENCHMARK {
+        edView->document->patchStructure(start,count);
+    }
+#endif
+}
+
 void LatexEditorViewBenchmark::linePaint_data(){
 #if QT_VERSION >= 0x040500
 	QTest::addColumn<QString>("text");

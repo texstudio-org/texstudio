@@ -356,11 +356,12 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
     //first pass: lex
     TokenStack oldRemainder;
     if(!recheck){
-        QList<QDocumentLineHandle*> l_dlh;
+        //QList<QDocumentLineHandle*> l_dlh;
         for (int i=linenr; i<linenr+count; i++) {
-            l_dlh<<line(i).handle();
+            //l_dlh<<line(i).handle();
+            simpleLexLatexLine(line(i).handle());
         }
-        QtConcurrent::blockingMap(l_dlh,simpleLexLatexLine);
+        //QtConcurrent::blockingMap(l_dlh,simpleLexLatexLine);
     }
     QDocumentLineHandle *lastHandle=line(linenr-1).handle();
     if(lastHandle){
