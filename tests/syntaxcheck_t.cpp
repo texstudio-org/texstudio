@@ -264,9 +264,9 @@ void SyntaxCheckTest::checkArguments_data(){
      QTest::newRow("newcommand")
              <<"\\newcommand{\\test}{\\abcd}"<<false;
      QTest::newRow("newcommand2")
-             <<"\\newcommand{\\test}{\\abcd\n \abcd}"<<false;
+             <<"\\newcommand{\\test}{\\abcd\n \\abcd}"<<false;
      QTest::newRow("newcommand3")
-             <<"\\newcommand{\\test}{\\abcd\n{\n \abcd}\n}"<<false;
+             <<"\\newcommand{\\test}{\\abcd\n{\n \\abcd}\n}"<<false;
 
 
 
