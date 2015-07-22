@@ -2330,20 +2330,23 @@ QString LatexPackage::keyToOptions(const QString &key) {
 	else return key.left(i);
 }
 
-void LatexPackage::unite(LatexPackage &add){
-    completionWords.unite(add.completionWords);
-	optionCommands.unite(add.optionCommands);
-	environmentAliases.unite(add.environmentAliases);
+void LatexPackage::unite(LatexPackage &add,bool forCompletion){
+    if(forCompletion){
+        completionWords.unite(add.completionWords); //expensive
+        return;
+    }
+    optionCommands.unite(add.optionCommands);
+    environmentAliases.unite(add.environmentAliases);
     specialTreatmentCommands.unite(add.specialTreatmentCommands);
     specialDefCommands.unite(add.specialDefCommands);
-    commandDescriptions.unite(add.commandDescriptions);
+    commandDescriptions.unite(add.commandDescriptions); //expensive
 	//possibleCommands.unite(add.possibleCommands);
-	foreach(const QString& elem,add.possibleCommands.keys()){
+    foreach(const QString& elem,add.possibleCommands.keys()){ //expensive
 		QSet<QString> set2=add.possibleCommands[elem];
 		QSet<QString> set=possibleCommands[elem];
 		set.unite(set2);
 		possibleCommands[elem]=set;
-	}
+    }
 }
 
 

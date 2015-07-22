@@ -333,7 +333,7 @@ public:
     QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
 	QMultiHash<QString,QString> environmentAliases;
     CommandDescriptionHash commandDescriptions;
-	void unite(LatexPackage &add);
+    void unite(LatexPackage &add, bool forCompletion=false);
 };
 
 LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config=0, QStringList conditions=QStringList());

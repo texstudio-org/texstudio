@@ -2787,7 +2787,7 @@ CodeSnippetList LatexDocument::additionalCommandsList(){
     LatexPackage pck;
     QStringList loadedFiles,files;
     files=mCWLFiles.toList();
-    gatherCompletionFiles(files,loadedFiles,pck);
+    gatherCompletionFiles(files,loadedFiles,pck,true);
     return pck.completionWords;
 }
 
@@ -2881,7 +2881,7 @@ void LatexDocument::emitUpdateCompleter(){
 	emit updateCompleter();
 }
 
-void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck){
+void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loadedFiles,LatexPackage &pck,bool gatherForCompleter){
 	LatexPackage zw;
 	LatexCompleterConfig *completerConfig=edView->getCompleter()->getConfig();
 	foreach(const QString& elem, files){
@@ -2912,7 +2912,7 @@ void LatexDocument::gatherCompletionFiles(QStringList &files,QStringList &loaded
             }
             emit importPackage(name);
 		} else {
-			pck.unite(zw);
+            pck.unite(zw,gatherForCompleter);
 			loadedFiles.append(elem);
 			if(!zw.requiredPackages.isEmpty())
 				gatherCompletionFiles(zw.requiredPackages,loadedFiles,pck);
