@@ -697,7 +697,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		}
 		QFileInfo fi(dic);
 		if (fi.exists()) {
-			spellDictDir = fi.absolutePath();
+			spellDictDir = QDir::toNativeSeparators(fi.absolutePath());
 			if (usbMode) {
 				spellDictDir = reverseParseDir(spellDictDir);
 			}
@@ -707,7 +707,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	if (grammarCheckerConfig->wordlistsDir.isEmpty()) {
 		QString sw = findResourceFile("de.stopWords", true, QStringList(), parseDirList(spellDictDir));
 		if (sw=="") sw = findResourceFile("en.stopWords", true, QStringList(), QStringList() << parseDirList(spellDictDir));
-		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QFileInfo(sw).absolutePath();
+		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QDir::toNativeSeparators(QFileInfo(sw).absolutePath());
 	}
 	
 	if (thesaurus_database == "<dic not found>") {
@@ -729,6 +729,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_en_GB_v2.dat");
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_fr_FR_v2.dat");
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_de_DE_v2.dat");
+	}
+	if (!thesaurus_database.isEmpty()) {
+		thesaurus_database = QDir::toNativeSeparators(thesaurus_database);
 	}
 	
 	
