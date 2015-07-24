@@ -57,6 +57,7 @@
 #include "searchquery.h"
 #include "fileselector.h"
 #include "utilsUI.h"
+#include "utilsSystem.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -628,7 +629,7 @@ void Texmaker::setupMenus() {
 
 	menu->addSeparator();
     actSave = newManagedAction(menu,"save",tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "filesave");
-	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), Qt::CTRL+Qt::ALT+Qt::Key_S);
+	newManagedAction(menu,"saveas",tr("Save &As..."), SLOT(fileSaveAs()), filterLocaleShortcut(Qt::CTRL+Qt::ALT+Qt::Key_S));
 	newManagedAction(menu,"saveall",tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL+Qt::SHIFT+Qt::ALT+Qt::Key_S);
 	newManagedAction(menu, "maketemplate",tr("&Make Template..."), SLOT(fileMakeTemplate()));
 
@@ -762,7 +763,7 @@ void Texmaker::setupMenus() {
 	
 	
 	newManagedAction(menu,"encoding",tr("Setup Encoding..."),SLOT(editSetupEncoding()))->setMenuRole(QAction::NoRole); // with the default "QAction::TextHeuristicRole" this was interperted as Preferences on OSX
-	newManagedAction(menu,"unicodeChar",tr("Insert Unicode Character..."),SLOT(editInsertUnicode()), Qt::ALT + Qt::CTRL + Qt::Key_U);
+	newManagedAction(menu,"unicodeChar",tr("Insert Unicode Character..."),SLOT(editInsertUnicode()), filterLocaleShortcut(Qt::ALT + Qt::CTRL + Qt::Key_U));
 	
 	
 	
@@ -794,21 +795,7 @@ void Texmaker::setupMenus() {
 	newManagedAction(submenu,"badboxprev",tr("Previous Bad Box"),"gotoNearLogEntry", MAC_OTHER(0, Qt::SHIFT+Qt::ALT+Qt::Key_Up), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errorprev.png");
 	newManagedAction(submenu,"badboxnext",tr("Next Bad Box"),"gotoNearLogEntry", MAC_OTHER(0, Qt::SHIFT+Qt::ALT+Qt::Key_Down), "", QList<QVariant>() << LT_BADBOX << true << tr("No bad boxes detected !"));//, ":/images/errornext.png");
 	submenu->addSeparator();
-
-	QKeySequence sc(Qt::CTRL+Qt::ALT+Qt::Key_F);
-#ifdef Q_OS_WIN32
-    QLocale::Language lang;
-#if QT_VERSION < 0x050000
-    lang = QApplication::keyboardInputLocale().language();
-#else
-	lang = QGuiApplication::inputMethod()->locale().language();
-#endif
-	// on win ctrl+alt = altGr, hungarian: altGr+F = [
-	// so we should not use this as shortcut in this special case
-    if (lang == QLocale::Hungarian)
-		sc = QKeySequence(Qt::CTRL+Qt::ALT+Qt::SHIFT+Qt::Key_F);
-#endif
-	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()),sc);
+	newManagedAction(submenu,"definition",tr("Definition"),SLOT(editGotoDefinition()), filterLocaleShortcut(Qt::CTRL+Qt::ALT+Qt::Key_F));
 	
 	menu->addSeparator();
 	newManagedAction(menu,"generateMirror",tr("Re&name Environment"), SLOT(generateMirror()));
