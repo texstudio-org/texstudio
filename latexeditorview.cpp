@@ -1932,7 +1932,12 @@ void LatexEditorView::mouseHovered(QPoint pos){
 
     TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 
-    Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
+    //Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
+    TokenStack ts=getContext(dlh,cursor.columnNumber());
+    Tokens tk;
+    if(!ts.isEmpty()){
+        tk=ts.top();
+    }
 
     LatexParser &lp=LatexParser::getInstance();
     QString command, value;
@@ -2011,6 +2016,16 @@ void LatexEditorView::mouseHovered(QPoint pos){
                 text += "<br><b>(" + tr("not found") + ")";
                 QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
             }
+        }
+        if(tk.subtype==Tokens::color){
+            QString text;
+            if(ts.size()>1){
+                ts.pop();
+                tk=ts.top();
+            }
+            text=QString("\\noident{\\color%1 \\rule{1cm}{1cm} }").arg(tk.getText());
+            m_point=editor->mapToGlobal(editor->mapFromFrame(pos));
+            emit showPreview(text);
         }
         if(tk.type==Tokens::bibItem){
             handled=true;
