@@ -226,7 +226,7 @@ All commands specified in the configuration (i.e. Commands and User Commands) ar
 <h4>Output Redirection</h4>
 <p>TeXstudio provides limited output redirection capabilities. You can only output to the message panel (<code>&gt; txs:///messages</code>) or suppress output (<code>&gt; /dev/null</code>). The default setting depends on the command. The same targets are allowed for stderr: <code>2&gt; txs:///messages</code>, <code>2&gt; /dev/null</code>. Additionally, you can redirect to the same target as stdout by using <code>2&gt;&1</code>.</p>
 <p>A typical usecase would be to suppress all output of a command: <code>&gt;/dev/null 2&gt;&1</code></p>
-
+<p>Note: Instead of the Linux/Unix notation <code>&gt; /dev/null</code>, you may alternatively use the Windows notation <code>&gt; nul</code>. Because these commands are directly interpreted by TXS, both variants work on all operating systems.</p>
 
 
 <h4>Using other shell functionality</h4>
