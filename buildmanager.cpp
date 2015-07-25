@@ -1848,14 +1848,14 @@ ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const Q
 	
 	QString stdoutRedirection, stderrRedirection;
 	cmd = BuildManager::extractOutputRedirection(cmd, stdoutRedirection, stderrRedirection);
-	if (stdoutRedirection == "/dev/null") {
+    if (stdoutRedirection == "/dev/null" || stdoutRedirection == "nul") {
 		stdoutEnabled = false;
 	} else if (stdoutRedirection == "txs:///messages") {
 		stdoutEnabledOverrideOn = true;
 	} else if (!stdoutRedirection.isEmpty()) {
 		parent->processNotification(tr("The specified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
 	}
-	if (stderrRedirection == "/dev/null") {
+    if (stderrRedirection == "/dev/null" || stderrRedirection == "nul") {
 		stderrEnabled = false;
 	} else if (stderrRedirection == "txs:///messages") {
 		// nothing to do because stderr goes to messages by default
