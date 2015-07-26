@@ -675,7 +675,7 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords,const QS
         if(rare){
             cw.usageCount=-2;
         }else{
-            cw.usageCount=0;
+            cw.usageCount=2;
         }
         cw.snippetLength=0;
         newWordList.append(cw);
