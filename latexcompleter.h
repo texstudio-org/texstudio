@@ -76,10 +76,13 @@ public:
 	void setTab(int index);
 	
 	void insertText(QString txt);
+
+    void showTooltip(QString topic);
 signals:
 	void setDirectoryForCompletion(QString fn);
 	void searchBibtexSection(QString file,QString bibId);
     void showImagePreview(QString fn);
+    void showPreview(QString text);
 private:
 	friend class CompleterInputBinding;
 	friend class CompletionListModel;
@@ -117,8 +120,6 @@ private:
 	QPoint lastPos;
 	bibtexReader *bibReader;
 	
-	void showTooltip(QString topic);
-
 private slots:
 	void cursorPositionChanged();
 	void selectionChanged(const QModelIndex & index);
