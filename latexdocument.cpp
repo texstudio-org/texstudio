@@ -751,30 +751,32 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             /// specialDefinition ///
             /// e.g. definecolor
             if(ltxCommands.specialDefCommands.contains(cmd)){
-				if(!firstArg.isEmpty() ){
+                if(!args.isEmpty() ){
                     completerNeedsUpdate=true;
-                    QStringList lst;
-					lst << firstArg ;
-                    foreach(QString elem,lst){
-                        // probably needs to be refined
-                        QString definition=ltxCommands.specialDefCommands.value(cmd);
-                        if(definition.startsWith('(')){
-                            if(elem.startsWith('(')){
-                                elem.chop(1);
-                                elem=elem.mid(1);
-                                definition.chop(1);
-                                definition=definition.mid(1);
-                            }else{
-                                continue;
-                            }
-                        }
-                        //ltxCommands.possibleCommands[definition].insert(elem);
+                    QString definition=ltxCommands.specialDefCommands.value(cmd);
+                    Tokens::TokenType type=Tokens::braces;
+                    if(definition.startsWith('(')){
+                        definition.chop(1);
+                        definition=definition.mid(1);
+                        type=Tokens::bracket;
+                    }
+                    if(definition.startsWith('[')){
+                        definition.chop(1);
+                        definition=definition.mid(1);
+                        type=Tokens::squareBracket;
+                    }
+
+                    foreach(Tokens mTk,args){
+                        if(mTk.type!=type)
+                            continue;
+                        QString elem=mTk.getText();
+                        elem=elem.mid(1,elem.length()-2); // strip braces
                         mUserCommandList.insert(line(i).handle(),definition+"%"+elem);
                         if(!removedUserCommands.removeAll(elem)){
                             addedUserCommands << elem;
                         }
+                        break;
                     }
-                    continue;
                 }
             }
 			/// bibitem ///

@@ -2753,6 +2753,9 @@ CommandDescription extractCommandDef(QString line){
             case 1: cd.optionalArgs=cd.optionalArgs+1;
                 cd.optTypes.append(type);
                 break;
+            case 2: cd.bracketArgs=cd.bracketArgs+1;
+                cd.bracketTypes.append(type);
+                break;
             default:
                 break;
             }
@@ -2769,7 +2772,7 @@ CommandDescription extractCommandDef(QString line){
 }
 
 
-CommandDescription::CommandDescription():optionalArgs(0),args(0),level(0)
+CommandDescription::CommandDescription():optionalArgs(0),args(0),level(0),bracketArgs(0)
 {
 
 }
@@ -3240,6 +3243,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                      CommandDescription &cd=commandStack.top();
                      if(cd.args>0){
                          cd.optionalArgs=0; // no optional arguments after mandatory
+                         cd.bracketArgs=0;
                          cd.args--;
                          tk.subtype=cd.argTypes.takeFirst();
                      }
@@ -3252,7 +3256,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  if(lp.commandDefs.contains(command)){
                      CommandDescription cd=lp.commandDefs.value(command);
                      cd.level=level;
-                     if(cd.args>0 && tk.subtype!=Tokens::def) // don't interpret commands in defintion (\newcommand{def})
+                     if((cd.args>0||cd.optionalArgs>0||cd.bracketArgs>0 )&& tk.subtype!=Tokens::def) // don't interpret commands in defintion (\newcommand{def})
                         commandStack.push(cd);
                         commandNames.push(command);
                  }else{
@@ -3266,8 +3270,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
          if(Tokens::tkOpen().contains(tk.type)){
              // special treament for brackets as they don't have any syntaxtical meaning except with some commands
              if(tk.type==Tokens::openBracket){
-                 if(!commandStack.isEmpty() && commandStack.top().level==level){
-                     // TODO: implement brackets detection
+                 if(!commandStack.isEmpty() && commandStack.top().level==level && commandStack.top().bracketArgs>0){
+                     CommandDescription &cd=commandStack.top();
+                     cd.bracketArgs--;
+                     tk.subtype=cd.bracketTypes.takeFirst();
                  }else{
                      continue;
                  }
@@ -3307,12 +3313,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
          }
          if(Tokens::tkClose().contains(tk.type)){
              // special treament for brackets as they don't have any syntaxtical meaning except with some commands
-             if(tk.type==Tokens::closeBracket){
-                 continue; // for now ignore, until command with bracket can be detected
+             if(tk.type==Tokens::closeBracket ){
+                 if(stack.isEmpty())
+                    continue;
+                 if(stack.top().type!=Tokens::opposite(tk.type))
+                     continue; //closing bracket is ignored if no correct open is present
              }
              if(!stack.isEmpty() && stack.top().type==Tokens::opposite(tk.type)){
                  Tokens tk1=stack.pop();
-
 
                  if(Tokens::tkCommalist().contains(tk1.subtype)){
                      lastComma=-1;
@@ -3382,7 +3390,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  }
                  if(!commandStack.isEmpty() && commandStack.top().level==level){
                      CommandDescription &cd=commandStack.top();
-                     if(cd.args<=0){
+                     if(cd.args<=0 && cd.optionalArgs<=0 && cd.bracketArgs<=0){
                          // all args handled, stop handling this command
                          commandStack.pop();
                          commandNames.pop();
