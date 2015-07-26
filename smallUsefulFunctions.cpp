@@ -3327,8 +3327,20 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  }
                  if(tk1.subtype==Tokens::keyValArg){
                      lastComma=-1;
-                     if(lastEqual>-1e6)
+                     if(lastEqual>-1e6){
+                         if(!lexed.isEmpty() && lexed.last().type==Tokens::keyVal_key){
+                             // no value added, add empty key_val
+                             Tokens tk0;
+                             tk0.start=tk.start;
+                             tk0.length=0;
+                             tk0.dlh=dlh;
+                             tk0.type=Tokens::keyVal_val;
+                             tk0.subtype=Tokens::keyVal_val;
+                             tk0.level=level;
+                             lexed<<tk0;
+                         }
                          level=lastEqual;
+                     }
                      lastEqual=-1e6;
                  }
                  if(tk1.dlh==dlh){ // same line
@@ -3420,8 +3432,19 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              // handle keyval
              if(tk.type==Tokens::punctuation && line.mid(tk.start,1)==","){
                 lastComma=-1;
-                if(lastEqual>-1e6)
+                if(lastEqual>-1e6){
+                    if(!lexed.isEmpty() && lexed.last().type==Tokens::keyVal_key){
+                        // no value added, add empty key_val
+                        Tokens tk0;
+                        tk0.start=tk.start;
+                        tk0.length=0;
+                        tk0.type=Tokens::keyVal_val;
+                        tk0.subtype=Tokens::keyVal_val;
+                        tk0.level=level;
+                        lexed<<tk0;
+                    }
                     level=lastEqual;
+                }
                 lastEqual=-1e6;
                 continue;
              }
