@@ -1457,6 +1457,13 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		QToolTip::hideText();
 		return;
 	}
+    if(forcedSpecialOption && workingDir=="%color"){
+        QToolTip::hideText();
+        QString text;
+        text=QString("{\\color{%1} \\rule{1cm}{1cm}}").arg(listModel->words[index.row()].word);
+        emit showPreview(text);
+        return;
+    }
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
 	if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word)==-1) {
 		QToolTip::hideText();

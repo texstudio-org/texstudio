@@ -282,6 +282,7 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 	completer->setConfig(configManager.completerConfig);
     completer->setPackageList(&latexPackageList);
     connect(completer,SIGNAL(showImagePreview(QString)),this,SLOT(showImgPreview(QString)));
+    connect(completer,SIGNAL(showPreview(QString)),this,SLOT(showPreview(QString)));
     connect(this,SIGNAL(ImgPreview(QString)),completer,SLOT(bibtexSectionFound(QString)));
     //updateCompleter();
 	LatexEditorView::setCompleter(completer);
@@ -7384,6 +7385,7 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
 			p=currentEditorView()->getHoverPosistion();
 		else
 			p=currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
+
 		QRect screen = QApplication::desktop()->screenGeometry();
         QPixmap img;
         if(image.isNull()){
@@ -7404,7 +7406,12 @@ void Texmaker::previewAvailable(const QString& imageFile, const PreviewSource& s
             buildManager.addPreviewFileName(tempPath+"txs_preview.png");
             text=QString("<img src=\""+tempPath+"txs_preview.png\" width=%1 />").arg(w);
 #endif
-            QToolTip::showText(p, text, 0);
+            if(completerPreview){
+                completerPreview=false;
+                completer->showTooltip(text);
+            }else{
+                QToolTip::showText(p, text, 0);
+            }
         }
         LatexEditorView::hideTooltipWhenLeavingLine=currentEditorView()->editor->cursor().lineNumber();
      }
@@ -7510,6 +7517,7 @@ void Texmaker::showImgPreview(const QString& fname){
 		w = qMin(w, screen.width()-8);
         QString text=QString("<img src=\""+imageName+"\" width=%1 />").arg(w);
         if(completerPreview){
+            completerPreview=false;
             emit ImgPreview(text);
         }else{
             QToolTip::showText(p, text, 0);
@@ -7564,6 +7572,7 @@ void Texmaker::showImgPreviewFinished(const QPixmap& pm, int page){
 }
 
 void Texmaker::showPreview(const QString& text){
+    completerPreview=(sender()==completer); // completer needs signal as answer
     LatexEditorView* edView=getEditorViewFromFileName(documents.getCompileFileName()); //todo: temporary compi
     if(!edView)
         edView=currentEditorView();
