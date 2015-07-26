@@ -1530,6 +1530,10 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 }
 
 void LatexCompleter::showTooltip(QString topic){
+    if(!isVisible()){
+        QToolTip::hideText();
+        return;
+    }
     QModelIndex index=list->currentIndex();
     topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
     QRect r = list->visualRect(index);
