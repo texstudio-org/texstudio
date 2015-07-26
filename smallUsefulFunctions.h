@@ -86,10 +86,12 @@ class CommandDescription {
 public:
     CommandDescription();
     int optionalArgs;
+    int bracketArgs;
     int args;
     int level;
     QList<Tokens::TokenType> argTypes;
     QList<Tokens::TokenType> optTypes;
+    QList<Tokens::TokenType> bracketTypes;
 };
 
 typedef QHash<QString,CommandDescription> CommandDescriptionHash;
