@@ -767,6 +767,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
         }
     }
 
+    completerConfig->words.clear();
 	foreach(const QString& cwlFile,cwlFiles){
 		LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
         completerConfig->words.unite(pck.completionWords);
@@ -1407,9 +1408,10 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
 		latexParser.clear();
 		latexParser.init();
 		//completerConfig->words=loadCwlFiles(newFiles,ltxCommands,completerConfig);
+        completerConfig->words.clear();
 		foreach(const QString& cwlFile,newFiles){
 			LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
-			completerConfig->words.append(pck.completionWords);
+            completerConfig->words.unite(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
             latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 			latexParser.environmentAliases.unite(pck.environmentAliases);
