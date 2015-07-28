@@ -140,7 +140,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>13</number>
+      <number>11</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>479</width>
-            <height>606</height>
+            <width>576</width>
+            <height>699</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -905,7 +905,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>194</width>
+               <width>191</width>
                <height>76</height>
               </rect>
              </property>
@@ -1816,8 +1816,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
-            <height>1243</height>
+            <width>833</width>
+            <height>1463</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2953,6 +2953,16 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxToolTipCompletePreview">
+            <property name="toolTip">
+             <string>Shows a tooltip with target text for labels/bibitem, previews colors or images</string>
+            </property>
+            <property name="text">
+             <string>ToolTip-Preview</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -3385,8 +3395,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>866</width>
+            <height>667</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4038,7 +4048,6 @@ them here.</string>
   <tabstop>twCustomSyntax</tabstop>
   <tabstop>pbAddSyntaxLine</tabstop>
   <tabstop>pbRemoveSyntaxLine</tabstop>
-  <tabstop>checkBoxCaseSensitiveInFirstCharacter</tabstop>
   <tabstop>spinBoxTabRelFontSize</tabstop>
   <tabstop>completeListWidget</tabstop>
   <tabstop>checkBoxGrammarRepetitionCheck</tabstop>

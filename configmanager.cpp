@@ -474,6 +474,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Completion Complete Common Prefix", &completerConfig->completeCommonPrefix, true, &pseudoDialog->checkBoxCompletePrefix);
 	registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, true, &pseudoDialog->checkBoxEOWCompletes);
 	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
+    registerOption("Editor/Completion Enable Tooltip Preview", &completerConfig->tooltipPreview, true, &pseudoDialog->checkBoxToolTipCompletePreview);
 	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
 	registerOption("Editor/Completion Show Placeholders", &editorConfig->showPlaceholders, true, &pseudoDialog->checkBoxShowPlaceholders);
 	registerOption("Editor/Completion Prefered Tab", (int*)&completerConfig->preferedCompletionTab, 0,&pseudoDialog->comboBoxPreferedTab);

@@ -1446,18 +1446,18 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		QToolTip::hideText();
 		return;
 	}
-    if(forcedGraphic){ // picture preview even if help is disabled (maybe the same for cite/ref ?)
+    if(config->tooltipPreview && forcedGraphic){ // picture preview even if help is disabled (maybe the same for cite/ref ?)
         QString fn=workingDir+QDir::separator()+listModel->words[index.row()].word;
 		QToolTip::hideText();
 		emit showImagePreview(fn);
         return;
     }
-    if (!config->tooltipHelp) return;
+
 	if (index.row() < 0 || index.row()>=listModel->words.size()) {
 		QToolTip::hideText();
 		return;
 	}
-    if(forcedSpecialOption && workingDir=="%color"){
+    if(config->tooltipPreview && forcedSpecialOption && workingDir=="%color"){
         QToolTip::hideText();
         QString text;
         text=QString("{\\color{%1} \\rule{1cm}{1cm}}").arg(listModel->words[index.row()].word);
@@ -1471,7 +1471,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	}
 	QString cmd=wordrx.cap(0);
 	QString topic;
-	if(latexParser.possibleCommands["%ref"].contains(cmd)){
+    if(config->tooltipPreview && latexParser.possibleCommands["%ref"].contains(cmd)){
 		QString value=listModel->words[index.row()].word;
 		int i=value.indexOf("{");
 		value.remove(0,i+1);
@@ -1500,7 +1500,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 				if(i<l+2) topic+="\n";
 			}
 		}
-	}else if(forcedCite || latexParser.possibleCommands["%cite"].contains(cmd)){
+    }else if(config->tooltipPreview && (forcedCite || latexParser.possibleCommands["%cite"].contains(cmd))){
 		QToolTip::hideText();
 		QString value=listModel->words[index.row()].word;
 		int i=value.indexOf("{");
@@ -1519,7 +1519,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			emit searchBibtexSection(file,value);
 		return;
 	}else{
-		if (latexReference)
+        if (latexReference && config->tooltipHelp)
 			topic = latexReference->getTextForTooltip(cmd);
 		if (topic.isEmpty()) {
 			QToolTip::hideText();
