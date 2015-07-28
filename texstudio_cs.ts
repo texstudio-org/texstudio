@@ -655,7 +655,7 @@
     <name>CodeSnippet</name>
     <message>
         <source>something</source>
-        <translation>Něco</translation>
+        <translation type="obsolete">Něco</translation>
     </message>
 </context>
 <context>
@@ -2092,11 +2092,11 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Auto Preview:</source>
-        <translation>Automatický náhled:</translation>
+        <translation type="obsolete">Automatický náhled:</translation>
     </message>
     <message>
         <source>Auto Preview Delay:</source>
-        <translation>Zpoždění automatického náhledu:</translation>
+        <translation type="obsolete">Zpoždění automatického náhledu:</translation>
     </message>
     <message>
         <source>Full Page PDF Preview</source>
@@ -2403,7 +2403,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
         <source>Show messages when starting compiling</source>
         <translation>Ukázat zprávy při spuštění překladu</translation>
     </message>
-    <message>
+    <message utf8="true">
         <source>English Quotes (unicode): “ ”</source>
         <translation>Anglické uvozovky (unicode): “ ”</translation>
     </message>
@@ -2613,7 +2613,7 @@ Tto cesta ale není obsažena v seznamu cest ke slovníkům. Chcete ji přidat?<
     </message>
     <message>
         <source>Replace Tab by Whitespace</source>
-        <translation>Nahradit zarážky bílými znaky</translation>
+        <translation type="obsolete">Nahradit zarážky bílými znaky</translation>
     </message>
     <message>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
@@ -2777,6 +2777,22 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     <message>
         <source>QtScript</source>
         <translation>QtScript</translation>
+    </message>
+    <message>
+        <source>Double-Click Selection: Include Leading Backslash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ToolTip-Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3908,6 +3924,13 @@ Neplatný příkaz \caption.</translation>
     </message>
 </context>
 <context>
+    <name>LabelSearchQuery</name>
+    <message>
+        <source>Label Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LatexCompleter</name>
     <message>
         <source> (Usertag)</source>
@@ -4154,11 +4177,11 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Package present</source>
-        <translation>Balík přítomen</translation>
+        <translation type="obsolete">Balík přítomen</translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation>Balík nenalezen</translation>
+        <translation type="obsolete">Balík nenalezen</translation>
     </message>
     <message>
         <source>Open Document</source>
@@ -4195,6 +4218,10 @@ Neplatný příkaz \caption.</translation>
     <message>
         <source>Delete</source>
         <translation>Smazat</translation>
+    </message>
+    <message>
+        <source>Find Usages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4264,7 +4291,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Issues and Log</source>
-        <translation>Potíže a zápis</translation>
+        <translation type="obsolete">Potíže a zápis</translation>
     </message>
     <message>
         <source>Log file not found.</source>
@@ -4462,31 +4489,31 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>Search text:</source>
-        <translation>Text k hledání:</translation>
+        <translation type="obsolete">Text k hledání:</translation>
     </message>
     <message>
         <source>Update Search</source>
-        <translation>Aktualizovat hledání</translation>
+        <translation type="obsolete">Aktualizovat hledání</translation>
     </message>
     <message>
         <source>Replace by:</source>
-        <translation>Nahradit:</translation>
+        <translation type="obsolete">Nahradit:</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation>Nahradit vše</translation>
+        <translation type="obsolete">Nahradit vše</translation>
     </message>
     <message>
         <source>Current Doc</source>
-        <translation>Nynější dokument</translation>
+        <translation type="obsolete">Nynější dokument</translation>
     </message>
     <message>
         <source>All Docs</source>
-        <translation>Všechny dokumenty</translation>
+        <translation type="obsolete">Všechny dokumenty</translation>
     </message>
     <message>
         <source>Project</source>
-        <translation>Projekt</translation>
+        <translation type="obsolete">Projekt</translation>
     </message>
 </context>
 <context>
@@ -4809,7 +4836,7 @@ Chcete ji přepsat?</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
-        <translation>Soubor PDF %1 je uzamčen; toto nyní podporováno není.</translation>
+        <translation type="obsolete">Soubor PDF %1 je uzamčen; toto nyní podporováno není.</translation>
     </message>
     <message>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
@@ -5488,27 +5515,27 @@ Nyní můžete zadat heslo:</translation>
     <name>PreviewWidget</name>
     <message>
         <source>left-align image</source>
-        <translation>Zarovnat obrázek vlevo</translation>
+        <translation type="obsolete">Zarovnat obrázek vlevo</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation>Zarovnat obrázek na střed</translation>
+        <translation type="obsolete">Zarovnat obrázek na střed</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation>Přiblížit</translation>
+        <translation type="obsolete">Přiblížit</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation>Oddálit</translation>
+        <translation type="obsolete">Oddálit</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation>Nastavit znovu zvětšení</translation>
+        <translation type="obsolete">Nastavit znovu zvětšení</translation>
     </message>
     <message>
         <source>fit</source>
-        <translation>Přizpůsobit rámečku</translation>
+        <translation type="obsolete">Přizpůsobit rámečku</translation>
     </message>
     <message>
         <source>Zoom In</source>
@@ -5556,6 +5583,14 @@ Nyní můžete zadat heslo:</translation>
     <message>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Ujistěte se, že je nainstalována (La)TeXová distribuce&lt;/b&gt;, např. MiKTeX nebo TeX Live. Pokud je tomu tak, prověřte cestu na stránce s nastavením: Volby -&gt; Příkazy.&lt;br&gt;Bez instalace (La)TeX nelze vytvářet žádné dokumenty.</translation>
+    </message>
+    <message>
+        <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7164,6 +7199,13 @@ Důvěřujete tomuto skriptu?</translation>
     </message>
 </context>
 <context>
+    <name>SearchQuery</name>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Hledat</translation>
+    </message>
+</context>
+<context>
     <name>SearchReplace</name>
     <message>
         <source>Close search/replace panel</source>
@@ -7271,6 +7313,33 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <source>File closed</source>
         <translation>Soubor zavřen</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultWidget</name>
+    <message>
+        <source>Current Doc</source>
+        <translation type="unfinished">Nynější dokument</translation>
+    </message>
+    <message>
+        <source>All Docs</source>
+        <translation type="unfinished">Všechny dokumenty</translation>
+    </message>
+    <message>
+        <source>Project</source>
+        <translation type="unfinished">Projekt</translation>
+    </message>
+    <message>
+        <source>Search Again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace all</source>
+        <translation type="unfinished">Nahradit vše</translation>
+    </message>
+    <message>
+        <source>Replace by:</source>
+        <translation type="unfinished">Nahradit:</translation>
     </message>
 </context>
 <context>
@@ -7894,7 +7963,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Normal Mode</source>
-        <translation>Obvyklý režim</translation>
+        <translation type="obsolete">Obvyklý režim</translation>
     </message>
     <message>
         <source>Ready</source>
@@ -7918,7 +7987,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Print...</source>
-        <translation>Tisk...</translation>
+        <translation type="obsolete">Tisk...</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -8066,7 +8135,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;Master Document&apos;</source>
-        <translation>Prohlásit současný dokument za Hlavní dokument</translation>
+        <translation type="obsolete">Prohlásit současný dokument za Hlavní dokument</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -8082,7 +8151,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
-        <translation>Klepněte kvůli skoku na záložku</translation>
+        <translation type="obsolete">Klepněte kvůli skoku na záložku</translation>
     </message>
     <message>
         <source>Error</source>
@@ -8106,7 +8175,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Don&apos;t Save and Close</source>
-        <translation>Zavřít bez uložení</translation>
+        <translation type="obsolete">Zavřít bez uložení</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -8158,7 +8227,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Master Document</source>
-        <translation>Hlavní dokument</translation>
+        <translation type="obsolete">Hlavní dokument</translation>
     </message>
     <message>
         <source>&amp;Find</source>
@@ -8406,7 +8475,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
-        <translation>Prohlásit současný dokument za &amp;Hlavní dokument</translation>
+        <translation type="obsolete">Prohlásit současný dokument za &amp;Hlavní dokument</translation>
     </message>
     <message>
         <source>Load Profile</source>
@@ -8502,7 +8571,7 @@ z TeXstudia.</translation>
     </message>
     <message>
         <source>Erase &amp;Line</source>
-        <translation>&amp;Vymazat řádek</translation>
+        <translation type="obsolete">&amp;Vymazat řádek</translation>
     </message>
     <message>
         <source>Erase &amp;Word/Cmd/Env</source>
@@ -8556,11 +8625,11 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>Set this document as master document</source>
-        <translation>Nastavit tento dokument jako hlavní dokument</translation>
+        <translation type="obsolete">Nastavit tento dokument jako hlavní dokument</translation>
     </message>
     <message>
         <source>Remove master document role</source>
-        <translation>Odstranit stav hlavního dokumentu</translation>
+        <translation type="obsolete">Odstranit stav hlavního dokumentu</translation>
     </message>
     <message>
         <source>commit comment:</source>
@@ -8709,7 +8778,7 @@ Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation
     </message>
     <message>
         <source>You have to save the file before switching to master mode!</source>
-        <translation>Soubor musí být spojen, než může být použit jako hlavní dokument!</translation>
+        <translation type="obsolete">Soubor musí být spojen, než může být použit jako hlavní dokument!</translation>
     </message>
     <message>
         <source>Central</source>
@@ -9150,7 +9219,7 @@ Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
         <source>Erase until E&amp;nd of Line</source>
-        <translation>Vymazat až po &amp;konec řádku</translation>
+        <translation type="obsolete">Vymazat až po &amp;konec řádku</translation>
     </message>
     <message>
         <source>Grammar errors</source>
@@ -9248,7 +9317,7 @@ Věříte tomuto dokumentu?</translation>
     <message>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
-        <translation>TeXstudio spadl kvůli %1.
+        <translation type="obsolete">TeXstudio spadl kvůli %1.
 Chcete jej nechat běžet? To může způsobit poškození dat.</translation>
     </message>
     <message>
@@ -9343,7 +9412,7 @@ zahrnut dokument v %1</translation>
     <message>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
-        <translation>TeXstudio bylo pozastaveno kvůli možné nekonečné smyčce.
+        <translation type="obsolete">TeXstudio bylo pozastaveno kvůli možné nekonečné smyčce.
 Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translation>
     </message>
     <message>
@@ -9555,7 +9624,7 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     <message>
         <source>Save Current Settings</source>
         <comment>menu</comment>
-        <translation>Uložit nynější nastavení</translation>
+        <translation type="obsolete">Uložit nynější nastavení</translation>
     </message>
     <message>
         <source>Check LaTeX Installation</source>
@@ -9615,7 +9684,7 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     </message>
     <message>
         <source>Normal Mode (current master document: </source>
-        <translation>Obvyklý režim (nynější hlavní dokument: </translation>
+        <translation type="obsolete">Obvyklý režim (nynější hlavní dokument: </translation>
     </message>
     <message>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
@@ -9669,7 +9738,7 @@ V opačném případě by se mohly objevit náhodné chyby a pády.</translation
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation>Zdvojit řádek</translation>
+        <translation type="obsolete">Zdvojit řádek</translation>
     </message>
     <message>
         <source>Go Back</source>
@@ -10166,6 +10235,26 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
         <translation>TeXstudio bylo pozastaveno kvůli možné nekonečné smyčce.
 
 %1Chcete program nechat běžet? To může způsobit poškození dat.</translation>
+    </message>
+    <message>
+        <source>&amp;Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select All &amp;Occurences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand Selection to Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expand Selection to Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find Usages</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
