@@ -3554,9 +3554,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
      dlh->unlock();
      /* Test for GCC > 4..0 */
-#if GCC_VERSION >= 40500
+//#if GCC_VERSION >= 40500
+#if QT_VERSION < 0x050500
      bool remainderChanged=(stack!=oldRemainder);
 #else
+     // work-around for qt5.5 bug
      bool remainderChanged=true;
      if(stack.size()==oldRemainder.size()){
          remainderChanged=false;
