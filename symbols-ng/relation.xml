@@ -167,6 +167,14 @@
    <mathMode>true</mathMode>
 </commandDefinition>
 
+<commandDefinition>
+   <latexCommand>\nsim</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
 <!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
 <!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
