@@ -1594,12 +1594,17 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
 			QString cmd=confDlg->ui.twCustomSyntax->item(i,0)->text();
 			if(!cmd.isEmpty())
 				latexParser.customCommands.insert(cmd);
-		}
-        // GUI scaling
-        guiToolbarIconSize=confDlg->ui.horizontalSliderIcon->value();
-        guiSecondaryToolbarIconSize=confDlg->ui.horizontalSliderCentraIcon->value();
-        guiSymbolGridIconSize=confDlg->ui.horizontalSliderSymbol->value();
-		
+		}		
+		// GUI scaling
+		guiToolbarIconSize=confDlg->ui.horizontalSliderIcon->value();
+		guiSecondaryToolbarIconSize=confDlg->ui.horizontalSliderCentraIcon->value();
+		guiSymbolGridIconSize=confDlg->ui.horizontalSliderSymbol->value();
+	} else {
+		// GUI scaling
+		confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
+		confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
+		confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+
 	}
 	delete confDlg;
 	return executed;
