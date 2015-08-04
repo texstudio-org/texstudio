@@ -2629,7 +2629,7 @@ Tokens::TokenType Tokens::closed(TokenType type){
 
 }
 
-bool Tokens::operator ==(const Tokens &v){
+bool Tokens::operator ==(const Tokens &v) const{
     return (this->dlh==v.dlh)&&(this->length==v.length)&&(this->level==v.level)&&(this->type==v.type);
 }
 QString Tokens::getText(){
@@ -2772,7 +2772,7 @@ CommandDescription extractCommandDef(QString line){
 }
 
 
-CommandDescription::CommandDescription():optionalArgs(0),args(0),level(0),bracketArgs(0)
+CommandDescription::CommandDescription():optionalArgs(0),bracketArgs(0),args(0),level(0)
 {
 
 }
@@ -3553,24 +3553,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
      }
      dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
      dlh->unlock();
-     /* Test for GCC > 4..0 */
-//#if GCC_VERSION >= 40500
-#if QT_VERSION < 0x050500
+
      bool remainderChanged=(stack!=oldRemainder);
-#else
-     // work-around for qt5.5 bug
-     bool remainderChanged=true;
-     if(stack.size()==oldRemainder.size()){
-         remainderChanged=false;
-         for(int i=0;i<stack.size();i++){
-            remainderChanged=true;
-            if(stack[i].start==oldRemainder[i].start && stack[i].length==oldRemainder[i].length && stack[i].type==oldRemainder[i].type)
-                remainderChanged=false;
-            else
-                break;
-         }
-     }
-#endif
+
      return remainderChanged;
 }
 

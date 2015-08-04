@@ -72,7 +72,7 @@ public:
     static QSet<TokenType> tkSingleArg();
     static TokenType opposite(TokenType type);
     static TokenType closed(TokenType type);
-    bool operator==(const Tokens &v);
+    bool operator==(const Tokens &v) const;
     QString getText();
 };
 
