@@ -49,7 +49,6 @@ HEADERS += texmaker.h \
     logeditor.h \
     loghighlighter.h \
     smallUsefulFunctions.h \
-    structdialog.h \
     encodingdialog.h \
     filechooser.h \
     tabbingdialog.h \
@@ -158,7 +157,6 @@ SOURCES += main.cpp \
     logeditor.cpp \
     loghighlighter.cpp \
     smallUsefulFunctions.cpp \
-    structdialog.cpp \
     filechooser.cpp \
     tabbingdialog.cpp \
     arraydialog.cpp \
@@ -248,8 +246,7 @@ RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
     images.qrc
-FORMS += structdialog.ui \
-    filechooser.ui \
+FORMS += filechooser.ui \
     insertgraphics.ui \
     tabbingdialog.ui \
     arraydialog.ui \
