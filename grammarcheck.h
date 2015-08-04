@@ -59,6 +59,7 @@ signals:
 public slots:
 	void init(const LatexParser& lp, const GrammarCheckerConfig& config);
 	void check(const QString& language, const void* doc, const QList<LineInfo>& lines, int firstLineNr);
+	void shutdown();
 private slots:
 	void processLoop();
 	void process(int reqId);
@@ -71,6 +72,7 @@ private:
 
 	uint ticket;
 	bool pendingProcessing;
+	bool shuttingDown;
 	TicketHash tickets;
 	QList<CheckRequest> requests;
 	QSet<QString> floatingEnvs;
@@ -84,6 +86,7 @@ public:
 	virtual void init(const GrammarCheckerConfig& config) = 0;
 	virtual bool isAvailable() = 0;
 	virtual void check(uint ticket, int subticket, const QString& language, const QString& text) = 0;
+	virtual void shutdown() = 0;
 signals:
 	void checked(uint ticket, int subticket, const QList<GrammarError>& errors);
 };
@@ -98,17 +101,19 @@ public:
 	virtual void init(const GrammarCheckerConfig& config);
 	virtual bool isAvailable();
 	virtual void check(uint ticket, int subticket, const QString& language, const QString& text);
+	virtual void shutdown();
 private slots:
 	void finished(QNetworkReply* reply);
 private:
 	QNetworkAccessManager *nam;
 	QUrl server;
 	
-	int connectionAvailability; //-1: broken, 0: don't know, 1: worked at least once
+	int connectionAvailability; //-2: terminated -1: broken, 0: don't know, 1: worked at least once
 	
 	bool triedToStart;
 	bool firstRequest; 
-	
+	QPointer<QProcess> javaProcess;
+
 	QString ltPath, javaPath;
 	QSet<QString> ignoredRules;
 	QList<QSet<QString> >  specialRules;

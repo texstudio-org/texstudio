@@ -7,7 +7,7 @@ GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error
 GrammarError::GrammarError(int offset, int length, const GrammarError& other):offset(offset),length(length),error(other.error),message(other.message),corrections(other.corrections){}
 
 GrammarCheck::GrammarCheck(QObject *parent) :
-	QObject(parent), backend(0), ticket(0), pendingProcessing(false)
+	QObject(parent), backend(0), ticket(0), pendingProcessing(false), shuttingDown(false)
 {
 	latexParser = new LatexParser();
 }
@@ -66,7 +66,7 @@ struct CheckRequest{
 };
 
 void GrammarCheck::check(const QString& language, const void * doc, const QList<LineInfo>& inlines, int firstLineNr){
-	if (inlines.isEmpty()) return;
+	if (shuttingDown || inlines.isEmpty()) return;
 	
 	ticket++;
 	for (int i=0;i<inlines.size();i++){
@@ -92,7 +92,14 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	}
 }
 
+void GrammarCheck::shutdown(){
+	if (backend) backend->shutdown();
+	shuttingDown = true;
+	deleteLater();
+}
+
 void GrammarCheck::processLoop() {
+	if (shuttingDown) return;
 	for (int i=requests.size()-1;i>=0;i--)
 		if (requests[i].pending) {
 			requests[i].pending = false;
@@ -260,6 +267,7 @@ void GrammarCheck::process(int reqId){
 }
 	
 void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<GrammarError>& backendErrors, bool directCall){
+	if (shuttingDown) return;
 	int reqId = -1;
 	for (int i=requests.size()-1;i>=0;i--)
 		if (requests[i].ticket == crticket) reqId = i;
@@ -502,13 +510,13 @@ void GrammarCheckLanguageToolSOAP::tryToStart(){
 	triedToStart = true;
 	startTime = 0;
 	if (ltPath == "" || !QFileInfo(ltPath).exists()) return;
-	QProcess *p = new QProcess();
-	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
-	connect(this, SIGNAL(destroyed()), p, SLOT(deleteLater()));
+	javaProcess = new QProcess();
+	connect(javaProcess, SIGNAL(finished(int)), javaProcess, SLOT(deleteLater()));
+	connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-	p->start(quoteSpaces(javaPath) + " -cp "+quoteSpaces(ltPath)+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
+	javaProcess->start(quoteSpaces(javaPath) + " -cp "+quoteSpaces(ltPath)+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
 	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
-	p->waitForStarted();
+	javaProcess->waitForStarted();
 	
 	connectionAvailability = 0;
 	startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
@@ -550,7 +558,18 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 	
 }
 
+void GrammarCheckLanguageToolSOAP::shutdown()
+{
+	if (javaProcess) {
+		javaProcess->terminate();
+		javaProcess->deleteLater();
+	}
+	connectionAvailability = -2;
+}
+
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
+	if (connectionAvailability == -2) return; //shutting down
+
 	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
 	int subticket = nreply->request().attribute(AttributeSubTicket).toInt();
 	QString text = nreply->request().attribute(AttributeText).toString();
@@ -568,11 +587,12 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 			return; //confirmed: no backend
 		}
 		//there might be a backend now, but we still don't have the results
-		firstRequest = true;
+		firstRequest = true; //send this request directly, queue later ones
 		check(ticket, subticket, nreply->request().attribute(AttributeLanguage).toString(), text);
 		nreply->deleteLater();		
 		return;
 	}
+
 
 	connectionAvailability = 1;
 				
