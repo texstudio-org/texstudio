@@ -23,7 +23,6 @@
 #include "debughelper.h"
 
 #include "dblclickmenubar.h"
-#include "structdialog.h"
 #include "filechooser.h"
 #include "tabdialog.h"
 #include "arraydialog.h"
@@ -4611,28 +4610,6 @@ void Texmaker::InsertBib() {
 	outputView->setMessage(QString("The argument to \\bibliography refers to the bib file (without extension)\n")+
 												 "which should contain your database in BibTeX format.\n"+
 												 "TeXstudio inserts automatically the base name of the TeX file");
-}
-
-void Texmaker::InsertStruct() {
-	QString actData, tag;
-	if (!currentEditorView())	return;
-	//currentEditorView()->editor->viewport()->setFocus();
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (action) {
-		actData=action->data().toString();
-		StructDialog *stDlg = new StructDialog(this,actData);
-		if (stDlg->exec()) {
-			if (stDlg->ui.checkBox->isChecked()) {
-				tag=actData+"{";
-			} else {
-				tag=actData+"*{";
-			}
-			tag +=stDlg->ui.TitlelineEdit->text();
-			tag +=QString("}\n");
-			InsertTag(tag,0,1);
-			//updateStructure(); automatically done
-		}
-	}
 }
 
 void Texmaker::QuickTabular() {
