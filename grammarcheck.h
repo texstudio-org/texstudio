@@ -121,6 +121,8 @@ private:
 	void tryToStart();
 	
 	QList<CheckRequestBackend> delayedRequests;
+
+	QSet<QString> languagesCodesFail;
 	
 };
 
