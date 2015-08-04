@@ -354,25 +354,25 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
 
 Texmaker::~Texmaker(){
 
-    IconCache.clear();
+	IconCache.clear();
 	QDocument::setDefaultFormatScheme(m_formatsOldDefault); //prevents crash when deleted latexeditorview accesses the default format scheme, as m_format is going to be deleted
 
 	programStopped = true;
 
-    Guardian::shutdown();
+	Guardian::shutdown();
 	
 	delete MapForSymbols;
-    delete findDlg;
+	delete findDlg;
 
 	if(latexStyleParser){
 		latexStyleParser->stop();
 		latexStyleParser->wait();
 	}
 	if(packageListReader){
-        packageListReader->stop();
+		packageListReader->stop();
 		packageListReader->wait();
-    }
-	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "deleteLater", Qt::BlockingQueuedConnection);
+	}
+	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "shutdown", Qt::BlockingQueuedConnection);
 	grammarCheckThread.quit();
 	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
 }
