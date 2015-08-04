@@ -81,8 +81,7 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	//qDebug()<<"CHECK:"<<inlines.first().text;
 	
 	QString lang = language;
-	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));		
-	if (lang.contains('-')) lang = lang.left(lang.indexOf('-'));		
+	lang.replace('_', '-');
 	requests << CheckRequest(lang,doc,inlines,firstLineNr,ticket);
 
 	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
@@ -530,10 +529,14 @@ const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribut
 void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString& language, const QString& text){
 	REQUIRE(nam);
 		
+	QString lang = language;
+	if (languagesCodesFail.contains(lang) && lang.contains('-'))
+		lang = lang.left(lang.indexOf('-'));
+
 	if (connectionAvailability == 0) {
 		if (firstRequest) firstRequest = false;
 		else {
-			delayedRequests << CheckRequestBackend(ticket, subticket, language, text);
+			delayedRequests << CheckRequestBackend(ticket, subticket, lang, text);
 			return;
 		}
 	}
@@ -542,14 +545,14 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 	req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=UTF-8");
 	QByteArray post;
 	post.reserve(text.length()+50);
-	post.append("language="+language+"&text=");
+	post.append("language="+lang+"&text=");
 	post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
 	post.append("\n");
 	
 	//qDebug() << text;
 
 	req.setAttribute(AttributeTicket, ticket);
-	req.setAttribute(AttributeLanguage, language);
+	req.setAttribute(AttributeLanguage, lang);
 	req.setAttribute(AttributeText, text);
 	req.setAttribute(AttributeSubTicket, subticket);
 
@@ -593,6 +596,14 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 		return;
 	}
 
+	if (status == 500 && reply.contains("language code") && reply.contains("IllegalArgumentException")) {
+		QString lang = nreply->request().attribute(AttributeLanguage).toString();
+		if (lang.contains('-')) {
+			languagesCodesFail.insert(lang);
+			check(ticket, subticket, lang, text);
+		}
+		return;
+	}
 
 	connectionAvailability = 1;
 				
