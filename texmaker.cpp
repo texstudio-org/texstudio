@@ -364,16 +364,13 @@ Texmaker::~Texmaker(){
 	delete MapForSymbols;
 	delete findDlg;
 
-	if(latexStyleParser){
-		latexStyleParser->stop();
-		latexStyleParser->wait();
-	}
-	if(packageListReader){
-		packageListReader->stop();
-		packageListReader->wait();
-	}
+	if (latexStyleParser) latexStyleParser->stop();
+	if (packageListReader) packageListReader->stop();
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "shutdown", Qt::BlockingQueuedConnection);
 	grammarCheckThread.quit();
+
+	if (latexStyleParser) latexStyleParser->wait();
+	if (packageListReader) packageListReader->wait();
 	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
 }
 
