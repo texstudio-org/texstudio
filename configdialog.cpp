@@ -479,7 +479,12 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxVisualColumnMode->setEnabled(false);
 #endif
 
-    // poppler preview
+#if QT_VERSION >= 0x040603
+     ui.lineEditMetaFilter->setPlaceholderText(tr("(option filter)"));
+#endif
+     connect(ui.lineEditMetaFilter,SIGNAL(textChanged(QString)),SLOT(metaFilterChanged(QString)));
+
+     // poppler preview
 #ifdef NO_POPPLER_PREVIEW
     int l=ui.comboBoxDvi2PngMode->count();
     ui.comboBoxDvi2PngMode->removeItem(l-1);
@@ -659,10 +664,10 @@ void ConfigDialog::hideShowAdvancedOptions(QWidget* w, bool on){
 	foreach (QObject* o, w->children()){
 		QWidget* w = qobject_cast<QWidget*> (o);
 		if (!w) continue;
-		if (w->property("advancedOption").isValid() && w->property("advancedOption").toBool())
-			w->setVisible(on);
-        if (w->property("hideWidget").isValid() && w->property("hideWidget").toBool())
-            w->hide();
+		if (w->property("advancedOption").toBool()) {
+			bool realOn = on && !w->property("hideWidget").toBool();
+			w->setVisible(realOn);
+		}
         // special treatment for metacommads
         static QStringList simpleMetaOptions = QStringList() << "quick" << "compile" << "view" << "view-pdf" << "bibliography";
         if(simpleMetaOptions.contains(w->objectName())){
@@ -714,6 +719,7 @@ void ConfigDialog::advancedOptionsToggled(bool on){
 	for (int i=0;i<ui.contentsWidget->count();i++)
 		if (ui.contentsWidget->item(i)->data(Qt::UserRole).toBool())
 			ui.contentsWidget->item(i)->setHidden(!on);
+
 	if (currentPage && !currentPage->isHidden()) {
 		currentPage->setSelected(true);
 		ui.contentsWidget->setCurrentItem(currentPage); 
@@ -728,6 +734,92 @@ void ConfigDialog::advancedOptionsClicked(bool on){
 		else riddled = true;
 	}
 }
+
+bool ConfigDialog::metaFilterRecurseWidget(const QString& filter, QWidget* widget){
+	if (!widget) return false;
+	bool showThis = widget->property("text").toString().contains(filter, Qt::CaseInsensitive)
+				 || widget->property("toolTip").toString().contains(filter, Qt::CaseInsensitive)
+				 || widget->property("title").toString().contains(filter, Qt::CaseInsensitive);
+	if (!showThis) {
+		QComboBox * comboBoxCast;
+		if ((comboBoxCast = qobject_cast<QComboBox*>(widget))) {
+			for (int i=0;i<comboBoxCast->count() && !showThis;i++)
+				if (comboBoxCast->itemText(i).contains(filter, Qt::CaseInsensitive))
+					showThis = true;
+		}
+	}
+	//check type, some widgets have internal widgets that freeze when they become visible
+	if (qobject_cast<QGroupBox*>(widget)) showThis |= metaFilterRecurseLayout(filter, widget->layout());
+	else if (qobject_cast<QScrollArea*>(widget)) showThis |= metaFilterRecurseLayout(filter, (qobject_cast<QScrollArea*>(widget))->widget()->layout());
+	widget->setVisible(showThis);
+	return showThis;
+}
+
+bool ConfigDialog::metaFilterRecurseLayout(const QString& filter, QLayout* layout){
+	if (!layout) return false;
+	bool showThis = false;
+	QList<int> visibles;
+	for (int i=0;i<layout->count();i++) {
+		QLayoutItem * item = layout->itemAt(i);
+		bool show = metaFilterRecurseWidget(filter, item->widget());
+		show |= metaFilterRecurseLayout(filter, item->layout());
+		showThis |= show;
+
+		if (show && !filter.isEmpty()) visibles << i;
+	}
+	if (visibles.count() != layout->count()) {
+		// show related widgets in the same row
+		// check boxes are self-contained and have no relations
+		QGridLayout * grid = qobject_cast<QGridLayout*>(layout);
+		if (grid) {
+			foreach (int item, visibles) {
+				if (qobject_cast<QCheckBox*>(grid->itemAt(item)->widget())) continue;
+				int row, col, rowSpan, colSpan;
+				grid->getItemPosition(item, &row, &col, &rowSpan, &colSpan);
+				for (int c=0;c<grid->columnCount();c++) {
+					QLayoutItem * li = grid->itemAtPosition(row, c);
+					if (li && li->widget()) li->widget()->setVisible(true);
+				}
+			}
+			return showThis;
+		}
+		QHBoxLayout * hbox = qobject_cast<QHBoxLayout*>(layout);
+		if (hbox) {
+			for (int i=0;i<hbox->count();i++)
+				if (hbox->itemAt(i)->widget())
+					hbox->itemAt(i)->widget()->setVisible(true);
+			return showThis;
+		}
+	}
+	return showThis;
+}
+
+void ConfigDialog::metaFilterChanged(const QString& filter){
+	QListWidgetItem * currentPage = ui.contentsWidget->currentItem();
+
+	ui.checkBoxShowAdvancedOptions->setEnabled(filter.isEmpty());
+
+	for (int i=0;i<ui.pagesWidget->count();i++) {
+		bool shown = metaFilterRecurseLayout(filter, ui.pagesWidget->widget(i)->layout());
+		/*QWidget * page = ui.pagesWidget->widget(i);
+		foreach (QObject* o, page->children()){
+			QWidget* w = qobject_cast<QWidget*>(o);
+			if (w) shown |= metaFilterRecurse(filter,  w);
+		}*/
+		ui.contentsWidget->item(i)->setHidden(!shown);
+	}
+
+	if (currentPage && !currentPage->isHidden()) {
+		currentPage->setSelected(true);
+		ui.contentsWidget->setCurrentItem(currentPage);
+	} else for (int i=0;i<ui.contentsWidget->count();i++)
+		if (!ui.contentsWidget->item(i)->isHidden()){
+			ui.contentsWidget->setCurrentRow(i);
+			break;
+		}
+
+}
+
 
 void ConfigDialog::toolbarChanged(int toolbar){
 	if (toolbar < 0 || toolbar >= customizableToolbars.size()) return;
