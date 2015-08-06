@@ -14,118 +14,16 @@
    <string>Configure TeXstudio</string>
   </property>
   <layout class="QGridLayout">
-   <property name="leftMargin">
-    <number>9</number>
-   </property>
-   <property name="topMargin">
-    <number>9</number>
-   </property>
-   <property name="rightMargin">
-    <number>9</number>
-   </property>
-   <property name="bottomMargin">
-    <number>9</number>
-   </property>
    <property name="horizontalSpacing">
     <number>18</number>
    </property>
    <property name="verticalSpacing">
     <number>6</number>
    </property>
-   <item row="2" column="0">
-    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-     <property name="text">
-      <string>Show Advanced Options</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" rowspan="2">
-    <widget class="QListWidget" name="contentsWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>200</width>
-       <height>410</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>170</width>
-       <height>32000</height>
-      </size>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="currentRow">
-      <number>-1</number>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="5">
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>407</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
-        <string>OK</string>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="0" column="1" rowspan="2" colspan="5">
+   <property name="margin">
+    <number>9</number>
+   </property>
+   <item row="0" column="1" rowspan="3" colspan="5">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
@@ -140,23 +38,14 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>11</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -172,8 +61,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>699</height>
+            <width>603</width>
+            <height>710</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -663,16 +552,7 @@
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -748,16 +628,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
        <property name="spacing">
         <number>6</number>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -905,8 +776,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>191</width>
-               <height>76</height>
+               <width>858</width>
+               <height>103</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1041,16 +912,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
      </widget>
      <widget class="QWidget" name="pageShortcuts">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -1111,16 +973,7 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageLatexMenus">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -1169,16 +1022,7 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageToolbars">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -1419,16 +1263,7 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageEditor">
       <layout class="QGridLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <property name="spacing">
@@ -1791,16 +1626,7 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageAdvEditor">
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -1816,8 +1642,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>833</width>
-            <height>1463</height>
+            <width>895</width>
+            <height>1456</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2545,16 +2371,7 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageSyntaxHighlighting">
       <layout class="QVBoxLayout" name="verticalLayout_7">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -2586,16 +2403,7 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageCustomHighlighting">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -2704,16 +2512,7 @@ Then you can select a new shortcut by one of the following ways:
      </widget>
      <widget class="QWidget" name="pageCompletion">
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -2739,6 +2538,9 @@ Then you can select a new shortcut by one of the following ways:
             </property>
             <property name="hideWidget" stdset="0">
              <bool>true</bool>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -3004,16 +2806,7 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageGrammar">
       <layout class="QVBoxLayout" name="verticalLayout_6">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -3370,16 +3163,7 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pagePreview">
       <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -3395,8 +3179,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>866</width>
-            <height>667</height>
+            <width>865</width>
+            <height>679</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3910,16 +3694,7 @@ them here.</string>
      </widget>
      <widget class="QWidget" name="pageSVN">
       <layout class="QVBoxLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -3984,10 +3759,106 @@ them here.</string>
      </widget>
     </widget>
    </item>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+     <property name="text">
+      <string>Show Advanced Options</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="5">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QListWidget" name="contentsWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>410</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>170</width>
+       <height>32000</height>
+      </size>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="lineEditMetaFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>contentsWidget</tabstop>
   <tabstop>scrollArea</tabstop>
   <tabstop>comboBoxInterfaceStyle</tabstop>
   <tabstop>comboBoxInterfaceModernStyle</tabstop>
@@ -4099,8 +3970,8 @@ them here.</string>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1024</x>
-     <y>659</y>
+     <x>1019</x>
+     <y>660</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
@@ -4135,8 +4006,8 @@ them here.</string>
      <y>88</y>
     </hint>
     <hint type="destinationlabel">
-     <x>408</x>
-     <y>115</y>
+     <x>404</x>
+     <y>116</y>
     </hint>
    </hints>
   </connection>
@@ -4147,12 +4018,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>409</x>
-     <y>287</y>
+     <x>248</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
-     <x>558</x>
-     <y>294</y>
+     <x>267</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>
@@ -4163,12 +4034,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>409</x>
-     <y>287</y>
+     <x>248</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
-     <x>823</x>
-     <y>294</y>
+     <x>282</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>
@@ -4179,12 +4050,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>409</x>
-     <y>287</y>
+     <x>248</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
-     <x>956</x>
-     <y>294</y>
+     <x>289</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>
@@ -4195,12 +4066,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>409</x>
-     <y>287</y>
+     <x>248</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1088</x>
-     <y>294</y>
+     <x>297</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>
@@ -4211,12 +4082,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>871</x>
-     <y>496</y>
+     <x>1101</x>
+     <y>1313</y>
     </hint>
     <hint type="destinationlabel">
-     <x>657</x>
-     <y>530</y>
+     <x>909</x>
+     <y>1368</y>
     </hint>
    </hints>
   </connection>
@@ -4227,12 +4098,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>989</x>
-     <y>496</y>
+     <x>1101</x>
+     <y>1313</y>
     </hint>
     <hint type="destinationlabel">
-     <x>657</x>
-     <y>556</y>
+     <x>909</x>
+     <y>1341</y>
     </hint>
    </hints>
   </connection>
@@ -4243,12 +4114,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1011</x>
-     <y>496</y>
+     <x>1101</x>
+     <y>1313</y>
     </hint>
     <hint type="destinationlabel">
-     <x>657</x>
-     <y>582</y>
+     <x>909</x>
+     <y>1395</y>
     </hint>
    </hints>
   </connection>
@@ -4259,12 +4130,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1036</x>
-     <y>496</y>
+     <x>1101</x>
+     <y>1313</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1072</x>
-     <y>616</y>
+     <x>1100</x>
+     <y>1422</y>
     </hint>
    </hints>
   </connection>
@@ -4275,12 +4146,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>409</x>
-     <y>287</y>
+     <x>248</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
-     <x>691</x>
-     <y>294</y>
+     <x>274</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>
@@ -4291,12 +4162,12 @@ them here.</string>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>437</x>
-     <y>568</y>
+     <x>438</x>
+     <y>614</y>
     </hint>
     <hint type="destinationlabel">
-     <x>514</x>
-     <y>567</y>
+     <x>522</x>
+     <y>612</y>
     </hint>
    </hints>
   </connection>
@@ -4307,12 +4178,12 @@ them here.</string>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>653</x>
-     <y>504</y>
+     <x>889</x>
+     <y>1313</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>598</y>
+     <x>341</x>
+     <y>1422</y>
     </hint>
    </hints>
   </connection>
