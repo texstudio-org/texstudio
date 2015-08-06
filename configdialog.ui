@@ -38,7 +38,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>11</number>
+      <number>9</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -985,6 +985,9 @@ Then you can select a new shortcut by one of the following ways:
        </item>
        <item>
         <widget class="QTreeWidget" name="latexTree">
+         <property name="toolTip">
+          <string>Here the menu items are listed and can be hidden or edited.</string>
+         </property>
          <property name="animated">
           <bool>true</bool>
          </property>
@@ -1013,6 +1016,9 @@ Then you can select a new shortcut by one of the following ways:
        </item>
        <item>
         <widget class="QCheckBox" name="checkBoxShowAllMenus">
+         <property name="toolTip">
+          <string>This controls if the list above shows all menu items or only commonly changed ones.</string>
+         </property>
          <property name="text">
           <string>Show All</string>
          </property>
@@ -1036,6 +1042,9 @@ Then you can select a new shortcut by one of the following ways:
         <layout class="QGridLayout" name="_2">
          <item row="1" column="1">
           <widget class="QListWidget" name="listCustomToolBar">
+           <property name="toolTip">
+            <string>This shows all actions on the currently edited toolbar.</string>
+           </property>
            <property name="movement">
             <enum>QListView::Free</enum>
            </property>
@@ -1058,6 +1067,9 @@ Then you can select a new shortcut by one of the following ways:
            </item>
            <item>
             <widget class="QPushButton" name="pbToToolbar">
+             <property name="toolTip">
+              <string>This adds an action to the toolbar.</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -1069,6 +1081,9 @@ Then you can select a new shortcut by one of the following ways:
            </item>
            <item>
             <widget class="QPushButton" name="pbFromToolbar">
+             <property name="toolTip">
+              <string>This removes an action from the toolbar.</string>
+             </property>
              <property name="text">
               <string notr="true"/>
              </property>
@@ -1094,13 +1109,24 @@ Then you can select a new shortcut by one of the following ways:
           </layout>
          </item>
          <item row="0" column="1">
-          <widget class="QComboBox" name="comboBoxToolbars"/>
+          <widget class="QComboBox" name="comboBoxToolbars">
+           <property name="toolTip">
+            <string>Here you can choose a toolbar to modify.</string>
+           </property>
+          </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QComboBox" name="comboBoxActions"/>
+          <widget class="QComboBox" name="comboBoxActions">
+           <property name="toolTip">
+            <string>Here you can choose a list of commands that can be mapped to the toolbar.</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="3">
           <widget class="QTreeWidget" name="treePossibleToolbarActions">
+           <property name="toolTip">
+            <string>This shows available actions to map on a toolbar.</string>
+           </property>
            <property name="rootIsDecorated">
             <bool>false</bool>
            </property>
@@ -1176,6 +1202,9 @@ Then you can select a new shortcut by one of the following ways:
           </item>
           <item row="0" column="1" colspan="2">
            <widget class="QSlider" name="horizontalSliderIcon">
+            <property name="toolTip">
+             <string>This changes the scaling of the horizontal toolbars (for high resolution displays).</string>
+            </property>
             <property name="minimum">
              <number>16</number>
             </property>
@@ -1198,6 +1227,9 @@ Then you can select a new shortcut by one of the following ways:
           </item>
           <item row="4" column="1" colspan="2">
            <widget class="QSlider" name="horizontalSliderSymbol">
+            <property name="toolTip">
+             <string>This changes the scaling of the symbol grid (for high resolution displays).</string>
+            </property>
             <property name="minimum">
              <number>16</number>
             </property>
@@ -1239,6 +1271,9 @@ Then you can select a new shortcut by one of the following ways:
           </item>
           <item row="1" column="1" colspan="2">
            <widget class="QSlider" name="horizontalSliderCentraIcon">
+            <property name="toolTip">
+             <string>This changes the scaling of the vertical toolbars (for high resolution displays).</string>
+            </property>
             <property name="minimum">
              <number>8</number>
             </property>
@@ -1642,7 +1677,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>893</width>
+            <width>895</width>
             <height>1456</height>
            </rect>
           </property>
@@ -2408,6 +2443,9 @@ Then you can select a new shortcut by one of the following ways:
        </property>
        <item>
         <widget class="QTableWidget" name="twHighlighEnvirons">
+         <property name="toolTip">
+          <string>Here the highlighting of custom environments can be changed.</string>
+         </property>
          <property name="rowCount">
           <number>1</number>
          </property>
@@ -2434,6 +2472,9 @@ Then you can select a new shortcut by one of the following ways:
         <layout class="QHBoxLayout">
          <item>
           <widget class="QPushButton" name="pbAddLine">
+           <property name="toolTip">
+            <string>Here you can add another environmnt for custom highlighting.</string>
+           </property>
            <property name="text">
             <string>Add Line</string>
            </property>
@@ -2533,11 +2574,11 @@ Then you can select a new shortcut by one of the following ways:
           </item>
           <item row="1" column="0">
            <widget class="QCheckBox" name="checkBoxCaseSensitive">
-            <property name="text">
-             <string>Case Sensitive</string>
-            </property>
             <property name="visible">
              <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Case Sensitive</string>
             </property>
             <property name="hideWidget" stdset="0">
              <bool>true</bool>
@@ -2825,8 +2866,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>371</width>
+            <height>560</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
