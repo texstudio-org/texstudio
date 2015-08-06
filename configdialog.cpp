@@ -751,7 +751,8 @@ bool ConfigDialog::metaFilterRecurseWidget(const QString& filter, QWidget* widge
 	//check type, some widgets have internal widgets that freeze when they become visible
 	if (qobject_cast<QGroupBox*>(widget)) showThis |= metaFilterRecurseLayout(filter, widget->layout());
 	else if (qobject_cast<QScrollArea*>(widget)) showThis |= metaFilterRecurseLayout(filter, (qobject_cast<QScrollArea*>(widget))->widget()->layout());
-	widget->setVisible(showThis);
+	if (!widget->property("hideWidget").toBool())
+		widget->setVisible(showThis);
 	return showThis;
 }
 
@@ -785,9 +786,11 @@ bool ConfigDialog::metaFilterRecurseLayout(const QString& filter, QLayout* layou
 		}
 		QHBoxLayout * hbox = qobject_cast<QHBoxLayout*>(layout);
 		if (hbox) {
-			for (int i=0;i<hbox->count();i++)
-				if (hbox->itemAt(i)->widget())
-					hbox->itemAt(i)->widget()->setVisible(true);
+			for (int i=0;i<hbox->count();i++) {
+				QWidget* w = hbox->itemAt(i)->widget();
+				if (w)
+					w->setVisible(!w->property("hideWidget").toBool());
+			}
 			return showThis;
 		}
 	}
@@ -817,7 +820,7 @@ void ConfigDialog::metaFilterChanged(const QString& filter){
 			ui.contentsWidget->setCurrentRow(i);
 			break;
 		}
-
+	if (filter.isEmpty()) advancedOptionsToggled(ui.checkBoxShowAdvancedOptions->isChecked());
 }
 
 
