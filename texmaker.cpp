@@ -1747,7 +1747,9 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
         documents.addDocument(edit->document,hidden);
 	} else edit->document->setEditorView(edit);
 
-	if (edit->editor->fileInfo().suffix()!="tex")
+	if (configManager.recentFileHighlightLanguage.contains(f_real))
+		m_languages->setLanguage(edit->editor, configManager.recentFileHighlightLanguage.value(f_real));
+	else if (edit->editor->fileInfo().suffix()!="tex")
 		m_languages->setLanguage(edit->editor, f_real);
 	
 	//QTime time;
@@ -6408,6 +6410,14 @@ void Texmaker::viewSetHighlighting(QAction *act) {
 	if (!currentEditor()) return;
 	currentEditorView()->clearOverlays();
 	m_languages->setLanguageFromName(currentEditor(), act->data().toString());
+	configManager.recentFileHighlightLanguage.insert(getCurrentFileName(), act->data().toString());
+	if (configManager.recentFileHighlightLanguage.size() > configManager.recentFilesList.size()) {
+		QMap<QString, QString> recentFileHighlightLanguageNew;
+		foreach (QString fn, configManager.recentFilesList)
+			if (configManager.recentFileHighlightLanguage.contains(fn))
+				recentFileHighlightLanguageNew.insert(fn, configManager.recentFileHighlightLanguage.value(fn));
+		configManager.recentFileHighlightLanguage = recentFileHighlightLanguageNew;
+	}
 	// TODO: Check if reCheckSyntax is really necessary. Setting the language emits (among others) contentsChange(0, lines)
     currentEditorView()->document->reCheckSyntax();
 }

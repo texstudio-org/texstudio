@@ -388,6 +388,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Recent Project Files", &recentProjectList);
 	registerOption("Files/Recent Session Files", &recentSessionList);
 	registerOption("Files/Remember File Filter", &rememberFileFilter, true, &pseudoDialog->checkBoxRememberFileFilter);
+	registerOption("Files/Recent Files Highlighting", &recentFileHighlightLanguage);
 	registerOption("Files/RestoreSession", &sessionRestore);
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
