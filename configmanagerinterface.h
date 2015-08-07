@@ -2,7 +2,9 @@
 #define CONFIGMANAGERINTERFACE_H
 
 
-#define PROPERTY_TYPE_FOREACH_MACRO(M) \
+typedef QMap<QString, QString> StringStringMap;
+
+#define PROPERTY_TYPE_FOREACH_MACRO_SIMPLE(M) \
 	M(QVariant, PT_VARIANT) \
 	M(int, PT_INT) \
 	M(bool, PT_BOOL) \
@@ -12,8 +14,12 @@
 	M(float, PT_FLOAT) \
 	M(double, PT_DOUBLE) \
 	M(QByteArray, PT_BYTEARRAY) \
-	M(QList<QVariant>, PT_LIST) 
-	
+	M(QList<QVariant>, PT_LIST)
+
+#define PROPERTY_TYPE_FOREACH_MACRO_COMPLEX(M) \
+	M(StringStringMap, PT_MAP_STRING_STRING)
+
+#define PROPERTY_TYPE_FOREACH_MACRO(M) PROPERTY_TYPE_FOREACH_MACRO_SIMPLE(M) PROPERTY_TYPE_FOREACH_MACRO_COMPLEX(M)
 
 #define ENUMERATE_ID(dummy, ID) , ID
 enum PropertyType {PT_VOID = 0 PROPERTY_TYPE_FOREACH_MACRO(ENUMERATE_ID) };
@@ -43,7 +49,7 @@ struct ManagedProperty{
 	ManagedProperty();
 #define CONSTRUCTOR(TYPE, dummy) \
 	ManagedProperty(TYPE* storage, QVariant def = QVariant(), ptrdiff_t widgetOffset = 0); \
-	static ManagedProperty fromValue(TYPE value);  
+	static ManagedProperty fromValue(TYPE value);
 PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
 #undef CONSTRUCTOR
 

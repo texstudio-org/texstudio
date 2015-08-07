@@ -38,15 +38,16 @@ ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
 	: storage(storage), type(ID), def(def), widgetOffset(widgetOffset){} \
 	ManagedProperty ManagedProperty::fromValue(TYPE value) { \
 		ManagedProperty res;    \
-		res.storage = new TYPE; \
+			res.storage = new TYPE; \
 		*((TYPE*)(res.storage)) = value; \
-		res.type = ID;          \
-		res.def = value;        \
-		res.widgetOffset = 0;   \
-		return res;             \
-	}                              
+		res.type = ID;                   \
+		res.def = res.valueToQVariant(); \
+		res.widgetOffset = 0;            \
+		return res;                      \
+	}
 PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
 #undef CONSTRUCTOR
+
 
 
 void ManagedProperty::deallocate(){ 
@@ -67,7 +68,8 @@ ConfigManagerInterface* ConfigManagerInterface::getInstance(){
 }
 
 
-Q_DECLARE_METATYPE(ManagedProperty*);
+Q_DECLARE_METATYPE(ManagedProperty*)
+Q_DECLARE_METATYPE(StringStringMap)
 
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
 
@@ -76,7 +78,10 @@ QVariant ManagedProperty::valueToQVariant() const{
 	if (!storage) return QVariant();
 	switch (type){
 #define CONVERT(TYPE, ID) case ID: return *((TYPE*)storage);
-PROPERTY_TYPE_FOREACH_MACRO(CONVERT)
+PROPERTY_TYPE_FOREACH_MACRO_SIMPLE(CONVERT)
+#undef CONVERT
+#define CONVERT(TYPE, ID) case ID: return QVariant::fromValue<TYPE>(*((TYPE*)storage));
+PROPERTY_TYPE_FOREACH_MACRO_COMPLEX(CONVERT)
 #undef CONVERT
 	default:
 		Q_ASSERT(false);
@@ -97,6 +102,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 	case PT_DOUBLE: *((double*)storage) = v.toDouble(); break;
 	case PT_BYTEARRAY: *((QByteArray*)storage) = v.toByteArray(); break;
 	case PT_LIST: *((QList<QVariant>*)storage) = v.toList(); break;
+	case PT_MAP_STRING_STRING: *((StringStringMap*)storage) = v.value<StringStringMap>(); break;
 	default:
 		Q_ASSERT(false);
 	}
@@ -334,6 +340,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	Q_ASSERT(!globalConfigManager);
 	globalConfigManager = this;
+
+	qRegisterMetaTypeStreamOperators<StringStringMap>();
 	
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
