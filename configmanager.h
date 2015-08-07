@@ -146,6 +146,7 @@ public:
 	//files
 	QString lastDocument; //last opened document, for file open directory
 	QStringList recentFilesList, recentProjectList, recentSessionList;
+	QMap<QString, QString> recentFileHighlightLanguage;
 	int maxRecentFiles, maxRecentProjects, maxRecentSessions;
 	bool rememberFileFilter;
 	bool sessionRestore;
