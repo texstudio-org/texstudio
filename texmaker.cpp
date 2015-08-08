@@ -4107,20 +4107,10 @@ void Texmaker::editRemoveCurrentPlaceHolder() {
 //////////TAGS////////////////
 void Texmaker::NormalCompletion() {
 	if (!currentEditorView())	return;
-    //LatexEditorView *view=currentEditorView();
-	// complete text if no command is present
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-    //QString eow=getCommonEOW();
-	int i=0;
-	int col=c.columnNumber();
-	QString word=c.line().text();
-    QDocumentLineHandle *dlh=c.line().handle();
-    /*while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
-		c.movePosition(1,QDocumentCursor::PreviousCharacter);
-		i++;
-    }*/
 	
     QString command;
+    QDocumentCursor c = currentEditorView()->editor->cursor();
+    QDocumentLineHandle *dlh=c.line().handle();
     //LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
     TokenStack ts=getContext(dlh,c.columnNumber());
     Tokens tk;
@@ -4191,6 +4181,8 @@ void Texmaker::NormalCompletion() {
     case Tokens::keyVal_key:
     case Tokens::keyVal_val:
     {
+        QString word=c.line().text();
+        int col = c.columnNumber();
         command=getCommandFromToken(tk);
 
         completer->setWorkPath(command);
@@ -4258,39 +4250,8 @@ void Texmaker::NormalCompletion() {
         completer->setPackageList(&latexPackageList);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
         break;
-    default:
-		if (i>1) {
-			QString my_text=currentEditorView()->editor->text();
-			int end=0;
-			int k=0; // number of occurences of search word.
-			word=word.mid(col-i,i);
-			//TODO: Boundary needs to specified more exactly
-			//TODO: type in text needs to be excluded, if not already present
-			QSet<QString> words;
-			while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
-				end=my_text.indexOf(QRegExp("\\b"),i+1);
-				if (end>i) {
-					if (word==my_text.mid(i,end-i)) {
-						k=k+1;
-						if (k==2) words << my_text.mid(i,end-i);
-					} else {
-						if (!words.contains(my_text.mid(i,end-i)))
-							words << my_text.mid(i,end-i);
-					}
-				} else {
-					if (word==my_text.mid(i,end-i)) {
-						k=k+1;
-						if (k==2) words << my_text.mid(i,end-i);
-					} else {
-						if (!words.contains(my_text.mid(i,end-i)))
-							words << my_text.mid(i,my_text.length()-i);
-					}
-				}
-			}
-			
-			completer->setAdditionalWords(words,CT_NORMALTEXT);
-			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
-		}
+
+	default: InsertTextCompletion();
 	}
 }
 void Texmaker::InsertEnvironmentCompletion() {
@@ -4319,45 +4280,47 @@ void Texmaker::InsertTextCompletion() {
 	if (!currentEditorView())    return;
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QString eow=getCommonEOW();
-	int i=0;
+
+	if (c.columnNumber() == 0 || eow.contains(c.previousChar()))
+		return;
+
 	int col=c.columnNumber();
-	QString word=c.line().text();
-	while (c.columnNumber()>0 && !eow.contains(c.previousChar())) {
-		c.movePosition(1,QDocumentCursor::PreviousCharacter);
-		i++;
-	}
-	if (i>1) {
-		QString my_text=currentEditorView()->editor->text();
-		int end=0;
-		int k=0; // number of occurences of search word.
-		word=word.mid(col-i,i);
-		//TODO: Boundary needs to specified more exactly
-		//TODO: type in text needs to be excluded, if not already present
-		QSet<QString> words;
-		while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
-			end=my_text.indexOf(QRegExp("\\b"),i+1);
-			if (end>i) {
-				if (word==my_text.mid(i,end-i)) {
-					k=k+1;
-					if (k==2) words << my_text.mid(i,end-i);
-				} else {
-					if (!words.contains(my_text.mid(i,end-i)))
-						words << my_text.mid(i,end-i);
-				}
+	QString line = c.line().text();
+	for (; col > 0 && !eow.contains(line[col-1]); col-- )
+		;
+
+	QString my_text=currentEditorView()->editor->text();
+	int end=0;
+	int k=0; // number of occurences of search word.
+	QString word=line.mid(col,c.columnNumber()-col);
+	//TODO: Boundary needs to specified more exactly
+	//TODO: type in text needs to be excluded, if not already present
+	//TODO: editor->text() is far too slow
+	QSet<QString> words;
+	int i;
+	while ((i=my_text.indexOf(QRegExp("\\b"+word),end))>0) {
+		end=my_text.indexOf(QRegExp("\\b"),i+1);
+		if (end>i) {
+			if (word==my_text.mid(i,end-i)) {
+				k=k+1;
+				if (k==2) words << my_text.mid(i,end-i);
 			} else {
-				if (word==my_text.mid(i,end-i)) {
-					k=k+1;
-					if (k==2) words << my_text.mid(i,end-i);
-				} else {
-					if (!words.contains(my_text.mid(i,end-i)))
-						words << my_text.mid(i,my_text.length()-i);
-				}
+				if (!words.contains(my_text.mid(i,end-i)))
+					words << my_text.mid(i,end-i);
+			}
+		} else {
+			if (word==my_text.mid(i,end-i)) {
+				k=k+1;
+				if (k==2) words << my_text.mid(i,end-i);
+			} else {
+				if (!words.contains(my_text.mid(i,end-i)))
+					words << my_text.mid(i,my_text.length()-i);
 			}
 		}
-		
-		completer->setAdditionalWords(words, CT_NORMALTEXT);
-		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 	}
+
+	completer->setAdditionalWords(words, CT_NORMALTEXT);
+	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 }
 
 void Texmaker::InsertTag(const QString &Entity, int dx, int dy) {
