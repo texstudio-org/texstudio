@@ -28,6 +28,7 @@ PDFRenderEngine::PDFRenderEngine(QObject *parent,PDFQueue *mQueue) :
 
 PDFRenderEngine::~PDFRenderEngine(){
 	wait();
+    queue->deref();
 }
 
 void PDFRenderEngine::setDocument(const QSharedPointer<Poppler::Document> &doc){
@@ -118,7 +119,7 @@ void PDFRenderEngine::run(){
 			//qDebug() << this << " Render page " << command.pageNr << " at " << command.ticket << priorityThread << "x/y" << command.x << command.y << " res "<<command.xres << ", " << command.w << command.h;
 		}
 	}
-	queue->deref();
+    //queue->deref();
 	deleteLater();
 }
 
