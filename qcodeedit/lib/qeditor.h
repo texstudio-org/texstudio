@@ -555,6 +555,8 @@ public slots:
 		virtual void cursorMoveOperation(QDocumentCursor &cursor, EditOperation op);
 		virtual void processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditOperation op);
 		
+		void selectCursorMirrorBlock(const QDocumentCursor& cursor, bool horizontalSelect);
+
 		virtual void startDrag();
 		virtual QMimeData* createMimeDataFromSelection() const;
 		
@@ -649,6 +651,7 @@ public slots:
 		QDocumentCursor m_cursor, m_doubleClick, m_dragAndDrop;
 		QDocumentCursor::SelectionType m_doubleClickSelectionType;
 		int m_cursorLinesFromViewTop;
+		int m_cursorMirrorBlockAnchor;
 		
 		QList<QDocumentCursor> m_mirrors;
 		
