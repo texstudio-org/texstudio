@@ -2904,7 +2904,8 @@ void QEditor::paintEvent(QPaintEvent *e)
 	ctx.width = viewport()->width();
 	ctx.height = qMin(r.height(), viewport()->height());
 	ctx.palette = palette();
-	ctx.cursors << m_cursor.handle();
+	if (m_cursor.isValid())
+		ctx.cursors << m_cursor.handle();
 	ctx.fillCursorRect = true;
 	ctx.blinkingCursor = flag(CursorOn);
 

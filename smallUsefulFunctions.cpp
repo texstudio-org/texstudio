@@ -2916,6 +2916,7 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 
 Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
 {
+    if (!dlh) return Tokens();
     TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
     Tokens tk;
     for(int i=0;i<tl.length();i++){
@@ -3566,6 +3567,7 @@ int getCompleterContext(QDocumentLineHandle *dlh,int column)
     if(!ts.isEmpty()){
         tk=ts.top();
         if(tk.type==Tokens::word && tk.subtype==Tokens::none && ts.size()>1){
+
             // set brace type
             ts.pop();
             tk=ts.top();
