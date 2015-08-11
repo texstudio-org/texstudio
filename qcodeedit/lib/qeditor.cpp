@@ -3442,36 +3442,7 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 
 		if ( e->modifiers() & Qt::ControlModifier )
 		{
-
-			// get column number for column selection
-			int org = m_cursor.anchorColumnNumber();
-			int dst = newCursor.columnNumber();
-			// TODO : adapt to line wrapping...
-
-			clearCursorMirrors();
-			//m_cursor.clearSelection();
-			int min = qMin(m_cursor.lineNumber(), newCursor.lineNumber());
-			int max = qMax(m_cursor.lineNumber(), newCursor.lineNumber());
-
-			if ( min != max )
-			{
-				for ( int l = min; l <= max; ++l )
-				{
-					if ( l != m_cursor.lineNumber() )
-						addCursorMirror(QDocumentCursor(m_doc, l, org));
-
-				}
-
-				if ( e->modifiers() & Qt::ShiftModifier )
-				{
-					m_cursor.setColumnNumber(dst, QDocumentCursor::KeepAnchor);
-
-					for ( int i = 0; i < m_mirrors.count(); ++i )
-						m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
-				}
-			} else {
-				m_cursor.setSelectionBoundary(newCursor);
-			}
+			selectCursorMirrorBlock(newCursor, e->modifiers() & Qt::ShiftModifier);
 		} else {
 			m_cursor.setSelectionBoundary(newCursor);
 		}
@@ -3537,36 +3508,34 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 				//m_mirrors << cursor;
 				if ( e->modifiers() & Qt::ShiftModifier )
 				{
-					// get column number for column selection
-					int org = m_cursor.anchorColumnNumber();
-					int dst = cursor.columnNumber();
-					// TODO : fix and adapt to line wrapping...
-
-					clearCursorMirrors();
-					//m_cursor.clearSelection();
-					int min = qMin(m_cursor.lineNumber(), cursor.lineNumber());
-					int max = qMax(m_cursor.lineNumber(), cursor.lineNumber());
-
-					if ( min != max )
+					selectCursorMirrorBlock(cursor, true);
+				} else if ( (e->modifiers() & Qt::AltModifier) )
+				{
+					//remove existing mirrors if one is at the same position
+					if ( m_cursor.isWithinSelection(cursor) || m_cursor.equal(cursor) )
 					{
-						for ( int l = min; l <= max; ++l )
+						m_cursor = QDocumentCursor();
+						if ( m_mirrors.size() )
 						{
-							if ( l != m_cursor.lineNumber() )
-								addCursorMirror(QDocumentCursor(m_doc, l, org));
-
-						}
-
-						if ( e->modifiers() & Qt::ShiftModifier )
-						{
-							m_cursor.setColumnNumber(dst, QDocumentCursor::KeepAnchor);
-
-							for ( int i = 0; i < m_mirrors.count(); ++i )
-								m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+							m_cursor = m_mirrors.takeFirst();
+							if (m_cursorMirrorBlockAnchor >= 0)
+								m_cursorMirrorBlockAnchor--;
+							break;
 						}
 					} else {
-						m_cursor.setSelectionBoundary(cursor);
+						bool removedExisting = false;
+						for ( int i = 0; i < m_mirrors.size(); i++ )
+							if ( m_mirrors[i].isWithinSelection(cursor) || m_mirrors[i].equal(cursor) )
+							{
+								m_mirrors.removeAt(i);
+								removedExisting = true;
+								if (m_cursorMirrorBlockAnchor >= i)
+									m_cursorMirrorBlockAnchor--;
+								break;
+							}
+						if ( removedExisting ) break;
 					}
-				} else if ( (e->modifiers() & Qt::AltModifier) ) {
+					m_cursorMirrorBlockAnchor = m_mirrors.size();
 					addCursorMirror(cursor);
 				}
 			} else {
@@ -4665,6 +4634,47 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	}
 }
 
+void QEditor::selectCursorMirrorBlock(const QDocumentCursor &cursor, bool horizontalSelect)
+{
+	QDocumentCursorHandle *blockAnchor;
+	if ( m_cursorMirrorBlockAnchor >= 0 && m_cursorMirrorBlockAnchor < m_mirrors.size() ) {
+		blockAnchor = m_mirrors[m_cursorMirrorBlockAnchor].handle();
+		while ( m_mirrors.size() > m_cursorMirrorBlockAnchor + 1) //remove all after m_cursorMirrorBlockAnchor
+			m_mirrors.removeLast();
+	} else {
+		clearCursorMirrors();
+		blockAnchor = m_cursor.handle();
+	}
+	if (!blockAnchor) return;
+	// get column number for column selection
+	int org = blockAnchor->anchorColumnNumber();
+	int dst = cursor.columnNumber();
+	// TODO : fix and adapt to line wrapping...
+
+	int min = qMin(blockAnchor->lineNumber(), cursor.lineNumber());
+	int max = qMax(blockAnchor->lineNumber(), cursor.lineNumber());
+
+	if ( min != max )
+	{
+		for ( int l = min; l <= max; ++l )
+		{
+			if ( l != blockAnchor->lineNumber() )
+				addCursorMirror(QDocumentCursor(m_doc, l, org));
+
+		}
+
+		if ( horizontalSelect )
+		{
+			blockAnchor->setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+
+			for ( int i = qMax(0, m_cursorMirrorBlockAnchor); i < m_mirrors.count(); ++i )
+				m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+		}
+	} else {
+		blockAnchor->setSelectionBoundary(cursor);
+	}
+}
+
 void QEditor::preInsertUnindent(QDocumentCursor& c, const QString& s, int additionalUnindent)
 {
 	if ( !flag(AutoIndent) || flag(WeakIndent) ) return;
@@ -5561,6 +5571,7 @@ void QEditor::clearCursorMirrors()
 	}
 
 	m_mirrors.clear();
+	m_cursorMirrorBlockAnchor = -1;
 	
 	viewport()->update();
 }
