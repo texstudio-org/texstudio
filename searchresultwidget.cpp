@@ -53,6 +53,17 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	vLayout->addWidget(hLine);
 	vLayout->addWidget(searchTree, 1);
 
+	QAction *actExpand = new QAction(tr("Expand All"), this);
+	connect(actExpand, SIGNAL(triggered()), searchTree, SLOT(expandAll()));
+	searchTree->addAction(actExpand);
+	QAction *actCollapse = new QAction(tr("Collapse All"), this);
+	connect(actCollapse, SIGNAL(triggered()), searchTree, SLOT(collapseAll()));
+	searchTree->addAction(actCollapse);
+	QAction *actClear = new QAction(tr("Clear"), this);
+	connect(actClear, SIGNAL(triggered()), this, SLOT(clearSearch()));
+	searchTree->addAction(actClear);
+	searchTree->setContextMenuPolicy(Qt::ActionsContextMenu);
+
 	connect(searchTree, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedSearchResult(QModelIndex)));
 }
 
