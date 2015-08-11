@@ -634,7 +634,7 @@
     <message>
         <location line="+870"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Distribuições LaTeX populares para Windows são %1 e %2.</translation>
     </message>
     <message>
         <source>Pdf Viewer</source>
@@ -888,12 +888,12 @@
     <message>
         <location line="+10"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra uma dica com texto alvo para labels/bibitem, pré-visualiza cores ou imagens</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Pré-visualizar dica</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -1902,7 +1902,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+51"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitar rolamento horizontal para &quot;Ajustar à largura do texto&quot;</translation>
     </message>
     <message>
         <location line="+46"/>
@@ -2350,7 +2350,7 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </oldsource>
-        <translation type="unfinished">Substituir variáveis de ambiente nos comandos. O compotamento é específico do SO.
+<translation>Substituir variáveis de ambiente nos comandos. O comportamento é específico do SO.
 
 Windows:
 Variáveis são escritas como: %MYVAR%. Elas são sensíveis à caixa (case-insensitive).
@@ -2411,7 +2411,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
     <message>
         <location line="+53"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleção com duplo-clique: incluir barra invertida</translation>
     </message>
     <message>
         <location line="+224"/>
@@ -4830,7 +4830,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="searchquery.cpp" line="+158"/>
         <source>Label Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Pesquisar Rótulo</translation>
     </message>
 </context>
 <context>
@@ -5083,7 +5083,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location line="+199"/>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrar Usos</translation>
     </message>
     <message>
         <location line="+1292"/>
@@ -6823,12 +6823,12 @@ O arquivo está corrompido ou em processo de criação. Você pode tentar novame
     <message>
         <location filename="buildmanager.cpp" line="+278"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>O redirecionamento stdout especificado não é suportado: &quot;%1&quot;. Por favor, veja o manual para detalhes.</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>O redirecionamento stderr especificado não é suportado: &quot;%1&quot;. Por favor, veja o manual para detalhes.</translation>
     </message>
     <message>
         <location line="+125"/>
@@ -8869,7 +8869,7 @@ Você confia neste script?</translation>
         <location filename="searchquery.cpp" line="-151"/>
         <location line="+7"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Pesquisar</translation>
     </message>
 </context>
 <context>
@@ -8989,32 +8989,32 @@ Você confia neste script?</translation>
     <message>
         <location filename="searchresultwidget.cpp" line="+15"/>
         <source>Current Doc</source>
-        <translation type="unfinished">Doc Atual</translation>
+        <translation>Doc Atual</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>All Docs</source>
-        <translation type="unfinished">Todos os docs</translation>
+        <translation>Todos os docs</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Project</source>
-        <translation type="unfinished">Projeto</translation>
+        <translation>Projeto</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Search Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Pesquisar Novamente</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Replace all</source>
-        <translation type="unfinished">Substituir tudo</translation>
+        <translation>Substituir tudo</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Replace by:</source>
-        <translation type="unfinished">Substituir por:</translation>
+        <translation>Substituir por:</translation>
     </message>
 </context>
 <context>
@@ -10259,22 +10259,22 @@ falhou.</translation>
     <message>
         <location line="-24"/>
         <source>&amp;Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Seleção</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select All &amp;Occurences</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar Todas &amp;Ocorrências</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Expand Selection to Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir Seleção para Palavra</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Expand Selection to Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandir Seleção para Linha</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -10730,7 +10730,7 @@ Voce deseja permitir e executar o novo comando?
     <message>
         <location line="+10"/>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrar Usos</translation>
     </message>
     <message>
         <location line="+14"/>
