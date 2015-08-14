@@ -3493,6 +3493,24 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  lexed<<tk;
                  continue;
              }
+             if(line.mid(tk.start,1)=="\""){
+                 // special treatment for " (used for umlauts in german)
+                 if(i+1<tl.length()){
+                     Tokens tk2=tl.at(i+1);
+                     if(tk2.start==tk.start+1 && tk2.type==Tokens::word){
+                         i=i+1;
+                         tk.length=tk2.length+1;
+                         tk.type=Tokens::word;
+                     }
+                     if(!lexed.isEmpty() && lexed.last().type==Tokens::word){
+                         if(lexed.last().start+lexed.last().length==tk.start){
+                             lexed.last().length+=tk.length;
+                             continue;
+                         }
+                     }
+                 }
+
+             }
          }
          if(tk.type==Tokens::word || tk.type==Tokens::number || tk.type==Tokens::symbol|| tk.type==Tokens::punctuation){
              tk.level=level;
