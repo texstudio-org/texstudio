@@ -1692,6 +1692,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count) {
             }// if latexLineCheking
             if (tk.type==Tokens::word && tk.subtype==Tokens::none && config->inlineSpellChecking && tk.length>=3 && speller){
                 QString word=tk.getText();
+                word=latexToPlainWordwithReplacementList(word,mReplacementList); //remove special chars
                 if (config->hideNonTextSpellingErrors && (isNonTextFormat(line.getFormatAt(tk.start)) || isNonTextFormat(line.getFormatAt(tk.start+tk.length-1)) )) // TODO:needs to be adapted
                     continue;
                 if(!speller->check(word) ) {
