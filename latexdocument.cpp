@@ -3138,6 +3138,11 @@ void LatexDocument::updateLtxCommands(bool updateAll){
     }else{
         SynChecker.setLtxCommands(lp);
     }
+
+    LatexEditorView *view=getEditorView();
+    if(view){
+        view->updateReplamentList(lp,false);
+    }
 }
 
 void LatexDocument::setLtxCommands(const LatexParser& cmds){
@@ -3146,7 +3151,7 @@ void LatexDocument::setLtxCommands(const LatexParser& cmds){
 
      LatexEditorView *view=getEditorView();
      if(view){
-         view->updateReplamentList(cmds,true);
+         view->updateReplamentList(cmds,false);
      }
 }
 
