@@ -6,6 +6,9 @@
 #include "qeditor.h"
 #include "qdocument.h"
 #include "qdocumentline.h"
+
+#include <QFileDialog>
+
 //#include "latexeditorview.h"
 //#include <QMessageBox>
 ClsWord::ClsWord(QString nw, int nc) {
@@ -80,6 +83,7 @@ TextAnalysisDialog::TextAnalysisDialog(QWidget* parent,  QString name)
 	connect(ui.countButton, SIGNAL(clicked()), SLOT(slotCount()));
 	connect(ui.closeButton, SIGNAL(clicked()), SLOT(slotClose()));
 	connect(ui.searchSelectionButton, SIGNAL(clicked()), SLOT(slotSelectionButton()));
+	connect(ui.exportButton, SIGNAL(clicked()), SLOT(slotExportButton()));
 	connect(ui.resultView, SIGNAL(doubleClicked(const QModelIndex &)), SLOT(slotSelectionButton()));
 
 }
@@ -396,6 +400,30 @@ void TextAnalysisDialog::slotSelectionButton() {
 		editor->find(selected,true,true);
 	} else editor->find(selected,true,false);
 
+}
+
+QByteArray escapeAsCSV(const QString& s){
+	QByteArray ba = s.toUtf8();
+	if (ba.contains(',')) {
+		ba.replace('"', "\"\"");
+		ba.prepend('"');
+		ba.append('"');
+	}
+	return ba;
+}
+
+void TextAnalysisDialog::slotExportButton() {
+	QString fn = QFileDialog::getSaveFileName(this, tr("CSV Export"), editor ? editor->document()->getFileName().replace(".tex", ".csv") : QString(), tr("CSV file")+" (*.csv)" ";;" + tr("All files")+" (*)");
+	if (fn.isEmpty()) return;
+	QFile f(fn);
+	f.open(QFile::WriteOnly);
+#ifdef Q_OS_WIN
+	QByteArray les = "\r\n";
+#else
+	QByteArray les = "\n";
+#endif
+	foreach (const ClsWord& w, displayed.words)
+		f.write(escapeAsCSV(w.word) + ',' + QByteArray::number(w.count) + les);
 }
 
 void TextAnalysisDialog::slotClose() {
