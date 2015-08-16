@@ -5896,7 +5896,7 @@ void Texmaker::GeneralOptions() {
 
 			}
 			if (m_formats->modified)
-				QDocument::setFont(QDocument::font(), true);
+                QDocument::setBaseFont(QDocument::baseFont(), true);
 			UpdateCaption();
 
 			if (documents.indentIncludesInStructure!=configManager.indentIncludesInStructure ||
