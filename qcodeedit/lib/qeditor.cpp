@@ -3866,7 +3866,7 @@ void QEditor::changeEvent(QEvent *e)
 		if ( !m_doc )
 			return;
 
-		m_doc->setFont(font());
+        m_doc->setBaseFont(font());
 		//setTabStop(iTab);
 
 	}
@@ -5051,9 +5051,7 @@ void QEditor::zoom(int n)
 	if ( !m_doc )
 		return;
 
-	QFont f = m_doc->font();
-	f.setPointSize(qMax(1, f.pointSize() + n));
-	m_doc->setFont(f);
+    m_doc->setFontSizeModifier(m_doc->fontSizeModifier() + n);
 	if (m_wrapAfterNumChars)
 		setWrapAfterNumChars(m_wrapAfterNumChars); // updates the width for the new font
 }

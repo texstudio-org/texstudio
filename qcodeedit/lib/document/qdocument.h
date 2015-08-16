@@ -295,7 +295,10 @@ class QCE_EXPORT QDocument : public QObject
 		void clearLanguageMatches();
 		
 		static QFont font();
-		static void setFont(const QFont& f, bool forceUpdate = false);
+        static QFont baseFont();
+        static int fontSizeModifier();
+        static void setBaseFont(const QFont& f, bool forceUpdate = false);
+        static void setFontSizeModifier(int m, bool forceUpdate = false);
 		//static const QFontMetrics fontMetrics() const;
 		static int getLineSpacing();
 		static void setLineSpacingFactor(double scale);

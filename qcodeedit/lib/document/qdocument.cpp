@@ -390,7 +390,7 @@ QDocument::QDocument(QObject *p)
 	if ( !QDocumentPrivate::m_font )
 	{
 		// must not happen if config dialog plugged in...
-		setFont(QFont("Monospace", 10));
+        setBaseFont(QFont("Monospace", 10));
 	}
 
 
@@ -1168,16 +1168,37 @@ QFont QDocument::font()
 	return *(QDocumentPrivate::m_font);
 }
 
+QFont QDocument::baseFont()
+{
+    return *(QDocumentPrivate::m_baseFont);
+}
+
+int QDocument::fontSizeModifier()
+{
+    return QDocumentPrivate::m_fontSizeModifier;
+}
+
 /*!
 	\brief Set the font of ALL documents
 
 	\note this limitation is historic and may disappear
 	in future versions
 */
-void QDocument::setFont(const QFont& f, bool forceUpdate)
+void QDocument::setBaseFont(const QFont& f, bool forceUpdate)
 {
-	QDocumentPrivate::setFont(f, forceUpdate);
-	//emit contentsChanged();
+    QDocumentPrivate::setBaseFont(f, forceUpdate);
+    //emit contentsChanged();
+}
+
+/*!
+    \brief A constant to modify the pointSize of the current font. This value is used for zooming.
+
+    It holds font.pointSize = baseFont.pointSize + fontSizeModifier
+ * \param n
+ */
+void QDocument::setFontSizeModifier(int m, bool forceUpdate)
+{
+    QDocumentPrivate::setFontSizeModifier(m, forceUpdate);
 }
 
 /*!
@@ -1210,7 +1231,7 @@ void QDocument::setLineSpacingFactor(double scale)
 	if ( !QDocumentPrivate::m_font ) return;
 
 	// update m_leading and m_lineSpacing
-	QDocumentPrivate::setFont(*QDocumentPrivate::m_font, true);
+    QDocumentPrivate::setFont(*QDocumentPrivate::m_font, true);
 	// It's a bit more costly than necessary, because we do not change any width.
 	// If performance needs improvement, one could extract the height calculation
 	// to a separate method and call it here and in setFont.
@@ -6211,6 +6232,8 @@ template <class T> T* getStaticDefault() { static T _globStatInst; return &_glob
 QTextCodec* QDocumentPrivate::m_defaultCodec = 0;
 
 QFont* QDocumentPrivate::m_font = 0;// = QApplication::font();
+QFont* QDocumentPrivate::m_baseFont = 0;
+int QDocumentPrivate::m_fontSizeModifier = 0;
 QFormatScheme* QDocumentPrivate::m_formatScheme = 0;// = QApplication::font();
 CacheCache<int> QDocumentPrivate::m_fmtWidthCache;
 CacheCache<QPixmap> QDocumentPrivate::m_fmtCharacterCache[2];
@@ -7122,7 +7145,31 @@ void QDocumentPrivate::setHeight()
 	m_height = last * m_lineSpacing;
 
 	if ( oldHeight != m_height )
-		emitHeightChanged();
+        emitHeightChanged();
+}
+
+void QDocumentPrivate::setBaseFont(const QFont &f, bool forceUpdate)
+{
+    m_baseFont = new QFont(f);
+    QFont fMod = f;
+    if (m_fontSizeModifier + m_baseFont->pointSize() < 1) {
+        // prevent actual font sizes to be <= 0
+        m_fontSizeModifier = - m_baseFont->pointSize() + 1;
+    }
+    fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
+    setFont(fMod, forceUpdate);
+}
+
+void QDocumentPrivate::setFontSizeModifier(int m, bool forceUpdate)
+{
+    if (m + m_baseFont->pointSize() < 1) {
+        // prevent actual font sizes to be <= 0
+        m = - m_baseFont->pointSize() + 1;
+    }
+    m_fontSizeModifier = m;
+    QFont fMod = QFont(*m_baseFont);
+    fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
+    setFont(fMod, forceUpdate);
 }
 
 void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
@@ -7177,7 +7224,7 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 		d->setWidth();
 		d->setHeight();
 		d->m_LineCache.clear();
-	}
+    }
 }
 
 void QDocumentPrivate::setFormatScheme(QFormatScheme *f)
@@ -7185,7 +7232,7 @@ void QDocumentPrivate::setFormatScheme(QFormatScheme *f)
 	bool updateFont = m_formatScheme != f && f;
 	m_formatScheme = f;
 	if (updateFont) 
-		setFont(*m_font, true);
+        setFont(*m_font, true);
 }
 
 void QDocumentPrivate::tunePainter(QPainter *p, int fid)
