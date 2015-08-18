@@ -43,6 +43,8 @@ class QCE_EXPORT QLineNumberPanel : public QPanel
 		
 	public slots:
 		void setVerboseMode(bool y);
+		void setFont_slot(const QFont &font);
+		
 		
 	protected:
 		virtual void editorChange(QEditor *e);
