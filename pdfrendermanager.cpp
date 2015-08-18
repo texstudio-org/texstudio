@@ -76,13 +76,12 @@ PDFRenderManager::~PDFRenderManager(){
 }
 
 void PDFRenderManager::stopRendering(){
-    lstOfReceivers.clear();
-    for(int i=0;i<queueAdministration->num_renderQueues;i++){
-        if(queueAdministration->renderQueues[i] && !queueAdministration->renderQueues[i]->isRunning()){
-            delete queueAdministration->renderQueues[i];
-            queueAdministration->renderQueues[i]=0;
-        }
-    }
+	lstOfReceivers.clear();
+	for(int i=0;i<queueAdministration->num_renderQueues;i++){
+		if(queueAdministration->renderQueues[i] && !queueAdministration->renderQueues[i]->isRunning())
+			delete queueAdministration->renderQueues[i];
+		queueAdministration->renderQueues[i]=0;
+	}
 	queueAdministration->stopped=true;
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
 	document.clear();
