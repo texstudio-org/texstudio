@@ -1186,7 +1186,7 @@ int QDocument::fontSizeModifier()
 */
 void QDocument::setBaseFont(const QFont& f, bool forceUpdate)
 {
-    QDocumentPrivate::setBaseFont(f, forceUpdate);
+	QDocumentPrivate::setBaseFont(f, forceUpdate);
     //emit contentsChanged();
 }
 
@@ -7224,7 +7224,8 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 		d->setWidth();
 		d->setHeight();
 		d->m_LineCache.clear();
-    }
+		d->emitFontChanged();
+	}
 }
 
 void QDocumentPrivate::setFormatScheme(QFormatScheme *f)
@@ -7232,7 +7233,7 @@ void QDocumentPrivate::setFormatScheme(QFormatScheme *f)
 	bool updateFont = m_formatScheme != f && f;
 	m_formatScheme = f;
 	if (updateFont) 
-        setFont(*m_font, true);
+		setFont(*m_font, true);
 }
 
 void QDocumentPrivate::tunePainter(QPainter *p, int fid)
@@ -7440,6 +7441,14 @@ void QDocumentPrivate::emitHeightChanged()
 	emit m_doc->heightChanged(m_height);
 
 	emit m_doc->sizeChanged(QSize(m_width, m_height));
+}
+
+void QDocumentPrivate::emitFontChanged()
+{
+	if ( !m_doc )
+		return;
+
+	emit m_doc->fontChanged(*m_font);
 }
 
 void QDocumentPrivate::insertLines(int after, const QList<QDocumentLineHandle*>& l)

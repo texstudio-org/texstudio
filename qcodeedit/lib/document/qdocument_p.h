@@ -197,6 +197,7 @@ public:
 		
 		void emitWidthChanged();
 		void emitHeightChanged();
+		void emitFontChanged();
 		
 		static void updateFormatCache();
 		void setFormatScheme(QFormatScheme *f);

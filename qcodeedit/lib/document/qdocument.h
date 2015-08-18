@@ -35,10 +35,10 @@
 #include <QObject>
 #include <QPalette>
 #include <QMetaType>
+#include <QFont>
 
 #include "qdocumentcursor.h"
 
-class QFont;
 class QRect;
 class QPrinter;
 class QDateTime;
@@ -390,6 +390,7 @@ class QCE_EXPORT QDocument : public QObject
 		
 		void formatsChanged();
 		void contentsChanged();
+		void fontChanged(QFont);
 		
 		void formatsChange (int line, int lines);
 		void contentsChange(int line, int lines);
