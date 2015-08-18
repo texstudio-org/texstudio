@@ -442,6 +442,9 @@ public slots:
 		
 		void setCompletionEngine(QCodeCompletionEngine *e);
 		
+		void zoomIn();
+		void zoomOut();
+		void resetZoom();
 		void zoom(int n);
 		
 		void setPanelMargins(int l, int t, int r, int b);

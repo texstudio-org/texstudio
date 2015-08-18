@@ -1027,6 +1027,11 @@ void Texmaker::setupMenus() {
 		}
 	
 	menu->addSeparator();
+	submenu = newManagedMenu(menu, "editorZoom", tr("Editor Zoom"));
+	newManagedEditorAction(submenu, "zoomIn", tr("Zoom In"), "zoomIn", Qt::CTRL+Qt::Key_Plus);
+	newManagedEditorAction(submenu, "zoomOut", tr("Zoom Out"), "zoomOut", Qt::CTRL+Qt::Key_Minus);
+	newManagedEditorAction(submenu, "resetZoom", tr("Reset Zoom"), "resetZoom");
+
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 #if QT_VERSION>=0x050000
 	fullscreenModeAction=newManagedAction(menu, "fullscreenmode",tr("Fullscreen Mode"), 0, QKeySequence::FullScreen);
