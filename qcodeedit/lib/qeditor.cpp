@@ -5038,20 +5038,41 @@ void QEditor::write(const QString& s)
 	repaintCursor();
 }
 
+void QEditor::zoomIn()
+{
+	zoom(1);
+}
+
+void QEditor::zoomOut()
+{
+	zoom(-1);
+}
+
+void QEditor::resetZoom()
+{
+	zoom(0);
+}
+
 /*!
 	\brief Zoom
 	\param n relative zoom factor
 
-	Zooming is achieved by changing the point size of the font as follow :
+	Zooming is achieved by changing the point size of the font as follows:
 
 	fontPointSize += \a n
+	
+	n == 0 is used to reset the zoom
 */
 void QEditor::zoom(int n)
 {
 	if ( !m_doc )
 		return;
+	
+	if ( n == 0 )
+		m_doc->setFontSizeModifier(0);
+	else
+		m_doc->setFontSizeModifier(m_doc->fontSizeModifier() + n);
 
-    m_doc->setFontSizeModifier(m_doc->fontSizeModifier() + n);
 	if (m_wrapAfterNumChars)
 		setWrapAfterNumChars(m_wrapAfterNumChars); // updates the width for the new font
 }

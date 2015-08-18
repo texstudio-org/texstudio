@@ -217,8 +217,10 @@ public slots:
 	void foldEverything(bool unFold);
 	void foldLevel(bool unFold, int level);
 	void foldBlockAt(bool unFold, int line);
-
-
+	
+	Q_INVOKABLE void zoomIn();
+	Q_INVOKABLE void zoomOut();
+	Q_INVOKABLE void resetZoom();
 	
 	void documentContentChanged(int linenr, int count);
 private slots:
