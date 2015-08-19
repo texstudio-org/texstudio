@@ -136,8 +136,6 @@ bool Macro::isActiveForLanguage(QLanguageDefinition *lang) const {
 bool Macro::isActiveForFormat(int format) const {
 	if (!triggerFormatsUnprocessed.isEmpty() || !triggerFormatExcludesUnprocessed.isEmpty()) (const_cast<Macro*>(this))->initTriggerFormats();
 	// if no trigger format is specified, the macro is active for all formats.
-	qDebug() << "inc" << triggerFormats;
-	qDebug() << "exc" << triggerFormatExcludes;
 	return (triggerFormats.isEmpty() || triggerFormats.contains(format)) && (!triggerFormatExcludes.contains(format));
 }
 
