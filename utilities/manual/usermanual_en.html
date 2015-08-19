@@ -1132,8 +1132,19 @@ triggerMatches[1] == 'a'
 </pre>
 
 <h4>4.5.4.2 Limitation of Scope</h4>
-<p>You can also prepend the pseudo expression <code>(?language:...)</code> to only activate the macro in documents of a specify language (like the language "latex", e.g. <code>(?language:latex)</code>).<br>
-Another such prependable option is <code>(?highlighted-as:..)</code> to restrict a macro to certain, highlighted environments.  (e.g. with <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code> the macro is only activated within the math mode). The possible values correspond to the list on the syntax highlighting config page.
+<p>To the scope in which a macro will be active, you can prepend an expression of the pattern <code>(?[scope-type]:...)</code>.</p>
+<table>
+<tr><th>Scope Limiting Expression</th><th>Meaning</th></tr>
+<tr><td><code>(?language:...)</code></td><td>The macro is only active if the highlighting of the document matches the given language.<br>Example: <code>(?language:latex)</code></td></tr>
+<tr><td><code>(?highlighted-as:...)</code></td><td>Restrict the macro to certain highlighted environments. The possible values correspond to the list on the syntax highlighting config page.<br>Example: <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code></td></tr>
+<tr><td><code>(?not-highlighted-as:...)</code></td><td>Similar to <code>(?highlighted-as:...)</code>, but the macro is deactivated in the given environments.</td></tr>
+</table>
+<p>You may combine <code>(?language:...)</code> and <code>(?highlighted-as:...)</code> expressions. However, combing <code>(?highlighted-as:...)</code> and <code>(?not-highlighted-as:...)</code> does not make sense logically and has undefined behavior.
+</p>
+<p>Note that you still need the regular expression of the trigger itself. Here's a full complex example:
+<code>(?language:latex)(?highlighted-as:comment,commentTodo)FIXME</code>. This trigger responds to typing "FIXME", but only in comments and todo-notes of latex documents.
+</p>
+
 <h4>4.5.4.3 Event Triggers</h4>
 <p>Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
 <table>

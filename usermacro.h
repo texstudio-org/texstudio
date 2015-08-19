@@ -43,6 +43,8 @@ private:
 
 	QString triggerFormatsUnprocessed;
 	QList<int> triggerFormats;
+	QString triggerFormatExcludesUnprocessed;
+	QList<int> triggerFormatExcludes;
 };
 
 #endif // USERMACRO_H
