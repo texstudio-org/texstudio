@@ -60,7 +60,7 @@ unicode
 \hyperimage{imageURL}{text}#U
 \hyperdef{category}{name}{text}
 \hyperref{URL}{category}{name}{text}#U
-\hyperref[label]{text}
+\hyperref[label%ref]{text}
 \hyperref{text}
 \hyperlink{name}{text}
 \hypertarget{name}{text}
