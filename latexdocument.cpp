@@ -13,7 +13,7 @@
 //FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 FileNamePair::FileNamePair(const QString& rel, const QString& abs):relative(rel),absolute(abs){};
 
-LatexDocument::LatexDocument(QObject *parent):QDocument(parent),remeberAutoReload(false),mayHaveDiffMarkers(false),edView(0),mAppendixLine(0)
+LatexDocument::LatexDocument(QObject *parent):QDocument(parent),remeberAutoReload(false),mayHaveDiffMarkers(false),edView(0),mAppendixLine(0),mBeyondEnd(0)
 {
 	baseStructure = new StructureEntry(this,StructureEntry::SE_DOCUMENT_ROOT);
 	magicCommentList = new StructureEntry(this, StructureEntry::SE_OVERVIEW);
@@ -548,7 +548,6 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             mBeyondEnd=0;
         }
 
-        int offset = 0;
         for(int j=0;j<tl.length();j++) {
             Tokens tk=tl.at(j);
             // break at comment start
@@ -593,12 +592,8 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             int cmdStart = findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
 			if (cmdStart < 0) break;
             cmd=curLine.mid(tkCmd.start,tkCmd.length);
-			// offset is the starting point for the next search. Currently this is behind cmd.
-			// It could be improved to be behind the arguments.
-            offset = cmdStart+1;
+
             QString firstArg = getArg(args, dlh,0,ArgumentList::Mandatory);
-
-
 
             if (lp.possibleCommands["%todo"].contains(cmd)) {
 				bool reuse=false;
