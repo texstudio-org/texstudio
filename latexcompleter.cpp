@@ -104,7 +104,8 @@ public:
 				QString line = cursor.line().text();
 				int col = cursor.columnNumber();
 				bool missingCloseBracket = (findClosingBracket(line, col) < 0);
-				while(!cursor.atLineEnd() && cursor.nextChar()!='}'
+                QString eow="}],";
+                while(!cursor.atLineEnd() && !eow.contains(cursor.nextChar())
 					   && !(cursor.nextChar().isSpace() && missingCloseBracket)) // spaces are allowed in labels and should be deleted, however we stop deleting at spaces if the closing bracket is missing. otherwise it deletes the complete line.
 				{
 					cursor.deleteChar();
@@ -1302,8 +1303,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         }
         if(flags == CF_FORCE_VISIBLE_LIST)
             eow.remove("{");
-        if (flags & CF_FORCE_REF) eow="{}\\";
-        if (flags & CF_FORCE_REFLIST) eow="{}\\,";
+        if (flags & CF_FORCE_REF) eow="[]{}\\";
+        if (flags & CF_FORCE_REFLIST) eow="[]{}\\,";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
 			if ((lineText.at(i)==QChar('\\'))&&!(flags & CF_FORCE_GRAPHIC)) {
