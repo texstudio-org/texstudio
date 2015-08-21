@@ -1984,7 +1984,7 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                 int res3=rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
 
                 // get commandDefinition
-                CommandDescription cd=extractCommandDef(line);
+                CommandDescription cd=extractCommandDef(line,valid);
                 QString cmd=rxCom3.cap(1);
                 if(cmd=="\\begin"){
                     if(!package.commandDescriptions.contains(cmd)){
@@ -2639,7 +2639,7 @@ QString Tokens::getText(){
     return result;
 }
 
-CommandDescription extractCommandDef(QString line){
+CommandDescription extractCommandDef(QString line,QString definition){
     QRegExp rxCom("^(\\\\\\w+\\*?)");
     int i=rxCom.indexIn(line);
     QString command=rxCom.cap();
@@ -2737,10 +2737,14 @@ CommandDescription extractCommandDef(QString line){
         if(def=="placement" || def=="position"){
             type=Tokens::placement;
         }
-        if(def=="key"||def=="key1"||def=="key2"){
+        if(def=="key"||def=="key1"||def=="key2" || def.endsWith("%ref")){
             type=Tokens::labelRef;
             if(command=="\\label")
                 type=Tokens::label;
+        }
+        if(def=="label" && definition.contains('r')){
+            //reference with keyword label
+            type=Tokens::labelRef;
         }
         if(def=="labellist"){
             type=Tokens::labelRefList;
@@ -3205,7 +3209,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              break; // stop at comment start
          if(tk.type==Tokens::command){
              QString command=line.mid(tk.start,tk.length);
-             if(tl.length()>i+1 && tl.at(i+1).type==Tokens::symbol && line.mid(tl.at(i+1).start,1)=="*"){
+             if(tl.length()>i+1 && tl.at(i+1).type==Tokens::punctuation && line.mid(tl.at(i+1).start,1)=="*"){
                  // add * to command
                  i++;
                  command.append("*");
@@ -3486,8 +3490,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              }
          }
          if(tk.type==Tokens::punctuation){
-             // special treatment for & in tabular
              if(line.mid(tk.start,1)=="&"){
+                 // special treatment for & in tabular
                  tk.type=Tokens::command;
                  tk.level=level;
                  lexed<<tk;
@@ -3509,7 +3513,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                          }
                      }
                  }
-
              }
          }
          if(tk.type==Tokens::word || tk.type==Tokens::number || tk.type==Tokens::symbol|| tk.type==Tokens::punctuation){
