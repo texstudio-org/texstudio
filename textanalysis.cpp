@@ -71,7 +71,7 @@ void TextAnalysisModel::updateAll() {
 }
 
 TextAnalysisDialog::TextAnalysisDialog(QWidget* parent,  QString name)
-		: QDialog(parent), document(0), editor(0), lastSentenceLength(-1), lastMinSentenceLength(-1), lastParsedMinWordLength(-1) {
+        : QDialog(parent), document(0), editor(0), alreadyCount(false), lastSentenceLength(-1), lastMinSentenceLength(-1), lastParsedMinWordLength(-1) {
 	setWindowTitle(name);
 	setAttribute(Qt::WA_DeleteOnClose);
 	ui.setupUi(this);
