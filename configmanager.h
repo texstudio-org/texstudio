@@ -62,7 +62,8 @@ public:
 	int showStdoutOption; //never = 0, user commands, always
 	
 	//svn
-	bool autoCheckinAfterSave;
+    //bool autoCheckinAfterSave;
+    int autoCheckinAfterSaveLevel;
 	bool svnUndo;
 	bool svnKeywordSubstitution;
 	int svnSearchPathDepth;
