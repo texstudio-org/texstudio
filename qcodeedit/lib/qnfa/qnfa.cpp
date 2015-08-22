@@ -889,7 +889,7 @@ QNFA* sequence(const QChar *d, int length, QNFA **end, bool cs)
 	{
 		*end = prev;
 	}
-	
+    delete set; // remove resource leak (small one)
 	return first;
 }
 
