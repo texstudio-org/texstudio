@@ -6427,7 +6427,8 @@ void Texmaker::pdfClosed(){
         sum+=i;
         last=i;
       }
-      pdfSplitterRel=1.0*last/sum;
+      if(sum>0)
+        pdfSplitterRel=1.0*last/sum;
 
     }
   }
