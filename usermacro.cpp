@@ -11,7 +11,7 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	init(nname, ntag, nabbrev, ntrigger);
 }
 
-Macro::Macro(const QStringList &fieldList):document(0) {
+Macro::Macro(const QStringList &fieldList):triggerLookBehind(false),document(0) {
 	if (fieldList.count() >= 4) {
 		init(fieldList[0], fieldList[1], fieldList[2], fieldList[3]);
 	}
