@@ -3148,6 +3148,7 @@ void Texmaker::editDuplicateLine() {
 void Texmaker::editEraseWordCmdEnv(){
 	if (!currentEditorView()) return;
 	QDocumentCursor cursor = currentEditorView()->editor->cursor();
+    if(cursor.isNull()) return;
 	QString line=cursor.line().text();
     QDocumentLineHandle *dlh=cursor.line().handle();
 	QString command, value;
