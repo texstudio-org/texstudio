@@ -84,7 +84,7 @@ static void setFormatOption(QFormat& fmt, const QString& field, const QString& v
 	\brief Constructor
 */
 QFormatScheme::QFormatScheme(QObject *p)
- : QObject(p)
+ : QObject(p),modified(false)
 {
 	setFormat("normal", QFormat());
 }
