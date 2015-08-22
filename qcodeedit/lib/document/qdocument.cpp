@@ -2538,11 +2538,11 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 }
 
 void QDocumentLineHandle::updateWrapAndNotifyDocument(int line) const{
+    if ( !m_doc ) return;
 	int oldLW = m_frontiers.count();
 	updateWrap(line);
 	int lw = m_frontiers.count();
 	if ( lw == oldLW ) return;
-	if ( !m_doc ) return;
 
 	if ( lw ) m_doc->impl()->m_wrapped[line] = lw;
 	else m_doc->impl()->m_wrapped.remove(line);
