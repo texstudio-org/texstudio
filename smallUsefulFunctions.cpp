@@ -2046,12 +2046,15 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                             package.specialDefCommands.insert(rxCom3.cap(1),definition);
                     }
                     if(definition.startsWith('%')){
-                        config->specialCompletionKeys.insert(definition);
+                        if(config)
+                            config->specialCompletionKeys.insert(definition);
                     }else{
                         if(definition.length()>2){
                             QString helper=definition.mid(1,definition.length()-2);
-                            if(helper.startsWith('%'))
-                                config->specialCompletionKeys.insert(helper);
+                            if(helper.startsWith('%')){
+                                if(config)
+                                    config->specialCompletionKeys.insert(helper);
+                            }
                         }
                     }
                     valid.remove('s');
