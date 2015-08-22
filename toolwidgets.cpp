@@ -26,6 +26,8 @@ PreviewWidget::PreviewWidget(QWidget * parent): QScrollArea(parent){
 	connect(this,SIGNAL(customContextMenuRequested(QPoint)),this,SLOT(contextMenu(QPoint)));
 	setContextMenuPolicy(Qt::CustomContextMenu);
 
+    pvscaleFactor=1.0;
+
 	setWidget(preViewer);
 }
 
