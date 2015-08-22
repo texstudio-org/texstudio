@@ -3261,9 +3261,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  if(lp.commandDefs.contains(command)){
                      CommandDescription cd=lp.commandDefs.value(command);
                      cd.level=level;
-                     if((cd.args>0||cd.optionalArgs>0||cd.bracketArgs>0 )&& tk.subtype!=Tokens::def) // don't interpret commands in defintion (\newcommand{def})
+                     if((cd.args>0||cd.optionalArgs>0||cd.bracketArgs>0 )&& tk.subtype!=Tokens::def){ // don't interpret commands in defintion (\newcommand{def})
                         commandStack.push(cd);
                         commandNames.push(command);
+                     }
                  }else{
                      tk.type=Tokens::commandUnknown;
                  }
