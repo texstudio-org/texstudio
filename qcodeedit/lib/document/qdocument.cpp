@@ -6878,7 +6878,7 @@ QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includ
 	}
 	line = sel.endLine;
 	while (line > sel.startLine && m_lines[line]->length()==0) line--;
-	if (line < sel.endLine) {
+    if (line > sel.startLine) {
 		sel.endLine = line;
 		sel.end = -1;
 	}
