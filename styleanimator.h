@@ -72,7 +72,7 @@ protected:
 class Transition : public Animation
 {
 public :
-    Transition() : Animation() {}
+    Transition() : Animation(),m_duration(130) {}
     virtual ~Transition() {}
     void setDuration(int duration) { m_duration = duration; }
     void setStartImage(const QImage &image) { m_primaryImage = image; }
