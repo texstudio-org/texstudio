@@ -1439,7 +1439,7 @@ void LatexDocument::includeDocument(LatexDocument* includedDocument){
  
 }
 */
-StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0), parent(0), document(doc), parentRow(-1), lineHandle(0), lineNumber(-1), m_contexts(0) {
+StructureEntry::StructureEntry(LatexDocument* doc, Type newType):type(newType),level(0),valid(false), parent(0), document(doc),columnNumber(0), parentRow(-1), lineHandle(0), lineNumber(-1), m_contexts(0) {
 #ifndef QT_NO_DEBUG
 	Q_ASSERT(document);
 	document->StructureContent.insert(this);
