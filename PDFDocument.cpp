@@ -243,6 +243,8 @@ PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 	, overScale(1)
 	, scaleFactor(kMagFactor)
 	, parentDpi(inDpi)
+    , convertedImageIsGrayscale(false)
+    , convertedImageIsColorInverted(false)
 	, imageDpi(0)
 	, imagePage(-1)
 {
