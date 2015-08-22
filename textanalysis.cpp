@@ -416,7 +416,8 @@ void TextAnalysisDialog::slotExportButton() {
 	QString fn = QFileDialog::getSaveFileName(this, tr("CSV Export"), editor ? editor->document()->getFileName().replace(".tex", ".csv") : QString(), tr("CSV file")+" (*.csv)" ";;" + tr("All files")+" (*)");
 	if (fn.isEmpty()) return;
 	QFile f(fn);
-	f.open(QFile::WriteOnly);
+    if(!f.open(QFile::WriteOnly))
+        return;
 #ifdef Q_OS_WIN
 	QByteArray les = "\r\n";
 #else
