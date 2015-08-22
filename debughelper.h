@@ -20,6 +20,7 @@ class Guardian: public SafeThread{
 	
 	void run();
 public:
+    Guardian():SafeThread(),slowOperations(0){}
 	static void summon();
 	static void calm();
 	static void shutdown();
