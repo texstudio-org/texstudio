@@ -2301,11 +2301,11 @@ void Texmaker::fileSave(const bool saveSilently) {
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
-        if(configManager.autoCheckinAfterSave && !saveSilently) {
+        if(configManager.autoCheckinAfterSaveLevel>0 && !saveSilently) {
 			checkin(currentEditor()->fileName());
 			if(configManager.svnUndo) currentEditor()->document()->clearUndo();
 		}
-		emit infoFileSaved(currentEditor()->fileName());
+        //emit infoFileSaved(currentEditor()->fileName());
 	}
 	UpdateCaption();
 	//updateStructure(); (not needed anymore for autoupdate)
@@ -5413,7 +5413,7 @@ void Texmaker::beginRunningCommand(const QString& commandMain, bool latex, bool 
 		PDFDocument::isMaybeCompiling |= runningPDFAsyncCommands > 0;
 #endif
 		
-		if (configManager.autoCheckinAfterSave) {
+        if (configManager.autoCheckinAfterSaveLevel>0) {
 			QFileInfo fi(documents.getTemporaryCompileFileName());
 			fi.setFile(fi.path()+"/"+fi.baseName()+".pdf");
 			if(fi.exists() && !fi.isWritable()){
@@ -7947,7 +7947,7 @@ void Texmaker::fileUpdateCWD(QString filename){
 }
 
 void Texmaker::checkinAfterSave(QString filename) {
-	if(configManager.autoCheckinAfterSave){
+    if(configManager.autoCheckinAfterSaveLevel>1){
 		if(svnadd(filename)){
 			checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
 		} else {

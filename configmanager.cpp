@@ -543,7 +543,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/PDF Paths", &BuildManager::additionalPdfPaths, "", &pseudoDialog->lineEditPathPDF);
 	
 	//SVN
-	registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
+    //registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
+    registerOption("Tools/Auto Checkin after Save level", &autoCheckinAfterSaveLevel, 0, &pseudoDialog->comboBoxAutoCheckinLevel);
 	registerOption("Tools/SVN Undo", &svnUndo, false, &pseudoDialog->cbSVNUndo);
 	registerOption("Tools/SVN KeywordSubstitution", &svnKeywordSubstitution, false, &pseudoDialog->cbKeywordSubstitution);
 	registerOption("Tools/SVN Search Path Depth", &svnSearchPathDepth, 2, &pseudoDialog->sbDirSearchDepth);
@@ -880,6 +881,13 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		for (int i=0;i<userTags.size();i++)
 			completerConfig->userMacros.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
 	    }
+        // import old svn setting
+        if(config->contains("Tools/Auto Checkin after Save")){
+            bool oldSetting=config->value("Tools/Auto Checkin after Save",false).toBool();
+            if(oldSetting)
+                autoCheckinAfterSaveLevel=1;
+            config->remove("Tools/Auto Checkin after Save");
+        }
 	}
 	//menu shortcuts
 	QMap<QString, QString> aliases = QMap<QString, QString>();
