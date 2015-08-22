@@ -43,7 +43,7 @@ void PreviewLabel::setPixmapWithResizing(const QPixmap &pm) {
 
 
 TemplateSelector::TemplateSelector(QString name, QWidget *parent)
-	: QDialog(parent) {
+    : QDialog(parent),previewLabel(0) {
 	setModal(true);
 	ui.setupUi(this);
 	setWindowTitle(name);
@@ -171,7 +171,8 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *pr
 		ui.lbVersion->setText(tr("Version")+": "+th.version());
 		ui.lbLicense->setText(tr("License")+": "+th.license());
 		ui.lbAuthorTag->setVisible(true);
-		previewLabel->setScaledPixmap(QPixmap(th.previewImage()));
+        if(previewLabel)
+            previewLabel->setScaledPixmap(QPixmap(th.previewImage()));
 
 		if (th.isMultifile()) {
 			ui.rbCreateInFolder->setChecked(true);
@@ -190,7 +191,8 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *pr
 		ui.lbVersion->setText("");
 		ui.lbLicense->setText("");
 		ui.lbAuthorTag->setVisible(false);
-		previewLabel->setScaledPixmap(QPixmap());
+        if(previewLabel)
+            previewLabel->setScaledPixmap(QPixmap());
 	}
 }
 
