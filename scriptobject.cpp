@@ -81,7 +81,8 @@ void ScriptObject::writeFile(const QString& filename, const QString& content){
 	if (!needWritePrivileges("writeFile",filename))
 		return;
 	QFile f(filename);
-	f.open(QFile::WriteOnly);
+    if(!f.open(QFile::WriteOnly))
+        return;
 	f.write(content.toUtf8());
 	f.close();
 }
