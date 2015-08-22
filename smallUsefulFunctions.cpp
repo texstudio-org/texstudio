@@ -2985,7 +2985,7 @@ Tokens getCommandTokenFromToken(TokenList tl,Tokens tk)
     }
     for(int i=tkPos-1;i>=0;i--){
         Tokens elem=tl.at(i);
-        if(elem.level==level && (elem.type==Tokens::command || elem.type==Tokens::command) ){
+        if(elem.level==level && (elem.type==Tokens::command || elem.type==Tokens::commandUnknown) ){
             result=elem;
             break;
         }
