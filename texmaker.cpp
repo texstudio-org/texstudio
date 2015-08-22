@@ -6154,9 +6154,10 @@ void Texmaker::generateAddtionalTranslations(){
 	translations << "#endif\n\n";
 
 	QFile translationFile("additionaltranslations.cpp");
-	translationFile.open(QIODevice::WriteOnly);
-	translationFile.write(translations.join("\n").toLatin1());
-	translationFile.close();
+    if(translationFile.open(QIODevice::WriteOnly)){
+        translationFile.write(translations.join("\n").toLatin1());
+        translationFile.close();
+    }
 }
 
 void Texmaker::onOtherInstanceMessage(const QString &msg) { // Added slot for messages to the single instance
