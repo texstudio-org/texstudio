@@ -3536,8 +3536,12 @@ void PDFDocument::fileOpen(){
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
 {
 	//current page has changed
-		if(document.isNull())
-			return;
+    if(document.isNull())
+        return;
+
+    Q_ASSERT(pdfWidget && globalConfig);
+    if (!pdfWidget || !globalConfig) return;
+
 	//#ifndef Q_OS_MAC
 	// On Mac OS X, disabling these leads to a crash if we hit the end of document while auto-repeating a key
 	// (seems like a Qt bug, but needs further investigation)
@@ -3552,9 +3556,6 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	
 	//#endif
 
-
-	Q_ASSERT(pdfWidget && globalConfig);
-	if (!pdfWidget || !globalConfig) return;
 	sync = sync && !syncToSourceBlock;
 	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
