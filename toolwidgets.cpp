@@ -244,7 +244,7 @@ void OutputViewWidget::changeEvent(QEvent *event){
 Q_DECLARE_METATYPE(QAction*)
 
 CustomWidgetList::CustomWidgetList(QWidget* p):
-	QDockWidget(p), toolbox(0), frame(0),stack(0), toolbar(0)
+    QDockWidget(p), newStyle(false),toolbox(0), frame(0),stack(0), toolbar(0)
 {
     toggleViewAction()->setIcon(getRealIcon("sidebar"));
 	setContextMenuPolicy(Qt::CustomContextMenu);
