@@ -444,7 +444,8 @@ public:
 	}
 	
 	void resetBinding() {
-		completer->listModel->setEnvironMode(false);
+        if(completer)
+            completer->listModel->setEnvironMode(false);
 		showMostUsed=false;
 		QString curWord = getCurWord();
 		if (!active) return;
