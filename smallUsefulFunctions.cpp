@@ -2789,6 +2789,8 @@ TokenList getArgContent(Tokens &tk)
 {
     TokenList results;
     QDocumentLineHandle *dlh=tk.dlh;
+    if(!dlh)
+        return results;
     dlh->lockForRead();
     TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
     dlh->unlock();
@@ -2832,7 +2834,7 @@ TokenList getArgContent(TokenList &tl,int pos,int level,int runAwayPrevention)
         }
         //ignore other levels
     }
-    if(!finished){
+    if(!finished && tk.dlh){
         //getRestArgfrom
         QDocument *document=tk.dlh->document();
         int index = document->indexOf(tk.dlh);
