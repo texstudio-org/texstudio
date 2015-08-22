@@ -8297,7 +8297,7 @@ void QDocumentPrivate::discardAutoUpdatedCursors(bool documentDeleted){
 }
 
 void QDocumentPrivate::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
-	if (!!(m_workArounds & workAround) == newValue) return;
+    if ((m_workArounds & workAround) == newValue) return;
 	if (newValue) m_workArounds |= workAround;
 	else m_workArounds &= ~workAround;
 	if (workAround == QDocument::DisableFixedPitchMode)
