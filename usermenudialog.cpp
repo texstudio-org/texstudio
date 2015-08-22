@@ -120,7 +120,7 @@ void StringListTableModel::addStringList(QStringList* list, const QString& name)
 }
 
 UserMenuDialog::UserMenuDialog(QWidget* parent,  QString name, QLanguageFactory* languageFactory)
-		: QDialog(parent), languages(languageFactory) {
+        : QDialog(parent), languages(languageFactory),model(0) {
 	setWindowTitle(name);
 	ui.setupUi(this);
 
