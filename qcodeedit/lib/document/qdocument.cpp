@@ -7042,7 +7042,7 @@ void QDocumentPrivate::setWidth()
 				m_wrapped.remove(i);
 			}
 
-			if ( first != -1 )
+            if ( first == -1 )
 				first = i;
 		}
 
