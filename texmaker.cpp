@@ -6781,15 +6781,12 @@ void Texmaker::jumpToSearchResult(QDocument* doc, int lineNumber, const SearchQu
 	{
 		QDocumentCursor c=currentEditor()->cursor();
 		int col=c.columnNumber();
-		gotoLine(lineNumber);
 		col=query->getNextSearchResultColumn(c.line().text() ,col+1);
-		currentEditor()->setCursorPosition(lineNumber,col,false);
-		currentEditor()->ensureCursorVisible(QEditor::Navigation);
+		gotoLine(lineNumber, col);
 	} else {
 		gotoLine(lineNumber, doc->getFileName().size()?doc->getFileName():qobject_cast<LatexDocument*>(doc)->getTemporaryFileName());
-		int col=query->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text() ,0);
-		currentEditor()->setCursorPosition(lineNumber,col,false);
-		currentEditor()->ensureCursorVisible(QEditor::Navigation);
+		int col=query->getNextSearchResultColumn(currentEditor()->document()->line(lineNumber).text(), 0);
+		gotoLine(lineNumber, col);
 		outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 	}
 	QDocumentCursor highlight = currentEditor()->cursor();
