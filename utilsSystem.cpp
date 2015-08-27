@@ -425,7 +425,7 @@ QString getTerminalCommand()
 #else // Linux
 	// Linux does not have a uniform way to determine the default terminal application
 	// gnome
-	QString command = execCommand("gsettings get org.gnome.desktop.default-applications.terminal exec")
+	QString command = execCommand("gsettings get org.gnome.desktop.default-applications.terminal exec");
 	command = command.replace('\'', "");
 	if (!command.isEmpty()) {
 		return command;
