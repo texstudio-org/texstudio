@@ -865,6 +865,7 @@ void Texmaker::setupMenus() {
 	updateUserToolMenu();
 	menu->addSeparator();
 	newManagedAction(menu, "clean",tr("Cle&an Auxiliary Files..."), SLOT(CleanAll()));
+	newManagedAction(menu, "terminal", tr("&Open Terminal"), SLOT(openTerminal()));
 	menu->addSeparator();
 	newManagedAction(menu, "viewlog",tr("View &Log"), SLOT(commandFromAction()), QKeySequence(), "viewlog")->setData(BuildManager::CMD_VIEW_LOG);
 	act = newManagedAction(menu, "logmarkers", tr("Show Log Markers"), 0, 0, "logmarkers");
@@ -5484,6 +5485,21 @@ void Texmaker::processNotification(const QString& message){
     if(message.startsWith(tr("Error:")))
         outputView->showPage(outputView->MESSAGES_PAGE);
 	outputView->insertMessageLine(message+"\n");
+}
+
+void Texmaker::openTerminal() {
+	QString workdir;
+	if (currentEditor())
+		workdir = currentEditor()->fileInfo().absolutePath();
+	else
+		workdir = getUserDocumentFolder();
+	QString command = getTerminalCommand();
+	if (command.isEmpty()) {
+		txsCritical("Unable to detect a terminal application.");
+		return;
+	}
+	QProcess proc;
+	proc.startDetached(command, QStringList(), workdir);
 }
 
 void Texmaker::commandFromAction(){

@@ -413,6 +413,35 @@ void updatePathSettings(QProcess* proc, QString additionalPaths)
     proc->setProcessEnvironment(env);
 }
 
+QString getTerminalCommand()
+{
+#ifdef Q_OS_WIN
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QString windir = env.value("WINDIR", "c:/windows");
+	return windir + "/system32/cmd.exe";
+#elif Q_OS_MAC
+	// not implemented
+	return "tell application \"Terminal\" do script \"\" end tell";
+#else // Linux
+	// Linux does not have a uniform way to determine the default terminal application
+	// gnome
+	QString command = execCommand("gsettings get org.gnome.desktop.default-applications.terminal exec")
+	command = command.replace('\'', "");
+	if (!command.isEmpty()) {
+		return command;
+	}
+	// fallback
+	QStringList fallbacks = QStringList() << "konsole" << "xterm";
+	foreach (const QString &fallback, fallbacks) {
+		QString command = execCommand("which " + fallback);
+		if (!command.isEmpty()) {
+			return command;
+		}
+	}
+	return QString();
+#endif
+}
+
 int x11desktop_env() {
     // 0 : no kde ; 3: kde ; 4 : kde4 ;
     QString kdesession= ::getenv("KDE_FULL_SESSION");
@@ -514,4 +543,3 @@ void SafeThread::wait(unsigned long time){
     if (crashed) return;
     QThread::wait(time);
 }
-

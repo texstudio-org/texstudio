@@ -55,6 +55,8 @@ QString getEnvironmentPath();
 QStringList getEnvironmentPathList();
 void updatePathSettings(QProcess* proc, QString additionalPaths);
 
+QString getTerminalCommand();
+
 //returns kde version 0,3,4
 int x11desktop_env();
 
