@@ -419,9 +419,9 @@ QString getTerminalCommand()
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	QString windir = env.value("WINDIR", "c:/windows");
 	return windir + "/system32/cmd.exe";
-#elif Q_OS_MAC
-	// not implemented
-	return "tell application \"Terminal\" do script \"\" end tell";
+#elif defined(Q_OS_MAC)
+    QString command="open /Applications/Utilities/Terminal.app/";
+    return command;
 #else // Linux
 	// Linux does not have a uniform way to determine the default terminal application
 	// gnome
