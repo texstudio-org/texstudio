@@ -460,6 +460,7 @@ private slots:
 	bool runCommand(const QString& commandline, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 protected slots:	
 	void processNotification(const QString& message);
+	void openTerminal();
 	void CleanAll();
 	void checkShortcutChangeNotification(QAction *act);
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
