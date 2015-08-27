@@ -5498,8 +5498,12 @@ void Texmaker::openTerminal() {
 		txsCritical("Unable to detect a terminal application.");
 		return;
 	}
+    QStringList args;
+    args=command.split(' ');
+    command=args.takeFirst();
 	QProcess proc;
-	proc.startDetached(command, QStringList(), workdir);
+    // maybe some visual feedback here ?
+    proc.startDetached(command, args, workdir);
 }
 
 void Texmaker::commandFromAction(){
