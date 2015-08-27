@@ -913,22 +913,22 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location line="+949"/>
         <source>Select how txs checks in saved files</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleciona como txs deve checar em arquivos salvos</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"></translation>
+        <translation>Não checar automaticamente após salvar</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Check-in after File/Save only</source>
-        <translation type="unfinished"></translation>
+        <translation>Checar somente após Arquivo/Salvar</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation type="unfinished"></translation>
+        <translation>Checar após toda operação de salvar, i.e. também antes de compilar.</translation>
     </message>
     <message>
         <location line="+63"/>
@@ -1588,12 +1588,12 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     <message>
         <location line="+170"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aqui pode ser alterado o destaque de ambientes personalizados.</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Here you can add another environmnt for custom highlighting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aqui você pode adicionar outro ambiente para destaque personalizado.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2395,42 +2395,42 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
     <message>
         <location line="+103"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aqui os itens de menu são listados e podem ser ocultados ou editados.</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto controla se a lista acima mostra todos os itens de menu ou somente os comumente alterados.</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto mostra todas as ações na barra de ferramentas agora editada.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>This adds an action to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto adiciona uma ação à barra de ferramentas.</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>This removes an action from the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto remove uma ação da bara de ferramentas.</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Here you can choose a toolbar to modify.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aqui você pode escolher uma barra de ferramentas para modificá-la.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aqui você pode escolher uma lista de comandos que podem ser aplicados à barra de ferramentas.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto mostra as ações disponíveis para serem aplicadas à uma barra de ferramentas.</translation>
     </message>
     <message>
         <location line="+36"/>
@@ -2450,17 +2450,17 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
     <message>
         <location line="+7"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto altera a escala das barras de ferramentas horizontais (para monitores de alta resolução).</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto altera a escala da grade de símbolos (para monitores de alta resolução).</translation>
     </message>
     <message>
         <location line="+44"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Isto altera a escala das barras de ferramentas verticais (para monitores de alta resolução).</translation>
     </message>
     <message>
         <location line="+380"/>
@@ -3197,7 +3197,7 @@ Você não conseguirá mais inserir este caractere em seu texto. Deseja realment
     <message>
         <location line="+15"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aqui o destaque de sintaxe para vários comandos, ambientes e seleções pode ser alterado.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3257,7 +3257,7 @@ Você não conseguirá mais inserir este caractere em seu texto. Deseja realment
     <message>
         <location line="+45"/>
         <source>(option filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>(opção de filtro)</translation>
     </message>
     <message>
         <location line="+140"/>
@@ -9113,17 +9113,17 @@ Você confia neste script?</translation>
     <message>
         <location line="+21"/>
         <source>Expand All</source>
-        <translation type="unfinished">Expandir Todos</translation>
+        <translation>Expandir Todos</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Collapse All</source>
-        <translation type="unfinished">Recolher Todos</translation>
+        <translation>Recolher Todos</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar</translation>
     </message>
 </context>
 <context>
@@ -10622,22 +10622,22 @@ falhou.</translation>
     <message>
         <location line="+9"/>
         <source>Editor Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoom do editor</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Zoom In</source>
-        <translation type="unfinished">Ampliar</translation>
+        <translation>Ampliar</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Zoom Out</source>
-        <translation type="unfinished">Reduzir</translation>
+        <translation>Reduzir</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished">Reiniciar Zoom</translation>
+        <translation>Reiniciar Zoom</translation>
     </message>
     <message>
         <location line="+43"/>
@@ -12649,7 +12649,7 @@ Deseja criá-lo?</translation>
         <location line="+7"/>
         <location filename="textanalysis.cpp" line="+416"/>
         <source>CSV Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar CSV</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -12908,12 +12908,12 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     <message>
         <location line="+364"/>
         <source>CSV file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo CSV</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>All files</source>
-        <translation type="unfinished">Todos os arquivos</translation>
+        <translation>Todos os arquivos</translation>
     </message>
 </context>
 <context>
