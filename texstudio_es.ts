@@ -2235,7 +2235,8 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     </message>
     <message>
         <location line="+29"/>
-        <source>Here you can add another environmnt for custom highlighting.</source>
+        <source>Here you can add another environment for custom highlighting.</source>
+        <oldsource>Here you can add another environmnt for custom highlighting.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4324,7 +4325,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <location line="-44"/>
-        <location filename="texmaker.cpp" line="+7143"/>
+        <location filename="texmaker.cpp" line="+7163"/>
         <location line="+6"/>
         <source>Go to Definition</source>
         <translation>Ir a la Definición</translation>
@@ -8811,13 +8812,13 @@ no pudo ser eliminado.</translation>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-6023"/>
-        <location line="+6003"/>
+        <location filename="texmaker.cpp" line="-6042"/>
+        <location line="+6022"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
     <message>
-        <location line="-6518"/>
+        <location line="-6538"/>
         <source>&amp;New</source>
         <translation>&amp;Nuevo</translation>
     </message>
@@ -8827,9 +8828,9 @@ no pudo ser eliminado.</translation>
         <translation>C&amp;ortar</translation>
     </message>
     <message>
-        <location line="+444"/>
+        <location line="+445"/>
         <location line="+1324"/>
-        <location line="+4679"/>
+        <location line="+4698"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
@@ -8839,7 +8840,7 @@ no pudo ser eliminado.</translation>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6458"/>
+        <location filename="texmaker.cpp" line="-6478"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -8874,12 +8875,12 @@ no pudo ser eliminado.</translation>
         <translation>&amp;Encontrar</translation>
     </message>
     <message>
-        <location line="+391"/>
+        <location line="+392"/>
         <source>&amp;Help</source>
         <translation>&amp;Ayuda</translation>
     </message>
     <message>
-        <location line="-424"/>
+        <location line="-425"/>
         <source>&amp;Redo</source>
         <translation>&amp;Rehacer</translation>
     </message>
@@ -8899,18 +8900,18 @@ no pudo ser eliminado.</translation>
     </message>
     <message>
         <location line="+158"/>
-        <location line="+152"/>
+        <location line="+153"/>
         <source>&amp;View</source>
         <translation>&amp;Visualizar</translation>
     </message>
     <message>
-        <location line="-482"/>
+        <location line="-483"/>
         <source>Delimiters</source>
         <translation>Delimitadores</translation>
     </message>
     <message>
-        <location line="+1743"/>
-        <location line="+6733"/>
+        <location line="+1744"/>
+        <location line="+6752"/>
         <source>Open Files</source>
         <translation type="unfinished">Abrir Archivos</translation>
     </message>
@@ -8919,10 +8920,10 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Limpiar</translation>
     </message>
     <message>
-        <location line="-7243"/>
+        <location line="-7262"/>
         <location line="+1609"/>
         <location line="+1823"/>
-        <location line="+468"/>
+        <location line="+487"/>
         <location line="+130"/>
         <location line="+2"/>
         <location line="+6"/>
@@ -8932,7 +8933,7 @@ no pudo ser eliminado.</translation>
         <translation>Error</translation>
     </message>
     <message>
-        <location line="-8420"/>
+        <location line="-8440"/>
         <source>Go to</source>
         <translation>Ir a</translation>
     </message>
@@ -8947,7 +8948,7 @@ no pudo ser eliminado.</translation>
     </message>
     <message>
         <location line="-526"/>
-        <location line="+5209"/>
+        <location line="+5210"/>
         <source>Ready</source>
         <translation>Listo</translation>
     </message>
@@ -8965,7 +8966,7 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Advertencia anterior</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-4726"/>
+        <location filename="texmaker.cpp" line="-4727"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
@@ -8986,17 +8987,17 @@ no pudo ser eliminado.</translation>
         <translation>Símbolos de texto misceláneos (wasysym)</translation>
     </message>
     <message>
-        <location line="+7181"/>
+        <location line="+7201"/>
         <source>Remove all favorites</source>
         <translation>Remover todos los favoritos</translation>
     </message>
     <message>
-        <location line="-6702"/>
+        <location line="-6721"/>
         <source>Next Document</source>
         <translation>Documento siguiente</translation>
     </message>
     <message>
-        <location line="-237"/>
+        <location line="-238"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
@@ -9010,12 +9011,12 @@ no pudo ser eliminado.</translation>
         <translation>Mac Antiguo (CR)</translation>
     </message>
     <message>
-        <location line="+6930"/>
+        <location line="+6950"/>
         <source>Remove from favorites</source>
         <translation>Remover desde los favoritos</translation>
     </message>
     <message>
-        <location line="-7187"/>
+        <location line="-7207"/>
         <source>Relation symbols</source>
         <translation>Símbolos de relación</translation>
     </message>
@@ -9030,7 +9031,7 @@ no pudo ser eliminado.</translation>
         <translation>Símbolos de flechas</translation>
     </message>
     <message>
-        <location line="+414"/>
+        <location line="+415"/>
         <source>Quick &amp;Letter...</source>
         <translation>Carta &amp;Rápida...</translation>
     </message>
@@ -9045,19 +9046,19 @@ no pudo ser eliminado.</translation>
         <translation>&amp;Limpiar</translation>
     </message>
     <message>
-        <location line="-290"/>
-        <location line="+8009"/>
+        <location line="-291"/>
+        <location line="+8029"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location line="-7831"/>
-        <location line="+47"/>
+        <location line="-7851"/>
+        <location line="+48"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location line="-206"/>
+        <location line="-207"/>
         <source>&amp;Paste</source>
         <translation>&amp;Pegar</translation>
     </message>
@@ -9086,7 +9087,7 @@ no pudo ser eliminado.</translation>
         <translation type="unfinished">Órdenes de MetaPost</translation>
     </message>
     <message>
-        <location line="+358"/>
+        <location line="+359"/>
         <source>C&amp;onvert to Html...</source>
         <translation>Exp&amp;ortar como HTML...</translation>
     </message>
@@ -9106,13 +9107,13 @@ no pudo ser eliminado.</translation>
         <translation type="unfinished">(c) usar la orden por defecto</translation>
     </message>
     <message>
-        <location line="+1785"/>
+        <location line="+1804"/>
         <location line="+1"/>
         <source>Insert as %1</source>
         <translation>Insertar como %1</translation>
     </message>
     <message>
-        <location line="-6367"/>
+        <location line="-6387"/>
         <location line="+6"/>
         <source>Bookmark %1</source>
         <translation type="unfinished">Marcador %1</translation>
@@ -9134,7 +9135,7 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Etiquetas de &amp;Usuario</translation>
     </message>
     <message>
-        <location line="+4209"/>
+        <location line="+4210"/>
         <source>Edit User &amp;Tags</source>
         <translation type="unfinished">Editar Etiquetas del &amp;Usuario</translation>
     </message>
@@ -9164,7 +9165,7 @@ no pudo ser eliminado.</translation>
         <translation>Expandir</translation>
     </message>
     <message>
-        <location line="+7452"/>
+        <location line="+7471"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>El archivo &quot;%1&quot; no existe.
@@ -9176,7 +9177,7 @@ Do you want to create it?</source>
         <translation>!Conflicto!</translation>
     </message>
     <message>
-        <location line="-8408"/>
+        <location line="-8428"/>
         <source>Remove Placeholders</source>
         <translation>Remover marcadores de posición</translation>
     </message>
@@ -9186,17 +9187,17 @@ Do you want to create it?</source>
         <translation>Final de Línea</translation>
     </message>
     <message>
-        <location line="+6355"/>
+        <location line="+6375"/>
         <source>Insert</source>
         <translation>Insertar</translation>
     </message>
     <message>
-        <location line="-6189"/>
+        <location line="-6208"/>
         <source>Quick &amp;Start...</source>
         <translation>Inicio &amp;Rápido...</translation>
     </message>
     <message>
-        <location line="-398"/>
+        <location line="-399"/>
         <source>Left/Right Brackets</source>
         <translation>Paréntesis Izquierda/Derecha</translation>
     </message>
@@ -9206,7 +9207,7 @@ Do you want to create it?</source>
         <translation>Símbolos matemáticos misceláneos</translation>
     </message>
     <message>
-        <location line="+495"/>
+        <location line="+496"/>
         <source>Close Something</source>
         <translation type="unfinished">Cerrar</translation>
     </message>
@@ -9215,23 +9216,23 @@ Do you want to create it?</source>
         <translation type="obsolete">Badbox anterior</translation>
     </message>
     <message>
-        <location line="-181"/>
+        <location line="-182"/>
         <source>Refresh Structure</source>
         <translation type="unfinished">Actualizar estructura</translation>
     </message>
     <message>
-        <location line="+6863"/>
+        <location line="+6883"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location line="-6746"/>
+        <location line="-6765"/>
         <source>Previous Document</source>
         <translation>Documento anterior</translation>
     </message>
     <message>
-        <location line="-479"/>
+        <location line="-480"/>
         <source>Miscellaneous text symbols</source>
         <translation>Símbolos de texto misceláneos</translation>
     </message>
@@ -9245,7 +9246,7 @@ Do you want to create it?</source>
         <translation>Ce&amp;rrar Todo</translation>
     </message>
     <message>
-        <location line="+256"/>
+        <location line="+257"/>
         <source>Quick &amp;Array...</source>
         <translation type="unfinished">Arreglo &amp;Instantáneo...</translation>
     </message>
@@ -9259,12 +9260,12 @@ Do you want to create it?</source>
         <translation type="unfinished">Contraer</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-192"/>
         <source>Complete</source>
         <translation>Completar</translation>
     </message>
     <message>
-        <location line="+4953"/>
+        <location line="+4973"/>
         <location line="+8"/>
         <source>File not found</source>
         <translation>Archivo no encontrado</translation>
@@ -9274,12 +9275,12 @@ Do you want to create it?</source>
         <translation type="obsolete">Siguiente error</translation>
     </message>
     <message>
-        <location line="-5160"/>
+        <location line="-5180"/>
         <source>&amp;Open...</source>
         <translation>&amp;Abrir...</translation>
     </message>
     <message>
-        <location line="+458"/>
+        <location line="+459"/>
         <source>&amp;Options</source>
         <translation>&amp;Opciones</translation>
     </message>
@@ -9288,7 +9289,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Clic para ir al marcador</translation>
     </message>
     <message>
-        <location line="+6612"/>
+        <location line="+6631"/>
         <source>Remove all</source>
         <translation>Remover todos</translation>
     </message>
@@ -9301,12 +9302,12 @@ Do you want to create it?</source>
         <translation type="obsolete">Último cambio</translation>
     </message>
     <message>
-        <location line="-6804"/>
+        <location line="-6823"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Generar &amp;Texto Aleatorio...</translation>
     </message>
     <message>
-        <location line="+4756"/>
+        <location line="+4775"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation type="unfinished">El archivo debe guardarse y compilarse antes de poder mostrar el archivo de registro</translation>
     </message>
@@ -9319,7 +9320,7 @@ Do you want to create it?</source>
         <translation type="obsolete">normal</translation>
     </message>
     <message>
-        <location line="-4717"/>
+        <location line="-4736"/>
         <source>Quick &amp;Tabular...</source>
         <translation type="unfinished">Insertar &amp;Tabla...</translation>
     </message>
@@ -9336,12 +9337,12 @@ Do you want to create it?</source>
         <translation type="obsolete">Modo Normal</translation>
     </message>
     <message>
-        <location line="+8224"/>
+        <location line="+8243"/>
         <source>You do not have read permission to this file.</source>
         <translation>Usted no tiene permiso para leer este archivo.</translation>
     </message>
     <message>
-        <location line="-7850"/>
+        <location line="-7869"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
@@ -9354,7 +9355,7 @@ Do you want to create it?</source>
         <translation type="obsolete">No Guardar y Cerrar</translation>
     </message>
     <message>
-        <location line="-450"/>
+        <location line="-451"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
@@ -9385,7 +9386,7 @@ Do you want to create it?</source>
         <translation type="obsolete">No puedes eliminar plantillas internas preestablecidas.</translation>
     </message>
     <message>
-        <location line="+119"/>
+        <location line="+120"/>
         <source>Thesaurus...</source>
         <translation>Diccionario de Sinónimos...</translation>
     </message>
@@ -9399,7 +9400,7 @@ Do you want to create it?</source>
         <translation>Guardar como</translation>
     </message>
     <message>
-        <location line="-1879"/>
+        <location line="-1880"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -9421,13 +9422,13 @@ Do you want to create it?</source>
         <translation type="obsolete">Mensaje / Archivo de registro</translation>
     </message>
     <message>
-        <location line="+264"/>
+        <location line="+265"/>
         <location line="+5"/>
         <source>Everything</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location line="-218"/>
+        <location line="-219"/>
         <location line="+1"/>
         <source>No LaTeX warnings detected !</source>
         <translation>¡No se detectaron advertencias de LaTeX!</translation>
@@ -9443,7 +9444,7 @@ Do you want to create it?</source>
         <translation>&amp;Descomentar</translation>
     </message>
     <message>
-        <location line="+315"/>
+        <location line="+316"/>
         <source>Automatically Restore &amp;Session at Next Start</source>
         <translation>Automáticamente Restaurar &amp;Sesión en el Siguiente Inicio</translation>
     </message>
@@ -9453,7 +9454,7 @@ Do you want to create it?</source>
         <translation>Predeterminado</translation>
     </message>
     <message>
-        <location line="-385"/>
+        <location line="-386"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
@@ -9495,12 +9496,12 @@ Do you want to create it?</source>
         <translation type="unfinished">Órdenes de PStricks</translation>
     </message>
     <message>
-        <location line="+4658"/>
+        <location line="+4659"/>
         <source>Can&apos;t detect the file name</source>
         <translation>No se puede detectar el nombre del archivo</translation>
     </message>
     <message>
-        <location line="-4671"/>
+        <location line="-4672"/>
         <source>Greek letters</source>
         <translation>Letras Griegas</translation>
     </message>
@@ -9510,12 +9511,12 @@ Do you want to create it?</source>
         <translation>Ir al marcador</translation>
     </message>
     <message>
-        <location line="+367"/>
+        <location line="+368"/>
         <source>User Manual...</source>
         <translation>Manual de Usuario...</translation>
     </message>
     <message>
-        <location line="-470"/>
+        <location line="-471"/>
         <source>Save A&amp;ll</source>
         <translation>Guardar T&amp;odo</translation>
     </message>
@@ -9529,13 +9530,13 @@ Do you want to create it?</source>
         <translation type="obsolete">&lt;archivo actual&gt;</translation>
     </message>
     <message>
-        <location line="+155"/>
+        <location line="+156"/>
         <location line="+5"/>
         <source>Level %1</source>
         <translation>Nivel %1</translation>
     </message>
     <message>
-        <location line="+6669"/>
+        <location line="+6688"/>
         <location line="+11"/>
         <source>Add to favorites</source>
         <translation>Agregar a favoritos</translation>
@@ -9553,7 +9554,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Por favor confirmar</translation>
     </message>
     <message>
-        <location line="-2853"/>
+        <location line="-2872"/>
         <source>Quick Start</source>
         <translation>Inicio rápido</translation>
     </message>
@@ -9563,13 +9564,13 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="-3706"/>
-        <location line="+6001"/>
+        <location line="+6020"/>
         <source>Unindent Section</source>
         <translation>Disminuir Sangría a la Sección</translation>
     </message>
     <message>
-        <location line="-6002"/>
-        <location line="+6001"/>
+        <location line="-6021"/>
+        <location line="+6020"/>
         <source>Indent Section</source>
         <translation>Aumentar Sangría de la sección</translation>
     </message>
@@ -9583,7 +9584,7 @@ Do you want to create it?</source>
 ¿Deseas guardarlo antes de cerrar?</translation>
     </message>
     <message>
-        <location line="-6621"/>
+        <location line="-6641"/>
         <source>Favorites</source>
         <translation>Favoritos</translation>
     </message>
@@ -9614,13 +9615,13 @@ Do you want to create it?</source>
         <translation type="obsolete">Modo normal (documento principal actual):</translation>
     </message>
     <message>
-        <location line="+138"/>
+        <location line="+139"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Asistentes</translation>
     </message>
     <message>
         <location line="+2416"/>
-        <location line="+2231"/>
+        <location line="+2250"/>
         <location line="+28"/>
         <source>No document open</source>
         <translation>No hay ningun documento abierto</translation>
@@ -9630,18 +9631,18 @@ Do you want to create it?</source>
         <translation type="obsolete">Marcador sin nombre</translation>
     </message>
     <message>
-        <location line="-3039"/>
+        <location line="-3058"/>
         <location line="+54"/>
         <source>Save and Close</source>
         <translation>Guardar y cerrar</translation>
     </message>
     <message>
-        <location line="-2094"/>
+        <location line="-2095"/>
         <source>Accented letters</source>
         <translation>Letras con acento</translation>
     </message>
     <message>
-        <location line="+5083"/>
+        <location line="+5103"/>
         <source>Text Analysis</source>
         <translation>Análisis de texto</translation>
     </message>
@@ -9659,18 +9660,18 @@ Do you want to create it?</source>
         <translation type="obsolete">¿Eliminar los archivos de salida generados por LaTeX?</translation>
     </message>
     <message>
-        <location line="-5090"/>
+        <location line="-5110"/>
         <source>Tikz Commands</source>
         <translation type="unfinished">Órdenes de Tikz</translation>
     </message>
     <message>
         <location line="+315"/>
-        <location line="+95"/>
+        <location line="+96"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliografía</translation>
     </message>
     <message>
-        <location line="-199"/>
+        <location line="-200"/>
         <source>Next mark</source>
         <translation>Marcador siguiente</translation>
     </message>
@@ -9688,7 +9689,7 @@ Do you want to create it?</source>
         <translation type="obsolete">&quot;Siguiente&quot; cambio</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+31"/>
         <source>Check Spelling...</source>
         <translation>Revisión Ortográfica...</translation>
     </message>
@@ -9719,7 +9720,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+1"/>
-        <location filename="texmaker.cpp" line="-679"/>
+        <location filename="texmaker.cpp" line="-680"/>
         <source>Central</source>
         <translation>Central</translation>
     </message>
@@ -9849,13 +9850,13 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+8158"/>
+        <location line="+8178"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location line="-7995"/>
+        <location line="-8015"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Marcadores</translation>
@@ -10396,6 +10397,11 @@ Do you want to create it?</source>
         <translation>Limpi&amp;ar los archivos auxiliares...</translation>
     </message>
     <message>
+        <location line="+1"/>
+        <source>&amp;Open Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+2"/>
         <source>View &amp;Log</source>
         <translation type="unfinished">Ver &amp;Archivo de registro</translation>
@@ -10664,18 +10670,18 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+21"/>
-        <location line="+6003"/>
+        <location line="+6022"/>
         <source>Paste Before</source>
         <translation>Pegar antes</translation>
     </message>
     <message>
-        <location line="-6002"/>
-        <location line="+6003"/>
+        <location line="-6021"/>
+        <location line="+6022"/>
         <source>Paste After</source>
         <translation>Pegar después</translation>
     </message>
     <message>
-        <location line="-5783"/>
+        <location line="-5802"/>
         <source>Go to bookmark</source>
         <translation type="unfinished">Ir al marcador</translation>
     </message>
@@ -10800,7 +10806,7 @@ confía en este documento)
         <translation>Error:</translation>
     </message>
     <message>
-        <location line="+23"/>
+        <location line="+42"/>
         <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
         <translation type="unfinished">&lt;h4&gt;Cambio de los accesos directos predeterminados&lt;/h4&gt;&lt;p&gt;Conforme avanza el tiempo, los accesos directos de las herramientas principales se han convertido en algo fragmentado. Adicionalmente, en parte se superponen con teclas estándar. En particular, F1, F3, F10, F11 y F12 tienen reservada una función significativa en algunos sistemas.&lt;/p&gt;&lt;p&gt;Hemos decidido establecer esta asignación a favor de un diseño más coherente::&lt;/p&gt;&lt;ul&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt; se moverá de F1 a F5.&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Bibliografía&lt;/code&gt; se moverá de F11 a F8..&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Glosario&lt;/code&gt; se moverá de F10 a F9.&lt;li&gt;La herramienta &lt;code&gt;Índice&lt;/code&gt; no tendrá más un atajo (antes F12) debido a que esta no es utilizada muy a menudo.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Lamentamos, que tenga que volver a aprender el atajo más utilizado para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt;. Durante un período de transición, tanto F1 y F5 funcionarán. Al final, se reunirán las herramientas más importantes en el bloque central de F5-F8, lo cual  aumentará la usabilidad. Como de costumbre, todavía se puede personalizar totalmente los accesos directos en las opciones.&lt;/p&gt;</translation>
     </message>
@@ -10914,7 +10920,7 @@ Proporcione este archivo si se envía un informe de error.
         <translation>Informe del sistema</translation>
     </message>
     <message>
-        <location line="-8625"/>
+        <location line="-8644"/>
         <location line="+337"/>
         <source>Insert language as TeX comment</source>
         <translation>Insertar el idioma como un Comentario TeX</translation>
@@ -11059,7 +11065,7 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
         <translation>No se pudo iniciar%1.</translation>
     </message>
     <message>
-        <location line="+95"/>
+        <location line="+114"/>
         <source>No open project or tex file to clean.</source>
         <translation>Ningún proyecto abierto o un Archivo tex para limpiar.</translation>
     </message>
@@ -11294,12 +11300,12 @@ El mensaje ha sido detenido.
         <translation>Traté de forzar el cierre, pero no pasó nada.</translation>
     </message>
     <message>
-        <location line="-7424"/>
+        <location line="-7443"/>
         <source>Could not write template meta data:</source>
         <translation>No se pudo escribir los metadatos de la plantilla:</translation>
     </message>
     <message>
-        <location line="-1418"/>
+        <location line="-1419"/>
         <source>Session</source>
         <translation>Sesión</translation>
     </message>
@@ -11334,7 +11340,7 @@ El mensaje ha sido detenido.
         <translation>Du&amp;plicar Línea</translation>
     </message>
     <message>
-        <location line="+206"/>
+        <location line="+207"/>
         <source>Add magic comments ...</source>
         <translation>Añadir comentario mágico ...</translation>
     </message>

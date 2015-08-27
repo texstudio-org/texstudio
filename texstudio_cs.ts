@@ -2843,10 +2843,6 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Here you can add another environmnt for custom highlighting.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Select how txs checks in saved files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2868,6 +2864,10 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     </message>
     <message>
         <source>(option filter)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Here you can add another environment for custom highlighting.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10359,6 +10359,10 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
     <message>
         <source>Reset Zoom</source>
         <translation type="unfinished">Nastavit zvětšení znovu</translation>
+    </message>
+    <message>
+        <source>&amp;Open Terminal</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
