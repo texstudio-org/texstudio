@@ -378,12 +378,12 @@ void WebPublishDialog::extractpage(QString psfile,int page) {
 				if (rxpage.indexIn(line)>-1) {
 					int numpage=rxpage.cap(1).toInt();
 					if (numpage==page) {
-						line="\%\%Page: 1 1";
+                        line="%%Page: 1 1";
 						go=true;
 					} else go=false;
 				}
 				if (rxtrailer.indexIn(line)>-1) go=true;
-                if (rx.indexIn(line)>-1) line="\%\%Pages: 1 0"; // no idea what the code is supposed to look like, \% is invalid in any case
+                if (rx.indexIn(line)>-1) line="%%Pages: 1 0"; // no idea what the code is supposed to look like, \% is invalid in any case
 				if (go) outts << line+"\n";
 			}
 			outf.close();
