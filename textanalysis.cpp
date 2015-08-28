@@ -228,7 +228,7 @@ void TextAnalysisDialog::needCount() {
 					//find sentence end characters which belong to the words before the comment start
                     if (respectSentenceEnd)
                         for (int i=lastIndex; i<lr.wordStartIndex; i++){
-							if (line.at(i)==QChar('%') && (i==0 || line.at(i-1)!=QChar('\%'))) {
+                            if (line.at(i)==QChar('%') && (i==0 || line.at(i-1)!=QChar('\\'))) {
 								lastIndex=i;
 								break;
                             } else {
