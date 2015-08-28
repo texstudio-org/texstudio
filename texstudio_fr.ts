@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1399,7 +1399,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     <message>
         <location line="+15"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ici, la coloration syntaxique pour diverses commandes, environnements et sélections peut être changée.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1444,7 +1444,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     <message>
         <location line="+49"/>
         <source>(option filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>(filtrage d&apos;options)</translation>
     </message>
     <message>
         <location line="+144"/>
@@ -2447,7 +2447,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="+356"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -2579,42 +2579,42 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location line="+103"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ici, les entrées de menusont listées et peuvent être cachées ou éditées.</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci contrôle si la liste ci-dessus affiche toutes les entrées de menu ou bien seulement celles les plus communément modifiées.</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci affiche toutes les actions sur la barre de tâches actuellement éditée.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>This adds an action to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci ajoute une action à la barre de tâches.</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>This removes an action from the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci retire une action à la barre de tâches.</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Here you can choose a toolbar to modify.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ici, vous pouvez choisir une barre de tâches à modifier.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ici, vous pouvez choisir une liste de commandes qui peut être « mappée » sur la barre de tâches.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci affiche les actions disponibles à « mapper » sur la barre de tâches.</translation>
     </message>
     <message>
         <location line="+36"/>
@@ -2634,17 +2634,17 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location line="+7"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci change la mise à l&apos;échelle de la barre de tâches horizontale (pour les affichages à haute résolution).</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci change la mise à l&apos;échelle de la grille de symboles (pour les affichages à haute résolution).</translation>
     </message>
     <message>
         <location line="+44"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci change la mise à l&apos;échelle de la barre de tâches verticale (pour les affichages à haute résolution).</translation>
     </message>
     <message>
         <location line="+140"/>
@@ -2885,23 +2885,23 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location line="+111"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ici, la mise en évidence des environnements personnalisés peut être changée.</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Here you can add another environment for custom highlighting.</source>
         <oldsource>Here you can add another environmnt for custom highlighting.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Ici, vous pouvez ajouter un autre environnement pour la mise en évidence personnalisée.</translation>
     </message>
     <message>
         <location line="+338"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"></translation>
+        <translation>Affiche une info-bulle avec texte cible pour labels/bibitems, prévisualisation de couleurs ou d&apos;images</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Info-bulles de prévisualisation</translation>
     </message>
     <message>
         <location line="+920"/>
@@ -2911,22 +2911,22 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location line="+46"/>
         <source>Select how txs checks in saved files</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner comment TeXstudio vérifie dans les fichiers enregistrés</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de vérification automatique après l&apos;enregistrement</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Check-in after File/Save only</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérification seulement après Fichier/Enregistrer</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérification après toutes les opérations d&apos;enregistrement, c.-à-d. aussi avant les compilations.</translation>
     </message>
     <message>
         <location line="-1479"/>
@@ -3188,7 +3188,7 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     </message>
     <message>
         <source>Automatically check in after save</source>
-        <translation type="vanished">Vérifier automatiquement après l&apos;enregistrement</translation>
+        <translation type="obsolete">Vérifier automatiquement après l&apos;enregistrement</translation>
     </message>
     <message>
         <source>Uses SVN revisions to undo before last saved version</source>
@@ -9465,17 +9465,17 @@ Faites-vous confiance à ce script ?</translation>
     <message>
         <location line="+28"/>
         <source>Expand All</source>
-        <translation type="unfinished">Développer tout</translation>
+        <translation>Développer tout</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Collapse All</source>
-        <translation type="unfinished">Réduire tout</translation>
+        <translation>Réduire tout</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Effacer</translation>
     </message>
     <message>
         <source>Search:</source>
@@ -9719,19 +9719,19 @@ Fichier .aff manquant. Ce dictionnaire ne sera pas chargé.</translation>
     <name>StructDialog</name>
     <message>
         <source>Structure</source>
-        <translation type="vanished">Structure</translation>
+        <translation type="obsolete">Structure</translation>
     </message>
     <message>
         <source>Numeration</source>
-        <translation type="vanished">Numérotation</translation>
+        <translation type="obsolete">Numérotation</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="vanished">Titre</translation>
+        <translation type="obsolete">Titre</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="vanished">Annuler</translation>
+        <translation type="obsolete">Annuler</translation>
     </message>
 </context>
 <context>
@@ -12475,7 +12475,7 @@ included document in %1</source>
     <message>
         <location line="+9"/>
         <source>&amp;Open Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ouvrir un terminal</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -12575,22 +12575,22 @@ included document in %1</source>
     <message>
         <location line="+33"/>
         <source>Editor Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zomm de l&apos;éditeur</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Zoom In</source>
-        <translation type="unfinished">Zoom avant</translation>
+        <translation>Zoom avant</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Zoom Out</source>
-        <translation type="unfinished">Zoom arrière</translation>
+        <translation>Zoom arrière</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished">Réinitialiser le zoom</translation>
+        <translation>Réinitialiser le zoom</translation>
     </message>
     <message>
         <location line="+43"/>
@@ -13168,7 +13168,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
         <location line="+7"/>
         <location filename="textanalysis.cpp" line="+416"/>
         <source>CSV Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Export CSV</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -13402,12 +13402,12 @@ Sinon la ponctuation est ignorée.</translation>
     <message>
         <location line="+364"/>
         <source>CSV file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier CSV</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>All files</source>
-        <translation type="unfinished">Tous les fichiers</translation>
+        <translation>Tous les fichiers</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="-231"/>
