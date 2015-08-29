@@ -83,6 +83,11 @@ void QLineNumberPanel::setVerboseMode(bool y)
 	update();
 }
 
+void QLineNumberPanel::setFont_slot(const QFont &font)
+{
+	setFont(font);
+}
+
 /*!
 
 */
@@ -92,6 +97,8 @@ void QLineNumberPanel::editorChange(QEditor *e)
 	{
 		disconnect(	editor(), SIGNAL( cursorPositionChanged() ),
 					this	, SLOT  ( update() ) );
+		disconnect( editor()->document(), SIGNAL( fontChanged(QFont) ),
+					this	, SLOT  ( setFont_slot(QFont) ) );
 		
 	}
 	
@@ -101,7 +108,9 @@ void QLineNumberPanel::editorChange(QEditor *e)
 		
 		connect(e	, SIGNAL( cursorPositionChanged() ),
 				this, SLOT  ( update() ) );
-		
+
+		connect(e->document(), SIGNAL( fontChanged(QFont) ),
+				this, SLOT  ( setFont_slot(QFont) ) );
 	}
 }
 

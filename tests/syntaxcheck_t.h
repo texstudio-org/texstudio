@@ -15,6 +15,8 @@ class SyntaxCheckTest: public QObject{
 		void checktabular();
         void checkkeyval_data();
         void checkkeyval();
+        void checkArguments_data();
+        void checkArguments();
 };
 
 #endif

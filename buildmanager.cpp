@@ -23,6 +23,7 @@ static const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-v
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
+bool BuildManager::m_replaceEnvironmentVariables = true;
 QString BuildManager::autoRerunCommands;
 QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
 
@@ -160,6 +161,43 @@ QStringList BuildManager::splitOptions(const QString &s)
 	return options;
 }
 
+QHash<QString, QString> getEnvVariables(bool uppercaseNames) {
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QHash<QString, QString> result;
+	foreach (const QString &name, envKeys(env)) {
+		if (uppercaseNames) {
+			result.insert(name.toUpper(), env.value(name));
+		} else {
+			result.insert(name, env.value(name));
+		}
+	}
+	return result;
+}
+
+QString BuildManager::replaceEnvironmentVariables(const QString &command, const QHash<QString, QString> &variables, bool compareNamesToUpper)
+{
+	QString result(command);
+#ifdef Q_OS_WIN
+	QRegExp rxEnvVar("%(\\w+)%");
+#else
+    QRegExp rxEnvVar("\\$(\\w+)");
+#endif
+	int i=0;
+	while (i>=0 && i<result.length()) {
+		i = result.indexOf(rxEnvVar, i);
+		if (i>=0) {
+			QString varName = rxEnvVar.cap(1);
+			if (compareNamesToUpper) {
+				varName = varName.toUpper();
+			}
+			QString varContent = variables.value(varName, "");
+			result.replace(rxEnvVar.cap(0), varContent);
+			i += varContent.length();
+		}
+	}
+	return result;
+}
+
 BuildManager::BuildManager(): processWaitedFor(0)
      #ifdef Q_OS_WIN32
      , pidInst(0)
@@ -284,6 +322,16 @@ QString BuildManager::getCommandLine(const QString& id, bool* user){
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
 	str = ConfigManagerInterface::getInstance()->parseDir(str);
+	if (m_replaceEnvironmentVariables) {
+#ifdef Q_OS_WIN
+		Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+#else
+		Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+#endif
+		static QHash<QString, QString> envVariables = getEnvVariables(caseSensitivity);  // environment variables can be static because they do not change during program execution.
+		str = replaceEnvironmentVariables(str, envVariables, caseSensitivity==Qt::CaseInsensitive);
+	}
+	
 	str=str+" "; //end character  so str[i++] is always defined
 	QStringList result; result.append("");
 	for (int i=0; i<str.size(); i++) {
@@ -391,7 +439,29 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 	return result;
 }
 
-
+/*!
+ * \brief extracts the
+ * \param s
+ * \param stdOut output parameter
+ * \param stdErr output parameter
+ * \return a copy of s truncated to the first occurence of an output redirection
+ */
+QString BuildManager::extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr)
+{
+	static QRegExp rxStdOut("[^2]>\\s*(\\S+)");
+	static QRegExp rxStdErr("2>\\s*(\\S+)");
+	
+	int stdErrStart = rxStdErr.indexIn(commandLine);
+	if (stdErrStart >= 0) {
+		stdErr = rxStdErr.cap(1);
+	}
+	int stdOutStart = rxStdOut.indexIn(commandLine);
+	if (stdOutStart >= 0) {
+		stdOutStart += 1; 
+		stdOut = rxStdOut.cap(1);
+	}
+	return commandLine.left(indexMin(stdErrStart, stdOutStart)).trimmed();
+}
 
 QString BuildManager::findFileInPath(QString fileName) {
 /*#ifdef Q_OS_MAC
@@ -403,10 +473,9 @@ QString BuildManager::findFileInPath(QString fileName) {
 	delete myProcess;
 	QString path(res);
 #else*/
-	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
-	int i=env.indexOf(QRegExp("^PATH=.*", Qt::CaseInsensitive));
-	if (i==-1) return "";
-	QString path=env[i].mid(5); //skip path=
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QString path = env.value("PATH");
+	if (path.isNull()) return "";
 //#endif
 #ifdef Q_OS_WIN32
 	if (!fileName.contains('.')) fileName+=".exe";
@@ -516,10 +585,10 @@ QString findGhostscriptDLL() { //called dll, may also find an exe
 			}
 		}
 	//environment
-	QStringList env= QProcess::systemEnvironment();    //QMessageBox::information(0,env.join("  \n"),env.join("  \n"),0);
-	int i=env.indexOf(QRegExp("^GS_DLL=.*", Qt::CaseInsensitive));
-	if (i>-1)
-		return env[i].mid(7); //skip gs_dll=
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	if (env.contains("GS_DLL")) {
+		return env.value("GS_DLL");
+	}
 	//file search
 	foreach (const QString& p, getProgramFilesPaths())
 		if (QDir(p+"gs").exists())
@@ -993,7 +1062,6 @@ void BuildManager::readSettings(QSettings &settings){
 		}
 		cmd.commandLine = cmd.guessCommandLine();
 	}
-	
 	if (commands.value("quick").commandLine.isEmpty()) {
 		//Choose suggestion that actually exists
 		CommandInfo &quick = commands.find("quick").value();
@@ -1077,36 +1145,35 @@ void BuildManager::saveSettings(QSettings &settings){
 	settings.endGroup();
 }
 
+void BuildManager::checkLatexConfiguration(bool &noWarnAgain) {
+	if (commands.contains("pdflatex") && commands["pdflatex"].commandLine.isEmpty()) {
+		QString message = tr("No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).");
+		
+#ifdef Q_OS_WIN
+		message += "<br><br>"
+				+ tr("Popular LaTeX distributions on windows are %1 and %2.").arg("<a href='http://miktex.org/'>MikTeX</a>").arg("<a href='https://www.tug.org/texlive/'>TeXLive</a>")
+				+ "<br><br>"
+				+ tr("If you intend to work with LaTeX, you'll most certainly want to install one of those.");
+#elif defined(Q_OS_MAC)
+		message += "<br><br>"
+				+ tr("A popular LaTeX distribution on OSX is %1.").arg("<a href='https://tug.org/mactex/'>MacTeX</a>")
+				+ "<br><br>"
+				+ tr("If you intend to work with LaTeX, you'll most certainly want to install it.");
+#else
+		message += "<br><br>"
+				+ tr("If you intend to work with LaTeX, you'll most certainly want to install a LaTeX distribution.");
+#endif
+		txsWarning(message, noWarnAgain);
+	}
+}
+
 bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString* buffer, QTextCodec* codecForBuffer ){
 	if (waitingForProcess()) return false;
 	if (unparsedCommandLine.isEmpty()) { emit processNotification(tr("Error: No command given")); return false; }
 	ExpandingOptions options(mainFile, currentFile, currentLine);
 	ExpandedCommands expansion = expandCommandLine(unparsedCommandLine, options);
 	if (options.canceled) return false;
-    if (expansion.commands.isEmpty()) {
-        emit processNotification(tr("Error: No command expanded"));
-        if (!BuildManager_hadSuccessfulProcessStart){
-            emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
-                                        "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
-        }
-
-        return false;
-    }
-    // check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
-    bool emptyCommand=false;
-    foreach(const CommandToRun elem,expansion.commands) {
-        if(elem.command.isEmpty())
-            emptyCommand=true;
-    }
-    if (emptyCommand) {
-        emit processNotification(tr("Error: One command expansion invalid."));
-        if (!BuildManager_hadSuccessfulProcessStart){
-            emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
-                                        "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
-        }
-
-        return false;
-    }
+	if (!checkExpandedCommands(expansion)) return false;
 	
 	bool latexCompiled = false, pdfChanged = false;
 	for (int i=0;i<expansion.commands.size();i++){
@@ -1126,6 +1193,30 @@ bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInf
 	bool result = runCommandInternal(expansion, mainFile, buffer, codecForBuffer);
 	emit endRunningCommands(expansion.primaryCommand, latexCompiled, pdfChanged, asyncPdf);
 	return result;
+}
+
+bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion) {
+	if (expansion.commands.isEmpty()) {
+		emit processNotification(tr("Error: No command expanded"));
+		if (!BuildManager_hadSuccessfulProcessStart){
+			emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
+			                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+		}
+		return false;
+	}
+	
+	// check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
+	foreach(const CommandToRun elem, expansion.commands) {
+		if(elem.command.isEmpty()) {
+			emit processNotification(tr("Error: One command expansion invalid."));
+			if (!BuildManager_hadSuccessfulProcessStart){
+				emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
+				                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
+			}
+			return false;
+		}
+	}
+	return true;
 }
 
 bool BuildManager::runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer, QTextCodec* codecForBuffer){
@@ -1754,16 +1845,38 @@ bool BuildManager::executeDDE(QString ddePseudoURL) {
 
 ProcessX::ProcessX(BuildManager* parent, const QString &assignedCommand, const QString& fileToCompile):
 	QProcess(parent), cmd(assignedCommand.trimmed()), file(fileToCompile), isStarted(false), ended(false), stderrEnabled(true), stdoutEnabled(true), stdoutEnabledOverrideOn(false), stdoutBuffer(0), stdoutCodec(0) {
-	QString stdoutRedirection = cmd.mid(cmd.lastIndexOf(">") + 1).trimmed();
-	if (stdoutRedirection == "/dev/null" || stdoutRedirection == "txs:///messages"  )  {
-		cmd = cmd.left(cmd.lastIndexOf(">")).trimmed();
-		if (stdoutRedirection == "/dev/null") stdoutEnabled = false;
-		else stdoutEnabledOverrideOn = true;
-	} //todo: stderr redirection
+	
+	QString stdoutRedirection, stderrRedirection;
+	cmd = BuildManager::extractOutputRedirection(cmd, stdoutRedirection, stderrRedirection);
+    if (stdoutRedirection == "/dev/null" || stdoutRedirection == "nul") {
+		stdoutEnabled = false;
+	} else if (stdoutRedirection == "txs:///messages") {
+		stdoutEnabledOverrideOn = true;
+	} else if (!stdoutRedirection.isEmpty()) {
+		parent->processNotification(tr("The specified stdout redirection is not supported: \"%1\". Please see the manual for details.").arg("> " + stdoutRedirection));
+	}
+    if (stderrRedirection == "/dev/null" || stderrRedirection == "nul") {
+		stderrEnabled = false;
+	} else if (stderrRedirection == "txs:///messages") {
+		// nothing to do because stderr goes to messages by default
+	} else if (stderrRedirection == "&1") {
+		stderrEnabled = stdoutEnabled || stdoutEnabledOverrideOn;
+	} else if (!stderrRedirection.isEmpty()) {
+		parent->processNotification(tr("The specified stderr redirection is not supported: \"%1\". Please see the manual for details.").arg("2> " + stderrRedirection));
+	}
 	connect(this, SIGNAL(started()), SLOT(onStarted()));
 	connect(this, SIGNAL(finished(int)), SLOT(onFinished(int)));
 	connect(this, SIGNAL(error(QProcess::ProcessError)), SLOT(onError(QProcess::ProcessError)));
 }
+
+/*!
+ * Reformats shell-style literal quotes (\") to QProcess-style literal quotes (""")
+ * e.g. "Epic 12\" singles" -> "Epic 12""" singles"
+ */
+QString ProcessX::reformatShellLiteralQuotes(QString cmd) {
+	return cmd.replace("\\\"", "\"\"\"");
+}
+
 void ProcessX::startCommand() {
 	ended = false;
 	
@@ -1797,9 +1910,15 @@ void ProcessX::startCommand() {
 	
     //qDebug() << workingDirectory();
     //qDebug() << cmd;
-	QByteArray path = qgetenv("PATH");
+	QByteArray path = qgetenv("PATH");    
+#ifdef Q_OS_OSX
+    QString basePath=getEnvironmentPath();
+    qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
+    // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
+#else
     qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
-	QProcess::start(cmd);
+#endif
+	QProcess::start(reformatShellLiteralQuotes(cmd));
 	qputenv("PATH", path); // restore
 
     if (error() == FailedToStart || error() == Crashed)

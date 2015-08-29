@@ -379,12 +379,13 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn){
 
     QString fname=fn.left(fn.length()-4);
     QProcess myProc(0);
+
     //add exec search path
-    if(!texdefDir.isEmpty()){
-        QStringList env = QProcess::systemEnvironment();
-        if(env.contains("SHELL=/bin/bash")){
-            env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1:"+texdefDir);
-            myProc.setEnvironment(env);
+    if(!texdefDir.isEmpty()) {
+        QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+        if (env.value("SHELL") == "/bin/bash") {
+            env.insert("PATH", env.value("PATH") + ":" + texdefDir);
+            myProc.setProcessEnvironment(env);
         }
     }
     QStringList args;
@@ -466,11 +467,11 @@ QStringList LatexStyleParser::readPackageTracing(QString fn){
 
     QProcess myProc(0);
     //add exec search path
-    if(!texdefDir.isEmpty()){
-        QStringList env = QProcess::systemEnvironment();
-        if(env.contains("SHELL=/bin/bash")){
-            env.replaceInStrings(QRegExp("^PATH=(.*)", Qt::CaseInsensitive), "PATH=\\1:"+texdefDir);
-            myProc.setEnvironment(env);
+    if(!texdefDir.isEmpty()) {
+        QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+        if (env.value("SHELL") == "/bin/bash") {
+            env.insert("PATH", env.value("PATH") + ":" + texdefDir);
+            myProc.setProcessEnvironment(env);
         }
     }
     QStringList args;

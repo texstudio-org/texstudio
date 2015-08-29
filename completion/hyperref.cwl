@@ -5,8 +5,8 @@
 
 #include:nameref
 
-\hypersetup{options}
-#keyvals:1\hypersetup
+\hypersetup{keyvals}
+#keyvals:\hypersetup
 backref
 pdfpagemode=#FullScreen,UseNone,UseOutlines,UseOC,UseAttachments,UseThumbs
 colorlinks#true,false
@@ -60,7 +60,9 @@ unicode
 \hyperimage{imageURL}{text}#U
 \hyperdef{category}{name}{text}
 \hyperref{URL}{category}{name}{text}#U
-\hyperref[label]{text}
+# trick for commandExtract, for now
+\hyperref[label%ref]{URL}{category}{name}{text}#S
+\hyperref[label%ref]{text}
 \hyperref{text}
 \hyperlink{name}{text}
 \hypertarget{name}{text}

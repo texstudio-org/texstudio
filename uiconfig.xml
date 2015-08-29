@@ -2,8 +2,8 @@
 <menu id="main/latex" text="&amp;Latex">
   <insert id="documentclass" text="\documentclass" insert="\documentclass[%&lt;options%|%>]{%&lt;class%>}"/>
   <insert id="usepackage" text="\usepackage{}" insert="\usepackage[%&lt;options%>]{%&lt;package%|%>}"/>
-  <insert id="amspackages" text="AMS packages" insert="\usepackage{amsmath}%n\usepackage{amsfonts}%n\usepackage{amssymb}" info="The main American Mathematical Society packages"/>
-  <insert id="document" text="\begin{document}" insert="\begin{document}%n%|%n\end{document}" info="Text is allowed only between \begin{document} and \end{document}."/>
+  <insert id="amspackages" text="AMS packages" insert="\usepackage{amsmath}%\\usepackage{amsfonts}%\\usepackage{amssymb}" info="The main American Mathematical Society packages"/>
+  <insert id="document" text="\begin{document}" insert="\begin{document}%\%|%\\end{document}" info="Text is allowed only between \begin{document} and \end{document}."/>
   <insert id="author" text="\author{}" insert="\author{%&lt;names%|%>}" info="The \author command declares the author(s), where names is a list of authors separated by \and commands."/>
   <insert id="title" text="\title{}" insert="\title{%&lt;title%|%>}" info="The \title command declares text to be the title."/>
   <insert id="maketitle" text="\maketitle" insert="\maketitle" info="This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page."/>
@@ -29,25 +29,35 @@
   </menu>
 
   <menu id="environment" text="&amp;Environments">
-    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%>}%n%&lt;content%>%n\end{environment-name}" shortcut="Ctrl+E"/>
-    <insert id="center" text="\begin{center}" insert="\begin{center}%n%|%n\end{center}" icon="format-justify-center"/>
-    <insert id="flushleft" text="\begin{flushleft}" insert="\begin{flushleft}%n%|%n\end{flushleft}" icon="format-justify-left"/>
-    <insert id="flushright" text="\begin{flushright}" insert="\begin{flushright}%n%|%n\end{flushright}" icon="format-justify-right"/>
-    <insert id="quote" text="\begin{quote}" insert="\begin{quote}%n%|%n\end{quote}"/>
-    <insert id="quotation" text="\begin{quotation}" insert="\begin{quotation}%n%|%n\end{quotation}"/>
-    <insert id="verse" text="\begin{verse}" insert="\begin{verse}%n%|%n\end{verse}"/>
-    <insert id="verbatim" text="\begin{verbatim}" insert="\begin{verbatim}%n%|%n\end{verbatim}"/>
-    <insert id="table" text="\begin{table}" insert="\begin{table}%n%|%n\caption{}%n\end{table}"/>
-    <insert id="figure" text="\begin{figure}" insert="\begin{figure}%n%|%n\caption{}%n\end{figure}"/>
-    <insert id="titlepage" text="\begin{titlepage}" insert="\begin{titlepage}%n%|%n\end{titlepage}"/>
+    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%>}%\%&lt;content%>%\\end{environment-name}" shortcut="Ctrl+E"/>
+    <insert id="center" text="\begin{center}" insert="\begin{center}%\%|%\\end{center}" icon="format-justify-center"/>
+    <insert id="flushleft" text="\begin{flushleft}" insert="\begin{flushleft}%\%|%\\end{flushleft}" icon="format-justify-left"/>
+    <insert id="flushright" text="\begin{flushright}" insert="\begin{flushright}%\%|%\\end{flushright}" icon="format-justify-right"/>
+    <insert id="quote" text="\begin{quote}" insert="\begin{quote}%\%|%\\end{quote}"/>
+    <insert id="quotation" text="\begin{quotation}" insert="\begin{quotation}%\%|%\\end{quotation}"/>
+    <insert id="verse" text="\begin{verse}" insert="\begin{verse}%\%|%\\end{verse}"/>
+    <insert id="verbatim" text="\begin{verbatim}" insert="\begin{verbatim}%\%|%\\end{verbatim}"/>
+    <insert id="table" text="\begin{table}" insert="\begin{table}%\%|%\\caption{}%\\end{table}"/>
+    <insert id="figure" text="\begin{figure}" insert="\begin{figure}%\%|%\\caption{}%\\end{figure}"/>
+    <insert id="titlepage" text="\begin{titlepage}" insert="\begin{titlepage}%\%|%\\end{titlepage}"/>
   </menu>
 
   <menu id="listenvironment" text="&amp;List Environments">
-    <insert id="itemize" text="\begin{itemize}" insert="\begin{itemize}%n\item %|%n\end{itemize}" info="The itemize environment produces a 'bulleted' list.%nEach item of an itemized list begins with an \item command." icon="itemize"/>
-    <insert id="enumerate" text="\begin{enumerate}" insert="\begin{enumerate}%n\item %|%n\end{enumerate}" info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon="enumerate"/>
-    <insert id="description" text="\begin{description}" insert="\begin{description}%n\item[%&lt;label%>] %&lt;text%>%n\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
-    <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%n\item %|%n\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
-    <insert id="item" text="\item" insert="\item " info="\item[label] Hello" icon="item" shortcut="Ctrl+Shift+I"/>
+    <insert id="itemize" text="\begin{itemize}" insert="\begin{itemize}%\\item %|%\\end{itemize}" info="The itemize environment produces a 'bulleted' list.%nEach item of an itemized list begins with an \item command." icon="itemize"/>
+    <insert id="enumerate" text="\begin{enumerate}" insert="\begin{enumerate}%\\item %|%\\end{enumerate}" info="The enumerate environment produces a numbered list.%nEach item of an enumerated list begins with an \item command." icon="enumerate"/>
+    <insert id="description" text="\begin{description}" insert="\begin{description}%\\item[%&lt;label%>] %&lt;text%>%\\end{description}" info="The description environment is used to make labelled lists.%nEach item of the list begins with an \item[label] command."/>
+    <insert id="list" text="\begin{list}" insert="\begin{list}{%&lt;label%>}{%&lt;spacing%>}%\\item %|%\\end{list}" info="The {label} argument is a piece of text that is inserted in a box to form the label.%nThe {spacing} argument contains commands to change the spacing parameters for the list.%nEach item of the list begins with an \item command."/>
+    <insert id="item" text="\item" insert="%SCRIPT&#10;
+    var ln=cursor.lineNumber();
+    var env=editor.document().getLastEnvName(ln);
+    var ins=&quot;\\item&quot;
+    if(env==&quot;description&quot;){
+	ins=ins+&quot;[%&lt;label%&gt;] %&lt;description%&gt;&quot;
+    }else{
+	ins=ins+&quot; &quot;
+    }
+    editorView.insertMacro(ins)" 
+    info="\item[label] Hello" icon="item" shortcut="Ctrl+Shift+I"/>
   </menu>
   
 
@@ -77,8 +87,8 @@
 
   
   <menu id="tabular" text="&amp;Tabular Environment">
-    <insert id="tabbing" text="\begin{tabbing}" insert="\begin{tabbing}%n%|%n\end{tabbing}" info="\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \>  \> more \\%n\end{tabbing}"/>
-    <insert id="tabular" text="\begin{tabular}" insert="\begin{tabular}{%&lt;columns%>}%n%|%n\end{tabular}" info="\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}"/>
+    <insert id="tabbing" text="\begin{tabbing}" insert="\begin{tabbing}%\%|%\\end{tabbing}" info="\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \>  \> more \\%n\end{tabbing}"/>
+    <insert id="tabular" text="\begin{tabular}" insert="\begin{tabular}{%&lt;columns%>}%\%|%\\end{tabular}" info="\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}"/>
     <insert id="multicolumn" text="\multicolumn" insert="\multicolumn{%&lt;columns%|%>}{%&lt;position%>}{%&lt;text%>}" info="\multicolumn{cols}{pos}{text}%ncol, specifies the number of columns to span.%npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.%ntext specifies what text is to make up the entry."/>
     <insert id="hline" text="\hline" insert="\hline" info="The \hline command draws a horizontal line the width of the table."/>
     <insert id="vline" text="\vline" insert="\vline" info="The \vline command draws a vertical line extending the full height and depth of its row."/>
@@ -92,7 +102,7 @@
     <insert id="bigskip" text="\bigskip" insert="\bigskip" info="The \bigskip command adds a 'big' vertical space."/>
     <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
     <insert id="smallskip" text="\smallskip" insert="\smallskip" info="The \smallskip command adds a 'small' vertical space."/>
-    <insert id="newline" text="New line - \\" insert="\\%n" info="The \newline command breaks the line right where it is." icon="newline" shortcut="Ctrl+Return"/>
+    <insert id="newline" text="New line - \\" insert="\\%\" info="The \newline command breaks the line right where it is." icon="newline" shortcut="Ctrl+Return"/>
   </menu>
   
   <menu id="accents" text="International &amp;Accents">
@@ -145,18 +155,21 @@
     <insert id="footnote" text="footnote" insert="\footnote{%&lt;text%|%>}" info="\footnote[number]{text}%nThe \footnote command places the numbered footnote text at the bottom of the current page."/>
   </menu>
   
-  <insert id="bibliographystyle" text="\bibliographystyle{}" insert="\bibliographystyle{%|}" info="The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look"/>
+  <menu id="bibliographyMenu" text="Bibliography">
+	<insert id="bibliographystyle" text="\bibliographystyle{}" insert="\bibliographystyle{%|}" info="The argument to \bibliographystyle refers to a file style.bst, which defines how your citations will look"/>
+	<action id="bibliography" text="\bibliography{}" slot="1InsertBib()"/> 
+    <insert id="addbibresource" text="\addbibresource{}" insert="\addbibresource{%&lt;bibfile%>}" info="\addbibresource{bibfile} specifies the location of a resource file for biblatex such as a .bib file. The filename should contain the extension (e.g. '\addbibresource{mybibliography.bib}'). You can only add one file per \addbibresource{} command (no comma-separated lists allowed). But you can use multiple commands."/>
+  </menu>
   
-  <action id="bibliography" text="\bibliography{}" slot="1InsertBib()"/> 
 </menu>
 
 <menu id="main/math" text="&amp;Math">
   
   <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon="mathmode" shortcut="Ctrl+Shift+M"/>
   <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
-  <insert id="equation" text="Numbered equation \begin{equation}" insert="\begin{equation}%n%|%n\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
-  <insert id="align" text="\begin{align}" insert="\begin{align}%n%|%n\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
-  <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%n%|%n\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
+  <insert id="equation" text="Numbered equation \begin{equation}" insert="\begin{equation}%\%|%\\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
+  <insert id="align" text="\begin{align}" insert="\begin{align}%\%|%\\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
+  <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%\%|%\\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
   <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript" shortcut="Ctrl+Shift+D"/>  
   <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="superscript" shortcut="Ctrl+Shift+U"/>  
   <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
@@ -164,7 +177,7 @@
   <insert id="sqrt" text="\sqrt{}" insert="\sqrt{%|}" icon="sqrt" shortcut="Ctrl+Shift+Q"/>  
   <insert id="left" text="\left" insert="\left " shortcut="Ctrl+Shift+L"/>  
   <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
-  <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%n%&lt;content%|%>%n\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
+  <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
 
   <menu id="functions" text="Math &amp;Functions">
     <insert id="arccos" text="\arccos" insert="\arccos "/>

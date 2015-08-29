@@ -17,6 +17,8 @@ extern const char* TEXSTUDIO_HG_REVISION;
 
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
 
+QKeySequence filterLocaleShortcut(QKeySequence ks);
+
 QChar getPathListSeparator();
 QStringList splitPaths(const QString &paths);
 
@@ -53,6 +55,8 @@ QString getEnvironmentPath();
 QStringList getEnvironmentPathList();
 void updatePathSettings(QProcess* proc, QString additionalPaths);
 
+QString getTerminalCommand();
+
 //returns kde version 0,3,4
 int x11desktop_env();
 
@@ -62,6 +66,8 @@ bool isRetinaMac();
 bool hasAtLeastQt(int major, int minor);
 
 bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method);
+
+QStringList envKeys(const QProcessEnvironment &env);
 
 QString execCommand(const QString & cmd);
 

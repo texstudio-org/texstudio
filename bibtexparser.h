@@ -6,9 +6,9 @@
 class BibTeXFileInfo{
 public:
 	//these are the properties of the file when it was loaded the last time (no watching)
-    QTextCodec *codec;
+	QTextCodec *codec;
 	QDateTime lastModified;
-	QStringList ids;
+	QSet<QString> ids;
 	QString linksTo;
 	bool loadIfModified(const QFileInfo& fi);
 private:

@@ -164,12 +164,16 @@ void SyntaxCheckTest::checktabular(){
 
 	edView->editor->setText(text, false);
 	do{
-		edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        edView->document->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
 		QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
-	}while(edView->SynChecker.queuedLines());
+    }while(edView->document->SynChecker.queuedLines());
 	StackEnvironment env;
-	edView->getEnv(row,env);
-	QString message=edView->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env);
+    edView->document->getEnv(row,env);
+    QDocumentLineHandle *prev=edView->document->line(row-1).handle();
+    TokenStack remainder;
+    if(prev)
+          remainder=prev->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+    QString message=edView->document->SynChecker.getErrorAt(edView->document->line(row).handle(),col,env,remainder);
 	QEQUAL(message, expectedMessage);
 	
 	edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
@@ -233,14 +237,67 @@ void SyntaxCheckTest::checkkeyval(){
     text="\\usepackage{siunitx}\n"+text;
 
     edView->editor->setText(text, false);
-    do{
-        edView->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
-        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
-    }while(edView->SynChecker.queuedLines());
     LatexDocument *doc=edView->getDocument();
+    do{
+        doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+    }while(doc->SynChecker.queuedLines());
+
     QDocumentLineHandle *dlh=doc->line(1).handle();
     QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
     QEQUAL(!formats.isEmpty(),error);
+
+    edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
+    edView->getConfig()->realtimeChecking = realtimeChecking;
+}
+
+void SyntaxCheckTest::checkArguments_data(){
+    QTest::addColumn<QString>("text");
+    QTest::addColumn<bool>("error");
+
+     QTest::newRow("simple")
+             <<"\\_"<<false;
+     QTest::newRow("at")
+             <<"\\@as"<<false;
+     QTest::newRow("at2")
+             <<"\\sdf@as"<<false;
+     QTest::newRow("newcommand")
+             <<"\\newcommand{\\test}{\\abcd}"<<false;
+     QTest::newRow("newcommand2")
+             <<"\\newcommand{\\test}{\\abcd\n \\abcd}"<<false;
+     QTest::newRow("newcommand3")
+             <<"\\newcommand{\\test}{\\abcd\n{\n \\abcd}\n}"<<false;
+
+
+
+}
+
+void SyntaxCheckTest::checkArguments(){
+    QFETCH(QString, text);
+    QFETCH(bool, error);
+
+    bool inlineSyntaxChecking = edView->getConfig()->inlineSyntaxChecking;
+    bool realtimeChecking = edView->getConfig()->realtimeChecking;
+
+    edView->getConfig()->inlineSyntaxChecking = edView->getConfig()->realtimeChecking = true;
+
+    //text="\\usepackage{siunitx}\n"+text;
+
+    edView->editor->setText(text, false);
+    LatexDocument *doc=edView->getDocument();
+    do{
+        doc->SynChecker.waitForQueueProcess(); // wait for syntax checker to finish (as it runs in a parallel thread)
+        QApplication::processEvents(QEventLoop::AllEvents,10); // SyntaxChecker posts events for rechecking other lines
+    }while(doc->SynChecker.queuedLines());
+
+    bool synError=false;
+    for(int i=0;i<doc->lineCount();i++){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        QList<QFormatRange> formats=dlh->getOverlays(LatexEditorView::syntaxErrorFormat);
+        if(!formats.isEmpty())
+            synError=true;
+    }
+    QEQUAL(synError,error);
 
     edView->getConfig()->inlineSyntaxChecking = inlineSyntaxChecking;
     edView->getConfig()->realtimeChecking = realtimeChecking;

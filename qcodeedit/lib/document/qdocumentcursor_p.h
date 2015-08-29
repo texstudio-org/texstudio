@@ -133,6 +133,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		QString selectedText() const;
 		
 		void clearSelection();
+		void flipSelection();
 		void removeSelectedText(bool keepAnchor = false);
 		void replaceSelectedText(const QString& text);
 		

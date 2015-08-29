@@ -8,6 +8,7 @@
 #include "modifiedQObject.h"
 
 #include "usermacro.h"
+#include "codesnippet.h"
 
 
 class LatexCompleterConfig
@@ -19,11 +20,12 @@ public:
 	bool completeCommonPrefix; //auto tab press	
 	bool eowCompletes; //if a EOW character key is pressed, the current word is completed and the character added
 	bool tooltipHelp; // enable ToolTip-Help during completion
+    bool tooltipPreview; // enable ToolTip-Preview during completion
 	bool usePlaceholders;
 	int tabRelFontSizePercent;
 	enum PreferedCompletionTab {CPC_TYPICAL,CPC_MOSTUSED,CPC_ALL};
 	PreferedCompletionTab preferedCompletionTab;
-	QStringList words;
+    CodeSnippetList words;
 	QMultiMap<uint,QPair<int,int> > usage;
     QSet<QString> specialCompletionKeys;
 

@@ -64,8 +64,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	totalTestTime = 0;
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
-		<< new SmallUsefulFunctionsTest()
-		<< new LatexOutputFilterTest()
+        << new SmallUsefulFunctionsTest()
+        << new LatexOutputFilterTest()
 		<< new BuildManagerTest(buildManager)
 		<< new CodeSnippetTest(editor)
 		<< new QDocumentLineTest()
@@ -81,7 +81,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new TableManipulationTest(editor)
 		<< new SyntaxCheckTest(edView)
 		<< new UpdateCheckerTest(level==TL_ALL)
-		<< new HelpTest();
+        << new HelpTest();
 	bool allPassed=true;
 	if (level!=TL_ALL)
 		tr="There are skipped tests. Please rerun with --execute-all-tests\n\n";

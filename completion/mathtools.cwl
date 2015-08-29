@@ -153,9 +153,9 @@ shortvdotsadjustabove=<length>#n
 shortvdotsadjustbelow=<length>#n
 \shortintertext{text}#m\array
 \intertext{text}#m\array
-\DeclarePairedDelimiter{cmd}{left delim}{right delim}#n
-\DeclarePairedDelimiterX{cmd}[numargs]{left delim}{right delim}{body}#m
-\DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim}{right delim}{post code}{body}#m
+\DeclarePairedDelimiter{cmd}{left delim}{right delim}#nd
+\DeclarePairedDelimiterX{cmd}[numargs]{left delim}{right delim}{body}#md
+\DeclarePairedDelimiterXPP{cmd}[numargs]{pre code}{left delim}{right delim}{post code}{body}#md
 \reDeclarePairedDelimiterInnerWrapper{macro name}{star or nostar}{code}#m
 \lparen#m\array
 \rparen#m\array

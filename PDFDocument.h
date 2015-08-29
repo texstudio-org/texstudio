@@ -27,6 +27,9 @@
 
 #include "mostQtHeaders.h"
 
+#include <QGestureEvent>
+#include <QPinchGesture>
+#include <QTapGesture>
 #include <QProgressDialog>
 
 //#include "FindDialog.h"
@@ -174,7 +177,7 @@ public:
 	QRect pageRect(int page) const;
 	QSizeF maxPageSizeF() const;
 	QSizeF gridSizeF(bool ignoreVerticalGrid=false) const;
-	QRectF horizontalTextRangeF() const;
+	QRectF horizontalTextRangeF();
 
 	Q_INVOKABLE void zoom(qreal scale);
 
@@ -236,6 +239,12 @@ protected:
 
 	virtual void contextMenuEvent(QContextMenuEvent *event);
 
+	virtual bool event(QEvent *event);
+
+	bool gestureEvent(QGestureEvent *event);
+	void pinchEvent(QPinchGesture *gesture);
+	void tapEvent(QTapGesture *gesture);
+
 private:
 	void init();
 	void adjustSize();
@@ -251,6 +260,8 @@ private:
 	PDFScrollArea* getScrollArea();
 	
 	QSharedPointer<Poppler::Document> document;
+	QMutex textwidthCalculationMutex;
+	
 	//QList<int> pages;
 	Poppler::Link		*clickedLink;
 	Poppler::Annotation	*clickedAnnotation;
@@ -333,6 +344,20 @@ class PDFDocument : public QMainWindow, private Ui::PDFDocument
 public:
     explicit PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded=false);
 	virtual ~PDFDocument();
+	
+	enum DisplayFlagsEnum {
+		NoDisplayFlags = 0x0000,
+		FocusEmbedded = 0x0001,
+		FocusWindowed = 0x0010,
+		Raise = 0x0100,
+
+		// window state independent combinations
+		Focus = FocusEmbedded | FocusWindowed,
+		// filter
+		FilterEmbedded = 0xFF0F,
+		FilterWindowed = 0xFFF0,
+	};
+	Q_DECLARE_FLAGS(DisplayFlags, DisplayFlagsEnum)
 
 	static PDFDocument *findDocument(const QString &fileName);
 	static QList<PDFDocument*> documentList()
@@ -395,14 +420,17 @@ public slots:
 	void doFindAgain();
 	void goToSource();
 	void toggleFullScreen(const bool fullscreen);
-	int syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview); //lineNo 0 based
+	int syncFromSource(const QString& sourceFile, int lineNo, DisplayFlags displayFlags);  // lineNo is 0-based
 	void syncFromView(const QString& pdfFile, const QFileInfo& masterFile, int page);
-	void loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert = true, bool focus = true);
+	void loadFile(const QString &fileName, const QFileInfo& masterFile, DisplayFlags displayFlags=DisplayFlagsEnum(Raise|Focus));
 	void printPDF();
 	void setAutoHideToolbars(bool enabled);
 	void hideToolbars();
 	void showToolbars();
+    void setToolbarIconSize(int sz);
 	void showMessage(const QString &text);
+
+    void splitMergeTool();
 private slots:
 	void fileOpen();
 	
@@ -427,6 +455,7 @@ private slots:
 	void tileWindows();
 	void stackWindows();
 	void unminimize();
+	void updateDisplayState(DisplayFlags displayFlags);
 	void arrangeWindows(bool tile);
 	void updateToolBarForOrientation(Qt::Orientation orientation);
 
@@ -537,6 +566,7 @@ private:
 	bool syncFromSourceBlock;  //temporary disable sync from source
 	bool syncToSourceBlock;    //temporary disable sync to source (only for continuous scrolling)
 };
+Q_DECLARE_OPERATORS_FOR_FLAGS(PDFDocument::DisplayFlags)
 
 #endif
 

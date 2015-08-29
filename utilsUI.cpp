@@ -153,3 +153,25 @@ QColor colorFromRGBAstr(const QString &hex, QColor fallback) {
 		return color;
 	return fallback;
 }
+
+/*!
+ * return the window to which an object belongs or the given fallback widget
+ * Note: the signature is intentionally for a gerneric QObject, so that we can
+ * simply call windowForObject(sender()).
+ */
+QWidget * windowForObject(QObject *obj, QWidget *fallback) {
+	QWidget *w;
+	QAction *act = qobject_cast<QAction *>(obj);
+	if (act) {
+		w = act->parentWidget();
+	} else {
+		w = qobject_cast<QWidget *>(obj);
+	}
+	if (w) {
+		w = w->window();
+	}
+	if (w) {
+		return w;
+	}
+	return fallback;
+}

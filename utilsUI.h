@@ -25,4 +25,6 @@ bool browse(QWidget* w, const QString& title, const QString& extension, const QS
 
 QColor colorFromRGBAstr(const QString &hex, QColor fallback=QColor());
 
+QWidget * windowForObject(QObject *obj, QWidget *fallback);
+
 #endif // UTILSUI_H

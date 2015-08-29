@@ -10,11 +10,7 @@
 #include "logeditor.h"
 #include "latexlog.h"
 #include "latexlogwidget.h"
-#include "searchresultmodel.h"
-#include "qdocumentsearch.h"
-#include "latexdocument.h"
-
-#include <QAbstractTextDocumentLayout>
+#include "searchresultwidget.h"
 
 class PreviewWidget : public QScrollArea
 {
@@ -53,13 +49,9 @@ public:
 	const QString SEARCH_RESULT_PAGE;
 
 	LatexLogWidget* getLogWidget() {return logWidget;}
+	SearchResultWidget* getSearchResultWidget() {return searchResultWidget;}
 	bool isPreviewPanelVisible();
 	void setMessage(const QString &message); //set the message text (don't change page and no auto-show)
-	void setSearchExpression(QString exp,bool isCase,bool isWord,bool isRegExp);
-    void setSearchExpression(QString exp,QString replaceText,bool isCase,bool isWord,bool isRegExp);
-	QString searchExpression() const;
-    int getSearchScope() const;
-	int getNextSearchResultColumn(QString text,int col);
 	bool childHasFocus();
 
 	virtual void changeEvent(QEvent *event);
@@ -69,47 +61,20 @@ public slots:
 	void resetMessagesAndLog(bool noTabChange=false);
 	void selectLogEntry(int logEntryNumber, bool makeVisible=true);
 	void previewLatex(const QPixmap& pixmap);
-	void addSearch(QList<QDocumentLineHandle *> search, QDocument* doc);
-	void clearSearch();
-    void setSearchEditors(QList<LatexDocument *> docs){
-        mDocs=docs;
-    }
-
 
 	void insertMessageLine(const QString &message); //inserts the message text (don't change page and no auto-show)
 
 signals:
-	void jumpToSearch(QDocument* doc,int lineNumber);
-    void updateTheSearch(int);
+
 private:
 	PreviewWidget *previewWidget;
 	LatexLogWidget *logWidget;
-	QTreeView *OutputSearchTree;
-    QLabel *searchTextLabel;
-    QLineEdit *replaceTextEdit;
-    QComboBox *searchScopeBox;
+	SearchResultWidget *searchResultWidget;
 	LogEditor *OutputMessages;
-	SearchResultModel *searchResultModel;
-    QList<LatexDocument*> mDocs;
 	
 	void retranslateUi();
-private slots:
-	void clickedSearchResult(const QModelIndex& index);
-	void copySearchResult();
-    void updateSearch();
-    void replaceAll();
-    void replaceTextChanged(QString text);
 };
 
-class SearchTreeDelegate: public QItemDelegate {
-    Q_OBJECT
-public:
-        SearchTreeDelegate(QObject * parent = 0 );
-protected:
-        void paint( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
-        //void drawDisplay( QPainter* painter, const QStyleOptionViewItem& option, const QRect& rect, const QString& text ) const;
-        QSize sizeHint(const QStyleOptionViewItem &option,const QModelIndex &index) const;
-};
 
 class CustomWidgetList: public QDockWidget{
 	Q_OBJECT
@@ -133,6 +98,7 @@ signals:
 	void widgetContextMenuRequested(QWidget* widget, const QPoint& globalPosition);
 public slots:
 	void showWidgets(bool newLayoutStyle);
+	void setToolbarIconSize(int sz);
 private slots:
 	void showPageFromAction();
 	void currentWidgetChanged(int i);

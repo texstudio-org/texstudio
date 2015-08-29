@@ -877,6 +877,22 @@ bool QDocumentCursor::hasSelection() const
 }
 
 /*!
+ * \return true if there is an selection and the anchor is before the cursor
+ */
+bool QDocumentCursor::isForwardSelection() const
+{
+	if ( !hasSelection() )
+		return false;
+	int lineNumber = m_handle->lineNumber();
+	int anchorLineNumber = m_handle->anchorLineNumber();
+	if (anchorLineNumber < lineNumber)
+		return true;
+	if (anchorLineNumber == lineNumber && m_handle->anchorColumnNumber() < m_handle->columnNumber())
+		return true;
+	return false;
+}
+
+/*!
 	\brief clear the selection
 */
 void QDocumentCursor::clearSelection()
@@ -884,6 +900,14 @@ void QDocumentCursor::clearSelection()
 	if ( m_handle )
 		m_handle->clearSelection();
 	
+}
+
+/*!
+ * \brief exchanges cursor and anchor positions
+ */
+void QDocumentCursor::flipSelection() {
+	if ( m_handle )
+		m_handle->flipSelection();
 }
 
 /*!

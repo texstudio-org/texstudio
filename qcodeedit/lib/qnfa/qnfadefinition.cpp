@@ -818,6 +818,17 @@ void QNFADefinition::matchClose(QDocument *d, PMatch& m) const
 }
 
 /*!
+ * \brief Returns the column number of the first non-space char (or the length of s, if s consists purely of spaces)
+ */
+int firstNonSpaceCol(const QString &s) {
+	int pos = 0;
+	for ( pos = 0; pos < s.size(); ++pos )
+		if ( !s.at(pos).isSpace() )
+			break;
+	return pos;
+}
+
+/*!
 	\brief Return the indent to use when inserting a line at a given cursor position
 */
 QString QNFADefinition::indent(const QDocumentCursor& c, int* indentCount)
@@ -825,16 +836,14 @@ QString QNFADefinition::indent(const QDocumentCursor& c, int* indentCount)
 	if ( c.isNull() || c.line().isNull() )
 		return QString();
 
-	QDocumentLine b = c.line();
-	int pos, max = qMin(c.columnNumber(), b.text().size());
+	QDocumentLine curLine = c.line();
+	int insertCol = qMin(c.columnNumber(), curLine.text().size());
 
-	QString s = b.text().left(max);
+	QString s = curLine.text().left(insertCol);
 
 	//qDebug("line %i, column %i : %s", b.lineNumber(), c.columnNumber(), qPrintable(s));
 
-	for ( pos = 0; pos < max; pos++ )
-		if ( !s.at(pos).isSpace() )
-			break;
+	int pos = qMin(firstNonSpaceCol(s), insertCol);
 	
 	int indent = 0;
 	QString spaces = s.left(pos);
@@ -842,9 +851,9 @@ QString QNFADefinition::indent(const QDocumentCursor& c, int* indentCount)
 	int initialUnindent = 0; 
 	int initialUnindentCharacters = spaces.size();
 	
-	foreach ( QParenthesis p, b.parentheses() )
+	foreach ( QParenthesis p, curLine.parentheses() )
 	{
-		if ( p.offset >= max )
+		if ( p.offset >= insertCol )
 			break;
 
 		if ( !(p.role & QParenthesis::Indent) )
@@ -859,7 +868,7 @@ QString QNFADefinition::indent(const QDocumentCursor& c, int* indentCount)
 			if (p.offset == initialUnindentCharacters) {
 				initialUnindent++;
 				initialUnindentCharacters += p.length;
-				for (; initialUnindentCharacters < max; initialUnindentCharacters++)
+				for (; initialUnindentCharacters < insertCol; initialUnindentCharacters++)
 					if ( !s.at(initialUnindentCharacters).isSpace() ) 
 						break;
 			}
@@ -885,26 +894,21 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, const QString& ktxt)
 	if ( c.isNull() || c.line().isNull() || ktxt.isEmpty() )
 		return false;
 
-	QDocumentLine b = c.line();
-	QDocumentLine prev = c.document()->line(c.lineNumber() - 1);
+	QDocumentLine curLine = c.line();
+	QDocumentLine prevLine = c.document()->line(c.lineNumber() - 1);
 	
-	if ( !prev.isValid() )
+	if ( !prevLine.isValid() )
 		return false;
 	
-	int prevIndent = prev.indent(), curIndent = b.indent();
-	int pos, max = qMin(c.columnNumber(), b.text().size());
+	if ( (prevLine.indent() - curLine.indent()) >= c.document()->tabStop() )
+		return false;
 
-	if ( (prevIndent - curIndent) >= c.document()->tabStop() )
-		return false;
-	
-	QString s = b.text();
-	s.insert(max, ktxt);
+	int insertCol = qMin(c.columnNumber(), curLine.text().size());
+	QString s = curLine.text();
+	s.insert(insertCol, ktxt);
 
 	//qDebug("outdenting %s", qPrintable(s));
-	for ( pos = 0; pos < max; ++pos )
-		if ( !s.at(pos).isSpace() )
-			break;
-
+	int pos = qMin(firstNonSpaceCol(s), insertCol);
 	if ( !pos || pos >= c.columnNumber() + ktxt.length() )
 		return false;
 
@@ -913,12 +917,12 @@ bool QNFADefinition::unindent (const QDocumentCursor& c, const QString& ktxt)
 	QNFAMatchContext cxt;
 	QNFANotifier notify(text);
 	
-	if ( prev.isValid() )
+	if ( prevLine.isValid() )
 	{
-		cxt = prev.matchContext();
+		cxt = prevLine.matchContext();
 	} else {
 		// first line
-		cxt = b.matchContext();
+		cxt = curLine.matchContext();
 		cxt.reset();
 	}
 

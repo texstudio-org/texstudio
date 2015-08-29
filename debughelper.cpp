@@ -411,7 +411,7 @@ QStringList backtrace_symbols_win(void**, int){
 
 
 
-void print_backtrace(const SimulatedCPU& state, const QString& message){
+QString print_backtrace(const SimulatedCPU& state, const QString& message){
 #ifdef Q_OS_WIN32
 	qDebug("%s", qPrintable(message));
 #define PRINT(...) do { qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__);  } while (0)
@@ -422,7 +422,8 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 #endif
 	static int count = 0;
 	count++;
-	FILE* logFile = fopen(qPrintable(temporaryFileNameFormat().arg(count)), "w");
+	QString backtraceFilename = temporaryFileNameFormat().arg(count);
+	FILE* logFile = fopen(qPrintable(backtraceFilename), "w");
 	PRINT("%s\n", qPrintable(message));
 
 	void *trace[48];
@@ -451,12 +452,13 @@ void print_backtrace(const SimulatedCPU& state, const QString& message){
 	}
 
 	if (logFile) fclose(logFile);
+	return backtraceFilename;
 }
 
-void print_backtrace(const QString& message){
+QString print_backtrace(const QString& message){
 	SimulatedCPU cpu;
 	cpu.set_from_real();
-	print_backtrace(cpu, message);
+	return print_backtrace(cpu, message);
 }
 
 
@@ -499,10 +501,16 @@ void print_backtrace(const QString& message){
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[31] //not always used
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[34]
 #elif defined(CPU_IS_ARM)
+/*
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_pc
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_sp
 #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_fp
 #define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.arm_lr
+*/
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R15]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R13]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R11]
+#define RETURNTO_FROM_UCONTEXT(context) (context)->uc_mcontext.__gregs[_REG_R14]
 #elif defined(CPU_IS_IA64)
 #define PC_FROM_UCONTEXT(context) (context)->_u._mc.sc_ip
 #define STACK_FROM_UCONTEXT(context) (context)->_u._mc.sc_gr[12] //is that register 12?
@@ -1183,7 +1191,7 @@ void catchUnhandledException(){
  // defined NO_CRASH_HANDLER
  
 
-void print_backtrace(const QString& message){Q_UNUSED(message)}
+QString print_backtrace(const QString& message){Q_UNUSED(message) return "";}
 void registerCrashHandler(int mode){Q_UNUSED(mode)}
 QString getLastCrashInformation(bool & wasLoop){Q_UNUSED(wasLoop); return "";}
 void catchUnhandledException(){}

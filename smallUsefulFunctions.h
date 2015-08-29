@@ -12,13 +12,25 @@
 #define SMALLUSEFULFUNCTIONS_H
 
 #include "mostQtHeaders.h"
+#include "qglobal.h"
 
 // subgroups of utility functions:
 #include "utilsUI.h"
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 
+#include "codesnippet.h"
 //#inlcude "latexcompleter_config.h"
+
+// evaluates to j if i < 0
+//              i if j < 0
+//              qMin(i, j) if i, j >= 0
+// Usage example: 
+// find the first occuence of either A or B in a string
+// pos = indexMin(s.indexOf('A'), s.indexOf('B'))
+// pos is negative if s does not contain neither A nor B
+#define indexMin(i, j) ((i < 0) ? qMax(i, j) : (j < 0) ? qMax(i, j) : qMin(i, j))
+
 
 struct CommandArgument {
 	bool isOptional;
@@ -28,10 +40,61 @@ struct CommandArgument {
 Q_DECLARE_METATYPE( CommandArgument )
 
 //void txs_assert(const char *assertion, const char *file, int line);
+class QDocumentLineHandle;
+class QDocument;
 
 
 class LatexCompleterConfig;
 
+class Tokens{
+public:
+    Tokens():start(-1),length(-1),level(-1),dlh(0),type(none),subtype(none),argLevel(0){}
+    int start;
+    int length;
+    int level;
+    QDocumentLineHandle *dlh;
+
+    enum TokenType {none=0,word,command,braces,bracket,
+                    squareBracket,openBrace,openBracket,openSquare,closeBrace,
+                    closeBracket,closeSquareBracket,math,comment,commandUnknown,label,bibItem,file,imagefile,bibfile,
+                    keyValArg,keyVal_key,keyVal_val,list,text,env,beginEnv,def,labelRef,package,width,placement,colDef,title,url,documentclass,beamertheme,packageoption,
+                    color,verbatimStart,verbatimStop,verbatim,symbol,punctuation,number,generalArg,defArgNumber,optionalArgDefinition,definition,defWidth,labelRefList,specialArg,_end=255};
+    TokenType type;
+    // subtype is used to determine the type of argument
+    TokenType subtype;
+    int argLevel; // number of argument (>0) or option (<0, =-numberOfOption)
+    static QSet<TokenType> tkArg();
+    static QSet<TokenType> tkOption();
+    static QSet<TokenType> tkBraces();
+    static QSet<TokenType> tkOpen();
+    static QSet<TokenType> tkClose();
+    static QSet<TokenType> tkCommalist();
+    static QSet<TokenType> tkSingleArg();
+    static TokenType opposite(TokenType type);
+    static TokenType closed(TokenType type);
+    bool operator==(const Tokens &v) const;
+    QString getText();
+};
+
+typedef QList<Tokens> TokenList;
+typedef QStack<Tokens> TokenStack;
+
+Q_DECLARE_METATYPE(TokenList);
+Q_DECLARE_METATYPE(TokenStack);
+
+class CommandDescription {
+public:
+    CommandDescription();
+    int optionalArgs;
+    int bracketArgs;
+    int args;
+    int level;
+    QList<Tokens::TokenType> argTypes;
+    QList<Tokens::TokenType> optTypes;
+    QList<Tokens::TokenType> bracketTypes;
+};
+
+typedef QHash<QString,CommandDescription> CommandDescriptionHash;
 
 typedef QString (QObject::*StringToStringCallback)(const QString&) ;
 
@@ -73,6 +136,7 @@ QString findToken(const QString &line,QRegExp &token);
 // find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg);
 int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts=0, int offset=0, bool parseComment=false);
+int findCommandWithArgsFromTL(const TokenList &tl,Tokens &cmd, TokenList &args, int offset, bool parseComment=false);
 
 
 // generate multiple times used regexpression
@@ -98,6 +162,8 @@ QString dequoteStr(const QString &s);
 QString quotePath(const QString &s);
 QString removeQuote(const QString &s);
 QString removePathDelim(const QString &s);
+
+uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate);
 
 QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure);
 
@@ -135,6 +201,7 @@ class LatexParser{
 	friend class SmallUsefulFunctionsTest;
 public:
 	LatexParser();
+	~LatexParser();
 	void init();
 
     enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics,Package,Keyval,KeyvalValue,OptionEx,ArgEx};
@@ -167,7 +234,10 @@ public:
 	QHash<QString,QSet<QString> > possibleCommands;
     QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
     QHash<QString,QString> specialDefCommands;
+    QMap<int,QString> mapSpecialArgs;
 	
+    CommandDescriptionHash commandDefs;
+
 	void append(const LatexParser& elem);
 	void substract(const LatexParser& elem);
 	void importCwlAliases();
@@ -258,15 +328,32 @@ public:
 	bool notFound;  // Workaround: explicit flag better than using a magic value in package name. TODO: Do we need not found packages?
 	QString packageName;
 	QStringList requiredPackages;
-	QStringList completionWords;
+    CodeSnippetList completionWords;
 	QHash<QString,QSet<QString> > possibleCommands;
     QHash<QString,QString> specialDefCommands;
 	QSet<QString> optionCommands;
     QHash<QString,QSet<QPair<QString,int> > > specialTreatmentCommands;
 	QMultiHash<QString,QString> environmentAliases;
-	void unite(LatexPackage &add);
+    CommandDescriptionHash commandDescriptions;
+    void unite(LatexPackage &add, bool forCompletion=false);
 };
 
 LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config=0, QStringList conditions=QStringList());
 
+class QDocumentLineHandle;
+
+QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
+QString findRestArg(QDocumentLineHandle* dlh, Tokens::TokenType type, int count=10);
+CommandDescription extractCommandDef(QString line,QString definition);
+CommandDescription extractCommandDefKeyVal(QString line,QString &key);
+Tokens getTokenAtCol(QDocumentLineHandle *dlh,int pos,bool first=false);
+int getTokenAtCol(TokenList &tl,int pos,bool first=false);
+TokenList getArgContent(Tokens &tk);
+TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention=10);
+TokenStack getContext(QDocumentLineHandle *dlh,int pos);
+QString getCommandFromToken(Tokens tk);
+Tokens getCommandTokenFromToken(TokenList tl,Tokens tk);
+TokenList simpleLexLatexLine(QDocumentLineHandle *dlh);
+bool latexDetermineContexts2(QDocumentLineHandle *dlh,TokenStack &stack,const LatexParser &lp);
+int getCompleterContext(QDocumentLineHandle *dlh, int column);
 #endif

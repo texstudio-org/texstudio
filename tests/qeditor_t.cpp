@@ -509,9 +509,47 @@ void QEditorTest::activeFolding(){
 	compareLists(editor->document()->impl()->testGetHiddenLines(), newHiddenLines);
 }
 
+void QEditorTest::insertTab_data() {
+	QTest::addColumn<bool>("replaceTextTabs");
+	QTest::addColumn<int>("tabWidth");
+	QTest::addColumn<QString>("line");
+	QTest::addColumn<int>("cursorCol");
+	QTest::addColumn<QString>("resultLine");
+	
+	QTest::newRow("no replace")  << false << 4 << "fooobar"     << 4 << "fooo\tbar";
+	QTest::newRow("4 char tab 1") << true << 4 << "fooobar"     << 4 << "fooo    bar";
+	QTest::newRow("4 char tab 2") << true << 4 << "fooo1bar"    << 5 << "fooo1   bar";
+	QTest::newRow("4 char tab 3") << true << 4 << "fooo12bar"   << 6 << "fooo12  bar";
+	QTest::newRow("4 char tab 4") << true << 4 << "fooo123bar"  << 7 << "fooo123 bar";
+	QTest::newRow("4 char tab 5") << true << 4 << "fooo1234bar" << 8 << "fooo1234    bar";
+	QTest::newRow("5 char tab 1") << true << 5 << "fooobar"     << 4 << "fooo bar";
+}
+
+void QEditorTest::insertTab()
+{
+	bool savedReplaceTextTabs = editor->flag(QEditor::ReplaceTextTabs);
+	int savedTabWidth = QDocument::tabStop();
+	
+	QFETCH(bool, replaceTextTabs);
+	QFETCH(int, tabWidth);
+	QFETCH(QString, line);
+	QFETCH(int, cursorCol);
+	QFETCH(QString, resultLine);
+	editor->setFlag(QEditor::ReplaceTextTabs, replaceTextTabs);
+	QDocument::setTabStop(tabWidth);
+	
+	editor->setText(line);
+	editor->setCursorPosition(0, cursorCol);
+	editor->insertTab();
+	QEQUAL(editor->text(), resultLine);
+	
+	editor->setFlag(QEditor::ReplaceTextTabs, savedReplaceTextTabs);
+	QDocument::setTabStop(savedTabWidth);
+}
+
 void QEditorTest::indentation_data(){
 	editor->setFlag(QEditor::AutoIndent,true);
-	editor->setFlag(QEditor::ReplaceTabs,false);
+	editor->setFlag(QEditor::ReplaceIndentTabs,false);
 
 	QTest::addColumn<QString>("baseText");
 	QTest::addColumn<bool>("weak");
@@ -630,6 +668,24 @@ void QEditorTest::indentation_data(){
 		<< "}}"
 		<< "\t\thello}}\n\t\tworld\n"; //no prapagation yet
 
+	QTest::newRow("2 openings and closings per line")
+		<< "A\nB"
+		<< false << 1 << 0 << -1 << -1
+		<< "{{\nTEXT\n}}\n"
+		<< "A\n{{\n\t\tTEXT\n}}\nB";
+
+	QTest::newRow("3 openings and closings per line")
+		<< "A\nB"
+		<< false << 1 << 0 << -1 << -1
+		<< "{{{\nTEXT\n}}}\n"
+		<< "A\n{{{\n\t\t\tTEXT\n}}}\nB";
+	
+	QTest::newRow("multiple closings with unindent on a line")
+		<< "A\nB"
+		<< false << 1 << 0 << -1 << -1
+		<< "\\cmd{\\begin{env}\nTEXT\n\\end{env}}\nMORE\n"
+		<< "\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
+
 	QTest::newRow("pasting non-indented text with newline at end weak")
 		<< "\tfoo\n\tbar\n"
 		<< true << 1 << 0 << -1 << -1
@@ -720,13 +776,17 @@ void QEditorTest::indentation(){
 	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col,anchorLine,anchorCol);
 	editor->insertText(c, insert);
+
+	QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
+	QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
+	QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
 	QEQUAL(editor->document()->text(), result);
 }
 
 void QEditorTest::autoClosing_data(){
 	editor->setFlag(QEditor::AutoIndent,true);
 	//editor->setFlag(QEditor::WeakIndent,false);
-	editor->setFlag(QEditor::ReplaceTabs,false);
+	editor->setFlag(QEditor::ReplaceIndentTabs,false);
 
 	QTest::addColumn<QString>("baseText");
 	QTest::addColumn<int>("line");
@@ -741,17 +801,22 @@ void QEditorTest::autoClosing_data(){
 	QTest::newRow("-\\begin{verbatim}-") << "><" << 0 << 1 << "\\begin{verbatim}" << ">\\begin{verbatim}<"; //too
 	QTest::newRow("existing )") << ">)<" << 0 << 1 << "(" << ">()<";
 	QTest::newRow("existing 2-)") << ">))<" << 0 << 1 << "(" << ">())<";
-	//QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">(()<"; disabled to prevent clipboard completion
-	QTest::newRow("only last") << "><" << 0 << 1 << "((" << ">((<"; //disabled to prevent clipboard completion
+	QTest::newRow("inserting-multiple-brackets") << "><" << 0 << 1 << "((" << ">((<";  // currently not supported - what would one expect?
 	QTest::newRow("counting 1") << ">())<" << 0 << 1 << "(" << ">(())<";
 	QTest::newRow("counting 2") << ">((())))<" << 0 << 1 << "(" << ">(((())))<";
 	QTest::newRow("counting 3") << ">((()()))())<" << 0 << 1 << "(" << ">(((()()))())<";
 	QTest::newRow("multi line search") << ">\n\n\\]<" << 0 << 1 << "\\[" << ">\\[\n\n\\]<";
-	QTest::newRow("mixed") << ">[{}])<" << 0 << 1 << "(" << ">([{}])<";
-//	QTest::newRow("mixed") << ">([{}]))<" << 0 << 2 << "(" << ">(([{}]))<";
-	QTest::newRow("mixed") << ">([{}]))<" << 0 << 2 << "(" << ">(()[{}]))<"; //TODO: THIS IS A BUG!
-	QTest::newRow("mixed") << ">({[]}))<" << 0 << 2 << "(" << ">((){[]}))<";//TODO: THIS IS A BUG!
+	QTest::newRow("insert-match-to-close-mixed") << ">[{}])<" << 0 << 1 << "(" << ">([{}])<";
+	QTest::newRow("insert-match-to-close-mixed-with-same") << ">([{}]))<" << 0 << 1 << "(" << ">(([{}]))<";
+	QTest::newRow("insert-match-to-close-mixed-with-same2") << ">([{}]))<" << 0 << 2 << "(" << ">(([{}]))<";
 	QTest::newRow("many") << "(((((())))))" << 0 << 1 << "(" << "((((((())))))";
+	QTest::newRow("following") << " ()" << 0 << 0 << "(" << "() ()";
+	QTest::newRow("following2") << " \\(\\)" << 0 << 0 << "\\(" << "\\(\\) \\(\\)";
+	QTest::newRow("following2withExistingMismatch") << " {\\(\\)" << 0 << 0 << "\\(" << "\\(\\) {\\(\\)";
+	QTest::newRow("mismatch") << "}" << 0 << 0 << "(" << "()}";
+	QTest::newRow("mismatch2") << "}" << 0 << 0 << "\\(" << "\\(\\)}";
+	QTest::newRow("inner") << "(..)" << 0 << 2 << "(" << "(.().)";
+	QTest::newRow("inner2") << "\\(..\\)" << 0 << 3 << "\\(" << "\\(.\\(\\).\\)";
 }
 
 void QEditorTest::autoClosing(){
@@ -761,6 +826,8 @@ void QEditorTest::autoClosing(){
 	QFETCH(QString, insert);
 	QFETCH(QString, result);
 
+	QEXPECT_FAIL("insert-match-to-close-mixed-with-same2", "currently not properly supported", Continue);
+	
 	editor->cutBuffer.clear(); // need to start from a clean state (other tests may have put something there)
 	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col);

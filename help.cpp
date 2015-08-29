@@ -3,6 +3,7 @@
 #include "smallUsefulFunctions.h"
 #include "utilsSystem.h"
 #include "configmanager.h"
+#include <QProcessEnvironment>
 #include <QMutex>
 
 
@@ -40,19 +41,19 @@ void Help::viewTexdoc(QString package)
 	}
 	if (!package.isEmpty()) {
 		if (texdocCommand().isEmpty()) txsWarning(tr("texdoc not found."));
-		QProcess proc(this);
-		connect(&proc, SIGNAL(readyReadStandardError()), this, SLOT(viewTexdocError()));
+		QProcess *proc = new QProcess(this);
+		connect(proc, SIGNAL(readyReadStandardError()), this, SLOT(viewTexdocError()));
+		connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
 #ifdef Q_OS_OSX
         QStringList paths;
         paths.append(getEnvironmentPathList());
         paths.append(getAdditionalCmdSearchPathList());
 
-        updatePathSettings(&proc,paths.join(':'));
+        updatePathSettings(proc, paths.join(':'));
 #endif
-        proc.start(texdocCommand(), QStringList() << "--view" << package);
-		if (!proc.waitForFinished(2000)) {
+		proc->start(texdocCommand(), QStringList() << "--view" << package);
+		if (isTexdocExpectedToFinish() && !proc->waitForFinished(2000)) {
 			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
-			return;
 		}
 	}
 }
@@ -70,6 +71,18 @@ bool Help::isMiktexTexdoc() {
 	return (texDocSystem==1);
 }
 
+bool Help::isTexdocExpectedToFinish() {
+	if (!isMiktexTexdoc()) return true;
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	foreach (const QString &var, envKeys(env)) {
+		if (var.startsWith("MIKTEX_VIEW_")) {
+			// miktex texdoc will run as long as the viewer is opened when the MIKTEX_VIEW_* variables are set
+			// http://docs.miktex.org/manual/mthelp.html
+			return false;
+		}
+	}
+	return true;
+}
 
 QString Help::m_texdocCommand;
 

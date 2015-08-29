@@ -30,6 +30,41 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
 #endif
 }
 
+/*!
+ * Redefine or filter some shortcuts depending on the locale
+ * On Windows, AltGr is interpreted as Ctrl+Alt so we shouldn't
+ * use a Ctrl+Alt+Key shortcut if AltGr+Key is used for typing
+ * characters.
+ */
+QKeySequence filterLocaleShortcut(QKeySequence ks) {
+#ifndef Q_OS_WIN32
+	return ks;
+#else
+#if QT_VERSION < 0x050000
+	QLocale::Language lang = QApplication::keyboardInputLocale().language();
+#else
+	QLocale::Language lang = QGuiApplication::inputMethod()->locale().language();
+#endif
+	switch (lang) {
+	case QLocale::Hungarian:
+		if (ks.matches(QKeySequence("Ctrl+Alt+F"))) {
+			return QKeySequence("Ctrl+Alt+Shift+F");
+		}
+		break;
+	case QLocale::Polish:
+		if (ks.matches(QKeySequence("Ctrl+Alt+S"))) {
+			return QKeySequence();
+		} else if (ks.matches(QKeySequence("Ctrl+Alt+U"))) {
+			return QKeySequence("Ctrl+Alt+Shift+U");
+		}
+		break;
+	default:
+		return ks;
+	}
+	return ks;
+#endif
+}
+
 QChar getPathListSeparator() {
 #ifdef Q_OS_WIN32
 	return QChar(';');
@@ -268,8 +303,9 @@ QString replaceFileExtension(const QString& filename, const QString& newExtensio
         else
             return QString();
     }
-
-    return filename.left(filename.length()-fi.completeSuffix().length()) + ext;
+    // exchange the suffix explicitly instead of using fi.completeBaseName()
+    // so that the filename stays exactly the same
+    return filename.left(filename.length()-fi.suffix().length()) + ext;
 }
 
 QString getRelativeBaseNameToPath(const QString & file,QString basepath,bool baseFile,bool keepSuffix){
@@ -367,14 +403,43 @@ QStringList getEnvironmentPathList() {
 
 void updatePathSettings(QProcess* proc, QString additionalPaths)
 {
-	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	QString path(getEnvironmentPath());
 	if (!additionalPaths.isEmpty()) {
 		path += getPathListSeparator() + additionalPaths;
-	}
-	env.insert("PATH", path);
+    }
+    env.insert("PATH", path);
 	// Note: this modifies the path only for the context of the called program. It does not affect the search path for the program itself.
-	proc->setProcessEnvironment(env);
+    proc->setProcessEnvironment(env);
+}
+
+QString getTerminalCommand()
+{
+#ifdef Q_OS_WIN
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QString windir = env.value("WINDIR", "c:/windows");
+	return windir + "/system32/cmd.exe";
+#elif defined(Q_OS_MAC)
+    QString command="open /Applications/Utilities/Terminal.app/";
+    return command;
+#else // Linux
+	// Linux does not have a uniform way to determine the default terminal application
+	// gnome
+	QString command = execCommand("gsettings get org.gnome.desktop.default-applications.terminal exec");
+	command = command.replace('\'', "");
+	if (!command.isEmpty()) {
+		return command;
+	}
+	// fallback
+	QStringList fallbacks = QStringList() << "konsole" << "xterm";
+	foreach (const QString &fallback, fallbacks) {
+		QString command = execCommand("which " + fallback);
+		if (!command.isEmpty()) {
+			return command;
+		}
+	}
+	return QString();
+#endif
 }
 
 int x11desktop_env() {
@@ -429,6 +494,19 @@ bool connectUnique(const QObject * sender, const char * signal, const QObject * 
 #endif
 }
 
+// compatibility function for missing QProcessEnvironment::keys() in Qt < 4.8
+QStringList envKeys(const QProcessEnvironment &env) {
+#if QT_VERSION >= 0x040800
+	return env.keys();
+#else
+	QStringList keys;
+	foreach (const QString &s, env.toStringList()) {
+		keys.append(s.left(s.indexOf('=')));
+	}
+	return keys;
+#endif
+}
+
 // run the command in a separate process, wait and return the result
 // use for internal queries that should be silent. Not to be mixed up with BuildManager::runCommand
 QString execCommand(const QString & cmd) {
@@ -465,4 +543,3 @@ void SafeThread::wait(unsigned long time){
     if (crashed) return;
     QThread::wait(time);
 }
-

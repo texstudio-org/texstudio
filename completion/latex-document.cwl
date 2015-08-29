@@ -79,8 +79,8 @@
 \begin{tiny}
 \begin{titlepage}
 \begin{trivlist}
-\begin{verbatim}
-\begin{verbatim*}
+\begin{verbatim}#V
+\begin{verbatim*}#V
 \begin{Vmatrix}#m\array
 \begin{vmatrix}#m\array
 \begin{verse}
@@ -116,7 +116,7 @@
 \end{matrix}
 \end{minipage}
 \end{normalsize}
-\end{picture
+\end{picture}
 \end{pmatrix}
 \end{quotation}
 \end{quote}
@@ -145,16 +145,32 @@
 \bibitem{citekey}
 \bibitem[label]{citekey}
 \bibliographystyle{style}
-\bibliography{file}
+\bibliography{bib file}
+\Big
+\Big(%|\Big)
+\Big[%|\Big]
+\Big|%|\Big|
+\big
+\big(%|\big)
+\big[%|\big]
+\big|%|\big|
+\Bigg
+\Bigg(%|\bigg)
+\Bigg[%|\Bigg]
+\Bigg|%|\Bigg|
+\bigg
+\bigg(%|\bigg)
+\bigg[%|\bigg]
+\bigg|%|\bigg|
 \bigskip
 \boldmath
 \botfigrule#*
 \cal
-\caption{title}
-\caption[short]{title}
+\caption{text}
+\caption[short text]{text}
 \chapter{title}
 \chapter*{title}
-\chapter[short]{title}
+\chapter[short title]{title}
 \chaptermark{code}#*
 \chaptername{name}#*
 \cite{keylist}#c
@@ -164,7 +180,7 @@
 \cleardoublepage
 \clearpage
 \cline{i-j}#t
-\columnwidth
+\columnwidth#L
 \contentsline{type}{text}{page}
 \contentsname{name}
 \dag#*
@@ -172,8 +188,8 @@
 \date{text}
 \depth#*
 \descriptionlabel{code}#*
-\documentclass[options]{style}
-\documentclass{style}
+\documentclass[keyvals]{class}
+\documentclass{class}
 \em
 \emph{text}
 \enlargethispage*{size}
@@ -228,9 +244,6 @@
 \i
 \include{file}#i
 \input{file}#i
-\includegraphics[options]{name}
-\includegraphics[scale=%<1%>]{%<file%>}#*
-\includegraphics{name}
 \includeonly{filelist}
 \indexname{name}
 \indexspace
@@ -238,7 +251,7 @@
 \inputlineno#*
 \it#*
 \item
-\item[text]
+\item[%<text%>] %<description%>
 \iterate#*
 \itshape
 \kill#T
@@ -256,7 +269,7 @@
 \linebreak
 \linebreak[number]
 \linethickness{dimension}
-\linewidth
+\linewidth#L
 \listfigurename{name}
 \listfiles
 \listoffigures
@@ -299,7 +312,7 @@
 \multiput(xcoord,ycoord)(xdelta,ydelta){copies}{object}#*/picture
 \newblock#*
 \newlabel
-\newlength{\length}
+\newlength{newlength}
 \newline
 \newpage
 \newtheorem{envname}[numberedlike]{caption}
@@ -341,13 +354,13 @@
 \pagestyle{option}
 \pagetotal
 \paragraph*{title}
-\paragraph[short]{title}
+\paragraph[short title]{title}
 \paragraphmark
 \paragraph{title}
 \parbox[position]{width}{text}
 \parbox{width}{text}
 \part*{title}
-\part[short]{title}
+\part[short title]{title}
 \partname{name}
 \part{title}
 \pdfinfo{info}
@@ -378,7 +391,7 @@
 \scshape
 \section{title}
 \section*{title}
-\section[short]{title}
+\section[short title]{title}
 \sectionmark{code}#*
 \selectfont
 \setlength{cmd}{length}
@@ -398,16 +411,16 @@
 \stop
 \subitem
 \subparagraph*{title}
-\subparagraph[short]{title}
+\subparagraph[short title]{title}
 \subparagraphmark{code}
 \subparagraph{title}
 \subsection{title}
 \subsection*{title}
-\subsection[short]{title}
+\subsection[short title]{title}
 \subsectionmark{code}
 \subsubitem
 \subsubsection*{title}
-\subsubsection[short]{title}
+\subsubsection[short title]{title}
 \subsubsectionmark{code}
 \subsubsection{title}
 \suppressfloats
@@ -436,7 +449,7 @@
 \textendash
 \textexclamdown
 \textgreater
-\textheight
+\textheight#L
 \textit{text}
 \textless
 \textmd{text}
@@ -461,7 +474,7 @@
 \textunderscore
 \textup{text}
 \textvisiblespace
-\textwidth
+\textwidth#L
 \thanks{text}
 \thicklines
 \thinlines
@@ -484,6 +497,7 @@
 \vdots
 \vector(xslope,yslope){length}#*/picture
 \verb|%<text%>|
+\verb#S
 \vline
 \vspace*{length}
 \vspace{length}

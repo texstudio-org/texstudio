@@ -63,6 +63,8 @@ class QCE_EXPORT QFormatScheme : public QObject
 		virtual QString id(int ifid) const;
 		virtual int id(const QString& sfid) const;
 		
+		virtual bool exists(const QString& sfid) const;
+		
 		virtual QFormat& formatRef(int ifid);
 		virtual QFormat& formatRef(const QString& sfid);
 		

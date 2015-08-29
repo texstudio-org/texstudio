@@ -8,7 +8,7 @@
 \Footnotetext{marker}{inserted text}
 \Footnote{marker}{inserted text}
 \DeclareNewFootnote[footnote-style]{suffix}[enumeration-style]
-\SelectFootnoteRule{default}
+\SelectFootnoteRule{rule-name}
 \SelectFootnoteRule[priority]{rule-name}[action]
 \footnoterulepriority
 \SetFootnoteHook

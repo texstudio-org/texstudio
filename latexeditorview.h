@@ -17,7 +17,7 @@
 #include "grammarcheck.h"
 #include "bibtexreader.h"
 #include "cursorposition.h"
-
+#include "latexcompleter.h"
 class QDocumentLineHandle;
 
 class LatexDocument;
@@ -40,11 +40,10 @@ struct LinkOverlay {
 	LinkOverlayType type;
 	QDocumentLine docLine;
 	QFormatRange formatRange;
-	LatexParser::ContextType context;
 
-	LinkOverlay() : type(Invalid), context(LatexParser::Unknown) {}
+    LinkOverlay() : type(Invalid) {}
 	LinkOverlay(const LinkOverlay &o);
-	LinkOverlay(const QDocumentCursor &cur, LatexParser::ContextType ctx, LinkOverlayType ltype);
+    LinkOverlay(const QDocumentCursor &cur, LinkOverlayType ltype);
 
 	bool isValid() const { return type != Invalid; }
 	bool operator ==(const LinkOverlay& o) const { return (docLine == o.docLine) && (formatRange == o.formatRange); }
@@ -103,6 +102,7 @@ public:
 	QHash<int, int> logEntryToMarkID;
 	
 	static int hideTooltipWhenLeavingLine;
+    static int syntaxErrorFormat;
 	
 	void setLineMarkToolTip(const QString& tooltip);
 	void updateSettings();
@@ -112,11 +112,8 @@ public:
 		return m_point;
 	}
 	
-	static int syntaxErrorFormat;
 	static int deleteFormat,insertFormat,replaceFormat;
     static int preEditFormat;
-	
-	void reCheckSyntax(int linenr=0, int count=-1);
 	
 	Q_INVOKABLE void closeCompleter();
 	Q_INVOKABLE void removeBookmark(int lineNr,int bookmarkNumber);
@@ -130,7 +127,7 @@ public:
 	static int bookMarkId(int bookmarkNumber);
 
 	static void selectOptionInLatexArg(QDocumentCursor &cur);
-    void getEnv(int lineNumber,StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
+
 	QDocumentCursor parenthizedTextSelection(const QDocumentCursor &cursor, bool includeParentheses=true);
 	QDocumentCursor findFormatsBegin(const QDocumentCursor &cursor, QSet<int> allowedFormats, QSet<int> allowedLineEndFormats);
     void setLatexPackageList(QSet<QString> *lst){
@@ -145,6 +142,7 @@ public:
     bool getSearchIsRegExp();
     bool getSearchIsWords();
 
+    void updateReplamentList(const LatexParser& cmds, bool forceUpdate=false);
 
 private:
 	QAction *lineNumberPanelAction, *lineMarkPanelAction, *lineFoldPanelAction, *lineChangePanelAction, 
@@ -180,9 +178,6 @@ private:
 	
 	LatexEditorViewConfig* config;
 	
-    SyntaxCheck SynChecker;
-	Environment unclosedEnv;
-	
 	bibtexReader *bibReader;
 	QPoint lastPos;
 
@@ -201,10 +196,10 @@ private slots:
 	void openPackageDocumentation(QString package = QString());
 	void emitChangeDiff();
 	void emitGotoDefinitionFromAction();
+	void emitFindLabelUsagesFromAction();
 	void emitSyncPDFFromAction();
 	void lineMarkClicked(int line);
 	void lineMarkToolTip(int line, int mark);
-	void checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int ticket);
 	void triggeredThesaurus();
 	void reloadSpeller();
 	void changeSpellingDict(const QString &name);
@@ -223,12 +218,17 @@ public slots:
 	void foldLevel(bool unFold, int level);
 	void foldBlockAt(bool unFold, int line);
 	
+	Q_INVOKABLE void zoomIn();
+	Q_INVOKABLE void zoomOut();
+	Q_INVOKABLE void resetZoom();
+	
 	void documentContentChanged(int linenr, int count);
+private slots:
 	void lineDeleted(QDocumentLineHandle* l);
-	void spellCheckingReplace();
+    void textReplaceFromAction();
 	void spellCheckingAlwaysIgnore();
 	void populateSpellingMenu();
-	void addListToMenu(const QStringList& list, QMenu *menu, bool italic, const char* action);
+    void addReplaceActions(QMenu *menu, const QStringList &replacements, bool italic);
 	void addSpellingActions(QMenu *menu, QString word, bool dedicatedMenu);
 public slots:
 	void spellRemoveMarkers(const QString& newIgnoredWord);
@@ -237,8 +237,6 @@ public slots:
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
 	void viewActivated();
 	void clearOverlays();
-    void updateLtxCommands(bool updateAll=false);
-    void setLtxCommands(const LatexParser& cmds);
 	void paste();
     void insertMacro(QString macro, const QRegExp& trigger = QRegExp(), int triggerId = 0, bool allowWrite=false);
 
@@ -279,6 +277,7 @@ signals:
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
 	void gotoDefinition(QDocumentCursor c);
+	void findLabelUsages(LatexDocument *contextDoc, const QString &labelText);
 	void syncPDFRequested(QDocumentCursor c);
 	void bookmarkRemoved(QDocumentLineHandle *dlh);
 	void bookmarkAdded(QDocumentLineHandle *dlh,int nr);

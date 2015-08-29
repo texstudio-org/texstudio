@@ -77,6 +77,11 @@ PDFRenderManager::~PDFRenderManager(){
 
 void PDFRenderManager::stopRendering(){
 	lstOfReceivers.clear();
+	for(int i=0;i<queueAdministration->num_renderQueues;i++){
+		if(queueAdministration->renderQueues[i] && !queueAdministration->renderQueues[i]->isRunning())
+			delete queueAdministration->renderQueues[i];
+		queueAdministration->renderQueues[i]=0;
+	}
 	queueAdministration->stopped=true;
 	queueAdministration->mCommandsAvailable.release(queueAdministration->num_renderQueues);
 	document.clear();
@@ -91,7 +96,17 @@ void PDFRenderManager::setLoadStrategy(int strategy) {
 	loadStrategy = strategy;
 }
 
-QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &fileName, Error &error, bool foreceLoad){
+class HiddenByteArray: public QByteArray{
+public:
+	HiddenByteArray(): QByteArray(){}
+	HiddenByteArray(const QString& s): QByteArray(s.toLatin1()){}
+	~HiddenByteArray(){
+		for (int i=0;i<length();i++)
+			(*this)[i] = '\0';
+	}
+};
+
+QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &fileName, Error &error, const QString& userPasswordStr, bool foreceLoad){
 	renderedPages.clear();
 	QFile f(fileName);
 	if (!f.open(QFile::ReadOnly)) {
@@ -101,9 +116,13 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	
 	Poppler::Document *docPtr;
 
+    HiddenByteArray ownerPassword; //for permission settings (not needed?)
+    HiddenByteArray userPassword(userPasswordStr);
+
 	try {
+
 		if (loadStrategy==DirectLoad) {
-			docPtr = Poppler::Document::load(fileName);
+			docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
 		} else {
 			// load data into buffer and check for completeness
 			queueAdministration->documentData = f.readAll();
@@ -114,9 +133,9 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 			}
 			// create document
 			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000))
-				docPtr = Poppler::Document::loadFromData(queueAdministration->documentData);
+				docPtr = Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword);
 			else
-				docPtr = Poppler::Document::load(fileName);
+				docPtr = Poppler::Document::load(fileName, ownerPassword, userPassword);
 		}
 	} catch (std::bad_alloc) {
 		error = PopplerErrorBadAlloc;
@@ -156,13 +175,13 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 		try {
 			if (loadStrategy == BufferedLoad || (loadStrategy == HybridLoad && queueAdministration->documentData.size() < 50000000)) {
 				// poppler is not thread-safe, so each render engine needs a separate Poppler::Document
-				doc=Poppler::Document::loadFromData(queueAdministration->documentData);
+				doc=Poppler::Document::loadFromData(queueAdministration->documentData, ownerPassword, userPassword);
 			} else {
 				// Workaround: loadFromData crashes if called with large data for the second time (i==1).
 				// See also bug report https://sourceforge.net/p/texstudio/bugs/710/?page=2
 				// I used a 200 MB file in the tests. Also 150 MB and 66 MB was reported to crash.
 				// Likely an internal Poppler bug. Exact conditions need to be tested so we can file a bug report.
-				doc=Poppler::Document::load(fileName);
+				doc=Poppler::Document::load(fileName, ownerPassword, userPassword);
 			}
 			QSharedPointer<Poppler::Document> spDoc(doc);
 			queueAdministration->renderQueues[i]->setDocument(spDoc);

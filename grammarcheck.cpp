@@ -7,7 +7,7 @@ GrammarError::GrammarError(int offset, int length, const GrammarErrorType& error
 GrammarError::GrammarError(int offset, int length, const GrammarError& other):offset(offset),length(length),error(other.error),message(other.message),corrections(other.corrections){}
 
 GrammarCheck::GrammarCheck(QObject *parent) :
-	QObject(parent), backend(0), ticket(0), pendingProcessing(false)
+	QObject(parent), backend(0), ticket(0), pendingProcessing(false), shuttingDown(false)
 {
 	latexParser = new LatexParser();
 }
@@ -66,7 +66,7 @@ struct CheckRequest{
 };
 
 void GrammarCheck::check(const QString& language, const void * doc, const QList<LineInfo>& inlines, int firstLineNr){
-	if (inlines.isEmpty()) return;
+	if (shuttingDown || inlines.isEmpty()) return;
 	
 	ticket++;
 	for (int i=0;i<inlines.size();i++){
@@ -81,8 +81,7 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	//qDebug()<<"CHECK:"<<inlines.first().text;
 	
 	QString lang = language;
-	if (lang.contains('_')) lang = lang.left(lang.indexOf('_'));		
-	if (lang.contains('-')) lang = lang.left(lang.indexOf('-'));		
+	lang.replace('_', '-');
 	requests << CheckRequest(lang,doc,inlines,firstLineNr,ticket);
 
 	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
@@ -92,7 +91,14 @@ void GrammarCheck::check(const QString& language, const void * doc, const QList<
 	}
 }
 
+void GrammarCheck::shutdown(){
+	if (backend) backend->shutdown();
+	shuttingDown = true;
+	deleteLater();
+}
+
 void GrammarCheck::processLoop() {
+	if (shuttingDown) return;
 	for (int i=requests.size()-1;i>=0;i--)
 		if (requests[i].pending) {
 			requests[i].pending = false;
@@ -260,6 +266,7 @@ void GrammarCheck::process(int reqId){
 }
 	
 void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<GrammarError>& backendErrors, bool directCall){
+	if (shuttingDown) return;
 	int reqId = -1;
 	for (int i=requests.size()-1;i>=0;i--)
 		if (requests[i].ticket == crticket) reqId = i;
@@ -502,13 +509,13 @@ void GrammarCheckLanguageToolSOAP::tryToStart(){
 	triedToStart = true;
 	startTime = 0;
 	if (ltPath == "" || !QFileInfo(ltPath).exists()) return;
-	QProcess *p = new QProcess();
-	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
-	connect(this, SIGNAL(destroyed()), p, SLOT(deleteLater()));
+	javaProcess = new QProcess();
+	connect(javaProcess, SIGNAL(finished(int)), javaProcess, SLOT(deleteLater()));
+	connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-	p->start(quoteSpaces(javaPath) + " -cp "+quoteSpaces(ltPath)+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
+	javaProcess->start(quoteSpaces(javaPath) + " -cp "+quoteSpaces(ltPath)+ "  org.languagetool.server.HTTPServer -p "+QString::number(server.port(8081)));
 	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
-	p->waitForStarted();
+	javaProcess->waitForStarted();
 	
 	connectionAvailability = 0;
 	startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
@@ -522,10 +529,14 @@ const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribut
 void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString& language, const QString& text){
 	REQUIRE(nam);
 		
+	QString lang = language;
+	if (languagesCodesFail.contains(lang) && lang.contains('-'))
+		lang = lang.left(lang.indexOf('-'));
+
 	if (connectionAvailability == 0) {
 		if (firstRequest) firstRequest = false;
 		else {
-			delayedRequests << CheckRequestBackend(ticket, subticket, language, text);
+			delayedRequests << CheckRequestBackend(ticket, subticket, lang, text);
 			return;
 		}
 	}
@@ -534,14 +545,14 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 	req.setHeader(QNetworkRequest::ContentTypeHeader, "text/xml; charset=UTF-8");
 	QByteArray post;
 	post.reserve(text.length()+50);
-	post.append("language="+language+"&text=");
+	post.append("language="+lang+"&text=");
 	post.append(QUrl::toPercentEncoding(text, QByteArray(), QByteArray(" ")));
 	post.append("\n");
 	
 	//qDebug() << text;
 
 	req.setAttribute(AttributeTicket, ticket);
-	req.setAttribute(AttributeLanguage, language);
+	req.setAttribute(AttributeLanguage, lang);
 	req.setAttribute(AttributeText, text);
 	req.setAttribute(AttributeSubTicket, subticket);
 
@@ -550,7 +561,18 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 	
 }
 
+void GrammarCheckLanguageToolSOAP::shutdown()
+{
+	if (javaProcess) {
+		javaProcess->terminate();
+		javaProcess->deleteLater();
+	}
+	connectionAvailability = -2;
+}
+
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
+	if (connectionAvailability == -2) return; //shutting down
+
 	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
 	int subticket = nreply->request().attribute(AttributeSubTicket).toInt();
 	QString text = nreply->request().attribute(AttributeText).toString();
@@ -568,9 +590,18 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply* nreply){
 			return; //confirmed: no backend
 		}
 		//there might be a backend now, but we still don't have the results
-		firstRequest = true;
+		firstRequest = true; //send this request directly, queue later ones
 		check(ticket, subticket, nreply->request().attribute(AttributeLanguage).toString(), text);
 		nreply->deleteLater();		
+		return;
+	}
+
+	if (status == 500 && reply.contains("language code") && reply.contains("IllegalArgumentException")) {
+		QString lang = nreply->request().attribute(AttributeLanguage).toString();
+		if (lang.contains('-')) {
+			languagesCodesFail.insert(lang);
+			check(ticket, subticket, lang, text);
+		}
 		return;
 	}
 

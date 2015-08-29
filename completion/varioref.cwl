@@ -13,18 +13,18 @@
 \reftextpagerange
 \vpageref{label}#r
 \vpageref*{label}#r
-\vpagerefrange{fromlabel}{tolabel}
-\vpagerefrange*{fromlabel}{tolabel}
-\vpagerefrange[same page]{fromlabel}{tolabel}
-\vpagerefrange*[same page]{fromlabel}{tolabel}
-\vpageref[samepage]{label}
-\vpageref*[samepage]{label}
-\vpageref[samepage][otherpage]{label}
-\vpageref*[samepage][otherpage]{label}
+\vpagerefrange{fromlabel%ref}{tolabel%ref}
+\vpagerefrange*{fromlabel%ref}{tolabel%ref}
+\vpagerefrange[same page]{fromlabel%ref}{tolabel%ref}
+\vpagerefrange*[same page]{fromlabel%ref}{tolabel%ref}
+\vpageref[samepage]{label}#r
+\vpageref*[samepage]{label}#r
+\vpageref[samepage][otherpage]{label}#r
+\vpageref*[samepage][otherpage]{label}#r
 \vref{label}#r
 \vref*{label}#r
 \Vref{label}#r
 \Vref*{label}#r
-\vrefpagenum{cmd}{label}
-\vrefrange{fromlabel}{tolabel}
+\vrefpagenum{cmd}{label%ref}
+\vrefrange{fromlabel%ref}{tolabel%ref}
 \vreftextvario{text1}{text2}

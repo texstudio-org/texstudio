@@ -38,15 +38,16 @@ ManagedProperty::ManagedProperty():storage(0),type(PT_VOID),widgetOffset(0){
 	: storage(storage), type(ID), def(def), widgetOffset(widgetOffset){} \
 	ManagedProperty ManagedProperty::fromValue(TYPE value) { \
 		ManagedProperty res;    \
-		res.storage = new TYPE; \
+			res.storage = new TYPE; \
 		*((TYPE*)(res.storage)) = value; \
-		res.type = ID;          \
-		res.def = value;        \
-		res.widgetOffset = 0;   \
-		return res;             \
-	}                              
+		res.type = ID;                   \
+		res.def = res.valueToQVariant(); \
+		res.widgetOffset = 0;            \
+		return res;                      \
+	}
 PROPERTY_TYPE_FOREACH_MACRO(CONSTRUCTOR)
 #undef CONSTRUCTOR
+
 
 
 void ManagedProperty::deallocate(){ 
@@ -67,7 +68,8 @@ ConfigManagerInterface* ConfigManagerInterface::getInstance(){
 }
 
 
-Q_DECLARE_METATYPE(ManagedProperty*);
+Q_DECLARE_METATYPE(ManagedProperty*)
+Q_DECLARE_METATYPE(StringStringMap)
 
 ManagedToolBar::ManagedToolBar(const QString &newName, const QStringList &defs): name(newName), defaults(defs), toolbar(0){}
 
@@ -76,7 +78,10 @@ QVariant ManagedProperty::valueToQVariant() const{
 	if (!storage) return QVariant();
 	switch (type){
 #define CONVERT(TYPE, ID) case ID: return *((TYPE*)storage);
-PROPERTY_TYPE_FOREACH_MACRO(CONVERT)
+PROPERTY_TYPE_FOREACH_MACRO_SIMPLE(CONVERT)
+#undef CONVERT
+#define CONVERT(TYPE, ID) case ID: return QVariant::fromValue<TYPE>(*((TYPE*)storage));
+PROPERTY_TYPE_FOREACH_MACRO_COMPLEX(CONVERT)
 #undef CONVERT
 	default:
 		Q_ASSERT(false);
@@ -97,6 +102,7 @@ void ManagedProperty::valueFromQVariant(const QVariant v){
 	case PT_DOUBLE: *((double*)storage) = v.toDouble(); break;
 	case PT_BYTEARRAY: *((QByteArray*)storage) = v.toByteArray(); break;
 	case PT_LIST: *((QList<QVariant>*)storage) = v.toList(); break;
+	case PT_MAP_STRING_STRING: *((StringStringMap*)storage) = v.value<StringStringMap>(); break;
 	default:
 		Q_ASSERT(false);
 	}
@@ -334,6 +340,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	Q_ASSERT(!globalConfigManager);
 	globalConfigManager = this;
+
+	qRegisterMetaTypeStreamOperators<StringStringMap>();
 	
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
 	managedToolBars.append(ManagedToolBar("File", QStringList() << "main/file/new" << "main/file/open" << "main/file/save" << "main/file/close"));
@@ -349,6 +357,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	Ui::ConfigDialog *pseudoDialog = (Ui::ConfigDialog*) 0;
 
+	registerOption("Startup/CheckLatexConfiguration", &checkLatexConfiguration, true, &pseudoDialog->checkBoxCheckLatexConfiguration);
+	
 	registerOption("ToolBar/CentralVisible", &centralVisible, true);
 	registerOption("StructureView/ShowLinenumbers", &showLineNumbersInStructure, false);
 	registerOption("StructureView/Indentation", &indentationInStructure, -1);
@@ -378,6 +388,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Files/Recent Project Files", &recentProjectList);
 	registerOption("Files/Recent Session Files", &recentSessionList);
 	registerOption("Files/Remember File Filter", &rememberFileFilter, true, &pseudoDialog->checkBoxRememberFileFilter);
+	registerOption("Files/Recent Files Highlighting", &recentFileHighlightLanguage);
 	registerOption("Files/RestoreSession", &sessionRestore);
 	registerOption("Files/Last Document", &lastDocument);
 	registerOption("Files/Parse BibTeX", &parseBibTeX, true, &pseudoDialog->checkBoxParseBibTeX);
@@ -417,7 +428,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
 	registerOption("Editor/Weak Indent", &editorConfig->weakindent, false);
-	registerOption("Editor/Indent with Spaces", &editorConfig->indentWithSpaces, false, &pseudoDialog->checkBoxReplaceTabByWhitespace);
+	registerOption("Editor/Indent with Spaces", &editorConfig->replaceIndentTabs, false, &pseudoDialog->checkBoxReplaceIndentTabByWhitespace);
+	registerOption("Editor/ReplaceTextTabs", &editorConfig->replaceTextTabs, false, &pseudoDialog->checkBoxReplaceTextTabByWhitespace);
 	registerOption("Editor/Folding", &editorConfig->folding, true, &pseudoDialog->checkBoxFolding);
 	registerOption("Editor/Show Line State", &editorConfig->showlinestate, true, &pseudoDialog->checkBoxLineState);
 	registerOption("Editor/Show Cursor State", &editorConfig->showcursorstate, true, &pseudoDialog->checkBoxState);
@@ -471,6 +483,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Completion Complete Common Prefix", &completerConfig->completeCommonPrefix, true, &pseudoDialog->checkBoxCompletePrefix);
 	registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, true, &pseudoDialog->checkBoxEOWCompletes);
 	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
+    registerOption("Editor/Completion Enable Tooltip Preview", &completerConfig->tooltipPreview, true, &pseudoDialog->checkBoxToolTipCompletePreview);
 	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
 	registerOption("Editor/Completion Show Placeholders", &editorConfig->showPlaceholders, true, &pseudoDialog->checkBoxShowPlaceholders);
 	registerOption("Editor/Completion Prefered Tab", (int*)&completerConfig->preferedCompletionTab, 0,&pseudoDialog->comboBoxPreferedTab);
@@ -480,6 +493,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Visual Column Mode", &editorConfig->visualColumnMode, true, &pseudoDialog->checkBoxVisualColumnMode);
 	registerOption("Editor/Overwrite Opening Bracket Followed By Placeholder", &editorConfig->overwriteOpeningBracketFollowedByPlaceholder, true, &pseudoDialog->checkOverwriteOpeningBracketFollowedByPlaceholder);
 	registerOption("Editor/Overwrite Closing Bracket Following Placeholder", &editorConfig->overwriteClosingBracketFollowingPlaceholder, true, &pseudoDialog->checkOverwriteClosingBracketFollowingPlaceholder);
+	registerOption("Editor/Double-click Selection Includes Leading Backslash", &editorConfig->doubleClickSelectionIncludeLeadingBackslash, true, &pseudoDialog->checkBoxDoubleClickSelectionIncludeLeadingBackslash);
 
 	//table autoformating
 	registerOption("TableAutoformat/Special Commands", &tableAutoFormatSpecialCommands, "\\hline,\\cline,\\intertext,\\shortintertext,\\toprule,\\midrule,\\bottomrule", &pseudoDialog->leTableFormatingSpecialCommands);
@@ -516,6 +530,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Show Messages When Compiling", &showMessagesWhenCompiling, true, &pseudoDialog->checkBoxShowMessagesOnCompile);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
+	registerOption("Tools/ReplaceEnvironmentVariables", &BuildManager::m_replaceEnvironmentVariables, true, &pseudoDialog->checkBoxReplaceEnvironmentVariables);
 
 	//Paths
 #ifdef Q_OS_MAC
@@ -528,7 +543,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/PDF Paths", &BuildManager::additionalPdfPaths, "", &pseudoDialog->lineEditPathPDF);
 	
 	//SVN
-	registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
+    //registerOption("Tools/Auto Checkin after Save", &autoCheckinAfterSave, false, &pseudoDialog->cbAutoCheckin);
+    registerOption("Tools/Auto Checkin after Save level", &autoCheckinAfterSaveLevel, 0, &pseudoDialog->comboBoxAutoCheckinLevel);
 	registerOption("Tools/SVN Undo", &svnUndo, false, &pseudoDialog->cbSVNUndo);
 	registerOption("Tools/SVN KeywordSubstitution", &svnKeywordSubstitution, false, &pseudoDialog->cbKeywordSubstitution);
 	registerOption("Tools/SVN Search Path Depth", &svnSearchPathDepth, 2, &pseudoDialog->sbDirSearchDepth);
@@ -548,7 +564,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("X11/Font Size", &interfaceFontSize, QApplication::font().pointSize(), &pseudoDialog->spinBoxInterfaceFontSize);
 	registerOption("X11/Style", &interfaceStyle, interfaceStyle, &pseudoDialog->comboBoxInterfaceStyle);
 	registerOption("GUI/ToobarIconSize", &guiToolbarIconSize, 22);
-    registerOption("GUI/SymbolSize", &guiSymbolSize, 32);
+    registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
 	
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
@@ -573,12 +589,15 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Geometries/PdfViewerHeight", &pdfDocumentConfig->windowHeight, screen.height()-100);
 	registerOption("Geometries/PdfViewerMaximized", &pdfDocumentConfig->windowMaximized, false);
 	registerOption("Geometries/PdfViewerState", &pdfDocumentConfig->windowState, QByteArray());
+	registerOption("Preview/ToolbarVisible", &pdfDocumentConfig->toolbarVisible, true);
+	registerOption("Preview/AnnotationPanelVisible", &pdfDocumentConfig->annotationPanelVisible, false);
 	
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
 	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);
+	registerOption("Preview/", &pdfDocumentConfig->disableHorizontalScrollingForFitToTextWidth, true, &pseudoDialog->checkBoxDisableHorizontalScrollingForFitToTextWidth);
 	registerOption("Preview/ZoomStepFactor", &pdfDocumentConfig->zoomStepFactor, 1.4142135); // sqrt(2)
 	registerOption("Preview/Magnifier Size", &pdfDocumentConfig->magnifierSize, 300, &pseudoDialog->spinBoxPreviewMagnifierSize);
 	registerOption("Preview/Magnifier Shape", &pdfDocumentConfig->magnifierShape, 1, &pseudoDialog->comboBoxPreviewMagnifierShape);
@@ -586,7 +605,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	registerOption("Preview/HighlightColor", &pdfDocumentConfig->highlightColor, "#FFFF003F", &pseudoDialog->lineEditHighlightColor);
 	registerOption("Preview/HighlightDuration", &pdfDocumentConfig->highlightDuration, 2000, &pseudoDialog->spinBoxHighlightDuration);
-	registerOption("Preview/Sync File Mask", &pdfDocumentConfig->syncFileMask, "*.tex;*.tikz", &pseudoDialog->lineEditPreviewSyncFileMask);
+	registerOption("Preview/Sync File Mask", &pdfDocumentConfig->syncFileMask, "*.tex;*.tikz;*.pdf_tex", &pseudoDialog->lineEditPreviewSyncFileMask);
 	registerOption("Preview/AutoHideToolbars", &pdfDocumentConfig->autoHideToolbars, false, &pseudoDialog->autoHideToolbars);
 
     registerOption("Preview/EnlargedEmbedded",&viewerEnlarged,false);
@@ -608,6 +627,7 @@ ConfigManager::~ConfigManager(){
 	delete webPublishDialogConfig;
 	delete insertGraphicsConfig;
 	if (persistentConfig) delete persistentConfig;
+	globalConfigManager = 0;
 }
 
 QSettings* ConfigManager::readSettings(bool reread) {
@@ -688,7 +708,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		}
 		QFileInfo fi(dic);
 		if (fi.exists()) {
-			spellDictDir = fi.absolutePath();
+			spellDictDir = QDir::toNativeSeparators(fi.absolutePath());
 			if (usbMode) {
 				spellDictDir = reverseParseDir(spellDictDir);
 			}
@@ -698,7 +718,7 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	if (grammarCheckerConfig->wordlistsDir.isEmpty()) {
 		QString sw = findResourceFile("de.stopWords", true, QStringList(), parseDirList(spellDictDir));
 		if (sw=="") sw = findResourceFile("en.stopWords", true, QStringList(), QStringList() << parseDirList(spellDictDir));
-		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QFileInfo(sw).absolutePath();
+		if (QFileInfo(sw).exists()) grammarCheckerConfig->wordlistsDir = QDir::toNativeSeparators(QFileInfo(sw).absolutePath());
 	}
 	
 	if (thesaurus_database == "<dic not found>") {
@@ -721,6 +741,9 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_fr_FR_v2.dat");
 		if (thesaurus_database=="") thesaurus_database=findResourceFile("th_de_DE_v2.dat");
 	}
+	if (!thesaurus_database.isEmpty()) {
+		thesaurus_database = QDir::toNativeSeparators(thesaurus_database);
+	}
 	
 	
 	//----------------------------editor--------------------
@@ -729,12 +752,39 @@ QSettings* ConfigManager::readSettings(bool reread) {
     QStringList cwlFiles=config->value("Editor/Completion Files",QStringList() << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
 	//completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
 	LatexParser &latexParser = LatexParser::getInstance();
+
+    // read usageCount from file of its own.
+    // needs to be done before reading cwl files
+    if (!reread) {
+        QFile file(configBaseDir+"wordCount.usage");
+        if(file.open(QIODevice::ReadOnly)){
+            QDataStream in(&file);
+            quint32 magicNumer,version;
+            in >>  magicNumer >> version;
+            if (magicNumer==(quint32)0xA0B0C0D0 && version==1){
+                in.setVersion(QDataStream::Qt_4_0);
+                uint key;
+                int length,usage;
+
+                completerConfig->usage.clear();
+                while (!in.atEnd()) {
+                    in >> key >> length >> usage;
+                    if(usage>0){
+                        completerConfig->usage.insert(key,qMakePair(length,usage));
+                    }
+                }
+            }
+        }
+    }
+
+    completerConfig->words.clear();
 	foreach(const QString& cwlFile,cwlFiles){
 		LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
-		completerConfig->words.append(pck.completionWords);
+        completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
         latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
+        latexParser.commandDefs.unite(pck.commandDescriptions);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
 		foreach(const QString& elem,pck.possibleCommands.keys()){
 			QSet<QString> set2=pck.possibleCommands[elem];
@@ -831,6 +881,13 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		for (int i=0;i<userTags.size();i++)
 			completerConfig->userMacros.append(Macro(userNames.value(i,""),userTags[i], userAbbrevs.value(i,""),userTriggers.value(i,"")));
 	    }
+        // import old svn setting
+        if(config->contains("Tools/Auto Checkin after Save")){
+            bool oldSetting=config->value("Tools/Auto Checkin after Save",false).toBool();
+            if(oldSetting)
+                autoCheckinAfterSaveLevel=1;
+            config->remove("Tools/Auto Checkin after Save");
+        }
 	}
 	//menu shortcuts
 	QMap<QString, QString> aliases = QMap<QString, QString>();
@@ -1038,8 +1095,8 @@ QSettings* ConfigManager::saveSettings(const QString& saveName) {
 	return config;
 }
 
-bool ConfigManager::execConfigDialog() {
-	ConfigDialog *confDlg = new ConfigDialog(qobject_cast<QWidget*>(parent()));
+bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
+	ConfigDialog *confDlg = new ConfigDialog(parentToDialog);
 	confDlg->riddled = configRiddled;
 	//----------managed properties--------------------
 	foreach (const ManagedProperty& mp, managedProperties)
@@ -1286,10 +1343,10 @@ bool ConfigManager::execConfigDialog() {
     // set scaling sizes
     confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
     confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
-    confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolSize);
+    confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
     connect(confDlg->ui.horizontalSliderIcon,SIGNAL(valueChanged(int)),SIGNAL(iconSizeChanged(int)));
-    connect(confDlg->ui.horizontalSliderCentraIcon,SIGNAL(valueChanged(int)),SIGNAL(centralIconSizeChanged(int)));
-    connect(confDlg->ui.horizontalSliderSymbol,SIGNAL(valueChanged(int)),SIGNAL(symbolSizeChanged(int)));
+    connect(confDlg->ui.horizontalSliderCentraIcon,SIGNAL(valueChanged(int)),SIGNAL(secondaryIconSizeChanged(int)));
+    connect(confDlg->ui.horizontalSliderSymbol,SIGNAL(valueChanged(int)),SIGNAL(symbolGridIconSizeChanged(int)));
 	
 	//EXECUTE IT
 	bool executed = confDlg->exec();
@@ -1368,12 +1425,14 @@ bool ConfigManager::execConfigDialog() {
 		latexParser.clear();
 		latexParser.init();
 		//completerConfig->words=loadCwlFiles(newFiles,ltxCommands,completerConfig);
+        completerConfig->words.clear();
 		foreach(const QString& cwlFile,newFiles){
 			LatexPackage pck=loadCwlFile(cwlFile,completerConfig);
-			completerConfig->words.append(pck.completionWords);
+            completerConfig->words.unite(pck.completionWords);
 			latexParser.optionCommands.unite(pck.optionCommands);
             latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
 			latexParser.environmentAliases.unite(pck.environmentAliases);
+            latexParser.commandDefs.unite(pck.commandDescriptions);
 			
 			//ltxCommands->possibleCommands.unite(pck.possibleCommands); qt bug
 			foreach(const QString& elem,pck.possibleCommands.keys()){
@@ -1400,16 +1459,16 @@ bool ConfigManager::execConfigDialog() {
 			else  ++it;
 		for (int i=0;i<commandInputs.size();i++){
 			CommandMapping::iterator it = tempCommands.find(commandInputs[i]->property(PROPERTY_COMMAND_ID).toString());
-            if (it != tempCommands.end()) {
-                QString text = getText(commandInputs[i]);
-                QComboBox *cb=qobject_cast<QComboBox*>(commandInputs[i]);
-                int i=-1;
-                if(cb)
-                    i=cb->findText(text);
-                if(i>=0)
-                    text=it.value().metaSuggestionList.value(i);
-                it.value().commandLine =text;
-            }
+			if (it != tempCommands.end()) {
+				QString text = getText(commandInputs[i]);
+				QComboBox *cb = qobject_cast<QComboBox*>(commandInputs[i]);
+				if (cb && !configShowAdvancedOptions) {
+					// the display text has to be mappend to the actual command in case of the non-advanced dialog
+					int i = cb->findText(text);
+					text = it.value().metaSuggestionList.value(i);
+				}
+				it.value().commandLine = text;
+			}
 		}
 		for (int i=0;i<rerunButtons.size();i++){
 			CommandMapping::iterator it = tempCommands.find(getCmdID(rerunButtons[i]));
@@ -1552,12 +1611,17 @@ bool ConfigManager::execConfigDialog() {
 			QString cmd=confDlg->ui.twCustomSyntax->item(i,0)->text();
 			if(!cmd.isEmpty())
 				latexParser.customCommands.insert(cmd);
-		}
-        // GUI scaling
-        guiToolbarIconSize=confDlg->ui.horizontalSliderIcon->value();
-        guiSecondaryToolbarIconSize=confDlg->ui.horizontalSliderCentraIcon->value();
-        guiSymbolSize=confDlg->ui.horizontalSliderSymbol->value();
-		
+		}		
+		// GUI scaling
+		guiToolbarIconSize=confDlg->ui.horizontalSliderIcon->value();
+		guiSecondaryToolbarIconSize=confDlg->ui.horizontalSliderCentraIcon->value();
+		guiSymbolGridIconSize=confDlg->ui.horizontalSliderSymbol->value();
+	} else {
+		// GUI scaling
+		confDlg->ui.horizontalSliderIcon->setValue(guiToolbarIconSize);
+		confDlg->ui.horizontalSliderCentraIcon->setValue(guiSecondaryToolbarIconSize);
+		confDlg->ui.horizontalSliderSymbol->setValue(guiSymbolGridIconSize);
+
 	}
 	delete confDlg;
 	return executed;
@@ -2619,7 +2683,13 @@ QTreeWidgetItem* ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem* pa
 		if (acts[i]->menu()) twi = managedLatexMenuToTreeWidget(menuitem, acts[i]->menu());
 		else {
 			subAdvanced |= !acts[i]->data().isValid();
-			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << acts[i]->data().toString() << prettySlotName(acts[i]));
+			QString actionData = acts[i]->data().toString();
+			twi=new QTreeWidgetItem(menuitem, QStringList() << QString(acts[i]->text()) << actionData << prettySlotName(acts[i]));
+			if (actionData.contains('\n')) {
+				// limit item height to prevent vertically very large items for actions with %SCRIPTs
+				twi->setSizeHint(1, QSize(-1, QFontMetrics(twi->font(1)).height()));
+				twi->setTextAlignment(1, (twi->textAlignment(1)&Qt::AlignHorizontal_Mask) | Qt::AlignTop);
+			}
 			if (!acts[i]->isSeparator()) {
 				twi->setIcon(0,acts[i]->icon());
 				twi->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsUserCheckable);

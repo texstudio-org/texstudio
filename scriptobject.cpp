@@ -47,9 +47,9 @@ void ScriptObject::crash_stack(){
 }
 void ScriptObject::crash_loop(){ 
 	if (!confirmWarning("Do you want to let txs freeze with an endless loop?")) return;
-#ifndef QT_NO_DEBUG // only used in the Q_ASSERT statements: prevent unused variable warning in release build
+//#ifndef QT_NO_DEBUG // only used in the Q_ASSERT statements: prevent unused variable warning in release build
 	register int a = 1, b = 2, c = 3, d = 4;
-#endif
+//#endif
 	while (1) {
 		void * x = malloc(16); free(x);
 		Q_ASSERT(a == 1); Q_ASSERT(b == 2); Q_ASSERT(c == 3); Q_ASSERT(d == 4); //make sure, no register suddenly change
@@ -81,7 +81,8 @@ void ScriptObject::writeFile(const QString& filename, const QString& content){
 	if (!needWritePrivileges("writeFile",filename))
 		return;
 	QFile f(filename);
-	f.open(QFile::WriteOnly);
+    if(!f.open(QFile::WriteOnly))
+        return;
 	f.write(content.toUtf8());
 	f.close();
 }

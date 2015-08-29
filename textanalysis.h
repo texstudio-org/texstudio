@@ -68,6 +68,7 @@ private slots:
 	void slotCount();
 	void slotClose();
 	void slotSelectionButton();
+	void slotExportButton();
 	void editorDestroyed();
 public slots:
 	void init();

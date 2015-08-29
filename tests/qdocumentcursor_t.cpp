@@ -661,7 +661,35 @@ void QDocumentCursorTest::bidiMoving(){
 	QEQUAL2(c.lineNumber(), newLine, "line" );
 	QEQUAL2(c.columnNumber(), newColumn, "column" );
 #endif
+	
+}
 
+void QDocumentCursorTest::isForwardSelection_data()
+{
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("line");
+	QTest::addColumn<int>("column");
+	QTest::addColumn<int>("anchorLine");
+	QTest::addColumn<int>("anchorColumn");
+	QTest::addColumn<bool>("expectedResult");
+	QTest::newRow("no selection") << "foo" << 0 << 1 << -1 << -1 << false;
+	QTest::newRow("forward single line") << "foo" << 0 << 1 << 0 << 2 << true;
+	QTest::newRow("backward single line") << "foo" << 0 << 2 << 0 << 1 << false;
+	QTest::newRow("forward multi line") << "foo\nbar" << 0 << 1 << 1 << 0 << true;
+	QTest::newRow("backward multi line") << "foo\nbar" << 1 << 2 << 0 << 1 << false;
+}
+
+void QDocumentCursorTest::isForwardSelection()
+{
+	QFETCH(QString, text);
+	QFETCH(int, line);
+	QFETCH(int, column);
+	QFETCH(int, anchorLine);
+	QFETCH(int, anchorColumn);
+	QFETCH(bool, expectedResult);
+	doc->setText(text, false);
+	QDocumentCursor c(doc, line, column, anchorLine, anchorColumn);
+	QEQUAL(c.isForwardSelection(), expectedResult);
 }
 
 void QDocumentCursorTest::cleanupTestCase(){

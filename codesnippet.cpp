@@ -78,29 +78,14 @@ bool CodeSnippet::autoReplaceCommands=true;
 bool CodeSnippet::debugDisableAutoTranslate = false;
 
 CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
-	QString realNewWord=newWord;
-	// \begin magic
-	if (newWord == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>" ||
-	    newWord == "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>"){
-		realNewWord = "\\begin{%<"+QObject::tr("*environment-name*")+"%:select,id:2%>}\n"
-			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
-			      "\\end{%<"+QObject::tr("*environment-name*")+"%:mirror,id:2%>}";
-	} else if (realNewWord.startsWith("\\begin{")&&
-		!realNewWord.contains("\n")&&!realNewWord.contains("%n") //only a single line
-	    && realNewWord.lastIndexOf("\\") == 0) //only one latex command in the line
-	{
-		int p=newWord.indexOf("{");
-		QString environmentName=realNewWord.mid(p,newWord.indexOf("}")-p+1); //contains the {}
-		QString content="%<"+QObject::tr("content...")+"%:multiline%>";
-		realNewWord+="\n"+content+"\n\\end"+environmentName;
-	}
-
+	QString realNewWord = expandCode(newWord);
 	cursorLine=-1;
 	cursorOffset=-1;
 	anchorOffset=-1;
 	usageCount=0;
 	index=0;
 	snippetLength=0;
+    type=none;
 	QString curLine;
 
 	curLine.reserve(realNewWord.length());
@@ -166,7 +151,7 @@ CodeSnippet::CodeSnippet(const QString &newWord, bool replacePercentNewline) {
 			case '\n':
 				curLine += "%"; word += "%";
 				// no break
-			case 'n':
+            case '\\':
                 if (currentChar.toLatin1() == '\n' || replacePercentNewline) {
 					lines.append(curLine);
 					placeHolders.append(QList<CodeSnippetPlaceHolder>());
@@ -222,6 +207,45 @@ bool CodeSnippet::operator== (const CodeSnippet &cw) const {
 	return cw.word == word;
 }
 
+/*!
+ * expands special snipets such as environment templates
+ */
+QString CodeSnippet::expandCode(const QString &code)
+{
+	if (code == "%<%:TEXMAKERX-GENERIC-ENVIRONMENT-TEMPLATE%>" ||
+	    code == "%<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>")
+	{
+		// environment template
+		return "\\begin{%<"+QObject::tr("*environment-name*")+"%:select,id:2%>}\n"
+			      "%<"+QObject::tr("content...")+"%:select,multiline%>\n"
+			      "\\end{%<"+QObject::tr("*environment-name*")+"%:mirror,id:2%>}";
+	} else if (code.startsWith("\\begin{") &&
+               !code.contains("\n") && !code.contains("%\\") &&  // only a single line
+			   code.lastIndexOf("\\") == 0)                     // only one latex command in the line
+	{
+		// plain \begin{env}
+		int p = code.indexOf("{") + 1;
+		QString environmentName = code.mid(p, code.indexOf("}")-p); //contains the {}
+		return code + "\n" + environmentContent(environmentName) + "\n\\end{" + environmentName + "}";
+	}
+	return code;
+	
+}
+
+/*!
+ * returns the content to be inserted into an environment upon environment snippet expansion
+ * This is currently hard coded for the most common cases. Might become user-definable in the future
+ * (via addition to the snippet code (what would that imply for cwls?) or other means
+ */
+QString CodeSnippet::environmentContent(const QString &envName) {
+	if (envName == "enumerate" || envName == "itemize") {
+        return "\\item %|";
+	} else if (envName == "description") {
+        return "\\item[%<"+QObject::tr("label")+"%:multiline%>] %<"+QObject::tr("description")+"%>";
+	} else {
+		return "%<"+QObject::tr("content...")+"%:multiline%>";
+	}
+}
 
 void CodeSnippet::insert(QEditor* editor) const{
 	if (!editor) return;
@@ -371,7 +395,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 
 	// on single line commands only: replace command
     if(byCompleter && autoReplaceCommands && lines.size()==1 && (line.startsWith('\\')||isKeyVal) ){
-		if(cursor->nextChar().isLetterOrNumber()||cursor->nextChar()==QChar('{')){
+        if(cursor->nextChar().isLetterOrNumber()||cursor->nextChar()==QChar('{')||cursor->nextChar()==QChar('=')){
 			QString curLine=cursor->line().text();
             int wordBreak=curLine.indexOf(QRegExp("\\W"),cursor->columnNumber());
             int wordBreakEqual=curLine.indexOf("=",cursor->columnNumber());
@@ -383,7 +407,7 @@ void CodeSnippet::insertAt(QEditor* editor, QDocumentCursor* cursor, Placeholder
 				if(closeCurl<0) closeCurl=1e9;
 				if(openCurl<0) openCurl=1e9;
                 if(wordBreakEqual<0) wordBreakEqual=1e9;
-				if(wordBreak<openBracket && wordBreak<closeCurl &&wordBreak<openCurl){
+                if(wordBreak<=openBracket && wordBreak<=closeCurl &&wordBreak<=openCurl){
 					if(wordBreak<0)
 						cursor->movePosition(wordBreak-cursor->columnNumber(),QDocumentCursor::EndOfLine,QDocumentCursor::KeepAnchor);
                     else {
@@ -515,4 +539,27 @@ QDocumentCursor CodeSnippet::getCursor(QEditor * editor, const CodeSnippetPlaceH
 			cursor.movePosition(lastLineRemainingLength,QDocumentCursor::PreviousCharacter);
 	}
 	return cursor;
+}
+
+
+void CodeSnippetList::unite(CodeSnippetList &lst)
+{
+    this->append(lst);
+    CodeSnippetList::iterator middle=this->end()-lst.length();
+    std::inplace_merge(this->begin(),middle,this->end());
+}
+
+void CodeSnippetList::unite(const QList<CodeSnippet> &lst)
+{
+    this->append(lst);
+    CodeSnippetList::iterator middle=this->end()-lst.length();
+    std::inplace_merge(this->begin(),middle,this->end());
+}
+
+void CodeSnippetList::insert(const QString &elem)
+{
+    CodeSnippet cs(elem);
+    cs.usageCount=2;
+    QList<CodeSnippet>::iterator it=qLowerBound(this->begin(),this->end(),cs);
+    QList<CodeSnippet>::insert(it,cs);
 }

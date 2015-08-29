@@ -11,7 +11,7 @@ Macro::Macro(const QString& nname, const QString& ntag, const QString& nabbrev, 
 	init(nname, ntag, nabbrev, ntrigger);
 }
 
-Macro::Macro(const QStringList &fieldList):document(0) {
+Macro::Macro(const QStringList &fieldList):triggerLookBehind(false),document(0) {
 	if (fieldList.count() >= 4) {
 		init(fieldList[0], fieldList[1], fieldList[2], fieldList[3]);
 	}
@@ -69,10 +69,18 @@ void Macro::init(const QString& nname, const QString& ntag, const QString& nabbr
 		}
 
 		if (realtrigger.startsWith("(?highlighted-as:")) {
+			int start = realtrigger.indexOf(':') + 1; 
 			int closing = realtrigger.indexOf(")");
-			triggerFormatsUnprocessed = realtrigger.mid(17, closing - 17).replace(',', '|').replace(" ",""); //handle later, when the formats are loaded
+			triggerFormatsUnprocessed = realtrigger.mid(start, closing - start).replace(',', '|').replace(" ",""); //handle later, when the formats are loaded
 			realtrigger.remove(0, closing+1);
 		}
+		if (realtrigger.startsWith("(?not-highlighted-as:")) {
+			int start = realtrigger.indexOf(':') + 1; 
+			int closing = realtrigger.indexOf(")");
+			triggerFormatExcludesUnprocessed = realtrigger.mid(start, closing - start).replace(',', '|').replace(" ",""); //handle later, when the formats are loaded
+			realtrigger.remove(0, closing+1);
+		}
+		
 	} while (lastLen != realtrigger.length());
 
 	if (realtrigger.startsWith("(?<=")) {
@@ -85,12 +93,21 @@ void Macro::init(const QString& nname, const QString& ntag, const QString& nabbr
 void Macro::initTriggerFormats() {
 	QFormatScheme *fs = QDocument::defaultFormatScheme();
 	REQUIRE(fs);
-	foreach (const QString& f,	triggerFormatsUnprocessed.split('|')) {
-		int fid = fs->id(f);
-		if ( fid > 0)
-			triggerFormats << fid;
+	qDebug() << triggerFormatsUnprocessed;
+	qDebug() << triggerFormatExcludesUnprocessed;
+	foreach (const QString& formatName,	triggerFormatsUnprocessed.split('|')) {
+		if (fs->exists(formatName)) {
+			triggerFormats << fs->id(formatName);
+		}
 	}
 	triggerFormatsUnprocessed.clear();
+	foreach (const QString& formatName,	triggerFormatExcludesUnprocessed.split('|')) {
+		if (fs->exists(formatName)) {
+			triggerFormatExcludes << fs->id(formatName);
+		}
+	}
+	triggerFormatExcludesUnprocessed.clear();
+	
 }
 
 QStringList Macro::toStringList() const {
@@ -117,8 +134,8 @@ bool Macro::isActiveForLanguage(QLanguageDefinition *lang) const {
 }
 
 bool Macro::isActiveForFormat(int format) const {
-	if (!triggerFormatsUnprocessed.isEmpty()) (const_cast<Macro*>(this))->initTriggerFormats();
+	if (!triggerFormatsUnprocessed.isEmpty() || !triggerFormatExcludesUnprocessed.isEmpty()) (const_cast<Macro*>(this))->initTriggerFormats();
 	// if no trigger format is specified, the macro is active for all formats.
-	return triggerFormats.isEmpty() || triggerFormats.contains(format);
+	return (triggerFormats.isEmpty() || triggerFormats.contains(format)) && (!triggerFormatExcludes.contains(format));
 }
 
