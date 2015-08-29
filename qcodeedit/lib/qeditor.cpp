@@ -314,7 +314,7 @@ QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	m_doc(0), m_definition(0), m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
 	mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_wrapAfterNumChars(0),m_scrollAnimation(0)
 {
 	m_editors << this;
@@ -926,10 +926,6 @@ void QEditor::save()
 	//QTextStream s(&f);
 	//s << text();
 	// insert hard line breaks on modified lines (if desired)
-	if(flag(HardLineWrap)){
-		QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
-		m_doc->applyHardLineWrap(handles);
-	}
 
 	//remove all watches (on old and new file name (setfilename above could have create one!) )
 	Q_ASSERT(watcher());
@@ -1248,6 +1244,7 @@ void QEditor::print()
 
 	// TODO : create a custom print dialog, page range sucks, lines range would be better
 	QPrintDialog dialog(&printer, this);
+	dialog.setWindowTitle(tr("Print Source Code"));
 	dialog.setEnabledOptions(QPrintDialog::PrintToFile | QPrintDialog::PrintPageRange);
 
 	if ( dialog.exec() == QDialog::Accepted )
@@ -2519,13 +2516,23 @@ void QEditor::tabOrIndentSelection()
 		// insert \t only if there is non-space before the cursor, otherwise indent
 		while (!cur.atLineStart()) {
 			if (!cur.previousChar().isSpace()) {
-				m_cursor.insertText( "\t");
+				insertTab();
 				return;
 			}
 			cur.movePosition(1, QDocumentCursor::PreviousCharacter);
 		}
 		indentSelection();
-    }
+	}
+}
+
+void QEditor::insertTab()
+{
+	if (flag(ReplaceTextTabs)) {
+		int spaceCount = m_doc->tabStop() - m_cursor.columnNumber() % m_doc->tabStop();
+		m_cursor.insertText(QString(spaceCount, ' '));
+	} else {
+		m_cursor.insertText("\t");
+	}
 }
 
 /*!
@@ -2535,7 +2542,7 @@ void QEditor::indentSelection()
 {
 	// TODO : respect tab stops in case of screwed up indent (correct it?)
 
-	QString txt = flag(ReplaceTabs) ? QString(m_doc->tabStop(), ' ') : QString("\t");
+	QString txt = flag(ReplaceIndentTabs) ? QString(m_doc->tabStop(), ' ') : QString("\t");
 	
 	if ( m_mirrors.count() )
 	{
@@ -2735,7 +2742,107 @@ void QEditor::selectAll()
 void QEditor::selectNothing(){
     QDocumentCursor cur=cursor();
     cur.clearSelection();
-    setCursor(cur);
+	setCursor(cur);
+}
+
+/*!
+ * \brief searches for the next occurence of the text in the last selection and
+ * selects this additionally. If there is no selection, the word or command under
+ * the cursor is selected.
+ */
+void QEditor::selectExpandToNextWord()
+{
+	if (!m_cursor.hasSelection()) {
+		m_cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
+	} else {
+		QDocumentCursor &lastCursor = m_cursor;
+		foreach (const QDocumentCursor &cm, m_mirrors) {
+			if (cm > lastCursor) lastCursor = cm;
+		}
+		QString selectedText = lastCursor.selectedText();
+		QDocumentCursor searchCursor(lastCursor.document(), lastCursor.endLineNumber(), lastCursor.endColumnNumber());
+		while (!searchCursor.atEnd()) {
+			int col = searchCursor.line().text().indexOf(selectedText, searchCursor.columnNumber());
+			if (col < 0) {
+				searchCursor.movePosition(1, QDocumentCursor::EndOfLine);  // ensure searchCursor.atEnd() if no further matches are found
+				searchCursor.movePosition(1, QDocumentCursor::NextLine);
+			} else {
+				QDocumentCursor c(m_cursor);
+				m_cursor.setLineNumber(searchCursor.lineNumber());
+				m_cursor.setColumnNumber(col);
+				m_cursor.movePosition(selectedText.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+				// need to add the cursor mirror after changing m_cursor (if c == m_cursor, addCursorMirror does nothing)
+				addCursorMirror(c);
+				break;
+			}
+		}
+	}
+
+	emitCursorPositionChanged();
+	viewport()->update();
+}
+
+/*!
+ * \brief Expands the selection to include the full line.
+ * If the selection does already span full lines, the next line will be added.
+ * If there is no selection, the current line will be selected.
+ */
+void QEditor::selectExpandToNextLine()
+{
+	if (!m_cursor.hasSelection()) {
+		m_cursor.movePosition(1, QDocumentCursor::StartOfLine);
+		m_cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+		m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+		return;
+	}
+	if (!m_cursor.isForwardSelection()) {
+		m_cursor.flipSelection();
+	}
+	m_cursor.setAnchorColumnNumber(0);
+	m_cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+	m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
+
+	emitCursorPositionChanged();
+	viewport()->update();
+}
+
+/*!
+ * \brief Select all occurences of the current selection or the word/command under cursor
+ * Note: if the selection is a word, matches are limited to complete words.
+ */
+void QEditor::selectAllOccurences()
+{
+	if (!m_cursor.hasSelection()) {
+		m_cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
+	}
+	if (!m_cursor.hasSelection()) {
+		return;
+	}
+	QString text = m_cursor.selectedText();
+	bool isWord = true;
+	foreach (const QChar &c, text) {
+		if (!c.isLetterOrNumber()) {
+			isWord = false;
+			break;
+		}
+	}
+	QDocumentCursor cStart(m_cursor.document(), m_cursor.startLineNumber(), m_cursor.startColumnNumber());
+	QDocumentCursor cEnd(m_cursor.document(), m_cursor.endLineNumber(), m_cursor.endColumnNumber());
+	bool atBoundaries = (cStart.atLineStart() || !cStart.previousChar().isLetterOrNumber())
+	                 && (cEnd.atLineEnd() || !cEnd.nextChar().isLetterOrNumber());
+
+	// TODO: this is a quick solution: using the search panel to select all matches
+	//       1. initialize the search with the required parameters
+	//       2. select all matches
+	//       3. close the search panel which was opened as a side effect of 1.
+	// It would be better to be able to perform the seach and select without interfering 
+	// with the search panel UI.
+	find(text, false, false, isWord && atBoundaries, true);
+	selectAllMatches();
+	relayPanelCommand("Search", "closeSomething", QList<QVariant>() << true);
+
+	emitCursorPositionChanged();
+	viewport()->update();
 }
 
 /*!
@@ -2797,7 +2904,8 @@ void QEditor::paintEvent(QPaintEvent *e)
 	ctx.width = viewport()->width();
 	ctx.height = qMin(r.height(), viewport()->height());
 	ctx.palette = palette();
-	ctx.cursors << m_cursor.handle();
+	if (m_cursor.isValid())
+		ctx.cursors << m_cursor.handle();
 	ctx.fillCursorRect = true;
 	ctx.blinkingCursor = flag(CursorOn);
 
@@ -3078,7 +3186,8 @@ void QEditor::keyPressEvent(QKeyEvent *e)
 	case NextPlaceHolder: nextPlaceHolder(); break;
 	case PreviousPlaceHolder: previousPlaceHolder(); break;
 
-    case TabOrIndentSelection: tabOrIndentSelection(); break;
+	case TabOrIndentSelection: tabOrIndentSelection(); break;
+	case InsertTab: insertTab(); break;
 	case IndentSelection: indentSelection(); break;
 	case UnindentSelection: unindentSelection(); break;
 
@@ -3333,36 +3442,7 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 
 		if ( e->modifiers() & Qt::ControlModifier )
 		{
-
-			// get column number for column selection
-			int org = m_cursor.anchorColumnNumber();
-			int dst = newCursor.columnNumber();
-			// TODO : adapt to line wrapping...
-
-			clearCursorMirrors();
-			//m_cursor.clearSelection();
-			int min = qMin(m_cursor.lineNumber(), newCursor.lineNumber());
-			int max = qMax(m_cursor.lineNumber(), newCursor.lineNumber());
-
-			if ( min != max )
-			{
-				for ( int l = min; l <= max; ++l )
-				{
-					if ( l != m_cursor.lineNumber() )
-						addCursorMirror(QDocumentCursor(m_doc, l, org));
-
-				}
-
-				if ( e->modifiers() & Qt::ShiftModifier )
-				{
-					m_cursor.setColumnNumber(dst, QDocumentCursor::KeepAnchor);
-
-					for ( int i = 0; i < m_mirrors.count(); ++i )
-						m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
-				}
-			} else {
-				m_cursor.setSelectionBoundary(newCursor);
-			}
+			selectCursorMirrorBlock(newCursor, e->modifiers() & Qt::ShiftModifier);
 		} else {
 			m_cursor.setSelectionBoundary(newCursor);
 		}
@@ -3428,36 +3508,34 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 				//m_mirrors << cursor;
 				if ( e->modifiers() & Qt::ShiftModifier )
 				{
-					// get column number for column selection
-					int org = m_cursor.anchorColumnNumber();
-					int dst = cursor.columnNumber();
-					// TODO : fix and adapt to line wrapping...
-
-					clearCursorMirrors();
-					//m_cursor.clearSelection();
-					int min = qMin(m_cursor.lineNumber(), cursor.lineNumber());
-					int max = qMax(m_cursor.lineNumber(), cursor.lineNumber());
-
-					if ( min != max )
+					selectCursorMirrorBlock(cursor, true);
+				} else if ( (e->modifiers() & Qt::AltModifier) )
+				{
+					//remove existing mirrors if one is at the same position
+					if ( m_cursor.isWithinSelection(cursor) || m_cursor.equal(cursor) )
 					{
-						for ( int l = min; l <= max; ++l )
+						m_cursor = QDocumentCursor();
+						if ( m_mirrors.size() )
 						{
-							if ( l != m_cursor.lineNumber() )
-								addCursorMirror(QDocumentCursor(m_doc, l, org));
-
-						}
-
-						if ( e->modifiers() & Qt::ShiftModifier )
-						{
-							m_cursor.setColumnNumber(dst, QDocumentCursor::KeepAnchor);
-
-							for ( int i = 0; i < m_mirrors.count(); ++i )
-								m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+							m_cursor = m_mirrors.takeFirst();
+							if (m_cursorMirrorBlockAnchor >= 0)
+								m_cursorMirrorBlockAnchor--;
+							break;
 						}
 					} else {
-						m_cursor.setSelectionBoundary(cursor);
+						bool removedExisting = false;
+						for ( int i = 0; i < m_mirrors.size(); i++ )
+							if ( m_mirrors[i].isWithinSelection(cursor) || m_mirrors[i].equal(cursor) )
+							{
+								m_mirrors.removeAt(i);
+								removedExisting = true;
+								if (m_cursorMirrorBlockAnchor >= i)
+									m_cursorMirrorBlockAnchor--;
+								break;
+							}
+						if ( removedExisting ) break;
 					}
-				} else if ( (e->modifiers() & Qt::AltModifier) ) {
+					m_cursorMirrorBlockAnchor = m_mirrors.size();
 					addCursorMirror(cursor);
 				}
 			} else {
@@ -3581,7 +3659,7 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 
 		if ( m_cursor.isValid() )
 		{
-			m_cursor.select(QDocumentCursor::WordUnderCursor);
+			m_cursor.select(m_doubleClickSelectionType);
 
 			setClipboardSelection();
 			//emit clearAutoCloseStack();
@@ -3788,7 +3866,7 @@ void QEditor::changeEvent(QEvent *e)
 		if ( !m_doc )
 			return;
 
-		m_doc->setFont(font());
+        m_doc->setBaseFont(font());
 		//setTabStop(iTab);
 
 	}
@@ -4222,10 +4300,13 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 
 		addEditOperation(DeleteLeft, Qt::NoModifier, Qt::Key_Backspace);
         addEditOperation(DeleteRight, QKeySequence::Delete);
-	#ifndef Q_OSX
-		addEditOperation(DeleteLeft, Qt::ShiftModifier, Qt::Key_Backspace);
-	#endif
-	#ifdef Q_OSX
+    #ifdef Q_OS_MAC
+        addEditOperation(DeleteRight, Qt::ShiftModifier, Qt::Key_Backspace);
+    #else
+        addEditOperation(DeleteLeft, Qt::ShiftModifier, Qt::Key_Backspace);
+    #endif
+
+    #ifdef Q_OS_MAC
 		addEditOperation(DeleteLeftWord, Qt::AltModifier, Qt::Key_Backspace);
 		addEditOperation(DeleteRightWord, Qt::AltModifier, Qt::Key_Delete);
 	#else
@@ -4349,7 +4430,8 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case PreviousPlaceHolder: return tr("Previous placeholder");
 	case NextPlaceHolderOrWord: return tr("Next placeholder or one word right");
 	case PreviousPlaceHolderOrWord: return tr("Previous placeholder or one word left");
-    case TabOrIndentSelection: return tr("Tab or Indent selection");
+	case TabOrIndentSelection: return tr("Tab or Indent selection");
+	case InsertTab: return tr("Insert tab");
 	case IndentSelection: return tr("Indent selection");
 	case UnindentSelection: return tr("Unindent selection");
 
@@ -4540,7 +4622,7 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 	{
 		QString text = e->text();
 
-		if ( flag(ReplaceTabs) )
+		if ( flag(ReplaceIndentTabs) )
 		{
 			text.replace("\t", QString(m_doc->tabStop(), ' '));
 		}
@@ -4549,6 +4631,47 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 
 		break;
 	}
+	}
+}
+
+void QEditor::selectCursorMirrorBlock(const QDocumentCursor &cursor, bool horizontalSelect)
+{
+	QDocumentCursorHandle *blockAnchor;
+	if ( m_cursorMirrorBlockAnchor >= 0 && m_cursorMirrorBlockAnchor < m_mirrors.size() ) {
+		blockAnchor = m_mirrors[m_cursorMirrorBlockAnchor].handle();
+		while ( m_mirrors.size() > m_cursorMirrorBlockAnchor + 1) //remove all after m_cursorMirrorBlockAnchor
+			m_mirrors.removeLast();
+	} else {
+		clearCursorMirrors();
+		blockAnchor = m_cursor.handle();
+	}
+	if (!blockAnchor) return;
+	// get column number for column selection
+	int org = blockAnchor->anchorColumnNumber();
+	int dst = cursor.columnNumber();
+	// TODO : fix and adapt to line wrapping...
+
+	int min = qMin(blockAnchor->lineNumber(), cursor.lineNumber());
+	int max = qMax(blockAnchor->lineNumber(), cursor.lineNumber());
+
+	if ( min != max )
+	{
+		for ( int l = min; l <= max; ++l )
+		{
+			if ( l != blockAnchor->lineNumber() )
+				addCursorMirror(QDocumentCursor(m_doc, l, org));
+
+		}
+
+		if ( horizontalSelect )
+		{
+			blockAnchor->setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+
+			for ( int i = qMax(0, m_cursorMirrorBlockAnchor); i < m_mirrors.count(); ++i )
+				m_mirrors[i].setColumnNumber(dst, QDocumentCursor::KeepAnchor);
+		}
+	} else {
+		blockAnchor->setSelectionBoundary(cursor);
 	}
 }
 
@@ -4731,7 +4854,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	{
 		preInsertUnindent(c, lines.first(), 0);
 		
-		if ( flag(ReplaceTabs) )
+		if ( flag(ReplaceIndentTabs) )
 		{
 			// TODO : replace tabs by spaces properly
 		}
@@ -4773,7 +4896,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 					indent = m_definition->indent(c, &indentCount);
 					if (indentCount < 0) additionalUnindent = - indentCount;
 
-					if ( flag(ReplaceTabs) )
+					if ( flag(ReplaceIndentTabs) )
 						indent.replace("\t", QString(m_doc->tabStop(), ' '));
 				}
 			}
@@ -4813,22 +4936,43 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		autoComplete = false;
 		if (!autoBracket.isEmpty()) {
 			QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(c);
-			QDocumentCursor cm;
+			QDocumentCursor matchingCloseBracket;
 			for (int i=0; i < matches.size(); i++) {
 				if (matches[i][0].selectedText() == writtenBracket) {
-					cm = matches[i][1];
+					matchingCloseBracket = matches[i][1];
 					break;
 				} else if (matches[i][1].selectedText() == writtenBracket) {
-					cm = matches[i][0];
+					matchingCloseBracket = matches[i][0];
 					break;
 				}
 			}
-			autoComplete = cm.isNull()
-					 || cm.selectedText() != autoBracket //bracket mismatch
+			
+			autoComplete = matchingCloseBracket.isNull()
+					 || matchingCloseBracket.selectedText() != autoBracket //bracket mismatch
 					 || (!previousBracketMatch.isNull() &&
-					     cm.anchorLineNumber() == cm.lineNumber() &&
-
-					     cm.selectionEnd() == previousBracketMatch.selectionEnd());
+					     matchingCloseBracket.anchorLineNumber() == matchingCloseBracket.lineNumber() &&
+					     matchingCloseBracket.selectionEnd() == previousBracketMatch.selectionEnd());
+			if (!autoComplete && matchingCloseBracket.isValid()) {
+				// inserting a bracket may steal the closing bracket from a following pair.
+				// If that's the case, we have a matching close for the new insert, but a unmatched open bracket
+				// of the same type between the newly inserted bracket and its now-matching closing bracket.
+				// Then, auto-insertion of a closing bracket is required as well.
+				QDocumentCursor mismatch = languageDefinition()->getNextMismatch(c);
+				while (mismatch.isValid()
+					   && (mismatch.lineNumber() < matchingCloseBracket.lineNumber() 
+					       || (mismatch.lineNumber() == matchingCloseBracket.lineNumber() && mismatch.columnNumber() < matchingCloseBracket.columnNumber()))
+				){
+					if (writtenBracket.endsWith(mismatch.selectedText())) {
+						// subsequent opening bracket found, that has now a mismatch
+						// note: endsWith is a workaround, because in "\( \( \)" the unmatched bracket is detected as "("
+						autoComplete = true;
+						break;
+					}
+					QDocumentCursor cEnd = mismatch.selectionEnd();
+					cEnd.movePosition(1);
+					mismatch = languageDefinition()->getNextMismatch(cEnd);
+				}
+			}
 		}
 
 		if (autoComplete) {
@@ -4894,22 +5038,41 @@ void QEditor::write(const QString& s)
 	repaintCursor();
 }
 
+void QEditor::zoomIn()
+{
+	zoom(1);
+}
+
+void QEditor::zoomOut()
+{
+	zoom(-1);
+}
+
+void QEditor::resetZoom()
+{
+	zoom(0);
+}
+
 /*!
 	\brief Zoom
 	\param n relative zoom factor
 
-	Zooming is achieved by changing the point size of the font as follow :
+	Zooming is achieved by changing the point size of the font as follows:
 
 	fontPointSize += \a n
+	
+	n == 0 is used to reset the zoom
 */
 void QEditor::zoom(int n)
 {
 	if ( !m_doc )
 		return;
+	
+	if ( n == 0 )
+		m_doc->setFontSizeModifier(0);
+	else
+		m_doc->setFontSizeModifier(m_doc->fontSizeModifier() + n);
 
-	QFont f = m_doc->font();
-	f.setPointSize(qMax(1, f.pointSize() + n));
-	m_doc->setFont(f);
 	if (m_wrapAfterNumChars)
 		setWrapAfterNumChars(m_wrapAfterNumChars); // updates the width for the new font
 }
@@ -5427,6 +5590,7 @@ void QEditor::clearCursorMirrors()
 	}
 
 	m_mirrors.clear();
+	m_cursorMirrorBlockAnchor = -1;
 	
 	viewport()->update();
 }

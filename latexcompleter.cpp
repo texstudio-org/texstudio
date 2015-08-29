@@ -104,13 +104,14 @@ public:
 				QString line = cursor.line().text();
 				int col = cursor.columnNumber();
 				bool missingCloseBracket = (findClosingBracket(line, col) < 0);
-				while(!cursor.atLineEnd() && cursor.nextChar()!='}'
+                QString eow="}],";
+                while(!cursor.atLineEnd() && !eow.contains(cursor.nextChar())
 					   && !(cursor.nextChar().isSpace() && missingCloseBracket)) // spaces are allowed in labels and should be deleted, however we stop deleting at spaces if the closing bracket is missing. otherwise it deletes the complete line.
 				{
 					cursor.deleteChar();
 				}
-				if(cursor.nextChar()=='}')
-					cursor.deleteChar();
+                //if(cursor.nextChar()=='}')
+                //	cursor.deleteChar();
 			}
 			if(completer->forcedCite){
 				QString line = cursor.line().text();
@@ -443,7 +444,8 @@ public:
 	}
 	
 	void resetBinding() {
-		completer->listModel->setEnvironMode(false);
+        if(completer)
+            completer->listModel->setEnvironMode(false);
 		showMostUsed=false;
 		QString curWord = getCurWord();
 		if (!active) return;
@@ -617,7 +619,7 @@ bool CompletionListModel::canFetchMore(const QModelIndex &) const{
 }
 void CompletionListModel::fetchMore(const QModelIndex &){
 	beginInsertRows(QModelIndex(),words.count(),qMin(words.count()+100,mWordCount));
-	filterList(mLastWord,mLastMU,true);
+    filterList(mLastWord,mLastMU,true,mLastType);
 	endInsertRows();
 }
 CompletionWord CompletionListModel::getLastWord(){
@@ -631,7 +633,7 @@ void CompletionListModel::setKeyValWords(const QString &name, const QSet<QString
     for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
         QString str=*i;
         QString validValues;
-        if(str.contains("#")){
+        if(str.contains("#") && !str.startsWith("#")){
             int j=str.indexOf("#");
             validValues=str.mid(j+1);
             str=str.left(j);
@@ -675,7 +677,7 @@ void CompletionListModel::setContextWords(const QSet<QString> &newwords,const QS
         if(rare){
             cw.usageCount=-2;
         }else{
-            cw.usageCount=0;
+            cw.usageCount=2;
         }
         cw.snippetLength=0;
         newWordList.append(cw);
@@ -698,12 +700,13 @@ void CompletionListModel::setEnvironMode(bool mode){
     mEnvMode=mode;
 }
 
-void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore) {
+void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetchMore,CodeSnippet::Type type) {
 	if(mostUsed<0)
 		mostUsed=LatexCompleter::config->preferedCompletionTab;
     if (!word.isEmpty() && word==curWord && mostUsed==mostUsedUpdated && !fetchMore) return; //don't return if mostUsed differnt from last call
 	mLastWord=word;
-	mLastMU=mostUsed;
+    mLastMU=mostUsed;
+    mLastType=type;
 	mCanFetchMore=false;
 	mostUsedUpdated=mostUsed;
 	if(!fetchMore)
@@ -742,7 +745,11 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
 		if (it->word.startsWith(word,cs) &&
 		              (!checkFirstChar || it->word[1] == word[1]) ){
 
-			if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
+            if(mostUsed==2 || it->usageCount>=mostUsed || it->usageCount==-2){
+                if(mostUsed<2 && type!=CodeSnippet::none && it->type!=type){
+                    ++it;
+                    continue; // leave out words which don't have the proper type (except for all-mode)
+                }
                 if(mEnvMode){
                     CompletionWord cw=*it;
                     if(cw.word.startsWith("\\begin")||cw.word.startsWith("\\end")){
@@ -838,26 +845,26 @@ void CompletionListModel::incUsage(const QModelIndex &index){
 	if(curWord.usageCount<-1)
 		return; // don't count text words
 	
-	for (int i=0; i<wordsCommands.count(); i++) {
-		if(wordsCommands[i].word==curWord.word){
-			wordsCommands[i].usageCount++;
-			if(curWord.snippetLength<=0)
-				break; // no ref commands etc. are stored permanently
-			bool replaced=false;
-			QList<QPair<int,int> >res=config->usage.values(curWord.index);
-			for (int j = 0; j < res.size(); ++j) {
-				if (res.at(j).first == curWord.snippetLength){
-					config->usage.remove(curWord.index,res.at(j));
-					config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount));
-					replaced=true;
-					break;
-				}
-			}
-			if(!replaced)
-				config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,wordsCommands[i].usageCount)); // new word
-			break;
-		}
-	}
+    CodeSnippetList::iterator it=qBinaryFind(wordsCommands.begin(),wordsCommands.end(),curWord);
+    if(it==wordsCommands.end()) // not found, e.g. citations
+        return;
+    if(it->word==curWord.word){
+        it->usageCount++;
+        if(curWord.snippetLength>0){
+            bool replaced=false;
+            QList<QPair<int,int> >res=config->usage.values(curWord.index);
+            for (int j = 0; j < res.size(); ++j) {
+                if (res.at(j).first == curWord.snippetLength){
+                    config->usage.remove(curWord.index,res.at(j));
+                    config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,it->usageCount));
+                    replaced=true;
+                    break;
+                }
+            }
+            if(!replaced)
+                config->usage.insert(curWord.index,qMakePair(curWord.snippetLength,it->usageCount)); // new word
+        }
+    }
 }
 
 typedef QPair<int,int> PairIntInt;
@@ -927,57 +934,14 @@ void CompletionListModel::setBaseWords(const QList<CompletionWord> &newwords, Co
 	baselist=wordsCommands;
 }
 
-void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const QSet<QString> &newwords, CompletionType completionType) {
-    QList<CompletionWord> newWordList;
-    newWordList.clear();
-    for(QSet<QString>::const_iterator i=baseCommands.constBegin();i!=baseCommands.constEnd();++i) {
-        QString str=*i;
-        CompletionWord cw(str);
-        if(completionType==CT_COMMANDS){
-            cw.index=qHash(str);
-            cw.snippetLength=str.length();
-            cw.usageCount=0;
-            QList<QPair<int,int> >res=config->usage.values(cw.index);
-            foreach(const PairIntInt& elem,res){
-                if(elem.first==cw.snippetLength){
-                    cw.usageCount=elem.second;
-                    break;
-                }
-            }
-        }else{
-            cw.index=0;
-            cw.usageCount=-2;
-            cw.snippetLength=0;
-        }
-        newWordList.append(cw);
-    }
-    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
-        QString str=*i;
-        if(baseCommands.contains(str))
-            continue;
-        bool isReference=str.startsWith('@');
-        if(isReference)
-            str=str.mid(1);
-        CompletionWord cw(str);
-        if(completionType==CT_COMMANDS){
-            cw.index=qHash(str);
-            cw.snippetLength=str.length();
-            cw.usageCount= isReference ? 2 : 0; // make reference always visible (most used) in completer
-            QList<QPair<int,int> >res=config->usage.values(cw.index);
-            foreach(const PairIntInt& elem,res){
-                if(elem.first==cw.snippetLength){
-                    cw.usageCount=elem.second;
-                    break;
-                }
-            }
-        }else{
-            cw.index=0;
-            cw.usageCount=-2;
-            cw.snippetLength=0;
-        }
-        newWordList.append(cw);
-    }
-    qSort(newWordList.begin(), newWordList.end());
+void CompletionListModel::setBaseWords(const CodeSnippetList &baseCommands,const CodeSnippetList &newwords, CompletionType completionType) {
+    CodeSnippetList newWordList;
+
+    newWordList<<baseCommands;
+    newWordList.unite(newwords);
+
+    CodeSnippetList::iterator last=std::unique(newWordList.begin(),newWordList.end());
+    newWordList.erase(last,newWordList.end());
 
     switch(completionType){
     case CT_NORMALTEXT:
@@ -988,6 +952,9 @@ void CompletionListModel::setBaseWords(const QSet<QString> &baseCommands,const Q
         break;
     case CT_CITATIONCOMMANDS:
         wordsCitationCommands=newWordList;
+        break;
+    case CT_LABELS:
+        wordsLabels=newWordList;
         break;
     default:
         wordsCommands=newWordList;
@@ -1010,8 +977,8 @@ void CompletionListModel::setConfig(LatexCompleterConfig*newConfig){
 LatexReference * LatexCompleter::latexReference = 0;
 LatexCompleterConfig* LatexCompleter::config=0;
 
-LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),forcedRef(false),
-    forcedGraphic(false),forcedKeyval(false),forcedSpecialOption(false),startedFromTriggerKey(false){
+LatexCompleter::LatexCompleter(const LatexParser& latexParser, QObject *p): QObject(p),latexParser(latexParser),maxWordLen(0),editorAutoCloseChars(false),forcedRef(false),
+    forcedGraphic(false),forcedCite(false),forcedPackage(false),forcedKeyval(false),forcedSpecialOption(false),forcedLength(false),startedFromTriggerKey(false){
 	//   addTrigger("\\");
 	if (!qobject_cast<QWidget*>(parent()))
 		QMessageBox::critical(0,"Serious PROBLEM", QString("The completer has been created without a parent widget. This is impossible!\n")+
@@ -1090,8 +1057,44 @@ void LatexCompleter::insertText(QString txt){
 }
 
 void LatexCompleter::setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType) {
-	QSet<QString> concated;
-	if (config && completionType==CT_COMMANDS) concated.unite(config->words.toSet());
+    // convert to codesnippets
+    CodeSnippetList newWordList;
+    for(QSet<QString>::const_iterator i=newwords.constBegin();i!=newwords.constEnd();++i) {
+        QString str=*i;
+        bool isReference=str.startsWith('@');
+        if(isReference)
+            str=str.mid(1);
+        CompletionWord cw(str);
+        if(completionType==CT_COMMANDS){
+            cw.index=qHash(str);
+            cw.snippetLength=str.length();
+            cw.usageCount= isReference ? 2 : 0; // make reference always visible (most used) in completer
+            QList<QPair<int,int> >res=config->usage.values(cw.index);
+            foreach(const PairIntInt& elem,res){
+                if(elem.first==cw.snippetLength){
+                    cw.usageCount=elem.second;
+                    break;
+                }
+            }
+        }else{
+            cw.index=0;
+            cw.usageCount=-2;
+            cw.snippetLength=0;
+        }
+        newWordList.append(cw);
+    }
+    qSort(newWordList.begin(), newWordList.end());
+    //
+    CodeSnippetList concated;
+    if (config && completionType==CT_COMMANDS) concated.unite(config->words);
+    //concated.unite(newwords);
+    listModel->setBaseWords(concated,newWordList,completionType);
+    widget->resize(200,200);
+}
+
+void LatexCompleter::setAdditionalWords(const CodeSnippetList &newwords, CompletionType completionType) {
+    CodeSnippetList concated;
+    if (config && completionType==CT_COMMANDS) concated.unite(config->words);
 	//concated.unite(newwords);
 	listModel->setBaseWords(concated,newwords,completionType);
     widget->resize(200,200);
@@ -1108,7 +1111,7 @@ void LatexCompleter::setContextWords(const QSet<QString> &newwords,const QString
 }
 
 void LatexCompleter::adjustWidget(){
-	int newWordMax=0;
+    int newWordMax=0;
 	QFont f=QApplication::font();
 	f.setItalic(true);
 	QFontMetrics fm(f);
@@ -1122,7 +1125,7 @@ void LatexCompleter::adjustWidget(){
 	int wd=200>maxWordLen?200:maxWordLen;
 	QScrollBar *bar=list->verticalScrollBar();
 	if(bar && bar->isVisible()){
-		wd+=bar->width()*2;
+        wd+=bar->width()*4;
 	}
 	widget->resize(wd,200);
 }
@@ -1159,6 +1162,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
     forcedPackage= flags & CF_FORCE_PACKAGE;
     forcedKeyval= flags & CF_FORCE_KEYVAL;
     forcedSpecialOption= flags & CF_FORCE_SPECIALOPTION;
+    forcedLength= flags & CF_FORCE_LENGTH;
 	startedFromTriggerKey= !(flags &CF_FORCE_VISIBLE_LIST);
 	if (editor != newEditor) {
 		if (editor) disconnect(editor,SIGNAL(destroyed()), this, SLOT(editorDestroyed()));
@@ -1220,6 +1224,10 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         listModel->baselist=listModel->wordsCitations;
         handled=true;
     }
+    if(forcedRef){
+        listModel->baselist=listModel->wordsLabels;
+        handled=true;
+    }
     if(forcedPackage){
         listModel->setBaseWords(*packageList,CT_NORMALTEXT);
         listModel->baselist=listModel->wordsText;
@@ -1227,7 +1235,17 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
     }
     if(forcedKeyval){
         listModel->baselist.clear();
+        handled=true;
         foreach(const CompletionWord &cw,listModel->keyValLists.value(workingDir)){
+            if(cw.word.startsWith("#")){
+                if(cw.word=="#L"){
+                    // complete with length
+                    forcedLength=true;
+                    forcedKeyval=false;
+                    handled=false;
+                    break;
+                }
+            }
             if(cw.word.startsWith('%')){
                 QString specialList=cw.word;
                 if(listModel->contextLists.contains(specialList)){
@@ -1243,7 +1261,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
             }
         }
 
-        handled=true;
+
     }
     if(forcedSpecialOption){
         listModel->baselist=listModel->contextLists.value(workingDir);
@@ -1286,7 +1304,8 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
         }
         if(flags == CF_FORCE_VISIBLE_LIST)
             eow.remove("{");
-		if (flags & CF_FORCE_REF) eow="\\";
+        if (flags & CF_FORCE_REF) eow="[]{}\\";
+        if (flags & CF_FORCE_REFLIST) eow="[]{}\\,";
 		QString lineText=c.line().text();
 		for (int i=c.columnNumber()-1; i>=0; i--) {
 			if ((lineText.at(i)==QChar('\\'))&&!(flags & CF_FORCE_GRAPHIC)) {
@@ -1296,6 +1315,7 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags& flags) 
 				if (flags & CF_NORMAL_TEXT) start=i+1;
 				if (flags & CF_FORCE_GRAPHIC) start=i+1;
 				if (flags & CF_FORCE_CITE) start=i+1;
+                if (flags & CF_FORCE_REF) start=i+1;
                 if (flags & CF_FORCE_PACKAGE) start=i+1;
                 if (flags & CF_FORCE_KEYVAL) start=i+1;
                 if (flags & CF_FORCE_SPECIALOPTION) start=i+1;
@@ -1349,6 +1369,7 @@ void LatexCompleter::directoryLoaded(QString ,QSet<QString> content){
 	listModel->baselist=listModel->wordsText;
 	//setTab(2);
 	completerInputBinding->setMostUsed(2);
+    adjustWidget();
 }
 
 bool LatexCompleter::acceptTriggerString(const QString& trigger){
@@ -1388,7 +1409,10 @@ void LatexCompleter::filterList(QString word,int showMostUsed) {
 	QString cur=""; //needed to preserve selection
 	if (list->isVisible() && list->currentIndex().isValid())
 		cur=list->model()->data(list->currentIndex(),Qt::DisplayRole).toString();
-	listModel->filterList(word,showMostUsed);
+    CodeSnippet::Type type=CodeSnippet::none;
+    if(forcedLength)
+        type=CodeSnippet::length;
+    listModel->filterList(word,showMostUsed,false,type);
 	if (cur!="") {
 		int p=listModel->getWords().indexOf(cur);
 		if (p>=0) list->setCurrentIndex(list->model()->index(p,0,QModelIndex()));
@@ -1424,17 +1448,24 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 		QToolTip::hideText();
 		return;
 	}
-    if(forcedGraphic){ // picture preview even if help is disabled (maybe the same for cite/ref ?)
+    if(config->tooltipPreview && forcedGraphic){ // picture preview even if help is disabled (maybe the same for cite/ref ?)
         QString fn=workingDir+QDir::separator()+listModel->words[index.row()].word;
 		QToolTip::hideText();
 		emit showImagePreview(fn);
         return;
     }
-    if (!config->tooltipHelp) return;
+
 	if (index.row() < 0 || index.row()>=listModel->words.size()) {
 		QToolTip::hideText();
 		return;
 	}
+    if(config->tooltipPreview && forcedSpecialOption && workingDir=="%color"){
+        QToolTip::hideText();
+        QString text;
+        text=QString("{\\color{%1} \\rule{1cm}{1cm}}").arg(listModel->words[index.row()].word);
+        emit showPreview(text);
+        return;
+    }
 	QRegExp wordrx("^\\\\([^ {[*]+|begin\\{[^ {}]+)");
 	if (!forcedCite && wordrx.indexIn(listModel->words[index.row()].word)==-1) {
 		QToolTip::hideText();
@@ -1442,7 +1473,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	}
 	QString cmd=wordrx.cap(0);
 	QString topic;
-	if(latexParser.possibleCommands["%ref"].contains(cmd)){
+    if(config->tooltipPreview && latexParser.possibleCommands["%ref"].contains(cmd)){
 		QString value=listModel->words[index.row()].word;
 		int i=value.indexOf("{");
 		value.remove(0,i+1);
@@ -1471,7 +1502,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 				if(i<l+2) topic+="\n";
 			}
 		}
-	}else if(forcedCite || latexParser.possibleCommands["%cite"].contains(cmd)){
+    }else if(config->tooltipPreview && (forcedCite || latexParser.possibleCommands["%cite"].contains(cmd))){
 		QToolTip::hideText();
 		QString value=listModel->words[index.row()].word;
 		int i=value.indexOf("{");
@@ -1490,7 +1521,7 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 			emit searchBibtexSection(file,value);
 		return;
 	}else{
-		if (latexReference)
+        if (latexReference && config->tooltipHelp)
 			topic = latexReference->getTextForTooltip(cmd);
 		if (topic.isEmpty()) {
 			QToolTip::hideText();
@@ -1501,6 +1532,10 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 }
 
 void LatexCompleter::showTooltip(QString topic){
+    if(!isVisible()){
+        QToolTip::hideText();
+        return;
+    }
     QModelIndex index=list->currentIndex();
     topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
     QRect r = list->visualRect(index);

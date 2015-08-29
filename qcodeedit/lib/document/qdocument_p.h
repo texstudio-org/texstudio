@@ -90,8 +90,12 @@ class QCE_EXPORT QDocumentPrivate
 		void setWidth();
 		void setHeight();
 		
-		static void setFont(const QFont& f, bool forceUpdate = false);
-		
+        static void setBaseFont(const QFont& f, bool forceUpdate = false);
+        static void setFontSizeModifier(int m, bool forceUpdate = false);
+protected:
+        static void setFont(const QFont& f, bool forceUpdate = false);
+
+public:
 		void beginChangeBlock();
 		void endChangeBlock();
 		bool hasChangeBlocks();
@@ -193,6 +197,7 @@ class QCE_EXPORT QDocumentPrivate
 		
 		void emitWidthChanged();
 		void emitHeightChanged();
+		void emitFontChanged();
 		
 		static void updateFormatCache();
 		void setFormatScheme(QFormatScheme *f);
@@ -246,7 +251,9 @@ class QCE_EXPORT QDocumentPrivate
 
 		static double m_lineSpacingFactor;
 
-		static QFont *m_font;
+        static QFont *m_baseFont;  // original font associated with the document
+        static QFont *m_font;      // current font, pointSize = m_baseFont.pointSize + m_fontSizeModifier
+        static int m_fontSizeModifier;
 		static bool m_fixedPitch;
 		static QDocument::WorkAroundMode m_workArounds;
 		static int m_leftMargin;

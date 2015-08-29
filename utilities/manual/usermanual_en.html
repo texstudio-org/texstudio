@@ -30,8 +30,9 @@
 <li><a href="#SECTION1">2. Editing a TeX document</a>
 	<ul>
 	<li><a href="#SECTION11">2.1 Usual commands</a></li>
-	<li><a href="#SECTION12">2.2.1 Setting the preamble of a TeX document</a></li>
-	<li><a href="#SECTION12a">2.2.2 Using Templates to start a new document</a></li>
+	<li><a href="#SECTION12">2.2 Creating a new document</a></li>
+	<li><a href="#SECTION12a">2.2.1 Setting the preamble of a TeX document</a></li>
+	<li><a href="#SECTION12b">2.2.2 Using Templates to start a new document</a></li>
 	<li><a href="#SECTION13">2.3 Structure of a document</a></li>
 	<li><a href="#SECTION14">2.4 Browsing your document</a></li>
 	<li><a href="#SECTION15">2.5 Formatting your text</a></li>
@@ -76,6 +77,7 @@
 </li>
 <li><a href="#SECTIONNEW">Changelog</a>
 	<ul>
+	<li><a href="#SECTIONNEW296">Changes in Version 2.9.6</a></li>
 	<li><a href="#SECTIONNEW294">Changes in Version 2.9.4</a></li>
 	<li><a href="#SECTIONNEW292">Changes in Version 2.9.2</a></li>
 	<li><a href="#SECTIONNEW290">Changes in Version 2.9.0</a></li>
@@ -106,7 +108,7 @@
 <hr>
 
 <h1 id="SECTION0">1. Configuring TeXstudio</h1>
-<p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advancde options" in the lower left corner.</p>
+<p>Before using TeXstudio, you should configure the editor and latex related commands via the "Configure TeXstudio" command in the "Options" menu ("Preferences" under Mac OS X). Note that there are two levels of detail. More advanced or less often used options are only visible if you toggle "Show advanced options" in the lower left corner.</p>
 <h2 id="SECTION01">1.1 Configuring the editor</h2>
 <p>
 You may change the default encoding for new files ("Configure TeXstudio" -> "Editor" -> "Editor Font Encoding") if you don't want utf8 as encoding. Don't forget to set the same encoding in the preamble of your documents. (e.g. \usepackage[utf8]{inputenc}, if you use utf-8).<br>
@@ -129,7 +131,7 @@ the command.</p>
 context of the current document. They are expanded at runtime:
 <table>
 <tr><th>Special Character</th><th>Expands to</th></tr>
-<tr><td><code>%</code></td><td>master filename (root) for of current document without extension</td></tr>
+<tr><td><code>%</code></td><td>filename of the root document for of current document without extension</td></tr>
 <tr><td><code>@</code></td><td>current line number</td></tr>
 <tr><td><code>?</code> followed by further characters</td><td>See the instruction at the bottom of the configuration dialog.</td></tr>
 <tr><td><code>[txs-app-dir]</code></td><td>Location of the TeXstudio executable (useful for portable settings)</td></tr>
@@ -183,8 +185,9 @@ This also means that you can change every command as you want, ignoring its old 
 <tr><td>--preserve-existing</td><td>Does not change any existing viewers (i.e. always opens a new one)</td></tr>
 <tr><td>--preserve-(embedded|windowed)</td><td>Does not change any existing embedded/windowed viewers</td></tr>
 <tr><td>--preserve-duplicates</td><td>Only opens the pdf in the first opened viewer</td></tr>
-<tr><td>--(no-)auto-close</td><td>If the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
-<tr><td>--(no-)focus</td><td>If the viewer should be focused, when it is opened (default: focus iff windowed)</td></tr>
+<tr><td>--(no-)auto-close</td><td>Determines whether the viewer should be closed, when the corresponding tex file is closed (default: auto-close iff embedded)</td></tr>
+<tr><td>--(no-)focus</td><td>Determines whether the viewer should be focused (default: focus iff windowed)</td></tr>
+<tr><td>--(no-)foreground</td><td>Determines whether the viewer should be brought to front (default: foreground)</td></tr>
 <tr><td>filename</td><td>Determines the file to open. Like in other commands, <a href="#SECTION02">file patterns</a> are supported. If this parameter is not provided, TXS uses <code>"?am.pdf"</code>, i.e. the absolute path of the main file. If the parameter is not an absolute filename, it is searched for in the directory of the main file as well as in <code>Options -> Build -> Build Options -> Additional Serach Paths -> PDF Files</code></td></tr>
 </table>
 
@@ -203,29 +206,32 @@ This also means that you can change every command as you want, ignoring its old 
 Finally, there are also hidden options, which can only be changed by modifing the ini-file: Tools/Kind/LaTeX, Tools/Kind/Rerunnable, Tools/Kind/Pdf, Tools/Kind/Stdout, Tools/Kind/Viewer, which give a list of commands that are treated as latex compiler (e.g. show the log afterwards), rerunnable (repeat command call, if there are warnings), pdf generators (e.g. pdflatex), commands that prints to stdout (e.g. bibtex), and viewers (e.g. only open once).
 </p>
 <h2 id="SECTION02a2">1.3.2 Details of the execution environment</h2>
-<p>
-The PATH for the execution is the same as the PATH used when executing TeXstudio. On Linux/OS X the PATH may depend on the way you started TeXstudio. Programs started from the GUI may have a different PATH setting than programs started from a shell.
+<h3>Environment Variables</h3>
+<p>The environment variables available within the execution are the same as the ones that are available in the context in which TeXstudio was started.
+In particular this is true for the PATH. On Linux/OS X the PATH may depend on the way you started TeXstudio. Programs started from the GUI may have a different PATH
+setting than programs started from a shell (because some variables may only defined in the context of a shell (e.g. via ~/.bashrc).
 </p>
 <p>
-The working directory is set to the path of the master document, or to the path of the current file if there is no master document.
-</p>
+By default, TeXstudio parses environment variables in your commands. The syntax is adapted to the according operating system. A variable MYVAR would be written as <code>%MYVAR%</code> on
+Windows and <code>$MYVAR</code> on Linux and OS X. Windows environment variables are case-insensitive, whereas they are case-sensitive on Linux and OS X. Parsing of environment variables
+can be deactivated in the Build section of the options.
+</p> 
+<h3>Working Directory</h3>
 <p>
-All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So output redirection and other shell functionality does not work.
+The working directory is set to the path of root document.
 </p>
+<h3>Shell Functionality</h3>
 <p>
-You can see the difference with the following scipt:
+All commands specified in the configuration (i.e. Commands and User Commands) are executed directly. There is no shell involved. So most shell functionality does not work.
 </p>
-<pre>
-#! /bin/sh
-# I am testscript
-echo "Working Directory"
-pwd
-echo "Arg1: $1"
-echo "Arg2: $2"
-echo "Arg3: $3"
-</pre>
-<p>When calling <code>/path/to/testscript foo > bar</code> from the shell, you will pass one argument (foo) and redirect the output to bar. When writing this as a user command in TeXstudio, you will have three arguments(foo, &gt; bar) and no redirection.</p>
-<p>If you need shell functionality, you have to explicitly run a shell. You can either do this directly in the user command.</p>
+<h4>Output Redirection</h4>
+<p>TeXstudio provides limited output redirection capabilities. You can only output to the message panel (<code>&gt; txs:///messages</code>) or suppress output (<code>&gt; /dev/null</code>). The default setting depends on the command. The same targets are allowed for stderr: <code>2&gt; txs:///messages</code>, <code>2&gt; /dev/null</code>. Additionally, you can redirect to the same target as stdout by using <code>2&gt;&1</code>.</p>
+<p>A typical usecase would be to suppress all output of a command: <code>&gt;/dev/null 2&gt;&1</code></p>
+<p>Note: Instead of the Linux/Unix notation <code>&gt; /dev/null</code>, you may alternatively use the Windows notation <code>&gt; nul</code>. Because these commands are directly interpreted by TXS, both variants work on all operating systems.</p>
+
+
+<h4>Using other shell functionality</h4>
+<p>If you need shell functionality, you have to explicitly run a shell. You can either do this directly in the user command:</p>
 <pre>
 sh -c "/path/to/testscript foo > bar"
 </pre>
@@ -233,11 +239,11 @@ sh -c "/path/to/testscript foo > bar"
 <pre>
 cmd /C "/path/to/testscript.bat foo > bar"
 </pre>
-<p>or call a wrapper script in the user command</p>
+<p>Alternatively, you can call a wrapper script in the user command</p>
 <pre>/path/to/wrapperscript foo bar</pre>
 <p>and do the actual work inside the wrapper script:</p>
 <pre>
-#! /bin/sh
+#!/bin/sh
 # I am wrapperscript
 /path/to/testscript $1 > $2
 </pre>
@@ -350,10 +356,15 @@ This is a more interactive approach than choosing svn revisions directly via a m
 <h2 id="SECTION11">2.1 Usual commands</h2>
 <p>The standard commands (cut, copy, find...) can be launched via the "Edit" menu and the "Edit" tool bar.</p>
 <p><IMG src="doc1.png" border="1" alt="Standard commands"></p>
-<h2 id="SECTION12">2.2.1 Setting the preamble of a TeX document</h2>
+
+<h2 id="SECTION12a">2.2 Creating a new document</h2>
+
+There are two different ways to create a new document that are described in the following subsections:
+
+<h2 id="SECTION12a">2.2.1 Setting the preamble of a TeX document</h2>
 <p>To define the preamble of your document, you can use the "Quick start" wizard ("Wizard" menu).</p>
 <p><IMG src="doc2.png" border="1" alt="Quick Start"></p>
-<p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All yours settings are recorded.</p>
+<p>This dialog allows you to set the main features of your document (class, paper size, encoding...).<br>Note : You can add other options by clicking the "+" buttons. All your settings are recorded.</p>
 <p>You can also type your own preamble model in the editor : with the "Copy/paste" or "Save As" commands, you can use it for a new document.</p>
 <h2 id="SECTION12a">2.2.2 Using Templates to start a new document</h2>
 <p>For new documents, templates can be used by using the command "File/New from template".
@@ -365,7 +376,7 @@ A dialogue gives a selection of templates.</p>
 Built-in templates can not be changed.</p>
 <p>User templates are saved in the <code>/templates/user/</code> subdirectory of the config directory.</p>
 <h3 id="SECTION12aa">2.2.2.1 The Template Format</h3>
-<p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all files in a zip achive. Optionally, meta data is stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported:</p>
+<p>In its simplest form, a template is only a .tex file. Multi-file templates can be created by packaging all .tex files in a zip achive. Optionally, meta data can be stored in JSON format in a separate file with the same name, but extension ".json" instead of ".tex" or ".zip". Currently the following entries are supported in the meta data:</p>
 <pre>
 {
 "Name"        : "Book",
@@ -380,10 +391,10 @@ Built-in templates can not be changed.</p>
 <p>FilesToOpen only has an effect for mutli-file documents. You may add a preview image next to the template file. Again, it must have the same name, but extension ".png".</p>
 
 <h2 id="SECTION13">2.3 Structure of a document</h2>
-<p>To define a new part (section,subsection...) in your document with TeXstudio, just use this combo box in the tool bar :</p>
+<p>To define a new part (section,subsection...) in your document with TeXstudio, just use this combo box button in the tool bar :</p>
 <p><IMG src="doc3.png" border="1" alt="Sectioning"></p>
-<p>This will cause a dialog to pop up which allows you to define the style of the part (section,subsection...).<br>Note : the "Structure View" is automatically updated.</p>
-<p><IMG src="doc4.png" border="1" alt="Structure View"></p>
+
+
 <h2 id="SECTION14">2.4 Browsing your document</h2>
 <p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
 <p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
@@ -412,6 +423,13 @@ Section can be indented/unindented which means that the hierarchy level is chang
 <li>To Titlecase (smart)</li>
 </ul>
 <p>Both variants of "To Titlecase" leave small words like a, the, of etc. in lowercase. Additionally, "To Titlecase (smart)" does not convert any words containing capital letters, assuming they are acronymes which require a fixed capitalization (e.g. "TeXstudio").</p>
+<h3>Escaping reserved characters</h3>
+<p>If you have text containing reserved TeX characters and want the text to appear literally in your document, you have to escape the reserved charaters to prevent LaTeX from interpreting them. The following functions take care of that (Menu: Idefix)</p>
+<ul>
+<li>Paste to LaTeX: Takes the text from the clipboard and escapes reserved characters prior to pasting into the editor.</li>
+<li>Convert to LaTeX: Escapes the reserved characters in the current selection.</li>
+</ul>
+<p>For example: "Less than 10% of computer users know the meaning of $PATH." will be converted to "Less than 10\% of computer users know the meaning of \$PATH."</p>
 <h2 id="SECTION16">2.6 Spacings</h2>
 <p>The usual "spacing" commands are available in the "LaTeX" and "Math" menus. To insert quickly the "new line" LaTeX command, you can use the corresponding command in the toolbar (shortcut : Ctrl+Alt+return) </p>
 <h2 id="SECTION17">2.7 Inserting a list</h2>
@@ -493,7 +511,7 @@ E.g. you have a "text", select it and start typing "\textbf", command which is c
 <h2 id="SECTION22">3.1 Compiling</h2>
 <p>The easiest way to compile a document is to use the "Compile" command or the "Build&amp;View" command ("Compile" button - shortcut : F6). You can select the default command via the "Configure TeXstudio" dialog.<br>(You can also launch each command one by one in the "Tools" menu).<br> Note : the "Clean" command in the "Tools menu" allows you to erase the files (dvi, toc, aux...) generated by a LaTeX compilation (except the ps and pdf files).<br>
 <p><IMG src="compile_toolbar.png" border="1" alt="compile_toolbar"></p>
-<b>Warning : all yours files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
+<b>Warning : all your files must have an extension and you can't compile an "untitled" file or a file with a space in his name</b>.</p>
 <h2 id="SECTION23">3.2 The log files</h2>
 <p>With the "Quick Build" command, the log file is automatically displayed in the "Messages / Log file" pannel. While clicking on a number in the "Line" column, the cursor is placed on the corresponding line in the editor and the error is displayed. <br>
 Remark : a summary of the latex errors and warnings is displayed before the full log file.</p>
@@ -503,12 +521,21 @@ Remark : a summary of the latex errors and warnings is displayed before the full
 A tool tip will show more details of the mistake if you jump to a line (it is also shown if you move the mouse over the mark left from the line numbers).</p>
 <h1 id="SECTION3">4. Other features</h1>
 <h2 id="SECTION31">4.1 About documents separated in several files</h2>
-<p>TeXstudio allows you to work onto documents separated in several files.<br>
-To include a TeX file into your document, just use the "\include{file}" command in the "LaTeX" menu. The file will appear in the "Structure View". With a click on his name, TeXstudio will open it.</p>
-<p>TeXstudio now understands parent/child relations of loaded documents (1 level only !). Therefore, as in "master document mode", only the parent document is compiled if compilation is tarted while working on a child document. Likewise labels and usercommands are known in all corresponding documents.</p>
-<p>You can still define your "master document" with the "Options" menu. All the commands of the "Tools" menu will apply only to this document even when working on the "children" documents (you can even close the "master" document).<br>
-If a master document is set, labels and usercommands which are defined in any open document, can be used for completion in any open document. Thus you can insert easily a reference to a label which is defined in another subdocument, as long as that document is open in TeXstudio.
-<br>Note : you can leave the "master" mode with the "Options" menu.</p>
+<p>LaTeX documents may be spread over multiple files. TeXstudio automatically understands parent/child relations of loaded documents. This includes the detection of the root document and knowledge on defined labels and commands.</p>
+
+<h3 id="sec:rootdocument">4.1.1 Root Document</h3>
+<p>The root document is the top-most file in a multi-file document. For a single-file document this is the file itself. By default, all calls to LaTeX will be performed on the root document.</p>
+<p>TeXstudio automatically detects the root document. If that does not work, you can place a magic comment <code>% !TeX root = root-filename</code> at the top of your included files.</p>
+<p>As a last resort, you may set an <i>explicit root document</i> via <code>Options -> Root Document -> Set Current Document As Explicit Root</code>. This setting takes absolute precence. All the commands of the "Tools" menu will be called on this document (to be more precise the build system will expland the placeholder <code>%</code> to the root document), no matter which document is active in the editor. Additionally, labels and usercommands which are defined in any open document, can be used for completion in any open document.</p>
+<p>In earlier versions, the <i>explicit root document</i> was somewhat misleadingly called <i>master document</i>.</p>
+
+<h3 id="sec:rootdocument">4.1.2 Loaded Documents</h3>
+<p>Obviously, TeXstudio can only use information (defined commands, labels, document hirachy, etc.) that it is aware of. We use the information in all opened files, but if a label in a multi-file document is defined in a not-loaded files, TeXstudio does not know about it and will mark it as missing in references. To remedy this, you can just open the corresponding file as well.</p>
+
+<p>More recent versions of TeXstudio have an advanced option <code>Editor -> Automatically load included files</code>. It's disabled by default for performance reasons with older systems. When you enable this option, TeXstudio will automatically load and parse all files of multi-file-documents as soon as one of the files is opened. You may have to set the magic comment <code>% !TeX root = root-filename</code> if you do not have the root document open.
+With this option enabled TeXstudio will allways know about your complete document and act accordingly when performing highlighting or completion.</p>
+
+
 <h2 id="SECTION32a">4.2 Syntax Check</h2>
 <p>The latex syntax checker takes the list of possible completion commands to determine if a command is correct.
 The completion list contains partially additional information to determine in which context a command is valid, whether it is valid only in math-mode or only in tabular-mode.<br>
@@ -777,10 +804,12 @@ To access the document these objects are introduced:
 <tr><td>editor.document().expandParents(lineNr)</td><td>  Expand all parents of the line until it is visible     </td></tr>
 <tr><td>editor.document().foldBlockAt(bool unFold, lineNr);</td><td>  Collapses or expands the first block before lineNr     </td></tr>
 <tr><td>editor.document().getMasterDocument();</td><td>  Returns the open document which directly includes this document  </td></tr>
-<tr><td>editor.document().getTopMasterDocument();</td><td>  Returns the open document which indireclty includes this document and is not itself included by any other document </td></tr>
+<tr><td><s>editor.document().getTopMasterDocument();</s></td><td><i>Deprecated:</i> Use getRootDocument() instead</td></tr>
+<tr><td>editor.document().getRootDocument();</td><td>  Returns the open document which indireclty includes this document and is not itself included by any other document </td></tr>
 <tr><td>editor.document().getMagicComment(name);</td><td>  Returns the content of a magic comment, if it exists   </td></tr>
 <tr><td>editor.document().updateMagicComment(name, value, [create = false]);</td><td>  Changes a magic comment  </td></tr>
 <tr><td>editor.document().labelItems/refItems/bibItems</td><td>  Returns the ids of all labels/references or included bibliography files. </td></tr>
+<tr><td>editor.document().getLastEnvName(lineNr)</td><td>  Returns the name of the current enviroment (at the end of the line). </td></tr>
 
   <tr><th colspan=2>Document Manager object</th></tr>
   <tr><td>documentManager.currentDocument </td><td>   Current document (usually the same as editor.document(), unless the script is running in background mode) </td></tr>
@@ -788,7 +817,8 @@ To access the document these objects are introduced:
   <tr><td>[documentManager.]documents</td><td>   Array of all open documents     </td></tr>
   <tr><td>documentManager.findDocument(fileName) </td><td>   Returns the open document with a certain file name  </td></tr>
   <tr><td>documentManager.singleMode() </td><td>   Returns if there is no explicit master document  </td></tr>
-  <tr><td>documentManager.getMasterDocumentForDoc(document) </td><td>   Returns the open document (possibly indirectly) including the given document </td></tr>
+  <tr><td><s>documentManager.getMasterDocumentForDoc(document)</s></td><td>  <i>Deprecated:</i> Use getRootDocumentForDoc(document) instead </td></tr>
+  <tr><td>documentManager.getRootDocumentForDoc(document)</td><td>   Returns the open document (possibly indirectly) including the given document </td></tr>
   <tr><td>documentManager.findFileFromBibId(id) </td><td>   Returns the file name of the bib file containing an entry with the given id  </td></tr>
 
 
@@ -863,6 +893,7 @@ To access the document these objects are introduced:
 	<li>cursorEnums.StartOfLine
 	<li>cursorEnums.StartOfBlock = StartOfLine
 	<li>cursorEnums.StartOfWord
+	<li>cursorEnums.StartOfWordOrCommand
 	<li>cursorEnums.PreviousBlock
 	<li>cursorEnums.PreviousLine = PreviousBlock
 	<li>cursorEnums.PreviousWord
@@ -872,6 +903,7 @@ To access the document these objects are introduced:
 	<li>cursorEnums.EndOfLine
 	<li>cursorEnums.EndOfBlock = EndOfLine
 	<li>cursorEnums.EndOfWord
+	<li>cursorEnums.EndOfWordOrCommand
 	<li>cursorEnums.NextWord
 	<li>cursorEnums.NextBlock
 	<li>cursorEnums.NextLine = NextBlock
@@ -954,6 +986,7 @@ To access the document these objects are introduced:
   <tr><td>app.createUI(file, [parent])</td><td>Loads a certain ui file and creates a QWidget* from it</td></tr>
   <tr><td>app.createUIFromString(string, [parent])</td><td>Creates a QWidget* described in the string</td></tr>
   <tr><td>app.slowOperationStarted()/slowOperationEnded()</td><td>Notify txs about the start/end of a slow operation to temporary disable the endless loop detection.</td></tr>
+  <tr><td>app.simulateKeyPress(shortcut)</td><td>Trigger a KeyPress event for the given shortcut, e.g. <code>app.simulateKeyPress("Shift+Up")</code>. <i>Note</i>: this is mainly intended for shortcuts and navigation. Currently, it does not support all functions of a KeyPress event. In particular, you cannot type any text.</td></tr>
 
   <tr><th colspan=2>UniversalInputDialog class</th></tr>
   <tr><td>new UniversalInputDialog()</td><td>Creates a new dialog</td></tr>
@@ -1099,8 +1132,19 @@ triggerMatches[1] == 'a'
 </pre>
 
 <h4>4.5.4.2 Limitation of Scope</h4>
-<p>You can also prepend the pseudo expression <code>(?language:...)</code> to only activate the macro in documents of a specify language (like the language "latex", e.g. <code>(?language:latex)</code>).<br>
-Another such prependable option is <code>(?highlighted-as:..)</code> to restrict a macro to certain, highlighted environments.  (e.g. with <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code> the macro is only activated within the math mode). The possible values correspond to the list on the syntax highlighting config page.
+<p>To the scope in which a macro will be active, you can prepend an expression of the pattern <code>(?[scope-type]:...)</code>.</p>
+<table>
+<tr><th>Scope Limiting Expression</th><th>Meaning</th></tr>
+<tr><td><code>(?language:...)</code></td><td>The macro is only active if the highlighting of the document matches the given language.<br>Example: <code>(?language:latex)</code></td></tr>
+<tr><td><code>(?highlighted-as:...)</code></td><td>Restrict the macro to certain highlighted environments. The possible values correspond to the list on the syntax highlighting config page.<br>Example: <code>(?highlighted-as:numbers,math-delimiter,math-keyword)</code></td></tr>
+<tr><td><code>(?not-highlighted-as:...)</code></td><td>Similar to <code>(?highlighted-as:...)</code>, but the macro is deactivated in the given environments.</td></tr>
+</table>
+<p>You may combine <code>(?language:...)</code> and <code>(?highlighted-as:...)</code> expressions. However, combing <code>(?highlighted-as:...)</code> and <code>(?not-highlighted-as:...)</code> does not make sense logically and has undefined behavior.
+</p>
+<p>Note that you still need the regular expression of the trigger itself. Here's a full complex example:
+<code>(?language:latex)(?highlighted-as:comment,commentTodo)FIXME</code>. This trigger responds to typing "FIXME", but only in comments and todo-notes of latex documents.
+</p>
+
 <h4>4.5.4.3 Event Triggers</h4>
 <p>Additionally the following special trigger terms (without parentheses) can be used to execute the script when the corresponding event occurs:<br><br>
 <table>
@@ -1158,7 +1202,7 @@ Below you can find a list of commands for some common viewers. Of course, you ha
 
 <h3>Sumatra</h3>
 <p>
-To launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search """"<i>(your TeXstudio path)</i>""" """%%f""" -line %%l" "?am.pdf"</span><br><br>
+To launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search "\"<i>(your TeXstudio path)</i>\" \"%%f\" -line %%l" "?am.pdf"</span><br><br>
 To jump to a line in a running Sumatra (Windows only): <span class="command">dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
 To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde:///<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
 To launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
@@ -1226,27 +1270,27 @@ To launch TeXstudio from skim : Command: <span class="command">/applications/tex
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 </p>
 <h2 id="SECTION_TEXCOM">4.10 Advanced header usage</h2>
-<p>Texstudio can use special, "magic" comments in the text to adapt options for that document.
+<p>So called "magic comments" are a way to adapt the options of the editor on a per-document level. The concept was <a href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a> and has been adopted in a number of editors since. TeXstudio supports the following magic comments:</p>
 <ul class="magiccomments">
 <li>
 <code>% !TeX spellcheck = de_DE</code>
-<p>This special comment tells txs that this document is written in German and German spell checking is to be used, independent on any general settings.
+<p>Defines the language used for spell checking of the document. This overrides the global spellchecking settings. Nevertheless, an appropriate dictionary has to be installed.</p>
 </li>
 <li>
 <code>% !TeX encoding = utf8</code>
-<p>The code defines the character encoding of a document.
+<p>Defines the character encoding of a document.
 </li>
 <li>
 <code>% !TeX root = filename</code>
-<p>The code defines the master document for this file.
+<p>Defines the root document for this file (i.e. the file which will be passed to the LaTeX compiler when building). This setting override the automatic root detection in TeXstudio. In turn, it's overridden, if an <i>explict root document</i> is set at <code>Options -> Root Document</code>.</p>
 </li>
 <li>
 <code>% !TeX program = pdflatex</code>
-<p>This marks the document as to be compiled with pdflatex. (i.e. overrides the default txs:///quick command)
+<p>Defines the compiler to be used for the document. To be precise, it overrides the default compiler (command <code>txs:///compile</code>) which is used in the actions "Build & View" as well as "Compile".
 </li>
 <li>
-<code>% !TeX TXS-program:latex = txs:///xelatex %</code>
-<p>This overrides the default txs:///latex command to call xelatex instead
+<code>% !TeX TXS-program:bibliography = txs:///biber</code>
+<p>This is a TeXstudio-specific setting. It overrides the build-system command specified to the left by the one on the right. In the example, we tell TXS to use the biber command (<code>txs:///biber</code>) for the general "Bibliography command (txs:///bibliography). See also the <a href="SECTION02a1">description of the build system</a>.</p>
 </li>
 <li>
 <code>
@@ -1270,7 +1314,7 @@ Changes during an edit session will only take effect when you reopen the file.
 <p>
 <code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
 <table>
-<tr><td><code>--master</code></td><td>defines the document as master document.</td></tr>
+<tr><td><code>--master</code></td><td>defines the document as <i>explicit root document</i> (formerly called <i>master document</i>).</td></tr>
 <tr><td><code>--line xx[:cc]</code></td><td>TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
 <tr><td><code>--insert-cite citation</code></td><td>Pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
 <tr><td><code>--start-always</code></td><td>TeXstudio will start, even if another instance of it is already running. This allows using of multiple instances.</td></tr>
@@ -1446,8 +1490,29 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
 <p>The argument names are visible in the completer window and after completion as placeholders in the editor. In general, you are free to name the arguments as you like. We encurage to provide meaningful names e.g. <code>\parbox[position]{width}{text}</code> instead of <code>\parbox[arg1]{arg2}{arg3}</code>.</p>
 <p>There are a few argument names that have special meaning:</p>
 <ul>
-  <li><code>text</code> and <code>title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). This currently works only for the first command element.</li>
-  <li><code>bibid</code>: If used in a command classified as "C". See the classifier description below.</li>
+  <li><code>text</code> or ends with <code>%text</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked).</li>
+  <li><code>title</code> or <code>short title</code>: The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section)</li>
+  <li><code>bibid</code> and <code>cite key</code>: If used in a command classified as "C". See the classifier description below.</li>
+  <li><code>cmd</code> and <code>command</code> or ends with <code>%cmd</code>: defintion for command, e.g. \newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.</li>
+  <li><code>def</code> and <code>definition</code>: actual defintion for command, e.g. \newcommand{cmd}{definition}. This "definition" will ignored for syntax check.</li>
+  <li><code>args</code>: number of arguments for command, e.g. \newcommand{cmd}[args]{definition}.</li>
+  <li><code>package</code>:package name, e.g. \usepackage{package}</li>
+  <li><code>title</code> and <code>short title</code>:section name, e.g. \section{title}</li>
+  <li><code>color</code>:color name, e.g. \textcolor{color}</li>
+  <li><code>width</code>,<code>length</code>,<code>height</code> or ends with <code>%l</code>:width or length option e.g. \abc{size%l}</li>
+  <li><code>cols</code> and <code>preamble</code>:columns defintion in tabular,etc. , e.g. \begin{tabular}{cols}</li>
+  <li><code>file</code>:file name</li>
+  <li><code>URL</code>:URL</li>
+  <li><code>options</code>:package options, e.g. \usepackage[options]</li>
+  <li><code>imagefile</code>:file name of an image</li>
+  <li><code>key</code>:label/ref key</li>
+  <li><code>label</code> with option <code>#r</code> or key ending with <code>%ref</code>:ref key</li>
+  <li><code>labellist</code>:list of labels as employed by cleveref</li>
+  <li><code>bib file</code> and <code>bib files</code>:bibliography file</li>
+  <li><code>class</code>:document class</li>
+  <li><code>placement</code> and <code>position</code>:position of env</li>
+  <li><code>beamertheme</code>:beamer theme, e.g. \usebeamertheme{beamertheme}</li>
+  <li><code>keys</code>,<code>keyvals</code> and <code>%&lt;options%&gt;</code>:key/value list</li>
 </ul>
 </p>
 <h3>4.13.3 Classification format</h3>
@@ -1473,6 +1538,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel)</td></tr>
   <tr><td>B</td><td>this command declares a color (will be used for color completion only, no syntax checking)</td></tr>
   <tr><td>s</td><td>this command declares a special definition, the definition class is given after a "#". The class name needs a preceding %. (e.g. %color), also see the examples below.</td></tr>
+  <tr><td>V</td><td>this command declares a verbatim-like environment "\begin{Verbatim}"</td></tr>
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
 </table>
@@ -1667,6 +1733,19 @@ println("\\end{"+env+"}")
 <img src="format_example.png" border=1>
 
 <h1 id="SECTIONNEW">Changelog</h1>
+
+<h2 id="SECTIONNEW296">Changes in Version 2.9.6</h2>
+<ul class="news">
+<li>txs can interpret an argument that streches over several lines (however it ignores all arguments of the corresponding command after that argument)</li>
+<li>argument interpretation is more flexible, the correspondence of argument position and argument type is more relaxed.</li>
+<li>completer filters list a little more context sensitive. For now if an argument demands a length, only length commands are offered for typical/most used. The same is true for keyval completion.</li>
+<li>labels can be searched and replaced.</li>
+<li>insert optional argument of item depending on whether it is placed in a description or elsewhere.</li>
+<li>the cwl-format has been adapted and changed slightly, newline charcters have been changed from %n to %\. This should only affect you, if you are using cwl-files of your own.</li>
+<li>include filename can be completed</li>
+<li>fix: replace all in limited scopes does not change the scope</li>
+<li>colors can be previewed via tooltip in completer and by hovering color arguments</li>
+</ul>
 
 <h2 id="SECTIONNEW294">Changes in Version 2.9.4</h2>
 <ul class="news">

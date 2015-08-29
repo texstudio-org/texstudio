@@ -10,6 +10,7 @@ public:
 	static Help *instance();
 
 	static bool isMiktexTexdoc();
+	static bool isTexdocExpectedToFinish();
 	static QString texdocCommand();
 	static QString packageDocFile(const QString &package, bool silent=false);
 

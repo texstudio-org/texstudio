@@ -90,6 +90,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			LineWrap		= 0x00001000,
 			HardLineWrap		= 0x00002000,
 			LineWidthConstraint	= 0x00004000,
+			// 0x00008000 used by ReplaceTextTabs below
 			
 			CtrlNavigation		= 0x00010000,
 			CursorJumpPastWrap	= 0x00020000,
@@ -97,7 +98,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			SmoothScrolling		= 0x00040000,
 			MouseWheelZoom		= 0x00080000,
 
-			ReplaceTabs		= 0x00100000,
+			ReplaceIndentTabs		= 0x00100000,
+			ReplaceTextTabs		= 0x00008000,
 			RemoveTrailing		= 0x00200000,
 			PreserveTrailingIndent	= 0x00400000,
 			AdjustIndent		= 0x00800000,
@@ -179,7 +181,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			PreviousPlaceHolder,
 			NextPlaceHolderOrWord,
 			PreviousPlaceHolderOrWord,
-            TabOrIndentSelection,
+			TabOrIndentSelection,
+			InsertTab,
 			IndentSelection,
 			UnindentSelection
 		};
@@ -368,6 +371,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void selectAll();
 		void selectNothing();
+		void selectExpandToNextWord();
+		void selectExpandToNextLine();
+		void selectAllOccurences();
 		
 		void relayPanelCommand(const QString& panel, const QString& command, const QList<QVariant>& args = QList<QVariant>());
 
@@ -386,7 +392,8 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void gotoLine();
 		
-        void tabOrIndentSelection();
+		void tabOrIndentSelection();
+		void insertTab();
 		void indentSelection();
 		void unindentSelection();
 		
@@ -435,6 +442,9 @@ public slots:
 		
 		void setCompletionEngine(QCodeCompletionEngine *e);
 		
+		void zoomIn();
+		void zoomOut();
+		void resetZoom();
 		void zoom(int n);
 		
 		void setPanelMargins(int l, int t, int r, int b);
@@ -548,6 +558,8 @@ public slots:
 		virtual void cursorMoveOperation(QDocumentCursor &cursor, EditOperation op);
 		virtual void processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditOperation op);
 		
+		void selectCursorMirrorBlock(const QDocumentCursor& cursor, bool horizontalSelect);
+
 		virtual void startDrag();
 		virtual QMimeData* createMimeDataFromSelection() const;
 		
@@ -558,6 +570,7 @@ public slots:
 		virtual void insertFromMimeData(const QMimeData *d);
 
 		void setFlag(EditFlag f, bool b);
+		void setDoubleClickSelectionType(QDocumentCursor::SelectionType type) {m_doubleClickSelectionType = type;}
 		
 	public slots:
 		void pageUp(QDocumentCursor::MoveMode moveMode);
@@ -639,7 +652,9 @@ public slots:
 		QPointer<QCodeCompletionEngine> m_completionEngine;
 		
 		QDocumentCursor m_cursor, m_doubleClick, m_dragAndDrop;
+		QDocumentCursor::SelectionType m_doubleClickSelectionType;
 		int m_cursorLinesFromViewTop;
+		int m_cursorMirrorBlockAnchor;
 		
 		QList<QDocumentCursor> m_mirrors;
 		

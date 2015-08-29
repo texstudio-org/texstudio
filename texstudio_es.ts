@@ -170,7 +170,7 @@
         <translation type="obsolete">Insertar campos vacios, opcionales</translation>
     </message>
     <message>
-        <location filename="bibtexdialog.cpp" line="+361"/>
+        <location filename="bibtexdialog.cpp" line="+362"/>
         <source>New BibTeX Entry</source>
         <translation>Nueva Entrada de BibTeX</translation>
     </message>
@@ -195,7 +195,7 @@
         <translation>Insertar en Blanco, Campos Opcionales</translation>
     </message>
     <message>
-        <location filename="bibtexdialog.cpp" line="-343"/>
+        <location filename="bibtexdialog.cpp" line="-344"/>
         <location line="+56"/>
         <source>Article in &amp;Journal</source>
         <translation>Artículo en una Revista(&amp;Journal)</translation>
@@ -354,7 +354,7 @@
         <translation>&amp;Tesis</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+25"/>
         <source>&lt;New File&gt;</source>
         <translation>&lt;Nuevo Archivo&gt;</translation>
     </message>
@@ -390,9 +390,9 @@
 <context>
     <name>BuildManager</name>
     <message>
-        <location filename="buildmanager.cpp" line="+66"/>
-        <location line="+20"/>
-        <location line="+1400"/>
+        <location filename="buildmanager.cpp" line="+67"/>
+        <location line="+21"/>
+        <location line="+1490"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;desconocido&gt;</translation>
     </message>
@@ -413,7 +413,7 @@
         <translation type="obsolete">Usuario : (% : nombre de archivo sin extensión)</translation>
     </message>
     <message>
-        <location line="-1316"/>
+        <location line="-1369"/>
         <source>Stop Compile</source>
         <translation>Detener Compilación</translation>
     </message>
@@ -596,7 +596,7 @@
         <translation>Recompilar La Bibliografía</translation>
     </message>
     <message>
-        <location line="+338"/>
+        <location line="+369"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation type="unfinished">La orden se ha ampliado a los niveles %1. ¿Desea continuar con la expansión &quot;%2&quot;?</translation>
     </message>
@@ -617,18 +617,48 @@
         <translation type="unfinished">No se pudo entender la orden %1</translation>
     </message>
     <message>
-        <location line="+366"/>
+        <location line="+365"/>
+        <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
+        <translation type="unfinished">Ninguna Distribución  LaTeX fue encontrada en su sistema. Como resultado, las órdenes correspondientes no están configuradas. Esto quiere decir, que no se puede compilar sus documentos al formato de salida deseado (por ejemplo, pdf).</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Popular LaTeX distributions on windows are %1 and %2.</source>
+        <translation type="unfinished">En Windows las distribuciones LaTeX más populares son %1 y %2.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
+        <translation type="unfinished">Si tiene la intención de trabajar con LaTeX, seguramente debería  instalar alguna de estas distribuciones.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>A popular LaTeX distribution on OSX is %1.</source>
+        <translation type="unfinished">En OSX una de las distribuciones LaTeX más populares es %1.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
+        <translation type="unfinished">Si tiene la intención de trabajar con LaTeX, seguramente debería  instalar esta distribución.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
+        <translation type="unfinished">Si tiene la intención de trabajar con LaTeX, seguramente debería  instalar una distribución LaTeX.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
         <source>Error: No command given</source>
         <translation type="unfinished">Error:Orden No determinada</translation>
     </message>
     <message>
-        <location line="+5"/>
+        <location line="+28"/>
         <source>Error: No command expanded</source>
         <translation type="unfinished">Error: No se expandió la orden</translation>
     </message>
     <message>
         <location line="+2"/>
-        <location line="+15"/>
+        <location line="+11"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation type="unfinished">&lt;b&gt;Asegúrese de que tiene instalado una distribución de (La)TeX&lt;/b&gt; por ejemplo, MiKTeX  o TeX Live, y además que estén establecidas las rutas correctas a esta distribución en la página de configuración de órdenes. &lt;br&gt;Un editor de (La)TeX como TeXstudio no puede funcionar sin las órdenes (La)TeX proporcionadas por tal distribución.</translation>
     </message>
@@ -638,7 +668,7 @@
         <translation type="unfinished">Error: Una orden de expansión es inválida.</translation>
     </message>
     <message>
-        <location line="+359"/>
+        <location line="+341"/>
         <source>Internal Pdf Viewer</source>
         <translation>Visor de PDF Incorporado</translation>
     </message>
@@ -709,10 +739,8 @@
 <context>
     <name>CodeSnippet</name>
     <message>
-        <location filename="smallUsefulFunctions.cpp" line="+2124"/>
-        <location line="+1"/>
         <source>something</source>
-        <translation type="unfinished">algo</translation>
+        <translation type="obsolete">algo</translation>
     </message>
 </context>
 <context>
@@ -733,13 +761,13 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+1050"/>
-        <location line="+188"/>
+        <location filename="configdialog.ui" line="+990"/>
+        <location line="+214"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location line="-183"/>
+        <location line="-209"/>
         <source>2</source>
         <translation>2</translation>
     </message>
@@ -754,7 +782,7 @@
         <translation>4</translation>
     </message>
     <message>
-        <location line="+2305"/>
+        <location line="+2396"/>
         <source>Preview with pdflatex</source>
         <translation type="unfinished">Vista previa con pdflatex</translation>
     </message>
@@ -784,7 +812,27 @@
         <translation> px</translation>
     </message>
     <message>
-        <location line="-3548"/>
+        <location line="+201"/>
+        <source>Select how txs checks in saved files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>No automatic check-in after save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Check-in after File/Save only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Check-in after all save operations, i.e. also before compiles.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+109"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
@@ -797,7 +845,7 @@
         <translation type="obsolete">El atajo que insertaste es el mismo que el de este comando:</translation>
     </message>
     <message>
-        <location line="+267"/>
+        <location line="-3729"/>
         <source>Files</source>
         <translation>Archivos</translation>
     </message>
@@ -823,7 +871,7 @@
         <translation type="obsolete">Base de datos del tesauro</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1880"/>
+        <location filename="configdialog.ui" line="+1962"/>
         <source>Parse BibTeX</source>
         <translation>Analizar BibTeX</translation>
     </message>
@@ -840,7 +888,7 @@
         <translation type="obsolete">Mostrar números importantes de la línea</translation>
     </message>
     <message>
-        <location line="+666"/>
+        <location line="+688"/>
         <source>Use following completion files:</source>
         <translation type="unfinished">Utilizar los siguientes archivos de Auto-completado:</translation>
     </message>
@@ -849,7 +897,7 @@
         <translation type="obsolete">Mostrar números de línea</translation>
     </message>
     <message>
-        <location line="-2462"/>
+        <location line="-2566"/>
         <source>Dictionaries</source>
         <translation>Diccionarios</translation>
     </message>
@@ -866,7 +914,7 @@
         <translation type="obsolete">Editor de familia de fuente</translation>
     </message>
     <message>
-        <location line="-341"/>
+        <location line="+3655"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -875,9 +923,9 @@
         <translation type="obsolete">Mostrar opciones avanzadas</translation>
     </message>
     <message>
-        <location line="+1308"/>
-        <location filename="configdialog.cpp" line="+252"/>
-        <location filename="configmanager.cpp" line="+1145"/>
+        <location line="-2620"/>
+        <location filename="configdialog.cpp" line="+254"/>
+        <location filename="configmanager.cpp" line="+1202"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -894,7 +942,7 @@
         <translation type="obsolete">Tamaño de fuente</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-27"/>
+        <location filename="configdialog.cpp" line="-28"/>
         <source>Search</source>
         <translation>Buscar</translation>
     </message>
@@ -903,12 +951,12 @@
         <translation type="obsolete">Revisión de cita en línea</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+22"/>
         <source>Commands</source>
         <translation type="unfinished">Órdenes</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-394"/>
+        <location filename="configdialog.ui" line="-429"/>
         <location filename="configdialog.cpp" line="+2"/>
         <source>Shortcuts</source>
         <translation>Accesos rápidos</translation>
@@ -918,7 +966,7 @@
         <translation type="obsolete">Asumir que todo error se encuentra en el documento actual:</translation>
     </message>
     <message>
-        <location line="+1649"/>
+        <location line="+1704"/>
         <location filename="configdialog.cpp" line="+8"/>
         <source>Completion</source>
         <translation type="unfinished">Auto-completado</translation>
@@ -938,7 +986,7 @@
         <translation type="unfinished">Acceso rápido predeterminado</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1997"/>
+        <location filename="configdialog.ui" line="-2069"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Caractéres especiales&lt;/span&gt;</translation>
     </message>
@@ -955,12 +1003,12 @@
         <translation type="obsolete">Obtener diccionarios en:%1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-152"/>
+        <location filename="configdialog.cpp" line="-154"/>
         <source>Do you really want to delete this row?</source>
         <translation>¿Realmente deseas eliminar esta fila?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2082"/>
+        <location filename="configdialog.ui" line="+2160"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Completar texto seleccionado cuando ningún carácter es presionado</translation>
     </message>
@@ -973,7 +1021,7 @@
         <translation type="obsolete">Activar tips de ayuda </translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+329"/>
+        <location filename="configdialog.cpp" line="+336"/>
         <source>Browse thesaurus database</source>
         <translation>Explorar la base de datos del diccionario de sinónimos</translation>
     </message>
@@ -986,13 +1034,13 @@
         <translation type="obsolete">Usar marcadores de posición</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1642"/>
-        <location filename="configdialog.cpp" line="-177"/>
+        <location filename="configdialog.ui" line="-1700"/>
+        <location filename="configdialog.cpp" line="-182"/>
         <source>Command</source>
         <translation type="unfinished">Orden</translation>
     </message>
     <message>
-        <location line="+790"/>
+        <location line="+829"/>
         <source>Show Line Change State</source>
         <translation type="unfinished">Mostrar Línea de Cambio de Estado</translation>
     </message>
@@ -1001,8 +1049,8 @@
         <translation type="obsolete">Revisión ortográfica en línea</translation>
     </message>
     <message>
-        <location line="-1713"/>
-        <location line="+1601"/>
+        <location line="-1788"/>
+        <location line="+1676"/>
         <source>Appearance</source>
         <translation>Apariencia</translation>
     </message>
@@ -1019,7 +1067,7 @@
         <translation type="obsolete">Mostrar siempre la estructura del documento maestro</translation>
     </message>
     <message>
-        <location line="+954"/>
+        <location line="+973"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Autocompletar prefijos comúnes</translation>
     </message>
@@ -1032,22 +1080,22 @@
         <translation type="obsolete">Compilación rápida</translation>
     </message>
     <message>
-        <location line="-59"/>
+        <location line="-62"/>
         <source>Case Sensitive</source>
         <translation>Distinguir entre Mayúsculas y Minúsculas</translation>
     </message>
     <message>
-        <location line="-2020"/>
+        <location line="-2095"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation type="unfinished">Órdenes (%: nombre del archivo sin extensión - @: número de línea - ?: opciones)</translation>
     </message>
     <message>
-        <location line="+815"/>
+        <location line="+867"/>
         <source>Folding</source>
         <translation>Plegado</translation>
     </message>
     <message>
-        <location line="+1048"/>
+        <location line="+1062"/>
         <source>Formats</source>
         <translation>Formatos</translation>
     </message>
@@ -1065,7 +1113,7 @@
         <translation type="obsolete">Tamaño de fuente del editor</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-686"/>
+        <location filename="configdialog.ui" line="-693"/>
         <source>Show State Panel</source>
         <translation type="unfinished">Mostrar el panel de estado</translation>
     </message>
@@ -1095,17 +1143,17 @@
         <translation type="obsolete">Mostrar el registro después de compilar sí existe algún error</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1308"/>
+        <location filename="configdialog.ui" line="-1383"/>
         <source>TextLabel</source>
         <translation>Etiqueta del texto</translation>
     </message>
     <message>
-        <location line="-526"/>
+        <location line="-433"/>
         <source>Configure TeXstudio</source>
         <translation>Configurar TeXstudio</translation>
     </message>
     <message>
-        <location line="+249"/>
+        <location line="+156"/>
         <source>Style:</source>
         <translation>Estilo:</translation>
     </message>
@@ -1116,12 +1164,12 @@
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1326"/>
+        <location line="+1394"/>
         <source>Font Size:</source>
         <translation>Tamaño del tipo de letra:</translation>
     </message>
     <message>
-        <location line="-1352"/>
+        <location line="-1420"/>
         <source>Language:</source>
         <translation>Idioma de la Interfaz:</translation>
     </message>
@@ -1215,6 +1263,16 @@
         <translation>Comprobar Ahora</translation>
     </message>
     <message>
+        <location line="+10"/>
+        <source>Startup</source>
+        <translation type="unfinished">Inicio</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Check LaTeX Configuration</source>
+        <translation type="unfinished">Comprobar la  configuración de LaTeX</translation>
+    </message>
+    <message>
         <location line="+69"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
@@ -1265,13 +1323,13 @@
     </message>
     <message>
         <location line="+14"/>
-        <location line="+1194"/>
-        <location line="+1395"/>
+        <location line="+1229"/>
+        <location line="+1468"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
     <message>
-        <location line="-2584"/>
+        <location line="-2692"/>
         <source>Only For User Commands</source>
         <translation type="unfinished">Sólo para las órdenes de Usuario</translation>
     </message>
@@ -1310,7 +1368,7 @@
         <translation type="unfinished">Órdenes ($PATH)</translation>
     </message>
     <message>
-        <location line="+135"/>
+        <location line="+152"/>
         <source>Close Log-View with Esc-Key</source>
         <translation type="unfinished">Cerrar el visor del registro con la tecla Esc</translation>
     </message>
@@ -1321,7 +1379,7 @@
         <translation>Menús</translation>
     </message>
     <message>
-        <location line="+17"/>
+        <location line="+20"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
@@ -1331,7 +1389,7 @@
         <translation>Espacio</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+11"/>
         <source>Show All</source>
         <translation>Mostrar Todo</translation>
     </message>
@@ -1341,7 +1399,7 @@
         <translation>Personalización de la barra de Herramientas</translation>
     </message>
     <message>
-        <location line="+272"/>
+        <location line="+301"/>
         <source>Font Family:</source>
         <translation type="unfinished">Familia de tipo de letra:</translation>
     </message>
@@ -1419,7 +1477,7 @@
         <translation>Paquete csquotes: \enquote{  }</translation>
     </message>
     <message>
-        <location line="+71"/>
+        <location line="+64"/>
         <source>Spelling</source>
         <translation>Ortografía</translation>
     </message>
@@ -1445,7 +1503,7 @@
         <translation>Sintaxis</translation>
     </message>
     <message>
-        <location line="-277"/>
+        <location line="-270"/>
         <source>Inline Checking:</source>
         <translation>Corrector Integrado:</translation>
     </message>
@@ -1465,17 +1523,110 @@
     </message>
     <message>
         <location line="-26"/>
-        <location line="+2035"/>
+        <location line="+2091"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location line="-1955"/>
+        <location line="-2693"/>
+        <source>Replaces environment variables in commands.The behavior is OS-specific.
+
+Windows:
+Variables are written as: %MYVAR%. They are case-insensitive.
+
+Linux, OS X:
+Variables are written as: $MYVAR. They are case-sensitive.
+</source>
+        <translation type="unfinished">Reemplaza las variables de entorno en órdenes. El Funcionamiento es específico del SO.
+
+Windows:
+Las variables se escriben como: %MYVAR%. Estas distinguen entre mayúsculas y minúsculas.
+
+Linux, OS X:
+Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y minúsculas.</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Replace Environment Variables</source>
+        <translation type="unfinished">Reemplazar las variables de entorno</translation>
+    </message>
+    <message>
+        <location line="+103"/>
+        <source>Here the menu items are listed and can be hidden or edited.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>This shows all actions on the currently edited toolbar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>This adds an action to the toolbar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>This removes an action from the toolbar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Here you can choose a toolbar to modify.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>This shows available actions to map on a toolbar.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>Secondary Toolbars</source>
+        <translation type="unfinished">Barras de herramientas secundarias</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>Symbol Grid</source>
+        <translation type="unfinished">Cuadricula de símbolos</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Main Toolbar</source>
+        <translation type="unfinished">Barra de herramientas principal</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+274"/>
         <source>Show Only Monospaced Fonts</source>
         <translation type="unfinished">Mostrar sólo tipos de letras monoespaciadas</translation>
     </message>
     <message>
-        <location line="+167"/>
+        <location line="+174"/>
         <source>Show Line Numbers:</source>
         <translation>Mostrar números de línea:</translation>
     </message>
@@ -1540,17 +1691,17 @@
         <translation>Opciones especiales</translation>
     </message>
     <message>
-        <location line="+33"/>
+        <location line="+9"/>
         <source>Auto Save All Files:</source>
         <translation>Guardar automáticamente todos los archivos:</translation>
     </message>
     <message>
-        <location line="-17"/>
+        <location line="+112"/>
         <source>Maximal Characters:</source>
         <translation>Máximo de Caracteres:</translation>
     </message>
     <message>
-        <location line="+27"/>
+        <location line="-102"/>
         <source>Auto Complete Parentheses</source>
         <translation type="unfinished">Autocompletar Paréntesis</translation>
     </message>
@@ -1580,7 +1731,7 @@
         <translation>60 minutos</translation>
     </message>
     <message>
-        <location line="+51"/>
+        <location line="+75"/>
         <source>No Line Wrap</source>
         <translation type="unfinished">No hacer Ajuste automático de línea</translation>
     </message>
@@ -1600,27 +1751,27 @@
         <translation type="unfinished">Ajuste automático de línea dura después de un máx. de Caracteres</translation>
     </message>
     <message>
-        <location line="-58"/>
+        <location line="-82"/>
         <source>Line Wrapping:</source>
         <translation type="unfinished">Salto de línea:</translation>
     </message>
     <message>
-        <location line="-70"/>
+        <location line="+59"/>
         <source>Show help as tooltip on text in editor</source>
         <translation type="unfinished">Mostrar ayuda como un tooltip sobre el texto en el editor</translation>
     </message>
     <message>
-        <location line="-1559"/>
+        <location line="-1739"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation type="unfinished">Recordar el filtro del archivo seleccionado en el dialogo Abrir/Guardar</translation>
     </message>
     <message>
-        <location line="+361"/>
+        <location line="+377"/>
         <source>Show messages when starting compiling</source>
         <translation>Mostrar mensajes al iniciar la compilación</translation>
     </message>
     <message>
-        <location line="+232"/>
+        <location line="+249"/>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1633,12 +1784,12 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
 (3) escriba la cadena del acceso rápido</translation>
     </message>
     <message>
-        <location line="+697"/>
+        <location line="+725"/>
         <source>Package</source>
         <translation>Paquete</translation>
     </message>
     <message>
-        <location line="-101"/>
+        <location line="-94"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Comillas Inglesas (unicode): “ ”</translation>
     </message>
@@ -1653,22 +1804,22 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Ocultar errores de ortografía en entornos que no sean de texto</translation>
     </message>
     <message>
-        <location line="+1995"/>
+        <location line="+2051"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished">Mostrar vista previa como un tooltip sobre fórmulas en el editor</translation>
     </message>
     <message>
-        <location line="-1415"/>
+        <location line="-1488"/>
         <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
         <translation>Desactivar la tecla &quot;Esc&quot; para cerrar el modo de pantalla completa</translation>
     </message>
     <message>
-        <location line="+123"/>
+        <location line="+154"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation type="unfinished">Mantener la  sangría de includes en la estructura de árbol</translation>
     </message>
     <message>
-        <location line="-116"/>
+        <location line="-147"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation type="unfinished">Mostrar ayuda sobre las órdenes en el visor de pdf interno (texdoc)</translation>
     </message>
@@ -1678,7 +1829,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Silenciosamente volver a cargar los archivos guardados en los cambios externos (descarta deshacer/rehacer)</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="+62"/>
         <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
         <translation type="unfinished">Tenga cuidado que LaTeX todavía tiene que ser capaz de dar el carácter, así los mismos paquetes tienen que estar presentes como con el Código de LaTeX</translation>
     </message>
@@ -1688,12 +1839,12 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Insertar símbolo como Unicode</translation>
     </message>
     <message>
-        <location line="-34"/>
+        <location line="-58"/>
         <source>Go to error when displaying log</source>
         <translation type="unfinished">Ir al error al mostrar el archivo de registro</translation>
     </message>
     <message>
-        <location line="+158"/>
+        <location line="+189"/>
         <source>Table Autoformating</source>
         <translation type="unfinished">Formato Automático de Tabla</translation>
     </message>
@@ -1783,24 +1934,22 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Modo de renderizado:</translation>
     </message>
     <message>
-        <location line="-1167"/>
         <source>Scale Central Toolbar</source>
-        <translation type="unfinished">Escalar la barra de tareas central</translation>
+        <translation type="obsolete">Escalar la barra de tareas central</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="-1183"/>
         <location line="+7"/>
         <location line="+7"/>
         <source>Reset</source>
         <translation type="unfinished">Restablecer</translation>
     </message>
     <message>
-        <location line="+7"/>
         <source>Scale Symbols</source>
-        <translation type="unfinished">Escalar símbolos</translation>
+        <translation type="obsolete">Escalar símbolos</translation>
     </message>
     <message>
-        <location line="+1147"/>
+        <location line="+1177"/>
         <source>QCE (recommended)</source>
         <translation>QCE (recomendado)</translation>
     </message>
@@ -1815,7 +1964,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Una sola letra</translation>
     </message>
     <message>
-        <location line="+122"/>
+        <location line="+125"/>
         <source>Custom Environment</source>
         <translation type="unfinished">Personalizar Entorno</translation>
     </message>
@@ -1825,7 +1974,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Tipo de Entorno</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+13"/>
         <location line="+47"/>
         <source>Add Line</source>
         <translation>Añadir línea</translation>
@@ -1852,7 +2001,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Iniciar automáticamente el Autocompletado al escribir órdenes de LaTeX</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+41"/>
         <source>In First Character</source>
         <translation type="unfinished">En primer carácter</translation>
     </message>
@@ -1926,7 +2075,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Tamaño de la barra de pestañas en la parte inferior o superior del Autocompletar</translation>
     </message>
     <message>
-        <location line="-2359"/>
+        <location line="-2453"/>
         <source>Spelling Dictionary Directories:</source>
         <translation type="unfinished">Directorios del Diccionario de Ortografía:</translation>
     </message>
@@ -1941,23 +2090,22 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Importar Diccionario...</translation>
     </message>
     <message>
-        <location line="+392"/>
+        <location line="+408"/>
         <source>PDF File</source>
         <translation>Archivo PDF</translation>
     </message>
     <message>
-        <location line="+307"/>
+        <location line="+350"/>
         <source>Scaling</source>
         <translation type="unfinished">Escalar</translation>
     </message>
     <message>
-        <location line="+44"/>
         <source>Scale Toolbar</source>
         <oldsource>scale symbols</oldsource>
-        <translation type="unfinished">Escalar la barra de herramientas</translation>
+        <translation type="obsolete">Escalar la barra de herramientas</translation>
     </message>
     <message>
-        <location line="+217"/>
+        <location line="+270"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Detección automática de la Codificación:</translation>
     </message>
@@ -1972,12 +2120,11 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Analizar Caracteres</translation>
     </message>
     <message>
-        <location line="+133"/>
         <source>Replace Tab by Whitespace</source>
-        <translation type="unfinished">Reemplazar Tab por espacios en blanco</translation>
+        <translation type="obsolete">Reemplazar Tab por espacios en blanco</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+133"/>
         <source>Check non tex files</source>
         <translation type="unfinished">Comprobar los archivos no tex</translation>
     </message>
@@ -1987,12 +2134,22 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Revisar la distribución de LaTeX para paquetes instalados</translation>
     </message>
     <message>
-        <location line="+242"/>
+        <location line="+10"/>
+        <source>Replace Indentation Tab by Spaces</source>
+        <translation>Reemplazar sangría usando tabuladores por espacios en blanco</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Replace Tab in Text by Spaces</source>
+        <translation type="unfinished">Reemplazar la tabulación en textos por espacios</translation>
+    </message>
+    <message>
+        <location line="+344"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished">Sobrescribir Paréntesis que abre seguido por un marcador de posición</translation>
     </message>
     <message>
-        <location line="+163"/>
+        <location line="+58"/>
         <source>Show log markers when clicking log entry</source>
         <translation type="unfinished">Mostrar los marcadores de registro al hacer clic en la entrada de registro</translation>
     </message>
@@ -2017,6 +2174,11 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Revisión ortográfica a través del menú contextual:</translation>
     </message>
     <message>
+        <location line="+7"/>
+        <source>Double-Click Selection: Include Leading Backslash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+10"/>
         <source>Structure Panel</source>
         <translation type="unfinished">Estructura del Panel</translation>
@@ -2024,7 +2186,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+6"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar los elementos de estructura más allá de \end{document}</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2039,7 +2201,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+7"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Marcar los elementos de estructura del apéndice</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -2067,7 +2229,18 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Archivos de imagen:</translation>
     </message>
     <message>
-        <location line="+512"/>
+        <location line="+221"/>
+        <source>Here the highlighting of custom environments can be changed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Here you can add another environment for custom highlighting.</source>
+        <oldsource>Here you can add another environmnt for custom highlighting.</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+274"/>
         <source>Tab Bar Size</source>
         <translation>Tamaño de la Barra de pestañas</translation>
     </message>
@@ -2082,7 +2255,17 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Mostrar marcadores de posición</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+10"/>
+        <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>ToolTip-Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+17"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2240,12 +2423,11 @@ aquí.</translation>
         <translation>Reglas especiales 4:</translation>
     </message>
     <message>
-        <location line="+13"/>
         <source>GroupBox</source>
-        <translation type="unfinished">Cuadro de grupo</translation>
+        <translation type="obsolete">Cuadro de grupo</translation>
     </message>
     <message>
-        <location line="+40"/>
+        <location line="+73"/>
         <source>Segment Preview</source>
         <translation>Vista previa del Segmento</translation>
     </message>
@@ -2307,7 +2489,7 @@ aquí.</translation>
     </message>
     <message>
         <source>Auto Preview:</source>
-        <translation type="vanished">Vista previa automática:</translation>
+        <translation type="obsolete">Vista previa automática:</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -2477,12 +2659,16 @@ aquí.</translation>
         <translation type="unfinished">Híbrido</translation>
     </message>
     <message>
-        <location line="+40"/>
-        <source>Automatically check in after save</source>
-        <translation>Comprobar automáticamente después de guardar</translation>
+        <location line="+8"/>
+        <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <source>Automatically check in after save</source>
+        <translation type="vanished">Comprobar automáticamente después de guardar</translation>
+    </message>
+    <message>
+        <location line="+68"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Use revisiones SVN para deshacer antes de la última versión guardada</translation>
     </message>
@@ -2502,12 +2688,12 @@ aquí.</translation>
         <translation type="unfinished">Buscar en Profundidad el Directorio SVN: </translation>
     </message>
     <message>
-        <location line="-3742"/>
+        <location line="+36"/>
         <source>Show Advanced Options</source>
         <translation>Mostrar opciones avanzadas</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-251"/>
+        <location filename="configdialog.cpp" line="-253"/>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
@@ -2535,7 +2721,7 @@ la clave de todos modos?</translation>
         <translation>Descargar diccionarios adicionales de %1 o %2</translation>
     </message>
     <message>
-        <location line="+15"/>
+        <location line="+16"/>
         <source>Basic highlighting</source>
         <translation type="unfinished">Resaltado básico</translation>
     </message>
@@ -2575,7 +2761,7 @@ la clave de todos modos?</translation>
         <translation>Lua</translation>
     </message>
     <message>
-        <location line="+16"/>
+        <location line="+17"/>
         <source>Build</source>
         <translation type="unfinished">Compilar</translation>
     </message>
@@ -2600,18 +2786,28 @@ la clave de todos modos?</translation>
         <translation>Resaltados personalizados</translation>
     </message>
     <message>
-        <location line="-28"/>
-        <location line="+31"/>
+        <location line="-29"/>
+        <location line="+32"/>
         <source>Preview</source>
         <translation>Vista previa</translation>
     </message>
     <message>
-        <location line="-28"/>
+        <location line="-39"/>
+        <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
         <source>Asymptote</source>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+2"/>
+        <source>QtScript</source>
+        <translation type="unfinished">QtScript</translation>
+    </message>
+    <message>
+        <location line="+20"/>
         <source>GUI Scaling</source>
         <translation type="unfinished">Escalar elementos GUI</translation>
     </message>
@@ -2621,7 +2817,12 @@ la clave de todos modos?</translation>
         <translation type="unfinished">SVN</translation>
     </message>
     <message>
-        <location line="+163"/>
+        <location line="+41"/>
+        <source>(option filter)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+127"/>
         <source>Select the grammar word lists dir</source>
         <translation>Seleccione el dir de las listas de palabras gramáticales</translation>
     </message>
@@ -2671,7 +2872,7 @@ la clave de todos modos?</translation>
         <translation>&lt;desconocido&gt;</translation>
     </message>
     <message>
-        <location line="+126"/>
+        <location line="+216"/>
         <source>Load Other Icon</source>
         <translation>Cargar otro Icono</translation>
     </message>
@@ -2737,12 +2938,12 @@ comunes.</translation>
         <translation type="unfinished">Asignación de clave básica</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1348"/>
+        <location filename="configdialog.ui" line="-2515"/>
         <source>Automatically load included files</source>
         <translation>Cargar Automáticamente archivos incluidos</translation>
     </message>
     <message>
-        <location line="-773"/>
+        <location line="-825"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -2757,12 +2958,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; para el archivo actual en lugar del archivo maestr
 b&gt;?m&quot;&lt;/b&gt; nombre del archivo entre comillas dobles sin extensión (idéntico al &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nombre del archivo con la extensión (por ejemplo example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: todos los archivos .aux en el directorio actual</translation>
     </message>
     <message>
-        <location line="-340"/>
+        <location line="-356"/>
         <source>MRU Document Chooser</source>
         <translation type="unfinished">Selector de Documentos usados recientemente</translation>
     </message>
     <message>
-        <location line="+1720"/>
+        <location line="+1771"/>
         <source>Smooth Scrolling</source>
         <translation type="unfinished">Desplazamiento suave</translation>
     </message>
@@ -2781,7 +2982,7 @@ b&gt;?m&quot;&lt;/b&gt; nombre del archivo entre comillas dobles sin extensión 
     </message>
     <message>
         <location filename="configmanager.cpp" line="+28"/>
-        <location line="+940"/>
+        <location line="+947"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;ninguno&gt;</translation>
     </message>
@@ -2801,17 +3002,17 @@ b&gt;?m&quot;&lt;/b&gt; nombre del archivo entre comillas dobles sin extensión 
         <translation>Documento maestro: </translation>
     </message>
     <message>
-        <location line="-525"/>
+        <location line="-532"/>
         <location line="+1"/>
         <location line="+151"/>
         <location line="+2"/>
-        <location line="+284"/>
+        <location line="+286"/>
         <location line="+9"/>
         <source>default</source>
         <translation>Predeterminado</translation>
     </message>
     <message>
-        <location line="+572"/>
+        <location line="+577"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;predeterminado&gt;</translation>
     </message>
@@ -3316,7 +3517,7 @@ b&gt;?m&quot;&lt;/b&gt; nombre del archivo entre comillas dobles sin extensión 
         <translation>Dos quads - \qquad</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-1629"/>
+        <location filename="configmanager.cpp" line="-1643"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -3336,7 +3537,7 @@ b&gt;?m&quot;&lt;/b&gt; nombre del archivo entre comillas dobles sin extensión 
         <translation>después de la palabra</translation>
     </message>
     <message>
-        <location line="+388"/>
+        <location line="+395"/>
         <source>Insert New Menu Item (before)</source>
         <translation type="unfinished">Insertar un Nuevo Elemento de Menú.(antes)</translation>
     </message>
@@ -3368,7 +3569,7 @@ Do you want to remove them?</source>
 ¿Quieres eliminarlos?</translation>
     </message>
     <message>
-        <location line="+240"/>
+        <location line="+247"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Para aprovechar plenamente el visor PDF interno, SyncTeX debe ser activado.¿ Deberá TeXstudio hacerlo ahora?</translation>
     </message>
@@ -3647,7 +3848,7 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
 <context>
     <name>GrammarCheck</name>
     <message>
-        <location filename="grammarcheck.cpp" line="+328"/>
+        <location filename="grammarcheck.cpp" line="+335"/>
         <source>Word repetition</source>
         <translation>Palabras repetidas</translation>
     </message>
@@ -3671,19 +3872,19 @@ Estos cambios se perderán, si lo recargas utilizando la nueva codificación.
 <context>
     <name>Help</name>
     <message>
-        <location filename="help.cpp" line="+42"/>
-        <location line="+45"/>
-        <location line="+41"/>
+        <location filename="help.cpp" line="+43"/>
+        <location line="+65"/>
+        <location line="+51"/>
         <source>texdoc not found.</source>
         <translation type="unfinished">texdoc no encontrado.</translation>
     </message>
     <message>
-        <location line="-81"/>
+        <location line="-103"/>
         <source>texdoc took too long to open the documentation for the package:</source>
         <translation>texdoc tomó demasiado tiempo para abrir la documentación del paquete:</translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+76"/>
         <source>texdoc did not respond to query on package:</source>
         <translation type="unfinished">texdoc no respondió a las consultas en el paquete:</translation>
     </message>
@@ -3921,15 +4122,23 @@ El asistente no admite órdenes </translation>
     </message>
 </context>
 <context>
+    <name>LabelSearchQuery</name>
+    <message>
+        <location filename="searchquery.cpp" line="+158"/>
+        <source>Label Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="latexcompleter.cpp" line="+1040"/>
+        <location filename="latexcompleter.cpp" line="+1007"/>
         <location line="+9"/>
         <source>all</source>
         <translation>todo</translation>
     </message>
     <message>
-        <location line="+406"/>
+        <location line="+470"/>
         <source>label missing!</source>
         <translation>¡etiqueta faltante!</translation>
     </message>
@@ -3939,7 +4148,7 @@ El asistente no admite órdenes </translation>
         <translation>¡etiqueta definida varias veces!</translation>
     </message>
     <message>
-        <location line="-419"/>
+        <location line="-483"/>
         <location line="+9"/>
         <source>typical</source>
         <translation>típico</translation>
@@ -3957,12 +4166,12 @@ El asistente no admite órdenes </translation>
         <translation>pulse shift + espacio para cambiar la vista</translation>
     </message>
     <message>
-        <location line="+98"/>
+        <location line="+134"/>
         <source> (Usertag)</source>
         <translation type="unfinished"> (Etiqueta del usuario)</translation>
     </message>
     <message>
-        <location line="+318"/>
+        <location line="+346"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre: %1&lt;/b&gt;
@@ -3977,7 +4186,7 @@ El asistente no admite órdenes </translation>
         <translation type="unfinished">Error desconocido. crash potencial. Se recomienda reiniciar TeXstudio</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="+24"/>
+        <location filename="latexdocument.cpp" line="+25"/>
         <source>MAGIC_COMMENTS</source>
         <translation>COMENTARIOS_MÁGICOS</translation>
     </message>
@@ -4002,7 +4211,7 @@ El asistente no admite órdenes </translation>
         <translation type="unfinished">BLOQUES</translation>
     </message>
     <message>
-        <location line="+2382"/>
+        <location line="+2532"/>
         <source>Invalid codec</source>
         <translation type="unfinished">codec no válido</translation>
     </message>
@@ -4020,7 +4229,7 @@ El asistente no admite órdenes </translation>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location line="-987"/>
+        <location line="-1003"/>
         <source>untitled</source>
         <translation>sin título</translation>
     </message>
@@ -4052,28 +4261,28 @@ El asistente no admite órdenes </translation>
         <translation type="obsolete">shift presionado =&gt; ocultar sugerencias</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="+418"/>
+        <location filename="latexeditorview.cpp" line="+421"/>
         <source>New BibTeX Entry %1</source>
         <translation>Nueva entrada de BibTeX %1</translation>
     </message>
     <message>
-        <location line="+1651"/>
+        <location line="+1567"/>
         <source>label missing!</source>
         <translation>!etiqueta faltante!</translation>
     </message>
     <message>
-        <location line="-1541"/>
+        <location line="-1499"/>
         <source>Thesaurus...</source>
         <translation>Diccionario de sinónimos...</translation>
     </message>
     <message>
-        <location line="-248"/>
+        <location line="-206"/>
         <source>Could not open url:</source>
         <translation type="unfinished">No se pudo abrir la url:</translation>
     </message>
     <message>
-        <location line="+1791"/>
-        <location line="+22"/>
+        <location line="+1707"/>
+        <location line="+18"/>
         <source>label multiple times defined!</source>
         <translation>¡etiqueta definida varias veces!</translation>
     </message>
@@ -4094,18 +4303,18 @@ El asistente no admite órdenes </translation>
         <translation type="obsolete">Ignorar siempre</translation>
     </message>
     <message>
-        <location line="-1666"/>
+        <location line="-1575"/>
         <source>Open %1</source>
         <translation>Abrir %1</translation>
     </message>
     <message>
-        <location line="+23"/>
-        <location line="+31"/>
+        <location line="+16"/>
+        <location line="+16"/>
         <source>Open package documentation</source>
         <translation>Abrir documentación del paquete</translation>
     </message>
     <message>
-        <location line="+29"/>
+        <location line="+48"/>
         <source>use yours</source>
         <translation type="unfinished">usar el suyo</translation>
     </message>
@@ -4115,30 +4324,40 @@ El asistente no admite órdenes </translation>
         <translation type="unfinished">utilizar otros</translation>
     </message>
     <message>
-        <location line="+22"/>
-        <location filename="texmaker.cpp" line="+6999"/>
+        <location line="-44"/>
+        <location filename="texmaker.cpp" line="+7163"/>
         <location line="+6"/>
         <source>Go to Definition</source>
         <translation>Ir a la Definición</translation>
     </message>
     <message>
         <location line="+6"/>
+        <source>Find Usages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+54"/>
         <source>Go to PDF</source>
         <translation>Ir a el PDF</translation>
     </message>
     <message>
-        <location line="+370"/>
+        <location line="+334"/>
         <source>untitled</source>
         <translation>Sin título</translation>
     </message>
     <message>
-        <location line="+964"/>
+        <location line="+917"/>
+        <source>Delete</source>
+        <translation type="unfinished">Borrar</translation>
+    </message>
+    <message>
+        <location line="+30"/>
         <source>Add to Dictionary</source>
         <translation type="unfinished">Agregar al diccionario</translation>
     </message>
     <message>
-        <location line="+200"/>
-        <location line="+82"/>
+        <location line="+181"/>
+        <location line="+72"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nombre del archivo: %1&lt;/b&gt;</translation>
@@ -4148,7 +4367,7 @@ El asistente no admite órdenes </translation>
         <translation type="obsolete">Paquete presente</translation>
     </message>
     <message>
-        <location line="-60"/>
+        <location line="-54"/>
         <source>Class</source>
         <translation>Clase</translation>
     </message>
@@ -4158,7 +4377,7 @@ El asistente no admite órdenes </translation>
         <translation>Paquete</translation>
     </message>
     <message>
-        <location line="+6"/>
+        <location line="+4"/>
         <source>Beamer Theme</source>
         <translation type="unfinished">Tema de Beamer</translation>
     </message>
@@ -4168,12 +4387,12 @@ El asistente no admite órdenes </translation>
         <translation type="unfinished">No se encuentra</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+16"/>
         <source>Citation correct (reading ...)</source>
         <translation>Citación correcta (Leer más ...)</translation>
     </message>
     <message>
-        <location line="+18"/>
+        <location line="+6"/>
         <source>Citation missing</source>
         <translation type="unfinished">Citación faltante</translation>
     </message>
@@ -4188,7 +4407,7 @@ El asistente no admite órdenes </translation>
         <translation>BibTeX ID termina con el espacio. Los espacios finales no son ignorados por BibTeX.</translation>
     </message>
     <message>
-        <location line="+470"/>
+        <location line="+474"/>
         <source>Remove Bookmark</source>
         <translation>Quitar Marcador</translation>
     </message>
@@ -4223,21 +4442,21 @@ El asistente no admite órdenes </translation>
         <translation>Expandir el Nivel %1</translation>
     </message>
     <message>
-        <location line="-2230"/>
+        <location line="-2137"/>
         <source>Open Bibliography</source>
         <translation>Abrir Bibliografía</translation>
     </message>
     <message>
-        <location line="-33"/>
+        <location line="-36"/>
         <source>Spelling</source>
         <translation type="unfinished">Ortografía</translation>
     </message>
     <message>
         <source>Package not found</source>
-        <translation type="vanished">Paquete no encontrado</translation>
+        <translation type="obsolete">Paquete no encontrado</translation>
     </message>
     <message>
-        <location line="+2088"/>
+        <location line="+1998"/>
         <source>Save Preview Image</source>
         <translation>Guardar Imagen previa</translation>
     </message>
@@ -4326,7 +4545,7 @@ El asistente no admite órdenes </translation>
         <translation>Archivo de registro no disponible</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+11"/>
         <source>Issues</source>
         <translation>Problemas</translation>
     </message>
@@ -4336,9 +4555,8 @@ El asistente no admite órdenes </translation>
         <translation>Archivo de registro</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Issues and Log</source>
-        <translation>Problemas y registro</translation>
+        <translation type="obsolete">Problemas y registro</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -4356,18 +4574,18 @@ El asistente no admite órdenes </translation>
         <translation type="unfinished">Mostrar BadBox</translation>
     </message>
     <message>
-        <location line="+12"/>
+        <location line="+16"/>
         <source>Log file not found.</source>
         <translation>Archivo de registro no encontrado.</translation>
     </message>
     <message>
         <location line="+4"/>
-        <location line="+48"/>
+        <location line="+43"/>
         <source>Log file not readable.</source>
         <translation>Archivo de registro no es legible.</translation>
     </message>
     <message>
-        <location line="-40"/>
+        <location line="-35"/>
         <source>The logfile is very large (%1 MB) are you sure you want to load it?</source>
         <translation>El archivo de registro es muy grande (%1 MB) ¿Realmente quieres cargarlo?</translation>
     </message>
@@ -4511,66 +4729,59 @@ Do you want to overwrite it?</source>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="+150"/>
-        <location line="+216"/>
+        <location line="+63"/>
         <source>Messages</source>
         <translation>Mensajes</translation>
     </message>
     <message>
-        <location line="-227"/>
-        <location line="+226"/>
+        <location line="-74"/>
+        <location line="+73"/>
         <source>Messages / Log File</source>
         <translation>Mensajes / Archivo de registro</translation>
     </message>
     <message>
-        <location line="-210"/>
-        <location line="+212"/>
+        <location line="-57"/>
+        <location line="+59"/>
         <source>Log</source>
         <translation>Registro</translation>
     </message>
     <message>
-        <location line="-206"/>
-        <location line="+207"/>
+        <location line="-53"/>
+        <location line="+54"/>
         <source>Preview</source>
         <translation>Vista previa</translation>
     </message>
     <message>
-        <location line="-194"/>
         <source>Current Doc</source>
-        <translation>Documento actual</translation>
+        <translation type="obsolete">Documento actual</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>All Docs</source>
-        <translation>Todos los Documentos</translation>
+        <translation type="obsolete">Todos los Documentos</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Project</source>
-        <translation>Proyecto</translation>
+        <translation type="obsolete">Proyecto</translation>
     </message>
     <message>
-        <location line="+5"/>
         <source>Search text:</source>
-        <translation type="unfinished">Buscar texto:</translation>
+        <translation type="obsolete">Buscar texto:</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Update Search</source>
-        <translation type="unfinished">Actualizar la Búsqueda</translation>
+        <translation type="obsolete">Actualizar la Búsqueda</translation>
     </message>
     <message>
-        <location line="+3"/>
         <source>Replace by:</source>
-        <translation type="unfinished">Reemplazar por:</translation>
+        <translation type="obsolete">Reemplazar por:</translation>
     </message>
     <message>
-        <location line="+4"/>
         <source>Replace all</source>
-        <translation type="unfinished">Reemplazar todo</translation>
+        <translation type="obsolete">Reemplazar todo</translation>
     </message>
     <message>
-        <location line="+35"/>
-        <location line="+143"/>
+        <location line="-47"/>
+        <location line="+48"/>
         <source>Search Results</source>
         <translation>Resultados de la Búsqueda</translation>
     </message>
@@ -4762,7 +4973,7 @@ Do you want to overwrite it?</source>
         <translation>&amp;Copiar</translation>
     </message>
     <message>
-        <location filename="PDFDocument.cpp" line="+2218"/>
+        <location filename="PDFDocument.cpp" line="+2284"/>
         <source>&amp;File</source>
         <translation>&amp;Archivo</translation>
     </message>
@@ -5337,6 +5548,11 @@ Do you want to overwrite it?</source>
         <translation type="unfinished">Escala de grises</translation>
     </message>
     <message>
+        <location line="+5"/>
+        <source>Split &amp;&amp; Merge...</source>
+        <translation type="unfinished">Dividir &amp;&amp; Combinar...</translation>
+    </message>
+    <message>
         <location filename="PDFDocument.cpp" line="+80"/>
         <source>Windowed Viewer</source>
         <translation type="unfinished">Visor en ventana</translation>
@@ -5379,12 +5595,29 @@ Do you want to overwrite it?</source>
         <translation>Anotaciones</translation>
     </message>
     <message>
-        <location line="+160"/>
+        <location line="+161"/>
         <source>Page Down</source>
         <translation type="unfinished">Avanzar Página</translation>
     </message>
     <message>
-        <location line="+1249"/>
+        <location line="+203"/>
+        <source>PDF file &quot;%1&quot; is locked.</source>
+        <translation type="unfinished">El archivo PDF &quot;%1&quot; está protegido.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>PDF password</source>
+        <translation type="unfinished">Contraseña del PDF</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>PDF file &quot;%1&quot; is locked.
+You can now enter the password:</source>
+        <translation type="unfinished">El archivo PDF &quot;%1&quot; está protegido.
+Por favor ingrese la contraseña:</translation>
+    </message>
+    <message>
+        <location line="+1071"/>
         <source>Close Message</source>
         <translation type="unfinished">Cerrar Mensaje</translation>
     </message>
@@ -5393,7 +5626,7 @@ Do you want to overwrite it?</source>
         <translation type="obsolete">Av Pág</translation>
     </message>
     <message>
-        <location line="-1245"/>
+        <location line="-1272"/>
         <source>Page Up</source>
         <translation type="unfinished">Retroceder Página </translation>
     </message>
@@ -5402,18 +5635,18 @@ Do you want to overwrite it?</source>
         <translation type="obsolete">Re Pág</translation>
     </message>
     <message>
-        <location line="+181"/>
+        <location line="+176"/>
         <source>Retry</source>
         <translation>Reintentar</translation>
     </message>
     <message>
         <location line="+3"/>
-        <location line="+1060"/>
+        <location line="+1092"/>
         <source>Close</source>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location line="-1057"/>
+        <location line="-1089"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
@@ -5430,7 +5663,7 @@ no parece ser un documento PDF válido.
 O bien el archivo está dañado o está en el proceso de creación. Es posible que vuelva a intentar una vez finalizada la compilación. Abrir un documento corrupto podría ocasionar un crash. ¿Quieres abrirlo de todos modos?</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+12"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>No se pudo encontrar el archivo &quot;%1&quot;; quizás ha sido eliminado.</translation>
     </message>
@@ -5450,9 +5683,8 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
         <translation type="unfinished">Error al cargar el archivo &quot;%1&quot; debido a una excepción; tal vez no es un documento PDF válido. </translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>PDF file &quot;%1&quot; is locked; this is not currently supported.</source>
-        <translation type="unfinished">El archivo PDF &quot;%1&quot; está bloqueado; esto no está soportado actualmente.</translation>
+        <translation type="obsolete">El archivo PDF &quot;%1&quot; está bloqueado; esto no está soportado actualmente.</translation>
     </message>
     <message>
         <source>PDF file &quot;%1&quot; is incomplete. Trying again in 2 seconds.</source>
@@ -5463,7 +5695,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
         <translation type="obsolete">El archivo PDF &quot;%1&quot; está incompleto.</translation>
     </message>
     <message>
-        <location line="+271"/>
+        <location line="+301"/>
         <source>Searching for</source>
         <translation>Búsqueda de</translation>
     </message>
@@ -5478,12 +5710,12 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location line="+134"/>
+        <location line="+129"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location line="+74"/>
+        <location line="+76"/>
         <source>Page %1 of %2</source>
         <translation>Página %1 de %2</translation>
     </message>
@@ -5498,7 +5730,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
         <translation>Abrir PDF</translation>
     </message>
     <message>
-        <location line="+276"/>
+        <location line="+277"/>
         <source>Print</source>
         <translation>Imprimir</translation>
     </message>
@@ -5562,7 +5794,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
 <context>
     <name>PDFMovie</name>
     <message>
-        <location filename="PDFDocument.cpp" line="-3352"/>
+        <location filename="PDFDocument.cpp" line="-3439"/>
         <source>File %1 does not exists</source>
         <translation>El archivo %1 no existe</translation>
     </message>
@@ -5632,14 +5864,80 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     </message>
 </context>
 <context>
+    <name>PDFSplitMergeTool</name>
+    <message>
+        <location filename="pdfsplittool.cpp" line="+41"/>
+        <source>Save PDF</source>
+        <translation type="unfinished">Guardar PDF</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Open PDF</source>
+        <translation type="unfinished">Abrir PDF</translation>
+    </message>
+    <message>
+        <location line="+65"/>
+        <source>Input file:</source>
+        <translation type="unfinished">Archivo de entrada:</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Add page range</source>
+        <translation type="unfinished">Añadir rango de páginas</translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>From:</source>
+        <translation type="unfinished">Desde:</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>To:</source>
+        <translation type="unfinished">Hasta:</translation>
+    </message>
+</context>
+<context>
+    <name>PDFSplitTool</name>
+    <message>
+        <location filename="pdfsplittool.ui" line="+14"/>
+        <source>Split &amp; Merge</source>
+        <translation type="unfinished">Dividir &amp; combinar</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Split &amp;&amp; Merge</source>
+        <translation type="unfinished">Dividir &amp;&amp; combinar</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Output file:</source>
+        <translation type="unfinished">Archivo de salida:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Add input file</source>
+        <translation type="unfinished">Añadir archivo de entrada</translation>
+    </message>
+</context>
+<context>
     <name>PDFWidget</name>
     <message>
-        <location filename="PDFDocument.cpp" line="+562"/>
+        <location filename="PDFDocument.cpp" line="+577"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location line="-490"/>
+        <location line="-491"/>
         <source>Zoom In</source>
         <translation>Ampliar</translation>
     </message>
@@ -5664,17 +5962,17 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
         <translation>Ajustar a la Ventana</translation>
     </message>
     <message>
-        <location line="+479"/>
+        <location line="+480"/>
         <source>Could not open link:</source>
         <translation>No se pudo abrir el enlace:</translation>
     </message>
     <message>
-        <location line="+106"/>
+        <location line="+108"/>
         <source>Go to Source</source>
         <translation>Ir a la Fuente</translation>
     </message>
     <message>
-        <location line="+585"/>
+        <location line="+612"/>
         <source>Go to Page</source>
         <translation>Ir a la página</translation>
     </message>
@@ -5684,7 +5982,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
         <translation>Número de página:</translation>
     </message>
     <message>
-        <location line="+308"/>
+        <location line="+324"/>
         <source>Calculating text width</source>
         <translation type="unfinished">Cálculo del ancho de texto</translation>
     </message>
@@ -5698,30 +5996,30 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <name>PreviewWidget</name>
     <message>
         <source>fit</source>
-        <translation type="vanished">Ajustar</translation>
+        <translation type="obsolete">Ajustar</translation>
     </message>
     <message>
         <source>zoom in </source>
-        <translation type="vanished">Acercar</translation>
+        <translation type="obsolete">Acercar</translation>
     </message>
     <message>
         <source>zoom out</source>
-        <translation type="vanished">Alejar</translation>
+        <translation type="obsolete">Alejar</translation>
     </message>
     <message>
         <source>reset zoom</source>
-        <translation type="vanished">Restablecer zoom</translation>
+        <translation type="obsolete">Restablecer zoom</translation>
     </message>
     <message>
         <source>left-align image</source>
-        <translation type="vanished">Alinear la imagen a la izquierda</translation>
+        <translation type="obsolete">Alinear la imagen a la izquierda</translation>
     </message>
     <message>
         <source>center image</source>
-        <translation type="vanished">Centrar Imagen</translation>
+        <translation type="obsolete">Centrar Imagen</translation>
     </message>
     <message>
-        <location filename="toolwidgets.cpp" line="-255"/>
+        <location filename="toolwidgets.cpp" line="-102"/>
         <source>Zoom In</source>
         <translation type="unfinished">Ampliar</translation>
     </message>
@@ -5749,7 +6047,17 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="+199"/>
+        <location filename="buildmanager.cpp" line="+96"/>
+        <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+125"/>
         <source>Process started: %1</source>
         <translation>Proceso iniciado: %1</translation>
     </message>
@@ -5782,7 +6090,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="codesnippet.cpp" line="+265"/>
+        <location filename="codesnippet.cpp" line="+289"/>
         <source>Select a File</source>
         <translation>Selccionar un archivo</translation>
     </message>
@@ -5862,7 +6170,7 @@ Restart from the beginning ?</source>
 <context>
     <name>QEditor</name>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="+4336"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="+4419"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
@@ -5872,8 +6180,8 @@ Restart from the beginning ?</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location line="-3803"/>
-        <location line="+823"/>
+        <location line="-3886"/>
+        <location line="+820"/>
         <source>Cu&amp;t</source>
         <translation>Cor&amp;tar</translation>
     </message>
@@ -5883,7 +6191,7 @@ Restart from the beginning ?</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location line="+2955"/>
+        <location line="+3041"/>
         <source>Find</source>
         <translation>Encontrar</translation>
     </message>
@@ -5898,13 +6206,13 @@ Restart from the beginning ?</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location line="-2823"/>
+        <location line="-2909"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="-967"/>
-        <location line="+813"/>
+        <location line="-964"/>
+        <location line="+810"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiar</translation>
     </message>
@@ -5914,20 +6222,20 @@ Restart from the beginning ?</source>
         <translation>&amp;Editar</translation>
     </message>
     <message>
-        <location line="-760"/>
-        <location line="+744"/>
+        <location line="-757"/>
+        <location line="+741"/>
         <source>&amp;Find</source>
         <translation>&amp;Encontrar</translation>
     </message>
     <message>
-        <location line="-849"/>
-        <location line="+836"/>
+        <location line="-846"/>
+        <location line="+833"/>
         <source>&amp;Redo</source>
         <translation>&amp;Rehacer</translation>
     </message>
     <message>
-        <location line="-847"/>
-        <location line="+846"/>
+        <location line="-844"/>
+        <location line="+843"/>
         <source>&amp;Undo</source>
         <translation>&amp;Deshacer</translation>
     </message>
@@ -5937,12 +6245,12 @@ Restart from the beginning ?</source>
         <translation>&amp;Ver</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="-645"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="-642"/>
         <source>Local</source>
         <translation>Local</translation>
     </message>
     <message>
-        <location line="+3629"/>
+        <location line="+3712"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
@@ -5959,19 +6267,19 @@ Deshacer/Rehacer pila sería descartada por la autorecarga.
 ¿Deseas mantener actualizado el archivo recargándolo?</translation>
     </message>
     <message>
-        <location line="-3746"/>
-        <location line="+771"/>
+        <location line="-3829"/>
+        <location line="+768"/>
         <source>Co&amp;mment</source>
         <translation>Co&amp;mentario</translation>
     </message>
     <message>
-        <location line="-807"/>
-        <location line="+803"/>
+        <location line="-804"/>
+        <location line="+800"/>
         <source>&amp;Paste</source>
         <translation>&amp;Pegar</translation>
     </message>
     <message>
-        <location line="-461"/>
+        <location line="-458"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -5992,7 +6300,7 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
     </message>
     <message>
         <location line="-317"/>
-        <location line="+782"/>
+        <location line="+779"/>
         <source>&amp;Unindent</source>
         <translation>Dismin&amp;uir Sangría </translation>
     </message>
@@ -6007,48 +6315,48 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
         <translation>Buscar</translation>
     </message>
     <message>
-        <location line="-676"/>
+        <location line="-673"/>
         <source>Old Mac</source>
         <translation>Mac antigua</translation>
     </message>
     <message>
         <location line="-60"/>
-        <location line="+720"/>
+        <location line="+717"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Ir a la línea...</translation>
     </message>
     <message>
-        <location line="-732"/>
-        <location line="+730"/>
+        <location line="-729"/>
+        <location line="+727"/>
         <source>&amp;Replace</source>
         <translation>&amp;Reemplazar</translation>
     </message>
     <message>
-        <location line="+2975"/>
+        <location line="+3061"/>
         <source>Replace</source>
         <translation>Reemplazar</translation>
     </message>
     <message>
-        <location line="-4150"/>
+        <location line="-4233"/>
         <location line="+488"/>
-        <location line="+698"/>
+        <location line="+695"/>
         <source>Default</source>
         <translation>Predeterminado</translation>
     </message>
     <message>
-        <location line="-809"/>
-        <location line="+789"/>
+        <location line="-806"/>
+        <location line="+786"/>
         <source>&amp;Indent</source>
         <translation>Aumentar Sang&amp;ría</translation>
     </message>
     <message>
-        <location line="-651"/>
+        <location line="-648"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
         <location line="-98"/>
-        <location line="+754"/>
+        <location line="+751"/>
         <source>&amp;Select all</source>
         <translation>&amp;Seleccionar todo</translation>
     </message>
@@ -6058,24 +6366,24 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
         <translation>&amp;Buscar</translation>
     </message>
     <message>
-        <location line="-753"/>
-        <location line="+737"/>
+        <location line="-750"/>
+        <location line="+734"/>
         <source>Fin&amp;d next</source>
         <translation>Busca&amp;r el Siguiente</translation>
     </message>
     <message>
-        <location line="-192"/>
+        <location line="-193"/>
         <source>File changed</source>
         <translation>Archivo modificado</translation>
     </message>
     <message>
-        <location line="-577"/>
-        <location line="+764"/>
+        <location line="-573"/>
+        <location line="+761"/>
         <source>Unc&amp;omment</source>
         <translation>Des&amp;comentar</translation>
     </message>
     <message>
-        <location line="-656"/>
+        <location line="-653"/>
         <source>Conservative</source>
         <translation>Conservativo</translation>
     </message>
@@ -6085,12 +6393,12 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
         <translation>Dos/Windows</translation>
     </message>
     <message>
-        <location line="+799"/>
+        <location line="+796"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location line="-809"/>
+        <location line="-806"/>
         <source>Line endings</source>
         <translation type="unfinished">Fin de línea</translation>
     </message>
@@ -6101,12 +6409,12 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
     </message>
     <message>
         <location line="+12"/>
-        <location line="+702"/>
+        <location line="+699"/>
         <source>Input binding</source>
         <translation type="unfinished">Entrada vinculante </translation>
     </message>
     <message>
-        <location line="-399"/>
+        <location line="-400"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -6222,7 +6530,12 @@ La Opción Deshacer/Rehacer sería descartada por el auto-recargado.
 (Nota: puede activar de forma permanente las recarga silenciosa en las opciones.)</translation>
     </message>
     <message>
-        <location line="+3113"/>
+        <location line="+76"/>
+        <source>Print Source Code</source>
+        <translation type="unfinished">Imprimir Código Fuente</translation>
+    </message>
+    <message>
+        <location line="+3124"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
@@ -6442,6 +6755,11 @@ La Opción Deshacer/Rehacer sería descartada por el auto-recargado.
         <location line="+1"/>
         <source>Tab or Indent selection</source>
         <translation type="unfinished">selección de sangría o pestaña</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Insert tab</source>
+        <translation type="unfinished">Insertar pestaña</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7004,7 +7322,7 @@ Nota: si el tamaño es mayor que el espacio entre líneas, los caracteres se pue
         <translation>Error:</translation>
     </message>
     <message>
-        <location filename="codesnippet.cpp" line="-180"/>
+        <location filename="codesnippet.cpp" line="-70"/>
         <location line="+2"/>
         <location filename="tests/codesnippet_t.cpp" line="+56"/>
         <location line="+301"/>
@@ -7013,11 +7331,21 @@ Nota: si el tamaño es mayor que el espacio entre líneas, los caracteres se pue
     </message>
     <message>
         <location line="-1"/>
-        <location line="+8"/>
+        <location line="+26"/>
         <location filename="tests/codesnippet_t.cpp" line="-217"/>
         <location line="+296"/>
         <source>content...</source>
         <translation>contenidos...</translation>
+    </message>
+    <message>
+        <location line="-2"/>
+        <source>label</source>
+        <translation type="unfinished">Etiqueta</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>description</source>
+        <translation>descripción</translation>
     </message>
 </context>
 <context>
@@ -7196,7 +7524,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
         <translation type="obsolete">Línea: %1 Columna: %2 Texto de la columna: %3</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="+149"/>
+        <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="+153"/>
         <source>(%1 min %2 s ago)</source>
         <translation>(%1 minutos %2 s antes)</translation>
     </message>
@@ -7216,7 +7544,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
         <translation type="unfinished">SOBRESCRIBIR</translation>
     </message>
     <message>
-        <location line="-40"/>
+        <location line="-41"/>
         <source>Line: %1</source>
         <translation>Línea: %1</translation>
     </message>
@@ -7646,7 +7974,7 @@ Usted puede usar \1 a \9 en el texto de reemplazo para insertar una subcoinciden
 <context>
     <name>ScriptObject</name>
     <message>
-        <location filename="scriptobject.cpp" line="+235"/>
+        <location filename="scriptobject.cpp" line="+236"/>
         <source>The current script has requested to enter privileged write mode and call following function:
 %1
 
@@ -7695,6 +8023,15 @@ siguiente valor:
         <location line="+1"/>
         <source>Yes, grant permanent read access to everything</source>
         <translation type="unfinished">Sí, permitir el acceso permanente a leer todo</translation>
+    </message>
+</context>
+<context>
+    <name>SearchQuery</name>
+    <message>
+        <location filename="searchquery.cpp" line="-151"/>
+        <location line="+7"/>
+        <source>Search</source>
+        <translation type="unfinished">Buscar</translation>
     </message>
 </context>
 <context>
@@ -7755,20 +8092,68 @@ siguiente valor:
         <translation type="obsolete">Clic para ir a la línea</translation>
     </message>
     <message>
-        <location filename="searchresultmodel.cpp" line="+148"/>
+        <location filename="searchresultmodel.cpp" line="+199"/>
         <source>File closed</source>
         <translation>Cerrar Archivo</translation>
     </message>
     <message>
-        <location line="+152"/>
+        <location line="+168"/>
         <source>Results</source>
         <translation>Resultados</translation>
     </message>
 </context>
 <context>
+    <name>SearchResultWidget</name>
+    <message>
+        <location filename="searchresultwidget.cpp" line="+15"/>
+        <source>Current Doc</source>
+        <translation type="unfinished">Documento actual</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>All Docs</source>
+        <translation type="unfinished">Todos los Documentos</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Project</source>
+        <translation type="unfinished">Proyecto</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Search Again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Replace all</source>
+        <translation type="unfinished">Reemplazar todo</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Replace by:</source>
+        <translation type="unfinished">Reemplazar por:</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>Expand All</source>
+        <translation type="unfinished">Expandir todo</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Collapse All</source>
+        <translation type="unfinished">Contraer Todo</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-947"/>
+        <location filename="configdialog.cpp" line="-1044"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;ninguno&gt;</translation>
     </message>
@@ -7940,9 +8325,22 @@ siguiente valor:
     </message>
 </context>
 <context>
+    <name>SpellerManager</name>
+    <message>
+        <location filename="spellerutility.cpp" line="+209"/>
+        <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
+        <translation type="unfinished">El archivo seleccionado no parece contener un diccionario Hunspell. ¿Sin embargo quieres importarlo?</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Dictionary import failed: No files could be extracted.</source>
+        <translation type="unfinished">La importación del diccionario ha fallado: No hay archivos para ser extraídos.</translation>
+    </message>
+</context>
+<context>
     <name>SpellerUtility</name>
     <message>
-        <location filename="spellerutility.cpp" line="+29"/>
+        <location line="-188"/>
         <source>Missing .aff file:
 %1</source>
         <translation>Falta el archivo .aff:
@@ -7957,35 +8355,30 @@ siguiente valor:
 <context>
     <name>StructDialog</name>
     <message>
-        <location filename="structdialog.ui" line="+87"/>
         <source>OK</source>
-        <translation>Aceptar</translation>
+        <translation type="vanished">Aceptar</translation>
     </message>
     <message>
-        <location line="-33"/>
         <source>Title</source>
-        <translation>Título</translation>
+        <translation type="vanished">Título</translation>
     </message>
     <message>
-        <location line="+40"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation type="vanished">Cancelar</translation>
     </message>
     <message>
-        <location line="-81"/>
         <source>Structure</source>
-        <translation>Estructura</translation>
+        <translation type="vanished">Estructura</translation>
     </message>
     <message>
-        <location line="+23"/>
         <source>Numeration</source>
-        <translation>Numeración</translation>
+        <translation type="vanished">Numeración</translation>
     </message>
 </context>
 <context>
     <name>SymbolGridWidget</name>
     <message>
-        <location filename="symbolgridwidget.cpp" line="+180"/>
+        <location filename="symbolgridwidget.cpp" line="+181"/>
         <source>Packages: </source>
         <translation>Paquetes:</translation>
     </message>
@@ -8008,7 +8401,7 @@ siguiente valor:
 <context>
     <name>SyntaxCheck</name>
     <message>
-        <location filename="syntaxcheck.cpp" line="+442"/>
+        <location filename="syntaxcheck.cpp" line="+432"/>
         <source>no error</source>
         <translation>ningún error</translation>
     </message>
@@ -8301,7 +8694,7 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Editar</translation>
     </message>
     <message>
-        <location filename="templateselector.cpp" line="+205"/>
+        <location filename="templateselector.cpp" line="+207"/>
         <source>Remove</source>
         <translation>Eliminar</translation>
     </message>
@@ -8326,7 +8719,7 @@ no pudo ser eliminado.</translation>
         <translation>No tienes permiso para eliminar este archivo.</translation>
     </message>
     <message>
-        <location line="-227"/>
+        <location line="-229"/>
         <source>No Preview</source>
         <translation type="unfinished">No hay Vista previa</translation>
     </message>
@@ -8351,7 +8744,7 @@ no pudo ser eliminado.</translation>
         <translation>Licencia</translation>
     </message>
     <message>
-        <location line="+31"/>
+        <location line="+33"/>
         <source>Edit Template</source>
         <translation>Editar plantilla</translation>
     </message>
@@ -8378,7 +8771,7 @@ no pudo ser eliminado.</translation>
         <translation>No se pudo abrir ubicación:</translation>
     </message>
     <message>
-        <location line="-186"/>
+        <location line="-188"/>
         <source>It is recommended to instantiate templates in a new folder. Otherwise, existing files may be overwritten.</source>
         <translation type="unfinished">Se recomienda crear las plantillas en una nueva carpeta. De lo contrario, los archivos existentes se pueden sobrescribir.</translation>
     </message>
@@ -8419,13 +8812,13 @@ no pudo ser eliminado.</translation>
 <context>
     <name>Texmaker</name>
     <message>
-        <location filename="texmaker.cpp" line="-5892"/>
-        <location line="+5872"/>
+        <location filename="texmaker.cpp" line="-6042"/>
+        <location line="+6022"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
     <message>
-        <location line="-6377"/>
+        <location line="-6538"/>
         <source>&amp;New</source>
         <translation>&amp;Nuevo</translation>
     </message>
@@ -8435,9 +8828,9 @@ no pudo ser eliminado.</translation>
         <translation>C&amp;ortar</translation>
     </message>
     <message>
-        <location line="+434"/>
-        <location line="+1290"/>
-        <location line="+4582"/>
+        <location line="+445"/>
+        <location line="+1324"/>
+        <location line="+4698"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
@@ -8447,7 +8840,7 @@ no pudo ser eliminado.</translation>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6317"/>
+        <location filename="texmaker.cpp" line="-6478"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -8457,12 +8850,12 @@ no pudo ser eliminado.</translation>
         <translation>Archivo</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+47"/>
+        <location filename="texmaker.cpp" line="+54"/>
         <source>Line</source>
         <translation>Línea</translation>
     </message>
     <message>
-        <location line="-37"/>
+        <location line="-44"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copiar</translation>
     </message>
@@ -8477,17 +8870,17 @@ no pudo ser eliminado.</translation>
         <translation>&amp;Archivo</translation>
     </message>
     <message>
-        <location line="+92"/>
+        <location line="+99"/>
         <source>&amp;Find</source>
         <translation>&amp;Encontrar</translation>
     </message>
     <message>
-        <location line="+388"/>
+        <location line="+392"/>
         <source>&amp;Help</source>
         <translation>&amp;Ayuda</translation>
     </message>
     <message>
-        <location line="-414"/>
+        <location line="-425"/>
         <source>&amp;Redo</source>
         <translation>&amp;Rehacer</translation>
     </message>
@@ -8506,19 +8899,19 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">&amp;Usuario</translation>
     </message>
     <message>
-        <location line="+163"/>
-        <location line="+155"/>
+        <location line="+158"/>
+        <location line="+153"/>
         <source>&amp;View</source>
         <translation>&amp;Visualizar</translation>
     </message>
     <message>
-        <location line="-489"/>
+        <location line="-483"/>
         <source>Delimiters</source>
         <translation>Delimitadores</translation>
     </message>
     <message>
-        <location line="+1695"/>
-        <location line="+6608"/>
+        <location line="+1744"/>
+        <location line="+6752"/>
         <source>Open Files</source>
         <translation type="unfinished">Abrir Archivos</translation>
     </message>
@@ -8527,21 +8920,20 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Limpiar</translation>
     </message>
     <message>
-        <location line="-7087"/>
-        <location line="+1542"/>
-        <location line="+1853"/>
-        <location line="+417"/>
-        <location line="+131"/>
+        <location line="-7262"/>
+        <location line="+1609"/>
+        <location line="+1823"/>
+        <location line="+487"/>
+        <location line="+130"/>
         <location line="+2"/>
         <location line="+6"/>
         <location line="+2"/>
-        <location line="+400"/>
-        <location line="+2898"/>
+        <location line="+3367"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location line="-8255"/>
+        <location line="-8440"/>
         <source>Go to</source>
         <translation>Ir a</translation>
     </message>
@@ -8550,13 +8942,13 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
-        <location line="+86"/>
+        <location line="+74"/>
         <source>Definition</source>
         <translation>Definición</translation>
     </message>
     <message>
-        <location line="-523"/>
-        <location line="+5149"/>
+        <location line="-526"/>
+        <location line="+5210"/>
         <source>Ready</source>
         <translation>Listo</translation>
     </message>
@@ -8574,7 +8966,7 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Advertencia anterior</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-4683"/>
+        <location filename="texmaker.cpp" line="-4727"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
@@ -8590,42 +8982,41 @@ no pudo ser eliminado.</translation>
         <translation>¡No existen bad boxes detectadas!</translation>
     </message>
     <message>
-        <location line="-277"/>
+        <location line="-287"/>
         <source>Miscellaneous text symbols (wasysym)</source>
         <translation>Símbolos de texto misceláneos (wasysym)</translation>
     </message>
     <message>
-        <location line="+6990"/>
+        <location line="+7201"/>
         <source>Remove all favorites</source>
         <translation>Remover todos los favoritos</translation>
     </message>
     <message>
-        <location line="-6504"/>
+        <location line="-6721"/>
         <source>Next Document</source>
         <translation>Documento siguiente</translation>
     </message>
     <message>
-        <location line="-254"/>
+        <location line="-238"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location line="+639"/>
         <source>Define Current Document as &apos;Master Document&apos;</source>
-        <translation>Definir el documento actual como «Documento Maestro»</translation>
+        <translation type="obsolete">Definir el documento actual como «Documento Maestro»</translation>
     </message>
     <message>
-        <location line="-631"/>
+        <location line="+8"/>
         <source>Old Mac (CR)</source>
         <translation>Mac Antiguo (CR)</translation>
     </message>
     <message>
-        <location line="+6749"/>
+        <location line="+6950"/>
         <source>Remove from favorites</source>
         <translation>Remover desde los favoritos</translation>
     </message>
     <message>
-        <location line="-6996"/>
+        <location line="-7207"/>
         <source>Relation symbols</source>
         <translation>Símbolos de relación</translation>
     </message>
@@ -8640,39 +9031,39 @@ no pudo ser eliminado.</translation>
         <translation>Símbolos de flechas</translation>
     </message>
     <message>
-        <location line="+421"/>
+        <location line="+415"/>
         <source>Quick &amp;Letter...</source>
         <translation>Carta &amp;Rápida...</translation>
     </message>
     <message>
-        <location line="-40"/>
+        <location line="-37"/>
         <source>A&amp;nalyse Text...</source>
         <translation>A&amp;nalizar Texto...</translation>
     </message>
     <message>
-        <location line="+78"/>
+        <location line="+75"/>
         <source>&amp;Clean</source>
         <translation>&amp;Limpiar</translation>
     </message>
     <message>
-        <location line="-298"/>
-        <location line="+7854"/>
+        <location line="-291"/>
+        <location line="+8029"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location line="-7671"/>
-        <location line="+50"/>
+        <location line="-7851"/>
+        <location line="+48"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location line="-214"/>
+        <location line="-207"/>
         <source>&amp;Paste</source>
         <translation>&amp;Pegar</translation>
     </message>
     <message>
-        <location line="+149"/>
+        <location line="+144"/>
         <source>&amp;Tools</source>
         <translation>&amp;Herramientas</translation>
     </message>
@@ -8681,12 +9072,12 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Bloque cercano</translation>
     </message>
     <message>
-        <location line="-201"/>
+        <location line="-196"/>
         <source>Save &amp;As...</source>
         <translation>Guardar &amp;Como...</translation>
     </message>
     <message>
-        <location line="-125"/>
+        <location line="-126"/>
         <source>Cyrillic letters</source>
         <translation>Carácteres cirílicos</translation>
     </message>
@@ -8696,12 +9087,12 @@ no pudo ser eliminado.</translation>
         <translation type="unfinished">Órdenes de MetaPost</translation>
     </message>
     <message>
-        <location line="+362"/>
+        <location line="+359"/>
         <source>C&amp;onvert to Html...</source>
         <translation>Exp&amp;ortar como HTML...</translation>
     </message>
     <message>
-        <location line="+4383"/>
+        <location line="+4441"/>
         <source>(a) allow for this document</source>
         <translation>(a) permitir para este documento</translation>
     </message>
@@ -8716,14 +9107,14 @@ no pudo ser eliminado.</translation>
         <translation type="unfinished">(c) usar la orden por defecto</translation>
     </message>
     <message>
-        <location line="+1701"/>
+        <location line="+1804"/>
         <location line="+1"/>
         <source>Insert as %1</source>
         <translation>Insertar como %1</translation>
     </message>
     <message>
-        <location line="-6238"/>
-        <location line="+5"/>
+        <location line="-6387"/>
+        <location line="+6"/>
         <source>Bookmark %1</source>
         <translation type="unfinished">Marcador %1</translation>
     </message>
@@ -8744,7 +9135,7 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Etiquetas de &amp;Usuario</translation>
     </message>
     <message>
-        <location line="+4165"/>
+        <location line="+4210"/>
         <source>Edit User &amp;Tags</source>
         <translation type="unfinished">Editar Etiquetas del &amp;Usuario</translation>
     </message>
@@ -8753,14 +9144,14 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Plantillas</translation>
     </message>
     <message>
-        <location line="-3930"/>
+        <location line="-3991"/>
         <location line="+10"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location line="+1525"/>
-        <location line="+50"/>
+        <location line="+1577"/>
+        <location line="+54"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -8769,44 +9160,44 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Lim&amp;piar</translation>
     </message>
     <message>
-        <location line="-1539"/>
+        <location line="-1594"/>
         <source>Expand</source>
         <translation>Expandir</translation>
     </message>
     <message>
-        <location line="+7290"/>
+        <location line="+7471"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>El archivo &quot;%1&quot; no existe.
 ¿Desea crearlo?</translation>
     </message>
     <message>
-        <location line="+751"/>
+        <location line="+768"/>
         <source>Conflict!</source>
         <translation>!Conflicto!</translation>
     </message>
     <message>
-        <location line="-8231"/>
+        <location line="-8428"/>
         <source>Remove Placeholders</source>
         <translation>Remover marcadores de posición</translation>
     </message>
     <message>
-        <location line="-87"/>
+        <location line="-73"/>
         <source>Line Ending</source>
         <translation>Final de Línea</translation>
     </message>
     <message>
-        <location line="+6227"/>
+        <location line="+6375"/>
         <source>Insert</source>
         <translation>Insertar</translation>
     </message>
     <message>
-        <location line="-6044"/>
+        <location line="-6208"/>
         <source>Quick &amp;Start...</source>
         <translation>Inicio &amp;Rápido...</translation>
     </message>
     <message>
-        <location line="-405"/>
+        <location line="-399"/>
         <source>Left/Right Brackets</source>
         <translation>Paréntesis Izquierda/Derecha</translation>
     </message>
@@ -8816,7 +9207,7 @@ Do you want to create it?</source>
         <translation>Símbolos matemáticos misceláneos</translation>
     </message>
     <message>
-        <location line="+501"/>
+        <location line="+496"/>
         <source>Close Something</source>
         <translation type="unfinished">Cerrar</translation>
     </message>
@@ -8825,23 +9216,23 @@ Do you want to create it?</source>
         <translation type="obsolete">Badbox anterior</translation>
     </message>
     <message>
-        <location line="-183"/>
+        <location line="-182"/>
         <source>Refresh Structure</source>
-        <translation>Actualizar  estructura</translation>
+        <translation type="unfinished">Actualizar estructura</translation>
     </message>
     <message>
-        <location line="+6668"/>
+        <location line="+6883"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location line="-6548"/>
+        <location line="-6765"/>
         <source>Previous Document</source>
         <translation>Documento anterior</translation>
     </message>
     <message>
-        <location line="-486"/>
+        <location line="-480"/>
         <source>Miscellaneous text symbols</source>
         <translation>Símbolos de texto misceláneos</translation>
     </message>
@@ -8850,12 +9241,12 @@ Do you want to create it?</source>
         <translation type="obsolete">sin título</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+158"/>
         <source>Clos&amp;e All</source>
         <translation>Ce&amp;rrar Todo</translation>
     </message>
     <message>
-        <location line="+264"/>
+        <location line="+257"/>
         <source>Quick &amp;Array...</source>
         <translation type="unfinished">Arreglo &amp;Instantáneo...</translation>
     </message>
@@ -8864,17 +9255,17 @@ Do you want to create it?</source>
         <translation type="obsolete">No puedes editar las plantillas internas preestablecidas.</translation>
     </message>
     <message>
-        <location line="+82"/>
+        <location line="+83"/>
         <source>Collapse</source>
         <translation type="unfinished">Contraer</translation>
     </message>
     <message>
-        <location line="-193"/>
+        <location line="-192"/>
         <source>Complete</source>
         <translation>Completar</translation>
     </message>
     <message>
-        <location line="+4845"/>
+        <location line="+4973"/>
         <location line="+8"/>
         <source>File not found</source>
         <translation>Archivo no encontrado</translation>
@@ -8884,21 +9275,21 @@ Do you want to create it?</source>
         <translation type="obsolete">Siguiente error</translation>
     </message>
     <message>
-        <location line="-5057"/>
+        <location line="-5180"/>
         <source>&amp;Open...</source>
         <translation>&amp;Abrir...</translation>
     </message>
     <message>
-        <location line="+463"/>
+        <location line="+459"/>
         <source>&amp;Options</source>
         <translation>&amp;Opciones</translation>
     </message>
     <message>
         <source>Click to jump to the bookmark</source>
-        <translation type="vanished">Clic para ir al marcador</translation>
+        <translation type="obsolete">Clic para ir al marcador</translation>
     </message>
     <message>
-        <location line="+6417"/>
+        <location line="+6631"/>
         <source>Remove all</source>
         <translation>Remover todos</translation>
     </message>
@@ -8911,12 +9302,12 @@ Do you want to create it?</source>
         <translation type="obsolete">Último cambio</translation>
     </message>
     <message>
-        <location line="-6609"/>
+        <location line="-6823"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Generar &amp;Texto Aleatorio...</translation>
     </message>
     <message>
-        <location line="+4647"/>
+        <location line="+4775"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation type="unfinished">El archivo debe guardarse y compilarse antes de poder mostrar el archivo de registro</translation>
     </message>
@@ -8929,7 +9320,7 @@ Do you want to create it?</source>
         <translation type="obsolete">normal</translation>
     </message>
     <message>
-        <location line="-4605"/>
+        <location line="-4736"/>
         <source>Quick &amp;Tabular...</source>
         <translation type="unfinished">Insertar &amp;Tabla...</translation>
     </message>
@@ -8942,18 +9333,16 @@ Do you want to create it?</source>
         <translation type="obsolete">añadir fila</translation>
     </message>
     <message>
-        <location line="-649"/>
-        <location line="+1103"/>
         <source>Normal Mode</source>
-        <translation>Modo Normal</translation>
+        <translation type="obsolete">Modo Normal</translation>
     </message>
     <message>
-        <location line="+7590"/>
+        <location line="+8243"/>
         <source>You do not have read permission to this file.</source>
         <translation>Usted no tiene permiso para leer este archivo.</translation>
     </message>
     <message>
-        <location line="-7688"/>
+        <location line="-7869"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
@@ -8962,13 +9351,11 @@ Do you want to create it?</source>
         <translation type="obsolete">Edit Comandos de &amp;Usuario</translation>
     </message>
     <message>
-        <location line="+1222"/>
-        <location line="+50"/>
         <source>Don&apos;t Save and Close</source>
-        <translation>No Guardar y Cerrar</translation>
+        <translation type="obsolete">No Guardar y Cerrar</translation>
     </message>
     <message>
-        <location line="-1707"/>
+        <location line="-451"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
@@ -8977,7 +9364,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Siguiente advertencia</translation>
     </message>
     <message>
-        <location line="-138"/>
+        <location line="-126"/>
         <source>&amp;Replace</source>
         <translation>&amp;Reemplazar</translation>
     </message>
@@ -8986,20 +9373,20 @@ Do you want to create it?</source>
         <translation type="obsolete">Restaurar sesión anterior</translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+47"/>
         <source>Setup Encoding...</source>
         <translation>Configuración de la Codificación...</translation>
     </message>
     <message>
         <source>Print...</source>
-        <translation type="vanished">Imprimir...</translation>
+        <translation type="obsolete">Imprimir...</translation>
     </message>
     <message>
         <source>You can not remove built-in templates.</source>
         <translation type="obsolete">No puedes eliminar plantillas internas preestablecidas.</translation>
     </message>
     <message>
-        <location line="+136"/>
+        <location line="+120"/>
         <source>Thesaurus...</source>
         <translation>Diccionario de Sinónimos...</translation>
     </message>
@@ -9008,19 +9395,19 @@ Do you want to create it?</source>
         <translation type="obsolete">Nuevo desde &amp;plantilla...</translation>
     </message>
     <message>
-        <location line="+1407"/>
+        <location line="+1459"/>
         <source>Save As</source>
         <translation>Guardar como</translation>
     </message>
     <message>
-        <location line="-1834"/>
+        <location line="-1880"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
         <translation>Estructura</translation>
     </message>
     <message>
-        <location line="+289"/>
+        <location line="+299"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>¡No se detectaron errores de LaTeX!</translation>
@@ -9035,29 +9422,29 @@ Do you want to create it?</source>
         <translation type="obsolete">Mensaje / Archivo de registro</translation>
     </message>
     <message>
-        <location line="+280"/>
+        <location line="+265"/>
         <location line="+5"/>
         <source>Everything</source>
         <translation>Todo</translation>
     </message>
     <message>
-        <location line="-234"/>
+        <location line="-219"/>
         <location line="+1"/>
         <source>No LaTeX warnings detected !</source>
         <translation>¡No se detectaron advertencias de LaTeX!</translation>
     </message>
     <message>
-        <location line="-99"/>
+        <location line="-106"/>
         <source>Select &amp;All</source>
         <translation>Seleccionar &amp;Todo</translation>
     </message>
     <message>
-        <location line="+87"/>
+        <location line="+94"/>
         <source>&amp;Uncomment</source>
         <translation>&amp;Descomentar</translation>
     </message>
     <message>
-        <location line="+314"/>
+        <location line="+316"/>
         <source>Automatically Restore &amp;Session at Next Start</source>
         <translation>Automáticamente Restaurar &amp;Sesión en el Siguiente Inicio</translation>
     </message>
@@ -9067,7 +9454,7 @@ Do you want to create it?</source>
         <translation>Predeterminado</translation>
     </message>
     <message>
-        <location line="-370"/>
+        <location line="-386"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
@@ -9076,7 +9463,7 @@ Do you want to create it?</source>
         <translation type="obsolete">No tienes permiso para eliminar este archivo.</translation>
     </message>
     <message>
-        <location line="-81"/>
+        <location line="-67"/>
         <source>&amp;Indent</source>
         <translation>Aumentar Sang&amp;ría</translation>
     </message>
@@ -9085,7 +9472,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Insertar \referencia en la siguiente etiqueta</translation>
     </message>
     <message>
-        <location line="+80"/>
+        <location line="+66"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
@@ -9094,12 +9481,12 @@ Do you want to create it?</source>
         <translation type="obsolete">&amp;DVI-&gt;PS</translation>
     </message>
     <message>
-        <location line="-131"/>
+        <location line="-119"/>
         <source>Previous mark</source>
         <translation>Marcador anterior</translation>
     </message>
     <message>
-        <location line="-201"/>
+        <location line="-209"/>
         <source>Asymptote Commands</source>
         <translation type="unfinished">Órdenes de Asymptote</translation>
     </message>
@@ -9109,32 +9496,32 @@ Do you want to create it?</source>
         <translation type="unfinished">Órdenes de PStricks</translation>
     </message>
     <message>
-        <location line="+4604"/>
+        <location line="+4659"/>
         <source>Can&apos;t detect the file name</source>
         <translation>No se puede detectar el nombre del archivo</translation>
     </message>
     <message>
-        <location line="-4617"/>
+        <location line="-4672"/>
         <source>Greek letters</source>
         <translation>Letras Griegas</translation>
     </message>
     <message>
-        <location line="+223"/>
+        <location line="+231"/>
         <source>Goto Bookmark</source>
         <translation>Ir al marcador</translation>
     </message>
     <message>
-        <location line="+364"/>
+        <location line="+368"/>
         <source>User Manual...</source>
         <translation>Manual de Usuario...</translation>
     </message>
     <message>
-        <location line="-460"/>
+        <location line="-471"/>
         <source>Save A&amp;ll</source>
         <translation>Guardar T&amp;odo</translation>
     </message>
     <message>
-        <location line="+226"/>
+        <location line="+221"/>
         <source>View PD&amp;F</source>
         <translation>Visualizar PD&amp;F</translation>
     </message>
@@ -9143,13 +9530,13 @@ Do you want to create it?</source>
         <translation type="obsolete">&lt;archivo actual&gt;</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+156"/>
         <location line="+5"/>
         <source>Level %1</source>
         <translation>Nivel %1</translation>
     </message>
     <message>
-        <location line="+6472"/>
+        <location line="+6688"/>
         <location line="+11"/>
         <source>Add to favorites</source>
         <translation>Agregar a favoritos</translation>
@@ -9167,7 +9554,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Por favor confirmar</translation>
     </message>
     <message>
-        <location line="-2716"/>
+        <location line="-2872"/>
         <source>Quick Start</source>
         <translation>Inicio rápido</translation>
     </message>
@@ -9176,14 +9563,14 @@ Do you want to create it?</source>
         <translation type="obsolete">Compilación rápida</translation>
     </message>
     <message>
-        <location line="-3663"/>
-        <location line="+5870"/>
+        <location line="-3706"/>
+        <location line="+6020"/>
         <source>Unindent Section</source>
         <translation>Disminuir Sangría a la Sección</translation>
     </message>
     <message>
-        <location line="-5871"/>
-        <location line="+5870"/>
+        <location line="-6021"/>
+        <location line="+6020"/>
         <source>Indent Section</source>
         <translation>Aumentar Sangría de la sección</translation>
     </message>
@@ -9197,7 +9584,7 @@ Do you want to create it?</source>
 ¿Deseas guardarlo antes de cerrar?</translation>
     </message>
     <message>
-        <location line="-6479"/>
+        <location line="-6641"/>
         <source>Favorites</source>
         <translation>Favoritos</translation>
     </message>
@@ -9211,14 +9598,13 @@ Do you want to create it?</source>
         <translation type="obsolete">Error anterior</translation>
     </message>
     <message>
-        <location line="+254"/>
+        <location line="+264"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>Co&amp;nvertir a LaTeX</translation>
     </message>
     <message>
-        <location line="+319"/>
         <source>Define Current Document as &apos;&amp;Master Document&apos;</source>
-        <translation>Definir el documento actual como «Documento &amp;Maestro»</translation>
+        <translation type="obsolete">Definir el documento actual como «Documento &amp;Maestro»</translation>
     </message>
     <message>
         <source>User &amp;Commands</source>
@@ -9229,13 +9615,13 @@ Do you want to create it?</source>
         <translation type="obsolete">Modo normal (documento principal actual):</translation>
     </message>
     <message>
-        <location line="-164"/>
+        <location line="+139"/>
         <source>&amp;Wizards</source>
         <translation>&amp;Asistentes</translation>
     </message>
     <message>
-        <location line="+2325"/>
-        <location line="+2210"/>
+        <location line="+2416"/>
+        <location line="+2250"/>
         <location line="+28"/>
         <source>No document open</source>
         <translation>No hay ningun documento abierto</translation>
@@ -9245,18 +9631,18 @@ Do you want to create it?</source>
         <translation type="obsolete">Marcador sin nombre</translation>
     </message>
     <message>
-        <location line="-2979"/>
-        <location line="+50"/>
+        <location line="-3058"/>
+        <location line="+54"/>
         <source>Save and Close</source>
         <translation>Guardar y cerrar</translation>
     </message>
     <message>
-        <location line="-2045"/>
+        <location line="-2095"/>
         <source>Accented letters</source>
         <translation>Letras con acento</translation>
     </message>
     <message>
-        <location line="+4978"/>
+        <location line="+5103"/>
         <source>Text Analysis</source>
         <translation>Análisis de texto</translation>
     </message>
@@ -9266,32 +9652,31 @@ Do you want to create it?</source>
         <translation>El generador de texto aleatorio construye nuevo texto a partir de palabras existentes, así que necesitas abrir algún arhivo de texto</translation>
     </message>
     <message>
-        <location line="-4120"/>
         <source>Master Document</source>
-        <translation>Documento Maestro</translation>
+        <translation type="obsolete">Documento Maestro</translation>
     </message>
     <message>
         <source>Delete the output files generated by LaTeX?</source>
         <translation type="obsolete">¿Eliminar los archivos de salida generados por LaTeX?</translation>
     </message>
     <message>
-        <location line="-865"/>
+        <location line="-5110"/>
         <source>Tikz Commands</source>
         <translation type="unfinished">Órdenes de Tikz</translation>
     </message>
     <message>
-        <location line="+320"/>
-        <location line="+97"/>
+        <location line="+315"/>
+        <location line="+96"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliografía</translation>
     </message>
     <message>
-        <location line="-214"/>
+        <location line="-200"/>
         <source>Next mark</source>
         <translation>Marcador siguiente</translation>
     </message>
     <message>
-        <location line="+134"/>
+        <location line="+122"/>
         <source>Vie&amp;w PS</source>
         <translation>Visuali&amp;zar PS</translation>
     </message>
@@ -9304,7 +9689,7 @@ Do you want to create it?</source>
         <translation type="obsolete">&quot;Siguiente&quot; cambio</translation>
     </message>
     <message>
-        <location line="+30"/>
+        <location line="+31"/>
         <source>Check Spelling...</source>
         <translation>Revisión Ortográfica...</translation>
     </message>
@@ -9335,7 +9720,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+1"/>
-        <location filename="texmaker.cpp" line="-683"/>
+        <location filename="texmaker.cpp" line="-680"/>
         <source>Central</source>
         <translation>Central</translation>
     </message>
@@ -9429,7 +9814,7 @@ Do you want to create it?</source>
         <translation type="unfinished">No avisarme más.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+116"/>
+        <location filename="texmaker.cpp" line="+114"/>
         <source>TeX files</source>
         <translation>Archivos fuente de TeX</translation>
     </message>
@@ -9465,19 +9850,19 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+8000"/>
+        <location line="+8178"/>
         <location line="+9"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location line="-7839"/>
+        <location line="-8015"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Marcadores</translation>
     </message>
     <message>
-        <location line="+115"/>
+        <location line="+116"/>
         <source>New From &amp;Template...</source>
         <translation>Nuevo desde &amp;Plantilla...</translation>
     </message>
@@ -9622,22 +10007,40 @@ Do you want to create it?</source>
         <translation type="unfinished">Depurar pila de deshacer</translation>
     </message>
     <message>
-        <location line="+9"/>
+        <location line="+8"/>
+        <source>&amp;Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Select All &amp;Occurences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Expand Selection to Word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Expand Selection to Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>&amp;Line Operations</source>
         <translation>Ajustes de &amp;Linea</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Erase &amp;Line</source>
-        <translation>Borrar &amp;Línea</translation>
+        <translation type="obsolete">Borrar &amp;Línea</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Erase until E&amp;nd of Line</source>
-        <translation>Borrar hasta fi&amp;nal de línea</translation>
+        <translation type="obsolete">Borrar hasta fi&amp;nal de línea</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+4"/>
         <source>Move Line &amp;Up</source>
         <translation type="unfinished">Mover Líneas &amp;Arriba</translation>
     </message>
@@ -9647,12 +10050,7 @@ Do you want to create it?</source>
         <translation type="unfinished">Mover Líneas A&amp;bajo</translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Duplicate Line</source>
-        <translation>Duplicar Línea</translation>
-    </message>
-    <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>&amp;Text Operations</source>
         <translation>&amp;Operaciones de texto</translation>
     </message>
@@ -9678,17 +10076,17 @@ Do you want to create it?</source>
         <translation type="unfinished">Capitalizar (inteligente)</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>&amp;Searching</source>
         <translation>&amp;Búsqueda</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+4"/>
         <source>Continue F&amp;ind</source>
         <translation>Continuar Bú&amp;squeda</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-2"/>
         <source>Find &amp;Next</source>
         <translation type="unfinished">Buscar &amp;Siguiente</translation>
     </message>
@@ -9698,7 +10096,7 @@ Do you want to create it?</source>
         <translation>Buscar &amp;Anterior</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
         <source>&amp;Count</source>
         <translation type="unfinished">&amp;Contar</translation>
     </message>
@@ -9747,7 +10145,7 @@ Do you want to create it?</source>
         <translation>Avanzar</translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+9"/>
         <source>Unnamed Bookmark</source>
         <translation>Marcador Sin nombre</translation>
     </message>
@@ -9832,7 +10230,7 @@ Do you want to create it?</source>
         <translation type="unfinished">Siguiente Bad Box</translation>
     </message>
     <message>
-        <location line="+19"/>
+        <location line="+5"/>
         <source>Re&amp;name Environment</source>
         <translation>Re&amp;nombrar Entorno</translation>
     </message>
@@ -9917,12 +10315,12 @@ Do you want to create it?</source>
         <translation>Detener Compilación</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>&amp;Glossary</source>
         <translation>&amp;Glosario</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+1"/>
         <source>&amp;Index</source>
         <translation>&amp;Índice</translation>
     </message>
@@ -9999,6 +10397,11 @@ Do you want to create it?</source>
         <translation>Limpi&amp;ar los archivos auxiliares...</translation>
     </message>
     <message>
+        <location line="+1"/>
+        <source>&amp;Open Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location line="+2"/>
         <source>View &amp;Log</source>
         <translation type="unfinished">Ver &amp;Archivo de registro</translation>
@@ -10013,7 +10416,7 @@ Do you want to create it?</source>
         <translation>C&amp;onvertir Fuente a Html...</translation>
     </message>
     <message>
-        <location line="+10"/>
+        <location line="+7"/>
         <source>Find Word Repetitions...</source>
         <translation>Encontrar repeticiones de palabras...</translation>
     </message>
@@ -10144,7 +10547,12 @@ Do you want to create it?</source>
         <translation type="unfinished">Documentos Abiertos</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+2"/>
+        <source>List Of Hidden Documents</source>
+        <translation type="unfinished">Lista de documentos ocultos</translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Focus Editor</source>
         <translation type="unfinished">Editor</translation>
     </message>
@@ -10191,16 +10599,37 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+12"/>
+        <source>Editor Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Zoom In</source>
+        <translation type="unfinished">Ampliar</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Zoom Out</source>
+        <translation type="unfinished">Reducir</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Reset Zoom</source>
+        <translation type="unfinished">Restablecer zoom</translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Align Windows</source>
         <translation>Alinear Ventanas</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="+2"/>
+        <location line="+2"/>
         <source>Fullscreen Mode</source>
         <translation>Modo de pantalla Completa</translation>
     </message>
     <message>
-        <location line="+13"/>
+        <location line="+7"/>
         <source>Highlighting</source>
         <translation type="unfinished">Destacar</translation>
     </message>
@@ -10220,13 +10649,12 @@ Do you want to create it?</source>
         <translation>Gu&amp;ardar Perfil...</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Save Current Settings</source>
         <comment>menu</comment>
-        <translation>Guardar Ajustes Actuales</translation>
+        <translation type="obsolete">Guardar Ajustes Actuales</translation>
     </message>
     <message>
-        <location line="+8"/>
+        <location line="+24"/>
         <source>LaTeX Reference...</source>
         <translation>Referencia de LaTeX...</translation>
     </message>
@@ -10242,28 +10670,61 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+21"/>
-        <location line="+5872"/>
+        <location line="+6022"/>
         <source>Paste Before</source>
         <translation>Pegar antes</translation>
     </message>
     <message>
-        <location line="-5871"/>
-        <location line="+5872"/>
+        <location line="-6021"/>
+        <location line="+6022"/>
         <source>Paste After</source>
         <translation>Pegar después</translation>
     </message>
     <message>
-        <location line="-5652"/>
+        <location line="-5802"/>
         <source>Go to bookmark</source>
         <translation type="unfinished">Ir al marcador</translation>
     </message>
     <message>
-        <location line="+307"/>
-        <source>Do you want to debug a SyncTeX file?</source>
-        <translation type="unfinished"></translation>
+        <location line="+43"/>
+        <source>Automatic</source>
+        <translation>Automático</translation>
     </message>
     <message>
-        <location line="+687"/>
+        <location line="+1"/>
+        <source>Automatic root document detection active</source>
+        <translation type="unfinished">Activa la detección automática del documento principal</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Explicit</source>
+        <translation type="unfinished">&amp;Explícito</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Root</source>
+        <comment>explicit root document</comment>
+        <translation type="unfinished">Raíz</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Explict root document:
+%1</source>
+        <translation type="unfinished">Documento principal:
+%1</translation>
+    </message>
+    <message>
+        <location line="+262"/>
+        <source>Do you want to debug a SyncTeX file?</source>
+        <translation>¿Desea depurar un archivo SyncTeX?</translation>
+    </message>
+    <message>
+        <location line="+348"/>
+        <source>Could not write template data:</source>
+        <translation type="unfinished">No se pudo escribir los datos de plantilla:</translation>
+    </message>
+    <message>
+        <location line="+367"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation type="unfinished">Este pdf no se puede sincronizar más  con el código  fuente tex porque el nombre del archivo de origen se ha cambiado debido a una operación de Guardar como. Se debe volver a compilar el archivo renombrado y ver su resultado.</translation>
     </message>
@@ -10293,19 +10754,30 @@ Do you want to create it?</source>
         <translation type="unfinished">Permisos verbose</translation>
     </message>
     <message>
-        <location line="+171"/>
-        <location line="+31"/>
-        <location line="+78"/>
+        <location line="+49"/>
+        <location line="+54"/>
+        <source>Close without Saving</source>
+        <translation type="unfinished">Cerrar sin guardar</translation>
+    </message>
+    <message>
+        <location line="+73"/>
+        <location line="+45"/>
+        <location line="+81"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>El archivo &quot;%1&quot; no existe. ¿Quieres eliminarlo de la lista de archivos recientes?</translation>
     </message>
     <message>
-        <location line="+125"/>
+        <location line="+123"/>
         <source>The following files could not be loaded:</source>
         <translation>Los siguientes archivos no se pudieron cargar:</translation>
     </message>
     <message>
-        <location line="+1948"/>
+        <location line="+1015"/>
+        <source>Unable to write to settings file %1</source>
+        <translation type="unfinished">No se puede escribir en el archivo de configuración %1</translation>
+    </message>
+    <message>
+        <location line="+922"/>
         <source>Quick Beamer Presentation</source>
         <translation>Crear presentación con Beamer</translation>
     </message>
@@ -10329,24 +10801,64 @@ confía en este documento)
 (c) No, no utilice la orden &quot;%3&quot; y ejecute la orden predeterminada &quot;%2&quot;</translation>
     </message>
     <message>
-        <location line="+176"/>
+        <location line="+175"/>
         <source>Error:</source>
         <translation>Error:</translation>
     </message>
     <message>
-        <location line="+1523"/>
-        <location line="+40"/>
+        <location line="+42"/>
+        <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;h4&gt;Cambio de los accesos directos predeterminados&lt;/h4&gt;&lt;p&gt;Conforme avanza el tiempo, los accesos directos de las herramientas principales se han convertido en algo fragmentado. Adicionalmente, en parte se superponen con teclas estándar. En particular, F1, F3, F10, F11 y F12 tienen reservada una función significativa en algunos sistemas.&lt;/p&gt;&lt;p&gt;Hemos decidido establecer esta asignación a favor de un diseño más coherente::&lt;/p&gt;&lt;ul&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt; se moverá de F1 a F5.&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Bibliografía&lt;/code&gt; se moverá de F11 a F8..&lt;/li&gt;&lt;li&gt;El acceso directo para &lt;code&gt;Glosario&lt;/code&gt; se moverá de F10 a F9.&lt;li&gt;La herramienta &lt;code&gt;Índice&lt;/code&gt; no tendrá más un atajo (antes F12) debido a que esta no es utilizada muy a menudo.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Lamentamos, que tenga que volver a aprender el atajo más utilizado para &lt;code&gt;Compilar &amp; Ver&lt;/code&gt;. Durante un período de transición, tanto F1 y F5 funcionarán. Al final, se reunirán las herramientas más importantes en el bloque central de F5-F8, lo cual  aumentará la usabilidad. Como de costumbre, todavía se puede personalizar totalmente los accesos directos en las opciones.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Do not show this message again.</source>
+        <translation type="unfinished">No mostrar este mensaje nuevamente.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>OK</source>
+        <translation>Aceptar</translation>
+    </message>
+    <message>
+        <location line="+656"/>
+        <source>You have to save the file before it can be defined as root document.</source>
+        <translation type="unfinished">Se debe  guardar el archivo antes de que pueda ser definido como un documento principal.</translation>
+    </message>
+    <message>
+        <location line="+894"/>
+        <source>Set as explicit root document</source>
+        <translation type="unfinished">Establecer como un documento principal</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Open all related documents</source>
+        <translation type="unfinished">Abrir todos los documentos relacionados</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Close all related documents</source>
+        <translation type="unfinished">Cerrar todos los documentos relacionados</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Remove explicit root document role</source>
+        <translation type="unfinished">Quitar como documento principal</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location line="+44"/>
         <source>Expand Subitems</source>
         <translation>Ampliar Subelementos</translation>
     </message>
     <message>
-        <location line="-39"/>
-        <location line="+40"/>
+        <location line="-43"/>
+        <location line="+44"/>
         <source>Collapse Subitems</source>
         <translation>Contraer Subelementos</translation>
     </message>
     <message>
-        <location line="-39"/>
+        <location line="-43"/>
         <source>Expand all documents</source>
         <translation type="unfinished">Expandir todos los documentos</translation>
     </message>
@@ -10356,34 +10868,70 @@ confía en este documento)
         <translation type="unfinished">Contraer todos los documentos</translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="+10"/>
+        <source>Find Usages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+14"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
         <translation type="unfinished">Inserte %1 a la etiqueta</translation>
     </message>
     <message>
-        <location line="+1406"/>
+        <location line="+1420"/>
         <source>Failed to read profile file %1.</source>
         <translation>No se ha podido leer el archivo de perfil %1.</translation>
     </message>
     <message>
-        <location line="+914"/>
+        <location line="+828"/>
+        <source>A backtrace was written to
+%1
+Please provide this file if you send a bug report.
+
+</source>
+        <translation type="unfinished">Un backtrace fue escrito para
+%1
+Proporcione este archivo si se envía un informe de error.
+
+</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>TeXstudio has CRASHED due to a %1.
+
+%2Do you want to keep TeXstudio running? This may cause data corruption.</source>
+        <translation type="unfinished">TeXstudio se ha bloqueado debido a %1.
+
+%2¿Quieres mantener a TeXstudio en ejecución? Esto puede causar daños en los datos.</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>TeXstudio has been paused due to a possible endless loop.
+
+%1Do you want to keep the program running? This may cause data corruption.</source>
+        <translation type="unfinished">TeXstudio se ha detenido debido a un posible bucle sin fin.
+
+%1¿Quieres mantener el programa en ejecución? Esto puede causar daños en los datos.</translation>
+    </message>
+    <message>
+        <location line="+155"/>
         <source>System Report</source>
         <translation>Informe del sistema</translation>
     </message>
     <message>
-        <location line="-8386"/>
-        <location line="+319"/>
+        <location line="-8644"/>
+        <location line="+337"/>
         <source>Insert language as TeX comment</source>
         <translation>Insertar el idioma como un Comentario TeX</translation>
     </message>
     <message>
-        <location line="-356"/>
+        <location line="-371"/>
         <source>Show Log Markers</source>
         <translation>Mostrar Registro de Marcadores</translation>
     </message>
     <message>
-        <location line="+151"/>
+        <location line="+149"/>
         <source>Grammar Mistake</source>
         <translation>Error de Gramática</translation>
     </message>
@@ -10393,24 +10941,23 @@ confía en este documento)
         <translation type="unfinished">Error especial de Gramática %1</translation>
     </message>
     <message>
-        <location line="+354"/>
         <source>Normal Mode (current master document: </source>
-        <translation>Modo Normal (documento maestro actual: </translation>
+        <translation type="obsolete">Modo Normal (documento maestro actual: </translation>
     </message>
     <message>
-        <location line="+62"/>
+        <location line="+438"/>
         <source>
 included document in %1</source>
         <translation>
 documento incluido en %1</translation>
     </message>
     <message>
-        <location line="+274"/>
+        <location line="+275"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>No tiene permisos para leer este archivo.%1.</translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+57"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation type="unfinished">Un Archivo restaurado dañado de %1 se ha encontrado para &quot;%2&quot;.
@@ -10431,25 +10978,25 @@ Por favor, pónga la biblioteca de ejecución correcta (por ejemplo. .dll o .so)
 De lo contrario puede haber errores al azar y crashes.</translation>
     </message>
     <message>
-        <location line="+127"/>
-        <location line="+48"/>
+        <location line="+145"/>
+        <location line="+59"/>
         <source>File not found:</source>
         <translation>Archivo no encontrado:</translation>
     </message>
     <message>
-        <location line="-44"/>
-        <location line="+48"/>
+        <location line="-55"/>
+        <location line="+59"/>
         <source>You do not have read permission to this file:</source>
         <translation>No tiene permisos para leer este archivo:</translation>
     </message>
     <message>
-        <location line="+409"/>
-        <location line="+50"/>
+        <location line="+406"/>
+        <location line="+54"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>El documento &quot;%1&quot; ha sido modificado. ¿Desea guardarlo antes de cerrar?</translation>
     </message>
     <message>
-        <location line="+679"/>
+        <location line="+714"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Insertar saltos de línea después de tantos caracteres:</translation>
     </message>
@@ -10474,7 +11021,7 @@ De lo contrario puede haber errores al azar y crashes.</translation>
         <translation>No se puede cargar la Base de datos del diccionario de sinónimos</translation>
     </message>
     <message>
-        <location line="+1583"/>
+        <location line="+1553"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Archivo Actual&gt;</translation>
     </message>
@@ -10503,7 +11050,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
 Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el visor de pdf interno.</translation>
     </message>
     <message>
-        <location line="+85"/>
+        <location line="+84"/>
         <source>Unknown internal command: %1</source>
         <translation type="unfinished">Orden interna Desconocida: %1</translation>
     </message>
@@ -10518,38 +11065,35 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
         <translation>No se pudo iniciar%1.</translation>
     </message>
     <message>
-        <location line="+43"/>
+        <location line="+114"/>
         <source>No open project or tex file to clean.</source>
         <translation>Ningún proyecto abierto o un Archivo tex para limpiar.</translation>
     </message>
     <message>
-        <location line="+215"/>
+        <location line="+214"/>
         <location line="+8"/>
         <source>Could not open browser</source>
         <translation>No se pudo abrir el navegador</translation>
     </message>
     <message>
-        <location line="+400"/>
         <source>You have to save the file before switching to master mode!</source>
-        <translation>!Hay que guardar el archivo antes de cambiar al modo maestro!</translation>
+        <translation type="obsolete">!Hay que guardar el archivo antes de cambiar al modo maestro!</translation>
     </message>
     <message>
-        <location line="+871"/>
+        <location line="+1303"/>
         <source>Close document</source>
         <translation>Cerrar el documento</translation>
     </message>
     <message>
-        <location line="+1"/>
         <source>Set this document as master document</source>
-        <translation>Establezca este documento como documento maestro</translation>
+        <translation type="obsolete">Establezca este documento como documento maestro</translation>
     </message>
     <message>
-        <location line="+2"/>
         <source>Remove master document role</source>
-        <translation>Retire el documento actual como documento maestro</translation>
+        <translation type="obsolete">Retire el documento actual como documento maestro</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+7"/>
         <source>Show all open documents in this tree</source>
         <translation type="unfinished">Mostrar todos los documentos abiertos en este árbol</translation>
     </message>
@@ -10569,7 +11113,7 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
         <translation type="unfinished">Mueva el documento al f&amp;inal</translation>
     </message>
     <message>
-        <location line="+21"/>
+        <location line="+25"/>
         <source>Insert Label</source>
         <translation>Insertar Etiqueta</translation>
     </message>
@@ -10583,7 +11127,7 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
         <translation>Crear Etiqueta</translation>
     </message>
     <message>
-        <location line="+726"/>
+        <location line="+749"/>
         <source>commit comment:</source>
         <translation type="unfinished">hacer un comentario:</translation>
     </message>
@@ -10598,7 +11142,7 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
         <translation>¡Atención: El diálogo se cierra automáticamente si el texto es editado manualmente!</translation>
     </message>
     <message>
-        <location line="+315"/>
+        <location line="+306"/>
         <source>Save Profile</source>
         <translation>Guardar Perfil</translation>
     </message>
@@ -10650,7 +11194,7 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
         <translation>Ha llegado al final del texto.</translation>
     </message>
     <message>
-        <location line="+241"/>
+        <location line="+258"/>
         <location line="+202"/>
         <location line="+3"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
@@ -10695,21 +11239,20 @@ presione &quot;Aceptar&quot; para mostrar las diferencias generadas por la subve
 Pulse el botón &quot;Cancelar&quot; para no hacer nada.</translation>
     </message>
     <message>
-        <location line="+90"/>
-        <location line="+84"/>
+        <location line="+91"/>
+        <location line="+89"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
         <translation>Emergencia de TeXstudio</translation>
     </message>
     <message>
-        <location line="-88"/>
         <source>TeXstudio has CRASHED due to a %1.
 Do you want to keep it running? This may cause data corruption.</source>
-        <translation>TeXstudio ha CRASHED debido a un %1.
+        <translation type="obsolete">TeXstudio ha CRASHED debido a un %1.
 ¿Quieres que siga funcionando? Esto puede causar daños en los datos.</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-87"/>
         <source>Yes, try to recover</source>
         <translation>Sí, tratar de recuperar</translation>
     </message>
@@ -10722,14 +11265,13 @@ Do you want to keep it running? This may cause data corruption.</source>
         <translation>No, forzar el cerrado del programa</translation>
     </message>
     <message>
-        <location line="-80"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 Do you want to keep the program running? This may cause data corruption.</source>
-        <translation>TeXstudio se ha detenido debido a un posible bucle infinito.
+        <translation type="obsolete">TeXstudio se ha detenido debido a un posible bucle infinito.
 ¿Quieres mantener el programa en ejecución? Esto puede causar daños en los datos.</translation>
     </message>
     <message>
-        <location line="+1"/>
+        <location line="-79"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation type="unfinished">Sí, detener el bucle y tratar de recuperar</translation>
     </message>
@@ -10758,12 +11300,12 @@ El mensaje ha sido detenido.
         <translation>Traté de forzar el cierre, pero no pasó nada.</translation>
     </message>
     <message>
-        <location line="-7282"/>
+        <location line="-7443"/>
         <source>Could not write template meta data:</source>
         <translation>No se pudo escribir los metadatos de la plantilla:</translation>
     </message>
     <message>
-        <location line="-1382"/>
+        <location line="-1419"/>
         <source>Session</source>
         <translation>Sesión</translation>
     </message>
@@ -10778,14 +11320,34 @@ El mensaje ha sido detenido.
         <translation>Guardar Sesión...</translation>
     </message>
     <message>
-        <location line="+292"/>
+        <location line="+73"/>
+        <source>Delete &amp;Line</source>
+        <translation type="unfinished">Borrar &amp;Línea</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Delete To &amp;End Of Line</source>
+        <translation type="unfinished">Borrar al &amp;final de la línea</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Delete From &amp;Start Of Line</source>
+        <translation type="unfinished">Borrar desde el &amp;inicio de la línea</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Du&amp;plicate Line</source>
+        <translation>Du&amp;plicar Línea</translation>
+    </message>
+    <message>
+        <location line="+207"/>
         <source>Add magic comments ...</source>
         <translation>Añadir comentario mágico ...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insert root document name as TeX comment</source>
-        <translation>Introducir el nombre del documento raíz como un comentario TeX</translation>
+        <translation type="unfinished">Introducir el nombre del documento principal como un comentario TeX</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -10793,12 +11355,39 @@ El mensaje ha sido detenido.
         <translation>Inserte la codificación del documento como un comentario TeX</translation>
     </message>
     <message>
-        <location line="+178"/>
+        <location line="+171"/>
+        <source>Save &amp;Current Settings</source>
+        <comment>menu</comment>
+        <translation type="unfinished">Guardar &amp;ajustes actuales</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Restore &amp;Default Settings...</source>
+        <translation type="unfinished">Restaurar La Configuración &amp;Predeterminada...</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Root Document</source>
+        <comment>menu</comment>
+        <translation type="unfinished">Documento Principal</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Detect &amp;Automatically</source>
+        <translation type="unfinished">Detectar &amp;Automáticamente</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Set Current Document As Explicit Root</source>
+        <translation type="unfinished">Establecer el Documento actual Como Documento principal</translation>
+    </message>
+    <message>
+        <location line="+10"/>
         <source>Packages Help...</source>
         <translation>Paquetes de Ayuda...</translation>
     </message>
     <message>
-        <location line="+1142"/>
+        <location line="+1176"/>
         <source>Loading of last session failed.</source>
         <translation>Cargar de la última sesión fallida.</translation>
     </message>
@@ -10816,7 +11405,7 @@ con este nombre se encuetra abierta en TeXstudio. Usted tiene que guardar o cerr
 este otro archivo antes de que pueda sobrescribirlo.</translation>
     </message>
     <message>
-        <location line="+449"/>
+        <location line="+471"/>
         <source>Load Session</source>
         <translation>Cargar Sesión</translation>
     </message>
@@ -10842,21 +11431,21 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
         <translation>Guardar de la sesión fallida.</translation>
     </message>
     <message>
-        <location line="-1787"/>
+        <location line="-1861"/>
         <source>List Of Open Documents</source>
         <translation>Lista de los documentos abiertos</translation>
     </message>
     <message>
-        <location line="+298"/>
+        <location line="+316"/>
         <location line="+1"/>
-        <location line="+3785"/>
+        <location line="+3828"/>
         <location line="+4"/>
         <location line="+1"/>
         <source>Encoding</source>
         <translation>Codificación</translation>
     </message>
     <message>
-        <location line="-3768"/>
+        <location line="-3811"/>
         <source>More Encodings...</source>
         <translation>Más codificaciones...</translation>
     </message>
@@ -10866,7 +11455,7 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
         <translation>Introducir la codificación como comentario TeX</translation>
     </message>
     <message>
-        <location line="+3753"/>
+        <location line="+3796"/>
         <source>Encoding Aliases: </source>
         <translation>Alias ​​de codificación: </translation>
     </message>
@@ -10874,7 +11463,7 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
 <context>
     <name>TextAnalysisDialog</name>
     <message>
-        <location filename="textanalysis.ui" line="+63"/>
+        <location filename="textanalysis.ui" line="+70"/>
         <location line="+28"/>
         <location line="+7"/>
         <location line="+7"/>
@@ -10899,13 +11488,13 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
         <translation>Cerrar</translation>
     </message>
     <message>
-        <location line="-14"/>
+        <location line="-21"/>
         <source>Count</source>
         <extracomment>count as verb</extracomment>
         <translation>Numerar</translation>
     </message>
     <message>
-        <location line="+211"/>
+        <location line="+218"/>
         <source>Fully ignore shorter words:</source>
         <translation>Omitir completamente las palabras cortas:</translation>
     </message>
@@ -10930,9 +11519,19 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
         <translation>Selección</translation>
     </message>
     <message>
-        <location filename="textanalysis.cpp" line="+47"/>
+        <location filename="textanalysis.cpp" line="+50"/>
         <source>Word/Phrase</source>
         <translation>Palabra/Frase</translation>
+    </message>
+    <message>
+        <location line="+366"/>
+        <source>CSV file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>All files</source>
+        <translation type="unfinished">Todos los archivos</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="-358"/>
@@ -10975,7 +11574,7 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
         <translation>Opciones</translation>
     </message>
     <message>
-        <location filename="textanalysis.cpp" line="+1"/>
+        <location filename="textanalysis.cpp" line="-365"/>
         <source>Count</source>
         <comment>count as noun</comment>
         <translation>Numerar como sustantivo</translation>
@@ -10986,12 +11585,12 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
         <translation>Caractéres en frases</translation>
     </message>
     <message>
-        <location line="-106"/>
+        <location line="-113"/>
         <source>Actions</source>
         <translation>Acciones</translation>
     </message>
     <message>
-        <location line="+212"/>
+        <location line="+219"/>
         <source>Minimum word length (all):</source>
         <translation>Longitud mínima de palabra (todas):</translation>
     </message>
@@ -11051,12 +11650,12 @@ Sí &quot;ignorar completamente&quot; es seleccionada, las palabras cortas son i
         <translation>Líneas de comentario</translation>
     </message>
     <message>
-        <location line="-51"/>
+        <location line="-58"/>
         <source>Search selection in the document</source>
         <translation>Buscar selección en el documento</translation>
     </message>
     <message>
-        <location line="+189"/>
+        <location line="+196"/>
         <source>Minimum phrase length:</source>
         <translation>Longitud mínima de la frase:</translation>
     </message>
@@ -11081,12 +11680,12 @@ Sí &quot;ignorar completamente&quot; es seleccionada, las palabras cortas son i
         <translation>Líneas totales</translation>
     </message>
     <message>
-        <location line="-42"/>
+        <location line="-49"/>
         <source>Text Analysis</source>
         <translation>Análisis de texto</translation>
     </message>
     <message>
-        <location line="+358"/>
+        <location line="+365"/>
         <source>Maximum words per phrase:</source>
         <translation>Número máximo de palabras por frase:</translation>
     </message>
@@ -11096,7 +11695,13 @@ Sí &quot;ignorar completamente&quot; es seleccionada, las palabras cortas son i
         <translation>Mostrar todas las frases</translation>
     </message>
     <message>
-        <location line="-13"/>
+        <location line="-184"/>
+        <location filename="textanalysis.cpp" line="+365"/>
+        <source>CSV Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+171"/>
         <source>Possible Options:
 &quot;Show all&quot;: All phrases are shown.
 &quot;Minimum phrase length&quot;: A phrase is only shown, if it has at least this many characters. (e.g. &quot;a test&quot; has 6 characters)
@@ -11142,7 +11747,7 @@ De lo contrario, se ignoran los caracteres finales.</translation>
         <translation>Determina si todo el documento, sólo la selección, o sólo un determinado capítulo se analiza.</translation>
     </message>
     <message>
-        <location filename="textanalysis.cpp" line="+1"/>
+        <location filename="textanalysis.cpp" line="-364"/>
         <source>Count relative</source>
         <translation>Cuenta relativa</translation>
     </message>
@@ -11243,7 +11848,7 @@ De lo contrario, se ignoran los caracteres finales.</translation>
 <context>
     <name>UniversalInputDialogScript</name>
     <message>
-        <location filename="scriptengine.cpp" line="+609"/>
+        <location filename="scriptengine.cpp" line="+608"/>
         <source>Invalid default value: %1</source>
         <translation>Valor predeterminado no válido: %1</translation>
     </message>
@@ -11257,7 +11862,7 @@ De lo contrario, se ignoran los caracteres finales.</translation>
 <context>
     <name>UpdateChecker</name>
     <message>
-        <location filename="updatechecker.cpp" line="+42"/>
+        <location filename="updatechecker.cpp" line="+49"/>
         <source>Never</source>
         <comment>last update</comment>
         <translation>Nunca</translation>
@@ -11362,7 +11967,7 @@ De lo contrario, se ignoran los caracteres finales.</translation>
     </message>
     <message>
         <location line="+17"/>
-        <location filename="usermenudialog.cpp" line="+210"/>
+        <location filename="usermenudialog.cpp" line="+211"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>

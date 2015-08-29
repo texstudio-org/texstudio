@@ -24,6 +24,7 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 	mLoadedSymbols=false;
 	mSymbolList=SymbolList;
 	mMap=Map;
+    countOfItems=0;
 	if(SymbolList.startsWith("!")){
 	    loadSymbols(QStringList(),mMap);
 	}

@@ -28,7 +28,7 @@
 \clip#*/tikzpicture
 \graph#/tikzpicture
 \useasboundingbox#*
-\node[options](node name)#s/tikzpicture#(%node)
+\node[options%keyvals](node name)#s/tikzpicture#(%node)
 \node#/tikzpicture
 \coordinate#
 \matrix#
@@ -45,8 +45,8 @@
 \pgfmatrixemptycode#*
 \tikzdeclarecoordinatesystem{arg1}#*
 \tikzaliascoordinatesystem{arg1}#*
-\usetikzlibrary#
-#keyvals:1\usetikzlibrary#c
+\usetikzlibrary{keyvals}#
+#keyvals:\usetikzlibrary#c
 shapes
 arrows
 positioning

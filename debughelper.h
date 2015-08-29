@@ -5,7 +5,7 @@
 #include "smallUsefulFunctions.h"
 
 
-void print_backtrace(const QString& message);
+QString print_backtrace(const QString& message);
 
 void recover(); //defined in texmaker.cpp
 
@@ -20,6 +20,7 @@ class Guardian: public SafeThread{
 	
 	void run();
 public:
+    Guardian():SafeThread(),slowOperations(0){}
 	static void summon();
 	static void calm();
 	static void shutdown();

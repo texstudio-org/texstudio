@@ -16,6 +16,8 @@ class SearchResultModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
+	static const int LineNumberRole;
+	
 	SearchResultModel(QObject *parent=0);
 	~SearchResultModel();
 	
@@ -30,6 +32,7 @@ public:
 	
 	void addSearch(const SearchInfo& search);
 	void removeSearch(const QDocument* doc);
+	void removeAllSearches();
     QList<SearchInfo> getSearches();
 	void clear();
 	QDocument* getDocument(const QModelIndex &index);
@@ -43,19 +46,24 @@ public:
         isCaseSensitive=mIsCaseSensitive;
         isRegExp=mIsRegExp;
     }
-    void setReplacementText(QString text){
-        mReplacementText=text;
-    }
+    void setReplacementText(QString text) { mReplacementText=text; }
+	QString replacementText() { return mReplacementText; }
+	
+	void setAllowPartialSelection(bool b) { mAllowPartialSelection=b; }
 
     QList<QPair<int,int> > getSearchResults(const QString &text) const;
 
 private:
+	QVariant dataForResultEntry(const SearchInfo &search, int lineIndex, int role) const;
+	QVariant dataForSearchResult(const SearchInfo &search, int role) const;
 	QString prepareResultText(const QString& text) const;
     QString prepareReplacedText(const QString& text) const;
 	
 	QList< SearchInfo > m_searches;
     QString mExpression,mReplacementText;
 	bool mIsWord,mIsCaseSensitive,mIsRegExp;
+	bool mAllowPartialSelection;
+	QFont mLineFont;
 };
 
 #endif // SEARCHRESULTMODEL_H

@@ -1,7 +1,7 @@
 /* poppler-qt.h: qt interface to poppler
  * Copyright (C) 2005, Net Integration Technologies, Inc.
  * Copyright (C) 2005, 2007, Brad Hards <bradh@frogmouth.net>
- * Copyright (C) 2005-2013, Albert Astals Cid <aacid@kde.org>
+ * Copyright (C) 2005-2014, Albert Astals Cid <aacid@kde.org>
  * Copyright (C) 2005, Stefan Kebekus <stefan.kebekus@math.uni-koeln.de>
  * Copyright (C) 2006-2011, Pino Toscano <pino@kde.org>
  * Copyright (C) 2009 Shawn Rutledge <shawn.t.rutledge@gmail.com>
@@ -12,7 +12,7 @@
  * Copyright (C) 2012, Guillermo A. Amaral B. <gamaral@kde.org>
  * Copyright (C) 2012, Fabio D'Urso <fabiodurso@hotmail.it>
  * Copyright (C) 2012, Tobias Koenig <tobias.koenig@kdab.com>
- * Copyright (C) 2012 Adam Reichold <adamreichold@myopera.com>
+ * Copyright (C) 2012, 2014, 2015 Adam Reichold <adamreichold@myopera.com>
  * Copyright (C) 2012, 2013 Thomas Freitag <Thomas.Freitag@alfa.de>
  * Copyright (C) 2013 Anthony Granger <grangeranthony@gmail.com>
  *
@@ -580,6 +580,16 @@ delete it;
 	enum SearchMode { CaseSensitive,   ///< Case differences cause no match in searching
 			  CaseInsensitive  ///< Case differences are ignored in matching
 	};
+
+        /**
+           Flags to modify the search behaviour \since 0.31
+        */
+        enum SearchFlag
+        {
+            IgnoreCase = 0x00000001,    ///< Case differences are ignored
+            WholeWords = 0x00000002    ///< Only whole words are matched
+        };
+        Q_DECLARE_FLAGS( SearchFlags, SearchFlag )
 	
 	/**
 	   Returns true if the specified text was found.
@@ -592,8 +602,22 @@ delete it;
 	   \param rotate the rotation to apply for the search order
 	   \since 0.14
 	**/
-	bool search(const QString &text, double &rectLeft, double &rectTop, double &rectRight, double &rectBottom, SearchDirection direction, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
-	
+        Q_DECL_DEPRECATED bool search(const QString &text, double &rectLeft, double &rectTop, double &rectRight, double &rectBottom, SearchDirection direction, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
+
+        /**
+           Returns true if the specified text was found.
+
+           \param text the text the search
+           \param rectXXX in all directions is used to return where the text was found, for NextResult and PreviousResult
+                       indicates where to continue searching for
+           \param direction in which direction do the search
+           \param flags the flags to consider during matching
+           \param rotate the rotation to apply for the search order
+
+           \since 0.31
+        **/
+        bool search(const QString &text, double &rectLeft, double &rectTop, double &rectRight, double &rectBottom, SearchDirection direction, SearchFlags flags = 0, Rotation rotate = Rotate0) const;
+
 	/**
 	   Returns a list of all occurrences of the specified text on the page.
 	   
@@ -605,7 +629,20 @@ delete it;
 	   
 	   \since 0.22
 	**/
-	QList<QRectF> search(const QString &text, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
+        Q_DECL_DEPRECATED QList<QRectF> search(const QString &text, SearchMode caseSensitive, Rotation rotate = Rotate0) const;
+
+        /**
+           Returns a list of all occurrences of the specified text on the page.
+
+           \param text the text to search
+           \param flags the flags to consider during matching
+           \param rotate the rotation to apply for the search order
+
+           \warning Do not use the returned QRectF as arguments of another search call because of truncation issues if qreal is defined as float.
+
+           \since 0.31
+        **/
+        QList<QRectF> search(const QString &text, SearchFlags flags = 0, Rotation rotate = Rotate0) const;
 
 	/**
 	   Returns a list of text of the page
@@ -688,6 +725,21 @@ delete it;
 	       when no longer required.
 	*/
 	QList<Annotation*> annotations() const;
+
+
+	/**
+		Returns the annotations of the page
+
+		\param subtypes the subtypes of annotations you are interested in
+
+		\note If you call this method twice, you get different objects
+		      pointing to the same annotations (see Annotation).
+		      The caller owns the returned objects and they should be deleted
+		      when no longer required.
+
+		\since 0.28
+	*/
+	QList<Annotation*> annotations(const QSet<Annotation::SubType> &subtypes) const;
 
 	/**
 	 Adds an annotation to the page
@@ -977,6 +1029,14 @@ delete it;
 	   shown relative to each other.
 	*/
 	PageLayout pageLayout() const;
+
+	/**
+	   The predominant reading order for text as supplied by
+	   the document's viewer preferences.
+
+	   \since 0.26
+	*/
+	Qt::LayoutDirection textDirection() const;
 
 	/**
 	   Provide the passwords required to unlock the document
@@ -1764,6 +1824,7 @@ height = dummy.height();
 }
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::Page::PainterFlags)
+Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::Page::SearchFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::Document::RenderHints)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::PDFConverter::PDFOptions)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Poppler::PSConverter::PSOptions)

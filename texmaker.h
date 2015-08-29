@@ -34,6 +34,7 @@
 #include "textanalysis.h"
 #include "toolwidgets.h"
 #include "txstabwidget.h"
+#include "searchresultwidget.h"
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
 #include "PDFDocument.h"
@@ -81,7 +82,7 @@ public:
     Q_INVOKABLE QString getRelativeFileName(const QString & file, QString basepath, bool keepSuffix=false); //provide function for scripts
 	QByteArray windowstate;
 	bool tobemaximized,tobefullscreen;
-
+	
 public slots:
     LatexEditorView* load(const QString &f , bool asProject = false, bool hidden = false, bool recheck=true,bool dontAsk=false);
 	void executeCommandLine(const QStringList& args, bool realCmdLine);
@@ -123,8 +124,9 @@ private:
 	void createStatusBar();
 	bool ActivateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
 	bool saveAllFilesForClosing(); // checks for unsaved files and asks the user if they should be saved
+	bool saveFilesForClosing(const QList<LatexEditorView*>& editors); // checks for unsaved files and asks the user if they should be saved
 	void closeAllFiles();
-	bool canCloseNow(); //asks the user and close all files, and prepares to exit txs
+	bool canCloseNow(bool saveSettings=true); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
 	
 	void updateUserMacros(bool updateMenu = true);
@@ -160,9 +162,13 @@ private:
 	QActionGroup *biblatexEntryActions;
 	QActionGroup *bibTypeActions;
 	QActionGroup *highlightLanguageActions;
-
+	QActionGroup *actgroupRootDocMode;
+	QAction *actRootDocAutomatic;
+	QAction *actRootDocExplicit;
+	QAction *actRootDocSetExplicit;
+	
 	//toolbars
-	QAction *ToggleAct, *ToggleRememberAct;
+	QAction *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
 	
 	QLabel *statusLabelMode, *statusLabelProcess;
@@ -243,6 +249,7 @@ protected slots:
 	void fileOpenRecent();
 	void fileOpenAllRecent();
 	void fileRecentList();
+	void viewDocumentListHidden();
 	void fileDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column);
 	void viewDocumentList();
 	void viewDocumentOpenFromChoosen(const QString& doc, int duplicate, int lineNr, int column);
@@ -285,7 +292,7 @@ private slots:
 	void declareConflictResolved();
 protected slots:	
     void openExternalFile();
-	void openExternalFile(const QString& name,const QString& defaultExt="tex",LatexDocument *doc=0); // signaled by latexViewer to open specific file
+	void openExternalFile(QString name, const QString& defaultExt="tex", LatexDocument *doc=0); // signaled by latexViewer to open specific file
 	
 	void editUndo();
 	void editRedo();
@@ -312,8 +319,9 @@ protected slots:
 	void editUnIndentSection();
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
-	void editEraseLine();
-	void editEraseEndLine();
+	void editDeleteLine();
+	void editDeleteToEndOfLine();
+	void editDeleteFromStartOfLine();
 	void editMoveLineUp();
 	void editMoveLineDown();
 	void editDuplicateLine();
@@ -327,7 +335,10 @@ protected slots:
 	void editInsertRefToNextLabel(const QString &refCmd="\\ref", bool backward=false);
 	void editInsertRefToPrevLabel(const QString &refCmd="\\ref");
 	void editFindGlobal();
-    void updateFindGlobal(int scope);
+	void runSearch(SearchQuery *query);
+	void findLabelUsages();
+	void findLabelUsages(LatexDocument *doc, const QString &labelText);
+	SearchResultWidget * searchResultWidget();
 	
 	void findWordRepetions();
 	void findNextWordRepetion();
@@ -335,6 +346,8 @@ protected slots:
 	void StructureContextMenu(const QPoint& point);
 	void structureContextMenuCloseDocument();
 	void structureContextMenuSwitchMasterDocument();
+	void structureContextMenuOpenAllRelatedDocuments();
+	void structureContextMenuCloseAllRelatedDocuments();
 	void structureContextMenuExpandSubitems();
 	void structureContextMenuCollapseSubitems();
 	void structureContextMenuExpandAllDocuments();
@@ -354,6 +367,7 @@ protected slots:
 private slots:	
 	void ReadSettings(bool reread=false);
 	void SaveSettings(const QString& configName="");
+	void restoreDefaultSettings();
 	
 protected slots:	
 	void showMarkTooltipForLogMessage(QList<int> errors);
@@ -387,8 +401,7 @@ protected slots:
 	void callToolButtonAction();
 	void InsertFromAction();
 	void InsertBib();
-	void InsertStruct();
-    void CloseEnv();
+	void CloseEnv();
 	
 	void InsertBibEntryFromAction();
 	void InsertBibEntry(const QString& id="");
@@ -430,8 +443,8 @@ protected slots:
     void searchExtendToggled(bool toggled);
 
     void changeIconSize(int value);
-    void changeCentralIconSize(int value);
-    void changeSymbolSize(int value, bool changePanel=true);
+    void changeSecondaryIconSize(int value);
+    void changeSymbolGridIconSize(int value, bool changePanel=true);
 
 public slots:
 	void connectSubCommand(ProcessX* p, bool showStdoutLocallyDefault);
@@ -447,7 +460,9 @@ private slots:
 	bool runCommand(const QString& commandline, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 protected slots:	
 	void processNotification(const QString& message);
+	void openTerminal();
 	void CleanAll();
+	void checkShortcutChangeNotification(QAction *act);
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 	
 	void WebPublish();
@@ -474,7 +489,9 @@ protected slots:
 	void HelpAbout();
 	
 	void GeneralOptions();
-	void ToggleMode();
+	void setAutomaticRootDetection();
+	void setExplicitRootDocument(LatexDocument * doc);
+	void setCurrentDocAsExplicitRoot();
 	
 	void gotoNextDocument();
 	void gotoPrevDocument();
@@ -540,7 +557,7 @@ protected slots:
 	void fileInConflict();
 	void fileAutoReloading(QString fname);
 	
-	void jumpToSearch(QDocument* doc,int lineNumber);
+	void jumpToSearchResult(QDocument* doc, int lineNumber, const SearchQuery *query);
 	
 	void cursorPositionChanged();
 	void syncPDFViewer(QDocumentCursor cur, bool inForeground = true);
@@ -653,6 +670,7 @@ public:
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode& mode = QClipboard::Clipboard) const;
 	Q_INVOKABLE void setClipboardText(const QString& text, const QClipboard::Mode& mode = QClipboard::Clipboard);
 	Q_INVOKABLE int getVersion() const;
+	Q_INVOKABLE void simulateKeyPress(const QString &shortcut);
 	
 	static void recoverFromCrash();
 	

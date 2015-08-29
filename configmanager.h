@@ -38,7 +38,7 @@ public:
 	QSettings* readSettings(bool reread=false);
 	QSettings* saveSettings(const QString& saveName="");
 
-	bool execConfigDialog();
+	bool execConfigDialog(QWidget *parentToDialog);
 
 //public configuration
 
@@ -51,6 +51,9 @@ public:
     QHash<QString, int> editorKeys;
 	QSet<int> editorAvailableOperations;
 
+	//startup
+	bool checkLatexConfiguration;
+	
 	//build
 	BuildManager* buildManager; 
 	bool singleViewerInstance;
@@ -59,7 +62,8 @@ public:
 	int showStdoutOption; //never = 0, user commands, always
 	
 	//svn
-	bool autoCheckinAfterSave;
+    //bool autoCheckinAfterSave;
+    int autoCheckinAfterSaveLevel;
 	bool svnUndo;
 	bool svnKeywordSubstitution;
 	int svnSearchPathDepth;
@@ -68,7 +72,7 @@ public:
 	QPalette systemPalette; 
 	QString interfaceStyle;
 	QString interfaceFontFamily;
-    int guiToolbarIconSize,guiSymbolSize;
+    int guiToolbarIconSize,guiSymbolGridIconSize;
 	int guiSecondaryToolbarIconSize;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
@@ -143,6 +147,7 @@ public:
 	//files
 	QString lastDocument; //last opened document, for file open directory
 	QStringList recentFilesList, recentProjectList, recentSessionList;
+	QMap<QString, QString> recentFileHighlightLanguage;
 	int maxRecentFiles, maxRecentProjects, maxRecentSessions;
 	bool rememberFileFilter;
 	bool sessionRestore;
@@ -238,8 +243,8 @@ signals:
 	void newLeftPanelLayoutChanged(bool newValue);
 	void watchedMenuChanged(const QString& menuId);
     void iconSizeChanged(int value);
-    void centralIconSizeChanged(int value);
-    void symbolSizeChanged(int value);
+    void secondaryIconSizeChanged(int value);
+    void symbolGridIconSizeChanged(int value);
 public:
 //private:
 	QString configFileName,configFileNameBase,defaultStyleName,configBaseDir;

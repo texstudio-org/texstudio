@@ -771,6 +771,11 @@
     <string>Grayscale</string>
    </property>
   </action>
+  <action name="actionSplitMerge">
+   <property name="text">
+    <string>Split &amp;&amp; Merge...</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>

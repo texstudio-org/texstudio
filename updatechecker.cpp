@@ -2,6 +2,7 @@
 #include "smallUsefulFunctions.h"
 #include "configmanager.h"
 #include <QNetworkReply>
+#include <QNetworkProxyFactory>
 #include <QMutex>
 
 UpdateChecker * UpdateChecker::m_Instance = 0;
@@ -9,7 +10,13 @@ UpdateChecker * UpdateChecker::m_Instance = 0;
 UpdateChecker::UpdateChecker() :
 	QObject(0), silent(true)
 {
+	QNetworkProxyFactory::setUseSystemConfiguration(true);
 	networkManager = new QNetworkAccessManager();
+}
+
+UpdateChecker::~UpdateChecker()
+{
+	m_Instance = 0;
 }
 
 // compares two versions strings

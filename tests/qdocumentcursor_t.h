@@ -22,6 +22,8 @@ class QDocumentCursorTest: public QObject{
 		void subtractBoundaries();
 		void bidiMoving_data();
 		void bidiMoving();
+		void isForwardSelection_data();
+		void isForwardSelection();
 		void cleanupTestCase();
 };
 

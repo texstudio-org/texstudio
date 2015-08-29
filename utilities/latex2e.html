@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- This document is an unofficial reference manual for LaTeX, a
-document preparation system, version of May 2014.
+document preparation system, version of October 2014.
 
 This manual was originally translated from LATEX.HLP v1.0a in
 the VMS Help Library.  The pre-translation version was written by
@@ -36,10 +36,10 @@ Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions. -->
 <!-- Created by Texinfo 5.2dev+dev, http://www.gnu.org/software/texinfo/ -->
 <head>
-<title>LaTeX2e reference manual (May 2014)</title>
+<title>LaTeX2e reference manual (October 2014)</title>
 
-<meta name="description" content="LaTeX2e reference manual (May 2014)">
-<meta name="keywords" content="LaTeX2e reference manual (May 2014)">
+<meta name="description" content="LaTeX2e reference manual (October 2014)">
+<meta name="keywords" content="LaTeX2e reference manual (October 2014)">
 <meta name="resource-type" content="document">
 <meta name="distribution" content="global">
 <meta name="Generator" content="texi2any">
@@ -49,7 +49,6 @@ into another language, under the above conditions for modified versions. -->
 <link href="#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="dir.html#Top" rel="up" title="(dir)">
 <link rel="stylesheet" type="text/css" href="latex2e.css">
-
 <style type="text/css">
 <!--
 a.summary-letter {text-decoration: none}
@@ -83,7 +82,7 @@ ul.no-bullet {list-style: none}
 </head>
 
 <body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
-<h1 class="settitle" align="center">LaTeX2e reference manual (May 2014)</h1>
+<h1 class="settitle" align="center">LaTeX2e reference manual (October 2014)</h1>
 
 
 
@@ -341,7 +340,7 @@ ul.no-bullet {list-style: none}
     <li><a name="toc-_005craisebox-1" href="#g_t_005craisebox">21.6 <code>\raisebox</code></a></li>
     <li><a name="toc-_005csavebox-1" href="#g_t_005csavebox">21.7 <code>\savebox</code></a></li>
     <li><a name="toc-_005csbox_007b_005cboxcmd_007d_007btext_007d" href="#g_t_005csbox">21.8 <code>\sbox{<var>\boxcmd</var>}{<var>text</var>}</code></a></li>
-    <li><a name="toc-_005cusebox_007b_005cboxcmd" href="#g_t_005cusebox">21.9 <code>\usebox{<var>\boxcmd</var></code></a></li>
+    <li><a name="toc-_005cusebox_007b_005cboxcmd_007d" href="#g_t_005cusebox">21.9 <code>\usebox{<var>\boxcmd</var>}</code></a></li>
   </ul></li>
   <li><a name="toc-Special-insertions-1" href="#Special-insertions">22 Special insertions</a>
   <ul class="no-bullet">
@@ -411,7 +410,7 @@ Next: <a href="#About-this-document" accesskey="n" rel="next">About this documen
 <h1 class="top">LaTeX2e</h1>
 
 <p>This document is an unofficial reference manual for LaTeX, a
-document preparation system, version as of May 2014.  It is
+document preparation system, version as of October 2014.  It is
 intended to cover LaTeX2e, which has been the standard version of
 LaTeX for many years.
 </p>
@@ -464,7 +463,7 @@ LaTeX for many years.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Front_002fback-matter">Front/back matter</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Tables of contents, glossaries, indexes.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Letters">Letters</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The letter class.
+<tr><td align="left" valign="top">&bull; <a href="#Letters">Letters</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">The <code>letter</code> class.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#Terminal-input_002foutput">Terminal input/output</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">User interaction.
 </td></tr>
@@ -622,8 +621,8 @@ optional while arguments contained in braces, <code>{}</code>, are
 required.
 </p>
 <a name="index-case-sensitivity-of-LaTeX"></a>
-<p>LaTeX is case sensitive.  Enter all commands in lower case unless
-explicitly directed to do otherwise.
+<p>LaTeX is case sensitive.  Enter all commands in the same case as they
+are defined, which traditionnally is lower case.
 </p>
 
 <hr>
@@ -780,7 +779,7 @@ size (default is <code>letterpaper</code>):
 </p></dd>
 </dl>
 
-<p>These options are not available with the slides class:
+<p>These options are not available with the <code>slides</code> class:
 </p>
 <a name="index-onecolumn-option"></a>
 <a name="index-twocolumn-option"></a>
@@ -801,7 +800,7 @@ size (default is <code>letterpaper</code>):
 <p>Selects one- or two-sided layout; default is <code>oneside</code>, except
 for the <code>book</code> class.
 </p>
-<p>The <code>\evensidemargin</code> (<code>\oddsidemargin</code> parameter determines
+<p>The <code>\evensidemargin</code> (<code>\oddsidemargin</code>) parameter determines
 the distance on even (odd) numbered pages between the left side of the
 page and the text&rsquo;s left margin.  The defaults vary with the paper
 size and whether one- or two-side layout is selected.  For one-sided
@@ -813,7 +812,7 @@ with <code>\evensidemargin</code> the remainder.
 <dt><code>openright</code></dt>
 <dt><code>openany</code></dt>
 <dd><p>Determines if a chapter should start on a
-right-hand page; default is <code>openright</code> for book.
+right-hand page; default is <code>openright</code> for <code>book</code>.
 </p></dd>
 </dl>
 
@@ -1283,7 +1282,7 @@ Next: <a href="#Sectioning" accesskey="n" rel="next">Sectioning</a>, Previous: <
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t_005craggedbottom" accesskey="4">\raggedbottom</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Allow text pages of differing height.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#Page-layout-parameters" accesskey="5">Page layout parameters</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">\headheight \footskip.
+<tr><td align="left" valign="top">&bull; <a href="#Page-layout-parameters" accesskey="5">Page layout parameters</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top"><code>\headheight</code> <code>\footskip</code>.
 </td></tr>
 </table>
 
@@ -1528,7 +1527,7 @@ then divided by two.
 <a name="index-_005ctopskip"></a>
 </dt>
 <dd><p>Minimum distance between the top of the page body and the baseline of
-the first line of text.  For the standard clases, the default is the
+the first line of text.  For the standard classes, the default is the
 same as the font size, e.g., &lsquo;<samp>10pt</samp>&rsquo; at &lsquo;<samp>10pt</samp>&rsquo;.
 </p>
 </dd>
@@ -1554,7 +1553,7 @@ Next: <a href="#Cross-references" accesskey="n" rel="next">Cross references</a>,
 <dt><code>\chapter</code>
 <a name="index-_005cchapter"></a>
 </dt>
-<dd><p>(report and book class only)
+<dd><p>(<code>report</code> and <code>book</code> class only)
 </p></dd>
 <dt><code>\section</code>
 <a name="index-_005csection"></a>
@@ -1880,8 +1879,8 @@ Next: <a href="#center" accesskey="n" rel="next">center</a>, Previous: <a href="
 within an <code>equation</code> environment (see <a href="#equation">equation</a>).  It has a
 single mandatory <var>template</var> argument describing the number of
 columns and the alignment within them.  Each column <var>col</var> is
-specified by a single letter that tells how items in that row should
-be formatted, as follows:
+specified by a single letter that tells how items in each row of that
+column should be formatted, as follows:
 </p>
 <dl compact="compact">
 <dt><code>c</code></dt>
@@ -2278,7 +2277,7 @@ FAQ: <a href="http://www.tex.ac.uk/cgi-bin/texfaq2html?label=2colfloat">http://w
 </dd>
 <dt><code>h</code></dt>
 <dd><a name="index-float-package"></a>
-<p>(Here)&mdash;at the position in the text where the figure environment
+<p>(Here)&mdash;at the position in the text where the <code>figure</code> environment
 appears.  However, this is not allowed by itself; <code>t</code> is
 automatically added.
 </p>
@@ -2305,7 +2304,7 @@ see above.
 </dd>
 </dl>
 
-<p>The standard report and article classes use the default placement
+<p>The standard <code>report</code> and <code>article</code> classes use the default placement
 <code>tbp</code>.
 </p>
 <p>The body of the figure is made up of whatever text, LaTeX commands,
@@ -2375,25 +2374,32 @@ default &lsquo;<samp>20pt plus2pt minus4pt</samp>&rsquo;.
 </p></dd>
 </dl>
 
-<p>Parameters relating to the number of floats on a page:
+<p>Counters relating to the number of floats on a page:
 </p>
 <dl compact="compact">
-<dt><code>\bottomnumber</code>
-<a name="index-_005cbottomnumber"></a>
+<dt><code>bottomnumber</code>
+<a name="index-bottomnumber"></a>
 </dt>
 <dd><p>Maximum number of floats that can appear at the bottom of a text page;
 default 1.
 </p>
 </dd>
-<dt><code>\topnumber</code>
-<a name="index-_005ctopnumber"></a>
+<dt><code>dbltopnumber</code>
+<a name="index-dbltopnumber"></a>
+</dt>
+<dd><p>Maximum number of full-sized floats that can appear at the top of a
+two-column page; default 2.
+</p>
+</dd>
+<dt><code>topnumber</code>
+<a name="index-topnumber"></a>
 </dt>
 <dd><p>Maximum number of floats that can appear at the top of a text page;
 default 2.
 </p>
 </dd>
-<dt><code>\totalnumber</code>
-<a name="index-_005ctotalnumber"></a>
+<dt><code>totalnumber</code>
+<a name="index-totalnumber"></a>
 </dt>
 <dd><p>Maximum number of floats that can appear on a text page; default 3.
 </p></dd>
@@ -2996,7 +3002,8 @@ Next: <a href="#g_t_005cmakebox-_0028picture_0029" accesskey="n" rel="next">\mak
 <h4 class="subsection">9.19.1 <code>\circle</code></h4>
 <a name="index-_005ccircle"></a>
 
-<div class="example">
+<p>Synopsis:
+</p><div class="example">
 <pre class="example">\circle[*]{<var>diameter</var>}
 </pre></div>
 
@@ -3017,14 +3024,17 @@ Next: <a href="#g_t_005cframebox-_0028picture_0029" accesskey="n" rel="next">\fr
 <h4 class="subsection">9.19.2 <code>\makebox</code></h4>
 <a name="index-_005cmakebox-_0028picture_0029"></a>
 
-<p><code>\makebox(width,height)[position]{...}</code>
-</p>
+<p>Synopsis:
+</p><div class="example">
+<pre class="example">\makebox(<var>width</var>,<var>height</var>)[<var>position</var>]{<var>text</var>}
+</pre></div>
+
 <p>The <code>\makebox</code> command for the picture environment is similar to
 the normal <code>\makebox</code> command except that you must specify a
-<code>width</code> and <code>height</code> in multiples of <code>\unitlength</code>.
+<var>width</var> and <var>height</var> in multiples of <code>\unitlength</code>.
 </p>
-<p>The optional argument, <code>[position]</code>, specifies the quadrant that
-your text appears in.  You may select up to two of the following:
+<p>The optional argument, <code>[<var>position</var>]</code>, specifies the quadrant that
+your <var>text</var> appears in.  You may select up to two of the following:
 </p>
 <dl compact="compact">
 <dt><code>t</code></dt>
@@ -3096,8 +3106,8 @@ Next: <a href="#g_t_005cframe" accesskey="n" rel="next">\frame</a>, Previous: <a
 <code>picture</code> environment.  Dashes are <var>dlen</var> units long, and the
 rectangle has overall width <var>rwidth</var> and height <var>rheight</var>.
 The <var>text</var> is positioned at optional <var>pos</var>.  </p>
-<p>A dashed box looks best when the <code>rwidth</code> and <code>rheight</code> are
-multiples of the <code>dlen</code>.
+<p>A dashed box looks best when the <var>rwidth</var> and <var>rheight</var> are
+multiples of the <var>dlen</var>.
 </p>
 
 <hr>
@@ -3143,7 +3153,7 @@ slope <var>xslope</var>/<var>yslope</var>.
 <p>Standard LaTeX can only draw lines with <em><var>slope</var> = x/y</em>,
 where <em>x</em> and <em>y</em> have integer values from -6
 through&nbsp;6.  For lines of any slope, not to mention other shapes,
-see the <code>curve2e</code> and many many other packages on CTAN.
+see the <code>curve2e</code> and many many other packages on <acronym>CTAN</acronym>.
 </p>
 
 <hr>
@@ -3266,10 +3276,10 @@ Next: <a href="#g_t_005cshortstack" accesskey="n" rel="next">\shortstack</a>, Pr
 
 <a name="index-_005cput"></a>
 
-<p><code>\put(x coord,y coord){ ...  }</code>
+<p><code>\put(<var>xcoord</var>,<var>ycoord</var>){ ...  }</code>
 </p>
 <p>The <code>\put</code> command places the item specified by the mandatory
-argument at the given coordinates.
+argument at the given coordinates <var>xcoord</var> and <var>ycoord</var>.
 </p>
 
 <hr>
@@ -3320,11 +3330,11 @@ Previous: <a href="#g_t_005cshortstack" accesskey="p" rel="prev">\shortstack</a>
 <p>Synopsis:
 </p>
 <div class="example">
-<pre class="example">\vector(<var>x-slope</var>,<var>y-slope</var>){<var>length</var>}
+<pre class="example">\vector(<var>xslope</var>,<var>yslope</var>){<var>length</var>}
 </pre></div>
 
 <p>The <code>\vector</code> command draws a line with an arrow of the specified
-length and slope.  The <em>x</em> and <em>y</em> values must lie between
+length and slope.  The <em><var>xslope</var></em> and <em><var>yslope</var></em> values must lie between
 -4 and +4, inclusive.
 </p>
 
@@ -4678,7 +4688,7 @@ Previous: <a href="#Symbolic-footnotes" accesskey="p" rel="prev">Symbolic footno
 <dd><p>Produces the rule separating the main text on a page from the page&rsquo;s
 footnotes.  Default dimensions: <code>0.4pt</code> thick (or wide), and
 <code>0.4\columnwidth</code> long in the standard document classes (except
-slides, where it does not appear).
+<code>slides</code>, where it does not appear).
 </p>
 </dd>
 <dt><code>\footnotesep</code>
@@ -4718,7 +4728,7 @@ Next: <a href="#Counters" accesskey="n" rel="next">Counters</a>, Previous: <a hr
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t_005cnewenvironment-_0026-_005crenewenvironment" accesskey="5">\newenvironment &amp; \renewenvironment</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Define a new environment.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#g_t_005cnewtheorem" accesskey="6">\newtheorem</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Define a new theorem-like environment.
+<tr><td align="left" valign="top">&bull; <a href="#g_t_005cnewtheorem" accesskey="6">\newtheorem</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Define a new <code>theorem</code>-like environment.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t_005cnewfont" accesskey="7">\newfont</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Define a new font name.
 </td></tr>
@@ -4798,14 +4808,14 @@ Next: <a href="#g_t_005cnewlength" accesskey="n" rel="next">\newlength</a>, Prev
 <p>Synopsis:
 </p>
 <div class="example">
-<pre class="example">\newcounter{<var>cnt</var>}[<var>countername</var>]
+<pre class="example">\newcounter{<var>countername</var>}[<var>super</var>]
 </pre></div>
 
-<p>The <code>\newcounter</code> command defines a new counter named <var>cnt</var>.
+<p>The <code>\newcounter</code> command defines a new counter named <var>countername</var>.
 The new counter is initialized to zero.
 </p>
-<p>Given the optional argument <code>[<var>countername</var>]</code>, <var>cnt</var>
-will be reset whenever <var>countername</var> is incremented.
+<p>Given the optional argument <code>[<var>super</var>]</code>, <var>countername</var>
+will be reset whenever the counter named <var>super</var> is incremented.
 </p>
 <p>See <a href="#Counters">Counters</a>, for more information about counters.
 </p>
@@ -4828,7 +4838,7 @@ Next: <a href="#g_t_005cnewsavebox" accesskey="n" rel="next">\newsavebox</a>, Pr
 </pre></div>
 
 <p>The <code>\newlength</code> command defines the mandatory argument as a
-<code>length</code> command with a value of <code>0in</code>.  The argument must
+<em>length</em> command with a value of zero.  The argument must
 be a control sequence, as in <code>\newlength{\foo}</code>.  An error
 occurs if <code>\foo</code> is already defined.
 </p>
@@ -7388,7 +7398,7 @@ For example, <em>\overbrace{x+\cdots+x}^{k \rm\;times}</em>.
 <a name="index-_005coverline_007btext_007d"></a>
 </dt>
 <dd><p>Generates a horizontal line over <var>tex</var>.
-For exampe, <em>\overline{x+y}</em>.
+For example, <em>\overline{x+y}</em>.
 </p>
 </dd>
 <dt><code>\sqrt[<var>root</var>]{arg}</code>
@@ -7473,10 +7483,10 @@ to right inside a single box, and then complain because the resulting
 box was too wide to fit on the line.
 </p>
 <p>LaTeX is in LR mode when it starts making a box with an <code>\mbox</code>
-command.  You can get it to enter a different mode inside the box - for
+command.  You can get it to enter a different mode inside the box&mdash;for
 example, you can make it enter math mode to put a formula in the box.
 There are also several text-producing commands and environments for
-making a box that put LaTeX in paragraph mode.  The box make by one of
+making a box that put LaTeX in paragraph mode.  The box made by one of
 these commands or environments will be called a <code>parbox</code>.  When
 LaTeX is in paragraph mode while making a box, it is said to be in
 &ldquo;inner paragraph mode&rdquo;.  Its normal paragraph mode, which it starts out
@@ -7585,7 +7595,9 @@ Next: <a href="#g_t_005cpagestyle" accesskey="n" rel="next">\pagestyle</a>, Prev
 <pre class="example">\pagenumbering{<var>style</var>}
 </pre></div>
 
-<p>Specifies the style of page numbers, according to <var>style</var>:
+<p>Specifies the style of page numbers, according to <var>style</var>; also
+resets the page number to 1.  The <var>style</var> argument is one of
+the following:
 </p>
 <dl compact="compact">
 <dt><code>arabic</code></dt>
@@ -8025,7 +8037,7 @@ used in the arguments of the box-making commands.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t_005cfbox-and-_005cframebox" accesskey="2">\fbox and \framebox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Put a frame around a box.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#lrbox" accesskey="3">lrbox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">An environment like \sbox.
+<tr><td align="left" valign="top">&bull; <a href="#lrbox" accesskey="3">lrbox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">An environment like <code>\sbox</code>.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t_005cmakebox" accesskey="4">\makebox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Box, adjustable position.
 </td></tr>
@@ -8033,9 +8045,9 @@ used in the arguments of the box-making commands.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t_005craisebox" accesskey="6">\raisebox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Raise or lower text.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#g_t_005csavebox" accesskey="7">\savebox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Like \makebox, but save the text for later use.
+<tr><td align="left" valign="top">&bull; <a href="#g_t_005csavebox" accesskey="7">\savebox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Like <code>\makebox</code>, but save the text for later use.
 </td></tr>
-<tr><td align="left" valign="top">&bull; <a href="#g_t_005csbox" accesskey="8">\sbox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Like \mbox, but save the text for later use.
+<tr><td align="left" valign="top">&bull; <a href="#g_t_005csbox" accesskey="8">\sbox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Like <code>\mbox</code>, but save the text for later use.
 </td></tr>
 <tr><td align="left" valign="top">&bull; <a href="#g_t_005cusebox" accesskey="9">\usebox</a>:</td><td>&nbsp;&nbsp;</td><td align="left" valign="top">Print saved text.
 </td></tr>
@@ -8293,8 +8305,8 @@ included in the normal output, it is saved in the box labeled
 <p>
 Previous: <a href="#g_t_005csbox" accesskey="p" rel="prev">\sbox</a>, Up: <a href="#Boxes" accesskey="u" rel="up">Boxes</a> &nbsp; [<a href="#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="#Concept-Index" title="Index" rel="index">Index</a>]</p>
 </div>
-<a name="g_t_005cusebox_007b_005cboxcmd"></a>
-<h3 class="section">21.9 <code>\usebox{<var>\boxcmd</var></code></h3>
+<a name="g_t_005cusebox_007b_005cboxcmd_007d"></a>
+<h3 class="section">21.9 <code>\usebox{<var>\boxcmd</var>}</code></h3>
 <a name="index-_005cusebox"></a>
 
 <p>Synopsis:
@@ -8439,6 +8451,14 @@ not available in OT1; you may need to load the <code>textcomp</code> package.
 <p>The LaTeX logo.
 </p>
 </dd>
+<dt><code>\LaTeXe</code>
+<a name="index-_005cLaTeXe"></a>
+</dt>
+<dd><a name="index-LaTeX2e-logo"></a>
+<a name="index-logo_002c-LaTeX2e"></a>
+<p>The LaTeX2e logo.
+</p>
+</dd>
 <dt><code>\guillemotleft <span class="roman">(&laquo;)</span></code>
 <a name="index-_005cguillemotleft-_0028_00ab_0029"></a>
 </dt>
@@ -8516,7 +8536,7 @@ and <code>\dots</code> also work in math mode.
 <dd><a name="index-double-low_002d9-quotation-mark"></a>
 <a name="index-single-low_002d9-quotation-mark"></a>
 <a name="index-low_002d9-quotation-marks_002c-single-and-double"></a>
-<p>Double and single quotation marks on the baseline: 
+<p>Double and single quotation marks on the baseline:
 &bdquo; and &sbquo;.
 </p>
 </dd>
@@ -9470,7 +9490,7 @@ Next: <a href="#Indexes" accesskey="n" rel="next">Indexes</a>, Previous: <a href
 <code>\glossaryentry{<var>text</var>}{<var>pageno</var>}</code>, where
 <var>pageno</var> is the current <code>\thepage</code> value.
 </p>
-<p>The <code>glossary</code> package on CTAN provides support for fancier
+<p>The <code>glossary</code> package on <acronym>CTAN</acronym> provides support for fancier
 glossaries.
 </p>
 
@@ -9976,7 +9996,7 @@ Next: <a href="#Concept-Index" accesskey="n" rel="next">Concept Index</a>, Previ
 <a name="index-document-templates"></a>
 
 <p>Although not reference material, perhaps these document templates will
-be useful.  Additional template resources are listed 
+be useful.  Additional template resources are listed at
 <a href="http://tug.org/interest.html#latextemplates">http://tug.org/interest.html#latextemplates</a>.
 </p>
 <table class="menu" border="0" cellspacing="0">
@@ -10458,6 +10478,7 @@ Next: <a href="#Command-Index" accesskey="n" rel="next">Command Index</a>, Previ
 <tr><td></td><td valign="top"><a href="#index-LaTeX-logo">LaTeX logo</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-LaTeX-overview">LaTeX overview</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-LaTeX-Project-team">LaTeX Project team</a>:</td><td>&nbsp;</td><td valign="top"><a href="#About-this-document">About this document</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-LaTeX2e-logo">LaTeX2e logo</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-layout-commands">layout commands</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Layout">Layout</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-layout_002c-page-parameters-for">layout, page parameters for</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Page-layout-parameters">Page layout parameters</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-left-angle-quotation-marks">left angle quotation marks</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
@@ -10495,6 +10516,7 @@ Next: <a href="#Command-Index" accesskey="n" rel="next">Command Index</a>, Previ
 <tr><td></td><td valign="top"><a href="#index-loading-additional-packages">loading additional packages</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Document-class-options">Document class options</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-log-file">log file</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Overview">Overview</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-logo_002c-LaTeX">logo, LaTeX</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-logo_002c-LaTeX2e">logo, LaTeX2e</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-logo_002c-TeX">logo, TeX</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-low_002d9-quotation-marks_002c-single-and-double">low-9 quotation marks, single and double</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-low_002dlevel-font-commands">low-level font commands</a>:</td><td>&nbsp;</td><td valign="top"><a href="#Low_002dlevel-font-commands">Low-level font commands</a></td></tr>
@@ -10962,7 +10984,6 @@ Previous: <a href="#Concept-Index" accesskey="p" rel="prev">Concept Index</a>, U
 <tr><td></td><td valign="top"><a href="#index-_005cboldmath"><code>\boldmath</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-formulas">Math formulas</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cbot"><code>\bot</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cbottomfraction"><code>\bottomfraction</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_005cbottomnumber"><code>\bottomnumber</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cbowtie"><code>\bowtie</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cBox"><code>\Box</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cbreve"><code>\breve</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-accents">Math accents</a></td></tr>
@@ -11188,6 +11209,7 @@ Previous: <a href="#Concept-Index" accesskey="p" rel="prev">Concept Index</a>, U
 <tr><td></td><td valign="top"><a href="#index-_005cLarge"><code>\Large</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Font-sizes">Font sizes</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cLARGE"><code>\LARGE</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Font-sizes">Font sizes</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cLaTeX"><code>\LaTeX</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_005cLaTeXe"><code>\LaTeXe</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005clbrace"><code>\lbrace</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005clbrack"><code>\lbrack</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005clceil"><code>\lceil</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
@@ -11236,7 +11258,7 @@ Previous: <a href="#Concept-Index" accesskey="p" rel="prev">Concept Index</a>, U
 <tr><td></td><td valign="top"><a href="#index-_005clor"><code>\lor</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005clq"><code>\lq</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Text-symbols">Text symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cmakebox"><code>\makebox</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_005cmakebox">\makebox</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_005cmakebox-_0028picture_0029"><code>\makebox (picture)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_005cmakebox-_0028picture_0029">\makebox (picture)</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_005cmakebox-_0028picture_0029"><code>\makebox (<code>picture</code>)</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_005cmakebox-_0028picture_0029">\makebox (picture)</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cmakeglossary"><code>\makeglossary</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Glossaries">Glossaries</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cmakeindex"><code>\makeindex</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Indexes">Indexes</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005cmakelabels"><code>\makelabels</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#g_t_005cmakelabels">\makelabels</a></td></tr>
@@ -11547,11 +11569,9 @@ Previous: <a href="#Concept-Index" accesskey="p" rel="prev">Concept Index</a>, U
 <tr><td></td><td valign="top"><a href="#index-_005ctop"><code>\top</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctopfraction"><code>\topfraction</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctopmargin"><code>\topmargin</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Page-layout-parameters">Page layout parameters</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_005ctopnumber"><code>\topnumber</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctopsep"><code>\topsep</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#itemize">itemize</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctopskip"><code>\topskip</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Page-layout-parameters">Page layout parameters</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctotalheight"><code>\totalheight</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Predefined-lengths">Predefined lengths</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_005ctotalnumber"><code>\totalnumber</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctriangle"><code>\triangle</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctriangleleft"><code>\triangleleft</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_005ctriangleright"><code>\triangleright</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-symbols">Math symbols</a></td></tr>
@@ -11656,11 +11676,13 @@ Previous: <a href="#Concept-Index" accesskey="p" rel="prev">Concept Index</a>, U
 <tr><th><a name="Command-Index_fn_letter-B">B</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-b5paper-option"><code>b5paper <span class="roman">option</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Document-class-options">Document class options</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-book-class"><code>book <span class="roman">class</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Document-classes">Document classes</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-bottomnumber"><code>bottomnumber</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Command-Index_fn_letter-C">C</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-center-environment"><code>center <span class="roman">environment</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#center">center</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Command-Index_fn_letter-D">D</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-dbltopnumber"><code>dbltopnumber</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-description-environment"><code>description <span class="roman">environment</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#description">description</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-displaymath-environment"><code>displaymath <span class="roman">environment</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#displaymath">displaymath</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-displaymath-environment-1"><code>displaymath <span class="roman">environment</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Math-formulas">Math formulas</a></td></tr>
@@ -11740,6 +11762,8 @@ Previous: <a href="#Concept-Index" accesskey="p" rel="prev">Concept Index</a>, U
 <tr><td></td><td valign="top"><a href="#index-theorem-environment"><code>theorem <span class="roman">environment</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#theorem">theorem</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-titlepage-environment"><code>titlepage <span class="roman">environment</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#titlepage">titlepage</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-titlepage-option"><code>titlepage <span class="roman">option</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Document-class-options">Document class options</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-topnumber"><code>topnumber</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-totalnumber"><code>totalnumber</code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#figure">figure</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-twocolumn-option"><code>twocolumn <span class="roman">option</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Document-class-options">Document class options</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-twoside-option"><code>twoside <span class="roman">option</span></code></a>:</td><td>&nbsp;</td><td valign="top"><a href="#Document-class-options">Document class options</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>

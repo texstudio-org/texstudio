@@ -60,6 +60,7 @@ public:
 	
 	struct SyntaxLine{
 		StackEnvironment prevEnv;
+        TokenStack stack;
 		int ticket;
 		bool clearOverlay;
 		QDocumentLineHandle *dlh;
@@ -74,10 +75,10 @@ public:
 	
 	explicit SyntaxCheck(QObject *parent = 0);
 	
-	void putLine(QDocumentLineHandle *dlh, StackEnvironment previous,bool clearOverlay=false);
+    void putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay=false);
 	void stop();
 	void setErrFormat(int errFormat);
-	QString getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous);
+    QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
 	int verbatimFormat;
 	void waitForQueueProcess();
 	static int containsEnv(const LatexParser& parser, const QString& name,const StackEnvironment& envs,const int id=-1);
@@ -93,6 +94,7 @@ signals:
 protected:
 	void run();
     void checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,int ticket);
+    void checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket);
 	
 private:
 	QQueue<SyntaxLine> mLines;
@@ -105,6 +107,7 @@ private:
 	LatexParser newLtxCommands;
 	bool newLtxCommandsAvailable;
 	QMutex mLtxCommandLock;
+    bool stackContainsDefinition(const TokenStack &stack) const;
 };
 
 #endif // SYNTAXCHECK_H

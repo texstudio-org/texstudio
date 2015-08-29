@@ -8,6 +8,8 @@ struct PDFDocumentConfig{
 	int windowWidth, windowHeight;
 	bool windowMaximized;
 	QByteArray windowState;
+	bool toolbarVisible;
+	bool annotationPanelVisible;
 
 	int cacheSizeMB;
 	int loadStrategy;
@@ -15,6 +17,7 @@ struct PDFDocumentConfig{
 	int dpi;
 	int scaleOption;
 	int scale;
+	bool disableHorizontalScrollingForFitToTextWidth;
 
 	double zoomStepFactor;
 

@@ -329,6 +329,7 @@ void BibTeXDialog::generateBiblatexEntryTypes(bool forceRecreate){
 
 BibTeXDialog::BibTeXDialog(QWidget *parent, const QStringList& fileList, int curFile, const QString& id) :
 	QDialog(parent),
+    resultFileId(-2),
 	m_ui(new Ui::BibTeXDialog)
 {
 	m_ui->setupUi(this);

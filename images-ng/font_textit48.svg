@@ -13,8 +13,8 @@
    height="48"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="font_textbf48.svg">
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="font_textit48.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,15 +25,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="16.4375"
-     inkscape:cx="21.04943"
-     inkscape:cy="26.040842"
+     inkscape:cx="10.372624"
+     inkscape:cy="25.980005"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="1680"
-     inkscape:window-height="995"
-     inkscape:window-x="-2"
-     inkscape:window-y="-3"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -68,16 +68,13 @@
        x="1"
        y="1"
        transform="translate(0,1004.3622)" />
-    <text
-       xml:space="preserve"
-       style="font-size:48px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Serif;-inkscape-font-specification:Serif Italic"
-       x="14.496094"
-       y="1045.8583"
-       id="text2985"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan3780"
-         x="14.496094"
-         y="1045.8583">I</tspan></text>
+    <g
+       style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:48px;line-height:125%;font-family:Serif;-inkscape-font-specification:'Serif Italic';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       id="text2985">
+      <path
+         d="m 23.449219,1043.3739 4.453125,0 -0.46875,2.4844 -13.664063,0 0.46875,-2.4844 4.453125,0 5.835938,-30 -4.453125,0 0.492187,-2.5078 13.664063,0 -0.492188,2.5078 -4.453125,0 -5.835937,30 z"
+         style=""
+         id="path3338" />
+    </g>
   </g>
 </svg>

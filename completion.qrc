@@ -44,6 +44,8 @@
 <file>completion/csquotes.cwl</file>
 <file>completion/currvita.cwl</file>
 <file>completion/cyrillic.cwl</file>
+<file>completion/datatool-base.cwl</file>
+<file>completion/datatool.cwl</file>
 <file>completion/diagxy.cwl</file>
 <file>completion/doi.cwl</file>
 <file>completion/empheq.cwl</file>
@@ -106,8 +108,8 @@
 <file>completion/minted.cwl</file>
 <file>completion/multicol.cwl</file>
 <file>completion/multido.cwl</file>
-<file>completion/multirow.cwl</file>
 <file>completion/multimedia.cwl</file>
+<file>completion/multirow.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>
 <file>completion/ngerman.cwl</file>
@@ -146,6 +148,7 @@
 <file>completion/subcaption.cwl</file>
 <file>completion/subfig.cwl</file>
 <file>completion/subfigure.cwl</file>
+<file>completion/subfiles.cwl</file>
 <file>completion/supertabular.cwl</file>
 <file>completion/svninfo.cwl</file>
 <file>completion/svn-multi.cwl</file>

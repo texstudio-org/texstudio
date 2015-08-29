@@ -41,6 +41,8 @@
 #include "pdfannotation.h"
 #include "titledpanel.h"
 
+#include "pdfsplittool.h"
+
 //#include "GlobalParams.h"
 
 #include "poppler-link.h"
@@ -241,6 +243,8 @@ PDFMagnifier::PDFMagnifier(QWidget *parent, qreal inDpi)
 	, overScale(1)
 	, scaleFactor(kMagFactor)
 	, parentDpi(inDpi)
+    , convertedImageIsGrayscale(false)
+    , convertedImageIsColorInverted(false)
 	, imageDpi(0)
 	, imagePage(-1)
 {
@@ -441,14 +445,26 @@ PDFWidget::PDFWidget(bool embedded)
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
-	   , summedWheelDegrees(0)
+	, summedWheelDegrees(0)
+	, docPages(0)
+	, saveScaleFactor(1.0)
+	, saveScaleOption(kFitWidth)
+	, ctxZoomInAction(0)
+	, ctxZoomOutAction(0)
+	, shortcutUp(0)
+	, shortcutLeft(0)
+	, shortcutDown(0)
+	, shortcutRight(0)
+	
 	, imageDpi(0)
 	, imagePage(-1)
 	, magnifier(NULL)
+	, currentTool(kNone)
 	, usingTool(kNone)
 	, singlePageStep(true)
 	, gridx(1), gridy(1)
 	, forceUpdate(false)
+	, highlightPage(-1)
 	, pdfdocument(0)
 {
 	Q_ASSERT(globalConfig);
@@ -469,6 +485,8 @@ PDFWidget::PDFWidget(bool embedded)
 	setFocusPolicy(embedded ? Qt::NoFocus : Qt::StrongFocus);
 	setScaledContents(true);
 	setMouseTracking(true);
+	grabGesture(Qt::PinchGesture);
+	grabGesture(Qt::TapGesture);
 
 	switch (globalConfig->scaleOption) {
 	default:
@@ -1046,8 +1064,10 @@ void PDFWidget::mouseMoveEvent(QMouseEvent *event)
 			scrollClickPos = event->globalPos();
 			QAbstractScrollArea*	scrollArea = getScrollArea();
 			if (scrollArea) {
-				int oldX = scrollArea->horizontalScrollBar()->value();
-				scrollArea->horizontalScrollBar()->setValue(oldX - delta.x());
+				if (scaleOption != kFitTextWidth || !globalConfig->disableHorizontalScrollingForFitToTextWidth) {
+					int oldX = scrollArea->horizontalScrollBar()->value();
+					scrollArea->horizontalScrollBar()->setValue(oldX - delta.x());
+				}
 				int oldY = scrollArea->verticalScrollBar()->value();
 				scrollArea->verticalScrollBar()->setValue(oldY - delta.y());
 			}
@@ -1119,7 +1139,34 @@ void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 		doZoom(event->pos(), 1);
 	else if (action == ctxZoomOutAction)
 		doZoom(event->pos(), -1);
+	
+}
 
+bool PDFWidget::event(QEvent *event)
+{
+	if (event->type() == QEvent::Gesture)
+			return gestureEvent(static_cast<QGestureEvent*>(event));
+	return QLabel::event(event);
+}
+bool PDFWidget::gestureEvent(QGestureEvent *event)
+{
+	if (QGesture *gesture = event->gesture(Qt::PinchGesture))
+		pinchEvent(static_cast<QPinchGesture *>(gesture));
+	if (QGesture *gesture = event->gesture(Qt::TapGesture))
+		tapEvent(static_cast<QTapGesture *>(gesture));
+	return true;
+}
+
+void PDFWidget::pinchEvent(QPinchGesture *gesture)
+{
+	doZoom(mapFromGlobal(gesture->centerPoint().toPoint()), 0, gesture->scaleFactor()*scaleFactor);
+}
+
+void PDFWidget::tapEvent(QTapGesture *gesture)
+{
+	if (gesture->state() == Qt::GestureFinished) {
+		syncWindowClick(gesture->position().toPoint(), true);
+	}
 }
 
 void PDFWidget::jumpToSource()
@@ -1749,6 +1796,7 @@ void PDFWidget::fitTextWidth(bool checked)
 			qreal portWidth = scrollArea->viewport()->width();
 
 			QRectF textRect = horizontalTextRangeF();
+			if (!textRect.isValid()) return;
 			qreal targetWidth = gridSizeF(true).width() - (maxPageSizeF().width() - textRect.width());
 			// total with of all pages in the grid - textMargin of a single page
 			// for a 1x grid, targetWith is the same as textRect.width()
@@ -1757,8 +1805,8 @@ void PDFWidget::fitTextWidth(bool checked)
 				scaleFactor = kMinScaleFactor;
 			else if (scaleFactor > kMaxScaleFactor)
 				scaleFactor = kMaxScaleFactor;
-			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
 			adjustSize();
+			scrollArea->horizontalScrollBar()->setValue((qRound(textRect.left() * dpi / 72.0) - margin) *scaleFactor);
 			update();
 			updateStatusBar();
 			emit changedZoom(scaleFactor);
@@ -1824,10 +1872,15 @@ void PDFWidget::doZoom(const QPoint& clickPos, int dir, qreal newScaleFactor) //
 			scaleFactor = kMinScaleFactor;
 	}
 	else if (dir == 0) {
-		scaleFactor=newScaleFactor;
-	}
-	else {
-		return;
+		if (newScaleFactor < kMinScaleFactor) {
+			newScaleFactor = kMinScaleFactor;
+		} else if (newScaleFactor > kMaxScaleFactor) {
+			newScaleFactor = kMaxScaleFactor;
+		}
+		if (newScaleFactor == scaleFactor) {
+			return;
+		}
+		scaleFactor = newScaleFactor;
 	}
 
 	adjustSize();
@@ -1979,12 +2032,22 @@ QSizeF PDFWidget::maxPageSizeF() const{
 // Therefore the value is cached.
 // TODO: Replace TextBoxes with the ArtBox of the page once this becomes available via the poppler-qt interface.
 // Only the horizontal values of the returned QRectF have meaning.
-QRectF PDFWidget::horizontalTextRangeF() const{
+QRectF PDFWidget::horizontalTextRangeF() {
 	REQUIRE_RET(document && pdfdocument, QRectF());
 
 	qreal textXmin = +1.e99;
 	qreal textXmax = -1.e99;
 	if(!horizontalTextRange.isValid()){
+		// horitontalTextRangeF() may be called concurrently, in particular during startup
+		// see e.g. https://sourceforge.net/p/texstudio/bugs/1292/
+		// The crash therein is probably caused by a simultaneous access to poppler, so one
+		// could limit the access there. However, since textWidth calculation is currently
+		// quite expensive, we do not want to do it multiple times. I assume that the call
+		// which locks the calculation will finally lead to an update of the displayed width.
+		// This justifies to discard all width requests in between.
+		if (!textwidthCalculationMutex.tryLock()) {
+			return QRectF();
+		}
 		QProgressDialog progress(tr("Calculating text width"), tr("Cancel"), 0, docPages);
 		progress.setWindowModality(Qt::WindowModal);
 		progress.setMinimumDuration(500);
@@ -2007,6 +2070,7 @@ QRectF PDFWidget::horizontalTextRangeF() const{
 		if (textXmax > textXmin) {
 			horizontalTextRange = QRectF(textXmin, 0, textXmax - textXmin, 1);
 		}
+		textwidthCalculationMutex.unlock();
 	}
 	return horizontalTextRange;
 }
@@ -2089,9 +2153,9 @@ PDFDocument::PDFDocument(PDFDocumentConfig* const pdfConfig, bool embedded)
 		resize(w,h); //important to first resize then move
 		move(x,y);
 		if (!globalConfig->windowState.isEmpty()) restoreState(globalConfig->windowState);
-		setToolbarsVisible(true);
+		toolBar->setVisible(globalConfig->toolbarVisible);
+		statusbar->setVisible(true);
 	}
-
 	if (embeddedMode && globalConfig->autoHideToolbars) {
 		setAutoHideToolbars(true);
 	}
@@ -2162,6 +2226,7 @@ void PDFDocument::setupMenus(){
     menuHelp->addSeparator();
     menuHelp->addAction(actionAbout_TW);
     menuFile->addAction(actionFileOpen);
+    menuFile->addAction(actionSplitMerge);
     //menuFile->addAction(action_Print); //disable incomplete print support
     menuFile->addAction(actionClose);
     menuFile->addSeparator();
@@ -2335,10 +2400,10 @@ void PDFDocument::init(bool embedded)
 
 	comboZoom=0;
 
+    int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+    toolBar->setIconSize(QSize(sz,sz));
 	if(embedded){
-		int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
-		toolBar->setIconSize(QSize(sz,sz));
-		QWidget *spacer = new QWidget(toolBar);
+        QWidget *spacer = new QWidget(toolBar);
 		spacer->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
 		toolBar->insertWidget(actionClose, spacer);
 	}
@@ -2447,7 +2512,7 @@ void PDFDocument::init(bool embedded)
 
 	annotationPanel = new TitledPanel();
 	annotationPanel->toggleViewAction()->setText(tr("Annotations"));
-	annotationPanel->setVisible(false);
+	annotationPanel->setVisible(globalConfig->annotationPanelVisible);
 	annotationTable = new PDFAnnotationTableView();
 	TitledPanelPage * annotationPage = new TitledPanelPage(annotationTable, "pdfannotations", tr("Annotations"));
 	annotationPanel->appendPage(annotationPage);
@@ -2477,7 +2542,8 @@ void PDFDocument::init(bool embedded)
 	connect(actionGo_to_Page, SIGNAL(triggered()), pdfWidget, SLOT(doPageDialog()));
 	connect(pdfWidget, SIGNAL(changedPage(int,bool)), this, SLOT(enablePageActions(int,bool)));
 	connect(actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
-	connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
+    connect(actionSplitMerge, SIGNAL(triggered()), SLOT(splitMergeTool()));
+    connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
@@ -2709,12 +2775,12 @@ void PDFDocument::syncFromView(const QString& pdfFile, const QFileInfo& masterFi
 	if (!actionSynchronize_multiple_views->isChecked())
 		return;
 	if (pdfFile != curFile || this->masterFile != masterFile)
-		loadFile(pdfFile, masterFile, false, false);
+		loadFile(pdfFile, masterFile, NoDisplayFlags);
 	if (page != widget()->getPageIndex())
 		scrollArea->goToPage(page,false);
 }
 
-void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, bool alert, bool focus)
+void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile, DisplayFlags displayFlags)
 {
 	// check if the file is already loaded
 	bool fileAlreadyLoaded=(this->masterFile == masterFile);
@@ -2741,16 +2807,7 @@ void PDFDocument::loadFile(const QString &fileName, const QFileInfo& masterFile,
 		if (curFile != "")
 			watcher->addPath(curFile);
 	}
-	if (alert) {
-		QWidget *activeWindow = QApplication::activeWindow();
-		raise();
-		unminimize();
-		if (!focus && activeWindow) activeWindow->activateWindow(); // unminimize may change the activeWindow
-	}
-	if (focus) {
-		setFocus();
-		if (scrollArea) scrollArea->setFocus();
-	}
+	updateDisplayState(displayFlags);
 }
 
 void PDFDocument::fillRenderCache(int pg){
@@ -2779,6 +2836,10 @@ void PDFDocument::loadCurrentFile(bool fillCache)
 		scanner = NULL;
 	}
 
+	QString password;
+
+retryNow:
+
 	if (renderManager){
 		renderManager->stopRendering();
 		renderManager->deleteLater();
@@ -2792,7 +2853,7 @@ void PDFDocument::loadCurrentFile(bool fillCache)
 	QFileInfo fi(curFile);
 	QDateTime lastModified=fi.lastModified();
 	qint64 filesize=fi.size();
-	document = renderManager->loadDocument(curFile, error);
+	document = renderManager->loadDocument(curFile, error, password);
 	if (error==PDFRenderManager::FileIncomplete) {
 		QAction *retryAction = new QAction(tr("Retry"), this);
 		retryAction->setProperty("fillCache", fillCache);
@@ -2808,17 +2869,23 @@ void PDFDocument::loadCurrentFile(bool fillCache)
 	curFileLastModified=lastModified;
 
 	if (document.isNull()) {
+		delete renderManager;
+		renderManager = 0;
 		switch (error) {
 		case PDFRenderManager::NoError: break;
 		case PDFRenderManager::FileOpenFailed:         statusBar()->showMessage(tr("Failed to find file \"%1\"; perhaps it has been deleted.").arg(curFileUnnormalized)); break;
 		case PDFRenderManager::PopplerError:           statusBar()->showMessage(tr("Failed to load file \"%1\"; perhaps it is not a valid PDF document.").arg(curFile)); break;
 		case PDFRenderManager::PopplerErrorBadAlloc:   statusBar()->showMessage(tr("Failed to load file \"%1\" due to a bad alloc; perhaps it is not a valid PDF document.").arg(curFile)); break;
 		case PDFRenderManager::PopplerErrorException:  statusBar()->showMessage(tr("Failed to load file \"%1\" due to an exception; perhaps it is not a valid PDF document.").arg(curFile)); break;
-		case PDFRenderManager::FileLocked:             statusBar()->showMessage(tr("PDF file \"%1\" is locked; this is not currently supported.").arg(curFile)); break;
+		case PDFRenderManager::FileLocked: {
+			statusBar()->showMessage(tr("PDF file \"%1\" is locked.").arg(curFile));
+			bool ok;
+			password = QInputDialog::getText(0, tr("PDF password"), tr("PDF file \"%1\" is locked.\nYou can now enter the password:").arg(curFile), QLineEdit::Password, password, &ok );
+			if (ok) goto retryNow;
+			break;
+		}
 		case PDFRenderManager::FileIncomplete:         break; // message is handled via messageFrame
 		}
-		delete renderManager;
-		renderManager = 0;
 		pdfWidget->hide();
 		pdfWidget->setDocument(document);
 		if(error==PDFRenderManager::FileIncomplete)
@@ -2852,6 +2919,8 @@ void PDFDocument::loadCurrentFile(bool fillCache)
 		
 		emit documentLoaded();
 	}
+	for (int i=0;i<password.length();i++)
+		password[i] = '\0';
 
 	QApplication::restoreOverrideCursor();
 	isReloading = false;
@@ -2990,6 +3059,29 @@ void PDFDocument::unminimize(){
 	} else {
 		show();
 	}
+}
+
+void PDFDocument::updateDisplayState(DisplayFlags displayFlags)
+{
+	displayFlags &= (embeddedMode) ? FilterEmbedded : FilterWindowed;
+	QWidget *activeWindow = QApplication::activeWindow();
+	unminimize();
+	if (displayFlags & Raise) {
+		raise();
+	} else if (activeWindow) {  // unminimize() may have brought the viewer to Front
+		activeWindow->raise();
+	}
+	if (displayFlags & Focus) {
+		if (embeddedMode) {
+			setFocus();
+		} else {
+			activateWindow();
+		}
+		if (scrollArea) scrollArea->setFocus();
+	} else if (activeWindow) {  // unminimize may have made the viewer active
+		activeWindow->activateWindow();
+	}
+	
 }
 
 void PDFDocument::arrangeWindows(bool tile){
@@ -3276,7 +3368,7 @@ void PDFDocument::syncClick(int pageIndex, const QPointF& pos, bool activate)
 	}
 }
 
-int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool activatePreview)
+int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, DisplayFlags displayFlags)
 {
 	lineNo++; //input 0 based, synctex 1 based
 
@@ -3322,12 +3414,7 @@ int PDFDocument::syncFromSource(const QString& sourceFile, int lineNo, bool acti
 			if (path.isEmpty()) scrollArea->goToPage(page - 1, false);  // otherwise scrolling is performed in setHighlightPath.
 			pdfWidget->setHighlightPath(page-1, path);
 			pdfWidget->update();
-			if (activatePreview) {
-				unminimize();
-				raise();
-				activateWindow();
-				pdfWidget->setFocus();
-			}
+			updateDisplayState(displayFlags);
 			syncToSourceBlock = false;
 			//pdfWidget->repaint();
 			return page-1;
@@ -3364,6 +3451,8 @@ void PDFDocument::saveGeometryToConfig()
 	globalConfig->windowHeight = height();
 	globalConfig->windowMaximized = isMaximized();
 	globalConfig->windowState = saveState();
+	globalConfig->toolbarVisible = toolBar->isVisible();
+	globalConfig->annotationPanelVisible = annotationPanel->isVisible();
 }
 
 void PDFDocument::zoomToRight(QWidget *otherWindow)
@@ -3443,14 +3532,18 @@ void PDFDocument::goToSource()
 void PDFDocument::fileOpen(){
 	QString newFile = QFileDialog::getOpenFileName(this,tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
 	if (newFile.isEmpty()) return;
-	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), false, false);
+	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), NoDisplayFlags);
 }
 
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
 {
 	//current page has changed
-		if(document.isNull())
-			return;
+    if(document.isNull())
+        return;
+
+    Q_ASSERT(pdfWidget && globalConfig);
+    if (!pdfWidget || !globalConfig) return;
+
 	//#ifndef Q_OS_MAC
 	// On Mac OS X, disabling these leads to a crash if we hit the end of document while auto-repeating a key
 	// (seems like a Qt bug, but needs further investigation)
@@ -3465,9 +3558,6 @@ void PDFDocument::enablePageActions(int pageIndex, bool sync)
 	
 	//#endif
 
-
-	Q_ASSERT(pdfWidget && globalConfig);
-	if (!pdfWidget || !globalConfig) return;
 	sync = sync && !syncToSourceBlock;
 	if (globalConfig->followFromScroll && sync)
 		pdfWidget->syncCurrentPage(false);
@@ -3854,6 +3944,9 @@ void PDFDocument::showToolbars()
 		scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() + posChange.y());
 	}
 }
+void PDFDocument::setToolbarIconSize(int sz){
+    toolBar->setIconSize(QSize(sz,sz));
+}
 
 void PDFDocument::showMessage(const QString &text)
 {
@@ -3869,5 +3962,11 @@ void PDFDocument::setToolbarsVisible(bool visible)
 	statusbar->setVisible(visible);
 }
 
+void PDFDocument::splitMergeTool()
+{
+    PDFSplitMergeTool *psmt = new PDFSplitMergeTool(0, fileName());
+    connect(psmt, SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)), SIGNAL(runCommand(QString,QFileInfo,QFileInfo,int)));
+    psmt->show();
+}
 
 #endif  // ndef NO_POPPLER_PREVIEW

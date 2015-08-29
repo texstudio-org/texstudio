@@ -716,6 +716,24 @@ private slots:
 		QEQUAL2(unquoted, in, "while dequoting");
 	}
 
+	void test_joinUnicodeSurrogate_data(){
+		QTest::addColumn<QChar>("highSurrogate");
+		QTest::addColumn<QChar>("lowSurrogate");
+		QTest::addColumn<unsigned int>("val");
+
+		QTest::newRow("CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B") << QChar(55360) << QChar(56390) << 0x20046U;
+		QTest::newRow("min") << QChar(0xD800) << QChar(0xDC00) << 0x10000U;
+		QTest::newRow("rumi number fifty") << QChar(0xD803) << QChar(0xDE6D) << 0x10E6DU;
+		QTest::newRow("musical symbol g clef") << QChar(0xD834) << QChar(0xDD1E) << 0x1D11EU;
+		QTest::newRow("max") << QChar(0xDBFF) << QChar(0xDFFF) << 0x10FFFFU;
+	}
+	void test_joinUnicodeSurrogate(){
+		QFETCH(QChar, lowSurrogate);
+		QFETCH(QChar, highSurrogate);
+		QFETCH(unsigned int, val);
+		QEQUAL(joinUnicodeSurrogate(highSurrogate, lowSurrogate), val);
+	}
+
 	void test_replaceFileExtension_data(){
 		QTest::addColumn<bool>("appendIfNoExtension");
 		QTest::addColumn<QString>("file");
@@ -726,10 +744,11 @@ private slots:
 		QTest::newRow("noExtensionAdd") << true << "c:/test" << "log" << "c:/test.log";
 		QTest::newRow("simple") << false << "c:/test.tex" << "log" << "c:/test.log";
 		QTest::newRow("relative") << false << "../dir/test.tex" << "log" << "../dir/test.log";
-		QTest::newRow("doubleExtSrc") << false << "test.synctex.gz" << "log" << "test.log";
+		QTest::newRow("doubleExtSrc") << false << "test.synctex.gz" << "log" << "test.synctex.log";
 		QTest::newRow("doubleExtTarget") << false << "test.tex" << "synctex.gz" << "test.synctex.gz";
 		QTest::newRow("dotExt") << false << "test.tex" << ".log" << "test.log";
 		QTest::newRow("dotExtAdd") << true << "c:/test" << ".log" << "c:/test.log";
+		QTest::newRow("multiDot") << false << "c:/a.b.c.tex" << ".log" << "c:/a.b.c.log";
 	}
 	void test_replaceFileExtension() {
 		QFETCH(bool, appendIfNoExtension);
@@ -858,10 +877,34 @@ private slots:
 			QEQUAL(indices[i], result[i]);
 		}
 	}
+	
+	void test_indexMin_data() {
+		QTest::addColumn<int>("i");
+		QTest::addColumn<int>("j");
+		QTest::addColumn<int>("result");
 
+		QTest::newRow("i<j") << 3 << 5 << 3;
+		QTest::newRow("i=j") << 3 << 3 << 3;
+		QTest::newRow("i>j") << 5 << 3 << 3;
+		QTest::newRow("i<0") << -1 << 5 << 5;
+		QTest::newRow("j<0") << 5 << -1 << 5;
+		QTest::newRow("ij<0") << -1 << -1 << -1;
+	}
 
+	void test_indexMin() {
+		QFETCH(int, i);
+		QFETCH(int, j);
+		QFETCH(int, result);
+		QEQUAL(indexMin(i, j), result);
+	}
+
+    void test_simpleLexing_data();
+    void test_simpleLexing();
+    void test_latexLexing_data();
+    void test_latexLexing();
 };
 
 
 #endif
 #endif
+

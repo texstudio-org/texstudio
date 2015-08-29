@@ -390,7 +390,7 @@ QDocument::QDocument(QObject *p)
 	if ( !QDocumentPrivate::m_font )
 	{
 		// must not happen if config dialog plugged in...
-		setFont(QFont("Monospace", 10));
+        setBaseFont(QFont("Monospace", 10));
 	}
 
 
@@ -1168,16 +1168,37 @@ QFont QDocument::font()
 	return *(QDocumentPrivate::m_font);
 }
 
+QFont QDocument::baseFont()
+{
+    return *(QDocumentPrivate::m_baseFont);
+}
+
+int QDocument::fontSizeModifier()
+{
+    return QDocumentPrivate::m_fontSizeModifier;
+}
+
 /*!
 	\brief Set the font of ALL documents
 
 	\note this limitation is historic and may disappear
 	in future versions
 */
-void QDocument::setFont(const QFont& f, bool forceUpdate)
+void QDocument::setBaseFont(const QFont& f, bool forceUpdate)
 {
-	QDocumentPrivate::setFont(f, forceUpdate);
-	//emit contentsChanged();
+	QDocumentPrivate::setBaseFont(f, forceUpdate);
+    //emit contentsChanged();
+}
+
+/*!
+    \brief A constant to modify the pointSize of the current font. This value is used for zooming.
+
+    It holds font.pointSize = baseFont.pointSize + fontSizeModifier
+ * \param n
+ */
+void QDocument::setFontSizeModifier(int m, bool forceUpdate)
+{
+    QDocumentPrivate::setFontSizeModifier(m, forceUpdate);
 }
 
 /*!
@@ -1210,7 +1231,7 @@ void QDocument::setLineSpacingFactor(double scale)
 	if ( !QDocumentPrivate::m_font ) return;
 
 	// update m_leading and m_lineSpacing
-	QDocumentPrivate::setFont(*QDocumentPrivate::m_font, true);
+    QDocumentPrivate::setFont(*QDocumentPrivate::m_font, true);
 	// It's a bit more costly than necessary, because we do not change any width.
 	// If performance needs improvement, one could extract the height calculation
 	// to a separate method and call it here and in setFont.
@@ -2442,13 +2463,24 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 				{
 
 					ushort uc = c.unicode();
-					bool isCJK = (0x4E00 <= uc && uc <= 0x9FFF ||   // CJK Unified Ideographs
-					              0x3000 <= uc && uc <= 0x4DBF ||   // CJK Punctuation, ..., Unified Ideographs Extension
-					              0x20000 <= uc && uc <= 0x2B81F || // CJK Unified Ideographs Extension B-D
-					              0xF900 <= uc && uc <= 0xFAFF ||   // CJK Compatibility Ideographs
-					              0x2F800 <= uc && uc <= 0x2FA1F);  // CJK Compatibility Ideographs Supplement
-					                                                // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
-				if ( lastBreak <= lastActualBreak || isCJK )
+					// CJK char detection for wrapping
+					// first check if its part of the unicode BMP
+                    bool isCJK = (!(c.isLowSurrogate()||c.isHighSurrogate()) && // compatibility with qt4
+					              ((0x4E00 <= uc && uc <= 0x9FFF) ||   // CJK Unified Ideographs
+					               (0x3000 <= uc && uc <= 0x4DBF) ||   // CJK Punctuation, ..., Unified Ideographs Extension
+					               (0xF900 <= uc && uc <= 0xFAFF))     // CJK Compatibility Ideographs
+					             );                                  // see http://en.wikipedia.org/wiki/CJK_Symbols_and_Punctuation
+					// additionally check if its a surrogate
+					if (!isCJK && c.isHighSurrogate() && idx+1 < m_text.count()) {
+						QChar cLow = m_text.at(idx+1);
+						if (cLow.isLowSurrogate()) {
+							uint uic = joinUnicodeSurrogate(c, cLow);
+							isCJK = ((0x20000 <= uic && uic <= 0x2B81F) || // CJK Unified Ideographs Extension B-D)
+                                     (0x2F800 <= uic && uic <= 0x2FA1F));    // CJK Compatibility Ideographs Supplement
+						}
+					}
+
+					if ( lastBreak <= lastActualBreak || isCJK )
 					{
 						/* a single regular word is longer than maximal available line space - no reasonable wrapping possible
 						 * or Chinese/Japanese/Korean char (in which case we may wrap inside the "word" not only at breaks (e.g. spaces))
@@ -2506,11 +2538,11 @@ void QDocumentLineHandle::updateWrap(int lineNr) const
 }
 
 void QDocumentLineHandle::updateWrapAndNotifyDocument(int line) const{
+    if ( !m_doc ) return;
 	int oldLW = m_frontiers.count();
 	updateWrap(line);
 	int lw = m_frontiers.count();
 	if ( lw == oldLW ) return;
-	if ( !m_doc ) return;
 
 	if ( lw ) m_doc->impl()->m_wrapped[line] = lw;
 	else m_doc->impl()->m_wrapped.remove(line);
@@ -4579,6 +4611,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 	int &line = m_begLine;
 	int &offset = m_begOffset;
 	static QRegExp wordStart("\\b\\w+$"), wordEnd("^\\w+\\b");
+	static QRegExp wordOrCommandStart("\\\\?\\b\\w+$"), wordOrCommandEnd("^\\\\?\\w+\\b");
 
 	if ( !(m & QDocumentCursor::KeepAnchor) )
 	{
@@ -5205,7 +5238,6 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				offset = x;
 			} else {
 				//qDebug("failed to find SOW : %i + %i != %i", x, wordStart.matchedLength(), offset);
-
 				return false;
 			}
 
@@ -5231,6 +5263,42 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 		}
 
+		case QDocumentCursor::StartOfWordOrCommand :
+		{
+			int x = wordOrCommandStart.indexIn(m_doc->line(line).text().left(offset+1));  // offset+1 because we would not match if we would cut-off at the cursor if it is directly behind a slash like this: \|command
+	
+			if ( x != -1 )
+			{
+				offset = x;
+			} else {
+				//qDebug("failed to find SOWC : %i + %i != %i", x, wordOrCommandStart.matchedLength(), offset);
+				return false;
+			}
+	
+			refreshColumnMemory();
+	
+			break;
+		}
+		
+		case QDocumentCursor::EndOfWordOrCommand :
+		{
+			
+			int x = wordOrCommandEnd.indexIn(m_doc->line(line).text(), offset, QRegExp::CaretAtOffset);
+
+			if ( x == offset )
+			{
+				offset += wordOrCommandEnd.matchedLength();
+			} else {
+				//qDebug("failed to find EOWC");
+				return false;
+			}
+	
+			refreshColumnMemory();
+	
+			break;
+		}
+		
+		
 		default:
 			qWarning("Unhandled move operation...");
 			return false;
@@ -5312,24 +5380,35 @@ void QDocumentCursorHandle::eraseLine()
 
 	if((m_begLine>m_doc->lineCount())||(m_begLine<0)) return; // return if cursor is out of range
 	if((m_endLine>m_doc->lineCount())) m_endLine=m_doc->lineCount()-1;
+	
+	int cursorLine = m_begLine;
+	int anchorLine = m_endLine < 0 ? m_begLine : m_endLine;
+	int startLine = qMin(cursorLine, anchorLine);
+	int endLine = qMax(cursorLine, anchorLine);
 
-	if ( m_endLine == -1 )
+	if (endLine < m_doc->lineCount()-1)
 	{
 		command = new QDocumentEraseCommand(
-										m_begLine,
+										startLine,
 										0,
-										m_begLine + 1,
+										endLine + 1,
 										0,
+										m_doc
+									);
+	} else if (startLine > 0) {
+		// special handling to remove a selection including the last line
+		// QDocumentEraseCommand leaves an empty line if the end (==endLine+1)
+		// is beyond the last line. As a workaround, we change the selection
+		// range and include the newline before the selection in the erase action
+		command = new QDocumentEraseCommand(
+										startLine-1,
+										m_doc->line(startLine-1).length(),
+										endLine,
+										m_doc->line(endLine).length(),
 										m_doc
 									);
 	} else {
-		command = new QDocumentEraseCommand(
-										qMin(m_begLine, m_endLine),
-										0,
-										qMax(m_begLine, m_endLine) + 1,
-										0,
-										m_doc
-									);
+		return;
 	}
 	command->setTargetCursor(this);
 	execute(command);
@@ -5620,6 +5699,19 @@ void QDocumentCursorHandle::clearSelection()
 	}
 }
 
+void QDocumentCursorHandle::flipSelection()
+{
+	if ( m_doc && m_doc->line(m_endLine).isValid() )
+	{
+		int tmpLine = m_begLine;
+		int tmpOffset = m_begOffset;
+		m_begLine = m_endLine;
+		m_begOffset = m_endOffset;
+		m_endLine = tmpLine;
+		m_endOffset = tmpOffset;
+	}
+}
+
 void QDocumentCursorHandle::replaceSelectedText(const QString& text)
 {
 	int begline, begcol;
@@ -5665,6 +5757,11 @@ void QDocumentCursorHandle::select(QDocumentCursor::SelectionType t)
 
 		movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::MoveAnchor);
 		movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+
+	} else if ( t == QDocumentCursor::WordOrCommandUnderCursor ) {
+
+		movePosition(1, QDocumentCursor::StartOfWordOrCommand, QDocumentCursor::MoveAnchor);
+		movePosition(1, QDocumentCursor::EndOfWordOrCommand, QDocumentCursor::KeepAnchor);
 	}
 }
 
@@ -6135,6 +6232,8 @@ template <class T> T* getStaticDefault() { static T _globStatInst; return &_glob
 QTextCodec* QDocumentPrivate::m_defaultCodec = 0;
 
 QFont* QDocumentPrivate::m_font = 0;// = QApplication::font();
+QFont* QDocumentPrivate::m_baseFont = 0;
+int QDocumentPrivate::m_fontSizeModifier = 0;
 QFormatScheme* QDocumentPrivate::m_formatScheme = 0;// = QApplication::font();
 CacheCache<int> QDocumentPrivate::m_fmtWidthCache;
 CacheCache<QPixmap> QDocumentPrivate::m_fmtCharacterCache[2];
@@ -6779,7 +6878,7 @@ QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includ
 	}
 	line = sel.endLine;
 	while (line > sel.startLine && m_lines[line]->length()==0) line--;
-	if (line < sel.endLine) {
+    if (line > sel.startLine) {
 		sel.endLine = line;
 		sel.end = -1;
 	}
@@ -6943,7 +7042,7 @@ void QDocumentPrivate::setWidth()
 				m_wrapped.remove(i);
 			}
 
-			if ( first != -1 )
+            if ( first == -1 )
 				first = i;
 		}
 
@@ -7046,7 +7145,31 @@ void QDocumentPrivate::setHeight()
 	m_height = last * m_lineSpacing;
 
 	if ( oldHeight != m_height )
-		emitHeightChanged();
+        emitHeightChanged();
+}
+
+void QDocumentPrivate::setBaseFont(const QFont &f, bool forceUpdate)
+{
+    m_baseFont = new QFont(f);
+    QFont fMod = f;
+    if (m_fontSizeModifier + m_baseFont->pointSize() < 1) {
+        // prevent actual font sizes to be <= 0
+        m_fontSizeModifier = - m_baseFont->pointSize() + 1;
+    }
+    fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
+    setFont(fMod, forceUpdate);
+}
+
+void QDocumentPrivate::setFontSizeModifier(int m, bool forceUpdate)
+{
+    if (m + m_baseFont->pointSize() < 1) {
+        // prevent actual font sizes to be <= 0
+        m = - m_baseFont->pointSize() + 1;
+    }
+    m_fontSizeModifier = m;
+    QFont fMod = QFont(*m_baseFont);
+    fMod.setPointSize(fMod.pointSize() + m_fontSizeModifier);
+    setFont(fMod, forceUpdate);
 }
 
 void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
@@ -7101,6 +7224,7 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 		d->setWidth();
 		d->setHeight();
 		d->m_LineCache.clear();
+		d->emitFontChanged();
 	}
 }
 
@@ -7317,6 +7441,14 @@ void QDocumentPrivate::emitHeightChanged()
 	emit m_doc->heightChanged(m_height);
 
 	emit m_doc->sizeChanged(QSize(m_width, m_height));
+}
+
+void QDocumentPrivate::emitFontChanged()
+{
+	if ( !m_doc )
+		return;
+
+	emit m_doc->fontChanged(*m_font);
 }
 
 void QDocumentPrivate::insertLines(int after, const QList<QDocumentLineHandle*>& l)
@@ -8165,7 +8297,7 @@ void QDocumentPrivate::discardAutoUpdatedCursors(bool documentDeleted){
 }
 
 void QDocumentPrivate::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
-	if (!!(m_workArounds & workAround) == newValue) return;
+    if (m_workArounds.testFlag(workAround)  == newValue) return;
 	if (newValue) m_workArounds |= workAround;
 	else m_workArounds &= ~workAround;
 	if (workAround == QDocument::DisableFixedPitchMode)

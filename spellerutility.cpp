@@ -187,7 +187,6 @@ SpellerManager::~SpellerManager() {
 
 bool SpellerManager::isOxtDictionary(const QString &fileName) {
 	QFileInfo fi(fileName);
-
 	if (!(QStringList() << "oxt" << "zip").contains(fi.suffix())) return false;
 	QStringList files = JlCompress::getFileList(fileName);
 	QString affFile;
@@ -206,9 +205,17 @@ bool SpellerManager::isOxtDictionary(const QString &fileName) {
 }
 
 bool SpellerManager::importDictionary(const QString &fileName, const QString &targetDir) {
+	if (!isOxtDictionary(fileName)) {
+		bool continueAnyway = txsConfirmWarning(tr("The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?"));
+		if (!continueAnyway) {
+			return false;
+		}
+	}
 	QFileInfo fi(fileName);
-	if (!(QStringList() << "oxt" << "zip").contains(fi.suffix())) return false;
 	QStringList extractedFiles = JlCompress::extractDir(fileName, QDir(targetDir).filePath(fi.fileName()));
+	if (extractedFiles.isEmpty()) {
+		txsWarning(tr("Dictionary import failed: No files could be extracted."));
+	}
 	return !extractedFiles.isEmpty();
 }
 

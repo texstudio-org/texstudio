@@ -119,7 +119,9 @@ public:
 	
 	static QStringList splitOptions(const QString &s);
 	static QString findFileInPath(QString fileName);
+	static QString replaceEnvironmentVariables(const QString &s, const QHash<QString, QString> &variables, bool compareNamesToUpper);
 	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine=0);
+	static QString extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr);
 	ExpandedCommands expandCommandLine(const QString& str, ExpandingOptions& expandingOptions);
 	RunCommandFlags getSingleCommandFlags(const QString& command) const;
 	bool hasCommandLine(const QString& program);
@@ -127,6 +129,8 @@ public:
 	void registerOptions(ConfigManagerInterface& cmi);
 	void readSettings(QSettings &settings);
 	void saveSettings(QSettings &settings);
+	
+	void checkLatexConfiguration(bool &noWarnAgain);
 
 	QAction * stopBuildAction() {return m_stopBuildAction;}
 	
@@ -134,6 +138,7 @@ public slots:
 	bool runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 	Q_INVOKABLE void killCurrentProcess();
 private:
+	bool checkExpandedCommands(const ExpandedCommands& expandedCommands);
 	bool runCommandInternal(const ExpandedCommands& expandedCommands, const QFileInfo &mainFile, QString* buffer = 0, QTextCodec *codecForBuffer = 0);
 public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
@@ -208,6 +213,7 @@ private:
 	QStringList latexCommands, rerunnableCommands, pdfCommands, stdoutCommands, viewerCommands;
 public:
 	static int autoRerunLatex;
+	static bool m_replaceEnvironmentVariables;
 	static QString autoRerunCommands;
 	static QString additionalSearchPaths, additionalLogPaths, additionalPdfPaths;
 	
@@ -236,6 +242,7 @@ class ProcessX: public QProcess{
 	Q_OBJECT
 public:
 	ProcessX(BuildManager* parent=0, const QString &assignedCommand="", const QString& fileToCompile="");
+	static QString reformatShellLiteralQuotes(QString cmd);
 	void startCommand();
 	bool waitForStarted(int timeOut=30000);
 	const QString& getFile();

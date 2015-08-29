@@ -17,13 +17,14 @@ void SyntaxCheck::setErrFormat(int errFormat){
 	syntaxErrorFormat=errFormat;
 }
 
-void SyntaxCheck::putLine(QDocumentLineHandle* dlh,StackEnvironment previous,bool clearOverlay){
+void SyntaxCheck::putLine(QDocumentLineHandle* dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay){
 	REQUIRE(dlh);
 	SyntaxLine newLine;
 	dlh->ref(); // impede deletion of handle while in syntax check queue
 	dlh->lockForRead();
 	newLine.ticket=dlh->getCurrentTicket();
 	dlh->unlock();
+    newLine.stack=stack;
 	newLine.dlh=dlh;
 	newLine.prevEnv=previous;
 	newLine.clearOverlay=clearOverlay;
@@ -69,18 +70,13 @@ void SyntaxCheck::run(){
 		  newLine.dlh->lockForWrite();
 		  newLine.dlh->removeCookie(3); //remove possible errors from unclosed envs
 		}
+        TokenList tl=newLine.dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		newLine.dlh->unlock();
-		QVector<int>fmts=newLine.dlh->getFormats();
-		for(int i=0;i<line.length() && i < fmts.size();i++){
-			if(fmts[i]==verbatimFormat){
-				line[i]=QChar(' ');
-			}
-		}
+
 		StackEnvironment activeEnv=newLine.prevEnv;
-		line=ltxCommands->cutComment(line);
 		Ranges newRanges;
 		
-		checkLine(line,newRanges,activeEnv,newLine.dlh,newLine.ticket);
+        checkLine(line,newRanges,activeEnv,newLine.dlh,tl,newLine.stack,newLine.ticket);
 		// place results
 		if(newLine.clearOverlay) newLine.dlh->clearOverlays(syntaxErrorFormat);
 		//if(newRanges.isEmpty()) continue;
@@ -401,21 +397,15 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
 	}
 }
 
-QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous){
+QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh,int pos,StackEnvironment previous,TokenStack stack){
 	// do syntax check
 	QString line=dlh->text();
-	QVector<int>fmts=dlh->getFormats();
-	for(int i=0;i<line.length() && i < fmts.size();i++){
-		if(fmts[i]==verbatimFormat){
-			line[i]=QChar(' ');
-		}
-	}
 	QStack<Environment> activeEnv=previous;
-	line=ltxCommands->cutComment(line);
+    TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	Ranges newRanges;
-	checkLine(line,newRanges,activeEnv,dlh,dlh->getCurrentTicket());
+    checkLine(line,newRanges,activeEnv,dlh,tl,stack,dlh->getCurrentTicket());
 	// add Error for unclosed env
-	QVariant var=dlh->getCookie(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE);
+    QVariant var=dlh->getCookieLocked(QDocumentLine::UNCLOSED_ENVIRONMENT_COOKIE);
 	if(var.isValid()){
 		activeEnv=var.value<StackEnvironment>();
 		Q_ASSERT_X(activeEnv.size()==1,"SyntaxCheck","Cookie error");
@@ -549,4 +539,394 @@ void SyntaxCheck::markUnclosedEnv(Environment env){
 		}
 	}
 	dlh->unlock();
+}
+
+bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const{
+    for(int i=0;i<stack.size();i++){
+        if(stack[i].subtype==Tokens::definition)
+            return true;
+    }
+    return false;
+}
+
+void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironment &activeEnv, QDocumentLineHandle *dlh,TokenList tl,TokenStack stack,int ticket){
+    // do syntax check on that line
+    int cols=containsEnv(*ltxCommands, "tabular",activeEnv);
+
+    // check command-words
+    for(int i=0;i<tl.length();i++) {
+        Tokens tk=tl.at(i);
+        // ignore commands in definition arguments e.g. \newcommand{cmd}{definition}
+        if(stackContainsDefinition(stack)){
+            Tokens top=stack.top();
+            if(top.dlh!=tk.dlh){
+                if(tk.type==Tokens::closeBrace){
+                    stack.pop();
+                }else
+                    continue;
+            }else{
+                if(tk.start<top.start+top.length)
+                    continue;
+                else
+                    stack.pop();
+            }
+        }
+        if(tk.subtype==Tokens::definition && (tk.type==Tokens::braces||tk.type==Tokens::openBrace)){
+            stack.push(tk);
+            continue;
+        }
+
+        if(tk.type==Tokens::commandUnknown){
+            QString word=line.mid(tk.start,tk.length);
+            if(word.contains('@')){
+                continue; //ignore commands containg @
+            }
+            if(ltxCommands->possibleCommands["user"].contains(word)||ltxCommands->customCommands.contains(word))
+                continue;
+            if(word=="\\\\"&&topEnv("tabular",activeEnv)!=0){
+                if(activeEnv.top().excessCol<(activeEnv.top().id-1)){
+                    Error elem;
+                    elem.range=QPair<int,int>(tk.start,tk.length);
+                    elem.type=ERR_tooLittleCols;
+                    newRanges.append(elem);
+                }
+                if(activeEnv.top().excessCol>=(activeEnv.top().id)){
+                    Error elem;
+                    elem.range=QPair<int,int>(tk.start,tk.length);
+                    elem.type=ERR_tooManyCols;
+                    newRanges.append(elem);
+                }
+                activeEnv.top().excessCol=0;
+                continue;
+            }
+            if(!checkCommand(word,activeEnv)){
+                Error elem;
+                elem.range=QPair<int,int>(tk.start,tk.length);
+                elem.type=ERR_unrecognizedCommand;
+                newRanges.append(elem);
+                continue;
+            }
+        }
+        if(tk.type==Tokens::env){
+            QString env=line.mid(tk.start,tk.length);
+            // corresponds \end{env}
+            if(!activeEnv.isEmpty()){
+                Environment tp=activeEnv.top();
+                if(tp.name==env){
+                    activeEnv.pop();
+                    if(tp.name=="tabular" || ltxCommands->environmentAliases.values(tp.name).contains("tabular")){
+                        // correct length of col error if it exists
+                        if(!newRanges.isEmpty()){
+                            Error &elem=newRanges.last();
+                            if(elem.type==ERR_tooManyCols && elem.range.first+elem.range.second>tk.start){
+                                elem.range.second=tk.start-elem.range.first;
+                            }
+                        }
+                        // get new cols
+                        cols=containsEnv(*ltxCommands, "tabular",activeEnv);
+                    }
+                }else{
+                    Error elem;
+                    elem.range=QPair<int,int>(tk.start,tk.length);
+                    elem.type=ERR_closingUnopendEnv;
+                    newRanges.append(elem);
+                }
+            }else{
+                Error elem;
+                elem.range=QPair<int,int>(tk.start,tk.length);
+                elem.type=ERR_closingUnopendEnv;
+                newRanges.append(elem);
+            }
+        }
+
+        if(tk.type==Tokens::beginEnv){
+            QString env=line.mid(tk.start,tk.length);
+            // corresponds \begin{env}
+            Environment tp;
+            tp.name=env;
+            tp.id=1; //needs correction
+            tp.excessCol=0;
+            tp.dlh=dlh;
+            tp.ticket=ticket;
+            if(env=="tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")){
+                // tabular env opened
+                // get cols !!!!
+                QString option;
+                if((env=="tabu")||(env=="longtabu")){ // special treatment as the env is rather not latex standard
+                    for(int k=i+1;k<tl.length();k++){
+                        Tokens elem=tl.at(k);
+                        if(elem.level<tk.level-1)
+                            break;
+                        if(elem.level>=tk.level)
+                            continue;
+                        if(elem.type==Tokens::braces){ // take the first mandatory argument at the correct level -> TODO: put colDef also for tabu correctly in lexer
+                            option=line.mid(elem.start+1,elem.length-2); // strip {}
+                        }
+                    }
+                }else{
+
+                    for(int k=i+1;k<tl.length();k++){
+                        Tokens elem=tl.at(k);
+                        if(elem.level<tk.level-1)
+                            break;
+                        if(elem.level>=tk.level)
+                            continue;
+                        if(elem.subtype==Tokens::colDef){
+                            option=line.mid(elem.start+1,elem.length-2); // strip {}
+                            break;
+                        }
+                    }
+                }
+                QStringList res=LatexTables::splitColDef(option);
+                cols=res.count();
+                tp.id=cols;
+            }
+            activeEnv.push(tp);
+        }
+
+
+        if(tk.type==Tokens::command){
+            QString word=line.mid(tk.start,tk.length);
+
+            if(word=="\\begin" || word=="\\end"){
+                // check complete expression e.g. \begin{something}
+                if(tl.length()>i+1 && tl.at(i+1).type==Tokens::braces){
+                    word=word+line.mid(tl.at(i+1).start,tl.at(i+1).length);
+                }
+            }
+
+            if(ltxCommands->possibleCommands["user"].contains(word)||ltxCommands->customCommands.contains(word))
+                continue;
+
+            if(ltxCommands->mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
+                Environment env;
+                env.name="math";
+                env.id=1; // to be changed
+                env.dlh=dlh;
+                env.ticket=ticket;
+                activeEnv.push(env);
+                continue;
+            }
+            if(ltxCommands->mathStopCommands.contains(word)&&!activeEnv.isEmpty()&&activeEnv.top().name=="math"){
+                activeEnv.pop();
+                continue;
+            }
+
+            //tabular checking
+            if(topEnv("tabular",activeEnv)!=0){
+                if(word=="&"){
+                    activeEnv.top().excessCol++;
+                    if(activeEnv.top().excessCol>=activeEnv.top().id){
+                        Error elem;
+                        elem.range=QPair<int,int>(tk.start,tk.length);
+                        elem.type=ERR_tooManyCols;
+                        newRanges.append(elem);
+                    }
+                    continue;
+                }
+
+                if((word=="\\\\")||(word=="\\tabularnewline")){
+                    if(activeEnv.top().excessCol<(activeEnv.top().id-1)){
+                        Error elem;
+                        elem.range=QPair<int,int>(tk.start,tk.length);
+                        elem.type=ERR_tooLittleCols;
+                        newRanges.append(elem);
+                    }
+                    if(activeEnv.top().excessCol>=(activeEnv.top().id)){
+                        Error elem;
+                        elem.range=QPair<int,int>(tk.start,tk.length);
+                        elem.type=ERR_tooManyCols;
+                        newRanges.append(elem);
+                    }
+                    activeEnv.top().excessCol=0;
+                    continue;
+                }
+                if(word=="\\multicolumn"){
+                    QRegExp rxMultiColumn("\\\\multicolumn\\{(\\d+)\\}\\{.+\\}\\{.+\\}");
+                    rxMultiColumn.setMinimal(true);
+                    int res=rxMultiColumn.indexIn(line,tk.start);
+                    if(res>-1){
+                        // multicoulmn before &
+                        bool ok;
+                        int c=rxMultiColumn.cap(1).toInt(&ok);
+                        if(ok){
+                            activeEnv.top().excessCol+=c-1;
+                        }
+                    }
+                    if(activeEnv.top().excessCol>=activeEnv.top().id){
+                        Error elem;
+                        elem.range=QPair<int,int>(tk.start,tk.length);
+                        elem.type=ERR_tooManyCols;
+                        newRanges.append(elem);
+                    }
+                    continue;
+                }
+
+            }
+
+            if(!checkCommand(word,activeEnv)){
+                Error elem;
+                elem.range=QPair<int,int>(tk.start,tk.length);
+                elem.type=ERR_unrecognizedCommand;
+
+                if(ltxCommands->possibleCommands["math"].contains(word))
+                    elem.type=ERR_MathCommandOutsideMath;
+                if(ltxCommands->possibleCommands["tabular"].contains(word))
+                    elem.type=ERR_TabularCommandOutsideTab;
+                if(ltxCommands->possibleCommands["tabbing"].contains(word))
+                    elem.type=ERR_TabbingCommandOutside;
+                newRanges.append(elem);
+            }
+        }
+        if(tk.type>=Tokens::specialArg){
+            QString value=line.mid(tk.start,tk.length);
+            QString special=ltxCommands->mapSpecialArgs.value(int(tk.type-Tokens::specialArg));
+            if(!ltxCommands->possibleCommands[special].contains(value)){
+                Error elem;
+                elem.range=QPair<int,int>(tk.start,tk.length);
+                elem.type=ERR_unrecognizedKey;
+                newRanges.append(elem);
+            }
+        }
+        if(tk.type==Tokens::keyVal_key){
+            // special treatment for key val checking
+            QString command=getCommandFromToken(tk);
+            QString value=line.mid(tk.start,tk.length);
+
+            // search stored keyvals
+            QString elem;
+            foreach(elem,ltxCommands->possibleCommands.keys()){
+                if(elem.startsWith("key%") && elem.mid(4)==command)
+                    break;
+                if(elem.startsWith("key%") && elem.mid(4,command.length())==command&&elem.mid(4+command.length(),1)=="/"&&!elem.endsWith("#c")){
+                    // special treatment for distinguishing \command[keyvals]{test} where argument needs to equal test (used in yathesis.cwl)
+                    // now find mandatory argument
+                    QString subcommand;
+                    for(int k=i+1;k<tl.length();k++){
+                        Tokens tk_elem=tl.at(k);
+                        if(tk_elem.level>tk.level-1)
+                            continue;
+                        if(tk_elem.level<tk.level-1)
+                            break;
+                        if(tk_elem.type==Tokens::braces){
+                            subcommand=line.mid(tk_elem.start+1,tk_elem.length-2);
+                            if(elem=="key%"+command+"/"+subcommand){
+                                break;
+                            }else{
+                                subcommand.clear();
+                            }
+                        }
+                    }
+                    if(!subcommand.isEmpty())
+                        elem="key%"+command+"/"+subcommand;
+                    else
+                        elem.clear();
+                    break;
+                }
+                elem.clear();
+            }
+            if(!elem.isEmpty()){
+                QStringList lst=ltxCommands->possibleCommands[elem].values();
+                QStringList::iterator iterator;
+                QStringList toAppend;
+                for (iterator = lst.begin(); iterator != lst.end();++iterator){
+                    int i=iterator->indexOf("#");
+                    if(i>-1)
+                        *iterator=iterator->left(i);
+
+                    i=iterator->indexOf("=");
+                    if(i>-1){
+                        *iterator=iterator->left(i);
+                    }
+                    if(iterator->startsWith("%")){
+                        toAppend<<ltxCommands->possibleCommands[*iterator].values();
+                    }
+                }
+                lst<<toAppend;
+                if(!lst.contains(value)){
+                    Error elem;
+                    elem.range=QPair<int,int>(tk.start,tk.length);
+                    elem.type=ERR_unrecognizedKey;
+                    newRanges.append(elem);
+                }
+            }
+        }
+        if(tk.subtype==Tokens::keyVal_val){
+            //figure out keyval
+            QString word=line.mid(tk.start,tk.length);
+            // first get command
+            Tokens cmd=getCommandTokenFromToken(tl,tk);
+            QString command=line.mid(cmd.start,cmd.length);
+            // figure out key
+            QString key;
+            for(int k=i-1;k>=0;k--){
+                Tokens elem=tl.at(k);
+                if(elem.level==tk.level-1){
+                    if(elem.type==Tokens::keyVal_key){
+                        key=line.mid(elem.start,elem.length);
+                    }
+                    break;
+                }
+            }
+            // find if values are defined
+            QString elem;
+            foreach(elem,ltxCommands->possibleCommands.keys()){
+                if(elem.startsWith("key%") && elem.mid(4)==command)
+                    break;
+                if(elem.startsWith("key%") && elem.mid(4,command.length())==command&&elem.mid(4+command.length(),1)=="/"&&!elem.endsWith("#c")){
+                    // special treatment for distinguishing \command[keyvals]{test} where argument needs to equal test (used in yathesis.cwl)
+                    // now find mandatory argument
+                    QString subcommand;
+                    for(int k=i+1;k<tl.length();k++){
+                        Tokens tk_elem=tl.at(k);
+                        if(tk_elem.level>tk.level-2)
+                            continue;
+                        if(tk_elem.level<tk.level-2)
+                            break;
+                        if(tk_elem.type==Tokens::braces){
+                            subcommand=line.mid(tk_elem.start+1,tk_elem.length-2);
+                            if(elem=="key%"+command+"/"+subcommand){
+                                break;
+                            }else{
+                                subcommand.clear();
+                            }
+                        }
+                    }
+                    if(!subcommand.isEmpty())
+                        elem="key%"+command+"/"+subcommand;
+                    break;
+                }
+                elem.clear();
+            }
+            if(!elem.isEmpty()){
+                // check whether keys is valid
+                QStringList lst=ltxCommands->possibleCommands[elem].values();
+                QStringList::iterator iterator;
+                QString options;
+                for (iterator = lst.begin(); iterator != lst.end();++iterator){
+                    int i=iterator->indexOf("#");
+                    options.clear();
+                    if(i>-1){
+                        options=iterator->mid(i+1);
+                        *iterator=iterator->left(i);
+                    }
+
+                    if(iterator->endsWith("=")){
+                        iterator->chop(1);
+                    }
+                    if(*iterator==key)
+                        break;
+                }
+                if(iterator!=lst.end() && !options.isEmpty()){
+                    QStringList l=options.split(",");
+                    if(!l.contains(word)){
+                        Error elem;
+                        elem.range=QPair<int,int>(tk.start,tk.length);
+                        elem.type=ERR_unrecognizedKeyValues;
+                        newRanges.append(elem);
+                    }
+                }
+            }
+        }
+    }
 }

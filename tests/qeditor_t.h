@@ -26,6 +26,8 @@ private slots:
 	void passiveFolding();
 	void activeFolding_data();
 	void activeFolding();
+	void insertTab_data();
+	void insertTab();
 	void indentation_data();
 	void indentation();
 	void autoClosing_data();

@@ -40,7 +40,6 @@ else:include(qtsingleapplication/qtsingleapplication.pri)
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
 HEADERS += texmaker.h \
     buildmanager.h \
-    dsingleapplication.h \
     symbolgridwidget.h \
     icondelegate.h \
     latexcompleter.h \
@@ -50,7 +49,6 @@ HEADERS += texmaker.h \
     logeditor.h \
     loghighlighter.h \
     smallUsefulFunctions.h \
-    structdialog.h \
     encodingdialog.h \
     filechooser.h \
     tabbingdialog.h \
@@ -144,10 +142,12 @@ HEADERS += texmaker.h \
     pdfannotation.h \
     kpathseaParser.h \
     tests/latexoutputfilter_t.h \
-    sessionlist.h
+    sessionlist.h \
+    pdfsplittool.h \
+    searchresultwidget.h \
+    searchquery.h
 SOURCES += main.cpp \
     buildmanager.cpp \
-    dsingleapplication.cpp \
     texmaker.cpp \
     symbolgridwidget.cpp \
     icondelegate.cpp \
@@ -157,7 +157,6 @@ SOURCES += main.cpp \
     logeditor.cpp \
     loghighlighter.cpp \
     smallUsefulFunctions.cpp \
-    structdialog.cpp \
     filechooser.cpp \
     tabbingdialog.cpp \
     arraydialog.cpp \
@@ -238,13 +237,16 @@ SOURCES += main.cpp \
     pdfannotation.cpp \
     kpathseaParser.cpp \
     tests/latexoutputfilter_t.cpp \
-    sessionlist.cpp
+    sessionlist.cpp \
+    pdfsplittool.cpp \
+    searchresultwidget.cpp \
+    tests/smallUsefulFunctions_t.cpp \
+    searchquery.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
     images.qrc
-FORMS += structdialog.ui \
-    filechooser.ui \
+FORMS += filechooser.ui \
     insertgraphics.ui \
     tabbingdialog.ui \
     arraydialog.ui \
@@ -269,7 +271,8 @@ FORMS += structdialog.ui \
     cleandialog.ui \
     maketemplatedialog.ui \
     texdocdialog.ui \
-    pdfannotationdlg.ui
+    pdfannotationdlg.ui \
+    pdfsplittool.ui
 TRANSLATIONS += texstudio_cs.ts \
     texstudio_de.ts \
     texstudio_es.ts \
@@ -407,6 +410,8 @@ unix {
 	utilities/dictionaries/en_GB.dic \
 	utilities/dictionaries/en_US.aff \
 	utilities/dictionaries/en_US.dic \
+	utilities/dictionaries/es_ES.aff \
+	utilities/dictionaries/es_ES.dic \
 	utilities/dictionaries/fr_FR.aff \
 	utilities/dictionaries/fr_FR.dic \
 	utilities/dictionaries/de_DE.aff \
@@ -625,40 +630,13 @@ CONFIG(team):!CONFIG(build_pass) {
 }
 OTHER_FILES += universalinputdialog.*
 
-# add SVN revision (deprecated)
-exists(./.svn/entries)|exists(./.svn/wc.db){
-  win32: {
-    QMAKE_PRE_LINK += \"$${PWD}/svn_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
-    LIBS += svn_revision.o
-  } else: {
-    svn_revision.target = svn_revision.cpp
-    exists(./.svn/wc.db){
-      svn_revision.depends = .svn/entries .svn/wc.db  # storage of information changed from entries to wc.db in SVN 1.7, entries is kept for compatibility with earlier versions
-    }else{
-      svn_revision.depends = .svn/entries
-    }
-    svn_revision.commands = echo \"const char* TEXSTUDIO_SVN_VERSION = \\\"$(shell svnversion)\\\";\" > $$svn_revision.target
-    QMAKE_EXTRA_TARGETS += svn_revision
-    !exists(./svn_revision.cpp): message("svn_revision.cpp was not found and will be created. Don't worry about repeated warnings.")
-    SOURCES += svn_revision.cpp
-  }
-} else {
-  !exists(./svn_revision.cpp){
-    win32: system(echo const char * TEXSTUDIO_SVN_VERSION = 0; > svn_revision.cpp)
-    else: system(echo \"const char * TEXSTUDIO_SVN_VERSION = 0;\" > svn_revision.cpp)
-  }
-  SOURCES += svn_revision.cpp
-
-}
-
 # add mercurial revision
-exists(./.hg2) || exists(./.hg) {
+exists(./.hg2) | exists(./.hg) {
   win32: {
     message(HG)
     QMAKE_PRE_LINK += \"$${PWD}/hg_revision.bat\" $${QMAKE_CXX} \"$${OUT_PWD}\"
     LIBS += hg_revision.o
   } else {
-    # Just as a fall back. TODO: implement this analogous to the svn_revision an linux and mac
     QMAKE_PRE_LINK += \"$${PWD}/hg_revision.sh\" $${QMAKE_CXX} \"$${OUT_PWD}\"
     LIBS += hg_revision.o
   }

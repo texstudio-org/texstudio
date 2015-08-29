@@ -35,6 +35,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="exportButton">
+        <property name="text">
+         <string>CSV Export</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="closeButton">
         <property name="text">
          <string>Close</string>

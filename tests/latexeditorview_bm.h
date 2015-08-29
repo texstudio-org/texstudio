@@ -15,6 +15,8 @@ class LatexEditorViewBenchmark: public QObject{
 	private slots:
 		void documentChange_data();
 		void documentChange();
+        void patch_data();
+        void patch();
 		void linePaint_data();
 		void linePaint();
 		void paintEvent_data();

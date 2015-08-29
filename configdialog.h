@@ -121,6 +121,7 @@ private slots:
 	void browsePathCommands();
 	void advancedOptionsToggled(bool on);
 	void advancedOptionsClicked(bool on);
+	void metaFilterChanged(const QString& filter);
 	void toolbarChanged(int toolbar);
 	void actionsChanged(int actionClass);
 	void toToolbarClicked();
@@ -146,7 +147,9 @@ private slots:
 
 private:
 	bool askRiddle();
-    void hideShowAdvancedOptions(QWidget* w, bool on);
+	void hideShowAdvancedOptions(QWidget* w, bool on);
+	static bool metaFilterRecurseWidget(const QString& filter, QWidget* widget);
+	static bool metaFilterRecurseLayout(const QString& filter, QLayout* layout);
 	static int lastUsedPage;
 	static QPoint lastSize;
 	int oldToolbarIndex;

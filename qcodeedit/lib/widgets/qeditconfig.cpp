@@ -139,9 +139,9 @@ bool QEditConfig::hasUnsavedChanges() const
 	int flags = QEditor::defaultFlags();
 
 	if ( chkReplaceTabs->isChecked() )
-		flags |= QEditor::ReplaceTabs;
+		flags |= QEditor::ReplaceIndentTabs;
 	else
-		flags &= ~QEditor::ReplaceTabs;
+		flags &= ~QEditor::ReplaceIndentTabs;
 
 	if ( chkAutoRemoveTrailingWhitespace->isChecked() )
 		flags |= QEditor::RemoveTrailing;
@@ -186,7 +186,7 @@ void QEditConfig::apply()
 	QFont font = cbFont->currentFont();
 	font.setPointSize(spnFontSize->value());
 
-	QDocument::setFont(font);
+    QDocument::setBaseFont(font);
 	QDocument::setTabStop(spnTabWidth->value());
 
 	if ( chkDetectLE->isChecked() )
@@ -215,9 +215,9 @@ void QEditConfig::apply()
 	int flags = QEditor::defaultFlags();
 
 	if ( chkReplaceTabs->isChecked() )
-		flags |= QEditor::ReplaceTabs;
+		flags |= QEditor::ReplaceIndentTabs;
 	else
-		flags &= ~QEditor::ReplaceTabs;
+		flags &= ~QEditor::ReplaceIndentTabs;
 
 	if ( chkAutoRemoveTrailingWhitespace->isChecked() )
 		flags |= QEditor::RemoveTrailing;
@@ -262,7 +262,7 @@ void QEditConfig::cancel()
 	cbLineEndings->setCurrentIndex(le ? le - 1 : 0);
 
 	int flags = QEditor::defaultFlags();
-	chkReplaceTabs->setChecked(flags & QEditor::ReplaceTabs);
+	chkReplaceTabs->setChecked(flags & QEditor::ReplaceIndentTabs);
 	chkAutoRemoveTrailingWhitespace->setChecked(flags & QEditor::RemoveTrailing);
 	chkPreserveTrailingIndent->setChecked(flags & QEditor::PreserveTrailingIndent);
 
@@ -362,9 +362,9 @@ void QEditConfig::loadKeys(const QMap<QString, QVariant>& keys)
 			spnFontSize->setValue(f.pointSize());
 
 			if ( m_direct )
-				QDocument::setFont(f);
+                QDocument::setBaseFont(f);
 
-			lblSampleText->setFont(f);
+            lblSampleText->setFont(f);
 
 		} else if ( it.key() == "tab_width" ) {
 			spnTabWidth->setValue(it->toInt());
@@ -434,7 +434,7 @@ void QEditConfig::on_spnFontSize_valueChanged(int size)
 
 	if ( m_direct )
 	{
-		QDocument::setFont(font);
+        QDocument::setBaseFont(font);
 		emit keyChanged("font", font);
 	}
 }
@@ -449,7 +449,7 @@ void QEditConfig::on_cbFont_currentFontChanged(QFont font)
 
 	if ( m_direct )
 	{
-		QDocument::setFont(font);
+        QDocument::setBaseFont(font);
 		emit keyChanged("font", font);
 	}
 }
@@ -476,7 +476,7 @@ void QEditConfig::on_chkReplaceTabs_toggled(bool y)
 		// FIXME
 		foreach ( QEditor *e, QEditor::m_editors )
 		{
-			e->setFlag(QEditor::ReplaceTabs, y);
+			e->setFlag(QEditor::ReplaceIndentTabs, y);
 		}
 		emit keyChanged("replace_tabs", y);
 	}
