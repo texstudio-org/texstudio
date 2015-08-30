@@ -2,7 +2,7 @@
 
 TeXstudio 2.9.4 -> 2.10.0
 -----------------------------------------
-- new and improved LaTeX parser
+- new and improved LaTeX parser, the last command argument can now span over several lines
 - change: consolidated default shortcuts of tools
 - rename "master document" -> "explicit root document" and clean up switching logic
 - generalized TODO comment detection: any multiple-capital-letter word is recognized as todo-style comment (e.g. "% FIXME", "% ASK")
