@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<TS version="2.0" language="pt_BR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1937,7 +1937,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
     </message>
     <message>
         <source>Automatically check in after save</source>
-        <translation type="vanished">Efetuar &apos;check in&apos; automaticamente após salvar</translation>
+        <translation>Efetuar &apos;check in&apos; automaticamente após salvar</translation>
     </message>
     <message>
         <location line="+68"/>
@@ -9331,23 +9331,23 @@ Para alterar um atalho você deve editar a terceira ou quarta coluna.</translati
     <name>StructDialog</name>
     <message>
         <source>Structure</source>
-        <translation type="vanished">Estrutura</translation>
+        <translation>Estrutura</translation>
     </message>
     <message>
         <source>Numeration</source>
-        <translation type="vanished">Numeração</translation>
+        <translation>Numeração</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="vanished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="vanished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="vanished">Cancelar</translation>
+        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -10592,8 +10592,9 @@ falhou.</translation>
     </message>
     <message>
         <location line="+53"/>
-        <source>&amp;Open Terminal</source>
-        <translation type="unfinished"></translation>
+        <source>Open &amp;Terminal</source>
+        <oldsource>&amp;Open Terminal</oldsource>
+        <translation>Abrir &amp;Terminal</translation>
     </message>
     <message>
         <location line="+46"/>

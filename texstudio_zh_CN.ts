@@ -11554,7 +11554,8 @@ Please provide this file if you send a bug report.
     </message>
     <message>
         <location line="+548"/>
-        <source>&amp;Open Terminal</source>
+        <source>Open &amp;Terminal</source>
+        <oldsource>&amp;Open Terminal</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
