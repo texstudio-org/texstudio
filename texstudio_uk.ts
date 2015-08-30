@@ -10771,7 +10771,8 @@ Do you want to keep the program running? This may cause data corruption.</source
     </message>
     <message>
         <location line="+9"/>
-        <source>&amp;Open Terminal</source>
+        <source>Open &amp;Terminal</source>
+        <oldsource>&amp;Open Terminal</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
