@@ -12038,6 +12038,7 @@ Soll das Programm weiterlaufen? Dies kann Teile Ihrer Daten korrumpieren.</trans
     <message>
         <location line="+9"/>
         <source>&amp;Open Terminal</source>
+        <translatorcomment>&amp;Terminal öffnen</translatorcomment>
         <translation>&amp;Terminal öffnen</translation>
     </message>
     <message>
