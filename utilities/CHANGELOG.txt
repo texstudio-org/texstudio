@@ -1,5 +1,73 @@
 (you may also want to check the usermanual)
 
+TeXstudio 2.9.4 -> 2.10.0
+-----------------------------------------
+- new and improved LaTeX parser
+- change: consolidated default shortcuts of tools
+- rename "master document" -> "explicit root document" and clean up switching logic
+- generalized TODO comment detection: any multiple-capital-letter word is recognized as todo-style comment (e.g. "% FIXME", "% ASK")
+- improved search results window
+- search and replace for labels
+- viewer does now support gestures: pinch to zoom, tap to "Go to source"
+- added: Tools -> Open Terminal
+- added an option filter to the config dialog
+- CSV export for text analysis
+- open password protected pdfs
+- support Inkscape .pdf_tex files
+- check for proper LaTeX configuration at startup (currently only pdflatex)
+- allow multiple cursor mirror block selections
+- support usage of environment variables in commands
+- remember visibility of toolbar and annotation panel in PDF viewer
+- add option Editor -> Replace Tabs in Text by Spaces
+- added Options -> Restore Default Settings
+- context menu items to open/close all files of a project
+- user-visible list of hidden documents
+- added --foreground and --no-foreground options to pdf viewer
+- make format for magicComment editable in Options -> Highlighting
+- added line operation "Delete from start of line", more constent naming of line operations, adaption for OSX default shortcuts
+- improved support for output redirection of commands
+- support shell-style literal quotes (\") in commands
+- new selection actions "Expand Selection to Word", "Expand Selection to Line"
+- send country code to languagetool
+- added (?not-highlighted-as:...) scope for macro trigger
+- new function for scripting: simulateKeyPress()
+- more fine-grained options for checkin after save
+- more standard behavior for F3 (Find Next instead of Continue Find)
+- improved UI scaling
+- improved path detection on OS X
+- improved highlighting for user scripts
+- improved insertion of \item
+- temporary highlight target text of go to definition
+- update checker respects system proxy configuration
+- checks and warnings for dictionary import
+- filter out Ctrl+Alt+... shortcuts definitions for some keyboard locales on windows if the shortcut would overwrite a regular character shortcut
+- remember changed highlighting for recent files
+- change: double-clicking on a command now also selects the leading backslash (configurable in the options)
+- fix: comment definition for sweave format
+- fix: possible crash in text width calculation
+- fix: detection of log files for filenames containing dots
+- fix: comment insertion for Sweave/Rweave
+- fix: eraseLine() left an empty line if the final line was included in the selection
+- fix: empty context menu entry for word repetitions
+- fix: detection of some CJK characters when wrapping
+- fix: don't show structure commands without arguments in the structure outline
+- fix: ampersands were not highlighted if followed by a non-space char
+- fix: bug that commands may become empty after editing
+- fix: assignment of some standard backspace shortcuts on OS X
+- fix: allow normal format in highlighted-as trigger
+- fix: missing auto-completion for \( when the following text already contains \( \)
+- fix: incorrect error message when trying to access miktex texdoc in case MIKTEX_VIEW_* environment variables are set
+- fix: bug in filename detection of inverse search
+- fix: Fit to Textwidth had a horizontal offset in some cases
+- fix: some size issues with editor zoom
+- fix: text completion on ctrl+space
+- update: documentation
+- update: LaTeX reference manual (May 2015)
+- update: windows libraries of poppler to 0.32.0
+- added / updated a number of cwl files
+- added spanish dictionary
+
+
 TeXstudio 2.9.2 -> 2.9.4
 -----------------------------------------
 - fix: bug concerning overwritten shortcuts on Linux and OSX
