@@ -10361,7 +10361,7 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
         <translation type="unfinished">Nastavit zvětšení znovu</translation>
     </message>
     <message>
-        <source>&amp;Open Terminal</source>
+        <source>Open &amp;Terminal</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
