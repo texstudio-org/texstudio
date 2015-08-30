@@ -10086,7 +10086,8 @@ included document in %1</source>
     </message>
     <message>
         <location line="+9"/>
-        <source>&amp;Open Terminal</source>
+        <source>Open &amp;Terminal</source>
+        <oldsource>&amp;Open Terminal</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -10398,7 +10398,8 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>&amp;Open Terminal</source>
+        <source>Open &amp;Terminal</source>
+        <oldsource>&amp;Open Terminal</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>

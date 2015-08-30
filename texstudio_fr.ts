@@ -2447,7 +2447,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="+356"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -12474,8 +12474,9 @@ included document in %1</source>
     </message>
     <message>
         <location line="+9"/>
-        <source>&amp;Open Terminal</source>
-        <translation>&amp;Ouvrir un terminal</translation>
+        <source>Open &amp;Terminal</source>
+        <oldsource>&amp;Open Terminal</oldsource>
+        <translation>Ouvrir un &amp;terminal</translation>
     </message>
     <message>
         <location line="+3"/>
