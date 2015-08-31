@@ -15,7 +15,7 @@ TeXstudio 2.9.4 -> 2.10.0
 - open password protected pdfs
 - support Inkscape .pdf_tex files
 - check for proper LaTeX configuration at startup (currently only pdflatex)
-- allow multiple cursor mirror block selections
+- improved cursor mirror selections: allow multiple, disjoint rectangular blocks, single mirrors can be removed
 - support usage of environment variables in commands
 - remember visibility of toolbar and annotation panel in PDF viewer
 - add option Editor -> Replace Tabs in Text by Spaces
@@ -60,7 +60,6 @@ TeXstudio 2.9.4 -> 2.10.0
 - fix: bug in filename detection of inverse search
 - fix: Fit to Textwidth had a horizontal offset in some cases
 - fix: some size issues with editor zoom
-- fix: text completion on ctrl+space
 - update: documentation
 - update: LaTeX reference manual (May 2015)
 - update: windows libraries of poppler to 0.32.0
