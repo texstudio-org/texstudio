@@ -82,5 +82,30 @@ void LatexEditorViewTest::insertHardLineBreaks(){
 		QEQUAL(edView->editor->document()->text(), newText);
 	}
 }
+void LatexEditorViewTest::inMathEnvironment_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<QString>("inmath");
+
+	QTest::newRow("closed")
+			<<  "a$bc$de\\[f\\]g"
+			<< "fftttfffttttff";
+
+	QTest::newRow("open")
+			<<  "xy$z"
+			<< "ffftt";
+}
+void LatexEditorViewTest::inMathEnvironment(){
+	QFETCH(QString, text);
+	QFETCH(QString, inmath);
+	edView->editor->setText(text);
+	QDocumentCursor c = edView->editor->document()->cursor(0,0);
+	for (int i=0;i<inmath.size();i++) {
+		c.setColumnNumber(i);
+		bool posinmath = inmath.at(i) == 't';
+		QEQUAL(edView->isInMathHighlighting(c), posinmath );
+	}
+
+}
+
 #endif
 

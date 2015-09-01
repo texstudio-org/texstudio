@@ -158,7 +158,7 @@ private:
 	static int environmentFormat,referencePresentFormat,referenceMissingFormat,referenceMultipleFormat, citationMissingFormat, citationPresentFormat,structureFormat,
 	packagePresentFormat,packageMissingFormat,packageUndefinedFormat,
 	wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
-	numbersFormat, verbatimFormat, commentFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat,
+	numbersFormat, verbatimFormat, commentFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat, math_KeywordFormat,
 	asymptoteBlockFormat;
 	static QList<int> grammarFormats;
 	static QVector<bool> grammarFormatsDisabled;
@@ -188,7 +188,7 @@ private:
 
 	static QStringList checkedLanguages; // languages for online checking
 
-    QMap<QString,QString> mReplacementList;
+	QMap<QString,QString> mReplacementList;
 
 private slots:
 	void requestCitation(); //emits needCitation with selected text
@@ -263,6 +263,9 @@ public slots:
 	void bibtexSectionFound(QString content);
 public:
 	static void setGrammarOverlayDisabled(int type, bool show);
+
+	bool isInMathHighlighting(const QDocumentCursor& cursor);
+
 
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);

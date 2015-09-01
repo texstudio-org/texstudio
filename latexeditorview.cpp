@@ -1246,7 +1246,7 @@ void LatexEditorView::setLineMarkToolTip(const QString& tooltip){
 
 int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat,LatexEditorView::structureFormat,LatexEditorView::packageMissingFormat,LatexEditorView::packagePresentFormat,LatexEditorView::packageUndefinedFormat,
 LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
-LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::commentFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat,
+LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::commentFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat, LatexEditorView::math_KeywordFormat,
 LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat,
 LatexEditorView::asymptoteBlockFormat;
 int LatexEditorView::syntaxErrorFormat,LatexEditorView::preEditFormat;
@@ -1334,6 +1334,7 @@ void LatexEditorView::updateFormatSettings(){
 							 &sweaveDelimiterFormat, "sweave-delimiter",
 							 &sweaveBlockFormat, "sweave-block",
 							 &math_DelimiterFormat, "math-delimiter",
+							 &math_KeywordFormat, "math-keyword",
 							 &asymptoteBlockFormat, "asymptote:block",
 							 &preEditFormat,"preedit",
 							 0, 0
@@ -2650,12 +2651,42 @@ bool LatexEditorView::getSearchIsWords(){
 }
 
 bool LatexEditorView::getSearchIsCase(){
-    return searchReplacePanel->getSearchIsCase();
+	return searchReplacePanel->getSearchIsCase();
 }
 
 bool LatexEditorView::getSearchIsRegExp(){
-    return searchReplacePanel->getSearchIsRegExp();
+	return searchReplacePanel->getSearchIsRegExp();
 }
 
 
+bool LatexEditorView::isInMathHighlighting(const QDocumentCursor& cursor ){
+	const QDocumentLine& line = cursor.line();
+	if (!line.handle()) return false;
+	const QVector<int>& formats = line.handle()->getFormats();
+
+	int col = cursor.columnNumber();
+
+	bool atDelimiter = false;
+
+	if (col >= 0 && col < formats.size()) {
+		int f = formats[col];
+		if (f == numbersFormat || f == math_KeywordFormat) return true;
+		if (f == math_DelimiterFormat) atDelimiter = true;
+	}
+	if (col > 0 && col <= formats.size()) {
+		int f = formats[col-1];
+		if (f == numbersFormat || f == math_KeywordFormat) return true;
+		if (f == math_DelimiterFormat) atDelimiter = true;
+	}
+
+	if (!atDelimiter) return false;
+
+	QDocumentCursor from, to;
+	cursor.getMatchingPair(from, to, false);
+	if (!from.isValid() || !to.isValid())
+		return col > 0 && col <= formats.size() && formats.at(col-1) == math_DelimiterFormat;
+	if (cursor <= from.selectionStart()) return false;
+	if (cursor >= to.selectionEnd()) return false;
+	return true;
+}
 
