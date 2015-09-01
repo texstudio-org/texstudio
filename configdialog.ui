@@ -61,7 +61,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>865</width>
+            <width>603</width>
             <height>710</height>
            </rect>
           </property>
@@ -1676,8 +1676,8 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-854</y>
-            <width>895</width>
+            <y>-803</y>
+            <width>893</width>
             <height>1483</height>
            </rect>
           </property>
@@ -2281,25 +2281,39 @@ Then you can select a new shortcut by one of the following ways:
              <property name="title">
               <string>Bi-Di</string>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_10">
-              <item>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0" colspan="3">
                <widget class="QCheckBox" name="checkBoxAutoLRM">
                 <property name="text">
                  <string>Automatically insert LRM characters</string>
                 </property>
                </widget>
               </item>
-              <item>
+              <item row="1" column="0" colspan="3">
                <widget class="QCheckBox" name="checkBoxVisualColumnMode">
                 <property name="text">
                  <string>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QCheckBox" name="checkBoxSwitchLanguages">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_74">
                 <property name="text">
-                 <string>Automatically switch input languages between text and math mode</string>
+                 <string>Automatically switch keyboard layout: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="checkBoxSwitchLanguagesDirection">
+                <property name="text">
+                 <string>Depending on character direction</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QCheckBox" name="checkBoxSwitchLanguagesMath">
+                <property name="text">
+                 <string>Depending on text/math highlighting</string>
                 </property>
                </widget>
               </item>
@@ -2873,8 +2887,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>371</width>
+            <height>560</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3230,7 +3244,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>865</width>
+            <width>660</width>
             <height>679</height>
            </rect>
           </property>

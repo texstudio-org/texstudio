@@ -2695,6 +2695,23 @@ bool LatexEditorView::isInMathHighlighting(const QDocumentCursor& cursor ){
 
 void LatexEditorView::checkRTLLTRLanguageSwitching(){
 	QDocumentCursor cursor = editor->cursor();
-	bool inMathNew = isInMathHighlighting(cursor);
-	setInputLanguage( inMathNew );
+	int language = 0;
+
+	if (config->switchLanguagesMath) {
+		if (isInMathHighlighting(cursor)) language = 1;
+		else language = -1;
+	}
+
+	if (config->switchLanguagesDirection && language <= 0) {
+		QDocumentLine line = cursor.line();
+		if (!line.isRTL()) language = 1;
+		else {
+			int c = cursor.columnNumber();
+			int dir = line.getLayout()->rightCursorPosition(c) - c;
+			if (dir != 0) language = dir;
+		}
+	}
+
+	if (language < 0) setInputLanguage(false);
+	else if (language > 0) setInputLanguage(true);
 }

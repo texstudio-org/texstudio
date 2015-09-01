@@ -1407,8 +1407,7 @@ void Texmaker::currentEditorChanged() {
 		updateToolBarMenu("main/view/documents");
 	EditorSpellerChanged(currentEditorView()->getSpeller());
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
-	if (configManager.editorConfig->switchLanguages)
-		currentEditorView()->checkRTLLTRLanguageSwitching();
+	currentEditorView()->checkRTLLTRLanguageSwitching();
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
@@ -7847,8 +7846,7 @@ void Texmaker::cursorPositionChanged(){
 	if (!view) return;
 	int i=view->editor->cursor().lineNumber();
 
-	if (configManager.editorConfig->switchLanguages)
-		view->checkRTLLTRLanguageSwitching();
+	view->checkRTLLTRLanguageSwitching();
 
 	// search line in structure
 	if (currentLine==i) return;
