@@ -6,12 +6,13 @@
 #if defined( Q_WS_X11 )
 #include "xkb/XKeyboard.h"
 #include <string>
-typedef int HKL;
 #endif
+
 #if defined( Q_WS_WIN )
 #include "Windows.h"
+#else
+typedef int HKL;
 #endif
-#include "cstdio"
 
 static bool languagesInitialized = false;
 static HKL languageIdRTL, languageIdLTR;
@@ -82,7 +83,6 @@ int getInputLanguage(bool englishLike){
 		for (int i=0; i<count;++i) {
 			std::string symb = installedLangSymbols.at(i);
 			if (symb == "us") bestLTR = i;
-			printf("%s %i\n", symb.c_str(), isProbablyLanguageLTR(symb));
 			if (isProbablyLanguageLTR(symb)) {
 				if (bestLTR < 0) bestLTR = i;
 			} else if (!languageIdRTL) languageIdRTL = i + 1;
@@ -91,7 +91,6 @@ int getInputLanguage(bool englishLike){
 #endif // Q_WS_X11
 		languagesInitialized = true;
 	}
-	printf("=> %i %i\n", languageIdLTR, languageIdRTL);
 	if (englishLike) return languageIdLTR;
 	else return languageIdRTL;
 }
