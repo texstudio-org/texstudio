@@ -41,7 +41,7 @@ public:
 	bool texdocHelpInInternalViewer;
 	bool silentReload;
 	
-	bool autoInsertLRM, visualColumnMode;
+	bool autoInsertLRM, visualColumnMode, switchLanguages;
 
 	bool overwriteOpeningBracketFollowedByPlaceholder;
 	bool overwriteClosingBracketFollowingPlaceholder;

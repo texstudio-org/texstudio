@@ -189,7 +189,6 @@ private:
 	static QStringList checkedLanguages; // languages for online checking
 
 	QMap<QString,QString> mReplacementList;
-
 private slots:
 	void requestCitation(); //emits needCitation with selected text
 	void openExternalFile();
@@ -265,8 +264,7 @@ public:
 	static void setGrammarOverlayDisabled(int type, bool show);
 
 	bool isInMathHighlighting(const QDocumentCursor& cursor);
-
-
+	void checkRTLLTRLanguageSwitching();
 signals:
 	void lineHandleDeleted(QDocumentLineHandle* l);
 	void showMarkTooltipForLogMessage(QList<int> logMessages);
