@@ -47,6 +47,8 @@
 
 #include "help.h"
 
+#include "bidiextender.h"
+
 QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file"; // languages for online checking (exact name from qnfa file)
 
 //------------------------------Default Input Binding--------------------------------
@@ -2690,3 +2692,9 @@ bool LatexEditorView::isInMathHighlighting(const QDocumentCursor& cursor ){
 	return true;
 }
 
+
+void LatexEditorView::checkRTLLTRLanguageSwitching(){
+	QDocumentCursor cursor = editor->cursor();
+	bool inMathNew = isInMathHighlighting(cursor);
+	setInputLanguage( inMathNew );
+}

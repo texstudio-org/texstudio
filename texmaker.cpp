@@ -1407,6 +1407,8 @@ void Texmaker::currentEditorChanged() {
 		updateToolBarMenu("main/view/documents");
 	EditorSpellerChanged(currentEditorView()->getSpeller());
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
+	if (configManager.editorConfig->switchLanguages)
+		currentEditorView()->checkRTLLTRLanguageSwitching();
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
@@ -7841,9 +7843,13 @@ SearchResultWidget *Texmaker::searchResultWidget() {
 
 // show current cursor position in structure view
 void Texmaker::cursorPositionChanged(){
-	if (!currentEditorView()) return;
-	int i=currentEditor()->cursor().lineNumber();
-	
+	LatexEditorView * view = currentEditorView();
+	if (!view) return;
+	int i=view->editor->cursor().lineNumber();
+
+	if (configManager.editorConfig->switchLanguages)
+		view->checkRTLLTRLanguageSwitching();
+
 	// search line in structure
 	if (currentLine==i) return;
 	currentLine=i;

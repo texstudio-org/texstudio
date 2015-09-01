@@ -31,6 +31,7 @@ TeXstudio 2.9.4 -> 2.10.0
 - send country code to languagetool
 - added (?not-highlighted-as:...) scope for macro trigger
 - new function for scripting: simulateKeyPress()
+- automatic LRT<->RTL language/keyboard layout switching
 - more fine-grained options for checkin after save
 - more standard behavior for F3 (Find Next instead of Continue Find)
 - improved UI scaling
