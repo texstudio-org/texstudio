@@ -3446,7 +3446,7 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		} else {
 			if (m_multiClickCursor.isValid()) {
 				QDocumentCursor selection(m_multiClickCursor, newCursor);
-				selection.expandSelect(m_multiClickCursor.property("isTripleClick").toBool() ? QDocumentCursor::LineUnderCursor : QDocumentCursor::WordUnderCursor);
+				selection.expandSelect(m_multiClickCursor.property("isTripleClick").toBool() ? QDocumentCursor::LineUnderCursor : m_doubleClickSelectionType);
 				m_cursor = selection;
 			} else {
 				m_cursor.setSelectionBoundary(newCursor);
