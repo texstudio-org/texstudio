@@ -195,6 +195,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		
 		QDocumentCursor selectionStart() const;
 		QDocumentCursor selectionEnd() const;
+		QDocumentCursor anchorCursor() const;
 		
 		Q_INVOKABLE QString selectedText() const;
 		
@@ -204,6 +205,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		Q_INVOKABLE void replaceSelectedText(const QString& text);
 		
 		Q_INVOKABLE void select(SelectionType t);
+		Q_INVOKABLE void expandSelect(SelectionType t);
 		Q_INVOKABLE void setSelectionBoundary(const QDocumentCursor& c);
 		Q_INVOKABLE void select(int line, int column, int lineTo = -1, int columnTo = -1);
 		Q_INVOKABLE void selectColumns(int column, int columnTo = -1);
