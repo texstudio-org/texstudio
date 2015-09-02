@@ -711,6 +711,14 @@ QDocumentCursor QDocumentCursor::selectionEnd() const
 }
 
 /*!
+	\return A cursor pointing at the position of the anchor.
+*/
+QDocumentCursor QDocumentCursor::anchorCursor() const
+{
+	return m_handle ? m_handle->anchorCursor() : QDocumentCursor();
+}
+
+/*!
 	\return The selected text
 */
 QString QDocumentCursor::selectedText() const
@@ -881,15 +889,7 @@ bool QDocumentCursor::hasSelection() const
  */
 bool QDocumentCursor::isForwardSelection() const
 {
-	if ( !hasSelection() )
-		return false;
-	int lineNumber = m_handle->lineNumber();
-	int anchorLineNumber = m_handle->anchorLineNumber();
-	if (anchorLineNumber < lineNumber)
-		return true;
-	if (anchorLineNumber == lineNumber && m_handle->anchorColumnNumber() < m_handle->columnNumber())
-		return true;
-	return false;
+	return m_handle ? m_handle->isForwardSelection() : false;
 }
 
 /*!
@@ -918,6 +918,15 @@ void QDocumentCursor::select(SelectionType t)
 	if ( m_handle )
 		m_handle->select(t);
 	
+}
+
+/*!
+	\brief Expand a current selection
+*/
+void QDocumentCursor::expandSelect(QDocumentCursor::SelectionType t)
+{
+	if ( m_handle )
+		m_handle->expandSelect(t);
 }
 
 /*!

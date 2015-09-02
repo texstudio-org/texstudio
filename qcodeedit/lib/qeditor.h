@@ -651,7 +651,7 @@ public slots:
 		QLanguageDefinition *m_definition;
 		QPointer<QCodeCompletionEngine> m_completionEngine;
 		
-		QDocumentCursor m_cursor, m_doubleClick, m_dragAndDrop;
+		QDocumentCursor m_cursor, m_multiClickCursor, m_dragAndDrop;
 		QDocumentCursor::SelectionType m_doubleClickSelectionType;
 		int m_cursorLinesFromViewTop;
 		int m_cursorMirrorBlockAnchor;

@@ -3415,7 +3415,7 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		if ( !(e->buttons() & Qt::LeftButton) )
 			break;
 
-		if ( !( flag(MousePressed) || m_doubleClick.hasSelection() ) )
+		if ( !( flag(MousePressed) || m_multiClickCursor.hasSelection() ) )
 			break;
 
 		if ( flag(MaybeDrag) )
@@ -3444,7 +3444,13 @@ void QEditor::mouseMoveEvent(QMouseEvent *e)
 		{
 			selectCursorMirrorBlock(newCursor, e->modifiers() & Qt::ShiftModifier);
 		} else {
-			m_cursor.setSelectionBoundary(newCursor);
+			if (m_multiClickCursor.isValid()) {
+				QDocumentCursor selection(m_multiClickCursor, newCursor);
+				selection.expandSelect(m_multiClickCursor.property("isTripleClick").toBool() ? QDocumentCursor::LineUnderCursor : QDocumentCursor::WordUnderCursor);
+				m_cursor = selection;
+			} else {
+				m_cursor.setSelectionBoundary(newCursor);
+			}
 		}
 
 		ensureCursorVisible();
@@ -3487,12 +3493,12 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 		{
     #if defined(Q_OS_MAC)
 			m_cursor.select(QDocumentCursor::LineUnderCursor);
-			m_doubleClick = m_cursor;
+			m_multiClickSelection = m_cursor;
 	#else
-			m_cursor.movePosition(1, QDocumentCursor::StartOfBlock);
-			m_cursor.movePosition(1, QDocumentCursor::EndOfBlock, QDocumentCursor::KeepAnchor);
+			m_multiClickCursor = m_cursor;
+			m_multiClickCursor.setProperty("isTripleClick", true);
+			m_cursor.select(QDocumentCursor::LineUnderCursor);
 	#endif
-
 			m_click.stop();
 		} else {
 			QDocumentCursor cursor = cursorForPosition(p);
@@ -3568,7 +3574,7 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 					}
 				}
 
-				m_doubleClick = QDocumentCursor();
+				m_multiClickCursor = QDocumentCursor();
 				cutBuffer.clear();
 				setCursor(cursor);
 				break;
@@ -3671,7 +3677,8 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 			//qDebug("invalid cursor");
 		}
 
-		m_doubleClick = m_cursor;
+		m_multiClickCursor = m_cursor;
+		m_multiClickCursor.setProperty("isTripleClick", false);
 
 		m_clickPoint = e->globalPos();
 		m_click.start(qApp->doubleClickInterval(), this);
