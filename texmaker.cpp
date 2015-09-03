@@ -3694,7 +3694,7 @@ void Texmaker::ReadSettings(bool reread) {
 			<< (QStringList() << "\\section")
 			<< (QStringList() << "\\subsection")
 			<< (QStringList() << "\\subsubsection")
-            << (QStringList() << "\\paragraph")
+            << (QStringList() << "\\paragraph" << "\\frametitle")
             << (QStringList() << "\\subparagraph");
 	latexParser.structureCommandLists.clear();
 	for (int level=0; level<defaults.length(); level++) {

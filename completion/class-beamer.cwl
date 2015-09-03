@@ -256,10 +256,10 @@
 \insertslideintonotes
 \logo{logo text}
 \insertlogo
-\frametitle<overlay specification>[short frame title]{frame title text}
-\frametitle<overlay specification>{frame title text}
-\frametitle[short frame title]{frame title text}
-\frametitle{frame title text}
+\frametitle<overlay specification>[short frame title]{title}
+\frametitle<overlay specification>{title}
+\frametitle[short frame title]{title}
+\frametitle{title}
 \framesubtitle<overlay specification>{frame subtitle text}
 \framesubtitle{frame subtitle text}
 \setbeamersize{options}
