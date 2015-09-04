@@ -299,6 +299,7 @@ protected slots:
 	void editDebugUndoStack();
 	void editCopy();
 	void editPaste();
+	void editPasteImage(QImage image);
 	void editSectionCopy();
 	void editSectionCopy(int startingLine, int endLine);
 	void editSectionCut();
