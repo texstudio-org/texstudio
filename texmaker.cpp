@@ -3034,9 +3034,36 @@ void Texmaker::editPaste() {
 		} else {
 			currentEditorView()->paste();
 		}
+	} else if (d->hasImage()) {
+		editPasteImage(qvariant_cast<QImage>(d->imageData()));
 	} else {
 		currentEditorView()->paste();
 	}
+}
+
+void Texmaker::editPasteImage(QImage image) {
+	static QString filenameSuggestion;  // keep for future calls
+	QString rootDir = currentEditorView()->document->getRootDocument()->getFileInfo().absolutePath();
+	qDebug() << filenameSuggestion;
+	if (!currentEditorView()) return;
+	if (filenameSuggestion.isEmpty()) {
+		filenameSuggestion = rootDir + "/screenshot001.png";
+	}
+	QStringList filters;
+	foreach (const QByteArray fmt, QImageWriter::supportedImageFormats()) {
+		filters << "*." + fmt;
+	}
+	QString filter = tr("Image Formats (%1)").arg(filters.join(" "));
+	filenameSuggestion = getNonextistentFilename(filenameSuggestion, rootDir);
+	QString filename = QFileDialog::getSaveFileName(this, tr("Save Image"), filenameSuggestion, filter, &filter);
+	if (filename.isEmpty()) return;
+	filenameSuggestion = filename;
+	
+	if (!image.save(filename)) {
+		txsCritical(tr("Could not save the image file."));
+		return;
+	}
+	QuickGraphics(filename);
 }
 
 void Texmaker::editPasteLatex() {

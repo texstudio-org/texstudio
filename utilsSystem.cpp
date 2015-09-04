@@ -373,6 +373,34 @@ QString findAbsoluteFilePath(const QString & relName, const QString &extension, 
 	return fbp + s; // fallback
 }
 
+/*!
+ * Tries to get a non-existent filename. If guess, does not exist, return it.
+ * Otherwise, try find a non-extistent filename by increasing a number at the end
+ * of the filesname. If there is already a number, start from there, e.g.
+ * test02.txt -> test03.txt. If no free filename could be determined, return fallback.
+ */
+QString getNonextistentFilename(const QString &guess, const QString &fallback) {
+	QFileInfo fi(guess);
+	if (!fi.exists()) return guess;
+	QRegExp reNumberedFilename("(.*[^\\d])(\\d*)\\.(\\w+)");
+	qDebug() << guess;
+	if (!reNumberedFilename.exactMatch(guess)) {
+		return fallback;
+	}
+	QString base = reNumberedFilename.cap(1);
+	QString ext = reNumberedFilename.cap(3);
+	int num = reNumberedFilename.cap(2).toInt();
+	int numLen = reNumberedFilename.cap(2).length();
+	
+	for (int i=num+1; i<=1000000; i++) {
+		QString filename = QString("%1%2.%3").arg(base).arg(i, numLen, 10, QLatin1Char('0')).arg(ext);
+		fi.setFile(filename);
+		if (!fi.exists())
+			return filename;
+	}
+	return fallback;
+}
+
 QString getEnvironmentPath()
 {
 	static QString path;
