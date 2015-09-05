@@ -2439,6 +2439,7 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 
 	if (currentEditorView() != currentEdView)
 		EditorTabs->setCurrentEditor(currentEdView);
+	documents.updateStructure(); //remove italics status from previous unsaved files
 	//UpdateCaption();
 }
 

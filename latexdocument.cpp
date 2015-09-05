@@ -1637,7 +1637,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex & index, int role) const{
 		if(entry->type==StructureEntry::SE_DOCUMENT_ROOT) {
 			QFont f=QApplication::font();
 			if(entry->document==documents.currentDocument) f.setBold(true);
-			if(entry->title.isEmpty()) f.setItalic(true);
+			if(entry->title.isEmpty() || (entry->document && !entry->document->isClean())) f.setItalic(true);
 			return QVariant(f);
 		}
 		return QVariant();
