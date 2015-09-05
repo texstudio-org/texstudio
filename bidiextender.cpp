@@ -70,10 +70,10 @@ void initializeLanguages(){
 	wasInLTRArea = isProbablyLTRLanguageCode(getCurrentLanguage());
 	rememberCurrentLanguage();
 #if defined( Q_WS_WIN )
-	const int MAXSIZE = 10;
+	const int MAXSIZE = 32;
 	HKL langs[MAXSIZE];
 	int count = GetKeyboardLayoutList(0, langs);//this doesn't work on Win7 64Bit
-	if (count <= 0)
+	if (count <= 0 || count > MAXSIZE)
 		count = GetKeyboardLayoutList(MAXSIZE, langs);//this seems be slow on some systems
 	else
 		GetKeyboardLayoutList(count, langs);
