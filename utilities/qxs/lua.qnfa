@@ -10,7 +10,8 @@
 	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
 -->
 	
-	<context id="lua/comment" format="lua:comment" stayOnLine="true" >
+	<!-- special id comment/single reqired for Idefix -> Comment to work --> 
+	<context id="comment/single" format="lua:comment" stayOnLine="true" >
 		<start>--</start>
 		<stop exclusive="false">\n</stop>
 	</context>
