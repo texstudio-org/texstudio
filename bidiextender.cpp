@@ -1,5 +1,6 @@
 #include "QtGlobal"
 #include "bidiextender.h"
+#include "QDebug"
 
 //mostly taken from biditexmaker
 
@@ -8,7 +9,7 @@
 #include <string>
 #endif
 
-#if defined( Q_WS_WIN )
+#if defined( Q_OS_WIN )
 #include "Windows.h"
 #else
 typedef int HKL;
@@ -19,7 +20,7 @@ static HKL languageIdRTL, languageIdLTR;
 static bool wasInLTRArea = false;
 
 HKL getCurrentLanguage(){
-#if defined( Q_WS_WIN )
+#if defined( Q_OS_WIN )
 	return GetKeyboardLayout(0);
 #elif defined( Q_WS_X11 )
 	XKeyboard xkb;
@@ -29,7 +30,7 @@ HKL getCurrentLanguage(){
 #endif
 }
 
-#if defined( Q_WS_WIN )
+#if defined( Q_OS_WIN )
 bool isProbablyLTRLanguageRaw(int id)  {
 	//checks primary language symbol, e.g. LANG_ENGLISH would be ltr
 	return id != LANG_PERSIAN && id != LANG_ARABIC && id != LANG_HEBREW && id!=LANG_URDU;
@@ -42,8 +43,8 @@ bool isProbablyLTRLanguageRaw(const std::string& symb)  {
 #endif
 
 bool isProbablyLTRLanguageCode(HKL id)  {
-#if defined( Q_WS_WIN )
-	return isProbablyLTRLanguageRaw(id & 0x000000FF);
+#if defined( Q_OS_WIN )
+	return isProbablyLTRLanguageRaw(((int) id) & 0x000000FF);
 #elif defined( Q_WS_X11 )
 	XKeyboard xkb;
 	StringVector installedLangSymbols = xkb.groupSymbols();
@@ -69,7 +70,7 @@ void initializeLanguages(){
 	languageIdRTL = 0;
 	wasInLTRArea = isProbablyLTRLanguageCode(getCurrentLanguage());
 	rememberCurrentLanguage();
-#if defined( Q_WS_WIN )
+#if defined( Q_OS_WIN )
 	const int MAXSIZE = 32;
 	HKL langs[MAXSIZE];
 	int count = GetKeyboardLayoutList(0, langs);//this doesn't work on Win7 64Bit
@@ -88,7 +89,7 @@ void initializeLanguages(){
 	}
 	if (!languageIdLTR) languageIdLTR = bestLTR;
 
-#endif //Q_WS_WIN
+#endif //Q_OS_WIN
 #if defined( Q_WS_X11 )
 	XKeyboard xkb;
 	int count = xkb.groupCount();
@@ -110,7 +111,7 @@ void initializeLanguages(){
 void setInputLanguage(HKL code){
 	if (!code) return;
 	rememberCurrentLanguage();
-#if defined( Q_WS_WIN )
+#if defined( Q_OS_WIN )
 	ActivateKeyboardLayout(code, KLF_SETFORPROCESS);
 #endif
 
