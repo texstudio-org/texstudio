@@ -73,7 +73,7 @@ void initializeLanguages(){
 #if defined( Q_OS_WIN )
 	const int MAXSIZE = 32;
 	HKL langs[MAXSIZE];
-	int count = GetKeyboardLayoutList(0, langs);//this doesn't work on Win7 64Bit
+	int count = GetKeyboardLayoutList(0, NULL);//this doesn't work on Win7 64Bit
 	if (count <= 0 || count > MAXSIZE)
 		count = GetKeyboardLayoutList(MAXSIZE, langs);//this seems be slow on some systems
 	else
