@@ -4,7 +4,11 @@
 
 //mostly taken from biditexmaker
 
-#if defined( Q_WS_X11 )
+#if defined( Q_OS_LINUX ) || ( defined( Q_OS_UNIX ) && !defined( Q_OS_MAC ) )
+#define WS_X11
+#endif
+
+#if defined( WS_X11 )
 #include "xkb/XKeyboard.h"
 #include <string>
 #endif
@@ -22,7 +26,7 @@ static bool wasInLTRArea = false;
 HKL getCurrentLanguage(){
 #if defined( Q_OS_WIN )
 	return GetKeyboardLayout(0);
-#elif defined( Q_WS_X11 )
+#elif defined( WS_X11 )
 	XKeyboard xkb;
 	return xkb.currentGroupNum() + 1;
 #else
@@ -35,7 +39,7 @@ bool isProbablyLTRLanguageRaw(int id)  {
 	//checks primary language symbol, e.g. LANG_ENGLISH would be ltr
 	return id != LANG_PERSIAN && id != LANG_ARABIC && id != LANG_HEBREW && id!=LANG_URDU;
 }
-#elif defined( Q_WS_X11 )
+#elif defined( WS_X11 )
 bool isProbablyLTRLanguageRaw(const std::string& symb)  {
 	//e.g. "us" would be ltr
 	return symb != "ir" && symb != "ara" && symb != "il" && symb !="af" && symb != "pk";
@@ -45,7 +49,7 @@ bool isProbablyLTRLanguageRaw(const std::string& symb)  {
 bool isProbablyLTRLanguageCode(HKL id)  {
 #if defined( Q_OS_WIN )
 	return isProbablyLTRLanguageRaw(((int) id) & 0x000000FF);
-#elif defined( Q_WS_X11 )
+#elif defined( WS_X11 )
 	XKeyboard xkb;
 	StringVector installedLangSymbols = xkb.groupSymbols();
 	id --;
@@ -90,7 +94,7 @@ void initializeLanguages(){
 	if (!languageIdLTR) languageIdLTR = bestLTR;
 
 #endif //Q_OS_WIN
-#if defined( Q_WS_X11 )
+#if defined( WS_X11 )
 	XKeyboard xkb;
 	int count = xkb.groupCount();
 	StringVector installedLangSymbols = xkb.groupSymbols();
@@ -103,7 +107,7 @@ void initializeLanguages(){
 		} else if (!languageIdRTL) languageIdRTL = i + 1;
 	}
 	if (!languageIdLTR) languageIdLTR = bestLTR + 1;
-#endif // Q_WS_X11
+#endif // WS_X11
 	languagesInitialized = true;
 }
 
@@ -115,7 +119,7 @@ void setInputLanguage(HKL code){
 	ActivateKeyboardLayout(code, KLF_SETFORPROCESS);
 #endif
 
-#if defined( Q_WS_X11 )
+#if defined( WS_X11 )
 	XKeyboard xkb;
 	xkb.setGroupByNum(code-1);
 #endif

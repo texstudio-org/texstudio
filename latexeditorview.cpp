@@ -2694,7 +2694,7 @@ bool LatexEditorView::isInMathHighlighting(const QDocumentCursor& cursor ){
 
 
 void LatexEditorView::checkRTLLTRLanguageSwitching(){
-#if defined( Q_OS_WIN ) || defined( Q_WS_X11 )
+#if defined( Q_OS_WIN ) || defined( Q_OS_LINUX ) || ( defined( Q_OS_UNIX ) && !defined( Q_OS_MAC ) )
 	QDocumentCursor cursor = editor->cursor();
 	QDocumentLine line = cursor.line();
 	if (line.firstChar() < 0) return; //whitespace lines have no language information
