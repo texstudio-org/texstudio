@@ -34,10 +34,15 @@ TeXstudio 2.9.4 -> 2.10.0
 - automatic LRT<->RTL language/keyboard layout switching
 - more fine-grained options for checkin after save
 - more standard behavior for F3 (Find Next instead of Continue Find)
+- paste image data from clipboard (e.g. screenshot)
+- automatic keyboard layout switching depending on context
+- show \frametitle in structure view
+- mark changed files in structure view
 - improved UI scaling
 - improved path detection on OS X
 - improved highlighting for user scripts
 - improved insertion of \item
+- improved double/triple-click-and-drag selection for words/lines
 - temporary highlight target text of go to definition
 - update checker respects system proxy configuration
 - checks and warnings for dictionary import
@@ -61,10 +66,11 @@ TeXstudio 2.9.4 -> 2.10.0
 - fix: bug in filename detection of inverse search
 - fix: Fit to Textwidth had a horizontal offset in some cases
 - fix: some size issues with editor zoom
+- fix: comment shortcut for asymptote and lua files
 - update: documentation
 - update: LaTeX reference manual (May 2015)
 - update: windows libraries of poppler to 0.32.0
-- added / updated a number of cwl files
+- added/updated a number of cwl files
 - added spanish dictionary
 
 
