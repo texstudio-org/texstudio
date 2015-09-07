@@ -583,6 +583,19 @@ void SyntaxCheck::checkLine(const QString &line,Ranges &newRanges,StackEnvironme
             }
             if(ltxCommands->possibleCommands["user"].contains(word)||ltxCommands->customCommands.contains(word))
                 continue;
+            if(ltxCommands->mathStartCommands.contains(word)&&(activeEnv.isEmpty()||activeEnv.top().name!="math")){
+                Environment env;
+                env.name="math";
+                env.id=1; // to be changed
+                env.dlh=dlh;
+                env.ticket=ticket;
+                activeEnv.push(env);
+                continue;
+            }
+            if(ltxCommands->mathStopCommands.contains(word)&&!activeEnv.isEmpty()&&activeEnv.top().name=="math"){
+                activeEnv.pop();
+                continue;
+            }
             if(word=="\\\\"&&topEnv("tabular",activeEnv)!=0){
                 if(activeEnv.top().excessCol<(activeEnv.top().id-1)){
                     Error elem;
