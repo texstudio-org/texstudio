@@ -145,7 +145,8 @@ HEADERS += texmaker.h \
     sessionlist.h \
     pdfsplittool.h \
     searchresultwidget.h \
-    searchquery.h
+    searchquery.h \
+    bidiextender.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     texmaker.cpp \
@@ -241,7 +242,8 @@ SOURCES += main.cpp \
     pdfsplittool.cpp \
     searchresultwidget.cpp \
     tests/smallUsefulFunctions_t.cpp \
-    searchquery.cpp
+    searchquery.cpp \
+    bidiextender.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
@@ -332,6 +334,9 @@ unix:!macx {
     }
     INSTALLS += applicationmenu 
     INSTALLS += icon
+    SOURCES += xkb/XKeyboard.cpp
+    HEADERS += xkb/XKeyboard.h xkb/X11Exception.h
+    LIBS += -lX11
 }
 
 # ##########UNIX + MACX###############
@@ -660,4 +665,6 @@ else {
   QMAKE_LFLAGS -= -Wl,-s
   QMAKE_LFLAGS_RELEASE -= -Wl,-s
 }
+
+
 

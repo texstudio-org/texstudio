@@ -14,6 +14,8 @@ class LatexEditorViewTest: public QObject{
 	private slots:
 		void insertHardLineBreaks_data();
 		void insertHardLineBreaks();
+		void inMathEnvironment_data();
+		void inMathEnvironment();
 };
 
 #endif

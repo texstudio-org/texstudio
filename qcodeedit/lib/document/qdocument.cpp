@@ -4270,6 +4270,17 @@ bool QDocumentCursorHandle::hasSelection() const
 	return l1.isValid() && l2.isValid();
 }
 
+bool QDocumentCursorHandle::isForwardSelection() const
+{
+	if ( !hasSelection() )
+		return false;
+	if (m_endLine < m_begLine)
+		return true;
+	if (m_endLine == m_begLine && m_endOffset < m_begOffset)
+		return true;
+	return false;
+}
+
 bool QDocumentCursorHandle::isSilent() const
 {
 	return hasFlag(Silent);
@@ -5599,6 +5610,14 @@ QDocumentCursor QDocumentCursorHandle::selectionEnd() const
 	return (pos > anc) ? pos : anc;
 }
 
+QDocumentCursor QDocumentCursorHandle::anchorCursor() const
+{
+	if ( !m_doc )
+		return QDocumentCursor();
+
+	return QDocumentCursor(m_doc, m_endLine, m_endOffset);
+}
+
 bool QDocumentCursorHandle::eq(const QDocumentCursorHandle *h)
 {
 	return (m_begLine == h->m_begLine) && (m_begOffset == h->m_begOffset);
@@ -5762,6 +5781,39 @@ void QDocumentCursorHandle::select(QDocumentCursor::SelectionType t)
 
 		movePosition(1, QDocumentCursor::StartOfWordOrCommand, QDocumentCursor::MoveAnchor);
 		movePosition(1, QDocumentCursor::EndOfWordOrCommand, QDocumentCursor::KeepAnchor);
+	}
+}
+
+void QDocumentCursorHandle::expandSelect(QDocumentCursor::SelectionType t) {
+	if ( !m_doc || !m_doc->line(m_begLine).isValid() )
+		return;
+	
+	bool isReverse = !isForwardSelection();
+
+	if ( t == QDocumentCursor::LineUnderCursor )
+	{
+		if (isReverse) flipSelection();
+		movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
+		flipSelection();
+		movePosition(1, QDocumentCursor::StartOfLine, QDocumentCursor::KeepAnchor);
+		if (!isReverse) flipSelection();
+
+	} else if ( t == QDocumentCursor::WordUnderCursor ) {
+
+		if (isReverse) flipSelection();
+		movePosition(1, QDocumentCursor::EndOfWord, QDocumentCursor::KeepAnchor);
+		flipSelection();
+		movePosition(1, QDocumentCursor::StartOfWord, QDocumentCursor::KeepAnchor);
+		if (!isReverse) flipSelection();
+
+	} else if ( t == QDocumentCursor::WordOrCommandUnderCursor ) {
+
+		if (isReverse) flipSelection();
+		movePosition(1, QDocumentCursor::EndOfWordOrCommand, QDocumentCursor::KeepAnchor);
+		flipSelection();
+		movePosition(1, QDocumentCursor::StartOfWordOrCommand, QDocumentCursor::KeepAnchor);
+		if (!isReverse) flipSelection();
+
 	}
 }
 

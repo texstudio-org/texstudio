@@ -1407,6 +1407,7 @@ void Texmaker::currentEditorChanged() {
 		updateToolBarMenu("main/view/documents");
 	EditorSpellerChanged(currentEditorView()->getSpeller());
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
+	currentEditorView()->checkRTLLTRLanguageSwitching();
 }
 
 void Texmaker::EditorTabMoved(int from,int to){
@@ -2438,6 +2439,7 @@ void Texmaker::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile) {
 
 	if (currentEditorView() != currentEdView)
 		EditorTabs->setCurrentEditor(currentEdView);
+	documents.updateStructure(); //remove italics status from previous unsaved files
 	//UpdateCaption();
 }
 
@@ -3033,9 +3035,36 @@ void Texmaker::editPaste() {
 		} else {
 			currentEditorView()->paste();
 		}
+	} else if (d->hasImage()) {
+		editPasteImage(qvariant_cast<QImage>(d->imageData()));
 	} else {
 		currentEditorView()->paste();
 	}
+}
+
+void Texmaker::editPasteImage(QImage image) {
+	static QString filenameSuggestion;  // keep for future calls
+	QString rootDir = currentEditorView()->document->getRootDocument()->getFileInfo().absolutePath();
+	qDebug() << filenameSuggestion;
+	if (!currentEditorView()) return;
+	if (filenameSuggestion.isEmpty()) {
+		filenameSuggestion = rootDir + "/screenshot001.png";
+	}
+	QStringList filters;
+	foreach (const QByteArray fmt, QImageWriter::supportedImageFormats()) {
+		filters << "*." + fmt;
+	}
+	QString filter = tr("Image Formats (%1)").arg(filters.join(" "));
+	filenameSuggestion = getNonextistentFilename(filenameSuggestion, rootDir);
+	QString filename = QFileDialog::getSaveFileName(this, tr("Save Image"), filenameSuggestion, filter, &filter);
+	if (filename.isEmpty()) return;
+	filenameSuggestion = filename;
+	
+	if (!image.save(filename)) {
+		txsCritical(tr("Could not save the image file."));
+		return;
+	}
+	QuickGraphics(filename);
 }
 
 void Texmaker::editPasteLatex() {
@@ -3693,7 +3722,7 @@ void Texmaker::ReadSettings(bool reread) {
 			<< (QStringList() << "\\section")
 			<< (QStringList() << "\\subsection")
 			<< (QStringList() << "\\subsubsection")
-            << (QStringList() << "\\paragraph")
+            << (QStringList() << "\\paragraph" << "\\frametitle")
             << (QStringList() << "\\subparagraph");
 	latexParser.structureCommandLists.clear();
 	for (int level=0; level<defaults.length(); level++) {
@@ -7841,9 +7870,12 @@ SearchResultWidget *Texmaker::searchResultWidget() {
 
 // show current cursor position in structure view
 void Texmaker::cursorPositionChanged(){
-	if (!currentEditorView()) return;
-	int i=currentEditor()->cursor().lineNumber();
-	
+	LatexEditorView * view = currentEditorView();
+	if (!view) return;
+	int i=view->editor->cursor().lineNumber();
+
+	view->checkRTLLTRLanguageSwitching();
+
 	// search line in structure
 	if (currentLine==i) return;
 	currentLine=i;

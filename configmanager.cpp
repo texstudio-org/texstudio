@@ -491,6 +491,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	registerOption("Editor/Auto Insert LRM", &editorConfig->autoInsertLRM, false,&pseudoDialog->checkBoxAutoLRM);
 	registerOption("Editor/Visual Column Mode", &editorConfig->visualColumnMode, true, &pseudoDialog->checkBoxVisualColumnMode);
+	registerOption("Editor/Auto Switch Language Direction", &editorConfig->switchLanguagesDirection, true, &pseudoDialog->checkBoxSwitchLanguagesDirection);
+	registerOption("Editor/Auto Switch Language Math", &editorConfig->switchLanguagesMath, false, &pseudoDialog->checkBoxSwitchLanguagesMath);
+
 	registerOption("Editor/Overwrite Opening Bracket Followed By Placeholder", &editorConfig->overwriteOpeningBracketFollowedByPlaceholder, true, &pseudoDialog->checkOverwriteOpeningBracketFollowedByPlaceholder);
 	registerOption("Editor/Overwrite Closing Bracket Following Placeholder", &editorConfig->overwriteClosingBracketFollowingPlaceholder, true, &pseudoDialog->checkOverwriteClosingBracketFollowingPlaceholder);
 	registerOption("Editor/Double-click Selection Includes Leading Backslash", &editorConfig->doubleClickSelectionIncludeLeadingBackslash, true, &pseudoDialog->checkBoxDoubleClickSelectionIncludeLeadingBackslash);

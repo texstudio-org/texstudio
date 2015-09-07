@@ -72,6 +72,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		bool atLineStart() const;
 		
 		bool hasSelection() const;
+		bool isForwardSelection() const;
 		
 		bool isSilent() const;
 		void setSilent(bool y);
@@ -125,6 +126,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		
 		QDocumentCursor selectionStart() const;
 		QDocumentCursor selectionEnd() const;
+		QDocumentCursor anchorCursor() const;
 		
 		bool eq(const QDocumentCursorHandle *h);
 		bool lt(const QDocumentCursorHandle *h);
@@ -138,6 +140,7 @@ class QCE_EXPORT QDocumentCursorHandle
 		void replaceSelectedText(const QString& text);
 		
 		void select(QDocumentCursor::SelectionType t);
+		void expandSelect(QDocumentCursor::SelectionType t);
 		void setSelectionBoundary(const QDocumentCursor& c);
 		void select(int line, int column, int lineTo = -1, int columnTo = -1);
 		
