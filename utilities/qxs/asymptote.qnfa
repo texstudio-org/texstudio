@@ -24,7 +24,8 @@
 		<word>typedef</word>
 	</list>
 	<sequence format="asymptote:numbers">$d+</sequence>
-	<context id="asy/comment" format="asymptote:comment" stayOnLine="true">
+	<!-- special id comment/single reqired for Idefix -> Comment to work --> 
+	<context id="comment/single" format="asymptote:comment" stayOnLine="true">
 		<start>//</start>
 		<stop exclusive="false">\n</stop>
 	</context>

@@ -56,6 +56,7 @@
 #include <QHeaderView>
 #include <QHelpEvent>
 #include <QIcon>
+#include <QImageWriter>
 #include <QInputDialog>
 #include <QItemDelegate>
 #include <QKeyEvent>

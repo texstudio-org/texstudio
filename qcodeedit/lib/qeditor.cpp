@@ -3491,14 +3491,9 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 			(( e->globalPos() - m_clickPoint).manhattanLength() <
 				QApplication::startDragDistance() ))
 		{
-    #if defined(Q_OS_MAC)
-			m_cursor.select(QDocumentCursor::LineUnderCursor);
-			m_multiClickSelection = m_cursor;
-	#else
 			m_multiClickCursor = m_cursor;
 			m_multiClickCursor.setProperty("isTripleClick", true);
 			m_cursor.select(QDocumentCursor::LineUnderCursor);
-	#endif
 			m_click.stop();
 		} else {
 			QDocumentCursor cursor = cursorForPosition(p);
