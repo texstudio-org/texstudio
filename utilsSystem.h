@@ -50,6 +50,7 @@ QString replaceFileExtension(const QString& filename, const QString& newExtensio
 QString getRelativeBaseNameToPath(const QString & file, QString basepath, bool baseFile=false, bool keepSuffix=false);
 QString getPathfromFilename(const QString &compFile);
 QString findAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &searchPaths, const QString& fallbackPath);
+QString getNonextistentFilename(const QString &guess, const QString &fallback=QString());
 
 QString getEnvironmentPath();
 QStringList getEnvironmentPathList();
