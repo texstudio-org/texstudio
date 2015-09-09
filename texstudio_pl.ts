@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl">
+<TS version="2.1" language="pl">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -758,7 +758,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+3882"/>
+        <location filename="configdialog.ui" line="+4026"/>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
     </message>
@@ -768,13 +768,13 @@
         <translation type="unfinished">Anuluj</translation>
     </message>
     <message>
-        <location line="-3808"/>
-        <location line="+1613"/>
+        <location line="-3934"/>
+        <location line="+1676"/>
         <source>Appearance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1468"/>
+        <location line="-1531"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation type="unfinished"></translation>
     </message>
@@ -784,12 +784,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1899"/>
+        <location line="+1962"/>
         <source>Parse BibTeX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1815"/>
+        <location line="-1878"/>
         <source>Dictionaries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -804,7 +804,7 @@
         <translation>*.dat</translation>
     </message>
     <message>
-        <location line="+175"/>
+        <location line="+184"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes (autrement dit des macros) LaTeX.</translatorcomment>
         <translation type="unfinished"></translation>
@@ -820,12 +820,12 @@
         <translation type="obsolete">%%, @@ lub ?? zostaną zamienione na: %, @ lub ?</translation>
     </message>
     <message>
-        <location line="+1222"/>
+        <location line="+1276"/>
         <source>Show Whitespace</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+941"/>
+        <location line="+968"/>
         <source>Auto Replace Latex-Commands</source>
         <translation type="unfinished"></translation>
     </message>
@@ -834,8 +834,8 @@
         <translation type="obsolete">Dodaj linię</translation>
     </message>
     <message>
-        <location line="-1816"/>
-        <location filename="configdialog.cpp" line="+432"/>
+        <location line="-1879"/>
+        <location filename="configdialog.cpp" line="+440"/>
         <source>Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -845,12 +845,12 @@
     </message>
     <message>
         <location line="+24"/>
-        <location line="+196"/>
+        <location line="+214"/>
         <source>1</source>
         <translation>2</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-209"/>
         <source>2</source>
         <translation>2</translation>
     </message>
@@ -870,19 +870,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+87"/>
         <source>Toolbar Customization</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+286"/>
+        <location line="+295"/>
         <location filename="configdialog.cpp" line="+4"/>
         <location filename="configmanager.cpp" line="+1205"/>
         <source>Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2000"/>
+        <location line="+2054"/>
         <source>Always show preview in preview panel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -912,22 +912,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1447"/>
+        <location line="-1492"/>
         <source>Close search and replace panel together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-455"/>
+        <location line="-464"/>
         <source>Folding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1065"/>
+        <location line="+1083"/>
         <source>Formats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-645"/>
+        <location line="-654"/>
         <source>Show Line Change State</source>
         <translation type="unfinished"></translation>
     </message>
@@ -942,12 +942,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-421"/>
+        <location line="-430"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1049"/>
+        <location line="+1076"/>
         <source>Custom Environment</source>
         <translation type="unfinished"></translation>
     </message>
@@ -957,7 +957,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+115"/>
+        <location line="+124"/>
         <source>Case Sensitive</source>
         <translation type="unfinished"></translation>
     </message>
@@ -977,7 +977,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+512"/>
+        <location line="+530"/>
         <source>Update the preview on text change</source>
         <translation type="unfinished"></translation>
     </message>
@@ -992,7 +992,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+393"/>
+        <location line="+402"/>
         <source>Select how txs checks in saved files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1022,7 +1022,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-254"/>
+        <location filename="configdialog.cpp" line="-262"/>
         <source>The shortcut you entered is invalid.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1032,8 +1032,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2802"/>
-        <location filename="configdialog.cpp" line="+154"/>
+        <location filename="configdialog.ui" line="-2883"/>
+        <location filename="configdialog.cpp" line="+162"/>
         <source>Command</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1135,7 +1135,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1576"/>
+        <location filename="configdialog.ui" line="+1630"/>
         <location filename="configdialog.cpp" line="+1"/>
         <source>Completion</source>
         <translation type="unfinished"></translation>
@@ -1176,12 +1176,12 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished">Wyszukaj</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1870"/>
+        <location filename="configdialog.ui" line="-1942"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1210"/>
+        <location line="+1255"/>
         <source>5 minutes</source>
         <translation>5 minut</translation>
     </message>
@@ -1201,7 +1201,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>60 minut</translation>
     </message>
     <message>
-        <location line="+1332"/>
+        <location line="+1377"/>
         <source>Command:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1211,8 +1211,8 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2045"/>
-        <location line="+2058"/>
+        <location line="-2099"/>
+        <location line="+2112"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1238,7 +1238,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished">Podgląd</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1723"/>
+        <location filename="configdialog.ui" line="-1768"/>
         <source>Search Panel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1274,12 +1274,12 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+692"/>
+        <location line="+719"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1006"/>
+        <location line="+1024"/>
         <source>Border</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1299,9 +1299,9 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2677"/>
-        <location line="+1184"/>
-        <location line="+1444"/>
+        <location line="-2767"/>
+        <location line="+1229"/>
+        <location line="+1489"/>
         <source>Never</source>
         <translation type="unfinished">Nigdy</translation>
     </message>
@@ -1311,27 +1311,27 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-830"/>
+        <location line="-857"/>
         <source>Additional Commands</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+887"/>
+        <location line="+914"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1419"/>
+        <location line="-1464"/>
         <source>Show help as tooltip on text in editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1991"/>
+        <location line="-2072"/>
         <source>Configure TeXstudio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1850"/>
+        <location line="+1931"/>
         <source>Restrict search scope to an existing selection</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1371,7 +1371,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-795"/>
+        <location line="-804"/>
         <source>Spelling</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1397,7 +1397,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1288"/>
+        <location line="+1333"/>
         <source>Internal</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1500,15 +1500,15 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-218"/>
+        <location filename="configdialog.cpp" line="-226"/>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2178"/>
-        <location filename="configdialog.cpp" line="+245"/>
+        <location filename="configdialog.ui" line="-2241"/>
+        <location filename="configdialog.cpp" line="+253"/>
         <source>Menus</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1524,7 +1524,7 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-346"/>
+        <location line="-364"/>
         <source>Build Options</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1554,12 +1554,12 @@ to set the key anyway?</source>
         <translation>&lt;nieznany&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+3093"/>
+        <location filename="configdialog.ui" line="+3192"/>
         <source>Show Advanced Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3693"/>
+        <location line="-3810"/>
         <source>Style:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1570,12 +1570,12 @@ to set the key anyway?</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1340"/>
+        <location line="+1394"/>
         <source>Font Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1366"/>
+        <location line="-1420"/>
         <source>Language:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1630,7 +1630,7 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+301"/>
+        <location line="+319"/>
         <source>Meta Commands</source>
         <translatorcomment>« Compilation » et non « commande » car ce dernier désigne en français plutôt des commandes (autrement dit des macros) LaTeX.</translatorcomment>
         <translation type="unfinished"></translation>
@@ -1663,7 +1663,7 @@ to set the key anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+184"/>
+        <location line="+193"/>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1672,12 +1672,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+95"/>
+        <location line="+104"/>
         <source>Show All</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <location line="+509"/>
+    <message>
+        <location line="+527"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1767,7 +1767,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+299"/>
+        <location line="+308"/>
         <source>Show Line Numbers:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1802,7 +1802,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1613"/>
+        <location line="-1676"/>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1817,12 +1817,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+390"/>
+        <location line="+408"/>
         <source>PDF File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+323"/>
+        <location line="+350"/>
         <source>Scaling</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1835,7 +1835,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+231"/>
+        <location line="+240"/>
         <source>Automatic Encoding Detection:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1860,7 +1860,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+352"/>
+        <location line="+361"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1950,7 +1950,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1368"/>
+        <location line="-1395"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1960,7 +1960,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2005,7 +2005,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+806"/>
+        <location line="+824"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2050,7 +2050,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+152"/>
+        <location line="+170"/>
         <source>Here the highlighting of custom environments can be changed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2073,7 +2073,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+79"/>
+        <location line="+88"/>
         <source>In First Character</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2093,7 +2093,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+87"/>
+        <location line="+96"/>
         <source>Check for Word Repetitions</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2158,7 +2158,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+73"/>
         <source>Segment Preview</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2309,12 +2309,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+78"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-466"/>
+        <location filename="configdialog.cpp" line="-474"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2324,7 +2324,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+195"/>
+        <location line="+203"/>
         <source>Sweave / Pweave</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2339,7 +2339,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-3348"/>
+        <location filename="configdialog.ui" line="-3465"/>
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2369,17 +2369,17 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished">Lua</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+3285"/>
+        <location filename="configdialog.ui" line="+3402"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3035"/>
+        <location line="-3134"/>
         <source>Maximum Compile Repetitions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1359"/>
+        <location line="+1404"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2394,17 +2394,17 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1631"/>
+        <location line="-1694"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1297"/>
+        <location line="+1351"/>
         <source>Package</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+348"/>
+        <location line="+357"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2424,7 +2424,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-1466"/>
+        <location line="-1529"/>
         <source>Startup</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2434,7 +2434,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+373"/>
+        <location line="+391"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -2451,7 +2451,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+260"/>
+        <location line="+287"/>
         <source>Secondary Toolbars</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2466,7 +2466,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+447"/>
+        <location line="+456"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2476,7 +2476,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+393"/>
+        <location line="+402"/>
         <source>Show log markers when clicking log entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2501,7 +2501,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+294"/>
+        <location line="+321"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2594,7 +2594,7 @@ options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2178"/>
+        <location line="-2259"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation type="unfinished"></translation>
@@ -2606,7 +2606,7 @@ options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+274"/>
+        <location line="+283"/>
         <source>Additional Search Paths:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2636,7 +2636,7 @@ options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2803"/>
+        <location filename="configdialog.ui" line="+2893"/>
         <source>Cache Size:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2646,12 +2646,12 @@ options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-2111"/>
+        <location line="-2165"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+292"/>
+        <location line="+301"/>
         <source>Draw cursor as a thick line</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2661,7 +2661,7 @@ options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-282"/>
+        <location line="-291"/>
         <source>Show Only Monospaced Fonts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2676,7 +2676,7 @@ options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+630"/>
+        <location filename="configdialog.ui" line="+639"/>
         <source>Table Autoformating</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2711,12 +2711,12 @@ options again to only view the most common settings.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-804"/>
+        <location line="-813"/>
         <source>Automatically load included files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-780"/>
+        <location line="-825"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -2726,12 +2726,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-347"/>
+        <location line="-356"/>
         <source>MRU Document Chooser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1708"/>
+        <location line="+1771"/>
         <source>Smooth Scrolling</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6164,7 +6164,7 @@ Do you wish to keep up to date by reloading the file?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2867"/>
+        <location line="+2869"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6442,7 +6442,7 @@ Do you wish to keep up to date by reloading the file?
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-3469"/>
+        <location line="-3471"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -7816,7 +7816,7 @@ Czy ufasz temu skryptowi?</translation>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-868"/>
+        <location filename="configdialog.cpp" line="-876"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;domyślnie&gt;</translation>
     </message>

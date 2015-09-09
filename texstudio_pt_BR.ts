@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -871,7 +871,7 @@
         <translation>Configurar TeXstudio</translation>
     </message>
     <message>
-        <location line="+2748"/>
+        <location line="+2856"/>
         <source>Tab Bar Size</source>
         <translation>Tamanho da Aba</translation>
     </message>
@@ -911,7 +911,7 @@ ou se desejar incluir algum arquivo de completamento específico, você
 pode forçar o seu uso selecionando-o aqui.</translation>
     </message>
     <message>
-        <location line="+922"/>
+        <location line="+949"/>
         <source>Select how txs checks in saved files</source>
         <translation>Seleciona como txs deve checar em arquivos salvos</translation>
     </message>
@@ -936,7 +936,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <translation>Mostrar Opções Avançadas</translation>
     </message>
     <message>
-        <location line="+37"/>
+        <location line="+46"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -950,13 +950,13 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <translation type="obsolete">Mostrar opções avançadas</translation>
     </message>
     <message>
-        <location line="-3808"/>
-        <location line="+1613"/>
+        <location line="-3934"/>
+        <location line="+1676"/>
         <source>Appearance</source>
         <translation>Aparência</translation>
     </message>
     <message>
-        <location line="-1545"/>
+        <location line="-1608"/>
         <source>Style:</source>
         <oldsource>Style</oldsource>
         <translation>Estilo:</translation>
@@ -969,13 +969,13 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1340"/>
+        <location line="+1394"/>
         <source>Font Size:</source>
         <oldsource>Font Size</oldsource>
         <translation>Tamanho da Fonte:</translation>
     </message>
     <message>
-        <location line="-1366"/>
+        <location line="-1420"/>
         <source>Language:</source>
         <oldsource>Language</oldsource>
         <translation>Idioma:</translation>
@@ -1037,12 +1037,12 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <translation>Máx. Documentos Mestres Recentes:</translation>
     </message>
     <message>
-        <location line="+1858"/>
+        <location line="+1921"/>
         <source>Parse BibTeX</source>
         <translation>Analisar BibTeX</translation>
     </message>
     <message>
-        <location line="-1838"/>
+        <location line="-1901"/>
         <source>Always Show Structure of Master Document</source>
         <oldsource>Always show structure of master document</oldsource>
         <translation>Sempre Mostrar Estrutura do Documento Mestre</translation>
@@ -1058,7 +1058,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+405"/>
+        <location filename="configdialog.cpp" line="+413"/>
         <source>LaTeX checking</source>
         <oldsource>Inline checking</oldsource>
         <translation>Verificação LaTeX</translation>
@@ -1110,7 +1110,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <translation>Checar Configuração LaTeX</translation>
     </message>
     <message>
-        <location line="+71"/>
+        <location line="+80"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -1140,7 +1140,7 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
 </translation>
     </message>
     <message>
-        <location line="+36"/>
+        <location line="+45"/>
         <source>Meta Commands</source>
         <translation>Meta Comandos</translation>
     </message>
@@ -1189,12 +1189,12 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
         <translation>Comandos ($Caminho)</translation>
     </message>
     <message>
-        <location line="+198"/>
+        <location line="+216"/>
         <source>Show All</source>
         <translation>Mostrar Todos</translation>
     </message>
     <message>
-        <location line="+306"/>
+        <location line="+324"/>
         <source>Font Family:</source>
         <translation>Fonte:</translation>
     </message>
@@ -1278,17 +1278,17 @@ anteceder com &lt;b&gt;c&lt;/b&gt; para arquivo atual ao invés do documento mes
         <translation>Ortografia</translation>
     </message>
     <message>
-        <location line="-1262"/>
+        <location line="-1316"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Lembrar-se do filtro de arquivos selecionado no diálogo abrir/salvar</translation>
     </message>
     <message>
-        <location line="+359"/>
+        <location line="+377"/>
         <source>Show messages when starting compiling</source>
         <translation>Mostrar mensagens ao iniciar a compilação</translation>
     </message>
     <message>
-        <location line="+240"/>
+        <location line="+249"/>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1301,11 +1301,11 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
 (3) digitar o texto para o atalho</translation>
     </message>
     <message>
-        <location line="+698"/>
+        <location line="+725"/>
         <source>Package</source>
         <translation>Pacote</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="-94"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Aspas Inglesas (unicode): &quot; &quot;</translation>
@@ -1331,7 +1331,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Ocultar erros ortográficos em ambientes não textuais</translation>
     </message>
     <message>
-        <location line="+413"/>
+        <location line="+422"/>
         <source>Draw cursor as a thick line</source>
         <translation>Desenhar o cursor como uma linha grossa</translation>
     </message>
@@ -1381,7 +1381,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Ir para o erro quando exibir o log</translation>
     </message>
     <message>
-        <location line="-1606"/>
+        <location line="-1669"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Diretórios de Dicionários Ortográficos:</translation>
     </message>
@@ -1396,12 +1396,12 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Importar Dicionário...</translation>
     </message>
     <message>
-        <location line="+390"/>
+        <location line="+408"/>
         <source>PDF File</source>
         <translation>Arquivo PDF</translation>
     </message>
     <message>
-        <location line="+323"/>
+        <location line="+350"/>
         <source>Scaling</source>
         <translation>Redimensionamento</translation>
     </message>
@@ -1419,7 +1419,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation type="obsolete">Redimensionar barra de ferramentas</translation>
     </message>
     <message>
-        <location line="+231"/>
+        <location line="+240"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Detectar Codificação Automaticamente:</translation>
     </message>
@@ -1448,7 +1448,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Buscar distribuição LaTeX para pacotes instalados</translation>
     </message>
     <message>
-        <location line="+352"/>
+        <location line="+361"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation>Sobrescrever colchete esquerdo seguido por um espaço reservado</translation>
     </message>
@@ -1586,7 +1586,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Cursor em modo de coluna visual (mover cursor na direção das setas em texto da direita para esquerda)</translation>
     </message>
     <message>
-        <location line="+173"/>
+        <location line="+191"/>
         <source>Here the highlighting of custom environments can be changed.</source>
         <translation>Aqui pode ser alterado o destaque de ambientes personalizados.</translation>
     </message>
@@ -1609,7 +1609,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Remover Linha</translation>
     </message>
     <message>
-        <location line="+35"/>
+        <location line="+44"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Iniciar o completamento logo que um &apos;\&apos; é digitado. Alternativamente o completamento pode sempre ser ativado manualmente com Ctrl+Espaço.</translation>
     </message>
@@ -1682,7 +1682,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation type="obsolete">Caixa Agrupada</translation>
     </message>
     <message>
-        <location line="+545"/>
+        <location line="+563"/>
         <source>Update the preview on text change</source>
         <translation>Atualiza a visualização ao alterar texto</translation>
     </message>
@@ -1722,7 +1722,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Híbrido</translation>
     </message>
     <message>
-        <location line="-964"/>
+        <location line="-982"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Tamanho da aba no topo ou base da janela de completamento</translation>
     </message>
@@ -1731,7 +1731,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation type="obsolete">Tamanho Relativo para Fonte nas Abas:</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+166"/>
         <source>Check for Word Repetitions</source>
         <translation>Verificar Repetições de Palavras</translation>
     </message>
@@ -1796,7 +1796,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation>Regras Especiais 4:</translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+73"/>
         <source>Segment Preview</source>
         <translation>Visualizar Segmento de Código</translation>
     </message>
@@ -1940,7 +1940,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation type="obsolete">Efetuar &apos;check in&apos; automaticamente após salvar</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+68"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <oldsource>Uses SVN revisions to undo before last saved version</oldsource>
         <translation>Utilizar revisões SVN para desfazer antes da última versão salva</translation>
@@ -1963,7 +1963,7 @@ Então você pode selecionar um novo atalho das seguintes maneiras:
         <translation type="obsolete">Verificar sintaxe LaTeX</translation>
     </message>
     <message>
-        <location line="-3233"/>
+        <location line="-3341"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Comandos</translation>
     </message>
@@ -2024,7 +2024,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation type="obsolete">Mostrar log após compilar se existirem erros</translation>
     </message>
     <message>
-        <location line="+132"/>
+        <location line="+141"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Não lançar nova instância do visualizador de DVI/PS/PDF se já existir uma sendo executada.</translation>
     </message>
@@ -2045,19 +2045,19 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation type="obsolete">Número de vezes a reexecutar latex se requisitado:</translation>
     </message>
     <message>
-        <location line="+208"/>
+        <location line="+217"/>
         <location filename="configdialog.cpp" line="+27"/>
         <source>Shortcuts</source>
         <translation>Atalhos</translation>
     </message>
     <message>
         <location line="+24"/>
-        <location line="+196"/>
+        <location line="+214"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-209"/>
         <source>2</source>
         <translation>2</translation>
     </message>
@@ -2077,14 +2077,14 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation>Fechar visualizador de log com Esc</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+23"/>
         <location filename="configdialog.cpp" line="+1"/>
         <source>Menus</source>
         <oldsource>Latex Menus</oldsource>
         <translation>Menus</translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+64"/>
         <source>Toolbar Customization</source>
         <translation>Personalização da barra de ferramentas</translation>
     </message>
@@ -2097,12 +2097,12 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation type="obsolete">&gt;</translation>
     </message>
     <message>
-        <location line="+1417"/>
+        <location line="+1444"/>
         <source>Formats</source>
         <translation>Formatos:</translation>
     </message>
     <message>
-        <location line="-1131"/>
+        <location line="-1149"/>
         <location filename="configdialog.cpp" line="+3"/>
         <location filename="configmanager.cpp" line="+1205"/>
         <source>Editor</source>
@@ -2152,7 +2152,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation type="obsolete">Recuo:</translation>
     </message>
     <message>
-        <location line="+420"/>
+        <location line="+429"/>
         <source>Show Line Change State</source>
         <translation>Destacar linhas que sofreram alterações</translation>
     </message>
@@ -2280,7 +2280,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation type="obsolete">Dicionário Ortográfico:</translation>
     </message>
     <message>
-        <location line="-1657"/>
+        <location line="-1720"/>
         <source>Default Language:</source>
         <oldsource>Default language</oldsource>
         <translation>Idioma Padrão:</translation>
@@ -2294,27 +2294,27 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation type="obsolete">Aspas francesas reversas: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location line="+1516"/>
+        <location line="+1579"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Restringir escopo da busca para uma seleção existente</translation>
     </message>
     <message>
-        <location line="+1560"/>
+        <location line="+1605"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Pré-visualização de fórmulas como dica no editor</translation>
     </message>
     <message>
-        <location line="-1478"/>
+        <location line="-1523"/>
         <source>Line Wrapping:</source>
         <translation>Quebra de Linhas:</translation>
     </message>
     <message>
-        <location line="-1701"/>
+        <location line="-1764"/>
         <source>MRU Document Chooser</source>
         <translation>Seletor de Documento MRU</translation>
     </message>
     <message>
-        <location line="+1104"/>
+        <location line="+1158"/>
         <source>Inline Checking:</source>
         <translation>Verificação Integrada:</translation>
     </message>
@@ -2328,7 +2328,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation>Espaçamento de Linhas:</translation>
     </message>
     <message>
-        <location line="+219"/>
+        <location line="+228"/>
         <source>Show Line Numbers:</source>
         <translation>Exibir o Número das Linhas:</translation>
     </message>
@@ -2363,7 +2363,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
         <translation>Máximo de Caracteres:</translation>
     </message>
     <message>
-        <location line="-1101"/>
+        <location line="-1146"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -2394,7 +2394,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Substituir Variáveis de Ambiente</translation>
     </message>
     <message>
-        <location line="+85"/>
+        <location line="+103"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation>Aqui os itens de menu são listados e podem ser ocultados ou editados.</translation>
     </message>
@@ -2404,7 +2404,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Isto controla se a lista acima mostra todos os itens de menu ou somente os comumente alterados.</translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation>Isto mostra todas as ações na barra de ferramentas agora editada.</translation>
     </message>
@@ -2464,7 +2464,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Isto altera a escala das barras de ferramentas verticais (para monitores de alta resolução).</translation>
     </message>
     <message>
-        <location line="+371"/>
+        <location line="+380"/>
         <source>Replace Indentation Tab by Spaces</source>
         <translation>Substituir Tab na indentação por Espaços</translation>
     </message>
@@ -2474,7 +2474,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Substituir Tab no texto por Espaços</translation>
     </message>
     <message>
-        <location line="+360"/>
+        <location line="+369"/>
         <source>No Line Wrap</source>
         <translation>Não Quebrar Linhas</translation>
     </message>
@@ -2559,7 +2559,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Verificação Integrada:</translation>
     </message>
     <message>
-        <location line="-802"/>
+        <location line="-811"/>
         <location filename="configdialog.cpp" line="+5"/>
         <source>Grammar</source>
         <translation>Gramática</translation>
@@ -2573,7 +2573,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Comandos do Usuário</translation>
     </message>
     <message>
-        <location line="-932"/>
+        <location line="-968"/>
         <source>Build Options</source>
         <translation>Opções de Compilação</translation>
     </message>
@@ -2601,7 +2601,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Comandos com compilação repetida:</translation>
     </message>
     <message>
-        <location line="+250"/>
+        <location line="+268"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
@@ -2615,7 +2615,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Mostrar todos</translation>
     </message>
     <message>
-        <location line="+593"/>
+        <location line="+611"/>
         <source>Citations</source>
         <translation>Citações</translation>
     </message>
@@ -2654,7 +2654,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Modo de renderização:</translation>
     </message>
     <message>
-        <location line="+720"/>
+        <location line="+729"/>
         <source>Try to automatically choose best display options</source>
         <translation>Tentar escolher automaticamente as melhores opções de exibição</translation>
     </message>
@@ -2669,7 +2669,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Desabilitar o cache de linhas renderizadas</translation>
     </message>
     <message>
-        <location line="+96"/>
+        <location line="+114"/>
         <source>Custom Environment</source>
         <translation>Ambiente Personalizado</translation>
     </message>
@@ -2692,7 +2692,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Comandos Adicionais</translation>
     </message>
     <message>
-        <location line="+55"/>
+        <location line="+64"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Iniciar completamento ao digitar comandos LaTeX</translation>
     </message>
@@ -2750,7 +2750,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Utilizar os seguintes arquivos de completamento:</translation>
     </message>
     <message>
-        <location line="+68"/>
+        <location line="+77"/>
         <source>Internal</source>
         <translation>Interno</translation>
     </message>
@@ -2884,7 +2884,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Visualizar Segmento de Código</translation>
     </message>
     <message>
-        <location line="+121"/>
+        <location line="+130"/>
         <source>Preview with dvipng</source>
         <translation>Visualizar com dvipng</translation>
     </message>
@@ -2946,9 +2946,9 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Auto-visualização:</translation>
     </message>
     <message>
-        <location line="-2677"/>
-        <location line="+1184"/>
-        <location line="+1444"/>
+        <location line="-2767"/>
+        <location line="+1229"/>
+        <location line="+1489"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
@@ -3031,8 +3031,8 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Em escala</translation>
     </message>
     <message>
-        <location line="-2045"/>
-        <location line="+2058"/>
+        <location line="-2099"/>
+        <location line="+2112"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -3077,7 +3077,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Utilizar revisões SVN para desfazer antes da última versão salva</translation>
     </message>
     <message>
-        <location line="+199"/>
+        <location line="+208"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>sob svn executar svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
@@ -3095,7 +3095,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Profundidade de pesquisa em diretório SVN:</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-259"/>
+        <location filename="configdialog.cpp" line="-267"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>O atalho que você forneceu é inválido.</translation>
     </message>
@@ -3117,7 +3117,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation type="obsolete">Obter dicionários em: %1</translation>
     </message>
     <message>
-        <location line="+133"/>
+        <location line="+141"/>
         <source>Basic highlighting</source>
         <translation>Destaque básico</translation>
     </message>
@@ -3137,7 +3137,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
         <translation>Diferenças</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2802"/>
+        <location filename="configdialog.ui" line="-2883"/>
         <location filename="configdialog.cpp" line="+16"/>
         <source>Command</source>
         <translation>Comando</translation>
@@ -3184,7 +3184,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-insen
 Ferramentas</translation>
     </message>
     <message>
-        <location line="-246"/>
+        <location line="-254"/>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
@@ -3206,7 +3206,7 @@ Você não conseguirá mais inserir este caractere em seu texto. Deseja realment
         <translation type="obsolete">Obter Dicionários Adicionais: %1</translation>
     </message>
     <message>
-        <location line="+171"/>
+        <location line="+179"/>
         <source>Download additional dictionaries from %1 or %2</source>
         <translation>Obter Dicionários Adicionais de %1 ou %2</translation>
     </message>
@@ -3351,7 +3351,7 @@ avançadas novamente para somente visualizar
 os ajustes mais comuns.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1576"/>
+        <location filename="configdialog.ui" line="+1630"/>
         <location filename="configdialog.cpp" line="-637"/>
         <source>Completion</source>
         <translation>Completamento</translation>
@@ -7395,7 +7395,7 @@ Você deseja atualizar recarregando o arquivo?
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="+2867"/>
+        <location line="+2869"/>
         <source>None</source>
         <translation>Nenhum</translation>
     </message>
@@ -9145,7 +9145,7 @@ Você confia neste script?</translation>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-878"/>
+        <location filename="configdialog.cpp" line="-886"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;padrão&gt;</translation>
     </message>

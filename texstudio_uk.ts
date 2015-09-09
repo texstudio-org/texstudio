@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="uk_UA" sourcelanguage="en">
+<TS version="2.1" language="uk_UA" sourcelanguage="en">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -767,8 +767,8 @@
         <translation>Чи Ви дійсно хочете вилучити цей рядок?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1007"/>
-        <location filename="configdialog.cpp" line="+154"/>
+        <location filename="configdialog.ui" line="+1061"/>
+        <location filename="configdialog.cpp" line="+162"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
@@ -810,7 +810,7 @@
         <translation type="obsolete">Меню Latex</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+316"/>
+        <location filename="configdialog.ui" line="+334"/>
         <location filename="configdialog.cpp" line="+6"/>
         <location filename="configmanager.cpp" line="+1205"/>
         <source>Editor</source>
@@ -849,7 +849,7 @@
         <translation type="obsolete">Зображення (*.png *.xpm *.jpg *.bmp *.svg)</translation>
     </message>
     <message>
-        <location line="-728"/>
+        <location line="-736"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>Введена комбінація клавіш невірна.</translation>
     </message>
@@ -858,12 +858,12 @@
         <translation type="obsolete">Ви хочете знищити цю комбінацію клавш?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+834"/>
+        <location filename="configdialog.ui" line="+843"/>
         <source>Parse BibTeX</source>
         <translation>Здійснювати аналіз BibTeX</translation>
     </message>
     <message>
-        <location line="-1815"/>
+        <location line="-1878"/>
         <source>Dictionaries</source>
         <translation>Словники</translation>
     </message>
@@ -873,7 +873,7 @@
         <translation>Текстова позначка</translation>
     </message>
     <message>
-        <location line="+138"/>
+        <location line="+147"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Команди (% - ім&apos;я файла без розширення;   @ - номер рядка;   ? - розширені опції імені файла)</translation>
     </message>
@@ -890,13 +890,13 @@
         <translation type="obsolete">Показувати Log файл після компіляції, якщо є помилки</translation>
     </message>
     <message>
-        <location line="+378"/>
-        <location line="+196"/>
+        <location line="+396"/>
+        <location line="+214"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-209"/>
         <source>2</source>
         <translation>2</translation>
     </message>
@@ -911,7 +911,7 @@
         <translation>4</translation>
     </message>
     <message>
-        <location line="+77"/>
+        <location line="+95"/>
         <source>Toolbar Customization</source>
         <translation>Панелі інструментів</translation>
     </message>
@@ -924,22 +924,22 @@
         <translation type="obsolete">&gt;</translation>
     </message>
     <message>
-        <location line="+817"/>
+        <location line="+835"/>
         <source>Use single line selection as Search Word</source>
         <translation>При пошуку слова використовувати один рядок</translation>
     </message>
     <message>
-        <location line="-421"/>
+        <location line="-430"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>можна вибирати тільки між utf-16/utf-8 та ISO 8859-1!</translation>
     </message>
     <message>
-        <location line="+363"/>
+        <location line="+372"/>
         <source>Show Whitespace</source>
         <translation>Показувати ведучі пробіли</translation>
     </message>
     <message>
-        <location line="+686"/>
+        <location line="+704"/>
         <source>Custom Environment</source>
         <translation>Оточення користувача</translation>
     </message>
@@ -965,7 +965,7 @@
         <translation type="obsolete">Команди SVN</translation>
     </message>
     <message>
-        <location line="+1322"/>
+        <location line="+1358"/>
         <source>SVN Directory Search Depth: </source>
         <translation>Глибина пошуку SVN каталогів: </translation>
     </message>
@@ -986,7 +986,7 @@
         <translation type="obsolete">сучасна</translation>
     </message>
     <message>
-        <location line="-3580"/>
+        <location line="-3697"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Структура/Символи у вигляді вкладок</translation>
     </message>
@@ -1000,7 +1000,7 @@
         <translation>*.dat</translation>
     </message>
     <message>
-        <location line="+182"/>
+        <location line="+191"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Спеціальні символи:&lt;/span&gt;</translation>
     </message>
@@ -1036,7 +1036,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Вилучити рядок</translation>
     </message>
     <message>
-        <location line="+2028"/>
+        <location line="+2109"/>
         <source>Case Sensitive</source>
         <translation>Розрізняти регістр</translation>
     </message>
@@ -1064,24 +1064,24 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Використовувати файли завершення:</translation>
     </message>
     <message>
-        <location line="-1918"/>
-        <location filename="configdialog.cpp" line="+250"/>
+        <location line="-1981"/>
+        <location filename="configdialog.cpp" line="+258"/>
         <source>Shortcuts</source>
         <translation>Комбінації клавіш</translation>
     </message>
     <message>
-        <location line="+1662"/>
+        <location line="+1725"/>
         <location filename="configdialog.cpp" line="+8"/>
         <source>Completion</source>
         <translation>Завершення</translation>
     </message>
     <message>
-        <location line="-1194"/>
+        <location line="-1230"/>
         <source>Folding</source>
         <translation>Згортання коду</translation>
     </message>
     <message>
-        <location line="+360"/>
+        <location line="+369"/>
         <source>Show State Panel</source>
         <translation>Показувати панель стану</translation>
     </message>
@@ -1103,12 +1103,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показувати тільки основні номери рядків</translation>
     </message>
     <message>
-        <location line="+645"/>
+        <location line="+654"/>
         <source>Formats</source>
         <translation>Формати</translation>
     </message>
     <message>
-        <location line="+1428"/>
+        <location line="+1482"/>
         <source>OK</source>
         <translation>Гаразд</translation>
     </message>
@@ -1118,8 +1118,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Відміна</translation>
     </message>
     <message>
-        <location line="-3808"/>
-        <location line="+1613"/>
+        <location line="-3934"/>
+        <location line="+1676"/>
         <source>Appearance</source>
         <translation>Зовнішній вигляд</translation>
     </message>
@@ -1144,7 +1144,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Мова інтерфейсу</translation>
     </message>
     <message>
-        <location line="-1439"/>
+        <location line="-1502"/>
         <source>Files</source>
         <translation>Файли</translation>
     </message>
@@ -1165,12 +1165,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Введена комбінація клавіш використовується для однієї із команд:</translation>
     </message>
     <message>
-        <location line="+710"/>
+        <location line="+737"/>
         <source>Close Log-View with Esc-Key</source>
         <translation>Закривати перегляд протоколу за допомогою клавіші Esc</translation>
     </message>
     <message>
-        <location line="+2355"/>
+        <location line="+2436"/>
         <source>Always show preview in preview panel</source>
         <translation>Завжди показувати перегляд в панелі попереднього перегляду</translation>
     </message>
@@ -1200,17 +1200,17 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Попередній перегляд через dvips/ghostscript</translation>
     </message>
     <message>
-        <location line="-1447"/>
+        <location line="-1492"/>
         <source>Close search and replace panel together</source>
         <translation>Закривати панелі пошуку і заміни одночасно</translation>
     </message>
     <message>
-        <location line="+893"/>
+        <location line="+920"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Автозаміна команд  LaTeX</translation>
     </message>
     <message>
-        <location line="+956"/>
+        <location line="+974"/>
         <source>Load Strategy:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1235,7 +1235,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+45"/>
+        <location line="+54"/>
         <source>Select how txs checks in saved files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1280,12 +1280,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Пошук</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-3084"/>
+        <location filename="configdialog.ui" line="-3183"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Не запускати новий примірник переглядача, якщо dvi/ps/pdf файл вже відкрито</translation>
     </message>
     <message>
-        <location line="+1210"/>
+        <location line="+1255"/>
         <source>5 minutes</source>
         <translation>5 хвилин</translation>
     </message>
@@ -1305,7 +1305,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>60 хвилин</translation>
     </message>
     <message>
-        <location line="+1332"/>
+        <location line="+1377"/>
         <source>Command:</source>
         <translation>Команда:</translation>
     </message>
@@ -1319,8 +1319,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Масштаб:</translation>
     </message>
     <message>
-        <location line="-2045"/>
-        <location line="+2058"/>
+        <location line="-2099"/>
+        <location line="+2112"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1350,7 +1350,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Перегляд</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1723"/>
+        <location filename="configdialog.ui" line="-1768"/>
         <source>Search Panel</source>
         <translation>Панель пошуку</translation>
     </message>
@@ -1385,12 +1385,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Масштаб за допомогою коліщатка миші</translation>
     </message>
     <message>
-        <location line="+692"/>
+        <location line="+719"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Автозавершення команд LaTeX&apos;у при введенні</translation>
     </message>
     <message>
-        <location line="+1006"/>
+        <location line="+1024"/>
         <source>Border</source>
         <translation>Межа</translation>
     </message>
@@ -1410,9 +1410,9 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Попередньо компілювати преамбулу</translation>
     </message>
     <message>
-        <location line="-2677"/>
-        <location line="+1184"/>
-        <location line="+1444"/>
+        <location line="-2767"/>
+        <location line="+1229"/>
+        <location line="+1489"/>
         <source>Never</source>
         <translation>Ніколи</translation>
     </message>
@@ -1422,27 +1422,27 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Раніше переглянутий текст</translation>
     </message>
     <message>
-        <location line="-830"/>
+        <location line="-857"/>
         <source>Additional Commands</source>
         <translation>Додаткові команди</translation>
     </message>
     <message>
-        <location line="+887"/>
+        <location line="+914"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Показати перегляд формул у редакторі як підказку</translation>
     </message>
     <message>
-        <location line="-1419"/>
+        <location line="-1464"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Показати довідку як підказку у текстовому полі редактора</translation>
     </message>
     <message>
-        <location line="-1991"/>
+        <location line="-2072"/>
         <source>Configure TeXstudio</source>
         <translation>Конфігурація TeXstudio</translation>
     </message>
     <message>
-        <location line="+1850"/>
+        <location line="+1931"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Обмежити область пошуку існуючим виділенням</translation>
     </message>
@@ -1486,7 +1486,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Вимкнути кеш опрацьовуваних рядків</translation>
     </message>
     <message>
-        <location line="-795"/>
+        <location line="-804"/>
         <source>Spelling</source>
         <translation>Правопис</translation>
     </message>
@@ -1512,7 +1512,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Синтаксис</translation>
     </message>
     <message>
-        <location line="+1288"/>
+        <location line="+1333"/>
         <source>Internal</source>
         <translation>Внутрішній</translation>
     </message>
@@ -1625,7 +1625,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Список розділених комами правил LanguageTool, які визначають виділення в спеціальному форматі.</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-218"/>
+        <location filename="configdialog.cpp" line="-226"/>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
@@ -1634,8 +1634,8 @@ to set the key anyway?</source>
 цю клавішу?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2178"/>
-        <location filename="configdialog.cpp" line="+245"/>
+        <location filename="configdialog.ui" line="-2241"/>
+        <location filename="configdialog.cpp" line="+253"/>
         <source>Menus</source>
         <translation>Меню</translation>
     </message>
@@ -1650,7 +1650,7 @@ to set the key anyway?</source>
         <translation>Слот</translation>
     </message>
     <message>
-        <location line="-346"/>
+        <location line="-364"/>
         <source>Build Options</source>
         <translation>Параметри збирання</translation>
     </message>
@@ -1680,12 +1680,12 @@ to set the key anyway?</source>
         <translation>&lt;невідомий&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+3093"/>
+        <location filename="configdialog.ui" line="+3192"/>
         <source>Show Advanced Options</source>
         <translation>Показати додаткові параметри</translation>
     </message>
     <message>
-        <location line="-3693"/>
+        <location line="-3810"/>
         <source>Style:</source>
         <translation>Стиль:</translation>
     </message>
@@ -1696,12 +1696,12 @@ to set the key anyway?</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1340"/>
+        <location line="+1394"/>
         <source>Font Size:</source>
         <translation>Розмір шрифту:</translation>
     </message>
     <message>
-        <location line="-1366"/>
+        <location line="-1420"/>
         <source>Language:</source>
         <translation>Мова:</translation>
     </message>
@@ -1785,7 +1785,7 @@ to set the key anyway?</source>
         <translation>Перевірити зараз</translation>
     </message>
     <message>
-        <location line="+144"/>
+        <location line="+162"/>
         <source>Meta Commands</source>
         <translation>Метакоманди</translation>
     </message>
@@ -1810,19 +1810,19 @@ to set the key anyway?</source>
         <translation>Завжди (якщо немає перенаправлення &gt; /dev/null)</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+297"/>
         <source>Show All</source>
         <translation>Показувати усе</translation>
     </message>
     <message>
-        <location line="+148"/>
+        <location line="+157"/>
         <location line="+7"/>
         <location line="+7"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+144"/>
+        <location line="+153"/>
         <source>Font Family:</source>
         <translation>Сім&apos;я шрифтів:</translation>
     </message>
@@ -1909,7 +1909,7 @@ to set the key anyway?</source>
         <translation>Відстань між рядками:</translation>
     </message>
     <message>
-        <location line="+219"/>
+        <location line="+228"/>
         <source>Show Line Numbers:</source>
         <translation>Показувати номери рядків:</translation>
     </message>
@@ -1989,17 +1989,17 @@ to set the key anyway?</source>
         <translation>Режим візуалізації:</translation>
     </message>
     <message>
-        <location line="-2028"/>
+        <location line="-2091"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Пам&apos;ятати фільтр виділення файлів при відкритті/збереженні</translation>
     </message>
     <message>
-        <location line="+359"/>
+        <location line="+377"/>
         <source>Show messages when starting compiling</source>
         <translation>Показувати повідомлення при початку компіляції</translation>
     </message>
     <message>
-        <location line="+240"/>
+        <location line="+249"/>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -2012,11 +2012,11 @@ Then you can select a new shortcut by one of the following ways:
 (3) ввести рядок для сполучення клавіш</translation>
     </message>
     <message>
-        <location line="+698"/>
+        <location line="+725"/>
         <source>Package</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="-94"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Англійські лапки (юнікод): “ ”</translation>
@@ -2032,7 +2032,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Приховати орфографічні помилки поза текстом</translation>
     </message>
     <message>
-        <location line="+554"/>
+        <location line="+563"/>
         <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
         <translation>Скасувати закриття повновіконного режиму при натисканні клавіші &apos;Esc&apos;</translation>
     </message>
@@ -2067,7 +2067,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Перейти до помилки при відображенні журналу</translation>
     </message>
     <message>
-        <location line="-1606"/>
+        <location line="-1669"/>
         <source>Spelling Dictionary Directories:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2082,12 +2082,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+390"/>
+        <location line="+408"/>
         <source>PDF File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+175"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2097,7 +2097,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2147,7 +2147,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+141"/>
+        <location line="+150"/>
         <source>Automatic Encoding Detection:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2182,7 +2182,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+335"/>
+        <location line="+344"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2297,7 +2297,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+152"/>
+        <location line="+170"/>
         <source>Here the highlighting of custom environments can be changed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2320,7 +2320,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Вилучити рядок</translation>
     </message>
     <message>
-        <location line="+79"/>
+        <location line="+88"/>
         <source>In First Character</source>
         <translation>У першому символі</translation>
     </message>
@@ -2345,7 +2345,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+87"/>
+        <location line="+96"/>
         <source>Check for Word Repetitions</source>
         <translation>Перевірити повторення слів</translation>
     </message>
@@ -2410,7 +2410,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Спеціальні правила 4:</translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+73"/>
         <source>Segment Preview</source>
         <translation>Перегляд сегменту</translation>
     </message>
@@ -2543,12 +2543,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="obsolete">Автоматично перевіряти після збереження</translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+78"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Замінювати ключові слова їхніми значеннями (при додаванні у SVN)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-466"/>
+        <location filename="configdialog.cpp" line="-474"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
         <translation>Сполучення клавіш &lt;%1&gt; вже присвоєно команді:</translation>
     </message>
@@ -2562,7 +2562,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="obsolete">Завантажити додаткові словники: %1</translation>
     </message>
     <message>
-        <location line="+195"/>
+        <location line="+203"/>
         <source>Sweave / Pweave</source>
         <translation>Sweave / Pweave</translation>
     </message>
@@ -2644,12 +2644,12 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Використовувати варіанти SVN для відміни перед останнім збереженим варіантом</translation>
     </message>
     <message>
-        <location line="-3035"/>
+        <location line="-3134"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Максимальне число повторень компіляції:</translation>
     </message>
     <message>
-        <location line="-240"/>
+        <location line="-258"/>
         <source>Startup</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2659,7 +2659,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+373"/>
+        <location line="+391"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -2676,7 +2676,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+260"/>
+        <location line="+287"/>
         <source>Secondary Toolbars</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2691,7 +2691,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1390"/>
+        <location line="+1435"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Запустити компілятор як тільки буде введено символ &apos;\&apos; . Альтернативно, компілятор завжди може бути запущений вручну з допомогою Ctrl+Space.</translation>
     </message>
@@ -2793,7 +2793,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Розмір маркера табуляції внизу або вгорі процедури завершення</translation>
     </message>
     <message>
-        <location line="-2178"/>
+        <location line="-2259"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: ім&apos;я файлу без розширення &lt;b&gt;@&lt;/b&gt;: номер рядка; &lt;b&gt;?[селектор][кінцевий символ]&lt;/b&gt;: форматоване ім&apos;я файлу</translation>
@@ -2805,7 +2805,7 @@ options again to only view the most common settings.</oldsource>
         <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; і &lt;b&gt;??&lt;/b&gt; стає: %, @ або ?</translation>
     </message>
     <message>
-        <location line="+274"/>
+        <location line="+283"/>
         <source>Additional Search Paths:</source>
         <translation>Додаткові шляхи пошуку:</translation>
     </message>
@@ -2839,7 +2839,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Шлях пошуку команд</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+702"/>
+        <location filename="configdialog.ui" line="+738"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>Пакет csquotes: \enquote{  }</translation>
     </message>
@@ -2849,7 +2849,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Показувати тільки шрифт фіксованої ширини</translation>
     </message>
     <message>
-        <location line="+279"/>
+        <location line="+288"/>
         <source>Draw cursor as a thick line</source>
         <translation>Відображати курсор як жирну лінію</translation>
     </message>
@@ -2894,7 +2894,7 @@ options again to only view the most common settings.</oldsource>
         <translation>Один рядок на одну комірку</translation>
     </message>
     <message>
-        <location line="+1120"/>
+        <location line="+1165"/>
         <source>Preview with pdflatex</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2934,12 +2934,12 @@ options again to only view the most common settings.</oldsource>
         <translation>Вставити роздільник</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2266"/>
+        <location filename="configdialog.ui" line="-2320"/>
         <source>Automatically load included files</source>
         <translation>Автоматично завантажувати включені файли</translation>
     </message>
     <message>
-        <location line="-780"/>
+        <location line="-825"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -2954,12 +2954,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;?m&quot;&lt;/b&gt; взяте у подвійні лапки ім&apos;я файлу без розширення (рівносильне &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; ім&apos;я файлу з розширенням (напр. example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: усі файли .aux files у поточному каталозі</translation>
     </message>
     <message>
-        <location line="-347"/>
+        <location line="-356"/>
         <source>MRU Document Chooser</source>
         <translation>Селектор часто вживаних документів</translation>
     </message>
     <message>
-        <location line="+1708"/>
+        <location line="+1771"/>
         <source>Smooth Scrolling</source>
         <translation>Плавне прокручування</translation>
     </message>
@@ -6404,7 +6404,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Unix</translation>
     </message>
     <message>
-        <location line="+2867"/>
+        <location line="+2869"/>
         <source>None</source>
         <translation>Ні</translation>
     </message>
@@ -6681,7 +6681,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Невідомо</translation>
     </message>
     <message>
-        <location line="-3469"/>
+        <location line="-3471"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -8187,7 +8187,7 @@ Do you trust this script?</source>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-868"/>
+        <location filename="configdialog.cpp" line="-876"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;типово&gt;</translation>
     </message>

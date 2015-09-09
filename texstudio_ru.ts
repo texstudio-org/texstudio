@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -946,7 +946,7 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+3882"/>
+        <location filename="configdialog.ui" line="+4026"/>
         <source>OK</source>
         <translation>Ок</translation>
     </message>
@@ -956,8 +956,8 @@
         <translation>Отмена</translation>
     </message>
     <message>
-        <location line="-3808"/>
-        <location line="+1613"/>
+        <location line="-3934"/>
+        <location line="+1676"/>
         <source>Appearance</source>
         <translation>Внешний вид</translation>
     </message>
@@ -990,7 +990,7 @@
         <translation type="obsolete">современная</translation>
     </message>
     <message>
-        <location line="-1468"/>
+        <location line="-1531"/>
         <source>Tabbed Structure/Symbol View</source>
         <translation>Табличный вывод Структуры/Просмотра</translation>
     </message>
@@ -1016,7 +1016,7 @@
         <translation type="obsolete">Макс. число последних мастер-документов</translation>
     </message>
     <message>
-        <location line="+1899"/>
+        <location line="+1962"/>
         <source>Parse BibTeX</source>
         <translation>Анализ  BibTeX&apos;а</translation>
     </message>
@@ -1025,7 +1025,7 @@
         <translation type="obsolete">Всегда показывать структуру мастер-документа</translation>
     </message>
     <message>
-        <location line="-1815"/>
+        <location line="-1878"/>
         <source>Dictionaries</source>
         <translation>Словари</translation>
     </message>
@@ -1061,7 +1061,7 @@
 *.dat</translation>
     </message>
     <message>
-        <location line="+175"/>
+        <location line="+184"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Команды (%: имя файла без расширения - @: номер строки - ?: параметры расширенного имени файла)</translation>
     </message>
@@ -1106,7 +1106,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показывать протокол после компиляции, если есть ошибки</translation>
     </message>
     <message>
-        <location line="+1222"/>
+        <location line="+1276"/>
         <source>Show Whitespace</source>
         <translation>Показывать символ пробела</translation>
     </message>
@@ -1115,7 +1115,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Пробел табуляции :</translation>
     </message>
     <message>
-        <location line="+941"/>
+        <location line="+968"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>Автозамена команд  LaTeX</translation>
     </message>
@@ -1128,8 +1128,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Удалить строку</translation>
     </message>
     <message>
-        <location line="-1816"/>
-        <location filename="configdialog.cpp" line="+432"/>
+        <location line="-1879"/>
+        <location filename="configdialog.cpp" line="+440"/>
         <source>Shortcuts</source>
         <translation>Горячие клавиши</translation>
     </message>
@@ -1143,12 +1143,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
     </message>
     <message>
         <location line="+24"/>
-        <location line="+196"/>
+        <location line="+214"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-209"/>
         <source>2</source>
         <translation>2</translation>
     </message>
@@ -1172,12 +1172,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Меню LaTeX</translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+87"/>
         <source>Toolbar Customization</source>
         <translation>Настройка панели инструментов</translation>
     </message>
     <message>
-        <location line="+286"/>
+        <location line="+295"/>
         <location filename="configdialog.cpp" line="+4"/>
         <location filename="configmanager.cpp" line="+1205"/>
         <source>Editor</source>
@@ -1188,7 +1188,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показывать превью в виде подсказки, если панель скрыта</translation>
     </message>
     <message>
-        <location line="+2000"/>
+        <location line="+2054"/>
         <source>Always show preview in preview panel</source>
         <translation>Всегда показывать превью в панели предварительного просмотра</translation>
     </message>
@@ -1218,7 +1218,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Предпросмотр с помощью dvips/ghostscript</translation>
     </message>
     <message>
-        <location line="-1447"/>
+        <location line="-1492"/>
         <source>Close search and replace panel together</source>
         <translation>Закрывать панели поиска и замены одновременно</translation>
     </message>
@@ -1247,7 +1247,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Автоопределение кодировки загружаемых файлов</translation>
     </message>
     <message>
-        <location line="-455"/>
+        <location line="-464"/>
         <source>Folding</source>
         <translation>Свертка</translation>
     </message>
@@ -1264,12 +1264,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показывать номера важных строк</translation>
     </message>
     <message>
-        <location line="+1065"/>
+        <location line="+1083"/>
         <source>Formats</source>
         <translation>Форматы</translation>
     </message>
     <message>
-        <location line="-645"/>
+        <location line="-654"/>
         <source>Show Line Change State</source>
         <translation>Показывать статус изменения строк</translation>
     </message>
@@ -1288,12 +1288,12 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Использовать выделение строки как образец поиска</translation>
     </message>
     <message>
-        <location line="-421"/>
+        <location line="-430"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
         <translation>можно выбирать только между utf16/utf-8 и ISO 8859-1 !</translation>
     </message>
     <message>
-        <location line="+1049"/>
+        <location line="+1076"/>
         <source>Custom Environment</source>
         <translation>Окружение пользователя</translation>
     </message>
@@ -1303,7 +1303,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation>Тип окружения</translation>
     </message>
     <message>
-        <location line="+115"/>
+        <location line="+124"/>
         <source>Case Sensitive</source>
         <translation>Учитывать регистр</translation>
     </message>
@@ -1343,7 +1343,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Использовать варианты SVN для отмен перед последним сохраненным вариантом ?</translation>
     </message>
     <message>
-        <location line="+958"/>
+        <location line="+985"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation>в svn добавлять executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</translation>
     </message>
@@ -1365,7 +1365,7 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Показать расширенные параметры</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-254"/>
+        <location filename="configdialog.cpp" line="-262"/>
         <source>The shortcut you entered is invalid.</source>
         <translation>Введеная быстрая клавиша некорректна.</translation>
     </message>
@@ -1387,8 +1387,8 @@ examples: ?ame&quot;: complete absolute filename enclosed in &quot;, ?e) just th
         <translation type="obsolete">Получить словари в: %1</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2802"/>
-        <location filename="configdialog.cpp" line="+154"/>
+        <location filename="configdialog.ui" line="-2883"/>
+        <location filename="configdialog.cpp" line="+162"/>
         <source>Command</source>
         <translation>Команда</translation>
     </message>
@@ -1494,7 +1494,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Подсветка (доп.)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1576"/>
+        <location filename="configdialog.ui" line="+1630"/>
         <location filename="configdialog.cpp" line="+1"/>
         <source>Completion</source>
         <translation>Завершение команд</translation>
@@ -1559,7 +1559,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1870"/>
+        <location filename="configdialog.ui" line="-1942"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
         <translation>Не запускать новый экземпляр просмотрщика, если файл dvi/ps/pdf уже открыт</translation>
     </message>
@@ -1572,7 +1572,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">никогда</translation>
     </message>
     <message>
-        <location line="+1210"/>
+        <location line="+1255"/>
         <source>5 minutes</source>
         <translation>5 минут</translation>
     </message>
@@ -1604,7 +1604,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Параметры предпросмотра</translation>
     </message>
     <message>
-        <location line="+1332"/>
+        <location line="+1377"/>
         <source>Command:</source>
         <translation>Команда:</translation>
     </message>
@@ -1650,8 +1650,8 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Масштабированный размер</translation>
     </message>
     <message>
-        <location line="-2045"/>
-        <location line="+2058"/>
+        <location line="-2099"/>
+        <location line="+2112"/>
         <source>%</source>
         <translation></translation>
     </message>
@@ -1681,7 +1681,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation>Предпросмотр</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1723"/>
+        <location filename="configdialog.ui" line="-1768"/>
         <source>Search Panel</source>
         <translation>Панель поиска</translation>
     </message>
@@ -1724,12 +1724,12 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Отменить &quot;заплатку&quot; набора акцентов (только Mac OS X)</translation>
     </message>
     <message>
-        <location line="+692"/>
+        <location line="+719"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Автозавершение команд LaTeX&apos;а при вводе</translation>
     </message>
     <message>
-        <location line="+704"/>
+        <location line="+722"/>
         <source>Preview with pdflatex</source>
         <translation>Предпросмотр с pdflatex</translation>
     </message>
@@ -1777,9 +1777,9 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Автоматический предпросмотр:</translation>
     </message>
     <message>
-        <location line="-2677"/>
-        <location line="+1184"/>
-        <location line="+1444"/>
+        <location line="-2767"/>
+        <location line="+1229"/>
+        <location line="+1489"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
@@ -1825,7 +1825,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">жесткий перенос слов после макс. числа символов</translation>
     </message>
     <message>
-        <location line="-830"/>
+        <location line="-857"/>
         <source>Additional Commands</source>
         <translation>Дополнительные команды</translation>
     </message>
@@ -1890,7 +1890,7 @@ However this path is not contained in the dictionary path list. Do you want to a
         <translation type="obsolete">Немецкие кавычки:  &quot;` &quot;&apos;</translation>
     </message>
     <message>
-        <location line="+887"/>
+        <location line="+914"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Предпросмотр формул в редакторе в виде подсказок</translation>
     </message>
@@ -1911,7 +1911,7 @@ Which one of the three wise will always tell the truth?</source>
 Который из трех мудрецов всегда говорит правду?</translation>
     </message>
     <message>
-        <location line="-1419"/>
+        <location line="-1464"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Показывать справки в виде подсказкок в текстовом поле редактора</translation>
     </message>
@@ -1932,7 +1932,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">третий</translation>
     </message>
     <message>
-        <location line="-1991"/>
+        <location line="-2072"/>
         <source>Configure TeXstudio</source>
         <translation>Конфигурация TeXstudio</translation>
     </message>
@@ -1945,7 +1945,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">Обратные французские кавычки: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
-        <location line="+1850"/>
+        <location line="+1931"/>
         <source>Restrict search scope to an existing selection</source>
         <translation>Ограничить область поиска существующим выделением</translation>
     </message>
@@ -2025,7 +2025,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation type="obsolete">Встроенная проверка:</translation>
     </message>
     <message>
-        <location line="-795"/>
+        <location line="-804"/>
         <source>Spelling</source>
         <translation>Орфография</translation>
     </message>
@@ -2051,7 +2051,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation>Синтаксис</translation>
     </message>
     <message>
-        <location line="+1288"/>
+        <location line="+1333"/>
         <source>Internal</source>
         <translation>Внутренний</translation>
     </message>
@@ -2206,7 +2206,7 @@ Which one of the three wise will always tell the truth?</source>
         <translation>Список разделенных запятыми правил LanguageTool, которые определяют выделения в специальном формате.</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-218"/>
+        <location filename="configdialog.cpp" line="-226"/>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
@@ -2223,8 +2223,8 @@ to set the key anyway?</source>
         <translation type="obsolete">Команды пользователя</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2178"/>
-        <location filename="configdialog.cpp" line="+245"/>
+        <location filename="configdialog.ui" line="-2241"/>
+        <location filename="configdialog.cpp" line="+253"/>
         <source>Menus</source>
         <translation>Меню</translation>
     </message>
@@ -2247,7 +2247,7 @@ to set the key anyway?</source>
         <translation type="obsolete">Показать все</translation>
     </message>
     <message>
-        <location line="-346"/>
+        <location line="-364"/>
         <source>Build Options</source>
         <translation>Параметры построения</translation>
     </message>
@@ -2289,12 +2289,12 @@ to set the key anyway?</source>
         <translation>&lt;неизвестно&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+3093"/>
+        <location filename="configdialog.ui" line="+3192"/>
         <source>Show Advanced Options</source>
         <translation>Показать расширенные параметры</translation>
     </message>
     <message>
-        <location line="-3693"/>
+        <location line="-3810"/>
         <source>Style:</source>
         <translation>Стиль:</translation>
     </message>
@@ -2305,12 +2305,12 @@ to set the key anyway?</source>
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1340"/>
+        <location line="+1394"/>
         <source>Font Size:</source>
         <translation>Размер шрифта:</translation>
     </message>
     <message>
-        <location line="-1366"/>
+        <location line="-1420"/>
         <source>Language:</source>
         <translation>Язык:</translation>
     </message>
@@ -2379,7 +2379,7 @@ to set the key anyway?</source>
         <translation>Проверить конфигурацию LaTeX</translation>
     </message>
     <message>
-        <location line="+128"/>
+        <location line="+146"/>
         <source>Meta Commands</source>
         <translation>Метакоманды</translation>
     </message>
@@ -2432,7 +2432,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
         <translation>Заменить переменные окружения</translation>
     </message>
     <message>
-        <location line="+24"/>
+        <location line="+33"/>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -2445,19 +2445,19 @@ Then you can select a new shortcut by one of the following ways:
 (3) ввести строку для горячей клавиши</translation>
     </message>
     <message>
-        <location line="+95"/>
+        <location line="+104"/>
         <source>Show All</source>
         <translation>Показать все</translation>
     </message>
     <message>
-        <location line="+148"/>
+        <location line="+157"/>
         <location line="+7"/>
         <location line="+7"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
-    <message utf8="true">
-        <location line="+347"/>
+    <message>
+        <location line="+356"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Английские кавычки (unicode): “ ”</translation>
     </message>
@@ -2559,7 +2559,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Скрывать орфографические ошибки вне текста</translation>
     </message>
     <message>
-        <location line="+299"/>
+        <location line="+308"/>
         <source>Show Line Numbers:</source>
         <translation>Показывать номера строк:</translation>
     </message>
@@ -2594,7 +2594,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Максимальное число символов:</translation>
     </message>
     <message>
-        <location line="-831"/>
+        <location line="-849"/>
         <source>Secondary Toolbars</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2609,7 +2609,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+814"/>
+        <location line="+832"/>
         <source>No Line Wrap</source>
         <translation>Без переноса слов</translation>
     </message>
@@ -2654,7 +2654,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Режим формирования изображения:</translation>
     </message>
     <message>
-        <location line="+143"/>
+        <location line="+161"/>
         <location line="+47"/>
         <source>Add Line</source>
         <translation>Добавить строку</translation>
@@ -2666,7 +2666,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Удалить строку</translation>
     </message>
     <message>
-        <location line="+79"/>
+        <location line="+88"/>
         <source>In First Character</source>
         <translation>В первом символе</translation>
     </message>
@@ -2680,7 +2680,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="obsolete">Относительный размер шрифта табулятора:</translation>
     </message>
     <message>
-        <location line="+110"/>
+        <location line="+119"/>
         <source>Check for Word Repetitions</source>
         <translation>Проверка повтора слов</translation>
     </message>
@@ -2745,7 +2745,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Специальное правило 4:</translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+73"/>
         <source>Segment Preview</source>
         <translation>Параметры предпросмотра</translation>
     </message>
@@ -2908,12 +2908,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="obsolete">Использовать варианты SVN для отмен перед последним сохраненным вариантом</translation>
     </message>
     <message>
-        <location line="+69"/>
+        <location line="+78"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
         <translation>Заменять ключевые слова их значениями (при команде svn add)</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-466"/>
+        <location filename="configdialog.cpp" line="-474"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
         <translation>Быстрая клавиша &lt;%1&gt; уже присвоена команде:</translation>
     </message>
@@ -2927,7 +2927,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="obsolete">Загрузить дополнительные словари: %1</translation>
     </message>
     <message>
-        <location line="+195"/>
+        <location line="+203"/>
         <source>Sweave / Pweave</source>
         <translation></translation>
     </message>
@@ -2942,7 +2942,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Подсветка синтаксиса</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-3348"/>
+        <location filename="configdialog.ui" line="-3465"/>
         <source>Update</source>
         <translation>Обновление</translation>
     </message>
@@ -2972,17 +2972,17 @@ Then you can select a new shortcut by one of the following ways:
         <translation></translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+3285"/>
+        <location filename="configdialog.ui" line="+3402"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Использовать ревизии SVN для отмен перед последним сохраненным вариантом</translation>
     </message>
     <message>
-        <location line="-3035"/>
+        <location line="-3134"/>
         <source>Maximum Compile Repetitions:</source>
         <translation>Максимальное число повторов компиляции:</translation>
     </message>
     <message>
-        <location line="+1359"/>
+        <location line="+1404"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Сохранять отступы элементов в дереве структуры</translation>
     </message>
@@ -2997,17 +2997,17 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Отменить закрытие полнооконного режима при нажатии клавиши  &apos;Esc&apos;</translation>
     </message>
     <message>
-        <location line="-1631"/>
+        <location line="-1694"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation>Запомнить фильтр выделения файлов в диалоге открытия/сохранения</translation>
     </message>
     <message>
-        <location line="+1297"/>
+        <location line="+1351"/>
         <source>Package</source>
         <translation>Пакет</translation>
     </message>
     <message>
-        <location line="+348"/>
+        <location line="+357"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
         <translation>Перезагружать сохраненные файлы при внешних изменениях (очищается стек команд отмены/повтора)</translation>
     </message>
@@ -3027,7 +3027,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Переходить к ошибке при отображении лога</translation>
     </message>
     <message>
-        <location line="-1606"/>
+        <location line="-1669"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Директории с орфографическими словарями:</translation>
     </message>
@@ -3042,12 +3042,12 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Импортировать словарь...</translation>
     </message>
     <message>
-        <location line="+390"/>
+        <location line="+408"/>
         <source>PDF File</source>
         <translation>Файл PDF</translation>
     </message>
     <message>
-        <location line="+157"/>
+        <location line="+175"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3057,7 +3057,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3107,7 +3107,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+141"/>
+        <location line="+150"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Автоматическое определение кодировки:</translation>
     </message>
@@ -3142,7 +3142,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation>Заменить табуляцию в тексте на пробелы</translation>
     </message>
     <message>
-        <location line="+335"/>
+        <location line="+344"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3257,7 +3257,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+152"/>
+        <location line="+170"/>
         <source>Here the highlighting of custom environments can be changed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3268,7 +3268,7 @@ Then you can select a new shortcut by one of the following ways:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+92"/>
+        <location line="+101"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Запустить автодополнение, как только будет введен символ &apos;\&apos; . Кроме того, автодополнение всегда может быть запущено вручную с помощью Ctrl+Space.</translation>
     </message>
@@ -3367,7 +3367,7 @@ them here.</source>
 Вы можете принудительно их использовать путем отметки здесь.</translation>
     </message>
     <message>
-        <location line="+922"/>
+        <location line="+949"/>
         <source>Select how txs checks in saved files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3400,12 +3400,12 @@ options again to only view the most common settings.</oldsource>
 конфигурировать лишь общие параметры.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1023"/>
+        <location filename="configdialog.ui" line="-1050"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Размер маркера табуляции внизу или вверху процедуры завершения</translation>
     </message>
     <message>
-        <location line="-2178"/>
+        <location line="-2259"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation>&lt;b&gt;%&lt;/b&gt;: имя файла без расширения &lt;b&gt;@&lt;/b&gt;: номер строки; &lt;b&gt;?[селектор][конечный символ]&lt;/b&gt;: форматированное имя файла
@@ -3433,7 +3433,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 </translation>
     </message>
     <message>
-        <location line="+274"/>
+        <location line="+283"/>
         <source>Additional Search Paths:</source>
         <translation>Дополнительные пути поиска:</translation>
     </message>
@@ -3467,7 +3467,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>Путь поиска команд</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2803"/>
+        <location filename="configdialog.ui" line="+2893"/>
         <source>Cache Size:</source>
         <translation>Размер кэша:</translation>
     </message>
@@ -3477,12 +3477,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation></translation>
     </message>
     <message>
-        <location line="-2111"/>
+        <location line="-2165"/>
         <source>Package csquotes: \enquote{  }</source>
         <translation>Пакет csquotes: \enquote{  }</translation>
     </message>
     <message>
-        <location line="+292"/>
+        <location line="+301"/>
         <source>Draw cursor as a thick line</source>
         <translation>Отображать курсор как толстую линию</translation>
     </message>
@@ -3492,7 +3492,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>Жирный курсор</translation>
     </message>
     <message>
-        <location line="-282"/>
+        <location line="-291"/>
         <source>Show Only Monospaced Fonts</source>
         <translation>Показывать только моноширинные шрифты</translation>
     </message>
@@ -3507,7 +3507,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>Вставить разделитель</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+630"/>
+        <location filename="configdialog.ui" line="+639"/>
         <source>Table Autoformating</source>
         <translation>Автоформатирование таблиц</translation>
     </message>
@@ -3546,12 +3546,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="obsolete">автоматически загружать включаемые файлы</translation>
     </message>
     <message>
-        <location line="-804"/>
+        <location line="-813"/>
         <source>Automatically load included files</source>
         <translation>Автоматически загружать включаемые файлы</translation>
     </message>
     <message>
-        <location line="-780"/>
+        <location line="-825"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -3566,12 +3566,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
 &lt;b&gt;?m&quot;&lt;/b&gt; заключенное в двойные кавычки имя файла без расширения (равносильно &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; имя файла с расширением (напр. example.tex)</translation>
     </message>
     <message>
-        <location line="-347"/>
+        <location line="-356"/>
         <source>MRU Document Chooser</source>
         <translation>Селектор часто используемых документов</translation>
     </message>
     <message>
-        <location line="+1708"/>
+        <location line="+1771"/>
         <source>Smooth Scrolling</source>
         <translation>Плавная прокрутка</translation>
     </message>
@@ -7269,7 +7269,7 @@ Do you wish to keep up to date by reloading the file?
         <translation></translation>
     </message>
     <message>
-        <location line="+2867"/>
+        <location line="+2869"/>
         <source>None</source>
         <translation>Нет</translation>
     </message>
@@ -7546,7 +7546,7 @@ Do you wish to keep up to date by reloading the file?
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <location line="-3469"/>
+        <location line="-3471"/>
         <location line="+17"/>
         <location line="+9"/>
         <location line="+7"/>
@@ -9124,7 +9124,7 @@ Do you trust this script?</source>
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-868"/>
+        <location filename="configdialog.cpp" line="-876"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;по умолчанию&gt;</translation>
     </message>

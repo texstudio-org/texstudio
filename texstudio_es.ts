@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="es">
+<TS version="2.1" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -761,13 +761,13 @@
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="configdialog.ui" line="+945"/>
-        <location line="+196"/>
+        <location filename="configdialog.ui" line="+990"/>
+        <location line="+214"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location line="-191"/>
+        <location line="-209"/>
         <source>2</source>
         <translation>2</translation>
     </message>
@@ -782,7 +782,7 @@
         <translation>4</translation>
     </message>
     <message>
-        <location line="+2336"/>
+        <location line="+2417"/>
         <source>Preview with pdflatex</source>
         <translation type="unfinished">Vista previa con pdflatex</translation>
     </message>
@@ -812,7 +812,7 @@
         <translation> px</translation>
     </message>
     <message>
-        <location line="+192"/>
+        <location line="+201"/>
         <source>Select how txs checks in saved files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -832,7 +832,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+100"/>
+        <location line="+109"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
@@ -845,7 +845,7 @@
         <translation type="obsolete">El atajo que insertaste es el mismo que el de este comando:</translation>
     </message>
     <message>
-        <location line="-3624"/>
+        <location line="-3750"/>
         <source>Files</source>
         <translation>Archivos</translation>
     </message>
@@ -871,7 +871,7 @@
         <translation type="obsolete">Base de datos del tesauro</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+1899"/>
+        <location filename="configdialog.ui" line="+1962"/>
         <source>Parse BibTeX</source>
         <translation>Analizar BibTeX</translation>
     </message>
@@ -888,7 +888,7 @@
         <translation type="obsolete">Mostrar números importantes de la línea</translation>
     </message>
     <message>
-        <location line="+682"/>
+        <location line="+709"/>
         <source>Use following completion files:</source>
         <translation type="unfinished">Utilizar los siguientes archivos de Auto-completado:</translation>
     </message>
@@ -897,7 +897,7 @@
         <translation type="obsolete">Mostrar números de línea</translation>
     </message>
     <message>
-        <location line="-2497"/>
+        <location line="-2587"/>
         <source>Dictionaries</source>
         <translation>Diccionarios</translation>
     </message>
@@ -914,7 +914,7 @@
         <translation type="obsolete">Editor de familia de fuente</translation>
     </message>
     <message>
-        <location line="+3550"/>
+        <location line="+3676"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -923,8 +923,8 @@
         <translation type="obsolete">Mostrar opciones avanzadas</translation>
     </message>
     <message>
-        <location line="-2569"/>
-        <location filename="configdialog.cpp" line="+254"/>
+        <location line="-2641"/>
+        <location filename="configdialog.cpp" line="+262"/>
         <location filename="configmanager.cpp" line="+1205"/>
         <source>Editor</source>
         <translation>Editor</translation>
@@ -956,7 +956,7 @@
         <translation type="unfinished">Órdenes</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-402"/>
+        <location filename="configdialog.ui" line="-429"/>
         <location filename="configdialog.cpp" line="+2"/>
         <source>Shortcuts</source>
         <translation>Accesos rápidos</translation>
@@ -966,7 +966,7 @@
         <translation type="obsolete">Asumir que todo error se encuentra en el documento actual:</translation>
     </message>
     <message>
-        <location line="+1662"/>
+        <location line="+1725"/>
         <location filename="configdialog.cpp" line="+8"/>
         <source>Completion</source>
         <translation type="unfinished">Auto-completado</translation>
@@ -986,7 +986,7 @@
         <translation type="unfinished">Acceso rápido predeterminado</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2009"/>
+        <location filename="configdialog.ui" line="-2090"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Caractéres especiales&lt;/span&gt;</translation>
     </message>
@@ -1003,12 +1003,12 @@
         <translation type="obsolete">Obtener diccionarios en:%1</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-154"/>
+        <location filename="configdialog.cpp" line="-162"/>
         <source>Do you really want to delete this row?</source>
         <translation>¿Realmente deseas eliminar esta fila?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2100"/>
+        <location filename="configdialog.ui" line="+2181"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Completar texto seleccionado cuando ningún carácter es presionado</translation>
     </message>
@@ -1021,7 +1021,7 @@
         <translation type="obsolete">Activar tips de ayuda </translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="+336"/>
+        <location filename="configdialog.cpp" line="+344"/>
         <source>Browse thesaurus database</source>
         <translation>Explorar la base de datos del diccionario de sinónimos</translation>
     </message>
@@ -1034,13 +1034,13 @@
         <translation type="obsolete">Usar marcadores de posición</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1667"/>
+        <location filename="configdialog.ui" line="-1721"/>
         <location filename="configdialog.cpp" line="-182"/>
         <source>Command</source>
         <translation type="unfinished">Orden</translation>
     </message>
     <message>
-        <location line="+802"/>
+        <location line="+829"/>
         <source>Show Line Change State</source>
         <translation type="unfinished">Mostrar Línea de Cambio de Estado</translation>
     </message>
@@ -1049,8 +1049,8 @@
         <translation type="obsolete">Revisión ortográfica en línea</translation>
     </message>
     <message>
-        <location line="-1725"/>
-        <location line="+1613"/>
+        <location line="-1788"/>
+        <location line="+1676"/>
         <source>Appearance</source>
         <translation>Apariencia</translation>
     </message>
@@ -1067,7 +1067,7 @@
         <translation type="obsolete">Mostrar siempre la estructura del documento maestro</translation>
     </message>
     <message>
-        <location line="+967"/>
+        <location line="+994"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Autocompletar prefijos comúnes</translation>
     </message>
@@ -1085,17 +1085,17 @@
         <translation>Distinguir entre Mayúsculas y Minúsculas</translation>
     </message>
     <message>
-        <location line="-2035"/>
+        <location line="-2116"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation type="unfinished">Órdenes (%: nombre del archivo sin extensión - @: número de línea - ?: opciones)</translation>
     </message>
     <message>
-        <location line="+822"/>
+        <location line="+867"/>
         <source>Folding</source>
         <translation>Plegado</translation>
     </message>
     <message>
-        <location line="+1065"/>
+        <location line="+1083"/>
         <source>Formats</source>
         <translation>Formatos</translation>
     </message>
@@ -1113,7 +1113,7 @@
         <translation type="obsolete">Tamaño de fuente del editor</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-705"/>
+        <location filename="configdialog.ui" line="-714"/>
         <source>Show State Panel</source>
         <translation type="unfinished">Mostrar el panel de estado</translation>
     </message>
@@ -1143,17 +1143,17 @@
         <translation type="obsolete">Mostrar el registro después de compilar sí existe algún error</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1320"/>
+        <location filename="configdialog.ui" line="-1383"/>
         <source>TextLabel</source>
         <translation>Etiqueta del texto</translation>
     </message>
     <message>
-        <location line="-415"/>
+        <location line="-433"/>
         <source>Configure TeXstudio</source>
         <translation>Configurar TeXstudio</translation>
     </message>
     <message>
-        <location line="+138"/>
+        <location line="+156"/>
         <source>Style:</source>
         <translation>Estilo:</translation>
     </message>
@@ -1164,12 +1164,12 @@
     </message>
     <message>
         <location line="+13"/>
-        <location line="+1340"/>
+        <location line="+1394"/>
         <source>Font Size:</source>
         <translation>Tamaño del tipo de letra:</translation>
     </message>
     <message>
-        <location line="-1366"/>
+        <location line="-1420"/>
         <source>Language:</source>
         <translation>Idioma de la Interfaz:</translation>
     </message>
@@ -1273,7 +1273,7 @@
         <translation type="unfinished">Comprobar la  configuración de LaTeX</translation>
     </message>
     <message>
-        <location line="+60"/>
+        <location line="+69"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
         <translation type="unfinished">&lt;b&gt;%&lt;/b&gt;: nombre del archivo sin extensión; &lt;b&gt;@&lt;/b&gt;: número de línea; &lt;b&gt;?[selector][caracteres de terminación]&lt;/b&gt;: nombre del archivo con formato
@@ -1287,7 +1287,7 @@
 </translation>
     </message>
     <message>
-        <location line="+36"/>
+        <location line="+45"/>
         <source>Meta Commands</source>
         <translation type="unfinished">Meta-Órdenes</translation>
     </message>
@@ -1323,13 +1323,13 @@
     </message>
     <message>
         <location line="+14"/>
-        <location line="+1184"/>
-        <location line="+1444"/>
+        <location line="+1229"/>
+        <location line="+1489"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
     <message>
-        <location line="-2623"/>
+        <location line="-2713"/>
         <source>Only For User Commands</source>
         <translation type="unfinished">Sólo para las órdenes de Usuario</translation>
     </message>
@@ -1368,12 +1368,12 @@
         <translation type="unfinished">Órdenes ($PATH)</translation>
     </message>
     <message>
-        <location line="+143"/>
+        <location line="+152"/>
         <source>Close Log-View with Esc-Key</source>
         <translation type="unfinished">Cerrar el visor del registro con la tecla Esc</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+23"/>
         <location filename="configdialog.cpp" line="+8"/>
         <source>Menus</source>
         <translation>Menús</translation>
@@ -1394,12 +1394,12 @@
         <translation>Mostrar Todo</translation>
     </message>
     <message>
-        <location line="+14"/>
+        <location line="+23"/>
         <source>Toolbar Customization</source>
         <translation>Personalización de la barra de Herramientas</translation>
     </message>
     <message>
-        <location line="+292"/>
+        <location line="+301"/>
         <source>Font Family:</source>
         <translation type="unfinished">Familia de tipo de letra:</translation>
     </message>
@@ -1523,12 +1523,12 @@
     </message>
     <message>
         <location line="-26"/>
-        <location line="+2058"/>
+        <location line="+2112"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location line="-2624"/>
+        <location line="-2714"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1551,7 +1551,7 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
         <translation type="unfinished">Reemplazar las variables de entorno</translation>
     </message>
     <message>
-        <location line="+85"/>
+        <location line="+103"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1561,7 +1561,7 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+26"/>
+        <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1621,12 +1621,12 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+265"/>
+        <location line="+274"/>
         <source>Show Only Monospaced Fonts</source>
         <translation type="unfinished">Mostrar sólo tipos de letras monoespaciadas</translation>
     </message>
     <message>
-        <location line="+165"/>
+        <location line="+174"/>
         <source>Show Line Numbers:</source>
         <translation>Mostrar números de línea:</translation>
     </message>
@@ -1761,17 +1761,17 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
         <translation type="unfinished">Mostrar ayuda como un tooltip sobre el texto en el editor</translation>
     </message>
     <message>
-        <location line="-1676"/>
+        <location line="-1739"/>
         <source>Remember selected file filter in open/save dialog </source>
         <translation type="unfinished">Recordar el filtro del archivo seleccionado en el dialogo Abrir/Guardar</translation>
     </message>
     <message>
-        <location line="+359"/>
+        <location line="+377"/>
         <source>Show messages when starting compiling</source>
         <translation>Mostrar mensajes al iniciar la compilación</translation>
     </message>
     <message>
-        <location line="+240"/>
+        <location line="+249"/>
         <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
@@ -1784,11 +1784,11 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
 (3) escriba la cadena del acceso rápido</translation>
     </message>
     <message>
-        <location line="+698"/>
+        <location line="+725"/>
         <source>Package</source>
         <translation>Paquete</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="-94"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Comillas Inglesas (unicode): “ ”</translation>
@@ -1804,12 +1804,12 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Ocultar errores de ortografía en entornos que no sean de texto</translation>
     </message>
     <message>
-        <location line="+2018"/>
+        <location line="+2072"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation type="unfinished">Mostrar vista previa como un tooltip sobre fórmulas en el editor</translation>
     </message>
     <message>
-        <location line="-1464"/>
+        <location line="-1509"/>
         <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
         <translation>Desactivar la tecla &quot;Esc&quot; para cerrar el modo de pantalla completa</translation>
     </message>
@@ -1938,7 +1938,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="obsolete">Escalar la barra de tareas central</translation>
     </message>
     <message>
-        <location line="-1186"/>
+        <location line="-1204"/>
         <location line="+7"/>
         <location line="+7"/>
         <source>Reset</source>
@@ -1949,7 +1949,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="obsolete">Escalar símbolos</translation>
     </message>
     <message>
-        <location line="+1180"/>
+        <location line="+1198"/>
         <source>QCE (recommended)</source>
         <translation>QCE (recomendado)</translation>
     </message>
@@ -1964,7 +1964,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Una sola letra</translation>
     </message>
     <message>
-        <location line="+107"/>
+        <location line="+125"/>
         <source>Custom Environment</source>
         <translation type="unfinished">Personalizar Entorno</translation>
     </message>
@@ -1991,7 +1991,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Órdenes adicionales</translation>
     </message>
     <message>
-        <location line="+52"/>
+        <location line="+61"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>Comenzar el Autocompletado en cuanto se escribe &apos;\&apos;. Como alternativa, el Autocompletado siempre se puede iniciar manualmente con Ctrl + Espacio.</translation>
     </message>
@@ -2075,7 +2075,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Tamaño de la barra de pestañas en la parte inferior o superior del Autocompletar</translation>
     </message>
     <message>
-        <location line="-2384"/>
+        <location line="-2474"/>
         <source>Spelling Dictionary Directories:</source>
         <translation type="unfinished">Directorios del Diccionario de Ortografía:</translation>
     </message>
@@ -2090,12 +2090,12 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Importar Diccionario...</translation>
     </message>
     <message>
-        <location line="+390"/>
+        <location line="+408"/>
         <source>PDF File</source>
         <translation>Archivo PDF</translation>
     </message>
     <message>
-        <location line="+323"/>
+        <location line="+350"/>
         <source>Scaling</source>
         <translation type="unfinished">Escalar</translation>
     </message>
@@ -2105,7 +2105,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="obsolete">Escalar la barra de herramientas</translation>
     </message>
     <message>
-        <location line="+261"/>
+        <location line="+270"/>
         <source>Automatic Encoding Detection:</source>
         <translation>Detección automática de la Codificación:</translation>
     </message>
@@ -2144,7 +2144,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished">Reemplazar la tabulación en textos por espacios</translation>
     </message>
     <message>
-        <location line="+335"/>
+        <location line="+344"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished">Sobrescribir Paréntesis que abre seguido por un marcador de posición</translation>
     </message>
@@ -2244,7 +2244,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+152"/>
+        <location line="+170"/>
         <source>Here the highlighting of custom environments can be changed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2255,7 +2255,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+265"/>
+        <location line="+274"/>
         <source>Tab Bar Size</source>
         <translation>Tamaño de la Barra de pestañas</translation>
     </message>
@@ -2295,7 +2295,7 @@ necesario. Sin embargo, si la detección automática falla o si desea incluir ar
 aquí.</translation>
     </message>
     <message>
-        <location line="+61"/>
+        <location line="+70"/>
         <source>Internal</source>
         <translation>Interno</translation>
     </message>
@@ -2442,7 +2442,7 @@ aquí.</translation>
         <translation type="obsolete">Cuadro de grupo</translation>
     </message>
     <message>
-        <location line="+64"/>
+        <location line="+73"/>
         <source>Segment Preview</source>
         <translation>Vista previa del Segmento</translation>
     </message>
@@ -2683,7 +2683,7 @@ aquí.</translation>
         <translation type="obsolete">Comprobar automáticamente después de guardar</translation>
     </message>
     <message>
-        <location line="+59"/>
+        <location line="+68"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>Use revisiones SVN para deshacer antes de la última versión guardada</translation>
     </message>
@@ -2708,7 +2708,7 @@ aquí.</translation>
         <translation>Mostrar opciones avanzadas</translation>
     </message>
     <message>
-        <location filename="configdialog.cpp" line="-253"/>
+        <location filename="configdialog.cpp" line="-261"/>
         <source>The shortcut you entered is a standard character key.
 You will not be able to type this character. Do you wish
 to set the key anyway?</source>
@@ -2731,7 +2731,7 @@ la clave de todos modos?</translation>
         <translation type="obsolete">Descargar Diccionarios adicionales: %1</translation>
     </message>
     <message>
-        <location line="+171"/>
+        <location line="+179"/>
         <source>Download additional dictionaries from %1 or %2</source>
         <translation>Descargar diccionarios adicionales de %1 o %2</translation>
     </message>
@@ -2953,12 +2953,12 @@ comunes.</translation>
         <translation type="unfinished">Asignación de clave básica</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2473"/>
+        <location filename="configdialog.ui" line="-2536"/>
         <source>Automatically load included files</source>
         <translation>Cargar Automáticamente archivos incluidos</translation>
     </message>
     <message>
-        <location line="-780"/>
+        <location line="-825"/>
         <source>&lt;i&gt;Selectors:&lt;/i&gt; a combination of &lt;b&gt;a&lt;/b&gt;: absolute path, &lt;!--&lt;i&gt;r&lt;/i&gt;: relative path, --&gt;&lt;b&gt;m&lt;/b&gt;: basefile name without extension,&lt;b&gt;e&lt;/b&gt;: extension, &lt;b&gt;r&lt;/b&gt;: path relative to master, &lt;b&gt;*&lt;/b&gt;: all files matching the following pattern&lt;br /&gt;
 prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include the colon)&lt;br /&gt;
 &lt;i&gt;Terminating chars:&lt;/i&gt; &lt;b&gt;)&lt;/b&gt;: ends selector. The following chars end the selector and have additional meaning&lt;br /&gt;
@@ -2973,12 +2973,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; para el archivo actual en lugar del archivo maestr
 b&gt;?m&quot;&lt;/b&gt; nombre del archivo entre comillas dobles sin extensión (idéntico al &lt;b&gt;%&lt;/b&gt;), &lt;b&gt;?me&lt;/b&gt; nombre del archivo con la extensión (por ejemplo example.tex), &lt;b&gt;?*.aux&lt;/b&gt;: todos los archivos .aux en el directorio actual</translation>
     </message>
     <message>
-        <location line="-347"/>
+        <location line="-356"/>
         <source>MRU Document Chooser</source>
         <translation type="unfinished">Selector de Documentos usados recientemente</translation>
     </message>
     <message>
-        <location line="+1708"/>
+        <location line="+1771"/>
         <source>Smooth Scrolling</source>
         <translation type="unfinished">Desplazamiento suave</translation>
     </message>
@@ -6185,7 +6185,7 @@ Restart from the beginning ?</source>
 <context>
     <name>QEditor</name>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="+4421"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="+4423"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
@@ -6195,7 +6195,7 @@ Restart from the beginning ?</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location line="-3888"/>
+        <location line="-3890"/>
         <location line="+820"/>
         <source>Cu&amp;t</source>
         <translation>Cor&amp;tar</translation>
@@ -6206,7 +6206,7 @@ Restart from the beginning ?</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location line="+3043"/>
+        <location line="+3045"/>
         <source>Find</source>
         <translation>Encontrar</translation>
     </message>
@@ -6221,7 +6221,7 @@ Restart from the beginning ?</source>
         <translation>Deshacer</translation>
     </message>
     <message>
-        <location line="-2911"/>
+        <location line="-2913"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
@@ -6265,7 +6265,7 @@ Restart from the beginning ?</source>
         <translation>Local</translation>
     </message>
     <message>
-        <location line="+3714"/>
+        <location line="+3716"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
@@ -6282,7 +6282,7 @@ Deshacer/Rehacer pila sería descartada por la autorecarga.
 ¿Deseas mantener actualizado el archivo recargándolo?</translation>
     </message>
     <message>
-        <location line="-3831"/>
+        <location line="-3833"/>
         <location line="+768"/>
         <source>Co&amp;mment</source>
         <translation>Co&amp;mentario</translation>
@@ -6347,12 +6347,12 @@ Presiona &quot;Ignorar&quot; para ignorar esta alerta.
         <translation>&amp;Reemplazar</translation>
     </message>
     <message>
-        <location line="+3063"/>
+        <location line="+3065"/>
         <source>Replace</source>
         <translation>Reemplazar</translation>
     </message>
     <message>
-        <location line="-4235"/>
+        <location line="-4237"/>
         <location line="+488"/>
         <location line="+695"/>
         <source>Default</source>
@@ -6550,7 +6550,7 @@ La Opción Deshacer/Rehacer sería descartada por el auto-recargado.
         <translation type="unfinished">Imprimir Código Fuente</translation>
     </message>
     <message>
-        <location line="+3126"/>
+        <location line="+3128"/>
         <source>None</source>
         <translation>Ninguno</translation>
     </message>
@@ -8168,7 +8168,7 @@ siguiente valor:
 <context>
     <name>ShortcutComboBox</name>
     <message>
-        <location filename="configdialog.cpp" line="-1044"/>
+        <location filename="configdialog.cpp" line="-1052"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;ninguno&gt;</translation>
     </message>

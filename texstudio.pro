@@ -276,6 +276,7 @@ FORMS += filechooser.ui \
     pdfannotationdlg.ui \
     pdfsplittool.ui
 TRANSLATIONS += texstudio_cs.ts \
+    texstudio_en.ts \
     texstudio_de.ts \
     texstudio_es.ts \
     texstudio_fr.ts \
