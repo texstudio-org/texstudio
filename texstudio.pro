@@ -435,7 +435,7 @@ unix {
 	utilities/dictionaries/th_de_DE_v2.dat \
         utilities/AUTHORS \
         utilities/COPYING \
-        utilities/CHANGELOG.txt
+        utilities/manual/CHANGELOG.txt
     manual.files = \
         utilities/manual/usermanual_en.html \
         utilities/manual/usermanual.css \

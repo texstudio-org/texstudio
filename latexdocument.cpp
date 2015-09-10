@@ -2833,10 +2833,10 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
             continue;
         }
 		if(!elem.startsWith("\\begin{")&&!elem.startsWith("\\end{")){
-			int i=elem.indexOf("{");
-            int j=elem.indexOf("[");
+            int i=elem.indexOf(QRegExp("\\W"),1);
+            //int j=elem.indexOf("[");
 			if(i>=0) elem=elem.left(i);
-            if(j>=0 && j<i) elem=elem.left(j);
+            //if(j>=0 && j<i) elem=elem.left(j);
 		}
 		ltxCommands.possibleCommands["user"].insert(elem);
 	}
