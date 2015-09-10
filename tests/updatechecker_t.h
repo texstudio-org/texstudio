@@ -33,6 +33,7 @@ private slots:
 		QTest::newRow("revision3") << "2.4" << "2.4.1" << (int) UpdateChecker::Lower;
 		QTest::newRow("revision4") << "2.4.1" << "2.4.2" << (int) UpdateChecker::Lower;
 		QTest::newRow("invalid") << "2.4b" << "2.4" << (int) UpdateChecker::Invalid;
+		QTest::newRow("twodigit") << "2.10.0" << "2.9.4" << (int) UpdateChecker::Higher;
 	}
 
 	void versionCompare() {
