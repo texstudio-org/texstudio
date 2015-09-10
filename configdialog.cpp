@@ -343,6 +343,14 @@ ConfigDialog::ConfigDialog(QWidget* parent): QDialog(parent), checkboxInternalPD
 	setModal(true);
 	ui.setupUi(this);
 
+#ifdef Q_OS_MAC
+	ui.labelSwitchKeyboardLayout->setDisabled(true);
+	ui.checkBoxSwitchLanguagesDirection->setChecked(false);
+	ui.checkBoxSwitchLanguagesDirection->setDisabled(true);
+	ui.checkBoxSwitchLanguagesMath->setChecked(false);
+	ui.checkBoxSwitchLanguagesMath->setDisabled(true);
+#endif
+
 	ui.contentsWidget->setIconSize(QSize(36, 36));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
 	//ui.contentsWidget->setMovement(QListView::Static);
