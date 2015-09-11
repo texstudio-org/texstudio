@@ -3061,8 +3061,8 @@ void LatexDocument::patchLinesContaining(const QStringList cmds){
       QString text=elem->line(i).text();
       foreach(const QString cmd,cmds){
         if(text.contains(cmd)){
-          //elem->patchStructure(i,1);
-          patchStructure(i,1);
+          elem->patchStructure(i,1);
+          //patchStructure(i,1);
           break;
         }
       }
