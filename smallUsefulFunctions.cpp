@@ -3549,8 +3549,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              Tokens &tk = i.next();
              if (tk.type==Tokens::openBracket || tk.type==Tokens::openSquare) {
                  i.remove();
-             }
-             if(tk.type==Tokens::openBrace && tk.dlh==dlh){
+             } else if(tk.type==Tokens::openBrace && tk.dlh==dlh){
                  // set length to whole line after brace
                  tk.length=line.length()-tk.start;
              }
