@@ -3202,6 +3202,9 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int
 
 void LatexDocument::reCheckSyntax(int linenr, int count){
 
+    if(!latexLikeChecking)
+	return;
+
     if(linenr<0 || linenr>=lineCount()) linenr=0;
     //patchStructure(0,-1,true);
 
