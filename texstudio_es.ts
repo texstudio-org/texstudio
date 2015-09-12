@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es">
+<TS version="2.0" language="es">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -814,22 +814,22 @@
     <message>
         <location line="+201"/>
         <source>Select how txs checks in saved files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleccione la forma en que txs hace las comprobaciones en los archivos guardados</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No realizar comprobaciones automáticas después que el archivo este guardado</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Check-in after File/Save only</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Realizar comprobaciones solo después que el archivo se guardo</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Comprobar después de todas las operaciones de guardar, es decir, también antes de compilaciones.</translation>
     </message>
     <message>
         <location line="+109"/>
@@ -1553,42 +1553,42 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     <message>
         <location line="+103"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aquí los elementos del menú se enumeran y se pueden ocultar o editar.</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esto controla si la lista de arriba muestra todos los elementos del menú o solamente cambia algunos.</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>This shows all actions on the currently edited toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esto muestra todas las acciones en la actual barra de herramientas de editado.</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>This adds an action to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esto añade una acción a la barra de herramientas.</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>This removes an action from the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esto elimina una acción de la barra de herramientas.</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Here you can choose a toolbar to modify.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aquí se puede elegir una barra de herramientas para modificar.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aquí se puede elegir una lista de comandos que se pueden asignar a la barra de herramientas.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esto muestra las acciones disponibles para asignar en una barra de herramientas.</translation>
     </message>
     <message>
         <location line="+36"/>
@@ -1608,17 +1608,18 @@ Las variables se escriben como: $MYVAR. Estas distinguen entre mayúsculas y min
     <message>
         <location line="+7"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esto cambia la escala de las barras de herramientas horizontales (para pantallas de alta resolución).</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esto cambia la escala de la cuadrícula de símbolos (para pantallas de alta resolución).</translation>
     </message>
     <message>
         <location line="+44"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">
+Esto cambia la escala de las barras de herramientas verticales (para pantallas de alta resolución).</translation>
     </message>
     <message>
         <location line="+274"/>
@@ -2176,7 +2177,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+7"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hacer doble clic en Selección: Incluir Leading Backslash</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2231,28 +2232,29 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+58"/>
         <source>Automatically switch keyboard layout: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cambiar automáticamente la distribución del teclado: </translation>
     </message>
     <message>
         <location line="+7"/>
         <source>depending on character direction</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">dependiendo de la dirección del carácter</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>depending on text/math mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">dependiendo del modo texto/matemáticas</translation>
     </message>
     <message>
         <location line="+170"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aquí el resaltado de ambientes personalizados se puede cambiar.</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Here you can add another environment for custom highlighting.</source>
         <oldsource>Here you can add another environmnt for custom highlighting.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">
+Aquí puede añadir otro entorno de resaltado personalizado.</translation>
     </message>
     <message>
         <location line="+274"/>
@@ -2272,12 +2274,12 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     <message>
         <location line="+10"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Muestra un texto de ayuda con el texto destino de etiquetas/bibitem,  pre visualizado de colores o imágenes</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Información sobre herramientas-Vista previa</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2676,7 +2678,7 @@ aquí.</translation>
     <message>
         <location line="+8"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Desactivar el desplazamiento horizontal para ajustar al ancho del texto</translation>
     </message>
     <message>
         <source>Automatically check in after save</source>
@@ -2809,7 +2811,7 @@ la clave de todos modos?</translation>
     <message>
         <location line="-39"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aquí, se puede cambiar el resaltado de sintaxis para varios comandos, los entornos y las selecciones.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2834,7 +2836,7 @@ la clave de todos modos?</translation>
     <message>
         <location line="+41"/>
         <source>(option filter)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">(filtro opcional)</translation>
     </message>
     <message>
         <location line="+127"/>
@@ -4141,7 +4143,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="searchquery.cpp" line="+158"/>
         <source>Label Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Etiqueta de búsqueda</translation>
     </message>
 </context>
 <context>
@@ -4348,7 +4350,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location line="+6"/>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Encuentra Usos</translation>
     </message>
     <message>
         <location line="+54"/>
@@ -6064,12 +6066,12 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
     <message>
         <location filename="buildmanager.cpp" line="+96"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La redirección de la salida estándar especificado no es compatible: &quot;%1&quot;. Por favor, consulte el manual para obtener más información.</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La redirección de stderr especificado no es compatible: &quot;%1&quot;. Por favor, consulte el manual para obtener más información.</translation>
     </message>
     <message>
         <location line="+125"/>
@@ -8137,7 +8139,7 @@ siguiente valor:
     <message>
         <location line="+8"/>
         <source>Search Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Repetir búsqueda</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -8162,7 +8164,7 @@ siguiente valor:
     <message>
         <location line="+3"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Borrar</translation>
     </message>
 </context>
 <context>
@@ -10024,22 +10026,22 @@ Do you want to create it?</source>
     <message>
         <location line="+8"/>
         <source>&amp;Selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Selección</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Select All &amp;Occurences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Seleccionar todas las &amp;apariciones</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Expand Selection to Word</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ampliar la selección a la Palabra</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Expand Selection to Line</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ampliar la selección a la línea</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -10415,7 +10417,7 @@ Do you want to create it?</source>
         <location line="+1"/>
         <source>Open &amp;Terminal</source>
         <oldsource>&amp;Open Terminal</oldsource>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Abrir la &amp;terminal</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -10616,7 +10618,7 @@ Do you want to create it?</source>
     <message>
         <location line="+12"/>
         <source>Editor Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ampliar editor</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -10631,7 +10633,7 @@ Do you want to create it?</source>
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished">Restablecer zoom</translation>
+        <translation type="unfinished">Editar el Zoom</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -10790,17 +10792,18 @@ Do you want to create it?</source>
     <message>
         <location line="+131"/>
         <source>Image Formats (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>formatos de Imagen (%1)</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Save Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Guardar imagen</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Could not save the image file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">
+No se pudo guardar el archivo de imagen.</translation>
     </message>
     <message>
         <location line="+904"/>
@@ -10901,7 +10904,7 @@ confía en este documento)
     <message>
         <location line="+10"/>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Encuentra Usos</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -11557,7 +11560,7 @@ este otro archivo antes de que pueda sobrescribirlo.</translation>
     <message>
         <location line="+366"/>
         <source>CSV file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">archivo CSV</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -11729,7 +11732,7 @@ Sí &quot;ignorar completamente&quot; es seleccionada, las palabras cortas son i
         <location line="-184"/>
         <location filename="textanalysis.cpp" line="+365"/>
         <source>CSV Export</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Exportar CSV</translation>
     </message>
     <message>
         <location line="+171"/>
