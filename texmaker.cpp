@@ -1684,6 +1684,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 		if (doc) existingView = doc->getEditorView();
 	}
 	if (existingView) {
+        if(hidden)
+            return existingView;
 		if (asProject) documents.setMasterDocument(existingView->document);
 		if(existingView->document->isHidden()){
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap>0);
