@@ -2814,12 +2814,15 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     //completerConfig->words=pck.completionWords;
     //mCompleterWords=pck.completionWords.toSet();
     mCWLFiles=loadedFiles.toSet();
+    QSet<QString> userCommandsForSyntaxCheck=ltxCommands.possibleCommands["user"];
 	ltxCommands.optionCommands=pck.optionCommands;
     ltxCommands.specialTreatmentCommands=pck.specialTreatmentCommands;
     ltxCommands.specialDefCommands=pck.specialDefCommands;
 	ltxCommands.possibleCommands=pck.possibleCommands;
 	ltxCommands.environmentAliases=pck.environmentAliases;
     ltxCommands.commandDefs=pck.commandDescriptions;
+    QSet<QString> pckSet=pck.possibleCommands["user"];
+    ltxCommands.possibleCommands["user"]=userCommandsForSyntaxCheck.unite(pckSet);
 	
 	// user commands
     QList<CodeSnippet> commands=mUserCommandList.values();
@@ -2838,7 +2841,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 			if(i>=0) elem=elem.left(i);
             //if(j>=0 && j<i) elem=elem.left(j);
 		}
-		ltxCommands.possibleCommands["user"].insert(elem);
+        //ltxCommands.possibleCommands["user"].insert(elem);
 	}
     /*
     // special treatment for special defs
