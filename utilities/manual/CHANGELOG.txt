@@ -1,4 +1,10 @@
-(you may also want to check the usermanual)
+TeXstudio 2.10.0 -> 2.10.2
+-----------------------------------------
+- fix recognition of environments defined via \newtheorem
+- fix disabling of syntax check
+- fix copying from message panel using shortcut Ctrl+C
+- fix two possible crashes
+- update French, German and Spanish translations
 
 TeXstudio 2.9.4 -> 2.10.0
 -----------------------------------------
