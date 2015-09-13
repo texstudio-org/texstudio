@@ -191,6 +191,8 @@ void OutputViewWidget::copy() {
 
 	if (pageId == LOG_PAGE) {
 		logWidget->copy();
+	} else if (pageId == MESSAGES_PAGE) {
+		OutputMessages->copy();
 	}
 }
 
