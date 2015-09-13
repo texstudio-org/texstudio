@@ -188,7 +188,7 @@
    <item>
     <widget class="QLabel" name="dummyStatusBar">
      <property name="text">
-      <string>dummyStatusBar</string>
+      <string notr="true">dummyStatusBar</string>
      </property>
     </widget>
    </item>
