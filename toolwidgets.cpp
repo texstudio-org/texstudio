@@ -390,7 +390,9 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle){
 }
 void CustomWidgetList::setToolbarIconSize(int sz)
 {
-	toolbar->setIconSize(QSize(sz, sz));
+	if (toolbar) {
+		toolbar->setIconSize(QSize(sz, sz));
+	}
 }
 int CustomWidgetList::widgetCount() const{
 	return widgets.count();
