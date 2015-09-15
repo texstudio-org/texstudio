@@ -3241,7 +3241,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                      tk.subtype=stack.top().subtype;
                      if(tk.subtype==Tokens::keyValArg && lastEqual>-1){
                          tk.subtype=Tokens::keyVal_val;
-                         if(lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
+                         if(!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
                              CommandDescription cd=lp.commandDefs.value(commandNames.top()+"/"+keyName);
                              tk.subtype=cd.argTypes.value(0,Tokens::keyVal_val);
                          }
@@ -3477,7 +3477,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                  }else{
                      tk.level=level;
                      tk.subtype=Tokens::keyVal_val;
-                     if(lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
+                     if(!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
                          CommandDescription cd=lp.commandDefs.value(commandNames.top()+"/"+keyName);
                          tk.subtype=cd.argTypes.value(0,Tokens::keyVal_val);
                      }
@@ -3549,8 +3549,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              Tokens &tk = i.next();
              if (tk.type==Tokens::openBracket || tk.type==Tokens::openSquare) {
                  i.remove();
-             }
-             if(tk.type==Tokens::openBrace && tk.dlh==dlh){
+             } else if(tk.type==Tokens::openBrace && tk.dlh==dlh){
                  // set length to whole line after brace
                  tk.length=line.length()-tk.start;
              }

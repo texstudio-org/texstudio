@@ -2814,12 +2814,15 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
     //completerConfig->words=pck.completionWords;
     //mCompleterWords=pck.completionWords.toSet();
     mCWLFiles=loadedFiles.toSet();
+    QSet<QString> userCommandsForSyntaxCheck=ltxCommands.possibleCommands["user"];
 	ltxCommands.optionCommands=pck.optionCommands;
     ltxCommands.specialTreatmentCommands=pck.specialTreatmentCommands;
     ltxCommands.specialDefCommands=pck.specialDefCommands;
 	ltxCommands.possibleCommands=pck.possibleCommands;
 	ltxCommands.environmentAliases=pck.environmentAliases;
     ltxCommands.commandDefs=pck.commandDescriptions;
+    QSet<QString> pckSet=pck.possibleCommands["user"];
+    ltxCommands.possibleCommands["user"]=userCommandsForSyntaxCheck.unite(pckSet);
 	
 	// user commands
     QList<CodeSnippet> commands=mUserCommandList.values();
@@ -2838,7 +2841,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate,bool forceLabelUpdate
 			if(i>=0) elem=elem.left(i);
             //if(j>=0 && j<i) elem=elem.left(j);
 		}
-		ltxCommands.possibleCommands["user"].insert(elem);
+        //ltxCommands.possibleCommands["user"].insert(elem);
 	}
     /*
     // special treatment for special defs
@@ -2949,8 +2952,8 @@ StructureEntry* LatexDocument::getMagicCommentEntry(const QString& name) const{
   replaces the value of the magic comment
  */
 void LatexDocument::updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting) {
-    QString line(QString("\\% !TeX %1 = %2").arg(name).arg(val));
-	
+	QString line(QString("% !TeX %1 = %2").arg(name).arg(val));
+
 	StructureEntry* se = getMagicCommentEntry(name);
 	QDocumentLineHandle* dlh = se ? se->getLineHandle() : NULL;
 	if(dlh) {
@@ -3061,8 +3064,8 @@ void LatexDocument::patchLinesContaining(const QStringList cmds){
       QString text=elem->line(i).text();
       foreach(const QString cmd,cmds){
         if(text.contains(cmd)){
-          //elem->patchStructure(i,1);
-          patchStructure(i,1);
+          elem->patchStructure(i,1);
+          //patchStructure(i,1);
           break;
         }
       }
@@ -3201,6 +3204,9 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh,bool clearOverlay,int
 }
 
 void LatexDocument::reCheckSyntax(int linenr, int count){
+
+    if(!latexLikeChecking)
+	return;
 
     if(linenr<0 || linenr>=lineCount()) linenr=0;
     //patchStructure(0,-1,true);

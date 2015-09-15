@@ -2870,6 +2870,18 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
         <source>Here you can add another environment for custom highlighting.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Automatically switch keyboard layout: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>depending on character direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>depending on text/math mode</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -10362,6 +10374,18 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
     </message>
     <message>
         <source>Open &amp;Terminal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image Formats (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save the image file.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

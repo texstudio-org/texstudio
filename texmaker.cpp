@@ -1684,6 +1684,8 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 		if (doc) existingView = doc->getEditorView();
 	}
 	if (existingView) {
+        if(hidden)
+            return existingView;
 		if (asProject) documents.setMasterDocument(existingView->document);
 		if(existingView->document->isHidden()){
             existingView->editor->setLineWrapping(configManager.editorConfig->wordwrap>0);
@@ -1741,6 +1743,7 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
 	bool bibTeXmodified=documents.bibTeXFilesModified;
 	
 	doc=new LatexDocument(this);
+    doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
     edit->setLatexPackageList(&latexPackageList);
     if(hidden)
@@ -5917,6 +5920,11 @@ void Texmaker::GeneralOptions() {
 		ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 		if (additionalBibPaths != configManager.additionalBibPaths) documents.updateBibFiles(true);
 
+        // update syntaxChecking with alls docs
+        foreach(LatexDocument *doc,documents.getDocuments()){
+            doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
+        }
+
 		//update highlighting ???
 		bool updateHighlighting=(inlineSpellChecking!=configManager.editorConfig->inlineSpellChecking);
 		updateHighlighting|=(inlineCitationChecking!=configManager.editorConfig->inlineCitationChecking);
@@ -5940,6 +5948,7 @@ void Texmaker::GeneralOptions() {
 			foreach (LatexEditorView *edView, EditorTabs->editors()) {
 				edView->updateSettings();
 				if(updateHighlighting){
+                    edView->clearOverlays(); // for disabled syntax check
 					if(configManager.editorConfig->realtimeChecking){
                         edView->document->updateLtxCommands();
 						edView->documentContentChanged(0,edView->document->lines());
