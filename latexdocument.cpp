@@ -352,7 +352,6 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
 	QStringList addedUsepackages;
     QStringList removedUserCommands,addedUserCommands;
     QStringList lstFilesToLoad;
-
     //first pass: lex
     TokenStack oldRemainder;
     if(!recheck){
@@ -374,7 +373,6 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             count++; // check also next line ...
         }
     }
-
     if(linenr>lineNrStart){
         newCount=linenr+count-lineNrStart;
     }
@@ -1064,6 +1062,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
     //qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
     if(reRunSuggested && !recheck)
         patchStructure(0,-1,true); // expensive solution for handling changed packages (and hence command definitions)
+
     return reRunSuggested;
 }
 
@@ -2468,7 +2467,11 @@ public:
 
 StructureEntry* LatexDocument::moveToAppropiatePositionWithSignal(QVector<StructureEntry*> &parent_level, StructureEntry* se){
 	REQUIRE_RET(se, 0);
-	StructureEntry* newParent = parent_level[se->level];
+    StructureEntry* newParent = parent_level.value(se->level,0);
+    if(!newParent){
+        qDebug("structure update failed!");
+        return 0; // avoid crash
+    }
 	if (se->parent == newParent) {
 		updateParentVector(parent_level, se);
 		return 0;
