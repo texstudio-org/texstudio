@@ -287,7 +287,7 @@ void PDFSplitMergeTool::go(){
 		}
 		case COUNT_PAGE_ROW: {
 			QSpinBox * from = qobject_cast<QSpinBox*> ( l->itemAt(1)->widget() );
-			QSpinBox * to = qobject_cast<QSpinBox*> ( l->itemAt(1)->widget() );
+			QSpinBox * to = qobject_cast<QSpinBox*> ( l->itemAt(3)->widget() );
 			REQUIRE(from && to && !splits.empty());
 			splits.last().second << PageRange(from->value() - 1, to->value() - 1);
 			break;
