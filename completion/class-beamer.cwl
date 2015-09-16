@@ -425,7 +425,7 @@
 \item[item label]
 \item
 \label<overlay specification>{label name}
-\label{label name}
+\label{key}
 \resetcounteronoverlays{counter name}
 \resetcountonoverlays{count register name}
 \action<action specification>{text}
