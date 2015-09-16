@@ -3,7 +3,10 @@ TeXstudio 2.10.2
 - fix recognition of environments defined via \newtheorem
 - fix disabling of syntax check
 - fix copying from message panel using shortcut Ctrl+C
-- fix two possible crashes
+- fix last page in pdf split
+- fix detection of \ref commands
+- fix crash when pasting multi-line commands
+- fix crash when changing the icon size
 - update French, German and Spanish translations
 
 TeXstudio 2.10.0
