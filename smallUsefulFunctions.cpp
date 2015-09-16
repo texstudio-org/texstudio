@@ -2342,7 +2342,20 @@ void LatexPackage::unite(LatexPackage &add,bool forCompletion){
     environmentAliases.unite(add.environmentAliases);
     specialTreatmentCommands.unite(add.specialTreatmentCommands);
     specialDefCommands.unite(add.specialDefCommands);
-    commandDescriptions.unite(add.commandDescriptions); //expensive
+    //commandDescriptions.unite(add.commandDescriptions); //expensive
+    foreach(QString elem,add.commandDescriptions.keys()){
+        if(commandDescriptions.contains(elem)){
+            CommandDescription cd=commandDescriptions.value(elem);
+            CommandDescription cd_neu=add.commandDescriptions.value(elem);
+            if(cd_neu.args>cd.args){
+                //simple selection criteria
+                commandDescriptions.insert(elem,add.commandDescriptions.value(elem));
+            }
+        }else{
+            commandDescriptions.insert(elem,add.commandDescriptions.value(elem));
+        }
+    }
+
 	//possibleCommands.unite(add.possibleCommands);
     foreach(const QString& elem,add.possibleCommands.keys()){ //expensive
 		QSet<QString> set2=add.possibleCommands[elem];
