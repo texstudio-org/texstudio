@@ -99,7 +99,8 @@ Texmaker::Texmaker(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash
     recheckLabels=true;
     findDlg=0;
 	recentSessionList = 0;
-	EditorTabs = 0;
+    EditorTabs = 0;
+    contextEntry=0;
 	
 	ReadSettings();
 
@@ -6242,7 +6243,7 @@ void Texmaker::setExplicitRootDocument(LatexDocument *doc) {
 		txsWarning(tr("You have to save the file before it can be defined as root document."));
 		return;
 	}
-	documents.setMasterDocument(currentEditorView()->document);
+    documents.setMasterDocument(doc);
 }
 
 void Texmaker::setCurrentDocAsExplicitRoot() {
@@ -7127,11 +7128,13 @@ void Texmaker::saveEditorCursorToHistory(LatexEditorView *edView) {
 }
 
 void Texmaker::StructureContextMenu(const QPoint& point) {
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry) return;
-	if (entry->type==StructureEntry::SE_DOCUMENT_ROOT){
+    //StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
+    contextIndex=structureTreeView->indexAt(point);
+    contextEntry = LatexDocumentsModel::indexToStructureEntry(contextIndex);
+    if (!contextEntry) return;
+    if (contextEntry->type==StructureEntry::SE_DOCUMENT_ROOT){
 		QMenu menu;
-		if (entry->document != documents.masterDocument) {
+        if (contextEntry->document != documents.masterDocument) {
 			menu.addAction(tr("Close document"), this, SLOT(structureContextMenuCloseDocument()));
 			menu.addAction(tr("Set as explicit root document"), this, SLOT(structureContextMenuSwitchMasterDocument()));
 			menu.addAction(tr("Open all related documents"), this, SLOT(structureContextMenuOpenAllRelatedDocuments()));
@@ -7152,23 +7155,25 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		menu.addAction(tr("Expand all documents"), this, SLOT(structureContextMenuExpandAllDocuments()));
 		menu.addAction(tr("Collapse all documents"), this, SLOT(structureContextMenuCollapseAllDocuments()));
 		menu.exec(structureTreeView->mapToGlobal(point));
+        return;
 	}
-	if (!entry->parent) return;
-	if (entry->type==StructureEntry::SE_LABEL) {
+    if (!contextEntry->parent) return;
+    if (contextEntry->type==StructureEntry::SE_LABEL) {
 		QMenu menu;
-		menu.addAction(tr("Insert"),this, SLOT(editPasteRef()))->setData(entry->title);
-		menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(entry->title));
-		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\pageref{%1}").arg(entry->title));
+        menu.addAction(tr("Insert"),this, SLOT(editPasteRef()))->setData(contextEntry->title);
+        menu.addAction(tr("Insert as %1").arg("\\ref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(contextEntry->title));
+        menu.addAction(tr("Insert as %1").arg("\\pageref{...}"),this, SLOT(editPasteRef()))->setData(QString("\\pageref{%1}").arg(contextEntry->title));
 		menu.addSeparator();
 		QAction *act = menu.addAction(tr("Find Usages"), this, SLOT(findLabelUsages()));
-		act->setData(entry->title);
-		act->setProperty("doc", QVariant::fromValue<LatexDocument *>(entry->document));
+        act->setData(contextEntry->title);
+        act->setProperty("doc", QVariant::fromValue<LatexDocument *>(contextEntry->document));
 		menu.exec(structureTreeView->mapToGlobal(point));
+        return;
 	}
-	if (entry->type==StructureEntry::SE_SECTION) {
+    if (contextEntry->type==StructureEntry::SE_SECTION) {
 		QMenu menu(this);
 
-		StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(entry);
+        StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(contextEntry);
 		if (labelEntry) {
 			menu.addAction(tr("Insert Label"),this, SLOT(editPasteRef()))->setData(labelEntry->title);
 			foreach (QString refCmd, configManager.referenceCommandsInContextMenu.split(",")) {
@@ -7178,7 +7183,7 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 			}
 			menu.addSeparator();
 		} else {
-			menu.addAction(tr("Create Label"),this, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(entry));
+            menu.addAction(tr("Create Label"),this, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(contextEntry));
 			menu.addSeparator();
 		}
 
@@ -7189,23 +7194,26 @@ void Texmaker::StructureContextMenu(const QPoint& point) {
 		menu.addSeparator();
 		menu.addAction(tr("Indent Section"),this, SLOT(editIndentSection()));
 		menu.addAction(tr("Unindent Section"),this, SLOT(editUnIndentSection()));
-		if (!entry->children.isEmpty()) {
+        if (!contextEntry->children.isEmpty()) {
 			menu.addSeparator();
 			menu.addAction(tr("Expand Subitems"), this, SLOT(structureContextMenuExpandSubitems()));
 			menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
 		}
 		menu.exec(structureTreeView->mapToGlobal(point));
+        return;
 	}
-    if (entry->type==StructureEntry::SE_MAGICCOMMENT) {
+    if (contextEntry->type==StructureEntry::SE_MAGICCOMMENT) {
         QMenu menu;
-        menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
+        menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(contextEntry));
         menu.exec(structureTreeView->mapToGlobal(point));
+        return;
     }
-    if (entry->type==StructureEntry::SE_INCLUDE) {
+    if (contextEntry->type==StructureEntry::SE_INCLUDE) {
         QMenu menu;
-        menu.addAction(LatexEditorView::tr("Open Document"),this, SLOT(openExternalFile()))->setData(QVariant::fromValue(entry));
-        menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(entry));
+        menu.addAction(LatexEditorView::tr("Open Document"),this, SLOT(openExternalFile()))->setData(QVariant::fromValue(contextEntry));
+        menu.addAction(LatexEditorView::tr("Go to Definition"),this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(contextEntry));
         menu.exec(structureTreeView->mapToGlobal(point));
+        return;
     }
 
 }
@@ -7220,22 +7228,31 @@ void Texmaker::openExternalFile(){
 }
 
 void Texmaker::structureContextMenuCloseDocument(){
-	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
+    if(!contextEntry)
+        return;
+    LatexDocument* document = contextEntry->document;
+    contextEntry=0;
 	if (!document) return;
 	if (document->getEditorView()) EditorTabs->closeTab(document->getEditorView());
 	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
 }
 
 void Texmaker::structureContextMenuSwitchMasterDocument(){
-	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
+    if(!contextEntry)
+        return;
+    LatexDocument* document = contextEntry->document;
+    contextEntry=0;
 	if (!document) return;
 	if (document == documents.masterDocument) setAutomaticRootDetection();
 	else setExplicitRootDocument(document);
 }
 
 void Texmaker::structureContextMenuOpenAllRelatedDocuments(){
-	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
-	if (!document) return;
+    if(!contextEntry)
+        return;
+    LatexDocument* document = contextEntry->document;
+    contextEntry=0;
+    if (!document) return;
 
 	QSet<QString> checkedFiles, filesToCheck;
 	filesToCheck.insert(document->getFileName());
@@ -7259,8 +7276,12 @@ void Texmaker::structureContextMenuOpenAllRelatedDocuments(){
 }
 
 void Texmaker::structureContextMenuCloseAllRelatedDocuments(){
-	LatexDocument* document = LatexDocumentsModel::indexToDocument(structureTreeView->currentIndex());
-	if (!document) return;
+    if(!contextEntry)
+        return;
+    LatexDocument* document = contextEntry->document;
+    contextEntry=0;
+    if (!document) return;
+
 	QList<LatexDocument*> l = document->getListOfDocs();
 	QList<LatexEditorView*> viewsToClose;
 	foreach (LatexDocument* d, l)
@@ -7276,11 +7297,17 @@ void Texmaker::structureContextMenuCloseAllRelatedDocuments(){
 }
 
 void Texmaker::structureContextMenuExpandSubitems() {
-	setSubtreeExpanded(structureTreeView, structureTreeView->currentIndex(), true);
+    if(!contextEntry)
+        return;
+    setSubtreeExpanded(structureTreeView, contextIndex, true);
+    contextEntry=0;
 }
 
 void Texmaker::structureContextMenuCollapseSubitems() {
-	setSubtreeExpanded(structureTreeView, structureTreeView->currentIndex(), false);
+    if(!contextEntry)
+        return;
+    setSubtreeExpanded(structureTreeView, contextIndex, false);
+    contextEntry=0;
 }
 
 void Texmaker::structureContextMenuExpandAllDocuments() {

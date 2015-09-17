@@ -666,6 +666,9 @@ protected:
 
     QMap<QString,QString> *mReplacementList;
 
+    StructureEntry *contextEntry;
+    QModelIndex contextIndex;
+
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode& mode = QClipboard::Clipboard) const;
