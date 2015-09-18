@@ -930,25 +930,28 @@ QString getCommandLineGhostscript(){
 // xdvi %.dvi  -sourceposition @:%.tex
 // kdvi "file:%.dvi#src:@ %.tex"
 QString getCommandLineViewDvi(){
-	switch (x11desktop_env()) {
+    /*switch (x11desktop_env()) {
 	case 3:	return "kdvi %.dvi > /dev/null";
 	case 4:	return "okular %.dvi > /dev/null";
 	default:return "evince %.dvi > /dev/null";
-	}
-};
+    }*/
+    return "xdg-open %.dvi > /dev/null";
+}
 QString getCommandLineViewPs(){
-	switch (x11desktop_env()) {
+    /*switch (x11desktop_env()) {
 	case 3:  return "kghostview %.ps > /dev/null";
 	case 4:  return "okular %.ps > /dev/null";
 	default: return "evince %.ps > /dev/null";
-	};
+    };*/
+    return "xdg-open %.ps > /dev/null";
 }
 QString getCommandLineViewPdfExternal(){
-	switch (x11desktop_env()) {
+    /*switch (x11desktop_env()) {
 	case 3:  return "kpdf %.pdf > /dev/null";
 	case 4:  return "okular %.pdf > /dev/null";
 	default: return "evince %.pdf > /dev/null";
-	};
+    };*/
+    return "xdg-open %.pdf > /dev/null";
 }
 QString getCommandLineGhostscript(){ return ""; }
 
