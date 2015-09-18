@@ -373,7 +373,7 @@ bool LatexDocument::patchStructure(int linenr, int count,bool recheck) {
             count++; // check also next line ...
         }
     }
-    if(linenr>lineNrStart){
+    if(linenr>=lineNrStart){
         newCount=linenr+count-lineNrStart;
     }
 
