@@ -17,8 +17,8 @@ environments in smallUsefulFunctions.cpp)
 	<sequence parenthesis="round:close" parenthesisWeight="00">\)</sequence>
 	<sequence parenthesis="texcurly:open" parenthesisWeight="00">\\{</sequence>
 	<sequence parenthesis="texcurly:close" parenthesisWeight="00">\\}</sequence>
-	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
-	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
+	<sequence parenthesis="square:open" parenthesisWeight="00" fold="true">\[</sequence>
+	<sequence parenthesis="square:close" parenthesisWeight="00" fold="true">\]</sequence>
 
 	<sequence parenthesis="foldcomment:open" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
 	<sequence parenthesis="foldcomment:close" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*END_FOLD</sequence>
