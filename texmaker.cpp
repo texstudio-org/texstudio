@@ -8996,7 +8996,7 @@ void Texmaker::updateTexQNFA() {
 	documents.enablePatch(false);
 	foreach (LatexEditorView *edView, EditorTabs->editors()) {
 		QEditor* ed = edView->editor;
-		if (ed->languageDefinition() == oldLaTeX) {
+        if (ed->languageDefinition() != oldLaTeX) {
 			ed->setLanguageDefinition(newLaTeX);
 			ed->highlight();
 		}
