@@ -58,8 +58,8 @@
 \pgfmathsetcounter{arg1}#*
 \pgfmathaddtocounter{arg1}#*
 \pgfmathmakecounterglobal{arg1}#*
-\pgfmathsetmacro{arg1}#*
-\pgfmathsetlengthmacro{arg1}#*
+\pgfmathsetmacro{cmd}{def}#*d
+\pgfmathsetlengthmacro{cmd}{def}#*d
 \pgfmathtruncatemacro{arg1}#*
 \pgfmathanglebetweenpoints{arg1}#*
 \pgfmathrotatepointaround{arg1}#*
