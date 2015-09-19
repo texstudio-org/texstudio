@@ -6740,16 +6740,16 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		   && !h->hasFlag(QDocumentLine::LayoutDirty) 
 		   &&  h->hasFlag(QDocumentLine::FormatsApplied)
 		   &&  m_LineCache.contains(h)){
-			QPixmap *px=m_LineCache.object(h);
-			p->drawPixmap(m_oldLineCacheOffset,0,*px);
+            QImage *px=m_LineCache.object(h);
+            p->drawImage(m_oldLineCacheOffset,0,*px);
 		} else {
 			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
-			QPixmap *px = 0;
+            QImage *px = 0;
 			QPainter *pr = 0;
 			if (useLineCache) {
 #if QT_VERSION >= 0x050000
                 int pixelRatio=p->device()->devicePixelRatio();
-                px = new QPixmap(pixelRatio*lineCacheWidth,pixelRatio*ht);
+                px = new QImage(pixelRatio*lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
                 px->setDevicePixelRatio(pixelRatio);
 #else
                 px = new QPixmap(lineCacheWidth,ht);
@@ -6788,7 +6788,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
             h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
 
 			if (useLineCache) {
-				p->drawPixmap(cxt.xoffset,0,*px);
+                p->drawImage(cxt.xoffset,0,*px);
 				delete pr;
 				m_LineCache.insert(h,px);
 			} else {
