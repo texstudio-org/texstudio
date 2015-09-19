@@ -48,7 +48,7 @@ void LatexParser::init(){
     possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
     possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
     possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\_" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\&" << "\\~" << "\\" << "\\," <<"\\%");
+    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\_" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\&" << "\\~" << "\\" << "\\," <<"\\%" <<"\\\"");
     possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
 	possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\newlength" << "\\let";
     possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
@@ -2196,13 +2196,13 @@ LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QSt
                 }
                 if(valid.contains('T')){ // tabbing support
                     if(res==-1){
-                        package.possibleCommands["tabbing"] << line.simplified();
+                        package.possibleCommands["tabbing"] << cmd;
                     }
                 }
                 if(valid.contains('e') && !env.isEmpty()){ // tabbing support
                     if(res==-1){
                         foreach(const QString& elem,env)
-                            package.possibleCommands[elem] << line.simplified();
+                            package.possibleCommands[elem] << cmd;
                     }else{
                         QString cmd=rxCom.cap(1);
                         if(cmd=="\\begin" || cmd=="\\end"){
