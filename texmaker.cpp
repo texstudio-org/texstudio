@@ -1747,8 +1747,10 @@ LatexEditorView* Texmaker::load(const QString &f , bool asProject, bool hidden,b
     doc->enableSyntaxCheck(configManager.editorConfig->inlineSyntaxChecking);
 	LatexEditorView *edit = new LatexEditorView(0,configManager.editorConfig,doc);
     edit->setLatexPackageList(&latexPackageList);
-    if(hidden)
+    if(hidden){
         edit->editor->setLineWrapping(false); //disable linewrapping in hidden docs to speed-up updates
+        doc->clearWidthConstraint();
+    }
 	configureNewEditorView(edit);
 	
 	edit->document=documents.findDocument(f_real);
