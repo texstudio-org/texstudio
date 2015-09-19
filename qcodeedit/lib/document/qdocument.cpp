@@ -6752,7 +6752,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                 px = new QImage(pixelRatio*lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
                 px->setDevicePixelRatio(pixelRatio);
 #else
-                px = new QPixmap(lineCacheWidth,ht);
+		px = new QImage(lineCacheWidth,ht,QImage::Format_RGB888);
 #endif
 				//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
                 if(fullSel){
