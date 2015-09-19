@@ -1,5 +1,20 @@
 ## sdm 2014
 #include:color
+#include:colortbl
+#include:pdfcolmk
+\colorlet{name}{color-spec}#s#%color
+\definecolorseries{arg1}#S
+\definecolorset{model-list}{head}{tail}{spec-list}#*
+\definecolors{arg1}#S
+\DefineNamedColor{arg1}#S
+\GetGinDriver#S
+\Gin#S
+\providecolor{name}{model}{color-spec}#s#%color
+\providecolorset{model-list}{head}{tail}{spec-list}#*
+\providecolors{arg1}#S
+\preparecolor{name}{color-spec}#*s#%color
+\preparecolorset{model-list}{head}{tail}{spec-list}#*
+\blendcolors#S
 ## base color names
 #ifOption:svgnames
 black#B
