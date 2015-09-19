@@ -1226,6 +1226,8 @@ int QDocument::getLineSpacing()
 
 void QDocument::setLineSpacingFactor(double scale)
 {
+    if(qFuzzyCompare(scale,QDocumentPrivate::m_lineSpacingFactor))
+        return; // don't set fonts when spacing is not changed !
 	QDocumentPrivate::m_lineSpacingFactor = (scale<1.0)?1.0:scale;
 
 	if ( !QDocumentPrivate::m_font ) return;
@@ -6992,6 +6994,9 @@ void QDocumentPrivate::setCursorBold(bool bold)
 
 void QDocumentPrivate::setWidth(int width)
 {
+    if(m_width==width)
+        return; // no change if width is not changed
+
 	int oldConstraint = m_constrained;
 	m_constrained = width > 0 ;
 
