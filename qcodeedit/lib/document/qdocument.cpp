@@ -685,7 +685,7 @@ void QDocument::setText(const QString& s, bool allowUndo)
 	if ( lineEnding() == Conservative )
 		setLineEndingDirect(Conservative);
 
-	m_impl->setWidth();
+    //m_impl->setWidth(); // will be performed in emitContentsChange
 	m_impl->setHeight();
 
 	emit lineCountChanged(lineCount());
