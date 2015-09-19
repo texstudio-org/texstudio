@@ -3504,6 +3504,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              if(line.mid(tk.start,1)=="$"){
                  tk.type=Tokens::command;
                  tk.level=level;
+		 if(i+1<tl.length()){
+		     if(line.mid(tk.start,2)=="$$"){
+			 i=i+1;
+			 tk.length=2;
+		     }
+		 }
                  lexed<<tk;
                  continue;
              }
