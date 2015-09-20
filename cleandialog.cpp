@@ -168,6 +168,8 @@ QStringList CleanDialog::filesToRemove(CleanDialog::Scope scope, const QStringLi
 		break;
 	case None:
 		break;
+    default:
+        break;
 	}
 	return files;
 }
