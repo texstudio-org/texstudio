@@ -2950,6 +2950,11 @@ Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
             if(first)
                 break;
         }
+        if(!Tokens::tkBraces().contains(elem.type)&&!Tokens::tkClose().contains(elem.type)&& elem.start+elem.length>=pos){ // get abc|} -> abc
+            tk=elem; // get deepest element at col
+            if(first)
+                break;
+        }
     }
     return tk;
 }
