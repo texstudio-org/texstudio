@@ -273,7 +273,7 @@
 \newcount
 \newdimen
 \newhelp#*
-\newif#*
+\newif{cmd}#*d
 \newlinechar#*
 \newmuskip#*
 \newread#*
