@@ -3297,16 +3297,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
              continue;
          }
          if(Tokens::tkOpen().contains(tk.type)){
-             // special treament for brackets as they don't have any syntaxtical meaning except with some commands
-             if(tk.type==Tokens::openBracket){
-                 if(!commandStack.isEmpty() && commandStack.top().level==level && commandStack.top().bracketArgs>0){
-                     CommandDescription &cd=commandStack.top();
-                     cd.bracketArgs--;
-                     tk.subtype=cd.bracketTypes.takeFirst();
-                 }else{
-                     continue;
-                 }
-             }
              if(!commandStack.isEmpty() && commandStack.top().level==level){
                  CommandDescription &cd=commandStack.top();
                  if(tk.type==Tokens::openBrace){
@@ -3314,14 +3304,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                         //cd.optionalArgs=0; // argument order (option/mandatory) is not checked, e.g \newcommad{cmd}[argNumber][default]{definition}
                         cd.args--;
                         tk.subtype=cd.argTypes.takeFirst();
+                    }else{
+                        // ignore
+                        lexed<<tk;
+                        continue;
                     }
-                    /*
-                     * handle in close brace, in order to keep command name until then
-                     * if(cd.args<=0){
-                        // unknown arg, stop handling this command
-                        commandStack.pop();
-                        commandNames.pop();
-                    }*/
                  }
                  if(tk.type==Tokens::openSquare){
                     if(cd.optionalArgs>0){
@@ -3330,14 +3317,25 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                     }else{
                         // unexpected optional argument
                         // ignore
+                        lexed<<tk;
+                        continue;
                     }
                  }
+                 if(tk.type==Tokens::openBracket){
+                     if(cd.bracketArgs>0){
+                         cd.bracketArgs--;
+                         tk.subtype=cd.bracketTypes.takeFirst();
+                     }else{
+                         lexed<<tk;
+                         continue;
+                     }
+                 }
+                 tk.level=level;
+                 tk.argLevel=10; // run-away prevention
+                 stack.push(tk);
+                 lexed<<tk;
+                 level++;
              }
-             tk.level=level;
-             tk.argLevel=10; // run-away prevention
-             stack.push(tk);
-             lexed<<tk;
-             level++;
              continue;
          }
          if(Tokens::tkClose().contains(tk.type)){
