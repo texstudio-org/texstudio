@@ -233,7 +233,6 @@
 \ifglshaschildren{arg1}{arg2}{arg3}#S
 \ifglshasparent{arg1}{arg2}{arg3}#S
 \ifglsused{arg1}{arg2}{arg3}#S
-\input#S
 \istfile#S
 \istfilename#S
 \languageattribute#S
