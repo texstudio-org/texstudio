@@ -21,7 +21,7 @@ typedef int HKL;
 
 static bool languagesInitialized = false;
 static HKL languageIdRTL, languageIdLTR;
-static bool wasInLTRArea = false;
+static InputLanguage oldInputLanguage = IL_UNCERTAIN;
 
 HKL getCurrentLanguage(){
 #if defined( Q_OS_WIN )
@@ -64,15 +64,17 @@ bool isProbablyLTRLanguageCode(HKL id)  {
 
 
 void rememberCurrentLanguage(){
-	HKL curLayout = getCurrentLanguage();
-	if (wasInLTRArea) languageIdLTR = curLayout;
-	else languageIdRTL = curLayout;
+	if (oldInputLanguage != IL_UNCERTAIN) {
+		HKL curLayout = getCurrentLanguage();
+		if (oldInputLanguage == IL_LTR) languageIdLTR = curLayout;
+		else languageIdRTL = curLayout;
+	}
 }
 
 void initializeLanguages(){
 	languageIdLTR = 0;
 	languageIdRTL = 0;
-	wasInLTRArea = isProbablyLTRLanguageCode(getCurrentLanguage());
+	oldInputLanguage = isProbablyLTRLanguageCode(getCurrentLanguage()) ? IL_LTR : IL_RTL;
 	rememberCurrentLanguage();
 #if defined( Q_OS_WIN )
 	const int MAXSIZE = 32;
@@ -126,12 +128,16 @@ void setInputLanguage(HKL code){
 }
 
 
-void setInputLanguage(bool englishLikeLTR){
+void setInputLanguage(InputLanguage lang){
+	if (lang == IL_UNCERTAIN) {
+		oldInputLanguage = lang;
+		return;
+	}
 	if (!languagesInitialized)
 		initializeLanguages();
-	if (englishLikeLTR == wasInLTRArea) return;
+	if (lang == oldInputLanguage) return;
 	rememberCurrentLanguage();
-	HKL newLanguage = englishLikeLTR ? languageIdLTR : languageIdRTL;
+	HKL newLanguage = lang == IL_LTR ? languageIdLTR : languageIdRTL;
 	setInputLanguage(newLanguage);
-	wasInLTRArea = englishLikeLTR;
+	oldInputLanguage = lang;
 }
