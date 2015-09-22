@@ -3101,13 +3101,37 @@ QVector<int> QDocumentLineHandle::getFormats() const
 	return m_formats;
 }
 
-bool QDocumentLineHandle::isRTL() const{
+bool QDocumentLineHandle::isRTLByLayout() const{
 	if (!m_layout) return false;
 	else {
 		QReadLocker locker(&mLock);
 		return m_layout && m_layout->textOption().textDirection() == Qt::RightToLeft;
 	}
 }
+
+
+bool QDocumentLineHandle::isRTLByText() const{
+	bool needLayout = false;
+	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
+		<< QChar::DirR
+		<< QChar::DirAL
+		<< QChar::DirRLE
+		<< QChar::DirRLO
+		<< QChar::DirPDF
+		<< QChar::DirAN;
+
+	QString text = m_text; //does this need locking ?
+
+	for ( int i = 0; (i < text.length()) && !needLayout; ++i )
+	{
+		QChar c = text.at(i);
+
+		needLayout = m_layoutRequirements.contains(c.direction());
+	}
+
+	return needLayout;
+}
+
 
 QVector<int> QDocumentLineHandle::compose() const
 {
@@ -3219,22 +3243,9 @@ void QDocumentLineHandle::applyOverlays() const
 
 void QDocumentLineHandle::layout(int lineNr) const
 {
-	//needs locking at caller !
-	bool needLayout = m_doc->impl()->m_workArounds & QDocument::ForceQTextLayout;
-	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
-		<< QChar::DirR
-		<< QChar::DirAL
-		<< QChar::DirRLE
-		<< QChar::DirRLO
-		<< QChar::DirPDF
-		<< QChar::DirAN;
-
-	for ( int i = 0; (i < m_text.length()) && !needLayout; ++i )
-	{
-		QChar c = m_text.at(i);
-
-		needLayout = m_layoutRequirements.contains(c.direction());
-	}
+	//needs locking by caller
+	bool needLayout = ( m_doc->impl()->m_workArounds & QDocument::ForceQTextLayout )
+			|| isRTLByText();
 
 	if ( needLayout )
 	{
@@ -4585,7 +4596,7 @@ void QDocumentCursorHandle::setColumnMemory(bool y)
 
 bool QDocumentCursorHandle::isRTL() const{
 	QDocumentLine l = line();
-	return l.isRTL(); //todo: also check for column position?
+	return l.isRTLByLayout(); //todo: also check for column position?
 }
 
 void QDocumentCursorHandle::setPosition(int pos, int m)
@@ -4641,7 +4652,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 	int beg = 0, end = m_doc->lines();
 
 #if QT_VERSION >= 0x040800
-    if (l1.isRTL()) { //sanity check added
+    if (l1.isRTLByLayout()) {
 		int tempOffset = m_begOffset;
 		switch (op) {
 		case QDocumentCursor::Left:
@@ -4929,7 +4940,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 
 		case QDocumentCursor::StartOfBlock :
-			if ( l1.isRTL() ) { //todo: test if this also works for non-rtl
+			if ( l1.isRTLByLayout() ) { //todo: test if this also works for non-rtl
 				const int targetPosition = document()->width()+5; //it is rtl
 
 				QPoint curPos = l1.cursorToDocumentOffset(m_begOffset);
@@ -4958,7 +4969,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 
 		case QDocumentCursor::EndOfBlock :
-			if ( l1.isRTL() ) {
+			if ( l1.isRTLByLayout() ) {
 				const int targetPosition = 0; //it is rtl
 
 				QPoint curPos = l1.cursorToDocumentOffset(offset);

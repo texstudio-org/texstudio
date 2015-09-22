@@ -179,7 +179,8 @@ public:
 			return mCookies.remove(type);
 		}
 
-		bool isRTL() const;
+		bool isRTLByLayout() const;
+		bool isRTLByText() const;
 		void layout(int lineNr) const; //public for unittests
 	private:
 		void applyOverlays() const;
