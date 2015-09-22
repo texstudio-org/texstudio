@@ -2697,32 +2697,30 @@ void LatexEditorView::checkRTLLTRLanguageSwitching(){
 #if defined( Q_OS_WIN ) || defined( Q_OS_LINUX ) || ( defined( Q_OS_UNIX ) && !defined( Q_OS_MAC ) )
 	QDocumentCursor cursor = editor->cursor();
 	QDocumentLine line = cursor.line();
-	if (line.firstChar() < 0) return; //whitespace lines have no language information
+	InputLanguage language = IL_UNCERTAIN;
+	if (line.firstChar() >= 0) { //whitespace lines have no language information
+		if (config->switchLanguagesMath) {
+			if (isInMathHighlighting(cursor)) language = IL_LTR;
+			else language = IL_RTL;
+		}
 
-	int language = 0;
-
-	if (config->switchLanguagesMath) {
-		if (isInMathHighlighting(cursor)) language = 1;
-		else language = -1;
-	}
-
-	if (config->switchLanguagesDirection && language <= 0) {
-		if (line.hasFlag(QDocumentLine::LayoutDirty))
-			if (line.isRTLByLayout() || line.isRTLByText() ) {
-				line.handle()->lockForWrite();
-				line.handle()->layout(cursor.lineNumber());
-				line.handle()->unlock();
+		if (config->switchLanguagesDirection && language != IL_LTR) {
+			if (line.hasFlag(QDocumentLine::LayoutDirty))
+				if (line.isRTLByLayout() || line.isRTLByText() ) {
+					line.handle()->lockForWrite();
+					line.handle()->layout(cursor.lineNumber());
+					line.handle()->unlock();
+				}
+			if (!line.isRTLByLayout())
+				language = IL_LTR;
+			else {
+				int c = cursor.columnNumber();
+				int dir = line.getLayout()->rightCursorPosition(c) - c;
+				if (dir < 0) language = IL_RTL;
+				else if (dir > 0) language = IL_LTR;
 			}
-		if (!line.isRTLByLayout())
-			language = 1;
-		else {
-			int c = cursor.columnNumber();
-			int dir = line.getLayout()->rightCursorPosition(c) - c;
-			if (dir != 0) language = dir;
 		}
 	}
-
-	if (language < 0) setInputLanguage(false);
-	else if (language > 0) setInputLanguage(true);
+	setInputLanguage(language);
 #endif
 }
