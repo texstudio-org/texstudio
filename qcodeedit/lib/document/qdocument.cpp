@@ -4635,6 +4635,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 		m_endOffset = m_begOffset;
 	}
 
+	if (offset < 0) offset = 0;
+	else if (offset > l1.length()) offset = l1.length();
+
 	int beg = 0, end = m_doc->lines();
 
 #if QT_VERSION >= 0x040800
