@@ -424,9 +424,14 @@ void QDocumentLine::removeCookie(int type){
     m_handle->unlock();
 }
 
-bool QDocumentLine::isRTL() const{
+bool QDocumentLine::isRTLByLayout() const{
     if (!m_handle) return false;
-	return m_handle->isRTL();
+     return m_handle->isRTLByLayout();
+}
+
+bool QDocumentLine::isRTLByText() const{
+    if (!m_handle) return false;
+     return m_handle->isRTLByText();
 }
 
 QTextLayout* QDocumentLine::getLayout() const{

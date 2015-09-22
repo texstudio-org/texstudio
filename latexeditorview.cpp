@@ -2707,7 +2707,13 @@ void LatexEditorView::checkRTLLTRLanguageSwitching(){
 	}
 
 	if (config->switchLanguagesDirection && language <= 0) {
-		if (!line.isRTL()) //this has a slight issue that isRTL is not set if it is invisible
+		if (line.hasFlag(QDocumentLine::LayoutDirty))
+			if (line.isRTLByLayout() || line.isRTLByText() ) {
+				line.handle()->lockForWrite();
+				line.handle()->layout(cursor.lineNumber());
+				line.handle()->unlock();
+			}
+		if (!line.isRTLByLayout())
 			language = 1;
 		else {
 			int c = cursor.columnNumber();
