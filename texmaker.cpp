@@ -3022,30 +3022,37 @@ void Texmaker::editPaste() {
 	if (!currentEditorView()) return;
 	
 	const QMimeData *d = QApplication::clipboard()->mimeData();
-	if (d->hasUrls()) {
-		QList<QUrl> uris=d->urls();
-		
-		bool onlyLocalImages = true;
-		for (int i=0; i<uris.length(); i++) {
-			QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
-			if (!fi.exists() || !InsertGraphics::imageFormats().contains(fi.suffix())) {
-				onlyLocalImages = false;
-				break;
-			}
-		}
-
-		if (onlyLocalImages) {
+	foreach(const QString &format, d->formats()) {
+		// formats is a priority order. Use the first (== most suitable) format
+		if (format == "text/uri-list") {
+			QList<QUrl> uris=d->urls();
+			
+			bool onlyLocalImages = true;
 			for (int i=0; i<uris.length(); i++) {
-				QuickGraphics(uris.at(i).toLocalFile());
+				QFileInfo fi = QFileInfo(uris.at(i).toLocalFile());
+				if (!fi.exists() || !InsertGraphics::imageFormats().contains(fi.suffix())) {
+					onlyLocalImages = false;
+					break;
+				}
 			}
-		} else {
+	
+			if (onlyLocalImages) {
+				for (int i=0; i<uris.length(); i++) {
+					QuickGraphics(uris.at(i).toLocalFile());
+				}
+			} else {
+				currentEditorView()->paste();
+			}
+			return;
+		} else if (format == "text/plain" || format == "text/html") {
 			currentEditorView()->paste();
+			return;
+		} else if ((format == "application/x-qt-image" || format.startsWith("image/")) && d->hasImage()) {
+			editPasteImage(qvariant_cast<QImage>(d->imageData()));
+			return;
 		}
-	} else if (d->hasImage()) {
-		editPasteImage(qvariant_cast<QImage>(d->imageData()));
-	} else {
-		currentEditorView()->paste();
 	}
+	currentEditorView()->paste();  // fallback
 }
 
 void Texmaker::editPasteImage(QImage image) {
