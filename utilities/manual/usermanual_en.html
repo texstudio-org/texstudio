@@ -1200,12 +1200,16 @@ Naviation and closing are achieved via DDE commands. Since version 10 of the ado
 <tr><td>Adobe Acrobat 10</td><td>acroviewA10</td></tr>
 <tr><td>Adobe Reader 11</td><td>acroviewR11</td></tr>
 <tr><td>Adobe Acrobat 11</td><td>acroviewA11</td></tr>
+<tr><td>Adobe Reader DC</td><td>acroviewR15</td></tr>
+<tr><td>Adobe Acrobat DC</td><td>acroviewA15</td></tr>
 </table>
 <p>
-The following example is for Adobe Reader 11:<br>
-To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
+The following example is for Adobe Reader DC:<br>
+To jump to a position in a running Adobe Reader (Windows only): <span class="command">dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
 
-To close the document in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+To close the document in a running Adobe Reader (Windows only): <span class="command">dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+
+Note: Since Adobe Reader blocks writing to PDFs which are open in the Reader, you have to close the PDF before recompiling. You can define a User Command for the above DDE-command and call it at the beginning of your build chain. This ensures that the file will be closed and thus is writable when compiling.
 </p>
 
 <h3>Yap (Yet Another Previewer)</h3>
