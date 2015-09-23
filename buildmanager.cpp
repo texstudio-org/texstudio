@@ -820,7 +820,11 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString& subcmd) const
 	if (similarCommandInList(subcmd, pdfCommands)) result |= RCF_CHANGE_PDF;
 	if (rerunnableCommands.contains(subcmd)) result |= RCF_RERUNNABLE;
 	if (stdoutCommands.contains(subcmd)) result |= RCF_SHOW_STDOUT;
-	if (viewerCommands.contains(subcmd)) result |= RCF_SINGLE_INSTANCE;
+	bool isAcrobat = false;
+#ifdef Q_OS_WIN
+	isAcrobat = subcmd.contains("Acrobat.exe") || subcmd.contains("AcroRd32.exe");
+#endif
+	if (viewerCommands.contains(subcmd) && !isAcrobat) result |= RCF_SINGLE_INSTANCE;
 	return (RunCommandFlags)(result);
 }
 
