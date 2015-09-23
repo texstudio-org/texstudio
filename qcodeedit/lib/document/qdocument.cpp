@@ -19,7 +19,7 @@
 // returns the number of chars/columns from column to the next tab location
 // for a given tabstop periodicity
 // e.g. dist(0,4)==4, dist(3,4)==1, dist(4,4)==4, dist(5,4)=3
-#define ncolsToNextTab(column, tabstop) (tabstop - (column % tabstop))
+#define ncolsToNextTabStop(column, tabstop) (tabstop - (column % tabstop))
 
 
 /*
@@ -332,7 +332,7 @@ int QDocument::screenColumn(const QChar *d, int l, int tabStop, int column)
 
 		if ( c == QLatin1Char('\t') )
 		{
-			column += ncolsToNextTab(column, tabStop);
+			column += ncolsToNextTabStop(column, tabStop);
 		} else {
 			++column;
 		}
@@ -359,7 +359,7 @@ QString QDocument::screenable(const QChar *d, int l, int tabStop, int column)
 
 		if ( c == QLatin1Char('\t') )
 		{
-			int taboffset = ncolsToNextTab(column, tabStop);
+			int taboffset = ncolsToNextTabStop(column, tabStop);
 
 			fragment += QString(taboffset, QLatin1Char(' '));
 			column += taboffset;
@@ -2621,7 +2621,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 
 		if ( c == '\t' )
 		{
-			int taboffset = ncolsToNextTab(column, tabStop);
+			int taboffset = ncolsToNextTabStop(column, tabStop);
 
 			column += taboffset;
 			cwidth = fm.width(' ') * taboffset;
@@ -2690,7 +2690,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			if ( c == QLatin1Char('\t') )
 			{
-				column += ncolsToNextTab(column, tabStop);
+				column += ncolsToNextTabStop(column, tabStop);
 			} else {
 				++column;
 			}
@@ -2715,7 +2715,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			if ( m_text.at(idx) == '\t' )
 			{
-				int taboffset = ncolsToNextTab(column, tabStop);
+				int taboffset = ncolsToNextTabStop(column, tabStop);
 
 				column += taboffset;
 				cwidth = fm.width(' ') * taboffset;
@@ -3750,7 +3750,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				{
 					if ( c.unicode() == '\t' )
 					{
-						int toff = ncolsToNextTab(tcol, ts);
+						int toff = ncolsToNextTabStop(tcol, ts);
 						rwidth += toff * currentSpaceWidth;
 						tcol += toff;
 					} else {
@@ -3829,7 +3829,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 					if ( isTab )
 					{
-						int toff = ncolsToNextTab(column, ts);
+						int toff = ncolsToNextTabStop(column, ts);
 						column += toff;
 						int xoff = toff * currentSpaceWidth;
 
