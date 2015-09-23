@@ -317,7 +317,7 @@ void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles)
 int QDocument::screenColumn(const QChar *d, int l, int tabStop, int column)
 {
 	if ( tabStop == 1 )
-		return l;
+		return column + l;
 
 	int idx = 0;
 
