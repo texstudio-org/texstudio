@@ -31,7 +31,7 @@ public:
 	static QList<int> possibleEditOperations();
 	bool mouseWheelZoom;
 	bool smoothScrolling;
-	bool hackAutoChoose, hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache,hackDisableAccentWorkaround;
+    bool hackAutoChoose, hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache,hackDisableAccentWorkaround,hackQImageCache;
 	int hackRenderingMode; //0: normal, 1: qt (missing), 2: single letter
 	bool showPlaceholders;
 	int wordwrap; // 0 off, 1 soft wrap, 2 soft wrap fixed line width, 3 hard wrap fixed line width

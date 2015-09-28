@@ -6533,6 +6533,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	int lineCacheWidth = m_oldLineCacheWidth;
 	if(m_oldLineCacheOffset!=cxt.xoffset || m_oldLineCacheWidth < cxt.width) {
 		m_LineCache.clear();
+        m_LineCacheAlternative.clear();
 		if (m_width) lineCacheWidth = cxt.width;
 		else lineCacheWidth = (cxt.width+15) & (~16);         //a little bit larger if not wrapped
 		//qDebug("clear");
@@ -6754,32 +6755,55 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		h->unlock();
 
 		bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
+
+        bool imageCache= (m_workArounds & QDocument::QImageCache);
 		
 		if(   useLineCache
 		   && !h->hasFlag(QDocumentLine::LayoutDirty) 
 		   &&  h->hasFlag(QDocumentLine::FormatsApplied)
-		   &&  m_LineCache.contains(h)){
-            QImage *px=m_LineCache.object(h);
-            p->drawImage(m_oldLineCacheOffset,0,*px);
+           &&  (m_LineCache.contains(h)||m_LineCacheAlternative.contains(h))){
+            if(imageCache){
+                QImage *px=m_LineCacheAlternative.object(h);
+                p->drawImage(m_oldLineCacheOffset,0,*px);
+            }else{
+                QPixmap *px=m_LineCache.object(h);
+                p->drawPixmap(m_oldLineCacheOffset,0,*px);
+            }
 		} else {
 			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
-            QImage *px = 0;
+            QImage *pi = 0;
+            QPixmap *px = 0;
 			QPainter *pr = 0;
 			if (useLineCache) {
+                if(imageCache){
 #if QT_VERSION >= 0x050000
-                int pixelRatio=p->device()->devicePixelRatio();
-                px = new QImage(pixelRatio*lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
-                px->setDevicePixelRatio(pixelRatio);
+                    int pixelRatio=p->device()->devicePixelRatio();
+                    pi = new QImage(pixelRatio*lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
+                    pi->setDevicePixelRatio(pixelRatio);
 #else
-		px = new QImage(lineCacheWidth,ht,QImage::Format_RGB888);
+                    pi = new QImage(lineCacheWidth,ht,QImage::Format_RGB888);
 #endif
-				//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
-                if(fullSel){
-                    px->fill(selbg.color());
+                    if(fullSel){
+                        pi->fill(selbg.color());
+                    }else{
+                        pi->fill(bg.color());
+                    }
+                    pr = new QPainter(pi);
                 }else{
-                    px->fill(bg.color());
+#if QT_VERSION >= 0x050000
+                    int pixelRatio=p->device()->devicePixelRatio();
+                    px = new QPixmap(pixelRatio*lineCacheWidth,pixelRatio*ht);
+                    px->setDevicePixelRatio(pixelRatio);
+#else
+                    px = new QPixmap(lineCacheWidth,ht);
+#endif
+                    if(fullSel){
+                        px->fill(selbg.color());
+                    }else{
+                        px->fill(bg.color());
+                    }
+                    pr = new QPainter(px);
                 }
-				pr = new QPainter(px);
 				pr->setRenderHints(p->renderHints());
 				pr->setFont(p->font());
 			} else {
@@ -6807,11 +6831,18 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
             h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
 
 			if (useLineCache) {
-                p->drawImage(cxt.xoffset,0,*px);
-				delete pr;
-				m_LineCache.insert(h,px);
+                if(imageCache){
+                    p->drawImage(cxt.xoffset,0,*pi);
+                    delete pr;
+                    m_LineCacheAlternative.insert(h,pi);
+                }else{
+                    p->drawPixmap(cxt.xoffset,0,*px);
+                    delete pr;
+                    m_LineCache.insert(h,px);
+                }
 			} else {
 				m_LineCache.remove(h);
+                m_LineCacheAlternative.remove(h);
 			}
 		}
 

@@ -1304,6 +1304,7 @@ void LatexEditorView::updateSettings(){
 	QDocument::setWorkAround(QDocument::DisableFixedPitchMode, config->hackDisableFixedPitch);
 	QDocument::setWorkAround(QDocument::DisableWidthCache, config->hackDisableWidthCache);
 	QDocument::setWorkAround(QDocument::DisableLineCache, config->hackDisableLineCache);
+    QDocument::setWorkAround(QDocument::QImageCache, config->hackQImageCache);
 
 	QDocument::setWorkAround(QDocument::ForceQTextLayout, config->hackRenderingMode == 1);
 	QDocument::setWorkAround(QDocument::ForceSingleCharacterDrawing, config->hackRenderingMode == 2);
@@ -2476,7 +2477,7 @@ void LatexEditorViewConfig::settingsChanged(){
 	else hackDisableFixedPitch = lettersHaveDifferentWidth || sameLettersHaveDifferentWidth;
 	hackDisableWidthCache = sameLettersHaveDifferentWidth;
 
-	hackDisableLineCache = isRetinaMac();
+    //hackDisableLineCache = isRetinaMac();
 	hackRenderingMode = 0; //always use qce, best tested
 	
 	lastFontFamily = fontFamily;
