@@ -79,8 +79,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>479</width>
-            <height>606</height>
+            <width>578</width>
+            <height>705</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -812,8 +812,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>194</width>
-               <height>76</height>
+               <width>223</width>
+               <height>79</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1757,9 +1757,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-649</y>
-            <width>863</width>
-            <height>1266</height>
+            <y>-936</y>
+            <width>868</width>
+            <height>1553</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2426,7 +2426,7 @@ Then you can select a new shortcut by one of the following ways:
                 <property name="leftMargin">
                  <number>16</number>
                 </property>
-                <item row="3" column="0">
+                <item row="4" column="0">
                  <widget class="QLabel" name="labelRenderMode">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -2439,7 +2439,7 @@ Then you can select a new shortcut by one of the following ways:
                   </property>
                  </widget>
                 </item>
-                <item row="3" column="1">
+                <item row="4" column="1">
                  <widget class="QComboBox" name="comboBoxHackRenderMode">
                   <item>
                    <property name="text">
@@ -2479,6 +2479,13 @@ Then you can select a new shortcut by one of the following ways:
                  <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
                   <property name="text">
                    <string>Disable cache of character width</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QCheckBox" name="checkBoxHackQImageCache">
+                  <property name="text">
+                   <string>Use QImage as cache type</string>
                   </property>
                  </widget>
                 </item>
@@ -3004,8 +3011,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>375</width>
+            <height>533</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3370,8 +3377,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>490</width>
-            <height>577</height>
+            <width>625</width>
+            <height>674</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4407,6 +4414,22 @@ them here.</string>
     <hint type="destinationlabel">
      <x>341</x>
      <y>1422</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackQImageCache</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>656</x>
+     <y>1390</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>347</x>
+     <y>1503</y>
     </hint>
    </hints>
   </connection>
