@@ -64,7 +64,6 @@ void UpdateChecker::autoCheck() {
 
 void UpdateChecker::check(bool silent) {
 	this->silent = silent;
-	//connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(fileIsReady(QNetworkReply*)) );
 	QNetworkRequest request = QNetworkRequest(QUrl("http://texstudio.sourceforge.net/update/txsUpdate.xml"));
 	request.setRawHeader("User-Agent", "TeXstudio Update Checker");
 	QNetworkReply *reply = networkManager->get(request);
@@ -85,9 +84,9 @@ void UpdateChecker::onRequestCompleted()
 	QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 	if (!reply || reply->error() != QNetworkReply::NoError) return;
 
-	QTemporaryFile tempFile;
 	QByteArray ba = reply->readAll();
 	parseData(ba);
+	checkForNewVersion();
 }
 
 void UpdateChecker::parseData(const QByteArray &data) {
@@ -95,41 +94,99 @@ void UpdateChecker::parseData(const QByteArray &data) {
 	if (domDocument.setContent(data)){
 		QDomElement root = domDocument.documentElement();
 		if (root.tagName() != "versions") {
-			if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
+			if (!silent) txsWarning(tr("Update check  ddddd failed (invalid update file format)."));
 			return;
 		}
-		QDomNodeList nodes = root.elementsByTagName("stable");
-		if (nodes.count() == 1) {
-			QDomElement latestRelease = nodes.at(0).toElement();
-
-			m_latestVersion = latestRelease.attribute("value");
-
-			VersionCompareResult res = versionCompare(m_latestVersion, TXSVERSION);
-			if (res == Invalid) {
-				if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
-				return;
+		
+		latestStableVersion = VersionInfo();
+		latestDevVersion = VersionInfo();
+		QDomNodeList nodes = root.elementsByTagName("version");
+		for (int i=0; i<nodes.count(); i++) {
+			QDomElement elem = nodes.at(i).toElement();
+			VersionInfo v;
+			v.platform = elem.attribute("platform");
+			v.versionNumber = elem.attribute("number");
+			v.type = elem.attribute("type");
+			v.revision = elem.attribute("revision").toInt();
+#if defined(Q_OS_WIN)
+			if (v.platform != "win") continue;
+#elif defined(Q_OS_MAC)
+			if (v.platform != "mac") continue;
+#else
+			if (v.platform != "linux") continue;
+#endif
+			if (v.type == "stable") {
+				latestStableVersion = v;
+			} else if (v.type == "development") {
+				latestDevVersion = v;
 			}
-			if (res == Higher) {
-				QString text = QString(tr(
-					"A new version of TeXstudio is available.<br><br>"
-					"Current version: %1<br>"
-					"Latest version: %2<br><br>"
-					"You can download it from the <a href='%3'>TeXstudio website</a>."
-					)).arg(TXSVERSION).arg(m_latestVersion).arg("http://texstudio.sourceforge.net");
-				QMessageBox msgBox;
-				msgBox.setWindowTitle(tr("TeXstudio Update"));
-				msgBox.setTextFormat(Qt::RichText);
-				msgBox.setText(text);
-				msgBox.setStandardButtons(QMessageBox::Ok);
-				msgBox.exec();
-			} else {
-				if (!silent) txsInformation(tr("TeXstudio is up-to-date."));
-			}
-
-			ConfigManager::getInstance()->setOption("Update/LastCheck", QDateTime::currentDateTime());
-			emit checkCompleted();
 		}
 	}
+}
+
+void UpdateChecker::checkForNewVersion() {
+	bool checkDevVersions = ConfigManager::getInstance()->getOption("Update/AutoCheckIncludeDevVersion").toBool();
+
+	if (checkDevVersions) {
+		VersionCompareResult res = versionCompare(latestDevVersion.versionNumber, latestStableVersion.versionNumber);
+		if (res == Higher || (res == Same && latestDevVersion.revision > latestStableVersion.revision)) {
+			res = versionCompare(latestDevVersion.versionNumber, TXSVERSION);
+			if (res == Invalid) {
+				if (!silent) txsWarning(tr("Update check for development version failed (invalid update file format)."));
+				return;
+			} else {
+				QString s = QString(TEXSTUDIO_HG_REVISION).split(':').at(0);
+				if (s.endsWith('+')) 
+					s = s.left(s.length() -1);
+				int revision = s.toInt();
+				if (res == Higher || (res == Same && latestDevVersion.revision > revision)) {
+					notify(QString(tr(
+						"A new version of TeXstudio is available.<br>"
+						"<table><tr><td>Current version:</td><td>%1 (%2)</td></tr>"
+						"<tr><td>Latest stable version:</td><td>%3 (%4)</td></tr>"
+						"<tr><td>Latest development version:</td><td>%5 (%6)</td></tr>"
+						"</table><br><br>"
+						"You can download it from the <a href='%7'>TeXstudio website</a>."
+						)).arg(TXSVERSION).arg(revision)
+						  .arg(latestStableVersion.versionNumber).arg(latestStableVersion.revision)
+						  .arg(latestDevVersion.versionNumber).arg(latestDevVersion.revision)
+						  .arg("http://texstudio.sourceforge.net")
+					);
+					return;
+				}
+			}
+		}
+	}
+	
+	VersionCompareResult res = versionCompare(latestStableVersion.versionNumber, TXSVERSION);
+	if (res == Invalid) {
+		if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
+		return;
+	}
+	if (res == Higher) {
+		notify(QString(tr(
+			"A new version of TeXstudio is available.<br>"
+			"<table><tr><td>Current version:</td><td>%1</td></tr>"
+			"<tr><td>Latest stable version:</td><td>%2</td></tr>"
+			"</table><br><br>"
+			"You can download it from the <a href='%3'>TeXstudio website</a>."
+			)).arg(TXSVERSION).arg(latestStableVersion.versionNumber).arg("http://texstudio.sourceforge.net")
+		);
+	} else {
+		if (!silent) txsInformation(tr("TeXstudio is up-to-date."));
+	}
+
+	ConfigManager::getInstance()->setOption("Update/LastCheck", QDateTime::currentDateTime());
+	emit checkCompleted();
+}
+
+void UpdateChecker::notify(QString message) {
+	QMessageBox msgBox;
+	msgBox.setWindowTitle(tr("TeXstudio Update"));
+	msgBox.setTextFormat(Qt::RichText);
+	msgBox.setText(message);
+	msgBox.setStandardButtons(QMessageBox::Ok);
+	msgBox.exec();
 }
 
 UpdateChecker *UpdateChecker::instance() {

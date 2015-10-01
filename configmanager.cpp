@@ -415,6 +415,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	//updates
 	registerOption("Update/AutoCheck", &autoUpdateCheck, true, &pseudoDialog->checkBoxAutoUpdateCheck);
+	registerOption("Update/AutoCheckIncludeDevVersion", &autoUpdateCheckIncludeDevVersion, false, &pseudoDialog->checkBoxAutoUpdateCheckIncludeDevVersion);
 	registerOption("Update/AutoCheckInvervalDays", &autoUpdateCheckIntervalDays, 7, &pseudoDialog->spinBoxAutoUpdateCheckIntervalDays);
 	registerOption("Update/LastCheck", &lastUpdateCheck, QDateTime());
 

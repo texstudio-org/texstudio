@@ -47,7 +47,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -79,8 +79,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>578</width>
-            <height>705</height>
+            <width>863</width>
+            <height>629</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -469,15 +469,22 @@
              <property name="title">
               <string>Update</string>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <item>
-               <widget class="QCheckBox" name="checkBoxAutoUpdateCheck">
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="4">
+               <widget class="QLabel" name="labelUpdateCheckDate">
                 <property name="text">
-                 <string>Automatically check every</string>
+                 <string notr="true">&lt;checkDate&gt;</string>
                 </property>
                </widget>
               </item>
-              <item>
+              <item row="0" column="3">
+               <widget class="QLabel" name="label_56">
+                <property name="text">
+                 <string>Last Checked:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
                <widget class="QSpinBox" name="spinBoxAutoUpdateCheckIntervalDays">
                 <property name="suffix">
                  <string> days</string>
@@ -490,7 +497,14 @@
                 </property>
                </widget>
               </item>
-              <item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBoxAutoUpdateCheck">
+                <property name="text">
+                 <string>Automatically check every</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
                <spacer name="horizontalSpacer_4">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -503,24 +517,17 @@
                 </property>
                </spacer>
               </item>
-              <item>
-               <widget class="QLabel" name="label_56">
-                <property name="text">
-                 <string>Last Checked:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="labelUpdateCheckDate">
-                <property name="text">
-                 <string notr="true">&lt;checkDate&gt;</string>
-                </property>
-               </widget>
-              </item>
-              <item>
+              <item row="0" column="5">
                <widget class="QPushButton" name="pushButtonUpdateCheckNow">
                 <property name="text">
                  <string>Check Now</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="6">
+               <widget class="QCheckBox" name="checkBoxAutoUpdateCheckIncludeDevVersion">
+                <property name="text">
+                 <string>Also notify updates of development versions</string>
                 </property>
                </widget>
               </item>
@@ -812,8 +819,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>223</width>
-               <height>79</height>
+               <width>860</width>
+               <height>76</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_1">
@@ -1757,9 +1764,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-936</y>
-            <width>868</width>
-            <height>1553</height>
+            <y>0</y>
+            <width>863</width>
+            <height>1289</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -3011,8 +3018,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>375</width>
-            <height>533</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3377,8 +3384,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>625</width>
-            <height>674</height>
+            <width>490</width>
+            <height>577</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
