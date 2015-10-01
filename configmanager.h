@@ -35,6 +35,10 @@ public:
 	ConfigManager(QObject *parent=0);
 	~ConfigManager();
 
+	QString iniPath();
+	bool isUsbMode();
+	
+	QSettings* newQSettings();
 	QSettings* readSettings(bool reread=false);
 	QSettings* saveSettings(const QString& saveName="");
 
@@ -90,6 +94,7 @@ public:
 	
 	//update
 	bool autoUpdateCheck;
+	bool autoUpdateCheckIncludeDevVersion;
 	int autoUpdateCheckIntervalDays;
 	QDateTime lastUpdateCheck;
 

@@ -4,6 +4,14 @@
 #include "mostQtHeaders.h"
 #include <QNetworkAccessManager>
 
+struct VersionInfo {
+	VersionInfo() : revision(0) {}
+	QString platform; // "win" or "mac" or "linux"
+	QString versionNumber;  // "2.10.2"
+	QString type;     // "stable" or "dev"
+	int revision;     // 5310
+};
+
 class UpdateChecker : public QObject
 {
 	Q_OBJECT
@@ -16,10 +24,10 @@ public:
 	static VersionCompareResult versionCompare(const QString& v1, const QString& v2);
 
 	static QString lastCheckAsString();
-	QString latestVersion() {return m_latestVersion;} // returns the version number retrieved in last check(), empty if no check has been performed so far
+	QString latestVersion() {return latestStableVersion.versionNumber;} // returns the version number retrieved in last check(), empty if no check has been performed so far
 
 	void autoCheck();
-	void check(bool silent = true);
+	void check(bool m_silent = true);
 signals:
 	void checkCompleted();
 public slots:
@@ -36,9 +44,13 @@ private:
 
 	QNetworkAccessManager *networkManager;
 	bool silent; // do not show error or up-to-date messages
-	QString m_latestVersion;
+	
+	VersionInfo latestStableVersion;
+	VersionInfo latestDevVersion;
 
 	void parseData(const QByteArray &data);
+	void checkForNewVersion();
+	void notify(QString message);
 };
 
 #endif // UPDATECHECKER_H
