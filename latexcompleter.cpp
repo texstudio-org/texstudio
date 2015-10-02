@@ -724,6 +724,7 @@ void CompletionListModel::filterList(const QString &word,int mostUsed,bool fetch
         it=qLowerBound(baselist.begin(),baselist.end(),CompletionWord(word));
 	}
     // special treatment for citation commands as they generated on the fly
+    //TODO: needs to be adapted to later code
     if(it == baselist.end() || !it->word.startsWith(word,cs)){
         int i=word.lastIndexOf("{");
         QString test=word.left(i)+"{@}";
