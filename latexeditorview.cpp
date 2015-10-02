@@ -1866,7 +1866,7 @@ QString LatexEditorView::extractMath(QDocumentCursor cursor) {
 
 bool LatexEditorView::showMathEnvPreview(QDocumentCursor cursor, QString command, QString environment, QPoint pos) {
      QStringList envAliases = document->ltxCommands.environmentAliases.values(environment);
-     if (((command=="\\begin" || command=="\\end") && envAliases.contains("math")) || command=="\\[" || command=="\\]") {
+     if (((command=="\\begin" || command=="\\end") && envAliases.contains("math")) || command=="\\[" || command=="\\]" || command=="$") {
           while (!cursor.atLineStart() && cursor.nextChar()!='\\') {
                cursor.movePosition(1, QDocumentCursor::PreviousCharacter);
           }
@@ -1961,7 +1961,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
     bool handled=false;
     if(tk.type!=Tokens::none){
         int tkPos=tl.indexOf(tk);
-        if(tk.type==Tokens::command){
+        if(tk.type==Tokens::command || tk.type==Tokens::commandUnknown){
             handled=true;
             command=line.mid(tk.start,tk.length);
             CommandDescription cd=lp.commandDefs.value(command);
