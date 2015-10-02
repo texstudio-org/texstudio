@@ -2882,6 +2882,14 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
         <source>depending on text/math mode</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Also notify updates of development versions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use QImage as cache type</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfigManager</name>
@@ -7570,7 +7578,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>dummyStatusBar</source>
-        <translation>napodobenýStavovýŘádek</translation>
+        <translation type="vanished">napodobenýStavovýŘádek</translation>
     </message>
     <message>
         <source>&lt;new&gt;</source>
@@ -10747,7 +10755,7 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     </message>
     <message>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Je dostupná nová verze programu TeXstudio.&lt;br&gt;&lt;br&gt;Současná verze: %1&lt;br&gt;Poslední verze: %2&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%3&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
+        <translation type="vanished">Je dostupná nová verze programu TeXstudio.&lt;br&gt;&lt;br&gt;Současná verze: %1&lt;br&gt;Poslední verze: %2&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%3&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>TeXstudio Update</source>
@@ -10756,6 +10764,22 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     <message>
         <source>TeXstudio is up-to-date.</source>
         <translation>TeXstudio má novější verzi.</translation>
+    </message>
+    <message>
+        <source>Update check  ddddd failed (invalid update file format).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update check for development version failed (invalid update file format).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

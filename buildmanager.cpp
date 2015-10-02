@@ -620,7 +620,7 @@ QString searchBaseCommand(const QString &cmd, QString options) {
 #endif
 #ifdef Q_OS_MAC
 			QStringList paths;
-			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/";
+            paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/" << "/Library/TeX/texbin";
 			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
 			
 			for (int i=2013; i>=2007; i--) {
