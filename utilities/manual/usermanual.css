@@ -78,7 +78,13 @@ pre {display: table; /* not 100 % width as a block, but line break afterwards*/
 .magiccomments li {margin-bottom: 1em; list-style: none}
 .magiccomments p {padding-left:1em}
 
-.command { font-family: monospace; font-size: 120% }
+.command {
+    font-family: monospace;
+	font-size: 120%;
+    padding: 1px 3px;
+    border: 1px solid #C6C6C6;
+    background: #EEF0F0;
+}
 .scripting_help th {margin-top: 4em; }
 
 a { color:#004faf; text-decoration:none;}
