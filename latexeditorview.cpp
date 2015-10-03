@@ -2019,7 +2019,7 @@ void LatexEditorView::mouseHovered(QPoint pos){
             handled=true;
             QString type = (tk.type==Tokens::documentclass) ? tr("Class") : tr("Package");
             QString preambel;
-            if(tk.subtype==Tokens::beamertheme){ // special treatment for  \usetheme
+            if(tk.type==Tokens::beamertheme){ // special treatment for  \usetheme
                 preambel="beamertheme";
                 type = tr("Beamer Theme");
                 type.replace(' ', "&nbsp;");
