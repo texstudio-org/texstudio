@@ -94,7 +94,7 @@ void UpdateChecker::parseData(const QByteArray &data) {
 	if (domDocument.setContent(data)){
 		QDomElement root = domDocument.documentElement();
 		if (root.tagName() != "versions") {
-			if (!silent) txsWarning(tr("Update check  ddddd failed (invalid update file format)."));
+			if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
 			return;
 		}
 		
