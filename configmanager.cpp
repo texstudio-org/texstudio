@@ -341,6 +341,10 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	Q_ASSERT(!globalConfigManager);
 	globalConfigManager = this;
 
+	//interface - store these values once before they are overwritten by some customizaton
+	systemPalette = QApplication::palette();
+	defaultStyleName = QApplication::style()->objectName();
+
 	qRegisterMetaTypeStreamOperators<StringStringMap>();
 	
 	managedToolBars.append(ManagedToolBar("Custom", QStringList()));
@@ -996,10 +1000,6 @@ QSettings* ConfigManager::readSettings(bool reread) {
 	if (editorConfig->fontSize==-1)
 		editorConfig->fontSize=qApp->font().pointSize();
 #endif
-	
-	//interface
-	systemPalette = QApplication::palette();
-	defaultStyleName=QApplication::style()->objectName();
 	
 #if defined Q_WS_X11 || defined Q_OS_LINUX
 	if (interfaceFontFamily=="<later>") {
