@@ -816,7 +816,7 @@ támogatott.</translation>
     <message>
         <location line="+295"/>
         <location filename="configdialog.cpp" line="+4"/>
-        <location filename="configmanager.cpp" line="+1207"/>
+        <location filename="configmanager.cpp" line="+1228"/>
         <source>Editor</source>
         <translation>Szerkesztő</translation>
     </message>
@@ -3119,7 +3119,7 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <translation>&amp;* Minden fájl megnyitása</translation>
     </message>
     <message>
-        <location line="-820"/>
+        <location line="-816"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -3139,7 +3139,7 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
         <translation>szó után</translation>
     </message>
     <message>
-        <location line="+773"/>
+        <location line="+769"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
     </message>
@@ -11241,11 +11241,13 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <location line="+66"/>
+        <source>Update check failed (invalid update file format).</source>
+        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
+        <translation type="unfinished">Frissítés ellenőrzése meghiúsult (hibás frissítési fájlformátum).</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="-28"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11255,7 +11257,8 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-46"/>
+        <location line="+66"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>Frissítés ellenőrzése meghiúsult (hibás frissítési fájlformátum).</translation>
     </message>

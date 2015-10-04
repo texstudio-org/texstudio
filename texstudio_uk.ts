@@ -812,7 +812,7 @@
     <message>
         <location filename="configdialog.ui" line="+334"/>
         <location filename="configdialog.cpp" line="+6"/>
-        <location filename="configmanager.cpp" line="+1207"/>
+        <location filename="configmanager.cpp" line="+1228"/>
         <source>Editor</source>
         <translation>Редактор</translation>
     </message>
@@ -3363,7 +3363,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>&amp;* Відкрити всі файли</translation>
     </message>
     <message>
-        <location line="-820"/>
+        <location line="-816"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -3383,7 +3383,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>після слова</translation>
     </message>
     <message>
-        <location line="+773"/>
+        <location line="+769"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Для повноцінного використання вбудованого переглядача PDF повинен бути активований synctex. Дозволити TeXstudio зробити це?</translation>
     </message>
@@ -11914,11 +11914,13 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <location line="+66"/>
+        <source>Update check failed (invalid update file format).</source>
+        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
+        <translation type="unfinished">Невдала перевірка оновлення (невірний формат файлу оновлення).</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="-28"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11928,7 +11930,8 @@ If not, end characters are ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-46"/>
+        <location line="+66"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>Невдала перевірка оновлення (невірний формат файлу оновлення).</translation>
     </message>

@@ -1198,7 +1198,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="configdialog.ui" line="1402"/>
         <location filename="configdialog.cpp" line="444"/>
-        <location filename="configmanager.cpp" line="1207"/>
+        <location filename="configmanager.cpp" line="1228"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -2706,7 +2706,7 @@ options again to only view the most common settings.</source>
         <translation>Sie haben die Anzeige der erweiterten Optionen aktiviert. Hierduch können Sie sehr viele Details von TeXstudio konfigurieren. Schalten sie diese Option wieder aus, um nur die gängigsten Einstellungen anzuzeigen.</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1208"/>
+        <location filename="configmanager.cpp" line="1229"/>
         <source>Basic Key Mapping</source>
         <translation>Grundlegende Tastenkürzel</translation>
     </message>
@@ -3214,145 +3214,145 @@ options again to only view the most common settings.</source>
         <translation>Zwei Quads - \qquad</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="853"/>
-        <location filename="configmanager.cpp" line="859"/>
-        <location filename="configmanager.cpp" line="875"/>
-        <location filename="configmanager.cpp" line="880"/>
+        <location filename="configmanager.cpp" line="878"/>
+        <location filename="configmanager.cpp" line="884"/>
+        <location filename="configmanager.cpp" line="900"/>
+        <location filename="configmanager.cpp" line="905"/>
         <source>Key replacement: %1 %2</source>
         <translation>Tastenersetzung: %1 %2</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="853"/>
-        <location filename="configmanager.cpp" line="875"/>
+        <location filename="configmanager.cpp" line="878"/>
+        <location filename="configmanager.cpp" line="900"/>
         <source>before word</source>
         <translation>vor Wort</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="859"/>
-        <location filename="configmanager.cpp" line="880"/>
+        <location filename="configmanager.cpp" line="884"/>
+        <location filename="configmanager.cpp" line="905"/>
         <source>after word</source>
         <translation>nach Wort</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1151"/>
-        <location filename="configmanager.cpp" line="1152"/>
-        <location filename="configmanager.cpp" line="1303"/>
-        <location filename="configmanager.cpp" line="1305"/>
-        <location filename="configmanager.cpp" line="1591"/>
-        <location filename="configmanager.cpp" line="1600"/>
+        <location filename="configmanager.cpp" line="1172"/>
+        <location filename="configmanager.cpp" line="1173"/>
+        <location filename="configmanager.cpp" line="1324"/>
+        <location filename="configmanager.cpp" line="1326"/>
+        <location filename="configmanager.cpp" line="1612"/>
+        <location filename="configmanager.cpp" line="1621"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1201"/>
+        <location filename="configmanager.cpp" line="1222"/>
         <source>Menus</source>
         <translation>Menüs</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1229"/>
-        <location filename="configmanager.cpp" line="2176"/>
+        <location filename="configmanager.cpp" line="1250"/>
+        <location filename="configmanager.cpp" line="2197"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;kein&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1275"/>
+        <location filename="configmanager.cpp" line="1296"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Menüeintrag einfügen (davor)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1278"/>
+        <location filename="configmanager.cpp" line="1299"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Untermenü einfügen (davor)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1296"/>
+        <location filename="configmanager.cpp" line="1317"/>
         <source>Latex/Math menus</source>
         <translation>Latex/Mathe Menüs</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1297"/>
+        <location filename="configmanager.cpp" line="1318"/>
         <source>All menus</source>
         <translation>Alle Menüs</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1298"/>
+        <location filename="configmanager.cpp" line="1319"/>
         <source>Special Tags</source>
         <translation>Benutzer-Makros</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1406"/>
+        <location filename="configmanager.cpp" line="1427"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Sie haben die automatische Ersetzung für Anführungszeichen aktiviert. Allerdings gibt es Makros mit einem Trigger (?language:latex)(?&lt;=\s|^) oder (?language:latex)(?&lt;=\S
 Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfernt werden?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1653"/>
+        <location filename="configmanager.cpp" line="1674"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Um den internen PDF-Betrachter vollständig nutzbar zu machen, muss synctex aktiviert sein. Soll dies TeXstudio nun erledigen?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1667"/>
+        <location filename="configmanager.cpp" line="1688"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Letztes &apos;Masterdokument&apos; %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1670"/>
+        <location filename="configmanager.cpp" line="1691"/>
         <source>Recent File %1</source>
         <translation>Letzte Datei %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1671"/>
+        <location filename="configmanager.cpp" line="1692"/>
         <source>File list</source>
         <translation>Dateiliste</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1672"/>
+        <location filename="configmanager.cpp" line="1693"/>
         <source>Open first non-open file</source>
         <translation>Öffne erste nicht geladene Datei aus Liste</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1673"/>
+        <location filename="configmanager.cpp" line="1694"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Alle Dateien öffnen</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1683"/>
+        <location filename="configmanager.cpp" line="1704"/>
         <source>Master Document: </source>
         <translation>Masterdokument:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2177"/>
+        <location filename="configmanager.cpp" line="2198"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Vorgabe&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2338"/>
+        <location filename="configmanager.cpp" line="2359"/>
         <source>Configure</source>
         <translation>Konfigurieren</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2345"/>
+        <location filename="configmanager.cpp" line="2366"/>
         <source>Select Program</source>
         <translation>Programm auswählen</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2352"/>
+        <location filename="configmanager.cpp" line="2373"/>
         <source>Restore Default</source>
         <translation>Setze auf Vorgabe zurück</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2397"/>
+        <location filename="configmanager.cpp" line="2418"/>
         <source>Repeat contained compilation commands</source>
         <translation>Wiederhole Kompilationskommandos</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2442"/>
+        <location filename="configmanager.cpp" line="2463"/>
         <source>Add</source>
         <translation>Hinzufügen</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2496"/>
+        <location filename="configmanager.cpp" line="2517"/>
         <source>Browse program</source>
         <translation>Wähle Programm</translation>
     </message>
@@ -8371,7 +8371,7 @@ failed.</source>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1756"/>
+        <location filename="configmanager.cpp" line="1777"/>
         <source>Edit &amp;Macros...</source>
         <translation>&amp;Makros bearbeiten...</translation>
     </message>
@@ -11017,8 +11017,10 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="97"/>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <location filename="updatechecker.cpp" line="163"/>
+        <source>Update check failed (invalid update file format).</source>
+        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
+        <translation type="unfinished">Die Überprüfung auf Updates ist fehlgeschlagen (ungültiges Format der Update-Datei).</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="135"/>
@@ -11031,6 +11033,7 @@ If not, end characters are ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="updatechecker.cpp" line="97"/>
         <location filename="updatechecker.cpp" line="163"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>Die Überprüfung auf Updates ist fehlgeschlagen (ungültiges Format der Update-Datei).</translation>

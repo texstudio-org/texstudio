@@ -2109,7 +2109,7 @@ exemplos: ?ame&quot;: nome de arquivo completo(absoluto) delimitado por &quot;, 
     <message>
         <location line="-1156"/>
         <location filename="configdialog.cpp" line="+3"/>
-        <location filename="configmanager.cpp" line="+1207"/>
+        <location filename="configmanager.cpp" line="+1228"/>
         <source>Editor</source>
         <translation>Editor</translation>
     </message>
@@ -4214,7 +4214,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation type="obsolete">qquad</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-355"/>
+        <location filename="configmanager.cpp" line="-351"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -4234,7 +4234,7 @@ Qual dos três sábios estará sempre dizendo a verdade?</translation>
         <translation>depois da palavra</translation>
     </message>
     <message>
-        <location line="+271"/>
+        <location line="+267"/>
         <location line="+1"/>
         <location line="+151"/>
         <location line="+2"/>
@@ -13069,11 +13069,13 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <location line="+66"/>
+        <source>Update check failed (invalid update file format).</source>
+        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
+        <translation type="unfinished">Verificação de atualização falhou (formato do arquivo de atualização inválido).</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="-28"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -13083,7 +13085,8 @@ Se não, os caracteres finalizadores serão ignorados.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-46"/>
+        <location line="+66"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>Verificação de atualização falhou (formato do arquivo de atualização inválido).</translation>
     </message>

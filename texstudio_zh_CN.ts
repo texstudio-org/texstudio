@@ -1089,7 +1089,7 @@
     <message>
         <location line="-2299"/>
         <location filename="configdialog.cpp" line="-3"/>
-        <location filename="configmanager.cpp" line="+1207"/>
+        <location filename="configmanager.cpp" line="+1228"/>
         <source>Editor</source>
         <translation>编辑器</translation>
     </message>
@@ -3380,7 +3380,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>特殊标签</translation>
     </message>
     <message>
-        <location line="-445"/>
+        <location line="-441"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -3433,7 +3433,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>数学重音(&amp;A)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="+349"/>
+        <location filename="configmanager.cpp" line="+345"/>
         <location line="+947"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;无&gt;</translation>
@@ -3517,13 +3517,13 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>段落*</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-817"/>
+        <location filename="configmanager.cpp" line="-813"/>
         <location line="+22"/>
         <source>before word</source>
         <translation>单词之前</translation>
     </message>
     <message>
-        <location line="+808"/>
+        <location line="+804"/>
         <source>Master Document: </source>
         <translation>主文档 :</translation>
     </message>
@@ -3593,7 +3593,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>小节*</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="-1318"/>
+        <location filename="configmanager.cpp" line="-1314"/>
         <location line="+21"/>
         <source>after word</source>
         <translation>单词之后</translation>
@@ -3651,7 +3651,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation>插入文件</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="+417"/>
+        <location filename="configmanager.cpp" line="+413"/>
         <source>All menus</source>
         <translation>所有菜单</translation>
     </message>
@@ -12298,11 +12298,13 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <location line="+66"/>
+        <source>Update check failed (invalid update file format).</source>
+        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
+        <translation type="unfinished">检查更新失败（更新文件格式无效）。</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="-28"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12312,7 +12314,8 @@ If not, end characters are ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-46"/>
+        <location line="+66"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>检查更新失败（更新文件格式无效）。</translation>
     </message>

@@ -10766,10 +10766,6 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
         <translation>TeXstudio má novější verzi.</translation>
     </message>
     <message>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>

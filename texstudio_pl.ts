@@ -877,7 +877,7 @@
     <message>
         <location line="+295"/>
         <location filename="configdialog.cpp" line="+4"/>
-        <location filename="configmanager.cpp" line="+1207"/>
+        <location filename="configmanager.cpp" line="+1228"/>
         <source>Editor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3115,7 +3115,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="-820"/>
+        <location line="-816"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -3135,7 +3135,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+773"/>
+        <location line="+769"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11744,11 +11744,13 @@ If not, end characters are ignored.</source>
     </message>
     <message>
         <location line="+18"/>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <location line="+66"/>
+        <source>Update check failed (invalid update file format).</source>
+        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
+        <translation type="unfinished">Nie powiodło się sprawdzić uaktualnień (nieprawidłowy format pliku uaktualnienia).</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="-28"/>
         <source>Update check for development version failed (invalid update file format).</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11758,7 +11760,8 @@ If not, end characters are ignored.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+20"/>
+        <location line="-46"/>
+        <location line="+66"/>
         <source>Update check failed (invalid update file format).</source>
         <translation>Nie powiodło się sprawdzić uaktualnień (nieprawidłowy format pliku uaktualnienia).</translation>
     </message>
