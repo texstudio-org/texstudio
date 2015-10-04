@@ -146,7 +146,8 @@ HEADERS += texmaker.h \
     pdfsplittool.h \
     searchresultwidget.h \
     searchquery.h \
-    bidiextender.h
+    bidiextender.h \
+    tests/utilsversion_t.h
 SOURCES += main.cpp \
     buildmanager.cpp \
     texmaker.cpp \
@@ -229,6 +230,7 @@ SOURCES += main.cpp \
     fileselector.cpp \
     utilsUI.cpp \
     utilsSystem.cpp \
+    utilsVersion.cpp \
     latexpackages.cpp \
     cursorposition.cpp \
     usermacro.cpp \

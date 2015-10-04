@@ -80,7 +80,7 @@
             <x>0</x>
             <y>0</y>
             <width>863</width>
-            <height>629</height>
+            <height>632</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -470,14 +470,78 @@
               <string>Update</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="0" column="4">
+              <item row="0" column="6">
+               <widget class="QComboBox" name="comboBoxUpdateLevel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Defines the kinds of update notifications you will receive:
+- Stable Releases: Choose this if stability is most important to you.
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Stable Releases</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Release Candidates</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Development Versions</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="3">
+               <widget class="QPushButton" name="pushButtonUpdateCheckNow">
+                <property name="text">
+                 <string>Check Now</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3" colspan="2">
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="1">
                <widget class="QLabel" name="labelUpdateCheckDate">
                 <property name="text">
                  <string notr="true">&lt;checkDate&gt;</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="3">
+              <item row="1" column="0">
                <widget class="QLabel" name="label_56">
                 <property name="text">
                  <string>Last Checked:</string>
@@ -504,30 +568,10 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="2">
-               <spacer name="horizontalSpacer_4">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
               <item row="0" column="5">
-               <widget class="QPushButton" name="pushButtonUpdateCheckNow">
+               <widget class="QLabel" name="label_74">
                 <property name="text">
-                 <string>Check Now</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0" colspan="6">
-               <widget class="QCheckBox" name="checkBoxAutoUpdateCheckIncludeDevVersion">
-                <property name="text">
-                 <string>Also notify updates of development versions</string>
+                 <string>Update Level:</string>
                 </property>
                </widget>
               </item>
@@ -819,7 +863,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>860</width>
+               <width>194</width>
                <height>76</height>
               </rect>
              </property>
@@ -1765,7 +1809,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>668</width>
             <height>1289</height>
            </rect>
           </property>

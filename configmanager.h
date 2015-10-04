@@ -94,7 +94,7 @@ public:
 	
 	//update
 	bool autoUpdateCheck;
-	bool autoUpdateCheckIncludeDevVersion;
+	int updateLevel;
 	int autoUpdateCheckIntervalDays;
 	QDateTime lastUpdateCheck;
 
