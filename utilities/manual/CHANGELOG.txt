@@ -1,3 +1,32 @@
+Development Status
+----------------
+- more granular selection of update notifications: stable / release candidate /development
+- image as an alternative caching format (better rendering results for some cases)
+- import fedora patch: more general commands for external viewers on linux
+- respect clipboard priority if there are multiple possible mime-types that could be pasted
+- support \newif, \newfontfamily, \newfontface as definition commands
+- ignore keyboard layout change if the current language context is ambigious
+- folding of square brackets
+- some code optimizations for speedup
+- fix: setting root in structureview per contextmenu
+- fix: problem with open braces and bibliography/label
+- fix: environ dependent syntax check
+- fix: using $$ for mathstart
+- fix: mirror cursor in insert env
+- fix: problem with unclosed square brackets
+- fix: assert failure when cursor column is too high in word moving mode
+- fix: rtl detection lagging behind the actual text
+- fix: spell checking in command arguments and section titles
+- fix: cursor position for tabwidth == 1
+- fix: "View" calls to Arcobat (Reader) did not work
+- fix: bibids in the completer
+- fix: tooltip preview of $
+- fix: loading of profile in portable mode
+- fix: palette and application style were not necessarily updated correctly when loading a profile
+- fix: tooltip width prediction for rich text tooltips
+- some updates to the manual
+- some updates to cwl files
+
 TeXstudio 2.10.2
 ----------------
 - fix recognition of environments defined via \newtheorem
