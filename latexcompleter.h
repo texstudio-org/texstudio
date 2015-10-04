@@ -77,7 +77,7 @@ public:
 	
 	void insertText(QString txt);
 
-    void showTooltip(QString topic);
+    void showTooltip(QString text);
 signals:
 	void setDirectoryForCompletion(QString fn);
 	void searchBibtexSection(QString file,QString bibId);

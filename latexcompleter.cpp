@@ -1532,21 +1532,17 @@ void LatexCompleter::selectionChanged(const QModelIndex & index) {
 	showTooltip(topic);
 }
 
-void LatexCompleter::showTooltip(QString topic){
+void LatexCompleter::showTooltip(QString text){
     if(!isVisible()){
         QToolTip::hideText();
         return;
     }
     QModelIndex index=list->currentIndex();
     QRect r = list->visualRect(index);
-    QDocumentCursor c=editor->cursor();
-    //QRect screen = QApplication::desktop()->availableGeometry();
-    int lineHeight=c.line().document()->getLineSpacing();
-    QPoint tt=list->mapToGlobal(QPoint(list->width(), r.top()-lineHeight));
-    //int lineY=editor->mapToGlobal(editor->mapFromContents(c.documentPosition())).y();
-    // estimate width of coming tooltip
-    // rather dirty code
-    showTooltipLimited(tt,topic,list->width());
+    QDocumentCursor c = editor->cursor();
+    int lineHeight = c.line().document()->getLineSpacing();
+    QPoint pos = list->mapToGlobal(QPoint(list->width(), r.top()-lineHeight));
+    showTooltipLimited(pos, text, list->width());
 }
 
 void LatexCompleter::editorDestroyed() {
