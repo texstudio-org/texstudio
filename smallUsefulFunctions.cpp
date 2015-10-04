@@ -2429,8 +2429,6 @@ void showTooltipLimited(QPoint pos, QString text, int relatedWidgetWidth){
                 int averageWidth = lLabel.fontMetrics().averageCharWidth();
                 maxLength = qMin(maxLength, availableWidth/averageWidth);
                 while(textWidthInPixels > availableWidth && maxLength > 10){
-                    // TODO: this loop can be very expensive for long lines.
-                    // investigate usage of QStringRef and / or binary search to determine the optimal length
                     maxLength-=2;
                     for(int i=0; i<lines.count(); i++){
                         lines[i]=lines[i].left(maxLength);
