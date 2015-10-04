@@ -2375,12 +2375,18 @@ QString getImageAsText(const QPixmap &AImage,const int w) {
     return text;
 }
 
-void showTooltipLimited(QPoint tt,QString topic,int width){
-    topic.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
-    QRect screen = QApplication::desktop()->availableGeometry(tt);
+/*!
+ * Shows a tooltip at the given position (pos = top left corner).
+ * If the tooltip does not fit on the screen, it's attempted to position it to the left including
+ * a possible relatedWidgetWidth offset (pos - relatedWidgetWidth = top right corner).
+ * If there is not enough space as well the text is shortened.
+ */
+void showTooltipLimited(QPoint pos, QString text, int relatedWidgetWidth){
+    text.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
+    QRect screen = QApplication::desktop()->availableGeometry(pos);
     // estimate width of coming tooltip
     // rather dirty code
-    bool textWillWarp = Qt::mightBeRichText(topic);
+    bool textWillWarp = Qt::mightBeRichText(text);
     QLabel lLabel(0,Qt::ToolTip);
     lLabel.setFont(QToolTip::font());
     lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
@@ -2389,57 +2395,56 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
     lLabel.setIndent(1);
     lLabel.setWordWrap(textWillWarp);
     lLabel.ensurePolished();
-    lLabel.setText(topic);
+    lLabel.setText(text);
     lLabel.adjustSize();
-
     int textWidthInPixels = lLabel.width()+10; // +10 good guess
 
-    if (tt.x() - screen.x() + textWidthInPixels <= screen.width()) {
+    if (pos.x() - screen.x() + textWidthInPixels <= screen.width()) {
         // tooltip fits at the requested position
-        QToolTip::showText(tt, topic);
+        QToolTip::showText(pos, text);
     } else {
-        QPoint tt2(tt.x() - textWidthInPixels - width, tt.y());
-        // check if text left from list would fit
-        bool reCalc=false;
-        if(tt2.x()<screen.x()){
+        // try positioning the tooltip left of the releated widget
+        QPoint posLeft(pos.x() - textWidthInPixels - relatedWidgetWidth, pos.y());
+        bool reCalc = false;
+        if(posLeft.x() < screen.x()){
             // text does not fit to the left
             // determine max usable width to the left
             // TODO: the code in this block does not account for multiple screens
-            //       we have to subtract screen.x() from tt.x() in various places
-            int w=tt.x()-width; // widthToTheLeft
-            if(screen.width()-tt.x()>w){
-                w=screen.width()-tt.x();
-                tt2=tt;
+            //       we have to subtract screen.x() from pos.x() in various places
+            int w = pos.x() - relatedWidgetWidth; // widthToTheLeft
+            if(screen.width() - pos.x() > w){
+                w = screen.width() - pos.x();
+                posLeft = pos;
             }else{
-                reCalc=true;
+                reCalc = true;
             }
             // shorten text to fit textwidth
-            QStringList lTopic=topic.split("\n");
-            int maxLength=0;
+            QStringList lines = text.split("\n");
+            int maxLength = 0;
             QString maxLine;
-            foreach(const QString elem,lTopic){
-                if(elem.length()>maxLength){
-                    maxLength= elem.length();
-                    maxLine=elem;
+            foreach(const QString line, lines){
+                if(line.length() > maxLength){
+                    maxLength = line.length();
+                    maxLine = line;
                 }
             }
-            int averageWidth=lLabel.fontMetrics().averageCharWidth();
-            maxLength=qMin(maxLength,w/averageWidth);
-            while(textWidthInPixels>w && maxLength>10){
+            int averageWidth = lLabel.fontMetrics().averageCharWidth();
+            maxLength = qMin(maxLength, w/averageWidth);
+            while(textWidthInPixels > w && maxLength > 10){
                 maxLength-=2;
-                for(int i=0;i<lTopic.count();i++){
-                    lTopic[i]=lTopic[i].left(maxLength);
+                for(int i=0; i<lines.count(); i++){
+                    lines[i]=lines[i].left(maxLength);
                 }
-                lLabel.setText(lTopic.join("\n"));
+                lLabel.setText(lines.join("\n"));
                 lLabel.adjustSize();
                 textWidthInPixels=lLabel.width()+10;
             }
-            topic=lTopic.join("\n");
+            text=lines.join("\n");
         }
         if(reCalc){
-            tt2.setX(tt.x()-textWidthInPixels-width);
+            posLeft.setX(pos.x() - textWidthInPixels - relatedWidgetWidth);
         }
-        QToolTip::showText(tt2, topic);
+        QToolTip::showText(posLeft, text);
     }
 }
 
