@@ -371,10 +371,9 @@ Built-in templates can not be changed.</p>
 <p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
 <p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
 <p><IMG src="doc5.png" border="1" alt="Appendix"></p>
-<p>The "Structure View" is automatically updated as you type. You can also use the "Refresh Structure" ("Edit" menu) command at any moment.</p>
-<p>Apart from labels,sections,includes and beamer blocks, comments starting with %TODO are also scanned for and presented as section of its own in the structure view.
-This can be used to create a kind of permanent bookmark in the text or just to note where some changes are still necessary.
-</p>
+<p>The "Structure View" is automatically updated as you type. You can also use the "Refresh Structure" (menu "Idefix") command at any moment.</p>
+<p>The structure view shows labels, sections, includes and beamer blocks and todos.</p>
+<p>There are two kind of todos that will be listed a) todos from a todo-like command, e.g. \todo{} from the package todonotes. b) todo-like comments: This is a comment with a capitalized first word, e.g. "% TODO", "%FIXME", "%ASK".</p>
 <p>
 The structure view also offers a context menu which allows one to copy/cut all text which belongs to a section (including subsection) and paste it before or after a section.
 Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
@@ -1341,10 +1340,13 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Cut : Ctrl+X</li>
 	<li>Paste : Ctrl+V</li>
 	<li>Select All : Ctrl+A</li>
-	<li>Remove Line : Ctrl+K</li>
-	<li>Erase until End of Line : Alt+K</li>
+	<li>Expand Selection to Word : Ctrl+D</li>
+	<li>Expand Selection to Line : Ctrl+L</li>
+	<li>Delete Line : Ctrl+K</li>
+	<li>Delete to End of Line : Alt+K</li>
 	<li>Find : Ctrl+F</li>
 	<li>Find next : F3 / Ctrl+G</li>
+	<li>Find prev : Shift+F3 / Ctrl+Shift+G</li>
 	<li>Replace : CTrl+R</li>
 	<li>Go to line : Ctrl+G</li>
 	<li>Go to previous change: Ctrl+H</li>
@@ -1356,10 +1358,7 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Previous Marker: Ctrl+Up</li>
 	<li>Go Back : Alt+Left</li>
 	<li>Go Forward : Alt+Right</li>
-	<li>Check spelling (from cursor) : Ctrl+Shift+F7</li>
-	<li>Open Thesaurus : Ctrl+Shift+F8</li>
-	<li>Refresh Structure View : F12</li>
-	<li>Remove placeholders : Ctrl+Shift+K</li>
+	<li>Insert Unicode Character : Ctrl+Alt+U</li>
 	</ul>
 </li>
 <li> "Idefix" menu :
@@ -1384,12 +1383,11 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 
 <li> "Tools" menu :
 	<ul>
-	<li>Build & View : F1</li>
+	<li>Build & View : F5</li>
 	<li>Compile : F6</li>
-	<li>View Pdf : F7</li>
+	<li>View : F7</li>
+	<li>Bibliography : F8</li>
 	<li>Glossary : F9</li>
-	<li>Bibliography : F11</li>
-	<li>Index : F12</li>
 	<li>Check spelling : Ctrl+:</li>
 	<li>Thesaurus : Ctrl+Shift+F8</li>
 	</ul>
@@ -1435,7 +1433,8 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Focus Editor : Ctrl+Alt+Left</li>
 	<li>Focus Viewer : Ctrl+Alt+Right</li>
 	<li>Close Something : Esc</li>
-	<li>Next Document : Ctrl+PgUp</li>
+	<li>Editor Zoom In : Ctrl++</li>
+	<li>Editor Zoom Out : Ctrl+-</li>
 	<li>Fullscreeen Mode : F11</li>
 	</ul>
 </li>
