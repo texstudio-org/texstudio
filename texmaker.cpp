@@ -8591,7 +8591,7 @@ void Texmaker::loadProfile(){
 		bool userCommand=false;
 		SaveSettings();
 		QSettings *profile=new QSettings(fname,QSettings::IniFormat);
-		QSettings *config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");
+		QSettings *config = configManager.newQSettings();
 		if(profile && config){
 			QStringList keys = profile->allKeys();
 			foreach(const QString& key,keys){
