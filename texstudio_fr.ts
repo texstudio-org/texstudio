@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1178,7 +1178,7 @@ exemples : ?ame&quot; : nom de fichier avec chemin et son extension, entourés d
     <message>
         <location line="+295"/>
         <location filename="configdialog.cpp" line="+4"/>
-        <location filename="configmanager.cpp" line="+1207"/>
+        <location filename="configmanager.cpp" line="+1228"/>
         <source>Editor</source>
         <translation>Éditeur</translation>
     </message>
@@ -2447,7 +2447,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="+356"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -2547,7 +2547,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location line="-945"/>
         <source>Also notify updates of development versions</source>
-        <translation type="unfinished"></translation>
+        <translation>Signaler aussi les mises à jour des versions de développement</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2907,7 +2907,7 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location line="+32"/>
         <source>Use QImage as cache type</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser QImage en tant que type de cache</translation>
     </message>
     <message>
         <location line="+86"/>
@@ -4173,7 +4173,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation>&amp;* Ouvrir tous les fichiers</translation>
     </message>
     <message>
-        <location line="-820"/>
+        <location line="-816"/>
         <location line="+6"/>
         <location line="+16"/>
         <location line="+5"/>
@@ -4193,7 +4193,7 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
         <translation>après le mot</translation>
     </message>
     <message>
-        <location line="+773"/>
+        <location line="+769"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Pour profiter plienement de l&apos;afficheur PDFintégré, synctex doit être activé. TeXstudio doit-il le faire maintenant ?</translation>
     </message>
@@ -9676,7 +9676,7 @@ Pour changer un raccourci, éditer la troisième ou la quatrième colonne.</tran
     </message>
     <message>
         <source>dummyStatusBar</source>
-        <translation type="vanished">BarreDEtatfactice</translation>
+        <translation type="obsolete">BarreDEtatfactice</translation>
     </message>
     <message>
         <location filename="spellerdialog.cpp" line="+14"/>
@@ -13617,32 +13617,29 @@ Sinon la ponctuation est ignorée.</translation>
     </message>
     <message>
         <location line="+18"/>
-        <source>Update check  ddddd failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <location line="+66"/>
+        <source>Update check failed (invalid update file format).</source>
+        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
+        <translation>La vérification des mises à jour a échoué (format de fichier de mise à jour non valide).</translation>
     </message>
     <message>
-        <location line="+38"/>
+        <location line="-28"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation>La vérification de la mise à jour de versions de développement a échoué (format de fichier de mise à jour non valide).</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version de TeXstudio est disponible.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Version installée :&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Dernière version stable disponible :&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Dernière version de développement disponible :&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Vous pouvez la télécharger depuis le &lt;a href=&apos;%3&apos;&gt;site de TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location line="+20"/>
-        <source>Update check failed (invalid update file format).</source>
-        <translation>La vérification des mises à jour a échoué (format de fichier de mise à jour non valide).</translation>
-    </message>
-    <message>
-        <location line="+4"/>
+        <location line="+24"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une nouvelle version de TeXstudio est disponible.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Version installée :&lt;tr&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Dernière version stable disponible :&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Vous pouvez la télécharger depuis le &lt;a href=&apos;%3&apos;&gt;site de TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="vanished">Une nouvelle version de TeXstudio est disponible.&lt;br&gt;&lt;br&gt;Version installée : %1&lt;br&gt;Dernière version disponible : %2&lt;br&gt;&lt;br&gt;Vous pouvez la télécharger depuis le &lt;a href=&apos;%3&apos;&gt;site de TeXstudio&lt;/a&gt;.</translation>
+        <translation type="obsolete">Une nouvelle version de TeXstudio est disponible.&lt;br&gt;&lt;br&gt;Version installée : %1&lt;br&gt;Dernière version disponible : %2&lt;br&gt;&lt;br&gt;Vous pouvez la télécharger depuis le &lt;a href=&apos;%3&apos;&gt;site de TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <location line="+18"/>
