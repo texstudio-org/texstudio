@@ -17,7 +17,7 @@
 #include "tablemanipulation_t.h"
 #include "syntaxcheck_t.h"
 #include "updatechecker_t.h"
-#include "utilsVersion_t.h"
+#include "utilsversion_t.h"
 #include "help_t.h"
 #include "latexoutputfilter_t.h"
 #include <QtTest/QtTest>
