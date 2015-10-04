@@ -635,19 +635,42 @@ ConfigManager::~ConfigManager(){
 	globalConfigManager = 0;
 }
 
+QString ConfigManager::iniPath() {
+	if (!persistentConfig) {
+		QString ini = iniFileOverride;
+		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath()+"/texstudio.ini";
+		return ini;
+	}
+	return configFileName;
+}
+
+bool ConfigManager::isUsbMode() {
+	bool usbMode = false;
+	if (!persistentConfig) {
+		usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(iniPath());
+	} else {
+		usbMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
+	}
+	return usbMode;
+}
+
+/*!
+ * Returns a QSettings instance tor the location in which current settings are / should be stored.
+ */
+QSettings *ConfigManager::newQSettings() {
+	if (isUsbMode()) {
+		return new QSettings(iniPath(), QSettings::IniFormat);
+	} else {
+		return new QSettings(QSettings::IniFormat, QSettings::UserScope, "texstudio", "texstudio");
+	}
+}
+
 QSettings* ConfigManager::readSettings(bool reread) {
 	//load config
 	QSettings *config = persistentConfig;
-	bool usbMode;
+	bool usbMode = isUsbMode();
 	if (!config){
-		QString ini = iniFileOverride;
-		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath()+"/texstudio.ini";
-		usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(ini);
-		if (usbMode) {
-			config=new QSettings(ini,QSettings::IniFormat);
-		} else {
-			config=new QSettings(QSettings::IniFormat,QSettings::UserScope,"texstudio","texstudio");
-		}
+		config = newQSettings();
 		configFileName=config->fileName();
 		configFileNameBase=configFileName;
 		configBaseDir=QFileInfo(configFileName).absolutePath();
@@ -655,8 +678,6 @@ QSettings* ConfigManager::readSettings(bool reread) {
 		completerConfig->importedCwlBaseDir=configBaseDir;// set in LatexCompleterConfig to get access from LatexDocument
 		if (configFileNameBase.endsWith(".ini")) configFileNameBase=configFileNameBase.replace(QString(".ini"),"");
 		persistentConfig = config;
-	} else {
-		usbMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
 	}
 	config->beginGroup("texmaker");
 	
