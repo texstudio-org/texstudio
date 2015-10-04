@@ -2380,14 +2380,15 @@ void showTooltipLimited(QPoint tt,QString topic,int width){
     QRect screen = QApplication::desktop()->availableGeometry(tt);
     // estimate width of coming tooltip
     // rather dirty code
+    bool textWillWarp = Qt::mightBeRichText(topic);
     QLabel lLabel(0,Qt::ToolTip);
     lLabel.setFont(QToolTip::font());
     lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
     lLabel.setFrameStyle(QFrame::StyledPanel);
     lLabel.setAlignment(Qt::AlignLeft);
     lLabel.setIndent(1);
-    lLabel.setWordWrap(false);
-    //lLabel.ensurePolished();
+    lLabel.setWordWrap(textWillWarp);
+    lLabel.ensurePolished();
     lLabel.setText(topic);
     lLabel.adjustSize();
 
