@@ -201,6 +201,8 @@ signals:
 private:
 
 	void initDefaultCommandNames();
+	void checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands);
+
 	CommandInfo& registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig = "", GuessCommandLineFunc guessFunc = 0, bool user = false);
 	CommandInfo& registerCommand(const QString& id, const QString& displayname, const QStringList& alternatives, const QString& oldConfig = "",const bool metaCommand=true, const QStringList simpleDescriptions = QStringList());
 	Q_INVOKABLE QString getCommandLine(const QString& id, bool* user);
