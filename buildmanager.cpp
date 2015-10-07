@@ -24,6 +24,7 @@ const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
 bool BuildManager::m_replaceEnvironmentVariables = true;
+bool BuildManager::m_supportShellStyleLiteralQuotes = true;
 QString BuildManager::autoRerunCommands;
 QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
 
@@ -321,7 +322,8 @@ QString BuildManager::getCommandLine(const QString& id, bool* user){
 }
 
 QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentline) {
-	str = ConfigManagerInterface::getInstance()->parseDir(str);
+	ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
+	str = config->parseDir(str);
 	if (m_replaceEnvironmentVariables) {
 #ifdef Q_OS_WIN
 		Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
@@ -330,6 +332,12 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 #endif
 		static QHash<QString, QString> envVariables = getEnvVariables(caseSensitivity);  // environment variables can be static because they do not change during program execution.
 		str = replaceEnvironmentVariables(str, envVariables, caseSensitivity==Qt::CaseInsensitive);
+	}
+	// need to reformat literal quotes before the file insertion logic, because ?a"
+	// might be extended to "C:\somepath\" which would then be misinterpreted as an
+	// literal quote at the end.
+	if (config->getOption("Tools/SupportShellStyleLiteralQuotes", true).toBool()) {
+		str = ProcessX::reformatShellLiteralQuotes(str);
 	}
 	
 	str=str+" "; //end character  so str[i++] is always defined
@@ -1910,7 +1918,7 @@ void ProcessX::startCommand() {
 #else
     qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #endif
-	QProcess::start(reformatShellLiteralQuotes(cmd));
+	QProcess::start(cmd);
 	qputenv("PATH", path); // restore
 
     if (error() == FailedToStart || error() == Crashed)

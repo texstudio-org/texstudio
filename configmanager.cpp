@@ -540,6 +540,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
 	registerOption("Tools/ReplaceEnvironmentVariables", &BuildManager::m_replaceEnvironmentVariables, true, &pseudoDialog->checkBoxReplaceEnvironmentVariables);
+	registerOption("Tools/SupportShellStyleLiteralQuotes", &BuildManager::m_supportShellStyleLiteralQuotes, true);
 
 	//Paths
 #ifdef Q_OS_MAC
