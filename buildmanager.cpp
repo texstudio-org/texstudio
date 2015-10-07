@@ -291,6 +291,64 @@ void BuildManager::initDefaultCommandNames(){
 	internalCommands << CMD_VIEW_PDF_INTERNAL << CMD_CONDITIONALLY_RECOMPILE_BIBLIOGRAPHY << CMD_VIEW_LOG;
 }
 
+void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands) {
+#ifdef Q_OS_MAC
+	if (QSysInfo::MacintoshVersion == QSysInfo::MV_10_11) {
+		ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
+		if (!config->getOption("Tools/CheckOSXElCapitanDeprecatedPaths", true).toBool()) {
+			return;
+		}
+		bool oldPathsFound = false;
+		foreach (const QString& id, commands) {
+			QString cmd = settings.value(id).toString();
+			if (cmd.contains("/usr/texbin/")) {
+				oldPathsFound = true;
+				break;
+			}
+		}
+		if (!oldPathsFound) {
+			return;
+		}
+		QString info;
+		if (QDir("/Library/TeX/texbin/").exists()) {
+			info = tr("OSX 10.11 does not allow applications to write there anymore. Therefore,\n"
+					  "recent versions of MacTeX changed the bin path to /Library/TeX/texbin/\n"
+					  "\n"
+					  "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
+					  "/Library/TeX/texbin/?");
+		} else {
+			info = tr("OSX 10.11 does not allow applications to write there anymore. You may\n"
+					  "need to update MacTeX to version 2015.\n"
+					  "\n"
+					  "Afterwards, MacTeX programs will be located at /Library/TeX/texbin/\n"
+					  "\n"
+					  "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
+					  "/Library/TeX/texbin/?");
+		}
+		QMessageBox msgBox(QApplication::activeWindow());
+		msgBox.setWindowTitle(TEXSTUDIO);
+		msgBox.setIcon(QMessageBox::Warning);
+		msgBox.setText(tr("Some of your commands are refering to locations in /usr/texbin/"));
+		msgBox.setInformativeText(info);
+		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+		msgBox.setDefaultButton(QMessageBox::Yes);
+		int ret = msgBox.exec();
+		if (ret == QMessageBox::Yes) {
+			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
+			foreach (const QString& id, commands) {
+				QString cmd = settings.value(id).toString();
+				if (cmd.contains("/usr/texbin/")) {
+					cmd.replace("/usr/texbin/", "/Library/TeX/texbin/");
+				}
+				settings.setValue(id, cmd);
+			}
+		} else if (ret == QMessageBox::No) {
+			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
+		}
+	}
+#endif
+}
+
 CommandInfo& BuildManager::registerCommand(const QString& id, const QString& basename, const QString& displayName, const QString& args, const QString& oldConfig, const GuessCommandLineFunc guessFunc, bool user ){
 	CommandInfo ci;
 	ci.id = id;
@@ -1014,6 +1072,9 @@ void BuildManager::readSettings(QSettings &settings){
 	settings.beginGroup("Tools");
 	settings.beginGroup("Commands");
 	QStringList cmds = settings.childKeys();
+	
+	checkOSXElCapitanDeprecatedPaths(settings, cmds);
+	
 	foreach (const QString& id, cmds) {
 		QString cmd = settings.value(id).toString();
 		CommandMapping::iterator it = commands.find(id);
