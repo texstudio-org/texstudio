@@ -293,7 +293,11 @@ void BuildManager::initDefaultCommandNames(){
 
 void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const QStringList &commands) {
 #ifdef Q_OS_MAC
+#if QT_VERSION >= 0x050000
 	if (QSysInfo::MacintoshVersion == QSysInfo::MV_10_11) {
+#else  // Qt4 does not know MV_10_11
+	if (QSysInfo::MacintoshVersion > QSysInfo::MV_10_10) {
+#endif
 		ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
 		if (!config->getOption("Tools/CheckOSXElCapitanDeprecatedPaths", true).toBool()) {
 			return;
