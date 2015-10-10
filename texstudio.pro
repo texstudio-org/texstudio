@@ -1,6 +1,7 @@
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
+DISTFILES = texstudio.astylerc
 greaterThan(QT_MAJOR_VERSION, 4) {
     message(Building with Qt5)
     CONFIG += qt

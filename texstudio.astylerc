@@ -1,0 +1,9 @@
+--style=google  # no separate line for opening curly braces, see also astyle documentation
+#--max-code-length=120  # maximal line length
+#--add-brackets  # always add braces, also for single commands
+--indent=tab=4  # use tabs, assume tab-width = 4
+--pad-oper  # spaces around operators
+--pad-header # spaces after if, else, while ...
+--align-pointer=name  # pointer star at variable name
+--align-reference=name  # reference ampersand at variable name
+#--convert-tabs  # convert tabs to spaces
