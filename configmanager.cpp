@@ -2131,7 +2131,7 @@ void ConfigManager::loadManagedMenu(QMenu* parent,const QDomElement &f) {
 			QDomNamedNodeMap  att=c.attributes();
 			QByteArray ba;
 			const char* slotfunc;
-			if (c.nodeName()=="insert") slotfunc=SLOT(InsertFromAction());
+			if (c.nodeName()=="insert") slotfunc=SLOT(insertFromAction());
 			else {
 				ba=att.namedItem("slot").nodeValue().toLocal8Bit();
 				slotfunc=ba.data();

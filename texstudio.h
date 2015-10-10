@@ -27,7 +27,6 @@
 #include "latexeditorview.h"
 #include "latexcompleter.h"
 #include "findGlobalDialog.h"
-//#include "symbollistwidget.h"
 #include "symbolgridwidget.h"
 #include "xmltagslistwidget.h"
 #include "spellerdialog.h"
@@ -122,7 +121,7 @@ private:
 	void setupDockWidgets();
 	void setupToolBars();
 	void createStatusBar();
-	bool ActivateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
+	bool activateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
 	bool saveAllFilesForClosing(); // checks for unsaved files and asks the user if they should be saved
 	bool saveFilesForClosing(const QList<LatexEditorView *> &editors); // checks for unsaved files and asks the user if they should be saved
 	void closeAllFiles();
@@ -355,8 +354,8 @@ protected slots:
 	void structureContextMenuCollapseSubitems();
 	void structureContextMenuExpandAllDocuments();
 	void structureContextMenuCollapseAllDocuments();
-	void SymbolGridContextMenu(QWidget *widget, const QPoint &point);
-	void MostUsedSymbolsTriggered(bool direct = false);
+	void symbolGridContextMenu(QWidget *widget, const QPoint &point);
+	void mostUsedSymbolsTriggered(bool direct = false);
 	void symbolAddFavorite();
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
@@ -368,76 +367,76 @@ protected slots:
 	void moveCursorTodlh();
 
 private slots:
-	void ReadSettings(bool reread = false);
-	void SaveSettings(const QString &configName = "");
+	void readSettings(bool reread = false);
+	void saveSettings(const QString &configName = "");
 	void restoreDefaultSettings();
 
 protected slots:
 	void showMarkTooltipForLogMessage(QList<int> errors);
-	void NewDocumentStatus();
-	void NewDocumentLineEnding();
-	void UpdateCaption();
+	void newDocumentStatus();
+	void newDocumentLineEnding();
+	void updateCaption();
 	void updateMasterDocumentCaption();
 	void updateUndoRedoStatus();
 	void currentEditorChanged();
-	void EditorTabMoved(int from, int to);
+	void editorTabMoved(int from, int to);
 	void editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo);
 
 	void getExpandedStructureEntries(const QModelIndex &index, QSet<QString> &expandedEntryTags, QString baseTag = QString());
 	void expandStructureEntries(const QModelIndex index, const QSet<QString> &expandedEntryTags, QString baseTag = QString());
 	void updateStructure(bool initial = false, LatexDocument *doc = 0, bool hidden = false);
-	void ShowStructure();
+	void showStructure();
 	void clickedOnStructureEntry(const QModelIndex &index);
 	void editRemovePlaceHolders();
 	void editRemoveCurrentPlaceHolder();
 
-	void NormalCompletion();
-	void InsertEnvironmentCompletion();
-	void InsertTextCompletion();
-	void InsertTag(const QString &Entity, int dx = 0, int dy = 0);
-	void InsertCitation(const QString &text);
-	void InsertFormula(const QString &formula);
-	void InsertSymbol(QTableWidgetItem *item);
-	void InsertSymbolPressed(QTableWidgetItem *item);
-	void InsertXmlTag(QListWidgetItem *item);
+	void normalCompletion();
+	void insertEnvironmentCompletion();
+	void insertTextCompletion();
+	void insertTag(const QString &Entity, int dx = 0, int dy = 0);
+	void insertCitation(const QString &text);
+	void insertFormula(const QString &formula);
+	void insertSymbol(QTableWidgetItem *item);
+	void insertSymbolPressed(QTableWidgetItem *item);
+	void insertXmlTag(QListWidgetItem *item);
 	void insertXmlTagFromToolButtonAction();
 	void callToolButtonAction();
-	void InsertFromAction();
-	void InsertBib();
-	void CloseEnv();
+	void insertFromAction();
+	void insertBib();
+	void closeEnvironment();
 
-	void InsertBibEntryFromAction();
-	void InsertBibEntry(const QString &id = "");
-	void SetBibTypeFromAction();
+	void insertBibEntryFromAction();
+	void insertBibEntry(const QString &id = "");
+	void setBibTypeFromAction();
 
 	void insertUserTag(const QString &macro, int triggerId = 0);
 	void insertUserTag();
 	void editMacros();
 	void macroDialogAccepted();
 
-	void InsertRef(const QString &refCmd);
-	void InsertRef();
-	void InsertEqRef();
-	void InsertPageRef();
+	void insertRef(const QString &refCmd);
+	void insertRef();
+	void insertEqRef();
+	void insertPageRef();
 	void createLabelFromAction();
 
 	void changeTextCodec();
-	void UpdateAvailableLanguages();
-	void EditorSpellerChanged(const QString &name);
-	void ChangeEditorSpeller();
-	void InsertSpellcheckMagicComment();
+	void updateAvailableLanguages();
+	void editorSpellerChanged(const QString &name);
+	void changeEditorSpeller();
+	void insertSpellcheckMagicComment();
 	void updateStatusBarEncoding();
 	void addMagicRoot();
 	void addMagicCoding();
 
-	void QuickTabular();
-	void QuickArray();
-	void QuickTabbing();
-	void QuickLetter();
-	void QuickDocument();
-	void QuickBeamer();
-	void QuickGraphics(const QString &graphicsFile = QString());
-	void QuickMath();
+	void quickTabular();
+	void quickArray();
+	void quickTabbing();
+	void quickLetter();
+	void quickDocument();
+	void quickBeamer();
+	void quickGraphics(const QString &graphicsFile = QString());
+	void quickMath();
 
 	bool checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master);
 	void runInternalPdfViewer(const QFileInfo &master, const QString &options);
@@ -464,34 +463,34 @@ private slots:
 protected slots:
 	void processNotification(const QString &message);
 	void openTerminal();
-	void CleanAll();
+	void cleanAll();
 	void checkShortcutChangeNotification(QAction *act);
 	void commandFromAction();  //calls a command given by sender.data, doesn't wait
 
-	void WebPublish();
-	void WebPublishSource();
-	void AnalyseText();
-	void AnalyseTextFormDestroyed();
-	void GenerateRandomText();
+	void webPublish();
+	void webPublishSource();
+	void analyseText();
+	void analyseTextFormDestroyed();
+	void generateRandomText();
 
 	bool loadLog();
 	void setLogMarksVisible(bool visible);
 	void clearLogEntriesInEditors();
 	void updateLogEntriesInEditors();
 	void showLog();
-	void ViewLog();
-	void ViewLogOrReRun(LatexCompileResult *result);
+	void viewLog();
+	void viewLogOrReRun(LatexCompileResult *result);
 	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
-	bool HasLatexErrors();
-	bool LogExists();
-	void ClearMarkers();
+	bool hasLatexErrors();
+	bool logExists();
+	void clearMarkers();
 	/////
-	void LatexHelp();
-	void UserManualHelp();
-	void TexdocHelp();
-	void HelpAbout();
+	void latexHelp();
+	void userManualHelp();
+	void texdocHelp();
+	void helpAbout();
 
-	void GeneralOptions();
+	void generalOptions();
 	void setAutomaticRootDetection();
 	void setExplicitRootDocument(LatexDocument *doc);
 	void setCurrentDocAsExplicitRoot();
@@ -522,7 +521,7 @@ protected slots:
 	void masterDocumentChanged(LatexDocument *doc);
 	void aboutToDeleteDocument(LatexDocument *doc);
 
-	void SetMostUsedSymbols(QTableWidgetItem *item);
+	void setMostUsedSymbols(QTableWidgetItem *item);
 
 	void updateCompleter(LatexEditorView *edView = 0);
 	void completerNeedsUpdate();
@@ -696,7 +695,7 @@ signals:
 	void infoFileSaved(const QString &filename);
 	void infoFileClosed();
 	void infoAfterTypeset();
-	void ImgPreview(const QString &fn);
+	void imgPreview(const QString &fn);
 };
 
 Q_DECLARE_METATYPE(Texstudio *)
