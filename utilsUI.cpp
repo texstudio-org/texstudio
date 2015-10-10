@@ -19,7 +19,7 @@ void txsWarning(const QString &message){
 }
 void txsWarning(const QString &message, bool &noWarnAgain){
 	QMessageBox msgBox(QMessageBox::Warning, TEXSTUDIO, message, QMessageBox::Ok, QApplication::activeWindow());
-	QCheckBox cbNoWarnAgain(QCoreApplication::translate("Texmaker", "Do not warn again.", "General warning dialog"), &msgBox);
+	QCheckBox cbNoWarnAgain(QCoreApplication::translate("Texstudio", "Do not warn again.", "General warning dialog"), &msgBox);
 	cbNoWarnAgain.setChecked(noWarnAgain);
 	cbNoWarnAgain.blockSignals(true); // quick hack to prevent closing the message box
 	msgBox.addButton(&cbNoWarnAgain, QMessageBox::ActionRole);

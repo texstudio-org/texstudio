@@ -13,7 +13,7 @@
 
 #include "mostQtHeaders.h"
 
-#include "texmaker.h"
+#include "texstudio.h"
 #include "smallUsefulFunctions.h"
 #include "debughelper.h"
 #include <qtsingleapplication.h>
@@ -30,7 +30,7 @@ protected:
 public:
 	bool initialized;
 	QString delayedFileLoad;
-	Texmaker *mw;  // Moved from private:
+	Texstudio *mw;  // Moved from private:
 	TexstudioApp(int & argc, char ** argv);
 	TexstudioApp(QString &id, int & argc, char ** argv);
 	~TexstudioApp();
@@ -59,7 +59,7 @@ void TexstudioApp::init(QStringList &cmdLine) {
 	splash->show();
 	processEvents();
 
-	mw = new Texmaker(0,0,splash);
+	mw = new Texstudio(0,0,splash);
 	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
 	splash->finish(mw);
 	delete splash;

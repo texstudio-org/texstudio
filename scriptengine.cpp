@@ -5,7 +5,7 @@
 #include "scriptobject.h"
 #include "buildmanager.h"
 #include "latexdocument.h"
-#include "texmaker.h"
+#include "texstudio.h"
 #include "PDFDocument.h"
 #include "usermacro.h"
 
@@ -31,7 +31,7 @@ Q_DECLARE_METATYPE(QList<PDFDocument*>);
 Q_DECLARE_METATYPE(QString*);
 
 BuildManager* scriptengine::buildManager = 0;
-Texmaker* scriptengine::app = 0;
+Texstudio* scriptengine::app = 0;
 
 QList<Macro>* scriptengine::macros = 0;
 
@@ -430,7 +430,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent),triggerId(-1), glo
 	qScriptRegisterMetaType<QString*>(engine, qScriptValueFromStringPtr, qScriptValueToStringPtr, QScriptValue());
 	qScriptRegisterQObjectMetaType<ProcessX*>(engine);
 	qScriptRegisterQObjectMetaType<SubScriptObject*>(engine);
-	qScriptRegisterQObjectMetaType<Texmaker*>(engine);
+	qScriptRegisterQObjectMetaType<Texstudio*>(engine);
 	qScriptRegisterQObjectMetaType<QAction*>(engine);
 	qScriptRegisterQObjectMetaType<QMenu*>(engine);
 	qScriptRegisterQObjectMetaType<LatexEditorView*>(engine);

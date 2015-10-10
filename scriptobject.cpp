@@ -9,7 +9,7 @@
 QStringList privilegedReadScripts, privilegedWriteScripts;
 int readSecurityMode, writeSecurityMode;
 
-ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texmaker* app): backgroundScript(false), buildManager(buildManager), script(script), app(app)
+ScriptObject::ScriptObject(const QString& script, BuildManager* buildManager, Texstudio* app): backgroundScript(false), buildManager(buildManager), script(script), app(app)
 {
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Privileged Read Scripts", &privilegedReadScripts);	
 	ConfigManagerInterface::getInstance()->registerOption("Scripts/Read Security Mode", &readSecurityMode, 1);	
@@ -256,6 +256,6 @@ bool ScriptObject::needReadPrivileges(const QString& fn, const QString& param){
 SubScriptObject* ScriptObject::getScript(){
 	return &subScriptObject;
 }
-Texmaker* ScriptObject::getApp(){
+Texstudio* ScriptObject::getApp(){
 	return app;
 }

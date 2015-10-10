@@ -4382,7 +4382,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="-60"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Перейти до означення</translation>
@@ -4493,7 +4493,7 @@ Invalid \caption command.</source>
         <translation>Зображення</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8839,9 +8839,9 @@ failed.</source>
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
-        <location filename="texmaker.cpp" line="-6760"/>
+        <location filename="texstudio.cpp" line="-6760"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -9435,7 +9435,7 @@ You have to save a document before you can compile it.</source>
         <translation>Редагувати</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+570"/>
+        <location filename="texstudio.cpp" line="+570"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>Видалити</translation>
@@ -9852,7 +9852,7 @@ You have to save a document before you can compile it.</source>
         <translation>Таблиця</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-7822"/>
+        <location filename="texstudio.cpp" line="-7822"/>
         <source>Insert Unicode Character...</source>
         <translation>Вставити символ Юнікод…</translation>
     </message>
@@ -9862,12 +9862,12 @@ You have to save a document before you can compile it.</source>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texmaker.cpp" line="-562"/>
+        <location filename="texstudio.cpp" line="-562"/>
         <source>Central</source>
         <translation>Центральний</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+675"/>
+        <location filename="texstudio.cpp" line="+675"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>П&amp;еретворити джерело у HTML...</translation>
     </message>
@@ -10106,7 +10106,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Відмінності</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8959"/>
+        <location filename="texstudio.cpp" line="-8959"/>
         <source>Sweave files</source>
         <translation>Файли Sweave</translation>
     </message>
@@ -10267,7 +10267,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Звичайний текст</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8874"/>
+        <location filename="texstudio.cpp" line="-8874"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Закладки</translation>
@@ -10293,7 +10293,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Не попереджати знову.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-117"/>
+        <location filename="texstudio.cpp" line="-117"/>
         <source>Align Columns</source>
         <translation>Вирівняти стовпчики</translation>
     </message>
@@ -10339,7 +10339,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Результати перевірки TXS</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+644"/>
+        <location filename="texstudio.cpp" line="+644"/>
         <location line="+89"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -10408,7 +10408,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-202"/>
+        <location filename="texstudio.cpp" line="-202"/>
         <source>&amp;Index</source>
         <translation>&amp;Індекс</translation>
     </message>
@@ -10513,7 +10513,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>Змінити &amp;макрос...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+832"/>
+        <location filename="texstudio.cpp" line="+832"/>
         <source>Yes, try to recover</source>
         <translation>Так, спробувати відновити роботу</translation>
     </message>

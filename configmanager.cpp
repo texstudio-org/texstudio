@@ -1311,7 +1311,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog) {
 	foreach (const ManagedToolBar &mtb, managedToolBars){
 		Q_ASSERT(mtb.toolbar);
 		confDlg->customizableToolbars.append(mtb.actualActions);
-		confDlg->ui.comboBoxToolbars->addItem(qApp->translate("Texmaker",qPrintable(mtb.name)));
+		confDlg->ui.comboBoxToolbars->addItem(qApp->translate("Texstudio",qPrintable(mtb.name)));
 	}
 	confDlg->allMenus=managedMenus;
 	confDlg->standardToolbarMenus=QList<QMenu*>()<< getManagedMenu("main/latex") << getManagedMenu("main/math") << getManagedMenu("main/macros");
@@ -1775,7 +1775,7 @@ void ConfigManager::updateUserMacroMenu(bool alwaysRecreateMenuItems) {
 	QMenu* recreatedMenu = updateListMenu("main/macros", macronames, "tag", false, SLOT(insertUserTag()), Qt::SHIFT+Qt::Key_F1, alwaysRecreateMenuItems);
 	if (recreatedMenu) {
 		recreatedMenu->addSeparator();
-		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texmaker", "Edit &Macros..."), SLOT(editMacros()));
+		newOrLostOldManagedAction(recreatedMenu, "manage",QCoreApplication::translate("Texstudio", "Edit &Macros..."), SLOT(editMacros()));
 	}
 	// update quote replacement
 	if (replaceQuotes >= 1 && replaceQuotes < 8) {

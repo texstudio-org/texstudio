@@ -39,7 +39,7 @@ else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
-HEADERS += texmaker.h \
+HEADERS += texstudio.h \
     buildmanager.h \
     symbolgridwidget.h \
     icondelegate.h \
@@ -150,8 +150,8 @@ HEADERS += texmaker.h \
     bidiextender.h \
     tests/utilsversion_t.h
 SOURCES += main.cpp \
+    texstudio.cpp \
     buildmanager.cpp \
-    texmaker.cpp \
     symbolgridwidget.cpp \
     icondelegate.cpp \
     latexcompleter.cpp \

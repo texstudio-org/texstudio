@@ -4233,7 +4233,7 @@ Missing \includegraphics options.</source>
     </message>
     <message>
         <location line="-2097"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>定義へ移動</translation>
@@ -4409,7 +4409,7 @@ Missing \includegraphics options.</source>
         <translation>画像</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation>文書を開く</translation>
     </message>
@@ -8828,9 +8828,9 @@ failed.</source>
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
-        <location filename="texmaker.cpp" line="-6095"/>
+        <location filename="texstudio.cpp" line="-6095"/>
         <location line="+6073"/>
         <source>Cut</source>
         <translation>切り取り</translation>
@@ -8880,7 +8880,7 @@ failed.</source>
         <translation>編集</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6529"/>
+        <location filename="texstudio.cpp" line="-6529"/>
         <source>Exit</source>
         <translation>終了</translation>
     </message>
@@ -8890,7 +8890,7 @@ failed.</source>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+54"/>
+        <location filename="texstudio.cpp" line="+54"/>
         <source>Line</source>
         <translation>行番号</translation>
     </message>
@@ -8900,7 +8900,7 @@ failed.</source>
         <translation>数式</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+234"/>
+        <location filename="texstudio.cpp" line="+234"/>
         <source>Type</source>
         <translation>タイプ</translation>
     </message>
@@ -9030,7 +9030,7 @@ failed.</source>
         <translation>ツール</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-551"/>
+        <location filename="texstudio.cpp" line="-551"/>
         <source>Type: %1</source>
         <translation>タイプ: %1</translation>
     </message>
@@ -9157,7 +9157,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8197"/>
+        <location filename="texstudio.cpp" line="-8197"/>
         <location line="+6073"/>
         <source>Paste Before</source>
         <translation>前に貼り付け</translation>
@@ -9516,7 +9516,7 @@ Do you want to keep it running? This may cause data corruption.</source>
         <translation type="obsolete">二度と警告しない。</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-526"/>
+        <location filename="texstudio.cpp" line="-526"/>
         <location line="+59"/>
         <source>File not found:</source>
         <translation>ファイルが見つかりませんでした:</translation>
@@ -9556,7 +9556,7 @@ Otherwise there might be random errors and crashes.</source>
         <translation>書式</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-198"/>
+        <location filename="texstudio.cpp" line="-198"/>
         <source>Remove Placeholders</source>
         <translation>プレースホルダーを除去</translation>
     </message>
@@ -10071,12 +10071,12 @@ included document in %1</source>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+3"/>
-        <location filename="texmaker.cpp" line="-538"/>
+        <location filename="texstudio.cpp" line="-538"/>
         <source>Central</source>
         <translation>中央部</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+663"/>
+        <location filename="texstudio.cpp" line="+663"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>ユーザー(&amp;U)</translation>
@@ -10201,7 +10201,7 @@ Are you sure you want to continue?</source>
         <translation>マクロを編集(&amp;M)</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-307"/>
+        <location filename="texstudio.cpp" line="-307"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idefix</translation>
     </message>
@@ -10795,7 +10795,7 @@ Do you want to keep the program running? This may cause data corruption.</source
         <translation>二度と警告しない。</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-44"/>
+        <location filename="texstudio.cpp" line="-44"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>コマンド(&amp;C)</translation>

@@ -4352,7 +4352,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <location line="-44"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Ir a la Definición</translation>
@@ -4493,7 +4493,7 @@ El asistente no admite órdenes </translation>
         <translation>Imágenes</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation>Abrir Documento</translation>
     </message>
@@ -8836,9 +8836,9 @@ no pudo ser eliminado.</translation>
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
-        <location filename="texmaker.cpp" line="-6095"/>
+        <location filename="texstudio.cpp" line="-6095"/>
         <location line="+6073"/>
         <source>Cut</source>
         <translation>Cortar</translation>
@@ -8866,7 +8866,7 @@ no pudo ser eliminado.</translation>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6529"/>
+        <location filename="texstudio.cpp" line="-6529"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -8876,7 +8876,7 @@ no pudo ser eliminado.</translation>
         <translation>Archivo</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+54"/>
+        <location filename="texstudio.cpp" line="+54"/>
         <source>Line</source>
         <translation>Línea</translation>
     </message>
@@ -8992,7 +8992,7 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Advertencia anterior</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-4768"/>
+        <location filename="texstudio.cpp" line="-4768"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
@@ -9746,7 +9746,7 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+1"/>
-        <location filename="texmaker.cpp" line="-680"/>
+        <location filename="texstudio.cpp" line="-680"/>
         <source>Central</source>
         <translation>Central</translation>
     </message>
@@ -9840,7 +9840,7 @@ Do you want to create it?</source>
         <translation>No avisarme más.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+114"/>
+        <location filename="texstudio.cpp" line="+114"/>
         <source>TeX files</source>
         <translation>Archivos fuente de TeX</translation>
     </message>

@@ -11,8 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef TEXMAKER_H
-#define TEXMAKER_H
+#ifndef TEXSTUDIO_H
+#define TEXSTUDIO_H
 
 #include "mostQtHeaders.h"
 
@@ -70,12 +70,12 @@ class LatexReference;
 
 Q_DECLARE_METATYPE(QSet<QString>)
 
-class Texmaker : public QMainWindow {
+class Texstudio : public QMainWindow {
 	Q_OBJECT
 
 public:
-	Texmaker(QWidget *parent = 0, Qt::WindowFlags flags = 0, QSplashScreen *splash = 0);
-	~Texmaker();
+	Texstudio(QWidget *parent = 0, Qt::WindowFlags flags = 0, QSplashScreen *splash = 0);
+	~Texstudio();
 
 	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension = ""); //treats the path relative to the compiled .tex file
@@ -699,7 +699,7 @@ signals:
 	void ImgPreview(const QString &fn);
 };
 
-Q_DECLARE_METATYPE(Texmaker *)
+Q_DECLARE_METATYPE(Texstudio *)
 
 #endif
 

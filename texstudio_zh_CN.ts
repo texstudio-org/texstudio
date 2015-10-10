@@ -4677,7 +4677,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="+8"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>跳转到定义</translation>
@@ -4807,7 +4807,7 @@ Invalid \caption command.</source>
         <translation>图片</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9149,9 +9149,9 @@ failed.</source>
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
-        <location filename="texmaker.cpp" line="-6095"/>
+        <location filename="texstudio.cpp" line="-6095"/>
         <location line="+6073"/>
         <source>Cut</source>
         <translation>剪切</translation>
@@ -9188,7 +9188,7 @@ failed.</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6529"/>
+        <location filename="texstudio.cpp" line="-6529"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
@@ -9198,7 +9198,7 @@ failed.</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+54"/>
+        <location filename="texstudio.cpp" line="+54"/>
         <source>Line</source>
         <translation>行</translation>
     </message>
@@ -9208,7 +9208,7 @@ failed.</source>
         <translation>数学</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+58"/>
+        <location filename="texstudio.cpp" line="+58"/>
         <source>Unin&amp;dent</source>
         <translation>取消缩进(&amp;D)</translation>
     </message>
@@ -9348,7 +9348,7 @@ failed.</source>
         <translation type="obsolete">前一个警告</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-4444"/>
+        <location filename="texstudio.cpp" line="-4444"/>
         <source>S&amp;ave Profile...</source>
         <translation>保存配置(&amp;A)...</translation>
     </message>
@@ -9449,7 +9449,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">粘贴列</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-748"/>
+        <location filename="texstudio.cpp" line="-748"/>
         <source>Save Profile</source>
         <translation>保存配置文件</translation>
     </message>
@@ -9710,7 +9710,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1601"/>
+        <location filename="texstudio.cpp" line="-1601"/>
         <source>Expand</source>
         <translation>展开</translation>
     </message>
@@ -9725,7 +9725,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>格式</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8504"/>
+        <location filename="texstudio.cpp" line="-8504"/>
         <source>Remove Placeholders</source>
         <translation>删除占位符</translation>
     </message>
@@ -10151,12 +10151,12 @@ However, you are using a version of TeXstudio that was compiled without the inte
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+3"/>
-        <location filename="texmaker.cpp" line="-538"/>
+        <location filename="texstudio.cpp" line="-538"/>
         <source>Central</source>
         <translation>居中</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+449"/>
+        <location filename="texstudio.cpp" line="+449"/>
         <source>Lock &amp;PDF</source>
         <translation>锁定 &amp;PDF</translation>
     </message>
@@ -10736,7 +10736,7 @@ You have to save a document before you can compile it.</source>
         <translation>不再显示警告。</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-560"/>
+        <location filename="texstudio.cpp" line="-560"/>
         <source>PDF files</source>
         <translation>PDF 文件</translation>
     </message>

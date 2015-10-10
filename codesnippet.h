@@ -5,7 +5,7 @@
 
 class QDocumentCursor;
 class QEditor;
-class Texmaker;
+class Texstudio;
 
 enum CompletionType { CT_COMMANDS,CT_NORMALTEXT,CT_CITATIONS,CT_CITATIONCOMMANDS,CT_LABELS};
 

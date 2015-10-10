@@ -4134,7 +4134,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="-60"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation type="unfinished"></translation>
@@ -4235,7 +4235,7 @@ Invalid \caption command.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8445,13 +8445,13 @@ If not, they will not be available via the Make Template dialog.</source>
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
         <source>Normal Mode</source>
         <translation type="obsolete">Tryb zwyczajny</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6952"/>
+        <location filename="texstudio.cpp" line="-6952"/>
         <location line="+5251"/>
         <source>Ready</source>
         <translation>Gotowy</translation>
@@ -9226,7 +9226,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation type="obsolete">bez nazwy</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-5466"/>
+        <location filename="texstudio.cpp" line="-5466"/>
         <location line="+1647"/>
         <location line="+1823"/>
         <location line="+487"/>
@@ -9280,7 +9280,7 @@ If not, they will not be available via the Make Template dialog.</source>
         <translation>Edytuj</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-811"/>
+        <location filename="texstudio.cpp" line="-811"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>Usuń</translation>
@@ -9603,7 +9603,7 @@ Do you want to allow and run the new, overriding command?
         <translation>Tabela</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-2594"/>
+        <location filename="texstudio.cpp" line="-2594"/>
         <source>Insert Unicode Character...</source>
         <translation>Wstaw znak Unicode...</translation>
     </message>
@@ -9613,7 +9613,7 @@ Do you want to allow and run the new, overriding command?
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texmaker.cpp" line="-562"/>
+        <location filename="texstudio.cpp" line="-562"/>
         <source>Central</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9630,7 +9630,7 @@ Do you want to allow and run the new, overriding command?
         <translation type="obsolete">&amp;Znajdź poprzedni</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+675"/>
+        <location filename="texstudio.cpp" line="+675"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>Sk&amp;onwertuj źródła do HTML...</translation>
     </message>
@@ -9941,7 +9941,7 @@ However, you are using a version of TeXstudio that was compiled without the inte
         <translation>Diff</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8959"/>
+        <location filename="texstudio.cpp" line="-8959"/>
         <source>Sweave files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -10119,7 +10119,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation>Zwykły tekst</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8874"/>
+        <location filename="texstudio.cpp" line="-8874"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Zakładki</translation>
@@ -10181,7 +10181,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="obsolete">Przejdź do dopasowania</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-117"/>
+        <location filename="texstudio.cpp" line="-117"/>
         <source>Align Columns</source>
         <translation>Wyrównaj kolumny</translation>
     </message>
@@ -10243,7 +10243,7 @@ Press &quot;Cancel&quot;to do nothing.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+644"/>
+        <location filename="texstudio.cpp" line="+644"/>
         <location line="+89"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -10298,7 +10298,7 @@ Do you want to keep the program running? This may cause data corruption.</source
 Czy chcesz kontynuować uruchomienie? Może to spowodować korupcję danych.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+11"/>
+        <location filename="texstudio.cpp" line="+11"/>
         <source>Highlighting</source>
         <translation>Podświetlanie</translation>
     </message>
@@ -10387,7 +10387,7 @@ wstawiono dokument w %1</translation>
         <translation type="obsolete">&amp;Makra</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+4498"/>
+        <location filename="texstudio.cpp" line="+4498"/>
         <source>Yes, try to recover</source>
         <translation type="unfinished"></translation>
     </message>

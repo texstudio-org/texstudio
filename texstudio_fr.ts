@@ -5512,7 +5512,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <location line="-60"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Aller à la définition</translation>
@@ -5614,7 +5614,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Ouvrir la bibliographie</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation>Ouvrir le document</translation>
     </message>
@@ -10253,13 +10253,13 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
         <source>Normal Mode</source>
         <translation type="obsolete">Mode normal</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6952"/>
+        <location filename="texstudio.cpp" line="-6952"/>
         <location line="+5251"/>
         <source>Ready</source>
         <translation>Prêt</translation>
@@ -11012,7 +11012,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Format</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-5856"/>
+        <location filename="texstudio.cpp" line="-5856"/>
         <source>Go to bookmark</source>
         <oldsource>Click to jump to the bookmark</oldsource>
         <translation>Atteindre le signet</translation>
@@ -11076,7 +11076,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Modifier</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-811"/>
+        <location filename="texstudio.cpp" line="-811"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
@@ -11416,7 +11416,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Tableau</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-2594"/>
+        <location filename="texstudio.cpp" line="-2594"/>
         <source>Insert Unicode Character...</source>
         <translation>Insérer un caractère unicode...</translation>
     </message>
@@ -11426,7 +11426,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texmaker.cpp" line="-562"/>
+        <location filename="texstudio.cpp" line="-562"/>
         <source>Central</source>
         <translation>Central</translation>
     </message>
@@ -11443,7 +11443,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">Trouver le &amp;précédent</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+675"/>
+        <location filename="texstudio.cpp" line="+675"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>C&amp;onvertir le fichier source en html...</translation>
     </message>
@@ -11763,7 +11763,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation>Différences</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8959"/>
+        <location filename="texstudio.cpp" line="-8959"/>
         <source>Sweave files</source>
         <translation>Fichiers sweave</translation>
     </message>
@@ -11950,7 +11950,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <translation>Texte ordinaire</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-8874"/>
+        <location filename="texstudio.cpp" line="-8874"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Signets</translation>
@@ -12014,7 +12014,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <translation type="obsolete">Atteindre le délimiteur apparié</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-117"/>
+        <location filename="texstudio.cpp" line="-117"/>
         <source>Align Columns</source>
         <translation>Aligner les colonnes</translation>
     </message>
@@ -12102,7 +12102,7 @@ Faites-vous confiance à ce document ?</translation>
         <translation type="obsolete">Oui, autoriser tous les documents à utiliser la commande de remplacement</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+644"/>
+        <location filename="texstudio.cpp" line="+644"/>
         <location line="+89"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -12176,7 +12176,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation type="obsolete">Oui, continuer la boucle.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+11"/>
+        <location filename="texstudio.cpp" line="+11"/>
         <source>Highlighting</source>
         <translation>Surlignement</translation>
     </message>
@@ -12264,7 +12264,7 @@ included document in %1</source>
         <translation type="obsolete">Ma&amp;cros</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+4498"/>
+        <location filename="texstudio.cpp" line="+4498"/>
         <source>Yes, try to recover</source>
         <translation>Oui, tenter de recouvrer</translation>
     </message>
