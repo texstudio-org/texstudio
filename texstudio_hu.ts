@@ -4115,7 +4115,7 @@ Invalid \caption command.</source>
     </message>
     <message>
         <location line="-60"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Ugrás a Definícióra</translation>
@@ -4230,7 +4230,7 @@ Invalid \caption command.</source>
         <translation>Képek</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation>Dokumentum megnyitása</translation>
     </message>
@@ -8382,13 +8382,13 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
         <source>Normal Mode</source>
         <translation type="obsolete">Normál mód</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-6952"/>
+        <location filename="texstudio.cpp" line="-6952"/>
         <location line="+5251"/>
         <source>Ready</source>
         <translation>Kész</translation>
@@ -9055,7 +9055,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
     </message>
     <message>
         <location line="+2"/>
-        <location filename="texmaker.cpp" line="-7003"/>
+        <location filename="texstudio.cpp" line="-7003"/>
         <source>Central</source>
         <translation>Központi</translation>
     </message>
@@ -9064,7 +9064,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation type="obsolete">A könyvjelzőre ugráshoz kattintson</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+1537"/>
+        <location filename="texstudio.cpp" line="+1537"/>
         <location line="+1647"/>
         <location line="+1823"/>
         <location line="+487"/>
@@ -9094,7 +9094,7 @@ Ha nem, azok a sablonok nem lesznek elérhetőek a Sablon készítése dialógus
         <translation>Szerkesztés</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-811"/>
+        <location filename="texstudio.cpp" line="-811"/>
         <location line="+49"/>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
@@ -9556,7 +9556,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Különbség</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-9049"/>
+        <location filename="texstudio.cpp" line="-9049"/>
         <source>Sweave files</source>
         <translation>Sweave fájlok</translation>
     </message>
@@ -9621,7 +9621,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Egyszerű szöveg</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+175"/>
+        <location filename="texstudio.cpp" line="+175"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Könyvjelzők</translation>
@@ -9647,7 +9647,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>Ne figyelmeztessen újra.</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-117"/>
+        <location filename="texstudio.cpp" line="-117"/>
         <source>Align Columns</source>
         <translation>Oszlopok elrendezése</translation>
     </message>
@@ -9689,7 +9689,7 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
         <translation>TXS teszteredmények</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+644"/>
+        <location filename="texstudio.cpp" line="+644"/>
         <location line="+89"/>
         <location line="+6"/>
         <source>TeXstudio Emergency</source>
@@ -9756,7 +9756,7 @@ Biztosan mégis futtani akarja? Adatok veszhetnek el.</translation>
         <translation>TeX dtx fájl</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-213"/>
+        <location filename="texstudio.cpp" line="-213"/>
         <source>&amp;Index</source>
         <translation>&amp;Index</translation>
     </message>
@@ -9826,7 +9826,7 @@ included document in %1</source>
         <translation>Makrók &amp;szerkesztése...</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+4498"/>
+        <location filename="texstudio.cpp" line="+4498"/>
         <source>Yes, try to recover</source>
         <translation>Igen, megkíséreltem a helyreállítást</translation>
     </message>

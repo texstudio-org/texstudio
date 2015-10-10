@@ -33,7 +33,7 @@ QVariant LatexLogModel::data(const QModelIndex &index, int role) const {
 		case LT_BADBOX:
 			return tr("bad box");
 		default:
-			return QVariant(); //return Texmaker::tr("unknown");
+			return QVariant(); //return Texstudio::tr("unknown");
 		}
 	case 2:
 		{

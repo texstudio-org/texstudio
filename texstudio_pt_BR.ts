@@ -5131,7 +5131,7 @@ O assistente não suporta comandos</translation>
     </message>
     <message>
         <location line="-13"/>
-        <location filename="texmaker.cpp" line="+7216"/>
+        <location filename="texstudio.cpp" line="+7216"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Ir para Definição</translation>
@@ -5312,7 +5312,7 @@ O assistente não suporta comandos</translation>
         <translation type="obsolete">citação inexistente!</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="-1"/>
+        <location filename="texstudio.cpp" line="-1"/>
         <source>Open Document</source>
         <translation>Abrir Documento</translation>
     </message>
@@ -9805,7 +9805,7 @@ falhou.</translation>
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
         <source>Binary</source>
         <comment>Format name of language definition file binary.qnfa</comment>
@@ -9858,7 +9858,7 @@ falhou.</translation>
     </message>
     <message>
         <location line="+1"/>
-        <location filename="texmaker.cpp" line="-7020"/>
+        <location filename="texstudio.cpp" line="-7020"/>
         <source>Central</source>
         <translation>Central</translation>
     </message>
@@ -9941,7 +9941,7 @@ falhou.</translation>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="texmaker.cpp" line="+4792"/>
+        <location filename="texstudio.cpp" line="+4792"/>
         <source>Edit User &amp;Tags</source>
         <translation>E&amp;ditar Etiquetas do Usuário</translation>
     </message>

@@ -7,7 +7,7 @@
 
 #include "qeditor.h"
 class BuildManager;
-class Texmaker;
+class Texstudio;
 class ScriptObject;
 class LatexEditorView;
 class Macro;
@@ -22,7 +22,7 @@ public:
 	void setEditorView(LatexEditorView* edView);
 
 	static BuildManager* buildManager;
-	static Texmaker* app;
+	static Texstudio* app;
 	
 	QStringList triggerMatches;
 	int triggerId;

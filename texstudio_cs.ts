@@ -8032,7 +8032,7 @@ z TeXstudia.</translation>
     </message>
 </context>
 <context>
-    <name>Texmaker</name>
+    <name>Texstudio</name>
     <message>
         <source>Structure</source>
         <translation>Stavba</translation>
