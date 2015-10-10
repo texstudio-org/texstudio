@@ -24,8 +24,8 @@ public:
 	Ui::ArrayDialog ui;
 
 protected slots:
-	void NewRows(int num);
-	void NewColumns(int num);
+	void newRows(int num);
+	void newColumns(int num);
 };
 
 

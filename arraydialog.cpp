@@ -22,11 +22,11 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 
 	ui.spinBoxRows->setValue(2);
 	ui.spinBoxRows->setRange(1,99);
-	connect(ui.spinBoxRows, SIGNAL(valueChanged(int)),this, SLOT(NewRows(int)));
+	connect(ui.spinBoxRows, SIGNAL(valueChanged(int)),this, SLOT(newRows(int)));
 
 	ui.spinBoxColumns->setValue(2);
 	ui.spinBoxColumns->setRange(1,99);
-	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)),this, SLOT(NewColumns(int)));
+	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)),this, SLOT(newColumns(int)));
 
 	ui.comboAlignment->insertItem(0,tr("Center"));
 	ui.comboAlignment->insertItem(1,tr("Left"));
@@ -43,10 +43,10 @@ ArrayDialog::ArrayDialog(QWidget *parent, const char *name)
 
 ArrayDialog::~ArrayDialog() {
 }
-void ArrayDialog::NewRows(int num) {
+void ArrayDialog::newRows(int num) {
 	ui.tableWidget->setRowCount(num);
 }
-void ArrayDialog::NewColumns(int num) {
+void ArrayDialog::newColumns(int num) {
 	ui.tableWidget->setColumnCount(num);
 }
 

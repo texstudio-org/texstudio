@@ -235,27 +235,27 @@ QIcon getRealIcon(const QString& icon){
 }
 
 QIcon getRealIconCached(const QString& icon){
-    if(IconCache.contains(icon)){
-        return *IconCache[icon];
+    if(iconCache.contains(icon)){
+        return *iconCache[icon];
     }
     if (icon.isEmpty()) return QIcon();
 
     if (icon.startsWith(":/")){
             QIcon *icn=new QIcon(icon);
-            IconCache.insert(icon,icn);
+            iconCache.insert(icon,icn);
             return *icn;
     }
 #if QT_VERSION >= 0x040600
     if (useSystemTheme && QIcon::hasThemeIcon(icon)){
         QIcon *icn=new QIcon(QIcon::fromTheme(icon));
-        IconCache.insert(icon,icn);
+        iconCache.insert(icon,icn);
         return *icn;
 }
 
 #endif
     //return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
     QIcon *icn=new QIcon(getRealIconFile(icon));
-    IconCache.insert(icon,icn);
+    iconCache.insert(icon,icn);
     return *icn;
 }
 
