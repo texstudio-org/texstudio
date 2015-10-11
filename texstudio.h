@@ -69,7 +69,8 @@ class LatexReference;
 
 Q_DECLARE_METATYPE(QSet<QString>)
 
-class Texstudio : public QMainWindow {
+class Texstudio : public QMainWindow
+{
 	Q_OBJECT
 
 public:
@@ -228,9 +229,7 @@ protected slots:
 	void fileSave(const bool saveSilently = false);
 	void fileSaveAll();
 	void fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile);
-	void fileSaveAs(const QString &fileName = "") {
-		fileSaveAs(fileName, false);
-	}
+	void fileSaveAs(const QString &fileName = "") { fileSaveAs(fileName, false); }
 private slots:
 	void fileSaveAs(const QString &fileName, const bool saveSilently);
 	void fileNewInternal(QString fileName = "");
