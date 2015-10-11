@@ -14,14 +14,15 @@
 
 #include "ui_filechooser.h"
 
-class FileChooser : public QDialog {
+class FileChooser : public QDialog
+{
 	Q_OBJECT
 
 public:
-	FileChooser(QWidget *parent = 0, QString name="");
+	FileChooser(QWidget *parent = 0, QString name = "");
 	Ui::FileChooser ui;
 	Q_INVOKABLE QString fileName() const;
-	QString filter,dir;
+	QString filter, dir;
 
 public slots:
 	void setDir(const QString &di);

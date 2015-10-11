@@ -15,15 +15,18 @@
 
 int SpellerUtility::spellcheckErrorFormat = -1;
 
-SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(0), spellCodec(0) {
+SpellerUtility::SpellerUtility(QString name): mName(name), currentDic(""), pChecker(0), spellCodec(0)
+{
 	checkCache.reserve(1020);
 }
-bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
-	if (dic==currentDic) return true;
+
+bool SpellerUtility::loadDictionary(QString dic, QString ignoreFilePrefix)
+{
+	if (dic == currentDic) return true;
 	else unload();
-	QString base = dic.left(dic.length()-4);
-	QString dicFile = base+".dic";
-	QString affFile = base+".aff";
+	QString base = dic.left(dic.length() - 4);
+	QString dicFile = base + ".dic";
+	QString affFile = base + ".aff";
 	if (!QFileInfo(dicFile).exists() || !QFileInfo(affFile).exists()) {
 		if (!QFileInfo(affFile).exists())
 			mLastError = tr("Missing .aff file:\n%1").arg(affFile);
@@ -32,17 +35,17 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 		emit dictionaryLoaded(); //remove spelling error marks from errors with previous dictionary (because these marks could lead to crashes if not removed)
 		return false;
 	}
-	currentDic=dic;
-	pChecker = new Hunspell(affFile.toLocal8Bit(),dicFile.toLocal8Bit());
+	currentDic = dic;
+	pChecker = new Hunspell(affFile.toLocal8Bit(), dicFile.toLocal8Bit());
 	if (!pChecker) {
-		currentDic="";
-		ignoreListFileName="";
+		currentDic = "";
+		ignoreListFileName = "";
 		mLastError = "Creation of Hunspell object failed.";
-		REQUIRE_RET(false,false);
+		REQUIRE_RET(false, false);
 	}
-	spell_encoding=QString(pChecker->get_dic_encoding());
+	spell_encoding = QString(pChecker->get_dic_encoding());
 	spellCodec = QTextCodec::codecForName(spell_encoding.toLatin1());
-	if (spellCodec==0) {
+	if (spellCodec == 0) {
 		mLastError = "Could not determine encoding.";
 		unload();
 		emit dictionaryLoaded();
@@ -53,11 +56,11 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 	ignoredWords.clear();
 	ignoredWordList.clear();
 	ignoredWordsModel.setStringList(QStringList());
-	ignoreListFileName=base+".ign";
+	ignoreListFileName = base + ".ign";
 	if (!isFileRealWritable(ignoreListFileName))
-		ignoreListFileName=ignoreFilePrefix+QFileInfo(dic).baseName()+".ign";
+		ignoreListFileName = ignoreFilePrefix + QFileInfo(dic).baseName() + ".ign";
 	if (!isFileRealWritable(ignoreListFileName)) {
-		ignoreListFileName="";
+		ignoreListFileName = "";
 		mLastError.clear();
 		emit dictionaryLoaded();
 		return true;
@@ -68,62 +71,70 @@ bool SpellerUtility::loadDictionary(QString dic,QString ignoreFilePrefix) {
 		emit dictionaryLoaded();
 		return true;
 	}
-	ignoredWordList=QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n",QString::SkipEmptyParts);
+	ignoredWordList = QTextCodec::codecForName("UTF-8")->toUnicode(f.readAll()).split("\n", QString::SkipEmptyParts);
 	// add words in user dic
 	QByteArray encodedString;
-	QString spell_encoding=QString(pChecker->get_dic_encoding());
+	QString spell_encoding = QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
-	foreach(const QString &elem,ignoredWordList){
+	foreach (const QString &elem, ignoredWordList) {
 		encodedString = codec->fromUnicode(elem);
 		pChecker->add(encodedString.data());
 	}
-	qSort(ignoredWordList.begin(),ignoredWordList.end(),localeAwareLessThan);
+	qSort(ignoredWordList.begin(), ignoredWordList.end(), localeAwareLessThan);
 	while (!ignoredWordList.empty() && ignoredWordList.first().startsWith("%")) ignoredWordList.removeFirst();
 	ignoredWordsModel.setStringList(ignoredWordList);
-	ignoredWords=ignoredWordList.toSet();
+	ignoredWords = ignoredWordList.toSet();
 	mLastError.clear();
 	emit dictionaryLoaded();
 	return true;
 
 }
-void SpellerUtility::saveIgnoreList() {
-	if (ignoreListFileName!="" && ignoredWords.count()>0) {
+
+void SpellerUtility::saveIgnoreList()
+{
+	if (ignoreListFileName != "" && ignoredWords.count() > 0) {
 		QFile f(ignoreListFileName);
 		if (f.open(QFile::WriteOnly)) {
-			QTextCodec* utf8=QTextCodec::codecForName("UTF-8");
+			QTextCodec *utf8 = QTextCodec::codecForName("UTF-8");
 			f.write(utf8->fromUnicode("%Ignored-Words;encoding:utf-8;version:" TEXSTUDIO ":1.8\n"));
-			foreach(const QString str, ignoredWordList)
+			foreach (const QString str, ignoredWordList)
 				if (!str.startsWith("%"))
-					f.write(utf8->fromUnicode(str+"\n"));
+					f.write(utf8->fromUnicode(str + "\n"));
 		}
 	}
 }
-void SpellerUtility::unload() {
+
+void SpellerUtility::unload()
+{
 	saveIgnoreList();
-	currentDic="";
-	ignoreListFileName="";
-	if (pChecker!=0) {
+	currentDic = "";
+	ignoreListFileName = "";
+	if (pChecker != 0) {
 		delete pChecker;
-		pChecker=0;
+		pChecker = 0;
 	}
 }
-void SpellerUtility::addToIgnoreList(QString toIgnore) {
-	QString word=latexToPlainWord(toIgnore);
+
+void SpellerUtility::addToIgnoreList(QString toIgnore)
+{
+	QString word = latexToPlainWord(toIgnore);
 	QByteArray encodedString;
-	QString spell_encoding=QString(pChecker->get_dic_encoding());
+	QString spell_encoding = QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	encodedString = codec->fromUnicode(word);
 	pChecker->add(encodedString.data());
 	ignoredWords.insert(word);
 	if (!ignoredWordList.contains(word))
-		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(),ignoredWordList.end(), word, localeAwareLessThan), word);
+		ignoredWordList.insert(qLowerBound(ignoredWordList.begin(), ignoredWordList.end(), word, localeAwareLessThan), word);
 	ignoredWordsModel.setStringList(ignoredWordList);
 	saveIgnoreList();
 	emit ignoredWordAdded(word);
 }
-void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
+
+void SpellerUtility::removeFromIgnoreList(QString toIgnore)
+{
 	QByteArray encodedString;
-	QString spell_encoding=QString(pChecker->get_dic_encoding());
+	QString spell_encoding = QString(pChecker->get_dic_encoding());
 	QTextCodec *codec = QTextCodec::codecForName(spell_encoding.toLatin1());
 	encodedString = codec->fromUnicode(toIgnore);
 	pChecker->remove(encodedString.data());
@@ -132,36 +143,43 @@ void SpellerUtility::removeFromIgnoreList(QString toIgnore) {
 	ignoredWordsModel.setStringList(ignoredWordList);
 	saveIgnoreList();
 }
-QStringListModel* SpellerUtility::ignoreListModel() {
+
+QStringListModel *SpellerUtility::ignoreListModel()
+{
 	return &ignoredWordsModel;
 }
 
-SpellerUtility::~SpellerUtility() {
+SpellerUtility::~SpellerUtility()
+{
 	emit aboutToDelete();
 	unload();
 }
-bool SpellerUtility::check(QString word) {
-	if (currentDic=="" || pChecker==0) return true; //no speller => everything is correct
-	if (word.length()<=1) return true;
+
+bool SpellerUtility::check(QString word)
+{
+	if (currentDic == "" || pChecker == 0) return true; //no speller => everything is correct
+	if (word.length() <= 1) return true;
 	if (ignoredWords.contains(word)) return true;
-	if (word.endsWith('.')&&ignoredWords.contains(word.left(word.length()-1))) return true;
+	if (word.endsWith('.') && ignoredWords.contains(word.left(word.length() - 1))) return true;
 	if (checkCache.contains(word)) return checkCache.value(word);
 	QByteArray encodedString = spellCodec->fromUnicode(word);
-	bool result=pChecker->spell(encodedString.data());
-	while (checkCacheInsertion.size()>1000) checkCacheInsertion.removeFirst();
-	checkCache.insert(word,result);
+	bool result = pChecker->spell(encodedString.data());
+	while (checkCacheInsertion.size() > 1000) checkCacheInsertion.removeFirst();
+	checkCache.insert(word, result);
 	checkCacheInsertion.append(word);
 	return result;
 }
-QStringList SpellerUtility::suggest(QString word) {
+
+QStringList SpellerUtility::suggest(QString word)
+{
 	Q_ASSERT(pChecker);
-	if (currentDic=="" || pChecker==0) return QStringList(); //no speller => everything is correct
+	if (currentDic == "" || pChecker == 0) return QStringList(); //no speller => everything is correct
 	QByteArray encodedString = spellCodec->fromUnicode(word);
-	char ** wlst;
-	int ns = pChecker->suggest(&wlst,encodedString.data());
+	char **wlst;
+	int ns = pChecker->suggest(&wlst, encodedString.data());
 	QStringList suggestion;
 	if (ns > 0) {
-		for (int i=0; i < ns; i++) {
+		for (int i = 0; i < ns; i++) {
 			suggestion << spellCodec->toUnicode(wlst[i]);
 			free(wlst[i]);
 		}
@@ -171,13 +189,14 @@ QStringList SpellerUtility::suggest(QString word) {
 }
 
 
-
-SpellerManager::SpellerManager() {
+SpellerManager::SpellerManager()
+{
 	emptySpeller = new SpellerUtility("<none>");
 	mDefaultSpellerName = emptySpeller->name();
 }
 
-SpellerManager::~SpellerManager() {
+SpellerManager::~SpellerManager()
+{
 	unloadAll();
 	if (emptySpeller) {
 		delete emptySpeller;
@@ -185,7 +204,8 @@ SpellerManager::~SpellerManager() {
 	}
 }
 
-bool SpellerManager::isOxtDictionary(const QString &fileName) {
+bool SpellerManager::isOxtDictionary(const QString &fileName)
+{
 	QFileInfo fi(fileName);
 	if (!(QStringList() << "oxt" << "zip").contains(fi.suffix())) return false;
 	QStringList files = JlCompress::getFileList(fileName);
@@ -200,11 +220,12 @@ bool SpellerManager::isOxtDictionary(const QString &fileName) {
 		}
 	}
 	if (affFile.length() <= 4 || dicFile.length() <= 4) return false;
-	if (affFile.left(affFile.length()-4) != affFile.left(affFile.length()-4)) return false; // different names
+	if (affFile.left(affFile.length() - 4) != affFile.left(affFile.length() - 4)) return false; // different names
 	return true;
 }
 
-bool SpellerManager::importDictionary(const QString &fileName, const QString &targetDir) {
+bool SpellerManager::importDictionary(const QString &fileName, const QString &targetDir)
+{
 	if (!isOxtDictionary(fileName)) {
 		bool continueAnyway = txsConfirmWarning(tr("The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?"));
 		if (!continueAnyway) {
@@ -219,11 +240,13 @@ bool SpellerManager::importDictionary(const QString &fileName, const QString &ta
 	return !extractedFiles.isEmpty();
 }
 
-void SpellerManager::setIgnoreFilePrefix(const QString &prefix) {
+void SpellerManager::setIgnoreFilePrefix(const QString &prefix)
+{
 	ignoreFilePrefix = prefix;
 }
 
-void SpellerManager::setDictPaths(const QStringList &dictPaths) {
+void SpellerManager::setDictPaths(const QStringList &dictPaths)
+{
 	if (dictPaths == m_dictPaths) return;
 	m_dictPaths = dictPaths;
 
@@ -244,7 +267,8 @@ void SpellerManager::setDictPaths(const QStringList &dictPaths) {
 	emit dictPathChanged();
 }
 
-void SpellerManager::scanForDictionaries(const QString & path) {
+void SpellerManager::scanForDictionaries(const QString &path)
+{
 	if (path.isEmpty()) return;
 	QDirIterator iterator(path, QDirIterator::Subdirectories);
 	while (iterator.hasNext()) {
@@ -261,20 +285,23 @@ void SpellerManager::scanForDictionaries(const QString & path) {
 	}
 }
 
-QStringList SpellerManager::availableDicts() {
+QStringList SpellerManager::availableDicts()
+{
 	if (dictFiles.keys().isEmpty())
 		return QStringList() << emptySpeller->name();
 	return QStringList(dictFiles.keys());
 }
 
-bool SpellerManager::hasSpeller(const QString &name) {
-	if (name==emptySpeller->name()) return true;
+bool SpellerManager::hasSpeller(const QString &name)
+{
+	if (name == emptySpeller->name()) return true;
 	return dictFiles.contains(name);
 }
 
-bool match(QString &guess, const QList<QString> &keys) {
-	for (int i=0;i<keys.length();i++) {
-		if (0==QString::compare(keys[i], guess, Qt::CaseInsensitive)) {
+bool match(QString &guess, const QList<QString> &keys)
+{
+	for (int i = 0; i < keys.length(); i++) {
+		if (0 == QString::compare(keys[i], guess, Qt::CaseInsensitive)) {
 			guess = keys[i];
 			return true;
 		}
@@ -282,7 +309,8 @@ bool match(QString &guess, const QList<QString> &keys) {
 	return false;
 }
 
-bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
+bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName)
+{
 	if (name.length() < 2) return false;
 
 	QList<QString> keys = dictFiles.keys();
@@ -290,7 +318,7 @@ bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
 	// case insensitive match
 	bestName = name;
 	if (match(bestName, keys)) return true;
-	
+
 	// match also with "_" -> "-" replacement
 	bestName = name;
 	if (bestName.contains('_')) {
@@ -309,7 +337,7 @@ bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
 	bestName = name;
 	QString alternative = name;
 	alternative.replace("_", "-");
-	for (int i=0;i<keys.length();i++)
+	for (int i = 0; i < keys.length(); i++)
 		if (keys[i].startsWith(bestName, Qt::CaseInsensitive) || keys[i].startsWith(alternative)) {
 			bestName = keys[i];
 			return true;
@@ -322,7 +350,8 @@ bool SpellerManager::hasSimilarSpeller(const QString &name, QString &bestName){
     the existing SpellerUtility is returned. Possible names are the dictionary file names without ".dic"
     ending and "<default>" for the default speller
 */
-SpellerUtility *SpellerManager::getSpeller(QString name) {
+SpellerUtility *SpellerManager::getSpeller(QString name)
+{
 	if (name == "<default>") name = mDefaultSpellerName;
 	if (!dictFiles.contains(name)) return emptySpeller;
 
@@ -339,11 +368,13 @@ SpellerUtility *SpellerManager::getSpeller(QString name) {
 	return su;
 }
 
-QString SpellerManager::defaultSpellerName() {
+QString SpellerManager::defaultSpellerName()
+{
 	return mDefaultSpellerName;
 }
 
-bool SpellerManager::setDefaultSpeller(const QString &name) {
+bool SpellerManager::setDefaultSpeller(const QString &name)
+{
 	if (dictFiles.contains(name)) {
 		mDefaultSpellerName = name;
 		emit defaultSpellerChanged();
@@ -352,14 +383,16 @@ bool SpellerManager::setDefaultSpeller(const QString &name) {
 	return false;
 }
 
-void SpellerManager::unloadAll() {
-	foreach(SpellerUtility *su, dicts.values()) {
+void SpellerManager::unloadAll()
+{
+	foreach (SpellerUtility *su, dicts.values()) {
 		delete su;
 	}
 	dicts.clear();
 }
 
-QString SpellerManager::prettyName(const QString &name) {
+QString SpellerManager::prettyName(const QString &name)
+{
 	QLocale loc(name);
 	if (loc == QLocale::c()) {
 		return name;

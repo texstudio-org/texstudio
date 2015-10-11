@@ -11,7 +11,7 @@ class TexdocDialog;
 class TexdocDialog : public QDialog
 {
 	Q_OBJECT
-	
+
 public:
 	explicit TexdocDialog(QWidget *parent = 0);
 	void setPackageNames(const QStringList &packages);
@@ -25,7 +25,7 @@ private slots:
 	void searchTermChanged(const QString &text);
 	void delayedCheckDocAvailable(const QString &package);
 	void checkDockAvailable();
-	void updateDocAvailableInfo(const QString &package, bool available, QString customWarning=QString());
+	void updateDocAvailableInfo(const QString &package, bool available, QString customWarning = QString());
 
 private:
 	Ui::TexdocDialog *ui;

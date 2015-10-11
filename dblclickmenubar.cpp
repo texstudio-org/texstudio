@@ -7,7 +7,8 @@ DblClickMenuBar::DblClickMenuBar(QWidget *parent) :
 {
 }
 
-void DblClickMenuBar::mouseDoubleClickEvent(QMouseEvent *event) {
+void DblClickMenuBar::mouseDoubleClickEvent(QMouseEvent *event)
+{
 	if (!actionAt(event->pos())) {
 		emit doubleClicked();
 		return;

@@ -20,54 +20,60 @@
 #include <QApplication>
 #include <QDebug>
 
-XmlTagsListWidget::XmlTagsListWidget(QWidget *parent, QString file):QListWidget(parent){
-	mFile=file;
-	mLoaded=false;
+XmlTagsListWidget::XmlTagsListWidget(QWidget *parent, QString file): QListWidget(parent)
+{
+	mFile = file;
+	mLoaded = false;
 }
 
-void XmlTagsListWidget::populate(){
-    if(!mLoaded){
-	QFile tagsFile(mFile);
-	if (tagsFile.open(QFile::ReadOnly)){
-	    QDomDocument domDocument;
-	    if (domDocument.setContent(&tagsFile)){
-		QDomElement root = domDocument.documentElement();
-		if (root.tagName() == "texmakertags"){
-		    xmlSections=getTags(root);
-		    for (int i = 0; i < xmlSections.children.size(); ++i)
-			addListWidgetItems(xmlSections.children.at(i));
+void XmlTagsListWidget::populate()
+{
+	if (!mLoaded) {
+		QFile tagsFile(mFile);
+		if (tagsFile.open(QFile::ReadOnly)) {
+			QDomDocument domDocument;
+			if (domDocument.setContent(&tagsFile)) {
+				QDomElement root = domDocument.documentElement();
+				if (root.tagName() == "texmakertags") {
+					xmlSections = getTags(root);
+					for (int i = 0; i < xmlSections.children.size(); ++i)
+						addListWidgetItems(xmlSections.children.at(i));
+				}
+			}
 		}
-	    }
+		mLoaded = true;
 	}
-	mLoaded=true;
-    }
 }
 
-void XmlTagsListWidget::showEvent(QShowEvent *){
-    if(!mLoaded)
-	populate();
+void XmlTagsListWidget::showEvent(QShowEvent *)
+{
+	if (!mLoaded)
+		populate();
 }
 
-bool XmlTagsListWidget::isPopulated(){
-    return mLoaded;
+bool XmlTagsListWidget::isPopulated()
+{
+	return mLoaded;
 }
 
-QStringList XmlTagsListWidget::tagsTxtFromCategory(const QString & category){
+QStringList XmlTagsListWidget::tagsTxtFromCategory(const QString &category)
+{
 	foreach  (const xmlTagList &tags, xmlSections.children)
-		if (tags.id==category) {
+		if (tags.id == category) {
 			QStringList result;
-			foreach (const xmlTag& tag, tags.tags)
+			foreach (const xmlTag &tag, tags.tags)
 				result.append(tag.txt);
 			return result;
 		}
 	return QStringList();
 }
 
-QString tagsFromTagTxtRec(const xmlTagList& tagList, const QString& tagTxt){
-	foreach (const xmlTag& tag, tagList.tags)
+QString tagsFromTagTxtRec(const xmlTagList &tagList, const QString &tagTxt)
+{
+	foreach (const xmlTag &tag, tagList.tags)
 		if (tag.txt == tagTxt) return tag.tag;
 	QString result;
-	foreach (const xmlTagList& childTagList, tagList.children){
+	foreach (const xmlTagList &childTagList, tagList.children) {
 		result = tagsFromTagTxtRec(childTagList, tagTxt);
 		if (!result.isEmpty())
 			return result;
@@ -75,11 +81,13 @@ QString tagsFromTagTxtRec(const xmlTagList& tagList, const QString& tagTxt){
 	return result;
 }
 
-QString XmlTagsListWidget::tagsFromTagTxt(const QString& tagTxt){
+QString XmlTagsListWidget::tagsFromTagTxt(const QString &tagTxt)
+{
 	return tagsFromTagTxtRec(xmlSections, tagTxt);
 }
 
-xmlTagList XmlTagsListWidget::getTags(const QDomElement &element){
+xmlTagList XmlTagsListWidget::getTags(const QDomElement &element)
+{
 	xmlTag item;
 	xmlTagList tagList;
 	QList<xmlTag> tags;
@@ -87,26 +95,26 @@ xmlTagList XmlTagsListWidget::getTags(const QDomElement &element){
 	tagList.id = element.attribute("id");
 	QDomElement child = element.firstChildElement("item");
 	QString txt, code, type;
-	while (!child.isNull()){
+	while (!child.isNull()) {
 		code = child.attribute("tag");
 		code.replace("\\\\", "\\");
 		code.replace("&lt;", "<");
 		code.replace("&gt;", ">");
-		item.tag=code;
+		item.tag = code;
 		txt = child.attribute("txt");
-		if (txt!=""){
+		if (txt != "") {
 			txt.replace("\\\\", "\\");
 			txt.replace("&lt;", "<");
 			txt.replace("&gt;", ">");
-		} else txt=code;
-		item.txt=txt.remove(QRegExp("%[<n>|]?"));
-		item.type=child.attribute("type").toInt();
+		} else txt = code;
+		item.txt = txt.remove(QRegExp("%[<n>|]?"));
+		item.type = child.attribute("type").toInt();
 		tags << item;
 		child = child.nextSiblingElement("item");
 	}
-	tagList.tags=tags;
+	tagList.tags = tags;
 	QDomElement section = element.firstChildElement("section");
-	while (!section.isNull()){
+	while (!section.isNull()) {
 		tagList.children << getTags(section);
 		section = section.nextSiblingElement("section");
 	}
@@ -117,9 +125,9 @@ void XmlTagsListWidget::addListWidgetItems(const xmlTagList &tagList)
 {
 	QFont titleFont = qApp->font();
 	titleFont.setBold(true);
-	QFont optionFont=qApp->font();
+	QFont optionFont = qApp->font();
 	optionFont.setItalic(true);
-	QFont commandFont=qApp->font();
+	QFont commandFont = qApp->font();
 	//QColor titleBg(QApplication::style()->standardPalette().color(QPalette::Normal, QPalette::Highlight));
 	//QColor titleFg(QApplication::style()->standardPalette().color(QPalette::Normal, QPalette::HighlightedText));
 	QColor titleBg("#447BCD");
@@ -130,12 +138,12 @@ void XmlTagsListWidget::addListWidgetItems(const xmlTagList &tagList)
 	item->setBackgroundColor(titleBg);
 	item->setTextColor(titleFg);
 	item->setFont(titleFont);
-	for (int i = 0; i < tagList.tags.size(); ++i){
+	for (int i = 0; i < tagList.tags.size(); ++i) {
 		QListWidgetItem *item = new QListWidgetItem(this);
 		QString itemText = tagList.tags.at(i).txt;
 		item->setText(itemText);
-		item->setData(Qt::UserRole,tagList.tags.at(i).tag);
-		if (tagList.tags.at(i).type==0) item->setFont(commandFont); 
+		item->setData(Qt::UserRole, tagList.tags.at(i).tag);
+		if (tagList.tags.at(i).type == 0) item->setFont(commandFont);
 		else item->setFont(optionFont);
 	}
 	//TODO: use QListView, and CompletionItemDelegate from latexcompleter to highlight temporary code completion

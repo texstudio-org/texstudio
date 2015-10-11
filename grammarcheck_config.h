@@ -10,16 +10,16 @@ public:
 	int maxRepetitionDelta;
 	int maxRepetitionLongRangeDelta, maxRepetitionLongRangeMinWordLength;
 	bool badWordCheck;
-	
+
 	QString wordlistsDir;
-	
-	//LanguageTool	
+
+	//LanguageTool
 	QString languageToolURL;
 	bool languageToolAutorun;
 	QString languageToolPath, languageToolJavaPath;
 	QString languageToolIgnoredRules;
-	
-	QString specialIds1, specialIds2, specialIds3, specialIds4; 
+
+	QString specialIds1, specialIds2, specialIds3, specialIds4;
 };
 
 Q_DECLARE_METATYPE(GrammarCheckerConfig)

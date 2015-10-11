@@ -9,42 +9,41 @@
 
 class LatexStyleParser : public SafeThread
 {
-    Q_OBJECT
+	Q_OBJECT
+
 public:
-    explicit LatexStyleParser(QObject *parent = 0,QString baseDirName="",QString kpsecmd="");
-    void stop();
-    void addFile(QString filename);
-    void setAlias(QMultiHash<QString,QString> PackageAliases){
-        mPackageAliases=PackageAliases;
-    }
+	explicit LatexStyleParser(QObject *parent = 0, QString baseDirName = "", QString kpsecmd = "");
+	void stop();
+	void addFile(QString filename);
+	void setAlias(QMultiHash<QString, QString> PackageAliases) { mPackageAliases = PackageAliases; }
 
 protected:
-    void run();
+	void run();
 
-    QStringList readPackage(QString fn,QStringList& parsedPackages);
-    QStringList readPackageTexDef(QString fn);
-    QStringList readPackageTracing(QString fn);
-    QString kpsewhich(QString name, QString dirName="");
+	QStringList readPackage(QString fn, QStringList &parsedPackages);
+	QStringList readPackageTexDef(QString fn);
+	QStringList readPackageTracing(QString fn);
+	QString kpsewhich(QString name, QString dirName = "");
 
 signals:
-    void scanCompleted(QString package);
+	void scanCompleted(QString package);
 
 public slots:
 
 private:
-    QQueue<QString> mFiles;
-    QSemaphore mFilesAvailable;
-    QMutex mFilesLock;
+	QQueue<QString> mFiles;
+	QSemaphore mFilesAvailable;
+	QMutex mFilesLock;
 
-    bool stopped;
+	bool stopped;
 
-    QString baseDir;
-    QString kpseWhichCmd;
-    QString texdefDir;
+	QString baseDir;
+	QString kpseWhichCmd;
+	QString texdefDir;
 
-    bool texdefMode;
+	bool texdefMode;
 
-    QMultiHash<QString,QString> mPackageAliases;
+	QMultiHash<QString, QString> mPackageAliases;
 };
 
 #endif // LATEXSTYLEPARSER_H

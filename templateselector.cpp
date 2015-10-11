@@ -13,20 +13,23 @@
 #include "smallUsefulFunctions.h"
 
 const int TemplateSelector::TemplateHandleRole = Qt::UserRole;
-const int TemplateSelector::ResourceRole = Qt::UserRole+1;
+const int TemplateSelector::ResourceRole = Qt::UserRole + 1;
 
 
-void PreviewLabel::setScaledPixmap(const QPixmap &pm) {
+void PreviewLabel::setScaledPixmap(const QPixmap &pm)
+{
 	currentPixmap = pm;
 	setPixmapWithResizing(pm);
 }
 
-void PreviewLabel::resizeEvent(QResizeEvent *event) {
+void PreviewLabel::resizeEvent(QResizeEvent *event)
+{
 	Q_UNUSED(event);
 	setPixmapWithResizing(currentPixmap);
 }
 
-void PreviewLabel::setPixmapWithResizing(const QPixmap &pm) {
+void PreviewLabel::setPixmapWithResizing(const QPixmap &pm)
+{
 	if (pm.isNull()) {
 		setText(TemplateSelector::tr("No Preview"));
 		return;
@@ -43,7 +46,8 @@ void PreviewLabel::setPixmapWithResizing(const QPixmap &pm) {
 
 
 TemplateSelector::TemplateSelector(QString name, QWidget *parent)
-    : QDialog(parent),previewLabel(0) {
+	: QDialog(parent), previewLabel(0)
+{
 	setModal(true);
 	ui.setupUi(this);
 	setWindowTitle(name);
@@ -68,7 +72,7 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 
 	ui.templatesTree->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(ui.templatesTree, SIGNAL(customContextMenuRequested(QPoint)), SLOT(templatesTreeContextMenu(QPoint)));
-	connect(ui.templatesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), SLOT(showInfo(QTreeWidgetItem*,QTreeWidgetItem*)));
+	connect(ui.templatesTree, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), SLOT(showInfo(QTreeWidgetItem *, QTreeWidgetItem *)));
 
 	ui.lePath->setText(getUserDocumentFolder());
 
@@ -82,10 +86,11 @@ TemplateSelector::TemplateSelector(QString name, QWidget *parent)
 	ui.warningIcon->setToolTip(warnTooltip);
 	ui.warningText->setToolTip(warnTooltip);
 
-	showInfo(0,0);
+	showInfo(0, 0);
 }
 
-TemplateSelector::~TemplateSelector() {
+TemplateSelector::~TemplateSelector()
+{
 }
 
 void TemplateSelector::addResource(AbstractTemplateResource *res)
@@ -95,7 +100,7 @@ void TemplateSelector::addResource(AbstractTemplateResource *res)
 	QFont ft = topitem->font(0);
 	ft.setBold(true);
 	topitem->setFont(0, ft);
-	topitem->setData(0, ResourceRole, QVariant::fromValue<AbstractTemplateResource*>(res));
+	topitem->setData(0, ResourceRole, QVariant::fromValue<AbstractTemplateResource *>(res));
 	ui.templatesTree->addTopLevelItem(topitem);
 
 	foreach (TemplateHandle th, res->getTemplates()) {
@@ -106,40 +111,47 @@ void TemplateSelector::addResource(AbstractTemplateResource *res)
 	topitem->setExpanded(true);
 }
 
-TemplateHandle TemplateSelector::selectedTemplate() const {
+TemplateHandle TemplateSelector::selectedTemplate() const
+{
 	if (!ui.templatesTree->currentItem())
 		return TemplateHandle();
 
 	return ui.templatesTree->currentItem()->data(0, TemplateHandleRole).value<TemplateHandle>();
 }
 
-bool TemplateSelector::createInFolder() const {
+bool TemplateSelector::createInFolder() const
+{
 	return ui.rbCreateInFolder->isChecked();
 }
 
-QString TemplateSelector::creationFolder() const {
+QString TemplateSelector::creationFolder() const
+{
 	return ui.lePath->text();
 }
 
-void TemplateSelector::on_templatesTree_doubleClicked(const QModelIndex& /*item*/) {
+void TemplateSelector::on_templatesTree_doubleClicked(const QModelIndex & /*item*/)
+{
 	QPushButton *pbOk = ui.buttonBox->button(QDialogButtonBox::Ok);
 	Q_ASSERT(pbOk);
 	if (pbOk->isEnabled())
 		accept();
 }
 
-void TemplateSelector::hideFolderSelection(){
-    ui.rbCreateInFolder->hide();
-    ui.rbCreateInEditor->hide();
-    ui.lePath->hide();
-    ui.btPath->hide();
+void TemplateSelector::hideFolderSelection()
+{
+	ui.rbCreateInFolder->hide();
+	ui.rbCreateInEditor->hide();
+	ui.lePath->hide();
+	ui.btPath->hide();
 }
 
-void TemplateSelector::on_btPath_clicked() {
+void TemplateSelector::on_btPath_clicked()
+{
 	browse(ui.lePath, tr("Select Target Folder"), "/");
 }
 
-void TemplateSelector::checkTargetPath() {
+void TemplateSelector::checkTargetPath()
+{
 	bool showWarning = false;
 	if (ui.rbCreateInFolder->isChecked()) {
 		QDir dir(ui.lePath->text());
@@ -151,7 +163,8 @@ void TemplateSelector::checkTargetPath() {
 	ui.warningText->setVisible(showWarning);
 }
 
-void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *previousItem) {
+void TemplateSelector::showInfo(QTreeWidgetItem *currentItem, QTreeWidgetItem *previousItem)
+{
 	Q_UNUSED(previousItem);
 
 	QPushButton *pbOk = ui.buttonBox->button(QDialogButtonBox::Ok);
@@ -165,14 +178,14 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *pr
 
 		pbOk->setEnabled(true);
 		ui.lbName->setText(orDefault(th.name(), tr("<No Name>")));
-		ui.lbDescription->setText(orDefault(th.description(),"<No Description>"));
+		ui.lbDescription->setText(orDefault(th.description(), "<No Description>"));
 		ui.lbAuthor->setText(orDefault(th.author(), "<Unknown Author>"));
-		ui.lbDate->setText(tr("Date")+": "+th.date().toString(Qt::ISODate));
-		ui.lbVersion->setText(tr("Version")+": "+th.version());
-		ui.lbLicense->setText(tr("License")+": "+th.license());
+		ui.lbDate->setText(tr("Date") + ": " + th.date().toString(Qt::ISODate));
+		ui.lbVersion->setText(tr("Version") + ": " + th.version());
+		ui.lbLicense->setText(tr("License") + ": " + th.license());
 		ui.lbAuthorTag->setVisible(true);
-        if(previewLabel)
-            previewLabel->setScaledPixmap(QPixmap(th.previewImage()));
+		if (previewLabel)
+			previewLabel->setScaledPixmap(QPixmap(th.previewImage()));
 
 		if (th.isMultifile()) {
 			ui.rbCreateInFolder->setChecked(true);
@@ -191,12 +204,13 @@ void TemplateSelector::showInfo(QTreeWidgetItem *currentItem,QTreeWidgetItem *pr
 		ui.lbVersion->setText("");
 		ui.lbLicense->setText("");
 		ui.lbAuthorTag->setVisible(false);
-        if(previewLabel)
-            previewLabel->setScaledPixmap(QPixmap());
+		if (previewLabel)
+			previewLabel->setScaledPixmap(QPixmap());
 	}
 }
 
-void TemplateSelector::templatesTreeContextMenu(QPoint point) {
+void TemplateSelector::templatesTreeContextMenu(QPoint point)
+{
 	TemplateHandle th = selectedTemplate();
 	if (!th.isValid()) return;
 
@@ -204,19 +218,20 @@ void TemplateSelector::templatesTreeContextMenu(QPoint point) {
 	if (th.isEditable()) {
 		menu.addAction(tr("Edit Template"), this, SLOT(editTemplate()));
 		menu.addAction(tr("Edit Template Info"), this, SLOT(editTemplateInfo()));
-		menu.addAction(tr("Remove"),this , SLOT(removeTemplate()));
+		menu.addAction(tr("Remove"), this , SLOT(removeTemplate()));
 		menu.addSeparator();
 	}
 	menu.addAction(tr("Open Template Location"), this, SLOT(openTemplateLocation()));
 	menu.exec(ui.templatesTree->mapToGlobal(point));
 }
 
-void TemplateSelector::editTemplate() {
+void TemplateSelector::editTemplate()
+{
 	TemplateHandle th = selectedTemplate();
 	if (th.isMultifile()) {
 		txsInformation("Editing of multi-file templates is not supported.\n"
-					   "Please open the template location and unzip the\n"
-					   "template to edit individual files.");
+		               "Please open the template location and unzip the\n"
+		               "template to edit individual files.");
 		return;
 	}
 	if (!th.isEditable()) {
@@ -227,7 +242,8 @@ void TemplateSelector::editTemplate() {
 	close();
 }
 
-void TemplateSelector::editTemplateInfo() {
+void TemplateSelector::editTemplateInfo()
+{
 	TemplateHandle th = selectedTemplate();
 	if (!th.isEditable()) {
 		txsCritical(tr("This template cannot be edited."));
@@ -237,7 +253,8 @@ void TemplateSelector::editTemplateInfo() {
 	close();
 }
 
-void TemplateSelector::removeTemplate() {
+void TemplateSelector::removeTemplate()
+{
 	TemplateHandle th = selectedTemplate();
 	if (!th.isEditable()) {
 		txsCritical(tr("This template cannot be edited."));
@@ -245,28 +262,29 @@ void TemplateSelector::removeTemplate() {
 	}
 	QString fname = th.file();
 
-	if(QMessageBox::question(this,tr("Please Confirm"), tr("Are you sure to delete the following template?")+QString("\n%1").arg(fname)
-							 ,QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes) {
+	if (QMessageBox::question(this, tr("Please Confirm"), tr("Are you sure to delete the following template?") + QString("\n%1").arg(fname)
+	                          , QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		QTreeWidgetItem *currentItem = ui.templatesTree->currentItem();
 		if (currentItem) {
 			currentItem->parent()->removeChild(currentItem);
 		}
 		QFile file(fname);
-		if(!file.remove()) txsCritical(tr("You do not have permission to remove this file.")+"\n"+fname);
+		if (!file.remove()) txsCritical(tr("You do not have permission to remove this file.") + "\n" + fname);
 		QFileInfo fi(fname);
-		QFileInfo metafi(fi.dir(), fi.baseName()+".json");
+		QFileInfo metafi(fi.dir(), fi.baseName() + ".json");
 		if (metafi.exists()) {
 			file.setFileName(metafi.absoluteFilePath());
-			if(!file.remove()) txsCritical(tr("You do not have permission to remove this file.")+"\n"+fname);
+			if (!file.remove()) txsCritical(tr("You do not have permission to remove this file.") + "\n" + fname);
 		}
 	}
 }
 
-void TemplateSelector::openTemplateLocation() {
+void TemplateSelector::openTemplateLocation()
+{
 	TemplateHandle th = selectedTemplate();
-	QString url = "file:///"+QFileInfo(th.file()).absolutePath();
+	QString url = "file:///" + QFileInfo(th.file()).absolutePath();
 	if (!QDesktopServices::openUrl(QUrl(url))) {
-		txsCritical(tr("Could not open location:")+QString("\n%1").arg(url));
+		txsCritical(tr("Could not open location:") + QString("\n%1").arg(url));
 	}
 }
 

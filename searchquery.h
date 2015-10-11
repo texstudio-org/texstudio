@@ -10,6 +10,7 @@ class LatexDocument;
 
 class SearchQuery : public QObject {
 	Q_OBJECT
+
 public:
 	enum SearchFlag
 	{
@@ -68,6 +69,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(SearchQuery::SearchFlags)
 
 class LabelSearchQuery : public SearchQuery {
 	Q_OBJECT
+
 public:
 	LabelSearchQuery(QString label);
 	virtual void run(LatexDocument *doc);

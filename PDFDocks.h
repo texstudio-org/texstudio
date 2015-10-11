@@ -46,13 +46,16 @@ class QTreeWidgetItem;
 class MessageFrame : public QFrame
 {
 	Q_OBJECT
+
 public:
 	explicit MessageFrame(QWidget *parent = 0);
 	void showText(const QString &text, QList<QAction *> actions = QList<QAction *>());
+
 private:
 	QLabel *label;
 	QList<QPushButton *> buttons;
 };
+
 
 class PDFDock : public QDockWidget
 {
@@ -97,23 +100,27 @@ public slots:
 
 protected:
 	virtual void fillInfo();
-	virtual QString getTitle() { return tr("Contents"); }
+	virtual QString getTitle()
+	{
+		return tr("Contents");
+	}
 
 protected slots:
 	virtual void changeLanguage();
-	
+
 	void followTocSelection();
 
 private:
 	QTreeWidget *tree;
 };
 
+
 class PDFDockTreeWidget : public QTreeWidget
 {
 	Q_OBJECT
 
 public:
-	explicit PDFDockTreeWidget(QWidget* parent);
+	explicit PDFDockTreeWidget(QWidget *parent);
 	virtual ~PDFDockTreeWidget();
 
 	virtual QSize sizeHint() const;
@@ -133,19 +140,25 @@ public slots:
 
 protected:
 	virtual void fillInfo();
-	virtual QString getTitle() { return tr("PDF Info"); }
+	virtual QString getTitle()
+	{
+		return tr("PDF Info");
+	}
 
 private:
 	QListWidget *list;
 };
 
-class PDFDockListView : public QListView 
+
+class PDFDockListView : public QListView
 {
 	Q_OBJECT
 public:
 	explicit PDFDockListView(QWidget *parent = 0);
 	virtual QSize sizeHint() const;
 };
+
+
 class PDFDockListWidget : public QListWidget
 {
 	Q_OBJECT
@@ -154,18 +167,21 @@ public:
 	virtual QSize sizeHint() const;
 };
 
+
 class PDFOverviewModel: public QAbstractListModel
 {
 	Q_OBJECT
 public:
-	explicit PDFOverviewModel(QObject *parent=0);
-	int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
-	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;		
-	void setDocument(PDFDocument* doc);
+	explicit PDFOverviewModel(QObject *parent = 0);
+	int rowCount ( const QModelIndex &parent = QModelIndex() ) const;
+	QVariant data ( const QModelIndex &index, int role = Qt::DisplayRole ) const;
+	void setDocument(PDFDocument *doc);
+
 public slots:
-	void updateImage(const QPixmap& pm, int page);
+	void updateImage(const QPixmap &pm, int page);
+
 private:
-	PDFDocument *document; 
+	PDFDocument *document;
 	mutable QList<QPixmap> cache;
 };
 
@@ -200,31 +216,34 @@ private:
 class QToolButton;
 class QGridLayout;
 class QCheckBox;
-class PDFBaseSearchDock : public QDockWidget{
+class PDFBaseSearchDock : public QDockWidget
+{
 	Q_OBJECT
 	//TODO: some how merge this with the qce search panel
 public:
-	explicit PDFBaseSearchDock(PDFDocument* doc = 0);
+	explicit PDFBaseSearchDock(PDFDocument *doc = 0);
 
 	QString getSearchText() const;
-    void setSearchText(QString text);
+	void setSearchText(QString text);
 	bool hasFlagCaseSensitive() const;
 
 	virtual void setFocus();
 
 signals:
 	void search(bool backward, bool incremental);
+
 protected:
 	virtual void resizeEvent(QResizeEvent *e);
 	virtual bool eventFilter(QObject *o, QEvent *e);
 
-	QList<QWidget*> listOfWidget;
+	QList<QWidget *> listOfWidget;
 	QGridLayout *gridLayout1;
 
 private slots:
-	void on_leFind_textEdited(const QString& text);
+	void on_leFind_textEdited(const QString &text);
 	void on_bNext_clicked();
 	void on_bPrevious_clicked();
+
 private:
 	PDFDocument *document;
 
@@ -235,17 +254,19 @@ private:
 	QCheckBox *cbCase;
 	/*QCheckBox *cbWords;
 	QCheckBox *cbRegExp;*/
-/*	QCheckBox *cbHighlight;
-	QCheckBox *cbCursor;
-	QCheckBox *cbSelection;*/
+	/*	QCheckBox *cbHighlight;
+		QCheckBox *cbCursor;
+		QCheckBox *cbSelection;*/
 };
 
-class PDFSearchDock : public PDFBaseSearchDock {
+class PDFSearchDock : public PDFBaseSearchDock
+{
 	Q_OBJECT
-public:
-	explicit PDFSearchDock(PDFDocument* doc = 0);
 
+public:
+	explicit PDFSearchDock(PDFDocument *doc = 0);
 	bool hasFlagSync() const;
+
 private:
 	QCheckBox *cbSync;
 };
@@ -257,20 +278,17 @@ class PDFScrollArea : public QAbstractScrollArea
 
 public:
 	explicit PDFScrollArea(QWidget *parent = NULL);
-	void setPDFWidget(PDFWidget* widget);
-	void ensureVisible(int x, int y, int xmargin=50, int ymargin=50);
-	void setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy);
-	bool getContinuous(){
-	    return continuous;
-	}
-
 	virtual ~PDFScrollArea();
-
+	void setPDFWidget(PDFWidget *widget);
+	void ensureVisible(int x, int y, int xmargin = 50, int ymargin = 50);
+	void setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy);
+	bool getContinuous() { return continuous; }
 	void updateScrollBars();
+
 public slots:
 	void setContinuous(bool cont);
-	void goToPage(int page, bool sync=true);
-	void ensureVisiblePageAbsolutePos(int page, const QPointF& pos, int xmargin=50, int ymargin=50);
+	void goToPage(int page, bool sync = true);
+	void ensureVisiblePageAbsolutePos(int page, const QPointF &pos, int xmargin = 50, int ymargin = 50);
 
 protected:
 	bool event(QEvent *);
@@ -285,7 +303,7 @@ signals:
 private:
 	void updateWidgetPosition();
 	bool continuous;
-	PDFWidget* pdf;
+	PDFWidget *pdf;
 	int updateWidgetPositionStackWatch, onResizeStackWatch;
 };
 
@@ -331,6 +349,7 @@ protected slots:
 	void restart();
 	void setInterval();
 	void setInterval(int interval);
+
 protected:
 	//virtual void pageChanged(int page);
 	virtual void fillInfo();
@@ -338,7 +357,7 @@ protected:
 	virtual void paintEvent(QPaintEvent *event);
 
 	QDateTime start, end;
-	QTimer* timer;
+	QTimer *timer;
 };
 
 

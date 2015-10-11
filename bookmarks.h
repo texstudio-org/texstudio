@@ -10,21 +10,22 @@ class QDocumentLineHandle;
 class Bookmarks : public QObject
 {
 	Q_OBJECT
+
 public:
 	Bookmarks(const LatexDocuments *docs, QObject *parent = 0);
 
 	void setBookmarks(const QList<QVariant> &bookmarkList);
 	QList<QVariant> getBookmarks();
 
-	QListWidget *widget() {return bookmarksWidget;}
-	
+	QListWidget *widget() { return bookmarksWidget; }
+
 signals:
 	void loadFileRequest(const QString &fileName);
 	void gotoLineRequest(int lineNr, int col, LatexEditorView *edView);
 
 public slots:
-	void bookmarkDeleted(QDocumentLineHandle* dlh);
-	void bookmarkAdded(QDocumentLineHandle* dlh,int nr);
+	void bookmarkDeleted(QDocumentLineHandle *dlh);
+	void bookmarkAdded(QDocumentLineHandle *dlh, int nr);
 	void updateLineWithBookmark(int lineNr);
 
 	void restoreBookmarks(LatexEditorView *edView);

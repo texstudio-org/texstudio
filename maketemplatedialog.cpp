@@ -37,10 +37,10 @@ void MakeTemplateDialog::tryAccept()
 	if (ext.isEmpty()) {
 		ext = "tex";
 	}
-	fn.append("."+ext);
+	fn.append("." + ext);
 	m_suggestedFile = QFileInfo(QDir(m_templateDir), fn);
 	if (m_suggestedFile.exists()) {
-		bool overwrite = txsConfirmWarning(tr("A template with the given name already exists.\nDo you want to overwrite it?")+"\n"+m_suggestedFile.canonicalFilePath());
+		bool overwrite = txsConfirmWarning(tr("A template with the given name already exists.\nDo you want to overwrite it?") + "\n" + m_suggestedFile.canonicalFilePath());
 		if (!overwrite)
 			return;
 	}

@@ -1,7 +1,7 @@
 #include "latexpackages.h"
 #include <QMutex>
 
-LatexPackages * LatexPackages::m_Instance = 0;
+LatexPackages *LatexPackages::m_Instance = 0;
 
 LatexPackages::LatexPackages() :
 	QObject(0), m_dataSource(None)
@@ -9,7 +9,8 @@ LatexPackages::LatexPackages() :
 	loadStaticPackageList(":/utilities/packageList");
 }
 
-LatexPackages *LatexPackages::instance() {
+LatexPackages *LatexPackages::instance()
+{
 	static QMutex mutex;
 	mutex.lock();
 	if (!m_Instance)
@@ -18,11 +19,13 @@ LatexPackages *LatexPackages::instance() {
 	return m_Instance;
 }
 
-LatexPackages::DataSource LatexPackages::dataSource() {
+LatexPackages::DataSource LatexPackages::dataSource()
+{
 	return m_dataSource;
 }
 
-bool LatexPackages::loadStaticPackageList(const QString &file) {
+bool LatexPackages::loadStaticPackageList(const QString &file)
+{
 	if (file.isEmpty()) return false;
 	packages.reserve(3000);
 
@@ -33,21 +36,23 @@ bool LatexPackages::loadStaticPackageList(const QString &file) {
 		QString line = f.readLine().trimmed();
 		if (line.startsWith('#')) continue;
 		int sep = line.indexOf(':');
-		if (sep<0) {
+		if (sep < 0) {
 			packages.insert(line, LatexPackageInfo(line));
 		} else {
 			QString name = line.left(sep);
-			packages.insert(name, LatexPackageInfo(name, line.mid(sep+1)));
+			packages.insert(name, LatexPackageInfo(name, line.mid(sep + 1)));
 		}
 	}
 	m_dataSource = Static;
 	return true;
 }
 
-bool LatexPackages::packageExists(const QString& name) {
+bool LatexPackages::packageExists(const QString &name)
+{
 	return packages.keys().contains(name);
 }
 
-QString LatexPackages::shortDescription(const QString& name) {
+QString LatexPackages::shortDescription(const QString &name)
+{
 	return packages[name].shortDescription;
 }

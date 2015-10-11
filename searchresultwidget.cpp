@@ -2,7 +2,8 @@
 #include "latexdocument.h"
 
 
-SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query(0) {
+SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query(0)
+{
 	query = new SearchQuery("", "", SearchQuery::NoFlags);
 	SearchTreeDelegate *searchDelegate = new SearchTreeDelegate(this);
 
@@ -28,7 +29,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	replaceButton = new QPushButton(tr("Replace all"));
 
 	hLayout->addWidget(searchScopeBox);
-	
+
 	hLayout->addWidget(searchTypeLabel);
 	hLayout->addWidget(searchTextLabel, 1);
 	hLayout->addWidget(searchAgainButton);
@@ -67,9 +68,8 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	connect(searchTree, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedSearchResult(QModelIndex)));
 }
 
-
 /*!
- * The widget takes ownership of the result. It will be destoyed when a new SearchResult is set 
+ * The widget takes ownership of the result. It will be destoyed when a new SearchResult is set
  */
 void SearchResultWidget::setQuery(SearchQuery *sq)
 {
@@ -90,11 +90,12 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 	connect(replaceTextEdit, SIGNAL(textChanged(QString)), query, SLOT(setReplacementText(QString)));
 	connect(replaceTextEdit, SIGNAL(returnPressed()), query, SLOT(replaceAll()));
 	connect(replaceButton, SIGNAL(clicked()), query, SLOT(replaceAll()));
-	
+
 	searchTree->setModel(query->model());
 }
 
-void SearchResultWidget::updateSearch() {
+void SearchResultWidget::updateSearch()
+{
 	if (query) query->setScope(searchScope());
 	emit runSearch(query);
 }
@@ -106,8 +107,9 @@ void SearchResultWidget::updateSearchScopeBox(SearchQuery::Scope sc)
 		searchScopeBox->setCurrentIndex(index);
 }
 
-void SearchResultWidget::clickedSearchResult(const QModelIndex &index) {
-	 
+void SearchResultWidget::clickedSearchResult(const QModelIndex &index)
+{
+
 	QDocument *doc = query->model()->getDocument(index);
 	int lineNr = query->model()->getLineNumber(index);
 	if (!doc || lineNr < 0) {
@@ -116,25 +118,28 @@ void SearchResultWidget::clickedSearchResult(const QModelIndex &index) {
 	emit jumpToSearchResult(doc, lineNr, query);
 }
 
-void SearchResultWidget::clearSearch() {
+void SearchResultWidget::clearSearch()
+{
 	setQuery(new SearchQuery("", "", SearchQuery::NoFlags));
 }
 
-SearchQuery::Scope SearchResultWidget::searchScope() const {
+SearchQuery::Scope SearchResultWidget::searchScope() const
+{
 	return static_cast<SearchQuery::Scope>(searchScopeBox->itemData(searchScopeBox->currentIndex()).toUInt());
 }
-
 
 
 //====================================================================
 // CustomDelegate for search results
 //====================================================================
-SearchTreeDelegate::SearchTreeDelegate(QObject *parent): QItemDelegate(parent) {
+SearchTreeDelegate::SearchTreeDelegate(QObject *parent): QItemDelegate(parent)
+{
 	;
 }
 
 void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                               const QModelIndex &index) const {
+                               const QModelIndex &index) const
+{
 	QPalette::ColorGroup    cg  = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
 
 	/*if( cg == QPalette::Normal && !(option.state & QStyle::State_Active) )
@@ -162,17 +167,17 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		return;
 	}
 	painter->save();
-	
+
 	QRect r = option.rect;
 	int spacing = 2;
 	r.adjust(size.width() + spacing, 0, 0, 0);
 	bool isSelected = option.state & QStyle::State_Selected;
-	
+
 	// draw line number
 	QVariant vLineNumber = index.data(SearchResultModel::LineNumberRole);
 	if (vLineNumber.isValid()) {
 		int hPadding = 1;
-		int lwidth = option.fontMetrics.width("00000") + 2*hPadding;
+		int lwidth = option.fontMetrics.width("00000") + 2 * hPadding;
 		QRect lineNumberRect = QRect(r.left(), r.top(), lwidth, r.height());
 		if (!isSelected) {
 			painter->fillRect(lineNumberRect, option.palette.window());
@@ -183,7 +188,7 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	// draw text
 	QString text = index.data().toString();
 	QStringList textList = text.split("|");
-	for (int i=0; i<textList.size(); i++) {
+	for (int i = 0; i < textList.size(); i++) {
 		QString temp = textList.at(i);
 		int w = option.fontMetrics.width(temp);
 		if (i % 2 && !isSelected) {
@@ -196,10 +201,9 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 }
 
 QSize SearchTreeDelegate::sizeHint(const QStyleOptionViewItem &option,
-                                   const QModelIndex &index) const {
+                                   const QModelIndex &index) const
+{
 	QFontMetrics fontMetrics = option.fontMetrics;
 	QRect rect = fontMetrics.boundingRect(index.data().toString());
 	return QSize(rect.width(), rect.height());
 }
-
-

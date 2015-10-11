@@ -17,12 +17,13 @@
 
 
 PlacementValidator::PlacementValidator(QObject *parent)
-		: QRegExpValidator(parent)
+	: QRegExpValidator(parent)
 {
 	setRegExp(QRegExp("t?b?p?h?!?"));
 }
 
-void PlacementValidator::fixup(QString &input) const {
+void PlacementValidator::fixup(QString &input) const
+{
 	QString cleaned;
 	foreach (const QChar &c, QString("tbph!")) {
 		if (input.contains(c.toLatin1())) cleaned.append(c);
@@ -30,7 +31,8 @@ void PlacementValidator::fixup(QString &input) const {
 	input = cleaned;
 }
 
-QValidator::State PlacementValidator::validate(QString &input, int &pos) const {
+QValidator::State PlacementValidator::validate(QString &input, int &pos) const
+{
 	fixup(input);
 	return QRegExpValidator::validate(input, pos);
 }
@@ -40,7 +42,8 @@ QStringList InsertGraphics::heightUnits = QStringList() << "\\textheight" << "cm
 QStringList InsertGraphics::m_imageFormats = QStringList() << "eps" << "jpg" << "jpeg" << "png" << "pdf";
 
 InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
-		: QDialog(parent) {
+	: QDialog(parent)
+{
 	setWindowTitle(tr("Insert Graphic"));
 	setModal(true);
 	ui.setupUi(this);
@@ -66,19 +69,19 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	connect(ui.cbPlaceForce, SIGNAL(clicked()), this, SLOT(updatePlacement()));
 	connect(ui.pbSaveDefault, SIGNAL(clicked()), this, SLOT(saveDefault()));
 	connect(this, SIGNAL(fileNameChanged(const QString &)), this, SLOT(updateLabel(const QString &)));
-	setWindowTitle(tr("Insert Graphics","Wizard"));
+	setWindowTitle(tr("Insert Graphics", "Wizard"));
 
 	ui.lePlacement->setValidator(new PlacementValidator(this));
 	togglePlacementCheckboxes(true);
 	QString tooltip(tr(
-		"Placement preferences for the figure\n\n"
-		"[t] Top: At the top the page\n"
-		"[b] Bottom: At the bottom of the page\n"
-		"[p] Page: On a separate page with figures\n"
-		"[h] Here: At this position in the text\n"
-		"[!]: Override internal parameters LaTeX uses for determining `good' float positions.\n\n"
-		"Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this."
-	));
+	                    "Placement preferences for the figure\n\n"
+	                    "[t] Top: At the top the page\n"
+	                    "[b] Bottom: At the bottom of the page\n"
+	                    "[p] Page: On a separate page with figures\n"
+	                    "[h] Here: At this position in the text\n"
+	                    "[!]: Override internal parameters LaTeX uses for determining `good' float positions.\n\n"
+	                    "Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this."
+	                ));
 	ui.lePlacement->setToolTip(tooltip);
 	ui.cbPlaceTop->setToolTip(tooltip);
 	ui.cbPlaceBottom->setToolTip(tooltip);
@@ -96,45 +99,53 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	setConfig(*conf);
 }
 
-QStringList InsertGraphics::imageFormats() {
+QStringList InsertGraphics::imageFormats()
+{
 	return m_imageFormats;
 }
 
 
-void InsertGraphics::setTexFile(const QFileInfo &fi) {
-        texFile = fi;
+void InsertGraphics::setTexFile(const QFileInfo &fi)
+{
+	texFile = fi;
 }
 
-void InsertGraphics::setMasterTexFile(const QFileInfo &fi) {
+void InsertGraphics::setMasterTexFile(const QFileInfo &fi)
+{
 	masterTexFile = fi;
 }
 
-void InsertGraphics::setGraphicsFile(const QString &file) {
+void InsertGraphics::setGraphicsFile(const QString &file)
+{
 	ui.leFile->setText(file);
 }
 
-void InsertGraphics::setCode(const QString &code) {
+void InsertGraphics::setCode(const QString &code)
+{
 	InsertGraphicsConfig conf;
 	if (parseCode(code, conf)) setConfig(conf);
 }
 
-QString InsertGraphics::graphicsFile() const {
+QString InsertGraphics::graphicsFile() const
+{
 	return ui.leFile->text();
 }
 
-QString InsertGraphics::generateLabel(QString fname) {
+QString InsertGraphics::generateLabel(QString fname)
+{
 	QFileInfo info(fname);
-	return "fig:"+info.baseName().remove(' ');
+	return "fig:" + info.baseName().remove(' ');
 }
 
-InsertGraphicsConfig InsertGraphics::getConfig() const {
+InsertGraphicsConfig InsertGraphics::getConfig() const
+{
 	InsertGraphicsConfig conf;
 
 	conf.file = ui.leFile->text();
 	conf.includeOptions = ui.leScale->text();
 	conf.center = ui.cbCentering->isChecked();
 	conf.useFigure = ui.gbFloat->isChecked();
-	conf.captionBelow = ui.cbPosition->currentIndex()!=0;
+	conf.captionBelow = ui.cbPosition->currentIndex() != 0;
 	conf.shortCaption = ui.leShortCaption->text().simplified();
 	conf.caption = ui.teCaption->toPlainText().simplified();
 	conf.label = ui.leLabel->text();
@@ -144,7 +155,8 @@ InsertGraphicsConfig InsertGraphics::getConfig() const {
 	return conf;
 }
 
-void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
+void InsertGraphics::setConfig(const InsertGraphicsConfig &conf)
+{
 	ui.leFile->setText(conf.file);
 
 	ui.cbWidth->setChecked(false);
@@ -155,16 +167,16 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 	ui.cbHeightUnit->setCurrentIndex(0);
 	ui.rbUser->setChecked(false);
 	QStringList inclOpts = conf.includeOptions.split(QChar(','));
-	foreach (const QString& opt, inclOpts) {
+	foreach (const QString &opt, inclOpts) {
 		int sep = opt.indexOf('=');
 		if (sep >= 0) {
 			// option style: tag=val
 			QString tag = opt.mid(0, sep).trimmed();
-			QString val = opt.mid(sep+1).trimmed();
+			QString val = opt.mid(sep + 1).trimmed();
 			if (tag == "width") {
 				ui.cbWidth->setChecked(true);
 				ui.cbWidthUnit->setCurrentIndex(widthUnits.indexOf(""));
-				foreach (const QString& unit, widthUnits) {
+				foreach (const QString &unit, widthUnits) {
 					if (val.endsWith(unit)) {
 						val.chop(unit.length());
 						ui.cbWidthUnit->setCurrentIndex(widthUnits.indexOf(unit));
@@ -176,7 +188,7 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 			}
 			if (tag == "height") {
 				ui.cbHeight->setChecked(true);
-				foreach (const QString& unit, heightUnits) {
+				foreach (const QString &unit, heightUnits) {
 					if (val.endsWith(unit)) {
 						val.chop(unit.length());
 						ui.leHeight->setText(val);
@@ -208,7 +220,8 @@ void InsertGraphics::setConfig(const InsertGraphicsConfig &conf) {
 	ui.cbSpan->setChecked(conf.spanTwoCols);
 }
 
-bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) {
+bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
+{
 	QString cmd, name, arg;
 	bool includeParsed = false;
 	bool containsComment = false;
@@ -228,43 +241,43 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 			containsComment = true;
 			lr.index = code.indexOf("\n", lr.index);
 			continue;
-		} else if (nw != LatexReader::NW_COMMAND) 
+		} else if (nw != LatexReader::NW_COMMAND)
 			continue;
-		
 
-		if (lr.word=="\\centering") {
+
+		if (lr.word == "\\centering") {
 			conf.center = true;
 			lr.index = lr.wordStartIndex + lr.word.length();
 			continue;
 		}
 		LatexParser::resolveCommandOptions(code, lr.index, args, &argStarts);
 		if (args.length() == 0) {
-			txsWarning(tr("Could not parse graphics inclusion code:\nInsufficient number of arguments to ")+lr.word);
+			txsWarning(tr("Could not parse graphics inclusion code:\nInsufficient number of arguments to ") + lr.word);
 			return false;
 		}
 		lr.index = argStarts.last() + args.last().length();
-		if (lr.word =="\\begin") {
-			if (args.at(0)=="{figure}") {
+		if (lr.word == "\\begin") {
+			if (args.at(0) == "{figure}") {
 				conf.useFigure = true;
 				conf.spanTwoCols = false;
-				conf.placement = (args.length()<2) ? "" : LatexParser::removeOptionBrackets(args.at(1));
-			} else 	if (args.at(0)=="{figure*}") {
+				conf.placement = (args.length() < 2) ? "" : LatexParser::removeOptionBrackets(args.at(1));
+			} else 	if (args.at(0) == "{figure*}") {
 				conf.useFigure = true;
 				conf.spanTwoCols = true;
-				conf.placement = (args.length()<2) ? "" : LatexParser::removeOptionBrackets(args.at(1));
-			} else if (args.at(0)=="{center}") {
+				conf.placement = (args.length() < 2) ? "" : LatexParser::removeOptionBrackets(args.at(1));
+			} else if (args.at(0) == "{center}") {
 				conf.useFigure = false;
 				conf.center = true;
 			} else {
-				txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support environment ")+args.at(0));
+				txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support environment ") + args.at(0));
 				return false;
 			}
-		} else if (lr.word=="\\end") {
+		} else if (lr.word == "\\end") {
 			;
-		} else if (lr.word=="\\caption") {
+		} else if (lr.word == "\\caption") {
 			if (args.at(0).at(0) == '[') {
 				conf.shortCaption = LatexParser::removeOptionBrackets((args.at(0)));
-				if (args.length()<2) {
+				if (args.length() < 2) {
 					txsWarning(tr("Could not parse graphics inclusion code:\nInvalid \\caption command."));
 				}
 				conf.caption = LatexParser::removeOptionBrackets(args.at(1));
@@ -273,12 +286,12 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 				conf.caption = LatexParser::removeOptionBrackets(args.at(0));
 			}
 			conf.captionBelow = includeParsed;
-		} else if (lr.word=="\\label") {
+		} else if (lr.word == "\\label") {
 			conf.label = LatexParser::removeOptionBrackets(args.at(0));
-		} else if (lr.word=="\\includegraphics") {
+		} else if (lr.word == "\\includegraphics") {
 			if (args.at(0).at(0) == '[') {
 				conf.includeOptions = LatexParser::removeOptionBrackets(args.at(0));
-				if (args.length()<2) {
+				if (args.length() < 2) {
 					txsWarning(tr("Could not parse graphics inclusion code:\nMissing \\includegraphics options."));
 					return false;
 				}
@@ -289,7 +302,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 			}
 			includeParsed = true;
 		} else {
-			txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support command ")+lr.word);
+			txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support command ") + lr.word);
 			return false;
 		}
 	}
@@ -297,94 +310,95 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf) 
 }
 
 
-QString InsertGraphics::getCaptionLabelString(const InsertGraphicsConfig &conf) const {
+QString InsertGraphics::getCaptionLabelString(const InsertGraphicsConfig &conf) const
+{
 	QString s;
-	if(!conf.caption.isEmpty() || !conf.shortCaption.isEmpty()) {
+	if (!conf.caption.isEmpty() || !conf.shortCaption.isEmpty()) {
 		s.append("\\caption");
-		if (!conf.shortCaption.isEmpty()) s.append("["+conf.shortCaption+"]");
-		s.append("{"+conf.caption+"}\n");
+		if (!conf.shortCaption.isEmpty()) s.append("[" + conf.shortCaption + "]");
+		s.append("{" + conf.caption + "}\n");
 	}
-	if(!conf.label.isEmpty()) {
-		if(conf.caption.isEmpty()) s.append("\\caption{}\n");
-		s.append("\\label{"+conf.label+"}\n");
+	if (!conf.label.isEmpty()) {
+		if (conf.caption.isEmpty()) s.append("\\caption{}\n");
+		s.append("\\label{" + conf.label + "}\n");
 	}
 	return s;
 }
 
-
-QString InsertGraphics::getCode() const {
+QString InsertGraphics::getCode() const
+{
 	QString insert;
 	InsertGraphicsConfig conf = getConfig();
 
-	if (conf.useFigure){
+	if (conf.useFigure) {
 		if (conf.spanTwoCols) {
 			insert.append("\\begin{figure*}");
 		} else {
 			insert.append("\\begin{figure}");
 		}
-		if(!conf.placement.isEmpty()){
-			insert.append("["+conf.placement+"]");
+		if (!conf.placement.isEmpty()) {
+			insert.append("[" + conf.placement + "]");
 		}
 		insert.append("\n");
 
-		if(conf.center) insert.append("\\centering\n");
-		if(!conf.captionBelow) insert.append(getCaptionLabelString(conf));
+		if (conf.center) insert.append("\\centering\n");
+		if (!conf.captionBelow) insert.append(getCaptionLabelString(conf));
 	} else {
-		if(conf.center) insert.append("\\begin{center}\n");
+		if (conf.center) insert.append("\\begin{center}\n");
 	}
 	insert.append("\\includegraphics");
-	if(!conf.includeOptions.isEmpty()) insert.append("["+conf.includeOptions+"]");
-	QString fname=conf.file;
+	if (!conf.includeOptions.isEmpty()) insert.append("[" + conf.includeOptions + "]");
+	QString fname = conf.file;
 	QFileInfo info(fname);
-	if(info.isAbsolute()){
+	if (info.isAbsolute()) {
 		QFileInfo texFileInfo = masterTexFile.exists() ? masterTexFile : texFile;
 		fname = getRelativeBaseNameToPath(info.filePath(), texFileInfo.absolutePath());
 		if (fname.startsWith("./")) fname.remove(0, 2);
 	}
 #ifdef Q_OS_WIN
 	//restore native separators if original filename contains native separators
-	if(conf.file.contains(QDir::separator())){
-		fname=QDir::toNativeSeparators(fname);
+	if (conf.file.contains(QDir::separator())) {
+		fname = QDir::toNativeSeparators(fname);
 	}
 #endif
-	if (fname.contains(' ') && !(fname.length()>1 && fname[0]=='"' && fname[fname.length()-1]=='"'))
-		fname = '"'+fname+'"';
-	insert.append("{"+fname+"}\n");
-	if(conf.useFigure){
-		if(conf.captionBelow) insert.append(getCaptionLabelString(conf));
+	if (fname.contains(' ') && !(fname.length() > 1 && fname[0] == '"' && fname[fname.length() - 1] == '"'))
+		fname = '"' + fname + '"';
+	insert.append("{" + fname + "}\n");
+	if (conf.useFigure) {
+		if (conf.captionBelow) insert.append(getCaptionLabelString(conf));
 		if (conf.spanTwoCols) {
 			insert.append("\\end{figure*}\n");
 		} else {
 			insert.append("\\end{figure}\n");
 		}
 	} else {
-		if(conf.center) insert.append("\\end{center}\n");
+		if (conf.center) insert.append("\\end{center}\n");
 	}
 	return insert;
 }
 
-
-
-void InsertGraphics::chooseFile() {
+void InsertGraphics::chooseFile()
+{
 	QString fn;
 	QStringList exts;
 	foreach (const QString &fmt, m_imageFormats) {
-		exts.append("*."+fmt);
+		exts.append("*." + fmt);
 	};
-    QString filter = tr("Images") + " (" + exts.join(" ")+")";
-	fn =QFileDialog::getOpenFileName(this,tr("Select a File","Wizard"),texFile.absolutePath(),filter);
+	QString filter = tr("Images") + " (" + exts.join(" ") + ")";
+	fn = QFileDialog::getOpenFileName(this, tr("Select a File", "Wizard"), texFile.absolutePath(), filter);
 	if (!fn.isEmpty()) {
 		ui.leFile->setText(fn);
-                if(ui.leLabel->text().isEmpty()){
-                    QFileInfo fi(fn);
-                    QString bn="fig:"+fi.baseName();
-                    ui.leLabel->setText(bn);
-                }
+		if (ui.leLabel->text().isEmpty()) {
+			QFileInfo fi(fn);
+			QString bn = "fig:" + fi.baseName();
+			ui.leLabel->setText(bn);
+		}
 		emit fileNameChanged(fn);
 	}
 }
 
-void InsertGraphics::includeOptionChanged() {
+void InsertGraphics::includeOptionChanged()
+{
 	QString opts;
 	bool userDef = ui.rbUser->isChecked();
 
@@ -408,29 +422,33 @@ void InsertGraphics::includeOptionChanged() {
 	}
 }
 
-void InsertGraphics::labelChanged(const QString &label) {
+void InsertGraphics::labelChanged(const QString &label)
+{
 	autoLabel = (label == generateLabel(ui.leFile->text()));
 }
 
-void InsertGraphics::updateLabel(const QString &fname) {
+void InsertGraphics::updateLabel(const QString &fname)
+{
 	if (autoLabel) {
 		ui.leLabel->setText(generateLabel(fname));
 	}
 }
 
-void InsertGraphics::togglePlacementCheckboxes(bool forceHide) {
+void InsertGraphics::togglePlacementCheckboxes(bool forceHide)
+{
 	if (ui.placementCheckboxes->isVisible() || forceHide) {
 		ui.placementCheckboxes->hide();
-        ui.pbPlaceExpand->setIcon(getRealIcon("down-arrow-circle-silver"));
-		resize(width(),height()-(ui.placementCheckboxes->height()+ui.gridLayout->verticalSpacing()));
+		ui.pbPlaceExpand->setIcon(getRealIcon("down-arrow-circle-silver"));
+		resize(width(), height() - (ui.placementCheckboxes->height() + ui.gridLayout->verticalSpacing()));
 	} else {
-		resize(width(),height()+(ui.placementCheckboxes->height()+ui.gridLayout->verticalSpacing()));
-        ui.pbPlaceExpand->setIcon(getRealIcon("up-arrow-circle-silver"));
+		resize(width(), height() + (ui.placementCheckboxes->height() + ui.gridLayout->verticalSpacing()));
+		ui.pbPlaceExpand->setIcon(getRealIcon("up-arrow-circle-silver"));
 		ui.placementCheckboxes->show();
 	}
 }
 
-void InsertGraphics::updatePlacement() {
+void InsertGraphics::updatePlacement()
+{
 	QObject *s = sender();
 
 	if (s == ui.cbPlaceTop || s == ui.cbPlaceBottom || s == ui.cbPlacePage || s == ui.cbPlaceHere || s == ui.cbPlaceForce) {
@@ -451,7 +469,8 @@ void InsertGraphics::updatePlacement() {
 	}
 }
 
-void InsertGraphics::saveDefault() {
+void InsertGraphics::saveDefault()
+{
 	*defaultConfig = getConfig();
 }
 
@@ -459,7 +478,8 @@ void InsertGraphics::saveDefault() {
 // Config Management
 //===================================================
 
-void InsertGraphicsConfig::readSettings(QSettings& settings){
+void InsertGraphicsConfig::readSettings(QSettings &settings)
+{
 	settings.beginGroup("InsertGraphics");
 
 	includeOptions = settings.value("/includeOption", "width=0.7\\linewidth").toString();
@@ -471,7 +491,8 @@ void InsertGraphicsConfig::readSettings(QSettings& settings){
 	settings.endGroup();
 }
 
-void InsertGraphicsConfig::saveSettings(QSettings &settings){
+void InsertGraphicsConfig::saveSettings(QSettings &settings)
+{
 	settings.beginGroup("InsertGraphics");
 
 	settings.setValue("/includeOptions", includeOptions);

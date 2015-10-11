@@ -1,7 +1,7 @@
 #include "titledpanel.h"
 #include "utilsSystem.h"
 
-Q_DECLARE_METATYPE(QAction*)
+Q_DECLARE_METATYPE(QAction *)
 
 QHash<QString, TitledPanelPage *> TitledPanelPage::allPages;
 
@@ -41,43 +41,52 @@ TitledPanelPage::TitledPanelPage(QWidget *widget, const QString &id, const QStri
 	m_toolbarActions = new QList<QAction *>();
 }
 
-TitledPanelPage::~TitledPanelPage() {
+TitledPanelPage::~TitledPanelPage()
+{
 	allPages.remove(m_id);
 	delete m_toolbarActions; // only deletes the list. The actions themselves are not owned by the page
 }
 
-void TitledPanelPage::addToolbarAction(QAction *act) {
+void TitledPanelPage::addToolbarAction(QAction *act)
+{
 	m_toolbarActions->append(act);
 }
 
-void TitledPanelPage::addToolbarActions(QList<QAction *> actions) {
+void TitledPanelPage::addToolbarActions(QList<QAction *> actions)
+{
 	m_toolbarActions->append(actions);
 }
 
-QString TitledPanelPage::id() const {
+QString TitledPanelPage::id() const
+{
 	return m_id;
 }
 
-QWidget *TitledPanelPage::widget() {
+QWidget *TitledPanelPage::widget()
+{
 	return m_widget;
 }
 
-bool TitledPanelPage::visible() const {
+bool TitledPanelPage::visible() const
+{
 	return m_visibleAction->isChecked();
 }
 
-TitledPanelPage *TitledPanelPage::fromId(const QString &id) {
+TitledPanelPage *TitledPanelPage::fromId(const QString &id)
+{
 	TitledPanelPage *page = allPages.value(id);
 	if (!page) qDebug() << "Requested TitledPanelPage does not exist:" << id;
 	return page;
 }
 
-void TitledPanelPage::updatePageTitle(const QString &id, const QString newTitle) {
+void TitledPanelPage::updatePageTitle(const QString &id, const QString newTitle)
+{
 	TitledPanelPage *page = allPages.value(id);
 	if (page) page->setTitle(newTitle);
 }
 
-void TitledPanelPage::setTitle(const QString &title) {
+void TitledPanelPage::setTitle(const QString &title)
+{
 	if (m_title != title) {
 		m_title = title;
 		m_visibleAction->setText(title);
@@ -87,11 +96,13 @@ void TitledPanelPage::setTitle(const QString &title) {
 	}
 }
 
-void TitledPanelPage::setIcon(const QIcon &icon) {
+void TitledPanelPage::setIcon(const QIcon &icon)
+{
 	m_icon = icon;
 	m_selectAction->setIcon(icon);
 	emit iconChanged(icon);
 }
+
 
 /*** class TitledPanel ***/
 
@@ -126,7 +137,8 @@ TitledPanel::TitledPanel(QWidget *parent) :
 }
 
 /* note: the panel takes ownership of the page */
-void TitledPanel::appendPage(TitledPanelPage *page, bool guiUpdate) {
+void TitledPanel::appendPage(TitledPanelPage *page, bool guiUpdate)
+{
 	page->setParent(this);
 	pages.append(page);
 	stack->addWidget(page->m_widget);
@@ -144,7 +156,8 @@ void TitledPanel::appendPage(TitledPanelPage *page, bool guiUpdate) {
 }
 
 /* note: the panel doesn't have a parent anymore. You are responsible for deleting */
-void TitledPanel::removePage(TitledPanelPage *page, bool guiUpdate) {
+void TitledPanel::removePage(TitledPanelPage *page, bool guiUpdate)
+{
 	disconnect(page, SIGNAL(titleChanged()), this, SLOT(onPageTitleChange()));
 	disconnect(page, SIGNAL(iconChanged()), this, SLOT(onPageIconChange()));
 	disconnect(page->m_selectAction, SIGNAL(toggled(bool)), this, SLOT(onPageSelectRequest()));
@@ -154,35 +167,40 @@ void TitledPanel::removePage(TitledPanelPage *page, bool guiUpdate) {
 	page->setParent(0);
 
 	int i = pages.indexOf(page);
-	if (i>=0) pages.removeAt(i);
+	if (i >= 0) pages.removeAt(i);
 
 	if (guiUpdate) updateTopbar();
 }
 
-int TitledPanel::pageCount() const {
+int TitledPanel::pageCount() const
+{
 	return pages.count();
 }
 
-TitledPanelPage *TitledPanel::pageFromId(const QString &id) {
-	TitledPanelPage* page = TitledPanelPage::fromId(id);
+TitledPanelPage *TitledPanel::pageFromId(const QString &id)
+{
+	TitledPanelPage *page = TitledPanelPage::fromId(id);
 	if (!page || !pages.contains(page))
 		return 0;
 	return page;
 }
 
 // TODO
-void TitledPanel::setHiddenPageIds(const QStringList& hiddenIds) {
-	mHiddenPageIds=hiddenIds;
+void TitledPanel::setHiddenPageIds(const QStringList &hiddenIds)
+{
+	mHiddenPageIds = hiddenIds;
 	qDebug() << "hidden pages not yet implemented";
 }
 
 // TODO
-QStringList TitledPanel::hiddenPageIds() const {
+QStringList TitledPanel::hiddenPageIds() const
+{
 	qDebug() << "hidden pages not yet implemented";
 	return mHiddenPageIds;
 }
 
-void TitledPanel::setCurrentPage(const QString &id) {
+void TitledPanel::setCurrentPage(const QString &id)
+{
 	TitledPanelPage *page = TitledPanelPage::fromId(id);
 	if (!page) {
 		qDebug() << "TitledPanel: trying to access invalid page" << id;
@@ -199,38 +217,45 @@ void TitledPanel::setCurrentPage(const QString &id) {
 	emit pageChanged(id);
 }
 
-TitledPanelPage* TitledPanel::currentPage() const {
+TitledPanelPage *TitledPanel::currentPage() const
+{
 	QWidget *w = stack->currentWidget();
 	if (!w) return 0;
 	return qvariant_cast<TitledPanelPage *>(w->property("containingPage"));
 }
 
-QString TitledPanel::currentPageId() const {
-	TitledPanelPage* page = currentPage();
+QString TitledPanel::currentPageId() const
+{
+	TitledPanelPage *page = currentPage();
 	if (page) return page->id();
 	return QString();
 }
 
-void TitledPanel::showPage(const QString &id) {
+void TitledPanel::showPage(const QString &id)
+{
 	setCurrentPage(id);
 	show();
 }
 
-QAction *TitledPanel::toggleViewAction() const {
+QAction *TitledPanel::toggleViewAction() const
+{
 	return mToggleViewAction;
 }
 
-void TitledPanel::setSelectorStyle(TitledPanel::PageSelectorStyle style) {
+void TitledPanel::setSelectorStyle(TitledPanel::PageSelectorStyle style)
+{
 	selectorStyle = style;
 	updateTopbar();
 }
 
-void TitledPanel::setVisible(bool visible) {
+void TitledPanel::setVisible(bool visible)
+{
 	QFrame::setVisible(visible);
 	mToggleViewAction->setChecked(visible);
 }
 
-void TitledPanel::updateTopbar() {
+void TitledPanel::updateTopbar()
+{
 	QToolBar *oldTopbar = topbar;
 
 	// did not manage to remove and add again widgets to the toolbar properly
@@ -242,7 +267,7 @@ void TitledPanel::updateTopbar() {
 	topbar->setOrientation(Qt::Horizontal);
 	topbar->setFloatable(false);
 	topbar->setMovable(false);
-	topbar->setIconSize(QSize(16,16));
+	topbar->setIconSize(QSize(16, 16));
 	topbar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
 
 	QList<QAction *> acts = pageSelectActions->actions();
@@ -269,16 +294,16 @@ void TitledPanel::updateTopbar() {
 		topbar->addWidget(lbTopbarLabel);
 	} else if (visiblePageCount > 1) {
 		switch (selectorStyle) {
-			case ComboSelector:
-				cbTopbarSelector = new QComboBox(topbar);
-				cbTopbarSelector->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-				cbTopbarSelector->setMinimumWidth(0);
-				cbTopbarSelector->setMaxVisibleItems(25);
-				connect(cbTopbarSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(setActivePageFromComboBox(int)));
-				break;
-			case TabSelector:
-				tbTopbarSelector = new QTabBar(topbar);
-				connect(tbTopbarSelector, SIGNAL(currentChanged(int)), this, SLOT(setActivePageFromTabBar(int)));
+		case ComboSelector:
+			cbTopbarSelector = new QComboBox(topbar);
+			cbTopbarSelector->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+			cbTopbarSelector->setMinimumWidth(0);
+			cbTopbarSelector->setMaxVisibleItems(25);
+			connect(cbTopbarSelector, SIGNAL(currentIndexChanged(int)), this, SLOT(setActivePageFromComboBox(int)));
+			break;
+		case TabSelector:
+			tbTopbarSelector = new QTabBar(topbar);
+			connect(tbTopbarSelector, SIGNAL(currentChanged(int)), this, SLOT(setActivePageFromTabBar(int)));
 		}
 
 		foreach (TitledPanelPage *p, pages) {
@@ -309,7 +334,7 @@ void TitledPanel::updateTopbar() {
 				stack->setCurrentWidget(TitledPanelPage::fromId(id)->m_widget);
 			}
 			topbar->addWidget(cbTopbarSelector);
-		} else if(tbTopbarSelector) {
+		} else if (tbTopbarSelector) {
 			int index;
 			for (index = 0; index < tbTopbarSelector->count(); index++) {
 				if (tbTopbarSelector->tabData(index).toString() == currentPageId()) {
@@ -323,9 +348,9 @@ void TitledPanel::updateTopbar() {
 			}
 			topbar->addWidget(tbTopbarSelector);
 #ifdef Q_OS_MAC
-			topbar->layout()->itemAt(topbar->layout()->count()-1)->setAlignment(Qt::AlignVCenter);
+			topbar->layout()->itemAt(topbar->layout()->count() - 1)->setAlignment(Qt::AlignVCenter);
 #else
-			topbar->layout()->itemAt(topbar->layout()->count()-1)->setAlignment(Qt::AlignBottom);
+			topbar->layout()->itemAt(topbar->layout()->count() - 1)->setAlignment(Qt::AlignBottom);
 #endif
 		}
 
@@ -363,7 +388,8 @@ void TitledPanel::updateTopbar() {
 	vLayout->insertWidget(0, topbar);
 }
 
-void TitledPanel::updatePageSelector(TitledPanelPage *page) {
+void TitledPanel::updatePageSelector(TitledPanelPage *page)
+{
 	if (!page) {
 		foreach (TitledPanelPage *p, pages) {
 			updatePageSelector(p);
@@ -383,14 +409,16 @@ void TitledPanel::updatePageSelector(TitledPanelPage *page) {
 	}
 }
 
-void TitledPanel::onPageTitleChange() {
+void TitledPanel::onPageTitleChange()
+{
 	TitledPanelPage *page = qobject_cast<TitledPanelPage *>(sender());
 	if (!page) return;
 
 	updatePageSelector(page);
 }
 
-void TitledPanel::onPageIconChange() {
+void TitledPanel::onPageIconChange()
+{
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (act) {
 		// TODO update page select controls
@@ -398,36 +426,41 @@ void TitledPanel::onPageIconChange() {
 	}
 }
 
-void TitledPanel::setActivePageFromAction() {
-	QAction* act = qobject_cast<QAction*>(sender());
+void TitledPanel::setActivePageFromAction()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
 	setCurrentPage(act->data().toString());
 }
 
-void TitledPanel::setActivePageFromComboBox(int index) {
+void TitledPanel::setActivePageFromComboBox(int index)
+{
 	QComboBox *box = qobject_cast<QComboBox *>(sender());
 	if (box)
 		setCurrentPage(box->itemData(index).toString());
 }
 
-void TitledPanel::setActivePageFromTabBar(int index) {
+void TitledPanel::setActivePageFromTabBar(int index)
+{
 	QTabBar *tabBar = qobject_cast<QTabBar *>(sender());
 	if (tabBar)
 		setCurrentPage(tabBar->tabData(index).toString());
 }
 
-void TitledPanel::togglePageVisibleFromAction(bool on) {
+void TitledPanel::togglePageVisibleFromAction(bool on)
+{
 	Q_UNUSED(on);
-	QAction* act = qobject_cast<QAction*>(sender());
-	if (!act || act->data().toString()=="") return;
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (!act || act->data().toString() == "") return;
 
 	// TODO maybe just remove(id)
 	//updateTopbar();
 }
 
 // TODO check: can't we directly set the context menu on the widget?
-void TitledPanel::customContextMenuRequested(const QPoint& localPosition) {
-	QWidget *widget=stack->currentWidget();
+void TitledPanel::customContextMenuRequested(const QPoint &localPosition)
+{
+	QWidget *widget = stack->currentWidget();
 	if (widget && widget->underMouse()) { //todo?: use a more reliable function than underMouse (see qt bug 260000)
 		emit widgetContextMenuRequested(widget, mapToGlobal(localPosition));
 	} else {

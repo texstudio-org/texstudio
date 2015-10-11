@@ -11,14 +11,13 @@ class MakeTemplateDialog;
 class MakeTemplateDialog : public QDialog
 {
 	Q_OBJECT
-	
+
 public:
 	explicit MakeTemplateDialog(QString templateDir, QString editorFilename, QWidget *parent = 0);
 	~MakeTemplateDialog();
 
 	QString generateMetaData();
 	QString suggestedFile() const { return m_suggestedFile.absoluteFilePath(); }
-
 
 private slots:
 	void tryAccept();

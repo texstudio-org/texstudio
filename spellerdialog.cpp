@@ -17,10 +17,11 @@
 #include <QItemEditorCreatorBase>
 #include <QStyledItemDelegate>
 
-static const QRegExpValidator wordValidator(QRegExp("[^<].*"),0);
+static const QRegExpValidator wordValidator(QRegExp("[^<].*"), 0);
 
-SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
-	:QDialog(parent),m_statusBar(0),m_speller(utility),editor(0),editorView(0) {
+SpellerDialog::SpellerDialog(QWidget *parent, SpellerUtility *utility)
+	: QDialog(parent), m_statusBar(0), m_speller(utility), editor(0), editorView(0)
+{
 	ui.setupUi(this);
 	setModal(true);
 
@@ -29,7 +30,7 @@ SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
 	layout()->addWidget(m_statusBar);
 	// workaround for wrong status bar text color (black) in modern style
 	// TODO: change the style and remove this extra label
-	QLabel* messageArea = new QLabel(m_statusBar);
+	QLabel *messageArea = new QLabel(m_statusBar);
 	connect(m_statusBar, SIGNAL(messageChanged(QString)), messageArea, SLOT(setText(QString)));
 	m_statusBar->addPermanentWidget(messageArea, 1);
 
@@ -39,7 +40,7 @@ SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
 	connect(ui.pushButtonIgnore, SIGNAL(clicked()), this, SLOT(slotIgnore()));
 	connect(ui.pushButtonAlwaysIgnore, SIGNAL(clicked()), this, SLOT(slotAlwaysIgnore()));
 	connect(ui.pushButtonReplace, SIGNAL(clicked()), this, SLOT(slotReplace()));
-	connect(ui.listSuggestions, SIGNAL(itemSelectionChanged()),this, SLOT(updateItem()));
+	connect(ui.listSuggestions, SIGNAL(itemSelectionChanged()), this, SLOT(updateItem()));
 
 	ui.listSuggestions->setEnabled(false);
 	ui.lineEditNew->setEnabled(false);
@@ -51,125 +52,135 @@ SpellerDialog::SpellerDialog(QWidget *parent,SpellerUtility *utility)
 	ui.ignoreListView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	IgnoreListViewDelegate *itemDelegate = new IgnoreListViewDelegate(ui.ignoreListView);
 	ui.ignoreListView->setItemDelegate(itemDelegate);
-	connect(itemDelegate, SIGNAL(closeEditor(QWidget*)), this, SLOT(finishEditIgnoreList()));
+	connect(itemDelegate, SIGNAL(closeEditor(QWidget *)), this, SLOT(finishEditIgnoreList()));
 
 	toggleIgnoreList(true);  // start with hidden ignore list
 }
 
-SpellerDialog::~SpellerDialog() {
+SpellerDialog::~SpellerDialog()
+{
 	ui.lineEditOriginal->clear();
 	ui.listSuggestions->clear();
 	ui.lineEditNew->clear();
 
 }
 
-void SpellerDialog::setEditorView(LatexEditorView *edView) {
-	editor=edView?edView->editor:0;
-	editorView=edView;
+void SpellerDialog::setEditorView(LatexEditorView *edView)
+{
+	editor = edView ? edView->editor : 0;
+	editorView = edView;
 }
 
-void SpellerDialog::startSpelling() {
+void SpellerDialog::startSpelling()
+{
 	if (!editor) return;
-	ignoreListChanged=false;
+	ignoreListChanged = false;
 	if (editor->cursor().hasSelection()) {
 
 		m_statusBar->showMessage(tr("Check spelling selection..."));
 		//endpos=c.selectionEnd();
 		//c.setPosition(endpos,QTextCursor::MoveAnchor);
 		//c.setPosition(startpos,QTextCursor::MoveAnchor);
-		startLine=editor->cursor().selectionStart().lineNumber();
-		startIndex=editor->cursor().selectionStart().columnNumber();
-		endLine=editor->cursor().selectionEnd().lineNumber();
-		endIndex=editor->cursor().selectionEnd().columnNumber();
+		startLine = editor->cursor().selectionStart().lineNumber();
+		startIndex = editor->cursor().selectionStart().columnNumber();
+		endLine = editor->cursor().selectionEnd().lineNumber();
+		endIndex = editor->cursor().selectionEnd().columnNumber();
 	} else  {
 		//	c.movePosition(QTextCursor::Start,QTextCursor::MoveAnchor);
 		m_statusBar->showMessage(tr("Check spelling from cursor..."));
 		//endpos=c.position();
 		//c.setPosition(startpos,QTextCursor::MoveAnchor);
-		editor->getCursorPosition(startLine,startIndex);
-		endLine=editor->document()->lines()-1;
-		endIndex=editor->text(endLine).length();
+		editor->getCursorPosition(startLine, startIndex);
+		endLine = editor->document()->lines() - 1;
+		endIndex = editor->text(endLine).length();
 		latexReader.setLine(editor->document()->line(startLine).text());
 		//jump from word to word until an valid index is reached
-		while (latexReader.index<startIndex)
+		while (latexReader.index < startIndex)
 			if (!latexReader.nextTextWord()) break;
-		startIndex=latexReader.wordStartIndex;
+		startIndex = latexReader.wordStartIndex;
 	}
-	curLine=startLine;
-	latexReader.index=startIndex;
+	curLine = startLine;
+	latexReader.index = startIndex;
 	latexReader.word = "";
 	show();
 	SpellingNextWord();
 }
-void SpellerDialog::closeEvent(QCloseEvent* ce) {
+
+void SpellerDialog::closeEvent(QCloseEvent *ce)
+{
 	if (editorView && ignoreListChanged) {
-		ignoreListChanged=false;
-		editorView->documentContentChanged(0,editor->document()->lines());
+		ignoreListChanged = false;
+		editorView->documentContentChanged(0, editor->document()->lines());
 	}
-	if (editor) editor->setCursorPosition(startLine,startIndex);
+	if (editor) editor->setCursorPosition(startLine, startIndex);
 	ce->accept();
 }
 
-void SpellerDialog::accept() {
+void SpellerDialog::accept()
+{
 	if (editorView && ignoreListChanged) {
-		ignoreListChanged=false;
-		editorView->documentContentChanged(0,editor->document()->lines());
+		ignoreListChanged = false;
+		editorView->documentContentChanged(0, editor->document()->lines());
 	}
-	if (editor) editor->setCursorPosition(startLine,startIndex);
+	if (editor) editor->setCursorPosition(startLine, startIndex);
 	QDialog::accept();
 }
 
-void SpellerDialog::updateItem() {
-	int current=-1;
+void SpellerDialog::updateItem()
+{
+	int current = -1;
 	QList<QListWidgetItem *> items;
 	items = ui.listSuggestions->selectedItems();
 	if (items.count() > 0) {
 		ui.listSuggestions->setCurrentItem(items[0]);
-		current=ui.listSuggestions->row(items[0]);
+		current = ui.listSuggestions->row(items[0]);
 	}
-	if (current>=0) {
+	if (current >= 0) {
 		ui.lineEditNew->setText(ui.listSuggestions->currentItem()->text());
 	}
 }
 
-
-void SpellerDialog::slotIgnore() {
+void SpellerDialog::slotIgnore()
+{
 	SpellingNextWord();
 }
 
-void SpellerDialog::slotAlwaysIgnore() {
+void SpellerDialog::slotAlwaysIgnore()
+{
 	//todo: real time update of now allowed words
 	m_speller->addToIgnoreList(ui.lineEditOriginal->text());
-	ignoreListChanged=true;
+	ignoreListChanged = true;
 	SpellingNextWord();
 }
 
-void SpellerDialog::slotReplace() {
+void SpellerDialog::slotReplace()
+{
 	if (!editor) return;
 	if (editor->cursor().hasSelection()) {
-		QString selectedword=editor->cursor().selectedText();
+		QString selectedword = editor->cursor().selectedText();
 		latexReader.index += ui.lineEditNew->text().size() - latexReader.word.size();
-		latexReader.word=ui.lineEditNew->text();
+		latexReader.word = ui.lineEditNew->text();
 		editor->insertText(latexReader.word);
 	}
 	SpellingNextWord();
 }
 
-void SpellerDialog::SpellingNextWord() {
+void SpellerDialog::SpellingNextWord()
+{
 	if (!editor || !m_speller) return;
-	for (; curLine<=endLine; curLine++) {
+	for (; curLine <= endLine; curLine++) {
 		latexReader.line = editor->text(curLine);
-        LatexReader::NextWordFlag nwf;
-        while ((nwf=latexReader.nextWord(false))!=LatexReader::NW_NOTHING) {
-			if (curLine==endLine && latexReader.index>endIndex)
+		LatexReader::NextWordFlag nwf;
+		while ((nwf = latexReader.nextWord(false)) != LatexReader::NW_NOTHING) {
+			if (curLine == endLine && latexReader.index > endIndex)
 				break; //not in checked range
-            if(nwf!=LatexReader::NW_TEXT)
-                continue;
+			if (nwf != LatexReader::NW_TEXT)
+				continue;
 			if (m_speller->check(latexReader.word)) continue;
-			QStringList suggWords=m_speller->suggest(latexReader.word);
+			QStringList suggWords = m_speller->suggest(latexReader.word);
 
-			QDocumentCursor wordSelection(editor->document(),curLine,latexReader.wordStartIndex);
-			wordSelection.movePosition(latexReader.index-latexReader.wordStartIndex,QDocumentCursor::NextCharacter,QDocumentCursor::KeepAnchor);
+			QDocumentCursor wordSelection(editor->document(), curLine, latexReader.wordStartIndex);
+			wordSelection.movePosition(latexReader.index - latexReader.wordStartIndex, QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 			editor->setCursor(wordSelection);
 
 			ui.listSuggestions->setEnabled(true);
@@ -202,28 +213,30 @@ void SpellerDialog::SpellingNextWord() {
 	ui.lineEditOriginal->clear();
 	ui.listSuggestions->clear();
 	ui.lineEditNew->clear();
-	m_statusBar->showMessage("<b>"+tr("No more misspelled words")+"</b>");
+	m_statusBar->showMessage("<b>" + tr("No more misspelled words") + "</b>");
 }
 
-void SpellerDialog::toggleIgnoreList(bool forceHide) {
+void SpellerDialog::toggleIgnoreList(bool forceHide)
+{
 	QList<QWidget *> hideableWidgets = QList<QWidget *>() << ui.ignoreListView << ui.labelIgnoredWords << ui.pushButtonAdd << ui.pushButtonRemove << ui.labelAsHideableSpacer;
 
 	if (ui.ignoreListView->isVisible() || forceHide) {
-		foreach (QWidget *w, hideableWidgets) w->hide();
+		foreach (QWidget * w, hideableWidgets) w->hide();
 		ui.pushButtonIgnoreList->setText(tr("Show User Words"));
-        ui.pushButtonIgnoreList->setIcon(getRealIcon("down-arrow-circle-silver"));
-		resize(width(),height()-(ui.ignoreListView->height()+ui.gridLayout->verticalSpacing()));
+		ui.pushButtonIgnoreList->setIcon(getRealIcon("down-arrow-circle-silver"));
+		resize(width(), height() - (ui.ignoreListView->height() + ui.gridLayout->verticalSpacing()));
 	} else {
-		resize(width(),height()+(ui.listSuggestions->height()+ui.gridLayout->verticalSpacing()));
+		resize(width(), height() + (ui.listSuggestions->height() + ui.gridLayout->verticalSpacing()));
 		ui.pushButtonIgnoreList->setText(tr("Hide User Words"));
-        ui.pushButtonIgnoreList->setIcon(getRealIcon("up-arrow-circle-silver"));
+		ui.pushButtonIgnoreList->setIcon(getRealIcon("up-arrow-circle-silver"));
 		if (m_speller && !ui.ignoreListView->model())
 			ui.ignoreListView->setModel(m_speller->ignoreListModel());
-		foreach (QWidget *w, hideableWidgets) w->show();
+		foreach (QWidget * w, hideableWidgets) w->show();
 	}
 }
 
-void SpellerDialog::addIgnoredWord() {
+void SpellerDialog::addIgnoredWord()
+{
 	if (!m_speller) return;
 	finishEditIgnoreList(); // needed for possible cleanup if an editor is open, harmless otherwise
 
@@ -235,15 +248,17 @@ void SpellerDialog::addIgnoredWord() {
 	ui.ignoreListView->edit(m->index(0));
 }
 
-void SpellerDialog::removeIgnoredWord() {
+void SpellerDialog::removeIgnoredWord()
+{
 	if (!m_speller) return;
 	if (!ui.ignoreListView->model()) return;
-	QString selectedWord = ui.ignoreListView->model()->data(ui.ignoreListView->currentIndex(),Qt::DisplayRole).toString();
+	QString selectedWord = ui.ignoreListView->model()->data(ui.ignoreListView->currentIndex(), Qt::DisplayRole).toString();
 	m_speller->removeFromIgnoreList(selectedWord);
 }
 
-void SpellerDialog::finishEditIgnoreList() {
-	QString word = ui.ignoreListView->model()->data(ui.ignoreListView->currentIndex(),Qt::DisplayRole).toString();
+void SpellerDialog::finishEditIgnoreList()
+{
+	QString word = ui.ignoreListView->model()->data(ui.ignoreListView->currentIndex(), Qt::DisplayRole).toString();
 	int dummy;
 	if (wordValidator.validate(word, dummy) == QValidator::Acceptable) {
 		m_speller->addToIgnoreList(word);
@@ -252,23 +267,26 @@ void SpellerDialog::finishEditIgnoreList() {
 	}
 }
 
-ValidatedLineEdit::ValidatedLineEdit(QWidget *parent) : QLineEdit(parent) {
+ValidatedLineEdit::ValidatedLineEdit(QWidget *parent) : QLineEdit(parent)
+{
 	setValidator(&wordValidator);
 }
 
-IgnoreListViewDelegate::IgnoreListViewDelegate(QObject *parent) : QStyledItemDelegate(parent) {
+IgnoreListViewDelegate::IgnoreListViewDelegate(QObject *parent) : QStyledItemDelegate(parent)
+{
 	QItemEditorCreatorBase *creator = new QStandardItemEditorCreator<ValidatedLineEdit>();
 	QItemEditorFactory *factory = new QItemEditorFactory();
 	factory->registerEditor(QVariant::String, creator);
 	setItemEditorFactory(factory);
 }
 
-void IgnoreListViewDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
+void IgnoreListViewDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
+{
 	QByteArray n = editor->metaObject()->userProperty().name();
 	if (!n.isEmpty()) {
 		QString word = editor->property(n).toString();
 		int pos;
-		if (wordValidator.validate(word, pos)==QValidator::Acceptable) {
+		if (wordValidator.validate(word, pos) == QValidator::Acceptable) {
 			model->setData(index, editor->property(n), Qt::EditRole);
 		}
 	}

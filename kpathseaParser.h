@@ -10,6 +10,7 @@
 class PackageScanner : public SafeThread
 {
 	Q_OBJECT
+
 public:
 	void stop();
 
@@ -27,22 +28,24 @@ protected:
 
 class KpathSeaParser : public PackageScanner
 {
-    Q_OBJECT
+	Q_OBJECT
+
 public:
 	explicit KpathSeaParser(QString kpsecmd, QObject *parent = 0);
 
 protected:
-    void run();
+	void run();
 	QString kpsewhich(const QString &arg);
 
 private:
-    QString kpseWhichCmd;
+	QString kpseWhichCmd;
 };
 
 
 class MiktexPackageScanner : public PackageScanner
 {
 	Q_OBJECT
+
 public:
 	MiktexPackageScanner(QString mpmCmd, QString settingsDir, QObject *parent = 0);
 

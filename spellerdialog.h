@@ -22,24 +22,29 @@
 
 #include <QStyledItemDelegate>
 
-class SpellerDialog : public QDialog  {
+class SpellerDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
-	SpellerDialog(QWidget *parent=0, SpellerUtility *utility=0);
+	SpellerDialog(QWidget *parent = 0, SpellerUtility *utility = 0);
 	~SpellerDialog();
 	Ui::SpellerDialog ui;
 	void setEditorView(LatexEditorView *edView);
 	void startSpelling();
+
 private :
 	QStatusBar *m_statusBar;
 	SpellerUtility *m_speller;
 	QEditor *editor;
 	LatexEditorView *editorView;
 	LatexReader latexReader;
-	int startLine,startIndex,curLine, endLine,endIndex;
+	int startLine, startIndex, curLine, endLine, endIndex;
 	bool ignoreListChanged;
+
 protected:
-	void closeEvent(QCloseEvent*);
+	void closeEvent(QCloseEvent *);
+
 private slots:
 	void accept();
 	void slotIgnore();
@@ -47,27 +52,31 @@ private slots:
 	void slotReplace();
 	void updateItem();
 	void SpellingNextWord();
-	void toggleIgnoreList(bool forceHide=false);
-    void addIgnoredWord();
-    void removeIgnoredWord();
+	void toggleIgnoreList(bool forceHide = false);
+	void addIgnoredWord();
+	void removeIgnoredWord();
 	void finishEditIgnoreList();
 };
 
 
-class ValidatedLineEdit : public QLineEdit {
+class ValidatedLineEdit : public QLineEdit
+{
 	Q_OBJECT
+
 public:
-	explicit ValidatedLineEdit(QWidget *parent=0);
+	explicit ValidatedLineEdit(QWidget *parent = 0);
 };
 
 
-class IgnoreListViewDelegate : public QStyledItemDelegate {
+class IgnoreListViewDelegate : public QStyledItemDelegate
+{
 	Q_OBJECT
+
 public:
 	explicit IgnoreListViewDelegate(QObject *parent = 0);
 	void setModelData(QWidget *editor,
-					  QAbstractItemModel *model,
-					  const QModelIndex &index) const;
+	                  QAbstractItemModel *model,
+	                  const QModelIndex &index) const;
 };
 
 

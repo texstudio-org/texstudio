@@ -20,11 +20,12 @@ class QCodeEdit;
 class QLanguageFactory;
 class QSearchReplacePanel;
 class StringListTableModel;
-class UserMenuDialog : public QDialog {
+class UserMenuDialog : public QDialog
+{
 	Q_OBJECT
 
 public:
-	UserMenuDialog(QWidget* parent = 0, QString name="", QLanguageFactory* languageFactory=0);
+	UserMenuDialog(QWidget *parent = 0, QString name = "", QLanguageFactory *languageFactory = 0);
 	~UserMenuDialog();
 	Ui::UserMenuDialog ui;
 
@@ -35,20 +36,20 @@ public:
 private:
 	QStringList names, tags, abbrevs, triggers;
 
-	QCodeEdit* codeedit;
-	QLanguageFactory* languages;
-	QSearchReplacePanel* searchReplacePanel;
-	StringListTableModel* model;
+	QCodeEdit *codeedit;
+	QLanguageFactory *languages;
+	QSearchReplacePanel *searchReplacePanel;
+	StringListTableModel *model;
 
 public slots:
 	void init();
 
 signals:
-	void runScript(const QString& script);
+	void runScript(const QString &script);
 
 private slots:
-	void change(const QModelIndex& nev,const QModelIndex& old);
-	void modelDataChanged(const QModelIndex& from ,const QModelIndex& to);
+	void change(const QModelIndex &nev, const QModelIndex &old);
+	void modelDataChanged(const QModelIndex &from , const QModelIndex &to);
 	void slotOk();
 	void slotRunScript();
 	void slotAdd();

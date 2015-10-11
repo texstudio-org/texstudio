@@ -7,15 +7,16 @@
 
 class directoryReader : public SafeThread
 {
-    Q_OBJECT
+	Q_OBJECT
+
 public:
-    explicit directoryReader(QObject *parent = 0);
+	explicit directoryReader(QObject *parent = 0);
 
 signals:
-    void directoryLoaded(QString path,QSet<QString> content);
+	void directoryLoaded(QString path, QSet<QString> content);
 
 public slots:
-    void readDirectory(QString path);
+	void readDirectory(QString path);
 
 private:
 

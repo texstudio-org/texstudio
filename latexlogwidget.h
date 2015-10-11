@@ -11,11 +11,12 @@
 class LatexLogWidget : public QWidget
 {
 	Q_OBJECT
+
 public:
 	explicit LatexLogWidget(QWidget *parent = 0);
-	
+
 	bool loadLogFile(const QString &logname, const QString &compiledFileName);
-	LatexLogModel* getLogModel() {return logModel;}
+	LatexLogModel *getLogModel() { return logModel; }
 
 	bool logEntryNumberValid(int logEntryNumber);
 	bool logPresent();
@@ -24,12 +25,14 @@ public:
 
 	void copy();
 
-	bool childHasFocus() const {return log->hasFocus() || errorTable->hasFocus();}
-    QList<QAction *> displayActions();
+	bool childHasFocus() const { return log->hasFocus() || errorTable->hasFocus(); }
+	QList<QAction *> displayActions();
+
 signals:
 	void logEntryActivated(int);
 	void logLoaded();
 	void logResetted();
+
 public slots:
 
 private slots:
@@ -41,19 +44,17 @@ private slots:
 	void copyAllMessagesWithLineNumbers();
 	void setWidgetVisibleFromAction(bool visible);
 	void setInfo(const QString &message);
-    void filterChanged(bool);
+	void filterChanged(bool);
+
 private:
+	LatexLogModel *logModel;
+	QSortFilterProxyModel *proxyModel;
+	bool logpresent;
+
 	QTableView *errorTable;
 	LogEditor *log;
 	QLabel *infoLabel;
-	
-	LatexLogModel *logModel;
-
-	QAction *displayTableAction, *displayLogAction,*filterErrorAction,*filterWarningAction,*filterBadBoxAction;
-
-	bool logpresent;
-
-    QSortFilterProxyModel *proxyModel;
+	QAction *displayTableAction, *displayLogAction, *filterErrorAction, *filterWarningAction, *filterBadBoxAction;
 };
 
 #endif // LATEXLOGWIDGET_H

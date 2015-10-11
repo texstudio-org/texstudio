@@ -2,7 +2,7 @@
 #define PDFDOCUMENT_CONFIG_H
 
 #include <QByteArray>
-struct PDFDocumentConfig{
+struct PDFDocumentConfig {
 	bool autoHideToolbars;
 	int windowLeft, windowTop;
 	int windowWidth, windowHeight;
@@ -30,11 +30,11 @@ struct PDFDocumentConfig{
 
 //live options
 	int editTool;
-	bool continuous,singlepagestep;
+	bool continuous, singlepagestep;
 	bool followFromCursor, followFromScroll, syncViews;
 	bool invertColors;
-    bool grayscale;
-	int gridx,gridy;
+	bool grayscale;
+	int gridx, gridy;
 };
 
 #endif // PDFDOCUMENT_CONFIG_H

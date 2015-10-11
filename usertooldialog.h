@@ -17,17 +17,20 @@
 #include "ui_usertooldialog.h"
 
 class BuildManager;
-class UserToolDialog : public QDialog  {
+class UserToolDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
-	UserToolDialog(QWidget *parent=0, QString name="", BuildManager* bm = 0);
+	UserToolDialog(QWidget *parent = 0, QString name = "", BuildManager *bm = 0);
 	~UserToolDialog();
 	Ui::UserToolDialog ui;
 
-	QStringList Name,Tool;
-	BuildManager* buildManager;
+	QStringList Name, Tool;
+	BuildManager *buildManager;
+
 private:
-	enum ToolRoles{
+	enum ToolRoles {
 		CommandRole = Qt::UserRole + 1,
 	};
 

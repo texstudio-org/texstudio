@@ -23,7 +23,7 @@ TexdocDialog::TexdocDialog(QWidget *parent) :
 	checkTimer.setSingleShot(true);
 	connect(&checkTimer, SIGNAL(timeout()), SLOT(checkDockAvailable()));
 	connect(ui->cbPackages, SIGNAL(editTextChanged(QString)), SLOT(searchTermChanged(QString)));
-	connect(Help::instance(), SIGNAL(texdocAvailableReply(QString,bool,QString)), SLOT(updateDocAvailableInfo(QString, bool,QString)));
+	connect(Help::instance(), SIGNAL(texdocAvailableReply(QString, bool, QString)), SLOT(updateDocAvailableInfo(QString, bool, QString)));
 
 	updateDocAvailableInfo("", false); // initially disable warning message
 }
@@ -89,7 +89,7 @@ void TexdocDialog::updateDocAvailableInfo(const QString &package, bool available
 
 	bool showWarning = !package.isEmpty() && !available;
 	QString warning = customWarning.isNull() ? tr("No Documentation Available") : customWarning;
-    if (openButton) openButton->setEnabled(available);
+	if (openButton) openButton->setEnabled(available);
 	ui->lbInfo->setText(showWarning ? warning : "");
 	ui->lbWarnIcon->setVisible(showWarning);
 }

@@ -20,7 +20,8 @@
 class InsertGraphicsConfig;
 
 
-class PlacementValidator : public QRegExpValidator {
+class PlacementValidator : public QRegExpValidator
+{
 	Q_OBJECT
 
 public:
@@ -30,7 +31,8 @@ public:
 };
 
 
-class InsertGraphics : public QDialog {
+class InsertGraphics : public QDialog
+{
 	Q_OBJECT
 
 public:
@@ -73,7 +75,7 @@ private slots:
 	void includeOptionChanged();
 	void labelChanged(const QString &label);
 	void updateLabel(const QString &fname);
-	void togglePlacementCheckboxes(bool forceHide=false);
+	void togglePlacementCheckboxes(bool forceHide = false);
 	void updatePlacement();
 	void saveDefault();
 };

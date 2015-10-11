@@ -8,6 +8,7 @@ class ConfigManager;
 class SessionList: public QObject
 {
 	Q_OBJECT
+
 public:
 	SessionList(QMenu *menu, QObject *parent);
 

@@ -1,7 +1,7 @@
 #ifndef WEBPUBLISHDIALOGCONFIG_H
 #define WEBPUBLISHDIALOGCONFIG_H
 
-//having the configuration in a single file allows to change it, 
+//having the configuration in a single file allows to change it,
 //without having a relationship between completer and configmanager
 //so modifying one doesn't lead to a recompilation of the other
 
@@ -14,8 +14,8 @@ public:
 	bool noindex;
 	QString title, address, browser, contentname, align, lastdir, dviopt;
 
-	void readSettings(QSettings& settings);
-	void saveSettings(QSettings& settings);
+	void readSettings(QSettings &settings);
+	void saveSettings(QSettings &settings);
 private:
 };
 

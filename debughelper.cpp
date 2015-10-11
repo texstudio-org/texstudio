@@ -37,55 +37,64 @@
 
 //===========================Abstract CPU model==========================
 
-//platfom independent implementation of assembler instructions 
-//(use case: before changing eip, the old eip must be pushed in the correct way on the stack, otherwise the 
+//platfom independent implementation of assembler instructions
+//(use case: before changing eip, the old eip must be pushed in the correct way on the stack, otherwise the
 //           backtrace doesn't show the function that actually crashed)
 struct SimulatedCPU {
-	char * pc; //e.g. eip, r15
-	char * frame; //e.g. ebp, r11
-	char * stack; //e.g. esp, r13
+	char *pc;  //e.g. eip, r15
+	char *frame;  //e.g. ebp, r11
+	char *stack;  //e.g. esp, r13
 #if defined(CPU_IS_ARM) || defined(CPU_IS_MIPS) || defined(CPU_IS_PPC) || defined(CPU_IS_SPARC32)
-	char * returnTo; //lr/r14
+	char *returnTo;  //lr/r14
 #endif
-	
-	inline void push(char * value){
-		stack -= sizeof(void*); 
-		*(char**)(stack) = value; 
+
+	inline void push(char *value)
+	{
+		stack -= sizeof(void *);
+		*(char **)(stack) = value;
 	}
-	inline char* pop(){
-		char* temp = *(char**)(stack);
-		stack += sizeof(void*); 
+	
+	inline char *pop()
+	{
+		char *temp = *(char **)(stack);
+		stack += sizeof(void *);
 		return temp;
 	}
 
-	inline void jmp(char * value){
+	inline void jmp(char *value)
+	{
 		pc = value;
 	}
 
-	inline void call(char * value);
+	inline void call(char *value);
 	inline void ret();
 	inline void enter(int size);
 	inline void leave();
-	
 
-	void set_all(void* context);
-	void get_all(void* context);
+
+	void set_all(void *context);
+	void get_all(void *context);
 	void set_from_real();
 
 	bool stackWalk();
-	void unwindStack(){
+	void unwindStack()
+	{
 		SimulatedCPU temp = *this;
-		int frames = 0; 
+		int frames = 0;
 		while (temp.stackWalk()) frames++;
 		if (frames == 0) return;
 		if (frames < 100) frames = frames - 10;
 		else frames = frames - 100;
-		while (frames > 0) { this->leave(); frames--; }
-	}	
+		while (frames > 0) {
+			this->leave();
+			frames--;
+		}
+	}
 
-	int backtrace(void ** array, int size) {
+	int backtrace(void **array, int size)
+	{
 		if (!pc || !frame) return 0;
-		for (int i=0;i<size;i++)
+		for (int i = 0; i < size; i++)
 			array[i] = 0;
 		int i = 0;
 		do {
@@ -118,7 +127,7 @@ struct SimulatedCPU {
 SAFE_INT crashHandlerType = 1;
 enum { ERR_NONE = 0, ERR_SIGNAL, ERR_ASSERT, ERR_LOOP, ERR_EXCEPTION};
 SAFE_INT lastErrorType = 0;
-volatile void* sigSegvRecoverReturnAddress = 0; //address where it should jump to, if recovering causes another sigsegv
+volatile void *sigSegvRecoverReturnAddress = 0; //address where it should jump to, if recovering causes another sigsegv
 
 #define CRASH_HANDLER_RECOVER 1
 #define CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER 2
@@ -139,8 +148,7 @@ typedef BOOL WINAPI (*SymInitializeFunc)(HANDLE, PCSTR, BOOL);
 
 typedef PVOID WINAPI (*SymFunctionTableAccess64Func)(HANDLE, DWORD64);
 typedef DWORD64 WINAPI (*SymGetModuleBase64Func)(HANDLE, DWORD64);
-typedef enum
-{
+typedef enum {
 	AddrMode1616,
 	AddrMode1632,
 	AddrModeReal,
@@ -205,8 +213,7 @@ typedef struct _tagADDRESS64 {
 	ADDRESS_MODE  Mode;
 } ADDRESS64, *LPADDRESS64;
 
-typedef struct _STACKFRAME64
-{
+typedef struct _STACKFRAME64 {
 	ADDRESS64   AddrPC;
 	ADDRESS64   AddrReturn;
 	ADDRESS64   AddrFrame;
@@ -230,8 +237,7 @@ typedef BOOL WINAPI (*StackWalk64Func)(DWORD, HANDLE, HANDLE, LPSTACKFRAME64, PV
                                        PGET_MODULE_BASE_ROUTINE64,
                                        PTRANSLATE_ADDRESS_ROUTINE64);
 
-typedef struct _IMAGEHLP_SYMBOL64
-{
+typedef struct _IMAGEHLP_SYMBOL64 {
 	DWORD                       SizeOfStruct;
 	DWORD64                     Address;
 	DWORD                       Size;
@@ -240,8 +246,7 @@ typedef struct _IMAGEHLP_SYMBOL64
 	CHAR                        Name[1];
 } IMAGEHLP_SYMBOL64, *PIMAGEHLP_SYMBOL64;
 
-typedef struct _IMAGEHLP_LINE64
-{
+typedef struct _IMAGEHLP_LINE64 {
 	DWORD                       SizeOfStruct;
 	PVOID                       Key;
 	DWORD                       LineNumber;
@@ -258,25 +263,28 @@ typedef BOOL WINAPI (*SymGetLineFromAddr64Func)(HANDLE, DWORD64, PDWORD, PIMAGEH
 
 HMODULE dbghelp = 0;
 
-bool loadDbgHelp(){
+bool loadDbgHelp()
+{
 	if (dbghelp != 0) return true;
 	dbghelp = LoadLibraryA("dbghelp.dll");
 	return dbghelp;
 }
 
-bool initDebugHelp(){
+bool initDebugHelp()
+{
 	if (dbghelp != 0) return true; //don't call syminitialize twice
 	if (!loadDbgHelp()) return false;
 
 	LOAD_FUNCTIONREQRET(SymInitialize, "SymInitialize", false);
 
-	if (!(*SymInitialize)(((QSysInfo::windowsVersion() & QSysInfo::WV_DOS_based) == 0)?GetCurrentProcess():(HANDLE)GetCurrentProcessId(), 0, true))
+	if (!(*SymInitialize)(((QSysInfo::windowsVersion() & QSysInfo::WV_DOS_based) == 0) ? GetCurrentProcess() : (HANDLE)GetCurrentProcessId(), 0, true))
 		return false;
 	return true;
 }
 
-QStringList backtrace_symbols_win(void** addr, int size){
-	if (!initDebugHelp()){
+QStringList backtrace_symbols_win(void **addr, int size)
+{
+	if (!initDebugHelp()) {
 		if (dbghelp) return QStringList(QString("Failed to initialize SymInitialize ") + QString::number(GetLastError()));
 		else return QStringList("Failed to load dbghelp");
 	}
@@ -286,9 +294,9 @@ QStringList backtrace_symbols_win(void** addr, int size){
 
 	HANDLE process = GetCurrentProcess();
 
-	_IMAGEHLP_SYMBOL64* symbol = (_IMAGEHLP_SYMBOL64*)malloc(sizeof(_IMAGEHLP_SYMBOL64) + 256);
+	_IMAGEHLP_SYMBOL64 *symbol = (_IMAGEHLP_SYMBOL64 *)malloc(sizeof(_IMAGEHLP_SYMBOL64) + 256);
 	QStringList res;
-	for (int i=0;i<size;i++) {
+	for (int i = 0; i < size; i++) {
 		DWORD64 displacement = 0;
 		DWORD displacement32 = 0;
 		ZeroMemory(symbol, sizeof(_IMAGEHLP_SYMBOL64));
@@ -300,14 +308,14 @@ QStringList backtrace_symbols_win(void** addr, int size){
 		QString cur;
 
 		if ((*SymGetSymFromAddr64)(process, (DWORD64)addr[i], &displacement, symbol))
-			cur = QString::fromLocal8Bit(symbol->Name)+"+"+QString::number(displacement);
+			cur = QString::fromLocal8Bit(symbol->Name) + "+" + QString::number(displacement);
 		else
 			cur = "??? error: " + QString::number(GetLastError());
 
 
 		if (SymGetLineFromAddr64) {
 			if ((*SymGetLineFromAddr64)(process, (DWORD64)addr[i], &displacement32, &line))
-				cur += " in " + QString::fromLocal8Bit(line.FileName)+":"+QString::number(line.LineNumber);
+				cur += " in " + QString::fromLocal8Bit(line.FileName) + ":" + QString::number(line.LineNumber);
 		}
 
 		res << cur;
@@ -320,7 +328,8 @@ QMutex backtraceMutex;
 //from http://jpassing.com/2008/03/12/walking-the-stack-of-the-current-thread/
 //     http://www.codeproject.com/Articles/11132/Walking-the-callstack
 //alternative: __builtin_return_address, but it is said to not work so well
-int backtrace(void ** trace, int size){
+int backtrace(void **trace, int size)
+{
 	if (!backtraceMutex.tryLock()) return 0;
 
 	//init crap
@@ -337,11 +346,11 @@ int backtrace(void ** trace, int size){
 #else
 	// Those three registers are enough.
 geteip:
-	context.Eip = (DWORD)&&geteip;
+	context.Eip = (DWORD) && geteip;
 	__asm__(
-	"mov %%ebp, %0\n"
-	"mov %%esp, %1"
-	: "=r"(context.Ebp), "=r"(context.Esp));
+	    "mov %%ebp, %0\n"
+	    "mov %%esp, %1"
+	    : "=r"(context.Ebp), "=r"(context.Esp));
 #endif
 	ZeroMemory( &stackFrame, sizeof( stackFrame ) );
 #ifdef CPU_IS_64
@@ -361,17 +370,17 @@ geteip:
 	stackFrame.AddrStack.Offset = context.Esp;
 	stackFrame.AddrStack.Mode   = AddrModeFlat;
 	/* #elif _M_IA64
-    MachineType                 = IMAGE_FILE_MACHINE_IA64;
-    StackFrame.AddrPC.Offset    = Context.StIIP;
-    StackFrame.AddrPC.Mode      = AddrModeFlat;
-    StackFrame.AddrFrame.Offset = Context.IntSp;
-    StackFrame.AddrFrame.Mode   = AddrModeFlat;
-    StackFrame.AddrBStore.Offset= Context.RsBSP;
-    StackFrame.AddrBStore.Mode  = AddrModeFlat;
-    StackFrame.AddrStack.Offset = Context.IntSp;
-    StackFrame.AddrStack.Mode   = AddrModeFlat;
-  #else
-    #error "Unsupported platform"*/
+	MachineType                 = IMAGE_FILE_MACHINE_IA64;
+	StackFrame.AddrPC.Offset    = Context.StIIP;
+	StackFrame.AddrPC.Mode      = AddrModeFlat;
+	StackFrame.AddrFrame.Offset = Context.IntSp;
+	StackFrame.AddrFrame.Mode   = AddrModeFlat;
+	StackFrame.AddrBStore.Offset= Context.RsBSP;
+	StackFrame.AddrBStore.Mode  = AddrModeFlat;
+	StackFrame.AddrStack.Offset = Context.IntSp;
+	StackFrame.AddrStack.Mode   = AddrModeFlat;
+#else
+#error "Unsupported platform"*/
 #endif
 
 	static HMODULE dbghelp = LoadLibraryA("dbghelp.dll");
@@ -385,7 +394,7 @@ geteip:
 	QList<DWORD64> stackFrames;
 	int idx = 0;
 	while (idx < size && (*StackWalk64)(machineType, process, thread, &stackFrame, &context, 0, SymFunctionTableAccess64, SymGetModuleBase64, 0)) {
-		trace[idx] = reinterpret_cast<void*>(stackFrame.AddrPC.Offset);
+		trace[idx] = reinterpret_cast<void *>(stackFrame.AddrPC.Offset);
 		idx++;
 	}
 
@@ -394,16 +403,19 @@ geteip:
 	return idx;
 }
 
-QString temporaryFileNameFormat(){
+QString temporaryFileNameFormat()
+{
 	return QDir::tempPath() + QString("/texstudio_backtrace%1.txt");
 }
 
 #else
 #include "execinfo.h"
-QString temporaryFileNameFormat(){
+QString temporaryFileNameFormat()
+{
 	return "/tmp/texstudio_backtrace%1.txt";
 }
-QStringList backtrace_symbols_win(void**, int){
+QStringList backtrace_symbols_win(void **, int)
+{
 	return QStringList();
 }
 
@@ -411,7 +423,8 @@ QStringList backtrace_symbols_win(void**, int){
 
 
 
-QString print_backtrace(const SimulatedCPU& state, const QString& message){
+QString print_backtrace(const SimulatedCPU &state, const QString &message)
+{
 #ifdef Q_OS_WIN32
 	qDebug("%s", qPrintable(message));
 #define PRINT(...) do { qDebug(__VA_ARGS__); if (logFile) fprintf(logFile, __VA_ARGS__);  } while (0)
@@ -423,7 +436,7 @@ QString print_backtrace(const SimulatedCPU& state, const QString& message){
 	static int count = 0;
 	count++;
 	QString backtraceFilename = temporaryFileNameFormat().arg(count);
-	FILE* logFile = fopen(qPrintable(backtraceFilename), "w");
+	FILE *logFile = fopen(qPrintable(backtraceFilename), "w");
 	PRINT("%s\n", qPrintable(message));
 
 	void *trace[48];
@@ -435,18 +448,18 @@ QString print_backtrace(const SimulatedCPU& state, const QString& message){
 #else
 	bool useNativeBacktrace = (crashHandlerType & CRASH_HANDLER_USE_NATIVE_BACKTRACE);
 #endif
-	if (useNativeBacktrace) size = backtrace(trace, 48);
+	                          if (useNativeBacktrace) size = backtrace(trace, 48);
 	else size = copystate.backtrace(trace, 48);
 
 #ifdef Q_OS_WIN32
 	QStringList additionalMessages = backtrace_symbols_win(trace, size);
-	char** messages = 0;
+	char **messages = 0;
 #else
 	QStringList additionalMessages;
-	char** messages = backtrace_symbols(trace, size);
+	char **messages = backtrace_symbols(trace, size);
 #endif
-	for (int i=0; i<size; ++i) {
-		const char * message = messages ? messages[i] : "";
+	for (int i = 0; i < size; ++i) {
+		const char *message = messages ? messages[i] : "";
 		if (i >= additionalMessages.size()) PRINT("[bt] %s\n", message);
 		else PRINT("[bt] %p %s %s\n", trace[i], message, qPrintable(additionalMessages[i]));
 	}
@@ -455,18 +468,15 @@ QString print_backtrace(const SimulatedCPU& state, const QString& message){
 	return backtraceFilename;
 }
 
-QString print_backtrace(const QString& message){
+QString print_backtrace(const QString &message)
+{
 	SimulatedCPU cpu;
 	cpu.set_from_real();
 	return print_backtrace(cpu, message);
 }
 
 
-
-
 //=========================POSIX SIGNAL HANDLER===========================
-
-
 
 #ifdef OS_IS_LINUX_LIKE
 #include "signal.h"
@@ -476,25 +486,25 @@ QString print_backtrace(const QString& message){
 
 #define USE_SIGNAL_HANDLER
 #ifdef CPU_IS_X86_64
- #if defined(__FreeBSD__) 
-  #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_rip
-  #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_rsp
-  #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_rbp
- #else
-  #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RIP]
-  #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RSP]
-  #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RBP]
- #endif
+#if defined(__FreeBSD__)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_rip
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_rsp
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_rbp
+#else
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RIP]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RSP]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_RBP]
+#endif
 #elif defined(CPU_IS_X86_32)
- #if defined(__FreeBSD__)
-  #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_eip
-  #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_esp
-  #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_ebp
- #else
-  #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EIP]
-  #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_ESP]
-  #define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EBP]
- #endif
+#if defined(__FreeBSD__)
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_eip
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_esp
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.mc_ebp
+#else
+#define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EIP]
+#define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_ESP]
+#define FRAME_FROM_UCONTEXT(context) (context)->uc_mcontext.gregs[REG_EBP]
+#endif
 #elif defined(CPU_IS_PPC)
 #define PC_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[32]
 #define STACK_FROM_UCONTEXT(context) (context)->uc_mcontext.gp_regs[1]
@@ -584,29 +594,36 @@ volatile sig_atomic_t lastCrashSignal = 0;
 
 CPU_CONTEXT_TYPE lastLoopContext;
 
-bool isAddressInTeXstudio(void * address){
+bool isAddressInTeXstudio(void *address)
+{
 	return address < LAST_POSSIBLE_TXS_ADDRESS;
 }
 
 
-inline quintptr ptrdistance(void* a, void* b){
+inline quintptr ptrdistance(void *a, void *b)
+{
 	if (a < b) return (quintptr)(b) - (quintptr)(a);
 	else return (quintptr)(a) - (quintptr)(b);
 }
 
-const char * signalIdToName(int id){
-	switch (id){
-	case SIGSEGV: return ("SIGSEGV"); 
-	case SIGFPE: return ("SIGFPE"); 
-	case SIGMYSTACKSEGV: return ("SIGSEGV on stack"); 
+const char *signalIdToName(int id)
+{
+	switch (id) {
+	case SIGSEGV:
+		return ("SIGSEGV");
+	case SIGFPE:
+		return ("SIGFPE");
+	case SIGMYSTACKSEGV:
+		return ("SIGSEGV on stack");
 	//case SIGMYHANG: return "Endless loop";
-	default: 
+	default:
 		if (id == SIGMYHANG) return "Endless loop";
-		else return ("SIG???"); 
+		else return ("SIG???");
 	}
 }
 
-void signalHandler(int type, siginfo_t * si, void* ccontext){
+void signalHandler(int type, siginfo_t *si, void *ccontext)
+{
 	lastErrorType = ERR_SIGNAL;
 	SimulatedCPU cpu;
 	if (ccontext) {
@@ -614,14 +631,14 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 		if (cpu.frame == 0) cpu.frame = cpu.stack;
 
 		if (type == SIGSEGV && sigSegvRecoverReturnAddress) {
-			cpu.jmp((char*)sigSegvRecoverReturnAddress);
+			cpu.jmp((char *)sigSegvRecoverReturnAddress);
 			sigSegvRecoverReturnAddress = 0;
 			cpu.get_all(ccontext);
 			return;
 		}
 
-		char *addr = (char*)(si->si_addr);
-		char * minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
+		char *addr = (char *)(si->si_addr);
+		char *minstack = cpu.stack < cpu.frame ? cpu.stack : cpu.frame;
 		if (type == SIGSEGV && ptrdistance(addr, minstack) < 1024) type = SIGMYSTACKSEGV;
 	}
 	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER || !ccontext) {
@@ -631,117 +648,125 @@ void signalHandler(int type, siginfo_t * si, void* ccontext){
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
 		if (type == SIGMYHANG) {
 			if (!isAddressInTeXstudio(cpu.pc)) return; //don't mess with library functions
-			lastLoopContext = *(static_cast<CPU_CONTEXT_TYPE*>(ccontext));
+			lastLoopContext = *(static_cast<CPU_CONTEXT_TYPE *>(ccontext));
 			lastErrorType = ERR_LOOP;
-		} else if (type == SIGMYSTACKSEGV) cpu.unwindStack();	
-		
+		} else if (type == SIGMYSTACKSEGV) cpu.unwindStack();
+
 		lastCrashSignal = type;
 
-		cpu.call((char*)(&recover));
-		
+		cpu.call((char *)(&recover));
+
 		cpu.get_all(ccontext);
 	}
 }
 
-void signalHandlerContinueHanging(int, siginfo_t *, void* ccontext){
-	*(static_cast<CPU_CONTEXT_TYPE*>(ccontext)) = lastLoopContext; 
+void signalHandlerContinueHanging(int, siginfo_t *, void *ccontext)
+{
+	*(static_cast<CPU_CONTEXT_TYPE *>(ccontext)) = lastLoopContext;
 }
 
-const int SIGNAL_STACK_SIZE = 256*1024;
+const int SIGNAL_STACK_SIZE = 256 * 1024;
 char staticSignalStack[SIGNAL_STACK_SIZE];
 pthread_t mainThreadID;
 
-void registerCrashHandler(int mode){	
+void registerCrashHandler(int mode)
+{
 	if (mode >= 0) {
 		stack_t ss;
 		ss.ss_sp = staticSignalStack;
 		ss.ss_size = SIGNAL_STACK_SIZE;
 		ss.ss_flags = 0;
 		sigaltstack(&ss, 0);
-		
+
 		struct sigaction sa;
-		memset(&sa, 0, sizeof(sa)); sa.sa_flags = SA_SIGINFO | SA_ONSTACK;
-		sa.sa_sigaction = &signalHandler; sigaction(SIGSEGV, &sa, 0);
-		sa.sa_sigaction = &signalHandler; sigaction(SIGFPE, &sa, 0);
-		
+		memset(&sa, 0, sizeof(sa));
+		sa.sa_flags = SA_SIGINFO | SA_ONSTACK;
+		sa.sa_sigaction = &signalHandler;
+		sigaction(SIGSEGV, &sa, 0);
+		sa.sa_sigaction = &signalHandler;
+		sigaction(SIGFPE, &sa, 0);
+
 		if (!(mode & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED)) {
-			sa.sa_sigaction = &signalHandler; sigaction(SIGMYHANG, &sa, 0);
-			sa.sa_sigaction = &signalHandlerContinueHanging; sigaction(SIGMYHANG_CONTINUE, &sa, 0);
+			sa.sa_sigaction = &signalHandler;
+			sigaction(SIGMYHANG, &sa, 0);
+			sa.sa_sigaction = &signalHandlerContinueHanging;
+			sigaction(SIGMYHANG_CONTINUE, &sa, 0);
 			mainThreadID = pthread_self();
-		}		
+		}
 	}
 }
 
-QString getLastCrashInformationInternal(){
+QString getLastCrashInformationInternal()
+{
 	return signalIdToName(lastCrashSignal);
 }
 
 
-bool recoverMainThreadFromOutside(){
+bool recoverMainThreadFromOutside()
+{
 	//fprintf(stderr, "%i -> %lx",SIGMYHANG, mainThreadID);
 	lastErrorType = ERR_NONE;
 	lastCrashSignal = 0;
 	if (pthread_kill(mainThreadID, SIGMYHANG) != 0) return false;
-	
+
 	int loopend = 1000000;
 	while ( !lastCrashSignal && (--loopend >= 0) ) ;
 	__sync_synchronize(); //memory barrier (does it work?)  (better have a barrier here, than a lock in the signal handler)
 	return lastErrorType == ERR_LOOP;
 }
 
-void undoMainThreadRecoveringFromOutside(){
+void undoMainThreadRecoveringFromOutside()
+{
 	pthread_kill(mainThreadID, SIGMYHANG_CONTINUE);
 }
 
 #endif
 
 
-
-
-
-
-
 //=========================WINDOWS EXCEPTION HANDLER===========================
+
 #ifdef Q_OS_WIN32
 
-
-void * maxStack = 0;
+void *maxStack = 0;
 
 #if 0
-void printStackInfo(){
+void printStackInfo()
+{
 	SYSTEM_INFO  si;
 	MEMORY_BASIC_INFORMATION mi, info;
 	GetSystemInfo(&si);
-	for (int i=-2; i<=32; i++) {
-	bool allocated = VirtualQuery((char*)maxStack + i*si.dwPageSize, &info, sizeof(info));
-	fprintf(stderr, "> %i: base: %p, allocbase: %p, size: %x, allocprotect: %x, protect: %x, state: %x\n",
-									 allocated, info.BaseAddress, info.AllocationBase, info.RegionSize, info.AllocationProtect,  info.Protect, info.State);
+	for (int i = -2; i <= 32; i++) {
+		bool allocated = VirtualQuery((char *)maxStack + i * si.dwPageSize, &info, sizeof(info));
+		fprintf(stderr, "> %i: base: %p, allocbase: %p, size: %x, allocprotect: %x, protect: %x, state: %x\n",
+		        allocated, info.BaseAddress, info.AllocationBase, info.RegionSize, info.AllocationProtect,  info.Protect, info.State);
 	}
 }
 #endif
 
-void myresetstkoflw(){
+void myresetstkoflw()
+{
 	if (!maxStack) return;
 	SYSTEM_INFO  si;
 	GetSystemInfo(&si);
 
 
-  MEMORY_BASIC_INFORMATION info;
-  if (VirtualQuery(maxStack, &info, sizeof(info)) != sizeof(info)) return;
+	MEMORY_BASIC_INFORMATION info;
+	if (VirtualQuery(maxStack, &info, sizeof(info)) != sizeof(info)) return;
 
-  //int pagesToFree = 16;
- // allocated = VirtualFree(info.AllocationBase, pagesToFree * si.dwPageSize, MEM_DECOMMIT);
-  //VirtualProtect((char*)info.AllocationBase + si.dwPageSize, si.dwPageSize, PAGE_NOACCESS, &tempi);
-  //VirtualFree((char*)info.AllocationBase + si.dwPageSize, si.dwPageSize, MEM_DECOMMIT);
-  //VirtualProtect((char*)info.AllocationBase + 2*si.dwPageSize, si.dwPageSize, PAGE_GUARD | PAGE_READWRITE, &tempi);
-  DWORD tempi;
-  //Just put that guard page back, where it was.
-  VirtualProtect((char*)info.BaseAddress, si.dwPageSize, PAGE_GUARD | PAGE_READWRITE, &tempi);
+	//int pagesToFree = 16;
+// allocated = VirtualFree(info.AllocationBase, pagesToFree * si.dwPageSize, MEM_DECOMMIT);
+	//VirtualProtect((char*)info.AllocationBase + si.dwPageSize, si.dwPageSize, PAGE_NOACCESS, &tempi);
+	//VirtualFree((char*)info.AllocationBase + si.dwPageSize, si.dwPageSize, MEM_DECOMMIT);
+	//VirtualProtect((char*)info.AllocationBase + 2*si.dwPageSize, si.dwPageSize, PAGE_GUARD | PAGE_READWRITE, &tempi);
+	DWORD tempi;
+	//Just put that guard page back, where it was.
+	VirtualProtect((char *)info.BaseAddress, si.dwPageSize, PAGE_GUARD | PAGE_READWRITE, &tempi);
 
-  //printStackInfo();
+	//printStackInfo();
 }
 
-void recoverWithStackGuardianPage(){
+void recoverWithStackGuardianPage()
+{
 	myresetstkoflw();
 	//typedef int (*ResetstkoflwFunc) ();
 	//ResetstkoflwFunc resetstkoflw = (ResetstkoflwFunc)(GetProcAddress(LoadLibraryA("msvcr70.dll"), "_resetstkoflw"));
@@ -773,10 +798,11 @@ void recoverWithStackGuardianPage(){
 #endif
 
 
-const char* exceptionCodeToName(int code){
-	switch (code){
+const char *exceptionCodeToName(int code)
+{
+	switch (code) {
 #define X(t) case t: return #t;
-	CATCHED_EXCEPTIONS(X)
+		CATCHED_EXCEPTIONS(X)
 #undef X
 	}
 	return "unknown";
@@ -786,20 +812,21 @@ const char* exceptionCodeToName(int code){
 int lastExceptionCode = 0;
 quintptr lastExceptionAddress = 0;
 
-LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
+LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo)
+{
 	if (!ExceptionInfo) return EXCEPTION_CONTINUE_SEARCH;
 	bool isCatched = false;
 #define X(t) if (ExceptionInfo->ExceptionRecord->ExceptionCode == t) isCatched = true;
 	CATCHED_EXCEPTIONS(X)
-              #undef X
+#undef X
 
 	if (!isCatched) return EXCEPTION_CONTINUE_SEARCH;
-	
+
 	if ((ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION || ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW)
-	    && sigSegvRecoverReturnAddress) {
+	        && sigSegvRecoverReturnAddress) {
 		SimulatedCPU cpu;
 		cpu.set_all(ExceptionInfo->ContextRecord);
-		cpu.jmp((char*)sigSegvRecoverReturnAddress);
+		cpu.jmp((char *)sigSegvRecoverReturnAddress);
 		sigSegvRecoverReturnAddress = 0;
 		cpu.get_all(ExceptionInfo->ContextRecord);
 		return EXCEPTION_CONTINUE_EXECUTION;
@@ -809,14 +836,14 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 
 	lastErrorType = ERR_SIGNAL;
 
-	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER){
+	if (crashHandlerType & CRASH_HANDLER_PRINT_BACKTRACE_IN_HANDLER) {
 		print_backtrace(exceptionCodeToName(ExceptionInfo->ExceptionRecord->ExceptionCode));
 	}
 
 
 	if (crashHandlerType & CRASH_HANDLER_RECOVER) {
 		lastExceptionCode = ExceptionInfo->ExceptionRecord->ExceptionCode;
-		
+
 		SimulatedCPU cpu;
 		cpu.set_all(ExceptionInfo->ContextRecord);
 
@@ -825,9 +852,9 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 		if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_STACK_OVERFLOW || ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_FLT_STACK_CHECK) {
 			maxStack = cpu.stack;
 			cpu.unwindStack();
-			cpu.call((char*)&recoverWithStackGuardianPage);
+			cpu.call((char *)&recoverWithStackGuardianPage);
 		} else {
-			cpu.call((char*)&recover);
+			cpu.call((char *)&recover);
 		}
 
 		cpu.get_all(ExceptionInfo->ContextRecord);
@@ -840,15 +867,16 @@ LONG WINAPI crashHandler(_EXCEPTION_POINTERS *ExceptionInfo) {
 
 #include "psapi.h"
 typedef BOOL WINAPI (*GetModuleInformationFunc)(HANDLE hProcess, HMODULE hModule, LPMODULEINFO lpmodinfo, DWORD cb );
-typedef WINBASEAPI HANDLE WINAPI (*OpenThreadFunc)(DWORD,BOOL,DWORD);
+typedef WINBASEAPI HANDLE WINAPI (*OpenThreadFunc)(DWORD, BOOL, DWORD);
 
 
-void * ownBaseAddress = 0;
+void *ownBaseAddress = 0;
 unsigned int ownSize = 0x01000000;
 DWORD mainThreadID = 0;
 OpenThreadFunc OpenThreadDyn;
 
-void registerCrashHandler(int mode){
+void registerCrashHandler(int mode)
+{
 	if (mode >= 0) {
 		SetUnhandledExceptionFilter(&crashHandler);
 
@@ -870,20 +898,21 @@ void registerCrashHandler(int mode){
 	}
 }
 
-QString getLastCrashInformationInternal(){
-	return QString::fromLocal8Bit(exceptionCodeToName(lastExceptionCode)) + " at " + QString::number(lastExceptionAddress,16);
+QString getLastCrashInformationInternal()
+{
+	return QString::fromLocal8Bit(exceptionCodeToName(lastExceptionCode)) + " at " + QString::number(lastExceptionAddress, 16);
 }
 
 
-bool isAddressInTeXstudio(char * address){
-	return address >= ownBaseAddress && address <= ((char*)ownBaseAddress) + ownSize;
+bool isAddressInTeXstudio(char *address)
+{
+	return address >= ownBaseAddress && address <= ((char *)ownBaseAddress) + ownSize;
 }
 
+typedef bool (*ChangeThreadContextFunc)(HANDLE thread, CONTEXT *c);
 
-typedef bool (*ChangeThreadContextFunc)(HANDLE thread, CONTEXT* c);
-
-
-bool doSomethingWithMainThreadContext(ChangeThreadContextFunc something){
+bool doSomethingWithMainThreadContext(ChangeThreadContextFunc something)
+{
 	if (!mainThreadID || !OpenThreadDyn) return false;
 	HANDLE mainThread = (*OpenThreadDyn)(THREAD_GET_CONTEXT | THREAD_QUERY_INFORMATION | THREAD_SET_CONTEXT | THREAD_SUSPEND_RESUME, false, mainThreadID);
 	if (!mainThread) return false;
@@ -891,7 +920,7 @@ bool doSomethingWithMainThreadContext(ChangeThreadContextFunc something){
 	SuspendThread(mainThread);
 	CONTEXT c;
 	c.ContextFlags = (CONTEXT_FULL);
-	if (GetThreadContext(mainThread, &c)) 
+	if (GetThreadContext(mainThread, &c))
 		result = (*something)(mainThread, &c);
 	ResumeThread(mainThread);
 	CloseHandle(mainThread);
@@ -899,28 +928,34 @@ bool doSomethingWithMainThreadContext(ChangeThreadContextFunc something){
 }
 
 CONTEXT lastRecoveredContext;
-bool changeContextToRecover(HANDLE thread, CONTEXT* c){
+bool changeContextToRecover(HANDLE thread, CONTEXT *c)
+{
 	bool result = false;
-	if (isAddressInTeXstudio((char*)(PC_FROM_UCONTEXT(c)))) {
+	if (isAddressInTeXstudio((char *)(PC_FROM_UCONTEXT(c)))) {
 		lastRecoveredContext = *c;
 		SimulatedCPU cpu;
 		cpu.set_all(c);
-		cpu.call((char*)&recover);
+		cpu.call((char *)&recover);
 		cpu.get_all(c);
 		result = SetThreadContext(thread, c);
 		if (result) lastErrorType = ERR_LOOP;
 	}
 	return result;
 }
-bool recoverMainThreadFromOutside(){
+
+bool recoverMainThreadFromOutside()
+{
 	return doSomethingWithMainThreadContext(changeContextToRecover);
 }
 
-bool changeContextToUndoRecoving(HANDLE thread, CONTEXT* c){
+bool changeContextToUndoRecoving(HANDLE thread, CONTEXT *c)
+{
 	Q_UNUSED(c);
 	return SetThreadContext(thread, &lastRecoveredContext);
 }
-void undoMainThreadRecoveringFromOutside(){
+
+void undoMainThreadRecoveringFromOutside()
+{
 	doSomethingWithMainThreadContext(changeContextToUndoRecoving);
 }
 #endif
@@ -929,21 +964,23 @@ void undoMainThreadRecoveringFromOutside(){
 #if !defined(USE_SIGNAL_HANDLER) && !defined(Q_OS_WIN32)
 #warning Unrecognized OS. Crash handler will be disabled.
 
-bool recoverMainThreadFromOutside(){
+bool recoverMainThreadFromOutside()
+{
 	fprintf(stderr, "Main thread locks frozen\n");
 	return true;
 }
 
-void undoMainThreadRecoveringFromOutside(){}
-QString getLastCrashInformationInternal(){return "unknown (os unsupported by crash handler)";}
-void registerCrashHandler(int mode){}
+void undoMainThreadRecoveringFromOutside() {}
+QString getLastCrashInformationInternal()
+{
+	return "unknown (os unsupported by crash handler)";
+}
+
+void registerCrashHandler(int mode) {}
 #endif
 
 
-
-
 //========================NEW ASSERT==============================
-
 
 #undef qt_assert
 Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line);
@@ -951,11 +988,13 @@ Q_CORE_EXPORT void qt_assert_x(const char *where, const char *what, const char *
 
 QString lastAssert;
 
-void txs_assert(const char *assertion, const char *file, int line){
-	txs_assert_x("something",assertion,file,line);
+void txs_assert(const char *assertion, const char *file, int line)
+{
+	txs_assert_x("something", assertion, file, line);
 }
 
-void txs_assert_x(const char *where, const char *assertion, const char *file, int line){
+void txs_assert_x(const char *where, const char *assertion, const char *file, int line)
+{
 	lastAssert = QString("Assert failure: %1 at %2 in %3:%4").arg(assertion).arg(where).arg(file).arg(line);
 	print_backtrace(lastAssert);
 
@@ -967,138 +1006,139 @@ void txs_assert_x(const char *where, const char *assertion, const char *file, in
 	exit(1);
 }
 
-QString getLastCrashInformation(bool& wasLoop){
+QString getLastCrashInformation(bool &wasLoop)
+{
 	wasLoop = lastErrorType == ERR_LOOP;
-	switch (lastErrorType){
-		case ERR_ASSERT: return lastAssert;
-		case ERR_EXCEPTION: return "c++ exception";
-		default: return getLastCrashInformationInternal();
+	switch (lastErrorType) {
+	case ERR_ASSERT:
+		return lastAssert;
+	case ERR_EXCEPTION:
+		return "c++ exception";
+	default:
+		return getLastCrashInformationInternal();
 	}
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-///CPU Information
-
+//======================== CPU Information ==============================
 
 #ifdef CPU_CONTEXT_TYPE
 
-void SimulatedCPU::set_all(void *ccontext) {
-	CPU_CONTEXT_TYPE* context = static_cast<CPU_CONTEXT_TYPE*>(ccontext);
-	this->pc = (char*)PC_FROM_UCONTEXT(context);
-	this->frame = (char*)FRAME_FROM_UCONTEXT(context);
-	this->stack = (char*)STACK_FROM_UCONTEXT(context);
+void SimulatedCPU::set_all(void *ccontext)
+{
+	CPU_CONTEXT_TYPE *context = static_cast<CPU_CONTEXT_TYPE *>(ccontext);
+	this->pc = (char *)PC_FROM_UCONTEXT(context);
+	this->frame = (char *)FRAME_FROM_UCONTEXT(context);
+	this->stack = (char *)STACK_FROM_UCONTEXT(context);
 #ifdef RETURNTO_FROM_UCONTEXT
-	this->returnTo = (char*)RETURNTO_FROM_UCONTEXT(context);
+	this->returnTo = (char *)RETURNTO_FROM_UCONTEXT(context);
 #endif
 //	for (int i=0;i<sizeof(context->uc_mcontext.gregs) / sizeof(context->uc_mcontext.gregs[0]);i++)
 //		fprintf(stderr, "Regs: %i: %p\n", i, context->uc_mcontext.gregs[i]);
 }
-void SimulatedCPU::get_all(void *ccontext) {
-	CPU_CONTEXT_TYPE* context = static_cast<CPU_CONTEXT_TYPE*>(ccontext);
-	*(char**)(&PC_FROM_UCONTEXT(context)) = this->pc;
-	*(char**)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
-	*(char**)(&STACK_FROM_UCONTEXT(context)) = this->stack;
+
+void SimulatedCPU::get_all(void *ccontext)
+{
+	CPU_CONTEXT_TYPE *context = static_cast<CPU_CONTEXT_TYPE *>(ccontext);
+	*(char **)(&PC_FROM_UCONTEXT(context)) = this->pc;
+	*(char **)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
+	*(char **)(&STACK_FROM_UCONTEXT(context)) = this->stack;
 #ifdef RETURNTO_FROM_UCONTEXT
-	*(char**)(&RETURNTO_FROM_UCONTEXT(context)) = this->returnTo;
+	*(char **)(&RETURNTO_FROM_UCONTEXT(context)) = this->returnTo;
 #endif
 }
-void SimulatedCPU::set_from_real(){
+
+void SimulatedCPU::set_from_real()
+{
 	this->pc = 0;
 	this->frame = 0;
 	this->stack = 0;
 #ifdef CPU_IS_X86_32
 	__asm__(
-	"mov %%ebp, %0\n"
-	"mov %%esp, %1"
-	: "=r"(frame), "=r"(stack));
+	    "mov %%ebp, %0\n"
+	    "mov %%esp, %1"
+	    : "=r"(frame), "=r"(stack));
 #elif defined(CPU_IS_X86_64)
 	__asm__(
-	"mov %%rbp, %0\n"
-	"mov %%rsp, %1"
-	: "=r"(frame), "=r"(stack));
+	    "mov %%rbp, %0\n"
+	    "mov %%rsp, %1"
+	    : "=r"(frame), "=r"(stack));
 #elif defined(CPU_IS_ARM)
 	__asm__( //otherway around in the mov than x86?
-	"mov %[fp], fp\n"
-	"mov %[sp], sp\n"
-	"mov %[lr], lr\n"
-	: [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
+	    "mov %[fp], fp\n"
+	    "mov %[sp], sp\n"
+	    "mov %[lr], lr\n"
+	    : [fp] "=r"(frame), [sp] "=r"(stack), [lr] "=r" (returnTo));
 #elif defined(CPU_IS_IA64)
 	__asm__(
-	//"mov %0 = cfm\n"
-	"mov %0 = r12"
-	: /*"=r"(frame),*/ "=r"(stack));
+	    //"mov %0 = cfm\n"
+	    "mov %0 = r12"
+	    : /*"=r"(frame),*/ "=r"(stack));
 #elif defined(CPU_IS_MIPS)
 	__asm__( //otherway around in the mov than x86?
-	"move %0, $30\n"
-	"move %1, $sp\n"
-	"move %2, $ra\n"
-	: "=r"(frame), "=r"(stack), "=r" (returnTo));
+	    "move %0, $30\n"
+	    "move %1, $sp\n"
+	    "move %2, $ra\n"
+	    : "=r"(frame), "=r"(stack), "=r" (returnTo));
 #elif defined(CPU_IS_PPC)
 	__asm__( //otherway around in the mov than x86?
-	"mr %0, 31\n"
-	"mr %1, 1\n"
-	"mflr %2\n"
-	: "=r"(frame), "=r"(stack), "=r" (returnTo));
+	    "mr %0, 31\n"
+	    "mr %1, 1\n"
+	    "mflr %2\n"
+	    : "=r"(frame), "=r"(stack), "=r" (returnTo));
 #elif defined(CPU_IS_SPARC32)
 	__asm__(
-	"mov %i6, %0\n"
-	"mov %o6, %1\n"
-	"mov %i7, %2\n"
-	: "=r"(frame), "=r"(stack), "=r" (returnTo));
+	    "mov %i6, %0\n"
+	    "mov %o6, %1\n"
+	    "mov %i7, %2\n"
+	    : "=r"(frame), "=r"(stack), "=r" (returnTo));
 #elif defined(CPU_IS_S390_31)
 	__asm__(
-	"LR %0, %r11\n"
-	"LR %1, %r15\n"
-	: "=r"(frame), "=r"(stack));
+	    "LR %0, %r11\n"
+	    "LR %1, %r15\n"
+	    : "=r"(frame), "=r"(stack));
 #elif defined(CPU_IS_S390_64)
 	__asm__(
-	"LGR %0, %r11\n"
-	"LGR %1, %r15\n"
-	: "=r"(frame), "=r"(stack));
+	    "LGR %0, %r11\n"
+	    "LGR %1, %r15\n"
+	    : "=r"(frame), "=r"(stack));
 #else
 #error Unknown processor architecture
 #endif
-	geteip:
-	this->pc = (char*)&&geteip;
+geteip:
+	this->pc = (char *) && geteip;
 }
 
 #endif
 
-
-//todo: fix CALL_INSTRUCTION_SIZE 
-//(should be the size of the call instruction. 
+//todo: fix CALL_INSTRUCTION_SIZE
+//(should be the size of the call instruction.
 //however, since the call instruction is in the signal handler and not actually part of the program, 0 might be the more correct value)
 #define CALL_INSTRUCTION_SIZE 0
 #if defined(CPU_IS_X86_64) || defined (CPU_IS_X86_32)
 //TODO: check ppc
-void SimulatedCPU::call(char * value){
+void SimulatedCPU::call(char *value)
+{
 	push(pc + CALL_INSTRUCTION_SIZE);
 	jmp(value);
 }
-void SimulatedCPU::ret(){
+
+void SimulatedCPU::ret()
+{
 	pc = pop();
 }
-void SimulatedCPU::enter(int size){
+
+void SimulatedCPU::enter(int size)
+{
 	push(frame);
 	frame = stack;
 	stack -= size;
 }
-void SimulatedCPU::leave(){
-	sigSegvRecoverReturnAddress = &&recover;
+
+void SimulatedCPU::leave()
+{
+	sigSegvRecoverReturnAddress = && recover;
 	stack = frame;
 	frame = pop();
 	ret();
@@ -1110,93 +1150,124 @@ recover:
 	}
 	sigSegvRecoverReturnAddress = 0;
 }
+
 #elif defined(CPU_IS_ARM) || defined(CPU_IS_MIPS)
 //todo: does this work on mips?
-void SimulatedCPU::call(char * value){   //bl
+void SimulatedCPU::call(char *value)     //bl
+{
 	returnTo = pc + CALL_INSTRUCTION_SIZE;
 	jmp(value);
 }
-void SimulatedCPU::ret(){
+
+void SimulatedCPU::ret()
+{
 	pc = returnTo;
 }
-void SimulatedCPU::enter(int size){
+
+void SimulatedCPU::enter(int size)
+{
 	push(returnTo);
 	push(frame);
 	frame = stack + 4;
 	stack -= size;
 }
-void SimulatedCPU::leave(){
+
+void SimulatedCPU::leave()
+{
 	stack = frame - 4;
 	frame = pop();
 	returnTo = pop();
 	ret();
 }
+
 #elif defined(CPU_IS_PPC)
+
 //see https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/LowLevelABI/110-64-bit_PowerPC_Function_Calling_Conventions/64bitPowerPC.html#//apple_ref/doc/uid/TP40002471-SW14
-void SimulatedCPU::call(char * value){   //bl
+void SimulatedCPU::call(char *value)     //bl
+{
 	returnTo = pc + CALL_INSTRUCTION_SIZE;
 	jmp(value);
 }
-void SimulatedCPU::ret(){
+
+void SimulatedCPU::ret()
+{
 	pc = returnTo;
 }
-void SimulatedCPU::enter(int size){
+
+void SimulatedCPU::enter(int size)
+{
 	//todo
 }
-void SimulatedCPU::leave(){
-	returnTo = *(char**)(stack+2*8);
+
+void SimulatedCPU::leave()
+{
+	returnTo = *(char **)(stack + 2 * 8);
 	stack = pop();
 	frame = stack; //??
 	ret();
 }
+
 #elif defined(CPU_IS_IA64) || defined(CPU_IS_SPARC32) || defined(CPU_IS_S390_31) || defined(CPU_IS_390_64)
+
 //not really implemented
 //not possible on SPARC? (as register windows are protected)
-void SimulatedCPU::call(char * value){   //bl
+void SimulatedCPU::call(char *value)     //bl
+{
 	jmp(value);
 	//todo this should do an awful lot of register swapping/saving for IA64
 }
-void SimulatedCPU::ret(){
+
+void SimulatedCPU::ret()
+{
 	//pc = br0;
 	pc = 0;
 }
-void SimulatedCPU::enter(int size){
+
+void SimulatedCPU::enter(int size)
+{
 
 }
-void SimulatedCPU::leave(){
+void SimulatedCPU::leave()
+{
 	ret();
 }
+
 #else
 #error Unknown cpu architecture
-#endif	
+#endif
 
-
-bool SimulatedCPU::stackWalk(){
+bool SimulatedCPU::stackWalk()
+{
 	leave();
-	pc-=CALL_INSTRUCTION_SIZE;
+	pc -= CALL_INSTRUCTION_SIZE;
 //	fprintf(stderr, "%p (at %p), %p (at %p), %p\n", *(char**)(frame),frame, *(char**)(stack), stack, pc);
 	return frame >= stack && frame && stack;
 }
 
-
-
-void catchUnhandledException(){
+void catchUnhandledException()
+{
 	lastErrorType = ERR_EXCEPTION;
 	recover();
 }
 
-
-
 #else
- // defined NO_CRASH_HANDLER
- 
+// defined NO_CRASH_HANDLER
 
-QString print_backtrace(const QString& message){Q_UNUSED(message) return "";}
-void registerCrashHandler(int mode){Q_UNUSED(mode)}
-QString getLastCrashInformation(bool & wasLoop){Q_UNUSED(wasLoop); return "";}
-void catchUnhandledException(){}
+QString print_backtrace(const QString &message)
+{
+	Q_UNUSED(message) return "";
+}
 
+void registerCrashHandler(int mode)
+{
+	Q_UNUSED(mode)
+}QString getLastCrashInformation(bool &wasLoop)
+{
+	Q_UNUSED(wasLoop);
+	return "";
+}
 
+void catchUnhandledException() {}
 
 #endif
 
@@ -1217,82 +1288,76 @@ void catchUnhandledException(){}
 #ifndef NO_CRASH_HANDLER
 int gdb_check()
 {
-  int pid = fork();
-  int status;
-  int res;
+	int pid = fork();
+	int status;
+	int res;
 
-  if (pid == -1)
-    {
-      perror("fork");
-      return -1;
-    }
+	if (pid == -1) {
+		perror("fork");
+		return -1;
+	}
 
-  if (pid == 0)
-    {
-      int ppid = getppid();
-      /* Child */
-      if (ptrace(PTRACE_ATTACH, ppid, NULL, NULL) == 0)
-        {
-          /* Wait for the parent to stop and continue it */
-          waitpid(ppid, NULL, 0);
-          ptrace(PTRACE_CONT, ppid, NULL, NULL);
+	if (pid == 0) {
+		int ppid = getppid();
+		/* Child */
+		if (ptrace(PTRACE_ATTACH, ppid, NULL, NULL) == 0) {
+			/* Wait for the parent to stop and continue it */
+			waitpid(ppid, NULL, 0);
+			ptrace(PTRACE_CONT, ppid, NULL, NULL);
 
-          /* Detach */
-          ptrace(PTRACE_DETACH, ppid, NULL, NULL);
+			/* Detach */
+			ptrace(PTRACE_DETACH, ppid, NULL, NULL);
 
-          /* We were the tracers, so gdb is not present */
-          res = 0;
-        }
-      else
-        {
-          /* Trace failed so gdb is present */
-          res = 1;
-        }
-      _Exit(res);
-    }
-  else
-    {
-      waitpid(pid, &status, 0);
-      res = WEXITSTATUS(status);
-    }
-  return res;
+			/* We were the tracers, so gdb is not present */
+			res = 0;
+		} else {
+			/* Trace failed so gdb is present */
+			res = 1;
+		}
+		_Exit(res);
+	} else {
+		waitpid(pid, &status, 0);
+		res = WEXITSTATUS(status);
+	}
+	return res;
 }
 
 int _debugger_present = -1;
 bool IsDebuggerPresent()
 {
-  if (-1 == _debugger_present)
-    _debugger_present = gdb_check();
-  if (_debugger_present == 1)  {
-    fprintf(stderr, "debugger detected: no recovering\n\n");
-    fflush(stderr);
-  }
-  return _debugger_present == 1;
+	if (-1 == _debugger_present)
+		_debugger_present = gdb_check();
+	if (_debugger_present == 1)  {
+		fprintf(stderr, "debugger detected: no recovering\n\n");
+		fflush(stderr);
+	}
+	return _debugger_present == 1;
 }
 #endif
 #endif
 #endif
 
-void initCrashHandler(int mode){
+void initCrashHandler(int mode)
+{
 #ifndef NO_CRASH_HANDLER
-     crashHandlerType = mode;
-     registerCrashHandler(mode);
-     if (mode >= 0) std::set_terminate(&catchUnhandledException);
+	crashHandlerType = mode;
+	registerCrashHandler(mode);
+	if (mode >= 0) std::set_terminate(&catchUnhandledException);
 #else
-     Q_UNUSED(mode);
+	Q_UNUSED(mode);
 #endif
 }
-
-
 
 
 //==================GUARDIAN==================
 
-Guardian * guardian = 0;
+Guardian *guardian = 0;
 bool running = true;
 volatile int mainEventLoopTicks = 0;
 volatile bool undoRecovering = false;
-void Guardian::run(){
+
+void Guardian::run()
+{
 #ifndef NO_CRASH_HANDLER
 	int lastTick = mainEventLoopTicks;
 	int errors = 0;
@@ -1302,7 +1367,7 @@ void Guardian::run(){
 			sleep(10);
 			slowOperationWait -= 1;
 		} while (slowOperationWait >= 0);
-		
+
 		if (undoRecovering) {
 			undoRecovering = false;
 			errors = 1;
@@ -1333,7 +1398,8 @@ void Guardian::run(){
 #endif
 }
 
-void Guardian::summon(){
+void Guardian::summon()
+{
 #ifndef NO_CRASH_HANDLER
 	if (guardian) return;
 	if (crashHandlerType & CRASH_HANDLER_LOOP_GUARDIAN_DISABLED) return;
@@ -1342,28 +1408,33 @@ void Guardian::summon(){
 #endif
 }
 
-void Guardian::calm(){
+void Guardian::calm()
+{
 	mainEventLoopTicks++;
 }
 
-void Guardian::shutdown(){
+void Guardian::shutdown()
+{
 	running = false;
 }
 
-void Guardian::continueEndlessLoop(){
+void Guardian::continueEndlessLoop()
+{
 	undoRecovering = true;
 }
 
-
-Guardian* Guardian::instance(){
+Guardian *Guardian::instance()
+{
 	return guardian;
 }
 
-void Guardian::slowOperationStarted(){
+void Guardian::slowOperationStarted()
+{
 	slowOperations++;
 }
 
-void Guardian::slowOperationEnded(){
+void Guardian::slowOperationEnded()
+{
 	slowOperations--;
 	if (slowOperations < 0) slowOperations = 0;
 }

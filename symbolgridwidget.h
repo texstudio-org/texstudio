@@ -15,27 +15,30 @@
 #include "mostQtHeaders.h"
 #include <QTableWidgetItem>
 
-typedef QList<QTableWidgetItem*> usercodelist;
+typedef QList<QTableWidgetItem *> usercodelist;
 
-Q_DECLARE_METATYPE(QTableWidgetItem*)
+Q_DECLARE_METATYPE(QTableWidgetItem *)
 
-class SymbolGridWidget : public QTableWidget {
+class SymbolGridWidget : public QTableWidget
+{
 	Q_OBJECT
 
 public:
-	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map=0);
+	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map = 0);
 	~SymbolGridWidget();
 	QString getCurrentSymbol(); //returns category/fileName.png
-    void setSymbolSize(int size);
+	void setSymbolSize(int size);
+
 public slots:
 	void SetUserPage(usercodelist ulist);
-	void loadSymbols(const QStringList& fileNames, QVariantMap *Map=0);
+	void loadSymbols(const QStringList &fileNames, QVariantMap *Map = 0);
+
 protected:
-	void resizeEvent ( QResizeEvent * event );
+	void resizeEvent ( QResizeEvent *event );
 
 private:
-    void adaptTable();
-	QList<QTableWidgetItem*>listOfItems;
+	void adaptTable();
+	QList<QTableWidgetItem *>listOfItems;
 	int countOfItems; //not necessary equal to listOfItems.size() while the symbols are added
 
 	bool mLoadedSymbols;
