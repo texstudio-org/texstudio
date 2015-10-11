@@ -1,9 +1,12 @@
---style=google  # no separate line for opening curly braces, see also astyle documentation
-#--max-code-length=120  # maximal line length
-#--add-brackets  # always add braces, also for single commands
+# mostly the Qt coding style: https://wiki.qt.io/Qt_Coding_Style
+# but we use tabs and don't enforce line length
+--style=kr
 --indent=tab=4  # use tabs, assume tab-width = 4
---pad-oper  # spaces around operators
---pad-header # spaces after if, else, while ...
 --align-pointer=name  # pointer star at variable name
 --align-reference=name  # reference ampersand at variable name
 #--convert-tabs  # convert tabs to spaces
+--attach-namespaces
+#--max-code-length=100  # maximal line length 
+#--max-instatement-indent=120 
+--pad-header # spaces after if, else, while ...
+--pad-oper  # spaces around operators
