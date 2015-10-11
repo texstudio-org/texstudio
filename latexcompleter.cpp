@@ -479,7 +479,7 @@ public:
 		if (completer && completer->completingKey() && curWord.endsWith("=")) {
 			LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
 			Q_ASSERT(view);
-			view->emitColonTyped();
+			view->mayNeedToOpenCompleter();
 		}
 		if (completer && completer->completingGraphic() && curWord.endsWith(QDir::separator())) {
 			completer->complete(editor, LatexCompleter::CompletionFlags(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC));

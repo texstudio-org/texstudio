@@ -224,7 +224,7 @@ void DefaultInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor)
 		LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
 		Q_ASSERT(view);
 		if (completerConfig && completerConfig->enabled)
-			emit view->colonTyped();
+			view->mayNeedToOpenCompleter();
 	}
 }
 
@@ -1581,6 +1581,51 @@ void LatexEditorView::clearOverlays()
 		line.clearOverlays(structureFormat);
 		foreach (const int f, grammarFormats)
 			line.clearOverlays(f);
+	}
+}
+
+/*!
+	Will be called from certain events, that should maybe result in opening the
+	completer. Since the completer depends on the context, the caller doesn't
+	have to be sure that a completer is really necassary. The context is checked
+	in this function and an appropriate completer is opened if necessary.
+	For example, typing a colon within a citation should start the completer.
+	Therefore, typing a colon will trigger this function. It's checked in here
+	if the context is a citation.
+ */
+void LatexEditorView::mayNeedToOpenCompleter()
+{
+	QDocumentCursor c = editor->cursor();
+	QDocumentLineHandle *dlh = c.line().handle();
+	if (!dlh)
+		return;
+	TokenStack ts = getContext(dlh, c.columnNumber());
+	Tokens tk;
+	if (!ts.isEmpty()) {
+		tk = ts.top();
+		if (tk.type == Tokens::word && tk.subtype == Tokens::none && ts.size() > 1) {
+			// set brace type
+			ts.pop();
+			tk = ts.top();
+		}
+	}
+
+	Tokens::TokenType type = tk.type;
+	if (tk.subtype != Tokens::none)
+		type = tk.subtype;
+
+	QList<Tokens::TokenType> lst;
+	lst << Tokens::package << Tokens::keyValArg << Tokens::keyVal_val << Tokens::keyVal_key << Tokens::bibItem << Tokens::labelRefList;
+	if (lst.contains(type))
+		emit openCompleter();
+	if (ts.isEmpty())
+		return;
+	ts.pop();
+	if (!ts.isEmpty()) { // check next level if 1. check fails (e.g. key vals are set to real value)
+		tk = ts.top();
+		type = tk.type;
+		if (lst.contains(type))
+			emit openCompleter();
 	}
 }
 

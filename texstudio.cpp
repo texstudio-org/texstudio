@@ -1578,7 +1578,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(mouseBackPressed()), this, SLOT(goBack()));
 	connect(edit, SIGNAL(mouseForwardPressed()), this, SLOT(goForward()));
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
-	connect(edit, SIGNAL(colonTyped()), this, SLOT(colonTyped()));
+	connect(edit, SIGNAL(openCompleter()), this, SLOT(normalCompletion()));
 	connect(edit, SIGNAL(openInternalDocViewer(QString, QString)), this, SLOT(openInternalDocViewer(QString, QString)));
 	connect(edit, SIGNAL(searchExtendToggled(bool)), this, SLOT(searchExtendToggled(bool)));
 
@@ -9966,7 +9966,6 @@ void Texstudio::slowOperationStarted()
 void Texstudio::slowOperationEnded()
 {
 	Guardian::instance()->slowOperationEnded();
-
 }
 
 void Texstudio::checkLatexInstall()
@@ -10194,39 +10193,3 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 	}
 }
 
-void Texstudio::colonTyped()
-{
-	if (!currentEditorView())	return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentLineHandle *dlh = c.line().handle();
-	if (!dlh)
-		return;
-	TokenStack ts = getContext(dlh, c.columnNumber());
-	Tokens tk;
-	if (!ts.isEmpty()) {
-		tk = ts.top();
-		if (tk.type == Tokens::word && tk.subtype == Tokens::none && ts.size() > 1) {
-			// set brace type
-			ts.pop();
-			tk = ts.top();
-		}
-	}
-
-	Tokens::TokenType type = tk.type;
-	if (tk.subtype != Tokens::none)
-		type = tk.subtype;
-
-	QList<Tokens::TokenType>lst;
-	lst << Tokens::package << Tokens::keyValArg << Tokens::keyVal_val << Tokens::keyVal_key << Tokens::bibItem << Tokens::labelRefList;
-	if (lst.contains(type))
-		normalCompletion();
-	if (ts.isEmpty())
-		return;
-	ts.pop();
-	if (!ts.isEmpty()) { // check next level if 1. check fails (e.g. key vals are set to real value)
-		tk = ts.top();
-		type = tk.type;
-		if (lst.contains(type))
-			normalCompletion();
-	}
-}
