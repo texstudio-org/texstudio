@@ -229,6 +229,7 @@ public slots:
 	Q_INVOKABLE void zoomOut();
 	Q_INVOKABLE void resetZoom();
 
+	void mayNeedToOpenCompleter();
 	void documentContentChanged(int linenr, int count);
 
 private slots:
@@ -252,7 +253,6 @@ public slots:
 	void checkForLinkOverlay(QDocumentCursor cursor);
 	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
 	const LinkOverlay &getLinkOverlay() const { return linkOverlay; }
-	void emitColonTyped() { emit colonTyped(); }
 
 private:
 	void setLinkOverlay(const LinkOverlay &overlay);
@@ -286,6 +286,7 @@ signals:
 	void showImgPreview(const QString &fileName);
 	void openFile(const QString &name);
 	void openFile(const QString &baseName, const QString &defaultExtension);
+	void openCompleter();
 	void thesaurus(int line, int col);
 	void changeDiff(QPoint pt);
 	void spellerChanged(const QString &name);
@@ -299,7 +300,6 @@ signals:
 	void mouseBackPressed();
 	void mouseForwardPressed();
 	void cursorChangeByMouse();
-	void colonTyped();
 
 	void linesChanged(QString language, const void *doc, const QList<LineInfo> &lines, int firstLineNr);
 	void searchBibtexSection(QString file, QString bibId);
