@@ -129,7 +129,7 @@ void PDFOutlineDock::fillInfo()
 	const QDomDocument *toc = document->popplerDoc()->toc();
 	if (toc) {
 		fillToc(*toc, tree, 0);
-		connect(tree, SIGNAL(itemClicked(QTreeWidgetItem*, int)), this, SLOT(followTocSelection()));
+		connect(tree, SIGNAL(itemClicked(QTreeWidgetItem *, int)), this, SLOT(followTocSelection()));
 		delete toc;
 	} else {
 		QTreeWidgetItem *item = new QTreeWidgetItem();
@@ -147,16 +147,16 @@ void PDFOutlineDock::documentClosed()
 
 void PDFOutlineDock::followTocSelection()
 {
-	QList<QTreeWidgetItem*> items = tree->selectedItems();
+	QList<QTreeWidgetItem *> items = tree->selectedItems();
 	if (items.count() > 0) {
-		QTreeWidgetItem* item = items.first();
+		QTreeWidgetItem *item = items.first();
 		QString dest = item->text(1);
 		if (!dest.isEmpty())
 			document->goToDestination(dest);
 	}
 }
 
-PDFDockTreeWidget::PDFDockTreeWidget(QWidget* parent)
+PDFDockTreeWidget::PDFDockTreeWidget(QWidget *parent)
 	: QTreeWidget(parent)
 {
 }
@@ -243,48 +243,57 @@ QSize PDFDockListWidget::sizeHint() const
 }
 
 PDFOverviewModel::PDFOverviewModel(QObject *parent)
-    :QAbstractListModel(parent) {
-    document=0;
-    cache.clear();
+	: QAbstractListModel(parent)
+{
+	document = 0;
+	cache.clear();
 }
 
-int PDFOverviewModel::rowCount ( const QModelIndex & parent ) const{
-	if (!document||document->popplerDoc().isNull()) return 0;
+int PDFOverviewModel::rowCount ( const QModelIndex &parent ) const
+{
+	if (!document || document->popplerDoc().isNull()) return 0;
 	if (parent.isValid()) return 0;
-	if(!document->widget()) return 0;
+	if (!document->widget()) return 0;
 	return document->widget()->realNumPages();
 }
 
-QVariant PDFOverviewModel::data ( const QModelIndex & index, int role) const{
+QVariant PDFOverviewModel::data ( const QModelIndex &index, int role) const
+{
 	if (!index.isValid() || index.column() != 0 || index.row() < 0 || index.row() >= document->widget()->realNumPages()) return QVariant();
-	switch (role){
-	case Qt::DisplayRole: return QString::number(index.row()+1); 
-	case Qt::DecorationRole: 
-        while (index.row() >= cache.size()) cache << QPixmap();
+	switch (role) {
+	case Qt::DisplayRole:
+		return QString::number(index.row() + 1);
+	case Qt::DecorationRole:
+		while (index.row() >= cache.size()) cache << QPixmap();
 		if (cache[index.row()].isNull()) {
-			const QObject* o = this; //TODO: get rid of const_cast
-            cache[index.row()] = document->renderManager->renderToImage(index.row(),const_cast<QObject*>(o),"updateImage",-1,-1,-1,-1,-1,-1,false).scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
+			const QObject *o = this; //TODO: get rid of const_cast
+			cache[index.row()] = document->renderManager->renderToImage(index.row(), const_cast<QObject *>(o), "updateImage", -1, -1, -1, -1, -1, -1, false).scaled(128, 128, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 		}
 		return cache[index.row()];
 	case Qt::BackgroundColorRole:
-        return QColor(Qt::gray);
+		return QColor(Qt::gray);
 	}
 	return QVariant();
 }
 
-void PDFOverviewModel::setDocument(PDFDocument* doc){
+void PDFOverviewModel::setDocument(PDFDocument *doc)
+{
 	beginResetModel();
 	document = doc;
-	if (!doc) { endResetModel(); return; }
+	if (!doc) {
+		endResetModel();
+		return;
+	}
 	if (!doc->widget() || document->popplerDoc().isNull()) document = 0;
 	cache.clear();
 	endResetModel();
 }
 
-void PDFOverviewModel::updateImage(const QPixmap& pm, int page){
+void PDFOverviewModel::updateImage(const QPixmap &pm, int page)
+{
 	if (!document || page < 0 || page >= cache.size()) return;
-	cache[page] = pm.scaled(128,128,Qt::KeepAspectRatio,Qt::SmoothTransformation);
-	emit dataChanged(index(page),index(page));
+	cache[page] = pm.scaled(128, 128, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	emit dataChanged(index(page), index(page));
 }
 
 //////////////// FONT LIST ////////////////
@@ -377,36 +386,37 @@ void PDFFontsDock::documentClosed()
 
 //////////////// SEARCH DOCK ////////////////
 
-PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), document(doc){
+PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument *doc): QDockWidget(doc), document(doc)
+{
 	// do it completely programatic
 	setObjectName("search");
 	setWindowTitle(tr("Search"));
 	//this->resize(801, 31);
-	QWidget* tempWidget = new QWidget(this);
+	QWidget *tempWidget = new QWidget(this);
 	setWidget(tempWidget);
 	QGridLayout *gridLayout = new QGridLayout(tempWidget);
 	gridLayout->setContentsMargins(-1, 4, -1, 4);
-	QFrame* frame_2 = new QFrame(this);
+	QFrame *frame_2 = new QFrame(this);
 	frame_2->setObjectName(("frame_2"));
 	QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
 	frame_2->setSizePolicy(sizePolicy1);
 	frame_2->setMinimumSize(QSize(0, 22));
 	frame_2->setFrameShape(QFrame::NoFrame);
 	frame_2->setLineWidth(0);
-	QHBoxLayout* hboxLayout = new QHBoxLayout(frame_2);
+	QHBoxLayout *hboxLayout = new QHBoxLayout(frame_2);
 	hboxLayout->setObjectName(("hboxLayout"));
 	hboxLayout->setContentsMargins(-1, 0, -1, 0);
 
-	QSize buttonSize(22,22);
+	QSize buttonSize(22, 22);
 
-    QLabel* label = new QLabel(frame_2);
+	QLabel *label = new QLabel(frame_2);
 	label->setObjectName(("label"));
 	QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Preferred);
 	sizePolicy3.setHorizontalStretch(0);
 	sizePolicy3.setVerticalStretch(0);
 	sizePolicy3.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
 	label->setSizePolicy(sizePolicy3);
-	label->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+	label->setAlignment(Qt::AlignRight | Qt::AlignTrailing | Qt::AlignVCenter);
 
 	hboxLayout->addWidget(label);
 
@@ -426,7 +436,7 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	bNext->setObjectName(("bNext"));
 	bNext->setMinimumSize(buttonSize);
 	bNext->setMaximumSize(buttonSize);
-    bNext->setIcon(getRealIcon("down"));
+	bNext->setIcon(getRealIcon("down"));
 
 	gridLayout->addWidget(bNext, 0, 3, 1, 1);
 
@@ -434,11 +444,11 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 	bPrevious->setObjectName(("bPrevious"));
 	bPrevious->setMinimumSize(buttonSize);
 	bPrevious->setMaximumSize(buttonSize);
-    bPrevious->setIcon(getRealIcon("up"));
+	bPrevious->setIcon(getRealIcon("up"));
 
 	gridLayout->addWidget(bPrevious, 0, 4, 1, 1);
 
-	QFrame* frame_6 = new QFrame(this);
+	QFrame *frame_6 = new QFrame(this);
 	sizePolicy1.setHeightForWidth(frame_6->sizePolicy().hasHeightForWidth());
 	frame_6->setSizePolicy(sizePolicy1);
 	frame_6->setFrameShape(QFrame::NoFrame);
@@ -451,63 +461,70 @@ PDFBaseSearchDock::PDFBaseSearchDock(PDFDocument* doc): QDockWidget(doc), docume
 
 	gridLayout1->addWidget(cbCase, 0, 0, 1, 1);
 
-	gridLayout->addWidget(frame_6, 0, 6, 2, 2,Qt::AlignTop);
+	gridLayout->addWidget(frame_6, 0, 6, 2, 2, Qt::AlignTop);
 
 	// connect by name
 	QMetaObject::connectSlotsByName(this);
 
 	// set texts
-    leFind->setToolTip(tr("Text or pattern to search for"));
-    bNext->setToolTip(tr("Find next occurence"));
-    bPrevious->setToolTip(tr("Find previous occurence"));
+	leFind->setToolTip(tr("Text or pattern to search for"));
+	bNext->setToolTip(tr("Find next occurence"));
+	bPrevious->setToolTip(tr("Find previous occurence"));
 
-    label->setText(tr(" Find :"));
+	label->setText(tr(" Find :"));
 	label->setMinimumWidth(label->sizeHint().width());
-    cbCase->setText(tr("Case"));
+	cbCase->setText(tr("Case"));
 	cbCase->setMinimumWidth(cbCase->sizeHint().width());
 
-	minimum_width=frame_2->sizeHint().width()+leFind->sizeHint().width()+2*bNext->sizeHint().width()+5*hboxLayout->spacing();
+	minimum_width = frame_2->sizeHint().width() + leFind->sizeHint().width() + 2 * bNext->sizeHint().width() + 5 * hboxLayout->spacing();
 	//;
 
 	cbCase->setChecked(false);
 
 	leFind->installEventFilter(this);
 
-    listOfWidget << cbCase;
+	listOfWidget << cbCase;
 }
 
-QString PDFBaseSearchDock::getSearchText() const{
+QString PDFBaseSearchDock::getSearchText() const
+{
 	return leFind->text();
 }
-void PDFBaseSearchDock::setSearchText(QString text){
-    leFind->setText(text);
+
+void PDFBaseSearchDock::setSearchText(QString text)
+{
+	leFind->setText(text);
 }
 
-bool PDFBaseSearchDock::hasFlagCaseSensitive() const{
+bool PDFBaseSearchDock::hasFlagCaseSensitive() const
+{
 	return cbCase->isChecked();
 }
-void PDFBaseSearchDock::setFocus(){
+
+void PDFBaseSearchDock::setFocus()
+{
 	leFind->setFocus();
 	leFind->selectAll();
 }
 
-void PDFBaseSearchDock::resizeEvent(QResizeEvent *e){
-	int w=e->size().width();
-	w=w-minimum_width; // remaining space
-	int row=0;
-	int col=0;
-	int remaining_space=w;
-	foreach(QWidget *wdg,listOfWidget){
-		remaining_space=remaining_space-wdg->minimumWidth();
-		if(remaining_space>0){
+void PDFBaseSearchDock::resizeEvent(QResizeEvent *e)
+{
+	int w = e->size().width();
+	w = w - minimum_width; // remaining space
+	int row = 0;
+	int col = 0;
+	int remaining_space = w;
+	foreach (QWidget *wdg, listOfWidget) {
+		remaining_space = remaining_space - wdg->minimumWidth();
+		if (remaining_space > 0) {
 			gridLayout1->addWidget(wdg, row, col, 1, 1);
 			col++;
-		}else{
-			col=0;
+		} else {
+			col = 0;
 			row++;
 			gridLayout1->addWidget(wdg, row, col, 1, 1);
 			col++;
-			remaining_space=w-wdg->minimumWidth();
+			remaining_space = w - wdg->minimumWidth();
 		}
 	}
 	QDockWidget::resizeEvent(e);
@@ -515,45 +532,45 @@ void PDFBaseSearchDock::resizeEvent(QResizeEvent *e){
 
 bool PDFBaseSearchDock::eventFilter(QObject *o, QEvent *e)
 {
-	if ( o == leFind)
-	{
+	if ( o == leFind) {
 		int kc;
-		switch ( e->type() )
-		{
-			case QEvent::KeyPress :
+		switch ( e->type() ) {
+		case QEvent::KeyPress :
 
-				kc = static_cast<QKeyEvent*>(e)->key();
+			kc = static_cast<QKeyEvent *>(e)->key();
 
-				if ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) )
-					emit search(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers(), false);
-				else if ( kc == Qt::Key_Escape)
-					close();
-				break;
+			if ( (kc == Qt::Key_Enter) || (kc == Qt::Key_Return) )
+				emit search(Qt::ShiftModifier & static_cast<QKeyEvent *>(e)->modifiers(), false);
+			else if ( kc == Qt::Key_Escape)
+				close();
+			break;
 
-			default:
-				break;
+		default:
+			break;
 		}
 	}
 
 	return QWidget::eventFilter(o, e);
 }
 
-void PDFBaseSearchDock::on_leFind_textEdited(const QString&){
+void PDFBaseSearchDock::on_leFind_textEdited(const QString &)
+{
 	emit search(false, true);
 }
 
-void PDFBaseSearchDock::on_bNext_clicked(){
+void PDFBaseSearchDock::on_bNext_clicked()
+{
 	emit search(false, false);
 }
 
-void PDFBaseSearchDock::on_bPrevious_clicked(){
+void PDFBaseSearchDock::on_bPrevious_clicked()
+{
 	emit search(true, false);
 }
 
 
-
-
-PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc){
+PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc)
+{
 	cbSync = new QCheckBox(this);
 	cbSync->setObjectName("cbSync");
 	cbSync->setText(tr("Sync"));
@@ -564,7 +581,8 @@ PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc){
 	listOfWidget << cbSync;
 }
 
-bool PDFSearchDock::hasFlagSync() const {
+bool PDFSearchDock::hasFlagSync() const
+{
 	return cbSync->isChecked();
 }
 
@@ -572,7 +590,7 @@ bool PDFSearchDock::hasFlagSync() const {
 //////////////// SCROLL AREA ////////////////
 
 PDFScrollArea::PDFScrollArea(QWidget *parent)
-       : QAbstractScrollArea(parent),continuous(true),pdf(0), updateWidgetPositionStackWatch(0), onResizeStackWatch(0)
+	: QAbstractScrollArea(parent), continuous(true), pdf(0), updateWidgetPositionStackWatch(0), onResizeStackWatch(0)
 {
 	viewport()->setBackgroundRole(QPalette::NoRole);
 	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
@@ -581,7 +599,8 @@ PDFScrollArea::PDFScrollArea(QWidget *parent)
 	setFocusPolicy(Qt::StrongFocus);
 }
 
-void PDFScrollArea::setPDFWidget(PDFWidget* widget){
+void PDFScrollArea::setPDFWidget(PDFWidget *widget)
+{
 	//from qt
 	if (pdf == widget) return;
 	if (pdf) delete pdf;
@@ -591,7 +610,7 @@ void PDFScrollArea::setPDFWidget(PDFWidget* widget){
 	if (widget->parentWidget() != viewport())
 		widget->setParent(viewport());
 	if (!widget->testAttribute(Qt::WA_Resized))
-	    widget->resize(widget->sizeHint());
+		widget->resize(widget->sizeHint());
 	pdf = widget;
 	pdf->setAutoFillBackground(true);
 	pdf->installEventFilter(this);
@@ -600,35 +619,37 @@ void PDFScrollArea::setPDFWidget(PDFWidget* widget){
 
 }
 
-void PDFScrollArea::ensureVisible(int x, int y, int xmargin, int ymargin){
+void PDFScrollArea::ensureVisible(int x, int y, int xmargin, int ymargin)
+{
 	int logicalX = QStyle::visualPos(layoutDirection(), viewport()->rect(), QPoint(x, y)).x();
 
 	if (logicalX - xmargin < horizontalScrollBar()->value()) {
-	    horizontalScrollBar()->setValue(qMax(0, logicalX - xmargin));
+		horizontalScrollBar()->setValue(qMax(0, logicalX - xmargin));
 	} else if (logicalX > horizontalScrollBar()->value() + viewport()->width() - xmargin) {
-	    horizontalScrollBar()->setValue(qMin(logicalX - viewport()->width() + xmargin, horizontalScrollBar()->maximum()));
+		horizontalScrollBar()->setValue(qMin(logicalX - viewport()->width() + xmargin, horizontalScrollBar()->maximum()));
 	}
 
 	if (continuous) y += pdf->gridRowHeight() * ((pdf->getPageIndex() + pdf->getPageOffset()) / pdf->gridCols());
 
 	if (y - ymargin < verticalScrollBar()->value()) {
-	    verticalScrollBar()->setValue(qMax(0, y - ymargin));
+		verticalScrollBar()->setValue(qMax(0, y - ymargin));
 	} else if (y > verticalScrollBar()->value() + viewport()->height() - ymargin) {
-	    verticalScrollBar()->setValue(qMin(y - viewport()->height() + ymargin, verticalScrollBar()->maximum()));
+		verticalScrollBar()->setValue(qMin(y - viewport()->height() + ymargin, verticalScrollBar()->maximum()));
 	}
 }
 
-void PDFScrollArea::setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy){
+void PDFScrollArea::setVerticalScrollBarPolicy(Qt::ScrollBarPolicy policy)
+{
 	if (continuous) QAbstractScrollArea::setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 	else QAbstractScrollArea::setVerticalScrollBarPolicy(policy);
 }
 
 PDFScrollArea::~PDFScrollArea()
 {
-
 }
 
-void PDFScrollArea::setContinuous(bool cont){
+void PDFScrollArea::setContinuous(bool cont)
+{
 	Q_ASSERT(pdf);
 	if (cont == continuous) return;
 	continuous = cont;
@@ -636,18 +657,20 @@ void PDFScrollArea::setContinuous(bool cont){
 	else {
 		int page = pdf->getPageIndex();
 		resizeEvent(0);
-		goToPage(page,false);
+		goToPage(page, false);
 	}
 }
 
-void PDFScrollArea::goToPage(int page,bool sync){
+void PDFScrollArea::goToPage(int page, bool sync)
+{
 	if (continuous) {
 		int rowHeight = pdf->gridRowHeight();
 		verticalScrollBar()->setValue((page / pdf->gridCols())  * rowHeight);
 	} else pdf->goToPageDirect(page, sync);
 }
 
-void PDFScrollArea::ensureVisiblePageAbsolutePos(int page, const QPointF& pos, int xmargin, int ymargin){
+void PDFScrollArea::ensureVisiblePageAbsolutePos(int page, const QPointF &pos, int xmargin, int ymargin)
+{
 	Q_ASSERT(pdf);
 	if (!pdf || page < 0 || page >= pdf->realNumPages()) return;
 	if (pdf->pageRect(page).isNull()) goToPage(page);  // pageRect is null if the page is not displayed.
@@ -655,22 +678,24 @@ void PDFScrollArea::ensureVisiblePageAbsolutePos(int page, const QPointF& pos, i
 	ensureVisible(scaled.x(), scaled.y(), xmargin, ymargin);
 }
 
-bool PDFScrollArea::event(QEvent * e){
+bool PDFScrollArea::event(QEvent *e)
+{
 	if (e->type() == QEvent::StyleChange || e->type() == QEvent::LayoutRequest) {
 		updateScrollBars();
 	}
-/*   #ifdef QT_KEYPAD_NAVIGATION
-	else if (QApplication::keypadNavigationEnabled()) {
-	    if (e->type() == QEvent::Show)
-		 QApplication::instance()->installEventFilter(this);
-	    else if (e->type() == QEvent::Hide)
-		 QApplication::instance()->removeEventFilter(this);
-	}
-   #endif*/
+	/*   #ifdef QT_KEYPAD_NAVIGATION
+		else if (QApplication::keypadNavigationEnabled()) {
+		    if (e->type() == QEvent::Show)
+			 QApplication::instance()->installEventFilter(this);
+		    else if (e->type() == QEvent::Hide)
+			 QApplication::instance()->removeEventFilter(this);
+		}
+	   #endif*/
 	return QAbstractScrollArea::event(e);
 }
 
-bool PDFScrollArea::eventFilter(QObject * o, QEvent * e){
+bool PDFScrollArea::eventFilter(QObject *o, QEvent *e)
+{
 	if (onResizeStackWatch < 3 && o == pdf && e->type() == QEvent::Resize) {
 		onResizeStackWatch++;
 		if (continuous)
@@ -682,7 +707,8 @@ bool PDFScrollArea::eventFilter(QObject * o, QEvent * e){
 	return false;
 }
 
-void PDFScrollArea::wheelEvent(QWheelEvent * e){
+void PDFScrollArea::wheelEvent(QWheelEvent *e)
+{
 	if (pdf && !getContinuous()) {
 		pdf->wheelEvent(e);
 		return;
@@ -706,39 +732,41 @@ void PDFScrollArea::scrollContentsBy(int, int)
 	updateWidgetPosition();
 }
 
-void PDFScrollArea::updateWidgetPosition(){
+void PDFScrollArea::updateWidgetPosition()
+{
 	Q_ASSERT(pdf);
 	if (updateWidgetPositionStackWatch >= 3) return;
 	updateWidgetPositionStackWatch++;
 	Qt::LayoutDirection dir = layoutDirection();
-	QScrollBar* hbar = horizontalScrollBar(), *vbar = verticalScrollBar();
+	QScrollBar *hbar = horizontalScrollBar(), *vbar = verticalScrollBar();
 	if (!continuous) {
 		//from qt
 		QRect scrolled = QStyle::visualRect(dir, viewport()->rect(), QRect(QPoint(-hbar->value(), -vbar->value()), pdf->size()));
 		QRect aligned = QStyle::alignedRect(dir, Qt::AlignCenter, pdf->size(), viewport()->rect());
 		pdf->move(pdf->width() < viewport()->width() ? aligned.x() : scrolled.x(),
-			      pdf->height() < viewport()->height() ? aligned.y() : scrolled.y());
+		          pdf->height() < viewport()->height() ? aligned.y() : scrolled.y());
 	} else {
 		int rowHeight = pdf->gridRowHeight();
 		QRect scrolled = QStyle::visualRect(dir, viewport()->rect(), QRect(QPoint(-hbar->value(), -(vbar->value() % rowHeight)), pdf->size()));
 		QRect aligned = QStyle::alignedRect(dir, Qt::AlignCenter, pdf->size(), viewport()->rect());
 		pdf->move(pdf->width() < viewport()->width() ? aligned.x() : scrolled.x(),
-			      pdf->height() < viewport()->height() ? aligned.y() : scrolled.y());
+		          pdf->height() < viewport()->height() ? aligned.y() : scrolled.y());
 		int pos = vbar->value();
-		pdf->goToPageDirect((pos / rowHeight)*pdf->gridCols() ,true);
+		pdf->goToPageDirect((pos / rowHeight)*pdf->gridCols() , true);
 	}
 	updateWidgetPositionStackWatch--;
 }
 
-void PDFScrollArea::updateScrollBars(){
+void PDFScrollArea::updateScrollBars()
+{
 	Q_ASSERT(pdf);
-	QScrollBar* hbar = horizontalScrollBar(), *vbar = verticalScrollBar();
+	QScrollBar *hbar = horizontalScrollBar(), *vbar = verticalScrollBar();
 
 	QSize p = viewport()->size();
 	QSize m = maximumViewportSize();
 
 	if (m.expandedTo(pdf->size()) == m)
-	    p = m; // no scroll bars needed
+		p = m; // no scroll bars needed
 
 	QSize v = pdf->size();
 
@@ -747,8 +775,8 @@ void PDFScrollArea::updateScrollBars(){
 	if (!continuous) {
 		vbar->setRange(0, v.height() - p.height());
 	} else {
-		int totalRows = ((pdf->pseudoNumPages() + pdf->gridCols() - 1)/ pdf->gridCols());
-		vbar->setRange(0, totalRows * pdf->gridRowHeight() - pdf->gridBorder() - p.height() -1);  // -1 is heuristic to prevent activation of the scrollbar in case of fit-page and one-page documents (might be this should be corrected in another place)
+		int totalRows = ((pdf->pseudoNumPages() + pdf->gridCols() - 1) / pdf->gridCols());
+		vbar->setRange(0, totalRows * pdf->gridRowHeight() - pdf->gridBorder() - p.height() - 1); // -1 is heuristic to prevent activation of the scrollbar in case of fit-page and one-page documents (might be this should be corrected in another place)
 	}
 
 	if (pdf->getScaleOption() == kFitWindow) {
@@ -761,9 +789,9 @@ void PDFScrollArea::updateScrollBars(){
 
 
 //////////////// Overview ////////////////
-struct renderInfo{
-    Poppler::Page *page;
-    PDFWidget *widget;
+struct renderInfo {
+	Poppler::Page *page;
+	PDFWidget *widget;
 };
 
 
@@ -783,7 +811,7 @@ PDFOverviewDock::PDFOverviewDock(PDFDocument *doc)
 	list->setUniformItemSizes(true); //necessary to prevent it from rendering all pages
 	list->setModel(new PDFOverviewModel());
 	setWidget(list);
-	dontFollow=false;
+	dontFollow = false;
 }
 
 PDFOverviewDock::~PDFOverviewDock()
@@ -799,111 +827,117 @@ void PDFOverviewDock::changeLanguage()
 
 void PDFOverviewDock::fillInfo()
 {
-	qobject_cast<PDFOverviewModel*>(list->model())->setDocument(document);
-	connect(list->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(followTocSelection()));
+	qobject_cast<PDFOverviewModel *>(list->model())->setDocument(document);
+	connect(list->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(followTocSelection()));
 }
 
 void PDFOverviewDock::documentClosed()
 {
-	qobject_cast<PDFOverviewModel*>(list->model())->setDocument(0);
+	qobject_cast<PDFOverviewModel *>(list->model())->setDocument(0);
 	PDFDock::documentClosed();
 }
 
 void PDFOverviewDock::followTocSelection()
 {
-	if(dontFollow) return;
-	
+	if (dontFollow) return;
+
 	QModelIndex mi = list->currentIndex();
-    if (mi.isValid()) {
-        document->goToPage(mi.row());
-    }
+	if (mi.isValid()) {
+		document->goToPage(mi.row());
+	}
 }
 
 void PDFOverviewDock::pageChanged(int page)
 {
-    dontFollow=true;
-	list->setCurrentIndex(list->model()->index(page,0));
-    list->scrollTo(list->currentIndex());
-	dontFollow=false;
+	dontFollow = true;
+	list->setCurrentIndex(list->model()->index(page, 0));
+	list->scrollTo(list->currentIndex());
+	dontFollow = false;
 }
 
 
-PDFClockDock::PDFClockDock(PDFDocument *parent):PDFDock(parent){
+PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent)
+{
 	setObjectName("clock");
 	setWindowTitle(getTitle());
 	start = QDateTime::currentDateTime();
-	end = QDateTime::currentDateTime() .addSecs(60*60);
+	end = QDateTime::currentDateTime() .addSecs(60 * 60);
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), SLOT(onTimer()));
 	timer->start(2000);
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
-	QAction* act = new QAction(tr("Set interval"),this);
+	QAction *act = new QAction(tr("Set interval"), this);
 	connect(act, SIGNAL(triggered()), SLOT(setInterval()));
 	addAction(act);
-	act = new QAction(tr("Restart"),this);
+	act = new QAction(tr("Restart"), this);
 	connect(act, SIGNAL(triggered()), SLOT(restart()));
 	addAction(act);
 }
 
-PDFClockDock::~PDFClockDock(){
+PDFClockDock::~PDFClockDock()
+{
 
 }
 
-void PDFClockDock::fillInfo(){
+void PDFClockDock::fillInfo()
+{
 
 }
 
-QString PDFClockDock::getTitle(){
+QString PDFClockDock::getTitle()
+{
 	return tr("Clock");
 }
 
-void PDFClockDock::onTimer(){
+void PDFClockDock::onTimer()
+{
 	if (isHidden()) return;
 	update();
 }
 
-void PDFClockDock::restart(){
+void PDFClockDock::restart()
+{
 	int delta = start.secsTo(end);
 	start = QDateTime::currentDateTime();
 	end = start.addSecs(delta);
 	update();
 }
 
-void PDFClockDock::setInterval(){
+void PDFClockDock::setInterval()
+{
 	bool ok;
 	int interval = QInputDialog::getInt(0, "TeXstudio", tr("New clock interval (in minutes)"), 60, 1, 9999, 5, &ok);
 	if (!ok) return;
 	setInterval(interval);
 }
 
-void PDFClockDock::setInterval(int interval){
+void PDFClockDock::setInterval(int interval)
+{
 	start = QDateTime::currentDateTime();
 	end = start.addSecs(interval * 60);
 	update();
 }
 
-
-void PDFClockDock::paintEvent(QPaintEvent * event){
+void PDFClockDock::paintEvent(QPaintEvent *event)
+{
 	if (!document || document->popplerDoc().isNull() || !document->widget()) {
 		PDFDock::paintEvent(event);
 		return;
 	}
 	QPainter p(this);
 	QRect r = rect();
-	p.fillRect(r, QColor::fromRgb(0,0,0));
-    p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(qint64(start.secsTo(end)), qint64(1) ),  r.height() * 3 / 4,  QColor::fromRgb(255,0,0));
-	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages()-1),  r.height()/4, QColor::fromRgb(0,0,255));
+	p.fillRect(r, QColor::fromRgb(0, 0, 0));
+	p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(qint64(start.secsTo(end)), qint64(1) ),  r.height() * 3 / 4,  QColor::fromRgb(255, 0, 0));
+	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages() - 1),  r.height() / 4, QColor::fromRgb(0, 0, 255));
 	QFont f = p.font();
 	f.setPixelSize(r.height());
 	QFontMetrics met(f);
-    QString rem = tr("%1min").arg(qMax(qint64(0),qint64(QDateTime::currentDateTime().secsTo(end)/60)));
+	QString rem = tr("%1min").arg(qMax(qint64(0), qint64(QDateTime::currentDateTime().secsTo(end) / 60)));
 	p.setFont(f);
-	p.setPen(QColor::fromRgb(255,255,255));
+	p.setPen(QColor::fromRgb(255, 255, 255));
 	p.drawText(r, Qt::AlignRight | Qt::AlignVCenter, rem);
 }
-
-
 
 
 MessageFrame::MessageFrame(QWidget *parent) : QFrame(parent), label(0)
@@ -926,7 +960,8 @@ MessageFrame::MessageFrame(QWidget *parent) : QFrame(parent), label(0)
  *          The action is triggered when the button is pressed.
  *          The button takes ownership of the action.
  */
-void MessageFrame::showText(const QString &text, QList<QAction *> actions) {
+void MessageFrame::showText(const QString &text, QList<QAction *> actions)
+{
 	label->setText(text);
 
 	foreach (QPushButton *bt, buttons)

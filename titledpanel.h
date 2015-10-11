@@ -7,14 +7,14 @@
 class TitledPanelPage;
 Q_DECLARE_METATYPE(TitledPanelPage *)
 
-/*** class TitledPanelPage ***/
-
 class TitledPanelPage : public QObject
 {
 	Q_OBJECT
+
 	friend class TitledPanel;
+
 public:
-	TitledPanelPage(QWidget* widget, const QString& id, const QString& title, const QIcon &icon=QIcon());
+	TitledPanelPage(QWidget *widget, const QString &id, const QString &title, const QIcon &icon = QIcon());
 	~TitledPanelPage();
 
 	void addToolbarAction(QAction *act);
@@ -26,12 +26,15 @@ public:
 
 	static TitledPanelPage *fromId(const QString &id);
 	static void updatePageTitle(const QString &id, const QString newTitle);
+
 signals:
 	void titleChanged(QString);
 	void iconChanged(QIcon);
+
 public slots:
 	void setTitle(const QString &title);
 	void setIcon(const QIcon &icon);
+
 private:
 	static QHash<QString, TitledPanelPage *> allPages;
 
@@ -45,24 +48,24 @@ private:
 	QList<QAction *> *m_toolbarActions;
 };
 
-/*** class TitledPanel ***/
 
 class TitledPanel : public QFrame
 {
 	Q_OBJECT
+
 public:
 	explicit TitledPanel(QWidget *parent = 0);
 
 	enum PageSelectorStyle {ComboSelector, TabSelector};
-	void appendPage(TitledPanelPage *page, bool guiUpdate=true);
-	void removePage(TitledPanelPage *page, bool guiUpdate=true);
+	void appendPage(TitledPanelPage *page, bool guiUpdate = true);
+	void removePage(TitledPanelPage *page, bool guiUpdate = true);
 	int pageCount() const;
 	TitledPanelPage *pageFromId(const QString &id);
 
-	void setHiddenPageIds(const QStringList& hidden);
+	void setHiddenPageIds(const QStringList &hidden);
 	QStringList hiddenPageIds() const;
 
-	TitledPanelPage* currentPage() const;
+	TitledPanelPage *currentPage() const;
 	QString currentPageId() const;
 	void showPage(const QString &id);
 	void setCurrentPage(const QString &id);
@@ -71,7 +74,7 @@ public:
 	void setSelectorStyle(PageSelectorStyle style);
 
 signals:
-	void widgetContextMenuRequested(QWidget* widget, const QPoint& globalPosition);
+	void widgetContextMenuRequested(QWidget *widget, const QPoint &globalPosition);
 	void pageChanged(const QString &id);
 
 public slots:
@@ -81,7 +84,7 @@ public slots:
 private slots:
 	void viewToggled(bool visible) { setVisible(visible); }
 
-	void updatePageSelector(TitledPanelPage *page=0);
+	void updatePageSelector(TitledPanelPage *page = 0);
 	void onPageTitleChange();
 	void onPageIconChange();
 
@@ -90,7 +93,7 @@ private slots:
 	void setActivePageFromTabBar(int index);
 	void togglePageVisibleFromAction(bool on);
 	//void updateToolbarForResizing(CollapseState clState);
-	void customContextMenuRequested(const QPoint& localPosition);
+	void customContextMenuRequested(const QPoint &localPosition);
 
 protected:
 	QAction *mToggleViewAction;
@@ -99,7 +102,7 @@ protected:
 private:
 	QStringList mHiddenPageIds;
 	QActionGroup *pageSelectActions;    // only for visible widgets
-	QList<QWidget*> widgets;
+	QList<QWidget *> widgets;
 
 	// visual elements
 	PageSelectorStyle selectorStyle;
@@ -109,7 +112,7 @@ private:
 	QComboBox *cbTopbarSelector;
 	QTabBar *tbTopbarSelector;
 
-	QStackedWidget* stack;
+	QStackedWidget *stack;
 
 	QList<TitledPanelPage *> pages;
 };

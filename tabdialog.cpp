@@ -12,7 +12,8 @@
 #include "tabdialog.h"
 
 TabDialog::TabDialog(QWidget *parent, const char *name)
-		:QDialog(parent) {
+	: QDialog(parent)
+{
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
@@ -21,32 +22,37 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.tableWidget->setColumnCount(2);
 
 	ui.spinBoxRows->setValue(2);
-	ui.spinBoxRows->setRange(1,99);
-	connect(ui.spinBoxRows, SIGNAL(valueChanged(int)),this, SLOT(NewRows(int)));
+	ui.spinBoxRows->setRange(1, 99);
+	connect(ui.spinBoxRows, SIGNAL(valueChanged(int)), this, SLOT(NewRows(int)));
 
 	ui.spinBoxColumns->setValue(2);
-	ui.spinBoxColumns->setRange(1,99);
-	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)),this, SLOT(NewColumns(int)));
+	ui.spinBoxColumns->setRange(1, 99);
+	connect(ui.spinBoxColumns, SIGNAL(valueChanged(int)), this, SLOT(NewColumns(int)));
 
 	ui.comboAlignment->addItem(tr("Center"));
 	ui.comboAlignment->addItem(tr("Left"));
 	ui.comboAlignment->addItem(tr("Right"));
-    ui.comboAlignment->addItem("p{} ("+tr("fixed width - left")+")");
-    ui.comboAlignment->addItem("p{} ("+tr("fixed width - center - package tabularx")+")");
-    ui.comboAlignment->addItem("p{} ("+tr("fixed width - right - package tabularx")+")");
+	ui.comboAlignment->addItem("p{} (" + tr("fixed width - left") + ")");
+	ui.comboAlignment->addItem("p{} (" + tr("fixed width - center - package tabularx") + ")");
+	ui.comboAlignment->addItem("p{} (" + tr("fixed width - right - package tabularx") + ")");
 
-	ui.comboSeparator->insertItem(0,"|");
-	ui.comboSeparator->insertItem(1,"||");
-    ui.comboSeparator->insertItem(2,tr("none"));
-    ui.comboSeparator->insertItem(3, tr("@{text}"));
+	ui.comboSeparator->insertItem(0, "|");
+	ui.comboSeparator->insertItem(1, "||");
+	ui.comboSeparator->insertItem(2, tr("none"));
+	ui.comboSeparator->insertItem(3, tr("@{text}"));
 	setWindowTitle(tr("Quick Tabular"));
 }
 
-TabDialog::~TabDialog() {
+TabDialog::~TabDialog()
+{
 }
-void TabDialog::NewRows(int num) {
+
+void TabDialog::NewRows(int num)
+{
 	ui.tableWidget->setRowCount(num);
 }
-void TabDialog::NewColumns(int num) {
+
+void TabDialog::NewColumns(int num)
+{
 	ui.tableWidget->setColumnCount(num);
 }

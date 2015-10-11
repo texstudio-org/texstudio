@@ -4,8 +4,8 @@
 int hgRevisionToInt(const char *)
 {
 	QString s = QString(TEXSTUDIO_HG_REVISION).split(':').at(0);
-	if (s.endsWith('+')) 
-		s = s.left(s.length() -1);
+	if (s.endsWith('+'))
+		s = s.left(s.length() - 1);
 	return s.toInt();
 }
 
@@ -57,8 +57,8 @@ Version Version::current()
 {
 	Version v(TXSVERSION);
 	QString s = QString(TEXSTUDIO_HG_REVISION).split(':').at(0);
-	if (s.endsWith('+')) 
-		s = s.left(s.length() -1);
+	if (s.endsWith('+'))
+		s = s.left(s.length() - 1);
 	v.revision = s.toInt();
 #if defined(Q_OS_WIN)
 	v.platform =  "win";
@@ -71,7 +71,7 @@ Version Version::current()
 	return v;
 }
 
-bool Version::operator >(const Version &other) const 
+bool Version::operator >(const Version &other) const
 {
 	VersionCompareResult res = compareStringVersion(versionNumber, other.versionNumber);
 	return (res == Higher || (res == Same && revision > other.revision));
@@ -86,5 +86,4 @@ bool Version::isValid() const
 {
 	return versionNumberIsValid(versionNumber);
 }
-
 

@@ -8,10 +8,11 @@ MathAssistant::MathAssistant() :
 	QObject()
 {
 	connect(&process, SIGNAL(error(QProcess::ProcessError)), this, SLOT(processError(QProcess::ProcessError)));
-	connect(&process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(processFinished(int,QProcess::ExitStatus)));
+	connect(&process, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(processFinished(int, QProcess::ExitStatus)));
 }
 
-void MathAssistant::exec() {
+void MathAssistant::exec()
+{
 	if (process.state() == QProcess::Running) return;
 
 	// return value of TexTablet is always zero, so we have to decide on the clipboard contents, if TexTablet was aborted
@@ -31,38 +32,38 @@ void MathAssistant::exec() {
 		return;
 	}
 	process.setWorkingDirectory(QFileInfo(texTablet).absolutePath());
-	process.start("\""+texTablet+"\"");
+	process.start("\"" + texTablet + "\"");
 }
 
 void MathAssistant::processError(QProcess::ProcessError err)
 {
-	switch(err)
-	{
+	switch (err) {
 	case QProcess::FailedToStart:
-		QMessageBox::information(0,"FailedToStart","FailedToStart");
+		QMessageBox::information(0, "FailedToStart", "FailedToStart");
 		break;
 	case QProcess::Crashed:
-		QMessageBox::information(0,"Crashed","Crashed");
+		QMessageBox::information(0, "Crashed", "Crashed");
 		break;
 	case QProcess::Timedout:
-		QMessageBox::information(0,"Timedout","Timedout");
+		QMessageBox::information(0, "Timedout", "Timedout");
 		break;
 	case QProcess::WriteError:
-		QMessageBox::information(0,"WriteError","WriteError");
+		QMessageBox::information(0, "WriteError", "WriteError");
 		break;
 	case QProcess::ReadError:
-		QMessageBox::information(0,"ReadError","ReadError");
+		QMessageBox::information(0, "ReadError", "ReadError");
 		break;
 	case QProcess::UnknownError:
-		QMessageBox::information(0,"UnknownError","UnknownError");
+		QMessageBox::information(0, "UnknownError", "UnknownError");
 		break;
 	default:
-		QMessageBox::information(0,"default","default");
+		QMessageBox::information(0, "default", "default");
 		break;
 	}
 }
 
-void MathAssistant::processFinished(int exitCode, QProcess::ExitStatus exitStatus) {
+void MathAssistant::processFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
 	Q_UNUSED(exitCode);
 	if (exitStatus != QProcess::NormalExit) {
 		txsCritical(tr("TexTablet crashed."));
@@ -75,7 +76,8 @@ void MathAssistant::processFinished(int exitCode, QProcess::ExitStatus exitStatu
 	QApplication::clipboard()->setText(lastClipboardText);
 }
 
-MathAssistant *MathAssistant::instance() {
+MathAssistant *MathAssistant::instance()
+{
 	static QMutex mutex;
 	mutex.lock();
 	if (!m_Instance)

@@ -12,7 +12,8 @@
 #include "logeditor.h"
 #include "configmanager.h"
 
-LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent) {
+LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent)
+{
 //setToolTip(tr("Click to jump to the line"));
 	highlighter = new LogHighlighter(document());
 	ConfigManagerInterface *config = ConfigManager::getInstance();
@@ -22,11 +23,13 @@ LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent) {
 	int fontSize = config->getOption("LogView/FontSize").toInt(&ok);
 	if (ok && fontSize > 0) setFontPointSize(fontSize);
 }
-LogEditor::~LogEditor() {
+
+LogEditor::~LogEditor()
+{
 }
 
-
-void LogEditor::wheelEvent(QWheelEvent* event) {
+void LogEditor::wheelEvent(QWheelEvent *event)
+{
 	ConfigManagerInterface *config = ConfigManager::getInstance();
 	if (!config->getOption("Editor/Mouse Wheel Zoom").toBool()) {
 		event->setModifiers(event->modifiers() & ~Qt::ControlModifier);
@@ -34,30 +37,32 @@ void LogEditor::wheelEvent(QWheelEvent* event) {
 	QTextEdit::wheelEvent(event);
 }
 
-
-void LogEditor::insertLine(const QString& l) {
+void LogEditor::insertLine(const QString &l)
+{
 	if (l.endsWith("\n")) append(l);
-	else append(l+"\n");
+	else append(l + "\n");
 }
 
-void LogEditor::setCursorPosition(int para, int index) {
-	QTextCursor cur=textCursor();
+void LogEditor::setCursorPosition(int para, int index)
+{
+	QTextCursor cur = textCursor();
 	int i = 0;
 	QTextBlock p = document()->begin();
 	while (p.isValid()) {
-		if (para==i) break;
+		if (para == i) break;
 		i++;
 		p = p.next();
 	}
-	int pos=p.position();
+	int pos = p.position();
 	cur.movePosition(QTextCursor::End);
 	setTextCursor(cur);
-	cur.setPosition(pos+index,QTextCursor::MoveAnchor);
+	cur.setPosition(pos + index, QTextCursor::MoveAnchor);
 	setTextCursor(cur);
 	ensureCursorVisible();
 }
 
-void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/) {
+void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/)
+{
 	emit clickOnLogLine(textCursor().blockNumber());
 	/*QTextEdit::mousePressEvent(e);
 	QString content=textCursor().block().text();
@@ -65,7 +70,7 @@ void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/) {
 	bool ok;
 	QString s;
 	QString line="";
-//// l. ///
+	//// l. ///
 	s = content;
 	Start=End=0;
 	Start=s.indexOf(QRegExp("l.[0-9]"), End);
@@ -78,7 +83,7 @@ void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/) {
 		else
 			line=s.mid(0,s.length());
 	};
-//// line ///
+	//// line ///
 	s = content;
 	Start=End=0;
 	Start=s.indexOf(QRegExp("line [0-9]"), End);
@@ -91,7 +96,7 @@ void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/) {
 		else
 			line=s.mid(0,s.length());
 	};
-//// lines ///
+	//// lines ///
 	s = content;
 	Start=End=0;
 	Start=s.indexOf(QRegExp("lines [0-9]"), End);
@@ -108,10 +113,11 @@ void LogEditor::mouseDoubleClickEvent(QMouseEvent */*e*/) {
 	if (ok) {
 		emit clickonline(l);
 	}
-*/
+	*/
 }
 
-void LogEditor::paintEvent(QPaintEvent *event) {
+void LogEditor::paintEvent(QPaintEvent *event)
+{
 	QRect rect = cursorRect();
 	rect.setX(0);
 	rect.setWidth(viewport()->width());

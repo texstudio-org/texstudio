@@ -16,10 +16,12 @@
 
 #include "ui_tabdialog.h"
 
-class TabDialog : public QDialog  {
+class TabDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
-	TabDialog(QWidget *parent=0, const char *name=0);
+	TabDialog(QWidget *parent = 0, const char *name = 0);
 	~TabDialog();
 	Ui::TabDialog ui;
 

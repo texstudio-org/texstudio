@@ -5,7 +5,8 @@
 #include "templatemanager.h"
 
 // Abstract base class for templates
-class Template {
+class Template
+{
 public:
 	virtual ~Template() { foreach (TemplateHandle *th, handles) { th->setTmpl(0); } }
 	virtual QString name() const { return QString(); }
@@ -34,7 +35,8 @@ private:
 };
 
 
-class LocalFileTemplate : public Template {
+class LocalFileTemplate : public Template
+{
 public:
 	friend class LocalFileTemplateResource;
 	virtual QString name() const { return metaData["Name"]; }
@@ -55,6 +57,7 @@ protected:
 	virtual bool saveMetaData() { return false; }
 
 	QHash<QString, QString> metaData;
+
 private:
 	QString imageFile() const;
 	QString m_mainfile; // a single .tex file or a .zip for multiple files
@@ -62,7 +65,8 @@ private:
 };
 
 
-class LocalLatexTemplate : public LocalFileTemplate {
+class LocalLatexTemplate : public LocalFileTemplate
+{
 public:
 	friend class LocalLatexTemplateResource;
 protected:
@@ -73,7 +77,8 @@ private:
 };
 
 
-class LocalTableTemplate : public LocalFileTemplate {
+class LocalTableTemplate : public LocalFileTemplate
+{
 public:
 	friend class LocalTableTemplateResource;
 protected:
@@ -83,9 +88,10 @@ private:
 };
 
 
-class LocalFileTemplateResource : public QObject, public AbstractTemplateResource {
+class LocalFileTemplateResource : public QObject, public AbstractTemplateResource
+{
 	Q_OBJECT
-	Q_INTERFACES( AbstractTemplateResource )
+	Q_INTERFACES(AbstractTemplateResource)
 public:
 	~LocalFileTemplateResource();
 	virtual QList<TemplateHandle> getTemplates();
@@ -95,10 +101,12 @@ public:
 	void setDescription(const QString &descr) { m_description = descr; }
 	virtual QIcon icon() { return m_icon; }
 	void setEditable(bool b);
+
 protected:
 	LocalFileTemplateResource(QString path, QStringList filters, QString name, QObject *parent = 0, QIcon icon=QIcon());
 	virtual LocalFileTemplate* createTemplate(QString file) = 0;
 	void update();
+
 private:
 	QString m_path;
 	QStringList m_filters;
@@ -108,20 +116,26 @@ private:
 	QList<LocalFileTemplate*> m_templates;
 };
 
-class LocalLatexTemplateResource : public LocalFileTemplateResource {
+class LocalLatexTemplateResource : public LocalFileTemplateResource
+{
 	Q_OBJECT
+
 public:
 	LocalLatexTemplateResource(QString path, QString name, QObject *parent, QIcon icon = QIcon())
 		: LocalFileTemplateResource(path, QStringList() << "*.tex" << "*.lytex" << "*.zip", name, parent, icon) { update(); }
+
 protected:
 	virtual LocalFileTemplate* createTemplate(QString file) { return new LocalLatexTemplate(file); }
 };
 
-class LocalTableTemplateResource : public LocalFileTemplateResource {
+class LocalTableTemplateResource : public LocalFileTemplateResource
+{
 	Q_OBJECT
+
 public:
 	LocalTableTemplateResource(QString path, QString name, QObject *parent, QIcon icon = QIcon())
 		: LocalFileTemplateResource(path, QStringList() << "*.js", name, parent, icon) { update(); }
+
 protected:
 	virtual LocalFileTemplate* createTemplate(QString file) { return new LocalTableTemplate(file); }
 };

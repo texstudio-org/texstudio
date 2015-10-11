@@ -7,19 +7,20 @@ class LatexEditorView;
 
 class TxsTabWidget : public QTabWidget
 {
-Q_OBJECT
+	Q_OBJECT
+
 public:
 	explicit TxsTabWidget(QWidget *parent = 0);
-	void moveTab(int from,int to);
+	void moveTab(int from, int to);
 
 	QList<LatexEditorView *> editors() const;
 	bool containsEditor(LatexEditorView *edView) const;
 
-	LatexEditorView* currentEditorView() const;
+	LatexEditorView *currentEditorView() const;
 	void setCurrentEditor(LatexEditorView *edView);
 
 signals:
-	void tabMoved(int from,int to);
+	void tabMoved(int from, int to);
 	void tabBarContextMenuRequested(QPoint point);
 	void editorAboutToChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
 	void closeCurrentEditorRequest();
@@ -32,7 +33,7 @@ public slots:
 	void gotoPrevDocument();
 
 	// low level public functions
-	void insertEditor(LatexEditorView *edView, int pos=-1 /*append*/, bool asCurrent=true);
+	void insertEditor(LatexEditorView *edView, int pos = -1 /*append*/, bool asCurrent = true);
 	void removeEditor(LatexEditorView *edView);
 
 private slots:
@@ -42,12 +43,13 @@ private slots:
 
 class ChangeAwareTabBar : public QTabBar
 {
-Q_OBJECT
+	Q_OBJECT
+
 public:
 
 signals:
 	void currentTabAboutToChange(int from, int to);
-    void middleMouseButtonPressed(int tabNr);
+	void middleMouseButtonPressed(int tabNr);
 
 protected:
 	virtual void mousePressEvent(QMouseEvent *event);

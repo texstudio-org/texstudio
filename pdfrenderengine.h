@@ -20,9 +20,10 @@
 
 class PDFQueue;
 
-class RenderCommand {
+class RenderCommand
+{
 public:
-	explicit RenderCommand(int p,double xr=72.0,double yr=72.0,int x=-1,int y=-1,int w=-1,int h=-1);
+	explicit RenderCommand(int p, double xr = 72.0, double yr = 72.0, int x = -1, int y = -1, int w = -1, int h = -1);
 	int pageNr;
 	double xres;
 	double yres;
@@ -38,14 +39,16 @@ public:
 class PDFRenderEngine : public SafeThread
 {
 	Q_OBJECT
+
 public:
-	explicit PDFRenderEngine(QObject *parent,PDFQueue *mQueue);
+	explicit PDFRenderEngine(QObject *parent, PDFQueue *mQueue);
 	~PDFRenderEngine();
 
 	QByteArray tempData;
 	void setDocument(const QSharedPointer<Poppler::Document> &doc);
+
 signals:
-	void sendImage(QImage image,int page,int ticket);
+	void sendImage(QImage image, int page, int ticket);
 
 public slots:
 
@@ -56,7 +59,6 @@ private:
 	QSharedPointer<Poppler::Document> document;
 	int cachedNumPages;
 	PDFQueue *queue;
-
 };
 
 #endif // PDFRENDERENGINE_H

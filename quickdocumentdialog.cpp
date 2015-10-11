@@ -13,7 +13,8 @@
 #include "universalinputdialog.h"
 #include "configmanagerinterface.h"
 
-qreal convertLatexLengthToMetre(const qreal& length, const QString& unit){
+qreal convertLatexLengthToMetre(const qreal &length, const QString &unit)
+{
 	static const qreal inchInMetre = 0.0254;
 	static const qreal pointInMetre = inchInMetre / 72.27;
 	static const qreal bigPointInMetre = inchInMetre / 72;
@@ -37,8 +38,9 @@ bool geometryPageWidthEnabled, geometryPageHeightEnabled, geometryMarginLeftEnab
 ConfigManagerInterface *QuickDocumentDialog::configManagerInterface;
 
 
-QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString& name)
-		:QDialog(parent) {
+QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString &name)
+	: QDialog(parent)
+{
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
@@ -77,97 +79,101 @@ QuickDocumentDialog::QuickDocumentDialog(QWidget *parent, const QString& name)
 	connect(ui.tabWidget, SIGNAL(currentChanged(int)), SLOT(geometryValuesChanged()));
 }
 
-QuickDocumentDialog::~QuickDocumentDialog() {
+QuickDocumentDialog::~QuickDocumentDialog()
+{
 }
 
-QString QuickDocumentDialog::getNewDocumentText(){
-	QString opt="";
-	QString tag=QString("\\documentclass[");
-	tag+=ui.comboBoxSize->currentText()+QString(",");
-	tag+=ui.comboBoxPaper->currentText();
-	QList<QListWidgetItem *> selectedItems=ui.listWidgetOptions->selectedItems();
+QString QuickDocumentDialog::getNewDocumentText()
+{
+	QString opt = "";
+	QString tag = QString("\\documentclass[");
+	tag += ui.comboBoxSize->currentText() + QString(",");
+	tag += ui.comboBoxPaper->currentText();
+	QList<QListWidgetItem *> selectedItems = ui.listWidgetOptions->selectedItems();
 	for (int i = 0; i < selectedItems.size(); ++i) {
-		if (selectedItems.at(i)) opt+=QString(",")+selectedItems.at(i)->text();
+		if (selectedItems.at(i)) opt += QString(",") + selectedItems.at(i)->text();
 	}
-	tag+=opt+QString("]{");
-	tag+=ui.comboBoxClass->currentText()+QString("}");
-	tag+=QString("\n");
-	if (ui.comboBoxEncoding->currentText()!="NONE") tag+=QString("\\usepackage[")+ui.comboBoxEncoding->currentText()+QString("]{inputenc}");
-	tag+=QString("\n");
+	tag += opt + QString("]{");
+	tag += ui.comboBoxClass->currentText() + QString("}");
+	tag += QString("\n");
+	if (ui.comboBoxEncoding->currentText() != "NONE") tag += QString("\\usepackage[") + ui.comboBoxEncoding->currentText() + QString("]{inputenc}");
+	tag += QString("\n");
 	if (ui.comboBoxEncoding->currentText().startsWith("utf8x"))
-		tag+=QString("\\usepackage{ucs}\n");
+		tag += QString("\\usepackage{ucs}\n");
 	if (ui.checkBoxAMS->isChecked())
-		tag+=QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
+		tag += QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
 	if (ui.checkBoxIDX->isChecked())
-		tag+=QString("\\usepackage{makeidx}\n");
+		tag += QString("\\usepackage{makeidx}\n");
 	if (ui.checkBoxGraphicx->isChecked())
-		tag+=QString("\\usepackage{graphicx}\n");
+		tag += QString("\\usepackage{graphicx}\n");
 
 	if (ui.checkBoxGeometryPageWidth->isChecked() ||
-	    ui.checkBoxGeometryPageHeight->isChecked() ||
-	    ui.checkBoxGeometryMarginLeft->isChecked() ||
-	    ui.checkBoxGeometryMarginRight->isChecked() ||
-	    ui.checkBoxGeometryMarginBottom->isChecked() ||
-	    ui.checkBoxGeometryMarginTop->isChecked()){
+	        ui.checkBoxGeometryPageHeight->isChecked() ||
+	        ui.checkBoxGeometryMarginLeft->isChecked() ||
+	        ui.checkBoxGeometryMarginRight->isChecked() ||
+	        ui.checkBoxGeometryMarginBottom->isChecked() ||
+	        ui.checkBoxGeometryMarginTop->isChecked()) {
 		QString geometryOptions;
-		if (ui.checkBoxGeometryPageWidth->isChecked()) geometryOptions += ", width="+ui.spinBoxGeometryPageWidth->text();
-		if (ui.checkBoxGeometryPageHeight->isChecked()) geometryOptions += ", height="+ui.spinBoxGeometryPageHeight->text();
-		if (ui.checkBoxGeometryMarginLeft->isChecked()) geometryOptions += ", left="+ui.spinBoxGeometryMarginLeft->text();
-		if (ui.checkBoxGeometryMarginRight->isChecked()) geometryOptions += ", right="+ui.spinBoxGeometryMarginRight->text();
-		if (ui.checkBoxGeometryMarginTop->isChecked()) geometryOptions += ", top="+ui.spinBoxGeometryMarginTop->text();
-		if (ui.checkBoxGeometryMarginBottom->isChecked()) geometryOptions += ", bottom="+ui.spinBoxGeometryMarginBottom->text();
-		geometryOptions.remove(0,2);
-		tag+="\\usepackage["+geometryOptions+"]{geometry}\n";
+		if (ui.checkBoxGeometryPageWidth->isChecked()) geometryOptions += ", width=" + ui.spinBoxGeometryPageWidth->text();
+		if (ui.checkBoxGeometryPageHeight->isChecked()) geometryOptions += ", height=" + ui.spinBoxGeometryPageHeight->text();
+		if (ui.checkBoxGeometryMarginLeft->isChecked()) geometryOptions += ", left=" + ui.spinBoxGeometryMarginLeft->text();
+		if (ui.checkBoxGeometryMarginRight->isChecked()) geometryOptions += ", right=" + ui.spinBoxGeometryMarginRight->text();
+		if (ui.checkBoxGeometryMarginTop->isChecked()) geometryOptions += ", top=" + ui.spinBoxGeometryMarginTop->text();
+		if (ui.checkBoxGeometryMarginBottom->isChecked()) geometryOptions += ", bottom=" + ui.spinBoxGeometryMarginBottom->text();
+		geometryOptions.remove(0, 2);
+		tag += "\\usepackage[" + geometryOptions + "]{geometry}\n";
 	}
 
-	if (ui.lineEditAuthor->text()!="")
-		tag+="\\author{"+ui.lineEditAuthor->text()+"}\n";
-	if (ui.lineEditTitle->text()!="")
-		tag+="\\title{"+ui.lineEditTitle->text()+"}\n";
+	if (ui.lineEditAuthor->text() != "")
+		tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
+	if (ui.lineEditTitle->text() != "")
+		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
 
-	tag+=QString("\\begin{document}\n%|\n\\end{document}");
+	tag += QString("\\begin{document}\n%|\n\\end{document}");
 	return tag;
 }
 
-void QuickDocumentDialog::registerOptions(ConfigManagerInterface& configManager){
+void QuickDocumentDialog::registerOptions(ConfigManagerInterface &configManager)
+{
 	configManager.registerOption("Tools/User Class", &otherClassList);
 	configManager.registerOption("Tools/User Paper", &otherPaperList);
 	configManager.registerOption("Tools/User Encoding", &otherEncodingList);
 	configManager.registerOption("Tools/User Options", &otherOptionsList);
 	configManager.registerOption("Quick/Class", &document_class, "article");
 	configManager.registerOption("Quick/Typeface", &typeface_size, "10pt");
-	configManager.registerOption("Quick/Papersize",&paper_size, "a4paper");
-	configManager.registerOption("Quick/Encoding",&document_encoding, "latin1");
-	configManager.registerOption("Quick/AMS",&ams_packages, true);
-	configManager.registerOption("Quick/MakeIndex",&makeidx_package, false);
-	configManager.registerOption("Quick/graphicx",&graphicx_package, true);
-	configManager.registerOption("Quick/Author",&author, "");
+	configManager.registerOption("Quick/Papersize", &paper_size, "a4paper");
+	configManager.registerOption("Quick/Encoding", &document_encoding, "latin1");
+	configManager.registerOption("Quick/AMS", &ams_packages, true);
+	configManager.registerOption("Quick/MakeIndex", &makeidx_package, false);
+	configManager.registerOption("Quick/graphicx", &graphicx_package, true);
+	configManager.registerOption("Quick/Author", &author, "");
 
-	configManager.registerOption("Quick/Geometry Page Width",&geometryPageWidth, 0.0f);
-	configManager.registerOption("Quick/Geometry Page Height",&geometryPageHeight, 0.0f);
-	configManager.registerOption("Quick/Geometry Margin Left",&geometryMarginLeft, 0.0f);
-	configManager.registerOption("Quick/Geometry Margin Right",&geometryMarginRight, 0.0f);
-	configManager.registerOption("Quick/Geometry Margin Top",&geometryMarginTop, 0.0f);
-	configManager.registerOption("Quick/Geometry Margin Bottom",&geometryMarginBottom, 0.0f);
+	configManager.registerOption("Quick/Geometry Page Width", &geometryPageWidth, 0.0f);
+	configManager.registerOption("Quick/Geometry Page Height", &geometryPageHeight, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Left", &geometryMarginLeft, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Right", &geometryMarginRight, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Top", &geometryMarginTop, 0.0f);
+	configManager.registerOption("Quick/Geometry Margin Bottom", &geometryMarginBottom, 0.0f);
 
-	configManager.registerOption("Quick/Geometry Page Width Unit",&geometryPageWidthUnit, "cm");
-	configManager.registerOption("Quick/Geometry Page Height Unit",&geometryPageHeightUnit, "cm");
-	configManager.registerOption("Quick/Geometry Margin Left Unit",&geometryMarginLeftUnit, "cm");
-	configManager.registerOption("Quick/Geometry Margin Right Unit",&geometryMarginRightUnit, "cm");
-	configManager.registerOption("Quick/Geometry Margin Top Unit",&geometryMarginTopUnit, "cm");
-	configManager.registerOption("Quick/Geometry Margin Bottom Unit",&geometryMarginBottomUnit, "cm");
+	configManager.registerOption("Quick/Geometry Page Width Unit", &geometryPageWidthUnit, "cm");
+	configManager.registerOption("Quick/Geometry Page Height Unit", &geometryPageHeightUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Left Unit", &geometryMarginLeftUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Right Unit", &geometryMarginRightUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Top Unit", &geometryMarginTopUnit, "cm");
+	configManager.registerOption("Quick/Geometry Margin Bottom Unit", &geometryMarginBottomUnit, "cm");
 
-	configManager.registerOption("Quick/Geometry Page Width Enabled",&geometryPageWidthEnabled, false);
-	configManager.registerOption("Quick/Geometry Page Height Enabled",&geometryPageHeightEnabled, false);
-	configManager.registerOption("Quick/Geometry Margin Left Enabled",&geometryMarginLeftEnabled, false);
-	configManager.registerOption("Quick/Geometry Margin Right Enabled",&geometryMarginRightEnabled, false);
-	configManager.registerOption("Quick/Geometry Margin Top Enabled",&geometryMarginTopEnabled, false);
-	configManager.registerOption("Quick/Geometry Margin Bottom Enabled",&geometryMarginBottomEnabled, false);
+	configManager.registerOption("Quick/Geometry Page Width Enabled", &geometryPageWidthEnabled, false);
+	configManager.registerOption("Quick/Geometry Page Height Enabled", &geometryPageHeightEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Left Enabled", &geometryMarginLeftEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Right Enabled", &geometryMarginRightEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Top Enabled", &geometryMarginTopEnabled, false);
+	configManager.registerOption("Quick/Geometry Margin Bottom Enabled", &geometryMarginBottomEnabled, false);
 
 	configManagerInterface = &configManager;
 }
 
-void QuickDocumentDialog::Init() {
+void QuickDocumentDialog::Init()
+{
 	ui.comboBoxClass->clear();
 	ui.comboBoxClass->addItem("article");
 	ui.comboBoxClass->addItem("report");
@@ -256,11 +262,13 @@ void QuickDocumentDialog::Init() {
 	configManagerInterface->linkOptionToDialogWidget(&geometryMarginBottomEnabled, ui.checkBoxGeometryMarginBottom);
 }
 
-void QuickDocumentDialog::accept(){
+void QuickDocumentDialog::accept()
+{
 	QDialog::accept();
 }
 
-void QuickDocumentDialog::geometryUnitsChanged(){
+void QuickDocumentDialog::geometryUnitsChanged()
+{
 	//update all units (easier than just the changed one, slower, but need probably less memory)
 	ui.spinBoxGeometryPageWidth->setSuffix(ui.spinBoxUnitGeometryPageWidth->currentText());
 	ui.spinBoxGeometryPageHeight->setSuffix(ui.spinBoxUnitGeometryPageHeight->currentText());
@@ -269,15 +277,16 @@ void QuickDocumentDialog::geometryUnitsChanged(){
 	ui.spinBoxGeometryMarginTop->setSuffix(ui.spinBoxUnitGeometryMarginTop->currentText());
 	ui.spinBoxGeometryMarginBottom->setSuffix(ui.spinBoxUnitGeometryMarginBottom->currentText());
 
-	if (sender()==ui.spinBoxUnitGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
-	else if (sender()==ui.spinBoxUnitGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
-	else if (sender()==ui.spinBoxUnitGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
-	else if (sender()==ui.spinBoxUnitGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
-	else if (sender()==ui.spinBoxUnitGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
-	else if (sender()==ui.spinBoxUnitGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
+	if (sender() == ui.spinBoxUnitGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
+	else if (sender() == ui.spinBoxUnitGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
+	else if (sender() == ui.spinBoxUnitGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
+	else if (sender() == ui.spinBoxUnitGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
+	else if (sender() == ui.spinBoxUnitGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
+	else if (sender() == ui.spinBoxUnitGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
 }
 
-void calculatePaperLength(qreal paper, qreal &left, qreal &body, qreal &right, qreal defaultLeftRatio){
+void calculatePaperLength(qreal paper, qreal &left, qreal &body, qreal &right, qreal defaultLeftRatio)
+{
 	//all can be unknown
 	if (body == -1 && (left == -1 || right == -1)) body = 0.7 * paper; //this is the behaviour of geometry package 5, in version 4 it would first set the other margin if one is given
 	//either body or both margins are known
@@ -294,55 +303,56 @@ void calculatePaperLength(qreal paper, qreal &left, qreal &body, qreal &right, q
 
 }
 
-void QuickDocumentDialog::geometryValuesChanged(){
+void QuickDocumentDialog::geometryValuesChanged()
+{
 	//if a value is changed, enable it (I just don't like to create 12 slots for this, where are you lambda?)
-	if (sender()==ui.spinBoxGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
-	else if (sender()==ui.spinBoxGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
-	else if (sender()==ui.spinBoxGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
-	else if (sender()==ui.spinBoxGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
-	else if (sender()==ui.spinBoxGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
-	else if (sender()==ui.spinBoxGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
-	else if (sender()==ui.spinBoxGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
+	if (sender() == ui.spinBoxGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryPageHeight) ui.checkBoxGeometryPageHeight->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginLeft) ui.checkBoxGeometryMarginLeft->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginRight) ui.checkBoxGeometryMarginRight->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginTop) ui.checkBoxGeometryMarginTop->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryMarginBottom) ui.checkBoxGeometryMarginBottom->setChecked(true);
+	else if (sender() == ui.spinBoxGeometryPageWidth) ui.checkBoxGeometryPageWidth->setChecked(true);
 
 	static const QStringList paperFormats = QStringList()
-		<< "a0paper" << "841" << "1189" << "mm"
-		<< "a1paper" << "594" << "841" << "mm"
-		<< "a2paper" << "420" << "594" << "mm"
-		<< "a3paper" << "297" << "420" << "mm"
-		<< "a4paper" << "210" << "297" << "mm"
-		<< "a5paper" << "148" << "210" << "mm"
-		<< "a6paper" << "105" << "148" << "mm"
-		<< "b0paper" << "1000" << "1414" << "mm"
-		<< "b1paper" << "707" << "1000" << "mm"
-		<< "b2paper" << "500" << "707" << "mm"
-		<< "b3paper" << "353" << "500" << "mm"
-		<< "b4paper" << "250" << "353" << "mm"
-		<< "b5paper" << "176" << "250" << "mm"
-		<< "b6paper" << "125" << "176" << "mm"
-		<< "b0j" << "1030" << "1456" << "mm"
-		<< "b1j" << "728" << "1030" << "mm"
-		<< "b2j" << "515" << "728" << "mm"
-		<< "b3j" << "364" << "515" << "mm"
-		<< "b4j" << "257" << "364" << "mm"
-		<< "b5j" << "182" << "257" << "mm"
-		<< "b6j" << "128" << "182" << "mm"
-		<< "ansiapaper" << "8.5" << "11" << "in"
-		<< "ansibpaper" << "11" << "17" << "in"
-		<< "ansicpaper" << "17" << "22" << "in"
-		<< "ansidpaper" << "22" << "34" << "in"
-		<< "ansiepaper" << "34" << "44" << "in"
-		<< "letterpaper" << "8.5" << "11" << "in"
-		<< "legalpaper" << "8.5" << "14" << "in"
-		<< "executivepaper" << "7.25" << "10.5" << "in"
-		<< "screen" << "225" << "180" << "mm";
+	                                        << "a0paper" << "841" << "1189" << "mm"
+	                                        << "a1paper" << "594" << "841" << "mm"
+	                                        << "a2paper" << "420" << "594" << "mm"
+	                                        << "a3paper" << "297" << "420" << "mm"
+	                                        << "a4paper" << "210" << "297" << "mm"
+	                                        << "a5paper" << "148" << "210" << "mm"
+	                                        << "a6paper" << "105" << "148" << "mm"
+	                                        << "b0paper" << "1000" << "1414" << "mm"
+	                                        << "b1paper" << "707" << "1000" << "mm"
+	                                        << "b2paper" << "500" << "707" << "mm"
+	                                        << "b3paper" << "353" << "500" << "mm"
+	                                        << "b4paper" << "250" << "353" << "mm"
+	                                        << "b5paper" << "176" << "250" << "mm"
+	                                        << "b6paper" << "125" << "176" << "mm"
+	                                        << "b0j" << "1030" << "1456" << "mm"
+	                                        << "b1j" << "728" << "1030" << "mm"
+	                                        << "b2j" << "515" << "728" << "mm"
+	                                        << "b3j" << "364" << "515" << "mm"
+	                                        << "b4j" << "257" << "364" << "mm"
+	                                        << "b5j" << "182" << "257" << "mm"
+	                                        << "b6j" << "128" << "182" << "mm"
+	                                        << "ansiapaper" << "8.5" << "11" << "in"
+	                                        << "ansibpaper" << "11" << "17" << "in"
+	                                        << "ansicpaper" << "17" << "22" << "in"
+	                                        << "ansidpaper" << "22" << "34" << "in"
+	                                        << "ansiepaper" << "34" << "44" << "in"
+	                                        << "letterpaper" << "8.5" << "11" << "in"
+	                                        << "legalpaper" << "8.5" << "14" << "in"
+	                                        << "executivepaper" << "7.25" << "10.5" << "in"
+	                                        << "screen" << "225" << "180" << "mm";
 
 	int paperFormat = paperFormats.indexOf(ui.comboBoxPaper->currentText().toLower());
 	if (paperFormat == -1) {
 		ui.geometryPreviewLabel->setText("unknown paper format");
 		return;
 	}
-	qreal physicalPaperWidth = convertLatexLengthToMetre(paperFormats[paperFormat+1].toDouble(), paperFormats[paperFormat+3]);
-	qreal physicalPaperHeight = convertLatexLengthToMetre(paperFormats[paperFormat+2].toDouble(), paperFormats[paperFormat+3]);
+	qreal physicalPaperWidth = convertLatexLengthToMetre(paperFormats[paperFormat + 1].toDouble(), paperFormats[paperFormat + 3]);
+	qreal physicalPaperHeight = convertLatexLengthToMetre(paperFormats[paperFormat + 2].toDouble(), paperFormats[paperFormat + 3]);
 
 	qreal textWidth = (ui.checkBoxGeometryPageWidth->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryPageWidth->value(), ui.spinBoxGeometryPageWidth->suffix()) : -1);
 	qreal textHeight = (ui.checkBoxGeometryPageWidth->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryPageHeight->value(), ui.spinBoxGeometryPageHeight->suffix()) : -1);
@@ -352,31 +362,31 @@ void QuickDocumentDialog::geometryValuesChanged(){
 	qreal marginTop = (ui.checkBoxGeometryMarginTop->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginTop->value(), ui.spinBoxGeometryMarginTop->suffix()) : -1);
 	qreal marginBottom = (ui.checkBoxGeometryMarginBottom->isChecked() ? convertLatexLengthToMetre(ui.spinBoxGeometryMarginBottom->value(), ui.spinBoxGeometryMarginBottom->suffix()) : -1);
 
-	bool twoSide = ui.listWidgetOptions->isItemSelected(ui.listWidgetOptions->findItems("twoside",Qt::MatchExactly).first());
-	bool landscape = ui.listWidgetOptions->isItemSelected(ui.listWidgetOptions->findItems("landscape",Qt::MatchExactly).first());
+	bool twoSide = ui.listWidgetOptions->isItemSelected(ui.listWidgetOptions->findItems("twoside", Qt::MatchExactly).first());
+	bool landscape = ui.listWidgetOptions->isItemSelected(ui.listWidgetOptions->findItems("landscape", Qt::MatchExactly).first());
 
 	if (landscape) qSwap(physicalPaperWidth, physicalPaperHeight);
 
 	//calculate missing parametres like the geometry package does it
-	calculatePaperLength(physicalPaperWidth, marginLeft, textWidth, marginRight, twoSide?(2.0f/5.0f):(1/2.0f));
-	calculatePaperLength(physicalPaperHeight, marginTop, textHeight, marginBottom, 2.0f/5.0f);
+	calculatePaperLength(physicalPaperWidth, marginLeft, textWidth, marginRight, twoSide ? (2.0f / 5.0f) : (1 / 2.0f));
+	calculatePaperLength(physicalPaperHeight, marginTop, textHeight, marginBottom, 2.0f / 5.0f);
 
 	//draw paper
-	qreal resolution = qMin((ui.geometryPreviewLabel->width()-5)/physicalPaperWidth, (ui.geometryPreviewLabel->height()-5)/physicalPaperHeight);
-	QPixmap preview((int)(physicalPaperWidth*resolution+6), (int)(physicalPaperHeight*resolution+5));
-	preview.fill(QColor(0,0,0));
+	qreal resolution = qMin((ui.geometryPreviewLabel->width() - 5) / physicalPaperWidth, (ui.geometryPreviewLabel->height() - 5) / physicalPaperHeight);
+	QPixmap preview((int)(physicalPaperWidth * resolution + 6), (int)(physicalPaperHeight * resolution + 5));
+	preview.fill(QColor(0, 0, 0));
 
 	QPainter painter(&preview);
-    QBrush brush(QColor(255,255,255));
-    brush.setStyle(Qt::SolidPattern);
-    painter.setBrush(brush);
-    painter.drawRect(2,2,qRound(physicalPaperWidth*resolution), qRound(physicalPaperHeight*resolution));
+	QBrush brush(QColor(255, 255, 255));
+	brush.setStyle(Qt::SolidPattern);
+	painter.setBrush(brush);
+	painter.drawRect(2, 2, qRound(physicalPaperWidth * resolution), qRound(physicalPaperHeight * resolution));
 
-    painter.setTransform(QTransform().scale(resolution, resolution)*QTransform().translate(2,2));
+	painter.setTransform(QTransform().scale(resolution, resolution)*QTransform().translate(2, 2));
 
-    QPen pen(QColor(128,128,128));
-    pen.setWidth(0);
-    painter.setPen(pen);
+	QPen pen(QColor(128, 128, 128));
+	pen.setWidth(0);
+	painter.setPen(pen);
 
 	painter.drawLine(QPointF(marginLeft, 0), QPointF(marginLeft, physicalPaperHeight));
 	painter.drawLine(QPointF(0, marginTop), QPointF(physicalPaperWidth, marginTop));
@@ -386,7 +396,8 @@ void QuickDocumentDialog::geometryValuesChanged(){
 	ui.geometryPreviewLabel->setPixmap(preview);
 }
 
-void QuickDocumentDialog::addUserClass() {
+void QuickDocumentDialog::addUserClass()
+{
 	QString newoption;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&newoption, tr("New:"));
@@ -396,7 +407,8 @@ void QuickDocumentDialog::addUserClass() {
 	}
 }
 
-void QuickDocumentDialog::addUserPaper() {
+void QuickDocumentDialog::addUserPaper()
+{
 	QString newoption;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&newoption, tr("New:"));
@@ -406,7 +418,8 @@ void QuickDocumentDialog::addUserPaper() {
 	}
 }
 
-void QuickDocumentDialog::addUserEncoding() {
+void QuickDocumentDialog::addUserEncoding()
+{
 	QString newoption;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&newoption, tr("New:"));
@@ -416,7 +429,8 @@ void QuickDocumentDialog::addUserEncoding() {
 	}
 }
 
-void QuickDocumentDialog::addUserOptions() {
+void QuickDocumentDialog::addUserOptions()
+{
 	QString newoption;
 	UniversalInputDialog dialog;
 	dialog.addVariable(&newoption, tr("New:"));

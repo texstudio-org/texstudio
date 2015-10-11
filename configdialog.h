@@ -20,8 +20,10 @@
 #include "buildmanager.h"
 
 //TODO: perhaps move each class in its own file?
-class ShortcutComboBox: public QComboBox{
+class ShortcutComboBox: public QComboBox
+{
 	Q_OBJECT
+
 public:
 	ShortcutComboBox(QWidget *parent = 0);
 protected:
@@ -29,7 +31,8 @@ protected:
 	virtual void focusInEvent(QFocusEvent *e);
 };
 
-class ShortcutDelegate : public QItemDelegate {
+class ShortcutDelegate : public QItemDelegate
+{
 	Q_OBJECT
 
 public:
@@ -45,19 +48,20 @@ public:
 	void updateEditorGeometry(QWidget *editor,
 	                          const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
-	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const;
+	void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
 
-	bool isBasicEditorKey(const QModelIndex& index) const;
+	bool isBasicEditorKey(const QModelIndex &index) const;
 
-	QTreeWidget * treeWidget; //tree widget to remove duplicates from, not necessary
+	QTreeWidget *treeWidget;  //tree widget to remove duplicates from, not necessary
 
 	static const QString deleteRowButton;
 	static const QString addRowButton;
 public slots:
-	void treeWidgetItemClicked(QTreeWidgetItem * item, int column);
+	void treeWidgetItemClicked(QTreeWidgetItem *item, int column);
 };
 
-class ComboBoxDelegate : public QItemDelegate {
+class ComboBoxDelegate : public QItemDelegate
+{
 public:
 	ComboBoxDelegate(QObject *parent = 0);
 
@@ -76,44 +80,42 @@ public:
 };
 
 class QFormatConfig;
-class ConfigDialog : public QDialog {
+class ConfigDialog : public QDialog
+{
 	Q_OBJECT
 
 public:
-	ConfigDialog(QWidget* parent = 0);
+	ConfigDialog(QWidget *parent = 0);
 	~ConfigDialog();
 	Ui::ConfigDialog ui;
-	QRadioButton * checkboxInternalPDFViewer;
+	QRadioButton *checkboxInternalPDFViewer;
 
-	QMap<QString,QFormat> editorFormats;
-	QFormatConfig * fmConfig;
-	QMap<QString,QVariant> * replacedIconsOnMenus;
+	QMap<QString, QFormat> editorFormats;
+	QFormatConfig *fmConfig;
+	QMap<QString, QVariant> *replacedIconsOnMenus;
 
-	QObject* menuParent;
+	QObject *menuParent;
 	QList<QStringList> customizableToolbars;
-	QList<QMenu*> allMenus;
-	QList<QMenu*> standardToolbarMenus;
+	QList<QMenu *> allMenus;
+	QList<QMenu *> standardToolbarMenus;
 
-	QStringList * environModes;
+	QStringList *environModes;
 
-    void setBuildManger(BuildManager* buildManager){
-        mBuildManager=buildManager;
-    }
-
+	void setBuildManger(BuildManager *buildManager) { mBuildManager = buildManager; }
 
 	bool riddled;
 public slots:
 	void changePage(QListWidgetItem *current, QListWidgetItem *previous);
 private slots:
-	QListWidgetItem * createIcon(const QString &caption, const QIcon &icon, bool advancedOption=false);
-	void comboBoxWithPathEdited(const QString& newText);
-	void comboBoxWithPathHighlighted(const QString& newText);
+	QListWidgetItem *createIcon(const QString &caption, const QIcon &icon, bool advancedOption = false);
+	void comboBoxWithPathEdited(const QString &newText);
+	void comboBoxWithPathHighlighted(const QString &newText);
 	void browseThesaurus();
 	void browseGrammarLTPath();
 	void browseGrammarLTJavaPath();
 	void browseGrammarWordListsDir();
 	void browseDictDir();
-	void updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault=QString());
+	void updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault = QString());
 	void browsePathLog();
 	void browsePathBib();
 	void browsePathImages();
@@ -121,7 +123,7 @@ private slots:
 	void browsePathCommands();
 	void advancedOptionsToggled(bool on);
 	void advancedOptionsClicked(bool on);
-	void metaFilterChanged(const QString& filter);
+	void metaFilterChanged(const QString &filter);
 	void toolbarChanged(int toolbar);
 	void actionsChanged(int actionClass);
 	void toToolbarClicked();
@@ -130,7 +132,7 @@ private slots:
 	void customContextMenuRequested(const QPoint &p);
 	void loadOtherIcon();
 	void insertSeparator();
-	void populatePossibleActions(QTreeWidgetItem* parent, const QMenu* menu,bool keepHierarchy);
+	void populatePossibleActions(QTreeWidgetItem *parent, const QMenu *menu, bool keepHierarchy);
 
 	void importDictionary();
 	void updateCheckNow();
@@ -143,19 +145,19 @@ private slots:
 	void custSyntaxAddLine();
 	void custSyntaxRemoveLine();
 
-    void revertClicked();
+	void revertClicked();
 
 private:
 	bool askRiddle();
-	void hideShowAdvancedOptions(QWidget* w, bool on);
-	static bool metaFilterRecurseWidget(const QString& filter, QWidget* widget);
-	static bool metaFilterRecurseLayout(const QString& filter, QLayout* layout);
+	void hideShowAdvancedOptions(QWidget *w, bool on);
+	static bool metaFilterRecurseWidget(const QString &filter, QWidget *widget);
+	static bool metaFilterRecurseLayout(const QString &filter, QLayout *layout);
 	static int lastUsedPage;
 	static QPoint lastSize;
 	int oldToolbarIndex;
-    BuildManager* mBuildManager;
+	BuildManager *mBuildManager;
 };
 
-Q_DECLARE_METATYPE(QAction*);
+Q_DECLARE_METATYPE(QAction *)
 
 #endif

@@ -6,7 +6,7 @@
 #include <QNetworkProxyFactory>
 #include <QMutex>
 
-UpdateChecker * UpdateChecker::m_Instance = 0;
+UpdateChecker *UpdateChecker::m_Instance = 0;
 
 UpdateChecker::UpdateChecker() :
 	QObject(0), silent(true)
@@ -20,12 +20,14 @@ UpdateChecker::~UpdateChecker()
 	m_Instance = 0;
 }
 
-QString UpdateChecker::lastCheckAsString() {
+QString UpdateChecker::lastCheckAsString()
+{
 	QDateTime lastCheck = ConfigManager::getInstance()->getOption("Update/LastCheck").toDateTime();
 	return lastCheck.isValid() ? lastCheck.toString("d.M.yyyy hh:mm") : tr("Never", "last update");
 }
 
-void UpdateChecker::autoCheck() {
+void UpdateChecker::autoCheck()
+{
 	ConfigManagerInterface *cfg  = ConfigManager::getInstance();
 	bool autoCheck = cfg->getOption("Update/AutoCheck").toBool();
 	if (autoCheck) {
@@ -38,7 +40,8 @@ void UpdateChecker::autoCheck() {
 
 }
 
-void UpdateChecker::check(bool silent) {
+void UpdateChecker::check(bool silent)
+{
 	this->silent = silent;
 	QNetworkRequest request = QNetworkRequest(QUrl("http://texstudio.sourceforge.net/update/txsUpdate.xml"));
 	request.setRawHeader("User-Agent", "TeXstudio Update Checker");
@@ -48,7 +51,8 @@ void UpdateChecker::check(bool silent) {
 		connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(onRequestError()));
 }
 
-void UpdateChecker::onRequestError() {
+void UpdateChecker::onRequestError()
+{
 	QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 	if (!reply) return;
 
@@ -61,25 +65,26 @@ void UpdateChecker::onRequestCompleted()
 	if (!reply || reply->error() != QNetworkReply::NoError) return;
 
 	QByteArray ba = reply->readAll();
-	
+
 	parseData(ba);
 	checkForNewVersion();
 }
 
-void UpdateChecker::parseData(const QByteArray &data) {
+void UpdateChecker::parseData(const QByteArray &data)
+{
 	QDomDocument domDocument;
-	if (domDocument.setContent(data)){
+	if (domDocument.setContent(data)) {
 		QDomElement root = domDocument.documentElement();
 		if (root.tagName() != "versions") {
 			if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
 			return;
 		}
-		
+
 		latestStableVersion = Version();
 		latestDevVersion = Version();
 		latestReleaseCandidateVersion = Version();
 		QDomNodeList nodes = root.elementsByTagName("version");
-		for (int i=0; i<nodes.count(); i++) {
+		for (int i = 0; i < nodes.count(); i++) {
 			QDomElement elem = nodes.at(i).toElement();
 			Version v;
 			v.platform = elem.attribute("platform");
@@ -104,7 +109,8 @@ void UpdateChecker::parseData(const QByteArray &data) {
 	}
 }
 
-void UpdateChecker::checkForNewVersion() {
+void UpdateChecker::checkForNewVersion()
+{
 	// updateLevel values from comboBoxUpdateLevel indices:
 	// 0: stable, 1: release candidate, 2: development
 	int updateLevel = ConfigManager::getInstance()->getOption("Update/UpdateLevel").toInt();
@@ -113,7 +119,7 @@ void UpdateChecker::checkForNewVersion() {
 
 	Version currentVersion = Version::current();
 	QString downloadAddress = "http://texstudio.sourceforge.net";
-	
+
 	if (!latestStableVersion.isValid()) {
 		if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
 		return;
@@ -125,17 +131,17 @@ void UpdateChecker::checkForNewVersion() {
 			}
 			if (latestReleaseCandidateVersion > currentVersion && latestReleaseCandidateVersion > latestStableVersion) {
 				notify(QString(tr(
-					"A new release candidate of TeXstudio is available.<br>"
-					"<table><tr><td>Current version:</td><td>%1 (%2)</td></tr>"
-					"<tr><td>Latest stable version:</td><td>%3 (%4)</td></tr>"
-					"<tr><td>Release candidate:</td><td>%5 (%6)</td></tr>"
-					"</table><br><br>"
-					"You can download it from the <a href='%7'>TeXstudio website</a>."
-					)).arg(currentVersion.versionNumber).arg(currentVersion.revision)
-					  .arg(latestStableVersion.versionNumber).arg(latestStableVersion.revision)
-					  .arg(latestReleaseCandidateVersion.versionNumber).arg(latestReleaseCandidateVersion.revision)
-					  .arg(downloadAddress)
-				);
+				                   "A new release candidate of TeXstudio is available.<br>"
+				                   "<table><tr><td>Current version:</td><td>%1 (%2)</td></tr>"
+				                   "<tr><td>Latest stable version:</td><td>%3 (%4)</td></tr>"
+				                   "<tr><td>Release candidate:</td><td>%5 (%6)</td></tr>"
+				                   "</table><br><br>"
+				                   "You can download it from the <a href='%7'>TeXstudio website</a>."
+				               )).arg(currentVersion.versionNumber).arg(currentVersion.revision)
+				       .arg(latestStableVersion.versionNumber).arg(latestStableVersion.revision)
+				       .arg(latestReleaseCandidateVersion.versionNumber).arg(latestReleaseCandidateVersion.revision)
+				       .arg(downloadAddress)
+				      );
 				break;
 			}
 		}
@@ -145,29 +151,29 @@ void UpdateChecker::checkForNewVersion() {
 			}
 			if (latestDevVersion > currentVersion && latestDevVersion > latestStableVersion) {
 				notify(QString(tr(
-					"A new development version of TeXstudio is available.<br>"
-					"<table><tr><td>Current version:</td><td>%1 (%2)</td></tr>"
-					"<tr><td>Latest stable version:</td><td>%3 (%4)</td></tr>"
-					"<tr><td>Latest development version:</td><td>%5 (%6)</td></tr>"
-					"</table><br><br>"
-					"You can download it from the <a href='%7'>TeXstudio website</a>."
-					)).arg(currentVersion.versionNumber).arg(currentVersion.revision)
-					  .arg(latestStableVersion.versionNumber).arg(latestStableVersion.revision)
-					  .arg(latestDevVersion.versionNumber).arg(latestDevVersion.revision)
-					  .arg(downloadAddress)
-				);
+				                   "A new development version of TeXstudio is available.<br>"
+				                   "<table><tr><td>Current version:</td><td>%1 (%2)</td></tr>"
+				                   "<tr><td>Latest stable version:</td><td>%3 (%4)</td></tr>"
+				                   "<tr><td>Latest development version:</td><td>%5 (%6)</td></tr>"
+				                   "</table><br><br>"
+				                   "You can download it from the <a href='%7'>TeXstudio website</a>."
+				               )).arg(currentVersion.versionNumber).arg(currentVersion.revision)
+				       .arg(latestStableVersion.versionNumber).arg(latestStableVersion.revision)
+				       .arg(latestDevVersion.versionNumber).arg(latestDevVersion.revision)
+				       .arg(downloadAddress)
+				      );
 				break;
 			}
 		}
 		if (latestStableVersion > currentVersion) {
 			notify(QString(tr(
-				"A new version of TeXstudio is available.<br>"
-				"<table><tr><td>Current version:</td><td>%1</td></tr>"
-				"<tr><td>Latest stable version:</td><td>%2</td></tr>"
-				"</table><br><br>"
-				"You can download it from the <a href='%3'>TeXstudio website</a>."
-				)).arg(currentVersion.versionNumber).arg(latestStableVersion.versionNumber).arg(downloadAddress)
-			);
+			                   "A new version of TeXstudio is available.<br>"
+			                   "<table><tr><td>Current version:</td><td>%1</td></tr>"
+			                   "<tr><td>Latest stable version:</td><td>%2</td></tr>"
+			                   "</table><br><br>"
+			                   "You can download it from the <a href='%3'>TeXstudio website</a>."
+			               )).arg(currentVersion.versionNumber).arg(latestStableVersion.versionNumber).arg(downloadAddress)
+			      );
 		} else {
 			if (!silent) txsInformation(tr("TeXstudio is up-to-date."));
 		}
@@ -178,7 +184,8 @@ void UpdateChecker::checkForNewVersion() {
 	emit checkCompleted();
 }
 
-void UpdateChecker::notify(QString message) {
+void UpdateChecker::notify(QString message)
+{
 	QMessageBox msgBox;
 	msgBox.setWindowTitle(tr("TeXstudio Update"));
 	msgBox.setTextFormat(Qt::RichText);
@@ -187,7 +194,8 @@ void UpdateChecker::notify(QString message) {
 	msgBox.exec();
 }
 
-UpdateChecker *UpdateChecker::instance() {
+UpdateChecker *UpdateChecker::instance()
+{
 	static QMutex mutex;
 	mutex.lock();
 	if (!m_Instance)

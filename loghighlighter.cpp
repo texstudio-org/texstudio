@@ -13,11 +13,13 @@
 #include "latexoutputfilter.h"
 
 LogHighlighter::LogHighlighter(QTextDocument *parent)
-		: QSyntaxHighlighter(parent) {
-	ColorFile = QColor(0x00,0x80, 0x00);
+	: QSyntaxHighlighter(parent)
+{
+	ColorFile = QColor(0x00, 0x80, 0x00);
 }
 
-void LogHighlighter::highlightBlock(const QString &text) {
+void LogHighlighter::highlightBlock(const QString &text)
+{
 	static QRegExp rxLatexError("\\s*! (.*)");
 	static QRegExp rxBadBox("\\s*(Over|Under)(full \\\\[hv]box .*)");
 	static QRegExp rxWarning("\\s*(((! )?(La|pdf|Lua)TeX)|Package) .*Warning.*:(.*)");
@@ -33,7 +35,7 @@ void LogHighlighter::highlightBlock(const QString &text) {
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_WARNING));
 	} else if (text.startsWith(". ") || rxOnlyDots.exactMatch(text)) {
 		setFormat(0, text.length(), LatexLogEntry::textColor(LT_INFO));
-	} else if (text.indexOf(".tex", 0)!=-1 && !text.startsWith("Error:")) {
+	} else if (text.indexOf(".tex", 0) != -1 && !text.startsWith("Error:")) {
 		setFormat(0, text.length(), ColorFile);
 	}
 }

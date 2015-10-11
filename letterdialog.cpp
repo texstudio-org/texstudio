@@ -12,7 +12,8 @@
 #include "letterdialog.h"
 
 LetterDialog::LetterDialog(QWidget *parent, const char *name)
-		:QDialog(parent) {
+	: QDialog(parent)
+{
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
@@ -48,9 +49,10 @@ LetterDialog::LetterDialog(QWidget *parent, const char *name)
 	ui.comboBoxEncoding->insertItem(18, "cp1250");
 	ui.comboBoxEncoding->insertItem(19, "NONE");
 
-    ui.checkBox->setChecked(true);
+	ui.checkBox->setChecked(true);
 	setWindowTitle(tr("Quick Letter"));
 }
 
-LetterDialog::~LetterDialog() {
+LetterDialog::~LetterDialog()
+{
 }

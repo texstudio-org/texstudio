@@ -16,22 +16,27 @@
 
 #include "loghighlighter.h"
 
-class LogEditor : public QTextEdit  {
+class LogEditor : public QTextEdit
+{
 	Q_OBJECT
+
 public:
 	LogEditor(QWidget *parent);
 	~LogEditor();
 
-	void wheelEvent(QWheelEvent* event);
+	void wheelEvent(QWheelEvent *event);
 
 public slots:
-	void insertLine(const QString& l);
+	void insertLine(const QString &l);
 	void setCursorPosition(int parag, int index);
+
 protected:
 	virtual void mouseDoubleClickEvent(QMouseEvent *e);
 	void paintEvent(QPaintEvent *event);
+
 signals:
 	void clickOnLogLine(int l); //0 based
+
 private:
 	LogHighlighter *highlighter;
 };

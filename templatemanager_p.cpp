@@ -4,6 +4,7 @@
 
 /*** TemplateHandle **********************************************************/
 
+// *INDENT-OFF* (astyle-config)
 TemplateHandle::TemplateHandle(const TemplateHandle &th) : m_tmpl(0) { setTmpl(th.m_tmpl); }
 TemplateHandle::TemplateHandle(Template *tmpl) : m_tmpl(0) { setTmpl(tmpl); }
 TemplateHandle::~TemplateHandle() { setTmpl(0); }
@@ -12,6 +13,7 @@ TemplateHandle& TemplateHandle::operator = (const TemplateHandle& th) {
 	setTmpl(th.m_tmpl);
 	return *this;
 }
+
 QString TemplateHandle::name() const         { return (m_tmpl) ? m_tmpl->name() : QString(); }
 QString TemplateHandle::description() const  { return (m_tmpl) ? m_tmpl->description() : QString(); }
 QString TemplateHandle::author() const       { return (m_tmpl) ? m_tmpl->author() : QString(); }
@@ -26,8 +28,11 @@ bool TemplateHandle::isMultifile() const     { return (m_tmpl) ? m_tmpl->isMulti
 
 bool TemplateHandle::createInFolder(const QString &path) const { return (m_tmpl) ? m_tmpl->createInFolder(path) : false; }
 QStringList TemplateHandle::filesToOpen() const { return (m_tmpl) ? m_tmpl->filesToOpen() : QStringList(); }
+// *INDENT-ON* (astyle-config)
 
-void TemplateHandle::setTmpl(Template *tmpl) {
+
+void TemplateHandle::setTmpl(Template *tmpl)
+{
 	if ( m_tmpl ) m_tmpl->deref(this);
 	m_tmpl = tmpl;
 	if ( m_tmpl ) m_tmpl->ref(this);
@@ -35,7 +40,8 @@ void TemplateHandle::setTmpl(Template *tmpl) {
 
 /*** Template ****************************************************************/
 
-bool Template::createInFolder(const QString &path) {
+bool Template::createInFolder(const QString &path)
+{
 	QDir dir(path);
 	if (!dir.exists()) {
 		bool created = dir.mkpath(".");
@@ -44,8 +50,8 @@ bool Template::createInFolder(const QString &path) {
 		QStringList entries = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
 		if (!entries.isEmpty()) {
 			bool ok = txsConfirmWarning(QCoreApplication::translate("TemplateManager", "The target folder is not empty. It is recommended to instantiate "
-							  "in new folders. Otherwise existing files may be overwritten. "
-							  "Do you wish to use this folder anyway?"));
+			                            "in new folders. Otherwise existing files may be overwritten. "
+			                            "Do you wish to use this folder anyway?"));
 			if (!ok) return false;
 		}
 	}
@@ -63,7 +69,8 @@ bool Template::createInFolder(const QString &path) {
 
 /*** LocalFileTemplate *******************************************************/
 
-QDate LocalFileTemplate::date() const {
+QDate LocalFileTemplate::date() const
+{
 	QDate d;
 	d = QDate::fromString(metaData["Date"], Qt::ISODate);
 	if (!d.isValid())
@@ -71,9 +78,10 @@ QDate LocalFileTemplate::date() const {
 	return d;
 }
 
-QStringList LocalFileTemplate::filesToOpen() const {
+QStringList LocalFileTemplate::filesToOpen() const
+{
 	QStringList files;
-	foreach (const QString &f, metaData["FilesToOpen"].split(";")) {
+	foreach (const QString & f, metaData["FilesToOpen"].split(";")) {
 		QString ft(f.trimmed());
 		if (!ft.isEmpty())
 			files << ft;
@@ -83,20 +91,23 @@ QStringList LocalFileTemplate::filesToOpen() const {
 
 LocalFileTemplate::LocalFileTemplate(QString mainfile) : m_mainfile(mainfile), m_editable(false) {}
 
-void LocalFileTemplate::init() {
+void LocalFileTemplate::init()
+{
 	if (!readMetaData()) {
 		metaData.insert("Name", QFileInfo(file()).baseName());
 	}
 }
 
-QString LocalFileTemplate::imageFile() const {
+QString LocalFileTemplate::imageFile() const
+{
 	QString fname = replaceFileExtension(m_mainfile, "png");
 	return (QFileInfo(fname).exists()) ? fname : QString();
 }
 
 /*** LocalLatexTemplate ******************************************************/
 
-bool LocalLatexTemplate::readMetaData() {
+bool LocalLatexTemplate::readMetaData()
+{
 	QFile f(replaceFileExtension(file(), "json"));
 	if (!f.exists()) {
 		f.setFileName(replaceFileExtension(file(), "meta")); // in a very early version of meta data .meta was used instead of .json
@@ -105,7 +116,7 @@ bool LocalLatexTemplate::readMetaData() {
 	}
 
 	if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		txsWarning(TemplateManager::tr("You do not have read permission to this file:")+QString("\n%1").arg(f.fileName()));
+		txsWarning(TemplateManager::tr("You do not have read permission to this file:") + QString("\n%1").arg(f.fileName()));
 		return false;
 	}
 	QTextStream in(&f);
@@ -113,7 +124,8 @@ bool LocalLatexTemplate::readMetaData() {
 	return minimalJsonParse(in.readAll(), metaData);
 }
 
-bool LocalLatexTemplate::saveMetaData() {
+bool LocalLatexTemplate::saveMetaData()
+{
 	QFile f(file());
 	if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
 		return false;
@@ -136,12 +148,13 @@ bool LocalLatexTemplate::saveMetaData() {
 
 /*** LocalTableTemplate ******************************************************/
 
-bool LocalTableTemplate::readMetaData() {
+bool LocalTableTemplate::readMetaData()
+{
 	QString jsonData;
 
 	QFile f(file());
 	if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		txsWarning(TemplateManager::tr("You do not have read permission to this file:")+QString("\n%1").arg(f.fileName()));
+		txsWarning(TemplateManager::tr("You do not have read permission to this file:") + QString("\n%1").arg(f.fileName()));
 		return false;
 	}
 	jsonData = f.readLine();
@@ -150,8 +163,8 @@ bool LocalTableTemplate::readMetaData() {
 	jsonData = jsonData.mid(col);
 	QString all = f.readAll();
 	jsonData.append(all); // works with minimalJsonParse because it stops after the first top level {}
-								  // should check when switching to a real JSON parser. However with this it is
-								  // easy to extract var metaData = {}
+	// should check when switching to a real JSON parser. However with this it is
+	// easy to extract var metaData = {}
 
 	return minimalJsonParse(jsonData, metaData);
 }
@@ -163,41 +176,44 @@ LocalFileTemplateResource::LocalFileTemplateResource(QString path, QStringList f
 	: QObject(parent), AbstractTemplateResource(), m_path(path), m_filters(filters), m_name(name), m_icon(icon)
 { }
 
-LocalFileTemplateResource::~LocalFileTemplateResource() {
+LocalFileTemplateResource::~LocalFileTemplateResource()
+{
 	foreach (LocalFileTemplate *lft, m_templates)
 		delete lft;
 }
 
-QList<TemplateHandle> LocalFileTemplateResource::getTemplates() {
+QList<TemplateHandle> LocalFileTemplateResource::getTemplates()
+{
 	QList<TemplateHandle> l;
 	foreach (LocalFileTemplate *tmpl, m_templates)
 		l.append(TemplateHandle(tmpl));
 	return l;
 }
 
-bool LocalFileTemplateResource::isAccessible() {
+bool LocalFileTemplateResource::isAccessible()
+{
 	QDir dir(m_path);
 	return dir.exists() && dir.isReadable();
 }
 
-void LocalFileTemplateResource::setEditable(bool b) {
+void LocalFileTemplateResource::setEditable(bool b)
+{
 	foreach (LocalFileTemplate *tmpl, m_templates) {
 		tmpl->m_editable = b;
 	}
 }
 
-void LocalFileTemplateResource::update() {
+void LocalFileTemplateResource::update()
+{
 	foreach (LocalFileTemplate *lft, m_templates)
 		delete lft;
 	m_templates.clear();
 
 	QDir dir(m_path);
 	foreach (QString fname, dir.entryList(m_filters, QDir::Files | QDir::Readable, QDir::Name)) {
-		LocalFileTemplate * lft = createTemplate(QFileInfo(dir, fname).absoluteFilePath());
+		LocalFileTemplate *lft = createTemplate(QFileInfo(dir, fname).absoluteFilePath());
 		if (lft)
 			m_templates.append(lft);
 	}
 }
-
-
 

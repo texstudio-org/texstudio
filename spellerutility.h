@@ -16,6 +16,7 @@
 #include "hunspell/hunspell.hxx"
 class SpellerUtility: public QObject {
 	Q_OBJECT
+
 public:
 	friend class SpellerManager;
 	void addToIgnoreList(QString toIgnore);
@@ -29,10 +30,12 @@ public:
 	QString getCurrentDic() {return currentDic;}
 
 	static int spellcheckErrorFormat;
+
 signals:
 	void aboutToDelete();
 	void dictionaryLoaded();
 	void ignoredWordAdded(const QString& newlyIgnoredWord);
+
 private:
 	SpellerUtility(QString name);
 	~SpellerUtility();
@@ -52,8 +55,10 @@ private:
 	QStringListModel ignoredWordsModel;
 };
 
+
 class SpellerManager: public QObject {
 	Q_OBJECT
+
 public:
 	SpellerManager();
 	~SpellerManager();
@@ -77,9 +82,11 @@ public:
 	void unloadAll();
 
 	static QString prettyName(const QString &name);
+
 signals:
 	void dictPathChanged();
 	void defaultSpellerChanged();
+
 private:
 	QStringList m_dictPaths;
 	QString ignoreFilePrefix;

@@ -5,171 +5,176 @@
 #include <QBuffer>
 #include "codesnippet.h"
 
-const QString CommonEOW=QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
-const QString Punctation="!():\"?,.;-";
-const QString EscapedChars="%&_";
-const QString CharacterAlteringChars="\"'^`";
+const QString CommonEOW = QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
+const QString Punctation = "!():\"?,.;-";
+const QString EscapedChars = "%&_";
+const QString CharacterAlteringChars = "\"'^`";
 
-LatexParser* LatexParserInstance = 0;
+LatexParser *LatexParserInstance = 0;
 
-LatexParser::LatexParser(){
+LatexParser::LatexParser()
+{
 	if (!LatexParserInstance) {
 		LatexParserInstance = this;
 		init();
 	}
 }
 
-LatexParser::~LatexParser(){
+LatexParser::~LatexParser()
+{
 	if (LatexParserInstance == this) {
 		LatexParserInstance = 0;
 	}
 }
 
-LatexParser& LatexParser::getInstance(){
+LatexParser &LatexParser::getInstance()
+{
 	Q_ASSERT(LatexParserInstance);
 	return *LatexParserInstance;
 }
 
-void LatexParser::init(){
-    //refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref"  << "\\cref" << "\\Cref");
-    //labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
-    //citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
+void LatexParser::init()
+{
+	//refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref"  << "\\cref" << "\\Cref");
+	//labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
+	//citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 	environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
-    //definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
+	//definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
 	mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
 	mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
-    //tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
-    //fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
-    //includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
-    //graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
-    //usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
+	//tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
+	//fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
+	//includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
+	//graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
+	//usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
 
-    possibleCommands.clear();
-    possibleCommands["tabular"]=QSet<QString>::fromList(QStringList() << "&" );
-    possibleCommands["array"]=QSet<QString>::fromList(QStringList() << "&" );
-    possibleCommands["tabbing"]=QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-    possibleCommands["normal"]=QSet<QString>::fromList(QStringList() << "\\\\" << "\\_" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" <<"\\." <<"\\u" <<"\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\&" << "\\~" << "\\" << "\\," <<"\\%" <<"\\\"");
-    possibleCommands["math"]=QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
+	possibleCommands.clear();
+	possibleCommands["tabular"] = QSet<QString>::fromList(QStringList() << "&" );
+	possibleCommands["array"] = QSet<QString>::fromList(QStringList() << "&" );
+	possibleCommands["tabbing"] = QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
+	possibleCommands["normal"] = QSet<QString>::fromList(QStringList() << "\\\\" << "\\_" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" << "\\." << "\\u" << "\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\&" << "\\~" << "\\" << "\\," << "\\%" << "\\\"");
+	possibleCommands["math"] = QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
 	possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\newlength" << "\\let";
-    possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
-    possibleCommands["%graphics"] << "\\includegraphics";
-    possibleCommands["%bibitem"]<< "\\bibitem";
-    possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite"  ;
-    possibleCommands["%label"] << "\\label";
-    possibleCommands["%bibliography"] << "\\bibliography";
-    possibleCommands["%file"] << "\\include" << "\\input" << "\\import" << "\\includeonly" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography";
-    possibleCommands["%ref"] << "\\ref" << "\\pageref";
-    possibleCommands["%include"] << "\\include" << "\\input";
-    possibleCommands["%import"] << "\\import" << "\\importfrom" << "\\subimport" << "\\subimportfrom";
-    commandDefs.clear();
+	possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
+	possibleCommands["%graphics"] << "\\includegraphics";
+	possibleCommands["%bibitem"] << "\\bibitem";
+	possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite"  ;
+	possibleCommands["%label"] << "\\label";
+	possibleCommands["%bibliography"] << "\\bibliography";
+	possibleCommands["%file"] << "\\include" << "\\input" << "\\import" << "\\includeonly" << "\\includegraphics" << "\\bibliographystyle" << "\\bibliography";
+	possibleCommands["%ref"] << "\\ref" << "\\pageref";
+	possibleCommands["%include"] << "\\include" << "\\input";
+	possibleCommands["%import"] << "\\import" << "\\importfrom" << "\\subimport" << "\\subimportfrom";
+	commandDefs.clear();
 }
 
-int LatexReader::nextToken(const QString &line,int &index, bool inOption,bool detectMath) {
-	bool inWord=false;
-	bool inCmd=false;
+int LatexReader::nextToken(const QString &line, int &index, bool inOption, bool detectMath)
+{
+	bool inWord = false;
+	bool inCmd = false;
 	//bool reparse=false;
-	bool singleQuoteChar=false;
-	bool doubleQuoteChar=false;
-	bool ignoreBrace=false;
-	bool ignoreClosingBrace=false;
-	int start=-1;
-	int i=index;
-	for (i=(i>0?i:0); i<line.size(); i++) {
+	bool singleQuoteChar = false;
+	bool doubleQuoteChar = false;
+	bool ignoreBrace = false;
+	bool ignoreClosingBrace = false;
+	int start = -1;
+	int i = index;
+	for (i = (i > 0 ? i : 0); i < line.size(); i++) {
 		QChar cur = line.at(i);
-		if(ignoreBrace && cur=='{'){
-			ignoreBrace=false;
-			ignoreClosingBrace=true;
+		if (ignoreBrace && cur == '{') {
+			ignoreBrace = false;
+			ignoreClosingBrace = true;
 			continue;
-		} else ignoreBrace=false;
-		if(ignoreClosingBrace && cur=='}'){
-			ignoreClosingBrace=false;
+		} else ignoreBrace = false;
+		if (ignoreClosingBrace && cur == '}') {
+			ignoreClosingBrace = false;
 			continue;
 		}
-		if(doubleQuoteChar)
+		if (doubleQuoteChar)
 			//if (cur == '\'') break; // check for words starting with "' (german quotation mark)
 			if (CommonEOW.contains(cur)) break; // check for all quotation marks
-		doubleQuoteChar=false;
+		doubleQuoteChar = false;
 		if (inCmd) {
-			if (CommonEOW.indexOf(cur)>=0 || cur.isDigit()) {
-				if (i-start==1) i++;
+			if (CommonEOW.indexOf(cur) >= 0 || cur.isDigit()) {
+				if (i - start == 1) i++;
 				break;
 			}
 		} else if (inWord) {
-			if (cur=='\\') {
-				if (i+1>=line.size()) break;
-				const QChar& c = line.at(i+1);
-				if (c=='-' || c == '&') i++; //allow \& in the middle/end of words, e.g. C&A
+			if (cur == '\\') {
+				if (i + 1 >= line.size()) break;
+				const QChar &c = line.at(i + 1);
+				if (c == '-' || c == '&') i++; //allow \& in the middle/end of words, e.g. C&A
 				else if (CharacterAlteringChars.contains(c)) {
-					ignoreBrace=true;
+					ignoreBrace = true;
 					i++;//ignore word separation marker
 				} else break;
-			} else if (cur=='"') {  //ignore " like in "-, "", "| "a
-				if (i+1<line.size()){
-					QChar nextChar=line.at(i+1);
-					if(nextChar=='-' || nextChar=='"' || nextChar=='|')  i++; 
-					else if(!nextChar.isLetterOrNumber()) break;
-				}
-				else break;
-			} else if (cur=='\'') {
+			} else if (cur == '"') { //ignore " like in "-, "", "| "a
+				if (i + 1 < line.size()) {
+					QChar nextChar = line.at(i + 1);
+					if (nextChar == '-' || nextChar == '"' || nextChar == '|')  i++;
+					else if (!nextChar.isLetterOrNumber()) break;
+				} else break;
+			} else if (cur == '\'') {
 				if (singleQuoteChar) break;	 //no word's with two '' => output
-				else singleQuoteChar=true;   //but accept one
-            } else if (cur=='.' || cur=='-') {
-				if (i>0 && line.at(i-1).isLetter())
-                    i++; //take '.' or '-' into word, so that abbreviations/hyphenations, at least German ones, are checked correctly
-				if(cur=='-' &&  i<line.size() && line.at(i).isLetter())
-				    ; // continue with composite words
+				else singleQuoteChar = true; //but accept one
+			} else if (cur == '.' || cur == '-') {
+				if (i > 0 && line.at(i - 1).isLetter())
+					i++; //take '.' or '-' into word, so that abbreviations/hyphenations, at least German ones, are checked correctly
+				if (cur == '-' &&  i < line.size() && line.at(i).isLetter())
+					; // continue with composite words
 				else
-				    break;
-			} else if (CommonEOW.indexOf(cur)>=0 && !inOption) {
+					break;
+			} else if (CommonEOW.indexOf(cur) >= 0 && !inOption) {
 				break;
-			} else if(cur=='}' || cur==']') break;
-			
-		} else if (cur=='\\') {
-			if (i+1>=line.size()) break;
-			const QChar& nextc = line.at(i+1);
+			} else if (cur == '}' || cur == ']') break;
+
+		} else if (cur == '\\') {
+			if (i + 1 >= line.size()) break;
+			const QChar &nextc = line.at(i + 1);
 			if (CharacterAlteringChars.contains(nextc))  {
-				inWord=true;
-				start=i;
-				ignoreBrace=true;
+				inWord = true;
+				start = i;
+				ignoreBrace = true;
 				i++;
 			} else if (EscapedChars.contains(nextc)) {
 				i++;
-				Q_ASSERT(start==-1);
+				Q_ASSERT(start == -1);
 			} else {
-				start=i;
-				inCmd=true;
+				start = i;
+				inCmd = true;
 			}
-		} else if (cur=='{' || cur=='}' || cur=='%' || cur=='[' || cur==']') {
-			index=i+1;
+		} else if (cur == '{' || cur == '}' || cur == '%' || cur == '[' || cur == ']') {
+			index = i + 1;
 			return i;
-		} else if (detectMath && cur=='$'){
-			start=i;
+		} else if (detectMath && cur == '$') {
+			start = i;
 			i++;
-			if (i < line.size() && line[i] == '$') 
+			if (i < line.size() && line[i] == '$')
 				i++; //detect $$
 			break;
-		} else if (detectMath && (cur=='_' || cur=='^' || cur=='&')){
-			start=i;
+		} else if (detectMath && (cur == '_' || cur == '^' || cur == '&')) {
+			start = i;
 			i++;
 			break;
-		} else if ((CommonEOW.indexOf(cur)<0 && cur!='\'' )|| cur=='"') {
-			start=i;
-			inWord=true;
-			doubleQuoteChar= ( cur == '"');
-		} else if (Punctation.contains(cur)){
-			start=i;
+		} else if ((CommonEOW.indexOf(cur) < 0 && cur != '\'' ) || cur == '"') {
+			start = i;
+			inWord = true;
+			doubleQuoteChar = ( cur == '"');
+		} else if (Punctation.contains(cur)) {
+			start = i;
 			i++;
 			while (i < line.length() && line.at(i) == '-') i++; //convert LaTeX --- to a single -
 			break;
 		}
 	}
-	if (singleQuoteChar && i-1<line.size() && i > 0 && line.at(i-1)=='\'')
+	if (singleQuoteChar && i - 1 < line.size() && i > 0 && line.at(i - 1) == '\'')
 		i--; //remove ' when a word ends with it  (starting is handled because ' does not start a word)
-	index=i;
+	index = i;
 	return start;
 }
 
-QString getCommonEOW() {
+QString getCommonEOW()
+{
 	return CommonEOW;
 }
 
@@ -199,7 +204,9 @@ QList<QPair<QString,QString> > latexToPlainWordReplaceList =
 //	<< QPair<QString, QString> ("\"\"","") redunant
  << QPair<QString, QString> ("\\",""); // eliminating backslash which might remain from accents like \"a ...
 */
-QChar transformCharacter(const QChar& c, const QChar& context){
+QChar transformCharacter(const QChar &c, const QChar &context)
+{
+	// *INDENT-OFF*  (astyle-config)
 	switch (context.toLatin1()) {
 	case '"':  // umlaut
 		switch (c.toLatin1()){
@@ -278,51 +285,53 @@ QChar transformCharacter(const QChar& c, const QChar& context){
 		}
 	}
 	return c;
+	// *INDENT-ON*  (astyle-config)
 }
 
-QString latexToPlainWord(const QString& word) {
+QString latexToPlainWord(const QString &word)
+{
 
 	/*	QString result=word;
- for (QList<QPair<QString,QString> >::const_iterator it=latexToPlainWordReplaceList.begin(); it!=latexToPlainWordReplaceList.end(); ++it)
-  result.replace(it->first,it->second);*/
+	for (QList<QPair<QString,QString> >::const_iterator it=latexToPlainWordReplaceList.begin(); it!=latexToPlainWordReplaceList.end(); ++it)
+	result.replace(it->first,it->second);*/
 	QString result;
 	result.reserve(word.length());
-	for (int i=0;i<word.length();i++){
+	for (int i = 0; i < word.length(); i++) {
 		if (word[i] == '\\') {
 			//decode all meta characters starting with a backslash (c++ syntax: don't use an actual backslash there or it creates a multi line comment)
 			i++;
-			if (i>=word.length()) break;
+			if (i >= word.length()) break;
 			switch (word[i].toLatin1()) {
 			case '-': //Trennung [separation] (german-babel-package also: \")
 			case '/': //ligatur preventing (german-package also: "|)
 				break;
-				
+
 			case '"':
-            case '\'':
-            case '^':
-            case '`':
-            case '~':
-            case 'c':
-				if (i+3 < word.length()) {
-					if (word[i+1] == '{' && word[i+3] == '}') {
-						result.append(transformCharacter(word[i+2], word[i]));
-						i+=3;
-                        break;
-                    }
-                }
-                if (i +1 < word.length()){
-                    if(word[i+1] == '\\' || word[i+1] == '"')
-                        break;  //ignore "
-                    result.append(transformCharacter(word[i+1], word[i]));
-                    i++;
-                    break;
-                }
-                i--; //repeat with "
+			case '\'':
+			case '^':
+			case '`':
+			case '~':
+			case 'c':
+				if (i + 3 < word.length()) {
+					if (word[i + 1] == '{' && word[i + 3] == '}') {
+						result.append(transformCharacter(word[i + 2], word[i]));
+						i += 3;
+						break;
+					}
+				}
+				if (i + 1 < word.length()) {
+					if (word[i + 1] == '\\' || word[i + 1] == '"')
+						break;  //ignore "
+					result.append(transformCharacter(word[i + 1], word[i]));
+					i++;
+					break;
+				}
+				i--; //repeat with "
 				break;
 			default:
 				i--; //repeat with current char
 			}
-        } /* else if (word[i] == '"') {     // replacement from german package is handled extra
+		} /* else if (word[i] == '"') {     // replacement from german package is handled extra
 			//decode all meta characters starting with "
 			i++;
 			if (i>=word.length()) break;
@@ -336,61 +345,64 @@ QString latexToPlainWord(const QString& word) {
 				break;
 			default:
                 result.append(transformCharacter(word[i], '"'));
-				
+
 			}
         }*/ else result.append(word[i]);
 	}
-	
+
 	return result;
 }
-QString latexToPlainWordwithReplacementList(const QString& word,QMap<QString,QString> &replacementList ) {
-    QString result;
-    QString w=latexToPlainWord(word);
-    if(replacementList.isEmpty())
-        return w;
-    while(!w.isEmpty()){
-        bool replaced=false;
-        foreach(const QString elem,replacementList.keys()){
-            if(w.startsWith(elem)){
-                result.append(replacementList.value(elem));
-                w=w.mid(elem.length());
-                replaced=true;
-                break;
-            }
-        }
-        if(!replaced){
-            result.append(w.left(1));
-            w=w.mid(1);
-        }
-    }
-    return result;
+QString latexToPlainWordwithReplacementList(const QString &word, QMap<QString, QString> &replacementList )
+{
+	QString result;
+	QString w = latexToPlainWord(word);
+	if (replacementList.isEmpty())
+		return w;
+	while (!w.isEmpty()) {
+		bool replaced = false;
+		foreach (const QString elem, replacementList.keys()) {
+			if (w.startsWith(elem)) {
+				result.append(replacementList.value(elem));
+				w = w.mid(elem.length());
+				replaced = true;
+				break;
+			}
+		}
+		if (!replaced) {
+			result.append(w.left(1));
+			w = w.mid(1);
+		}
+	}
+	return result;
 }
 
 
-int findClosingBracket(const QString& word,int &start,QChar oc,QChar cc) {
-	int i=0;
-	if(start<0) start=word.indexOf(oc,i);
-	i=start>-1 ? start : 0;
-	int stop=word.indexOf(cc,i);
-	i=word.indexOf(oc,i+1);
-	while (i>0 && stop>0 && i<stop) {
-		stop=word.indexOf(cc,stop+1);
-		i=word.indexOf(oc,i+1);
+int findClosingBracket(const QString &word, int &start, QChar oc, QChar cc)
+{
+	int i = 0;
+	if (start < 0) start = word.indexOf(oc, i);
+	i = start > -1 ? start : 0;
+	int stop = word.indexOf(cc, i);
+	i = word.indexOf(oc, i + 1);
+	while (i > 0 && stop > 0 && i < stop) {
+		stop = word.indexOf(cc, stop + 1);
+		i = word.indexOf(oc, i + 1);
 	}
 	return stop;
 }
 
-int findOpeningBracket(const QString& word,int start,QChar oc,QChar cc) {
-	int i=start;
-	int n=0;
-	while (i>-1) {
-		QChar ch=word.at(i);
-		if(ch==oc){
+int findOpeningBracket(const QString &word, int start, QChar oc, QChar cc)
+{
+	int i = start;
+	int n = 0;
+	while (i > -1) {
+		QChar ch = word.at(i);
+		if (ch == oc) {
 			n--;
-			if(n<0)
+			if (n < 0)
 				break;
 		}
-		if(ch==cc){
+		if (ch == cc) {
 			n++;
 		}
 		i--;
@@ -398,36 +410,38 @@ int findOpeningBracket(const QString& word,int start,QChar oc,QChar cc) {
 	return i;
 }
 
-QString textToLatex(const QString& text) {
-	QList<QPair<QString,QString> > replaceList;
-    // replacements for resevered characters according to
-    // http://en.wikibooks.org/wiki/LaTeX/Basics#Reserved_Characters
-    replaceList.append(QPair<QString, QString> ("\\","\\textbackslash{}"));
-	replaceList.append(QPair<QString, QString> ("{","\\{"));
-	replaceList.append(QPair<QString, QString> ("}","\\}"));
-	replaceList.append(QPair<QString, QString> ("#","\\#"));
-	replaceList.append(QPair<QString, QString> ("$","\\$"));
-	replaceList.append(QPair<QString, QString> ("%","\\%"));
-	replaceList.append(QPair<QString, QString> ("&","\\&"));
-	replaceList.append(QPair<QString, QString> ("~","\\~{}"));
-	replaceList.append(QPair<QString, QString> ("_","\\_"));
-    replaceList.append(QPair<QString, QString> ("^","\\^{}"));
-	
-	QString result=text;
-	for (QList<QPair<QString,QString> >::const_iterator it=replaceList.begin(); it!=replaceList.end(); ++it)
-		result.replace(it->first,it->second);
-	
+QString textToLatex(const QString &text)
+{
+	QList<QPair<QString, QString> > replaceList;
+	// replacements for resevered characters according to
+	// http://en.wikibooks.org/wiki/LaTeX/Basics#Reserved_Characters
+	replaceList.append(QPair<QString, QString> ("\\", "\\textbackslash{}"));
+	replaceList.append(QPair<QString, QString> ("{", "\\{"));
+	replaceList.append(QPair<QString, QString> ("}", "\\}"));
+	replaceList.append(QPair<QString, QString> ("#", "\\#"));
+	replaceList.append(QPair<QString, QString> ("$", "\\$"));
+	replaceList.append(QPair<QString, QString> ("%", "\\%"));
+	replaceList.append(QPair<QString, QString> ("&", "\\&"));
+	replaceList.append(QPair<QString, QString> ("~", "\\~{}"));
+	replaceList.append(QPair<QString, QString> ("_", "\\_"));
+	replaceList.append(QPair<QString, QString> ("^", "\\^{}"));
+
+	QString result = text;
+	for (QList<QPair<QString, QString> >::const_iterator it = replaceList.begin(); it != replaceList.end(); ++it)
+		result.replace(it->first, it->second);
+
 	return result;
 }
 
-QString& parseTexOrPDFString(QString& s) {
+QString &parseTexOrPDFString(QString &s)
+{
 	int start, stop;
 	start = s.indexOf("\\texorpdfstring");
 	while (start >= 0) {
-		stop = start+15;
+		stop = start + 15;
 		stop = findClosingBracket(s, stop);
 		if (stop < 0) return s;
-		s.remove(start, stop-start+1);
+		s.remove(start, stop - start + 1);
 		if (s[start] == '{') {
 			s.remove(start, 1); // 2nd opening bracket
 			stop = findClosingBracket(s, start);
@@ -439,7 +453,8 @@ QString& parseTexOrPDFString(QString& s) {
 }
 
 // joins all the input lines trimming whitespace. A new line is started on comments and empty lines
-QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList& lines) {
+QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines)
+{
 #define flush_tmpLine() if (!tmpLine.isEmpty()) { joinedLines.append(tmpLine); tmpLine.clear(); }
 
 	QStringList joinedLines;
@@ -468,7 +483,8 @@ QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList& lines) {
 }
 
 // splits lines after maximal number of chars while keeping track of indentation and comments
-QStringList splitLines(const QStringList& lines, int maxCharPerLine, const QRegExp& breakChars) {
+QStringList splitLines(const QStringList &lines, int maxCharPerLine, const QRegExp &breakChars)
+{
 	QStringList splittedLines;
 	int maxIndent = maxCharPerLine / 2 * 3;
 	foreach (QString line, lines) {
@@ -490,7 +506,7 @@ QStringList splitLines(const QStringList& lines, int maxCharPerLine, const QRegE
 			QString leftPart = line.left(breakAt);
 			splittedLines << indent + leftPart;
 			if (breakAt >= 0) {
-				line.remove(0, breakAt+1);
+				line.remove(0, breakAt + 1);
 				inComment = inComment || (LatexParser::commentStart(leftPart) >= 0);
 			} else {
 				line.clear();
@@ -505,85 +521,91 @@ QStringList splitLines(const QStringList& lines, int maxCharPerLine, const QRegE
 	return splittedLines;
 }
 
-
-bool localeAwareLessThan(const QString &s1, const QString &s2) {
-	return QString::localeAwareCompare(s1,s2)<0;
+bool localeAwareLessThan(const QString &s1, const QString &s2)
+{
+	return QString::localeAwareCompare(s1, s2) < 0;
 }
 
 // removes whitespace from the beginning of the string
-QString trimLeft(const QString &s) {
+QString trimLeft(const QString &s)
+{
 	int j;
-	for (j=0; j<s.length(); j++)
-		if (s[j]!=' ' && s[j]!='\t' && s[j]!='\r' && s[j]!='\n') break;
+	for (j = 0; j < s.length(); j++)
+		if (s[j] != ' ' && s[j] != '\t' && s[j] != '\r' && s[j] != '\n') break;
 	return s.mid(j);
 }
 
 // removes whitespace from the end of the string
-QString trimRight(const QString &s) {
+QString trimRight(const QString &s)
+{
 	if (s.isEmpty()) return QString();
 	int j;
-	for (j=s.length()-1; j>=0; j--)
-		if (s[j]!=' ' && s[j]!='\t' && s[j]!='\r' && s[j]!='\n') break;
-	return s.left(j+1);
+	for (j = s.length() - 1; j >= 0; j--)
+		if (s[j] != ' ' && s[j] != '\t' && s[j] != '\r' && s[j] != '\n') break;
+	return s.left(j + 1);
 }
 
-
-QString findToken(const QString &line,const QString &token){
-	int tagStart=line.indexOf(token);
-	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
-	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
-		tagStart+=token.length();
-		int tagEnd=line.indexOf("}",tagStart);
-		if (tagEnd!=-1) return line.mid(tagStart,tagEnd-tagStart);
+QString findToken(const QString &line, const QString &token)
+{
+	int tagStart = line.indexOf(token);
+	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
+		tagStart += token.length();
+		int tagEnd = line.indexOf("}", tagStart);
+		if (tagEnd != -1) return line.mid(tagStart, tagEnd - tagStart);
 		else return line.mid(tagStart); //return everything after line if there is no }
 	}
 	return "";
 }
 
-QString findToken(const QString &line,const QString &token,int &start){
-	int tagStart=line.indexOf(token,start);
-	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
-	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
-		tagStart+=token.length();
-		int tagEnd=line.indexOf("}",tagStart);
-		start=tagStart;
-		if (tagEnd!=-1) return line.mid(tagStart,tagEnd-tagStart);
+QString findToken(const QString &line, const QString &token, int &start)
+{
+	int tagStart = line.indexOf(token, start);
+	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
+		tagStart += token.length();
+		int tagEnd = line.indexOf("}", tagStart);
+		start = tagStart;
+		if (tagEnd != -1) return line.mid(tagStart, tagEnd - tagStart);
 		else return line.mid(tagStart); //return everything after line if there is no }
 	}
-	start=-2;
+	start = -2;
 	return "";
 }
 
-QString findToken(const QString &line,QRegExp &token){
+QString findToken(const QString &line, QRegExp &token)
+{
 	//ATTENTION: token is not const because, you can't call cap on const qregexp in qt < 4.5
-	int tagStart=0;
-	QString s=line;
-	tagStart=token.indexIn(line);
-	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
-	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
-		s=s.mid(tagStart+token.cap(0).length(),s.length());
+	int tagStart = 0;
+	QString s = line;
+	tagStart = token.indexIn(line);
+	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
+		s = s.mid(tagStart + token.cap(0).length(), s.length());
 		return s;
 	}
 	return "";
 }
-bool findTokenWithArg(const QString &line,const QString &token, QString &outName, QString &outArg){
-	outName="";
-	outArg="";
-	int tagStart=line.indexOf(token);
-	int commentStart=line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
-	if (tagStart!=-1 && (commentStart>tagStart || commentStart==-1)) {
-		tagStart+=token.length();
-		int tagEnd=line.indexOf("}",tagStart);
-		if (tagEnd!=-1) {
-			outName=line.mid(tagStart,tagEnd-tagStart);
-			int curlyOpen=line.indexOf("{",tagEnd);
-			int optionStart=line.indexOf("[",tagEnd);
-			if (optionStart<curlyOpen || (curlyOpen==-1 && optionStart!=-1)) {
-				int optionEnd=line.indexOf("]",optionStart);
-				if (optionEnd!=-1) outArg=line.mid(optionStart+1,optionEnd-optionStart-1);
-				else outArg=line.mid(optionStart+1);
+
+bool findTokenWithArg(const QString &line, const QString &token, QString &outName, QString &outArg)
+{
+	outName = "";
+	outArg = "";
+	int tagStart = line.indexOf(token);
+	int commentStart = line.indexOf(QRegExp("(^|[^\\\\])%")); // find start of comment (if any)
+	if (tagStart != -1 && (commentStart > tagStart || commentStart == -1)) {
+		tagStart += token.length();
+		int tagEnd = line.indexOf("}", tagStart);
+		if (tagEnd != -1) {
+			outName = line.mid(tagStart, tagEnd - tagStart);
+			int curlyOpen = line.indexOf("{", tagEnd);
+			int optionStart = line.indexOf("[", tagEnd);
+			if (optionStart < curlyOpen || (curlyOpen == -1 && optionStart != -1)) {
+				int optionEnd = line.indexOf("]", optionStart);
+				if (optionEnd != -1) outArg = line.mid(optionStart + 1, optionEnd - optionStart - 1);
+				else outArg = line.mid(optionStart + 1);
 			}
-		} else outName=line.mid(tagStart); //return everything after line if there is no }
+		} else outName = line.mid(tagStart); //return everything after line if there is no }
 		return true;
 	}
 	return false;
@@ -599,15 +621,16 @@ bool findTokenWithArg(const QString &line,const QString &token, QString &outName
  *
  * Returns the starting position of cmd in line, or -1 if no command was found.
  */
-int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts, int offset, bool parseComment) {
+int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts, int offset, bool parseComment)
+{
 	// true means that a command is found, with or without arguments ...
 	// otherwise a command before the interesting command leads to quiting the loop
 	static QRegExp rxCmd("\\\\\\w+\\*?");
 	static QRegExp rxComment("(^|[^\\\\])%");
 	int cmdStart = rxCmd.indexIn(line, offset);
 	int commentStart = parseComment ? -1 : rxComment.indexIn(line);
-	if (cmdStart==-1 || (commentStart >= 0 && commentStart < cmdStart)) {
-        return -1;  // no command found
+	if (cmdStart == -1 || (commentStart >= 0 && commentStart < cmdStart)) {
+		return -1;  // no command found
 	}
 	cmd = rxCmd.cap(0);
 	LatexParser::resolveCommandOptions(line, cmdStart, args, argStarts);
@@ -619,58 +642,60 @@ int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QL
  * args  Tokenlist with all token after command at the same level (top level args, no content)
  *
  */
-
-int findCommandWithArgsFromTL(const TokenList &tl,Tokens &cmd, TokenList &args, int offset, bool parseComment){
-    int result=-1;
-    for(int i=0;i<tl.length();i++){
-        cmd=tl.at(i);
-        if(!parseComment && cmd.type==Tokens::comment)
-            return -1;
-        if(i<offset)
-            continue;
-        if(cmd.type!=Tokens::command)
-            continue;
-        // Token is command
-        result=i;
-        // now, collect arguments
-        i++;
-        int level=cmd.level;
-        for(;i<tl.length();i++){
-            Tokens tk=tl.at(i);
-            if(tk.type==Tokens::comment)
-                break;
-            if(tk.level<level)
-                break;
-            if(tk.level==level){
-                args.append(tk);
-            }
-        }
-        break;
-    }
-    return result;
+int findCommandWithArgsFromTL(const TokenList &tl, Tokens &cmd, TokenList &args, int offset, bool parseComment)
+{
+	int result = -1;
+	for (int i = 0; i < tl.length(); i++) {
+		cmd = tl.at(i);
+		if (!parseComment && cmd.type == Tokens::comment)
+			return -1;
+		if (i < offset)
+			continue;
+		if (cmd.type != Tokens::command)
+			continue;
+		// Token is command
+		result = i;
+		// now, collect arguments
+		i++;
+		int level = cmd.level;
+		for (; i < tl.length(); i++) {
+			Tokens tk = tl.at(i);
+			if (tk.type == Tokens::comment)
+				break;
+			if (tk.level < level)
+				break;
+			if (tk.level == level) {
+				args.append(tk);
+			}
+		}
+		break;
+	}
+	return result;
 }
 
 // returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
 // not in command options. Return value is the index of the first char after the command (or pos if there was no command
 // TODO: currently does not work for command '\\'
-int getCommand(const QString &line, QString &outCmd, int pos) {
-	int start=pos;
+int getCommand(const QString &line, QString &outCmd, int pos)
+{
+	int start = pos;
 
-	while(line.at(start) != '\\') { // find beginning
-		if (!isCommandChar(line.at(start)) || start==0) return pos; // no command
+	while (line.at(start) != '\\') { // find beginning
+		if (!isCommandChar(line.at(start)) || start == 0) return pos; // no command
 		start--;
 	}
 
-	int i=pos+1;
-	for (; i<line.length(); i++)
+	int i = pos + 1;
+	for (; i < line.length(); i++)
 		if (!isCommandChar(line.at(i))) break;
-	outCmd = line.mid(start, i-start);
+	outCmd = line.mid(start, i - start);
 	return i;
 }
 
 // returns command option list. pos has to be at the beginning of the first bracket
 // posBehind returns the position after the last bracket, you may pass the same variable as in pos
-QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posBehind) {
+QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posBehind)
+{
 	static QMap<QChar, QChar> cbs;
 	if (cbs.isEmpty()) {
 		cbs[QChar('{')] = QChar('}');
@@ -680,21 +705,21 @@ QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posB
 	QList<CommandArgument> options;
 
 	int start = pos;
-	if (posBehind) *posBehind=start;
+	if (posBehind) *posBehind = start;
 	if (pos >= line.length()) return options;
 	QChar oc = line[start];
 	if (!cbs.contains(oc)) return options;
 
-	for (int num=1;;num++) {
+	for (int num = 1;; num++) {
 		int end = findClosingBracket(line, start, oc, cbs[oc]);
-		if (end<0) break; // open without close
+		if (end < 0) break; // open without close
 		CommandArgument arg;
-		arg.isOptional = (oc=='[');
+		arg.isOptional = (oc == '[');
 		arg.number = num;
-		arg.value = line.mid(start+1, end-start-1);
+		arg.value = line.mid(start + 1, end - start - 1);
 		options.append(arg);
-		start=end+1;
-		if (posBehind) *posBehind=start;
+		start = end + 1;
+		if (posBehind) *posBehind = start;
 		if (start >= line.length() || !cbs.contains(line[start])) break; // close on last char or last option reached
 	}
 	return options;
@@ -702,7 +727,8 @@ QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posB
 
 // returns the item at pos in a colon separated list of options (empty on colon
 // e.g. getParamItem("{one, two, three}", 7) returns "two"
-QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace) {
+QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace)
+{
 	REQUIRE_RET(pos <= line.length(), QString());
 	int start;
 	int curlCount = 0;
@@ -710,7 +736,7 @@ QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace) {
 	QString openDelim(",{[");
 	if (stopAtWhiteSpace) openDelim += " \t\n\r";
 	for (start = pos; start > 0; start--) {
-		QChar c = line.at(start-1);
+		QChar c = line.at(start - 1);
 		if (c == '}' && openDelim.contains('{')) curlCount++;
 		if (c == '{') {
 			if (curlCount-- <= 0) break;
@@ -742,33 +768,34 @@ QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace) {
 		}
 		if (closeDelim.contains(c)) break;
 	}
-	return line.mid(start, end-start);
+	return line.mid(start, end - start);
 }
 
-QRegExp generateRegExp(const QString &text,const bool isCase,const bool isWord, const bool isRegExp){
-	Qt::CaseSensitivity cs= isCase ? Qt::CaseSensitive : Qt::CaseInsensitive;
+QRegExp generateRegExp(const QString &text, const bool isCase, const bool isWord, const bool isRegExp)
+{
+	Qt::CaseSensitivity cs = isCase ? Qt::CaseSensitive : Qt::CaseInsensitive;
 	QRegExp m_regexp;
-	if ( isRegExp )
-	{
+	if ( isRegExp ) {
 		m_regexp = QRegExp(text, cs, QRegExp::RegExp);
 	} else if ( isWord ) {
 		//todo: screw this? it prevents searching of "world!" and similar things
 		//(qtextdocument just checks the surrounding character when searching for whole words, this would also allow wholewords|regexp search)
 		m_regexp = QRegExp(
-		                     QString("\\b%1\\b").arg(QRegExp::escape(text)),
-		                     cs,
-		                     QRegExp::RegExp
-		                     );
+		               QString("\\b%1\\b").arg(QRegExp::escape(text)),
+		               cs,
+		               QRegExp::RegExp
+		           );
 	} else {
 		m_regexp = QRegExp(text, cs, QRegExp::FixedString);
 	}
 	return m_regexp;
 }
 
-QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp, int cap){
+QStringList regExpFindAllMatches(const QString &searchIn, const QRegExp &regexp, int cap)
+{
 	int offset = regexp.indexIn(searchIn);
 	QStringList res;
-	while (offset > -1){
+	while (offset > -1) {
 		res << regexp.cap(cap);
 		offset = regexp.indexIn(searchIn, offset + regexp.matchedLength());
 	}
@@ -778,10 +805,11 @@ QStringList regExpFindAllMatches(const QString& searchIn, const QRegExp& regexp,
 /*
  * a multi-match equivalent of QString::indexOf(QString)
  */
-QList<int> indicesOf(const QString& line, const QString& word, Qt::CaseSensitivity cs) {
+QList<int> indicesOf(const QString &line, const QString &word, Qt::CaseSensitivity cs)
+{
 	QList<int> columns;
 	int col = 0;
-	while (col < line.length()-1) {
+	while (col < line.length() - 1) {
 		col = line.indexOf(word, col, cs);
 		if (col < 0) break;
 		columns.append(col);
@@ -793,11 +821,12 @@ QList<int> indicesOf(const QString& line, const QString& word, Qt::CaseSensitivi
 /*
  * a multi-match equivalent of QString::indexOf(QRegExp)
  */
-QList<int> indicesOf(const QString& line, const QRegExp &rx) {
+QList<int> indicesOf(const QString &line, const QRegExp &rx)
+{
 	QList<int> columns;
 	int col = 0;
 	// exact match
-	while (col < line.length()-1) {
+	while (col < line.length() - 1) {
 		col = line.indexOf(rx, col);
 		if (col < 0) break;
 		columns.append(col);
@@ -806,30 +835,31 @@ QList<int> indicesOf(const QString& line, const QRegExp &rx) {
 	return columns;
 }
 
-void addEnvironmentToDom(QDomDocument& doc,const QString& EnvironName,const QString& EnvironMode){
-	QDomElement root= doc.documentElement();
+void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QString &EnvironMode)
+{
+	QDomElement root = doc.documentElement();
 	QDomElement tag = doc.createElement("context");
-	tag.setAttribute("id",EnvironMode=="numbers"?"mathMyEnv":"myVerb");
-	tag.setAttribute("format",EnvironMode);
-	if (EnvironMode != "comment") tag.setAttribute("transparency","true");
+	tag.setAttribute("id", EnvironMode == "numbers" ? "mathMyEnv" : "myVerb");
+	tag.setAttribute("format", EnvironMode);
+	if (EnvironMode != "comment") tag.setAttribute("transparency", "true");
 	QDomElement child1 = doc.createElement("start");
-	child1.setAttribute("parenthesis",QString("my%1:open").arg(EnvironName));
-	child1.setAttribute("fold","true");
-	child1.setAttribute("format","extra-keyword");
+	child1.setAttribute("parenthesis", QString("my%1:open").arg(EnvironName));
+	child1.setAttribute("fold", "true");
+	child1.setAttribute("format", "extra-keyword");
 	child1.setAttribute("parenthesisWeight", "30");
-	QDomText dtxt=doc.createTextNode(QString("\\\\begin{%1}").arg(EnvironName));
+	QDomText dtxt = doc.createTextNode(QString("\\\\begin{%1}").arg(EnvironName));
 	child1.appendChild(dtxt);
 	QDomElement child2 = doc.createElement("stop");
-	child2.setAttribute("parenthesis",QString("my%1:close").arg(EnvironName));
-	child2.setAttribute("fold","true");
-	child2.setAttribute("format","extra-keyword");
+	child2.setAttribute("parenthesis", QString("my%1:close").arg(EnvironName));
+	child2.setAttribute("fold", "true");
+	child2.setAttribute("format", "extra-keyword");
 	child2.setAttribute("parenthesisWeight", "30");
-	QDomText dtxt2=doc.createTextNode(QString("\\\\end{%1}").arg(EnvironName));
+	QDomText dtxt2 = doc.createTextNode(QString("\\\\end{%1}").arg(EnvironName));
 	child2.appendChild(dtxt2);
-	
+
 	tag.appendChild(child1);
 	tag.appendChild(child2);
-	
+
 	if (EnvironMode == "numbers") {
 		QDomElement child3 = doc.createElement("word");
 		child3.setAttribute("id", "keywords/single");
@@ -837,37 +867,38 @@ void addEnvironmentToDom(QDomDocument& doc,const QString& EnvironName,const QStr
 		child3.appendChild(doc.createTextNode("\\\\[a-zA-Z]+"));
 		tag.appendChild(child3);
 	}
-	
+
 	//insert before the first context with the same format, so that transparency is actually used
 	QDomNode insertAt;
-	for (int i=0;i<root.childNodes().size();i++)
-		if (root.childNodes().item(i).attributes().namedItem("format").nodeValue() == EnvironMode){
+	for (int i = 0; i < root.childNodes().size(); i++)
+		if (root.childNodes().item(i).attributes().namedItem("format").nodeValue() == EnvironMode) {
 			insertAt = root.childNodes().item(i);
 			break;
 		}
-	root.insertBefore(tag,insertAt);
+	root.insertBefore(tag, insertAt);
 }
 
 // adds entries for structure commands to the Dom of a QNFA file
-void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &structureCommandLists) {
-	QDomElement root= doc.documentElement();
+void addStructureCommandsToDom(QDomDocument &doc , const QList<QStringList> &structureCommandLists)
+{
+	QDomElement root = doc.documentElement();
 
 	QDomNode parent;
-	for (int i=root.childNodes().size()-1; i>=0; i--) {
-		if (root.childNodes().item(i).attributes().namedItem("id").nodeValue() == "keywords/structure"){
+	for (int i = root.childNodes().size() - 1; i >= 0; i--) {
+		if (root.childNodes().item(i).attributes().namedItem("id").nodeValue() == "keywords/structure") {
 			parent = root.childNodes().item(i);
 			break;
 		}
 	}
 
-	for (int level=0; level<structureCommandLists.length(); level++) {
+	for (int level = 0; level < structureCommandLists.length(); level++) {
 		foreach (const QString &cmd, structureCommandLists[level]) {
 			QDomElement child = doc.createElement("word");
 			QString name = cmd;
 			name.remove('\\');
-			child.setAttribute("parenthesis",QString("%1:boundary@nomatch").arg(name));
+			child.setAttribute("parenthesis", QString("%1:boundary@nomatch").arg(name));
 			child.setAttribute("parenthesisWeight", QString("%1").arg(8 - level));
-			child.setAttribute("fold","true");
+			child.setAttribute("fold", "true");
 			name = cmd;
 			name.replace('\\', "\\\\");  // words are regexps, so we have to escape the slash
 			QDomText dtxt = doc.createTextNode(name);
@@ -878,332 +909,343 @@ void addStructureCommandsToDom(QDomDocument &doc ,const QList<QStringList> &stru
 }
 
 /* returns true if the options are complete, false if the scanning ended while still in the options */
-bool LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts){
-    const QString BracketsOpen("[{(");
-    const QString BracketsClose("]})");
-	int start=column;
-    int stop=-1;
+bool LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts)
+{
+	const QString BracketsOpen("[{(");
+	const QString BracketsClose("]})");
+	int start = column;
+	int stop = -1;
 	int type;
-    // check if between command and options is located text or other command
-    int abort=line.indexOf(QRegExp("(\\s|\\\\)"),start+1);
-    //qDebug()<<abort;
-	while(start<line.length()){
+	// check if between command and options is located text or other command
+	int abort = line.indexOf(QRegExp("(\\s|\\\\)"), start + 1);
+	//qDebug()<<abort;
+	while (start < line.length()) {
 		// find first available bracket after position start
-		int found=-1;
-		type=-1;
-		for(int i=0;i<BracketsOpen.size();i++){
-			int zw=line.indexOf(BracketsOpen[i],start);
-			if(zw>-1 && (zw<found||found==-1)){
-				found=zw;
-				type=i;
+		int found = -1;
+		type = -1;
+		for (int i = 0; i < BracketsOpen.size(); i++) {
+			int zw = line.indexOf(BracketsOpen[i], start);
+			if (zw > -1 && (zw < found || found == -1)) {
+				found = zw;
+				type = i;
 			}
 		}
-		if(type<0) break;
-        // check if only space between cmd and opening bracket
-        if(abort>0){
-            if((found-abort)>0){
-                QString test=line.mid(abort,found-abort);
-                test=test.simplified();
-                test.remove(' ');
-                if(!test.isEmpty())
-                    break;
-            }
-            abort=-1;
-        }
-		// check wether a word letter appears before (next command text ...)
-		if(stop>-1){
-			stop=line.indexOf(QRegExp("\\S+"),start);
+		if (type < 0) break;
+		// check if only space between cmd and opening bracket
+		if (abort > 0) {
+			if ((found - abort) > 0) {
+				QString test = line.mid(abort, found - abort);
+				test = test.simplified();
+				test.remove(' ');
+				if (!test.isEmpty())
+					break;
+			}
+			abort = -1;
 		}
-		if(stop<found && stop>-1) break;
+		// check wether a word letter appears before (next command text ...)
+		if (stop > -1) {
+			stop = line.indexOf(QRegExp("\\S+"), start);
+		}
+		if (stop < found && stop > -1) break;
 		// find apropriate closing bracket.
-		int lvl=0;
-		stop=-1;
-		for(int i=found+1;i<line.length();i++){
-			QChar c=line[i];
-			if(lvl==0 && c==BracketsClose[type]){
-				stop=i;
+		int lvl = 0;
+		stop = -1;
+		for (int i = found + 1; i < line.length(); i++) {
+			QChar c = line[i];
+			if (lvl == 0 && c == BracketsClose[type]) {
+				stop = i;
 				break;
 			}
-			if(BracketsOpen.contains(c)){
+			if (BracketsOpen.contains(c)) {
 				lvl++;
 			}
-			if(lvl>0 && BracketsClose.contains(c)){
+			if (lvl > 0 && BracketsClose.contains(c)) {
 				lvl--;
 			}
 		}
-		if(found>-1 && stop>-1){
-			values << line.mid(found,stop-found+1);
-			if(starts)
+		if (found > -1 && stop > -1) {
+			values << line.mid(found, stop - found + 1);
+			if (starts)
 				starts->append(found);
-			start=stop+1;
+			start = stop + 1;
 		} else return false;
 	}
 	return true;
 }
 
-QString LatexParser::removeOptionBrackets(const QString &option) {
-	if (option.isNull() || option.length()<2) return option;
-	if ((option.at(0) == '{' && option.at(option.length()-1) == '}') ||
-	              (option.at(0) == '[' && option.at(option.length()-1) == ']'))
-		return option.mid(1, option.length()-2);
+QString LatexParser::removeOptionBrackets(const QString &option)
+{
+	if (option.isNull() || option.length() < 2) return option;
+	if ((option.at(0) == '{' && option.at(option.length() - 1) == '}') ||
+	        (option.at(0) == '[' && option.at(option.length() - 1) == ']'))
+		return option.mid(1, option.length() - 2);
 	return option;
 }
 
 int LatexParser::structureCommandLevel(const QString &cmd) const
 {
-	for (int i=0; i<structureCommandLists.length(); i++) {
+	for (int i = 0; i < structureCommandLists.length(); i++) {
 		if (structureCommandLists[i].contains(cmd)) return i;
 	}
 	return -1;
 }
 
-int LatexParser::findContext(QString &line,int &column) const{
-    /* return a number for a context
-     * 0 unknown
-     * 1 command
-     * 2 option \command[option]{arg}
-     * 3 argument \command{arg}
-     * 4 argument 2   \command{arg}{arg2}
-     * etc
-     */
-	if(line.isEmpty())
+int LatexParser::findContext(QString &line, int &column) const
+{
+	/* return a number for a context
+	 * 0 unknown
+	 * 1 command
+	 * 2 option \command[option]{arg}
+	 * 3 argument \command{arg}
+	 * 4 argument 2   \command{arg}{arg2}
+	 * etc
+	 */
+	if (line.isEmpty())
 		return 0;
-    QString eow="\\[]{}$";
-	int i=column;
-	if(i>=line.length())
-		i=line.length();
-	if(i>0)
+	QString eow = "\\[]{}$";
+	int i = column;
+	if (i >= line.length())
+		i = line.length();
+	if (i > 0)
 		i--; // character left of pos is to be checked
 	else
 		return 0; // no context can be detected at line start (old behavior)
-	while (i>=0 && !eow.contains(line.at(i)))
+	while (i >= 0 && !eow.contains(line.at(i)))
 		i--;
-	if(i<0)
+	if (i < 0)
 		return 0; // no eow found
-	QChar ch=line.at(i);
-	if(ch=='\\'){
+	QChar ch = line.at(i);
+	if (ch == '\\') {
 		// command found
-		int start=i;
+		int start = i;
 		i++;
-		while (i<line.length() && !eow.contains(line.at(i)))
+		while (i < line.length() && !eow.contains(line.at(i)))
 			i++;
-		line=line.mid(start,i-start);
-		column=start;
+		line = line.mid(start, i - start);
+		column = start;
 		return 1;
 	}
-	int start_ref=findOpeningBracket(line,i);
-	int start_opt=findOpeningBracket(line,i,'[',']');
-	int ret=0;
-	if(start_ref>start_opt){
+	int start_ref = findOpeningBracket(line, i);
+	int start_opt = findOpeningBracket(line, i, '[', ']');
+	int ret = 0;
+	if (start_ref > start_opt) {
 		// assuming we are in command argument
-        ret=3;
-		i=start_ref-1;
-	}else{
-		if(start_opt>-1){
+		ret = 3;
+		i = start_ref - 1;
+	} else {
+		if (start_opt > -1) {
 			//assuming we are in command option
-            ret=2;
-			i=start_opt-1;
+			ret = 2;
+			i = start_opt - 1;
 		}
 	}
-	if(ret==0)
+	if (ret == 0)
 		return 0;
-	
-	int n=0;
-	QString openBrackets="[{";
-	QString closeBrackets="]}";
-	eow=getCommonEOW();
-    eow.remove(' ');
-	int stop=i;
-	while (i>-1) {
-		ch=line.at(i);
-		if(openBrackets.contains(ch)){
+
+	int n = 0;
+	QString openBrackets = "[{";
+	QString closeBrackets = "]}";
+	eow = getCommonEOW();
+	eow.remove(' ');
+	int stop = i;
+	while (i > -1) {
+		ch = line.at(i);
+		if (openBrackets.contains(ch)) {
 			//TODO check if correct bracket was opened ...
 			n--;
-			if(n<0)
+			if (n < 0)
 				break;
 			i--;
-			stop=i;
+			stop = i;
 			continue;
 		}
-		if(closeBrackets.contains(ch)){
+		if (closeBrackets.contains(ch)) {
 			n++;
-            if(ch=='}')
-                ++ret;  //going through another braces pair, [] is not checked
+			if (ch == '}')
+				++ret;  //going through another braces pair, [] is not checked
 			i--;
 			continue;
 		}
-		if(n==0 && eow.contains(ch)){
-			if(ch=='\\'){
+		if (n == 0 && eow.contains(ch)) {
+			if (ch == '\\') {
 				//TODO: check if not \\ (newline) was found
-                line=line.mid(i,stop-i+1).simplified();
-				column=i;
+				line = line.mid(i, stop - i + 1).simplified();
+				column = i;
 				return ret;
-			}else{ // this is a overly strict interpretation of command syntax
+			} else { // this is a overly strict interpretation of command syntax
 				return 0;
 			}
 		}
 		i--;
 	}
-	
+
 	return 0;
 }
 
-LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString& value) const{
-	command=line;
-    int col=column; //remember column
-	int temp=findContext(command,column);
+LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString &value) const
+{
+	command = line;
+	int col = column; //remember column
+	int temp = findContext(command, column);
 	QStringList vals;
-	resolveCommandOptions(line,column,vals);
-	value="";
-	if(!vals.isEmpty()){
-		value=vals.takeFirst();
-        if(value.startsWith('[') && temp!=2){
-			if(!vals.isEmpty()){
-				value=vals.takeFirst();
+	resolveCommandOptions(line, column, vals);
+	value = "";
+	if (!vals.isEmpty()) {
+		value = vals.takeFirst();
+		if (value.startsWith('[') && temp != 2) {
+			if (!vals.isEmpty()) {
+				value = vals.takeFirst();
 			}
 		}
-        if(value.startsWith('{') || value.startsWith('['))
-			value.remove(0,1);
-        if(value.endsWith('}')||value.endsWith(']'))
+		if (value.startsWith('{') || value.startsWith('['))
+			value.remove(0, 1);
+		if (value.endsWith('}') || value.endsWith(']'))
 			value.chop(1);
-    }
+	}
 	switch (temp) {
-	case 0: return Unknown;
-	case 1: return Command;
-    case 3:
-        if(specialTreatmentCommands.contains(command)){
-            QSet<QPair<QString,int> > helper=specialTreatmentCommands.value(command);
-            QPair<QString,int> elem;
-            foreach(elem,helper){
-                if(elem.second==1)
-                    return ArgEx;
-            }
-        }
-        // check key/val
-        {
-            QStringList keys=possibleCommands.keys();
-            bool handled=false;
-            QString elem;
-            QStringList checkOptions;
-            checkOptions <<  "key%1"+command << "key%1"+command+"#c";
+	case 0:
+		return Unknown;
+	case 1:
+		return Command;
+	case 3:
+		if (specialTreatmentCommands.contains(command)) {
+			QSet<QPair<QString, int> > helper = specialTreatmentCommands.value(command);
+			QPair<QString, int> elem;
+			foreach (elem, helper) {
+				if (elem.second == 1)
+					return ArgEx;
+			}
+		}
+		// check key/val
+		{
+			QStringList keys = possibleCommands.keys();
+			bool handled = false;
+			QString elem;
+			QStringList checkOptions;
+			checkOptions <<  "key%1" + command << "key%1" + command + "#c";
 
-            foreach(elem,checkOptions){
-                if(keys.contains(elem)){
-                    handled=true;
-                    command=elem.mid(4);
-                    break;
-                }
-            }
+			foreach (elem, checkOptions) {
+				if (keys.contains(elem)) {
+					handled = true;
+					command = elem.mid(4);
+					break;
+				}
+			}
 
-            if(handled){
-                // check that cursor is within keyval
-                bool isKey=false;
-                for(int i=col;col>0;col--){
-                    if(line.at(i-1).isLetter())
-                        continue;
-                    if(line.at(i-1)=='{' || line.at(i-1)==',')
-                        isKey=true;
-                    break;
-                }
-                if(isKey)
-                    return Keyval;
-                else
-                    return KeyvalValue;
-            }
-        }
-        // normal context
+			if (handled) {
+				// check that cursor is within keyval
+				bool isKey = false;
+				for (int i = col; col > 0; col--) {
+					if (line.at(i - 1).isLetter())
+						continue;
+					if (line.at(i - 1) == '{' || line.at(i - 1) == ',')
+						isKey = true;
+					break;
+				}
+				if (isKey)
+					return Keyval;
+				else
+					return KeyvalValue;
+			}
+		}
+		// normal context
 		if (environmentCommands.contains(command))
 			return Environment;
-        else if (possibleCommands["%label"].contains(command))
+		else if (possibleCommands["%label"].contains(command))
 			return Label;
-        else if (possibleCommands["%ref"].contains(command))
+		else if (possibleCommands["%ref"].contains(command))
 			return Reference;
-        else if (possibleCommands["%usepackage"].contains(command))
-            return Package;
-        else if (possibleCommands["%cite"].contains(command))
+		else if (possibleCommands["%usepackage"].contains(command))
+			return Package;
+		else if (possibleCommands["%cite"].contains(command))
 			return Citation;
-        else if (possibleCommands["%citeExtendedCommand"].contains(command))
-            return Citation_Ext;
-        else if (possibleCommands["%graphics"].contains(command))
-            return Graphics;
+		else if (possibleCommands["%citeExtendedCommand"].contains(command))
+			return Citation_Ext;
+		else if (possibleCommands["%graphics"].contains(command))
+			return Graphics;
 		else return Option;
-    case 2:
-        // find possible commands for keyval completion
-        {
-            if(specialTreatmentCommands.contains(command)){
-                QSet<QPair<QString,int> > helper=specialTreatmentCommands.value(command);
-                QPair<QString,int> elem;
-                foreach(elem,helper){
-                    if(elem.second==0)
-                        return OptionEx;
-                }
-            }
-            QStringList keys=possibleCommands.keys();
-            QString arg;
-            if(!vals.isEmpty()){
-                arg=vals.first();
-                if(arg.startsWith('{') )
-                    arg.remove(0,1);
-                if(arg.endsWith('}'))
-                    arg.chop(1);
-            }
-            bool handled=false;
-            QString elem;
-            QStringList checkOptions;
-            checkOptions << "key%"+command+"/"+arg << "key%"+command+"/"+arg+"#c" << "key%"+command << "key%"+command+"#c";
+	case 2:
+		// find possible commands for keyval completion
+	{
+		if (specialTreatmentCommands.contains(command)) {
+			QSet<QPair<QString, int> > helper = specialTreatmentCommands.value(command);
+			QPair<QString, int> elem;
+			foreach (elem, helper) {
+				if (elem.second == 0)
+					return OptionEx;
+			}
+		}
+		QStringList keys = possibleCommands.keys();
+		QString arg;
+		if (!vals.isEmpty()) {
+			arg = vals.first();
+			if (arg.startsWith('{') )
+				arg.remove(0, 1);
+			if (arg.endsWith('}'))
+				arg.chop(1);
+		}
+		bool handled = false;
+		QString elem;
+		QStringList checkOptions;
+		checkOptions << "key%" + command + "/" + arg << "key%" + command + "/" + arg + "#c" << "key%" + command << "key%" + command + "#c";
 
-            foreach(elem,checkOptions){
-                if(keys.contains(elem)){
-                    handled=true;
-                    command=elem.mid(4);
-                    break;
-                }
-            }
+		foreach (elem, checkOptions) {
+			if (keys.contains(elem)) {
+				handled = true;
+				command = elem.mid(4);
+				break;
+			}
+		}
 
-            if(handled){
-                // check that cursor is within keyval
-                bool isKey=false;
-                for(int i=col;col>0;col--){
-                    if(line.at(i-1).isLetter())
-                        continue;
-                    if(line.at(i-1)=='[' || line.at(i-1)==',')
-                        isKey=true;
-                    break;
-                }
-                if(isKey)
-                    return Keyval;
-                else
-                    return KeyvalValue;
-            }
-        }
-	default: return Unknown;
+		if (handled) {
+			// check that cursor is within keyval
+			bool isKey = false;
+			for (int i = col; col > 0; col--) {
+				if (line.at(i - 1).isLetter())
+					continue;
+				if (line.at(i - 1) == '[' || line.at(i - 1) == ',')
+					isKey = true;
+				break;
+			}
+			if (isKey)
+				return Keyval;
+			else
+				return KeyvalValue;
+		}
+	}
+	default:
+		return Unknown;
 	}
 }
 
-int LatexParser::commentStart(const QString& text){
-	if(text.startsWith("%")) return 0;
-	QString test=text;
-	test.replace("\\\\","  ");
-	int cs=test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
-	if(cs>-1) return cs+1;
+int LatexParser::commentStart(const QString &text)
+{
+	if (text.startsWith("%")) return 0;
+	QString test = text;
+	test.replace("\\\\", "  ");
+	int cs = test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
+	if (cs > -1) return cs + 1;
 	else return -1;
 }
 
-QString LatexParser::cutComment(const QString& text){
+QString LatexParser::cutComment(const QString &text)
+{
 	return text.left(LatexParser::commentStart(text)); // remove comments
 }
 
-QString intListToStr(const QList<int> &ints) {
+QString intListToStr(const QList<int> &ints)
+{
 	QString s = "";
 	foreach (int i, ints) {
-		s.append(QString::number(i)+',');
+		s.append(QString::number(i) + ',');
 	}
-	if (s.length()>0)
-		s.remove(s.length()-1, 1); // remove last ','
+	if (s.length() > 0)
+		s.remove(s.length() - 1, 1); // remove last ','
 	return s;
 }
 
-QList<int> strToIntList(const QString &s) {
+QList<int> strToIntList(const QString &s)
+{
 	QList<int> ints;
 	bool ok;
 	foreach (const QString &si, s.split(',')) {
@@ -1217,25 +1259,26 @@ QList<int> strToIntList(const QString &s) {
 // only supports strings as values, i.e.
 // { "key1" : "val1", "key2" : "val2"}
 // This is just a quick solution. If more complexity is requires, one should resort to QJson or the JSON support in Qt 5
-bool minimalJsonParse(const QString &text, QHash<QString, QString> &map) {
+bool minimalJsonParse(const QString &text, QHash<QString, QString> &map)
+{
 	int len = text.length();
 	int col = text.indexOf('{');
 	while (true) {
 		QString key;
 		QString val;
 		int startStr, endStr;
-		startStr = text.indexOf('"', col+1);
+		startStr = text.indexOf('"', col + 1);
 		if (startStr < 0) return true;
 		endStr = startStr;
 		while (endStr >= 0) {
-			endStr = text.indexOf('"',endStr+1);
-			if (text.at(endStr-1) != '\\') break;
+			endStr = text.indexOf('"', endStr + 1);
+			if (text.at(endStr - 1) != '\\') break;
 		}
 		if (endStr < 0) return false;
-		key = text.mid(startStr+1, endStr-startStr-1); // +1 / -1 outer removes qoutes
+		key = text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes qoutes
 		key.replace("\\\"", "\"");
 
-		col = endStr +1;
+		col = endStr + 1;
 		while (col < len && text.at(col).isSpace()) col++;
 		if (col >= len || (text.at(col)) != ':') return false;
 		col++;
@@ -1245,15 +1288,15 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map) {
 		startStr = col;
 		endStr = startStr;
 		while (endStr >= 0) {
-			endStr = text.indexOf('"',endStr+1);
-			if (text.at(endStr-1) != '\\') break;
+			endStr = text.indexOf('"', endStr + 1);
+			if (text.at(endStr - 1) != '\\') break;
 		}
 		if (endStr < 0) return false;
-		val = text.mid(startStr+1, endStr-startStr-1); // +1 / -1 outer removes qoutes
+		val = text.mid(startStr + 1, endStr - startStr - 1); // +1 / -1 outer removes qoutes
 		val.replace("\\\"", "\"");
 		map[key] = val;
 
-		col = endStr +1;
+		col = endStr + 1;
 		while (col < len && text.at(col).isSpace()) col++;
 		if (col >= len) return false;
 		if (text.at(col) == '}') return true;
@@ -1262,15 +1305,16 @@ bool minimalJsonParse(const QString &text, QHash<QString, QString> &map) {
 	return true;
 }
 
-
-QString formatJsonStringParam(const QString &id, const QString &val, int minIdWidth) {
+QString formatJsonStringParam(const QString &id, const QString &val, int minIdWidth)
+{
 	QString s = enquoteStr(id);
 	while (s.length() < minIdWidth) s += ' ';
 	s += " : " + enquoteStr(val);
 	return s;
 }
 
-QString enquoteStr(const QString &s) {
+QString enquoteStr(const QString &s)
+{
 	QString res = s;
 	res.replace('"', "\\\"");
 	res.prepend('"');
@@ -1278,10 +1322,11 @@ QString enquoteStr(const QString &s) {
 	return res;
 }
 
-QString dequoteStr(const QString &s) {
+QString dequoteStr(const QString &s)
+{
 	QString res = s;
 	if (res.endsWith('"') && !res.endsWith("\\\""))
-		res.remove(res.length()-1, 1);
+		res.remove(res.length() - 1, 1);
 	if (res.startsWith('"'))
 		res.remove(0, 1);
 	res.replace("\\\"", "\"");
@@ -1289,30 +1334,34 @@ QString dequoteStr(const QString &s) {
 }
 
 /** add a quotation around the string if it does not already have one. **/
-QString quotePath(const QString &s) {
+QString quotePath(const QString &s)
+{
 	if (s.startsWith('"') || !s.contains(' ')) return QString(s);
 	return QString("\"%1\"").arg(s);
 }
 
 /** if the string is surrounded by qoutes, remove these **/
-QString removeQuote(const QString &s) {
+QString removeQuote(const QString &s)
+{
 	if (s.length() >= 2 && s.startsWith('"') && s.endsWith('"')) {
-		return s.mid(1, s.length()-2);
+		return s.mid(1, s.length() - 2);
 	}
 	return s;
 }
 
-QString removePathDelim(const QString &s) {
+QString removePathDelim(const QString &s)
+{
 	// we use the explicit chars intentionally and not QDir::separator()
 	// because it shall also work for / on windows (many paths are internally
 	// represented with / as delimiter
 	if (s.endsWith('/') || s.endsWith('\\')) {
-		return s.left(s.length()-1);
+		return s.left(s.length() - 1);
 	}
 	return s;
 }
 
-uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate) {
+uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate)
+{
 	uint uhigh = highSurrogate.unicode();
 	uint ulow = lowSurrogate.unicode();
 	uint code = 0x10000;
@@ -1321,7 +1370,8 @@ uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate)
 	return code;
 }
 
-QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
+QTextCodec *QTextCodecForTeXShopName(const QByteArray &enc)
+{
 	//copied and modified from texworks
 	if (enc == "utf-8 unicode") return QTextCodec::codecForName("UTF-8");
 	if (enc == "standard unicode") return QTextCodec::codecForName("UTF-16");
@@ -1356,7 +1406,7 @@ QTextCodec* QTextCodecForTeXShopName(const QByteArray& enc){
  */
 QString ArgumentList::argContent(int index) const
 {
-    return LatexParser::removeOptionBrackets(this->at(index));
+	return LatexParser::removeOptionBrackets(this->at(index));
 }
 
 /*!
@@ -1365,15 +1415,15 @@ QString ArgumentList::argContent(int index) const
  */
 QString ArgumentList::argContent(int index, ArgumentList::ArgType type) const
 {
-    for (int i=0; i<size(); i++) {
-        if (argType(i) == type) {
-            if (index == 0)
+	for (int i = 0; i < size(); i++) {
+		if (argType(i) == type) {
+			if (index == 0)
 				return argContent(i);
-            else
-                index--;
-        }
-    }
-    return QString();
+			else
+				index--;
+		}
+	}
+	return QString();
 }
 
 /*!
@@ -1381,7 +1431,7 @@ QString ArgumentList::argContent(int index, ArgumentList::ArgType type) const
  */
 ArgumentList::ArgType ArgumentList::argType(int index) const
 {
-    return (this->at(index)[0] == '[') ? Optional : Mandatory;
+	return (this->at(index)[0] == '[') ? Optional : Mandatory;
 }
 
 /*!
@@ -1389,26 +1439,26 @@ ArgumentList::ArgType ArgumentList::argType(int index) const
  */
 int ArgumentList::count(ArgumentList::ArgType type) const
 {
-    int count = 0;
-    for (int i=0; i<size(); i++) {
-        if (argType(i) == type) {
-            count++;
-        }
-    }
-    return count;
+	int count = 0;
+	for (int i = 0; i < size(); i++) {
+		if (argType(i) == type) {
+			count++;
+		}
+	}
+	return count;
 }
 
-
-QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
-    if (str.contains(',')) { //multiple options are allowed
-        foreach (const QString& splitter, str.split(',')){
-			QTextCodec* codec = QTextCodecForLatexName(splitter);
+QTextCodec *LatexParser::QTextCodecForLatexName(QString str)
+{
+	if (str.contains(',')) { //multiple options are allowed
+		foreach (const QString &splitter, str.split(',')) {
+			QTextCodec *codec = QTextCodecForLatexName(splitter);
 			if (codec) return codec;
 		}
 	}
 	str = str.toLower(); //probably unnecessary
 	if (str.startsWith("x-")) str = str.mid(2); //needed for inputenx encodings used as parameters for inputenc
-	
+
 	//encodings as defined by inputenc 1.1d (2008/03/30)
 	//popular first
 	if (str == "utf8" || str == "utf8x") return QTextCodec::codecForName("UTF-8");
@@ -1417,16 +1467,16 @@ QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
 	if (str == "ascii") return QTextCodec::codecForName("latin1"); //this is wrong (should be latin1 limited to 0x00-0x7f)
 	//if (str == "decmulti") return??
 	//if (str == "next") ??
-	if (str.startsWith("cp") && (str.length()==5 || str.length()==6)
-	              && (str[2] >= '0') && (str[2] <= '9')
-	              && (str[3] >= '0') && (str[3] <= '9')
-	              && (str[4] >= '0') && (str[4] <= '9') &&
-	              (str.length()==5 || ((str[5] >= '0') && (str[5] <= '9')))) return QTextCodec::codecForName(qPrintable(str));
+	if (str.startsWith("cp") && (str.length() == 5 || str.length() == 6)
+	        && (str[2] >= '0') && (str[2] <= '9')
+	        && (str[3] >= '0') && (str[3] <= '9')
+	        && (str[4] >= '0') && (str[4] <= '9') &&
+	        (str.length() == 5 || ((str[5] >= '0') && (str[5] <= '9')))) return QTextCodec::codecForName(qPrintable(str));
 	//if (str == "cp437de") return QTextCodec::codecForName("??");
 	if (str == "applemac") return QTextCodec::codecForName("macintosh");
 	if (str == "macce") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Central European code page.
 	if (str == "ansinew") return QTextCodec::codecForName("cp1252");
-	
+
 	//additional encodings by inputenx
 	if (str == "us-ascii" || str == "clean7bit" || str == "ascii-print" || str == "ascii-printable") return QTextCodec::codecForName("latin1"); //this is wrong (should be latin1 limited to 0x00-0x7f)
 	//if (str == "atari" || )str == "atarist" ||  return QTextCodec::codecForName("???")
@@ -1434,15 +1484,17 @@ QTextCodec* LatexParser::QTextCodecForLatexName(QString str){
 	if (str == "koi8-r") return QTextCodec::codecForName("KOI8-R");
 	if (str.startsWith("iso-8859-")) return QTextCodec::codecForName(qPrintable(str));
 	if (str == "iso88595") return QTextCodec::codecForName("ISO-8859-5");
-	if (str == "mac-ce" || str=="mac-centeuro") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Central European code page.
-	if (str == "mac-cyrillic" || str=="maccyr" || str=="mac-ukrainian" || str=="macukr") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Cyrillic
+	if (str == "mac-ce" || str == "mac-centeuro") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Central European code page.
+	if (str == "mac-cyrillic" || str == "maccyr" || str == "mac-ukrainian" || str == "macukr") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Cyrillic
 	//if (str == "nextstep, next?
-	
+
 	//return QTextCodec::codecForName(str); //try it anyways
 	return 0;
 }
 
-QStringList LatexParser::latexNamesForTextCodec(const QTextCodec *codec) {
+QStringList LatexParser::latexNamesForTextCodec(const QTextCodec *codec)
+{
+	// *INDENT-OFF*  (astyle-config)
 	switch (codec->mibEnum()) {
 		//case 0 : return QStringList(); // "System"
 		case 4 : return QStringList() << "latin1"; // "ISO-8859-1"
@@ -1505,21 +1557,24 @@ QStringList LatexParser::latexNamesForTextCodec(const QTextCodec *codec) {
 		//case -3000 : return QStringList(); // "Iscii-Dev"
 		//case -949 : return QStringList(); // "cp949"
 	}
+	// *INDENT-ON*  (astyle-config)
 	return QStringList();
 }
 
-QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
-	const char* str = data.data();
+QTextCodec *guessEncodingBasic(const QByteArray &data, int *outSure)
+{
+	const char *str = data.data();
 	int size = data.size();
-	QTextCodec* guess = 0;
+	QTextCodec *guess = 0;
 	int sure = 1;
-	if (size>0) {
-		unsigned char prev=str[0];
-		int goodUtf8=0;int badUtf8=0;
+	if (size > 0) {
+		unsigned char prev = str[0];
+		int goodUtf8 = 0;
+		int badUtf8 = 0;
 		int badIso1 = 0;
-		int utf16le=0, utf16be = 0;
+		int utf16le = 0, utf16be = 0;
 		if (prev >= 0x80 && prev <= 0x9F) badIso1++;
-		for (int i=1;i<size;i++) {
+		for (int i = 1; i < size; i++) {
 			unsigned char cur = str[i];
 			if (cur >= 0x80 && cur <= 0x9F) badIso1++;
 			if ((cur & 0xC0) == 0x80) {
@@ -1528,12 +1583,12 @@ QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
 			} else {
 				if ((prev & 0xC0) == 0xC0) badUtf8++;
 				//if (cur==0) { if (i & 1 == 0) utf16be++; else utf16le++;}
-				if (prev==0) {
+				if (prev == 0) {
 					if ((i & 1) == 1) utf16be++;
 					else utf16le++;
 				}
 			}
-			prev=cur;
+			prev = cur;
 		}
 		// less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
 		if (utf16le > utf16be) {
@@ -1541,8 +1596,8 @@ QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
 		} else {
 			if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) guess = QTextCodec::codecForMib(MIB_UTF16BE);
 		}
-		if (!guess){
-			if (goodUtf8 > 10*badUtf8) guess = QTextCodec::codecForMib(MIB_UTF8);
+		if (!guess) {
+			if (goodUtf8 > 10 * badUtf8) guess = QTextCodec::codecForMib(MIB_UTF8);
 			else {
 				if (badIso1 > 0) guess = QTextCodec::codecForMib(MIB_WINDOWS1252);
 				else guess = QTextCodec::codecForMib(MIB_LATIN1);
@@ -1554,8 +1609,8 @@ QTextCodec * guessEncodingBasic(const QByteArray& data, int * outSure){
 	return guess;
 }
 
-
-void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int &sure){
+void LatexParser::guessEncoding(const QByteArray &data, QTextCodec *&guess, int &sure)
+{
 	if (guess && (guess->mibEnum() == MIB_UTF16LE || guess->mibEnum() == MIB_UTF16BE)) {
 		sure = 100;
 		return;
@@ -1566,22 +1621,23 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 	//slow c like search, without encoding we can't get a qstring, and bytearray neither supports
 	//regexp nor case insensitive search
 	int index = data.indexOf('=');
-	static const char * searchedLC = "%!tex encoding";
-	static const char * searchedUC = "%!TEX ENCODING";
-	static const int searchedLast = 13; Q_ASSERT(searchedLC[searchedLast] == 'g');
+	static const char *searchedLC = "%!tex encoding";
+	static const char *searchedUC = "%!TEX ENCODING";
+	static const int searchedLast = 13;
+	Q_ASSERT(searchedLC[searchedLast] == 'g');
 	while (index >= 0 && index < headerSize) {
-		int temp = index-1;
+		int temp = index - 1;
 		int sp = searchedLast;
-		const char * d = data.constData();
-		for (;temp >= 0 && sp >= 0; temp--)
+		const char *d = data.constData();
+		for (; temp >= 0 && sp >= 0; temp--)
 			if (searchedLC[sp] == d[temp]) sp--;
 			else if (searchedUC[sp] == d[temp]) sp--;
 			else if (d[temp] == ' ') ;
 			else break;
 		if (sp == -1) {
 			int end = lineEnd(data, index);
-			QByteArray encName = data.mid(index+1, end-index-1).trimmed();
-			QTextCodec* codec = QTextCodec::codecForName(encName);
+			QByteArray encName = data.mid(index + 1, end - index - 1).trimmed();
+			QTextCodec *codec = QTextCodec::codecForName(encName);
 			if (!codec)
 				codec = QTextCodecForTeXShopName(encName.toLower());
 			if (codec) {
@@ -1597,7 +1653,7 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 	if (encoding.isEmpty())
 		encoding = getEncodingFromPackage(data, headerSize, "inputenx");
 	if (!encoding.isEmpty()) {
-		QTextCodec* codec = QTextCodecForLatexName(encoding);
+		QTextCodec *codec = QTextCodecForLatexName(encoding);
 		if (codec) {
 			sure = 100;
 			guess = codec;
@@ -1607,24 +1663,26 @@ void LatexParser::guessEncoding(const QByteArray& data, QTextCodec *&guess, int 
 	return;
 }
 
-int LatexParser::lineStart(const QByteArray& data, int index) {
+int LatexParser::lineStart(const QByteArray &data, int index)
+{
 	int n = qMax(data.lastIndexOf('\n', index), data.lastIndexOf('\r', index));
-	int o = data.lastIndexOf("\x20\x29",index);
-	if (n<0 && o<0) return 0;
-	if (n > o) return n+1; // skip over character
-	else return n+2; // skip over both chars
+	int o = data.lastIndexOf("\x20\x29", index);
+	if (n < 0 && o < 0) return 0;
+	if (n > o) return n + 1; // skip over character
+	else return n + 2; // skip over both chars
 }
 
-int LatexParser::lineEnd(const QByteArray& data, int index) {
-	int n = data.indexOf('\n',index);
-	int r = data.indexOf('\r',index);
-	if (n<0) n=r; // prevent non-existing value (-1) to be smaller than existing one in qMin
-	else if (r<0) r=n;
+int LatexParser::lineEnd(const QByteArray &data, int index)
+{
+	int n = data.indexOf('\n', index);
+	int r = data.indexOf('\r', index);
+	if (n < 0) n = r; // prevent non-existing value (-1) to be smaller than existing one in qMin
+	else if (r < 0) r = n;
 	n = qMin(n, r);
 
-	r = data.indexOf("\x20\x29",index);  // unicode paragraph separator, note this is equivalent to " )" in ASCII but this duplication is ok for the current usecase of lineEnd()
-	if (n<0) n=r;
-	else if (r<0) r=n;
+	r = data.indexOf("\x20\x29", index); // unicode paragraph separator, note this is equivalent to " )" in ASCII but this duplication is ok for the current usecase of lineEnd()
+	if (n < 0) n = r;
+	else if (r < 0) r = n;
 	n = qMin(n, r);
 	if (n >= 0) return n;
 	return data.size();
@@ -1632,17 +1690,18 @@ int LatexParser::lineEnd(const QByteArray& data, int index) {
 
 //search for first \usepackage[.*]{<packageName>} outside of a comment
 // returns the string inside the square brackets
-QString LatexParser::getEncodingFromPackage(const QByteArray& data, int headerSize, const QString &packageName) {
+QString LatexParser::getEncodingFromPackage(const QByteArray &data, int headerSize, const QString &packageName)
+{
 	QByteArray packageEndToken(QString("]{%1}").arg(packageName).toLatin1());
 	QByteArray packageStartToken("\\usepackage[");
 	int index = data.indexOf(packageEndToken);
 	while (index >= 0 && index < headerSize) {
 		int lStart = lineStart(data, index);
 		int lEnd = lineEnd(data, index);
-		QByteArray line(data.mid(lStart, lEnd-lStart));
+		QByteArray line(data.mid(lStart, lEnd - lStart));
 		int encEnd = index - lStart;
 		int encStart = line.lastIndexOf(packageStartToken, encEnd);
-		if (encStart >= 0){
+		if (encStart >= 0) {
 			encStart += packageStartToken.length();
 			int commentStart = line.lastIndexOf('%', encEnd);
 			if (commentStart < 0) {
@@ -1654,178 +1713,199 @@ QString LatexParser::getEncodingFromPackage(const QByteArray& data, int headerSi
 	return QString();
 }
 
-void LatexParser::append(const LatexParser& elem){
+void LatexParser::append(const LatexParser &elem)
+{
 	QHash<QString, QSet<QString> >::const_iterator i = elem.possibleCommands.constBegin();
 	while (i != elem.possibleCommands.constEnd()) {
-		QString key=i.key();
-		QSet<QString> set=i.value();
+		QString key = i.key();
+		QSet<QString> set = i.value();
 		possibleCommands[key].unite(set);
 		++i;
 	}
-	foreach(const QString key,elem.environmentAliases.keys()){
-	    QStringList values=elem.environmentAliases.values(key);
-	    foreach(const QString value,values){
-		if(!environmentAliases.contains(key,value))
-		    environmentAliases.insert(key,value);
-	    }
+	foreach (const QString key, elem.environmentAliases.keys()) {
+		QStringList values = elem.environmentAliases.values(key);
+		foreach (const QString value, values) {
+			if (!environmentAliases.contains(key, value))
+				environmentAliases.insert(key, value);
+		}
 	}
-    specialTreatmentCommands.unite(elem.specialTreatmentCommands);
-    specialDefCommands.unite(elem.specialDefCommands);
-    commandDefs.unite(elem.commandDefs);
-    mapSpecialArgs.unite(elem.mapSpecialArgs);
+	specialTreatmentCommands.unite(elem.specialTreatmentCommands);
+	specialDefCommands.unite(elem.specialDefCommands);
+	commandDefs.unite(elem.commandDefs);
+	mapSpecialArgs.unite(elem.mapSpecialArgs);
 }
 
-void LatexParser::clear(){
+void LatexParser::clear()
+{
 	init();
 }
 
-void LatexParser::substract(const LatexParser& elem){
+void LatexParser::substract(const LatexParser &elem)
+{
 	QHash<QString, QSet<QString> >::const_iterator i = elem.possibleCommands.constBegin();
 	while (i != elem.possibleCommands.constEnd()) {
-		QString key=i.key();
-		QSet<QString> set=i.value();
+		QString key = i.key();
+		QSet<QString> set = i.value();
 		possibleCommands[key].subtract(set);
 		++i;
 	}
-    foreach(QString key,elem.commandDefs.keys()){
-        commandDefs.remove(key);
-    }
+	foreach (QString key, elem.commandDefs.keys()) {
+		commandDefs.remove(key);
+	}
 }
 
-void LatexParser::importCwlAliases(){
-	QString fn=findResourceFile("completion/cwlAliases.dat");
+void LatexParser::importCwlAliases()
+{
+	QString fn = findResourceFile("completion/cwlAliases.dat");
 	QFile tagsfile(fn);
 	if (tagsfile.open(QFile::ReadOnly)) {
 		QString line;
 		QString alias;
 		while (!tagsfile.atEnd()) {
 			line = tagsfile.readLine().trimmed();
-			if(line.startsWith("#"))
+			if (line.startsWith("#"))
 				continue;
-			if(line.endsWith(":")){
-				alias=line.left(line.length()-1);
+			if (line.endsWith(":")) {
+				alias = line.left(line.length() - 1);
 				continue;
 			}
-			if(!alias.isEmpty())
-				packageAliases.insertMulti(alias,line);
+			if (!alias.isEmpty())
+				packageAliases.insertMulti(alias, line);
 		}
 	}
 }
 
-LatexReader::LatexReader():index(0),wordStartIndex(0),lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);}
-LatexReader::LatexReader(const QString& line): lp(&LatexParser::getInstance()){Q_ASSERT(this->lp);setLine(line);}
-LatexReader::LatexReader(const LatexParser& lp, const QString& line):lp(&lp){Q_ASSERT(this->lp);setLine(line);}
-
-LatexReader::LatexReader(const LatexParser &lp, const QString &line, QMap<QString, QString> &replacementList):lp(&lp)
+LatexReader::LatexReader(): index(0), wordStartIndex(0), lp(&LatexParser::getInstance())
 {
-    Q_ASSERT(this->lp);
-    setLine(line);
-    mReplacementList=replacementList;
+	Q_ASSERT(this->lp);
 }
 
+LatexReader::LatexReader(const QString &line): lp(&LatexParser::getInstance())
+{
+	Q_ASSERT(this->lp);
+	setLine(line);
+}
 
-LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
-	int reference=-1;
-	bool inOption=false;
-	bool inEnv=false;
-	bool inReferenz=false;
-    int inReferenzExt=0;
-	while ((wordStartIndex = nextToken(line, index,inEnv,!inReferenz))!=-1) {
-		word=line.mid(wordStartIndex,index-wordStartIndex);
-		if (word.length()==0) return NW_NOTHING; //should never happen
-        switch (word.at(0).toLatin1()) {
+LatexReader::LatexReader(const LatexParser &lp, const QString &line): lp(&lp)
+{
+	Q_ASSERT(this->lp);
+	setLine(line);
+}
+
+LatexReader::LatexReader(const LatexParser &lp, const QString &line, QMap<QString, QString> &replacementList): lp(&lp)
+{
+	Q_ASSERT(this->lp);
+	setLine(line);
+	mReplacementList = replacementList;
+}
+
+LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands)
+{
+	int reference = -1;
+	bool inOption = false;
+	bool inEnv = false;
+	bool inReferenz = false;
+	int inReferenzExt = 0;
+	while ((wordStartIndex = nextToken(line, index, inEnv, !inReferenz)) != -1) {
+		word = line.mid(wordStartIndex, index - wordStartIndex);
+		if (word.length() == 0) return NW_NOTHING; //should never happen
+		switch (word.at(0).toLatin1()) {
 		case '%':
 			return NW_COMMENT; //return comment start
 		case '[':
-			if(!lastCommand.isEmpty()) inOption=true;
+			if (!lastCommand.isEmpty()) inOption = true;
 			break;
 		case ']':
-			inOption=false;
+			inOption = false;
 			break;
 		case '{':
-			if (reference!=-1)
-				reference=wordStartIndex+1;
-			if(!lastCommand.isEmpty()) inOption=true;
-			if(lp->environmentCommands.contains(lastCommand)) inEnv=true;
+			if (reference != -1)
+				reference = wordStartIndex + 1;
+			if (!lastCommand.isEmpty()) inOption = true;
+			if (lp->environmentCommands.contains(lastCommand)) inEnv = true;
 			break; //ignore
 		case '}':
-            if(inReferenzExt>1){
-                inReferenzExt--;
-            }else{
-                if (reference!=-1) {
-                    NextWordFlag result = NW_NOTHING;
-                    if (lp->possibleCommands["%ref"].contains(lastCommand)) result = NW_REFERENCE;
-                    else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
-                    else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
-                    else if (lp->possibleCommands["%usepackage"].contains(lastCommand)) result = NW_PACKAGE;
-                    else if (lp->possibleCommands["%citeExtendedCommand"].contains(lastCommand)) result = NW_CITATION;
-                    if (result != NW_NOTHING) {
-                        wordStartIndex=reference;
-                        --index;
-                        word=line.mid(reference,index-reference);
-                        return result;
-                    }
-                }
-                lastCommand="";
-                inOption=false;
-                inEnv=false;
-            }
+			if (inReferenzExt > 1) {
+				inReferenzExt--;
+			} else {
+				if (reference != -1) {
+					NextWordFlag result = NW_NOTHING;
+					if (lp->possibleCommands["%ref"].contains(lastCommand)) result = NW_REFERENCE;
+					else if (lp->possibleCommands["%label"].contains(lastCommand)) result = NW_LABEL;
+					else if (lp->possibleCommands["%cite"].contains(lastCommand)) result = NW_CITATION;
+					else if (lp->possibleCommands["%usepackage"].contains(lastCommand)) result = NW_PACKAGE;
+					else if (lp->possibleCommands["%citeExtendedCommand"].contains(lastCommand)) result = NW_CITATION;
+					if (result != NW_NOTHING) {
+						wordStartIndex = reference;
+						--index;
+						word = line.mid(reference, index - reference);
+						return result;
+					}
+				}
+				lastCommand = "";
+				inOption = false;
+				inEnv = false;
+			}
 			break;//command doesn't matter anymore
-		case '$': case '^': case '&':
+		case '$':
+		case '^':
+		case '&':
 			return NW_COMMAND;
 		case '_':
-			if(!inOption){
+			if (!inOption) {
 				return NW_COMMAND;
 			}
 			break;
 		case '\\':
-			if (word.length()==1 || !(EscapedChars.contains(word.at(1)) || CharacterAlteringChars.contains(word.at(1)))) {
+			if (word.length() == 1 || !(EscapedChars.contains(word.at(1)) || CharacterAlteringChars.contains(word.at(1)))) {
 				if (returnCommands) return NW_COMMAND;
-                if (lp->possibleCommands["%ref"].contains(word)||lp->possibleCommands["%label"].contains(word)||lp->possibleCommands["%cite"].contains(word)||lp->possibleCommands["%usepackage"].contains(word)){
-					reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
-					lastCommand=word;
-					inReferenz=true;
+				if (lp->possibleCommands["%ref"].contains(word) || lp->possibleCommands["%label"].contains(word) || lp->possibleCommands["%cite"].contains(word) || lp->possibleCommands["%usepackage"].contains(word)) {
+					reference = index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
+					lastCommand = word;
+					inReferenz = true;
 				}
-                if (lp->possibleCommands["%citeExtendedCommand"].contains(word)){
-                    QString line;
-                    foreach(line,lp->possibleCommands["%citeExtended"]){
-                        if(line.startsWith(word))
-                            break;
-                        line.clear();
-                    }
-                    if(!line.isEmpty()){
-                        reference=index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
-                        lastCommand=word;
-                        line=line.remove(QRegExp("[.*]"));
-                        int pos=line.indexOf("%<bibid%>");
-                        line=line.left(pos);
-                        inReferenzExt=line.count("{");
-                    }
-                }
-				if (lp->optionCommands.contains(lastCommand)||lastCommand.isEmpty()||word=="\\begin"||word=="\\end") {
-					lastCommand=word;
+				if (lp->possibleCommands["%citeExtendedCommand"].contains(word)) {
+					QString line;
+					foreach (line, lp->possibleCommands["%citeExtended"]) {
+						if (line.startsWith(word))
+							break;
+						line.clear();
+					}
+					if (!line.isEmpty()) {
+						reference = index; //todo: support for nested brackets like \cite[\xy{\ab{s}}]{miau}
+						lastCommand = word;
+						line = line.remove(QRegExp("[.*]"));
+						int pos = line.indexOf("%<bibid%>");
+						line = line.left(pos);
+						inReferenzExt = line.count("{");
+					}
+				}
+				if (lp->optionCommands.contains(lastCommand) || lastCommand.isEmpty() || word == "\\begin" || word == "\\end") {
+					lastCommand = word;
 				}
 				break;
-			} else {;} //first character is escaped, fall through to default case
+			} else {
+				;   //first character is escaped, fall through to default case
+			}
 		default:
 			//if (reference==-1) {
-			if(!inOption && !lastCommand.isEmpty()){
-				inOption=false;
-				lastCommand="";
+			if (!inOption && !lastCommand.isEmpty()) {
+				inOption = false;
+				lastCommand = "";
 			}
 			//if (word.length() == 2 && word[0] == '"' && CommonEOW.contains(word[1]))
 			//	return NW_PUNCTATION; //some quotation mark
-			if (word.length() > 1 && (word.contains('\\')||word.contains('"'))){
-                //word=latexToPlainWord(word); //remove special chars
-                word=latexToPlainWordwithReplacementList(word,mReplacementList); //remove special chars
+			if (word.length() > 1 && (word.contains('\\') || word.contains('"'))) {
+				//word=latexToPlainWord(word); //remove special chars
+				word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
 				if (word.isEmpty()) continue;
 			}
 			if (lp->environmentCommands.contains(lastCommand))
 				return NW_ENVIRONMENT;
-			if (lastCommand.isEmpty() || lp->optionCommands.contains(lastCommand)){
+			if (lastCommand.isEmpty() || lp->optionCommands.contains(lastCommand)) {
 				if (word.length() && Punctation.contains(word[0])) {
 					if (word.length() > 1) word = word[0];
-					return NW_PUNCTATION;		
+					return NW_PUNCTATION;
 				}
 				return NW_TEXT;
 			}
@@ -1835,544 +1915,555 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands){
 	return NW_NOTHING;
 }
 
-bool LatexReader::nextTextWord(){
+bool LatexReader::nextTextWord()
+{
 	NextWordFlag flag = NW_PUNCTATION;
 	//flag can be nothing, text, comment, environment/punctation
 	//text/comment returns false, text returns true, environment/punctation is ignored
-	while (flag == NW_ENVIRONMENT || flag == NW_PUNCTATION) 
+	while (flag == NW_ENVIRONMENT || flag == NW_PUNCTATION)
 		flag = nextWord(false);
-	return flag==NW_TEXT;
+	return flag == NW_TEXT;
 }
 
-const QString& LatexReader::getLine() const{
+const QString &LatexReader::getLine() const
+{
 	return line;
 }
-void LatexReader::setLine(const QString& line){
+
+void LatexReader::setLine(const QString &line)
+{
 	this->line = line;
 	this->index = 0;
 	this->wordStartIndex = 0;
 }
 
-typedef QPair<int,int> PairIntInt;
+typedef QPair<int, int> PairIntInt;
 
-LatexPackage loadCwlFile(const QString fileName,LatexCompleterConfig *config,QStringList conditions) {
-    CodeSnippetList words;
+LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, QStringList conditions)
+{
+	CodeSnippetList words;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	LatexPackage package;
-	
+
 	QStringList addPaths;
-	if(config)
-		addPaths<<config->importedCwlBaseDir;
-    QString fn=findResourceFile("completion/"+fileName,false,addPaths);
+	if (config)
+		addPaths << config->importedCwlBaseDir;
+	QString fn = findResourceFile("completion/" + fileName, false, addPaths);
 
-    QFile tagsfile(fn);
-    bool skipSection=false;
-    if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
-        QString line;
-        QTextStream stream(&tagsfile);
-        stream.setCodec("UTF-8");
-        QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
-        QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
-        QRegExp rxCom3("^(\\\\\\w+\\*?)");
-        rxCom.setMinimal(true);
-        QStringList keywords;
-        keywords << "text" << "title" << "%<text%>" << "%<title%>";
-        QStringList specialTreatment;
-        specialTreatment << "color";
-        QString keyvals;
-        while (!stream.atEnd()) {
-            line = stream.readLine().trimmed();
-            if(line.startsWith("#endif")){
-                // end of conditional section
-                skipSection=false;
-                continue;
-            }
-            if(line.startsWith("#ifOption:")){
-                QString condition=line.mid(10);
-                skipSection=!conditions.contains(condition);
-                continue;
-            }
-            if(skipSection) // skip conditional sections (if condition is not met)
-                continue;
+	QFile tagsfile(fn);
+	bool skipSection = false;
+	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
+		QString line;
+		QTextStream stream(&tagsfile);
+		stream.setCodec("UTF-8");
+		QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
+		QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
+		QRegExp rxCom3("^(\\\\\\w+\\*?)");
+		rxCom.setMinimal(true);
+		QStringList keywords;
+		keywords << "text" << "title" << "%<text%>" << "%<title%>";
+		QStringList specialTreatment;
+		specialTreatment << "color";
+		QString keyvals;
+		while (!stream.atEnd()) {
+			line = stream.readLine().trimmed();
+			if (line.startsWith("#endif")) {
+				// end of conditional section
+				skipSection = false;
+				continue;
+			}
+			if (line.startsWith("#ifOption:")) {
+				QString condition = line.mid(10);
+				skipSection = !conditions.contains(condition);
+				continue;
+			}
+			if (skipSection) // skip conditional sections (if condition is not met)
+				continue;
 
-            if(line.startsWith("#include:")){
-                //include additional cwl file
-                QString fn=line.mid(9);
-                if(!fn.isEmpty()){
-                    if(fileName!=fn+".cwl" && !package.requiredPackages.contains(fn+".cwl"))
-                        package.requiredPackages<<fn+".cwl";
-                }
-            }
-            if(line.startsWith("#keyvals:")){
-                // start reading keyvals
-                keyvals=line.mid(9);
-                continue;
-            }
-            if(line.startsWith("#endkeyvals")){
-                // end of reading keyvals
-                keyvals.clear();
-                continue;
-            }
+			if (line.startsWith("#include:")) {
+				//include additional cwl file
+				QString fn = line.mid(9);
+				if (!fn.isEmpty()) {
+					if (fileName != fn + ".cwl" && !package.requiredPackages.contains(fn + ".cwl"))
+						package.requiredPackages << fn + ".cwl";
+				}
+			}
+			if (line.startsWith("#keyvals:")) {
+				// start reading keyvals
+				keyvals = line.mid(9);
+				continue;
+			}
+			if (line.startsWith("#endkeyvals")) {
+				// end of reading keyvals
+				keyvals.clear();
+				continue;
+			}
 
-            if(!keyvals.isEmpty()){
-                // read keyval (name stored in "keyvals")
-                package.possibleCommands["key%"+keyvals] << line;
-                QString key;
-                CommandDescription cd=extractCommandDefKeyVal(line,key);
-                if(cd.args>0){
-                    if(key.endsWith("="))
-                        key.chop(1);
-                    package.commandDescriptions.insert(keyvals+"/"+key,cd);
-                }
-                continue;
-            }
-            if(line.startsWith("#repl:")){
-                // start reading keyvals
-                package.possibleCommands["%replace"] << line.mid(6);
-                continue;
-            }
+			if (!keyvals.isEmpty()) {
+				// read keyval (name stored in "keyvals")
+				package.possibleCommands["key%" + keyvals] << line;
+				QString key;
+				CommandDescription cd = extractCommandDefKeyVal(line, key);
+				if (cd.args > 0) {
+					if (key.endsWith("="))
+						key.chop(1);
+					package.commandDescriptions.insert(keyvals + "/" + key, cd);
+				}
+				continue;
+			}
+			if (line.startsWith("#repl:")) {
+				// start reading keyvals
+				package.possibleCommands["%replace"] << line.mid(6);
+				continue;
+			}
 
-            if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
-                //hints for commands usage (e.g. in mathmode only) are separated by #
-                int sep=line.indexOf('#');
-                QString valid;
-                QStringList env;
-                QString definition;
-                bool uncommon=false;
-                bool hideFromCompletion=false;
-                CodeSnippet::Type type=CodeSnippet::none;
-                if(sep>-1){
-                    valid=line.mid(sep+1);
-                    line=line.left(sep);
-                    if(valid.startsWith("*")){
-                        valid=valid.mid(1);
-                        uncommon=true;
-                    }
-                    // second time split for specialDef
-                    int sep=valid.indexOf('#');
-                    if(sep>-1){
-                        definition=valid.mid(sep+1);
-                        valid=valid.left(sep);
-                    }
-                    // normal valid
-                    if(valid.startsWith("/")){
-                        env=valid.mid(1).split(',');
-                        valid="e";
-                    }
-                    if(valid.contains("\\")){
-                        int i=valid.indexOf("\\");
-                        QString zw=valid.mid(i+1);
-                        env=zw.split(',');
-                        valid=valid.left(i);
-                    }
-                    if(valid.contains('S')){
-                        hideFromCompletion=true;
-                        valid.remove('S');
-                    }
-                }
+			if (!line.isEmpty() && !line.startsWith("#") && !line.startsWith(" ")) {
+				//hints for commands usage (e.g. in mathmode only) are separated by #
+				int sep = line.indexOf('#');
+				QString valid;
+				QStringList env;
+				QString definition;
+				bool uncommon = false;
+				bool hideFromCompletion = false;
+				CodeSnippet::Type type = CodeSnippet::none;
+				if (sep > -1) {
+					valid = line.mid(sep + 1);
+					line = line.left(sep);
+					if (valid.startsWith("*")) {
+						valid = valid.mid(1);
+						uncommon = true;
+					}
+					// second time split for specialDef
+					int sep = valid.indexOf('#');
+					if (sep > -1) {
+						definition = valid.mid(sep + 1);
+						valid = valid.left(sep);
+					}
+					// normal valid
+					if (valid.startsWith("/")) {
+						env = valid.mid(1).split(',');
+						valid = "e";
+					}
+					if (valid.contains("\\")) {
+						int i = valid.indexOf("\\");
+						QString zw = valid.mid(i + 1);
+						env = zw.split(',');
+						valid = valid.left(i);
+					}
+					if (valid.contains('S')) {
+						hideFromCompletion = true;
+						valid.remove('S');
+					}
+				}
 
-                // parse for spell checkable commands
-                int res=rxCom.indexIn(line);
-                if(keywords.contains(rxCom.cap(3))){
-                    package.optionCommands << rxCom.cap(1);
-                }
+				// parse for spell checkable commands
+				int res = rxCom.indexIn(line);
+				if (keywords.contains(rxCom.cap(3))) {
+					package.optionCommands << rxCom.cap(1);
+				}
 
-                if(specialTreatment.contains(rxCom.cap(3))){
-                    package.specialTreatmentCommands[rxCom.cap(1)].insert(qMakePair(rxCom.cap(3),1));
-                }
-                rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
-                int res3=rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
+				if (specialTreatment.contains(rxCom.cap(3))) {
+					package.specialTreatmentCommands[rxCom.cap(1)].insert(qMakePair(rxCom.cap(3), 1));
+				}
+				rxCom2.indexIn(line); // for commands which don't have a braces part e.g. \item[text]
+				int res3 = rxCom3.indexIn(line); // for commands which don't have a options either e.g. \node (asas)
 
-                // get commandDefinition
-                CommandDescription cd=extractCommandDef(line,valid);
-                QString cmd=rxCom3.cap(1);
-                if(cmd=="\\begin"){
-                    if(!package.commandDescriptions.contains(cmd)){
-                        // one insertion of a general \begin-command
-                        CommandDescription cd;
-                        cd.args=1;
-                        cd.argTypes<<Tokens::beginEnv;
-                        package.commandDescriptions.insert(cmd,cd);
-                    }
-                    cmd=rxCom.cap();
-                }
-                if(package.commandDescriptions.contains(cmd)){
-                    CommandDescription cd_old=package.commandDescriptions.value(cmd);
-                    if(cd_old.args>cd.args || cd_old.optionalArgs>cd.optionalArgs){
-                        cd=cd_old;
-                    }
-                }
-                package.commandDescriptions.insert(cmd,cd);
+				// get commandDefinition
+				CommandDescription cd = extractCommandDef(line, valid);
+				QString cmd = rxCom3.cap(1);
+				if (cmd == "\\begin") {
+					if (!package.commandDescriptions.contains(cmd)) {
+						// one insertion of a general \begin-command
+						CommandDescription cd;
+						cd.args = 1;
+						cd.argTypes << Tokens::beginEnv;
+						package.commandDescriptions.insert(cmd, cd);
+					}
+					cmd = rxCom.cap();
+				}
+				if (package.commandDescriptions.contains(cmd)) {
+					CommandDescription cd_old = package.commandDescriptions.value(cmd);
+					if (cd_old.args > cd.args || cd_old.optionalArgs > cd.optionalArgs) {
+						cd = cd_old;
+					}
+				}
+				package.commandDescriptions.insert(cmd, cd);
 
 
-                if(keywords.contains(rxCom2.cap(2))){
-                    package.optionCommands << rxCom2.cap(1);
-                }
-                if(valid.contains('d')){ // definition command
-                    if(res>-1){
-                        package.possibleCommands["%definition"] << rxCom.cap(1);
-                    }
-                    valid.remove('d');
-                }
-                if(valid.contains('i')){ // include like command
-                    if(res>-1){
-                        package.possibleCommands["%include"] << rxCom.cap(1);
-                    }
-                    valid.remove('i');
-                }
-                if(valid.contains('l')){ // label command
-                    if(res>-1){
-                        package.possibleCommands["%label"] << rxCom.cap(1);
-                    }
-                    valid.remove('l');
-                }
-                if(valid.contains('r')){ // ref command
-                    if(res>-1){
-                        package.possibleCommands["%ref"] << rxCom.cap(1);
-                    }
-                    valid.remove('r');
-                }
-                if(valid.contains('V')){ // verbatim command
-                    if(res>-1){
-                        package.possibleCommands["%verbatimEnv"] << rxCom.cap(3);
-                    }
-                    valid.remove('V');
-                }
-                if(valid.contains('s')){ // special def
-                    if(res>-1){
-                        package.specialDefCommands.insert(rxCom.cap(1),definition);
-                    }else{
-                        if(res3>-1)
-                            package.specialDefCommands.insert(rxCom3.cap(1),definition);
-                    }
-                    if(definition.startsWith('%')){
-                        if(config)
-                            config->specialCompletionKeys.insert(definition);
-                    }else{
-                        if(definition.length()>2){
-                            QString helper=definition.mid(1,definition.length()-2);
-                            if(helper.startsWith('%')){
-                                if(config)
-                                    config->specialCompletionKeys.insert(helper);
-                            }
-                        }
-                    }
-                    valid.remove('s');
-                }
-                if(valid.contains('c')){ // cite command
-                    if(res>-1){
-                        package.possibleCommands["%cite"] << rxCom.cap(1);
-                        // replace argument (possibly keylist) with @
-                        int p=rxCom.pos(3);
-                        int l=rxCom.cap(3).length();
-                        if(p>=0){
-                            line.replace(p,l,"@");
-                        }
-                    }
-                    valid.remove('c');
-                }
-                if(valid.contains('C')){ // cite command
-                    if(res>-1){
-                        if(!line.contains("%")){
-                            int start=0;
-                            if(line.startsWith("\\begin")){
-                                start=line.indexOf("}")+1;
-                            }
-                            //add placeholders to brackets like () to (%<..%>)
-                            const QString brackets = "{}[]()<>";
-                            int lastOpen = -1, openType = -1;
-                            for (int i = start; i < line.size(); i++) {
-                                int index = brackets.indexOf(line[i]);
-                                if (index>=0) {
-                                    if (index % 2 == 0) {
-                                        lastOpen = i;
-                                        openType = index/2;
-                                    } else {
-                                        if (lastOpen == -1 || openType != index/2)
-                                            continue;
-                                        if (lastOpen == i-1)
-                                            continue;
-                                        line.insert(lastOpen+1, "%<");
-                                        i+=2;
-                                        line.insert(i, "%>");
-                                        lastOpen = -1;
-                                        i+=2;
-                                    }
-                                }
-                            }
-                        }
-                        package.possibleCommands["%citeExtended"] << line.simplified();
-                        if(!line.startsWith("\\begin")) // HANDLE begin extra
-                            package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
-                        line.replace("%<bibid%>","@");
-                        //hideFromCompletion=true;
-                    }
-                    valid.remove('C');
-                }
-                if(valid.contains('g')){ // definition command
-                    if(res>-1){
-                        package.possibleCommands["%graphics"] << rxCom.cap(1);
-                    }
-                    valid.remove('g');
-                }
-                if(valid.contains('u')){ // usepackage command
-                    if(res>-1){
-                        package.possibleCommands["%usepackage"] << rxCom.cap(1);
-                    }
-                    valid.remove('u');
-                }
-                if(valid.contains('b')){ // usepackage command
-                    if(res>-1){
-                        package.possibleCommands["%bibliography"] << rxCom.cap(1);
-                        package.possibleCommands["%file"] << rxCom.cap(1);
-                    }
-                    valid.remove('b');
-                }
-                if(valid.contains('U')){ // url command
-                    if(res>-1){
-                        package.possibleCommands["%url"] << rxCom.cap(1);
-                    }
-                    valid.remove('U');
-                }
-                if(valid.contains('D')){ // todo command
-                    if(res>-1){
-                        package.possibleCommands["%todo"] << rxCom.cap(1);
-                    }
-                    valid.remove('D');
-                }
-                if(valid.contains('B')){ // color
-                    package.possibleCommands["%color"] << line;
-                    hideFromCompletion=true;
-                }
-                if(valid.contains('L')){ // a length/height
-                    type=CodeSnippet::length;
-                    valid.remove('L');
-                }
-                // normal commands for syntax checking
-                // will be extended to distinguish between normal and math commands
-                if(valid.isEmpty() || valid.contains('n')){
-                    if(res>-1){
-                        if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                            package.possibleCommands["normal"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                        } else {
-                            package.possibleCommands["normal"] << rxCom.cap(1);
-                        }
-                    } else {
-                        if(!cmd.isEmpty())
-                            package.possibleCommands["normal"] << cmd;
-                        else
-                            package.possibleCommands["normal"] << line.simplified();
-                    }
-                }
-                if(valid.contains('m')){ // math commands
-                    if(res>-1){
-                        if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                            package.possibleCommands["math"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                        } else {
-                            package.possibleCommands["math"] << rxCom.cap(1);
-                        }
-                    } else {
-                        if(!cmd.isEmpty())
-                            package.possibleCommands["math"] << cmd;
-                        else
-                            package.possibleCommands["math"] << line.simplified();
-                    }
-                }
-                if(valid.contains('t')){ // tabular commands
-                    if(res>-1){
-                        if(rxCom.cap(1)=="\\begin" || rxCom.cap(1)=="\\end"){
-                            package.possibleCommands["tabular"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                            package.possibleCommands["array"] << rxCom.cap(1)+"{"+rxCom.cap(3)+"}";
-                        } else {
-                            package.possibleCommands["tabular"] << rxCom.cap(1);
-                            package.possibleCommands["array"] << rxCom.cap(1);
-                        }
-                    } else {
-                        if(cmd.isEmpty())
-                            cmd=line.simplified();
-                        package.possibleCommands["tabular"] << cmd;
-                        package.possibleCommands["array"] << cmd;
-                    }
-                }
-                if(valid.contains('T')){ // tabbing support
-                    if(res==-1){
-                        package.possibleCommands["tabbing"] << cmd;
-                    }
-                }
-                if(valid.contains('e') && !env.isEmpty()){ // tabbing support
-                    if(res==-1){
-                        foreach(const QString& elem,env)
-                            package.possibleCommands[elem] << cmd;
-                    }else{
-                        QString cmd=rxCom.cap(1);
-                        if(cmd=="\\begin" || cmd=="\\end"){
-                            cmd=line.simplified();
-                        }
-                        foreach(const QString& elem,env)
-                            package.possibleCommands[elem] << cmd;
-                    }
-                }
-                if(!valid.contains('e') && !env.isEmpty()){ // set env alias
-                    if(res>-1){
-                        if(rxCom.cap(1)=="\\begin"){
-                            QString envName=rxCom.cap(3);
-                            if(!envName.isEmpty()){
-                                foreach(const QString& elem,env)
-                                    package.environmentAliases.insert(rxCom.cap(3),elem);
-                            }
-                        }
-                    }
-                }
-                // normal parsing for completer
-                if(hideFromCompletion)
-                    continue; // command for spell checking only (auto parser)
-                if (line.startsWith("\\pageref")||line.startsWith("\\ref")) continue;
-                // remove special option classification e.g. %l
-                line.remove(QRegExp("%[a-zA-Z]+")); // not n
-                if (!line.contains("%")){
-                    //add placeholders to brackets like () to (%<..%>)
-                    const QString brackets = "{}[]()<>";
-                    int lastOpen = -1, openType = -1;
-                    for (int i = 0; i < line.size(); i++) {
-                        int index = brackets.indexOf(line[i]);
-                        if (index>=0) {
-                            if (index % 2 == 0) {
-                                lastOpen = i;
-                                openType = index/2;
-                            } else {
-                                if (lastOpen == -1 || openType != index/2)
-                                    continue;
-                                if(i-lastOpen<2) // ignore empty arguments, feature request 888
-                                    continue;
-                                if(i-lastOpen==2 && line.mid(lastOpen+1,1)=="@") //ignore single @ (to be replaced with bibid in completer)
-                                    continue;
-                                line.insert(lastOpen+1, "%<");
-                                i+=2;
-                                line.insert(i, "%>");
-                                /*if (lastOpen+2 == i-1) {  // deactivated, feature request 888
-                                    line.insert(i, QApplication::translate("CodeSnippet", "something"));
-                                    i+=QApplication::translate("CodeSnippet", "something").length();
-                                }*/
-                                lastOpen = -1;
-                                i+=2;
-                            }
-                        }
-                    }
-                    if (line.startsWith("\\begin")||line.startsWith("\\end")) {
-                        int i=line.indexOf("%<",0);
-                        line.replace(i,2,"");
-                        i=line.indexOf("%>",0);
-                        line.replace(i,2,"");
-                        if (line.endsWith("\\item"))
-                            line.chop(5);
+				if (keywords.contains(rxCom2.cap(2))) {
+					package.optionCommands << rxCom2.cap(1);
+				}
+				if (valid.contains('d')) { // definition command
+					if (res > -1) {
+						package.possibleCommands["%definition"] << rxCom.cap(1);
+					}
+					valid.remove('d');
+				}
+				if (valid.contains('i')) { // include like command
+					if (res > -1) {
+						package.possibleCommands["%include"] << rxCom.cap(1);
+					}
+					valid.remove('i');
+				}
+				if (valid.contains('l')) { // label command
+					if (res > -1) {
+						package.possibleCommands["%label"] << rxCom.cap(1);
+					}
+					valid.remove('l');
+				}
+				if (valid.contains('r')) { // ref command
+					if (res > -1) {
+						package.possibleCommands["%ref"] << rxCom.cap(1);
+					}
+					valid.remove('r');
+				}
+				if (valid.contains('V')) { // verbatim command
+					if (res > -1) {
+						package.possibleCommands["%verbatimEnv"] << rxCom.cap(3);
+					}
+					valid.remove('V');
+				}
+				if (valid.contains('s')) { // special def
+					if (res > -1) {
+						package.specialDefCommands.insert(rxCom.cap(1), definition);
+					} else {
+						if (res3 > -1)
+							package.specialDefCommands.insert(rxCom3.cap(1), definition);
+					}
+					if (definition.startsWith('%')) {
+						if (config)
+							config->specialCompletionKeys.insert(definition);
+					} else {
+						if (definition.length() > 2) {
+							QString helper = definition.mid(1, definition.length() - 2);
+							if (helper.startsWith('%')) {
+								if (config)
+									config->specialCompletionKeys.insert(helper);
+							}
+						}
+					}
+					valid.remove('s');
+				}
+				if (valid.contains('c')) { // cite command
+					if (res > -1) {
+						package.possibleCommands["%cite"] << rxCom.cap(1);
+						// replace argument (possibly keylist) with @
+						int p = rxCom.pos(3);
+						int l = rxCom.cap(3).length();
+						if (p >= 0) {
+							line.replace(p, l, "@");
+						}
+					}
+					valid.remove('c');
+				}
+				if (valid.contains('C')) { // cite command
+					if (res > -1) {
+						if (!line.contains("%")) {
+							int start = 0;
+							if (line.startsWith("\\begin")) {
+								start = line.indexOf("}") + 1;
+							}
+							//add placeholders to brackets like () to (%<..%>)
+							const QString brackets = "{}[]()<>";
+							int lastOpen = -1, openType = -1;
+							for (int i = start; i < line.size(); i++) {
+								int index = brackets.indexOf(line[i]);
+								if (index >= 0) {
+									if (index % 2 == 0) {
+										lastOpen = i;
+										openType = index / 2;
+									} else {
+										if (lastOpen == -1 || openType != index / 2)
+											continue;
+										if (lastOpen == i - 1)
+											continue;
+										line.insert(lastOpen + 1, "%<");
+										i += 2;
+										line.insert(i, "%>");
+										lastOpen = -1;
+										i += 2;
+									}
+								}
+							}
+						}
+						package.possibleCommands["%citeExtended"] << line.simplified();
+						if (!line.startsWith("\\begin")) // HANDLE begin extra
+							package.possibleCommands["%citeExtendedCommand"] << rxCom.cap(1);
+						line.replace("%<bibid%>", "@");
+						//hideFromCompletion=true;
+					}
+					valid.remove('C');
+				}
+				if (valid.contains('g')) { // definition command
+					if (res > -1) {
+						package.possibleCommands["%graphics"] << rxCom.cap(1);
+					}
+					valid.remove('g');
+				}
+				if (valid.contains('u')) { // usepackage command
+					if (res > -1) {
+						package.possibleCommands["%usepackage"] << rxCom.cap(1);
+					}
+					valid.remove('u');
+				}
+				if (valid.contains('b')) { // usepackage command
+					if (res > -1) {
+						package.possibleCommands["%bibliography"] << rxCom.cap(1);
+						package.possibleCommands["%file"] << rxCom.cap(1);
+					}
+					valid.remove('b');
+				}
+				if (valid.contains('U')) { // url command
+					if (res > -1) {
+						package.possibleCommands["%url"] << rxCom.cap(1);
+					}
+					valid.remove('U');
+				}
+				if (valid.contains('D')) { // todo command
+					if (res > -1) {
+						package.possibleCommands["%todo"] << rxCom.cap(1);
+					}
+					valid.remove('D');
+				}
+				if (valid.contains('B')) { // color
+					package.possibleCommands["%color"] << line;
+					hideFromCompletion = true;
+				}
+				if (valid.contains('L')) { // a length/height
+					type = CodeSnippet::length;
+					valid.remove('L');
+				}
+				// normal commands for syntax checking
+				// will be extended to distinguish between normal and math commands
+				if (valid.isEmpty() || valid.contains('n')) {
+					if (res > -1) {
+						if (rxCom.cap(1) == "\\begin" || rxCom.cap(1) == "\\end") {
+							package.possibleCommands["normal"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
+						} else {
+							package.possibleCommands["normal"] << rxCom.cap(1);
+						}
+					} else {
+						if (!cmd.isEmpty())
+							package.possibleCommands["normal"] << cmd;
+						else
+							package.possibleCommands["normal"] << line.simplified();
+					}
+				}
+				if (valid.contains('m')) { // math commands
+					if (res > -1) {
+						if (rxCom.cap(1) == "\\begin" || rxCom.cap(1) == "\\end") {
+							package.possibleCommands["math"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
+						} else {
+							package.possibleCommands["math"] << rxCom.cap(1);
+						}
+					} else {
+						if (!cmd.isEmpty())
+							package.possibleCommands["math"] << cmd;
+						else
+							package.possibleCommands["math"] << line.simplified();
+					}
+				}
+				if (valid.contains('t')) { // tabular commands
+					if (res > -1) {
+						if (rxCom.cap(1) == "\\begin" || rxCom.cap(1) == "\\end") {
+							package.possibleCommands["tabular"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
+							package.possibleCommands["array"] << rxCom.cap(1) + "{" + rxCom.cap(3) + "}";
+						} else {
+							package.possibleCommands["tabular"] << rxCom.cap(1);
+							package.possibleCommands["array"] << rxCom.cap(1);
+						}
+					} else {
+						if (cmd.isEmpty())
+							cmd = line.simplified();
+						package.possibleCommands["tabular"] << cmd;
+						package.possibleCommands["array"] << cmd;
+					}
+				}
+				if (valid.contains('T')) { // tabbing support
+					if (res == -1) {
+						package.possibleCommands["tabbing"] << cmd;
+					}
+				}
+				if (valid.contains('e') && !env.isEmpty()) { // tabbing support
+					if (res == -1) {
+						foreach (const QString &elem, env)
+							package.possibleCommands[elem] << cmd;
+					} else {
+						QString cmd = rxCom.cap(1);
+						if (cmd == "\\begin" || cmd == "\\end") {
+							cmd = line.simplified();
+						}
+						foreach (const QString &elem, env)
+							package.possibleCommands[elem] << cmd;
+					}
+				}
+				if (!valid.contains('e') && !env.isEmpty()) { // set env alias
+					if (res > -1) {
+						if (rxCom.cap(1) == "\\begin") {
+							QString envName = rxCom.cap(3);
+							if (!envName.isEmpty()) {
+								foreach (const QString &elem, env)
+									package.environmentAliases.insert(rxCom.cap(3), elem);
+							}
+						}
+					}
+				}
+				// normal parsing for completer
+				if (hideFromCompletion)
+					continue; // command for spell checking only (auto parser)
+				if (line.startsWith("\\pageref") || line.startsWith("\\ref")) continue;
+				// remove special option classification e.g. %l
+				line.remove(QRegExp("%[a-zA-Z]+")); // not n
+				if (!line.contains("%")) {
+					//add placeholders to brackets like () to (%<..%>)
+					const QString brackets = "{}[]()<>";
+					int lastOpen = -1, openType = -1;
+					for (int i = 0; i < line.size(); i++) {
+						int index = brackets.indexOf(line[i]);
+						if (index >= 0) {
+							if (index % 2 == 0) {
+								lastOpen = i;
+								openType = index / 2;
+							} else {
+								if (lastOpen == -1 || openType != index / 2)
+									continue;
+								if (i - lastOpen < 2) // ignore empty arguments, feature request 888
+									continue;
+								if (i - lastOpen == 2 && line.mid(lastOpen + 1, 1) == "@") //ignore single @ (to be replaced with bibid in completer)
+									continue;
+								line.insert(lastOpen + 1, "%<");
+								i += 2;
+								line.insert(i, "%>");
+								/*if (lastOpen+2 == i-1) {  // deactivated, feature request 888
+								    line.insert(i, QApplication::translate("CodeSnippet", "something"));
+								    i+=QApplication::translate("CodeSnippet", "something").length();
+								}*/
+								lastOpen = -1;
+								i += 2;
+							}
+						}
+					}
+					if (line.startsWith("\\begin") || line.startsWith("\\end")) {
+						int i = line.indexOf("%<", 0);
+						line.replace(i, 2, "");
+						i = line.indexOf("%>", 0);
+						line.replace(i, 2, "");
+						if (line.endsWith("\\item"))
+							line.chop(5);
 
-                    }
-                }
+					}
+				}
 
-                if(!words.contains(line)){
-                    CodeSnippet cs=CodeSnippet(line);
-                    CodeSnippetList::iterator it=qLowerBound(words.begin(),words.end(),cs);
-                    it=words.insert(it,cs);
-                    uint hash=qHash(line);
-                    int len=line.length();
-                    it->index=hash;
-                    it->snippetLength=len;
-                    it->usageCount= uncommon ? -1 : 0;
-                    it->type=type;
-                    if(config){
-                         QList<QPair<int,int> >res=config->usage.values(hash);
-                        foreach(const PairIntInt& elem,res){
-                            if(elem.first==it->snippetLength){
-                                it->usageCount=elem.second;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }else{
-        //qDebug() << "Completion file not found:" << fileName;
-        package.packageName="<notFound>";
-        package.notFound = true;
-    }
+				if (!words.contains(line)) {
+					CodeSnippet cs = CodeSnippet(line);
+					CodeSnippetList::iterator it = qLowerBound(words.begin(), words.end(), cs);
+					it = words.insert(it, cs);
+					uint hash = qHash(line);
+					int len = line.length();
+					it->index = hash;
+					it->snippetLength = len;
+					it->usageCount = uncommon ? -1 : 0;
+					it->type = type;
+					if (config) {
+						QList<QPair<int, int> >res = config->usage.values(hash);
+						foreach (const PairIntInt &elem, res) {
+							if (elem.first == it->snippetLength) {
+								it->usageCount = elem.second;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	} else {
+		//qDebug() << "Completion file not found:" << fileName;
+		package.packageName = "<notFound>";
+		package.notFound = true;
+	}
 
 	QApplication::restoreOverrideCursor();
-	package.completionWords=words;
+	package.completionWords = words;
 	return package;
 }
 
-LatexPackage::LatexPackage() : notFound(false) {
+LatexPackage::LatexPackage() : notFound(false)
+{
 	completionWords.clear();
 	packageName.clear();
 }
 
-QString LatexPackage::makeKey(const QString &cwlFilename, const QString &options) {
+QString LatexPackage::makeKey(const QString &cwlFilename, const QString &options)
+{
 	return QString("%1#%2").arg(options).arg(cwlFilename);
 }
 
-QString LatexPackage::keyToCwlFilename(const QString &key) {
+QString LatexPackage::keyToCwlFilename(const QString &key)
+{
 	int i = key.indexOf('#');
-	if (i<0) return key;
-	else return key.mid(i+1);
+	if (i < 0) return key;
+	else return key.mid(i + 1);
 }
 
-QString LatexPackage::keyToPackageName(const QString &key) {
+QString LatexPackage::keyToPackageName(const QString &key)
+{
 	// Workaround since there is currently no reliable way to determine the packageName from LatexPackage directly (the attribute with the same name contains the key and sometimes nothing).
 	QString name = LatexPackage::keyToCwlFilename(key);
 	if (name.endsWith(".cwl"))
-		name.remove(name.length()-4, 4);
+		name.remove(name.length() - 4, 4);
 	if (name.startsWith("class-"))
 		name.remove(0, 6);
 	return name;
 }
 
-QString LatexPackage::keyToOptions(const QString &key) {
+QString LatexPackage::keyToOptions(const QString &key)
+{
 	int i = key.indexOf('#');
-	if (i<0) return QString();
+	if (i < 0) return QString();
 	else return key.left(i);
 }
 
-void LatexPackage::unite(LatexPackage &add,bool forCompletion){
-    if(forCompletion){
-        completionWords.unite(add.completionWords); //expensive
-        return;
-    }
-    optionCommands.unite(add.optionCommands);
-    environmentAliases.unite(add.environmentAliases);
-    specialTreatmentCommands.unite(add.specialTreatmentCommands);
-    specialDefCommands.unite(add.specialDefCommands);
-    //commandDescriptions.unite(add.commandDescriptions); //expensive
-    foreach(QString elem,add.commandDescriptions.keys()){
-        if(commandDescriptions.contains(elem)){
-            CommandDescription cd=commandDescriptions.value(elem);
-            CommandDescription cd_neu=add.commandDescriptions.value(elem);
-            if(cd_neu.args>cd.args){
-                //simple selection criteria
-                commandDescriptions.insert(elem,add.commandDescriptions.value(elem));
-            }
-        }else{
-            commandDescriptions.insert(elem,add.commandDescriptions.value(elem));
-        }
-    }
+void LatexPackage::unite(LatexPackage &add, bool forCompletion)
+{
+	if (forCompletion) {
+		completionWords.unite(add.completionWords); //expensive
+		return;
+	}
+	optionCommands.unite(add.optionCommands);
+	environmentAliases.unite(add.environmentAliases);
+	specialTreatmentCommands.unite(add.specialTreatmentCommands);
+	specialDefCommands.unite(add.specialDefCommands);
+	//commandDescriptions.unite(add.commandDescriptions); //expensive
+	foreach (QString elem, add.commandDescriptions.keys()) {
+		if (commandDescriptions.contains(elem)) {
+			CommandDescription cd = commandDescriptions.value(elem);
+			CommandDescription cd_neu = add.commandDescriptions.value(elem);
+			if (cd_neu.args > cd.args) {
+				//simple selection criteria
+				commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
+			}
+		} else {
+			commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
+		}
+	}
 
 	//possibleCommands.unite(add.possibleCommands);
-    foreach(const QString& elem,add.possibleCommands.keys()){ //expensive
-		QSet<QString> set2=add.possibleCommands[elem];
-		QSet<QString> set=possibleCommands[elem];
+	foreach (const QString &elem, add.possibleCommands.keys()) { //expensive
+		QSet<QString> set2 = add.possibleCommands[elem];
+		QSet<QString> set = possibleCommands[elem];
 		set.unite(set2);
-		possibleCommands[elem]=set;
-    }
+		possibleCommands[elem] = set;
+	}
 }
 
-
-QString getImageAsText(const QPixmap &AImage,const int w) {
-    QByteArray ba;
-    QBuffer buffer(&ba);
-    buffer.open(QIODevice::WriteOnly);
-    AImage.save(&buffer, "PNG");
-    QString text=w<0 ? QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64())): QString("<img src=\"data:image/png;base64,%1\" width=%2 >").arg(QString(buffer.data().toBase64())).arg(w);
-    return text;
+QString getImageAsText(const QPixmap &AImage, const int w)
+{
+	QByteArray ba;
+	QBuffer buffer(&ba);
+	buffer.open(QIODevice::WriteOnly);
+	AImage.save(&buffer, "PNG");
+	QString text = w < 0 ? QString("<img src=\"data:image/png;base64,%1\">").arg(QString(buffer.data().toBase64())) : QString("<img src=\"data:image/png;base64,%1\" width=%2 >").arg(QString(buffer.data().toBase64())).arg(w);
+	return text;
 }
 
 /*!
@@ -2382,79 +2473,81 @@ QString getImageAsText(const QPixmap &AImage,const int w) {
  * If there is not enough space as well the text is shown in the position (left/right) of maxium
  * available space and the text lines are shortend to fit the available space.
  */
-void showTooltipLimited(QPoint pos, QString text, int relatedWidgetWidth){
-    text.replace("\t","    "); //if there are tabs at the position in the string, qt crashes. (13707)
-    QRect screen = QApplication::desktop()->availableGeometry(pos);
-    // estimate width of coming tooltip
-    // rather dirty code
-    bool textWillWarp = Qt::mightBeRichText(text);
-    QLabel lLabel(0,Qt::ToolTip);
-    lLabel.setFont(QToolTip::font());
-    lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
-    lLabel.setFrameStyle(QFrame::StyledPanel);
-    lLabel.setAlignment(Qt::AlignLeft);
-    lLabel.setIndent(1);
-    lLabel.setWordWrap(textWillWarp);
-    lLabel.ensurePolished();
-    lLabel.setText(text);
-    lLabel.adjustSize();
-    int textWidthInPixels = lLabel.width()+10; // +10 good guess
+void showTooltipLimited(QPoint pos, QString text, int relatedWidgetWidth)
+{
+	text.replace("\t", "    "); //if there are tabs at the position in the string, qt crashes. (13707)
+	QRect screen = QApplication::desktop()->availableGeometry(pos);
+	// estimate width of coming tooltip
+	// rather dirty code
+	bool textWillWarp = Qt::mightBeRichText(text);
+	QLabel lLabel(0, Qt::ToolTip);
+	lLabel.setFont(QToolTip::font());
+	lLabel.setMargin(1 + lLabel.style()->pixelMetric(QStyle::PM_ToolTipLabelFrameWidth, 0, &lLabel));
+	lLabel.setFrameStyle(QFrame::StyledPanel);
+	lLabel.setAlignment(Qt::AlignLeft);
+	lLabel.setIndent(1);
+	lLabel.setWordWrap(textWillWarp);
+	lLabel.ensurePolished();
+	lLabel.setText(text);
+	lLabel.adjustSize();
+	int textWidthInPixels = lLabel.width() + 10; // +10 good guess
 
-    if (pos.x() - screen.x() + textWidthInPixels <= screen.width()) {
-        // tooltip fits at the requested position
-        QToolTip::showText(pos, text);
-    } else {
-        // try positioning the tooltip left of the releated widget
-        QPoint posLeft(pos.x() - textWidthInPixels - relatedWidgetWidth, pos.y());
-        if (posLeft.x() >= screen.x()) {
-            QToolTip::showText(posLeft, text);
-        } else {
-            // text does not fit to the left
-            // choose the position left/right with the maximum available space
-            int availableWidthLeft = (pos.x() - screen.x()) - relatedWidgetWidth;
-            int availableWidthRight = screen.width() - (pos.x() - screen.x());
-            int availableWidth = qMax(availableWidthLeft, availableWidthRight);
-            bool positionLeft = availableWidthLeft > availableWidthRight;
-            if (!textWillWarp) {
-                // shorten text lines to fit textwidth (only feasible if the tooltip does not wrap)
-                QStringList lines = text.split("\n");
-                int maxLength = 0;
-                QString maxLine;
-                foreach(const QString line, lines){
-                    if(line.length() > maxLength){
-                        maxLength = line.length();
-                        maxLine = line;
-                    }
-                }
-                int averageWidth = lLabel.fontMetrics().averageCharWidth();
-                maxLength = qMin(maxLength, availableWidth/averageWidth);
-                while(textWidthInPixels > availableWidth && maxLength > 10){
-                    maxLength-=2;
-                    for(int i=0; i<lines.count(); i++){
-                        lines[i]=lines[i].left(maxLength);
-                    }
-                    lLabel.setText(lines.join("\n"));
-                    lLabel.adjustSize();
-                    textWidthInPixels=lLabel.width()+10;
-                }
-                text=lines.join("\n");
-            }
-            if (positionLeft) {
-                posLeft.setX(pos.x() - textWidthInPixels - relatedWidgetWidth);
-                QToolTip::showText(posLeft, text);
-            } else {
-                QToolTip::showText(pos, text);
-            }
-        }
-    }
+	if (pos.x() - screen.x() + textWidthInPixels <= screen.width()) {
+		// tooltip fits at the requested position
+		QToolTip::showText(pos, text);
+	} else {
+		// try positioning the tooltip left of the releated widget
+		QPoint posLeft(pos.x() - textWidthInPixels - relatedWidgetWidth, pos.y());
+		if (posLeft.x() >= screen.x()) {
+			QToolTip::showText(posLeft, text);
+		} else {
+			// text does not fit to the left
+			// choose the position left/right with the maximum available space
+			int availableWidthLeft = (pos.x() - screen.x()) - relatedWidgetWidth;
+			int availableWidthRight = screen.width() - (pos.x() - screen.x());
+			int availableWidth = qMax(availableWidthLeft, availableWidthRight);
+			bool positionLeft = availableWidthLeft > availableWidthRight;
+			if (!textWillWarp) {
+				// shorten text lines to fit textwidth (only feasible if the tooltip does not wrap)
+				QStringList lines = text.split("\n");
+				int maxLength = 0;
+				QString maxLine;
+				foreach (const QString line, lines) {
+					if (line.length() > maxLength) {
+						maxLength = line.length();
+						maxLine = line;
+					}
+				}
+				int averageWidth = lLabel.fontMetrics().averageCharWidth();
+				maxLength = qMin(maxLength, availableWidth / averageWidth);
+				while (textWidthInPixels > availableWidth && maxLength > 10) {
+					maxLength -= 2;
+					for (int i = 0; i < lines.count(); i++) {
+						lines[i] = lines[i].left(maxLength);
+					}
+					lLabel.setText(lines.join("\n"));
+					lLabel.adjustSize();
+					textWidthInPixels = lLabel.width() + 10;
+				}
+				text = lines.join("\n");
+			}
+			if (positionLeft) {
+				posLeft.setX(pos.x() - textWidthInPixels - relatedWidgetWidth);
+				QToolTip::showText(posLeft, text);
+			} else {
+				QToolTip::showText(pos, text);
+			}
+		}
+	}
 }
 
-QString truncateLines(const QString & s, int maxLines) {
+QString truncateLines(const QString &s, int maxLines)
+{
 	int lineCount = 0;
-	for (int i=0; i<s.length(); i++) {
+	for (int i = 0; i < s.length(); i++) {
 		if (s[i] == '\n') lineCount++;
 		if (lineCount >= maxLines) {
-			return s.left(i+1) + "...";
+			return s.left(i + 1) + "...";
 		}
 	}
 	return s;
@@ -2466,7 +2559,8 @@ QString truncateLines(const QString & s, int maxLines) {
  * The list will not get longer than maxLength.
  * Returns true if the list contents changed (i.e. item was not already in first place)
  */
-bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLength) {
+bool addMostRecent(const QString &item, QStringList &mostRecentList, int maxLength)
+{
 	int p = mostRecentList.indexOf(item);
 	bool changed = (p != 0);
 	if (!changed) return changed;
@@ -2477,329 +2571,346 @@ bool addMostRecent(const QString & item, QStringList & mostRecentList, int maxLe
 	return changed;
 }
 
-QString getArg(const TokenList &tl,QDocumentLineHandle* dlh,int argNumber,ArgumentList::ArgType type){
-    // argNumber 0 -> first argument
-    QList<Tokens::TokenType> tkTypes;
-    QString line=dlh->text();
-    if(type==ArgumentList::Mandatory){
-        tkTypes.append(Tokens::braces);
-        tkTypes.append(Tokens::word);
-        tkTypes.append(Tokens::command);
-        tkTypes.append(Tokens::commandUnknown);
-        tkTypes.append(Tokens::number);
-        tkTypes.append(Tokens::openBrace);
-    }else{
-        tkTypes.append(Tokens::squareBracket);
-        tkTypes.append(Tokens::openSquare);
-    }
-    int k=0;
-    for (int i=0; i<tl.length(); i++) {
-        Tokens tk=tl.at(i);
+QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type)
+{
+	// argNumber 0 -> first argument
+	QList<Tokens::TokenType> tkTypes;
+	QString line = dlh->text();
+	if (type == ArgumentList::Mandatory) {
+		tkTypes.append(Tokens::braces);
+		tkTypes.append(Tokens::word);
+		tkTypes.append(Tokens::command);
+		tkTypes.append(Tokens::commandUnknown);
+		tkTypes.append(Tokens::number);
+		tkTypes.append(Tokens::openBrace);
+	} else {
+		tkTypes.append(Tokens::squareBracket);
+		tkTypes.append(Tokens::openSquare);
+	}
+	int k = 0;
+	for (int i = 0; i < tl.length(); i++) {
+		Tokens tk = tl.at(i);
 
-        if (tkTypes.contains(tk.type)) {
-            QString result;
-            if(Tokens::tkBraces().contains(tk.type)){
-                result=line.mid(tk.start+1,tk.length-2);
-            }
-            if(Tokens::tkOpen().contains(tk.type)){
-                    result=line.mid(tk.start+1,tk.length)+findRestArg(dlh,Tokens::opposite(tk.type),5);
-            }
-            if(Tokens::tkClose().contains(tk.type)){
-                    result=line.mid(tk.start+1,tk.length);
-            }
-            if(result.isEmpty()){
-                    result=line.mid(tk.start,tk.length);
-            }
-            if(k==argNumber)
-                return result;
-            else
-                k++;
-        }else{
-            if(type==ArgumentList::Optional)
-                return QString(); //optional argument can't follow mandatory one
-        }
-    }
-    return QString();
+		if (tkTypes.contains(tk.type)) {
+			QString result;
+			if (Tokens::tkBraces().contains(tk.type)) {
+				result = line.mid(tk.start + 1, tk.length - 2);
+			}
+			if (Tokens::tkOpen().contains(tk.type)) {
+				result = line.mid(tk.start + 1, tk.length) + findRestArg(dlh, Tokens::opposite(tk.type), 5);
+			}
+			if (Tokens::tkClose().contains(tk.type)) {
+				result = line.mid(tk.start + 1, tk.length);
+			}
+			if (result.isEmpty()) {
+				result = line.mid(tk.start, tk.length);
+			}
+			if (k == argNumber)
+				return result;
+			else
+				k++;
+		} else {
+			if (type == ArgumentList::Optional)
+				return QString(); //optional argument can't follow mandatory one
+		}
+	}
+	return QString();
 }
 
-QString findRestArg(QDocumentLineHandle* dlh, Tokens::TokenType type, int count){
-    // dlh is current line, next line will be checked here!!!
-    if(count<0)
-        return QString(); // limit search depth
-    QDocument *document=dlh->document();
-    int index = document->indexOf(dlh);
-    if(index+1>=document->lines())
-        return QString(); // last line reached
-    dlh=document->line(index+1).handle();
-    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-    QString result=dlh->text();
-    for (int i=0; i<tl.length(); i++) {
-        Tokens tk=tl.at(i);
-        if(tk.type==type){
-            // closing found
-            return result.left(tk.start);
-        }
-        if(Tokens::tkClose().contains(tk.type)){
-            // wrong closing found/ syntax problem
-            //return value anyway
-            return result.left(tk.start+1);
-        }
-    }
-    return result+findRestArg(dlh,type,count-1);
-}
-
-
-QSet<Tokens::TokenType> Tokens::tkBraces(){
-    QSet<TokenType> result;
-    result.insert(braces);
-    result.insert(bracket);
-    result.insert(squareBracket);
-    return result;
-}
-
-QSet<Tokens::TokenType> Tokens::tkArg(){
-    QSet<TokenType> result;
-    result.insert(openBrace);
-    result.insert(braces);
-    result.insert(word);
-    return result;
-}
-
-QSet<Tokens::TokenType> Tokens::tkOption(){
-    QSet<TokenType> result;
-    result.insert(squareBracket);
-    result.insert(openSquare);
-    return result;
-}
-
-QSet<Tokens::TokenType> Tokens::tkOpen(){
-    QSet<TokenType> result;
-    result.insert(openBrace);
-    result.insert(openBracket);
-    result.insert(openSquare);
-    return result;
-}
-
-QSet<Tokens::TokenType> Tokens::tkClose(){
-    QSet<TokenType> result;
-    result.insert(closeBrace);
-    result.insert(closeBracket);
-    result.insert(closeSquareBracket);
-    return result;
-}
-QSet<Tokens::TokenType> Tokens::tkSingleArg(){
-    QSet<TokenType> result;
-    result.insert(label);
-    result.insert(labelRef);
-    result.insert(url);
-    result.insert(file);
-    result.insert(imagefile);
-    result.insert(env);
-    result.insert(beginEnv);
-    result.insert(documentclass);
-    result.insert(beamertheme);
-    result.insert(def);
-    return result;
-}
-
-QSet<Tokens::TokenType> Tokens::tkCommalist(){
-    QSet<TokenType> result;
-    result.insert(bibItem);
-    result.insert(package);
-    result.insert(packageoption);
-    result.insert(bibfile);
-    result.insert(labelRefList);
-    return result;
-}
-
-Tokens::TokenType Tokens::opposite(TokenType type){
-    switch(type){
-    case closeBrace:
-        return openBrace;
-    case closeBracket:
-        return openBracket;
-    case closeSquareBracket:
-        return openSquare;
-    case openBrace:
-        return closeBrace;
-    case openBracket:
-        return closeBracket;
-    case openSquare:
-        return closeSquareBracket;
-    default:
-        return none;
-    }
-
-}
-
-Tokens::TokenType Tokens::closed(TokenType type){
-    switch(type){
-    case closeBrace:
-        return braces;
-    case closeBracket:
-        return bracket;
-    case closeSquareBracket:
-        return squareBracket;
-    case openBrace:
-        return braces;
-    case openBracket:
-        return bracket;
-    case openSquare:
-        return squareBracket;
-    default:
-        return none;
-    }
-
-}
-
-bool Tokens::operator ==(const Tokens &v) const{
-    return (this->dlh==v.dlh)&&(this->length==v.length)&&(this->level==v.level)&&(this->type==v.type);
-}
-QString Tokens::getText(){
-    dlh->lockForRead();
-    QString result=dlh->text().mid(start,length);
-    dlh->unlock();
-    return result;
-}
-
-CommandDescription extractCommandDef(QString line,QString definition){
-    QRegExp rxCom("^(\\\\\\w+\\*?)");
-    int i=rxCom.indexIn(line);
-    QString command=rxCom.cap();
-    line=line.mid(command.length());
-    const QString specialChars="{[(";
-    const QString specialChars2="}])";
-    CommandDescription cd;
-    if(line.isEmpty())
-        return cd;
-    QChar c=line.at(0);
-    int loop=1;
-    while(specialChars.contains(c)){
-        int j=specialChars.indexOf(c);
-        QChar closingChar=specialChars2.at(j);
-        i=line.indexOf(closingChar);
-        QString def=line.mid(1,i-1);
-        Tokens::TokenType type=Tokens::generalArg; // assume that unknown argument is not a text
-        if(loop==1 &&command=="\\begin"){
-            type=Tokens::beginEnv;
-        }
-        if(loop==1 &&command=="\\end"){
-            type=Tokens::env;
-        }
-        if(def=="text" || def.endsWith("%text")){
-            type=Tokens::text;
-        }
-        if(def=="title" || def=="short title"){
-            type=Tokens::title;
-        }
-        if(def=="package"){
-            type=Tokens::package;
-        }
-        if(def=="cols" || def=="preamble"){
-            type=Tokens::colDef;
-        }
-        if(def=="color"){
-            type=Tokens::color;
-        }
-        if(def=="width" || def=="length" || def=="height" || def.endsWith("%l")){
-            type=Tokens::width;
-        }
-        if(def=="bib files" || def=="bib file"){
-            type=Tokens::bibfile;
-        }
-        if(def=="command" || def=="cmd" || def.endsWith("%cmd")){
-            type=Tokens::def;
-        }
-        if(def=="def" || def=="definition" || def=="begdef" || def=="enddef"){
-            type=Tokens::definition; // actual definition: \newcommand def defArgNumber definition
-        }
-        if(def=="args"){
-            type=Tokens::defArgNumber;
-        }
-        if(def=="default"){
-            type=Tokens::optionalArgDefinition;
-        }
-        if(def=="newlength"){
-            type=Tokens::defWidth;
-        }
-        if(def=="file"){
-            type=Tokens::file;
-        }
-        if(def=="imagefile"){
-            type=Tokens::imagefile;
-        }
-        if(def.contains("URL")){
-            type=Tokens::url;
-        }
-        if(def.contains("keys")||def=="keyvals"||def=="%<options%>"|| def.endsWith("%keyvals")){
-            type=Tokens::keyValArg;
-        }
-        if(def.endsWith("%special")){
-            type=Tokens::specialArg;
-            def.chop(8);
-            if(LatexParserInstance){
-                if(!LatexParserInstance->mapSpecialArgs.values().contains("%"+def)){
-                    int cnt=LatexParserInstance->mapSpecialArgs.count();
-                    LatexParserInstance->mapSpecialArgs.insert(cnt,"%"+def);
-                    type=Tokens::TokenType(type+cnt);
-                }
-            }
-        }
-        if(def=="options"){
-            type=Tokens::packageoption;
-        }
-        if(def=="class"){
-            type=Tokens::documentclass;
-        }
-        if(def=="beamertheme"){
-            type=Tokens::beamertheme;
-        }
-        if(def=="citekey" || def=="keylist" || def=="bibid"){
-            type=Tokens::bibItem;
-        }
-        if(def=="placement" || def=="position"){
-            type=Tokens::placement;
-        }
-        if(def=="key"||def=="key1"||def=="key2" || def.endsWith("%ref")){
-            type=Tokens::labelRef;
-            if(command=="\\label")
-                type=Tokens::label;
-        }
-        if(def=="label" && definition.contains('r')){
-            //reference with keyword label
-            type=Tokens::labelRef;
-        }
-        if(def=="labellist"){
-            type=Tokens::labelRefList;
-        }
-        if(!def.isEmpty()){ //ignore empty arguments
-            switch (j) {
-            case 0: cd.args=cd.args+1;
-                cd.argTypes.append(type);
-                break;
-            case 1: cd.optionalArgs=cd.optionalArgs+1;
-                cd.optTypes.append(type);
-                break;
-            case 2: cd.bracketArgs=cd.bracketArgs+1;
-                cd.bracketTypes.append(type);
-                break;
-            default:
-                break;
-            }
-        }
-        if(i<0)
-            break;
-        line=line.mid(i+1);
-        if(line.isEmpty())
-            break;
-        c=line.at(0);
-        loop++;
-    }
-    return cd;
+QString findRestArg(QDocumentLineHandle *dlh, Tokens::TokenType type, int count)
+{
+	// dlh is current line, next line will be checked here!!!
+	if (count < 0)
+		return QString(); // limit search depth
+	QDocument *document = dlh->document();
+	int index = document->indexOf(dlh);
+	if (index + 1 >= document->lines())
+		return QString(); // last line reached
+	dlh = document->line(index + 1).handle();
+	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+	QString result = dlh->text();
+	for (int i = 0; i < tl.length(); i++) {
+		Tokens tk = tl.at(i);
+		if (tk.type == type) {
+			// closing found
+			return result.left(tk.start);
+		}
+		if (Tokens::tkClose().contains(tk.type)) {
+			// wrong closing found/ syntax problem
+			//return value anyway
+			return result.left(tk.start + 1);
+		}
+	}
+	return result + findRestArg(dlh, type, count - 1);
 }
 
 
-CommandDescription::CommandDescription():optionalArgs(0),bracketArgs(0),args(0),level(0)
+QSet<Tokens::TokenType> Tokens::tkBraces()
+{
+	QSet<TokenType> result;
+	result.insert(braces);
+	result.insert(bracket);
+	result.insert(squareBracket);
+	return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkArg()
+{
+	QSet<TokenType> result;
+	result.insert(openBrace);
+	result.insert(braces);
+	result.insert(word);
+	return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkOption()
+{
+	QSet<TokenType> result;
+	result.insert(squareBracket);
+	result.insert(openSquare);
+	return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkOpen()
+{
+	QSet<TokenType> result;
+	result.insert(openBrace);
+	result.insert(openBracket);
+	result.insert(openSquare);
+	return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkClose()
+{
+	QSet<TokenType> result;
+	result.insert(closeBrace);
+	result.insert(closeBracket);
+	result.insert(closeSquareBracket);
+	return result;
+}
+QSet<Tokens::TokenType> Tokens::tkSingleArg()
+{
+	QSet<TokenType> result;
+	result.insert(label);
+	result.insert(labelRef);
+	result.insert(url);
+	result.insert(file);
+	result.insert(imagefile);
+	result.insert(env);
+	result.insert(beginEnv);
+	result.insert(documentclass);
+	result.insert(beamertheme);
+	result.insert(def);
+	return result;
+}
+
+QSet<Tokens::TokenType> Tokens::tkCommalist()
+{
+	QSet<TokenType> result;
+	result.insert(bibItem);
+	result.insert(package);
+	result.insert(packageoption);
+	result.insert(bibfile);
+	result.insert(labelRefList);
+	return result;
+}
+
+Tokens::TokenType Tokens::opposite(TokenType type)
+{
+	switch (type) {
+	case closeBrace:
+		return openBrace;
+	case closeBracket:
+		return openBracket;
+	case closeSquareBracket:
+		return openSquare;
+	case openBrace:
+		return closeBrace;
+	case openBracket:
+		return closeBracket;
+	case openSquare:
+		return closeSquareBracket;
+	default:
+		return none;
+	}
+}
+
+Tokens::TokenType Tokens::closed(TokenType type)
+{
+	switch (type) {
+	case closeBrace:
+		return braces;
+	case closeBracket:
+		return bracket;
+	case closeSquareBracket:
+		return squareBracket;
+	case openBrace:
+		return braces;
+	case openBracket:
+		return bracket;
+	case openSquare:
+		return squareBracket;
+	default:
+		return none;
+	}
+
+}
+
+bool Tokens::operator ==(const Tokens &v) const
+{
+	return (this->dlh == v.dlh) && (this->length == v.length) && (this->level == v.level) && (this->type == v.type);
+}
+
+QString Tokens::getText()
+{
+	dlh->lockForRead();
+	QString result = dlh->text().mid(start, length);
+	dlh->unlock();
+	return result;
+}
+
+CommandDescription extractCommandDef(QString line, QString definition)
+{
+	QRegExp rxCom("^(\\\\\\w+\\*?)");
+	int i = rxCom.indexIn(line);
+	QString command = rxCom.cap();
+	line = line.mid(command.length());
+	const QString specialChars = "{[(";
+	const QString specialChars2 = "}])";
+	CommandDescription cd;
+	if (line.isEmpty())
+		return cd;
+	QChar c = line.at(0);
+	int loop = 1;
+	while (specialChars.contains(c)) {
+		int j = specialChars.indexOf(c);
+		QChar closingChar = specialChars2.at(j);
+		i = line.indexOf(closingChar);
+		QString def = line.mid(1, i - 1);
+		Tokens::TokenType type = Tokens::generalArg; // assume that unknown argument is not a text
+		if (loop == 1 && command == "\\begin") {
+			type = Tokens::beginEnv;
+		}
+		if (loop == 1 && command == "\\end") {
+			type = Tokens::env;
+		}
+		if (def == "text" || def.endsWith("%text")) {
+			type = Tokens::text;
+		}
+		if (def == "title" || def == "short title") {
+			type = Tokens::title;
+		}
+		if (def == "package") {
+			type = Tokens::package;
+		}
+		if (def == "cols" || def == "preamble") {
+			type = Tokens::colDef;
+		}
+		if (def == "color") {
+			type = Tokens::color;
+		}
+		if (def == "width" || def == "length" || def == "height" || def.endsWith("%l")) {
+			type = Tokens::width;
+		}
+		if (def == "bib files" || def == "bib file") {
+			type = Tokens::bibfile;
+		}
+		if (def == "command" || def == "cmd" || def.endsWith("%cmd")) {
+			type = Tokens::def;
+		}
+		if (def == "def" || def == "definition" || def == "begdef" || def == "enddef") {
+			type = Tokens::definition; // actual definition: \newcommand def defArgNumber definition
+		}
+		if (def == "args") {
+			type = Tokens::defArgNumber;
+		}
+		if (def == "default") {
+			type = Tokens::optionalArgDefinition;
+		}
+		if (def == "newlength") {
+			type = Tokens::defWidth;
+		}
+		if (def == "file") {
+			type = Tokens::file;
+		}
+		if (def == "imagefile") {
+			type = Tokens::imagefile;
+		}
+		if (def.contains("URL")) {
+			type = Tokens::url;
+		}
+		if (def.contains("keys") || def == "keyvals" || def == "%<options%>" || def.endsWith("%keyvals")) {
+			type = Tokens::keyValArg;
+		}
+		if (def.endsWith("%special")) {
+			type = Tokens::specialArg;
+			def.chop(8);
+			if (LatexParserInstance) {
+				if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + def)) {
+					int cnt = LatexParserInstance->mapSpecialArgs.count();
+					LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + def);
+					type = Tokens::TokenType(type + cnt);
+				}
+			}
+		}
+		if (def == "options") {
+			type = Tokens::packageoption;
+		}
+		if (def == "class") {
+			type = Tokens::documentclass;
+		}
+		if (def == "beamertheme") {
+			type = Tokens::beamertheme;
+		}
+		if (def == "citekey" || def == "keylist" || def == "bibid") {
+			type = Tokens::bibItem;
+		}
+		if (def == "placement" || def == "position") {
+			type = Tokens::placement;
+		}
+		if (def == "key" || def == "key1" || def == "key2" || def.endsWith("%ref")) {
+			type = Tokens::labelRef;
+			if (command == "\\label")
+				type = Tokens::label;
+		}
+		if (def == "label" && definition.contains('r')) {
+			//reference with keyword label
+			type = Tokens::labelRef;
+		}
+		if (def == "labellist") {
+			type = Tokens::labelRefList;
+		}
+		if (!def.isEmpty()) { //ignore empty arguments
+			switch (j) {
+			case 0:
+				cd.args = cd.args + 1;
+				cd.argTypes.append(type);
+				break;
+			case 1:
+				cd.optionalArgs = cd.optionalArgs + 1;
+				cd.optTypes.append(type);
+				break;
+			case 2:
+				cd.bracketArgs = cd.bracketArgs + 1;
+				cd.bracketTypes.append(type);
+				break;
+			default:
+				break;
+			}
+		}
+		if (i < 0)
+			break;
+		line = line.mid(i + 1);
+		if (line.isEmpty())
+			break;
+		c = line.at(0);
+		loop++;
+	}
+	return cd;
+}
+
+
+CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), args(0), level(0)
 {
 
 }
@@ -2807,180 +2918,177 @@ CommandDescription::CommandDescription():optionalArgs(0),bracketArgs(0),args(0),
 
 TokenList getArgContent(Tokens &tk)
 {
-    TokenList results;
-    QDocumentLineHandle *dlh=tk.dlh;
-    if(!dlh)
-        return results;
-    dlh->lockForRead();
-    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-    dlh->unlock();
-    for(int i=0;i<tl.length();i++){
-        if(tk==tl.at(i)){
-            results=getArgContent(tl,i,tk.level);
-            break;
-        }
-    }
-    return results;
+	TokenList results;
+	QDocumentLineHandle *dlh = tk.dlh;
+	if (!dlh)
+		return results;
+	dlh->lockForRead();
+	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+	dlh->unlock();
+	for (int i = 0; i < tl.length(); i++) {
+		if (tk == tl.at(i)) {
+			results = getArgContent(tl, i, tk.level);
+			break;
+		}
+	}
+	return results;
 }
 
-TokenList getArgContent(TokenList &tl,int pos,int level,int runAwayPrevention)
+TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention)
 {
-    TokenList result;
-    if(runAwayPrevention<0)
-        return result;
-    bool finished=false;
-    Tokens tk;
-    // adapt strategy after token type (word, closed , open)
-    if(pos>=0 && pos<tl.length()){
-        tk=tl.at(pos);
-        if(tk.type==Tokens::word){
-            result.append(tk);
-            return result;
-        }
-        if(Tokens::tkBraces().contains(tk.type)){
-            //closed , no spill in next line
-            runAwayPrevention=0; // in case there is no token after the last usable one
-        }
-    }
+	TokenList result;
+	if (runAwayPrevention < 0)
+		return result;
+	bool finished = false;
+	Tokens tk;
+	// adapt strategy after token type (word, closed , open)
+	if (pos >= 0 && pos < tl.length()) {
+		tk = tl.at(pos);
+		if (tk.type == Tokens::word) {
+			result.append(tk);
+			return result;
+		}
+		if (Tokens::tkBraces().contains(tk.type)) {
+			//closed , no spill in next line
+			runAwayPrevention = 0; // in case there is no token after the last usable one
+		}
+	}
 
-    for(int i=pos+1;i<tl.length();i++){
-        tk=tl.at(i);
-        if(tk.level<level){
-            finished=true;
-            break; // end reached
-        }
-        if(tk.level==level){
-            result.append(tk);
-        }
-        //ignore other levels
-    }
-    if(!finished && tk.dlh){
-        //getRestArgfrom
-        QDocument *document=tk.dlh->document();
-        int index = document->indexOf(tk.dlh);
-        TokenList tl;
-        while(index+1<document->lines()){
-            QDocumentLineHandle *dlh=document->line(index+1).handle();
-            tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-            if(!tl.isEmpty())
-                break;
-            index++;
-        }
-        if(!tl.isEmpty())
-            result.append(getArgContent(tl,-1,level-tk.level,runAwayPrevention-1));
-    }
-    return result;
+	for (int i = pos + 1; i < tl.length(); i++) {
+		tk = tl.at(i);
+		if (tk.level < level) {
+			finished = true;
+			break; // end reached
+		}
+		if (tk.level == level) {
+			result.append(tk);
+		}
+		//ignore other levels
+	}
+	if (!finished && tk.dlh) {
+		//getRestArgfrom
+		QDocument *document = tk.dlh->document();
+		int index = document->indexOf(tk.dlh);
+		TokenList tl;
+		while (index + 1 < document->lines()) {
+			QDocumentLineHandle *dlh = document->line(index + 1).handle();
+			tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+			if (!tl.isEmpty())
+				break;
+			index++;
+		}
+		if (!tl.isEmpty())
+			result.append(getArgContent(tl, -1, level - tk.level, runAwayPrevention - 1));
+	}
+	return result;
 }
-
 
 TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 {
-    dlh->lockForRead();
-    TokenList tl=dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-    dlh->unlock();
-    QDocument *doc=dlh->document();
-    int lineNr=doc->indexOf(dlh);
-    TokenStack stack;
-    if(lineNr>0){
-        QDocumentLineHandle *previous=doc->line(lineNr-1).handle();
-        previous->lockForRead();
-        stack=previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-        previous->unlock();
-    }
-    // find innermost token at pos
-    TokenStack ts;
-    for(int i=0;i<tl.length();i++){
-        Tokens tk=tl.at(i);
-        if(tk.start>pos){
-            break;
-        }
-        if(Tokens::tkOpen().contains(tk.type)){
-            stack.push(tk);
-        }
-        if(Tokens::tkClose().contains(tk.type) && !stack.isEmpty()){
-            if(stack.top().type==Tokens::opposite(tk.type)){
-                stack.pop();
-            }
-        }
+	dlh->lockForRead();
+	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+	dlh->unlock();
+	QDocument *doc = dlh->document();
+	int lineNr = doc->indexOf(dlh);
+	TokenStack stack;
+	if (lineNr > 0) {
+		QDocumentLineHandle *previous = doc->line(lineNr - 1).handle();
+		previous->lockForRead();
+		stack = previous->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+		previous->unlock();
+	}
+	// find innermost token at pos
+	TokenStack ts;
+	for (int i = 0; i < tl.length(); i++) {
+		Tokens tk = tl.at(i);
+		if (tk.start > pos) {
+			break;
+		}
+		if (Tokens::tkOpen().contains(tk.type)) {
+			stack.push(tk);
+		}
+		if (Tokens::tkClose().contains(tk.type) && !stack.isEmpty()) {
+			if (stack.top().type == Tokens::opposite(tk.type)) {
+				stack.pop();
+			}
+		}
 
 
 
-        if(ts.isEmpty()){
-            ts.push(tk);
-        }else{
-            // if level identical, replace top
-            // if level > , add
-            // if level < , remove and replace
-            if(ts.top().level==tk.level){
-                ts.pop();
-                ts.push(tk);
-            }else{
-                if(ts.top().level<tk.level){
-                    ts.push(tk);
-                }else{
-                    ts.pop();
-                    if(ts.isEmpty()){
-                        ts.push(tk);
-                    }else{
-                        ts.pop();
-                        ts.push(tk);
-                    }
-                }
-            }
+		if (ts.isEmpty()) {
+			ts.push(tk);
+		} else {
+			// if level identical, replace top
+			// if level > , add
+			// if level < , remove and replace
+			if (ts.top().level == tk.level) {
+				ts.pop();
+				ts.push(tk);
+			} else {
+				if (ts.top().level < tk.level) {
+					ts.push(tk);
+				} else {
+					ts.pop();
+					if (ts.isEmpty()) {
+						ts.push(tk);
+					} else {
+						ts.pop();
+						ts.push(tk);
+					}
+				}
+			}
 
-        }
-    } //for
-    while(!ts.isEmpty()){
-        // check that pos is within stack
-        if(ts.top().start+ts.top().length>pos)
-            break;
-        if(ts.top().start+ts.top().length==pos && !Tokens::tkBraces().contains(ts.top().type)) // equal is accceptable for other than braces
-            break;
-        ts.pop();
-    }
-    stack<<ts;
-    return stack;
+		}
+	} //for
+	while (!ts.isEmpty()) {
+		// check that pos is within stack
+		if (ts.top().start + ts.top().length > pos)
+			break;
+		if (ts.top().start + ts.top().length == pos && !Tokens::tkBraces().contains(ts.top().type)) // equal is accceptable for other than braces
+			break;
+		ts.pop();
+	}
+	stack << ts;
+	return stack;
 }
-
 
 Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
 {
-    if (!dlh) return Tokens();
-    TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-    Tokens tk;
-    for(int i=0;i<tl.length();i++){
-        Tokens elem=tl.at(i);
-        if(elem.start>pos)
-            break;
-        if(elem.start+elem.length>pos){
-            tk=elem; // get deepest element at col
-            if(first)
-                break;
-        }
-        if(!Tokens::tkBraces().contains(elem.type)&&!Tokens::tkClose().contains(elem.type)&& elem.start+elem.length>=pos){ // get abc|} -> abc
-            tk=elem; // get deepest element at col
-            if(first)
-                break;
-        }
-    }
-    return tk;
+	if (!dlh) return Tokens();
+	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+	Tokens tk;
+	for (int i = 0; i < tl.length(); i++) {
+		Tokens elem = tl.at(i);
+		if (elem.start > pos)
+			break;
+		if (elem.start + elem.length > pos) {
+			tk = elem; // get deepest element at col
+			if (first)
+				break;
+		}
+		if (!Tokens::tkBraces().contains(elem.type) && !Tokens::tkClose().contains(elem.type) && elem.start + elem.length >= pos) { // get abc|} -> abc
+			tk = elem; // get deepest element at col
+			if (first)
+				break;
+		}
+	}
+	return tk;
 }
-
 
 int getTokenAtCol(TokenList &tl, int pos, bool first)
 {
-    int result=-1;
-    for(int i=0;i<tl.length();i++){
-        Tokens elem=tl.at(i);
-        if(elem.start>pos)
-            break;
-        if(elem.start+elem.length>pos){
-            result=i; // get deepest element at col
-            if(first)
-                break;
-        }
-    }
-    return result;
+	int result = -1;
+	for (int i = 0; i < tl.length(); i++) {
+		Tokens elem = tl.at(i);
+		if (elem.start > pos)
+			break;
+		if (elem.start + elem.length > pos) {
+			result = i; // get deepest element at col
+			if (first)
+				break;
+		}
+	}
+	return result;
 }
 
 /*
@@ -2990,167 +3098,168 @@ int getTokenAtCol(TokenList &tl, int pos, bool first)
  */
 QString getCommandFromToken(Tokens tk)
 {
-    QString cmd;
-    QDocumentLineHandle *dlh=tk.dlh;
-    if(dlh){
-        TokenList tl=dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-        Tokens result=getCommandTokenFromToken(tl,tk);
-        if(result.type==Tokens::command){
-            cmd=result.getText();
-        }
-    }
-    return cmd;
+	QString cmd;
+	QDocumentLineHandle *dlh = tk.dlh;
+	if (dlh) {
+		TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+		Tokens result = getCommandTokenFromToken(tl, tk);
+		if (result.type == Tokens::command) {
+			cmd = result.getText();
+		}
+	}
+	return cmd;
 }
 
-Tokens getCommandTokenFromToken(TokenList tl,Tokens tk)
+Tokens getCommandTokenFromToken(TokenList tl, Tokens tk)
 {
-    Tokens result;
-    int tkPos=tl.indexOf(tk);
-    int level=tk.level-1;
-    if(Tokens::tkBraces().contains(tk.type)||Tokens::tkOpen().contains(tk.type)||Tokens::tkClose().contains(tk.type)){
-        level=tk.level; //command is at same level
-    }
-    if(tk.subtype==Tokens::keyVal_val){
-        level=tk.level-2; // command is 2 levels up
-    }
-    for(int i=tkPos-1;i>=0;i--){
-        Tokens elem=tl.at(i);
-        if(elem.level==level && (elem.type==Tokens::command || elem.type==Tokens::commandUnknown) ){
-            result=elem;
-            break;
-        }
-        if(elem.level<level)
-            break;
-    }
-    return result;
+	Tokens result;
+	int tkPos = tl.indexOf(tk);
+	int level = tk.level - 1;
+	if (Tokens::tkBraces().contains(tk.type) || Tokens::tkOpen().contains(tk.type) || Tokens::tkClose().contains(tk.type)) {
+		level = tk.level; //command is at same level
+	}
+	if (tk.subtype == Tokens::keyVal_val) {
+		level = tk.level - 2; // command is 2 levels up
+	}
+	for (int i = tkPos - 1; i >= 0; i--) {
+		Tokens elem = tl.at(i);
+		if (elem.level == level && (elem.type == Tokens::command || elem.type == Tokens::commandUnknown) ) {
+			result = elem;
+			break;
+		}
+		if (elem.level < level)
+			break;
+	}
+	return result;
 }
 
-TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
-    // dumbed down lexer in order to allow full parallelization and full change of verbatim/non-verbatim later on
-    TokenList lexed;
-    if(!dlh)
-        return lexed;
-    dlh->lockForWrite();
-    QString s=dlh->text();
-    Tokens present,previous;
-    present.type=Tokens::none;
-    present.dlh=dlh;
-    present.argLevel=0;
-    QChar verbatimSymbol;
-    const QString specialChars="{([})]";
-    int i=0;
-    for(;i<s.length();i++){
-        QChar c=s.at(i);
-        if(!verbatimSymbol.isNull()){
-            if(c==verbatimSymbol){
-                present.length=1;
-                lexed.append(present);
-                present.type=Tokens::none;
-                verbatimSymbol=QChar();
-                continue;
-            }
-        }
-        if(present.type==Tokens::command&& c=='@'){
-            continue; // add @ as letter to command
-        }
-        if(present.type==Tokens::command&& present.start==i-1 && (c.isSymbol()||c.isPunct())){
-            // handle \$ etc
-            present.length=i-present.start+1;
-            lexed.append(present);
-            present.type=Tokens::none;
-            continue;
-        }
-        if(c=='%'){
-            if(present.type!=Tokens::none){
-                present.length=i-present.start;
-                lexed.append(present);
-            }
-            present.type=Tokens::comment;
-            present.length=1;
-            lexed.append(present);
-            present.type=Tokens::none;
-            continue;
-        }
+TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
+{
+	// dumbed down lexer in order to allow full parallelization and full change of verbatim/non-verbatim later on
+	TokenList lexed;
+	if (!dlh)
+		return lexed;
+	dlh->lockForWrite();
+	QString s = dlh->text();
+	Tokens present, previous;
+	present.type = Tokens::none;
+	present.dlh = dlh;
+	present.argLevel = 0;
+	QChar verbatimSymbol;
+	const QString specialChars = "{([})]";
+	int i = 0;
+	for (; i < s.length(); i++) {
+		QChar c = s.at(i);
+		if (!verbatimSymbol.isNull()) {
+			if (c == verbatimSymbol) {
+				present.length = 1;
+				lexed.append(present);
+				present.type = Tokens::none;
+				verbatimSymbol = QChar();
+				continue;
+			}
+		}
+		if (present.type == Tokens::command && c == '@') {
+			continue; // add @ as letter to command
+		}
+		if (present.type == Tokens::command && present.start == i - 1 && (c.isSymbol() || c.isPunct())) {
+			// handle \$ etc
+			present.length = i - present.start + 1;
+			lexed.append(present);
+			present.type = Tokens::none;
+			continue;
+		}
+		if (c == '%') {
+			if (present.type != Tokens::none) {
+				present.length = i - present.start;
+				lexed.append(present);
+			}
+			present.type = Tokens::comment;
+			present.length = 1;
+			lexed.append(present);
+			present.type = Tokens::none;
+			continue;
+		}
 
-        if(specialChars.contains(c) || c.isSpace() || c.isPunct() || c.isSymbol()){
-            //close token
-            if(present.type!=Tokens::none){
-                present.length=i-present.start;
-                lexed.append(present);
-                present.type=Tokens::none;
-            }
-        }else{
-            if(present.type==Tokens::none){
-                if(c.isLetter()){
-                    present.type=Tokens::word;
-                }else{
-                    present.type=Tokens::number;
-                }
-                present.start=i;
-            }else{ // separate numbers and text (latex considers \test1 as two tokens ...)
-                if(c.isDigit() && present.type!=Tokens::number){
-                    present.length=i-present.start;
-                    lexed.append(present);
-                    present.start=i;
-                    present.type=Tokens::number;
-                    continue;
-                }
-                if(c.isLetter() && present.type==Tokens::number){
-                    present.length=i-present.start;
-                    lexed.append(present);
-                    present.start=i;
-                    present.type=Tokens::word;
-                    continue;
-                }
-            }
-            continue;
-        }
-        //start new Token
-        present.start=i;
-        if(c=='\\'){
-            present.type=Tokens::command;
-            continue;
-        }
+		if (specialChars.contains(c) || c.isSpace() || c.isPunct() || c.isSymbol()) {
+			//close token
+			if (present.type != Tokens::none) {
+				present.length = i - present.start;
+				lexed.append(present);
+				present.type = Tokens::none;
+			}
+		} else {
+			if (present.type == Tokens::none) {
+				if (c.isLetter()) {
+					present.type = Tokens::word;
+				} else {
+					present.type = Tokens::number;
+				}
+				present.start = i;
+			} else { // separate numbers and text (latex considers \test1 as two tokens ...)
+				if (c.isDigit() && present.type != Tokens::number) {
+					present.length = i - present.start;
+					lexed.append(present);
+					present.start = i;
+					present.type = Tokens::number;
+					continue;
+				}
+				if (c.isLetter() && present.type == Tokens::number) {
+					present.length = i - present.start;
+					lexed.append(present);
+					present.start = i;
+					present.type = Tokens::word;
+					continue;
+				}
+			}
+			continue;
+		}
+		//start new Token
+		present.start = i;
+		if (c == '\\') {
+			present.type = Tokens::command;
+			continue;
+		}
 
-        int l=specialChars.indexOf(c);
-        if(l>-1&&l<3){
-            present.type=Tokens::TokenType(int(Tokens::openBrace)+l);
-            present.length=1;
-            lexed.append(present);
-            present.type=Tokens::none;
-            continue;
-        }
-        if(l>2){
-            present.type=Tokens::TokenType(int(Tokens::closeBrace)+(l-3));
-            present.length=1;
-            lexed.append(present);
-            present.type=Tokens::none;
-            continue;
-        }
-        if(c.isSymbol()){
-            present.type=Tokens::symbol;
-            present.length=1;
-            lexed.append(present);
-            present.type=Tokens::none;
-            continue;
-        }
-        if(c.isPunct()){
-            present.type=Tokens::punctuation;
-            present.length=1;
-            lexed.append(present);
-            present.type=Tokens::none;
-            continue;
-        }
+		int l = specialChars.indexOf(c);
+		if (l > -1 && l < 3) {
+			present.type = Tokens::TokenType(int(Tokens::openBrace) + l);
+			present.length = 1;
+			lexed.append(present);
+			present.type = Tokens::none;
+			continue;
+		}
+		if (l > 2) {
+			present.type = Tokens::TokenType(int(Tokens::closeBrace) + (l - 3));
+			present.length = 1;
+			lexed.append(present);
+			present.type = Tokens::none;
+			continue;
+		}
+		if (c.isSymbol()) {
+			present.type = Tokens::symbol;
+			present.length = 1;
+			lexed.append(present);
+			present.type = Tokens::none;
+			continue;
+		}
+		if (c.isPunct()) {
+			present.type = Tokens::punctuation;
+			present.length = 1;
+			lexed.append(present);
+			present.type = Tokens::none;
+			continue;
+		}
 
-    }
-    if(present.type!=Tokens::none){
-        present.length=i-present.start;
-        lexed.append(present);
-        previous=present;
-    }
-    dlh->setCookie(QDocumentLine::LEXER_RAW_COOKIE,QVariant::fromValue<TokenList>(lexed));
-    dlh->unlock();
-    return lexed;
+	}
+	if (present.type != Tokens::none) {
+		present.length = i - present.start;
+		lexed.append(present);
+		previous = present;
+	}
+	dlh->setCookie(QDocumentLine::LEXER_RAW_COOKIE, QVariant::fromValue<TokenList>(lexed));
+	dlh->unlock();
+	return lexed;
 }
 
 
@@ -3158,495 +3267,498 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh){
                                + __GNUC_MINOR__ * 100 \
                                + __GNUC_PATCHLEVEL__)
 
-
-
-bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp){
-    if(!dlh)
-        return false;
-     dlh->lockForWrite();
-     TokenList tl=dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
-     TokenStack oldRemainder=dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-     QString line=dlh->text();
-     bool verbatimMode=false;
-     int level=0;
-     if(!stack.isEmpty()){
-         if(stack.top().type==Tokens::verbatim){
-            verbatimMode=true;
-         }else{
-            level=stack.top().level+1;
-         }
-     }
-     TokenList lexed;
-     QStack<CommandDescription> commandStack;
-     QStack<QString> commandNames;
-
-     QString verbatimSymbol;
-     int lastComma=-1;
-     int lastEqual=-1e6;
-     QString keyName;
-
-     for(int i=0;i<tl.length();i++){
-         Tokens& tk=tl[i];
-/* parse tokenlist
- * check commands (1. syn check)
- * tie options/arguments to commands
- * lex otpions (key/val, comma separation,words,single arg,label etc)
- * => reclassification of arguments
- */
-         if(!verbatimSymbol.isNull()){
-             // handle \verb+ ... +  etc.
-             if(tk.type==Tokens::symbol){
-                 QString smb=line.mid(tk.start,1);
-                 if(smb==verbatimSymbol){
-                     // stop verbatimSymbol mode
-                     verbatimSymbol=QChar();
-                     continue;
-                 }
-             }
-             tk.type=Tokens::verbatim;
-             if(!stack.isEmpty()){
-                 tk.subtype=stack.top().subtype;
-             }
-             tk.level=level;
-             lexed<<tk;
-             continue;
-         }
-         // different handling for verbatimMode (verbatim-env, all content is practically ignored)
-         if(verbatimMode){
-             // verbatim handling
-             // just look for closing (\end{verbatim})
-             if(tk.type!=Tokens::command)
-                 continue;
-             QString cmd=line.mid(tk.start,tk.length);
-             if(cmd!="\\end")
-                 continue;
-             if(i+2>=tl.length()) // not enough tokens to handle \end{verbatim
-                 continue;
-             Tokens tk2=tl.at(i+1);
-             Tokens tk3=tl.at(i+2);
-             if(tk2.type==Tokens::openBrace && tk3.type==Tokens::word){
-                 QString env=line.mid(tk3.start,tk3.length);
-                 if(lp.possibleCommands["%verbatimEnv"].contains(env)){ // incomplete check if closing correspondents to open !
-                     verbatimMode=false;
-                     stack.pop();
-                 }else
-                     continue;
-             }else
-                 continue;
-         }
-         // non-verbatim handling
-         if(tk.type==Tokens::comment)
-             break; // stop at comment start
-         if(tk.type==Tokens::command){
-             QString command=line.mid(tk.start,tk.length);
-             if(tl.length()>i+1 && tl.at(i+1).type==Tokens::punctuation && line.mid(tl.at(i+1).start,1)=="*"){
-                 // add * to command
-                 i++;
-                 command.append("*");
-             }
-             if(command=="\\verb" || command=="\\verb*"){
-                 // special treament for verb
-                 if(i+1<tl.length() && tl.at(i+1).type==Tokens::symbol && tl.at(i+1).start==tk.start+tk.length){
-                     // well formed \verb
-                     verbatimSymbol=line.mid(tl.at(i+1).start,1);
-                 }
-                 // not valid \verb
-                 if(!stack.isEmpty()){
-                     tk.subtype=stack.top().subtype;
-                     if(tk.subtype==Tokens::keyValArg && lastEqual>-1){
-                         tk.subtype=Tokens::keyVal_val;
-                     }
-                 }
-                 tk.level=level;
-                 lexed<<tk;
-
-                 continue;
-             }else{
-                 if(!stack.isEmpty()){
-                     tk.subtype=stack.top().subtype;
-                     if(tk.subtype==Tokens::keyValArg && lastEqual>-1){
-                         tk.subtype=Tokens::keyVal_val;
-                         if(!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
-                             CommandDescription cd=lp.commandDefs.value(commandNames.top()+"/"+keyName);
-                             tk.subtype=cd.argTypes.value(0,Tokens::keyVal_val);
-                         }
-                     }
-
-                 }
-                 if(!commandStack.isEmpty() && commandStack.top().level==level){
-                     //possible command argument without brackets
-                     CommandDescription &cd=commandStack.top();
-                     if(cd.args>0){
-                         cd.optionalArgs=0; // no optional arguments after mandatory
-                         cd.bracketArgs=0;
-                         cd.args--;
-                         tk.subtype=cd.argTypes.takeFirst();
-                     }
-                     if(cd.args<=0){
-                         // unknown arg, stop handling this command
-                         commandStack.pop();
-                         commandNames.pop();
-                     }
-                 }
-                 if(lp.commandDefs.contains(command)){
-                     CommandDescription cd=lp.commandDefs.value(command);
-                     cd.level=level;
-                     if((cd.args>0||cd.optionalArgs>0||cd.bracketArgs>0 )&& tk.subtype!=Tokens::def){ // don't interpret commands in defintion (\newcommand{def})
-                        commandStack.push(cd);
-                        commandNames.push(command);
-                     }
-                 }else{
-                     tk.type=Tokens::commandUnknown;
-                 }
-                 tk.level=level;
-                 lexed<<tk;
-             }
-             continue;
-         }
-         if(Tokens::tkOpen().contains(tk.type)){
-             if(!commandStack.isEmpty() && commandStack.top().level==level){
-                 CommandDescription &cd=commandStack.top();
-                 if(tk.type==Tokens::openBrace){
-                    if(cd.args>0){
-                        //cd.optionalArgs=0; // argument order (option/mandatory) is not checked, e.g \newcommad{cmd}[argNumber][default]{definition}
-                        cd.args--;
-                        tk.subtype=cd.argTypes.takeFirst();
-                    }else{
-                        // ignore
-                        lexed<<tk;
-                        continue;
-                    }
-                 }
-                 if(tk.type==Tokens::openSquare){
-                    if(cd.optionalArgs>0){
-                        cd.optionalArgs--;
-                        tk.subtype=cd.optTypes.takeFirst();
-                    }else{
-                        // unexpected optional argument
-                        // ignore
-                        lexed<<tk;
-                        continue;
-                    }
-                 }
-                 if(tk.type==Tokens::openBracket){
-                     if(cd.bracketArgs>0){
-                         cd.bracketArgs--;
-                         tk.subtype=cd.bracketTypes.takeFirst();
-                     }else{
-                         lexed<<tk;
-                         continue;
-                     }
-                 }
-                 tk.level=level;
-                 tk.argLevel=10; // run-away prevention
-                 stack.push(tk);
-                 lexed<<tk;
-                 level++;
-             }
-             continue;
-         }
-         if(Tokens::tkClose().contains(tk.type)){
-             // special treament for brackets as they don't have any syntaxtical meaning except with some commands
-             if(tk.type==Tokens::closeBracket ){
-                 if(stack.isEmpty())
-                    continue;
-                 if(stack.top().type!=Tokens::opposite(tk.type))
-                     continue; //closing bracket is ignored if no correct open is present
-             }
-             if(!stack.isEmpty() && stack.top().type==Tokens::opposite(tk.type)){
-                 Tokens tk1=stack.pop();
-
-                 if(Tokens::tkCommalist().contains(tk1.subtype)){
-                     lastComma=-1;
-                 }
-                 if(tk1.subtype==Tokens::keyValArg){
-                     lastComma=-1;
-                     if(lastEqual>-1e6){
-                         if(!lexed.isEmpty() && lexed.last().type==Tokens::keyVal_key){
-                             // no value added, add empty key_val
-                             Tokens tk0;
-                             tk0.start=tk.start;
-                             tk0.length=0;
-                             tk0.dlh=dlh;
-                             tk0.type=Tokens::keyVal_val;
-                             tk0.subtype=Tokens::keyVal_val;
-                             tk0.level=level;
-                             lexed<<tk0;
-                         }
-                         level=lastEqual;
-                     }
-                     lastEqual=-1e6;
-                 }
-                 if(tk1.dlh==dlh){ // same line
-                     int j=lexed.length()-1;
-                     while(j>=0 && lexed.at(j).start>tk1.start)
-                         j--;
-                     if(j>=0 && lexed.at(j).start==tk1.start){
-                         if(Tokens::tkSingleArg().contains(tk1.subtype) || tk1.subtype>=Tokens::specialArg){ // all special args are assumed single word arguments
-                             // join all args for intended single word argument
-                             // first remove all argument tokens
-                             for(int k=j+1;k<lexed.length();){
-                                lexed.removeAt(k);
-                             }
-                             Tokens tk2;
-                             tk2.dlh=dlh;
-                             tk2.start=lexed[j].start+1;
-                             tk2.length=tk.start-lexed[j].start-1;
-                             tk2.type=tk1.subtype;
-                             tk2.level=level;
-                             lexed<<tk2;
-                             if(tk2.type==Tokens::beginEnv){
-                                 // special treatment for \begin ...
-                                 QString env=line.mid(tk2.start,tk2.length);
-                                 // special treatment for verbatim
-                                 if(lp.possibleCommands["%verbatimEnv"].contains(env)){
-                                     verbatimMode=true;
-                                     Tokens tk3;
-                                     tk3.dlh=dlh;
-                                     tk3.level=level-1;
-                                     tk3.type=Tokens::verbatim;
-                                     stack.push(tk3);
-                                 }
-                                 CommandDescription cd=lp.commandDefs.value("\\begin{"+env+"}",CommandDescription());
-                                 if(cd.args>1){
-                                     cd.args--;
-                                     cd.argTypes.takeFirst();
-                                     commandStack.push(cd);
-                                     commandNames.push("\\begin{"+env+"}");
-                                 }
-                             }
-                         }
-                         lexed[j].length=tk.start-tk1.start+1;
-                         lexed[j].type=Tokens::closed(tk.type);
-                         level--;
-                         // remove commands from commandstack with higher level, as they can't have any valid arguments anymore
-                         while(!commandStack.isEmpty() && commandStack.top().level>level){
-                             commandStack.pop();
-                             commandNames.pop();
-                         }
-                     }else{ // opening not found, whyever (should not happen)
-                         level--;
-                         tk.level=level;
-                         lexed.append(tk);
-                     }
-                 }else{
-                     level--;
-                     tk.level=level;
-                     lexed.append(tk);
-                 }
-                 if(!commandStack.isEmpty() && commandStack.top().level==level){
-                     CommandDescription &cd=commandStack.top();
-                     if(cd.args<=0 && cd.optionalArgs<=0 && cd.bracketArgs<=0){
-                         // all args handled, stop handling this command
-                         commandStack.pop();
-                         commandNames.pop();
-                     }
-                 }
-                 continue;
-             }
-             // ignore unopened close
-         }
-         if(!stack.isEmpty() && stack.top().level==level-1 && Tokens::tkCommalist().contains(stack.top().subtype)){
-             // handle commalist
-             if(tk.type==Tokens::punctuation && line.mid(tk.start,1)==","){
-                lastComma=-1;
-                continue;
-             }
-             if(lastComma<0){
-                 tk.level=level;
-                 tk.type=stack.top().subtype;
-                 lexed<<tk;
-                 lastComma=lexed.length()-1;
-             }else{
-                 lexed[lastComma].length=tk.start+tk.length-lexed[lastComma].start;
-             }
-             continue;
-         }
-         if(!stack.isEmpty() && stack.top().level<level && stack.top().subtype==Tokens::keyValArg){
-             // handle keyval
-             if(tk.type==Tokens::punctuation && line.mid(tk.start,1)==","){
-                lastComma=-1;
-                if(lastEqual>-1e6){
-                    if(!lexed.isEmpty() && lexed.last().type==Tokens::keyVal_key){
-                        // no value added, add empty key_val
-                        Tokens tk0;
-                        tk0.start=tk.start;
-                        tk0.length=0;
-                        tk0.type=Tokens::keyVal_val;
-                        tk0.subtype=Tokens::keyVal_val;
-                        tk0.level=level;
-                        lexed<<tk0;
-                    }
-                    level=lastEqual;
-                }
-                lastEqual=-1e6;
-                continue;
-             }
-             if(tk.type==Tokens::symbol && line.mid(tk.start,1)=="="){
-                lastComma=1;
-                lastEqual=level;
-                level++;
-                continue;
-             }
-             if(lastComma<0){
-                 tk.level=level;
-                 tk.type=Tokens::keyVal_key;
-                 keyName=line.mid(tk.start,tk.length);
-                 lexed<<tk;
-                 lastComma=lexed.length()-1;
-             }else{
-                 if(lastEqual<=-1e6){
-                    lexed[lastComma].length=tk.start+tk.length-lexed[lastComma].start;
-                 }else{
-                     tk.level=level;
-                     tk.subtype=Tokens::keyVal_val;
-                     if(!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top()+"/"+keyName)){
-                         CommandDescription cd=lp.commandDefs.value(commandNames.top()+"/"+keyName);
-                         tk.subtype=cd.argTypes.value(0,Tokens::keyVal_val);
-                     }
-                     lexed<<tk;
-                 }
-             }
-             continue;
-         }
-         if(tk.type==Tokens::symbol){
-             // special treatment for $ as mathstart
-             if(line.mid(tk.start,1)=="$"){
-                 tk.type=Tokens::command;
-                 tk.level=level;
-                 lexed<<tk;
-                 continue;
-             }
-         }
-         if(tk.type==Tokens::punctuation){
-             if(line.mid(tk.start,1)=="&"){
-                 // special treatment for & in tabular
-                 tk.type=Tokens::command;
-                 tk.level=level;
-                 lexed<<tk;
-                 continue;
-             }
-             if(line.mid(tk.start,1)=="\""){
-                 // special treatment for " (used for umlauts in german)
-                 if(i+1<tl.length()){
-                     Tokens tk2=tl.at(i+1);
-                     if(tk2.start==tk.start+1 && tk2.type==Tokens::word){
-                         i=i+1;
-                         tk.length=tk2.length+1;
-                         tk.type=Tokens::word;
-                     }
-                     if(!lexed.isEmpty() && lexed.last().type==Tokens::word){
-                         if(lexed.last().start+lexed.last().length==tk.start){
-                             lexed.last().length+=tk.length;
-                             continue;
-                         }
-                     }
-                 }
-             }
-         }
-         if(tk.type==Tokens::word || tk.type==Tokens::number || tk.type==Tokens::symbol|| tk.type==Tokens::punctuation){
-             tk.level=level;
-             if(!stack.isEmpty()){
-                 tk.subtype=stack.top().subtype;
-             }
-             if(!commandStack.isEmpty() && commandStack.top().level==level){
-                 //possible command argument without brackets
-                 CommandDescription &cd=commandStack.top();
-                 if(cd.args>0){
-                     cd.optionalArgs=0; // no optional arguments after mandatory
-                     cd.args--;
-                     tk.subtype=cd.argTypes.takeFirst();
-                 }
-                 if(cd.args<=0){
-                     // unknown arg, stop handling this command
-                     commandStack.pop();
-                     commandNames.pop();
-                 }
-             }
-             lexed<<tk;
-         }
-     }
-     { // remove tokens from stack which are not intended for mulitline: ([
-         QMutableVectorIterator<Tokens> i(stack);
-         while (i.hasNext()) {
-             Tokens &tk = i.next();
-             if (tk.type==Tokens::openBracket || tk.type==Tokens::openSquare) {
-                 i.remove();
-             } else if(tk.type==Tokens::openBrace && tk.dlh==dlh){
-                 // set length to whole line after brace
-                 tk.length=line.length()-tk.start;
-             }
-         }
-     }
-     {  // change length of openBrace (length to end of line)
-        QMutableListIterator<Tokens> i(lexed);
-        while (i.hasNext()) {
-            Tokens &tk = i.next();
-            if(tk.type==Tokens::openBrace && tk.dlh==dlh){
-                // set length to whole line after brace
-                tk.length=line.length()-tk.start;
-            }
-        }
-     }
-
-     dlh->setCookie(QDocumentLine::LEXER_COOKIE,QVariant::fromValue<TokenList>(lexed));
-     // run-away prevention
-     // reduce argLevel by 1, remove all elements with level <0
-     for(int i=0;i<stack.size();i++){
-         if(stack[i].type==Tokens::verbatim)
-             continue;
-         stack[i].argLevel=stack[i].argLevel-1;
-         if(stack[i].argLevel<0){
-             stack.remove(i);
-             i--;
-         }
-     }
-     dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE,QVariant::fromValue<TokenStack>(stack));
-     dlh->unlock();
-
-     bool remainderChanged=(stack!=oldRemainder);
-
-     return remainderChanged;
-}
-
-int getCompleterContext(QDocumentLineHandle *dlh,int column)
+bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp)
 {
-    TokenStack ts=getContext(dlh,column);
-    Tokens tk;
-    if(!ts.isEmpty()){
-        tk=ts.top();
-        if(tk.type==Tokens::word && tk.subtype==Tokens::none && ts.size()>1){
+	if (!dlh)
+		return false;
+	dlh->lockForWrite();
+	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
+	TokenStack oldRemainder = dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+	QString line = dlh->text();
+	bool verbatimMode = false;
+	int level = 0;
+	if (!stack.isEmpty()) {
+		if (stack.top().type == Tokens::verbatim) {
+			verbatimMode = true;
+		} else {
+			level = stack.top().level + 1;
+		}
+	}
+	TokenList lexed;
+	QStack<CommandDescription> commandStack;
+	QStack<QString> commandNames;
 
-            // set brace type
-            ts.pop();
-            tk=ts.top();
-        }
-    }
+	QString verbatimSymbol;
+	int lastComma = -1;
+	int lastEqual = -1e6;
+	QString keyName;
 
-    Tokens::TokenType type=tk.type;
-    if(tk.subtype!=Tokens::none)
-        type=tk.subtype;
+	for (int i = 0; i < tl.length(); i++) {
+		Tokens &tk = tl[i];
+		/* parse tokenlist
+		 * check commands (1. syn check)
+		 * tie options/arguments to commands
+		 * lex otpions (key/val, comma separation,words,single arg,label etc)
+		 * => reclassification of arguments
+		 */
+		if (!verbatimSymbol.isNull()) {
+			// handle \verb+ ... +  etc.
+			if (tk.type == Tokens::symbol) {
+				QString smb = line.mid(tk.start, 1);
+				if (smb == verbatimSymbol) {
+					// stop verbatimSymbol mode
+					verbatimSymbol = QChar();
+					continue;
+				}
+			}
+			tk.type = Tokens::verbatim;
+			if (!stack.isEmpty()) {
+				tk.subtype = stack.top().subtype;
+			}
+			tk.level = level;
+			lexed << tk;
+			continue;
+		}
+		// different handling for verbatimMode (verbatim-env, all content is practically ignored)
+		if (verbatimMode) {
+			// verbatim handling
+			// just look for closing (\end{verbatim})
+			if (tk.type != Tokens::command)
+				continue;
+			QString cmd = line.mid(tk.start, tk.length);
+			if (cmd != "\\end")
+				continue;
+			if (i + 2 >= tl.length()) // not enough tokens to handle \end{verbatim
+				continue;
+			Tokens tk2 = tl.at(i + 1);
+			Tokens tk3 = tl.at(i + 2);
+			if (tk2.type == Tokens::openBrace && tk3.type == Tokens::word) {
+				QString env = line.mid(tk3.start, tk3.length);
+				if (lp.possibleCommands["%verbatimEnv"].contains(env)) { // incomplete check if closing correspondents to open !
+					verbatimMode = false;
+					stack.pop();
+				} else
+					continue;
+			} else
+				continue;
+		}
+		// non-verbatim handling
+		if (tk.type == Tokens::comment)
+			break; // stop at comment start
+		if (tk.type == Tokens::command) {
+			QString command = line.mid(tk.start, tk.length);
+			if (tl.length() > i + 1 && tl.at(i + 1).type == Tokens::punctuation && line.mid(tl.at(i + 1).start, 1) == "*") {
+				// add * to command
+				i++;
+				command.append("*");
+			}
+			if (command == "\\verb" || command == "\\verb*") {
+				// special treament for verb
+				if (i + 1 < tl.length() && tl.at(i + 1).type == Tokens::symbol && tl.at(i + 1).start == tk.start + tk.length) {
+					// well formed \verb
+					verbatimSymbol = line.mid(tl.at(i + 1).start, 1);
+				}
+				// not valid \verb
+				if (!stack.isEmpty()) {
+					tk.subtype = stack.top().subtype;
+					if (tk.subtype == Tokens::keyValArg && lastEqual > -1) {
+						tk.subtype = Tokens::keyVal_val;
+					}
+				}
+				tk.level = level;
+				lexed << tk;
 
-    int result=0;
-    switch(type){
-    case Tokens::width:
-        result=512;
-        break;
-    default:;
-    }
-    return result;
+				continue;
+			} else {
+				if (!stack.isEmpty()) {
+					tk.subtype = stack.top().subtype;
+					if (tk.subtype == Tokens::keyValArg && lastEqual > -1) {
+						tk.subtype = Tokens::keyVal_val;
+						if (!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top() + "/" + keyName)) {
+							CommandDescription cd = lp.commandDefs.value(commandNames.top() + "/" + keyName);
+							tk.subtype = cd.argTypes.value(0, Tokens::keyVal_val);
+						}
+					}
+
+				}
+				if (!commandStack.isEmpty() && commandStack.top().level == level) {
+					//possible command argument without brackets
+					CommandDescription &cd = commandStack.top();
+					if (cd.args > 0) {
+						cd.optionalArgs = 0; // no optional arguments after mandatory
+						cd.bracketArgs = 0;
+						cd.args--;
+						tk.subtype = cd.argTypes.takeFirst();
+					}
+					if (cd.args <= 0) {
+						// unknown arg, stop handling this command
+						commandStack.pop();
+						commandNames.pop();
+					}
+				}
+				if (lp.commandDefs.contains(command)) {
+					CommandDescription cd = lp.commandDefs.value(command);
+					cd.level = level;
+					if ((cd.args > 0 || cd.optionalArgs > 0 || cd.bracketArgs > 0 ) && tk.subtype != Tokens::def) { // don't interpret commands in defintion (\newcommand{def})
+						commandStack.push(cd);
+						commandNames.push(command);
+					}
+				} else {
+					tk.type = Tokens::commandUnknown;
+				}
+				tk.level = level;
+				lexed << tk;
+			}
+			continue;
+		}
+		if (Tokens::tkOpen().contains(tk.type)) {
+			if (!commandStack.isEmpty() && commandStack.top().level == level) {
+				CommandDescription &cd = commandStack.top();
+				if (tk.type == Tokens::openBrace) {
+					if (cd.args > 0) {
+						//cd.optionalArgs=0; // argument order (option/mandatory) is not checked, e.g \newcommad{cmd}[argNumber][default]{definition}
+						cd.args--;
+						tk.subtype = cd.argTypes.takeFirst();
+					} else {
+						// ignore
+						lexed << tk;
+						continue;
+					}
+				}
+				if (tk.type == Tokens::openSquare) {
+					if (cd.optionalArgs > 0) {
+						cd.optionalArgs--;
+						tk.subtype = cd.optTypes.takeFirst();
+					} else {
+						// unexpected optional argument
+						// ignore
+						lexed << tk;
+						continue;
+					}
+				}
+				if (tk.type == Tokens::openBracket) {
+					if (cd.bracketArgs > 0) {
+						cd.bracketArgs--;
+						tk.subtype = cd.bracketTypes.takeFirst();
+					} else {
+						lexed << tk;
+						continue;
+					}
+				}
+				tk.level = level;
+				tk.argLevel = 10; // run-away prevention
+				stack.push(tk);
+				lexed << tk;
+				level++;
+			}
+			continue;
+		}
+		if (Tokens::tkClose().contains(tk.type)) {
+			// special treament for brackets as they don't have any syntaxtical meaning except with some commands
+			if (tk.type == Tokens::closeBracket ) {
+				if (stack.isEmpty())
+					continue;
+				if (stack.top().type != Tokens::opposite(tk.type))
+					continue; //closing bracket is ignored if no correct open is present
+			}
+			if (!stack.isEmpty() && stack.top().type == Tokens::opposite(tk.type)) {
+				Tokens tk1 = stack.pop();
+
+				if (Tokens::tkCommalist().contains(tk1.subtype)) {
+					lastComma = -1;
+				}
+				if (tk1.subtype == Tokens::keyValArg) {
+					lastComma = -1;
+					if (lastEqual > -1e6) {
+						if (!lexed.isEmpty() && lexed.last().type == Tokens::keyVal_key) {
+							// no value added, add empty key_val
+							Tokens tk0;
+							tk0.start = tk.start;
+							tk0.length = 0;
+							tk0.dlh = dlh;
+							tk0.type = Tokens::keyVal_val;
+							tk0.subtype = Tokens::keyVal_val;
+							tk0.level = level;
+							lexed << tk0;
+						}
+						level = lastEqual;
+					}
+					lastEqual = -1e6;
+				}
+				if (tk1.dlh == dlh) { // same line
+					int j = lexed.length() - 1;
+					while (j >= 0 && lexed.at(j).start > tk1.start)
+						j--;
+					if (j >= 0 && lexed.at(j).start == tk1.start) {
+						if (Tokens::tkSingleArg().contains(tk1.subtype) || tk1.subtype >= Tokens::specialArg) { // all special args are assumed single word arguments
+							// join all args for intended single word argument
+							// first remove all argument tokens
+							for (int k = j + 1; k < lexed.length();) {
+								lexed.removeAt(k);
+							}
+							Tokens tk2;
+							tk2.dlh = dlh;
+							tk2.start = lexed[j].start + 1;
+							tk2.length = tk.start - lexed[j].start - 1;
+							tk2.type = tk1.subtype;
+							tk2.level = level;
+							lexed << tk2;
+							if (tk2.type == Tokens::beginEnv) {
+								// special treatment for \begin ...
+								QString env = line.mid(tk2.start, tk2.length);
+								// special treatment for verbatim
+								if (lp.possibleCommands["%verbatimEnv"].contains(env)) {
+									verbatimMode = true;
+									Tokens tk3;
+									tk3.dlh = dlh;
+									tk3.level = level - 1;
+									tk3.type = Tokens::verbatim;
+									stack.push(tk3);
+								}
+								CommandDescription cd = lp.commandDefs.value("\\begin{" + env + "}", CommandDescription());
+								if (cd.args > 1) {
+									cd.args--;
+									cd.argTypes.takeFirst();
+									commandStack.push(cd);
+									commandNames.push("\\begin{" + env + "}");
+								}
+							}
+						}
+						lexed[j].length = tk.start - tk1.start + 1;
+						lexed[j].type = Tokens::closed(tk.type);
+						level--;
+						// remove commands from commandstack with higher level, as they can't have any valid arguments anymore
+						while (!commandStack.isEmpty() && commandStack.top().level > level) {
+							commandStack.pop();
+							commandNames.pop();
+						}
+					} else { // opening not found, whyever (should not happen)
+						level--;
+						tk.level = level;
+						lexed.append(tk);
+					}
+				} else {
+					level--;
+					tk.level = level;
+					lexed.append(tk);
+				}
+				if (!commandStack.isEmpty() && commandStack.top().level == level) {
+					CommandDescription &cd = commandStack.top();
+					if (cd.args <= 0 && cd.optionalArgs <= 0 && cd.bracketArgs <= 0) {
+						// all args handled, stop handling this command
+						commandStack.pop();
+						commandNames.pop();
+					}
+				}
+				continue;
+			}
+			// ignore unopened close
+		}
+		if (!stack.isEmpty() && stack.top().level == level - 1 && Tokens::tkCommalist().contains(stack.top().subtype)) {
+			// handle commalist
+			if (tk.type == Tokens::punctuation && line.mid(tk.start, 1) == ",") {
+				lastComma = -1;
+				continue;
+			}
+			if (lastComma < 0) {
+				tk.level = level;
+				tk.type = stack.top().subtype;
+				lexed << tk;
+				lastComma = lexed.length() - 1;
+			} else {
+				lexed[lastComma].length = tk.start + tk.length - lexed[lastComma].start;
+			}
+			continue;
+		}
+		if (!stack.isEmpty() && stack.top().level < level && stack.top().subtype == Tokens::keyValArg) {
+			// handle keyval
+			if (tk.type == Tokens::punctuation && line.mid(tk.start, 1) == ",") {
+				lastComma = -1;
+				if (lastEqual > -1e6) {
+					if (!lexed.isEmpty() && lexed.last().type == Tokens::keyVal_key) {
+						// no value added, add empty key_val
+						Tokens tk0;
+						tk0.start = tk.start;
+						tk0.length = 0;
+						tk0.type = Tokens::keyVal_val;
+						tk0.subtype = Tokens::keyVal_val;
+						tk0.level = level;
+						lexed << tk0;
+					}
+					level = lastEqual;
+				}
+				lastEqual = -1e6;
+				continue;
+			}
+			if (tk.type == Tokens::symbol && line.mid(tk.start, 1) == "=") {
+				lastComma = 1;
+				lastEqual = level;
+				level++;
+				continue;
+			}
+			if (lastComma < 0) {
+				tk.level = level;
+				tk.type = Tokens::keyVal_key;
+				keyName = line.mid(tk.start, tk.length);
+				lexed << tk;
+				lastComma = lexed.length() - 1;
+			} else {
+				if (lastEqual <= -1e6) {
+					lexed[lastComma].length = tk.start + tk.length - lexed[lastComma].start;
+				} else {
+					tk.level = level;
+					tk.subtype = Tokens::keyVal_val;
+					if (!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top() + "/" + keyName)) {
+						CommandDescription cd = lp.commandDefs.value(commandNames.top() + "/" + keyName);
+						tk.subtype = cd.argTypes.value(0, Tokens::keyVal_val);
+					}
+					lexed << tk;
+				}
+			}
+			continue;
+		}
+		if (tk.type == Tokens::symbol) {
+			// special treatment for $ as mathstart
+			if (line.mid(tk.start, 1) == "$") {
+				tk.type = Tokens::command;
+				tk.level = level;
+				lexed << tk;
+				continue;
+			}
+		}
+		if (tk.type == Tokens::punctuation) {
+			if (line.mid(tk.start, 1) == "&") {
+				// special treatment for & in tabular
+				tk.type = Tokens::command;
+				tk.level = level;
+				lexed << tk;
+				continue;
+			}
+			if (line.mid(tk.start, 1) == "\"") {
+				// special treatment for " (used for umlauts in german)
+				if (i + 1 < tl.length()) {
+					Tokens tk2 = tl.at(i + 1);
+					if (tk2.start == tk.start + 1 && tk2.type == Tokens::word) {
+						i = i + 1;
+						tk.length = tk2.length + 1;
+						tk.type = Tokens::word;
+					}
+					if (!lexed.isEmpty() && lexed.last().type == Tokens::word) {
+						if (lexed.last().start + lexed.last().length == tk.start) {
+							lexed.last().length += tk.length;
+							continue;
+						}
+					}
+				}
+			}
+		}
+		if (tk.type == Tokens::word || tk.type == Tokens::number || tk.type == Tokens::symbol || tk.type == Tokens::punctuation) {
+			tk.level = level;
+			if (!stack.isEmpty()) {
+				tk.subtype = stack.top().subtype;
+			}
+			if (!commandStack.isEmpty() && commandStack.top().level == level) {
+				//possible command argument without brackets
+				CommandDescription &cd = commandStack.top();
+				if (cd.args > 0) {
+					cd.optionalArgs = 0; // no optional arguments after mandatory
+					cd.args--;
+					tk.subtype = cd.argTypes.takeFirst();
+				}
+				if (cd.args <= 0) {
+					// unknown arg, stop handling this command
+					commandStack.pop();
+					commandNames.pop();
+				}
+			}
+			lexed << tk;
+		}
+	}
+	{
+		// remove tokens from stack which are not intended for mulitline: ([
+		QMutableVectorIterator<Tokens> i(stack);
+		while (i.hasNext()) {
+			Tokens &tk = i.next();
+			if (tk.type == Tokens::openBracket || tk.type == Tokens::openSquare) {
+				i.remove();
+			} else if (tk.type == Tokens::openBrace && tk.dlh == dlh) {
+				// set length to whole line after brace
+				tk.length = line.length() - tk.start;
+			}
+		}
+	}
+	{
+		// change length of openBrace (length to end of line)
+		QMutableListIterator<Tokens> i(lexed);
+		while (i.hasNext()) {
+			Tokens &tk = i.next();
+			if (tk.type == Tokens::openBrace && tk.dlh == dlh) {
+				// set length to whole line after brace
+				tk.length = line.length() - tk.start;
+			}
+		}
+	}
+
+	dlh->setCookie(QDocumentLine::LEXER_COOKIE, QVariant::fromValue<TokenList>(lexed));
+	// run-away prevention
+	// reduce argLevel by 1, remove all elements with level <0
+	for (int i = 0; i < stack.size(); i++) {
+		if (stack[i].type == Tokens::verbatim)
+			continue;
+		stack[i].argLevel = stack[i].argLevel - 1;
+		if (stack[i].argLevel < 0) {
+			stack.remove(i);
+			i--;
+		}
+	}
+	dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(stack));
+	dlh->unlock();
+
+	bool remainderChanged = (stack != oldRemainder);
+
+	return remainderChanged;
 }
 
-CommandDescription extractCommandDefKeyVal(QString line,QString &key){
-    CommandDescription cd;
-    int i=line.indexOf("#");
-    if(i<0)
-        return cd;
-    key=line.left(i);
-    QString vals=line.mid(i+1);
-    if(vals=="#L"){
-        cd.args=1;
-        cd.argTypes<<Tokens::width;
-    }
-    return cd;
+int getCompleterContext(QDocumentLineHandle *dlh, int column)
+{
+	TokenStack ts = getContext(dlh, column);
+	Tokens tk;
+	if (!ts.isEmpty()) {
+		tk = ts.top();
+		if (tk.type == Tokens::word && tk.subtype == Tokens::none && ts.size() > 1) {
+
+			// set brace type
+			ts.pop();
+			tk = ts.top();
+		}
+	}
+
+	Tokens::TokenType type = tk.type;
+	if (tk.subtype != Tokens::none)
+		type = tk.subtype;
+
+	int result = 0;
+	switch (type) {
+	case Tokens::width:
+		result = 512;
+		break;
+	default:
+		;
+	}
+	return result;
+}
+
+CommandDescription extractCommandDefKeyVal(QString line, QString &key)
+{
+	CommandDescription cd;
+	int i = line.indexOf("#");
+	if (i < 0)
+		return cd;
+	key = line.left(i);
+	QString vals = line.mid(i + 1);
+	if (vals == "#L") {
+		cd.args = 1;
+		cd.argTypes << Tokens::width;
+	}
+	return cd;
 }

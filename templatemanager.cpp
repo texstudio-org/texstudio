@@ -15,33 +15,34 @@ QString TemplateManager::builtinTemplateDir()
 {
 #ifdef Q_OS_MAC
 	QString fn = "/Applications/texstudio.app/Contents/Resources/";
-    if(!QDir(fn).isReadable()) { // fallback if program is not installed
-        fn=QCoreApplication::applicationDirPath();
-        fn.chop(6);
-        fn+="/Resources/";
-    }
-	if(!QDir(fn).isReadable()) { // fallback if program is not packaged as app (e.g. debug build )
-		return QCoreApplication::applicationDirPath()+"/templates/";
+	if (!QDir(fn).isReadable()) { // fallback if program is not installed
+		fn = QCoreApplication::applicationDirPath();
+		fn.chop(6);
+		fn += "/Resources/";
+	}
+	if (!QDir(fn).isReadable()) { // fallback if program is not packaged as app (e.g. debug build )
+		return QCoreApplication::applicationDirPath() + "/templates/";
 	}
 	return fn;
 #endif
 #ifdef Q_OS_WIN
-	return QCoreApplication::applicationDirPath()+"/templates/";
+	return QCoreApplication::applicationDirPath() + "/templates/";
 #else
 #if !defined(PREFIX)
 #define PREFIX ""
 #endif
 #ifndef Q_OS_MAC
-	QString fn=PREFIX"/share/texstudio/";
-	if(!QDir(fn).isReadable()){ // fallback if program is not installed (e.g. debug build )
-		fn=QCoreApplication::applicationDirPath()+"/templates/";
+	QString fn = PREFIX"/share/texstudio/";
+	if (!QDir(fn).isReadable()) { // fallback if program is not installed (e.g. debug build )
+		fn = QCoreApplication::applicationDirPath() + "/templates/";
 	}
 	return fn;
 #endif
 #endif
 }
 
-bool TemplateManager::ensureUserTemplateDirExists() {
+bool TemplateManager::ensureUserTemplateDirExists()
+{
 	QDir d(userTemplateDir());
 	if (!d.exists()) {
 		if (!d.mkpath(userTemplateDir())) {
@@ -56,15 +57,16 @@ bool TemplateManager::ensureUserTemplateDirExists() {
 // This behavior has now been changed to always store user templates in [config]/templates/user/ The advantage is
 // that we don't have to maintain the template list and it's not lost when resetting the configuration.
 // This function allows to move existing templates to the the new location.
-void TemplateManager::checkForOldUserTemplates() {
+void TemplateManager::checkForOldUserTemplates()
+{
 	ConfigManagerInterface *cfg = ConfigManager::getInstance();
 	if (!cfg) return;
 	QStringList userTemplateList = cfg->getOption("User/Templates").toStringList();
 	if (!userTemplateList.isEmpty()) {
 		bool move = txsConfirmWarning(tr("TeXstudio found user templates in deprecated locations.\n"
-							"From now on user templates are hosted at\n%1\n"
-							"Should TeXstudio move the existing user templates there?\n"
-							"If not, they will not be available via the Make Template dialog.").arg(userTemplateDir()));
+		                                 "From now on user templates are hosted at\n%1\n"
+		                                 "Should TeXstudio move the existing user templates there?\n"
+		                                 "If not, they will not be available via the Make Template dialog.").arg(userTemplateDir()));
 		if (move) {
 			foreach (const QString &fname, userTemplateList) {
 				QFileInfo fi(fname);
@@ -96,7 +98,8 @@ void TemplateManager::checkForOldUserTemplates() {
 // Creates a new template resource from the information of the XML node.
 // The parent is the template manager. You may reparent the resource later.
 // returns 0 if there is no valid resource info in the node
-AbstractTemplateResource * TemplateManager::createResourceFromXMLNode(const QDomElement &resElem) {
+AbstractTemplateResource *TemplateManager::createResourceFromXMLNode(const QDomElement &resElem)
+{
 	if (resElem.tagName() != "Resource") {
 		qDebug() << "Not an XML Resource Node";
 		return 0;
@@ -113,7 +116,7 @@ AbstractTemplateResource * TemplateManager::createResourceFromXMLNode(const QDom
 		description = elem.text();
 	elem = resElem.firstChildElement("Editable");
 	if (!elem.isNull())
-		isEditable = elem.text()=="1" || elem.text().toLower()=="true";
+		isEditable = elem.text() == "1" || elem.text().toLower() == "true";
 	elem = resElem.firstChildElement("Icon");
 	QStringList iconNames;
 	if (!elem.isNull())
@@ -147,9 +150,8 @@ AbstractTemplateResource * TemplateManager::createResourceFromXMLNode(const QDom
 		icon = QIcon(":/images-ng/user.svgz");
 	}
 
-
 	if (QFileInfo(path).isDir()) {
-		LocalLatexTemplateResource * tplResource = new LocalLatexTemplateResource(path, name, this, icon);
+		LocalLatexTemplateResource *tplResource = new LocalLatexTemplateResource(path, name, this, icon);
 		tplResource->setDescription(description);
 		tplResource->setEditable(isEditable);
 		return tplResource;
@@ -157,7 +159,8 @@ AbstractTemplateResource * TemplateManager::createResourceFromXMLNode(const QDom
 	return 0;
 }
 
-QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QString &filename) {
+QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QString &filename)
+{
 	QList<AbstractTemplateResource *> list;
 
 	QFile file(filename);
@@ -184,7 +187,7 @@ QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QS
 
 	QDomElement elem = root.firstChildElement("Resource");
 	while (!elem.isNull()) {
-		AbstractTemplateResource * tplResource = createResourceFromXMLNode(elem);
+		AbstractTemplateResource *tplResource = createResourceFromXMLNode(elem);
 		if (tplResource) {
 			list.append(tplResource);
 		}
@@ -193,7 +196,8 @@ QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QS
 	return list;
 }
 
-TemplateSelector * TemplateManager::createLatexTemplateDialog() {
+TemplateSelector *TemplateManager::createLatexTemplateDialog()
+{
 	TemplateSelector *dialog = new TemplateSelector(tr("Select Latex Template"));
 	connect(dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
@@ -210,9 +214,10 @@ TemplateSelector * TemplateManager::createLatexTemplateDialog() {
 	return dialog;
 }
 
-bool TemplateManager::tableTemplateDialogExec() {
+bool TemplateManager::tableTemplateDialogExec()
+{
 	TemplateSelector dialog(tr("Select Table Template"));
-    dialog.hideFolderSelection();
+	dialog.hideFolderSelection();
 	connect(&dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(&dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
 	LocalTableTemplateResource userTemplates(configBaseDir, tr("User"), this, QIcon(":/images-ng/user.svgz"));
@@ -227,11 +232,13 @@ bool TemplateManager::tableTemplateDialogExec() {
 	return ok;
 }
 
-void TemplateManager::editTemplate(TemplateHandle th) {
+void TemplateManager::editTemplate(TemplateHandle th)
+{
 	emit editRequested(th.file());
 }
 
-void TemplateManager::editTemplateInfo(TemplateHandle th) {
+void TemplateManager::editTemplateInfo(TemplateHandle th)
+{
 	QString fname = th.file();
 	if (!fname.endsWith(".js")) {
 		fname = replaceFileExtension(fname, "json");

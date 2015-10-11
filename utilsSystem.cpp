@@ -8,16 +8,17 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
-bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
+bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
+{
 #ifdef Q_OS_WIN
-	wchar_t d[path.size()+1];
+	wchar_t d[path.size() + 1];
 	int len = path.toWCharArray(d);
 	d[len] = 0;
 
 	ULARGE_INTEGER freeBytesToCaller;
 	freeBytesToCaller.QuadPart = 0L;
 
-	if( !GetDiskFreeSpaceEx( d, &freeBytesToCaller, NULL, NULL ) ) {
+	if ( !GetDiskFreeSpaceEx( d, &freeBytesToCaller, NULL, NULL ) ) {
 		qDebug() << "ERROR: Call to GetDiskFreeSpaceEx() failed on path" << path;
 		return false;
 	}
@@ -36,7 +37,8 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes) {
  * use a Ctrl+Alt+Key shortcut if AltGr+Key is used for typing
  * characters.
  */
-QKeySequence filterLocaleShortcut(QKeySequence ks) {
+QKeySequence filterLocaleShortcut(QKeySequence ks)
+{
 #ifndef Q_OS_WIN32
 	return ks;
 #else
@@ -65,7 +67,8 @@ QKeySequence filterLocaleShortcut(QKeySequence ks) {
 #endif
 }
 
-QChar getPathListSeparator() {
+QChar getPathListSeparator()
+{
 #ifdef Q_OS_WIN32
 	return QChar(';');
 #else
@@ -73,12 +76,14 @@ QChar getPathListSeparator() {
 #endif
 }
 
-QStringList splitPaths(const QString &paths) {
+QStringList splitPaths(const QString &paths)
+{
 	if (paths.isEmpty()) return QStringList();
 	return paths.split(getPathListSeparator());
 }
 
-QString getUserName() {
+QString getUserName()
+{
 #ifdef Q_OS_WIN32
 	return QString(qgetenv("USERNAME"));
 #else
@@ -86,7 +91,8 @@ QString getUserName() {
 #endif
 }
 
-QString getUserDocumentFolder() {
+QString getUserDocumentFolder()
+{
 #ifdef Q_OS_WIN32
 	// typically "C:/Documents and Settings/Username/My Documents"
 	QSettings settings(QSettings::UserScope, "Microsoft", "Windows");
@@ -97,14 +103,15 @@ QString getUserDocumentFolder() {
 #endif
 }
 
-QStringList findResourceFiles(const QString& dirName, const QString& filter, QStringList additionalPreferredPaths) {
+QStringList findResourceFiles(const QString &dirName, const QString &filter, QStringList additionalPreferredPaths)
+{
 	QStringList searchFiles;
 	QString dn = dirName;
-	if (dn.endsWith('/')||dn.endsWith(QDir::separator())) dn=dn.left(dn.length()-1); //remove / at the end
-	if (!dn.startsWith('/')&&!dn.startsWith(QDir::separator())) dn="/"+dn; //add / at beginning
-	searchFiles<<":"+dn; //resource fall back
+	if (dn.endsWith('/') || dn.endsWith(QDir::separator())) dn = dn.left(dn.length() - 1); //remove / at the end
+	if (!dn.startsWith('/') && !dn.startsWith(QDir::separator())) dn = "/" + dn; //add / at beginning
+	searchFiles << ":" + dn; //resource fall back
 	searchFiles.append(additionalPreferredPaths);
-	searchFiles<<QCoreApplication::applicationDirPath() + dn; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + dn; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"+fileName; //windows new
 
 #if !defined(PREFIX)
@@ -112,74 +119,75 @@ QStringList findResourceFiles(const QString& dirName, const QString& filter, QSt
 #endif
 
 #if defined( Q_WS_X11 ) || defined (Q_OS_LINUX)
-	searchFiles<<PREFIX"/share/texstudio"+dn; //X_11
+	searchFiles << PREFIX"/share/texstudio" + dn; //X_11
 #endif
 #ifdef Q_OS_MAC
 	CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
 	CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef,
-												  kCFURLPOSIXPathStyle);
+	                      kCFURLPOSIXPathStyle);
 	const char *pathPtr = CFStringGetCStringPtr(macPath,
-												CFStringGetSystemEncoding());
-	searchFiles<<QString(pathPtr)+"/Contents/Resources"+dn; //Mac
+	                      CFStringGetSystemEncoding());
+	searchFiles << QString(pathPtr) + "/Contents/Resources" + dn; //Mac
 	CFRelease(appUrlRef);
 	CFRelease(macPath);
 #endif
 
 	QStringList result;
-	foreach(const QString& fn, searchFiles) {
+	foreach (const QString &fn, searchFiles) {
 		QDir fic(fn);
 		if (fic.exists() && fic.isReadable())
-			result<< fic.entryList(QStringList(filter),QDir::Files,QDir::Name);
+			result << fic.entryList(QStringList(filter), QDir::Files, QDir::Name);
 	}
 	// sort and remove double entries
 	result.sort();
 
 	QMutableStringListIterator i(result);
-	QString old="";
-	while(i.hasNext()){
-		QString cmp=i.next();
-		if(cmp==old) i.remove();
-		else old=cmp;
+	QString old = "";
+	while (i.hasNext()) {
+		QString cmp = i.next();
+		if (cmp == old) i.remove();
+		else old = cmp;
 	}
 	return result;
 }
 
-QString findResourceFile(const QString& fileName, bool allowOverride, QStringList additionalPreferredPaths, QStringList additionalFallbackPaths) {
+QString findResourceFile(const QString &fileName, bool allowOverride, QStringList additionalPreferredPaths, QStringList additionalFallbackPaths)
+{
 	QStringList searchFiles;
 
-	if (!allowOverride) searchFiles<<":/"; //search first in included resources (much faster)
+	if (!allowOverride) searchFiles << ":/"; //search first in included resources (much faster)
 
-	foreach (const QString& s, additionalPreferredPaths)
+	foreach (const QString &s, additionalPreferredPaths)
 		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
 		else searchFiles << s + "/";
 #if defined Q_WS_X11 || defined Q_OS_LINUX || defined Q_OS_UNIX
-	searchFiles<<PREFIX"/share/texstudio/"; //X_11
-	if (fileName.endsWith(".html")) searchFiles<<PREFIX"/share/doc/texstudio/html/";  //for Debian package
+	searchFiles << PREFIX"/share/texstudio/"; //X_11
+	if (fileName.endsWith(".html")) searchFiles << PREFIX"/share/doc/texstudio/html/"; //for Debian package
 #endif
 #ifdef Q_OS_MAC
-	searchFiles<<QCoreApplication::applicationDirPath() + "/../Resources/"; //macx
+	searchFiles << QCoreApplication::applicationDirPath() + "/../Resources/"; //macx
 #endif
-	searchFiles<<QCoreApplication::applicationDirPath() + "/"; //windows old
-	searchFiles<<QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
-	searchFiles<<QCoreApplication::applicationDirPath() + "/translations/"; //windows new
-	searchFiles<<QCoreApplication::applicationDirPath() + "/help/"; //windows new
-	searchFiles<<QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/"; //windows old
+	searchFiles << QCoreApplication::applicationDirPath() + "/dictionaries/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/translations/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/help/"; //windows new
+	searchFiles << QCoreApplication::applicationDirPath() + "/utilities/"; //windows new
 	// searchFiles<<QCoreApplication::applicationDirPath() + "/data/"; //windows new
 
-	if (allowOverride) searchFiles<<":/"; //resource fall back
+	if (allowOverride) searchFiles << ":/"; //resource fall back
 
-	foreach (const QString& s, additionalFallbackPaths)
+	foreach (const QString &s, additionalFallbackPaths)
 		if (s.endsWith('/') || s.endsWith('\\')) searchFiles << s;
 		else searchFiles << s + "/";
 
-	foreach(const QString& fn, searchFiles) {
+	foreach (const QString &fn, searchFiles) {
 		QFileInfo fic(fn + fileName);
 		if (fic.exists() && fic.isReadable())
 			return fic.canonicalFilePath();
 	}
-	QString newFileName=fileName.split("/").last();
-	if(!newFileName.isEmpty()){
-		foreach(const QString& fn, searchFiles) {
+	QString newFileName = fileName.split("/").last();
+	if (!newFileName.isEmpty()) {
+		foreach (const QString &fn, searchFiles) {
 			QFileInfo fic(fn + newFileName);
 			if (fic.exists() && fic.isReadable())
 				return fic.canonicalFilePath();
@@ -190,23 +198,24 @@ QString findResourceFile(const QString& fileName, bool allowOverride, QStringLis
 
 bool modernStyle;
 bool useSystemTheme;
-QString getRealIconFile(const QString& icon) {
-    if (icon.isEmpty() || icon.startsWith(":/")) return icon;
+QString getRealIconFile(const QString &icon)
+{
+	if (icon.isEmpty() || icon.startsWith(":/")) return icon;
 	QStringList iconNames = QStringList()
-			<< ":/images-ng/"+icon+".svg"
-			<< ":/images-ng/"+icon+".svgz"         //voruebergehend
-			<< ":/symbols-ng/icons/"+icon+".svg"   //voruebergehend
-			<< ":/symbols-ng/icons/"+icon+".png";  //voruebergehend
+	                        << ":/images-ng/" + icon + ".svg"
+	                        << ":/images-ng/" + icon + ".svgz"     //voruebergehend
+	                        << ":/symbols-ng/icons/" + icon + ".svg" //voruebergehend
+	                        << ":/symbols-ng/icons/" + icon + ".png"; //voruebergehend
 	if (modernStyle) {
-		iconNames << ":/images-ng/modern/"+icon+".svg"
-				  << ":/images-ng/modern/"+icon+".svgz"
-				  << ":/modern/images/modern/"+icon+".png";
+		iconNames << ":/images-ng/modern/" + icon + ".svg"
+		          << ":/images-ng/modern/" + icon + ".svgz"
+		          << ":/modern/images/modern/" + icon + ".png";
 	} else {
-		iconNames << ":/images-ng/classic/"+icon+".svg"
-				  << ":/images-ng/classic/"+icon+".svgz"
-				  << ":/classic/images/classic/"+icon+".png";
+		iconNames << ":/images-ng/classic/" + icon + ".svg"
+		          << ":/images-ng/classic/" + icon + ".svgz"
+		          << ":/classic/images/classic/" + icon + ".png";
 	}
-	iconNames << ":/images/"+icon+".png";
+	iconNames << ":/images/" + icon + ".png";
 
 	foreach (const QString &name, iconNames) {
 		if (QFileInfo(name).exists())
@@ -216,152 +225,161 @@ QString getRealIconFile(const QString& icon) {
 	return icon;
 }
 
-QIcon getRealIcon(const QString& icon){
-    if (icon.isEmpty()) return QIcon();
-    if (icon.startsWith(":/")) return QIcon(icon);
+QIcon getRealIcon(const QString &icon)
+{
+	if (icon.isEmpty()) return QIcon();
+	if (icon.startsWith(":/")) return QIcon(icon);
 #if QT_VERSION >= 0x040600
-    if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
+	if (useSystemTheme && QIcon::hasThemeIcon(icon)) return QIcon::fromTheme(icon);
 #endif
-    //return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
-    QString name=getRealIconFile(icon);
-    QIcon ic=QIcon(name);
-    //if(ic.isNull()){
+	//return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
+	QString name = getRealIconFile(icon);
+	QIcon ic = QIcon(name);
+	//if(ic.isNull()){
 #if (QT_VERSION >= 0x050000)&&(defined(Q_OS_OSX))
-    QPixmap pm(32,32);
-    pm.load(name);
-    ic=QIcon(pm);
+	QPixmap pm(32, 32);
+	pm.load(name);
+	ic = QIcon(pm);
 #endif
-    return ic;
+	return ic;
 }
 
-QIcon getRealIconCached(const QString& icon){
-    if(iconCache.contains(icon)){
-        return *iconCache[icon];
-    }
-    if (icon.isEmpty()) return QIcon();
+QIcon getRealIconCached(const QString &icon)
+{
+	if (iconCache.contains(icon)) {
+		return *iconCache[icon];
+	}
+	if (icon.isEmpty()) return QIcon();
 
-    if (icon.startsWith(":/")){
-            QIcon *icn=new QIcon(icon);
-            iconCache.insert(icon,icn);
-            return *icn;
-    }
+	if (icon.startsWith(":/")) {
+		QIcon *icn = new QIcon(icon);
+		iconCache.insert(icon, icn);
+		return *icn;
+	}
 #if QT_VERSION >= 0x040600
-    if (useSystemTheme && QIcon::hasThemeIcon(icon)){
-        QIcon *icn=new QIcon(QIcon::fromTheme(icon));
-        iconCache.insert(icon,icn);
-        return *icn;
-}
+	if (useSystemTheme && QIcon::hasThemeIcon(icon)) {
+		QIcon *icn = new QIcon(QIcon::fromTheme(icon));
+		iconCache.insert(icon, icn);
+		return *icn;
+	}
 
 #endif
-    //return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
-    QIcon *icn=new QIcon(getRealIconFile(icon));
-    iconCache.insert(icon,icn);
-    return *icn;
+	//return QIcon(getRealIconFile(icon.contains(".")?icon:(icon+".png")));
+	QIcon *icn = new QIcon(getRealIconFile(icon));
+	iconCache.insert(icon, icn);
+	return *icn;
 }
 
-bool isFileRealWritable(const QString& filename) {
+bool isFileRealWritable(const QString &filename)
+{
 #ifdef Q_OS_WIN32
 #if QT_VERSION >= 0x040700
-    //bug in 4.7 still present in 4.8.0
-    return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
-                  (!QFileInfo(filename).exists() && QFileInfo(QFileInfo(filename).absolutePath()).isWritable());
+	//bug in 4.7 still present in 4.8.0
+	return (QFileInfo(filename).exists() && QFileInfo(filename).isWritable()) ||
+	       (!QFileInfo(filename).exists() && QFileInfo(QFileInfo(filename).absolutePath()).isWritable());
 #else
-    //thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
-    return QFileInfo(filename).isWritable();
+	//thanks to Vistas virtual folders trying to open an unaccessable file can create it somewhere else
+	return QFileInfo(filename).isWritable();
 #endif
 #else
-     QFile fi(filename);
-     bool result=false;
-     if (fi.exists()) result=fi.open(QIODevice::ReadWrite);
-     else {
-         result=fi.open(QIODevice::WriteOnly);
-         fi.remove();
-     }
-     return result;
+	QFile fi(filename);
+	bool result = false;
+	if (fi.exists()) result = fi.open(QIODevice::ReadWrite);
+	else {
+		result = fi.open(QIODevice::WriteOnly);
+		fi.remove();
+	}
+	return result;
 #endif
 }
 
-bool isExistingFileRealWritable(const QString& filename) {
-    return QFileInfo(filename).exists() && isFileRealWritable(filename);
+bool isExistingFileRealWritable(const QString &filename)
+{
+	return QFileInfo(filename).exists() && isFileRealWritable(filename);
 }
 
-QString ensureTrailingDirSeparator(const QString& dirPath){
+QString ensureTrailingDirSeparator(const QString &dirPath)
+{
 	if (dirPath.isEmpty() || dirPath.endsWith("/")) return dirPath;
-    if (dirPath.endsWith(QDir::separator())) return dirPath;
+	if (dirPath.endsWith(QDir::separator())) return dirPath;
 #ifdef Q_OS_WIN32
-    if (dirPath.endsWith("\\")) return dirPath; //you can create a directory named \ on linux
+	if (dirPath.endsWith("\\")) return dirPath; //you can create a directory named \ on linux
 #endif
-    return dirPath+"/";
+	return dirPath + "/";
 }
 
-QString replaceFileExtension(const QString& filename, const QString& newExtension, bool appendIfNoExt) {
-    QFileInfo fi(filename);
-    QString ext = newExtension.startsWith('.') ? newExtension.mid(1) : newExtension;
-    if (fi.suffix().isEmpty()) {
-        if (appendIfNoExt)
-            return filename + '.' + ext;
-        else
-            return QString();
-    }
-    // exchange the suffix explicitly instead of using fi.completeBaseName()
-    // so that the filename stays exactly the same
-    return filename.left(filename.length()-fi.suffix().length()) + ext;
+QString replaceFileExtension(const QString &filename, const QString &newExtension, bool appendIfNoExt)
+{
+	QFileInfo fi(filename);
+	QString ext = newExtension.startsWith('.') ? newExtension.mid(1) : newExtension;
+	if (fi.suffix().isEmpty()) {
+		if (appendIfNoExt)
+			return filename + '.' + ext;
+		else
+			return QString();
+	}
+	// exchange the suffix explicitly instead of using fi.completeBaseName()
+	// so that the filename stays exactly the same
+	return filename.left(filename.length() - fi.suffix().length()) + ext;
 }
 
-QString getRelativeBaseNameToPath(const QString & file,QString basepath,bool baseFile,bool keepSuffix){
-    basepath.replace(QDir::separator(),"/");
-    if (basepath.endsWith("/")) basepath=basepath.left(basepath.length()-1);
+QString getRelativeBaseNameToPath(const QString &file, QString basepath, bool baseFile, bool keepSuffix)
+{
+	basepath.replace(QDir::separator(), "/");
+	if (basepath.endsWith("/")) basepath = basepath.left(basepath.length() - 1);
 
-    QFileInfo fi(file);
-    QString filename = fi.fileName();
-    QString path = fi.path();
-    if (path.endsWith("/")) path=path.left(path.length()-1);
-    QStringList basedirs = basepath.split("/");
-    if(baseFile && !basedirs.isEmpty()) basedirs.removeLast();
-    QStringList dirs = path.split("/");
-    //QStringList basedirs = QStringList::split("/", basepath, false);
-    //QStringList dirs = QStringList::split("/", path, false);
+	QFileInfo fi(file);
+	QString filename = fi.fileName();
+	QString path = fi.path();
+	if (path.endsWith("/")) path = path.left(path.length() - 1);
+	QStringList basedirs = basepath.split("/");
+	if (baseFile && !basedirs.isEmpty()) basedirs.removeLast();
+	QStringList dirs = path.split("/");
+	//QStringList basedirs = QStringList::split("/", basepath, false);
+	//QStringList dirs = QStringList::split("/", path, false);
 
-    int nDirs = dirs.count();
+	int nDirs = dirs.count();
 
-    while (dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0]) {
-        dirs.pop_front();
-        basedirs.pop_front();
-    }
+	while (dirs.count() > 0 && basedirs.count() > 0 &&  dirs[0] == basedirs[0]) {
+		dirs.pop_front();
+		basedirs.pop_front();
+	}
 
-    if (nDirs != dirs.count()) {
-        path = dirs.join("/");
+	if (nDirs != dirs.count()) {
+		path = dirs.join("/");
 
-        if (basedirs.count() > 0) {
-            for (int j=0; j < basedirs.count(); ++j) {
-                path = "../" + path;
-            }
-        }
+		if (basedirs.count() > 0) {
+			for (int j = 0; j < basedirs.count(); ++j) {
+				path = "../" + path;
+			}
+		}
 
-        //if (path.length()>0 && path.right(1) != "/") path = path + "/";
-    } else {
-        path = fi.path();
-    }
+		//if (path.length()>0 && path.right(1) != "/") path = path + "/";
+	} else {
+		path = fi.path();
+	}
 
-    if (path.length()>0 && !path.endsWith("/") && !path.endsWith("\\")) path+="/"; //necessary if basepath isn't given
+	if (path.length() > 0 && !path.endsWith("/") && !path.endsWith("\\")) path += "/"; //necessary if basepath isn't given
 
-    if(keepSuffix)
-        return path+filename;
-    return path+fi.completeBaseName();
+	if (keepSuffix)
+		return path + filename;
+	return path + fi.completeBaseName();
 }
 
-QString getPathfromFilename(const QString &compFile){
-    if (compFile.isEmpty()) return "";
-    QString dir=QFileInfo(compFile).absolutePath();
-    if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
-    return dir;
+QString getPathfromFilename(const QString &compFile)
+{
+	if (compFile.isEmpty()) return "";
+	QString dir = QFileInfo(compFile).absolutePath();
+	if (!dir.endsWith("/") && !dir.endsWith(QDir::separator())) dir.append(QDir::separator());
+	return dir;
 }
 
-QString findAbsoluteFilePath(const QString & relName, const QString &extension, const QStringList &searchPaths, const QString& fallbackPath) {
-	QString s=relName;
+QString findAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &searchPaths, const QString &fallbackPath)
+{
+	QString s = relName;
 	QString ext = extension;
 	if (!ext.isEmpty() && !ext.startsWith(".")) ext = "." + ext;
-	if (!s.endsWith(ext,Qt::CaseInsensitive)) s+=ext;
+	if (!s.endsWith(ext, Qt::CaseInsensitive)) s += ext;
 	QFileInfo fi(s);
 	if (!fi.isRelative()) return s;
 	foreach (const QString &path, searchPaths) {
@@ -379,7 +397,8 @@ QString findAbsoluteFilePath(const QString & relName, const QString &extension, 
  * of the filesname. If there is already a number, start from there, e.g.
  * test02.txt -> test03.txt. If no free filename could be determined, return fallback.
  */
-QString getNonextistentFilename(const QString &guess, const QString &fallback) {
+QString getNonextistentFilename(const QString &guess, const QString &fallback)
+{
 	QFileInfo fi(guess);
 	if (!fi.exists()) return guess;
 	QRegExp reNumberedFilename("(.*[^\\d])(\\d*)\\.(\\w+)");
@@ -391,8 +410,8 @@ QString getNonextistentFilename(const QString &guess, const QString &fallback) {
 	QString ext = reNumberedFilename.cap(3);
 	int num = reNumberedFilename.cap(2).toInt();
 	int numLen = reNumberedFilename.cap(2).length();
-	
-	for (int i=num+1; i<=1000000; i++) {
+
+	for (int i = num + 1; i <= 1000000; i++) {
 		QString filename = QString("%1%2.%3").arg(base).arg(i, numLen, 10, QLatin1Char('0')).arg(ext);
 		fi.setFile(filename);
 		if (!fi.exists())
@@ -410,13 +429,13 @@ QString getEnvironmentPath()
 		QProcess *myProcess = new QProcess();
 		myProcess->start("bash -l -c \"echo $PATH\"");
 		myProcess->waitForFinished(3000);
-		if(myProcess->exitStatus()==QProcess::NormalExit) {
-			QByteArray res=myProcess->readAllStandardOutput();
+		if (myProcess->exitStatus() == QProcess::NormalExit) {
+			QByteArray res = myProcess->readAllStandardOutput();
 			delete myProcess;
 			path = QString(res);
-        } else {
-            path = "";
-        }
+		} else {
+			path = "";
+		}
 #endif
 #else
 		path = QProcessEnvironment::systemEnvironment().value("PATH");
@@ -425,20 +444,21 @@ QString getEnvironmentPath()
 	return path;
 }
 
-QStringList getEnvironmentPathList() {
+QStringList getEnvironmentPathList()
+{
 	return getEnvironmentPath().split(getPathListSeparator());
 }
 
-void updatePathSettings(QProcess* proc, QString additionalPaths)
+void updatePathSettings(QProcess *proc, QString additionalPaths)
 {
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	QString path(getEnvironmentPath());
 	if (!additionalPaths.isEmpty()) {
 		path += getPathListSeparator() + additionalPaths;
-    }
-    env.insert("PATH", path);
+	}
+	env.insert("PATH", path);
 	// Note: this modifies the path only for the context of the called program. It does not affect the search path for the program itself.
-    proc->setProcessEnvironment(env);
+	proc->setProcessEnvironment(env);
 }
 
 QString getTerminalCommand()
@@ -448,8 +468,8 @@ QString getTerminalCommand()
 	QString windir = env.value("WINDIR", "c:/windows");
 	return windir + "/system32/cmd.exe";
 #elif defined(Q_OS_MAC)
-    QString command="open /Applications/Utilities/Terminal.app/";
-    return command;
+	QString command = "open /Applications/Utilities/Terminal.app/";
+	return command;
 #else // Linux
 	// Linux does not have a uniform way to determine the default terminal application
 	// gnome
@@ -470,60 +490,65 @@ QString getTerminalCommand()
 #endif
 }
 
-int x11desktop_env() {
-    // 0 : no kde ; 3: kde ; 4 : kde4 ;
-    QString kdesession= ::getenv("KDE_FULL_SESSION");
-    QString kdeversion= ::getenv("KDE_SESSION_VERSION");
-    if (!kdeversion.isEmpty()) return 4;
-    if (!kdesession.isEmpty()) return 3;
-    return 0;
+int x11desktop_env()
+{
+	// 0 : no kde ; 3: kde ; 4 : kde4 ;
+	QString kdesession = ::getenv("KDE_FULL_SESSION");
+	QString kdeversion = ::getenv("KDE_SESSION_VERSION");
+	if (!kdeversion.isEmpty()) return 4;
+	if (!kdesession.isEmpty()) return 3;
+	return 0;
 }
 
 // detect a retina macbook via the model identifier
 // http://support.apple.com/kb/HT4132?viewlocale=en_US&locale=en_US
-bool isRetinaMac() {
+bool isRetinaMac()
+{
 #ifdef Q_OS_MAC
-    static bool firstCall = true;
-    static bool isRetina = false;
-    if (firstCall) {
-        firstCall = false;
-        QProcess process;
-        process.start("sysctl", QStringList() << "-n" << "hw.model");
-        process.waitForFinished(1000);
-        QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
-        QRegExp rx("MacBookPro([0-9]*)");
-    rx.indexIn(model);
-        int num = rx.cap(1).toInt();
-    //qDebug() << num << model;
-        if (num>=10) // compatibility with future MacBookPros. Assume they are also retina.
-            isRetina = true;
-    }
-    return isRetina;
+	static bool firstCall = true;
+	static bool isRetina = false;
+	if (firstCall) {
+		firstCall = false;
+		QProcess process;
+		process.start("sysctl", QStringList() << "-n" << "hw.model");
+		process.waitForFinished(1000);
+		QString model(process.readAllStandardOutput()); // is something like "MacBookPro10,1"
+		QRegExp rx("MacBookPro([0-9]*)");
+		rx.indexIn(model);
+		int num = rx.cap(1).toInt();
+		//qDebug() << num << model;
+		if (num >= 10) // compatibility with future MacBookPros. Assume they are also retina.
+			isRetina = true;
+	}
+	return isRetina;
 #else
-     return false;
+	return false;
 #endif
 }
 
-bool hasAtLeastQt(int major, int minor){
-    QStringList vers=QString(qVersion()).split('.');
-    if (vers.count()<2) return false;
-    int ma=vers[0].toInt();
-    int mi=vers[1].toInt();
-    return (ma>major) || (ma==major && mi>=minor);
+bool hasAtLeastQt(int major, int minor)
+{
+	QStringList vers = QString(qVersion()).split('.');
+	if (vers.count() < 2) return false;
+	int ma = vers[0].toInt();
+	int mi = vers[1].toInt();
+	return (ma > major) || (ma == major && mi >= minor);
 }
 
 // convenience function for unique connections independent of the Qt version
-bool connectUnique(const QObject * sender, const char * signal, const QObject * receiver, const char * method) {
+bool connectUnique(const QObject *sender, const char *signal, const QObject *receiver, const char *method)
+{
 #if QT_VERSION >= 0x040600
-    return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
+	return QObject::connect(sender, signal, receiver, method, Qt::UniqueConnection);
 #else
-    disconnect(sender, signal, receiver, method);
-    return connect(sender, signal, receiver, method);
+	disconnect(sender, signal, receiver, method);
+	return connect(sender, signal, receiver, method);
 #endif
 }
 
 // compatibility function for missing QProcessEnvironment::keys() in Qt < 4.8
-QStringList envKeys(const QProcessEnvironment &env) {
+QStringList envKeys(const QProcessEnvironment &env)
+{
 #if QT_VERSION >= 0x040800
 	return env.keys();
 #else
@@ -537,37 +562,41 @@ QStringList envKeys(const QProcessEnvironment &env) {
 
 // run the command in a separate process, wait and return the result
 // use for internal queries that should be silent. Not to be mixed up with BuildManager::runCommand
-QString execCommand(const QString & cmd) {
-	if(cmd.isEmpty()) return QString();
+QString execCommand(const QString &cmd)
+{
+	if (cmd.isEmpty()) return QString();
 	QProcess myProc(0);
 	myProc.start(cmd);
 	myProc.waitForFinished();
 	QString result;
-	if(myProc.exitCode() == 0) {
-		result=myProc.readAllStandardOutput();
+	if (myProc.exitCode() == 0) {
+		result = myProc.readAllStandardOutput();
 	}
 	return result.trimmed();
 }
 
-void ThreadBreaker::sleep(int s){
-    QThread::sleep(s);
+void ThreadBreaker::sleep(int s)
+{
+	QThread::sleep(s);
 }
 
 void ThreadBreaker::msleep(unsigned long ms)
 {
-    QThread::msleep(ms);
+	QThread::msleep(ms);
 };
 
-void ThreadBreaker::forceTerminate(QThread* t){
-    if (!t) t = QThread::currentThread();
-    t->setTerminationEnabled(true);
-    t->terminate();
+void ThreadBreaker::forceTerminate(QThread *t)
+{
+	if (!t) t = QThread::currentThread();
+	t->setTerminationEnabled(true);
+	t->terminate();
 }
 
-SafeThread::SafeThread():QThread(0),crashed(false){}
-SafeThread::SafeThread(QObject* parent):QThread(parent), crashed(false){}
+SafeThread::SafeThread(): QThread(0), crashed(false) {}
+SafeThread::SafeThread(QObject *parent): QThread(parent), crashed(false) {}
 
-void SafeThread::wait(unsigned long time){
-    if (crashed) return;
-    QThread::wait(time);
+void SafeThread::wait(unsigned long time)
+{
+	if (crashed) return;
+	QThread::wait(time);
 }

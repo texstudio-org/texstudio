@@ -16,10 +16,12 @@
 #include <QLabel>
 
 class ConfigManagerInterface;
-class QuickBeamerDialog : public QDialog  {
+class QuickBeamerDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
-	QuickBeamerDialog(QWidget *parent=0, const QString &name=0);
+	QuickBeamerDialog(QWidget *parent = 0, const QString &name = 0);
 	~QuickBeamerDialog();
 	Ui::QuickBeamerDialog ui;
 	QLabel *labelImage;
@@ -28,9 +30,9 @@ public:
 
 	static QString document_encoding;
 private:
-	static ConfigManagerInterface* configManagerInterface;
+	static ConfigManagerInterface *configManagerInterface;
 public:
-	static void registerOptions(ConfigManagerInterface& configManager);
+	static void registerOptions(ConfigManagerInterface &configManager);
 public slots:
 	void Init();
 private slots:

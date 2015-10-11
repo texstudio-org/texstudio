@@ -19,12 +19,13 @@ class QAbstractItemModel;
 class QObject;
 class QPainter;
 
-class IconDelegate : public QAbstractItemDelegate {
+class IconDelegate : public QAbstractItemDelegate
+{
 	Q_OBJECT
 
 public:
 	IconDelegate(QObject *parent = 0)
-			: QAbstractItemDelegate(parent) {}
+		: QAbstractItemDelegate(parent) {}
 
 	void paint(QPainter *painter, const QStyleOptionViewItem &option,
 	           const QModelIndex &index) const;

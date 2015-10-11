@@ -3,7 +3,8 @@
 
 #include "mostQtHeaders.h"
 
-struct FileInSession {
+struct FileInSession
+{
 	QString fileName;
 	int cursorLine;
 	int cursorCol;
@@ -15,13 +16,14 @@ Q_DECLARE_METATYPE(FileInSession)
 
 class ConfigManager;
 
-class Session {
+class Session
+{
 public:
 	Session(): m_pdfEmbedded(false) {}
 	Session(const Session &s);
 
 	bool load(const QString &file);
-	bool load(const ConfigManager &config); //
+	bool load(const ConfigManager &config);
 	bool save(const QString &file, bool relPaths=true) const;
 
 	const QList<FileInSession> files() const { return m_files; }
