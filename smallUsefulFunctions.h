@@ -95,6 +95,7 @@ public:
 	QList<Tokens::TokenType> argTypes;
 	QList<Tokens::TokenType> optTypes;
 	QList<Tokens::TokenType> bracketTypes;
+	QString toDebugString() const;
 };
 
 typedef QHash<QString, CommandDescription> CommandDescriptionHash;
@@ -324,6 +325,8 @@ private:
 };
 
 
+typedef QPair<QString, int> QPairQStringInt;
+
 class LatexPackage
 {
 public:
@@ -344,7 +347,7 @@ public:
 	QHash<QString, QSet<QString> > possibleCommands;
 	QHash<QString, QString> specialDefCommands;
 	QSet<QString> optionCommands;
-	QHash<QString, QSet<QPair<QString, int> > > specialTreatmentCommands;
+	QHash<QString, QSet< QPairQStringInt > > specialTreatmentCommands;
 	QMultiHash<QString, QString> environmentAliases;
 	CommandDescriptionHash commandDescriptions;
 	void unite(LatexPackage &add, bool forCompletion = false);

@@ -3018,6 +3018,11 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	return false;
 }
 
+const QSet<QString>& LatexDocument::getCWLFiles() const
+{
+	return mCWLFiles;
+}
+
 void LatexDocument::emitUpdateCompleter()
 {
 	emit updateCompleter();
