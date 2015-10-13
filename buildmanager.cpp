@@ -1388,8 +1388,10 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 
 	// check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
 	foreach (const CommandToRun elem, expansion.commands) {
-		if (elem.command.isEmpty()) {
-			emit processNotification(tr("Error: One command expansion invalid."));
+		if (elem.command.isEmpty() || true) {
+			emit processNotification(tr("Error: One command expansion invalid.") + 
+			                         QString("\n    %1: %2").arg(tr("Parent Command"), elem.parentCommand) +
+			                         QString("\n    %1: %2").arg(tr("Primary Command"), expansion.primaryCommand));
 			if (!BuildManager_hadSuccessfulProcessStart) {
 				emit processNotification("<br>" + tr("<b>Make sure that you have installed a (La)TeX distribution</b> e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.<br>"
 				                                     "A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution."));
