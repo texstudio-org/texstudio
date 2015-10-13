@@ -680,6 +680,7 @@ public slots:
 	void threadCrashed();
 	void iamalive();
 	void checkLatexInstall();
+	void checkCWLs();
 
 	void slowOperationStarted();
 	void slowOperationEnded();

@@ -175,6 +175,7 @@ public:
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
 	bool updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate = false, bool delayUpdate = false);
+	const QSet<QString>& getCWLFiles() const;
 
 	Q_INVOKABLE QString spellingDictName() const { return mSpellingDictName; }
 	Q_INVOKABLE QString getMagicComment(const QString &name) const;

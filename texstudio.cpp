@@ -1120,6 +1120,7 @@ void Texstudio::setupMenus()
 
 	menu->addSeparator();
 	newManagedAction(menu, "checkinstall", tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
+	newManagedAction(menu, "checkcwls", tr("Check Active Completion Files"), SLOT(checkCWLs()));
 	newManagedAction(menu, "appinfo", tr("About TeXstudio..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 
 	//additional elements for development
@@ -10026,6 +10027,72 @@ void Texstudio::checkLatexInstall()
 	fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
 	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(result, false);
+}
+
+void Texstudio::checkCWLs(){
+	bool newFile = currentEditor();
+	if (!newFile) fileNew();
+
+	QList<LatexDocument *> docs = currentEditorView()->document->getListOfDocs();
+	QStringList res;
+	QSet<QString> cwls;
+	// collect user commands and references
+	foreach (LatexDocument *doc, docs) {
+		const QSet<QString>& cwl = doc->getCWLFiles();
+		cwls.unite(cwl);
+		res << doc->getFileName() + ": " + QStringList(cwl.toList()).join(", ");
+		QList<CodeSnippet> users = doc->userCommandList();
+		if (!users.isEmpty()) {
+			QString line = QString("\t%1 user commands: ").arg(users.size());
+			foreach (const CodeSnippet& cs, users) line += (line.isEmpty() ? "" : "; ") + cs.word;
+			res << line;
+		}
+	}
+	cwls.unite(configManager.completerConfig->getLoadedFiles().toSet());
+	res << "global: " << configManager.completerConfig->getLoadedFiles().join(", ");
+
+	res << "" << "";
+
+	foreach (QString s, cwls) {
+		res << QString("------------------- Package %1: ---------------------").arg(s);
+		LatexPackage package;
+		if (!documents.cachedPackages.contains(s)) {
+			res << "Package not cached (normal for global packages)";
+			package = loadCwlFile(s);
+		} else package = documents.cachedPackages.value(s);
+
+		res << "\tpossible commands";
+		foreach (const QString& key, package.possibleCommands.keys())
+			res << QString("\t\t%1: %2").arg(key).arg(QStringList(package.possibleCommands.value(key).toList()).join(", "));
+		res << "\tspecial def commands";
+		foreach (const QString& key, package.specialDefCommands.keys())
+			res << QString("\t\t%1: %2").arg(key).arg(package.specialDefCommands.value(key));
+		res << "\tspecial treatment commands";
+		foreach (const QString& key, package.specialDefCommands.keys()) {
+			QString line = QString("\t\t%1: ").arg(key);
+			foreach (const QPairQStringInt& pair, package.specialTreatmentCommands.value(key))
+				line += QString("%1 (%2)").arg(pair.first).arg(pair.second) + ", ";
+			line.chop(2);
+			res << line;
+		}
+		res << QString("\toption Commands: %1").arg(QStringList(package.optionCommands.toList()).join(", "));
+		QString line = QString("\tkinds: ");
+		foreach (const QString& key, package.commandDescriptions.keys()){
+			const CommandDescription& cmd = package.commandDescriptions.value(key);
+			line += key + "(" + cmd.toDebugString() + "), ";
+		}
+		line.chop(2);
+		res << line;
+		line = QString("\tall commands: ");
+		foreach (const CodeSnippet& cs, package.completionWords) line += (line.isEmpty() ? "" : "; ") + cs.word;
+		res << line;
+		res << "" << "";
+	}
+
+	if (newFile) fileNew();
+	m_languages->setLanguageFromName(currentEditor(), "Plain text");
+	currentEditorView()->editor->setText(res.join("\n"), false);
+
 }
 
 void Texstudio::addDocToLoad(QString filename)
