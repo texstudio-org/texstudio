@@ -1388,7 +1388,7 @@ bool BuildManager::checkExpandedCommands(const ExpandedCommands &expansion)
 
 	// check if one command in the list is empty (expansion produced an error, e.g. txs:quick and compile is undefined
 	foreach (const CommandToRun elem, expansion.commands) {
-		if (elem.command.isEmpty() || true) {
+		if (elem.command.isEmpty()) {
 			emit processNotification(tr("Error: One command expansion invalid.") + 
 			                         QString("\n    %1: %2").arg(tr("Parent Command"), elem.parentCommand) +
 			                         QString("\n    %1: %2").arg(tr("Primary Command"), expansion.primaryCommand));
