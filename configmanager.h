@@ -147,6 +147,7 @@ public:
 	PreviewMode previewMode;
 	AutoPreviewMode autoPreview;
 	int autoPreviewDelay;
+	int segmentPreviewScalePercent;
 
 	// embedded viewer
 	bool viewerEnlarged;

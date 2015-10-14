@@ -7704,7 +7704,21 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				return;
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
-			image = page->renderToImage(120, 120);
+
+			float scale = configManager.segmentPreviewScalePercent / 100.;
+			float min = 0.2;
+			float max = 100;
+			scale = qMax(min, qMin(max, scale));
+#if QT_VERSION >= 0x050000
+			float dpiX = logicalDpiX() * scale * devicePixelRatio();
+			float dpiY = logicalDpiY() * scale * devicePixelRatio();
+			image = page->renderToImage(dpiX, dpiY);
+			image.setDevicePixelRatio(devicePixelRatio());
+#else
+			float dpiX = logicalDpiX() * scale;
+			float dpiY = logicalDpiY() * scale;
+			image = page->renderToImage(dpiX, dpiY);
+#endif
 		}
 	}
 #endif
