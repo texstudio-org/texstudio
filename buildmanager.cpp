@@ -342,13 +342,17 @@ void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const Q
 		if (!oldPathsFound) {
 			return;
 		}
-		QString info;
+		QString newPath = "/Library/TeX/texbin/";
+		QString info(tr("OSX 10.11 does not allow applications to write there anymore. Therefore,\n"
+		                "recent versions of MacTeX changed the bin path to /Library/TeX/texbin/\n"
+		                "\n"
+		                "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
+		                "%1?"));
 		if (QDir("/Library/TeX/texbin/").exists()) {
-			info = tr("OSX 10.11 does not allow applications to write there anymore. Therefore,\n"
-			          "recent versions of MacTeX changed the bin path to /Library/TeX/texbin/\n"
-			          "\n"
-			          "Do you want TeXstudio to change all command paths from /usr/texbin/ to\n"
-			          "/Library/TeX/texbin/?");
+			info = info.arg("/Library/TeX/texbin/");
+		} else if (QDir("/usr/local/texbin/").exists()) {
+			info = info.arg("/usr/local/texbin/");
+			newPath = "/usr/local/texbin/";
 		} else {
 			info = tr("OSX 10.11 does not allow applications to write there anymore. You may\n"
 			          "need to update MacTeX to version 2015.\n"
@@ -371,7 +375,7 @@ void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const Q
 			foreach (const QString &id, commands) {
 				QString cmd = settings.value(id).toString();
 				if (cmd.contains("/usr/texbin/")) {
-					cmd.replace("/usr/texbin/", "/Library/TeX/texbin/");
+					cmd.replace("/usr/texbin/", newPath);
 				}
 				settings.setValue(id, cmd);
 			}
