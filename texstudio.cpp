@@ -7684,15 +7684,16 @@ void Texstudio::previewLatex()
 
 void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &source)
 {
-	QImage image;
+	QPixmap pixmap;
+	bool fromPDF = false;
 #ifndef NO_POPPLER_PREVIEW
-	if (imageFile.endsWith(".pdf")) {
+	fromPDF = imageFile.toLower().endsWith(".pdf");
+	if (fromPDF) {
 		// special treatment for pdf files (embedded pdf mode)
 		if (configManager.previewMode == ConfigManager::PM_EMBEDDED) {
 			runInternalCommand("txs:///view-pdf-internal", QFileInfo(imageFile), "--embedded");
 			if (currentEditorView())
 				currentEditorView()->setFocus();
-
 			return;
 		} else {
 			//need to generate an image
@@ -7704,21 +7705,36 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				return;
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
-			image = page->renderToImage(120, 120);
+
+			QImage image;
+			float scale = configManager.segmentPreviewScalePercent / 100.;
+			float min = 0.2;
+			float max = 100;
+			scale = qMax(min, qMin(max, scale));
+#if QT_VERSION >= 0x050000
+			float dpiX = logicalDpiX() * scale * devicePixelRatio();
+			float dpiY = logicalDpiY() * scale * devicePixelRatio();
+			image = page->renderToImage(dpiX, dpiY);
+			image.setDevicePixelRatio(devicePixelRatio());
+#else
+			float dpiX = logicalDpiX() * scale;
+			float dpiY = logicalDpiY() * scale;
+			image = page->renderToImage(dpiX, dpiY);
+#endif
+			pixmap = QPixmap::fromImage(image);
 		}
 	}
 #endif
+	if (!fromPDF) {
+		pixmap.load(imageFile);
+	}
+	
+	
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_PANEL ||
 	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
 		outputView->showPage(outputView->PREVIEW_PAGE);
-		QPixmap img;
-		if (image.isNull()) {
-			img.load(imageFile);
-		} else {
-			img = QPixmap::fromImage(image);
-		}
-		outputView->previewLatex(img);
+		outputView->previewLatex(pixmap);
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_TOOLTIP ||
@@ -7732,22 +7748,17 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 			p = currentEditorView()->editor->mapToGlobal(currentEditorView()->editor->mapFromContents(currentEditorView()->editor->cursor().documentPosition()));
 
 		QRect screen = QApplication::desktop()->screenGeometry();
-		QPixmap img;
-		if (image.isNull()) {
-			img.load(imageFile);
-			int w = img.width();
-			if (w > screen.width()) w = screen.width() - 2;
+		int w = pixmap.width();
+		if (w > screen.width()) w = screen.width() - 2;
+		if (!fromPDF) {
 			QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w), 0);
 		} else {
-			img = QPixmap::fromImage(image);
-			int w = img.width();
-			if (w > screen.width()) w = screen.width() - 2;
 			QString text;
 #if QT_VERSION >= 0x040700
-			text = getImageAsText(img, w);
+			text = getImageAsText(pixmap, w);
 #else
 			QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
-			img.save(tempPath + "txs_preview.png", "PNG");
+			pixmap.save(tempPath + "txs_preview.png", "PNG");
 			buildManager.addPreviewFileName(tempPath + "txs_preview.png");
 			text = QString("<img src=\"" + tempPath + "txs_preview.png\" width=%1 />").arg(w);
 #endif
@@ -7772,13 +7783,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				if (l != toLine) //must not adjust line toLine here, or will recalculate the document height without preview and scroll away if the preview is very height
 					doc->adjustWidth(l);
 			}
-		QPixmap img;
-		if (image.isNull()) {
-			img.load(imageFile);
-		} else {
-			img = QPixmap::fromImage(image);
-		}
-		doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(img));
+		doc->line(toLine).setCookie(QDocumentLine::PICTURE_COOKIE, QVariant::fromValue<QPixmap>(pixmap));
 		doc->line(toLine).setFlag(QDocumentLine::LayoutDirty);
 		doc->adjustWidth(toLine);
 	}
