@@ -551,7 +551,7 @@ void Texstudio::setupDockWidgets()
 		connect(outputView->getSearchResultWidget(), SIGNAL(jumpToSearchResult(QDocument *, int, const SearchQuery *)), this, SLOT(jumpToSearchResult(QDocument *, int, const SearchQuery *)));
 		connect(outputView->getSearchResultWidget(), SIGNAL(runSearch(SearchQuery *)), this, SLOT(runSearch(SearchQuery *)));
 
-		connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable	(const QString &, const PreviewSource &)));
+		connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable(const QString &, const PreviewSource &)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
 
 		connect(&buildManager, SIGNAL(beginRunningCommands(QString, bool, bool, bool)), SLOT(beginRunningCommand(QString, bool, bool, bool)));
@@ -7685,7 +7685,16 @@ void Texstudio::previewLatex()
 void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &source)
 {
 	QPixmap pixmap;
+	int devPixelRatio = 1;
+#if QT_VERSION >= 0x050000
+	devPixelRatio = devicePixelRatio();
+#endif
+	float scale = configManager.segmentPreviewScalePercent / 100.;
+	float min = 0.2;
+	float max = 100;
+	scale = qMax(min, qMin(max, scale)) * devPixelRatio;
 	bool fromPDF = false;
+	
 #ifndef NO_POPPLER_PREVIEW
 	fromPDF = imageFile.toLower().endsWith(".pdf");
 	if (fromPDF) {
@@ -7696,7 +7705,6 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				currentEditorView()->setFocus();
 			return;
 		} else {
-			//need to generate an image
 			Poppler::Document *document = Poppler::Document::load(imageFile);
 			if (!document)
 				return;
@@ -7705,30 +7713,21 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 				return;
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
-
-			QImage image;
-			float scale = configManager.segmentPreviewScalePercent / 100.;
-			float min = 0.2;
-			float max = 100;
-			scale = qMax(min, qMin(max, scale));
-#if QT_VERSION >= 0x050000
-			float dpiX = logicalDpiX() * scale * devicePixelRatio();
-			float dpiY = logicalDpiY() * scale * devicePixelRatio();
-			image = page->renderToImage(dpiX, dpiY);
-			image.setDevicePixelRatio(devicePixelRatio());
-#else
-			float dpiX = logicalDpiX() * scale;
-			float dpiY = logicalDpiY() * scale;
-			image = page->renderToImage(dpiX, dpiY);
-#endif
-			pixmap = QPixmap::fromImage(image);
+			float c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
+			pixmap = QPixmap::fromImage(page->renderToImage(logicalDpiX() * scale * c, logicalDpiY() * scale * c));
 		}
 	}
 #endif
 	if (!fromPDF) {
 		pixmap.load(imageFile);
+		if (scale < 0.99 || 1.01 < scale) {
+			// TODO: this does scale the pixmaps, but it would be better to render higher resolution images directly in the compilation process.
+			pixmap = pixmap.scaledToWidth(pixmap.width() * scale, Qt::SmoothTransformation);
+		}
 	}
-	
+	if (devPixelRatio != 1) {
+		pixmap.setDevicePixelRatio(devPixelRatio);
+	}
 	
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_PANEL ||
@@ -7751,7 +7750,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		int w = pixmap.width();
 		if (w > screen.width()) w = screen.width() - 2;
 		if (!fromPDF) {
-			QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w), 0);
+			QToolTip::showText(p, QString("<img src=\"" + imageFile + "\" width=%1 />").arg(w / devPixelRatio), 0);
 		} else {
 			QString text;
 #if QT_VERSION >= 0x040700
