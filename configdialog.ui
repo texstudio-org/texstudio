@@ -79,7 +79,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>547</width>
             <height>632</height>
            </rect>
           </property>
@@ -863,7 +863,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>860</width>
+               <width>194</width>
                <height>76</height>
               </rect>
              </property>
@@ -1809,7 +1809,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>668</width>
             <height>1289</height>
            </rect>
           </property>
@@ -3062,8 +3062,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>314</width>
+            <height>468</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3443,6 +3443,9 @@ them here.</string>
             <number>0</number>
            </property>
            <item>
+            <widget class="QAxWidget" name="axWidget"/>
+           </item>
+           <item>
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
               <string>Segment Preview</string>
@@ -3612,7 +3615,7 @@ them here.</string>
               <item row="2" column="0">
                <widget class="QLabel" name="label_75">
                 <property name="toolTip">
-                 <string>Does currently only work with pdflatex preview.</string>
+                 <string/>
                 </property>
                 <property name="text">
                  <string>Scaling:</string>
@@ -3622,7 +3625,7 @@ them here.</string>
               <item row="2" column="1">
                <widget class="QSpinBox" name="spinBoxSegmentPreviewScalePercent">
                 <property name="toolTip">
-                 <string>Does currently only work with pdflatex preview.</string>
+                 <string/>
                 </property>
                 <property name="specialValueText">
                  <string notr="true"/>
@@ -4175,6 +4178,13 @@ them here.</string>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QAxWidget</class>
+   <extends>QWidget</extends>
+   <header>qaxwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>comboBoxInterfaceStyle</tabstop>
