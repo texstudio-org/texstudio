@@ -20,7 +20,7 @@ TeXstudio 2.10.4
 - fix: rtl detection lagging behind the actual text
 - fix: spell checking in command arguments and section titles
 - fix: cursor position for tabwidth == 1
-- fix: "View" calls to Arcobat (Reader) did not work
+- fix: multiple "View" calls to Acrobat (Reader) did not work
 - fix: bibids in the completer
 - fix: tooltip preview of $
 - fix: loading of profile in portable mode
