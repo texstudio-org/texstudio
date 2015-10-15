@@ -3,7 +3,6 @@
 #include "smallUsefulFunctions.h"
 #include "configmanagerinterface.h"
 #include "utilsSystem.h"
-#include "temporarydir.h"
 
 #include "userquickdialog.h"
 
@@ -1668,8 +1667,7 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 
 	// write to temp file
 	// (place /./ after the temporary directory because it fails otherwise with qt4.3 on win and the tempdir "t:")
-	TemporaryDir tempDir;
-	QTemporaryFile *tf = new QTemporaryFile(tempDir.filePath("XXXXXX.tex"));
+	QTemporaryFile *tf = new QTemporaryFile(tempPath + "XXXXXX.tex");
 	if (!tf) return;
 	tf->open();
 
@@ -1858,13 +1856,11 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p1) return;
 		QString processedFile = p1->getFile();
 		if (processedFile.endsWith(".tex"))
-			processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", processedFile).first());
-			// TODO: fromNativeSeparators is a workaround to fix bug 
-		    // yields different dir separators depending on the context. This should be fixed (which direction?).
-		    // Test (on win): switch preview between dvipng and pdflatex
+			processedFile = parseExtendedCommandLine("?am.tex", processedFile).first();
 		QString fn = parseExtendedCommandLine("?am).pdf", processedFile).first();
-		if (QFileInfo(fn).exists())
+		if (QFileInfo(fn).exists()) {
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
+		}
 	}
 }
 
@@ -1892,9 +1888,8 @@ void BuildManager::conversionPreviewCompleted(int status)
 	QString processedFile = p2->getFile();
 	if (processedFile.endsWith(".ps")) processedFile = parseExtendedCommandLine("?am.tex", processedFile).first();
 	QString fn = parseExtendedCommandLine("?am)1.png", processedFile).first();
-	if (QFileInfo(fn).exists()) {
+	if (QFileInfo(fn).exists())
 		emit previewAvailable(fn, previewFileNameToSource[processedFile]);
-	}
 }
 
 void BuildManager::commandLineRequestedDefault(const QString &cmdId, QString *result, bool *user)
