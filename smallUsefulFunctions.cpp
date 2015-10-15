@@ -3461,7 +3461,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 				stack.push(tk);
 				lexed << tk;
 				level++;
-			}
+            }else{
+                tk.level = level;
+                tk.argLevel = 0; // run-away prevention, reduced if no command is used
+                stack.push(tk);
+                lexed << tk;
+                level++;
+            }
 			continue;
 		}
 		if (Tokens::tkClose().contains(tk.type)) {
