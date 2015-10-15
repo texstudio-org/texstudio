@@ -3443,9 +3443,6 @@ them here.</string>
             <number>0</number>
            </property>
            <item>
-            <widget class="QAxWidget" name="axWidget"/>
-           </item>
-           <item>
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
               <string>Segment Preview</string>
@@ -4178,13 +4175,6 @@ them here.</string>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QAxWidget</class>
-   <extends>QWidget</extends>
-   <header>qaxwidget.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>scrollArea</tabstop>
   <tabstop>comboBoxInterfaceStyle</tabstop>
