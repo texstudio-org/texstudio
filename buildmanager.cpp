@@ -1856,7 +1856,10 @@ void BuildManager::latexPreviewCompleted(int status)
 		if (!p1) return;
 		QString processedFile = p1->getFile();
 		if (processedFile.endsWith(".tex"))
-			processedFile = parseExtendedCommandLine("?am.tex", processedFile).first();
+			processedFile = QDir::fromNativeSeparators(parseExtendedCommandLine("?am.tex", processedFile).first());
+			// TODO: fromNativeSeparators is a workaround to fix bug 
+			// yields different dir separators depending on the context. This should be fixed (which direction?).
+			// Test (on win): switch preview between dvipng and pdflatex
 		QString fn = parseExtendedCommandLine("?am).pdf", processedFile).first();
 		if (QFileInfo(fn).exists()) {
 			emit previewAvailable(fn, previewFileNameToSource[processedFile]);
