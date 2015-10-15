@@ -1,5 +1,6 @@
-Development Status
+TeXstudio 2.10.4
 ----------------
+- adapt to changed TeXlive paths on Mac OS X El Capitan (path detection and change notification)
 - more granular selection of update notifications: stable / release candidate /development
 - image as an alternative caching format (better rendering results for some cases)
 - import fedora patch: more general commands for external viewers on linux
@@ -7,6 +8,7 @@ Development Status
 - support \newif, \newfontfamily, \newfontface as definition commands
 - ignore keyboard layout change if the current language context is ambigious
 - folding of square brackets
+- option for scaling of the segment preview
 - some code optimizations for speedup
 - fix: setting root in structureview per contextmenu
 - fix: problem with open braces and bibliography/label
@@ -24,6 +26,9 @@ Development Status
 - fix: loading of profile in portable mode
 - fix: palette and application style were not necessarily updated correctly when loading a profile
 - fix: tooltip width prediction for rich text tooltips
+- fix: false positive detection and replacement of literal quotes on windows
+- fix: sizes for segment preview respect hiDpi displays
+- fix: pdflatex segment preview on windows was always shown on first line
 - some updates to the manual
 - some updates to cwl files
 
