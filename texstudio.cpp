@@ -6905,7 +6905,7 @@ void Texstudio::resizeEvent(QResizeEvent *e)
 
 #if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
 // workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
-bool Texmaker::eventFilter(QObject *obj, QEvent *event)
+bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 {
 	if (obj->objectName() == "ConfigDialogWindow" || obj->objectName() == "ShortcutComboBox")
 		return false; // don't handle keys from shortcutcombo (config)
@@ -7725,9 +7725,11 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 			pixmap = pixmap.scaledToWidth(pixmap.width() * scale, Qt::SmoothTransformation);
 		}
 	}
+#if QT_VERSION >= 0x050000
 	if (devPixelRatio != 1) {
 		pixmap.setDevicePixelRatio(devPixelRatio);
 	}
+#endif
 	
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_PANEL ||
