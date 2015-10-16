@@ -567,16 +567,30 @@ QDocumentCursor CodeSnippet::getCursor(QEditor *editor, const CodeSnippetPlaceHo
 
 void CodeSnippetList::unite(CodeSnippetList &lst)
 {
-	this->append(lst);
-	CodeSnippetList::iterator middle = this->end() - lst.length();
+#if QT_VERSION<0x040600
+    QVector<CodeSnippet> result(lst.size()+size());
+    std::merge(begin(),end(),lst.begin(),lst.end(),result.begin());
+    this->clear();
+    this->append(result.toList());
+#else
+    this->append(lst);
+    CodeSnippetList::iterator middle = this->end() - lst.length();
 	std::inplace_merge(this->begin(), middle, this->end());
+#endif
 }
 
 void CodeSnippetList::unite(const QList<CodeSnippet> &lst)
 {
+#if QT_VERSION<0x040600
+    QVector<CodeSnippet> result(lst.size()+size());
+    std::merge(begin(),end(),lst.constBegin(),lst.constEnd(),result.begin());
+    this->clear();
+    this->append(result.toList());
+#else
 	this->append(lst);
 	CodeSnippetList::iterator middle = this->end() - lst.length();
 	std::inplace_merge(this->begin(), middle, this->end());
+#endif
 }
 
 void CodeSnippetList::insert(const QString &elem)
