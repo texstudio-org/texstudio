@@ -82,7 +82,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new TableManipulationTest(editor)
 		<< new SyntaxCheckTest(edView)
 		<< new UpdateCheckerTest(level==TL_ALL)
-		<< new VersionTest(level=TL_ALL)
+        << new VersionTest(level==TL_ALL)
         << new HelpTest();
 	bool allPassed=true;
 	if (level!=TL_ALL)
