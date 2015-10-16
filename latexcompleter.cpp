@@ -1313,15 +1313,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 			if (cw.word.startsWith('%')) {
 				QString specialList = cw.word;
 				if (listModel->contextLists.contains(specialList)) {
-#if QT_VERSION<0x040600
-                    QVector<CodeSnippet> result(listModel->baselist.size()+listModel->contextLists.value(specialList).size());
-                    std::merge(listModel->baselist.begin(),listModel->baselist.end(),listModel->contextLists.value(specialList).begin(),listModel->contextLists.value(specialList).end(),result.begin());
-                    listModel->baselist=result.toList();
-#else
 					listModel->baselist << listModel->contextLists.value(specialList);
 					QList<CompletionWord>::iterator middle = listModel->baselist.end() - listModel->contextLists.value(specialList).length();
 					std::inplace_merge(listModel->baselist.begin(), middle, listModel->baselist.end());
-#endif
 				}
 			} else {
 				// nothing special, simply add
@@ -1341,15 +1335,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 	if (!handled) {
 		if (flags & CF_NORMAL_TEXT) listModel->baselist = listModel->wordsText;
 		else listModel->baselist = listModel->wordsCommands;
-#if QT_VERSION<0x040600
-        QVector<CodeSnippet> result(listModel->baselist.size()+listModel->wordsAbbrev.size());
-        std::merge(listModel->baselist.begin(),listModel->baselist.end(),listModel->wordsAbbrev.begin(),listModel->wordsAbbrev.end(),result.begin());
-        listModel->baselist=result.toList();
-#else
 		listModel->baselist << listModel->wordsAbbrev;
 		QList<CompletionWord>::iterator middle = listModel->baselist.end() - listModel->wordsAbbrev.length();
 		std::inplace_merge(listModel->baselist.begin(), middle, listModel->baselist.end());
-#endif
 	}
 	if ( editor->currentPlaceHolder() >= 0 && editor->currentPlaceHolder() < editor->placeHolderCount() ) {
 		PlaceHolder ph = editor->getPlaceHolder(editor->currentPlaceHolder());
