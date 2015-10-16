@@ -603,6 +603,36 @@
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
         <translation>Pokud je váším záměrem práce s LaTeXem, je téměř jisté, že chcete nainstalovat LaTeXovou distribuci.</translation>
     </message>
+    <message>
+        <source>OSX 10.11 does not allow applications to write there anymore. Therefore,
+recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
+
+Do you want TeXstudio to change all command paths from /usr/texbin/ to
+%1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OSX 10.11 does not allow applications to write there anymore. You may
+need to update MacTeX to version 2015.
+
+Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
+
+Do you want TeXstudio to change all command paths from /usr/texbin/ to
+/Library/TeX/texbin/?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Some of your commands are refering to locations in /usr/texbin/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parent Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Primary Command</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CleanDialog</name>
@@ -2883,11 +2913,30 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Also notify updates of development versions</source>
+        <source>Use QImage as cache type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use QImage as cache type</source>
+        <source>Defines the kinds of update notifications you will receive:
+- Stable Releases: Choose this if stability is most important to you.
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stable Releases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release Candidates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Development Versions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Level:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10396,6 +10445,10 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
         <source>Could not save the image file.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Check Active Completion Files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -10770,11 +10823,19 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <source>Update check for release candidate failed (invalid update file format).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
