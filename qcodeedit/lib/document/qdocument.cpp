@@ -6784,9 +6784,9 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                     pi = new QImage(lineCacheWidth,ht,QImage::Format_RGB888);
 #endif
                     if(fullSel){
-                        pi->fill(selbg.color());
+                        pi->fill(selbg.color().rgb());
                     }else{
-                        pi->fill(bg.color());
+                        pi->fill(bg.color().rgb());
                     }
                     pr = new QPainter(pi);
                 }else{
