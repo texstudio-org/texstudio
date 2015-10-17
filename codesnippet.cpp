@@ -7,6 +7,8 @@
 #include "latexdocument.h"
 #include "smallUsefulFunctions.h"
 
+#include <algorithm>
+
 int CodeSnippetPlaceHolder::offsetEnd() const
 {
 	return offset + length;
