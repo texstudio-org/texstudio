@@ -8,7 +8,7 @@
 #include:pgfopts
 #include:etoolbox
 #include:xpatch
-#include:morewrites%
+#include:morewrites
 #include:filehook
 #include:hopatch
 #include:xifthen
