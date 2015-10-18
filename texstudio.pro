@@ -291,7 +291,8 @@ TRANSLATIONS += texstudio_cs.ts \
     texstudio_ru.ts \
     texstudio_ja.ts \
     texstudio_zh_CN.ts \
-    texstudio_vi.ts
+    texstudio_vi.ts \
+    texstudio_el.ts
 
 # ###############################
 win32:RC_FILE = win.rc
