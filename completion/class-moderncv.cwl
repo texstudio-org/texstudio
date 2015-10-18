@@ -1,4 +1,13 @@
 # denisbitouze, 02.03.2013
+#include:xcolor
+#include:url
+#include:graphicx
+#include:fancyhdr
+#include:tweaklist
+#include:calc
+#include:xparse
+#include:microtype
+#include:hyperref
 \moderncvstyle{%<style%>}#n
 \moderncvcolor{%<color%>}#n
 \nopagenumbers#n
