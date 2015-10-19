@@ -7007,6 +7007,10 @@ void Texstudio::updateCompleter(LatexEditorView *edView)
 			ltxCommands.append(doc->ltxCommands);
 		}
 	}
+    foreach(CodeSnippet cs,words){
+        if(cs.word.startsWith("\\textcol"))
+            qDebug()<<cs.word;
+    }
 
 	// collect user commands and references
 	QSet<QString> collected_labels;
