@@ -3063,7 +3063,7 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
 			pck.unite(zw, gatherForCompleter);
 			loadedFiles.append(elem);
 			if (!zw.requiredPackages.isEmpty())
-				gatherCompletionFiles(zw.requiredPackages, loadedFiles, pck);
+                gatherCompletionFiles(zw.requiredPackages, loadedFiles, pck,gatherForCompleter);
 		}
 	}
 }
