@@ -47,7 +47,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>13</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1809,7 +1809,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>668</width>
+            <width>863</width>
             <height>1289</height>
            </rect>
           </property>
@@ -2165,7 +2165,8 @@ Then you can select a new shortcut by one of the following ways:
               <item row="14" column="0">
                <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
                 <property name="toolTip">
-                 <string>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</string>
+                 <string>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
                 </property>
                 <property name="text">
                  <string>Insert Symbol as Unicode</string>
@@ -3062,8 +3063,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
