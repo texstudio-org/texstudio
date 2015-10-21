@@ -3,6 +3,7 @@
 #include "smallUsefulFunctions.h"
 #include "configmanagerinterface.h"
 #include "utilsSystem.h"
+#include "temporarydir.h"
 
 #include "userquickdialog.h"
 
@@ -1588,7 +1589,11 @@ void addLaTeXInputPaths(ProcessX *p, const QStringList &paths)
 //Then ghostscript to convert it to
 void BuildManager::preview(const QString &preamble, const PreviewSource &source, const QString &masterFile, QTextCodec *outputCodec)
 {
-	QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
+	//QString tempPath = QDir::tempPath() + QDir::separator() + "." + QDir::separator();
+	
+	QDir tempDir = TemporaryDir::sessionDir();
+	QString tempPath = ensureTrailingDirSeparator(tempDir.absolutePath());
+	qDebug() << tempPath;
 
 	//process preamble
 	QString preamble_mod = preamble;
