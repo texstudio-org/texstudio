@@ -817,7 +817,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation>4</translation>
     </message>
     <message>
-        <location line="+2424"/>
+        <location line="+2425"/>
         <source>Preview with pdflatex</source>
         <translation>Vista previa con pdflatex</translation>
     </message>
@@ -880,7 +880,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">El atajo que insertaste es el mismo que el de este comando:</translation>
     </message>
     <message>
-        <location line="-3843"/>
+        <location line="-3844"/>
         <source>Files</source>
         <translation>Archivos</translation>
     </message>
@@ -906,7 +906,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Base de datos del tesauro</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2013"/>
+        <location filename="configdialog.ui" line="+2014"/>
         <source>Parse BibTeX</source>
         <translation>Analizar BibTeX</translation>
     </message>
@@ -932,7 +932,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Mostrar números de línea</translation>
     </message>
     <message>
-        <location line="-2645"/>
+        <location line="-2646"/>
         <source>Dictionaries</source>
         <translation>Diccionarios</translation>
     </message>
@@ -949,7 +949,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Editor de familia de fuente</translation>
     </message>
     <message>
-        <location line="+3769"/>
+        <location line="+3770"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -958,7 +958,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Mostrar opciones avanzadas</translation>
     </message>
     <message>
-        <location line="-2683"/>
+        <location line="-2684"/>
         <location filename="configdialog.cpp" line="+277"/>
         <location filename="configmanager.cpp" line="+1287"/>
         <source>Editor</source>
@@ -1001,7 +1001,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Asumir que todo error se encuentra en el documento actual:</translation>
     </message>
     <message>
-        <location line="+1732"/>
+        <location line="+1733"/>
         <location filename="configdialog.cpp" line="+8"/>
         <source>Completion</source>
         <translation>Auto-completado</translation>
@@ -1021,7 +1021,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation>Acceso rápido predeterminado</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2097"/>
+        <location filename="configdialog.ui" line="-2098"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
         <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Caractéres especiales&lt;/span&gt;</translation>
     </message>
@@ -1043,7 +1043,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation>¿Realmente deseas eliminar esta fila?</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="+2188"/>
+        <location filename="configdialog.ui" line="+2189"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Completar texto seleccionado cuando ningún carácter es presionado</translation>
     </message>
@@ -1069,7 +1069,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Usar marcadores de posición</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-1728"/>
+        <location filename="configdialog.ui" line="-1729"/>
         <location filename="configdialog.cpp" line="-187"/>
         <source>Command</source>
         <translation>Orden</translation>
@@ -1102,7 +1102,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Mostrar siempre la estructura del documento maestro</translation>
     </message>
     <message>
-        <location line="+1001"/>
+        <location line="+1002"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Autocompletar prefijos comúnes</translation>
     </message>
@@ -1120,7 +1120,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation>Distinguir entre Mayúsculas y Minúsculas</translation>
     </message>
     <message>
-        <location line="-2123"/>
+        <location line="-2124"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
         <translation>Órdenes (%: nombre del archivo sin extensión - @: número de línea - ?: opciones)</translation>
     </message>
@@ -1130,7 +1130,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation>Plegado</translation>
     </message>
     <message>
-        <location line="+1090"/>
+        <location line="+1091"/>
         <source>Formats</source>
         <translation>Formatos</translation>
     </message>
@@ -1148,7 +1148,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation type="obsolete">Tamaño de fuente del editor</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-721"/>
+        <location filename="configdialog.ui" line="-722"/>
         <source>Show State Panel</source>
         <translation>Mostrar el panel de estado</translation>
     </message>
@@ -1387,12 +1387,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location line="+14"/>
         <location line="+1229"/>
-        <location line="+1496"/>
+        <location line="+1497"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
     <message>
-        <location line="-2720"/>
+        <location line="-2721"/>
         <source>Only For User Commands</source>
         <translation>Sólo para las órdenes de Usuario</translation>
     </message>
@@ -1586,13 +1586,13 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     </message>
     <message>
         <location line="-26"/>
-        <location line="+2048"/>
+        <location line="+2049"/>
         <location line="+106"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location line="-2756"/>
+        <location line="-2757"/>
         <source>Replaces environment variables in commands.The behavior is OS-specific.
 
 Windows:
@@ -1869,22 +1869,22 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Ocultar errores de ortografía en entornos que no sean de texto</translation>
     </message>
     <message>
-        <location line="+2079"/>
+        <location line="+2080"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Mostrar vista previa como un tooltip sobre fórmulas en el editor</translation>
     </message>
     <message>
-        <location line="-1516"/>
+        <location line="-1517"/>
         <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
         <translation>Desactivar la tecla &quot;Esc&quot; para cerrar el modo de pantalla completa</translation>
     </message>
     <message>
-        <location line="+154"/>
+        <location line="+155"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Mantener la  sangría de includes en la estructura de árbol</translation>
     </message>
     <message>
-        <location line="-147"/>
+        <location line="-148"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Mostrar ayuda sobre las órdenes en el visor de pdf interno (texdoc)</translation>
     </message>
@@ -1895,21 +1895,23 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
     </message>
     <message>
         <location line="+62"/>
-        <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
-        <translation>Tenga cuidado que LaTeX todavía tiene que ser capaz de dar el carácter, así los mismos paquetes tienen que estar presentes como con el Código de LaTeX</translation>
+        <source>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
+        <oldsource>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</oldsource>
+        <translation type="unfinished">Tenga cuidado que LaTeX todavía tiene que ser capaz de dar el carácter, así los mismos paquetes tienen que estar presentes como con el Código de LaTeX</translation>
     </message>
     <message>
-        <location line="+3"/>
+        <location line="+4"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Insertar símbolo como Unicode</translation>
     </message>
     <message>
-        <location line="-58"/>
+        <location line="-59"/>
         <source>Go to error when displaying log</source>
         <translation>Ir al error al mostrar el archivo de registro</translation>
     </message>
     <message>
-        <location line="+189"/>
+        <location line="+190"/>
         <source>Table Autoformating</source>
         <translation>Formato Automático de Tabla</translation>
     </message>
@@ -2003,7 +2005,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="obsolete">Escalar la barra de tareas central</translation>
     </message>
     <message>
-        <location line="-1204"/>
+        <location line="-1205"/>
         <location line="+7"/>
         <location line="+7"/>
         <source>Reset</source>
@@ -2014,7 +2016,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation type="obsolete">Escalar símbolos</translation>
     </message>
     <message>
-        <location line="+1198"/>
+        <location line="+1199"/>
         <source>QCE (recommended)</source>
         <translation>QCE (recomendado)</translation>
     </message>
@@ -2140,7 +2142,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Tamaño de la barra de pestañas en la parte inferior o superior del Autocompletar</translation>
     </message>
     <message>
-        <location line="-2532"/>
+        <location line="-2533"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>Directorios del Diccionario de Ortografía:</translation>
     </message>
@@ -2214,7 +2216,7 @@ A continuación, puede seleccionar un nuevo Acceso rápido a una de las siguient
         <translation>Sobrescribir Paréntesis que abre seguido por un marcador de posición</translation>
     </message>
     <message>
-        <location line="+58"/>
+        <location line="+59"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Mostrar los marcadores de registro al hacer clic en la entrada de registro</translation>
     </message>
@@ -3025,7 +3027,7 @@ comunes.</translation>
         <translation>Asignación de clave básica</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="-2578"/>
+        <location filename="configdialog.ui" line="-2579"/>
         <source>Automatically load included files</source>
         <translation>Cargar Automáticamente archivos incluidos</translation>
     </message>
@@ -4412,7 +4414,7 @@ El asistente no admite órdenes </translation>
     </message>
     <message>
         <location line="-44"/>
-        <location filename="texstudio.cpp" line="+7502"/>
+        <location filename="texstudio.cpp" line="+7506"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Ir a la Definición</translation>
@@ -6177,7 +6179,7 @@ O bien el archivo está dañado o está en el proceso de creación. Es posible q
 <context>
     <name>QApplication</name>
     <message>
-        <location filename="codesnippet.cpp" line="+309"/>
+        <location filename="codesnippet.cpp" line="+311"/>
         <source>Select a File</source>
         <translation>Selccionar un archivo</translation>
     </message>
@@ -8898,13 +8900,13 @@ no pudo ser eliminado.</translation>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="texstudio.cpp" line="-6364"/>
-        <location line="+6342"/>
+        <location filename="texstudio.cpp" line="-6368"/>
+        <location line="+6346"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
     <message>
-        <location line="-6859"/>
+        <location line="-6863"/>
         <source>&amp;New</source>
         <translation>&amp;Nuevo</translation>
     </message>
@@ -8916,7 +8918,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location line="+446"/>
         <location line="+1387"/>
-        <location line="+4955"/>
+        <location line="+4959"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
@@ -8926,7 +8928,7 @@ no pudo ser eliminado.</translation>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="-6799"/>
+        <location filename="texstudio.cpp" line="-6803"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
@@ -8997,7 +8999,7 @@ no pudo ser eliminado.</translation>
     </message>
     <message>
         <location line="+1803"/>
-        <location line="+7141"/>
+        <location line="+7145"/>
         <source>Open Files</source>
         <translation>Abrir Archivos</translation>
     </message>
@@ -9006,7 +9008,7 @@ no pudo ser eliminado.</translation>
         <translation type="obsolete">Limpiar</translation>
     </message>
     <message>
-        <location line="-7675"/>
+        <location line="-7679"/>
         <location line="+1722"/>
         <location line="+1892"/>
         <location line="+507"/>
@@ -9014,12 +9016,12 @@ no pudo ser eliminado.</translation>
         <location line="+2"/>
         <location line="+7"/>
         <location line="+2"/>
-        <location line="+3566"/>
+        <location line="+3570"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location line="-8891"/>
+        <location line="-8895"/>
         <source>Go to</source>
         <translation>Ir a</translation>
     </message>
@@ -9073,12 +9075,12 @@ no pudo ser eliminado.</translation>
         <translation>Símbolos de texto misceláneos (wasysym)</translation>
     </message>
     <message>
-        <location line="+7577"/>
+        <location line="+7581"/>
         <source>Remove all favorites</source>
         <translation>Remover todos los favoritos</translation>
     </message>
     <message>
-        <location line="-7094"/>
+        <location line="-7098"/>
         <source>Next Document</source>
         <translation>Documento siguiente</translation>
     </message>
@@ -9097,12 +9099,12 @@ no pudo ser eliminado.</translation>
         <translation>Mac Antiguo (CR)</translation>
     </message>
     <message>
-        <location line="+7323"/>
+        <location line="+7327"/>
         <source>Remove from favorites</source>
         <translation>Remover desde los favoritos</translation>
     </message>
     <message>
-        <location line="-7583"/>
+        <location line="-7587"/>
         <source>Relation symbols</source>
         <translation>Símbolos de relación</translation>
     </message>
@@ -9133,12 +9135,12 @@ no pudo ser eliminado.</translation>
     </message>
     <message>
         <location line="-291"/>
-        <location line="+8453"/>
+        <location line="+8457"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location line="-8275"/>
+        <location line="-8279"/>
         <location line="+48"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
@@ -9193,13 +9195,13 @@ no pudo ser eliminado.</translation>
         <translation>(c) usar la orden por defecto</translation>
     </message>
     <message>
-        <location line="+1907"/>
+        <location line="+1911"/>
         <location line="+1"/>
         <source>Insert as %1</source>
         <translation>Insertar como %1</translation>
     </message>
     <message>
-        <location line="-6707"/>
+        <location line="-6711"/>
         <location line="+6"/>
         <source>Bookmark %1</source>
         <translation>Marcador %1</translation>
@@ -9251,7 +9253,7 @@ no pudo ser eliminado.</translation>
         <translation>Expandir</translation>
     </message>
     <message>
-        <location line="+7884"/>
+        <location line="+7888"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>El archivo &quot;%1&quot; no existe.
@@ -9263,7 +9265,7 @@ Do you want to create it?</source>
         <translation>!Conflicto!</translation>
     </message>
     <message>
-        <location line="-8883"/>
+        <location line="-8887"/>
         <source>Remove Placeholders</source>
         <translation>Remover marcadores de posición</translation>
     </message>
@@ -9273,12 +9275,12 @@ Do you want to create it?</source>
         <translation>Final de Línea</translation>
     </message>
     <message>
-        <location line="+6695"/>
+        <location line="+6699"/>
         <source>Insert</source>
         <translation>Insertar</translation>
     </message>
     <message>
-        <location line="-6528"/>
+        <location line="-6532"/>
         <source>Quick &amp;Start...</source>
         <translation>Inicio &amp;Rápido...</translation>
     </message>
@@ -9307,13 +9309,13 @@ Do you want to create it?</source>
         <translation>Actualizar estructura</translation>
     </message>
     <message>
-        <location line="+7256"/>
+        <location line="+7260"/>
         <location line="+56"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location line="-7145"/>
+        <location line="-7149"/>
         <source>Previous Document</source>
         <translation>Documento anterior</translation>
     </message>
@@ -9375,7 +9377,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Clic para ir al marcador</translation>
     </message>
     <message>
-        <location line="+7004"/>
+        <location line="+7008"/>
         <source>Remove all</source>
         <translation>Remover todos</translation>
     </message>
@@ -9388,7 +9390,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Último cambio</translation>
     </message>
     <message>
-        <location line="-7196"/>
+        <location line="-7200"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Generar &amp;Texto Aleatorio...</translation>
     </message>
@@ -9423,12 +9425,12 @@ Do you want to create it?</source>
         <translation type="obsolete">Modo Normal</translation>
     </message>
     <message>
-        <location line="+8694"/>
+        <location line="+8698"/>
         <source>You do not have read permission to this file.</source>
         <translation>Usted no tiene permiso para leer este archivo.</translation>
     </message>
     <message>
-        <location line="-8316"/>
+        <location line="-8320"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
@@ -9622,7 +9624,7 @@ Do you want to create it?</source>
         <translation>Nivel %1</translation>
     </message>
     <message>
-        <location line="+7061"/>
+        <location line="+7065"/>
         <location line="+11"/>
         <source>Add to favorites</source>
         <translation>Agregar a favoritos</translation>
@@ -9640,7 +9642,7 @@ Do you want to create it?</source>
         <translation type="obsolete">Por favor confirmar</translation>
     </message>
     <message>
-        <location line="-3049"/>
+        <location line="-3053"/>
         <source>Quick Start</source>
         <translation>Inicio rápido</translation>
     </message>
@@ -9650,13 +9652,13 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="-3901"/>
-        <location line="+6340"/>
+        <location line="+6344"/>
         <source>Unindent Section</source>
         <translation>Disminuir Sangría a la Sección</translation>
     </message>
     <message>
-        <location line="-6341"/>
-        <location line="+6340"/>
+        <location line="-6345"/>
+        <location line="+6344"/>
         <source>Indent Section</source>
         <translation>Aumentar Sangría de la sección</translation>
     </message>
@@ -9670,7 +9672,7 @@ Do you want to create it?</source>
 ¿Deseas guardarlo antes de cerrar?</translation>
     </message>
     <message>
-        <location line="-6965"/>
+        <location line="-6969"/>
         <source>Favorites</source>
         <translation>Favoritos</translation>
     </message>
@@ -9936,13 +9938,13 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+1"/>
-        <location line="+8608"/>
+        <location line="+8612"/>
         <location line="+10"/>
         <source>All files</source>
         <translation>Todos los archivos</translation>
     </message>
     <message>
-        <location line="-8433"/>
+        <location line="-8437"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Marcadores</translation>
@@ -10762,18 +10764,18 @@ Do you want to create it?</source>
     </message>
     <message>
         <location line="+21"/>
-        <location line="+6342"/>
+        <location line="+6346"/>
         <source>Paste Before</source>
         <translation>Pegar antes</translation>
     </message>
     <message>
-        <location line="-6341"/>
-        <location line="+6342"/>
+        <location line="-6345"/>
+        <location line="+6346"/>
         <source>Paste After</source>
         <translation>Pegar después</translation>
     </message>
     <message>
-        <location line="-6119"/>
+        <location line="-6123"/>
         <source>Go to bookmark</source>
         <translation>Ir al marcador</translation>
     </message>
@@ -10934,7 +10936,7 @@ confía en este documento)
         <translation>Se debe  guardar el archivo antes de que pueda ser definido como un documento principal.</translation>
     </message>
     <message>
-        <location line="+945"/>
+        <location line="+949"/>
         <source>Set as explicit root document</source>
         <translation>Establecer como un documento principal</translation>
     </message>
@@ -11028,7 +11030,7 @@ Proporcione este archivo si se envía un informe de error.
         <translation>Informe del sistema</translation>
     </message>
     <message>
-        <location line="-9111"/>
+        <location line="-9115"/>
         <location line="+340"/>
         <source>Insert language as TeX comment</source>
         <translation>Insertar el idioma como un Comentario TeX</translation>
@@ -11188,7 +11190,7 @@ Sin embargo, está utilizando una versión de TeXstudio que fue compilado sin el
         <translation type="obsolete">!Hay que guardar el archivo antes de cambiar al modo maestro!</translation>
     </message>
     <message>
-        <location line="+1370"/>
+        <location line="+1374"/>
         <source>Close document</source>
         <translation>Cerrar el documento</translation>
     </message>
@@ -11408,7 +11410,7 @@ El mensaje ha sido detenido.
         <translation>Traté de forzar el cierre, pero no pasó nada.</translation>
     </message>
     <message>
-        <location line="-7856"/>
+        <location line="-7860"/>
         <source>Could not write template meta data:</source>
         <translation>No se pudo escribir los metadatos de la plantilla:</translation>
     </message>

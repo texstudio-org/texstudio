@@ -2463,7 +2463,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
     </message>
     <message>
         <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
-        <translation>Dejte si pozor na to, že LaTeX stále potřebuje být schopen udělat znak. Čili je potřeba, aby byl přítomen tentýž balíček jako s LaTeXovým kódem</translation>
+        <translation type="vanished">Dejte si pozor na to, že LaTeX stále potřebuje být schopen udělat znak. Čili je potřeba, aby byl přítomen tentýž balíček jako s LaTeXovým kódem</translation>
     </message>
     <message>
         <source>Insert Symbol as Unicode</source>
@@ -2937,6 +2937,11 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     </message>
     <message>
         <source>Update Level:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
