@@ -1789,7 +1789,7 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems)
 
 QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems, int additionalEntries)
 {
-	QSet<int> reservedShortcuts = QSet<int>() << Qt::SHIFT+Qt::Key_F3;
+	QSet<int> reservedShortcuts = QSet<int>() << Qt::SHIFT+Qt::Key_F3;  // workaround to prevent overwriting search backward
 	QMenu *menu = getManagedMenu(menuName);
 	REQUIRE_RET(menu, 0);
 	Q_ASSERT(menu->objectName() == menuName);
