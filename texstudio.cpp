@@ -7713,16 +7713,12 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 			if (!document)
 				return;
 			Poppler::Page *page = document->page(0);
-			if (!page) {
-				delete document;
+			if (!page)
 				return;
-			}
 			document->setRenderHint(Poppler::Document::Antialiasing);
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
 			float c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
 			pixmap = QPixmap::fromImage(page->renderToImage(logicalDpiX() * scale * c, logicalDpiY() * scale * c));
-			delete page;
-			delete document;
 		}
 	}
 #endif

@@ -148,8 +148,7 @@ HEADERS += texstudio.h \
     searchresultwidget.h \
     searchquery.h \
     bidiextender.h \
-    tests/utilsversion_t.h \
-    temporarydir.h
+    tests/utilsversion_t.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -247,8 +246,7 @@ SOURCES += main.cpp \
     searchresultwidget.cpp \
     tests/smallUsefulFunctions_t.cpp \
     searchquery.cpp \
-    bidiextender.cpp \
-    temporarydir.cpp
+    bidiextender.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
