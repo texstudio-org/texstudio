@@ -2933,9 +2933,11 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 
 	QStringList files = mUsepackageList.values();
 	bool update = forceUpdate;
+    LatexParser &latexParser = LatexParser::getInstance();
 
 	//recheck syntax of ALL documents ...
-	LatexPackage pck;
+    LatexPackage pck;
+    pck.commandDescriptions=latexParser.commandDefs;
 	QStringList loadedFiles;
 	for (int i = 0; i < files.count(); i++) {
 		if (!files.at(i).endsWith(".cwl"))
@@ -2991,7 +2993,7 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	}*/
 
 	//patch lines for new commands (ref,def, etc)
-	LatexParser &latexParser = LatexParser::getInstance();
+
 	QStringList categories;
 	categories << "%ref" << "%label" << "%definition" << "%cite" << "%citeExtended" << "%citeExtendedCommand" << "%usepackage" << "%graphics" << "%file" << "%bibliography" << "%include" << "%url" << "%todo" << "%replace";
 	QStringList newCmds;
