@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -565,7 +563,7 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="357"/>
@@ -576,7 +574,7 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="368"/>
@@ -658,12 +656,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="1397"/>
         <source>Parent Command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1398"/>
         <source>Primary Command</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1756"/>
@@ -889,14 +887,32 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="567"/>
-        <source>Automatically check every</source>
-        <translation>Automatisch überprüfen alle</translation>
+        <location filename="configdialog.ui" line="482"/>
+        <source>Defines the kinds of update notifications you will receive:
+- Stable Releases: Choose this if stability is most important to you.
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="configdialog.ui" line="554"/>
-        <source> days</source>
-        <translation> Tage</translation>
+        <location filename="configdialog.ui" line="489"/>
+        <source>Stable Releases</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="494"/>
+        <source>Release Candidates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="499"/>
+        <source>Development Versions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="520"/>
+        <source>Check Now</source>
+        <translation>Jetzt prüfen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="547"/>
@@ -904,9 +920,19 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <translation>Zuletzt überprüft:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="520"/>
-        <source>Check Now</source>
-        <translation>Jetzt prüfen</translation>
+        <location filename="configdialog.ui" line="554"/>
+        <source> days</source>
+        <translation> Tage</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="567"/>
+        <source>Automatically check every</source>
+        <translation>Automatisch überprüfen alle</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="574"/>
+        <source>Update Level:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="584"/>
@@ -1074,7 +1100,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     </message>
     <message>
         <location filename="configdialog.ui" line="1024"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1599,7 +1625,6 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
         <location filename="configdialog.ui" line="2168"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <oldsource>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</oldsource>
         <translation>Wenn Unicode-Zeichen im Quelltext verwendet werden, muss LaTeX die Zeichen darstellen. Da Unicode nicht direkt unterstützt wird, benötigt es die passenden Pakete um diese darzustellen.</translation>
     </message>
     <message>
@@ -2260,6 +2285,12 @@ hier erzwungen werden.</translation>
         <translation>Vorschau-Tooltip auf Text im Editor</translation>
     </message>
     <message>
+        <location filename="configdialog.ui" line="3619"/>
+        <location filename="configdialog.ui" line="3722"/>
+        <source>Scaling:</source>
+        <translation>Skalierung:</translation>
+    </message>
+    <message>
         <location filename="configdialog.ui" line="3651"/>
         <source>Full Page PDF Preview</source>
         <translation>Integrierter PDF-Betrachter</translation>
@@ -2303,40 +2334,6 @@ hier erzwungen werden.</translation>
         <location filename="configdialog.ui" line="3714"/>
         <source>Fit to Text Width</source>
         <translation>Auf Textbreite anpassen</translation>
-    </message>
-    <message>
-        <location filename="configdialog.ui" line="3619"/>
-        <location filename="configdialog.ui" line="3722"/>
-        <source>Scaling:</source>
-        <translation>Skalierung:</translation>
-    </message>
-    <message>
-        <location filename="configdialog.ui" line="482"/>
-        <source>Defines the kinds of update notifications you will receive:
-- Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
-- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configdialog.ui" line="489"/>
-        <source>Stable Releases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configdialog.ui" line="494"/>
-        <source>Release Candidates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configdialog.ui" line="499"/>
-        <source>Development Versions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="configdialog.ui" line="574"/>
-        <source>Update Level:</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3751"/>
@@ -3866,7 +3863,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Platzierungsvorgaben für das Bild
@@ -3977,7 +3974,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1575"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
@@ -4148,17 +4145,14 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="latexeditorview.cpp" line="2138"/>
         <location filename="latexeditorview.cpp" line="2210"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2151"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n Referenz zu diesem Label</numerusform>
-            <numerusform>%n Referenzen zu diesem Label</numerusform>
-        </translation>
+        <translation><numerusform>%n Referenz zu diesem Label</numerusform><numerusform>%n Referenzen zu diesem Label</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2156"/>
@@ -10230,7 +10224,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5398"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
 Sie müssen ein neu erstelltes Dokument abspeichern, bevor Sie es erzeugen können.</translation>
@@ -11082,18 +11076,17 @@ If not, end characters are ignored.</source>
         <location filename="updatechecker.cpp" line="79"/>
         <location filename="updatechecker.cpp" line="124"/>
         <source>Update check failed (invalid update file format).</source>
-        <oldsource>Update check  ddddd failed (invalid update file format).</oldsource>
         <translation>Die Überprüfung auf Updates ist fehlgeschlagen (ungültiges Format der Update-Datei).</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="130"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="133"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="150"/>
@@ -11103,7 +11096,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="updatechecker.cpp" line="153"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="169"/>
@@ -11111,14 +11104,14 @@ If not, end characters are ignored.</source>
         <translation>Eine neue Version von TeXstudio ist verfügbar. &lt;br&gt;&lt;br&gt;Diese Version: %1&lt;br&gt;Neue stabile Version: %2&lt;br&gt;&lt;br&gt;Die neue Version kann von der &lt;a href=&apos;%3&apos;&gt;TeXstudio-Website&lt;/a&gt; heruntergeladen werden.</translation>
     </message>
     <message>
-        <location filename="updatechecker.cpp" line="190"/>
-        <source>TeXstudio Update</source>
-        <translation>TeXstudio-Update</translation>
-    </message>
-    <message>
         <location filename="updatechecker.cpp" line="178"/>
         <source>TeXstudio is up-to-date.</source>
         <translation>TeXstudio ist aktuell.</translation>
+    </message>
+    <message>
+        <location filename="updatechecker.cpp" line="190"/>
+        <source>TeXstudio Update</source>
+        <translation>TeXstudio-Update</translation>
     </message>
 </context>
 <context>
