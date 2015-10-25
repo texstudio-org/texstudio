@@ -17,29 +17,33 @@
 
 class QDomElement;
 
-struct xmlTag{
+struct xmlTag {
 	QString txt;
 	QString tag;
 	int type;
 };
 
-struct xmlTagList{
-	QString title,id;
+
+struct xmlTagList {
+	QString title, id;
 	QList<xmlTag> tags;
 	QList<xmlTagList> children;
 };
 
-class XmlTagsListWidget : public QListWidget  {
-  Q_OBJECT
+
+class XmlTagsListWidget : public QListWidget
+{
+	Q_OBJECT
+
 public:
 	XmlTagsListWidget(QWidget *parent, QString file);
-	QStringList tagsTxtFromCategory(const QString & category);
-	QString tagsFromTagTxt(const QString& tagTxt);
+	QStringList tagsTxtFromCategory(const QString &category);
+	QString tagsFromTagTxt(const QString &tagTxt);
 	bool isPopulated();
 	void populate();
 
 protected:
-	void showEvent ( QShowEvent * event );
+	void showEvent ( QShowEvent *event );
 
 private:
 	xmlTagList getTags(const QDomElement &element);

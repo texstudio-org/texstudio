@@ -171,7 +171,8 @@ class QCE_EXPORT QDocument : public QObject
 			DisableWidthCache		= 0x02,
 			DisableLineCache            = 0x04,
 			ForceQTextLayout            = 0x08,
-			ForceSingleCharacterDrawing = 0x10
+            ForceSingleCharacterDrawing = 0x10,
+            QImageCache = 0x20
 		};
 
 		Q_DECLARE_FLAGS(WorkAroundMode, WorkAroundFlag)

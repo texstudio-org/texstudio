@@ -1,6 +1,7 @@
 TEMPLATE = app
 LANGUAGE = C++
 DESTDIR = ./
+DISTFILES = texstudio.astylerc
 greaterThan(QT_MAJOR_VERSION, 4) {
     message(Building with Qt5)
     CONFIG += qt
@@ -38,7 +39,7 @@ else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
-HEADERS += texmaker.h \
+HEADERS += texstudio.h \
     buildmanager.h \
     symbolgridwidget.h \
     icondelegate.h \
@@ -146,10 +147,11 @@ HEADERS += texmaker.h \
     pdfsplittool.h \
     searchresultwidget.h \
     searchquery.h \
-    bidiextender.h
+    bidiextender.h \
+    tests/utilsversion_t.h
 SOURCES += main.cpp \
+    texstudio.cpp \
     buildmanager.cpp \
-    texmaker.cpp \
     symbolgridwidget.cpp \
     icondelegate.cpp \
     latexcompleter.cpp \
@@ -229,6 +231,7 @@ SOURCES += main.cpp \
     fileselector.cpp \
     utilsUI.cpp \
     utilsSystem.cpp \
+    utilsVersion.cpp \
     latexpackages.cpp \
     cursorposition.cpp \
     usermacro.cpp \
@@ -287,7 +290,9 @@ TRANSLATIONS += texstudio_cs.ts \
     texstudio_uk.ts \
     texstudio_ru.ts \
     texstudio_ja.ts \
-    texstudio_zh_CN.ts
+    texstudio_zh_CN.ts \
+    texstudio_vi.ts \
+    texstudio_el.ts
 
 # ###############################
 win32:RC_FILE = win.rc

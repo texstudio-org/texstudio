@@ -9,31 +9,36 @@
 #endif
 
 //==============================Database=============================
-class ThesaurusDatabaseType{
+class ThesaurusDatabaseType
+{
 public:
-	struct TinyStringRef{
+	struct TinyStringRef {
 		int start, length;
 		TinyStringRef(int astart, int alen);
-		QString toStringWithBuffer(const QString* buffer);
+		QString toStringWithBuffer(const QString *buffer);
 	};
 	QString fileName, userFileName;
-	QString* buffer;
+	QString *buffer;
 	QMultiMap<QStringRef, TinyStringRef> thesaurus; //maps category => word1|word2|... in most memory efficent format
 	QMap<QString, QStringList> userWords; //maps category => Category/words
 	QMultiMap<QString, QString> userCategories; //maps word => Category
 	void clear();
-	void load(QFile& file);
+	void load(QFile &file);
 	void saveUser();
 	ThesaurusDatabaseType();
 	~ThesaurusDatabaseType();
 };
-void ThesaurusDatabaseType::clear(){
-	if (buffer) delete buffer;	
-	buffer=0;
+
+void ThesaurusDatabaseType::clear()
+{
+	if (buffer) delete buffer;
+	buffer = 0;
 	thesaurus.clear();
 	fileName.clear();
 }
-void ThesaurusDatabaseType::saveUser(){
+
+void ThesaurusDatabaseType::saveUser()
+{
 	if (userFileName.isEmpty() || userWords.isEmpty()) return;
 	QFile f(userFileName);
 	if (!f.open(QFile::WriteOnly)) return;
@@ -45,9 +50,11 @@ void ThesaurusDatabaseType::saveUser(){
 	}
 	//userFileName.clear(); why was it there? save only once?
 }
-void ThesaurusDatabaseType::load(QFile& file){
+
+void ThesaurusDatabaseType::load(QFile &file)
+{
 	REQUIRE(!buffer); //only call it once
-	
+
 	QTextStream stream(&file);
 	QString line;
 	QStringRef key;
@@ -59,9 +66,9 @@ void ThesaurusDatabaseType::load(QFile& file){
 		int currentBufferLength = buffer->length();
 		line = stream.readLine();
 		int firstSplitter = line.indexOf('|');
-        if (firstSplitter >= 0) {
-            if (line.startsWith("-|") || line.startsWith("(") || line.startsWith("|")){
-				buffer->append(line.mid(firstSplitter+1));
+		if (firstSplitter >= 0) {
+			if (line.startsWith("-|") || line.startsWith("(") || line.startsWith("|")) {
+				buffer->append(line.mid(firstSplitter + 1));
 				thesaurus.insert(key, ThesaurusDatabaseType::TinyStringRef(currentBufferLength, buffer->length() - currentBufferLength));
 				//using TinyStringRef instead of QString reduces the memory usage (with German thesaurus) by 4mb without any noticable performance decrease (it could even be faster, because the buffer fits better in the cache).
 
@@ -73,7 +80,7 @@ void ThesaurusDatabaseType::load(QFile& file){
 		}
 	} while (!line.isNull());
 	buffer->squeeze();
-	
+
 	if (!userFileName.isEmpty()) {
 		//simpler format: category|word|word|...
 		QFile f(userFileName);
@@ -83,25 +90,32 @@ void ThesaurusDatabaseType::load(QFile& file){
 			do {
 				line = s.readLine();
 				if (line.startsWith("#") || line.startsWith("%")) continue; //comments
-				QStringList splitted = line.split("|",QString::SkipEmptyParts);
+				QStringList splitted = line.split("|", QString::SkipEmptyParts);
 				if (splitted.size() < 2) continue;
 				userWords.insert(splitted[0].toLower(), splitted);
-				for (int i=1;i<splitted.length();i++)
+				for (int i = 1; i < splitted.length(); i++)
 					userCategories.insert(splitted[i].toLower(), splitted[0]);
-				
+
 			} while (!line.isNull());
-		} 
-	}	
+		}
+	}
 }
 
-ThesaurusDatabaseType::ThesaurusDatabaseType():buffer(0){
+ThesaurusDatabaseType::ThesaurusDatabaseType(): buffer(0)
+{
 }
-ThesaurusDatabaseType::TinyStringRef::TinyStringRef(int astart, int alen): start(astart), length(alen){
+
+ThesaurusDatabaseType::TinyStringRef::TinyStringRef(int astart, int alen): start(astart), length(alen)
+{
 }
-ThesaurusDatabaseType::~ThesaurusDatabaseType(){
+
+ThesaurusDatabaseType::~ThesaurusDatabaseType()
+{
 	saveUser();
 }
-QString ThesaurusDatabaseType::TinyStringRef::toStringWithBuffer(const QString* buffer){
+
+QString ThesaurusDatabaseType::TinyStringRef::toStringWithBuffer(const QString *buffer)
+{
 	return buffer->mid(start, length);
 }
 
@@ -115,49 +129,49 @@ QString ThesaurusDialog::userPath;
 
 //=============================Dialog==============================
 ThesaurusDialog::ThesaurusDialog(QWidget *parent)
-	:QDialog(parent)
+	: QDialog(parent)
 {
-	replaceBt=new QPushButton(tr("Replace"),this);
-	lookupBt=new QPushButton(tr("Lookup"),this);
-	startsWithBt=new QPushButton(tr("Starts With ..."),this);
-	containsBt=new QPushButton(tr("Contains ..."),this);
-	cancelBt=new QPushButton(tr("Cancel"),this);
-	addBt=new QPushButton(tr("Add Own Word"),this);
-	removeBt=new QPushButton(tr("Remove Own Word"),this);
-	searchWrdLe=new QLineEdit("",this);
-	replaceWrdLe=new QLineEdit("",this);
+	replaceBt = new QPushButton(tr("Replace"), this);
+	lookupBt = new QPushButton(tr("Lookup"), this);
+	startsWithBt = new QPushButton(tr("Starts With ..."), this);
+	containsBt = new QPushButton(tr("Contains ..."), this);
+	cancelBt = new QPushButton(tr("Cancel"), this);
+	addBt = new QPushButton(tr("Add Own Word"), this);
+	removeBt = new QPushButton(tr("Remove Own Word"), this);
+	searchWrdLe = new QLineEdit("", this);
+	replaceWrdLe = new QLineEdit("", this);
 
 	//replaceWrdLe->setEnabled(false);
 	classlistWidget = new QListWidget(this);
 	replacelistWidget = new QListWidget(this);
 	replacelistWidget->setSortingEnabled(true);
 
-	replacelistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Expanding);
-	classlistWidget->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Expanding);
-	searchWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
-	replaceWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+	replacelistWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
+	classlistWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Expanding);
+	searchWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+	replaceWrdLe->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 
-	QGridLayout *gridLayout=new QGridLayout(this);
-	gridLayout->addWidget(searchWrdLe,0,0);
-	gridLayout->addWidget(replaceWrdLe,0,1);
-	gridLayout->addWidget(replaceBt,0,2,Qt::AlignTop);
-	gridLayout->addWidget(classlistWidget,1,0);
-	gridLayout->addWidget(replacelistWidget,1,1);
-	gridLayout->setColumnStretch(0,10);
-	gridLayout->setColumnStretch(1,10);
-	gridLayout->setRowStretch(1,10);
+	QGridLayout *gridLayout = new QGridLayout(this);
+	gridLayout->addWidget(searchWrdLe, 0, 0);
+	gridLayout->addWidget(replaceWrdLe, 0, 1);
+	gridLayout->addWidget(replaceBt, 0, 2, Qt::AlignTop);
+	gridLayout->addWidget(classlistWidget, 1, 0);
+	gridLayout->addWidget(replacelistWidget, 1, 1);
+	gridLayout->setColumnStretch(0, 10);
+	gridLayout->setColumnStretch(1, 10);
+	gridLayout->setRowStretch(1, 10);
 
-	QVBoxLayout *verticalLayout=new QVBoxLayout();
-	verticalLayout->addWidget(lookupBt,0,Qt::AlignTop);
-	verticalLayout->addWidget(startsWithBt,0,Qt::AlignTop);
-	verticalLayout->addWidget(containsBt,0,Qt::AlignTop);
-	verticalLayout->addWidget(cancelBt,0,Qt::AlignTop);
+	QVBoxLayout *verticalLayout = new QVBoxLayout();
+	verticalLayout->addWidget(lookupBt, 0, Qt::AlignTop);
+	verticalLayout->addWidget(startsWithBt, 0, Qt::AlignTop);
+	verticalLayout->addWidget(containsBt, 0, Qt::AlignTop);
+	verticalLayout->addWidget(cancelBt, 0, Qt::AlignTop);
 	verticalLayout->insertStretch(1);
-	verticalLayout->addWidget(addBt,0,Qt::AlignTop);
-	verticalLayout->addWidget(removeBt,0,Qt::AlignTop);
-	verticalLayout->insertStretch(-1,10);
+	verticalLayout->addWidget(addBt, 0, Qt::AlignTop);
+	verticalLayout->addWidget(removeBt, 0, Qt::AlignTop);
+	verticalLayout->insertStretch(-1, 10);
 
-	gridLayout->addItem(verticalLayout,1,2);
+	gridLayout->addItem(verticalLayout, 1, 2);
 
 	searchWrdLe->setEnabled(false);
 
@@ -173,47 +187,50 @@ ThesaurusDialog::ThesaurusDialog(QWidget *parent)
 	connect(addBt, SIGNAL(clicked()), this, SLOT(addUserWordClicked()));
 	connect(removeBt, SIGNAL(clicked()), this, SLOT(removeUserWordClicked()));
 	//connect(classlistWidget, SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(classClicked(QListWidgetItem*)));
-	connect(classlistWidget, SIGNAL(currentRowChanged(int)),SLOT(classChanged(int)));
-	connect(replacelistWidget, SIGNAL(currentRowChanged(int)),SLOT(wordChanged(int)));
+	connect(classlistWidget, SIGNAL(currentRowChanged(int)), SLOT(classChanged(int)));
+	connect(replacelistWidget, SIGNAL(currentRowChanged(int)), SLOT(wordChanged(int)));
 
 	thesaurus = retrieveDatabase();
 }
 
-ThesaurusDialog::~ThesaurusDialog(){
+ThesaurusDialog::~ThesaurusDialog()
+{
 	if (!thesaurus) return;
 	thesaurusLock.lock();
 	if (thesaurus) thesaurus->saveUser();
 	thesaurusLock.unlock();
 }
 
-void ThesaurusDialog::prepareDatabase(const QString& filename){
+void ThesaurusDialog::prepareDatabase(const QString &filename)
+{
 	if (filename == globalThesaurusNeededFileName) return;
 	if (!QFile(filename).exists()) {
 #if QT_VERSION >= 0x040500
 		thesaurusLock.lock();
-		globalThesaurusNeededFileName="";
+		globalThesaurusNeededFileName = "";
 		globalThesaurus.clear();
 		thesaurusLock.unlock();
 #else
-		globalThesaurusNeededFileName="";
+		globalThesaurusNeededFileName = "";
 #endif
 		return;
 	}
 #if QT_VERSION >= 0x040500
 	thesaurusLock.lock();
-	globalThesaurusNeededFileName=filename;
-	thesaurusFuture=QtConcurrent::run(&ThesaurusDialog::loadDatabase,globalThesaurusNeededFileName);
+	globalThesaurusNeededFileName = filename;
+	thesaurusFuture = QtConcurrent::run(&ThesaurusDialog::loadDatabase, globalThesaurusNeededFileName);
 	thesaurusLock.unlock();
 #else
-	globalThesaurusNeededFileName=filename;
+	globalThesaurusNeededFileName = filename;
 #endif
 }
 
-void ThesaurusDialog::setUserPath(const QString& userDir){
+void ThesaurusDialog::setUserPath(const QString &userDir)
+{
 	ThesaurusDialog::userPath = userDir;
 }
 
-void ThesaurusDialog::setSearchWord(const QString& word)
+void ThesaurusDialog::setSearchWord(const QString &word)
 {
 	if (!thesaurus) return;
 	searchWrdLe->setText(word);
@@ -223,61 +240,61 @@ void ThesaurusDialog::setSearchWord(const QString& word)
 	replacelistWidget->clear();
 	// do all the other calculations
 	QString lowerWord = word.trimmed().toLower();
-	QList<ThesaurusDatabaseType::TinyStringRef> result=thesaurus->thesaurus.values(QStringRef(&lowerWord, 0, lowerWord.length()));
+	QList<ThesaurusDatabaseType::TinyStringRef> result = thesaurus->thesaurus.values(QStringRef(&lowerWord, 0, lowerWord.length()));
 	// set word classes
 	QString first;
-	if(result.count()>0) classlistWidget->addItem(tr("<all>"));
+	if (result.count() > 0) classlistWidget->addItem(tr("<all>"));
 	QStringList realCats;
-	foreach(ThesaurusDatabaseType::TinyStringRef elem,result){
+	foreach (ThesaurusDatabaseType::TinyStringRef elem, result) {
 		QString selem = elem.toStringWithBuffer(thesaurus->buffer);
-		first=selem.left(selem.indexOf('|'));
+		first = selem.left(selem.indexOf('|'));
 		classlistWidget->addItem(first);
 		realCats << first.toLower();
 	}
-	foreach (const QString& c, thesaurus->userCategories.values(lowerWord)) 
-		if (!realCats.contains(c)) 
+	foreach (const QString &c, thesaurus->userCategories.values(lowerWord))
+		if (!realCats.contains(c))
 			classlistWidget->addItem(c);
-	
+
 	classlistWidget->setCurrentRow(0);
 	classChanged(0);
 }
 
 QString ThesaurusDialog::getReplaceWord()
 {
-	QString word=replaceWrdLe->text();
+	QString word = replaceWrdLe->text();
 	word.replace(QRegExp(" \\(.*"), "");
 	return word;
 }
 
-
 void ThesaurusDialog::classChanged(int row)
 {
-	if (!thesaurus || row<0) return;
-	QString lowerWord=searchWrdLe->text().trimmed().toLower();
-	QList<ThesaurusDatabaseType::TinyStringRef> result=thesaurus->thesaurus.values(QStringRef(&lowerWord,0,lowerWord.length()));
+	if (!thesaurus || row < 0) return;
+	QString lowerWord = searchWrdLe->text().trimmed().toLower();
+	QList<ThesaurusDatabaseType::TinyStringRef> result = thesaurus->thesaurus.values(QStringRef(&lowerWord, 0, lowerWord.length()));
 	QStringList userCats = thesaurus->userCategories.values(lowerWord);
-	if (row - 1 >= userCats.size()+result.size()) return;
+	if (row - 1 >= userCats.size() + result.size()) return;
 	replacelistWidget->clear();
-	if(row==0){
-		foreach(ThesaurusDatabaseType::TinyStringRef elem,result)
+	if (row == 0) {
+		foreach (ThesaurusDatabaseType::TinyStringRef elem, result)
 			addItems(elem.toStringWithBuffer(thesaurus->buffer));
-		foreach(const QString& elem, userCats)
-			addItems(QStringList(thesaurus->userWords.value(elem.toLower(), QStringList()<< "").mid(1)).join("|"));
-	}else if (row - 1 < result.size()) 
-		addItems(result[row-1].toStringWithBuffer(thesaurus->buffer));
+		foreach (const QString &elem, userCats)
+			addItems(QStringList(thesaurus->userWords.value(elem.toLower(), QStringList() << "").mid(1)).join("|"));
+	} else if (row - 1 < result.size())
+		addItems(result[row - 1].toStringWithBuffer(thesaurus->buffer));
 	else if (row - 1 - result.size() < userCats.size())
-		addItems(QStringList(thesaurus->userWords.value(userCats[row-1-result.size()].toLower(), QStringList() << "").mid(1)).join("|"));
+		addItems(QStringList(thesaurus->userWords.value(userCats[row - 1 - result.size()].toLower(), QStringList() << "").mid(1)).join("|"));
 }
 
-void ThesaurusDialog::addItems(const QString& className){
+void ThesaurusDialog::addItems(const QString &className)
+{
 	if (replacelistWidget->count() == 0) duplicatesCheck.clear();
 	QStringList list = className.split("|");
 	if (list.isEmpty()) return;
-	if (thesaurus->userWords.contains(list.first().toLower())) 
+	if (thesaurus->userWords.contains(list.first().toLower()))
 		list << thesaurus->userWords.value(list.first().toLower()).mid(1);
-	foreach (const QString& w, list) {
+	foreach (const QString &w, list) {
 		if (duplicatesCheck.contains(w)) continue;
-		duplicatesCheck << w; 
+		duplicatesCheck << w;
 		replacelistWidget->addItem(w);
 	}
 }
@@ -290,7 +307,7 @@ void ThesaurusDialog::wordChanged(int row)
 
 void ThesaurusDialog::lookupClicked()
 {
-	QString word=replaceWrdLe->text();
+	QString word = replaceWrdLe->text();
 	word.replace(QRegExp(" \\(.*"), "");
 	setSearchWord(word);
 }
@@ -298,15 +315,15 @@ void ThesaurusDialog::lookupClicked()
 void ThesaurusDialog::containsClicked()
 {
 	if (!thesaurus) return;
-	QString word=replaceWrdLe->text().trimmed().toLower();
+	QString word = replaceWrdLe->text().trimmed().toLower();
 	word.replace(QRegExp(" \\(.*"), "");
 	classlistWidget->clear();
 	replacelistWidget->clear();
-	QMultiMap<QStringRef,ThesaurusDatabaseType::TinyStringRef>::const_iterator i = thesaurus->thesaurus.constBegin();
-	QMultiMap<QStringRef,ThesaurusDatabaseType::TinyStringRef>::const_iterator end = thesaurus->thesaurus.constEnd();
+	QMultiMap<QStringRef, ThesaurusDatabaseType::TinyStringRef>::const_iterator i = thesaurus->thesaurus.constBegin();
+	QMultiMap<QStringRef, ThesaurusDatabaseType::TinyStringRef>::const_iterator end = thesaurus->thesaurus.constEnd();
 	while (i != end) {
 		QString skey = i.key().toString();
-		if(!replacelistWidget->findItems(skey,Qt::MatchExactly).count()&&skey.contains(word)) replacelistWidget->addItem(skey);
+		if (!replacelistWidget->findItems(skey, Qt::MatchExactly).count() && skey.contains(word)) replacelistWidget->addItem(skey);
 		++i;
 	}
 }
@@ -314,27 +331,28 @@ void ThesaurusDialog::containsClicked()
 void ThesaurusDialog::startsWithClicked()
 {
 	if (!thesaurus) return;
-	QString word=replaceWrdLe->text().trimmed().toLower();
+	QString word = replaceWrdLe->text().trimmed().toLower();
 	word.replace(QRegExp(" \\(.*"), "");
 	classlistWidget->clear();
 	replacelistWidget->clear();
-	QMultiMap<QStringRef, ThesaurusDatabaseType::TinyStringRef>::const_iterator i = thesaurus->thesaurus.lowerBound(QStringRef(&word,0,word.length()));
-	QMultiMap<QStringRef,ThesaurusDatabaseType::TinyStringRef>::const_iterator end = thesaurus->thesaurus.constEnd();
+	QMultiMap<QStringRef, ThesaurusDatabaseType::TinyStringRef>::const_iterator i = thesaurus->thesaurus.lowerBound(QStringRef(&word, 0, word.length()));
+	QMultiMap<QStringRef, ThesaurusDatabaseType::TinyStringRef>::const_iterator end = thesaurus->thesaurus.constEnd();
 	while (i != end) {
 		QString skey = i.key().toString();
 		if (!skey.startsWith(word)) break;
-		if(!replacelistWidget->findItems(skey,Qt::MatchExactly).count()) replacelistWidget->addItem(skey);
+		if (!replacelistWidget->findItems(skey, Qt::MatchExactly).count()) replacelistWidget->addItem(skey);
 		++i;
 	}
 }
 
-void ThesaurusDialog::addUserWordClicked(){
+void ThesaurusDialog::addUserWordClicked()
+{
 	if (!thesaurus) return;
-	QString word;	
+	QString word;
 	QStringList categories;
-	for (int i=1; i<classlistWidget->count();i++)
+	for (int i = 1; i < classlistWidget->count(); i++)
 		categories << classlistWidget->item(i)->text();
-	if (classlistWidget->currentItem() && categories.indexOf(classlistWidget->currentItem()->text()) >= 0 )  
+	if (classlistWidget->currentItem() && categories.indexOf(classlistWidget->currentItem()->text()) >= 0 )
 		categories.swap(0, categories.indexOf(classlistWidget->currentItem()->text()));
 	UniversalInputDialog uid;
 	uid.addVariable(&word, tr("New Word:"));
@@ -348,7 +366,7 @@ void ThesaurusDialog::addUserWordClicked(){
 	sl.append(word);
 	thesaurus->userCategories.insert(word.toLower(), category);
 	bool found = false;
-	for (int i=0;i<classlistWidget->count();i++)
+	for (int i = 0; i < classlistWidget->count(); i++)
 		if (classlistWidget->item(i)->text() == category) {
 			found = true;
 			break;
@@ -365,9 +383,11 @@ void ThesaurusDialog::addUserWordClicked(){
 		setSearchWord(oldWord);
 	}
 }
-void ThesaurusDialog::removeUserWordClicked(){
+
+void ThesaurusDialog::removeUserWordClicked()
+{
 	if (!thesaurus) return;
-	QString word, category;	
+	QString word, category;
 	if (replacelistWidget->currentItem()) word = replacelistWidget->currentItem()->text();
 	if (classlistWidget->currentItem()) category = classlistWidget->currentItem()->text();
 	UniversalInputDialog uid;
@@ -382,26 +402,27 @@ void ThesaurusDialog::removeUserWordClicked(){
 	classChanged(classlistWidget->currentRow());
 }
 
-void ThesaurusDialog::loadDatabase(const QString& fileName ){
+void ThesaurusDialog::loadDatabase(const QString &fileName )
+{
 	QFile file(fileName);
 	if (!file.open(QIODevice::ReadOnly)) return;
 	QFileInfo fi(fileName);
-	
+
 	ThesaurusDatabaseType result;
 	result.fileName = fileName;
-	
+
 	result.userFileName = fi.absolutePath() + "/" + fi.completeBaseName() + ".my";
 	if (!isFileRealWritable(result.userFileName))
 		result.userFileName = userPath + fi.completeBaseName() + ".my";
-	if (!isFileRealWritable(result.userFileName)) 
+	if (!isFileRealWritable(result.userFileName))
 		result.userFileName.clear();
-		
-	
-	result.load(file);	
+
+
+	result.load(file);
 
 
 	thesaurusLock.lock();
-	if (globalThesaurusNeededFileName == fileName){
+	if (globalThesaurusNeededFileName == fileName) {
 		globalThesaurus.saveUser();
 		globalThesaurus.clear();
 		globalThesaurus = result;
@@ -409,7 +430,8 @@ void ThesaurusDialog::loadDatabase(const QString& fileName ){
 	thesaurusLock.unlock();
 }
 
-ThesaurusDatabaseType * ThesaurusDialog::retrieveDatabase(){
+ThesaurusDatabaseType *ThesaurusDialog::retrieveDatabase()
+{
 	if (globalThesaurusNeededFileName  == "") return 0;
 #if QT_VERSION >= 0x040500
 	if (thesaurusFuture.isRunning())

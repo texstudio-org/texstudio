@@ -6,7 +6,8 @@
 class Template;
 class TemplateSelector;
 
-class TemplateHandle {
+class TemplateHandle
+{
 public:
 	friend class Template;
 	TemplateHandle() : m_tmpl(0) {}
@@ -14,7 +15,7 @@ public:
 	explicit TemplateHandle(Template *tmpl);
 	~TemplateHandle();
 
-	TemplateHandle& operator = (const TemplateHandle& th);
+	TemplateHandle &operator = (const TemplateHandle &th);
 
 	bool isValid() const;
 	QString name() const;
@@ -31,12 +32,13 @@ public:
 	QStringList filesToOpen() const;
 private:
 	void setTmpl(Template *tmpl);
-	Template * m_tmpl; // only write via setTmpl()
+	Template *m_tmpl;  // only write via setTmpl()
 };
 Q_DECLARE_METATYPE( TemplateHandle )
 
 
-class AbstractTemplateResource {
+class AbstractTemplateResource
+{
 public:
 	virtual QList<TemplateHandle> getTemplates() = 0;
 	virtual bool isAccessible() = 0;
@@ -53,6 +55,7 @@ Q_DECLARE_METATYPE( AbstractTemplateResource * )
 class TemplateManager : public QObject
 {
 	Q_OBJECT
+
 public:
 	explicit TemplateManager(QObject *parent = 0);
 
@@ -62,9 +65,9 @@ public:
 	static bool ensureUserTemplateDirExists();
 	static void checkForOldUserTemplates();
 
-	AbstractTemplateResource * createResourceFromXMLNode(const QDomElement &resElem);
+	AbstractTemplateResource *createResourceFromXMLNode(const QDomElement &resElem);
 	QList<AbstractTemplateResource *> resourcesFromXMLFile(const QString &filename);
-	TemplateSelector * createLatexTemplateDialog();
+	TemplateSelector *createLatexTemplateDialog();
 	bool tableTemplateDialogExec();
 	QString selectedTemplateFile() { return selectedFile; }
 signals:
@@ -83,6 +86,7 @@ private:
 class LatexTemplateManager : public TemplateManager
 {
 	Q_OBJECT
+
 public:
 	explicit LatexTemplateManager(QObject *parent = 0);
 };

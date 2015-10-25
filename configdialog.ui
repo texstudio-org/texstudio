@@ -79,8 +79,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>479</width>
-            <height>606</height>
+            <width>547</width>
+            <height>632</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -469,28 +469,59 @@
              <property name="title">
               <string>Update</string>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <item>
-               <widget class="QCheckBox" name="checkBoxAutoUpdateCheck">
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="6">
+               <widget class="QComboBox" name="comboBoxUpdateLevel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Defines the kinds of update notifications you will receive:
+- Stable Releases: Choose this if stability is most important to you.
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Stable Releases</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Release Candidates</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Development Versions</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="1" column="4">
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="3">
+               <widget class="QPushButton" name="pushButtonUpdateCheckNow">
                 <property name="text">
-                 <string>Automatically check every</string>
+                 <string>Check Now</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QSpinBox" name="spinBoxAutoUpdateCheckIntervalDays">
-                <property name="suffix">
-                 <string> days</string>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="value">
-                 <number>7</number>
-                </property>
-               </widget>
-              </item>
-              <item>
+              <item row="0" column="3" colspan="2">
                <spacer name="horizontalSpacer_4">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -503,24 +534,44 @@
                 </property>
                </spacer>
               </item>
-              <item>
-               <widget class="QLabel" name="label_56">
-                <property name="text">
-                 <string>Last Checked:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
+              <item row="1" column="1">
                <widget class="QLabel" name="labelUpdateCheckDate">
                 <property name="text">
                  <string notr="true">&lt;checkDate&gt;</string>
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="pushButtonUpdateCheckNow">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_56">
                 <property name="text">
-                 <string>Check Now</string>
+                 <string>Last Checked:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="spinBoxAutoUpdateCheckIntervalDays">
+                <property name="suffix">
+                 <string> days</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="value">
+                 <number>7</number>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="checkBoxAutoUpdateCheck">
+                <property name="text">
+                 <string>Automatically check every</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QLabel" name="label_74">
+                <property name="text">
+                 <string>Update Level:</string>
                 </property>
                </widget>
               </item>
@@ -1757,9 +1808,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-649</y>
+            <y>0</y>
             <width>863</width>
-            <height>1266</height>
+            <height>1289</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2114,7 +2165,8 @@ Then you can select a new shortcut by one of the following ways:
               <item row="14" column="0">
                <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
                 <property name="toolTip">
-                 <string>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</string>
+                 <string>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
                 </property>
                 <property name="text">
                  <string>Insert Symbol as Unicode</string>
@@ -2426,7 +2478,7 @@ Then you can select a new shortcut by one of the following ways:
                 <property name="leftMargin">
                  <number>16</number>
                 </property>
-                <item row="3" column="0">
+                <item row="4" column="0">
                  <widget class="QLabel" name="labelRenderMode">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -2439,7 +2491,7 @@ Then you can select a new shortcut by one of the following ways:
                   </property>
                  </widget>
                 </item>
-                <item row="3" column="1">
+                <item row="4" column="1">
                  <widget class="QComboBox" name="comboBoxHackRenderMode">
                   <item>
                    <property name="text">
@@ -2479,6 +2531,13 @@ Then you can select a new shortcut by one of the following ways:
                  <widget class="QCheckBox" name="checkBoxHackDisableWidthCache">
                   <property name="text">
                    <string>Disable cache of character width</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QCheckBox" name="checkBoxHackQImageCache">
+                  <property name="text">
+                   <string>Use QImage as cache type</string>
                   </property>
                  </widget>
                 </item>
@@ -3004,8 +3063,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>314</width>
-            <height>468</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3370,8 +3429,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>490</width>
-            <height>577</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3471,7 +3530,7 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="label_35">
                 <property name="toolTip">
                  <string>Update the preview on text change</string>
@@ -3481,7 +3540,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="3" column="1">
                <widget class="QComboBox" name="comboBoxAutoPreview">
                 <item>
                  <property name="text">
@@ -3495,7 +3554,7 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="label_36">
                 <property name="text">
                  <string>Auto Update Delay:</string>
@@ -3505,7 +3564,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
+              <item row="4" column="1">
                <widget class="QSpinBox" name="spinBoxAutoPreviewDelay">
                 <property name="minimum">
                  <number>40</number>
@@ -3518,7 +3577,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="5" column="1">
                <widget class="QCheckBox" name="checkBoxReplaceBeamer">
                 <property name="text">
                  <string>Replace beamer class by article</string>
@@ -3531,7 +3590,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
+              <item row="6" column="1">
                <widget class="QCheckBox" name="checkBoxPrecompilePreamble">
                 <property name="text">
                  <string>Precompile Preamble</string>
@@ -3544,10 +3603,42 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="0" colspan="2">
+              <item row="7" column="0" colspan="2">
                <widget class="QCheckBox" name="checkBoxToolTipPreview">
                 <property name="text">
                  <string>Show preview as tooltip on formulas in editor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_75">
+                <property name="toolTip">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string>Scaling:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="spinBoxSegmentPreviewScalePercent">
+                <property name="toolTip">
+                 <string/>
+                </property>
+                <property name="specialValueText">
+                 <string notr="true"/>
+                </property>
+                <property name="suffix">
+                 <string>%</string>
+                </property>
+                <property name="minimum">
+                 <number>20</number>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+                <property name="singleStep">
+                 <number>10</number>
                 </property>
                </widget>
               </item>
@@ -3639,6 +3730,9 @@ them here.</string>
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="specialValueText">
+                 <string notr="true"/>
                 </property>
                 <property name="suffix">
                  <string>%</string>
@@ -4407,6 +4501,22 @@ them here.</string>
     <hint type="destinationlabel">
      <x>341</x>
      <y>1422</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxHackAutoRendering</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxHackQImageCache</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>656</x>
+     <y>1390</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>347</x>
+     <y>1503</y>
     </hint>
    </hints>
   </connection>

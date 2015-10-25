@@ -8,11 +8,13 @@
 #include "qeditor.h"
 #include "latexdocument.h"
 
-class EncodingDialog : public QDialog, private Ui::EncodingDialog {
+class EncodingDialog : public QDialog, private Ui::EncodingDialog
+{
 	Q_OBJECT
 	Q_DISABLE_COPY(EncodingDialog)
+
 public:
-	explicit EncodingDialog(QWidget *parent = 0, QEditor *editor=0);
+	explicit EncodingDialog(QWidget *parent = 0, QEditor *editor = 0);
 
 private:
 	QEditor *edit;

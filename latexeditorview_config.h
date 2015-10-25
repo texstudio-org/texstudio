@@ -1,9 +1,11 @@
 #ifndef LATEXEDITORVIEWCONFIG_H
 #define LATEXEDITORVIEWCONFIG_H
 
-//having the configuration in a single file allows to change it, 
+//having the configuration in a single file allows to change it,
 //without having a relationship between completer and configmanager
 //so modifying one doesn't lead to a recompilation of the other
+
+class QString;
 
 class LatexEditorViewConfig
 {
@@ -17,7 +19,7 @@ public:
 	int showlinemultiples;
 	int cursorSurroundLines;
 	bool boldCursor;
-	bool folding, showlinestate, showcursorstate, realtimeChecking;	
+	bool folding, showlinestate, showcursorstate, realtimeChecking;
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking, inlinePackageChecking;
 	bool inlineCheckNonTeXFiles;
 	bool hideNonTextSpellingErrors, hideNonTextGrammarErrors;
@@ -31,7 +33,7 @@ public:
 	static QList<int> possibleEditOperations();
 	bool mouseWheelZoom;
 	bool smoothScrolling;
-	bool hackAutoChoose, hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache,hackDisableAccentWorkaround;
+	bool hackAutoChoose, hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache, hackDisableAccentWorkaround, hackQImageCache;
 	int hackRenderingMode; //0: normal, 1: qt (missing), 2: single letter
 	bool showPlaceholders;
 	int wordwrap; // 0 off, 1 soft wrap, 2 soft wrap fixed line width, 3 hard wrap fixed line width
@@ -40,7 +42,7 @@ public:
 	int maxImageTooltipWidth;
 	bool texdocHelpInInternalViewer;
 	bool silentReload;
-	
+
 	bool autoInsertLRM, visualColumnMode, switchLanguagesDirection, switchLanguagesMath;
 
 	bool overwriteOpeningBracketFollowedByPlaceholder;
@@ -49,8 +51,8 @@ public:
 	int contextMenuSpellcheckingEntryLocation;
 	int contextMenuKeyboardModifiers;  // actually this is a Qt::KeyboardModifiers flag (but we don't want to import the whole qt namespace here)
 
-
 	void settingsChanged();
+
 private:
 	QString lastFontFamily;
 	int lastFontSize;

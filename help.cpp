@@ -7,7 +7,7 @@
 #include <QMutex>
 
 
-Help * Help::m_Instance = 0;
+Help *Help::m_Instance = 0;
 
 Help::Help() :
 	QObject(0)
@@ -35,7 +35,7 @@ void Help::execTexdocDialog(const QStringList &packages, const QString &defaultP
 void Help::viewTexdoc(QString package)
 {
 	if (package.isEmpty()) {
-		QAction *act = qobject_cast<QAction*>(sender());
+		QAction *act = qobject_cast<QAction *>(sender());
 		if (!act) return;
 		package = act->data().toString();
 	}
@@ -45,33 +45,35 @@ void Help::viewTexdoc(QString package)
 		connect(proc, SIGNAL(readyReadStandardError()), this, SLOT(viewTexdocError()));
 		connect(proc, SIGNAL(finished(int)), proc, SLOT(deleteLater()));
 #ifdef Q_OS_OSX
-        QStringList paths;
-        paths.append(getEnvironmentPathList());
-        paths.append(getAdditionalCmdSearchPathList());
+		QStringList paths;
+		paths.append(getEnvironmentPathList());
+		paths.append(getAdditionalCmdSearchPathList());
 
-        updatePathSettings(proc, paths.join(':'));
+		updatePathSettings(proc, paths.join(':'));
 #endif
 		proc->start(texdocCommand(), QStringList() << "--view" << package);
 		if (isTexdocExpectedToFinish() && !proc->waitForFinished(2000)) {
-			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:")+"\n%1").arg(package));
+			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:") + "\n%1").arg(package));
 		}
 	}
 }
 
-int Help::texDocSystem=0;
+int Help::texDocSystem = 0;
 
-bool Help::isMiktexTexdoc() {
+bool Help::isMiktexTexdoc()
+{
 	if (!texDocSystem && !texdocCommand().isEmpty()) {
 		QProcess proc;
 		proc.start(texdocCommand(), QStringList() << "--version");
 		proc.waitForFinished(1000);
 		QString answer = QString(proc.readAll());
-        texDocSystem = answer.startsWith("MiKTeX") ? 1 : 2;
+		texDocSystem = answer.startsWith("MiKTeX") ? 1 : 2;
 	}
-	return (texDocSystem==1);
+	return (texDocSystem == 1);
 }
 
-bool Help::isTexdocExpectedToFinish() {
+bool Help::isTexdocExpectedToFinish()
+{
 	if (!isMiktexTexdoc()) return true;
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	foreach (const QString &var, envKeys(env)) {
@@ -102,9 +104,10 @@ QString Help::texdocCommand()
 	return m_texdocCommand;
 }
 
-QString Help::packageDocFile(const QString &package, bool silent) {
-    QString cmd=texdocCommand();
-    if (cmd.isEmpty()) {
+QString Help::packageDocFile(const QString &package, bool silent)
+{
+	QString cmd = texdocCommand();
+	if (cmd.isEmpty()) {
 		if (!silent) txsWarning(tr("texdoc not found."));
 		return QString();
 	}
@@ -112,24 +115,24 @@ QString Help::packageDocFile(const QString &package, bool silent) {
 	if (Help::isMiktexTexdoc()) {
 		args << "--list-only";
 	} else {
-        args << "--list" << "--machine";
+		args << "--list" << "--machine";
 	}
-    args << package;
+	args << package;
 	QProcess proc;
 
 #ifdef Q_OS_OSX
-    QStringList paths;
-    paths.append(getEnvironmentPathList());
-    paths.append(getAdditionalCmdSearchPathList());
+	QStringList paths;
+	paths.append(getEnvironmentPathList());
+	paths.append(getAdditionalCmdSearchPathList());
 
-    updatePathSettings(&proc,paths.join(':'));
+	updatePathSettings(&proc, paths.join(':'));
 #endif
 
-    proc.start(cmd, args);
+	proc.start(cmd, args);
 
 	if (!proc.waitForFinished(2000)) {
 		if (!silent) {
-			txsWarning(QString(tr("texdoc did not respond to query on package:")+"\n%1").arg(package));
+			txsWarning(QString(tr("texdoc did not respond to query on package:") + "\n%1").arg(package));
 		}
 		return QString();
 	}
@@ -164,7 +167,7 @@ void Help::texdocAvailableRequest(const QString &package)
 	if (isMiktexTexdoc()) {
 		args << "--print-only" << package;
 	} else {
-	    args << "--list" << "--machine"; // --print-only does not exist in texlive 2012, actual is response is not used either ...
+		args << "--list" << "--machine"; // --print-only does not exist in texlive 2012, actual is response is not used either ...
 		// TODO: not the right option: don't open the viewer here
 		// There seems to be no option yielding only the would be called command
 		// Alternative: texdoc --list -M and parse the first line for the package name
@@ -173,11 +176,11 @@ void Help::texdocAvailableRequest(const QString &package)
 	proc->setProperty("package", package);
 	connect(proc, SIGNAL(finished(int)), SLOT(texdocAvailableRequestFinished(int)));
 #ifdef Q_OS_OSX
-    QStringList paths;
-    paths.append(getEnvironmentPathList());
-    paths.append(getAdditionalCmdSearchPathList());
+	QStringList paths;
+	paths.append(getEnvironmentPathList());
+	paths.append(getAdditionalCmdSearchPathList());
 
-    updatePathSettings(proc,paths.join(':'));
+	updatePathSettings(proc, paths.join(':'));
 #endif
 	proc->start(texdocCommand(), args);
 }
@@ -194,9 +197,9 @@ void Help::texdocAvailableRequestFinished(int exitCode)
 	proc->deleteLater();
 }
 
-
-void Help::viewTexdocError() {
-	QProcess *proc = qobject_cast<QProcess*>(sender());
+void Help::viewTexdocError()
+{
+	QProcess *proc = qobject_cast<QProcess *>(sender());
 	if (proc) {
 		txsWarning(proc->readAllStandardError());
 	}
@@ -215,7 +218,8 @@ Help *Help::instance()
 
 LatexReference::LatexReference(QObject *parent) : QObject(parent) {}
 
-void LatexReference::setFile(QString filename) {
+void LatexReference::setFile(QString filename)
+{
 	m_filename = filename;
 	if (filename.isEmpty()) return;
 
@@ -229,12 +233,14 @@ void LatexReference::setFile(QString filename) {
 	makeIndex();
 }
 
-bool LatexReference::contains(const QString &command) {
+bool LatexReference::contains(const QString &command)
+{
 	return m_anchors.contains(command);
 }
 
 /* tries to generate a text of suitable length for display as a tooltip */
-QString LatexReference::getTextForTooltip(const QString &command) {
+QString LatexReference::getTextForTooltip(const QString &command)
+{
 	QString sectionText = getSectionText(command);
 	QString partialText;
 	if (sectionText.count('\n') > 30) { // tooltip would be very large: try to get a reasonable smaller string
@@ -251,7 +257,8 @@ QString LatexReference::getTextForTooltip(const QString &command) {
 /* get all the text in the section describing the command
  * it starts with the first heading after the section anchor and ranges down to the next <hr>
  */
-QString LatexReference::getSectionText(const QString &command) {
+QString LatexReference::getSectionText(const QString &command)
+{
 	Anchor sAnchor(m_sectionAnchors[command]);
 	if (sAnchor.name.isNull()) return QString();
 	if (sAnchor.start_pos < 0) {
@@ -264,7 +271,7 @@ QString LatexReference::getSectionText(const QString &command) {
 		sAnchor.end_pos = m_htmltext.indexOf(endTag, sAnchor.start_pos);
 		m_sectionAnchors.insert(command, sAnchor); // save positions for a faster lookup next time
 	}
-	return m_htmltext.mid(sAnchor.start_pos, sAnchor.end_pos-sAnchor.start_pos);
+	return m_htmltext.mid(sAnchor.start_pos, sAnchor.end_pos - sAnchor.start_pos);
 }
 
 /* get only a partial description for the command
@@ -272,7 +279,8 @@ QString LatexReference::getSectionText(const QString &command) {
  *    [<dt>(anchor-in-here)</dt><dd></dd>]
  *    </div>[(anchor-in-here)]</a name=
  */
-QString LatexReference::getPartialText(const QString &command) {
+QString LatexReference::getPartialText(const QString &command)
+{
 	static QRegExp startTag("<(dt|/div)>");
 	QString endTag;
 	int endOffset = 0;
@@ -292,18 +300,19 @@ QString LatexReference::getPartialText(const QString &command) {
 	}
 	if (anchor.start_pos < 0) return QString();
 	if (anchor.end_pos < 0) {
-		anchor.end_pos = m_htmltext.indexOf(endTag, anchor.start_pos+1);
+		anchor.end_pos = m_htmltext.indexOf(endTag, anchor.start_pos + 1);
 		if (anchor.end_pos >= 0) anchor.end_pos += endOffset;
-		int hrEnd = m_htmltext.indexOf("<hr>", anchor.start_pos+1);
+		int hrEnd = m_htmltext.indexOf("<hr>", anchor.start_pos + 1);
 		if (hrEnd >= 0 && hrEnd < anchor.end_pos) // don't go further than the next <hr>
 			anchor.end_pos = hrEnd;
 		m_anchors.insert(command, anchor); // save positions for a faster lookup next time
 	}
-	return m_htmltext.mid(anchor.start_pos, anchor.end_pos-anchor.start_pos);
+	return m_htmltext.mid(anchor.start_pos, anchor.end_pos - anchor.start_pos);
 }
 
 /* parses the index of the reference manual and extracts the anchor names for the commands */
-void LatexReference::makeIndex() {
+void LatexReference::makeIndex()
+{
 	QString startTag("<table class=\"index-fn\"");
 	QString endTag("</table>");
 
@@ -330,9 +339,9 @@ void LatexReference::makeIndex() {
 			}
 			m_anchors.insert(word, Anchor(anchorName));
 			m_sectionAnchors.insert(word, Anchor(sectionAnchorName));
-		} else if (anchorName.contains("environment")){ // an environment
-			m_anchors.insert("\\begin{"+word, Anchor(anchorName));
-			m_sectionAnchors.insert("\\begin{"+word, Anchor(sectionAnchorName));
+		} else if (anchorName.contains("environment")) { // an environment
+			m_anchors.insert("\\begin{" + word, Anchor(anchorName));
+			m_sectionAnchors.insert("\\begin{" + word, Anchor(sectionAnchorName));
 		} else {
 			// TODO: anything useful in the rest?
 			//qDebug() << word << anchorName << sectionAnchorName << sectionTitle;
@@ -340,7 +349,5 @@ void LatexReference::makeIndex() {
 		pos += rx.matchedLength();
 	}
 	//qDebug() << "Found entries in index:" << m_anchors.count();
-
 }
-
 

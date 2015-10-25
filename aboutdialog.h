@@ -16,10 +16,12 @@
 
 #include "ui_aboutdialog.h"
 
-class AboutDialog : public QDialog  {
+class AboutDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
-	AboutDialog(QWidget *parent=0);
+	AboutDialog(QWidget *parent = 0);
 	~AboutDialog();
 	Ui::AboutDialog ui;
 private slots:

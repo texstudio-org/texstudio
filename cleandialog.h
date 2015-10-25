@@ -11,7 +11,7 @@ class CleanDialog;
 class CleanDialog : public QDialog
 {
 	Q_OBJECT
-	
+
 public:
 	explicit CleanDialog(QWidget *parent = 0);
 	~CleanDialog();
@@ -37,7 +37,7 @@ private:
 	QStringList openTexFiles;
 
 	QStringList filesToRemove(CleanDialog::Scope scope, const QStringList &extensionFilter);
-	QStringList filesToRemoveFromDir(const QDir &dir, const QStringList &extensionFilter, bool recursive=true);
+	QStringList filesToRemoveFromDir(const QDir &dir, const QStringList &extensionFilter, bool recursive = true);
 };
 
 #endif // CLEANDIALOG_H

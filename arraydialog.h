@@ -13,20 +13,20 @@
 #define ARRAYDIALOG_H
 
 #include "mostQtHeaders.h"
-
 #include "ui_arraydialog.h"
 
-class ArrayDialog : public QDialog  {
+class ArrayDialog : public QDialog
+{
 	Q_OBJECT
+
 public:
-	ArrayDialog(QWidget *parent=0, const char *name=0);
+	ArrayDialog(QWidget *parent = 0, const char *name = 0);
 	~ArrayDialog();
 	Ui::ArrayDialog ui;
 
 protected slots:
-	void NewRows(int num);
-	void NewColumns(int num);
+	void newRows(int num);
+	void newColumns(int num);
 };
-
 
 #endif

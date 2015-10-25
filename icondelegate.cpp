@@ -10,14 +10,15 @@
  ***************************************************************************/
 
 #include "mostQtHeaders.h"
- 
+
 #include "icondelegate.h"
 #include "utilsSystem.h"
 
 static const int textMargin = 2;
 
 void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
-                         const QModelIndex &index) const {
+                         const QModelIndex &index) const
+{
 	Q_ASSERT(index.isValid());
 	const QAbstractItemModel *model = index.model();
 	Q_ASSERT(model);
@@ -42,21 +43,21 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 	// do layout
 	value = model->data(index, Qt::DecorationRole);
 	QPixmap pixmap = decoration(opt, value);
-/*#if QT_VERSION >= 0x050000
- * pixmap size is fixed and it is determined at start-up
- * so, it can't handle change of devicePixelratio during run time when changing to normal res screen
-    int overScale= painter->device()->devicePixelRatio();
-#else*/
-    int overScale= isRetinaMac() ? 2 : 1;
+	/*#if QT_VERSION >= 0x050000
+	 * pixmap size is fixed and it is determined at start-up
+	 * so, it can't handle change of devicePixelratio during run time when changing to normal res screen
+	    int overScale= painter->device()->devicePixelRatio();
+	#else*/
+	int overScale = isRetinaMac() ? 2 : 1;
 //#endif
 
-    QSize pixmapSize= pixmap.size()/overScale;
-    QRect pixmapRect(QPoint(0,0),pixmapSize);
-    //QRect pixmapRect=pixmap.rect();
+	QSize pixmapSize = pixmap.size() / overScale;
+	QRect pixmapRect(QPoint(0, 0), pixmapSize);
+	//QRect pixmapRect=pixmap.rect();
 
 	QFontMetrics fontMetrics(opt.font);
 	QString text = model->data(index, Qt::DisplayRole).toString();
-	QRect textRect(0, 0, 0,0);
+	QRect textRect(0, 0, 0, 0);
 	//QRect textRect(0, 0, fontMetrics.width(text), fontMetrics.lineSpacing());
 
 	value = model->data(index, Qt::CheckStateRole);
@@ -71,7 +72,7 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 		                          ? QPalette::Normal : QPalette::Disabled; */
 		//painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
 //painter->fillRect(option.rect,QColor("#78A9dc"));
-		painter->fillRect(option.rect,QColor("#cdd2d8"));
+		painter->fillRect(option.rect, QColor("#cdd2d8"));
 	} else {
 		value = model->data(index, Qt::BackgroundColorRole);
 		if (value.isValid() && qvariant_cast<QColor>(value).isValid())
@@ -86,7 +87,8 @@ void IconDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 }
 
 QSize IconDelegate::sizeHint(const QStyleOptionViewItem &option,
-                             const QModelIndex &index) const {
+                             const QModelIndex &index) const
+{
 	Q_ASSERT(index.isValid());
 	const QAbstractItemModel *model = index.model();
 	Q_ASSERT(model);
@@ -100,12 +102,12 @@ QSize IconDelegate::sizeHint(const QStyleOptionViewItem &option,
 		                   option.decorationSize.height());
 
 	QFontMetrics fontMetrics(fnt);
-	QRect textRect(0, 0, 0,0);
+	QRect textRect(0, 0, 0, 0);
 	//QRect textRect(0, 0, fontMetrics.width(text), fontMetrics.lineSpacing());
 	QRect checkRect = check(option, textRect, model->data(index, Qt::CheckStateRole));
 	doLayout(option, &checkRect, &pixmapRect, &textRect, true);
 
-	return (pixmapRect|textRect|checkRect).size();
+	return (pixmapRect | textRect | checkRect).size();
 }
 
 
@@ -113,16 +115,16 @@ QSize IconDelegate::sizeHint(const QStyleOptionViewItem &option,
     Renders the decoration \a pixmap within the rectangle specified by
     \a rect using the given \a painter and style \a option.
 */
-
 void IconDelegate::drawDecoration(QPainter *painter, const QStyleOptionViewItem &option,
-                                  const QRect &rect, const QPixmap &pixmap) const {
+                                  const QRect &rect, const QPixmap &pixmap) const
+{
 	if (!pixmap.isNull() && !rect.isEmpty()) {
 		if (option.state & QStyle::State_Selected) {
 			bool enabled = option.state & QStyle::State_Enabled;
 			QPixmap *pm = selected(pixmap, option.palette, enabled);
-            painter->drawPixmap(rect, *pm);
+			painter->drawPixmap(rect, *pm);
 		} else {
-            painter->drawPixmap(rect, pixmap);
+			painter->drawPixmap(rect, pixmap);
 		}
 	}
 }
@@ -131,10 +133,10 @@ void IconDelegate::drawDecoration(QPainter *painter, const QStyleOptionViewItem 
     Renders the region within the rectangle specified by \a rect, indicating
     that it has the focus, using the given \a painter and style \a option.
 */
-
 void IconDelegate::drawFocus(QPainter *painter,
                              const QStyleOptionViewItem &option,
-                             const QRect &rect) const {
+                             const QRect &rect) const
+{
 	if (option.state & QStyle::State_HasFocus) {
 		QStyleOptionFocusRect o;
 		o.QStyleOption::operator=(option);
@@ -152,10 +154,10 @@ void IconDelegate::drawFocus(QPainter *painter,
     rect, using the given \a painter and style \a option, using the
     given \a state.
 */
-
 void IconDelegate::drawCheck(QPainter *painter,
                              const QStyleOptionViewItem &option,
-                             const QRect &rect, Qt::CheckState state) const {
+                             const QRect &rect, Qt::CheckState state) const
+{
 	if (!rect.isValid())
 		return;
 
@@ -181,7 +183,8 @@ void IconDelegate::drawCheck(QPainter *painter,
 
 void IconDelegate::doLayout(const QStyleOptionViewItem &option,
                             QRect *checkRect, QRect *pixmapRect, QRect *textRect,
-                            bool hint) const {
+                            bool hint) const
+{
 	Q_ASSERT(checkRect && pixmapRect && textRect);
 	int x = option.rect.left();
 	int y = option.rect.top();
@@ -271,11 +274,12 @@ void IconDelegate::doLayout(const QStyleOptionViewItem &option,
 	*textRect = display;
 }
 
-QPixmap IconDelegate::decoration(const QStyleOptionViewItem &option, const QVariant &variant) const {
-    const int overScale= isRetinaMac() ? 2 : 1;
+QPixmap IconDelegate::decoration(const QStyleOptionViewItem &option, const QVariant &variant) const
+{
+	const int overScale = isRetinaMac() ? 2 : 1;
 	switch (variant.type()) {
 	case QVariant::Icon:
-        return qvariant_cast<QIcon>(variant).pixmap(option.decorationSize*overScale,
+		return qvariant_cast<QIcon>(variant).pixmap(option.decorationSize * overScale,
 		        option.state & QStyle::State_Enabled
 		        ? QIcon::Normal : QIcon::Disabled,
 		        option.state & QStyle::State_Open
@@ -294,15 +298,15 @@ QPixmap IconDelegate::decoration(const QStyleOptionViewItem &option, const QVari
 /*!
   \internal
 */
-
-QPixmap *IconDelegate::selected(const QPixmap &pixmap, const QPalette &palette, bool enabled) const {
-    QString key=QString("%1-%2").arg(pixmap.cacheKey()).arg(enabled);
-    //key.sprintf("%d-%d", pixmap.cacheKey(), boolKey);
+QPixmap *IconDelegate::selected(const QPixmap &pixmap, const QPalette &palette, bool enabled) const
+{
+	QString key = QString("%1-%2").arg(pixmap.cacheKey()).arg(enabled);
+	//key.sprintf("%d-%d", pixmap.cacheKey(), boolKey);
 	QPixmap *pm = QPixmapCache::find(key);
 	if (!pm) {
 		QImage img = pixmap.toImage().convertToFormat(QImage::Format_ARGB32_Premultiplied);
 
-		QColor color = palette.color(enabled ? QPalette::Normal : QPalette::Disabled,QPalette::Highlight);
+		QColor color = palette.color(enabled ? QPalette::Normal : QPalette::Disabled, QPalette::Highlight);
 
 		color.setAlphaF(0.3);
 
@@ -320,9 +324,9 @@ QPixmap *IconDelegate::selected(const QPixmap &pixmap, const QPalette &palette, 
 /*!
   \internal
 */
-
 QRect IconDelegate::check(const QStyleOptionViewItem &option,
-                          const QRect &bounding, const QVariant &value) const {
+                          const QRect &bounding, const QVariant &value) const
+{
 	if (value.isValid()) {
 		QStyleOptionButton opt;
 		opt.QStyleOption::operator=(option);

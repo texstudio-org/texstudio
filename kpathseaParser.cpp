@@ -7,18 +7,20 @@ PackageScanner::PackageScanner(QObject *parent) :
 	stopped = false;
 }
 
-void PackageScanner::savePackageList(QSet<QString> packages, const QString &filename) {
+void PackageScanner::savePackageList(QSet<QString> packages, const QString &filename)
+{
 	QFile f(filename);
 	if (f.open(QFile::WriteOnly | QFile::Text)) {
 		QTextStream out(&f);
 		out << "% detected .sty and .cls filenames\n";
-		foreach(const QString &str, packages) {
+		foreach (const QString &str, packages) {
 			out << str << "\n";
 		}
 	}
 }
 
-QSet<QString> PackageScanner::readPackageList(const QString &filename) {
+QSet<QString> PackageScanner::readPackageList(const QString &filename)
+{
 	QFile f(filename);
 	QSet<QString> result;
 	if (f.open(QFile::ReadOnly | QFile::Text)) {
@@ -33,31 +35,33 @@ QSet<QString> PackageScanner::readPackageList(const QString &filename) {
 	return result;
 }
 
-void PackageScanner::stop() {
-	stopped=true;
+void PackageScanner::stop()
+{
+	stopped = true;
 }
 
 KpathSeaParser::KpathSeaParser(QString kpsecmd, QObject *parent) :
 	PackageScanner(parent)
 {
-	kpseWhichCmd=kpsecmd;
+	kpseWhichCmd = kpsecmd;
 }
 
-void KpathSeaParser::run(){
+void KpathSeaParser::run()
+{
 	QSet<QString> results;
 	QString res = kpsewhich("--show-path ls-R");
-	QStringList lstOfFiles=res.split(getPathListSeparator()); // find lcoations of ls-R (file database of tex)
-	foreach(QString fn, lstOfFiles){
-		if(stopped)
+	QStringList lstOfFiles = res.split(getPathListSeparator()); // find lcoations of ls-R (file database of tex)
+	foreach (QString fn, lstOfFiles) {
+		if (stopped)
 			return;
-		fn=fn.trimmed()+"/ls-R";
+		fn = fn.trimmed() + "/ls-R";
 		QFile data(fn);
 		QString line;
-		if(data.open(QIODevice::ReadOnly | QIODevice::Text)){
+		if (data.open(QIODevice::ReadOnly | QIODevice::Text)) {
 			QTextStream stream(&data);
-			while(!stream.atEnd()) {
+			while (!stream.atEnd()) {
 				line = stream.readLine();
-				if(line.endsWith(".sty") || line.endsWith(".cls")){
+				if (line.endsWith(".sty") || line.endsWith(".cls")) {
 					line.chop(4);
 					results.insert(line);
 				}
@@ -67,7 +71,8 @@ void KpathSeaParser::run(){
 	emit scanCompleted(results);
 }
 
-QString KpathSeaParser::kpsewhich(const QString & arg) {
+QString KpathSeaParser::kpsewhich(const QString &arg)
+{
 	return execCommand(kpseWhichCmd + " " + arg);
 }
 
@@ -79,23 +84,26 @@ MiktexPackageScanner::MiktexPackageScanner(QString mpmcmd, QString settingsDir, 
 	this->settingsDir = settingsDir;
 }
 
-QString MiktexPackageScanner::mpm(const QString & arg){
+QString MiktexPackageScanner::mpm(const QString &arg)
+{
 	return execCommand(mpmCmd + " " + arg);
 }
 
-void MiktexPackageScanner::savePackageMap(const QHash<QString, QStringList> &map) {
+void MiktexPackageScanner::savePackageMap(const QHash<QString, QStringList> &map)
+{
 	QFile f(ensureTrailingDirSeparator(settingsDir) + "miktexPackageNames.dat");
 	if (f.open(QFile::WriteOnly | QFile::Text)) {
 		QTextStream out(&f);
 		out << "% This file maps the MikTeX package names to the .sty and .cls file names.\n";
 		out << "% It's used as cache for a fast lookup. It's automatically created and may be deleted without harm.\n";
-		foreach(const QString &mpmName, map.keys()) {
+		foreach (const QString &mpmName, map.keys()) {
 			out << mpmName << ":" << map.value(mpmName).join(",") << "\n";
 		}
 	}
 }
 
-QHash<QString, QStringList> MiktexPackageScanner::loadPackageMap() {
+QHash<QString, QStringList> MiktexPackageScanner::loadPackageMap()
+{
 	QFile f(ensureTrailingDirSeparator(settingsDir) + "miktexPackageNames.dat");
 	QHash<QString, QStringList> result;
 	if (f.open(QFile::ReadOnly | QFile::Text)) {
@@ -113,19 +121,20 @@ QHash<QString, QStringList> MiktexPackageScanner::loadPackageMap() {
 	return result;
 }
 
-QStringList MiktexPackageScanner::stysForPackage(const QString &pck) {
+QStringList MiktexPackageScanner::stysForPackage(const QString &pck)
+{
 	QStringList result;
-	QStringList lines = mpm("--print-package-info "+pck).split("\n");
-	bool inRunTimeFilesSection=false;
-	foreach (const QString & l, lines) {
+	QStringList lines = mpm("--print-package-info " + pck).split("\n");
+	bool inRunTimeFilesSection = false;
+	foreach (const QString &l, lines) {
 		if (!inRunTimeFilesSection) {
 			if (l.startsWith("run-time files:"))
 				inRunTimeFilesSection = true;
 			continue;
 		} else {
 			QString fn = l.simplified();
-			if(fn.endsWith(":")) break; // start of a new section
-			fn=QFileInfo(fn).fileName();
+			if (fn.endsWith(":")) break; // start of a new section
+			fn = QFileInfo(fn).fileName();
 			if (fn.endsWith(".sty") || fn.endsWith(".cls")) {
 				fn.chop(4);
 				result.append(fn);
@@ -135,14 +144,15 @@ QStringList MiktexPackageScanner::stysForPackage(const QString &pck) {
 	return result;
 }
 
-void MiktexPackageScanner::run() {
+void MiktexPackageScanner::run()
+{
 	QSet<QString> results;
 
 	QHash<QString, QStringList> cachedStys = loadPackageMap();
 
 	QStringList lstOfPackages = mpm("--list").split("\n");
-	foreach(QString pck, lstOfPackages){
-		if(stopped)
+	foreach (QString pck, lstOfPackages) {
+		if (stopped)
 			return;
 		QStringList parts = pck.simplified().split(" "); // output format of "mpm --list": installation status, number of files, size, database name
 		if (parts.count() != 4) continue;

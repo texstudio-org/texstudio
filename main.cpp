@@ -13,7 +13,7 @@
 
 #include "mostQtHeaders.h"
 
-#include "texmaker.h"
+#include "texstudio.h"
 #include "smallUsefulFunctions.h"
 #include "debughelper.h"
 #include <qtsingleapplication.h>
@@ -21,18 +21,17 @@
 
 #ifdef Q_OS_WIN32
 #include "windows.h"
-typedef BOOL (WINAPI * AllowSetForegroundWindowFunc)(DWORD);
+typedef BOOL (WINAPI *AllowSetForegroundWindowFunc)(DWORD);
 #endif
 
-class TexstudioApp : public QtSingleApplication {
-protected:
-	bool event(QEvent *event);
+class TexstudioApp : public QtSingleApplication
+{
 public:
 	bool initialized;
 	QString delayedFileLoad;
-	Texmaker *mw;  // Moved from private:
-	TexstudioApp(int & argc, char ** argv);
-	TexstudioApp(QString &id, int & argc, char ** argv);
+	Texstudio *mw;  // Moved from private:
+	TexstudioApp(int &argc, char **argv);
+	TexstudioApp(QString &id, int &argc, char **argv);
 	~TexstudioApp();
 	void init(QStringList &cmdLine);   // This function does all the initialization instead of the constructor.
 	/*really slow global event logging:
@@ -41,25 +40,31 @@ public:
 		return QApplication::notify(obj,event);
 	}
 	*/
+
+protected:
+	bool event(QEvent *event);
 };
 
-TexstudioApp::TexstudioApp(int & argc, char ** argv) : QtSingleApplication(argc, argv) {
+TexstudioApp::TexstudioApp(int &argc, char **argv) : QtSingleApplication(argc, argv)
+{
 	mw = 0;
-	initialized=false;
+	initialized = false;
 }
 
-TexstudioApp::TexstudioApp(QString &id,int & argc, char ** argv) : QtSingleApplication(id,argc, argv) {
+TexstudioApp::TexstudioApp(QString &id, int &argc, char **argv) : QtSingleApplication(id, argc, argv)
+{
 	mw = 0;
-	initialized=false;
+	initialized = false;
 }
 
-void TexstudioApp::init(QStringList &cmdLine) {
+void TexstudioApp::init(QStringList &cmdLine)
+{
 	QPixmap pixmap(":/images/splash.png");
 	QSplashScreen *splash = new QSplashScreen(pixmap);
 	splash->show();
 	processEvents();
 
-	mw = new Texmaker(0,0,splash);
+	mw = new Texstudio(0, 0, splash);
 	connect(this, SIGNAL(lastWindowClosed()), this, SLOT(quit()));
 	splash->finish(mw);
 	delete splash;
@@ -67,15 +72,17 @@ void TexstudioApp::init(QStringList &cmdLine) {
 	initialized = true;
 
 	if (!delayedFileLoad.isEmpty()) cmdLine << delayedFileLoad;
-	mw->executeCommandLine(cmdLine,true);
+	mw->executeCommandLine(cmdLine, true);
 	mw->startupCompleted();
 }
 
-TexstudioApp::~TexstudioApp() {
+TexstudioApp::~TexstudioApp()
+{
 	if (mw) delete mw;
 }
 
-bool TexstudioApp::event(QEvent * event) {
+bool TexstudioApp::event(QEvent *event)
+{
 	if (event->type() == QEvent::FileOpen) {
 		QFileOpenEvent *oe = static_cast<QFileOpenEvent *>(event);
 		if (initialized) mw->load(oe->file());
@@ -86,7 +93,8 @@ bool TexstudioApp::event(QEvent * event) {
 	return QApplication::event(event);
 }
 
-QString generateAppId() {
+QString generateAppId()
+{
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	QString user = env.value("USER");
 	if (user.isEmpty()) {
@@ -95,9 +103,10 @@ QString generateAppId() {
 	return QString("%1_%2").arg(TEXSTUDIO).arg(user);
 }
 
-QStringList parseArguments(const QStringList &args, bool &outStartAlways) {
+QStringList parseArguments(const QStringList &args, bool &outStartAlways)
+{
 	QStringList cmdLine;
-	for (int i=1; i<args.count(); ++i) {
+	for (int i = 1; i < args.count(); ++i) {
 		QString cmdArgument =  args[i];
 
 		if (cmdArgument.startsWith('-')) {
@@ -120,7 +129,8 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways) {
 	return cmdLine;
 }
 
-int main(int argc, char ** argv) {
+int main(int argc, char **argv)
+{
 	QString appId = generateAppId();
 	// This is a dummy constructor so that the programs loads fast.
 	TexstudioApp a(appId, argc, argv);
@@ -142,7 +152,7 @@ int main(int argc, char ** argv) {
 	a.init(cmdLine); // Initialization takes place only if there is no other instance running.
 
 	QObject::connect(&a, SIGNAL(messageReceived(const QString &)),
-					 a.mw, SLOT(onOtherInstanceMessage(const QString &)));
+	                 a.mw, SLOT(onOtherInstanceMessage(const QString &)));
 
 	try {
 		return a.exec();

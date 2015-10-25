@@ -20,11 +20,12 @@
 \setmonofont[fontfeature=option]{fontname}
 \setmonofont[fontfeature=option,fontfeature=option]{fontname}
 
-\newfontfamily<fontinstance>{fontname}
+\newfontfamily{cmd}{fontname}#d
+\newfontfamily{cmd}[fontfeatures]{fontname}#d
 
-\newfontface<fontface>{fontname}
-\newfontface<fontface>[fontfeature=option]{fontname}
-\newfontface<fontface>[fontfeature=option,fontfeature=option]{fontname}
+
+\newfontface{cmd}{fontname}#d
+\newfontface{cmd}[fontfeatures]{fontname}#d
 
 \setmathrm
 \setboldmathrm

@@ -10,13 +10,14 @@
  ***************************************************************************/
 
 #include "mostQtHeaders.h"
- 
+
 #include "filechooser.h"
 
 #include "smallUsefulFunctions.h"
 
 FileChooser::FileChooser(QWidget *parent, QString name)
-		: QDialog(parent) {
+	: QDialog(parent)
+{
 	setWindowTitle(name);
 	setModal(true);
 	ui.setupUi(this);
@@ -26,20 +27,25 @@ FileChooser::FileChooser(QWidget *parent, QString name)
 	setWindowTitle(name);
 }
 
-void FileChooser::setDir(const QString &di) {
-	dir=di;
+void FileChooser::setDir(const QString &di)
+{
+	dir = di;
 }
 
-void FileChooser::setFilter(const QString &fil) {
-	filter=fil;
+void FileChooser::setFilter(const QString &fil)
+{
+	filter = fil;
 }
-QString FileChooser::fileName() const {
+
+QString FileChooser::fileName() const
+{
 	return ui.lineEdit->text();
 }
 
-void FileChooser::chooseFile() {
+void FileChooser::chooseFile()
+{
 	QString fn;
-	fn =QFileDialog::getOpenFileName(this,tr("Select a File"),dir,filter);
+	fn = QFileDialog::getOpenFileName(this, tr("Select a File"), dir, filter);
 	if (!fn.isEmpty()) {
 		ui.lineEdit->setText(fn);
 		emit fileNameChanged(fn);

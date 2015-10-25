@@ -16,6 +16,11 @@
 #include "qdocument.h"
 #include "smallUsefulFunctions.h"
 
+// returns the number of chars/columns from column to the next tab location
+// for a given tabstop periodicity
+// e.g. dist(0,4)==4, dist(3,4)==1, dist(4,4)==4, dist(5,4)=3
+#define ncolsToNextTabStop(column, tabstop) (tabstop - (column % tabstop))
+
 
 /*
 	Document model :
@@ -317,7 +322,7 @@ void QDocument::applyHardLineWrap(const QList<QDocumentLineHandle*>& in_handles)
 int QDocument::screenColumn(const QChar *d, int l, int tabStop, int column)
 {
 	if ( tabStop == 1 )
-		return l;
+		return column + l;
 
 	int idx = 0;
 
@@ -327,8 +332,7 @@ int QDocument::screenColumn(const QChar *d, int l, int tabStop, int column)
 
 		if ( c == QLatin1Char('\t') )
 		{
-			int taboffset = tabStop - (column % tabStop);
-			column += taboffset;
+			column += ncolsToNextTabStop(column, tabStop);
 		} else {
 			++column;
 		}
@@ -355,7 +359,7 @@ QString QDocument::screenable(const QChar *d, int l, int tabStop, int column)
 
 		if ( c == QLatin1Char('\t') )
 		{
-			int taboffset = tabStop - (column % tabStop);
+			int taboffset = ncolsToNextTabStop(column, tabStop);
 
 			fragment += QString(taboffset, QLatin1Char(' '));
 			column += taboffset;
@@ -685,7 +689,7 @@ void QDocument::setText(const QString& s, bool allowUndo)
 	if ( lineEnding() == Conservative )
 		setLineEndingDirect(Conservative);
 
-	m_impl->setWidth();
+    //m_impl->setWidth(); // will be performed in emitContentsChange
 	m_impl->setHeight();
 
 	emit lineCountChanged(lineCount());
@@ -1226,6 +1230,8 @@ int QDocument::getLineSpacing()
 
 void QDocument::setLineSpacingFactor(double scale)
 {
+    if(qFuzzyCompare(scale,QDocumentPrivate::m_lineSpacingFactor))
+        return; // don't set fonts when spacing is not changed !
 	QDocumentPrivate::m_lineSpacingFactor = (scale<1.0)?1.0:scale;
 
 	if ( !QDocumentPrivate::m_font ) return;
@@ -2615,7 +2621,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 
 		if ( c == '\t' )
 		{
-			int taboffset = tabStop - (column % tabStop);
+			int taboffset = ncolsToNextTabStop(column, tabStop);
 
 			column += taboffset;
 			cwidth = fm.width(' ') * taboffset;
@@ -2684,8 +2690,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			if ( c == QLatin1Char('\t') )
 			{
-				int taboffset = tabStop - (column % tabStop);
-				column += taboffset;
+				column += ncolsToNextTabStop(column, tabStop);
 			} else {
 				++column;
 			}
@@ -2710,7 +2715,7 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 
 			if ( m_text.at(idx) == '\t' )
 			{
-				int taboffset = tabStop - (column % tabStop);
+				int taboffset = ncolsToNextTabStop(column, tabStop);
 
 				column += taboffset;
 				cwidth = fm.width(' ') * taboffset;
@@ -3099,13 +3104,37 @@ QVector<int> QDocumentLineHandle::getFormats() const
 	return m_formats;
 }
 
-bool QDocumentLineHandle::isRTL() const{
+bool QDocumentLineHandle::isRTLByLayout() const{
 	if (!m_layout) return false;
 	else {
 		QReadLocker locker(&mLock);
 		return m_layout && m_layout->textOption().textDirection() == Qt::RightToLeft;
 	}
 }
+
+
+bool QDocumentLineHandle::isRTLByText() const{
+	bool needLayout = false;
+	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
+		<< QChar::DirR
+		<< QChar::DirAL
+		<< QChar::DirRLE
+		<< QChar::DirRLO
+		<< QChar::DirPDF
+		<< QChar::DirAN;
+
+	QString text = m_text; //does this need locking ?
+
+	for ( int i = 0; (i < text.length()) && !needLayout; ++i )
+	{
+		QChar c = text.at(i);
+
+		needLayout = m_layoutRequirements.contains(c.direction());
+	}
+
+	return needLayout;
+}
+
 
 QVector<int> QDocumentLineHandle::compose() const
 {
@@ -3217,22 +3246,9 @@ void QDocumentLineHandle::applyOverlays() const
 
 void QDocumentLineHandle::layout(int lineNr) const
 {
-	//needs locking at caller !
-	bool needLayout = m_doc->impl()->m_workArounds & QDocument::ForceQTextLayout;
-	static QList<QChar::Direction> m_layoutRequirements = QList<QChar::Direction>()
-		<< QChar::DirR
-		<< QChar::DirAL
-		<< QChar::DirRLE
-		<< QChar::DirRLO
-		<< QChar::DirPDF
-		<< QChar::DirAN;
-
-	for ( int i = 0; (i < m_text.length()) && !needLayout; ++i )
-	{
-		QChar c = m_text.at(i);
-
-		needLayout = m_layoutRequirements.contains(c.direction());
-	}
+	//needs locking by caller
+	bool needLayout = ( m_doc->impl()->m_workArounds & QDocument::ForceQTextLayout )
+			|| isRTLByText();
 
 	if ( needLayout )
 	{
@@ -3734,7 +3750,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 				{
 					if ( c.unicode() == '\t' )
 					{
-						int toff = ts - (tcol % ts);
+						int toff = ncolsToNextTabStop(tcol, ts);
 						rwidth += toff * currentSpaceWidth;
 						tcol += toff;
 					} else {
@@ -3813,7 +3829,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
 					if ( isTab )
 					{
-						int toff = ts - (column % ts);
+						int toff = ncolsToNextTabStop(column, ts);
 						column += toff;
 						int xoff = toff * currentSpaceWidth;
 
@@ -4583,7 +4599,7 @@ void QDocumentCursorHandle::setColumnMemory(bool y)
 
 bool QDocumentCursorHandle::isRTL() const{
 	QDocumentLine l = line();
-	return l.isRTL(); //todo: also check for column position?
+	return l.isRTLByLayout(); //todo: also check for column position?
 }
 
 void QDocumentCursorHandle::setPosition(int pos, int m)
@@ -4633,10 +4649,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 		m_endOffset = m_begOffset;
 	}
 
+	if (offset < 0) offset = 0;
+	else if (offset > l1.length()) offset = l1.length();
+
 	int beg = 0, end = m_doc->lines();
 
 #if QT_VERSION >= 0x040800
-    if (l1.isRTL()) { //sanity check added
+    if (l1.isRTLByLayout()) {
 		int tempOffset = m_begOffset;
 		switch (op) {
 		case QDocumentCursor::Left:
@@ -4924,7 +4943,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 
 		case QDocumentCursor::StartOfBlock :
-			if ( l1.isRTL() ) { //todo: test if this also works for non-rtl
+			if ( l1.isRTLByLayout() ) { //todo: test if this also works for non-rtl
 				const int targetPosition = document()->width()+5; //it is rtl
 
 				QPoint curPos = l1.cursorToDocumentOffset(m_begOffset);
@@ -4953,7 +4972,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 
 		case QDocumentCursor::EndOfBlock :
-			if ( l1.isRTL() ) {
+			if ( l1.isRTLByLayout() ) {
 				const int targetPosition = 0; //it is rtl
 
 				QPoint curPos = l1.cursorToDocumentOffset(offset);
@@ -6514,6 +6533,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	int lineCacheWidth = m_oldLineCacheWidth;
 	if(m_oldLineCacheOffset!=cxt.xoffset || m_oldLineCacheWidth < cxt.width) {
 		m_LineCache.clear();
+        m_LineCacheAlternative.clear();
 		if (m_width) lineCacheWidth = cxt.width;
 		else lineCacheWidth = (cxt.width+15) & (~16);         //a little bit larger if not wrapped
 		//qDebug("clear");
@@ -6735,32 +6755,55 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		h->unlock();
 
 		bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
+
+        bool imageCache= (m_workArounds & QDocument::QImageCache);
 		
 		if(   useLineCache
 		   && !h->hasFlag(QDocumentLine::LayoutDirty) 
 		   &&  h->hasFlag(QDocumentLine::FormatsApplied)
-		   &&  m_LineCache.contains(h)){
-			QPixmap *px=m_LineCache.object(h);
-			p->drawPixmap(m_oldLineCacheOffset,0,*px);
+           &&  (m_LineCache.contains(h)||m_LineCacheAlternative.contains(h))){
+            if(imageCache){
+                QImage *px=m_LineCacheAlternative.object(h);
+                p->drawImage(m_oldLineCacheOffset,0,*px);
+            }else{
+                QPixmap *px=m_LineCache.object(h);
+                p->drawPixmap(m_oldLineCacheOffset,0,*px);
+            }
 		} else {
 			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
-			QPixmap *px = 0;
+            QImage *pi = 0;
+            QPixmap *px = 0;
 			QPainter *pr = 0;
 			if (useLineCache) {
+                if(imageCache){
 #if QT_VERSION >= 0x050000
-                int pixelRatio=p->device()->devicePixelRatio();
-                px = new QPixmap(pixelRatio*lineCacheWidth,pixelRatio*ht);
-                px->setDevicePixelRatio(pixelRatio);
+                    int pixelRatio=p->device()->devicePixelRatio();
+                    pi = new QImage(pixelRatio*lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
+                    pi->setDevicePixelRatio(pixelRatio);
 #else
-                px = new QPixmap(lineCacheWidth,ht);
+                    pi = new QImage(lineCacheWidth,ht,QImage::Format_RGB888);
 #endif
-				//px->fill(base.color());//fullSel ? selbg.color() : bg.color());
-                if(fullSel){
-                    px->fill(selbg.color());
+                    if(fullSel){
+                        pi->fill(selbg.color().rgb());
+                    }else{
+                        pi->fill(bg.color().rgb());
+                    }
+                    pr = new QPainter(pi);
                 }else{
-                    px->fill(bg.color());
+#if QT_VERSION >= 0x050000
+                    int pixelRatio=p->device()->devicePixelRatio();
+                    px = new QPixmap(pixelRatio*lineCacheWidth,pixelRatio*ht);
+                    px->setDevicePixelRatio(pixelRatio);
+#else
+                    px = new QPixmap(lineCacheWidth,ht);
+#endif
+                    if(fullSel){
+                        px->fill(selbg.color());
+                    }else{
+                        px->fill(bg.color());
+                    }
+                    pr = new QPainter(px);
                 }
-				pr = new QPainter(px);
 				pr->setRenderHints(p->renderHints());
 				pr->setFont(p->font());
 			} else {
@@ -6788,11 +6831,18 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
             h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
 
 			if (useLineCache) {
-				p->drawPixmap(cxt.xoffset,0,*px);
-				delete pr;
-				m_LineCache.insert(h,px);
+                if(imageCache){
+                    p->drawImage(cxt.xoffset,0,*pi);
+                    delete pr;
+                    m_LineCacheAlternative.insert(h,pi);
+                }else{
+                    p->drawPixmap(cxt.xoffset,0,*px);
+                    delete pr;
+                    m_LineCache.insert(h,px);
+                }
 			} else {
 				m_LineCache.remove(h);
+                m_LineCacheAlternative.remove(h);
 			}
 		}
 
@@ -6992,6 +7042,9 @@ void QDocumentPrivate::setCursorBold(bool bold)
 
 void QDocumentPrivate::setWidth(int width)
 {
+    if(m_width==width)
+        return; // no change if width is not changed
+
 	int oldConstraint = m_constrained;
 	m_constrained = width > 0 ;
 

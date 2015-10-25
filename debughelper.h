@@ -5,31 +5,33 @@
 #include "smallUsefulFunctions.h"
 
 
-QString print_backtrace(const QString& message);
+QString print_backtrace(const QString &message);
 
 void recover(); //defined in texmaker.cpp
 
 void initCrashHandler(int mode);
-QString getLastCrashInformation(bool & wasLoop);
+QString getLastCrashInformation(bool &wasLoop);
 void catchUnhandledException();
 
 
-
-class Guardian: public SafeThread{
+class Guardian: public SafeThread
+{
 	Q_OBJECT
-	
-	void run();
+
 public:
-    Guardian():SafeThread(),slowOperations(0){}
+	Guardian(): SafeThread(), slowOperations(0) {}
 	static void summon();
 	static void calm();
 	static void shutdown();
 
 	static void continueEndlessLoop();
+
+	static Guardian *instance();
 	
-	static Guardian* instance();
-	
-public slots: 
+protected:
+	void run();
+
+public slots:
 	void slowOperationStarted();
 	void slowOperationEnded();
 

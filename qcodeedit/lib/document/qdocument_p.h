@@ -293,7 +293,8 @@ public:
 
 		QVector<QDocumentLineHandle*> m_lines;
 
-		QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
+        QCache<QDocumentLineHandle*,QImage> m_LineCacheAlternative;
+        QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
 		int m_oldLineCacheOffset, m_oldLineCacheWidth;
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;

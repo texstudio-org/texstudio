@@ -371,10 +371,9 @@ Built-in templates can not be changed.</p>
 <p>The "Structure View" (left panel) lets you quickly reach any part of your document. All you need to do is to click on any item (label, section...) and you will be taken to the beginning of the corresponding area in the editor. The mechanism for jumping to a line does not anymore only consider line numbers but really remembers text lines. Thus adding and removing lines will not lead to jumps to wrong locations.</p>
 <p>A grey background shows the present cursor position in the text in the structure view as well. A greenish background denotes sections which are in the appendix.</p>
 <p><IMG src="doc5.png" border="1" alt="Appendix"></p>
-<p>The "Structure View" is automatically updated as you type. You can also use the "Refresh Structure" ("Edit" menu) command at any moment.</p>
-<p>Apart from labels,sections,includes and beamer blocks, comments starting with %TODO are also scanned for and presented as section of its own in the structure view.
-This can be used to create a kind of permanent bookmark in the text or just to note where some changes are still necessary.
-</p>
+<p>The "Structure View" is automatically updated as you type. You can also use the "Refresh Structure" (menu "Idefix") command at any moment.</p>
+<p>The structure view shows labels, sections, includes and beamer blocks and todos.</p>
+<p>There are two kind of todos that will be listed a) todos from a todo-like command, e.g. \todo{} from the package todonotes. b) todo-like comments: This is a comment with a capitalized first word, e.g. "% TODO", "%FIXME", "%ASK".</p>
 <p>
 The structure view also offers a context menu which allows one to copy/cut all text which belongs to a section (including subsection) and paste it before or after a section.
 Section can be indented/unindented which means that the hierarchy level is changed by one, i.e. \section is changed to \subsection, and all subsections are treated accordingly
@@ -403,9 +402,9 @@ Section can be indented/unindented which means that the hierarchy level is chang
 </ul>
 <p>For example: "Less than 10% of computer users know the meaning of $PATH." will be converted to "Less than 10\% of computer users know the meaning of \$PATH."</p>
 <h2 id="SECTION16">2.6 Spacings</h2>
-<p>The usual "spacing" commands are available in the "LaTeX" and "Math" menus. To insert quickly the "new line" LaTeX command, you can use the corresponding command in the toolbar (shortcut : Ctrl+Alt+return) </p>
+<p>The usual "spacing" commands are available in the "LaTeX" and "Math" menus.</p>
 <h2 id="SECTION17">2.7 Inserting a list</h2>
-<p>The usual list environments code can be insert quickly via the "LaTeX-List" menu.<br>Note : the shortcut for the \item command is Ctrl+Alt+H.</p>
+<p>The usual list environments code can be insert quickly via the "LaTeX-List" menu.<br>Note : the shortcut for the \item command is Ctrl+Shift+I.</p>
 <h2 id="SECTION18">2.8 Inserting a table</h2>
 <p>With the "Tabular" wizard ("Wizard" menu), t he LaTeX code for a tabular environment can be quickly inserted :</p>
 <p><IMG src="doc7.png" border="1" alt="Tabular Wizard"></p>
@@ -1174,22 +1173,22 @@ Below you can find a list of commands for some common viewers. Of course, you ha
 
 <h3>Sumatra</h3>
 <p>
-To launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search "\"<i>(your TeXstudio path)</i>\" \"%%f\" -line %%l" "?am.pdf"</span><br><br>
-To jump to a line in a running Sumatra (Windows only): <span class="command">dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
-To launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde:///<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
-To launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
+Launch Sumatra from TeXstudio and configure Sumatra for inverse search: <span class="command">"<i>(your sumatra path)</i>" -reuse-instance -inverse-search "\"<i>(your TeXstudio path)</i>\" \"%%f\" -line %%l" "?am.pdf"</span><br><br>
+Jump to a line in a running Sumatra (Windows only): <span class="command">dde:///SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+Launch Sumatra if it is not running and jump to a line in it (Windows only): <span class="command">dde:///<i>(your sumatra path)</i>:SUMATRA/control/[ForwardSearch("?am.pdf","?c:am.tex",@,0,0,1)]</span><br><br>
+Launch TeXstudio from Sumatra: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
 
 A possible value for <i>(your Sumatra path)</i> is <span class="command">C:/Program Files/SumatraPDF/SumatraPDF.exe</span>
 </p>
 
 <h3>Foxit Reader</h3>
 <p>
-To launch Foxit Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+Launch Foxit Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
 </p>
 
 <h3>Acrobat Reader</h3>
 <p>
-To launch Acrobat Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
+Launch Acrobat Reader from TeXstudio: <span class="command">"<i>(your Reader path)"</i> "?am.pdf"</span><br><br>
 
 Naviation and closing are achieved via DDE commands. Since version 10 of the adobe products the DDE service name contains a letter for the Product and the version number.</p>
 <table>
@@ -1200,47 +1199,58 @@ Naviation and closing are achieved via DDE commands. Since version 10 of the ado
 <tr><td>Adobe Acrobat 10</td><td>acroviewA10</td></tr>
 <tr><td>Adobe Reader 11</td><td>acroviewR11</td></tr>
 <tr><td>Adobe Acrobat 11</td><td>acroviewA11</td></tr>
+<tr><td>Adobe Reader DC</td><td>acroviewR15</td></tr>
+<tr><td>Adobe Acrobat DC</td><td>acroviewA15</td></tr>
 </table>
 <p>
-The following example is for Adobe Reader 11:<br>
-To jump to a position in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
+The following example is for Adobe Reader DC:<br>
+Jump to a position in a running Adobe Reader (Windows only): <span class="command">dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
 
-To close the document in a running Acrobat Reader (Windows only): <span class="command">dde:///acroviewR11/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+Close the document in a running Adobe Reader (Windows only): <span class="command">dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
+
+Note: Since Adobe Reader blocks writing to PDFs which are open in the Reader, you have to close the PDF before recompiling. You can define a User Command for the above DDE-command and call it at the beginning of your build chain. This ensures that the file will be closed and thus is writable when compiling.
 </p>
 
 <h3>Yap (Yet Another Previewer)</h3>
 <p>
-To launch Yap from TeXstudio : <span class="command">"<i>(your Yap path)</i>" -1 -s @?c:m.tex %.dvi</span>
+Launch Yap from TeXstudio: <span class="command">"<i>(your Yap path)</i>" -1 -s @?c:m.tex %.dvi</span>
 <br><br>
-To launch TeXstudio from Yap: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
+Launch TeXstudio from Yap: <span class="command">"<i>(your TeXstudio path)</i>" "%f" -line %l </span><br><br>
 
-A possible value for <i>(your Yap path)</i> is <span class="command">C:/Program Files/MiKTeX 2.7/miktex/bin/yap.exe</span>
+A possible value for <i>(your Yap path)</i> is <span class="command">C:\Program Files\MiKTeX 2.7\miktex\bin\yap.exe</span>
 </p>
 
 <h3>xdvi</h3>
 <p>
-To launch xdvi from TeXstudio : <span class="command">xdvi %.dvi  -sourceposition @:?c:m.tex</span><br><br>
+Launch xdvi from TeXstudio: <span class="command">xdvi %.dvi  -sourceposition @:?c:m.tex</span><br><br>
 
-To launch xdvi from TeXstudio and enable inverse search : <span class="command">xdvi -editor "texstudio %f -line" %.dvi -sourceposition @:%.tex</span>
+Launch xdvi from TeXstudio and enable inverse search: <span class="command">xdvi -editor "texstudio %f -line" %.dvi -sourceposition @:%.tex</span>
 </p>
 
 <h3>kdvi</h3>
 <p>
-To launch kdvi from TeXstudio : <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
+Launch kdvi from TeXstudio: <span class="command">kdvi "file:%.dvi#src:@ ?c:m.tex"</span>
 </p>
 
 <h3>Okular</h3>
 <p>
-To launch okular from TeXstudio: <span class="command">okular --unique %.dvi#src:@?c:m.tex</span><br><br>
-To launch TeXstudio from Okular: <span class="command">texstudio %f -line %l</span>
+Launch okular from TeXstudio: <span class="command">okular --unique %.dvi#src:@?c:m.tex</span><br><br>
+Launch TeXstudio from Okular: <span class="command">texstudio %f -line %l</span>
 </p>
 
 <h3>Skim</h3>
 <p>
-To launch Skim from TeXstudio: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
-To launch TeXstudio from skim : Command: <span class="command">/applications/texstudio.app/contents/macos/texstudio</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
+Launch Skim from TeXstudio: <span class="command">(your Skim path)/Contents/SharedSupport/displayline @ ?am.pdf ?c:ame</span><br><br>
+Launch TeXstudio from skim: Command: <span class="command">/applications/texstudio.app/contents/macos/texstudio</span> with arguments: <span class="command">"%file" -line %line </span><br><br>
 A possible value for <i>(your Skim path)</i> is <span class="command">/Applications/Skim.app</span>
 </p>
+
+<h3>qpdfview</h3>
+<p>
+Launch qpdfview from TeXstudio: <span class="command">qpdfview --unique ?am.pdf#src:?c:am.tex:@:0 2> /dev/null</span><br><br>
+Launch TeXstudio from qpdfview: <span class="command">texstudio "%1" -line %2</span>
+</p>
+
 <h2 id="SECTION_TEXCOM">4.10 Advanced header usage</h2>
 <p>So called "magic comments" are a way to adapt the options of the editor on a per-document level. The concept was <a href="http://www.texdev.net/2011/03/24/texworks-magic-comments/">originally introduced in TeXshop</a> and has been adopted in a number of editors since. TeXstudio supports the following magic comments:</p>
 <ul class="magiccomments">
@@ -1330,10 +1340,13 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Cut : Ctrl+X</li>
 	<li>Paste : Ctrl+V</li>
 	<li>Select All : Ctrl+A</li>
-	<li>Remove Line : Ctrl+K</li>
-	<li>Erase until End of Line : Alt+K</li>
+	<li>Expand Selection to Word : Ctrl+D</li>
+	<li>Expand Selection to Line : Ctrl+L</li>
+	<li>Delete Line : Ctrl+K</li>
+	<li>Delete to End of Line : Alt+K</li>
 	<li>Find : Ctrl+F</li>
 	<li>Find next : F3 / Ctrl+G</li>
+	<li>Find prev : Shift+F3 / Ctrl+Shift+G</li>
 	<li>Replace : CTrl+R</li>
 	<li>Go to line : Ctrl+G</li>
 	<li>Go to previous change: Ctrl+H</li>
@@ -1345,10 +1358,7 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Previous Marker: Ctrl+Up</li>
 	<li>Go Back : Alt+Left</li>
 	<li>Go Forward : Alt+Right</li>
-	<li>Check spelling (from cursor) : Ctrl+Shift+F7</li>
-	<li>Open Thesaurus : Ctrl+Shift+F8</li>
-	<li>Refresh Structure View : F12</li>
-	<li>Remove placeholders : Ctrl+Shift+K</li>
+	<li>Insert Unicode Character : Ctrl+Alt+U</li>
 	</ul>
 </li>
 <li> "Idefix" menu :
@@ -1373,12 +1383,11 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 
 <li> "Tools" menu :
 	<ul>
-	<li>Build & View : F1</li>
+	<li>Build & View : F5</li>
 	<li>Compile : F6</li>
-	<li>View Pdf : F7</li>
+	<li>View : F7</li>
+	<li>Bibliography : F8</li>
 	<li>Glossary : F9</li>
-	<li>Bibliography : F11</li>
-	<li>Index : F12</li>
 	<li>Check spelling : Ctrl+:</li>
 	<li>Thesaurus : Ctrl+Shift+F8</li>
 	</ul>
@@ -1424,7 +1433,8 @@ The following list is a rough overview of the defaults keyboard shortcuts. Depen
 	<li>Focus Editor : Ctrl+Alt+Left</li>
 	<li>Focus Viewer : Ctrl+Alt+Right</li>
 	<li>Close Something : Esc</li>
-	<li>Next Document : Ctrl+PgUp</li>
+	<li>Editor Zoom In : Ctrl++</li>
+	<li>Editor Zoom Out : Ctrl+-</li>
 	<li>Fullscreeen Mode : F11</li>
 	</ul>
 </li>

@@ -281,6 +281,7 @@
 \newtoks#*
 \newwrite#*
 \noalign
+\nobreak#*
 \noexpand#*
 \noindent
 \nointerlineskip#*

@@ -12,39 +12,6 @@ class UpdateCheckerTest: public QObject{
 public:
 	UpdateCheckerTest(bool executeAllTests) : allTests(executeAllTests) {}
 private slots:
-	void versionCompare_data() {
-		QTest::addColumn<QString>("ver1");
-		QTest::addColumn<QString>("ver2");
-		QTest::addColumn<int>("expectedResult");
-
-		QTest::newRow("equal") << "2.3" << "2.3" << (int) UpdateChecker::Same;
-		QTest::newRow("equal2") << "2.3.1" << "2.3.1" << (int) UpdateChecker::Same;
-		QTest::newRow("equal3") << "2" << "2.0" << (int) UpdateChecker::Same;
-		QTest::newRow("equal4") << "2.3" << "2.3.0" << (int) UpdateChecker::Same;
-		QTest::newRow("minor1") << "2.4" << "2.3" << (int) UpdateChecker::Higher;
-		QTest::newRow("minor2") << "2.3" << "2.4" << (int) UpdateChecker::Lower;
-		QTest::newRow("major1") << "3" << "2.4" << (int) UpdateChecker::Higher;
-		QTest::newRow("major2") << "3.0" << "2.4" << (int) UpdateChecker::Higher;
-		QTest::newRow("major3") << "3.1" << "2.4" << (int) UpdateChecker::Higher;
-		QTest::newRow("major4") << "3.1" << "2.4" << (int) UpdateChecker::Higher;
-		QTest::newRow("major4") << "3.0" << "2.4.2" << (int) UpdateChecker::Higher;
-		QTest::newRow("revision1") << "2.4.1" << "2.4" << (int) UpdateChecker::Higher;
-		QTest::newRow("revision2") << "2.4.2" << "2.4.1" << (int) UpdateChecker::Higher;
-		QTest::newRow("revision3") << "2.4" << "2.4.1" << (int) UpdateChecker::Lower;
-		QTest::newRow("revision4") << "2.4.1" << "2.4.2" << (int) UpdateChecker::Lower;
-		QTest::newRow("invalid") << "2.4b" << "2.4" << (int) UpdateChecker::Invalid;
-		QTest::newRow("twodigit") << "2.10.0" << "2.9.4" << (int) UpdateChecker::Higher;
-	}
-
-	void versionCompare() {
-		QFETCH(QString, ver1);
-		QFETCH(QString, ver2);
-		QFETCH(int, expectedResult);
-
-		int result = UpdateChecker::versionCompare(ver1, ver2);
-		QEQUAL(result, expectedResult);
-	}
-
 	void getLatestVersion() {
 		if (!allTests) {
 			qDebug("skipped getLatestVersion test");

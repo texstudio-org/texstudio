@@ -6,18 +6,17 @@
 class Help : public QObject
 {
 	Q_OBJECT
+
 public:
 	static Help *instance();
 
 	static bool isMiktexTexdoc();
 	static bool isTexdocExpectedToFinish();
 	static QString texdocCommand();
-	static QString packageDocFile(const QString &package, bool silent=false);
+	static QString packageDocFile(const QString &package, bool silent = false);
 
-	
 signals:
 	void texdocAvailableReply(const QString &package, bool available, QString errorMessage);
-
 
 public slots:
 	void execTexdocDialog(const QStringList &packages, const QString &defaultPackage);
@@ -31,7 +30,7 @@ private slots:
 private:
 	Help();
 	Help(const Help &);
-	Help& operator=(const Help &);
+	Help &operator=(const Help &);
 	static QStringList getAdditionalCmdSearchPathList();
 
 	static Help *m_Instance;
@@ -39,25 +38,37 @@ private:
 	static QString m_texdocCommand;
 };
 
+
 class LatexReference : public QObject
 {
 	Q_OBJECT
+
 public:
-	explicit LatexReference(QObject *parent=0);
+	explicit LatexReference(QObject *parent = 0);
 
 	void setFile(QString filename);
-	bool contains(const QString & command);
-	QString getTextForTooltip(const QString & command);
-	QString getSectionText(const QString & command);
-	QString getPartialText(const QString & command);
+	bool contains(const QString &command);
+	QString getTextForTooltip(const QString &command);
+	QString getSectionText(const QString &command);
+	QString getPartialText(const QString &command);
 
 protected:
 	void makeIndex();
 
 private:
 	struct Anchor {
-		Anchor() {name = QString(); start_pos = -1; end_pos = -1;}
-		Anchor(const QString & n) {name = n; start_pos = -1; end_pos = -1;}
+		Anchor()
+		{
+			name = QString();
+			start_pos = -1;
+			end_pos = -1;
+		}
+		Anchor(const QString &n)
+		{
+			name = n;
+			start_pos = -1;
+			end_pos = -1;
+		}
 		QString name;
 		int start_pos;
 		int end_pos;

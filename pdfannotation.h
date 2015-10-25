@@ -13,11 +13,12 @@ class QTableView;
 class PDFAnnotation: public QObject
 {
 	Q_OBJECT
+
 public:
-	PDFAnnotation(Poppler::Annotation *ann, int pageNum, QObject *parent=0);
+	PDFAnnotation(Poppler::Annotation *ann, int pageNum, QObject *parent = 0);
 	~PDFAnnotation();
 
-	const Poppler::Annotation * popplerAnnotation() const { return m_popplerAnnotation; }
+	const Poppler::Annotation *popplerAnnotation() const { return m_popplerAnnotation; }
 
 	QString subTypeText() const;
 	QString subTypeIconName() const;
@@ -27,7 +28,7 @@ public:
 	static QString subTypeIconName(Poppler::Annotation::SubType subtype);
 
 private:
-	Poppler::Annotation * m_popplerAnnotation;
+	Poppler::Annotation *m_popplerAnnotation;
 	int m_pageNum;
 };
 
@@ -42,23 +43,24 @@ class PDFAnnotationModel; // forward declaration
 class PDFAnnotations: public QObject
 {
 	Q_OBJECT
+
 public:
 	friend class PDFAnnotationModel;
 
 	explicit PDFAnnotations(PDFDocument *doc);
 
-	const PDFAnnotationList & annotationsInPage(int page) const;
+	const PDFAnnotationList &annotationsInPage(int page) const;
 
-	PDFAnnotationModel * createModel();
+	PDFAnnotationModel *createModel();
 
 	//const PDFAnnotation * annotation(int page, int number) const;
-	const PDFAnnotation * annotation(int absNumber) const;
+	const PDFAnnotation *annotation(int absNumber) const;
 
 
 private:
 	void update();
 
-	PDFDocument * m_doc;
+	PDFDocument *m_doc;
 	QList<PDFAnnotationList> m_annotationsInPage;
 	PDFAnnotationList m_annotations;
 
@@ -69,14 +71,16 @@ private:
 class PDFAnnotationModel: public QAbstractTableModel
 {
 	Q_OBJECT
+
 public:
-	explicit PDFAnnotationModel(PDFAnnotations *parent=0);
+	explicit PDFAnnotationModel(PDFAnnotations *parent = 0);
 	enum ColType {CT_AUTHOR, CT_CONTENTS, CT_TYPE, CT_MODIFICATON_DATE, CT_CREATION_DATE, CT_PAGE};
-	int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
-	int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
-	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
+	int rowCount ( const QModelIndex &parent = QModelIndex() ) const;
+	int columnCount ( const QModelIndex &parent = QModelIndex() ) const;
+	QVariant data ( const QModelIndex &index, int role = Qt::DisplayRole ) const;
 	QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
-	const PDFAnnotation * itemForIndex( const QModelIndex & index ) const;
+	const PDFAnnotation *itemForIndex( const QModelIndex &index ) const;
+
 private:
 	QString colTypeText(ColType colType) const;
 	QList<ColType> columnTypes;
@@ -89,14 +93,15 @@ class PDFAnnotationTableView: public QTableView
 {
 	Q_OBJECT
 public:
-	explicit PDFAnnotationTableView(QWidget *parent=0);
+	explicit PDFAnnotationTableView(QWidget *parent = 0);
+
 public slots:
 
 signals:
 	void annotationClicked(const PDFAnnotation *ann);
 
 private slots:
-	void onClick(const QModelIndex & index);
+	void onClick(const QModelIndex &index);
 
 private:
 };

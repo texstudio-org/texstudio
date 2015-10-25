@@ -10,20 +10,19 @@
 class InsertGraphicsConfig
 {
 public:
-    QString file;
-    QString includeOptions;
-    bool center;
-    bool useFigure;
-    bool captionBelow;
+	QString file;
+	QString includeOptions;
+	bool center;
+	bool useFigure;
+	bool captionBelow;
 	QString shortCaption;
-    QString caption;
-    QString label;
-    bool spanTwoCols;
-    QString placement;
+	QString caption;
+	QString label;
+	bool spanTwoCols;
+	QString placement;
 
-    void readSettings(QSettings& settings);
-    void saveSettings(QSettings& settings);
-private:
+	void readSettings(QSettings &settings);
+	void saveSettings(QSettings &settings);
 };
 
 

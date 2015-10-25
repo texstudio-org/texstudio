@@ -3,14 +3,14 @@
 // TODO: dependency should be refactored
 #include "buildmanager.h"
 
-SearchQuery::SearchQuery(QString expr, QString replaceText, SearchFlags f) : 
+SearchQuery::SearchQuery(QString expr, QString replaceText, SearchFlags f) :
 	mType(tr("Search")), mScope(CurrentDocumentScope), mModel(0), searchFlags(f)
 {
 	mModel = new SearchResultModel(this);
 	mModel->setSearchExpression(expr, replaceText, flag(IsCaseSensitive), flag(IsWord), flag(IsRegExp));
 }
 
-SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive, bool isWord, bool isRegExp) : 
+SearchQuery::SearchQuery(QString expr, QString replaceText, bool isCaseSensitive, bool isWord, bool isRegExp) :
 	mType(tr("Search")), mScope(CurrentDocumentScope), mModel(0), searchFlags(NoFlags)
 {
 	setFlag(IsCaseSensitive, isCaseSensitive);
@@ -39,7 +39,8 @@ void SearchQuery::setFlag(SearchQuery::SearchFlag f, bool b)
 	}
 }
 
-void SearchQuery::addDocSearchResult(QDocument *doc, QList<QDocumentLineHandle *> lines) {
+void SearchQuery::addDocSearchResult(QDocument *doc, QList<QDocumentLineHandle *> lines)
+{
 	SearchInfo search;
 	search.doc = doc;
 	search.lines = lines;
@@ -49,7 +50,8 @@ void SearchQuery::addDocSearchResult(QDocument *doc, QList<QDocumentLineHandle *
 	mModel->addSearch(search);
 }
 
-int SearchQuery::getNextSearchResultColumn(QString text, int col) const {
+int SearchQuery::getNextSearchResultColumn(QString text, int col) const
+{
 	return mModel->getNextSearchResultColumn(text, col);
 }
 
@@ -71,15 +73,15 @@ void SearchQuery::run(LatexDocument *doc)
 	default:
 		break;
 	}
-	
+
 	qDebug() << mScope;
-	
-	foreach(LatexDocument *doc, docs) {
+
+	foreach (LatexDocument *doc, docs) {
 		if (!doc) continue;
 		QList<QDocumentLineHandle *> lines;
-		for(int l=0; l<doc->lineCount(); l++){
+		for (int l = 0; l < doc->lineCount(); l++) {
 			l = doc->findLineRegExp(searchExpression(), l,
-									flag(IsCaseSensitive) ? Qt::CaseSensitive : Qt::CaseInsensitive, flag(IsWord), flag(IsRegExp));
+			                        flag(IsCaseSensitive) ? Qt::CaseSensitive : Qt::CaseInsensitive, flag(IsWord), flag(IsRegExp));
 			if (l < 0) break;
 			lines << doc->line(l).handle();
 		}
@@ -115,7 +117,7 @@ void SearchQuery::replaceAll()
 			continue;
 		}
 		QDocumentCursor *cur = new QDocumentCursor(doc);
-		for (int i=0; i<search.checked.size(); i++) {
+		for (int i = 0; i < search.checked.size(); i++) {
 			if (search.checked.value(i, false)) {
 				QDocumentLineHandle *dlh = search.lines.value(i, 0);
 				if (dlh) {
@@ -151,7 +153,7 @@ void SearchQuery::replaceAll()
 }
 
 
-LabelSearchQuery::LabelSearchQuery(QString label) : 
+LabelSearchQuery::LabelSearchQuery(QString label) :
 	SearchQuery(label, label, IsWord | IsCaseSensitive | SearchAgainAllowed | ReplaceAllowed)
 {
 	mScope = ProjectScope;
@@ -163,20 +165,21 @@ void LabelSearchQuery::run(LatexDocument *doc)
 {
 	mModel->removeAllSearches();
 	QString labelText = searchExpression();
-	QMultiHash<QDocumentLineHandle*,int> usages = doc->getLabels(labelText);
+	QMultiHash<QDocumentLineHandle *, int> usages = doc->getLabels(labelText);
 	usages += doc->getRefs(labelText);
-	QHash<QDocument*, QList<QDocumentLineHandle*> > usagesByDocument;
+	QHash<QDocument *, QList<QDocumentLineHandle *> > usagesByDocument;
 	foreach (QDocumentLineHandle *dlh, usages.keys()) {
 		QDocument *doc = dlh->document();
-		QList<QDocumentLineHandle*> dlhs = usagesByDocument[doc];
+		QList<QDocumentLineHandle *> dlhs = usagesByDocument[doc];
 		dlhs.append(dlh);
 		usagesByDocument.insert(doc, dlhs);
 	}
-	
+
 	foreach (QDocument *doc, usagesByDocument.keys()) {
 		addDocSearchResult(doc, usagesByDocument.value(doc));
 	}
 }
+
 void LabelSearchQuery::replaceAll()
 {
 	QList<SearchInfo> searches = mModel->getSearches();

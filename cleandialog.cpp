@@ -186,5 +186,3 @@ QStringList CleanDialog::filesToRemoveFromDir(const QDir &dir, const QStringList
 	}
 	return files;
 }
-
-

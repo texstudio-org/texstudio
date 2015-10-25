@@ -21,9 +21,10 @@ typedef int HKL;
 
 static bool languagesInitialized = false;
 static HKL languageIdRTL, languageIdLTR;
-static bool wasInLTRArea = false;
+static InputLanguage oldInputLanguage = IL_UNCERTAIN;
 
-HKL getCurrentLanguage(){
+HKL getCurrentLanguage()
+{
 #if defined( Q_OS_WIN )
 	return GetKeyboardLayout(0);
 #elif defined( WS_X11 )
@@ -35,18 +36,21 @@ HKL getCurrentLanguage(){
 }
 
 #if defined( Q_OS_WIN )
-bool isProbablyLTRLanguageRaw(int id)  {
+bool isProbablyLTRLanguageRaw(int id)
+{
 	//checks primary language symbol, e.g. LANG_ENGLISH would be ltr
-	return id != LANG_PERSIAN && id != LANG_ARABIC && id != LANG_HEBREW && id!=LANG_URDU;
+	return id != LANG_PERSIAN && id != LANG_ARABIC && id != LANG_HEBREW && id != LANG_URDU;
 }
 #elif defined( WS_X11 )
-bool isProbablyLTRLanguageRaw(const std::string& symb)  {
+bool isProbablyLTRLanguageRaw(const std::string &symb)
+{
 	//e.g. "us" would be ltr
-	return symb != "ir" && symb != "ara" && symb != "il" && symb !="af" && symb != "pk";
+	return symb != "ir" && symb != "ara" && symb != "il" && symb != "af" && symb != "pk";
 }
 #endif
 
-bool isProbablyLTRLanguageCode(HKL id)  {
+bool isProbablyLTRLanguageCode(HKL id)
+{
 #if defined( Q_OS_WIN )
 	return isProbablyLTRLanguageRaw(((int) id) & 0x000000FF);
 #elif defined( WS_X11 )
@@ -61,18 +65,20 @@ bool isProbablyLTRLanguageCode(HKL id)  {
 #endif
 }
 
-
-
-void rememberCurrentLanguage(){
-	HKL curLayout = getCurrentLanguage();
-	if (wasInLTRArea) languageIdLTR = curLayout;
-	else languageIdRTL = curLayout;
+void rememberCurrentLanguage()
+{
+	if (oldInputLanguage != IL_UNCERTAIN) {
+		HKL curLayout = getCurrentLanguage();
+		if (oldInputLanguage == IL_LTR) languageIdLTR = curLayout;
+		else languageIdRTL = curLayout;
+	}
 }
 
-void initializeLanguages(){
+void initializeLanguages()
+{
 	languageIdLTR = 0;
 	languageIdRTL = 0;
-	wasInLTRArea = isProbablyLTRLanguageCode(getCurrentLanguage());
+	oldInputLanguage = isProbablyLTRLanguageCode(getCurrentLanguage()) ? IL_LTR : IL_RTL;
 	rememberCurrentLanguage();
 #if defined( Q_OS_WIN )
 	const int MAXSIZE = 32;
@@ -84,7 +90,7 @@ void initializeLanguages(){
 		GetKeyboardLayoutList(count, langs);
 
 	HKL bestLTR = 0;
-	for (int i=0; i<count; ++i) {
+	for (int i = 0; i < count; ++i) {
 		int id = (int)langs[i] & 0x000000FF;
 		if (id == LANG_ENGLISH) bestLTR = langs[i];
 		if (isProbablyLTRLanguageRaw(id)) {
@@ -99,7 +105,7 @@ void initializeLanguages(){
 	int count = xkb.groupCount();
 	StringVector installedLangSymbols = xkb.groupSymbols();
 	int bestLTR = -1;
-	for (int i=0; i<count;++i) {
+	for (int i = 0; i < count; ++i) {
 		std::string symb = installedLangSymbols.at(i);
 		if (symb == "us") bestLTR = i;
 		if (isProbablyLTRLanguageRaw(symb)) {
@@ -111,8 +117,8 @@ void initializeLanguages(){
 	languagesInitialized = true;
 }
 
-
-void setInputLanguage(HKL code){
+void setInputLanguage(HKL code)
+{
 	if (!code) return;
 	rememberCurrentLanguage();
 #if defined( Q_OS_WIN )
@@ -121,17 +127,21 @@ void setInputLanguage(HKL code){
 
 #if defined( WS_X11 )
 	XKeyboard xkb;
-	xkb.setGroupByNum(code-1);
+	xkb.setGroupByNum(code - 1);
 #endif
 }
 
-
-void setInputLanguage(bool englishLikeLTR){
+void setInputLanguage(InputLanguage lang)
+{
+	if (lang == IL_UNCERTAIN) {
+		oldInputLanguage = lang;
+		return;
+	}
 	if (!languagesInitialized)
 		initializeLanguages();
-	if (englishLikeLTR == wasInLTRArea) return;
+	if (lang == oldInputLanguage) return;
 	rememberCurrentLanguage();
-	HKL newLanguage = englishLikeLTR ? languageIdLTR : languageIdRTL;
+	HKL newLanguage = lang == IL_LTR ? languageIdLTR : languageIdRTL;
 	setInputLanguage(newLanguage);
-	wasInLTRArea = englishLikeLTR;
+	oldInputLanguage = lang;
 }

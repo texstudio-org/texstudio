@@ -8,48 +8,68 @@
  * Wraps a Poppler::Annotation. This Object takes ownership of the referenced annotation
  */
 PDFAnnotation::PDFAnnotation(Poppler::Annotation *ann, int pageNum, QObject *parent)
-	:QObject(parent), m_popplerAnnotation(ann), m_pageNum(pageNum)
+	: QObject(parent), m_popplerAnnotation(ann), m_pageNum(pageNum)
 {
 
 }
 
-PDFAnnotation::~PDFAnnotation() {
+PDFAnnotation::~PDFAnnotation()
+{
 	delete m_popplerAnnotation;
 }
 
-QString PDFAnnotation::subTypeText() const {
+QString PDFAnnotation::subTypeText() const
+{
 	return subTypeText(m_popplerAnnotation->subType());
 }
 
-QString PDFAnnotation::subTypeIconName() const {
+QString PDFAnnotation::subTypeIconName() const
+{
 	return subTypeIconName(m_popplerAnnotation->subType());
 }
 
-QString PDFAnnotation::subTypeText(Poppler::Annotation::SubType subtype) {
+QString PDFAnnotation::subTypeText(Poppler::Annotation::SubType subtype)
+{
 	switch (subtype) {
-	case Poppler::Annotation::AText: return tr("Text");
-	case Poppler::Annotation::ALine: return tr("Line");
-	case Poppler::Annotation::AGeom: return tr("Geometric");
-	case Poppler::Annotation::AHighlight: return tr("Highlight");
-	case Poppler::Annotation::AStamp: return tr("Stamp");
-	case Poppler::Annotation::AInk: return tr("Ink");
-	case Poppler::Annotation::ALink: return tr("Link");
-	case Poppler::Annotation::ACaret: return tr("Caret");
-	case Poppler::Annotation::AFileAttachment: return tr("Attachment");
-	case Poppler::Annotation::ASound: return tr("Sound");
-	case Poppler::Annotation::AMovie: return tr("Movie");
+	case Poppler::Annotation::AText:
+		return tr("Text");
+	case Poppler::Annotation::ALine:
+		return tr("Line");
+	case Poppler::Annotation::AGeom:
+		return tr("Geometric");
+	case Poppler::Annotation::AHighlight:
+		return tr("Highlight");
+	case Poppler::Annotation::AStamp:
+		return tr("Stamp");
+	case Poppler::Annotation::AInk:
+		return tr("Ink");
+	case Poppler::Annotation::ALink:
+		return tr("Link");
+	case Poppler::Annotation::ACaret:
+		return tr("Caret");
+	case Poppler::Annotation::AFileAttachment:
+		return tr("Attachment");
+	case Poppler::Annotation::ASound:
+		return tr("Sound");
+	case Poppler::Annotation::AMovie:
+		return tr("Movie");
 	default:
 		qDebug() << "no text for annotation subtype" << subtype;
 	}
 	return QString();
 }
 
-QString PDFAnnotation::subTypeIconName(Poppler::Annotation::SubType subtype) {
+QString PDFAnnotation::subTypeIconName(Poppler::Annotation::SubType subtype)
+{
 	switch (subtype) {
-	case Poppler::Annotation::AText: return ":/images-ng/annotation_text.svg";
-	case Poppler::Annotation::AHighlight: return ":/images-ng/annotation_highlight.svg";
-	case Poppler::Annotation::ACaret: return ":/images-ng/annotation_caret.svg";
-	default: ;
+	case Poppler::Annotation::AText:
+		return ":/images-ng/annotation_text.svg";
+	case Poppler::Annotation::AHighlight:
+		return ":/images-ng/annotation_highlight.svg";
+	case Poppler::Annotation::ACaret:
+		return ":/images-ng/annotation_caret.svg";
+	default:
+		;
 	}
 	return QString();
 }
@@ -58,28 +78,32 @@ QString PDFAnnotation::subTypeIconName(Poppler::Annotation::SubType subtype) {
 /*** PDFAnnotations *********************************************************/
 
 PDFAnnotations::PDFAnnotations(PDFDocument *doc)
-	:QObject(doc), m_doc(doc)
+	: QObject(doc), m_doc(doc)
 {
 	update();
 }
 
-const PDFAnnotationList & PDFAnnotations::annotationsInPage(int page) const {
+const PDFAnnotationList &PDFAnnotations::annotationsInPage(int page) const
+{
 	return m_annotationsInPage[page];
 }
 
-PDFAnnotationModel *PDFAnnotations::createModel() {
+PDFAnnotationModel *PDFAnnotations::createModel()
+{
 	return new PDFAnnotationModel(this);
 }
 
-const PDFAnnotation *PDFAnnotations::annotation(int absNumber) const {
+const PDFAnnotation *PDFAnnotations::annotation(int absNumber) const
+{
 	Q_ASSERT(absNumber >= 0 && absNumber < m_annotations.length());
 	return m_annotations[absNumber];
 }
 
-void PDFAnnotations::update() {
+void PDFAnnotations::update()
+{
 	QList<Poppler::Annotation::SubType> excludedTypes = QList<Poppler::Annotation::SubType>()
-			<< Poppler::Annotation::ALink
-			<< Poppler::Annotation::AMovie;
+	        << Poppler::Annotation::ALink
+	        << Poppler::Annotation::AMovie;
 
 	qDeleteAll(m_annotations);
 	m_annotations.clear();
@@ -87,16 +111,16 @@ void PDFAnnotations::update() {
 
 	if (!m_doc || !m_doc->widget()) return;
 
-	for(int pageNum=0; pageNum<m_doc->widget()->realNumPages(); pageNum++) {
-		Poppler::Page * page = m_doc->popplerDoc()->page(pageNum);
+	for (int pageNum = 0; pageNum < m_doc->widget()->realNumPages(); pageNum++) {
+		Poppler::Page *page = m_doc->popplerDoc()->page(pageNum);
 		if (!page) break;
 		PDFAnnotationList annInPage;
-		foreach (Poppler::Annotation * pa, page->annotations()) {
+		foreach (Poppler::Annotation *pa, page->annotations()) {
 			if (excludedTypes.contains(pa->subType())) {
 				delete pa;
 				continue;
 			}
-			PDFAnnotation * ann = new PDFAnnotation(pa, pageNum, this);
+			PDFAnnotation *ann = new PDFAnnotation(pa, pageNum, this);
 			m_annotations.append(ann);
 			annInPage.append(ann);
 		}
@@ -106,75 +130,87 @@ void PDFAnnotations::update() {
 }
 
 
-
 /*** PDFAnnotationModel *****************************************************/
 
 PDFAnnotationModel::PDFAnnotationModel(PDFAnnotations *parent)
-	:QAbstractTableModel(parent), m_annotations(parent) {
+	: QAbstractTableModel(parent), m_annotations(parent)
+{
 	columnTypes = QList<ColType>() << CT_TYPE << CT_PAGE << CT_AUTHOR << CT_CONTENTS << CT_MODIFICATON_DATE;
 }
 
-int PDFAnnotationModel::rowCount ( const QModelIndex & parent ) const {
+int PDFAnnotationModel::rowCount ( const QModelIndex &parent ) const
+{
 	Q_UNUSED(parent);
 	return m_annotations->m_annotations.count();
 }
 
-int PDFAnnotationModel::columnCount(const QModelIndex &parent) const {
+int PDFAnnotationModel::columnCount(const QModelIndex &parent) const
+{
 	Q_UNUSED(parent);
 	return columnTypes.length();
 }
 
-QVariant PDFAnnotationModel::data ( const QModelIndex & index, int role) const{
+QVariant PDFAnnotationModel::data ( const QModelIndex &index, int role) const
+{
 	if (!index.isValid()) return QVariant();
 
 	if (role != Qt::DisplayRole &&
-		role != Qt::ToolTipRole &&
-		role != Qt::DecorationRole &&
-		role != Qt::TextAlignmentRole)
+	        role != Qt::ToolTipRole &&
+	        role != Qt::DecorationRole &&
+	        role != Qt::TextAlignmentRole)
 		return QVariant(); // speed up a little bit by ignoring roles that are not handled below already here.
 
-	const PDFAnnotation * ann = itemForIndex(index);
+	const PDFAnnotation *ann = itemForIndex(index);
 	if (!ann) return QVariant();
 
 	ColType colType = columnTypes[index.column()];
 
 	switch (colType) {
-		case CT_AUTHOR:
-			switch(role) {
-				case Qt::DisplayRole: return ann->popplerAnnotation()->author();
-			}
+	case CT_AUTHOR:
+		switch (role) {
+		case Qt::DisplayRole:
+			return ann->popplerAnnotation()->author();
+		}
 		break;
-		case CT_CONTENTS:
-			switch(role) {
-				case Qt::DisplayRole: return ann->popplerAnnotation()->contents();
-			}
+	case CT_CONTENTS:
+		switch (role) {
+		case Qt::DisplayRole:
+			return ann->popplerAnnotation()->contents();
+		}
 		break;
-		case CT_TYPE:
-			switch(role) {
-				case Qt::DecorationRole: return getRealIconCached(PDFAnnotation::subTypeIconName(ann->popplerAnnotation()->subType()));
-				case Qt::ToolTipRole: return PDFAnnotation::subTypeText(ann->popplerAnnotation()->subType());
-			}
+	case CT_TYPE:
+		switch (role) {
+		case Qt::DecorationRole:
+			return getRealIconCached(PDFAnnotation::subTypeIconName(ann->popplerAnnotation()->subType()));
+		case Qt::ToolTipRole:
+			return PDFAnnotation::subTypeText(ann->popplerAnnotation()->subType());
+		}
 		break;
-		case CT_MODIFICATON_DATE:
-			switch(role) {
-				case Qt::DisplayRole: return ann->popplerAnnotation()->modificationDate().toString(Qt::DefaultLocaleShortDate);
-			}
+	case CT_MODIFICATON_DATE:
+		switch (role) {
+		case Qt::DisplayRole:
+			return ann->popplerAnnotation()->modificationDate().toString(Qt::DefaultLocaleShortDate);
+		}
 		break;
-		case CT_CREATION_DATE:
-			switch(role) {
-				case Qt::DisplayRole: return ann->popplerAnnotation()->creationDate().toString(Qt::DefaultLocaleShortDate);
-			}
-		case CT_PAGE:
-		switch(role) {
-			case Qt::DisplayRole: return ann->pageNum();
-			case Qt::TextAlignmentRole: return QVariant(Qt::AlignRight | Qt::AlignVCenter);
+	case CT_CREATION_DATE:
+		switch (role) {
+		case Qt::DisplayRole:
+			return ann->popplerAnnotation()->creationDate().toString(Qt::DefaultLocaleShortDate);
+		}
+	case CT_PAGE:
+		switch (role) {
+		case Qt::DisplayRole:
+			return ann->pageNum();
+		case Qt::TextAlignmentRole:
+			return QVariant(Qt::AlignRight | Qt::AlignVCenter);
 		}
 	}
 
 	return QVariant();
 }
 
-QVariant PDFAnnotationModel::headerData(int section, Qt::Orientation orientation, int role) const {
+QVariant PDFAnnotationModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
 	if (orientation == Qt::Vertical) return QVariant();
 
 	if (role == Qt::DisplayRole) {
@@ -184,19 +220,27 @@ QVariant PDFAnnotationModel::headerData(int section, Qt::Orientation orientation
 	return QVariant();
 }
 
-const PDFAnnotation *PDFAnnotationModel::itemForIndex(const QModelIndex &index) const {
+const PDFAnnotation *PDFAnnotationModel::itemForIndex(const QModelIndex &index) const
+{
 	if (!index.isValid()) return NULL;
 	return m_annotations->annotation(index.row());
 }
 
-QString PDFAnnotationModel::colTypeText(PDFAnnotationModel::ColType colType) const {
+QString PDFAnnotationModel::colTypeText(PDFAnnotationModel::ColType colType) const
+{
 	switch (colType) {
-	case CT_AUTHOR: return tr("Author");
-	case CT_CONTENTS: return tr("Text");
-	case CT_TYPE: return tr("Type");
-	case CT_MODIFICATON_DATE: return tr("Modified");
-	case CT_CREATION_DATE: return tr("Created");
-	case CT_PAGE: return tr("Page");
+	case CT_AUTHOR:
+		return tr("Author");
+	case CT_CONTENTS:
+		return tr("Text");
+	case CT_TYPE:
+		return tr("Type");
+	case CT_MODIFICATON_DATE:
+		return tr("Modified");
+	case CT_CREATION_DATE:
+		return tr("Created");
+	case CT_PAGE:
+		return tr("Page");
 	default:
 		qDebug() << "no column header text for colType" << colType;
 	}
@@ -207,7 +251,7 @@ QString PDFAnnotationModel::colTypeText(PDFAnnotationModel::ColType colType) con
 /*** PDFAnnotationTableView *************************************************/
 
 PDFAnnotationTableView::PDFAnnotationTableView(QWidget *parent)
-	:QTableView(parent)
+	: QTableView(parent)
 {
 	QFontMetrics fm(QApplication::font());
 	setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -220,14 +264,15 @@ PDFAnnotationTableView::PDFAnnotationTableView(QWidget *parent)
 	//connect(errorTable, SIGNAL(clicked(const QModelIndex &)), this, SLOT(clickedOnLogModelIndex(const QModelIndex &)));
 
 	horizontalHeader()->setStretchLastSection(true);
-	setMinimumHeight(5*(fm.lineSpacing()+4));
+	setMinimumHeight(5 * (fm.lineSpacing() + 4));
 	setFrameShape(QFrame::NoFrame);
 
 	connect(this, SIGNAL(clicked(QModelIndex)), SLOT(onClick(QModelIndex)));
 }
 
-void PDFAnnotationTableView::onClick(const QModelIndex &index) {
-	PDFAnnotationModel * annModel = qobject_cast<PDFAnnotationModel *>(model());
+void PDFAnnotationTableView::onClick(const QModelIndex &index)
+{
+	PDFAnnotationModel *annModel = qobject_cast<PDFAnnotationModel *>(model());
 	emit annotationClicked(annModel->itemForIndex(index));
 }
 

@@ -12,37 +12,39 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	tb->setContextMenuPolicy(Qt::CustomContextMenu);
 	tb->setUsesScrollButtons(true);
 	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
-	connect(tb, SIGNAL(currentTabAboutToChange(int,int)), this, SLOT(currentTabAboutToChange(int,int)));
-    connect(tb, SIGNAL(middleMouseButtonPressed(int)), this, SLOT(closeTab(int)));
+	connect(tb, SIGNAL(currentTabAboutToChange(int, int)), this, SLOT(currentTabAboutToChange(int, int)));
+	connect(tb, SIGNAL(middleMouseButtonPressed(int)), this, SLOT(closeTab(int)));
 	setTabBar(tb);
 
-	if (hasAtLeastQt(4,5)){
+	if (hasAtLeastQt(4, 5)) {
 		setDocumentMode(true);
-		const QTabBar* tb=tabBar();
-		connect(tb,SIGNAL(tabMoved(int,int)),this,SIGNAL(tabMoved(int,int)));
-		connect(this,SIGNAL(tabCloseRequested(int)),this,SLOT(closeTab(int)));
+		const QTabBar *tb = tabBar();
+		connect(tb, SIGNAL(tabMoved(int, int)), this, SIGNAL(tabMoved(int, int)));
+		connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(closeTab(int)));
 		setProperty("tabsClosable", true);
 		setProperty("movable", true);
 	}
-	connect(this,SIGNAL(currentChanged(int)),this,SIGNAL(currentEditorChanged()));
+	connect(this, SIGNAL(currentChanged(int)), this, SIGNAL(currentEditorChanged()));
 }
 
-void TxsTabWidget::moveTab(int from,int to) {
+void TxsTabWidget::moveTab(int from, int to)
+{
 	int cur = currentIndex();
-	QString text=tabText(from);
-	QWidget *wdg=widget(from);
+	QString text = tabText(from);
+	QWidget *wdg = widget(from);
 	removeTab(from);
-	insertTab(to,wdg,text);
+	insertTab(to, wdg, text);
 	if (cur == from) setCurrentIndex(to);
-	else if (from < to && cur >= from && cur < to) 
-		setCurrentIndex(cur-1);
-	else if (to > from && cur >= from && cur < to) 
-		setCurrentIndex(cur+1);
+	else if (from < to && cur >= from && cur < to)
+		setCurrentIndex(cur - 1);
+	else if (to > from && cur >= from && cur < to)
+		setCurrentIndex(cur + 1);
 }
 
-QList<LatexEditorView *> TxsTabWidget::editors() const {
+QList<LatexEditorView *> TxsTabWidget::editors() const
+{
 	QList<LatexEditorView *> list;
-	for (int i=0; i<count(); i++) {
+	for (int i = 0; i < count(); i++) {
 		LatexEditorView *edView = qobject_cast<LatexEditorView *>(widget(i));
 		Q_ASSERT(edView); // there should only be editors as tabs
 		list.append(edView);
@@ -50,20 +52,23 @@ QList<LatexEditorView *> TxsTabWidget::editors() const {
 	return list;
 }
 
-bool TxsTabWidget::containsEditor(LatexEditorView *edView) const{
+bool TxsTabWidget::containsEditor(LatexEditorView *edView) const
+{
 	if (!edView) return false;
-	return (indexOf(edView)>=0);
+	return (indexOf(edView) >= 0);
 }
 
-LatexEditorView *TxsTabWidget::currentEditorView() const {
+LatexEditorView *TxsTabWidget::currentEditorView() const
+{
 	return qobject_cast<LatexEditorView *>(currentWidget());
 }
 
-void TxsTabWidget::setCurrentEditor(LatexEditorView *edView) {
+void TxsTabWidget::setCurrentEditor(LatexEditorView *edView)
+{
 	if (currentWidget() == edView)
 		return;
 
-	if (indexOf(edView)<0) {
+	if (indexOf(edView) < 0) {
 		// catch calls in which editor is not a member tab.
 		// TODO: such calls are deprecated as bad practice. We should avoid them in the long run. For the moment the fallback to do nothing is ok.
 		qDebug() << "Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget";
@@ -75,21 +80,24 @@ void TxsTabWidget::setCurrentEditor(LatexEditorView *edView) {
 	setCurrentWidget(edView);
 }
 
-void TxsTabWidget::gotoNextDocument() {
+void TxsTabWidget::gotoNextDocument()
+{
 	if (count() <= 1) return;
 	int cPage = currentIndex() + 1;
 	if (cPage >= count()) setCurrentIndex(0);
 	else setCurrentIndex(cPage);
 }
 
-void TxsTabWidget::gotoPrevDocument() {
+void TxsTabWidget::gotoPrevDocument()
+{
 	if (count() <= 1) return;
 	int cPage = currentIndex() - 1;
 	if (cPage < 0) setCurrentIndex(count() - 1);
 	else setCurrentIndex(cPage);
 }
 
-void TxsTabWidget::currentTabAboutToChange(int from, int to) {
+void TxsTabWidget::currentTabAboutToChange(int from, int to)
+{
 	LatexEditorView *edFrom = qobject_cast<LatexEditorView *>(widget(from));
 	LatexEditorView *edTo = qobject_cast<LatexEditorView *>(widget(to));
 	REQUIRE(edFrom);
@@ -97,47 +105,52 @@ void TxsTabWidget::currentTabAboutToChange(int from, int to) {
 	emit editorAboutToChangeByTabClick(edFrom, edTo);
 }
 
-void TxsTabWidget::closeTab(int i) {
-	int cur=currentIndex();
-	int total=count();
+void TxsTabWidget::closeTab(int i)
+{
+	int cur = currentIndex();
+	int total = count();
 	setCurrentIndex(i);
 	emit closeCurrentEditorRequest();
-	if (cur>i) cur--;//removing moves to left
-	if (total!=count() && cur!=i)//if user clicks cancel stay in clicked editor
+	if (cur > i) cur--; //removing moves to left
+	if (total != count() && cur != i) //if user clicks cancel stay in clicked editor
 		setCurrentIndex(cur);
 }
 
-void TxsTabWidget::closeTab(LatexEditorView *edView) {
+void TxsTabWidget::closeTab(LatexEditorView *edView)
+{
 	int i = indexOf(edView);
 	if (i >= 0) closeTab(i);
 }
 
-void TxsTabWidget::removeEditor(LatexEditorView *edView) {
+void TxsTabWidget::removeEditor(LatexEditorView *edView)
+{
 	int i = indexOf(edView);
-	if(i >= 0)
+	if (i >= 0)
 		removeTab(i);
 }
 
-void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent) {
+void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent)
+{
 	Q_ASSERT(edView);
 	insertTab(pos, edView, "?bug?");
 	if (asCurrent) setCurrentEditor(edView);
 }
 
-void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event) {
+void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event)
+{
 	if (event->button() == Qt::LeftButton) {
 		int toIndex = tabAt(event->pos());
 		if (toIndex >= 0) {
 			emit currentTabAboutToChange(currentIndex(), toIndex);
 		}
-    }
+	}
 #if QT_VERSION>=0x040700
-    else if (event->button() == Qt::MiddleButton) {
-        int tabNr = tabAt(event->pos());
-        if (tabNr >= 0) {
-            emit middleMouseButtonPressed(tabNr);
-        }
-    }
+	else if (event->button() == Qt::MiddleButton) {
+		int tabNr = tabAt(event->pos());
+		if (tabNr >= 0) {
+			emit middleMouseButtonPressed(tabNr);
+		}
+	}
 #endif
 	QTabBar::mousePressEvent(event);
 }

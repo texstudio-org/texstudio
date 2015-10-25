@@ -7,62 +7,72 @@
 
 #include "qeditor.h"
 class BuildManager;
-class Texmaker;
+class Texstudio;
 class ScriptObject;
 class LatexEditorView;
 class Macro;
 class scriptengine : public QObject
 {
-Q_OBJECT
+	Q_OBJECT
+
 public:
-	scriptengine(QObject *parent=0);
+	scriptengine(QObject *parent = 0);
 	~scriptengine();
 	void run();
-    void setScript(const QString& script, bool allowWrite=false);
-	void setEditorView(LatexEditorView* edView);
+	void setScript(const QString &script, bool allowWrite = false);
+	void setEditorView(LatexEditorView *edView);
 
-	static BuildManager* buildManager;
-	static Texmaker* app;
-	
+	static BuildManager *buildManager;
+	static Texstudio *app;
+
 	QStringList triggerMatches;
 	int triggerId;
-	
+
 	ScriptObject *globalObject;
-	
-	static QList<Macro>* macros;
+
+	static QList<Macro> *macros;
+
 protected:
 	QScriptEngine *engine;
 	QPointer<LatexEditorView> m_editorView;
 	QPointer<QEditor> m_editor;
 	QString m_script;
-    bool m_allowWrite;
+	bool m_allowWrite;
 };
+
 
 #include "universalinputdialog.h"
 
-class UniversalInputDialogScript: public UniversalInputDialog{
+class UniversalInputDialogScript: public UniversalInputDialog
+{
 	Q_OBJECT
+
 public:
-	UniversalInputDialogScript(QScriptEngine* engine, QWidget* parent=0);
+	UniversalInputDialogScript(QScriptEngine *engine, QWidget *parent = 0);
 	~UniversalInputDialogScript();
+
 public slots:
-	QScriptValue add(const QScriptValue& def, const QScriptValue& description, const QScriptValue& id = QScriptValue());
+	QScriptValue add(const QScriptValue &def, const QScriptValue &description, const QScriptValue &id = QScriptValue());
 #if QT_VERSION >= 0x050000
-    QScriptValue execDialog();
+	QScriptValue execDialog();
 #else
-    QScriptValue exec();
+	QScriptValue exec();
 #endif
 	QScriptValue getAll();
-	QScriptValue get(const QScriptValue& id);
+	QScriptValue get(const QScriptValue &id);
+
 private:
-	QScriptEngine* engine;
+	QScriptEngine *engine;
 };
 
 
-class TimeoutWrapper: public QObject{
+class TimeoutWrapper: public QObject
+{
 	Q_OBJECT
+
 public:
 	QScriptValue fun;
+
 public slots:
 	void run();
 };

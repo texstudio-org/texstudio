@@ -3,11 +3,13 @@
 #include "smallUsefulFunctions.h"
 
 
-SessionList::SessionList(QMenu *menu, QObject *parent) : QObject(parent), m_menu(menu) {
+SessionList::SessionList(QMenu *menu, QObject *parent) : QObject(parent), m_menu(menu)
+{
 	m_config = dynamic_cast<ConfigManager *>(ConfigManagerInterface::getInstance());
 }
 
-void SessionList::addFilenameToList(const QString &file) {
+void SessionList::addFilenameToList(const QString &file)
+{
 	if (file.endsWith("lastSession.txss")) return;
 	REQUIRE(m_config);
 	QStringList files = m_config->getOption("Files/Recent Session Files").toStringList();
@@ -22,7 +24,8 @@ void SessionList::addFilenameToList(const QString &file) {
 /*
  * updates the most recent session entries in the menu
  */
-void SessionList::updateMostRecentMenu() {
+void SessionList::updateMostRecentMenu()
+{
 	REQUIRE(m_config);
 	QStringList files = m_config->getOption("Files/Recent Session Files").toStringList();
 	REQUIRE(m_menu);
@@ -39,7 +42,7 @@ void SessionList::updateMostRecentMenu() {
 			sessionAct = actions[i];
 		}
 		sessionAct->setText(QDir::toNativeSeparators(file));
-		sessionAct->setData("session:"+file);
+		sessionAct->setData("session:" + file);
 		sessionAct->setVisible(true);
 		connectUnique(sessionAct, SIGNAL(triggered()), this, SLOT(menuActionTriggered()));
 		i++;
@@ -51,7 +54,8 @@ void SessionList::updateMostRecentMenu() {
 	}
 }
 
-void SessionList::menuActionTriggered() {
+void SessionList::menuActionTriggered()
+{
 	QAction *act = qobject_cast<QAction *>(sender());
 	REQUIRE(act);
 	QString filename = act->data().toString().remove(QRegExp("^session:"));
