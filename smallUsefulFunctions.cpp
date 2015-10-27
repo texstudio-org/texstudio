@@ -2873,9 +2873,12 @@ CommandDescription extractCommandDef(QString line, QString definition)
 			if (command == "\\label")
 				type = Tokens::label;
 		}
-		if (def == "label" && definition.contains('r')) {
+        if (def == "label"||def=="%<label%>") {
 			//reference with keyword label
-			type = Tokens::labelRef;
+            if(definition.contains('r'))
+                type = Tokens::labelRef;
+            if(definition.contains('l'))
+                type = Tokens::label;
 		}
 		if (def == "labellist") {
 			type = Tokens::labelRefList;
