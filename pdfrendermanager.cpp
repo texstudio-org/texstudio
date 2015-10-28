@@ -13,6 +13,7 @@
 
 #include "pdfrendermanager.h"
 #include "smallUsefulFunctions.h"
+#include "configmanagerinterface.h"
 #include <QtCore/qmath.h>
 
 const int kMaxPageZoom = 1000000;
@@ -169,7 +170,12 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 	cachedNumPages = docPtr->numPages();
 
-	docPtr->setRenderBackend(Poppler::Document::SplashBackend);
+	Poppler::Document::RenderBackend backend = Poppler::Document::SplashBackend;
+	if (ConfigManagerInterface::getInstance()->getOption("Preview/RenderBackend").toInt() == 1) {
+		backend = Poppler::Document::ArthurBackend;
+	}
+	
+	docPtr->setRenderBackend(backend);
 	docPtr->setRenderHint(Poppler::Document::Antialiasing);
 	docPtr->setRenderHint(Poppler::Document::TextAntialiasing);
 
