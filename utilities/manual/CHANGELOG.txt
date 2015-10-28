@@ -1,3 +1,10 @@
+Recent
+------
+- add option to choose the poppler render backend
+- fix: §§ as math start
+- fix: detection of new texlive paths on OS X El Capitan
+- fix: make glossary entries available as labels again
+
 TeXstudio 2.10.4
 ----------------
 - adapt to changed TeXlive paths on Mac OS X El Capitan (path detection and change notification)
