@@ -47,7 +47,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>13</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -3429,8 +3429,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>863</width>
+            <height>629</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3874,7 +3874,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="12" column="0">
+              <item row="13" column="0">
                <widget class="QCheckBox" name="autoHideToolbars">
                 <property name="text">
                  <string>Auto-hide Toolbars in Embedded Mode</string>
@@ -3953,6 +3953,45 @@ them here.</string>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
                 </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <widget class="QLabel" name="label_76">
+                <property name="toolTip">
+                 <string>The Render Backend used by the PDF library poppler.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</string>
+                </property>
+                <property name="text">
+                 <string>Render Backend:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="1">
+               <widget class="QComboBox" name="comboBoxPDFRenderBackend">
+                <property name="toolTip">
+                 <string>The Render Backend used by the PDF library poppler.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+                <item>
+                 <property name="text">
+                  <string notr="true">Splash</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string notr="true">Arthur</string>
+                 </property>
+                </item>
                </widget>
               </item>
              </layout>

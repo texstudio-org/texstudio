@@ -13,6 +13,7 @@ struct PDFDocumentConfig {
 
 	int cacheSizeMB;
 	int loadStrategy;
+	int renderBackend;
 
 	int dpi;
 	int scaleOption;
