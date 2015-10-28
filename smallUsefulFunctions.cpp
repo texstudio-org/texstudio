@@ -3641,11 +3641,19 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 		}
 		if (tk.type == Tokens::symbol) {
 			// special treatment for $ as mathstart
-			if (line.mid(tk.start, 1) == "$") {
-				tk.type = Tokens::command;
-				tk.level = level;
-				lexed << tk;
-				continue;
+			if (line.mid(tk.start, 2) == "$$") {
+			    tk.type = Tokens::command;
+			    tk.level = level;
+			    tk.length=2;
+			    lexed << tk;
+			    i++;
+			    continue;
+			}
+			if (line.mid(tk.start, 1) == "$") {		    
+			    tk.type = Tokens::command;
+			    tk.level = level;
+			    lexed << tk;
+			    continue;
 			}
 		}
 		if (tk.type == Tokens::punctuation) {
