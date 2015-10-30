@@ -590,7 +590,17 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			stack.push(tk);
 			continue;
 		}
-
+        if (tk.type == Tokens::punctuation || tk.type == Tokens::symbol) {
+            QString word = line.mid(tk.start, tk.length);
+            QStringList forbiddenSymbols;
+            forbiddenSymbols<<"^"<<"_";
+            if(forbiddenSymbols.contains(word) && !containsEnv(*ltxCommands, "math", activeEnv)){
+                Error elem;
+                elem.range = QPair<int, int>(tk.start, tk.length);
+                elem.type = ERR_MathCommandOutsideMath;
+                newRanges.append(elem);
+            }
+        }
 		if (tk.type == Tokens::commandUnknown) {
 			QString word = line.mid(tk.start, tk.length);
 			if (word.contains('@')) {
