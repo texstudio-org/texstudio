@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="cs_CZ">
+<TS version="2.0" language="cs_CZ">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -581,7 +581,7 @@
     </message>
     <message>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation type="unfinished"></translation>
+        <translation>Ve vašem systému nebyla nalezena žádná LaTeXová distribuce. Výsledkem je, že odpovídající příkazy nejsou nastaveny. Znamená to, že své dokumenty nemůžete překládat do požadovaného výstupního formátu (např. PDF).</translation>
     </message>
     <message>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
@@ -589,7 +589,7 @@
     </message>
     <message>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je váším záměrem práce s LaTeXem, je téměř jisté, že jeden z těchto chcete nainstalovat.</translation>
     </message>
     <message>
         <source>A popular LaTeX distribution on OSX is %1.</source>
@@ -609,7 +609,11 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>OSX 10.11 už programům nedovoluje, aby tam zapisovaly. Z tohoto důvodu
+nejnovější verze MacTeX změnily cestu k bin na /Library/TeX/texbin/
+
+Chcete, aby TeXstudio změnil všechny příkazové cesty z /usr/texbin/ na
+%1?</translation>
     </message>
     <message>
         <source>OSX 10.11 does not allow applications to write there anymore. You may
@@ -619,19 +623,25 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation type="unfinished"></translation>
+        <translation>OSX 10.11 už programům nedovoluje, aby tam zapisovaly. Možná bude potřeba,
+abyste provedli aktualizaci MacTeX na verzi 2015.
+
+Programy MacTeX budou umístěny v /Library/TeX/texbin/
+
+Chcete, aby TeXstudio změnil všechny příkazové cesty z /usr/texbin/ na
+/Library/TeX/texbin/?</translation>
     </message>
     <message>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="unfinished"></translation>
+        <translation>Některé vaše příkazy odkazují na umístění v /usr/texbin/</translation>
     </message>
     <message>
         <source>Parent Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodičovský příkaz</translation>
     </message>
     <message>
         <source>Primary Command</source>
-        <translation type="unfinished"></translation>
+        <translation>Základní příkaz</translation>
     </message>
 </context>
 <context>
@@ -2170,7 +2180,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Automatically check in after save</source>
-        <translation type="vanished">Automaticky zapsat po uložení</translation>
+        <translation>Automaticky zapsat po uložení</translation>
     </message>
     <message>
         <source>Substitute Keywords with Properties (on svn add)</source>
@@ -2463,7 +2473,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
     </message>
     <message>
         <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
-        <translation type="vanished">Dejte si pozor na to, že LaTeX stále potřebuje být schopen udělat znak. Čili je potřeba, aby byl přítomen tentýž balíček jako s LaTeXovým kódem</translation>
+        <translation>Dejte si pozor na to, že LaTeX stále potřebuje být schopen udělat znak. Čili je potřeba, aby byl přítomen tentýž balíček jako s LaTeXovým kódem</translation>
     </message>
     <message>
         <source>Insert Symbol as Unicode</source>
@@ -2810,111 +2820,111 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     </message>
     <message>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation type="unfinished"></translation>
+        <translation>Dvojité klepnutí na výběr: Zahrnout zpětné lomítko na začátku</translation>
     </message>
     <message>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukáže nástrojovou radu s cílovým textem pro labels/bibitem, udělá náhled barev nebo obrázků</translation>
     </message>
     <message>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhled na nástrojovou radu</translation>
     </message>
     <message>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakázat vodorovné posunování pro Přizpůsobit šířce textu</translation>
     </message>
     <message>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zde jsou vypsány položky nabídek a lze je skrýt nebo upravit.</translation>
     </message>
     <message>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se řídí, zda seznam nahoře ukazuje všechny položky nabídek nebo jen ty běžně měněné.</translation>
     </message>
     <message>
         <source>This shows all actions on the currently edited toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se ukáží všechny činnosti nyní upravovaného nástrojového pruhu.</translation>
     </message>
     <message>
         <source>This adds an action to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se přidá činnost do nástrojového pruhu.</translation>
     </message>
     <message>
         <source>This removes an action from the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se odstraní činnost z nástrojového pruhu.</translation>
     </message>
     <message>
         <source>Here you can choose a toolbar to modify.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zde můžete vybrat nástrojový pruh, který se má upravit.</translation>
     </message>
     <message>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zde můžete vybrat seznam příkazů, který lze přiřadit nástrojovému pruhu.</translation>
     </message>
     <message>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se ukáží dostupné činnosti přiřaditelné nástrojovému pruhu.</translation>
     </message>
     <message>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se změní velikost vodorovných nástrojových pruhů (pro zobrazení ve vysokém rozlišení).</translation>
     </message>
     <message>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se změní velikost mřížky symbolů (pro zobrazení ve vysokém rozlišení).</translation>
     </message>
     <message>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation type="unfinished"></translation>
+        <translation>Tímto se změní velikost svislých nástrojových pruhů (pro zobrazení ve vysokém rozlišení).</translation>
     </message>
     <message>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zde lze změnit zvýrazňování vlastních (uživatelských) prostředí.</translation>
     </message>
     <message>
         <source>Select how txs checks in saved files</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte, jak txs zapisuje v uložených souborech</translation>
     </message>
     <message>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"></translation>
+        <translation>Žádné automatické zapisování po uložení</translation>
     </message>
     <message>
         <source>Check-in after File/Save only</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapsání jen po Soubor/Uložit</translation>
     </message>
     <message>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapsání po všech operacích ukládání, to jest i před přeložením.</translation>
     </message>
     <message>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zde lze změnit zvýrazňování skladby různých příkazů, prostředí a výběrů.</translation>
     </message>
     <message>
         <source>(option filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>(filtr voleb)</translation>
     </message>
     <message>
         <source>Here you can add another environment for custom highlighting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zde lze přidat další prostředí pro vlastní (uživatelské) zvýrazňování.</translation>
     </message>
     <message>
         <source>Automatically switch keyboard layout: </source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky přepnout rozložení klávesnice: </translation>
     </message>
     <message>
         <source>depending on character direction</source>
-        <translation type="unfinished"></translation>
+        <translation>V závislosti na směru znaku</translation>
     </message>
     <message>
         <source>depending on text/math mode</source>
-        <translation type="unfinished"></translation>
+        <translation>V závislosti na textovém/ matematickém režimu</translation>
     </message>
     <message>
         <source>Use QImage as cache type</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít QImage jako typ vyrovnávací paměti</translation>
     </message>
     <message>
         <source>Defines the kinds of update notifications you will receive:
@@ -2925,24 +2935,25 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     </message>
     <message>
         <source>Stable Releases</source>
-        <translation type="unfinished"></translation>
+        <translation>Stabilní vydání</translation>
     </message>
     <message>
         <source>Release Candidates</source>
-        <translation type="unfinished"></translation>
+        <translation>Kandidáti na vydání</translation>
     </message>
     <message>
         <source>Development Versions</source>
-        <translation type="unfinished"></translation>
+        <translation>Vývojářské verze</translation>
     </message>
     <message>
         <source>Update Level:</source>
-        <translation type="unfinished"></translation>
+        <translation>Úroveň aktualizace:</translation>
     </message>
     <message>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Při používání znaků Unicode musí LaTeX znaky stále ještě vykreslovat.
+Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumentu zahrnout příslušné balíčky pro znaky Unicode.</translation>
     </message>
 </context>
 <context>
@@ -4077,7 +4088,7 @@ Neplatný příkaz \caption.</translation>
     <name>LabelSearchQuery</name>
     <message>
         <source>Label Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledání štítku</translation>
     </message>
 </context>
 <context>
@@ -4371,7 +4382,7 @@ Neplatný příkaz \caption.</translation>
     </message>
     <message>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation>Najít použití</translation>
     </message>
 </context>
 <context>
@@ -5736,11 +5747,11 @@ Nyní můžete zadat heslo:</translation>
     </message>
     <message>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadané přesměrování stdout není podporováno: &quot;%1&quot;. Podívejte se, prosím, kvůli podrobnostem do příručky.</translation>
     </message>
     <message>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadané přesměrování stderr není podporováno: &quot;%1&quot;. Podívejte se, prosím, kvůli podrobnostem do příručky.</translation>
     </message>
 </context>
 <context>
@@ -7352,7 +7363,7 @@ Důvěřujete tomuto skriptu?</translation>
     <name>SearchQuery</name>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Hledat</translation>
+        <translation>Hledat</translation>
     </message>
 </context>
 <context>
@@ -7469,39 +7480,39 @@ Důvěřujete tomuto skriptu?</translation>
     <name>SearchResultWidget</name>
     <message>
         <source>Current Doc</source>
-        <translation type="unfinished">Nynější dokument</translation>
+        <translation>Nynější dokument</translation>
     </message>
     <message>
         <source>All Docs</source>
-        <translation type="unfinished">Všechny dokumenty</translation>
+        <translation>Všechny dokumenty</translation>
     </message>
     <message>
         <source>Project</source>
-        <translation type="unfinished">Projekt</translation>
+        <translation>Projekt</translation>
     </message>
     <message>
         <source>Search Again</source>
-        <translation type="unfinished"></translation>
+        <translation>Hledat znovu</translation>
     </message>
     <message>
         <source>Replace all</source>
-        <translation type="unfinished">Nahradit vše</translation>
+        <translation>Nahradit vše</translation>
     </message>
     <message>
         <source>Replace by:</source>
-        <translation type="unfinished">Nahradit:</translation>
+        <translation>Nahradit:</translation>
     </message>
     <message>
         <source>Expand All</source>
-        <translation type="unfinished">Rozbalit vše</translation>
+        <translation>Rozbalit vše</translation>
     </message>
     <message>
         <source>Collapse All</source>
-        <translation type="unfinished">Složit vše</translation>
+        <translation>Složit vše</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyprázdnit</translation>
     </message>
 </context>
 <context>
@@ -7632,7 +7643,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>dummyStatusBar</source>
-        <translation type="vanished">napodobenýStavovýŘádek</translation>
+        <translation>napodobenýStavovýŘádek</translation>
     </message>
     <message>
         <source>&lt;new&gt;</source>
@@ -7700,23 +7711,23 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <name>StructDialog</name>
     <message>
         <source>Structure</source>
-        <translation type="vanished">Stavba</translation>
+        <translation>Stavba</translation>
     </message>
     <message>
         <source>Numeration</source>
-        <translation type="vanished">Číslování</translation>
+        <translation>Číslování</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation type="vanished">Název</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="vanished">OK</translation>
+        <translation>OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="vanished">Zrušit</translation>
+        <translation>Zrušit</translation>
     </message>
 </context>
 <context>
@@ -10343,7 +10354,7 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     </message>
     <message>
         <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h4&gt;Změna výchozích zkratek&lt;/h4&gt;&lt;p&gt;V průběhu času se zkratky hlavních nástrojů staly jaksi roztříštěnými. K tomu se částečně překrývaly s běžnými klávesami. Obzvláště F1, F3, F10, F11 a F12 mají v některých systémech vyhrazený účel.&lt;/p&gt;&lt;p&gt;Rozhodli jsme se to udělat řádně ve prospěch soudržnějšího rozvržení:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Zkratka pro &lt;code&gt;Sestavit a zobrazit&lt;/code&gt; se přesune z F1 na F5.&lt;/li&gt;&lt;li&gt;Zkratka pro &lt;code&gt;Bibliografie&lt;/code&gt; se přesune z F11 na F8.&lt;/li&gt;&lt;li&gt;Zkratka pro &lt;code&gt;Slovníček&lt;/code&gt; se přesune z F10 na F9.&lt;li&gt;Nástroj &lt;code&gt;Index&lt;/code&gt; už výchozí zkratku mít nebude (dříve F12), protože není volán moc často.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Je nám líto, že se budete muset naučit zkratku pro často používané &lt;code&gt;Sestavit a zobrazit&lt;/code&gt; znovu. Po přechodné období se budou dát použít jak F1 tak F5. Nakonec shromáždění nejdůležitějších nástrojů ve středovém bloku F5-F8 zvýší použitelnost. Jako obvykle můžete zkratky přizpůsobit ve volbách.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Do not show this message again.</source>
@@ -10400,55 +10411,55 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
     </message>
     <message>
         <source>&amp;Selection</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Výběr</translation>
     </message>
     <message>
         <source>Select All &amp;Occurences</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrat všechny &amp;výskyty</translation>
     </message>
     <message>
         <source>Expand Selection to Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit výběr po slovo</translation>
     </message>
     <message>
         <source>Expand Selection to Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbalit výběr po řádek</translation>
     </message>
     <message>
         <source>Find Usages</source>
-        <translation type="unfinished"></translation>
+        <translation>Najít použití</translation>
     </message>
     <message>
         <source>Editor Zoom</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvětšení editoru</translation>
     </message>
     <message>
         <source>Zoom In</source>
-        <translation type="unfinished">Přiblížit</translation>
+        <translation>Přiblížit</translation>
     </message>
     <message>
         <source>Zoom Out</source>
-        <translation type="unfinished">Oddálit</translation>
+        <translation>Oddálit</translation>
     </message>
     <message>
         <source>Reset Zoom</source>
-        <translation type="unfinished">Nastavit zvětšení znovu</translation>
+        <translation>Nastavit zvětšení znovu</translation>
     </message>
     <message>
         <source>Open &amp;Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít &amp;terminál</translation>
     </message>
     <message>
         <source>Image Formats (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrázkové formáty (%1)</translation>
     </message>
     <message>
         <source>Save Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložit obrázek</translation>
     </message>
     <message>
         <source>Could not save the image file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepodařilo se uložit soubor s obrázkem.</translation>
     </message>
     <message>
         <source>Check Active Completion Files</source>
@@ -10683,15 +10694,15 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     </message>
     <message>
         <source>CSV Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyvedení CSV</translation>
     </message>
     <message>
         <source>CSV file</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubor CSV</translation>
     </message>
     <message>
         <source>All files</source>
-        <translation type="unfinished">Všechny soubory</translation>
+        <translation>Všechny soubory</translation>
     </message>
 </context>
 <context>
@@ -10805,15 +10816,15 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     <message>
         <source>Update check failed with error:
 </source>
-        <translation>Ověření aktualizace selhalo s chybou:</translation>
+        <translation>Získání aktualizace selhalo s chybou:</translation>
     </message>
     <message>
         <source>Update check failed (invalid update file format).</source>
-        <translation>Ověření aktualizace selhalo (neplatný formát souboru aktualizace).</translation>
+        <translation>Získání aktualizace selhalo (neplatný formát souboru aktualizace).</translation>
     </message>
     <message>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="vanished">Je dostupná nová verze programu TeXstudio.&lt;br&gt;&lt;br&gt;Současná verze: %1&lt;br&gt;Poslední verze: %2&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%3&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
+        <translation>Je dostupná nová verze programu TeXstudio.&lt;br&gt;&lt;br&gt;Současná verze: %1&lt;br&gt;Poslední verze: %2&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%3&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>TeXstudio Update</source>
@@ -10825,23 +10836,23 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     </message>
     <message>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation>Získání aktualizace vývojářské verze selhalo (neplatný formát souboru s aktualizací).</translation>
     </message>
     <message>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dostupná nová verze programu TeXstudio.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Současná verze: &lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nejnovější stálá verze:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%3&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation type="unfinished"></translation>
+        <translation>Získání aktualizace kandidáta na vydání selhalo (neplatný formát souboru s aktualizací).</translation>
     </message>
     <message>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dostupný kandidát na vydání programu TeXstudio.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Současná verze: &lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nejnovější stálá verze:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Kandidát na vydání:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%7&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je dostupná nová vývojářská verze programu TeXstudio.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Současná verze: &lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nejnovější stálá verze:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Nejnovější vývojářská verze:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%7&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
