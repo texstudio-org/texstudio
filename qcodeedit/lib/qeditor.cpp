@@ -951,7 +951,9 @@ void QEditor::save()
 
 bool QEditor::saveCopy(const QString& filename){
 	Q_ASSERT(m_doc);
-
+	bool sucessfullySaved = false;
+	bool originalFileMayBeModified = false;
+	
 	emit slowOperationStarted();
 
     // insert hard line breaks on modified lines (if desired)
@@ -983,43 +985,63 @@ bool QEditor::saveCopy(const QString& filename){
 		else if (bt == QMessageBox::Ignore) break;
 	}
 
+	// This is our safe saving strategy:
+	// 1. Prepare: If the file exists, create a copy backupFilename so that it's content is not lost in case of error.
+	// 2. Save: Write the file.
+	// 3. Cleanup: In case of error, rename the backupFilename back to the original filename.
+	
+	// 1. Prepare
+	QString backupFilename;
+	if (QFileInfo(filename).exists()) {
+		int MAX_TRIES = 100;
+		for (int i=0; i<MAX_TRIES; i++) {
+			QString fn = filename + QString("~txs%1").arg(i);
+			if (QFile::copy(filename, fn)) {
+				backupFilename = fn;
+				break;
+			}
+		}
+		if (backupFilename.isNull()) {
+			QMessageBox::warning(this, tr("Warning"),
+								 tr("Creating a backup of the file failed. You can still continue saving. "
+								    "However, if the save action fails, you may loose the data in the original file. "
+								    "Do you wish to continue?"),
+								 QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes);
+		}
+	}
+
+	txsInformation("backup created");
+	
+	// 2. Save
 	QFile f(filename);
-
 	if ( !f.open(QFile::WriteOnly) ) {
-		QMessageBox::warning(this, tr("Saving failed"), tr("I failed to acquire write permissions on the file %1.\n\nPerhaps it is read-only or opened in another program?").arg(filename),QMessageBox::Ok);
-		emit slowOperationEnded();
-		return false;
-	}
+		QMessageBox::warning(this, tr("Saving failed"), tr("I failed to acquire write permissions on the file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(filename),QMessageBox::Ok);
 
-	bool sucessfullySaved = false;
-	
-	int bytesWritten = f.write(data);
-	if (bytesWritten == -1) {
-		QMessageBox::critical(this, tr("Saving failed"),
-				tr("Writing the document to file\n%1\n"
-				   "failed after the old content was deleted.\n\n"
-				   "The file may have been corrupted by this! You should save\n"
-				   "to another location or fix the problem to prevent data loss.\n"
-				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
-	} else if (bytesWritten != data.size()) {
-		QMessageBox::critical(this, tr("Saving failed"),
-				tr("Only part of the file could be written:\n%1\n\n"
-				   "The file may have been corrupted by this! You should save\n"
-				   "to another location or fix the problem to prevent data loss.\n"
-				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
-	} else sucessfullySaved = true;
-	
-	if (sucessfullySaved) if (!f.flush()) { // make sure the data are really on disk, not only buffered
-		QMessageBox::critical(this, tr("Saving failed"),
-				tr("Writing the document to file\n%1\n"
-				   "failed after the old content was deleted.\n\n"
-				   "The file may have been corrupted by this! You should save\n"
-				   "to another location or fix the problem to prevent data loss.\n"
-				   "Possible causes include disk failure or a full harddisk.").arg(filename),QMessageBox::Ok);
+		// 3. Cleanup
+		QFile::remove(backupFilename);  // original was not modified
 		sucessfullySaved = false;
-	}
+	} else {
+		int bytesWritten = f.write(data);
+		sucessfullySaved = (bytesWritten == data.size());
 
-	f.close(); //explicite close for watcher (??? is this necessary anymore?)
+		// 3. Cleanup
+		if (sucessfullySaved) {
+			QFile::remove(backupFilename);
+		} else {
+			QString message = tr("Writing the document to file\n%1\nfailed.").arg(filename);
+			if (!backupFilename.isNull()) {
+				QFile::remove(filename);
+				bool ok = QFile::rename(backupFilename, filename);  // revert
+				if (!ok) {
+					message += "\n" + tr("The original file on disk was destroyed during the save operation.\n"
+					                     "You'll find a copy at\n%1").arg(backupFilename);
+				}
+			}
+			QMessageBox::critical(this, tr("Saving failed"), message, QMessageBox::Ok);
+		}
+		
+		f.close(); //explicite close for watcher (??? is this necessary anymore?)
+	}
 
 	emit slowOperationEnded();
 	
