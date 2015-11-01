@@ -952,7 +952,6 @@ void QEditor::save()
 bool QEditor::saveCopy(const QString& filename){
 	Q_ASSERT(m_doc);
 	bool sucessfullySaved = false;
-	bool originalFileMayBeModified = false;
 	
 	emit slowOperationStarted();
 
