@@ -23,7 +23,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	QFont font = searchTextLabel->font();
 	font.setItalic(true);
 	searchTextLabel->setFont(font);
-	searchAgainButton = new QPushButton(tr("Search Again"));
+    searchAgainButton = new QPushButton(tr("Update Search"));
 	connect(searchAgainButton, SIGNAL(clicked()), this, SLOT(updateSearch()));
 	replaceTextEdit = new QLineEdit;
 	replaceButton = new QPushButton(tr("Replace all"));
@@ -98,6 +98,9 @@ void SearchResultWidget::updateSearch()
 {
 	if (query) query->setScope(searchScope());
 	emit runSearch(query);
+}
+void SearchResultWidget::updateSearchExpr(QString searchText){
+    searchTextLabel->setText(searchText);
 }
 
 void SearchResultWidget::updateSearchScopeBox(SearchQuery::Scope sc)

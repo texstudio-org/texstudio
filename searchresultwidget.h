@@ -16,6 +16,7 @@ public:
 
 	void setQuery(SearchQuery *sq);
 	SearchQuery::Scope searchScope() const;
+    void updateSearchExpr(QString searchText);
 
 signals:
 	void jumpToSearchResult(QDocument *doc, int lineNumber, const SearchQuery *query);

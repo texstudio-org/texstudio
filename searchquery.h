@@ -39,6 +39,7 @@ public:
 	QString type() { return mType; }
 
 	QString searchExpression() const { return mModel->searchExpression(); }
+    void setExpression(QString expr);
 	SearchResultModel * model() const { return mModel; }
 	int getNextSearchResultColumn(QString text, int col) const;
 
