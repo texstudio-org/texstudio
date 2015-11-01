@@ -23,7 +23,6 @@ public:
 	Session(const Session &s);
 
 	bool load(const QString &file);
-	bool load(const ConfigManager &config);
 	bool save(const QString &file, bool relPaths=true) const;
 
 	const QList<FileInSession> files() const { return m_files; }

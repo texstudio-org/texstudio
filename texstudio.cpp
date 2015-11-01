@@ -2351,9 +2351,6 @@ void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
 		if (!s.load(f.filePath())) {
 			txsCritical(tr("Loading of last session failed."));
 		}
-	} else {
-		// fallback to loading from the config (import the session saved by TXS <= 2.5.1)
-		s.load(configManager);
 	}
 	restoreSession(s, showProgress, warnMissing);
 }
