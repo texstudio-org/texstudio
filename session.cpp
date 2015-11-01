@@ -41,7 +41,12 @@ bool Session::load(const QString &file)
 	}
 	m_masterFile = QDir::cleanPath(dir.filePath(s.value("MasterFile").toString()));
 	m_currentFile = QDir::cleanPath(dir.filePath(s.value("CurrentFile").toString()));
-	m_bookmarks = s.value("Bookmarks").value<QList<QVariant> >();
+	
+	foreach (const QVariant &v, s.value("Bookmarks").value<QList<QVariant> >()) {
+		Bookmark bm = Bookmark::fromStringList(v.toStringList());
+		bm.filename = QDir::cleanPath(dir.filePath(bm.filename));
+		m_bookmarks << bm;
+	}
 	s.endGroup();
 
 	s.beginGroup("InternalPDFViewer");
@@ -71,7 +76,15 @@ bool Session::save(const QString &file, bool relPaths) const
 	}
 	s.setValue("MasterFile", fmtPath(dir, m_masterFile, relPaths));
 	s.setValue("CurrentFile", fmtPath(dir, m_currentFile, relPaths));
-	s.setValue("Bookmarks", m_bookmarks);
+	
+	QList<QVariant> bookmarkList;
+	foreach (Bookmark bm, m_bookmarks) {
+		if (relPaths) {
+			bm.filename = fmtPath(dir, bm.filename, relPaths);
+		}
+		bookmarkList << bm.toStringList();
+	}
+	s.setValue("Bookmarks", bookmarkList);
 	s.endGroup();
 
 	s.beginGroup("InternalPDFViewer");

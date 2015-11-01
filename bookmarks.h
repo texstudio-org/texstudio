@@ -7,6 +7,18 @@ class LatexEditorView;
 class LatexDocuments;
 class QDocumentLineHandle;
 
+struct Bookmark {
+	Bookmark();
+	
+	static Bookmark fromStringList(QStringList slist);
+	QStringList toStringList() const;
+	
+	QString filename;
+	int lineNumber;
+	int bookmarkNumber;
+	QString text;
+};
+
 class Bookmarks : public QObject
 {
 	Q_OBJECT
@@ -14,8 +26,8 @@ class Bookmarks : public QObject
 public:
 	Bookmarks(const LatexDocuments *docs, QObject *parent = 0);
 
-	void setBookmarks(const QList<QVariant> &bookmarkList);
-	QList<QVariant> getBookmarks();
+	void setBookmarks(const QList<Bookmark> &bookmarkList);
+	QList<Bookmark> getBookmarks();
 
 	QListWidget *widget() { return bookmarksWidget; }
 
