@@ -7503,107 +7503,107 @@ Reprendre du début ?</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="+192"/>
         <location line="+488"/>
-        <location line="+695"/>
+        <location line="+717"/>
         <source>Default</source>
         <translation>Par défaut</translation>
     </message>
     <message>
-        <location line="-870"/>
-        <location line="+843"/>
+        <location line="-892"/>
+        <location line="+865"/>
         <source>&amp;Undo</source>
         <translation>&amp;Défaire</translation>
     </message>
     <message>
-        <location line="-832"/>
-        <location line="+833"/>
+        <location line="-854"/>
+        <location line="+855"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
     </message>
     <message>
-        <location line="-818"/>
-        <location line="+820"/>
+        <location line="-840"/>
+        <location line="+842"/>
         <source>Cu&amp;t</source>
         <translation>Cou&amp;per</translation>
     </message>
     <message>
-        <location line="-809"/>
-        <location line="+810"/>
+        <location line="-831"/>
+        <location line="+832"/>
         <source>&amp;Copy</source>
         <translation>&amp;Copier</translation>
     </message>
     <message>
-        <location line="-799"/>
-        <location line="+800"/>
+        <location line="-821"/>
+        <location line="+822"/>
         <source>&amp;Paste</source>
         <translation>C&amp;oller</translation>
     </message>
     <message>
-        <location line="-784"/>
-        <location line="+786"/>
+        <location line="-806"/>
+        <location line="+808"/>
         <source>&amp;Indent</source>
         <translation>&amp;Indenter</translation>
     </message>
     <message>
-        <location line="-778"/>
-        <location line="+779"/>
+        <location line="-800"/>
+        <location line="+801"/>
         <source>&amp;Unindent</source>
         <translation>Désin&amp;denter</translation>
     </message>
     <message>
-        <location line="-767"/>
-        <location line="+768"/>
+        <location line="-789"/>
+        <location line="+790"/>
         <source>Co&amp;mment</source>
         <translation>Co&amp;mmenter</translation>
     </message>
     <message>
-        <location line="-760"/>
-        <location line="+761"/>
+        <location line="-782"/>
+        <location line="+783"/>
         <source>Unc&amp;omment</source>
         <translation>Déc&amp;ommenter</translation>
     </message>
     <message>
-        <location line="-749"/>
-        <location line="+751"/>
+        <location line="-771"/>
+        <location line="+773"/>
         <source>&amp;Select all</source>
         <translation>Tout &amp;sélectionner</translation>
     </message>
     <message>
-        <location line="-739"/>
-        <location line="+741"/>
+        <location line="-761"/>
+        <location line="+763"/>
         <source>&amp;Find</source>
         <translation>&amp;Chercher</translation>
     </message>
     <message>
-        <location line="-733"/>
-        <location line="+734"/>
+        <location line="-755"/>
+        <location line="+756"/>
         <source>Fin&amp;d next</source>
         <translation>Chercher sui&amp;vant</translation>
     </message>
     <message>
-        <location line="-726"/>
-        <location line="+727"/>
+        <location line="-748"/>
+        <location line="+749"/>
         <source>&amp;Replace</source>
         <translation>&amp;Remplacer</translation>
     </message>
     <message>
-        <location line="-715"/>
-        <location line="+717"/>
+        <location line="-737"/>
+        <location line="+739"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Atteindre la li&amp;gne...</translation>
     </message>
     <message>
-        <location line="-705"/>
+        <location line="-727"/>
         <source>Dynamic line wrapping</source>
         <translation>Enrouler les lignes dynamiquement</translation>
     </message>
     <message>
         <location line="+12"/>
-        <location line="+699"/>
+        <location line="+721"/>
         <source>Input binding</source>
         <translation>Entrée obligatoire</translation>
     </message>
     <message>
-        <location line="-674"/>
+        <location line="-696"/>
         <source>Line endings</source>
         <translation>Fins de ligne</translation>
     </message>
@@ -7652,7 +7652,40 @@ Cliquer sur « Réinitialiser » pour rouvrir le fichier.
 Cliquer sur « Ignorer » pour ignorer cet avertissement.</translation>
     </message>
     <message>
-        <location line="+245"/>
+        <location line="+110"/>
+        <source>Warning</source>
+        <translation>Attention</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>I failed to acquire write permissions on the file
+%1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation>Je n&apos;ai pas réussi à acquérir les droits d&apos;écriture sur le fichier
+%1.
+Peut-être n&apos;est-il qu&apos;en lecture seule ou bien est-il ouvert par un autre programme.</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Writing the document to file
+%1
+failed.</source>
+        <translation>L&apos;écriture du document dans le fichier
+%1
+a échoué.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>The original file on disk was destroyed during the save operation.
+You&apos;ll find a copy at
+%1</source>
+        <translation>Le fichier original sur le disque a été détruit lors de l&apos;opération de sauvegarde.
+Une copie est disponible ici :
+%1</translation>
+    </message>
+    <message>
+        <location line="+126"/>
         <location line="+4"/>
         <source>File deleted</source>
         <translation>Fichier supprimé</translation>
@@ -8021,20 +8054,17 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location line="-3471"/>
-        <location line="+17"/>
-        <location line="+9"/>
-        <location line="+7"/>
-        <location line="+8"/>
+        <location line="-3491"/>
+        <location line="+44"/>
+        <location line="+22"/>
         <source>Saving failed</source>
         <translation>Échec de l&apos;enregistrement</translation>
     </message>
     <message>
-        <location line="-24"/>
         <source>I failed to acquire write permissions on the file %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation>Je n&apos;ai pas réussi à obtenir les droits d&apos;écriture sur le fichier %1.
+        <translation type="obsolete">Je n&apos;ai pas réussi à obtenir les droits d&apos;écriture sur le fichier %1.
 
 Peut-être n&apos;est-il accessible qu&apos;en lecture ou bien est-il déjà ouvert par un autre programme ?</translation>
     </message>
@@ -8047,8 +8077,6 @@ The file may have been corrupted!</source>
 Le fichier a pu être corrompu!</translation>
     </message>
     <message>
-        <location line="+10"/>
-        <location line="+15"/>
         <source>Writing the document to file
 %1
 failed after the old content was deleted.
@@ -8056,7 +8084,7 @@ failed after the old content was deleted.
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation>L&apos;enregistrement du document dans le fichier
+        <translation type="obsolete">L&apos;enregistrement du document dans le fichier
 %1
 a échoué après la suppression de l&apos;ancien contenu.
 
@@ -8067,25 +8095,18 @@ Les causes possibles de ce problème incluent une défaillance du (ou un
 manque de place sur) le disque.</translation>
     </message>
     <message>
-        <location line="-8"/>
-        <source>Only part of the file could be written:
+        <location line="-34"/>
+        <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
+        <oldsource>Only part of the file could be written:
 %1
 
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
-Possible causes include disk failure or a full harddisk.</source>
-        <translation>Seule une partie du fichier
-%1
-a pu être enregistrée.
-
-Ceci a pu corrompre vos données ! Pour éviter de les perdre,
-vous devriez les enregistrer dans un autre fichier ou bien régler le
-problème.
-Les causes possibles de ce problème incluent une défaillance du (ou un
-manque de place sur) le disque.</translation>
+Possible causes include disk failure or a full harddisk.</oldsource>
+        <translation>La création d&apos;une sauvegarde du fichier a échoué. Vous pouvez continuer à enregistrer mais, si l&apos;action échoue, vous pouvez perdre le contenu du fichier original. Voulez-vous continuer ?</translation>
     </message>
     <message>
-        <location line="-33"/>
+        <location line="-31"/>
         <source>There seems to be not enough space to save the file at
 %1
 
