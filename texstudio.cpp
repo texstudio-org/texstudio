@@ -2948,7 +2948,7 @@ void Texstudio::fileSaveSession()
 
 	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
-	if (!getCurrentSession().save(fn)) {
+	if (!getCurrentSession().save(fn, configManager.sessionStoreRelativePaths)) {
 		txsCritical(tr("Saving of session failed."));
 		return;
 	}
@@ -4037,7 +4037,7 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 
 		Session s = getCurrentSession();
-		s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath());
+		s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath(), configManager.sessionStoreRelativePaths);
 	}
 
 
