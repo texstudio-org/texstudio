@@ -52,32 +52,6 @@ bool Session::load(const QString &file)
 	return true;
 }
 
-// legacy code to support reading the session information which was previously stored in the config file (TXS <= 2.5.1)
-// may be removed later on
-bool Session::load(const ConfigManager &config)
-{
-	QStringList sessionFilesToRestore = config.getOption("Files/Session/Files").toStringList();
-	QList<QVariant> sessionCurRowsToRestore = config.getOption("Files/Session/curRows").value<QList<QVariant> >();
-	QList<QVariant> sessionCurColsToRestore = config.getOption("Files/Session/curCols").value<QList<QVariant> >();
-	QList<QVariant> sessionFirstLinesToRestore = config.getOption("Files/Session/firstLines").value<QList<QVariant> >();
-	QString sessionCurrent = config.getOption("Files/Session/CurrentFile").toString();
-	QString sessionMaster = config.getOption("Files/Session/MasterFile").toString();
-	QList<QVariant> bookmarkList = config.getOption("Files/Bookmarks").value<QList<QVariant> >();
-
-	for (int i = 0; i < sessionFilesToRestore.size(); i++) {
-		FileInSession f;
-		f.fileName = sessionFilesToRestore[i];
-		f.cursorLine = sessionCurRowsToRestore.value(i, QVariant(0)).toInt();
-		f.cursorCol = sessionCurColsToRestore.value(i, 0).toInt();
-		f.firstLine = sessionFirstLinesToRestore.value(i, 0).toInt();
-		m_files.append(f);
-	}
-	m_masterFile = sessionMaster;
-	m_currentFile = sessionCurrent;
-	m_bookmarks = bookmarkList;
-	return true;
-}
-
 bool Session::save(const QString &file, bool relPaths) const
 {
 	if (!isFileRealWritable(file)) return false;
