@@ -369,6 +369,7 @@ void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const Q
 		msgBox.setInformativeText(info);
 		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
 		msgBox.setDefaultButton(QMessageBox::Yes);
+		emit hideSplash();  // make sure the message box not hidden by the splash screen
 		int ret = msgBox.exec();
 		if (ret == QMessageBox::Yes) {
 			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
