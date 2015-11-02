@@ -1009,7 +1009,7 @@ bool QEditor::saveCopy(const QString& filename){
 		}
 	}
 
-	txsInformation("backup created");
+    // txsInformation("backup created");
 	
 	// 2. Save
 	QFile f(filename);
