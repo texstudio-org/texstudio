@@ -81,6 +81,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false)
 {
 
+	splashscreen = splash;
 	programStopped = false;
 	spellLanguageActions = 0;
 	MapForSymbols = 0;
@@ -101,6 +102,8 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	recentSessionList = 0;
 	EditorTabs = 0;
 	contextEntry = 0;
+
+	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
 
 	readSettings();
 
@@ -350,6 +353,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		fileRestoreSession(false, false);
 		ToggleRememberAct->setChecked(true);
 	}
+	splashscreen = 0;
 }
 
 Texstudio::~Texstudio()
@@ -6362,6 +6366,11 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 #endif
 
 	if (realCmdLine) Guardian::summon();
+}
+
+void Texstudio::hideSplash()
+{
+	if (splashscreen) splashscreen->hide();
 }
 
 void Texstudio::executeTests(const QStringList &args)

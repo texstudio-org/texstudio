@@ -86,6 +86,7 @@ public:
 public slots:
 	LatexEditorView *load(const QString &f , bool asProject = false, bool hidden = false, bool recheck = true, bool dontAsk = false);
 	void executeCommandLine(const QStringList &args, bool realCmdLine);
+	void hideSplash();
 	void startupCompleted();
 	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
 
@@ -133,6 +134,7 @@ private:
 
 	void updateEmphasizedRegion(QDocumentCursor c, int sid);
 
+	QSplashScreen *splashscreen;  // only used during startup
 	QFormatScheme *m_formats, *m_formatsOldDefault;
 	QLanguageFactory *m_languages;
 	LatexCompleter *completer;
