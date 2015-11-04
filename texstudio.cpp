@@ -1585,7 +1585,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(cursorChangeByMouse()), this, SLOT(saveCurrentCursorToHistory()));
 	connect(edit, SIGNAL(openCompleter()), this, SLOT(normalCompletion()));
 	connect(edit, SIGNAL(openInternalDocViewer(QString, QString)), this, SLOT(openInternalDocViewer(QString, QString)));
-	connect(edit, SIGNAL(searchExtendToggled(bool)), this, SLOT(searchExtendToggled(bool)));
+	connect(edit, SIGNAL(showExtendedSearch()), this, SLOT(showExtendedSearch()));
 
 	connect(edit->editor, SIGNAL(fileReloaded()), this, SLOT(fileReloaded()));
 	connect(edit->editor, SIGNAL(fileInConflict()), this, SLOT(fileInConflict()));
@@ -10226,13 +10226,8 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 #endif
 }
 
-void Texstudio::searchExtendToggled(bool toggled)
+void Texstudio::showExtendedSearch()
 {
-	// show search result in tools widget
-	if (!toggled) {
-		outputView->hide();
-		return;
-	}
 	LatexEditorView *edView = currentEditorView();
 	if (!edView) return;
 

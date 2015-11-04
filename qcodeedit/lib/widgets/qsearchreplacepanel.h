@@ -72,7 +72,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void setOptions(int searchOptions, bool cursor, bool selection);
 	signals:
 		void onClose();
-        void extendToggled(bool);
+        void showExtendedSearch();
 	protected:
 		virtual bool forward(QMouseEvent *e);
 		virtual void editorChange(QEditor *e);

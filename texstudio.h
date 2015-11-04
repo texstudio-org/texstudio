@@ -443,7 +443,7 @@ protected slots:
 	void runInternalPdfViewer(const QFileInfo &master, const QString &options);
 	void runBibliographyIfNecessary(const QFileInfo &cmd);
 
-	void searchExtendToggled(bool toggled);
+	void showExtendedSearch();
 
 	void changeIconSize(int value);
 	void changeSecondaryIconSize(int value);
