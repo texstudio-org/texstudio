@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>11</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>547</width>
+            <height>540</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -503,7 +503,7 @@
              <property name="title">
               <string>Update</string>
              </property>
-             <layout class="QGridLayout" name="gridLayout">
+             <layout class="QGridLayout" name="gridLayout3">
               <item row="0" column="6">
                <widget class="QComboBox" name="comboBoxUpdateLevel">
                 <property name="sizePolicy">
@@ -881,7 +881,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>860</width>
+               <width>194</width>
                <height>76</height>
               </rect>
              </property>
@@ -1827,7 +1827,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>668</width>
             <height>1289</height>
            </rect>
           </property>
@@ -2767,7 +2767,50 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
          <property name="title">
           <string>Completion</string>
          </property>
-         <layout class="QGridLayout" rowstretch="0,0,0,0,0,0,0" columnstretch="1,1">
+         <layout class="QGridLayout" rowstretch="0,0,0,0,0,0" columnstretch="1,1">
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="checkBoxUsePlaceholders">
+            <property name="text">
+             <string>Insert Arguments</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="checkBoxToolTipCompletePreview">
+            <property name="toolTip">
+             <string>Shows a tooltip with target text for labels/bibitem, previews colors or images</string>
+            </property>
+            <property name="text">
+             <string>ToolTip-Preview</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxShowPlaceholders">
+            <property name="text">
+             <string>Arguments as Placeholders</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="checkBoxToolTipHelp">
+            <property name="toolTip">
+             <string>Shows a tooltip with a description of the selected completer command</string>
+            </property>
+            <property name="text">
+             <string>ToolTip-Help</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxCompletion">
             <property name="toolTip">
@@ -2778,23 +2821,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QCheckBox" name="checkBoxCaseSensitive">
-            <property name="visible">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Case Sensitive</string>
-            </property>
-            <property name="hideWidget" stdset="0">
-             <bool>true</bool>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
+          <item row="4" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QLabel" name="label_40">
@@ -2843,66 +2870,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </item>
            </layout>
           </item>
-          <item row="1" column="0">
-           <layout class="QHBoxLayout">
-            <item>
-             <spacer>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Minimum</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxCaseSensitiveInFirstCharacter">
-              <property name="text">
-               <string>In First Character</string>
-              </property>
-              <property name="advancedOption" stdset="0">
-               <bool>true</bool>
-              </property>
-              <property name="hideWidget" stdset="0">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item row="3" column="0">
-           <widget class="QCheckBox" name="checkBoxCompletePrefix">
-            <property name="toolTip">
-             <string>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</string>
-            </property>
-            <property name="text">
-             <string>Auto Complete Common Prefix</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
+          <item row="2" column="0">
            <widget class="QCheckBox" name="checkBoxEOWCompletes">
             <property name="text">
              <string>Complete selected text when non-word character is pressed</string>
@@ -2912,7 +2880,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="1" column="0">
            <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
             <property name="toolTip">
              <string>Allows in-place substitution of commands. Example:&lt;br&gt;
@@ -2929,7 +2897,20 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="6" column="1">
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="checkBoxCompletePrefix">
+            <property name="toolTip">
+             <string>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</string>
+            </property>
+            <property name="text">
+             <string>Auto Complete Common Prefix</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label">
@@ -2971,49 +2952,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
              </spacer>
             </item>
            </layout>
-          </item>
-          <item row="3" column="1">
-           <widget class="QCheckBox" name="checkBoxUsePlaceholders">
-            <property name="text">
-             <string>Use Placeholders</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QCheckBox" name="checkBoxToolTipHelp">
-            <property name="toolTip">
-             <string>Shows a tooltip with a description of the selected completer command</string>
-            </property>
-            <property name="text">
-             <string>ToolTip-Help</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QCheckBox" name="checkBoxToolTipCompletePreview">
-            <property name="toolTip">
-             <string>Shows a tooltip with target text for labels/bibitem, previews colors or images</string>
-            </property>
-            <property name="text">
-             <string>ToolTip-Preview</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QCheckBox" name="checkBoxShowPlaceholders">
-            <property name="text">
-             <string>Show Placeholders</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
@@ -3089,7 +3027,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>345</width>
             <height>625</height>
            </rect>
           </property>
@@ -3556,8 +3494,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>344</width>
+            <height>241</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3818,8 +3756,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>490</width>
+            <height>407</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4427,22 +4365,6 @@ Note: Changing this setting will only affect documents that are opened afterward
     <hint type="destinationlabel">
      <x>307</x>
      <y>250</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxCaseSensitive</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxCaseSensitiveInFirstCharacter</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>667</x>
-     <y>88</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>404</x>
-     <y>116</y>
     </hint>
    </hints>
   </connection>
