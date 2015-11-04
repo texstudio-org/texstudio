@@ -32,6 +32,112 @@
    <property name="verticalSpacing">
     <number>6</number>
    </property>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
+     <property name="text">
+      <string>Show Advanced Options</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="5">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>407</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>OK</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QListWidget" name="contentsWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>410</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>170</width>
+       <height>32000</height>
+      </size>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="currentRow">
+      <number>-1</number>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLineEdit" name="lineEditMetaFilter">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="1" rowspan="3" colspan="5">
     <widget class="QStackedWidget" name="pagesWidget">
      <property name="sizePolicy">
@@ -47,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -79,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
-            <height>688</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -102,6 +208,16 @@
               <string>Appearance</string>
              </property>
              <layout class="QGridLayout">
+              <item row="3" column="1" colspan="3">
+               <widget class="QFontComboBox" name="comboBoxInterfaceFont">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label_14">
                 <property name="text">
@@ -183,16 +299,6 @@
                   <string>Modern</string>
                  </property>
                 </item>
-               </widget>
-              </item>
-              <item row="3" column="1" colspan="3">
-               <widget class="QFontComboBox" name="comboBoxInterfaceFont">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
                </widget>
               </item>
               <item row="4" column="1" colspan="3">
@@ -377,109 +483,15 @@
             </widget>
            </item>
            <item>
-            <widget class="QGroupBox" name="groupBox_Dictionaries">
+            <widget class="QGroupBox" name="groupBox_Startup">
              <property name="title">
-              <string>Dictionaries</string>
+              <string>Startup</string>
              </property>
-             <layout class="QGridLayout">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_43">
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <item>
+               <widget class="QCheckBox" name="checkBoxCheckLatexConfiguration">
                 <property name="text">
-                 <string>Default Language:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="5">
-               <widget class="QPushButton" name="pushButtonDictDir">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="5">
-               <widget class="QComboBox" name="comboBoxSpellcheckLang"/>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_42">
-                <property name="text">
-                 <string>Spelling Dictionary Directories:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1" colspan="4">
-               <widget class="QLineEdit" name="leDictDir">
-                <property name="toolTip">
-                 <string>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1" colspan="4">
-               <widget class="QComboBox" name="comboBoxThesaurusFileName">
-                <property name="editable">
-                 <bool>true</bool>
-                </property>
-                <property name="dirFilter" stdset="0">
-                 <string>*.dat</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_13">
-                <property name="text">
-                 <string>Thesaurus Database:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="5">
-               <widget class="QPushButton" name="btSelectThesaurusFileName">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2" colspan="4">
-               <widget class="QLabel" name="labelGetDic">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>TextLabel</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QPushButton" name="pushButtonImportDictionary">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Import Dictionary...</string>
+                 <string>Check LaTeX Configuration</string>
                 </property>
                </widget>
               </item>
@@ -594,22 +606,6 @@
                <widget class="QLabel" name="label_74">
                 <property name="text">
                  <string>Update Level:</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_Startup">
-             <property name="title">
-              <string>Startup</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_14">
-              <item>
-               <widget class="QCheckBox" name="checkBoxCheckLatexConfiguration">
-                <property name="text">
-                 <string>Check LaTeX Configuration</string>
                 </property>
                </widget>
               </item>
@@ -2771,7 +2767,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
          <property name="title">
           <string>Completion</string>
          </property>
-         <layout class="QGridLayout" rowstretch="0,0,0,0,0,0" columnstretch="1,1">
+         <layout class="QGridLayout" rowstretch="0,0,0,0,0,0,0" columnstretch="1,1">
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxCompletion">
             <property name="toolTip">
@@ -2782,7 +2778,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QCheckBox" name="checkBoxCaseSensitive">
             <property name="visible">
              <bool>false</bool>
@@ -2798,7 +2794,56 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="5" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="label_40">
+              <property name="toolTip">
+               <string>Size of the tab bar at the bottom or top of the completer</string>
+              </property>
+              <property name="text">
+               <string>Tab Bar Size</string>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxTabRelFontSize">
+              <property name="toolTip">
+               <string>Size of the command set tabs at the bottom or top of the completer</string>
+              </property>
+              <property name="suffix">
+               <string notr="true"> %</string>
+              </property>
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>75</number>
+              </property>
+              <property name="advancedOption" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
            <layout class="QHBoxLayout">
             <item>
              <spacer>
@@ -2867,7 +2912,24 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="5" column="0">
+           <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
+            <property name="toolTip">
+             <string>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</string>
+            </property>
+            <property name="text">
+             <string>Auto Replace Latex-Commands</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label">
@@ -2910,24 +2972,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </item>
            </layout>
           </item>
-          <item row="1" column="1">
-           <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
-            <property name="toolTip">
-             <string>Allows in-place substitution of commands. Example:&lt;br&gt;
-&lt;code&gt;\textbf{foo}&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
-&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
-&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
-&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
-&lt;/ul&gt;</string>
-            </property>
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="checkBoxUsePlaceholders">
             <property name="text">
-             <string>Auto Replace Latex-Commands</string>
+             <string>Use Placeholders</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="0" column="1">
            <widget class="QCheckBox" name="checkBoxToolTipHelp">
             <property name="toolTip">
              <string>Shows a tooltip with a description of the selected completer command</string>
@@ -2940,76 +2995,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QLabel" name="label_40">
-              <property name="toolTip">
-               <string>Size of the tab bar at the bottom or top of the completer</string>
-              </property>
-              <property name="text">
-               <string>Tab Bar Size</string>
-              </property>
-              <property name="advancedOption" stdset="0">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spinBoxTabRelFontSize">
-              <property name="toolTip">
-               <string>Size of the command set tabs at the bottom or top of the completer</string>
-              </property>
-              <property name="suffix">
-               <string notr="true"> %</string>
-              </property>
-              <property name="maximum">
-               <number>10000</number>
-              </property>
-              <property name="value">
-               <number>75</number>
-              </property>
-              <property name="advancedOption" stdset="0">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item row="5" column="0">
-           <widget class="QCheckBox" name="checkBoxUsePlaceholders">
-            <property name="text">
-             <string>Use Placeholders</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QCheckBox" name="checkBoxShowPlaceholders">
-            <property name="text">
-             <string>Show Placeholders</string>
-            </property>
-            <property name="advancedOption" stdset="0">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
+          <item row="1" column="1">
            <widget class="QCheckBox" name="checkBoxToolTipCompletePreview">
             <property name="toolTip">
              <string>Shows a tooltip with target text for labels/bibitem, previews colors or images</string>
@@ -3019,13 +3005,31 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
+          <item row="4" column="1">
+           <widget class="QCheckBox" name="checkBoxShowPlaceholders">
+            <property name="text">
+             <string>Show Placeholders</string>
+            </property>
+            <property name="advancedOption" stdset="0">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
        <item>
         <widget class="QLabel" name="label_12">
+         <property name="toolTip">
+          <string>TXS tries to automatically load completion files for packages if a
+\usepackage{} command is found. These automatically included files
+are not shown here. Checking additional packages here is usually not
+necessary. However if automatic detection fails or you want to include
+specfic user completion files, you can enforce their usage by activating
+them here.</string>
+         </property>
          <property name="text">
-          <string>Use following completion files:</string>
+          <string>Permanently active completion files:</string>
          </property>
         </widget>
        </item>
@@ -3085,24 +3089,125 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>863</width>
+            <height>625</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
+           <item>
+            <widget class="QGroupBox" name="groupBox_Dictionaries">
+             <property name="title">
+              <string>Spell Check</string>
+             </property>
+             <layout class="QGridLayout" name="_4">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_43">
+                <property name="text">
+                 <string>Default Language:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5">
+               <widget class="QPushButton" name="pushButtonDictDir">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="5">
+               <widget class="QComboBox" name="comboBoxSpellcheckLang"/>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_42">
+                <property name="text">
+                 <string>Spelling Dictionary Directories:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="4">
+               <widget class="QLineEdit" name="leDictDir">
+                <property name="toolTip">
+                 <string>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1" colspan="4">
+               <widget class="QComboBox" name="comboBoxThesaurusFileName">
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+                <property name="dirFilter" stdset="0">
+                 <string>*.dat</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>Thesaurus Database:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="5">
+               <widget class="QPushButton" name="btSelectThesaurusFileName">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2" colspan="4">
+               <widget class="QLabel" name="labelGetDic">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPushButton" name="pushButtonImportDictionary">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Import Dictionary...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
            <item>
             <widget class="QGroupBox" name="groupBox_13">
              <property name="title">
-              <string>Internal</string>
+              <string>Internal Grammar Check</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_8">
               <item row="0" column="0" colspan="3">
@@ -3439,20 +3544,20 @@ them here.</string>
         <number>0</number>
        </property>
        <item>
-        <widget class="QScrollArea" name="scrollArea_4">
+        <widget class="QScrollArea" name="scrollAreaPreview">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents_6">
+         <widget class="QWidget" name="scrollAreaPreviewLayout">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
-            <height>629</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3668,48 +3773,75 @@ them here.</string>
             </widget>
            </item>
            <item>
+            <spacer name="verticalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>1</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pagePDFviewer">
+      <layout class="QVBoxLayout" name="verticalLayout_15">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QScrollArea" name="scrollAreaPDFviewer">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaPDFviewerLayout">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>880</width>
+            <height>617</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
             <widget class="QGroupBox" name="groupBox_8">
              <property name="title">
-              <string>Full Page PDF Preview</string>
+              <string>Internal PDF Viewer</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_4">
-              <item row="7" column="0">
-               <widget class="QLabel" name="label_66">
-                <property name="text">
-                 <string>Highlight Duration</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QSpinBox" name="spinBoxHighlightDuration">
-                <property name="specialValueText">
-                 <string>Infinite</string>
-                </property>
-                <property name="suffix">
-                 <string notr="true"> ms</string>
-                </property>
-                <property name="maximum">
-                 <number>86400000</number>
-                </property>
-                <property name="value">
-                 <number>2000</number>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_28">
-                <property name="text">
-                 <string>Scale Option:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
+              <item row="1" column="1">
                <widget class="QComboBox" name="comboBoxPreviewScale">
                 <item>
                  <property name="text">
@@ -3738,14 +3870,26 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_29">
-                <property name="text">
-                 <string>Scaling:</string>
+              <item row="8" column="1">
+               <widget class="QSpinBox" name="spinBoxHighlightDuration">
+                <property name="specialValueText">
+                 <string>Infinite</string>
+                </property>
+                <property name="suffix">
+                 <string notr="true"> ms</string>
+                </property>
+                <property name="maximum">
+                 <number>86400000</number>
+                </property>
+                <property name="value">
+                 <number>2000</number>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
+              <item row="3" column="1">
                <widget class="QSpinBox" name="spinBoxPreviewScale">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -3768,30 +3912,30 @@ them here.</string>
                </widget>
               </item>
               <item row="3" column="0">
-               <widget class="QLabel" name="label_27">
+               <widget class="QLabel" name="label_29">
                 <property name="text">
-                 <string>Screen Resolution:</string>
+                 <string>Scaling:</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QSpinBox" name="spinBoxPreviewDPI">
-                <property name="suffix">
-                 <string> dpi</string>
-                </property>
-                <property name="maximum">
-                 <number>600</number>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_26">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_28">
                 <property name="text">
-                 <string>Magnifier Shape:</string>
+                 <string>Scale Option:</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1">
+              <item row="8" column="0">
+               <widget class="QLabel" name="label_66">
+                <property name="text">
+                 <string>Highlight Duration</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
                <widget class="QComboBox" name="comboBoxPreviewMagnifierShape">
                 <item>
                  <property name="text">
@@ -3805,53 +3949,55 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewDPI">
+                <property name="suffix">
+                 <string> dpi</string>
+                </property>
+                <property name="maximum">
+                 <number>600</number>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
                <widget class="QLabel" name="label_25">
                 <property name="text">
                  <string>Magnifier Size:</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="1">
-               <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
-                <property name="suffix">
-                 <string> px</string>
-                </property>
-                <property name="prefix">
-                 <string/>
-                </property>
-                <property name="minimum">
-                 <number>50</number>
-                </property>
-                <property name="maximum">
-                 <number>10000</number>
-                </property>
-                <property name="singleStep">
-                 <number>50</number>
-                </property>
-                <property name="value">
-                 <number>300</number>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string>Screen Resolution:</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="1">
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_26">
+                <property name="text">
+                 <string>Magnifier Shape:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
                <widget class="QCheckBox" name="checkBoxPreviewMagnifierBorder">
                 <property name="text">
                  <string>Border</string>
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="label_34">
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="checkBoxDisableHorizontalScrollingForFitToTextWidth">
                 <property name="text">
-                 <string>Synchronized Files Types:</string>
+                 <string>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="9" column="1">
+              <item row="10" column="1">
                <widget class="QLineEdit" name="lineEditPreviewSyncFileMask">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -3864,46 +4010,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_18">
-                <property name="text">
-                 <string>Cache Size:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="1">
-               <widget class="QSpinBox" name="spinBoxCacheSizeMB">
-                <property name="suffix">
-                 <string> MB</string>
-                </property>
-                <property name="minimum">
-                 <number>100</number>
-                </property>
-                <property name="maximum">
-                 <number>1024</number>
-                </property>
-                <property name="singleStep">
-                 <number>100</number>
-                </property>
-                <property name="value">
-                 <number>512</number>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="13" column="0">
-               <widget class="QCheckBox" name="autoHideToolbars">
-                <property name="text">
-                 <string>Auto-hide Toolbars in Embedded Mode</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0">
+              <item row="9" column="0">
                <widget class="QLabel" name="label_67">
                 <property name="text">
                  <string>Highlight Color</string>
@@ -3913,7 +4020,14 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="1">
+              <item row="14" column="0">
+               <widget class="QCheckBox" name="autoHideToolbars">
+                <property name="text">
+                 <string>Auto-hide Toolbars in Embedded Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
                <widget class="QLineEdit" name="lineEditHighlightColor">
                 <property name="toolTip">
                  <string>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</string>
@@ -3929,17 +4043,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="0">
-               <widget class="QLabel" name="label_69">
-                <property name="text">
-                 <string>Load Strategy:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="11" column="1">
+              <item row="12" column="1">
                <widget class="QComboBox" name="comboBoxPDFLoadStrategy">
                 <property name="toolTip">
                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -3967,33 +4071,7 @@ them here.</string>
                 </item>
                </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="QCheckBox" name="checkBoxDisableHorizontalScrollingForFitToTextWidth">
-                <property name="text">
-                 <string>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="0">
-               <widget class="QLabel" name="label_76">
-                <property name="toolTip">
-                 <string>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
-Note: Changing this setting will only affect documents that are opened afterwards.</string>
-                </property>
-                <property name="text">
-                 <string>Render Backend:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="1">
+              <item row="13" column="1">
                <widget class="QComboBox" name="comboBoxPDFRenderBackend">
                 <property name="toolTip">
                  <string>The Render Backend used by the PDF library poppler.
@@ -4016,18 +4094,115 @@ Note: Changing this setting will only affect documents that are opened afterward
                 </item>
                </widget>
               </item>
+              <item row="6" column="1">
+               <widget class="QSpinBox" name="spinBoxPreviewMagnifierSize">
+                <property name="suffix">
+                 <string> px</string>
+                </property>
+                <property name="prefix">
+                 <string/>
+                </property>
+                <property name="minimum">
+                 <number>50</number>
+                </property>
+                <property name="maximum">
+                 <number>10000</number>
+                </property>
+                <property name="singleStep">
+                 <number>50</number>
+                </property>
+                <property name="value">
+                 <number>300</number>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0">
+               <widget class="QLabel" name="label_18">
+                <property name="text">
+                 <string>Cache Size:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="1">
+               <widget class="QSpinBox" name="spinBoxCacheSizeMB">
+                <property name="suffix">
+                 <string> MB</string>
+                </property>
+                <property name="minimum">
+                 <number>100</number>
+                </property>
+                <property name="maximum">
+                 <number>1024</number>
+                </property>
+                <property name="singleStep">
+                 <number>100</number>
+                </property>
+                <property name="value">
+                 <number>512</number>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <widget class="QLabel" name="label_69">
+                <property name="text">
+                 <string>Load Strategy:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
+               <widget class="QLabel" name="label_76">
+                <property name="toolTip">
+                 <string>The Render Backend used by the PDF library poppler.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</string>
+                </property>
+                <property name="text">
+                 <string>Render Backend:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_34">
+                <property name="text">
+                 <string>Synchronized Files Types:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QLabel" name="label_77">
+                <property name="text">
+                 <string>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer_2">
+            <spacer name="verticalSpacer_7">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>1</height>
+               <height>40</height>
               </size>
              </property>
             </spacer>
@@ -4129,112 +4304,6 @@ Note: Changing this setting will only affect documents that are opened afterward
      </widget>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QCheckBox" name="checkBoxShowAdvancedOptions">
-     <property name="text">
-      <string>Show Advanced Options</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="5">
-    <layout class="QHBoxLayout">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <property name="leftMargin">
-      <number>0</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>407</width>
-         <height>31</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="okButton">
-       <property name="text">
-        <string>OK</string>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancelButton">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="0" column="0">
-    <widget class="QListWidget" name="contentsWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>200</width>
-       <height>410</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>170</width>
-       <height>32000</height>
-      </size>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="currentRow">
-      <number>-1</number>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLineEdit" name="lineEditMetaFilter">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <tabstops>
@@ -4249,11 +4318,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>spinBoxMaxRecentFiles</tabstop>
   <tabstop>spinBoxMaxRecentProjects</tabstop>
   <tabstop>checkBoxParseMaster</tabstop>
-  <tabstop>leDictDir</tabstop>
-  <tabstop>pushButtonDictDir</tabstop>
-  <tabstop>comboBoxSpellcheckLang</tabstop>
-  <tabstop>comboBoxThesaurusFileName</tabstop>
-  <tabstop>btSelectThesaurusFileName</tabstop>
   <tabstop>checkBoxShowAdvancedOptions</tabstop>
   <tabstop>checkBoxRunAfterBibTeXChange</tabstop>
   <tabstop>comboBoxShowStdout</tabstop>
@@ -4324,13 +4388,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>spinBoxAutoPreviewDelay</tabstop>
   <tabstop>checkBoxReplaceBeamer</tabstop>
   <tabstop>checkBoxPrecompilePreamble</tabstop>
-  <tabstop>comboBoxPreviewScale</tabstop>
-  <tabstop>spinBoxPreviewScale</tabstop>
-  <tabstop>spinBoxPreviewDPI</tabstop>
-  <tabstop>comboBoxPreviewMagnifierShape</tabstop>
-  <tabstop>spinBoxPreviewMagnifierSize</tabstop>
-  <tabstop>checkBoxPreviewMagnifierBorder</tabstop>
-  <tabstop>lineEditPreviewSyncFileMask</tabstop>
   <tabstop>cbSVNUndo</tabstop>
   <tabstop>cbKeywordSubstitution</tabstop>
   <tabstop>sbDirSearchDepth</tabstop>
