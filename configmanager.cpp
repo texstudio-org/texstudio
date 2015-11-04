@@ -1209,13 +1209,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	else if (editorConfig->autoindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(2);
 	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
 
-	//completion
-	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive != LatexCompleterConfig::CCS_CASE_INSENSITIVE);
-	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completerConfig->caseSensitive == LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE);
-	// hide options !!!!
-	confDlg->ui.checkBoxCaseSensitive->hide();
-	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->hide();
-
 	lastLanguage = language;
 	QStringList languageFiles = findResourceFiles("translations", "texstudio_*.qm") << findResourceFiles("", "texstudio_*.qm");
 	for (int i = languageFiles.count() - 1; i >= 0; i--) {
@@ -1496,9 +1489,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		}
 		//completion
 		completerConfig->enabled = confDlg->ui.checkBoxCompletion->isChecked();
-		if (!confDlg->ui.checkBoxCaseSensitive->isChecked()) completerConfig->caseSensitive = LatexCompleterConfig::CCS_CASE_INSENSITIVE;
-		else if (confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->isChecked()) completerConfig->caseSensitive = LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE;
-		else completerConfig->caseSensitive = LatexCompleterConfig::CCS_CASE_SENSITIVE;
+		completerConfig->caseSensitive = LatexCompleterConfig::CCS_CASE_INSENSITIVE;  // TODO: config removed from options due to performance issues. May be removed from completer code later on.
 		completerConfig->completeCommonPrefix = confDlg->ui.checkBoxCompletePrefix->isChecked();
 		completerConfig->eowCompletes = confDlg->ui.checkBoxEOWCompletes->isChecked();
 		completerConfig->tooltipHelp = confDlg->ui.checkBoxToolTipHelp->isChecked();
