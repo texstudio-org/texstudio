@@ -373,7 +373,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxSwitchLanguagesMath->setDisabled(true);
 #endif
 
-	ui.contentsWidget->setIconSize(QSize(36, 36));
+	ui.contentsWidget->setIconSize(QSize(32, 32));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
 	//ui.contentsWidget->setMovement(QListView::Static);
 
@@ -468,8 +468,9 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	createIcon(tr("Syntax Highlighting"), getRealIcon("config_highlighting"));
 	createIcon(tr("Custom Highlighting"), getRealIcon("config_highlighting"), true);
 	createIcon(tr("Completion"), getRealIcon("config_completion"));
-	createIcon(tr("Grammar"), getRealIcon("config_editor"));
+	createIcon(tr("Language Checking"), getRealIcon("config_editor"));
 	createIcon(tr("Preview"), getRealIcon("config_preview"));
+	createIcon(tr("Internal PDF Viewer"), getRealIcon("config_preview"));
 	createIcon(tr("SVN"), getRealIcon("config_svn"));
 
 	connect(ui.contentsWidget,
