@@ -305,7 +305,7 @@ signals:
 	void searchBibtexSection(QString file, QString bibId);
 	void openInternalDocViewer(QString package, QString command = "");
 
-	void searchExtendToggled(bool toggled);
+	void showExtendedSearch();
 
 private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);

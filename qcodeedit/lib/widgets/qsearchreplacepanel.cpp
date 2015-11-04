@@ -192,12 +192,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	layoutFindOptions->addWidget(cbSelection, 0, 5, 1, 1);
 
     bExtend  = new QToolButton(frameFindOptions);
-    bExtend->setCheckable(true);
-    bExtend->setToolTip(tr("Show results as list as well"));
+    bExtend->setToolTip(tr("Extended Search"));
     bExtend->setObjectName(("bExtend"));
     bExtend->setIcon(getRealIconCached("extend"));
     layoutFindOptions->addWidget(bExtend, 0, 6, 1, 1);
-    connect(bExtend,SIGNAL(toggled(bool)),this,SIGNAL(extendToggled(bool)));
+    connect(bExtend, SIGNAL(clicked()), this, SIGNAL(showExtendedSearch()));
 
     gridLayout->addWidget(frameFindOptions, 0, 6, 1, 1);
 
