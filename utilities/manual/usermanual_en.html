@@ -1204,7 +1204,9 @@ Naviation and closing are achieved via DDE commands. Since version 10 of the ado
 </table>
 <p>
 The following example is for Adobe Reader DC:<br>
-Jump to a position in a running Adobe Reader (Windows only): <span class="command">dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br><br>
+Jump to a position in a running Adobe Reader (Windows only): <span class="command">dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<i>jump-position can be defined with the hyperref package</i><br>
+If you have the problem that Adobe Reader does not open, you have to add the program path like this: <span class="command">
+dde:///"C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe":acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocGotoNameDest("?am.pdf","jump-position")]</span><br><br>
 
 Close the document in a running Adobe Reader (Windows only): <span class="command">dde:///acroviewR15/control/[DocOpen("?am.pdf")][FileOpen("?am.pdf")][DocClose("?am.pdf")]</span><br><br>
 
