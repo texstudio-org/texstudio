@@ -1832,6 +1832,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			}// if latexLineCheking
 			if (tk.type == Tokens::word && (tk.subtype == Tokens::text || tk.subtype == Tokens::title || tk.subtype == Tokens::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
 				QString word = tk.getText();
+                if(tkNr+1 < tl.length()){
+                    //check if next token is . or -
+                    Tokens tk1 = tl.at(tkNr+1);
+                    if(tk1.type==Tokens::punctuation && tk1.start==(tk.start+tk.length)){
+                        QString add=tk1.getText();
+                        if(add=="."||add=="-"){
+                            word+=add;
+                            tkNr++;
+                        }
+                    }
+                }
 				word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
 				if (config->hideNonTextSpellingErrors && (isNonTextFormat(line.getFormatAt(tk.start)) || isNonTextFormat(line.getFormatAt(tk.start + tk.length - 1)) )) // TODO:needs to be adapted
 					continue;
