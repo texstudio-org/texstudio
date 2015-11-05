@@ -29,6 +29,17 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 
 	if (floatingEnvs.isEmpty())
 		floatingEnvs << "figure" << "table" << "SCfigure" << "wrapfigure" << "subfigure" << "floatbox";
+
+	// this is a heuristic, some LanguageTool languages have the format de-DE, others just it (instead of it-IT)
+	// this list contains all two-character languages that do not have a four-character equivalent.
+	languageMapping.insert("ca-CA", "ca");
+	languageMapping.insert("en-EN", "en");
+	languageMapping.insert("es-ES", "es");
+	languageMapping.insert("fa-FA", "fa");
+	languageMapping.insert("fr-FR", "fr");
+	languageMapping.insert("it-IT", "it");
+	languageMapping.insert("nl-NL", "nl");
+	languageMapping.insert("sv-SV", "sv");
 }
 
 
@@ -84,9 +95,7 @@ void GrammarCheck::check(const QString &language, const void *doc, const QList<L
 
 	//qDebug()<<"CHECK:"<<inlines.first().text;
 
-	QString lang = language;
-	lang.replace('_', '-');
-	requests << CheckRequest(lang, doc, inlines, firstLineNr, ticket);
+	requests << CheckRequest(languageFromHunspellToLanguageTool(language), doc, inlines, firstLineNr, ticket);
 
 	//Delay processing, because there might be more requests for the same line in the event queue and only the last one needs to be checked
 	if (!pendingProcessing) {
@@ -412,6 +421,16 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 
 		requests.removeAt(reqId);
 	}
+}
+
+/*!
+ * Reformats a language identifier from the Hunspell notation to LanguageTool notation
+ * e.g. en_GB -> en-GB and it_IT -> it
+ */
+QString GrammarCheck::languageFromHunspellToLanguageTool(QString language)
+{
+	language.replace('_', '-');
+	return languageMapping.value(language, language);
 }
 
 
