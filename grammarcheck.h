@@ -69,7 +69,7 @@ private slots:
 	void process(int reqId);
 	void backendChecked(uint ticket, int subticket, const QList<GrammarError> &errors, bool directCall = false);
 private:
-	static QString languageFromHunspellToLanguageTool(QString language);
+	QString languageFromHunspellToLanguageTool(QString language);
 	LatexParser *latexParser;
 	GrammarCheckerConfig config;
 	GrammarCheckBackend *backend;
