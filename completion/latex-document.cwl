@@ -315,10 +315,10 @@
 \newlength{newlength}
 \newline
 \newpage
-\newtheorem{envname}[numberedlike]{caption}
-\newtheorem{envname}{caption}
-\newtheorem{envname}{caption}[within]
-\newtheorem*{envname}{caption}
+\newtheorem{envname}[numberedlike]{caption}#N
+\newtheorem{envname}{caption}#N
+\newtheorem{envname}{caption}[within]#N
+\newtheorem*{envname}{caption}#N
 \nocite{keylist}#c
 \nocorr#*
 \nocorrlist{charlist}#*

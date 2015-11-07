@@ -600,6 +600,21 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newLabel->parent = labelList;
 				iter_label.insert(newLabel);
 			}
+            //// newtheorem ////
+            if (tk.type== Tokens::newTheorem && tk.length>0) {
+                completerNeedsUpdate = true;
+                QStringList lst;
+                QString firstArg=tk.getText();
+                lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
+                foreach (const QString &elem, lst) {
+                    mUserCommandList.insert(line(i).handle(), elem);
+                    ltxCommands.possibleCommands["user"].insert(elem);
+                    if (!removedUserCommands.removeAll(elem)) {
+                        addedUserCommands << elem;
+                    }
+                }
+                continue;
+            }
 			// work on general commands
 			if (tk.type != Tokens::command && tk.type != Tokens::commandUnknown)
 				continue; // not a command
@@ -732,6 +747,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				mUserCommandList.insert(line(i).handle(), "\\begin{" + firstArg);
 				continue;
 			}
+            /*
 			//// newtheorem ////
 			if (cmd == "\\newtheorem" || cmd == "\\newtheorem*" || cmd == "\\declaretheorem") {
 				completerNeedsUpdate = true;
@@ -745,7 +761,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					}
 				}
 				continue;
-			}
+            }*/
 			//// newcounter ////
 			if (cmd == "\\newcounter") {
 				completerNeedsUpdate = true;
