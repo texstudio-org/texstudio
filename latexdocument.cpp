@@ -649,32 +649,39 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			//// newcommand ////
 			if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
 				completerNeedsUpdate = true;
-				Tokens cmdName;
-				if (!args.isEmpty() && args.at(0).type == Tokens::braces) {
+                //Tokens cmdName;
+                /*if (!args.isEmpty() && args.at(0).type == Tokens::braces) {
 					//remove first arg, contains new command name, already saved into "firstArg"
 					cmdName = args.takeFirst();
-				}
-				int optionCount = getArg(args, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
+                }*/
+                QString cmdName=getArg(args,Tokens::def);
+                bool isDefWidth=true;
+                if(cmdName.isEmpty())
+                    cmdName=getArg(args,Tokens::defWidth);
+                else
+                    isDefWidth=false;
+                //int optionCount = getArg(args, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
+                int optionCount = getArg(args, Tokens::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-				bool def = !getArg(args, dlh, 1, ArgumentList::Optional).isEmpty();
+                bool def = !getArg(args, Tokens::optionalArgDefinition).isEmpty();
 
-				ltxCommands.possibleCommands["user"].insert(firstArg);
+                ltxCommands.possibleCommands["user"].insert(cmdName);
 
-				if (!removedUserCommands.removeAll(firstArg)) {
-					addedUserCommands << firstArg;
+                if (!removedUserCommands.removeAll(cmdName)) {
+                    addedUserCommands << cmdName;
 				}
 
 				for (int j = 0; j < optionCount; j++) {
 					if (j == 0) {
 						if (!def)
-							firstArg.append("{%<arg1%|%>}");
+                            cmdName.append("{%<arg1%|%>}");
 						else
-							firstArg.append("[%<opt. arg1%|%>]");
+                            cmdName.append("[%<opt. arg1%|%>]");
 					} else
-						firstArg.append(QString("{%<arg%1%>}").arg(j + 1));
+                        cmdName.append(QString("{%<arg%1%>}").arg(j + 1));
 				}
-				CodeSnippet cs(firstArg);
-				if (cmdName.subtype == Tokens::defWidth)
+                CodeSnippet cs(cmdName);
+                if (isDefWidth)
 					cs.type = CodeSnippet::length;
 				mUserCommandList.insert(line(i).handle(), cs);
 				// remove obsolete Overlays (maybe this can be refined

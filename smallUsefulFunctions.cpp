@@ -2573,6 +2573,31 @@ bool addMostRecent(const QString &item, QStringList &mostRecentList, int maxLeng
 	return changed;
 }
 
+QString getArg(const TokenList &tl, Tokens::TokenType type){
+    for (int i = 0; i < tl.length(); i++) {
+        Tokens tk = tl.at(i);
+
+        if (tk.subtype==type) {
+            QString result;
+            QString line=tk.getText();
+            if (Tokens::tkBraces().contains(tk.type)) {
+                result = line.mid(1, line.length() - 2);
+            }
+            if (Tokens::tkOpen().contains(tk.type)) {
+                result = line.mid( 1) + findRestArg(tk.dlh, Tokens::opposite(tk.type), 5);
+            }
+            if (Tokens::tkClose().contains(tk.type)) {
+                result = line.left(line.length()-1);
+            }
+            if (result.isEmpty()) {
+                result = line;
+            }
+            return result;
+        }
+    }
+    return QString();
+}
+
 QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type)
 {
 	// argNumber 0 -> first argument

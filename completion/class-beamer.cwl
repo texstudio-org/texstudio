@@ -171,8 +171,8 @@
 \usebeamertemplate***{element name}
 \ifbeamertemplateempty{beamer template name}{executed if empty}{executed otherwise}
 \expandbeamertemplate{beamer template name}
-\setbeamertemplate{element name}[predefined option]{args}
-\setbeamertemplate{element name}{args}
+\setbeamertemplate{element name}[predefined option]{arguments}
+\setbeamertemplate{element name}{arguments}
 \addtobeamertemplate{element name}{pre-text}{post-text}
 \defbeamertemplate<mode specification>*{element name}{predefined option}[argument number][default optional argument]{predefined text}[action]{action command}
 \defbeamertemplate<mode specification>*{element name}{predefined option}[default optional argument]{predefined text}[action]{action command}

@@ -358,6 +358,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config = 
 class QDocumentLineHandle;
 
 QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
+QString getArg(const TokenList &tl,Tokens::TokenType type);
 QString findRestArg(QDocumentLineHandle *dlh, Tokens::TokenType type, int count = 10);
 CommandDescription extractCommandDef(QString line, QString definition);
 CommandDescription extractCommandDefKeyVal(QString line, QString &key);
