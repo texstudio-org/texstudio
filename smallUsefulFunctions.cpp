@@ -2089,6 +2089,8 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				}
 				package.commandDescriptions.insert(cmd, cd);
 
+				valid.remove('N'); // remove newtheorem declaration
+
 
 				if (keywords.contains(rxCom2.cap(2))) {
 					package.optionCommands << rxCom2.cap(1);
@@ -2872,6 +2874,9 @@ CommandDescription extractCommandDef(QString line, QString definition)
 			type = Tokens::labelRef;
 			if (command == "\\label")
 				type = Tokens::label;
+		}
+		if((def=="envname"||def=="environment name") && definition.contains('N')){
+		    type=Tokens::newTheorem;
 		}
         if (def == "label"||def=="%<label%>") {
 			//reference with keyword label

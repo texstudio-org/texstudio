@@ -1497,6 +1497,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>placement</code> and <code>position</code>:position of env</li>
   <li><code>beamertheme</code>:beamer theme, e.g. \usebeamertheme{beamertheme}</li>
   <li><code>keys</code>,<code>keyvals</code> and <code>%&lt;options%&gt;</code>:key/value list</li>
+  <li><code>envname</code>:environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
 </ul>
 </p>
 <h3>4.13.3 Classification format</h3>
@@ -1523,6 +1524,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>B</td><td>this command declares a color (will be used for color completion only, no syntax checking)</td></tr>
   <tr><td>s</td><td>this command declares a special definition, the definition class is given after a "#". The class name needs a preceding %. (e.g. %color), also see the examples below.</td></tr>
   <tr><td>V</td><td>this command declares a verbatim-like environment "\begin{Verbatim}"</td></tr>
+  <tr><td>N</td><td>this command declares a newtheorem-like command like "\newtheorem{envname}"</td></tr>
   <tr><td>/env1,env2,...</td><td>valid only in environment env1 or env2 etc.</td></tr>
   <tr><td>\env</td><td>environment alias, means that the environment is handled like the "env" environment. This is useful for env=math or tabular.</td></tr>
 </table>
