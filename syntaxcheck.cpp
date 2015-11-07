@@ -816,7 +816,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				newRanges.append(elem);
 			}
 		}
-        /*if (tk.type >= Tokens::specialArg) {
+        if (tk.type == Tokens::specialArg) {
 			QString value = line.mid(tk.start, tk.length);
 			QString special = ltxCommands->mapSpecialArgs.value(int(tk.type - Tokens::specialArg));
 			if (!ltxCommands->possibleCommands[special].contains(value)) {
@@ -825,7 +825,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				elem.type = ERR_unrecognizedKey;
 				newRanges.append(elem);
 			}
-        }*/
+        }
 		if (tk.type == Tokens::keyVal_key) {
 			// special treatment for key val checking
 			QString command = getCommandFromToken(tk);
