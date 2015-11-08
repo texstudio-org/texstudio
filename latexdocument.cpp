@@ -615,6 +615,15 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                 }
                 continue;
             }
+            /// bibitem ///
+            if (tk.type==Tokens::newBibItem && tk.length>0) {
+                ReferencePair elem;
+                elem.name = tk.getText();
+                elem.start = tk.start;
+                mBibItem.insert(line(i).handle(), elem);
+                bibItemsChanged = true;
+                continue;
+            }
 			// work on general commands
 			if (tk.type != Tokens::command && tk.type != Tokens::commandUnknown)
 				continue; // not a command
@@ -814,24 +823,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 					}
 				}
 			}
-			/// bibitem ///
-			if (lp.possibleCommands["%bibitem"].contains(cmd)) {
-				if (!firstArg.isEmpty() && !isDefinitionArgument(firstArg)) {
-					ReferencePair elem;
-					elem.name = firstArg;
-					int optionStart = 0;
-					for (int j = 0; j < args.length(); j++) {
-						if (args[j].type == Tokens::braces) {
-							optionStart = args[j].start;
-							break;
-						}
-					}
-					elem.start = optionStart;
-					mBibItem.insert(line(i).handle(), elem);
-					bibItemsChanged = true;
-					continue;
-				}
-			}
+
 			///usepackage
 			if (lp.possibleCommands["%usepackage"].contains(cmd)) {
 				completerNeedsUpdate = true;

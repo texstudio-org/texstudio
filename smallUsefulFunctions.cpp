@@ -2851,6 +2851,9 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		if (def == "args") {
 			type = Tokens::defArgNumber;
 		}
+		if (def == "citekey") {
+			type = Tokens::newBibItem;
+		}
 		if (def == "default") {
 			type = Tokens::optionalArgDefinition;
 		}
@@ -2889,7 +2892,7 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		if (def == "beamertheme") {
 			type = Tokens::beamertheme;
 		}
-		if (def == "citekey" || def == "keylist" || def == "bibid") {
+		if (def == "keylist" || def == "bibid") {
 			type = Tokens::bibItem;
 		}
 		if (def == "placement" || def == "position") {
