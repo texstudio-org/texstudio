@@ -3054,11 +3054,12 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 		if (Tokens::tkOpen().contains(tk.type)) {
 			stack.push(tk);
 		}
-		if (Tokens::tkClose().contains(tk.type) && !stack.isEmpty()) {
-			if (stack.top().type == Tokens::opposite(tk.type)) {
+        if (Tokens::tkClose().contains(tk.type) && !stack.isEmpty() ) {
+            if (stack.top().type == Tokens::opposite(tk.type) && (tk.start<pos)) {
 				stack.pop();
 			}
-		}
+            continue;
+        }
 
 
 
@@ -3148,7 +3149,21 @@ QString getCommandFromToken(Tokens tk)
 	QString cmd;
 	QDocumentLineHandle *dlh = tk.dlh;
 	if (dlh) {
-		TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        TokenList tl;
+        QDocument *doc = dlh->document();
+        int lineNr = doc->indexOf(dlh);
+        if (lineNr > 0) {
+            QDocumentLineHandle *previous = doc->line(lineNr - 1).handle();
+            TokenStack stack=previous->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+            if(!stack.isEmpty()){
+                Tokens tk_group=stack.top();
+                if(tk_group.dlh){
+                    tl<< tk_group.dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+                }
+            }
+        }
+        tl<< dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+
 		Tokens result = getCommandTokenFromToken(tl, tk);
 		if (result.type == Tokens::command) {
 			cmd = result.getText();

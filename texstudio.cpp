@@ -4325,7 +4325,7 @@ void Texstudio::normalCompletion()
 	Tokens::TokenType type = tk.type;
 	if (tk.subtype != Tokens::none)
 		type = tk.subtype;
-	if (type >= Tokens::specialArg) {
+    if (type == Tokens::specialArg) {
 		int df = int(type - Tokens::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
