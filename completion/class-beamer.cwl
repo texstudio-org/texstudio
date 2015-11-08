@@ -321,10 +321,10 @@
 \AtBeginLecture{text}
 \tableofcontents[comma-separated option list]
 \tableofcontents
-\bibitem<overlay specification>[citation text]{label name}
-\bibitem<overlay specification>{label name}
-\bibitem[citation text]{label name}
-\bibitem{label name}
+\bibitem<overlay specification>[citation text]{citekey}
+\bibitem<overlay specification>{citekey}
+\bibitem[citation text]{citekey}
+\bibitem{citekey}
 \appendix<mode specification>
 \appendix
 \hypertarget<overlay specification>{target name}{text}
