@@ -2443,7 +2443,18 @@ void LatexPackage::unite(LatexPackage &add, bool forCompletion)
 			if (cd_neu.args > cd.args) {
 				//simple selection criteria
 				commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
-			}
+            }else{
+                // when same number of args (>0), general arg is considered inferior
+                if( (cd_neu.args==cd.args) && (cd.args>0)){
+                    bool override=true;
+                    for(int i=0;i<cd.args;i++){
+                        if(cd_neu.argTypes.at(i)==Tokens::generalArg)
+                            override=false;
+                    }
+                    if(override)
+                        commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
+                }
+            }
 		} else {
 			commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
 		}
