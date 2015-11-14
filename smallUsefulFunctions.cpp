@@ -2456,6 +2456,10 @@ void LatexPackage::unite(LatexPackage &add, bool forCompletion)
                                 if(cd_neu.argTypes.at(i)==Tokens::generalArg)
                                     override=false;
                             }
+                            for(int i=0;i<cd.optionalArgs;i++){
+                                if(cd_neu.optTypes.at(i)==Tokens::generalArg)
+                                    override=false;
+                            }
                             if(override)
                                 commandDescriptions.insert(elem, add.commandDescriptions.value(elem));
                         }
