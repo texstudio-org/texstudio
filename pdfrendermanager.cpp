@@ -289,10 +289,8 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 					pageNr = pageNr + kMaxPageZoom;
 				CachePixmap *image = new CachePixmap(img);
 				image->setRes(xres, x, y);
-				int cost = qRound(xres * xres / 10000.0);
-				if (cost < 1)
-					cost = 1;
-				renderedPages.insert(pageNr, image, cost);
+				int sizeInMB = qCeil(image->width() * image->height() * image->depth() / 8388608.0);  // 8(bits depth -> bytes) * 1024**2 (bytes -> MB)
+				renderedPages.insert(pageNr, image, sizeInMB);
 			}
 		}
 		if (!cache && x > -1 && y > -1 && w > -1 && h > -1) {
@@ -378,7 +376,7 @@ void PDFRenderManager::addToCache(QImage img, int pageNr, int ticket)
 					pageNr = pageNr + kMaxPageZoom;
 				CachePixmap *image = new CachePixmap(QPixmap::fromImage(img));
 				image->setRes(info.xres, info.x, info.y);
-				int sizeInMB = qCeil(image->width() * image->height() * image->depth() / 8388608.0);
+				int sizeInMB = qCeil(image->width() * image->height() * image->depth() / 8388608.0);  // 8(bits depth -> bytes) * 1024**2 (bytes -> MB)
 				renderedPages.insert(pageNr, image, sizeInMB);
 			}
 			if (info.obj) {
