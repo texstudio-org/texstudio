@@ -994,8 +994,11 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (latexLikeChecking) {
 			StackEnvironment env;
 			getEnv(i, env);
-			QDocumentLineHandle *lastHandle = line(i - 1).handle();
+            QDocumentLineHandle *lastHandle = 0;
 			TokenStack oldRemainder;
+            if(i>0){
+                lastHandle=line(i - 1).handle();
+            }
 			if (lastHandle) {
 				oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
 			}
