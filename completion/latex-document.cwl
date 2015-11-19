@@ -51,7 +51,7 @@
 \begin{large}
 \begin{list}{label}{spacing}
 \begin{lrbox}
-\begin{math}
+\begin{math}#\math
 \begin{matrix}#m\array
 \begin{minipage}[position]{width}
 \begin{minipage}{width}
