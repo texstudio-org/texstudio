@@ -1080,7 +1080,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		emit updateCompleter();
 
 
-	if (!recheck && (updateSyntaxCheck || updateLtxCommands)) {
+    if ((!recheck && updateSyntaxCheck) || updateLtxCommands) {
 		this->updateLtxCommands(true);
 	}
 

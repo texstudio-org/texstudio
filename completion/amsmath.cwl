@@ -44,8 +44,8 @@
 \dbinom{above}{below}#m
 \ddddot{text}
 \dddot{text}
-\DeclareMathOperator{command}{text}#nd
-\DeclareMathOperator*{command}{text}#nd
+\DeclareMathOperator{command}{definition}#nd
+\DeclareMathOperator*{command}{definition}#nd
 \dfrac{%<num%:translatable%>}{%<den%:translatable%>}#m
 \displaybreak
 \displaybreak[value]
