@@ -99,14 +99,9 @@ HEADERS += texstudio.h \
     tests/latexcompleter_t.h \
     tests/qdocumentline_t.h \
     userquickdialog.h \
-    PDFDocument.h \
-    PDFDocks.h \
     synctex_parser_utils.h \
     synctex_parser.h \
     latexstyleparser.h \
-    pdfrenderengine.h \
-    pdfrendermanager.h \
-    PDFDocument_config.h \
     scriptobject.h \
     directoryreader.h \
     insertgraphics_config.h \
@@ -139,8 +134,6 @@ HEADERS += texstudio.h \
     tests/help_t.h \
     titledpanel.h \
     latexlogwidget.h \
-    pdfannotationdlg.h \
-    pdfannotation.h \
     kpathseaParser.h \
     tests/latexoutputfilter_t.h \
     sessionlist.h \
@@ -204,11 +197,7 @@ SOURCES += main.cpp \
     tests/latexcompleter_t.cpp \
     tests/qdocumentline_t.cpp \
     userquickdialog.cpp \
-    PDFDocument.cpp \
-    PDFDocks.cpp \
     latexstyleparser.cpp \
-    pdfrenderengine.cpp \
-    pdfrendermanager.cpp \
     scriptobject.cpp \
     directoryreader.cpp \
     diff/diff_match_patch.cpp \
@@ -237,8 +226,6 @@ SOURCES += main.cpp \
     usermacro.cpp \
     titledpanel.cpp \
     latexlogwidget.cpp \
-    pdfannotationdlg.cpp \
-    pdfannotation.cpp \
     kpathseaParser.cpp \
     tests/latexoutputfilter_t.cpp \
     sessionlist.cpp \
@@ -272,11 +259,9 @@ FORMS += filechooser.ui \
     bibtexdialog.ui \
     findGlobalDialog.ui \
     userquickdialog.ui \
-    PDFDocument.ui \
     cleandialog.ui \
     maketemplatedialog.ui \
     texdocdialog.ui \
-    pdfannotationdlg.ui \
     pdfsplittool.ui
 TRANSLATIONS += texstudio_cs.ts \
     texstudio_en.ts \
@@ -493,6 +478,7 @@ include(qcodeedit/qcodeedit.pri)
 DEFINES += QUAZIP_STATIC
 include(quazip/quazip/quazip.pri)
 
+include(pdfviewer/pdfviewer.pri)
 
 # ###############################
 
@@ -550,71 +536,6 @@ freebsd-* {
     LIBS += -lexecinfo
 }
 
-# ################################
-# Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
-isEmpty(NO_POPPLER_PREVIEW) {
-    !win32 {
-	macx { # PATH to pkgconfig needs to be present in build PATH
-	    QT_CONFIG -= no-pkg-config
-	}
-	poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
-
-	CONFIG += link_pkgconfig
-	PKGCONFIG += $${poppler_qt_pkg}
-	system(pkg-config --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
-    } else: {
-	!greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
-	   # unix:!macx {
-	   #
-	   #     INCLUDEPATH += /usr/include/poppler/qt4
-	   #     LIBS += -L/usr/lib \
-	   #         -lpoppler-qt4 \
-	   #         -lz
-	   # }
-	   # macx {
-	   #     INCLUDEPATH += /usr/local/include/poppler/qt4
-	   #     LIBS += -L/usr/lib \
-	   #         -L/usr/local/lib \
-	   #         -lpoppler-qt4 \
-	   #         -lz
-	   # }
-	    win32 {
-	       INCLUDEPATH  += ./include_win32
-	       LIBS += ./zlib1.dll \
-		   ./libpoppler-qt4.dll \
-
-	       DEFINES += HAS_POPPLER_24
-	    }
-	  }else:{ # Qt5
-	    #unix:!macx {
-	    #
-	#	INCLUDEPATH += /usr/include/poppler/qt5
-	 #       LIBS += -L/usr/lib \
-	#	     -L/usr/include/poppler/lib \
-	 #           -lpoppler-qt5 \
-	  #          -lz
-	   # }
-	    #macx {
-	    #    INCLUDEPATH += /usr/local/include/poppler/qt5
-	    #   LIBS += -L/usr/lib \
-	    #        -L/usr/local/lib \
-	    #       -lpoppler-qt5 \
-	    #        -lz
-	    #}
-	    win32 {
-		INCLUDEPATH  += ./include_win32_qt5
-		LIBS += ./zlib1.dll \
-			./libpoppler-qt5.dll
-
-		DEFINES += HAS_POPPLER_24
-	    }
-	}
-    }
-}
-!isEmpty(NO_POPPLER_PREVIEW) {
-    DEFINES += NO_POPPLER_PREVIEW
-    message("Internal pdf previewer disabled as you wish.")
-}
 !isEmpty(NO_CRASH_HANDLER) {
     DEFINES += NO_CRASH_HANDLER
     message("Internal crash handler disabled as you wish.")
