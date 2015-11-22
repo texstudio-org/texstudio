@@ -72,10 +72,17 @@
 
 const QString APPICON(":appicon");
 
-
 bool programStopped = false;
 Texstudio *txsInstance = 0;
 QCache<QString, QIcon> iconCache;
+
+// workaround needed on OSX due to https://bugreports.qt.io/browse/QTBUG-49576
+void hideSplash() {
+#ifdef Q_OS_MAC
+	if (txsInstance)
+		txsInstance->hideSplash();
+#endif
+}
 
 Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
 	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false)
