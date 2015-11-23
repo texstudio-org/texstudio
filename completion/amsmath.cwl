@@ -37,6 +37,7 @@
 \begin{xalignat*}
 \begin{xxalignat}
 \binom{above}{below}#m
+\bmod#m
 \boldsymbol{argument}#m
 \boxed{argument}
 \cfrac[align]{%<num%:translatable%>}{%<den%:translatable%>}#m
@@ -96,7 +97,7 @@
 \lvert
 \lVert
 \medspace
-\mod{value}
+\mod#
 \mspace{dimen}
 \negmedspace
 \negthickspace
@@ -107,7 +108,8 @@
 \operatornamewithlimits{name}
 \overleftrightarrow{argument}
 \overset{superscript}{argument}
-\pod{value}
+\pmod#m
+\pod#m
 \raisetag{dimen}
 \rvert
 \rVert
