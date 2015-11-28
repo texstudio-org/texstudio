@@ -356,23 +356,30 @@ QString latexToPlainWordwithReplacementList(const QString &word, QMap<QString, Q
 {
 	QString result;
 	QString w = latexToPlainWord(word);
-	if (replacementList.isEmpty())
-		return w;
-	while (!w.isEmpty()) {
-		bool replaced = false;
-		foreach (const QString elem, replacementList.keys()) {
-			if (w.startsWith(elem)) {
-				result.append(replacementList.value(elem));
-				w = w.mid(elem.length());
-				replaced = true;
-				break;
-			}
-		}
-		if (!replaced) {
-			result.append(w.left(1));
-			w = w.mid(1);
-		}
-	}
+    if (!replacementList.isEmpty()){
+        while (!w.isEmpty()) {
+            bool replaced = false;
+            foreach (const QString elem, replacementList.keys()) {
+                if (w.startsWith(elem)) {
+                    result.append(replacementList.value(elem));
+                    w = w.mid(elem.length());
+                    replaced = true;
+                    break;
+                }
+            }
+            if (!replaced) {
+                result.append(w.left(1));
+                w = w.mid(1);
+            }
+        }
+    }else{
+        result=w;
+    }
+    // remove leading and trailing "
+    if(result.startsWith("\""))
+        result=result.mid(1);
+    if(result.endsWith("\""))
+        result.chop(1);
 	return result;
 }
 
