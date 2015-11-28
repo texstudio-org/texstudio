@@ -957,6 +957,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
 		if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
 		if (mBeyondEnd && indexOf(mBeyondEnd) < i) newSection->setContext(StructureEntry::BeyondEnd);
+        QString firstOptArg = getArg(args, dlh, 0, ArgumentList::Optional);
+        if(!firstOptArg.isEmpty())
+            firstArg=firstOptArg;
 		newSection->title = parseTexOrPDFString(firstArg);
 		newSection->level = level;
 		newSection->setLine(line(i).handle(), i);
