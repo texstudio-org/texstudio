@@ -417,12 +417,14 @@ public:
 	QString findPackageByCommand(const QString command);
 	void enablePatch(const bool enable);
 	bool patchEnabled();
+	void requestQNFAupdate();
 
 signals:
 	void masterDocumentChanged(LatexDocument *masterDocument);
 	void aboutToDeleteDocument(LatexDocument *document);
 	void docToLoad(QString filename);
 	void docToHide(LatexEditorView *edView);
+	void updateQNFA();
 
 private slots:
 	void bibTeXFilesNeedUpdate();

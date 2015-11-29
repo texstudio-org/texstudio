@@ -168,9 +168,9 @@
 \cal
 \caption{text}
 \caption[short text]{text}
-\chapter{title}
-\chapter*{title}
-\chapter[short title]{title}
+\chapter{title}#L1
+\chapter*{title}#L1
+\chapter[short title]{title}#L1
 \chaptermark{code}#*
 \chaptername{name}#*
 \cite{keylist}#c
@@ -353,16 +353,16 @@
 \pageref{key}
 \pagestyle{option}
 \pagetotal
-\paragraph*{title}
-\paragraph[short title]{title}
+\paragraph*{title}#L4
+\paragraph[short title]{title}#L4
 \paragraphmark
-\paragraph{title}
+\paragraph{title}#L4
 \parbox[position]{width}{text}
 \parbox{width}{text}
-\part*{title}
-\part[short title]{title}
+\part*{title}#L0
+\part[short title]{title}#L0
 \partname{name}
-\part{title}
+\part{title}#L0
 \pdfinfo{info}
 \plus
 \poptabs#T
@@ -389,9 +389,9 @@
 \sc#*
 \scriptsize
 \scshape
-\section{title}
-\section*{title}
-\section[short title]{title}
+\section{title}#L2
+\section*{title}#L2
+\section[short title]{title}#L2
 \sectionmark{code}#*
 \selectfont
 \setlength{cmd}{length}
@@ -410,19 +410,19 @@
 \stepcounter{counter}
 \stop
 \subitem
-\subparagraph*{title}
-\subparagraph[short title]{title}
+\subparagraph*{title}#L5
+\subparagraph[short title]{title}#L5
 \subparagraphmark{code}
-\subparagraph{title}
-\subsection{title}
-\subsection*{title}
-\subsection[short title]{title}
+\subparagraph{title}#L5
+\subsection{title}#L3
+\subsection*{title}#L3
+\subsection[short title]{title}#L3
 \subsectionmark{code}
 \subsubitem
-\subsubsection*{title}
-\subsubsection[short title]{title}
+\subsubsection*{title}#L4
+\subsubsection[short title]{title}#L4
 \subsubsectionmark{code}
-\subsubsection{title}
+\subsubsection{title}#L4
 \suppressfloats
 \suppressfloats[placement]
 \symbol{n}

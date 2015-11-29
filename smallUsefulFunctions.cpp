@@ -10,6 +10,8 @@ const QString Punctation = "!():\"?,.;-";
 const QString EscapedChars = "%&_";
 const QString CharacterAlteringChars = "\"'^`";
 
+const int LatexParser::MAX_STRUCTURE_LEVEL = 6;
+
 LatexParser *LatexParserInstance = 0;
 
 LatexParser::LatexParser()
@@ -887,7 +889,8 @@ void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QS
 }
 
 // adds entries for structure commands to the Dom of a QNFA file
-void addStructureCommandsToDom(QDomDocument &doc , const QList<QStringList> &structureCommandLists)
+// commands are taken from possibleCommands["%structure0"] to possibleCommands["%structureN"]
+void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QString> > &possibleCommands)
 {
 	QDomElement root = doc.documentElement();
 
@@ -898,13 +901,20 @@ void addStructureCommandsToDom(QDomDocument &doc , const QList<QStringList> &str
 			break;
 		}
 	}
+	if (parent.isNull()) {
+		return;
+	}
 
-	for (int level = 0; level < structureCommandLists.length(); level++) {
-		foreach (const QString &cmd, structureCommandLists[level]) {
+	while (!parent.firstChild().isNull()) {
+		parent.removeChild(parent.firstChild());
+	}
+
+	for (int level = 0; level <= LatexParser::MAX_STRUCTURE_LEVEL; level++) {
+		foreach (const QString &cmd, possibleCommands[QString("%structure%1").arg(level)]) {
 			QDomElement child = doc.createElement("word");
 			QString name = cmd;
 			name.remove('\\');
-			child.setAttribute("parenthesis", QString("%1:boundary@nomatch").arg(name));
+			child.setAttribute("parenthesis", QString("structure%1:boundary@nomatch").arg(level));
 			child.setAttribute("parenthesisWeight", QString("%1").arg(8 - level));
 			child.setAttribute("fold", "true");
 			name = cmd;
@@ -992,8 +1002,10 @@ QString LatexParser::removeOptionBrackets(const QString &option)
 
 int LatexParser::structureCommandLevel(const QString &cmd) const
 {
-	for (int i = 0; i < structureCommandLists.length(); i++) {
-		if (structureCommandLists[i].contains(cmd)) return i;
+	for (int i=0; i<=MAX_STRUCTURE_LEVEL; i++) {
+		if (possibleCommands[QString("%structure%1").arg(i)].contains(cmd)) {
+			return i;
+		}
 	}
 	return -1;
 }
@@ -1964,9 +1976,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 		QString line;
 		QTextStream stream(&tagsfile);
 		stream.setCodec("UTF-8");
-		QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");
-		QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");
-		QRegExp rxCom3("^(\\\\\\w+\\*?)");
+		QRegExp rxCom("^(\\\\\\w+\\*?)(\\[.+\\])*\\{(.*)\\}");  // expression for \cmd[opt]{arg} (cmd may be starred, [opt] can appear arbitrary often)
+		QRegExp rxCom2("^(\\\\\\w+\\*?)\\[(.+)\\]");            // expression for \cmd[opt]      (cmd may be starred)
+		QRegExp rxCom3("^(\\\\\\w+\\*?)");                      // expression for \cmd           (cmd may be starred)
 		rxCom.setMinimal(true);
 		QStringList keywords;
 		keywords << "text" << "title" << "%<text%>" << "%<title%>";
@@ -2126,6 +2138,39 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 						package.possibleCommands["%ref"] << rxCom.cap(1);
 					}
 					valid.remove('r');
+				}
+				if (valid.contains('L')) {
+					if (valid.contains("L0")) {
+						valid.remove("L0");
+						if (res > -1) {
+							package.possibleCommands["%structure0"] << rxCom.cap(1);
+						}
+					} else if (valid.contains("L1")) {
+						valid.remove("L1");
+						if (res > -1) {
+							package.possibleCommands["%structure1"] << rxCom.cap(1);
+						}
+					} else if (valid.contains("L2")) {
+						valid.remove("L2");
+						if (res > -1) {
+							package.possibleCommands["%structure2"] << rxCom.cap(1);
+						}
+					} else if (valid.contains("L3")) {
+						valid.remove("L3");
+						if (res > -1) {
+							package.possibleCommands["%structure3"] << rxCom.cap(1);
+						}
+					} else if (valid.contains("L4")) {
+						valid.remove("L4");
+						if (res > -1) {
+							package.possibleCommands["%structure4"] << rxCom.cap(1);
+						}
+					} else if (valid.contains("L5")) {
+						valid.remove("L5");
+						if (res > -1) {
+							package.possibleCommands["%structure5"] << rxCom.cap(1);
+						}
+					}
 				}
 				if (valid.contains('V')) { // verbatim command
 					if (res > -1) {
