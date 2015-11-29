@@ -3011,12 +3011,15 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	bool needQNFAupdate = false;
 	for (int i=0; i<latexParser.MAX_STRUCTURE_LEVEL; i++) {
 		QString elem = QString("%structure%1").arg(i);
+		if (ltxCommands.possibleCommands[elem] != latexParser.possibleCommands[elem]) {
+			qDebug() <<  "level change" << i;
+			needQNFAupdate = true;
+		}
 		QStringList cmds = ltxCommands.possibleCommands[elem].values();
 		foreach (const QString cmd, cmds) {
 			if (!latexParser.possibleCommands[elem].contains(cmd) || forceLabelUpdate) {
 				newCmds << cmd;
 				latexParser.possibleCommands[elem] << cmd;
-				needQNFAupdate = true;
 			}
 		}
 	}
