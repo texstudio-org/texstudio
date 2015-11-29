@@ -911,6 +911,7 @@ void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QSt
 
 	for (int level = 0; level <= LatexParser::MAX_STRUCTURE_LEVEL; level++) {
 		foreach (const QString &cmd, possibleCommands[QString("%structure%1").arg(level)]) {
+			qDebug() << level << cmd;
 			QDomElement child = doc.createElement("word");
 			QString name = cmd;
 			name.remove('\\');
