@@ -728,6 +728,7 @@ QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posB
 		start = end + 1;
 		if (posBehind) *posBehind = start;
 		if (start >= line.length() || !cbs.contains(line[start])) break; // close on last char or last option reached
+		else oc = line[start];
 	}
 	return options;
 }
