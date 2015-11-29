@@ -155,7 +155,7 @@ QList<int> indicesOf(const QString &line, const QRegExp &rx);
 
 // add Environment to QNFA DOM
 void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QString &EnvironMode);
-void addStructureCommandsToDom(QDomDocument &doc , const QList<QStringList> &structureCommandLists);
+void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QString> > &possibleCommands);
 
 QString intListToStr(const QList<int> &ints);
 QList<int> strToIntList(const QString &s);
@@ -213,6 +213,8 @@ public:
 	~LatexParser();
 	void init();
 
+	static const int MAX_STRUCTURE_LEVEL;
+	
 	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics, Package, Keyval, KeyvalValue, OptionEx, ArgEx};
 	// could do with some generalization as well, optionEx/argEx -> special treatment with specialOptionCommands
 	// realizes whether col is in a \command or in a parameter {}
@@ -233,11 +235,9 @@ public:
 	QSet<QString> mathStartCommands;
 	QSet<QString> mathStopCommands;
 	QSet<QString> customCommands;
-	QStringList structureCommands;
-	QList<QStringList> structureCommandLists;  // a list for each level. 0:\part,\mypart 1:\chapter,\mychapter 2:\section ... 5:paragraph
 	int structureDepth()
 	{
-		return structureCommandLists.length();
+		return MAX_STRUCTURE_LEVEL;
 	}
 	int structureCommandLevel(const QString &cmd) const;
 	QMultiHash<QString, QString> packageAliases; // aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc

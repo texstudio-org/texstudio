@@ -165,6 +165,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	connect(grammarCheck, SIGNAL(checked(const void *, const void *, int, QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void *, const void *, int, QList<GrammarError>)));
 	if (configManager.autoLoadChildren)
 		connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
+	connect(&documents, SIGNAL(updateQNFA()), this, SLOT(updateTexQNFA()));
 
 	grammarCheckThread.start();
 
@@ -3877,27 +3878,6 @@ void Texstudio::readSettings(bool reread)
 
 	documents.model->setSingleDocMode(config->value("StructureView/SingleDocMode", false).toBool());
 
-	QList<QStringList> defaults = QList<QStringList>()
-	                              << (QStringList() << "\\part")
-	                              << (QStringList() << "\\chapter")
-	                              << (QStringList() << "\\section")
-	                              << (QStringList() << "\\subsection")
-	                              << (QStringList() << "\\subsubsection")
-	                              << (QStringList() << "\\paragraph" << "\\frametitle")
-	                              << (QStringList() << "\\subparagraph");
-	latexParser.structureCommandLists.clear();
-	for (int level = 0; level < defaults.length(); level++) {
-		QStringList cmds = config->value("Structure/Structure Level " + QString::number(level + 1)).toStringList();
-		if (!cmds.isEmpty()) {
-			for (int i = 0; i < cmds.length(); i++) {
-				if (!cmds[i].startsWith("\\")) cmds[i].prepend("\\");
-			}
-			latexParser.structureCommandLists << cmds;
-		} else {
-			latexParser.structureCommandLists << defaults[level];
-		}
-	}
-
 	spellerManager.setIgnoreFilePrefix(configManager.configFileNameBase);
 	spellerManager.setDictPaths(configManager.parseDirList(configManager.spellDictDir));
 	spellerManager.setDefaultSpeller(configManager.spellLanguage);
@@ -5249,7 +5229,6 @@ void Texstudio::createLabelFromAction()
 
 	// find editor and line nr
 	int lineNr = entry->getRealLineNumber();
-	int level = entry->level;
 
 	mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
 	LatexEditorView *edView = entry->document->getEditorView();
@@ -5267,15 +5246,18 @@ void Texstudio::createLabelFromAction()
 	// find column position after structure command
 	QString lineText = edView->getDocument()->line(lineNr).text();
 	int pos = -1;
-	Q_ASSERT(level < latexParser.structureCommandLists.length());
-	foreach (const QString &cmd, latexParser.structureCommandLists[level]) {
-		pos = lineText.indexOf(cmd);
-		if (pos >= 0) {
-			pos += cmd.length();
-			// workaround for starred commands: \section*{Cap}
-			if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
-			break;
+	for (int i=0; i<latexParser.structureDepth(); i++) {
+		foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
+			pos = lineText.indexOf(cmd);
+			if (pos >= 0) {
+				pos += cmd.length();
+				// workaround for starred commands: \section*{Cap}
+				// (may have been matched by unstarred version because there is no order in possibleCommands)
+				if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
+				break;
+			}
 		}
+		if (pos >= 0) break;
 	}
 	if (pos < 0) return; // could not find associated command
 
@@ -9368,6 +9350,7 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 
 void Texstudio::updateTexQNFA()
 {
+	qDebug() << "qnfa update";
 	QLanguageFactory::LangData m_lang = m_languages->languageData("(La)TeX");
 
 	QFile f(configManager.configBaseDir + "languages/tex.qnfa");
@@ -9392,7 +9375,7 @@ void Texstudio::updateTexQNFA()
 		addEnvironmentToDom(doc, env, envMode);
 	}
 	// structure commands
-	addStructureCommandsToDom(doc, latexParser.structureCommandLists);
+	addStructureCommandsToDom(doc, latexParser.possibleCommands);
 
 	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
 	oldLaTeX = m_lang.d;

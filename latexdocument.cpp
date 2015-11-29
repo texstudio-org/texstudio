@@ -3008,6 +3008,21 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 			}
 		}
 	}
+	bool needQNFAupdate = false;
+	for (int i=0; i<latexParser.MAX_STRUCTURE_LEVEL; i++) {
+		QString elem = QString("%structure%1").arg(i);
+		QStringList cmds = ltxCommands.possibleCommands[elem].values();
+		foreach (const QString cmd, cmds) {
+			if (!latexParser.possibleCommands[elem].contains(cmd) || forceLabelUpdate) {
+				newCmds << cmd;
+				latexParser.possibleCommands[elem] << cmd;
+				needQNFAupdate = true;
+			}
+		}
+	}
+	if (needQNFAupdate) {
+		parent->requestQNFAupdate();
+	}
 
 	if (!newCmds.isEmpty()) {
 		patchLinesContaining(newCmds);
@@ -3242,6 +3257,10 @@ void LatexDocuments::enablePatch(const bool enable)
 bool LatexDocuments::patchEnabled()
 {
 	return m_patchEnabled;
+}
+
+void LatexDocuments::requestQNFAupdate() {
+	emit updateQNFA();
 }
 
 QString LatexDocuments::findPackageByCommand(const QString command)
