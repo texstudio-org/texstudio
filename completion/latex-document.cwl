@@ -155,7 +155,7 @@
 \big[%|\big]
 \big|%|\big|
 \Bigg
-\Bigg(%|\bigg)
+\Bigg(%|\Bigg)
 \Bigg[%|\Bigg]
 \Bigg|%|\Bigg|
 \bigg
