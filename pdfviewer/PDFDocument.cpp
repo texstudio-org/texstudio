@@ -4026,6 +4026,13 @@ void PDFDocument::showToolbars()
 void PDFDocument::setToolbarIconSize(int sz)
 {
 	toolBar->setIconSize(QSize(sz, sz));
+	// statusbar
+	foreach (QObject *c, statusbar->children()) {
+		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
+		if (bt) {
+			bt->setIconSize(QSize(sz, sz));
+		}
+	}
 }
 
 void PDFDocument::showMessage(const QString &text)
