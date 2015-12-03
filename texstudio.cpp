@@ -1289,6 +1289,7 @@ void Texstudio::createStatusBar()
 	QStatusBar *status = statusBar();
 	status->setContextMenuPolicy(Qt::PreventContextMenu);
 
+	QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
 	QAction *act;
 	QToolButton *tb;
 	act = getManagedAction("main/view/structureview");
@@ -1298,6 +1299,7 @@ void Texstudio::createStatusBar()
 		tb->setChecked(act->isChecked());
 		tb->setAutoRaise(true);
 		tb->setIcon(act->icon());
+		tb->setIconSize(iconSize);
 		tb->setToolTip(act->toolTip());
 		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
 		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
@@ -1310,6 +1312,7 @@ void Texstudio::createStatusBar()
 		tb->setChecked(act->isChecked());
 		tb->setAutoRaise(true);
 		tb->setIcon(act->icon());
+		tb->setIconSize(iconSize);
 		tb->setToolTip(act->toolTip());
 		connect(tb, SIGNAL(clicked()), act, SLOT(trigger()));
 		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
@@ -1379,9 +1382,9 @@ void Texstudio::createStatusBar()
 	status->addPermanentWidget(statusLabelMode, 0);
 	for (int i = 1; i <= 3; i++) {
 		QPushButton *pb = new QPushButton(getRealIcon(QString("bookmark%1").arg(i)), "", status);
+		pb->setIconSize(iconSize);
 		pb->setToolTip(tr("Go to bookmark") + QString(" %1").arg(i));
 		connect(pb, SIGNAL(clicked()), getManagedAction(QString("main/edit/gotoBookmark/bookmark%1").arg(i)), SIGNAL(triggered()));
-		pb->setMaximumSize(20, 20);
 		pb->setFlat(true);
 		status->addPermanentWidget(pb, 0);
 	}
@@ -10246,6 +10249,14 @@ void Texstudio::changeSecondaryIconSize(int value)
 {
 	centralToolBar->setIconSize(QSize(value, value));
 	leftPanel->setToolbarIconSize(value);
+
+	foreach (QObject *c, statusBar()->children()) {
+		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
+		if (bt) {
+			bt->setIconSize(QSize(value, value));
+		}
+	}
+
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *pdfviewer, PDFDocument::documentList()) {
 		if (pdfviewer->embeddedMode) pdfviewer->setToolbarIconSize(value);
