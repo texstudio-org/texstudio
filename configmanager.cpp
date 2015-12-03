@@ -838,7 +838,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	//----------------------------editor--------------------
 
 	//completion
-	QStringList cwlFiles = config->value("Editor/Completion Files", QStringList() << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
+	QStringList cwlFiles = config->value("Editor/Completion Files", QStringList() << "tex.cwl" << "latex-document.cwl"  << "latex-dev.cwl" << "latex-mathsymbols.cwl").toStringList();
 	//completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
 	LatexParser &latexParser = LatexParser::getInstance();
 
