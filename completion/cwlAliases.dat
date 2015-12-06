@@ -70,4 +70,10 @@ memoir:
 class-memoir
 latex-document
 latex-mathsymbols
+latex-dev
 tex
+tabularx
+booktabs
+dcolumn
+delarray
+array
