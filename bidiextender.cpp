@@ -20,7 +20,7 @@ typedef int HKL;
 #endif
 
 static bool languagesInitialized = false;
-static HKL languageIdRTL, languageIdLTR;
+static HKL languageIdRTL, languageIdLTR, oldInputLanguageId;
 static InputLanguage oldInputLanguage = IL_UNCERTAIN;
 
 HKL getCurrentLanguage()
@@ -65,21 +65,19 @@ bool isProbablyLTRLanguageCode(HKL id)
 #endif
 }
 
-void rememberCurrentLanguage()
-{
-	if (oldInputLanguage != IL_UNCERTAIN) {
-		HKL curLayout = getCurrentLanguage();
-		if (oldInputLanguage == IL_LTR) languageIdLTR = curLayout;
-		else languageIdRTL = curLayout;
-	}
-}
-
 void initializeLanguages()
 {
 	languageIdLTR = 0;
 	languageIdRTL = 0;
-	oldInputLanguage = isProbablyLTRLanguageCode(getCurrentLanguage()) ? IL_LTR : IL_RTL;
-	rememberCurrentLanguage();
+	oldInputLanguageId = getCurrentLanguage();
+	if (isProbablyLTRLanguageCode(oldInputLanguageId)) {
+		oldInputLanguage = IL_LTR;
+		languageIdLTR = oldInputLanguageId;
+	} else {
+		oldInputLanguage = IL_RTL;
+		languageIdRTL = oldInputLanguageId;
+	}
+
 #if defined( Q_OS_WIN )
 	const int MAXSIZE = 32;
 	HKL langs[MAXSIZE];
@@ -120,7 +118,6 @@ void initializeLanguages()
 void setInputLanguage(HKL code)
 {
 	if (!code) return;
-	rememberCurrentLanguage();
 #if defined( Q_OS_WIN )
 	ActivateKeyboardLayout(code, KLF_SETFORPROCESS);
 #endif
@@ -131,17 +128,30 @@ void setInputLanguage(HKL code)
 #endif
 }
 
+
 void setInputLanguage(InputLanguage lang)
 {
-	if (lang == IL_UNCERTAIN) {
-		oldInputLanguage = lang;
-		return;
-	}
+	if (lang == oldInputLanguage) return;
 	if (!languagesInitialized)
 		initializeLanguages();
-	if (lang == oldInputLanguage) return;
-	rememberCurrentLanguage();
-	HKL newLanguage = lang == IL_LTR ? languageIdLTR : languageIdRTL;
-	setInputLanguage(newLanguage);
+
+	HKL curLayout = getCurrentLanguage();
+	HKL newLayout = 0;
+
+	if (curLayout != oldInputLanguageId) {
+		if (oldInputLanguage == IL_LTR) languageIdLTR = curLayout;
+		else if (oldInputLanguage == IL_RTL) languageIdRTL = curLayout;
+		else if (oldInputLanguage == IL_UNCERTAIN) {
+			if (lang == IL_LTR) languageIdLTR = curLayout;
+			else if (lang == IL_RTL) languageIdRTL = curLayout;
+		}
+	}
+	if (lang == IL_LTR) newLayout = languageIdLTR;
+	else if (lang == IL_RTL) newLayout = languageIdRTL;
+
+	if (newLayout && curLayout != newLayout) {
+		setInputLanguage(newLayout);
+		oldInputLanguageId = newLayout;
+	} else oldInputLanguageId = curLayout;
 	oldInputLanguage = lang;
 }
