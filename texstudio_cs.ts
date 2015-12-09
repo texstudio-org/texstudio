@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs_CZ">
+<TS version="2.1" language="cs_CZ">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -797,7 +797,7 @@ Chcete, aby TeXstudio změnil všechny příkazové cesty z /usr/texbin/ na
     </message>
     <message>
         <source>Dictionaries</source>
-        <translation>Slovníky</translation>
+        <translation type="vanished">Slovníky</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -1060,7 +1060,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Case Sensitive</source>
-        <translation>Rozlišovat velká a malá písmena</translation>
+        <translation type="vanished">Rozlišovat velká a malá písmena</translation>
     </message>
     <message>
         <source>In first character</source>
@@ -1080,7 +1080,7 @@ Příklady: ?ame&quot;: Úplný absolutní název souboru obklopený &quot;, ?e)
     </message>
     <message>
         <source>Use following completion files:</source>
-        <translation>Použít následující seznamy slov:</translation>
+        <translation type="vanished">Použít následující seznamy slov:</translation>
     </message>
     <message>
         <source>Shortcuts</source>
@@ -1632,7 +1632,7 @@ Kdo z těch chytrých lidí vždy říká pravdu?</translation>
     </message>
     <message>
         <source>Internal</source>
-        <translation>Vnitřní</translation>
+        <translation type="vanished">Vnitřní</translation>
     </message>
     <message>
         <source>Check for word repetitions</source>
@@ -2060,11 +2060,11 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>In First Character</source>
-        <translation>Od prvního písmena</translation>
+        <translation type="vanished">Od prvního písmena</translation>
     </message>
     <message>
         <source>Use Placeholders</source>
-        <translation>Použít zástupné znaky</translation>
+        <translation type="vanished">Použít zástupné znaky</translation>
     </message>
     <message>
         <source>Check for Word Repetitions</source>
@@ -2140,7 +2140,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Full Page PDF Preview</source>
-        <translation>Celostránkový náhled na PDF</translation>
+        <translation type="vanished">Celostránkový náhled na PDF</translation>
     </message>
     <message>
         <source>Scale Option:</source>
@@ -2180,7 +2180,7 @@ chcete nastavit?</translation>
     </message>
     <message>
         <source>Automatically check in after save</source>
-        <translation>Automaticky zapsat po uložení</translation>
+        <translation type="vanished">Automaticky zapsat po uložení</translation>
     </message>
     <message>
         <source>Substitute Keywords with Properties (on svn add)</source>
@@ -2473,7 +2473,7 @@ dát před &lt;b&gt;c:&lt;/b&gt; pro nynější soubor místo hlavního souboru 
     </message>
     <message>
         <source>Beware that LaTeX still needs to be able to render the character, thus the same packages need to be present as with the LaTeX-Code</source>
-        <translation>Dejte si pozor na to, že LaTeX stále potřebuje být schopen udělat znak. Čili je potřeba, aby byl přítomen tentýž balíček jako s LaTeXovým kódem</translation>
+        <translation type="vanished">Dejte si pozor na to, že LaTeX stále potřebuje být schopen udělat znak. Čili je potřeba, aby byl přítomen tentýž balíček jako s LaTeXovým kódem</translation>
     </message>
     <message>
         <source>Insert Symbol as Unicode</source>
@@ -2589,7 +2589,7 @@ vidět jen nejběžnější nastavení.</translation>
     </message>
     <message>
         <source>Show Placeholders</source>
-        <translation>Ukázat zástupné znaky</translation>
+        <translation type="vanished">Ukázat zástupné znaky</translation>
     </message>
     <message>
         <source>Highlight Duration</source>
@@ -2954,6 +2954,61 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Při používání znaků Unicode musí LaTeX znaky stále ještě vykreslovat.
 Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumentu zahrnout příslušné balíčky pro znaky Unicode.</translation>
+    </message>
+    <message>
+        <source>Session</source>
+        <translation type="unfinished">Sezení</translation>
+    </message>
+    <message>
+        <source>Store relative paths</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Insert Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arguments as Placeholders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Permanently active completion files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spell Check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal Grammar Check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Will be inferred from the language of the spell checker used in the document.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal PDF Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Render Backend used by the PDF library poppler.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+Note: Changing this setting will only affect documents that are opened afterwards.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Render Backend:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language Checking</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5803,7 +5858,7 @@ Spustit hledání znovu od začátku oblasti?</translation>
     <message>
         <source>End of scope reached with no match.
 Restart from the beginning ?</source>
-        <translation>Konec oblasti hledání dosažen bez nálezu.
+        <translation type="vanished">Konec oblasti hledání dosažen bez nálezu.
 Spustit hledání znovu od začátku oblasti?</translation>
     </message>
     <message>
@@ -5817,6 +5872,16 @@ Spustit hledání znovu od začátku oblasti?</translation>
     <message>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>%1 (z %2) výskytů bylo nahrazeno</translation>
+    </message>
+    <message>
+        <source>Start of scope reached with no match.
+Restart from the end?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>End of scope reached with no match.
+Restart from the beginning?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6213,7 +6278,7 @@ Má se soubor nahrát znovu?</translation>
         <source>I failed to acquire write permissions on the file %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation>Nepodařilo se získat oprávnění k zápisu pro soubor: %1.
+        <translation type="vanished">Nepodařilo se získat oprávnění k zápisu pro soubor: %1.
 
 Možná je pouze pro čtení nebo je otevřený v jiném programu?</translation>
     </message>
@@ -6233,7 +6298,7 @@ failed after the old content was deleted.
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation>Zápis dokumentu do souboru
+        <translation type="vanished">Zápis dokumentu do souboru
 %1
 se nezdařil, poté co byl starý obsah smazán.
 
@@ -6249,7 +6314,7 @@ nebo celého pevného disku.</translation>
 The file may have been corrupted by this! You should save
 to another location or fix the problem to prevent data loss.
 Possible causes include disk failure or a full harddisk.</source>
-        <translation>Podařilo se zapsat jen část souboru
+        <translation type="vanished">Podařilo se zapsat jen část souboru
 %1
 
 Soubor tím mohl být poškozen! Měl byste jej uložit
@@ -6314,6 +6379,33 @@ Chcete uchovat datum znovunahráním souboru?
     <message>
         <source>Insert tab</source>
         <translation>Vložit zarážku</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I failed to acquire write permissions on the file
+%1.
+
+Perhaps it is read-only or opened in another program?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Writing the document to file
+%1
+failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The original file on disk was destroyed during the save operation.
+You&apos;ll find a copy at
+%1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6951,7 +7043,11 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
     </message>
     <message>
         <source>Show results as list as well</source>
-        <translation>Ukázat výsledky také jako seznam</translation>
+        <translation type="vanished">Ukázat výsledky také jako seznam</translation>
+    </message>
+    <message>
+        <source>Extended Search</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7492,7 +7588,7 @@ Důvěřujete tomuto skriptu?</translation>
     </message>
     <message>
         <source>Search Again</source>
-        <translation>Hledat znovu</translation>
+        <translation type="vanished">Hledat znovu</translation>
     </message>
     <message>
         <source>Replace all</source>
@@ -7513,6 +7609,10 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <source>Clear</source>
         <translation>Vyprázdnit</translation>
+    </message>
+    <message>
+        <source>Update Search</source>
+        <translation type="unfinished">Aktualizovat hledání</translation>
     </message>
 </context>
 <context>
@@ -7643,7 +7743,7 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     </message>
     <message>
         <source>dummyStatusBar</source>
-        <translation>napodobenýStavovýŘádek</translation>
+        <translation type="vanished">napodobenýStavovýŘádek</translation>
     </message>
     <message>
         <source>&lt;new&gt;</source>
@@ -7711,23 +7811,23 @@ Abyste změnil zkratku, musíte upravit třetí nebo čtvrtý sloupec.</translat
     <name>StructDialog</name>
     <message>
         <source>Structure</source>
-        <translation>Stavba</translation>
+        <translation type="vanished">Stavba</translation>
     </message>
     <message>
         <source>Numeration</source>
-        <translation>Číslování</translation>
+        <translation type="vanished">Číslování</translation>
     </message>
     <message>
         <source>Title</source>
-        <translation>Název</translation>
+        <translation type="vanished">Název</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="vanished">OK</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="vanished">Zrušit</translation>
     </message>
 </context>
 <context>
@@ -10465,6 +10565,10 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
         <source>Check Active Completion Files</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Refresh QNFA</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextAnalysisDialog</name>
@@ -10824,7 +10928,7 @@ Jinak jsou interpunkční znaménka přehlížena.</translation>
     </message>
     <message>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;br&gt;Current version: %1&lt;br&gt;Latest version: %2&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Je dostupná nová verze programu TeXstudio.&lt;br&gt;&lt;br&gt;Současná verze: %1&lt;br&gt;Poslední verze: %2&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%3&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
+        <translation type="vanished">Je dostupná nová verze programu TeXstudio.&lt;br&gt;&lt;br&gt;Současná verze: %1&lt;br&gt;Poslední verze: %2&lt;br&gt;&lt;br&gt;Můžete stahovat ze stránek &lt;a href=&apos;%3&apos;&gt;TeXstudio&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>TeXstudio Update</source>
