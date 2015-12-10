@@ -264,20 +264,19 @@ FORMS += filechooser.ui \
     texdocdialog.ui \
     pdfsplittool.ui
 TRANSLATIONS += texstudio_cs.ts \
-    texstudio_en.ts \
     texstudio_de.ts \
+    texstudio_el.ts \
     texstudio_es.ts \
     texstudio_fr.ts \
     texstudio_hu.ts \
     texstudio_it.ts \
+    texstudio_ja.ts \
     texstudio_pl.ts \
     texstudio_pt_BR.ts \
     texstudio_uk.ts \
     texstudio_ru.ts \
-    texstudio_ja.ts \
-    texstudio_zh_CN.ts \
     texstudio_vi.ts \
-    texstudio_el.ts
+    texstudio_zh_CN.ts
 
 # ###############################
 win32:RC_FILE = win.rc
@@ -339,6 +338,7 @@ unix {
         utilities/latex2e.css \
 	texstudio_cs.qm \
 	texstudio_de.qm \
+        texstudio_el.qm \
 	texstudio_es.qm \
 	texstudio_fr.qm \
 	texstudio_hu.qm \
@@ -347,8 +347,9 @@ unix {
 	texstudio_pl.qm \
 	texstudio_pt_BR.qm \
 	texstudio_uk.qm \
-	texstudio_ru.qm \
-	texstudio_zh_CN.qm \
+        texstudio_ru.qm \
+        texstudio_vi.qm \
+        texstudio_zh_CN.qm \
         qt_cs.qm \
         qt_de.qm \
         qt_ja.qm \
