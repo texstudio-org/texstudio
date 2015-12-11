@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -853,10 +851,6 @@ para /Library/TeX/texbin/?</translation>
         <translation>Lembrar o filtro de arquivos selecionado no diálogo abrir/salvar</translation>
     </message>
     <message>
-        <source>Dictionaries</source>
-        <translation type="vanished">Dicionários</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="3056"/>
         <source>Default Language:</source>
         <translation>Idioma Padrão:</translation>
@@ -900,7 +894,7 @@ para /Library/TeX/texbin/?</translation>
         <location filename="configdialog.ui" line="516"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Define os tipos de aviso de atualização que receberá:
 - Versões Estáveis: escolha esta se estabilidade é mais importante para você.
@@ -955,12 +949,12 @@ para /Library/TeX/texbin/?</translation>
     <message>
         <location filename="configdialog.ui" line="466"/>
         <source>Session</source>
-        <translation type="unfinished">Sessão</translation>
+        <translation>Sessão</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="475"/>
         <source>Store relative paths</source>
-        <translation type="unfinished"></translation>
+        <translation>Armazenar caminhos relativos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="494"/>
@@ -1125,7 +1119,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-sensi
     </message>
     <message>
         <location filename="configdialog.ui" line="1042"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1922,12 +1916,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2786"/>
         <source>Insert Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserir Argumentos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2806"/>
         <source>Arguments as Placeholders</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos como Espaços Reservados</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2829"/>
@@ -1938,14 +1932,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2832"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Iniciar completamento ao digitar comandos LaTeX</translation>
-    </message>
-    <message>
-        <source>Case Sensitive</source>
-        <translation type="vanished">Diferenciar maiúsculas e minúsculas</translation>
-    </message>
-    <message>
-        <source>In First Character</source>
-        <translation type="vanished">No Primeiro Caractere</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2915"/>
@@ -2032,14 +2018,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <translation>Tamanho da aba acima ou abaixo do conjunto de comandos de completamento</translation>
     </message>
     <message>
-        <source>Use Placeholders</source>
-        <translation type="vanished">Utilizar Espaços Reservados</translation>
-    </message>
-    <message>
-        <source>Show Placeholders</source>
-        <translation type="vanished">Mostrar Espaços Reservados</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="2796"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Mostra uma dica com texto alvo para labels/bibitem, pré-visualiza cores ou imagens</translation>
@@ -2048,10 +2026,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2799"/>
         <source>ToolTip-Preview</source>
         <translation>Pré-visualizar como dica</translation>
-    </message>
-    <message>
-        <source>Use following completion files:</source>
-        <translation type="vanished">Utilizar os seguintes arquivos de completamento:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2974"/>
@@ -2068,10 +2042,6 @@ automaticamente não são mostrados aqui. Marcar pacotes adicionais
 geralmente não é necessário. Todavia se a detecção automática falhar
 ou se desejar incluir algum arquivo de completamento específico, você
 pode forçar o seu uso selecionando-o aqui.</translation>
-    </message>
-    <message>
-        <source>Internal</source>
-        <translation type="vanished">Interno</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3166"/>
@@ -2214,7 +2184,7 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="configdialog.ui" line="3470"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation type="unfinished"></translation>
+        <translation>Será inferida a partir do idioma do corretor ortográfico usado no documento.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3540"/>
@@ -2322,10 +2292,6 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <location filename="configdialog.ui" line="3881"/>
         <source>Scaling:</source>
         <translation>Dimensionamento:</translation>
-    </message>
-    <message>
-        <source>Full Page PDF Preview</source>
-        <translation type="vanished">Visualizar página inteira do PDF</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3895"/>
@@ -2475,42 +2441,45 @@ pode forçar o seu uso selecionando-o aqui.</translation>
     <message>
         <location filename="configdialog.ui" line="2982"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar arquivos de completamento permanentemente:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3050"/>
         <source>Spell Check</source>
-        <translation type="unfinished"></translation>
+        <translation>Corretor ortográfico</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3160"/>
         <source>Internal Grammar Check</source>
-        <translation type="unfinished"></translation>
+        <translation>Corretor gramatical interno</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3805"/>
         <location filename="configdialog.cpp" line="473"/>
         <source>Internal PDF Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador Interno de PDF</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4041"/>
         <location filename="configdialog.ui" line="4128"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"></translation>
+        <translation>Renderização usada pela biblioteca PDF poppler.
+&apos;Splash&apos; é o padrão e adequada à maioria das situações.
+Se houver problemas de renderização, você pode tentar a alternativa &apos;Arthur&apos;.
+Obs.: Esta mudança afetará somente documentos abertos a seguir. </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4134"/>
         <source>Render Backend:</source>
-        <translation type="unfinished"></translation>
+        <translation>Renderização:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4154"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Nota: modo independente/embutido é configurado em Compilar -&gt; Visualizador de PDF</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4197"/>
@@ -2724,7 +2693,7 @@ Você não mais conseguirá digitar este caractere. Deseja realmente manter este
     <message>
         <location filename="configdialog.cpp" line="471"/>
         <source>Language Checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma de checagem</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="474"/>
@@ -3944,7 +3913,7 @@ Deseja desfazer todas as alterações?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Preferências para o posicionamento da figura
@@ -4055,7 +4024,7 @@ O assistente não suporta comandos</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1575"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome do arquivo: %1&lt;/b&gt;
 </translation>
@@ -4227,7 +4196,7 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexeditorview.cpp" line="2149"/>
         <location filename="latexeditorview.cpp" line="2221"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nome do arquivo: %1&lt;/b&gt;
 </translation>
@@ -4235,10 +4204,7 @@ O assistente não suporta comandos</translation>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2162"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n referência para este rótulo</numerusform>
-            <numerusform>%n referência(s) para este rótulo</numerusform>
-        </translation>
+        <translation><numerusform>%n referência para este rótulo</numerusform><numerusform>%n referência(s) para este rótulo</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2167"/>
@@ -5881,24 +5847,20 @@ Você pode inserir a senha agora:</translation>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="659"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
-        <translation type="unfinished"></translation>
+        <translation>Início do escopo alcançado sem coincidência.
+Recomeçar do final?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="664"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
-        <translation type="unfinished"></translation>
+        <translation>Final do escopo alcançado sem coincidência.
+Recomeçar do início?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="671"/>
         <source>Failure</source>
         <translation>Falha</translation>
-    </message>
-    <message>
-        <source>End of scope reached with no match.
-Restart from the beginning ?</source>
-        <translation type="vanished">Fim do escopo alcançado sem nenhuma ocorrência.
-Recomeçar a partir do início?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="691"/>
@@ -6117,54 +6079,14 @@ em perda de dados.
 </translation>
     </message>
     <message>
-        <source>I failed to acquire write permissions on the file %1.
-
-Perhaps it is read-only or opened in another program?</source>
-        <translation type="vanished">Impossível obter permissão de escrita no arquivo %1.
-
-Talvez ele seja somente leitura ou esteja aberto por outro programa.</translation>
-    </message>
-    <message>
-        <source>Writing the document to file
-%1
-failed after the old content was deleted.
-
-The file may have been corrupted by this! You should save
-to another location or fix the problem to prevent data loss.
-Possible causes include disk failure or a full harddisk.</source>
-        <translation type="vanished">Salvando documento  no arquivo
-%1
-falhou após o conteúdo anterior ser deletado.
-
-O arquivo pode ter sido corrompido! Você deve
-salvar em outra localização ou corrigir o problema
-para impedir a perda de dados. Causas prováveis
-incluem falha no disco ou disco cheio.</translation>
-    </message>
-    <message>
-        <source>Only part of the file could be written:
-%1
-
-The file may have been corrupted by this! You should save
-to another location or fix the problem to prevent data loss.
-Possible causes include disk failure or a full harddisk.</source>
-        <translation type="vanished">Somente parte do arquivo pode ser salva:
-%1
-
-O arquivo pode ter sido corrompido! Você deve
-salvar em outra localização ou corrigir o problema
-para impedir a perda de dados. Causas prováveis
-incluem falha no disco ou disco cheio.</translation>
-    </message>
-    <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1004"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Alerta</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1005"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha na criação de cópia de segurança. Você ainda pode continuar salvando. Porém, se o salvamento falhar, você poderá perder dados no arquivo original. Deseja continuar?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1017"/>
@@ -6172,21 +6094,27 @@ incluem falha no disco ou disco cheio.</translation>
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossível obter permissão de escrita no arquivo
+%1.
+
+Talvez ele seja somente leitura ou esteja aberto por outro programa.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1030"/>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao escrever no documento
+%1</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1035"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo original no disco foi destruído durante o processo de salvamento.
+Você encontrará uma cópia em
+%1</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1161"/>
@@ -7153,13 +7081,9 @@ Você pode usar \1 a \9 no texto para gerar um refinamento.</translation>
         <translation>Pesquisar somente no texto selecionado.</translation>
     </message>
     <message>
-        <source>Show results as list as well</source>
-        <translation type="vanished">Exibir resultados também como lista</translation>
-    </message>
-    <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="195"/>
         <source>Extended Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Busca extendida</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="259"/>
@@ -7824,7 +7748,7 @@ Você confia neste script?</translation>
         <location filename="searchresultwidget.cpp" line="26"/>
         <source>Update Search</source>
         <oldsource>Search Again</oldsource>
-        <translation type="unfinished">Pesquisar Novamente</translation>
+        <translation>Atualizar busca</translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="29"/>
@@ -9377,7 +9301,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="texstudio.cpp" line="848"/>
         <source>Refresh QNFA</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar QNFA</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="849"/>
@@ -10375,7 +10299,7 @@ salvar ou fechar este outro arquivo antes de poder sobrescrevê-lo.</translation
     </message>
     <message>
         <location filename="texstudio.cpp" line="5392"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Não foi possível determinar o nome do arquivo.
 Você tem que salvar um documento antes de compilá-lo.</translation>
