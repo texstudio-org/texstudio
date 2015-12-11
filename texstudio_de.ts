@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -379,7 +377,7 @@
     <message>
         <location filename="buildmanager.cpp" line="235"/>
         <source>Stop Compile</source>
-        <translation>Prozess abbrechen</translation>
+        <translation>Kompilieren abbrechen</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="259"/>
@@ -565,11 +563,8 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation>OSX 10.11 erlaubt das Scheiben auf diesen Ordner nicht mehr. Deshalb benutzt
-MacTeX neuerdings den bin-Pfad /Library/TeX/texbin/
-
-Soll TeXstudio alle Befehls-Pfade ändern von /usr/texbin/ nach
-%1?</translation>
+        <translation>OSX 10.11 lässt Programme an diese Stelle nicht mehr schreiben. Daher nutzen aktuelle Versionen von MacTeX nun /Library/TeX/texbin als Programmpfad.
+Soll TeXstudio die Befehlspfade von /usr/texbin nach %1 anpassen ?</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="357"/>
@@ -580,14 +575,8 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation>OSX 10.111 erlaubt das Scheiben auf diesen Ordner nicht mehr. Sie sollten
-MacTeX auf version 2015 updaten.
-
-Danach werden alle MacTeX Programme unter/Library/TeX/texbin/ liegen
-
-Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
-/Library/TeX/texbin/ ändern?
-</translation>
+        <translation>OSX 10.11 lässt Programme an diese Stelle nicht mehr schreiben. Es sollte eine aktuelle Version von MacTeX verwendet werden. MacTeX nutzt dann /Library/TeX/texbin als Programmpfad.
+Soll TeXstudio die Befehlspfade von /usr/texbin nach /Library/TeX/texbin anpassen ?</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="368"/>
@@ -602,7 +591,7 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
     <message>
         <location filename="buildmanager.cpp" line="832"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation>Es wurde txs:///Befehl[... or txs:///Befehl{... verwendet, aber es werden nur Befehle der Form  txs:///Befehl/[... or txs:///Befehl/{... mit einem extra Schrägstrich nach &quot;Befehl&quot; unterstützt, um die Syntax sauberer zu gestalten.</translation>
+        <translation>Es wurde txs:///Befehl[... oder txs:///Befehl{... verwendet, aber es werden nur Befehle der Form  txs:///Befehl/[... oder txs:///Befehl/{... mit einem extra Schrägstrich nach &quot;Befehl&quot; unterstützt, um die Syntax sauberer zu gestalten.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="840"/>
@@ -618,7 +607,7 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
     <message>
         <location filename="buildmanager.cpp" line="1331"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation>Es wurde keine LaTeX-Distribution gefunden. Deshalb konnten die zugehörigen Befehle nicht konfiguriert werden. Ohne diese Befehle können sie keine Dokumente kompilieren (d.h. in das gewünschte Ausgabeformat, z.B. PDF, konvertiern).</translation>
+        <translation>Es wurde keine LaTeX-Distribution gefunden. Deshalb konnten die zugehörigen Befehle nicht konfiguriert werden. Ohne diese Befehle können sie keine Dokumente kompilieren (d.h. in das gewünschte Ausgabeformat, z.B. PDF, konvertieren).</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1335"/>
@@ -664,7 +653,7 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
     <message>
         <location filename="buildmanager.cpp" line="1397"/>
         <source>Error: One command expansion invalid.</source>
-        <translation>Fehler: Eine Kommandoersetzung ist ungültig.</translation>
+        <translation>Fehler: Eine Kommandoersetzung ungültig</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1398"/>
@@ -674,7 +663,7 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
     <message>
         <location filename="buildmanager.cpp" line="1399"/>
         <source>Primary Command</source>
-        <translation>Primärer Befehl</translation>
+        <translation>Hauptbefehl</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1757"/>
@@ -856,10 +845,6 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
         <translation>Ausgewählten Dateifilter in Öffnen-/Speichern-Dialog merken</translation>
     </message>
     <message>
-        <source>Dictionaries</source>
-        <translation type="vanished">Wörterbücher</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="3056"/>
         <source>Default Language:</source>
         <translation>Standardsprache:</translation>
@@ -903,17 +888,17 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
         <location filename="configdialog.ui" line="516"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation>Definiert bei welchen Ereignissen Update-Benachrichtigungen angezeigt werden:
-- Stabile Version: 
-- Release-Kandidat: Werden kurz vor einem stabilen Release veröffentlciht und sind demensprechend diesem schon in Funktionsumfang und Stabilität ähnlich. Wähle dieses um schon eine Vorschau auf kommende Versionen zu bekommen und hilf uns die Version zu testen, bevor sie offiziell veröffentlicht wird (enthält auch die Benachrichtigung zu stabilen Versionen).
-- Entwicklungs-Version: Enthalten die neuesten Features, können aber noch vermehrt Bugs enthalten (enthält auch die Benachrichtigung zu stabilen Versionen und Release-Kandidaten).</translation>
+        <translation>Definiert die Art der Aktualisierungbenachrichtung:
+- Stabile Versionen: Wähle diese, wenn Stabilität das wichtigste ist.
+- Releases-Kandidaten: Entwicklundsstand kurz vor der Veröffentlichung. Wähle diese um eine Vorschau zu erhalten und uns beim Testen zu helfen (Stabile Versionen werden ebenfalls angezeigt) 
+- Entwickler Versionen: Enthalten die neuesten Funktionen, aber könnten instabil sein. (Stabile Versionen und Release-Kandidaten werden ebenfalls angezeigt) </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="523"/>
         <source>Stable Releases</source>
-        <translation>Stabile Version</translation>
+        <translation>Stabile Programmversionen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="528"/>
@@ -923,7 +908,7 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
     <message>
         <location filename="configdialog.ui" line="533"/>
         <source>Development Versions</source>
-        <translation>Entwicklungs-Version</translation>
+        <translation>Entwicklungsversion</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="554"/>
@@ -963,7 +948,7 @@ Soll TeXstudio alle Befehls-Pfade von /usr/texbin/ nach
     <message>
         <location filename="configdialog.ui" line="475"/>
         <source>Store relative paths</source>
-        <translation>Benutze relative Pfade</translation>
+        <translation>Relative Pfade speichern</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="494"/>
@@ -1126,7 +1111,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     </message>
     <message>
         <location filename="configdialog.ui" line="1042"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1923,12 +1908,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2786"/>
         <source>Insert Arguments</source>
-        <translation>Argumentnamen einfügen</translation>
+        <translation>Parameter eingeben</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2806"/>
         <source>Arguments as Placeholders</source>
-        <translation>Argumentnamen als Platzhalter</translation>
+        <translation>Argumente als Platzhalter</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2829"/>
@@ -1939,14 +1924,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2832"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>Starte automatische Vervollständigung wenn LaTeX-Kommandos eingegeben werden</translation>
-    </message>
-    <message>
-        <source>Case Sensitive</source>
-        <translation type="vanished">Groß-/Kleinschreibung beachten</translation>
-    </message>
-    <message>
-        <source>In First Character</source>
-        <translation type="vanished">Ab dem ersten Buchstaben</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2915"/>
@@ -2033,14 +2010,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <translation>Größe der Reiter mit Kommandos unter oder über der Vervollständigungs-Liste</translation>
     </message>
     <message>
-        <source>Use Placeholders</source>
-        <translation type="vanished">Platzhalter verwenden</translation>
-    </message>
-    <message>
-        <source>Show Placeholders</source>
-        <translation type="vanished">Platzhalter anzeigen</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="2796"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Zeigt Tooltip mit dem Zieltext bei Labels/Bibitems, zeigt Bilder oder Farben direkt an</translation>
@@ -2049,10 +2018,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2799"/>
         <source>ToolTip-Preview</source>
         <translation>Tooltip-Vorschau</translation>
-    </message>
-    <message>
-        <source>Use following completion files:</source>
-        <translation type="vanished">Nutze die folgenden Wortlisten:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2974"/>
@@ -2070,10 +2035,6 @@ normalerweise nicht notwendig. Falls die automatische Erkennung jedoch nicht
 funktioniert oder benutzerspezifische Vervollständigungsdateien verwendet 
 werden kann die Verwendung durch die Auswahl der entsprechenden Dateien 
 hier erzwungen werden.</translation>
-    </message>
-    <message>
-        <source>Internal</source>
-        <translation type="vanished">Intern</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3166"/>
@@ -2216,7 +2177,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="configdialog.ui" line="3470"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation>Wird basierend auf der Sprache der Rechtschreibprüfung des Dokuments gesetzt.</translation>
+        <translation>Wird von der Sprache der Rechtschreibprüfung im Dokument abgeleitet.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3540"/>
@@ -2324,10 +2285,6 @@ hier erzwungen werden.</translation>
         <location filename="configdialog.ui" line="3881"/>
         <source>Scaling:</source>
         <translation>Skalierung:</translation>
-    </message>
-    <message>
-        <source>Full Page PDF Preview</source>
-        <translation type="vanished">Integrierter PDF-Betrachter</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3895"/>
@@ -2477,7 +2434,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="configdialog.ui" line="2982"/>
         <source>Permanently active completion files:</source>
-        <translation>Permanent aktive Vervollständigungswortlisten:</translation>
+        <translation>Permanent aktive Vervollständigungslisten:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3050"/>
@@ -2487,7 +2444,7 @@ hier erzwungen werden.</translation>
     <message>
         <location filename="configdialog.ui" line="3160"/>
         <source>Internal Grammar Check</source>
-        <translation>Interne Grammatik-Prüfung</translation>
+        <translation>Eingebaute Grammatikprüfung</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3805"/>
@@ -2499,23 +2456,23 @@ hier erzwungen werden.</translation>
         <location filename="configdialog.ui" line="4041"/>
         <location filename="configdialog.ui" line="4128"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation>Auswahl des Render-Backends der PDF-Bibliothek poppler.
-&apos;Splash&apos; die Standardeinstellung und in den meisten Fällen optimal.
-Falls es Probleme bei der PDF-Darstellung gibt, kann man das alternative &apos;Arthur&apos;-Backend ausprobieren.
-Hinweis: Diese Einstellung wirkt sich nur auf PDFs aus, die zukünftig geöffnet werden.</translation>
+        <translation>Die Zeichenmethode, die von der PDF-Bibliothek poppler verwendet wird.
+&apos;Splash&apos; ist der Standard und üblicherweise ausreichend.
+Falls Probleme bei der Darstellung gibt, kann alternativ &apos;Arthur&apos; ausprobiert werden.
+Achtung: Eine Änderung dieser Einstellung macht sich erst bei Dokumenten bemerkar, die danach geöffnet werden.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4134"/>
         <source>Render Backend:</source>
-        <translation></translation>
+        <translation>Zeichenmethodik:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4154"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
-        <translation>Hinweis: Die Einstellung zu Fenster/eingebettet befindet sich unter Erzeugen -&gt; PDF-Betrachter</translation>
+        <translation>Anmerkung: Der Fenster- / eingebetteter Modus kann in Build -&gt; PDF Betrachter konfiguriert werden</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4197"/>
@@ -2728,7 +2685,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="471"/>
         <source>Language Checking</source>
-        <translation>Sprachprüfung</translation>
+        <translation>Sprache prüfen</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="474"/>
@@ -3945,7 +3902,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Platzierungsvorgaben für das Bild
@@ -4056,7 +4013,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1575"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
@@ -4227,17 +4184,14 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="latexeditorview.cpp" line="2149"/>
         <location filename="latexeditorview.cpp" line="2221"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2162"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n Referenz zu diesem Label</numerusform>
-            <numerusform>%n Referenzen zu diesem Label</numerusform>
-        </translation>
+        <translation><numerusform>%n Referenz zu diesem Label</numerusform><numerusform>%n Referenzen zu diesem Label</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2167"/>
@@ -5879,24 +5833,20 @@ Bitte geben Sie das Passwort ein:</translation>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="659"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
-        <translation>Anfang des Suchbereichs ohne Treffer erreicht. Soll vom Ende her weitergesucht werden?</translation>
+        <translation>Anfang des Suchbereichs ohne Treffer erreicht. 
+Soll vom Ende her weitergesucht werden?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="664"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
-        <translation>Ende des Suchbereichs ohne Treffer erreicht. Soll vom Anfang her weitergesucht werden?</translation>
+        <translation>Ende des Suchbereichs ohne Treffer erreicht. 
+Soll vom Anfang her weitergesucht werden?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="671"/>
         <source>Failure</source>
         <translation>Fehlgeschlagen</translation>
-    </message>
-    <message>
-        <source>End of scope reached with no match.
-Restart from the beginning ?</source>
-        <translation type="vanished">Ende des Suchbereichs ohne Funde erreicht.
-Soll die Suche vom Anfang des Bereichs neugestartet werden?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="691"/>
@@ -6115,41 +6065,6 @@ Stelle zu speichern. Sollte dort jedoch nicht genügend Speicherplatz
 zur Verfügung stehen, gehen die Daten verloren.</translation>
     </message>
     <message>
-        <source>I failed to acquire write permissions on the file %1.
-
-Perhaps it is read-only or opened in another program?</source>
-        <translation type="vanished">Keine Schreibrechte ür Datei %1.
-
-Vielleicht ist es nur lesbar oder von einem anderen Programm gesperrt ?</translation>
-    </message>
-    <message>
-        <source>Writing the document to file
-%1
-failed after the old content was deleted.
-
-The file may have been corrupted by this! You should save
-to another location or fix the problem to prevent data loss.
-Possible causes include disk failure or a full harddisk.</source>
-        <translation type="vanished">Speichern des Dokuments in Datei %1 fehlgeschlagen, nachdem der alte Inhalt gelöscht wurde.
-Die Datei könnte dadurch zerstört worden sein! Sie sollten die Datei an eine andere Stelle speichern
-oder das Problem beheben um Datenverlust zu vermeiden. 
-Mögliche Ursachen: Fehler der Festplatte oder Festplattenspeicher voll.</translation>
-    </message>
-    <message>
-        <source>Only part of the file could be written:
-%1
-
-The file may have been corrupted by this! You should save
-to another location or fix the problem to prevent data loss.
-Possible causes include disk failure or a full harddisk.</source>
-        <translation type="vanished">Es konnten nur Teile gespeichert werden:
-%1
-
-Die Datei könnte dadurch zerstört worden sein! Sie sollten die Datei an eine andere Stelle speichern
-oder das Problem beheben um Datenverlust zu vermeiden. 
-Mögliche Ursachen: Fehler der Festplatte oder Festplattenspeicher voll.</translation>
-    </message>
-    <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1004"/>
         <source>Warning</source>
         <translation>Warnung</translation>
@@ -6157,7 +6072,7 @@ Mögliche Ursachen: Fehler der Festplatte oder Festplattenspeicher voll.</transl
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1005"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation>TeXstudio versucht vor dem Überschreiben von Dateien ein Backup zu machen um im Falle von Schreibfehlern einen konsistenten Zustand wiederherstellen zu können. Dieses Backup war nicht erfolgreich. Sie können mit dem Speichern fortfahren. Allerdings können dann im Fall von Schreibfehlern die Originaldaten verloren gehen. Wollen Sie dennoch speichern?</translation>
+        <translation>Es konnte keine Sicherungskopie der Datei erstellt werden. Sie können mit dem Speichern fortfahren. Sollte das Speichern fehlschlagen, könnten sie dabei allerdings die Daten in der ursprünglichen Datei verlieren. Möchten sie fortfahren?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1017"/>
@@ -6165,27 +6080,27 @@ Mögliche Ursachen: Fehler der Festplatte oder Festplattenspeicher voll.</transl
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation>Keine Schreibberechtigung auf Datei
-%1
+        <translation>Keine Schreibrechte für die Datei 
+%1.
 
-Möglicherweise ist diese schreibgeschützt oder wird von einem anderen Programm genutzt.</translation>
+Vielleicht ist die Datei schreibgeschützt, oder in einem anderen Programm geöffnet?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1030"/>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation>Das Dokument konnte nicht in die Datei
+        <translation>Das Speichern des Dokumentes in die Datei
 %1
-geschrieben werden.</translation>
+fehlgeschlagen.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1035"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
-        <translation>Die Originaldatei auf der Festplatte wurde durch die Schreib-Operation vernichtet.
-Eine Backup-Kopie befindet sich unter
+        <translation>Die Originaldatei wurde beim Speichern vernichtet.
+Eine Kopie findet sich unter
 %1</translation>
     </message>
     <message>
@@ -7150,10 +7065,6 @@ Im Ersetzungstext werden \1 bis \9 durch die Fundstelle der entsprechenden Grupp
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="188"/>
         <source>Only searches in the selected text.</source>
         <translation>Sucht nur im markierten Bereich.</translation>
-    </message>
-    <message>
-        <source>Show results as list as well</source>
-        <translation type="vanished">Zeige Ergebnisse auch als Liste</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="195"/>
@@ -10363,7 +10274,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5392"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
 Sie müssen ein neu erstelltes Dokument abspeichern, bevor Sie es erzeugen können.</translation>
@@ -11220,12 +11131,12 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="updatechecker.cpp" line="130"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation>Die Überprüfung auf neue Relase-Kandidaten ist fehlgeschlagen (ungültiges Format der Update-Datei).</translation>
+        <translation>Die Überprüfung auf Update des Release-Kandidats ist fehlgeschlagen (ungültiges Format der Update-Datei).</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="133"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Es ist ein neuer Release-Kandidat von TeXstudio verfügbar.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Aktuelle Version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Neueste stabile Version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release-Kandidat:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die Version kann von der &lt;a href=&apos;%7&apos;&gt;TeXstudio Website&lt;/a&gt; heruntergeladen werden.</translation>
+        <translation>Eine neuer Release-Kandidat von TeXstudio ist verfügbar. &lt;br&gt;&lt;table&gt;&lt;br&gt;&lt;td&gt;Diese Version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte stabile Version: %3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release-Kandidat:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die neue Version kann von der &lt;a href=&apos;%7&apos;&gt;TeXstudio-Website&lt;/a&gt; heruntergeladen werden.</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="150"/>
@@ -11235,7 +11146,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="updatechecker.cpp" line="153"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation>Es ist eine neue Entwicklungs-Version von TeXstudio verfügbar.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Aktuelle Version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Neueste stabile Version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Neueste Entwicklungs-Version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die Version kann von der &lt;a href=&apos;%7&apos;&gt;TeXstudio Website&lt;/a&gt; heruntergeladen werden.</translation>
+        <translation>Eine neue Entwickler-Version von TeXstudio ist verfügbar. &lt;br&gt;&lt;table&gt;&lt;br&gt;&lt;td&gt;Diese Version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte stabile Version: %3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Letzte Entwicklerversion:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Die neue Version kann von der &lt;a href=&apos;%7&apos;&gt;TeXstudio-Website&lt;/a&gt; heruntergeladen werden.</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="169"/>
