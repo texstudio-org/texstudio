@@ -60,6 +60,11 @@ QKeySequence filterLocaleShortcut(QKeySequence ks)
 			return QKeySequence("Ctrl+Alt+Shift+U");
 		}
 		break;
+	case QLocale::Turkish:
+		if (ks.matches(QKeySequence("Ctrl+Alt+F"))) {
+			return QKeySequence("Ctrl+Alt+Shift+F");
+		}
+		break;
 	default:
 		return ks;
 	}
