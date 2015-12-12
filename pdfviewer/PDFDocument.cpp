@@ -3313,13 +3313,20 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 	result.append("Inputs:");
 	synctex_node_t node = synctex_scanner_input(scanner);
 	while (node != NULL) {
-		result.append(QString("Input:%1:%2").arg(synctex_node_tag(node)).arg(synctex_node_name(node)));
+        // deactivated to get it compiling again
+        // synctex_node_name is not included in official synctex 1.18
+        //result.append(QString("Input:%1:%2").arg(synctex_node_tag(node)).arg(synctex_node_name(node)));
+
 		node = synctex_node_sibling(node);
 	}
 
 	result.append("");
 	result.append("Sheets:");
-	node = synctex_first_sheet(scanner);
+    // deactivated to get it compiling again
+    // synctex_first_sheet is not included in official synctex 1.18
+    // use synctex_sheet(scanner,page) instead ?
+    //node = synctex_first_sheet(scanner);
+    node=NULL;
 	while (node != NULL) {
 		synctex_node_t cur = synctex_node_child(node);
 		int page = synctex_node_page(cur);

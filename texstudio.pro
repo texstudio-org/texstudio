@@ -101,6 +101,7 @@ HEADERS += texstudio.h \
     userquickdialog.h \
     synctex_parser_utils.h \
     synctex_parser.h \
+    synctex_parser_local.h \
     latexstyleparser.h \
     scriptobject.h \
     directoryreader.h \

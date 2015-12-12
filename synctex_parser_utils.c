@@ -5,7 +5,7 @@ This file is part of the SyncTeX package.
 
 Latest Revision: Tue Jun 14 08:23:30 UTC 2011
 
-Version: 1.17
+Version: 1.18
 
 See synctex_parser_readme.txt for more details
 
@@ -57,12 +57,17 @@ authorization from the copyright holder.
 #define SYNCTEX_WINDOWS 1
 #endif
 
+#if defined(__OS2__)
+#define SYNCTEX_OS2 1
+#endif
+
 #ifdef _WIN32_WINNT_WINXP
 #define SYNCTEX_RECENT_WINDOWS 1
 #endif
 
 #ifdef SYNCTEX_WINDOWS
 #include <windows.h>
+#include <shlwapi.h> /* Use shlwapi.lib */
 #endif
 
 void *_synctex_malloc(size_t size) {
@@ -111,6 +116,15 @@ void _synctex_strip_last_path_extension(char * string) {
 	if(NULL != string){
 		char * last_component = NULL;
 		char * last_extension = NULL;
+#       if defined(SYNCTEX_WINDOWS)
+		last_component = PathFindFileName(string);
+		last_extension = PathFindExtension(string);
+		if(last_extension == NULL)return;
+		if(last_component == NULL)last_component = string;
+		if(last_extension>last_component){/* filter out paths like "my/dir/.hidden" */
+			last_extension[0] = '\0';
+		}
+#       else
 		char * next = NULL;
 		/*  first we find the last path component */
 		if(NULL == (last_component = strstr(string,"/"))){
@@ -121,12 +135,12 @@ void _synctex_strip_last_path_extension(char * string) {
 				last_component = next+1;
 			}
 		}
-#       ifdef	SYNCTEX_WINDOWS
-		/*  On Windows, the '\' is also a path separator. */
+#               if defined(SYNCTEX_OS2)
+		/*  On OS2, the '\' is also a path separator. */
 		while((next = strstr(last_component,"\\"))){
 			last_component = next+1;
 		}
-#       endif
+#               endif /* SYNCTEX_OS2 */
 		/*  then we find the last path extension */
 		if((last_extension = strstr(last_component,"."))){
 			++last_extension;
@@ -138,6 +152,7 @@ void _synctex_strip_last_path_extension(char * string) {
 				last_extension[0] = '\0';
 			}
 		}
+#       endif /* SYNCTEX_WINDOWS */
 	}
 }
 
@@ -146,7 +161,7 @@ synctex_bool_t synctex_ignore_leading_dot_slash_in_path(const char ** name_ref)
     if (SYNCTEX_IS_DOT((*name_ref)[0]) && SYNCTEX_IS_PATH_SEPARATOR((*name_ref)[1])) {
         do {
             (*name_ref) += 2;
-            while (SYNCTEX_IS_PATH_SEPARATOR((*name_ref)[1])) {
+            while (SYNCTEX_IS_PATH_SEPARATOR((*name_ref)[0])) {
                 ++(*name_ref);
             }
         } while(SYNCTEX_IS_DOT((*name_ref)[0]) && SYNCTEX_IS_PATH_SEPARATOR((*name_ref)[1]));
@@ -207,7 +222,7 @@ synctex_bool_t _synctex_path_is_absolute(const char * name) {
 	if(!strlen(name)) {
 		return synctex_NO;
 	}
-#	if SYNCTEX_WINDOWS
+#	if defined(SYNCTEX_WINDOWS) || defined(SYNCTEX_OS2)
 	if(strlen(name)>2) {
 		return (name[1]==':' && SYNCTEX_IS_PATH_SEPARATOR(name[2]))?synctex_YES:synctex_NO;
 	}

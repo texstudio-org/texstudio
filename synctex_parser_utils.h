@@ -5,7 +5,7 @@ This file is part of the SyncTeX package.
 
 Latest Revision: Tue Jun 14 08:23:30 UTC 2011
 
-Version: 1.17
+Version: 1.18
 
 See synctex_parser_readme.txt for more details
 
@@ -61,18 +61,15 @@ authorization from the copyright holder.
 extern "C" {
 #endif
 
-#define FALSE 0
-#define TRUE !FALSE
-
-#	if _WIN32
-#       define SYNCTEX_CASE_SENSITIVE_PATH FALSE
+#	if defined(_WIN32) || defined(__OS2__)
+#       define SYNCTEX_CASE_SENSITIVE_PATH 0
 #		define SYNCTEX_IS_PATH_SEPARATOR(c) ('/' == c || '\\' == c)
 #	else
-#       define SYNCTEX_CASE_SENSITIVE_PATH TRUE
+#       define SYNCTEX_CASE_SENSITIVE_PATH 1
 #		define SYNCTEX_IS_PATH_SEPARATOR(c) ('/' == c)
 #	endif
     
-#	if _WIN32
+#	if defined(_WIN32) || defined(__OS2__)
 #		define SYNCTEX_IS_DOT(c) ('.' == c)
 #	else
 #		define SYNCTEX_IS_DOT(c) ('.' == c)
