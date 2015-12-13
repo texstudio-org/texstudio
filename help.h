@@ -24,7 +24,7 @@ public slots:
 	void texdocAvailableRequest(const QString &package);
 
 private slots:
-	void viewTexdocError();
+	void texdocProcessFinished();
 	void texdocAvailableRequestFinished(int exitCode);
 
 private:
