@@ -39,6 +39,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
             LIBS += ./zlib1.dll ./libpoppler-qt5.dll
             DEFINES += HAS_POPPLER_24
         }
+        LIBS += -lshlwapi
     } else {
         macx { # PATH to pkgconfig needs to be present in build PATH
             QT_CONFIG -= no-pkg-config
