@@ -99,9 +99,6 @@ HEADERS += texstudio.h \
     tests/latexcompleter_t.h \
     tests/qdocumentline_t.h \
     userquickdialog.h \
-    synctex_parser_utils.h \
-    synctex_parser.h \
-    synctex_parser_local.h \
     latexstyleparser.h \
     scriptobject.h \
     directoryreader.h \
@@ -582,9 +579,6 @@ exists(./.hg2) | exists(./.hg) {
   SOURCES += hg_revision.cpp
 }
 
-# moved to the end because it seems to destroy the precompiled header
-SOURCES+=synctex_parser_utils.c synctex_parser.c
-
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
 QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline
 
@@ -594,6 +588,3 @@ else {
   QMAKE_LFLAGS -= -Wl,-s
   QMAKE_LFLAGS_RELEASE -= -Wl,-s
 }
-
-
-
