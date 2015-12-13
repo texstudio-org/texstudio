@@ -353,10 +353,10 @@
 \pageref{key}
 \pagestyle{option}
 \pagetotal
-\paragraph*{title}#L4
-\paragraph[short title]{title}#L4
+\paragraph*{title}#L5
+\paragraph[short title]{title}#L5
 \paragraphmark
-\paragraph{title}#L4
+\paragraph{title}#L5
 \parbox[position]{width}{text}
 \parbox{width}{text}
 \part*{title}#L0
@@ -410,10 +410,10 @@
 \stepcounter{counter}
 \stop
 \subitem
-\subparagraph*{title}#L5
-\subparagraph[short title]{title}#L5
+\subparagraph*{title}#L6
+\subparagraph[short title]{title}#L6
 \subparagraphmark{code}
-\subparagraph{title}#L5
+\subparagraph{title}#L6
 \subsection{title}#L3
 \subsection*{title}#L3
 \subsection[short title]{title}#L3
