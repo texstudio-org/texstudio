@@ -72,6 +72,7 @@
 \begin{column}[placement]{column width}
 \begin{column}{column width}
 \end{column}
+\column[placement]{column width}
 \begin{semiverbatim}
 \end{semiverbatim}
 \begin{abstract}<action specification>
