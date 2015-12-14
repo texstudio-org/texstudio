@@ -10029,7 +10029,7 @@ void Texstudio::checkLatexInstall()
 
 	result += "\nTeXstudio:\n";
 	result += "Path        : " + QDir::toNativeSeparators(QCoreApplication::applicationFilePath()) + "\n";
-	result += "Program call: " + QCoreApplication::arguments().join(' ') + "\n";
+    result += "Program call: " + QCoreApplication::arguments().join(" ") + "\n";
 	result += "Setting file: " + QDir::toNativeSeparators(configManager.configFileName) + "\n";
 
 	result += "\nCommand configuration in TeXstudio:\n";
