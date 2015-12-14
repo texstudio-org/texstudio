@@ -6701,8 +6701,8 @@ void Texstudio::viewAlignWindows()
 void Texstudio::viewSetHighlighting(QAction *act)
 {
 	if (!currentEditor()) return;
+	if (!m_languages->setLanguageFromName(currentEditor(), act->data().toString())) return;
 	currentEditorView()->clearOverlays();
-	m_languages->setLanguageFromName(currentEditor(), act->data().toString());
 	configManager.recentFileHighlightLanguage.insert(getCurrentFileName(), act->data().toString());
 	if (configManager.recentFileHighlightLanguage.size() > configManager.recentFilesList.size()) {
 		QMap<QString, QString> recentFileHighlightLanguageNew;
