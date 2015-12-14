@@ -415,11 +415,12 @@ unix {
 	utilities/dictionaries/hu_HU.dic \
 	utilities/dictionaries/pt_BR.aff \
 	utilities/dictionaries/pt_BR.dic \
-	utilities/dictionaries/de.badWords \
-	utilities/dictionaries/de.stopWords \
-	utilities/dictionaries/de.stopWords.level2 \
-	utilities/dictionaries/en.stopWords \
-	utilities/dictionaries/fr.stopWords \
+        utilities/dictionaries/de_DE.badWords \
+        utilities/dictionaries/de_DE.stopWords \
+        utilities/dictionaries/de_DE.stopWords.level2 \
+        utilities/dictionaries/en_GB.stopWords \
+        utilities/dictionaries/en_US.stopWords \
+        utilities/dictionaries/fr_FR.stopWords \
 	utilities/dictionaries/th_en_US_v2.dat \
 	utilities/dictionaries/th_fr_FR_v2.dat \
 	utilities/dictionaries/th_de_DE_v2.dat \
