@@ -3288,6 +3288,8 @@ void PDFDocument::search()
 	dwSearch->setFocus();
 }
 
+
+
 QString PDFDocument::debugSyncTeX(const QString &filename)
 {
 	int pos = filename.indexOf(SYNCTEX_EXT);
@@ -3313,20 +3315,16 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 	result.append("Inputs:");
 	synctex_node_t node = synctex_scanner_input(scanner);
 	while (node != NULL) {
-        // deactivated to get it compiling again
-        // synctex_node_name is not included in official synctex 1.18
-        //result.append(QString("Input:%1:%2").arg(synctex_node_tag(node)).arg(synctex_node_name(node)));
+		int tag = synctex_node_tag(node);
+		const char * name = tag >= 0 ? synctex_scanner_get_name(scanner, tag) : NULL;
+		result.append(QString("Input:%1:%2").arg(tag).arg(name));
 
 		node = synctex_node_sibling(node);
 	}
 
 	result.append("");
 	result.append("Sheets:");
-    // deactivated to get it compiling again
-    // synctex_first_sheet is not included in official synctex 1.18
-    // use synctex_sheet(scanner,page) instead ?
-    //node = synctex_first_sheet(scanner);
-    node=NULL;
+	node = synctex_sheet(scanner, 1);
 	while (node != NULL) {
 		synctex_node_t cur = synctex_node_child(node);
 		int page = synctex_node_page(cur);
