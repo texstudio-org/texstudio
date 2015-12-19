@@ -45,7 +45,7 @@ if [ "$SYSTEM" = 1 ]; then
   readvalue "Enter PREFIX (/usr , /usr/local or /opt)" /usr/local;
   PREFIX=$NEWVALUE
 fi
-readvalue "Enter path to QT4 (e.g. /usr/lib/qt4, you can leave it empty if qmake is in PATH)" $QTDIR;
+readvalue "Enter path to QT4/5 (e.g. /usr/lib/qt4, you can leave it empty if qmake is in PATH)" $QTDIR;
 QTDIR=$NEWVALUE
 readoption "Do you want to use the internal pdf viewer (requires the Poppler library)?" yes;
 OPTION_PDFVIEWER=$NEWVALUE
@@ -67,14 +67,6 @@ echo "Warning, QT path may be invalid"
 fi
 
 QMAKE=qmake
-if readlink -f /usr/bin/qmake  | grep qt3 ; then 
-echo Warning: qmake looks like qt3 qmake, TeXstudio requires qt4
-if [ -f $QTDIR/bin/qmake-qt4 ]; then 
-echo qmake-qt4 exists, using it instead of qmake
-QMAKE=qmake-qt4
-fi
-fi
-
 
 
 #compile
@@ -107,7 +99,7 @@ fi
 if [ "$SYSTEM" = 2 ] 
 then
   echo "Starting compilation"
-  $QMAKE -macx -spec macx-g++ $TXSCOMPILEOPTIONS texstudio.pro
+  $QMAKE -spec macx-clang $TXSCOMPILEOPTIONS texstudio.pro
   make
   make install
   echo "Compilation and installation done"
