@@ -745,7 +745,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	case Start :
 		if (strLine.startsWith("****************************************")) {
 			found = true;
-			dwCookie = Latex3Warning;
+			dwCookie = MaybeLatex3Warning; // cannot decide yet, some packages just insert a starred line as separator. A Latex3Warning will start the next line with a star (will be checked later on).
 			m_currentItem.message = QString();
 			m_currentItem.logline = GetCurrentOutputLine();
 		} else if (reLaTeXWarning.indexIn(strLine) != -1) {
@@ -780,6 +780,14 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 		flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
 		m_currentItem.message = (warning);
 		break;
+	case MaybeLatex3Warning:
+		if (!strLine.startsWith('*')) {
+			found = false;
+			flush = false;
+			dwCookie = Start;
+			break;
+		}
+		// no break,
 	case Latex3Warning:
 		if (!strLine.startsWith('*') || strLine.startsWith("****************************************")) {
 			found = false;
