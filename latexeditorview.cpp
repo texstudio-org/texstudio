@@ -49,9 +49,6 @@
 
 #include "bidiextender.h"
 
-// languages for online checking (exact name from qnfa file)
-QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file";
-
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding
 {
@@ -1666,7 +1663,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 	// checking
 	if (!QDocument::defaultFormatScheme()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
-	bool latexLikeChecking = editor->languageDefinition() && checkedLanguages.contains(editor->languageDefinition()->language());
+	const LatexDocument *ldoc = qobject_cast<const LatexDocument *>(editor->document());
+	bool latexLikeChecking = ldoc && ldoc->languageIsLatexLike();
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
 
 	if (config->inlineGrammarChecking) {

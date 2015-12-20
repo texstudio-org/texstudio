@@ -90,6 +90,8 @@ public:
 	enum CookieType {
 		CK_COLS = 0
 	};
+	static const QSet<QString> LATEX_LIKE_LANGUAGES;
+
 	void setFileName(const QString &fileName);
 	void setEditorView(LatexEditorView *edView);
 	LatexEditorView *getEditorView() const;
@@ -200,13 +202,14 @@ public:
 
 	static int syntaxErrorFormat;
 
+	bool languageIsLatexLike() const;
 	void reCheckSyntax(int linenr = 0, int count = -1);
 	QString getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack);
 
 	void getEnv(int lineNumber, StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 	Q_INVOKABLE QString getLastEnvName(int lineNumber); // special function to use with javascript (insert "\item" from menu)
 
-	void enableSyntaxCheck(bool enable) { latexLikeChecking = enable; }
+	void enableSyntaxCheck(bool enable) { syntaxChecking = enable; }
 
 private:
 	QString fileName; //absolute
@@ -265,7 +268,7 @@ private:
 	SyntaxCheck SynChecker;
 	Environment unclosedEnv;
 
-	bool latexLikeChecking;
+	bool syntaxChecking;
 
 #ifndef QT_NO_DEBUG
 public:
