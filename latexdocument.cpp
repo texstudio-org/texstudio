@@ -1,6 +1,7 @@
 #include "latexdocument.h"
 #include "qdocument.h"
 #include "qformatscheme.h"
+#include "qlanguagedefinition.h"
 #include "qdocumentline.h"
 #include "qdocumentline_p.h"
 #include "qdocumentcursor.h"
@@ -12,6 +13,9 @@
 
 //FileNamePair::FileNamePair(const QString& rel):relative(rel){};
 FileNamePair::FileNamePair(const QString &rel, const QString &abs): relative(rel), absolute(abs) {}
+
+// languages for LaTeX syntax checking (exact name from qnfa file)
+const QSet<QString> LatexDocument::LATEX_LIKE_LANGUAGES = QSet<QString>() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file";
 
 LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoReload(false), mayHaveDiffMarkers(false), edView(0), mAppendixLine(0), mBeyondEnd(0)
 {
@@ -35,7 +39,7 @@ LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoRel
 	this->parent = 0;
 
 	unclosedEnv.id = -1;
-	latexLikeChecking = true; //TODO: needs to bne changeable
+	syntaxChecking = true;
 
 	lp = LatexParser::getInstance();
 
@@ -975,7 +979,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		    parent->removeDocs(removedIncludes);
 		    parent->updateMasterSlaveRelations(this);
 		}
-		if (latexLikeChecking) {
+		if (syntaxChecking && languageIsLatexLike()) {
 		    StackEnvironment env;
 		    getEnv(i, env);
 		    QDocumentLineHandle *lastHandle = 0;
@@ -3393,10 +3397,17 @@ void LatexDocument::checkNextLine(QDocumentLineHandle *dlh, bool clearOverlay, i
 	dlh->deref();
 }
 
+bool LatexDocument::languageIsLatexLike() const
+{
+	QLanguageDefinition *ld = languageDefinition();
+	if (!ld) return false;
+	return LATEX_LIKE_LANGUAGES.contains(ld->language());
+}
+
 void LatexDocument::reCheckSyntax(int linenr, int count)
 {
 
-	if (!latexLikeChecking)
+	if (!syntaxChecking || !languageIsLatexLike())
 		return;
 
 	if (linenr < 0 || linenr >= lineCount()) linenr = 0;
