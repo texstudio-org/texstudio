@@ -116,7 +116,8 @@ void _synctex_strip_last_path_extension(char * string) {
 	if(NULL != string){
 		char * last_component = NULL;
 		char * last_extension = NULL;
-#       if defined(SYNCTEX_WINDOWS)
+
+#       if 0 // defined(SYNCTEX_WINDOWS)
 		last_component = PathFindFileName(string);
 		last_extension = PathFindExtension(string);
 		if(last_extension == NULL)return;
@@ -135,7 +136,7 @@ void _synctex_strip_last_path_extension(char * string) {
 				last_component = next+1;
 			}
 		}
-#               if defined(SYNCTEX_OS2)
+#               if defined(SYNCTEX_OS2) || defined(SYNCTEX_WINDOWS)
 		/*  On OS2, the '\' is also a path separator. */
 		while((next = strstr(last_component,"\\"))){
 			last_component = next+1;
