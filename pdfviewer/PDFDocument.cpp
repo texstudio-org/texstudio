@@ -451,6 +451,7 @@ PDFWidget::PDFWidget(bool embedded)
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
+	, inhibitNextContextMenuEvent(false)
 	, summedWheelDegrees(0)
 	, docPages(0)
 	, saveScaleFactor(1.0)
@@ -1111,6 +1112,11 @@ void PDFWidget::focusInEvent(QFocusEvent *event)
 
 void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 {
+	if (inhibitNextContextMenuEvent) {
+		inhibitNextContextMenuEvent = false;
+		return;
+	}
+
 	QMenu	menu(this);
 
 	PDFDocument *pdfDoc = getPDFDocument();
@@ -1197,7 +1203,10 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 	summedWheelDegrees += numDegrees;
 	const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
 
-	if (event->modifiers() == Qt::ControlModifier) {
+	if (event->modifiers() == Qt::ControlModifier || event->buttons() == Qt::RightButton) {
+		if (event->buttons() == Qt::RightButton) {
+			inhibitNextContextMenuEvent = true;
+		}
 		if (qAbs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
 			doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
 			summedWheelDegrees = 0;
