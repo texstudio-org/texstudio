@@ -3742,7 +3742,7 @@ void Texstudio::editSectionPasteBefore(int line)
 	currentEditorView()->paste();
 }
 
-void changeCase(QEditor *editor, QString(QString::*method)() const)
+void changeCase(QEditor *editor, QString(*method)(QString))
 {
 	if (!editor) return;
 	QList<QDocumentCursor> cs = editor->cursors();
@@ -3756,18 +3756,26 @@ void changeCase(QEditor *editor, QString(QString::*method)() const)
 
 	editor->document()->beginMacro();
 	foreach (QDocumentCursor c, editor->cursors())
-		c.replaceSelectedText( (c.selectedText().*method)() );
+		c.replaceSelectedText( method(c.selectedText()) );
 	editor->document()->endMacro();
+}
+
+QString txsToLower(QString in){
+    return in.toLower();
 }
 
 void Texstudio::editTextToLowercase()
 {
-	changeCase(currentEditor(), &QString::toLower);
+    changeCase(currentEditor(), &txsToLower);
+}
+
+QString txsToUpper(QString in){
+    return in.toUpper();
 }
 
 void Texstudio::editTextToUppercase()
 {
-	changeCase(currentEditor(), &QString::toUpper);
+    changeCase(currentEditor(), &txsToUpper);
 }
 
 /*!
