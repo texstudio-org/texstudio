@@ -459,7 +459,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		//package help
-		if ( tk.type == Tokens::package) {
+        if ( tk.type == Tokens::package || tk.type == Tokens::documentclass) {
 			QAction *act = new QAction(LatexEditorView::tr("Open package documentation"), contextMenu);
 			QString packageName = tk.getText();
 			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
