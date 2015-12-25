@@ -384,6 +384,9 @@ void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const Q
 			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
 		}
 	}
+#else
+    Q_UNUSED(settings)
+    Q_UNUSED(commands)
 #endif
 }
 
