@@ -1774,7 +1774,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 		edit->editor->setFileName(doc->getFileName());
 		disconnect(edit->editor->document(), SIGNAL(contentsChange(int, int)), edit->document, SLOT(patchStructure(int, int)));
 		configureNewEditorView(edit);
-		if (edit->editor->fileInfo().suffix() != "tex")
+		if (edit->editor->fileInfo().suffix().toLower() != "tex")
 			m_languages->setLanguage(edit->editor, f_real);
 		if (!edit->editor->languageDefinition())
 			guessLanguageFromContent(m_languages, edit->editor);
@@ -1823,7 +1823,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	if (configManager.recentFileHighlightLanguage.contains(f_real))
 		m_languages->setLanguage(edit->editor, configManager.recentFileHighlightLanguage.value(f_real));
-	else if (edit->editor->fileInfo().suffix() != "tex")
+	else if (edit->editor->fileInfo().suffix().toLower() != "tex")
 		m_languages->setLanguage(edit->editor, f_real);
 
 	//QTime time;
@@ -2478,7 +2478,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 		EditorTabs->setTabText(EditorTabs->currentIndex(), currentEditor()->name().replace("&", "&&"));
 		EditorTabs->setTabToolTip(EditorTabs->currentIndex(), QDir::toNativeSeparators(currentEditor()->fileName()));
 		updateOpenDocumentMenu(true);
-		if (currentEditor()->fileInfo().suffix() != "tex")
+		if (currentEditor()->fileInfo().suffix().toLower() != "tex")
 			m_languages->setLanguage(currentEditor(), fn);
 
 		emit infoFileSaved(currentEditor()->fileName());
@@ -9649,7 +9649,7 @@ LatexDocument *Texstudio::diffLoadDocHidden(QString f)
 	}
 	file.close();
 
-	//if (edit->editor->fileInfo().suffix()!="tex")
+	//if (edit->editor->fileInfo().suffix().toLower() != "tex")
 	//	m_languages->setLanguage(edit->editor, f_real);
 
 	//QTime time;
