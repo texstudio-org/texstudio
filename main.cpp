@@ -16,6 +16,7 @@
 #include "texstudio.h"
 #include "smallUsefulFunctions.h"
 #include "debughelper.h"
+#include "utilsVersion.h"
 #include <qtsingleapplication.h>
 #include <QSplashScreen>
 
@@ -129,6 +130,30 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 	return cmdLine;
 }
 
+bool handleCommandLineOnly(const QStringList &cmdLine) {
+	// note: stdout is not supported for Win GUI applications. Will simply not output anything there.
+	if (cmdLine.contains("--help")) {
+		QTextStream(stdout) << "Usage: texstudio [options] [file]\n"
+							<< "\n"
+							<< "Options:\n"
+							<< "  --ini-file FILE         use the specified config file\n"
+							<< "  --master                define the document as explicit root document\n"
+							<< "  --line LINE[:COL]       position the cursor at line LINE and column COL\n"
+							<< "  --insert-cite CITATION  inserts the given citation\n"
+							<< "  --start-always          start a new instance, even if TXS is already running\n"
+							<< "  --pdf-viewer-only       run as a standalone pdf viewer without an editor\n"
+							<< "  --page PAGENUM          display a certain page in the pdf viewer\n";
+		return true;
+	}
+
+	if (cmdLine.contains("--version")) {
+		QTextStream(stdout) << "TeXstudio " << TXSVERSION << " (" << TEXSTUDIO_HG_REVISION << ")\n";
+		return true;
+	}
+
+	return false;
+}
+
 int main(int argc, char **argv)
 {
 	QString appId = generateAppId();
@@ -136,6 +161,10 @@ int main(int argc, char **argv)
 	TexstudioApp a(appId, argc, argv);
 	bool startAlways = false;
 	QStringList cmdLine = parseArguments(QCoreApplication::arguments(), startAlways);
+
+	if (handleCommandLineOnly(cmdLine)) {
+		return 0;
+	}
 
 	if (!startAlways) {
 		if (a.isRunning()) {
