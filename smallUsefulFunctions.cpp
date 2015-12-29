@@ -2196,6 +2196,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				if (valid.contains('V')) { // verbatim command
 					if (res > -1) {
 						package.possibleCommands["%verbatimEnv"] << rxCom.cap(3);
+                        env<< "verbatim";
 					}
 					valid.remove('V');
 				}
@@ -3680,14 +3681,15 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 									tk3.level = level - 1;
 									tk3.type = Tokens::verbatim;
 									stack.push(tk3);
-								}
-								CommandDescription cd = lp.commandDefs.value("\\begin{" + env + "}", CommandDescription());
-								if (cd.args > 1) {
-									cd.args--;
-									cd.argTypes.takeFirst();
-									commandStack.push(cd);
-									commandNames.push("\\begin{" + env + "}");
-								}
+                                } else { // only care for further arguments if not in verbatim mode (see minted)
+                                    CommandDescription cd = lp.commandDefs.value("\\begin{" + env + "}", CommandDescription());
+                                    if (cd.args > 1) {
+                                        cd.args--;
+                                        cd.argTypes.takeFirst();
+                                        commandStack.push(cd);
+                                        commandNames.push("\\begin{" + env + "}");
+                                    }
+                                }
 							}
 						}
 						lexed[j].length = tk.start - tk1.start + 1;
