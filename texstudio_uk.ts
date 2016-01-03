@@ -645,12 +645,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="1355"/>
         <source>Error: No command given</source>
-        <translation>Помилка: немає команди</translation>
+        <translation>Помилка: не має команди</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1386"/>
         <source>Error: No command expanded</source>
-        <translation>Помилка: немає розширеної команди</translation>
+        <translation>Помилка: не має розширеної команди</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1388"/>
@@ -1057,7 +1057,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="849"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
-        <translation>Завжди (якщо немає перенаправлення &gt; /dev/null)</translation>
+        <translation>Завжди (якщо не має перенаправлення &gt; /dev/null)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="857"/>
@@ -7970,7 +7970,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="437"/>
         <source>no error</source>
-        <translation>нема помилки</translation>
+        <translation>не має помилки</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="437"/>
@@ -8258,7 +8258,7 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="34"/>
         <source>No Preview</source>
-        <translation>Нема об&apos;єктів перегляду</translation>
+        <translation>Не має перегляду</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="85"/>
@@ -8331,7 +8331,7 @@ failed.</source>
         <location filename="templateselector.cpp" line="272"/>
         <location filename="templateselector.cpp" line="277"/>
         <source>You do not have permission to remove this file.</source>
-        <translation>У Вас нема дозволу на вилучення цього файлу.</translation>
+        <translation>У Вас не має дозволу на вилучення цього файлу.</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="287"/>
@@ -10002,7 +10002,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1431"/>
         <source>Automatic root document detection active</source>
-        <translation>Автовиявлення  основного документу активний</translation>
+        <translation>Автовиявлення  основного документу активне</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1436"/>
@@ -10392,7 +10392,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5809"/>
         <source>No open project or tex file to clean.</source>
-        <translation>Немає відкритих файлів проекту або TeX для очищення.</translation>
+        <translation>Не має відкритих файлів проекту або TeX для очищення.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5849"/>
@@ -10793,7 +10793,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="textanalysis.ui" line="26"/>
         <source>Count</source>
         <extracomment>count as verb</extracomment>
-        <translation>Рахувати</translation>
+        <translation>Підрахувати</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="33"/>
