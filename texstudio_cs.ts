@@ -4,7 +4,7 @@
     <message>
         <location filename="aboutdialog.ui" line="14"/>
         <source>About TeXstudio</source>
-        <translation>O TeXstudio</translation>
+        <translation>O programu TeXstudio</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="81"/>
