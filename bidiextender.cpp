@@ -112,7 +112,7 @@ void initializeLanguages()
 		kb::XKeyboard xkb;
 		kb::string_vector installedLangSymbols = kb::parse3(xkb.get_kb_string(), kb::nonsyms());
 		int bestLTR = -1;
-		for (int i = 0; i < installedLangSymbols.size(); ++i) {
+		for (size_t i = 0; i < installedLangSymbols.size(); ++i) {
 			std::string symb = installedLangSymbols.at(i);
 			if (symb == "us") bestLTR = i;
 			if (isProbablyLTRLanguageRaw(symb)) {
