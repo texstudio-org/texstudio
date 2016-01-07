@@ -1,5 +1,5 @@
 /***************************************************************************
- *   copyright       : (C) 2003-2007 by Pascal Brachet                     *
+ *   copyright       : (C) 2003-2011 by Pascal Brachet                     *
  *   http://www.xm1math.net/texmaker/                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -16,18 +16,38 @@
 
 #include "ui_tabdialog.h"
 
-class TabDialog : public QDialog
-{
-	Q_OBJECT
-
+struct colData
+    {
+    int alignment;
+    int leftborder;
+    };
+struct liData
+    {
+    bool topborder;
+    bool merge;
+    int mergefrom;
+    int mergeto;
+    };
+class TabDialog : public QDialog  {
+   Q_OBJECT
 public:
-	TabDialog(QWidget *parent = 0, const char *name = 0);
+	TabDialog(QWidget *parent=0, const char *name=0);
 	~TabDialog();
 	Ui::TabDialog ui;
-
-protected slots:
-	void NewRows(int num);
-	void NewColumns(int num);
+QList<colData> colDataList;
+QList<liData> liDataList;
+private slots:
+  void NewRows(int num);
+  void NewColumns(int num);
+  void updateSpanStatus(bool enabled);
+  void applytoAllColumns();
+  void applytoAllLines();
+  void updateColSettings();
+  void updateRowSettings();
+  void showColSettings(int column);
+  void showRowSettings(int row);
+  void showColRowSettings(int row,int column);
+  void updateTableWidget();
 };
 
 
