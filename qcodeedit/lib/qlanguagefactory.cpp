@@ -108,7 +108,7 @@ QStringList QLanguageFactory::fileFilters() const
 	If no matching language is found the previous language definition/completion engine of the editor
 	are removed, leaving it blank, and the format scheme of the document is set to the defaultFormatScheme()
 */
-void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
+bool QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 {
 	QString lang;
 	QFileInfo inf(file);
@@ -170,11 +170,11 @@ void QLanguageFactory::setLanguage(QEditor *e, const QString& file)
 		}
 	}
 	
-	setLanguageFromName(e, lang);
+	return setLanguageFromName(e, lang);
 }
 
 	
-void QLanguageFactory::setLanguageFromName(QEditor *e, const QString& lang){
+bool QLanguageFactory::setLanguageFromName(QEditor *e, const QString& lang){
 	QLanguageDefinition *oldLang = e->languageDefinition();
 
 	if ( lang.isEmpty() && !m_data.contains(lang))
@@ -184,8 +184,10 @@ void QLanguageFactory::setLanguageFromName(QEditor *e, const QString& lang){
 		e->setCompletionEngine(0);
 		e->document()->setFormatScheme(m_defaultFormatScheme);
 
-		if ( oldLang )
+		if ( oldLang ) {
 			e->highlight();
+			return true;
+		}
 
 	} else {
 		//qDebug("lang match for %s : %s", qPrintable(file), qPrintable(lang));
@@ -195,9 +197,12 @@ void QLanguageFactory::setLanguageFromName(QEditor *e, const QString& lang){
 		e->setCompletionEngine(data.e ? data.e->clone() : 0);
 		e->document()->setFormatScheme(data.s ? data.s : m_defaultFormatScheme);
 
-		if ( oldLang != data.d )
+		if ( oldLang != data.d ) {
 			e->highlight();
+			return true;
+		}
 	}
+	return false;
 }
 
 /*!

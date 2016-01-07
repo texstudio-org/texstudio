@@ -1,90 +1,83 @@
-// xkeyboard.h
-// Interface for a class to get keyboard layout information and change layouts
-// Copyright (C) 2008 by Jay Bromley <jbromley@gmail.com>
-//
-// This program is free software; you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the Free
-// Software Foundation; either version 2 of the License, or (at your option)
-// any later version.
-//
-// $Id: XKeyboard.h 29 2008-04-09 21:37:44Z jay $
+/*
+ * Interface for a class to get keyboard layout information and change layouts
+ *
+ * Copyright (C) 2008 by Jay Bromley <jbromley@gmail.com>
+ *
+ * This file is part of Xkb-switch.
+ * Xkb-switch is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Xkb-switch is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Xkb-switch. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#ifndef XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
-#define XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
+#ifndef XKEYBOARD_H
+#define XKEYBOARD_H
 
 #include <vector>
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <X11/Xlib.h>
+#include <X11/XKBlib.h>
 
+namespace kb {
 
-typedef std::vector<std::string> StringVector;
-
-
-// XKeyboard -----------------------------------------------------------
+typedef std::vector<std::string> string_vector;
 
 class XKeyboard
 {
 public:
-    XKeyboard();
-    ~XKeyboard();
-    int groupCount() const;
-    StringVector groupNames() const;
-    StringVector groupSymbols() const;
-    int currentGroupNum() const;
-    std::string currentGroupName() const;
-    std::string currentGroupSymbol() const;
-    bool setGroupByNum(int groupNum);
-    bool changeGroup(int increment);
+	Display* _display;
+	int _deviceId;
+	XkbDescRec* _kbdDescPtr;
 
-    //friend std::ostream& operator<<(std::ostream& os, const XKeyboard& xkb);
+	XKeyboard();
+	~XKeyboard();
 
-private:
-    Bool initializeXkb();
-    std::string getSymbolNameByResNum(int groupResNum);
-    int groupNumResToXkb(int groupNumRes);
-    std::string getGroupNameByResNum(int groupResNum);
-    int groupLookup(int srcValue, StringVector fromText, StringVector toText, int count);
-    void accomodateGroupXkb();
+	// Gets the current layout
+	int get_group() const;
 
-    Display* _display;
-    int _groupCount;
-    StringVector _groupNames;
-    StringVector _symbolNames;
-    int _currentGroupNum;
+	// Sets the layout
+	void set_group(int num);
 
-    int _deviceId;
-    int _baseEventCode;
-    int _baseErrorCode;
+	// Returns keyboard layout string
+	std::string get_kb_string();
+
+	// Waits for kb event
+	void wait_event();
 };
 
+// Parses keyboard string returned by get_kb_stirng. ns are symbols to ignore,
+// normally the result of nonsyms()
+string_vector parse1(const std::string& symbols, const string_vector& ns);
+string_vector parse2(const std::string& symbols, const string_vector& ns);
+string_vector parse3(const std::string& symbols, const string_vector& ns);
 
-// XkbSymbolParser -----------------------------------------------------
-
-class XkbSymbolParser
+// Symbols to be ignored by the parser
+inline string_vector nonsyms()
 {
-public:
-    typedef std::vector<std::string>::iterator StringVectorIter;
+	string_vector nonsyms;
+	nonsyms.push_back("group");
+	nonsyms.push_back("inet");
+	nonsyms.push_back("ctr");
+	nonsyms.push_back("pc");
+	nonsyms.push_back("ctrl");
+	nonsyms.push_back("capslock");
+	nonsyms.push_back("compose");
+	nonsyms.push_back("terminate");
+	nonsyms.push_back("eurosign");
+	return nonsyms;
+}
 
-    XkbSymbolParser();
-    ~XkbSymbolParser();
-    void parse(const std::string& symbols, std::vector<std::string>& symbolList);
-	
-private:
-    bool isXkbLayoutSymbol(const std::string& symbol);
+}
 
-    StringVector _nonSymbols;
-};
+#endif
 
-
-// Helper functions ----------------------------------------------------
-
-int compareNoCase(const std::string& s1, const std::string& s2);
-// std::ostream& operator<<(std::ostream& os, const XKeyboard& xkb);
-// std::ostream& operator<<(std::ostream& os, const StringVector& v);
-
-#endif // XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
-
-// Local Variables:
-// mode: c++
-// End:

@@ -10,6 +10,7 @@
 
 #if defined( WS_X11 )
 #include "xkb/XKeyboard.h"
+#include "xkb/X11Exception.h"
 #include <string>
 #endif
 
@@ -23,13 +24,19 @@ static bool languagesInitialized = false;
 static HKL languageIdRTL, languageIdLTR, oldInputLanguageId;
 static InputLanguage oldInputLanguage = IL_UNCERTAIN;
 
+
 HKL getCurrentLanguage()
 {
 #if defined( Q_OS_WIN )
 	return GetKeyboardLayout(0);
 #elif defined( WS_X11 )
-	XKeyboard xkb;
-	return xkb.currentGroupNum() + 1;
+	try {
+		kb::XKeyboard xkb;
+		return xkb.get_group() + 1;
+	} catch (X11Exception) {
+		return 0;
+	}
+
 #else
 	return 0;
 #endif
@@ -54,11 +61,13 @@ bool isProbablyLTRLanguageCode(HKL id)
 #if defined( Q_OS_WIN )
 	return isProbablyLTRLanguageRaw(((int) id) & 0x000000FF);
 #elif defined( WS_X11 )
-	XKeyboard xkb;
-	StringVector installedLangSymbols = xkb.groupSymbols();
-	id --;
-	if (id >= 0 && id < (int) installedLangSymbols.size())
-		return isProbablyLTRLanguageRaw(installedLangSymbols[id]);
+	try {
+		kb::XKeyboard xkb;
+		kb::string_vector installedLangSymbols = kb::parse3(xkb.get_kb_string(), kb::nonsyms());
+		id --;
+		if (id >= 0 && id < (int) installedLangSymbols.size())
+			return isProbablyLTRLanguageRaw(installedLangSymbols[id]);
+	} catch (X11Exception) { }
 	return false;
 #else
 	return false;
@@ -99,18 +108,19 @@ void initializeLanguages()
 
 #endif //Q_OS_WIN
 #if defined( WS_X11 )
-	XKeyboard xkb;
-	int count = xkb.groupCount();
-	StringVector installedLangSymbols = xkb.groupSymbols();
-	int bestLTR = -1;
-	for (int i = 0; i < count; ++i) {
-		std::string symb = installedLangSymbols.at(i);
-		if (symb == "us") bestLTR = i;
-		if (isProbablyLTRLanguageRaw(symb)) {
-			if (bestLTR < 0) bestLTR = i;
-		} else if (!languageIdRTL) languageIdRTL = i + 1;
-	}
-	if (!languageIdLTR) languageIdLTR = bestLTR + 1;
+	try {
+		kb::XKeyboard xkb;
+		kb::string_vector installedLangSymbols = kb::parse3(xkb.get_kb_string(), kb::nonsyms());
+		int bestLTR = -1;
+		for (size_t i = 0; i < installedLangSymbols.size(); ++i) {
+			std::string symb = installedLangSymbols.at(i);
+			if (symb == "us") bestLTR = i;
+			if (isProbablyLTRLanguageRaw(symb)) {
+				if (bestLTR < 0) bestLTR = i;
+			} else if (!languageIdRTL) languageIdRTL = i + 1;
+		}
+		if (!languageIdLTR) languageIdLTR = bestLTR + 1;
+	} catch (X11Exception) {}
 #endif // WS_X11
 	languagesInitialized = true;
 }
@@ -123,8 +133,10 @@ void setInputLanguage(HKL code)
 #endif
 
 #if defined( WS_X11 )
-	XKeyboard xkb;
-	xkb.setGroupByNum(code - 1);
+	try{
+		kb::XKeyboard xkb;
+		xkb.set_group(code - 1);
+	} catch (X11Exception) {}
 #endif
 }
 
