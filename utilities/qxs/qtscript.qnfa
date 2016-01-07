@@ -1,5 +1,5 @@
 <!DOCTYPE QNFA>
-<QNFA language="QtScript" extensions="js;qs" >
+<QNFA language="QtScript" extensions="js;qs;java;c;cpp;h;py" >
 
 	<word id="tag/script" format="qtscript:comment">%SCRIPT</word>
 
