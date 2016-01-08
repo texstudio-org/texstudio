@@ -17,6 +17,7 @@ extern const char *TEXSTUDIO_HG_REVISION;
 
 bool getDiskFreeSpace(const QString &path, quint64 &freeBytes);
 
+QLocale::Language getKeyboardLanguage();
 QKeySequence filterLocaleShortcut(QKeySequence ks);
 
 QChar getPathListSeparator();

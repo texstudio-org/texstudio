@@ -31,6 +31,14 @@ bool getDiskFreeSpace(const QString &path, quint64 &freeBytes)
 #endif
 }
 
+QLocale::Language getKeyboardLanguage() {
+#if QT_VERSION < 0x050000
+	return QApplication::keyboardInputLocale().language();
+#else
+	return QGuiApplication::inputMethod()->locale().language();
+#endif
+}
+
 /*!
  * Redefine or filter some shortcuts depending on the locale
  * On Windows, AltGr is interpreted as Ctrl+Alt so we shouldn't
@@ -42,11 +50,7 @@ QKeySequence filterLocaleShortcut(QKeySequence ks)
 #ifndef Q_OS_WIN32
 	return ks;
 #else
-#if QT_VERSION < 0x050000
-	QLocale::Language lang = QApplication::keyboardInputLocale().language();
-#else
-	QLocale::Language lang = QGuiApplication::inputMethod()->locale().language();
-#endif
+	QLocale::Language lang = getKeyboardLanguage();
 	switch (lang) {
 	case QLocale::Hungarian:
 		if (ks.matches(QKeySequence("Ctrl+Alt+F"))) {
@@ -65,6 +69,14 @@ QKeySequence filterLocaleShortcut(QKeySequence ks)
 			return QKeySequence("Ctrl+Alt+Shift+F");
 		}
 		break;
+	case QLocale::Czech:
+		if (ks.matches(QKeySequence("Ctrl+Alt+S"))) {
+			return QKeySequence();
+		} else if (ks.matches(QKeySequence("Ctrl+Alt+F"))) {
+			return QKeySequence("Ctrl+Alt+Shift+F");
+		} else if (ks.matches(QKeySequence("Ctrl+Alt+L"))) {
+			return QKeySequence("Ctrl+Alt+Shift+L");
+		}
 	default:
 		return ks;
 	}
