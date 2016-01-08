@@ -2211,6 +2211,7 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 {
 	QMenu *menu = newManagedMenu(parent, f.attributes().namedItem("id").nodeValue(), tr(qPrintable(f.attributes().namedItem("text").nodeValue())));
 	QDomNodeList children = f.childNodes();
+	QLocale::Language keyboardLanguage = getKeyboardLanguage();
 	for (int i = 0; i < children.count(); i++) {
 		QDomElement c = children.at(i).toElement();
 		if (c.nodeName() == "menu") loadManagedMenu(menu, c);
@@ -2223,10 +2224,14 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 				ba = att.namedItem("slot").nodeValue().toLocal8Bit();
 				slotfunc = ba.data();
 			}
+			QKeySequence shortcut(att.namedItem("shortcut").nodeValue());
+			if (keyboardLanguage == QLocale::Czech) {
+				shortcut = filterLocaleShortcut(shortcut);
+			}
 			QAction *act = newManagedAction(menu,
 			                                att.namedItem("id").nodeValue(),
 			                                tr(qPrintable(att.namedItem("text").nodeValue())), slotfunc,
-			                                QList<QKeySequence>() <<  QKeySequence(att.namedItem("shortcut").nodeValue()),
+											QList<QKeySequence>() << shortcut,
 			                                att.namedItem("icon").nodeValue());
 			act->setWhatsThis(att.namedItem("info").nodeValue());
 			act->setData(att.namedItem("insert").nodeValue());
