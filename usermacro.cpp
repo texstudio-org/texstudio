@@ -108,8 +108,6 @@ void Macro::initTriggerFormats()
 {
 	QFormatScheme *fs = QDocument::defaultFormatScheme();
 	REQUIRE(fs);
-	qDebug() << triggerFormatsUnprocessed;
-	qDebug() << triggerFormatExcludesUnprocessed;
 	foreach (const QString &formatName,	triggerFormatsUnprocessed.split('|')) {
 		if (fs->exists(formatName)) {
 			triggerFormats << fs->id(formatName);

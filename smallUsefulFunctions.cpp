@@ -911,7 +911,6 @@ void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QSt
 
 	for (int level = 0; level <= LatexParser::MAX_STRUCTURE_LEVEL; level++) {
 		foreach (const QString &cmd, possibleCommands[QString("%structure%1").arg(level)]) {
-			qDebug() << level << cmd;
 			QDomElement child = doc.createElement("word");
 			QString name = cmd;
 			name.remove('\\');
@@ -937,7 +936,6 @@ bool LatexParser::resolveCommandOptions(const QString &line, int column, QString
 	int type;
 	// check if between command and options is located text or other command
 	int abort = line.indexOf(QRegExp("(\\s|\\\\)"), start + 1);
-	//qDebug()<<abort;
 	while (start < line.length()) {
 		// find first available bracket after position start
 		int found = -1;

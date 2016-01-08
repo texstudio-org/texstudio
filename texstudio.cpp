@@ -3030,7 +3030,6 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
 	cursorHistory->setInsertionEnabled(true);
 
 	if (!s.PDFFile().isEmpty()) {
-		qDebug() << s.PDFFile() << s.PDFEmbedded();
 		runInternalCommand("txs:///view-pdf-internal", QFileInfo(s.PDFFile()), s.PDFEmbedded() ? "--embedded" : "--windowed");
 	}
 	// update completer
@@ -3174,7 +3173,6 @@ void Texstudio::editPasteImage(QImage image)
 {
 	static QString filenameSuggestion;  // keep for future calls
 	QString rootDir = currentEditorView()->document->getRootDocument()->getFileInfo().absolutePath();
-	qDebug() << filenameSuggestion;
 	if (!currentEditorView()) return;
 	if (filenameSuggestion.isEmpty()) {
 		filenameSuggestion = rootDir + "/screenshot001.png";
@@ -9419,7 +9417,6 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 
 void Texstudio::updateTexQNFA()
 {
-	qDebug() << "qnfa update";
 	QLanguageFactory::LangData m_lang = m_languages->languageData("(La)TeX");
 
 	QFile f(configManager.configBaseDir + "languages/tex.qnfa");
