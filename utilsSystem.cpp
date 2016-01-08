@@ -419,7 +419,6 @@ QString getNonextistentFilename(const QString &guess, const QString &fallback)
 	QFileInfo fi(guess);
 	if (!fi.exists()) return guess;
 	QRegExp reNumberedFilename("(.*[^\\d])(\\d*)\\.(\\w+)");
-	qDebug() << guess;
 	if (!reNumberedFilename.exactMatch(guess)) {
 		return fallback;
 	}
@@ -533,7 +532,6 @@ bool isRetinaMac()
 		QRegExp rx("MacBookPro([0-9]*)");
 		rx.indexIn(model);
 		int num = rx.cap(1).toInt();
-		//qDebug() << num << model;
 		if (num >= 10) // compatibility with future MacBookPros. Assume they are also retina.
 			isRetina = true;
 	}

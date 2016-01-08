@@ -74,8 +74,6 @@ void SearchQuery::run(LatexDocument *doc)
 		break;
 	}
 
-    //qDebug() << mScope;
-
 	foreach (LatexDocument *doc, docs) {
 		if (!doc) continue;
 		QList<QDocumentLineHandle *> lines;
@@ -85,7 +83,6 @@ void SearchQuery::run(LatexDocument *doc)
 			if (l < 0) break;
 			lines << doc->line(l).handle();
 		}
-		qDebug() << doc->getFileName() << lines.count();
 
 		if (!lines.isEmpty()) { // don't add empty searches
 			if (doc->getFileName().isEmpty() && doc->getTemporaryFileName().isEmpty())
