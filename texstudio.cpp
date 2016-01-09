@@ -3139,6 +3139,12 @@ void Texstudio::editPaste()
 	if (!currentEditorView()) return;
 
 	const QMimeData *d = QApplication::clipboard()->mimeData();
+	if (d->hasFormat("application/x-qt-windows-mime;value=\"Star Embed Source (XML)\"") && d->hasFormat("text/plain")) {
+		// workaround for LibreOffice (im "application/x-qt-image" has a higher priority for them than "text/plain")
+		currentEditorView()->paste();
+		return;
+	}
+
 	foreach (const QString &format, d->formats()) {
 		// formats is a priority order. Use the first (== most suitable) format
 		if (format == "text/uri-list") {
