@@ -4796,108 +4796,52 @@ void Texstudio::insertBib()
 
 void Texstudio::quickTabular()
 {
-	if ( !currentEditorView() )	return;
-	QString placeholder;//(0x2022);
-	QStringList borderlist, alignlist;
-	borderlist<< QString("|") << QString("||") << QString("") << QString("@{}");
-	alignlist << QString("c") << QString("l") << QString("r") << QString("p{}") << QString(">{\\centering\\arraybackslash}p{}") << QString(">{\\raggedleft\\arraybackslash}p{}");
-	QString al="";
-	QString vs="";
-	QString el="";
+	if (!currentEditorView())	return;
+	QString al = "";
+	QString vs = "";
+	QString hs = "";
 	QString tag;
-	TabDialog *quickDlg = new TabDialog(this,"Tabular");
-	QTableWidgetItem *item=new QTableWidgetItem();
-	if ( quickDlg->exec() )
-	{
+	TabDialog *quickDlg = new TabDialog(this, "Tabular");
+	//TODO: move this in tabdialog.h
+	if (quickDlg->exec()) {
 		int y = quickDlg->ui.spinBoxRows->value();
 		int x = quickDlg->ui.spinBoxColumns->value();
-		tag = QString("\\begin{tabular}{");
-		for ( int j=0;j<x;j++)
-		{
-			tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
-			tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
+		if ((quickDlg->ui.comboSeparator->currentIndex()) == 0) vs = QString("|");
+		if ((quickDlg->ui.comboSeparator->currentIndex()) == 1) vs = QString("||");
+		if ((quickDlg->ui.comboSeparator->currentIndex()) == 2) vs = QString("");
+		if ((quickDlg->ui.comboSeparator->currentIndex()) == 3) vs = QString("@{}");
+		tag = QString("\\begin{tabular}{") + vs;
+		if ((quickDlg->ui.comboAlignment->currentIndex()) == 0) al = QString("c") + vs;
+		if ((quickDlg->ui.comboAlignment->currentIndex()) == 1) al = QString("l") + vs;
+		if ((quickDlg->ui.comboAlignment->currentIndex()) == 2) al = QString("r") + vs;
+		if ((quickDlg->ui.comboAlignment->currentIndex()) == 3) al = QString("p{}") + vs;
+		if ((quickDlg->ui.comboAlignment->currentIndex()) == 4) al = QString(">{\\centering\\arraybackslash}p{}") + vs;
+		if ((quickDlg->ui.comboAlignment->currentIndex()) == 5) al = QString(">{\\raggedleft\\arraybackslash}p{}") + vs;
+		if (quickDlg->ui.checkBox->isChecked()) {
+			hs = QString("\\hline ");
+			if (quickDlg->ui.checkBoxMargin->isChecked()) hs += "\\rule[-2ex]{0pt}{5.5ex} ";
 		}
-		tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-		tag +=QString("}\n");
-		for ( int i=0;i<y;i++)
-		{
-			if (quickDlg->liDataList.at(i).topborder) tag+=QString("\\hline \n");
-			if (quickDlg->ui.checkBoxMargin->isChecked()) tag+="\\rule[-1ex]{0pt}{2.5ex} ";
-			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto>quickDlg->liDataList.at(i).mergefrom))
-			{
-				el="";
-				for ( int j=0;j<x;j++)
-				{
-					item =quickDlg->ui.tableWidget->item(i,j);
-
-					if (j==quickDlg->liDataList.at(i).mergefrom-1)
-					{
-						if (item) el+=item->text();
-						tag+=QString("\\multicolumn{");
-						tag+=QString::number(quickDlg->liDataList.at(i).mergeto-quickDlg->liDataList.at(i).mergefrom+1);
-						tag+=QString("}{");
-						if ((j==0) && (quickDlg->colDataList.at(j).leftborder<2)) tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
-						if (quickDlg->colDataList.at(j).alignment<3) tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
-						else tag+=QString("c");
-						if (quickDlg->liDataList.at(i).mergeto==x) tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-						else tag+=borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
-						tag+=QString("}{");
-					}
-					else if (j==quickDlg->liDataList.at(i).mergeto-1)
-					{
-						if (item) el+=item->text();
-						if (el.isEmpty()) el=placeholder;
-						tag+=el+QString("}");
-						if (j<x-1) tag+=" & ";
-						else tag+=QString(" \\\\ \n");
-					}
-					else if ((j>quickDlg->liDataList.at(i).mergefrom-1) && (j<quickDlg->liDataList.at(i).mergeto-1))
-					{
-						if (item) el+=item->text();
-					}
-					else
-					{
-						if (item)
-						{
-							if (item->text().isEmpty()) tag +=placeholder;
-							else tag +=item->text();
-						}
-						else tag +=placeholder;
-						if (j<x-1) tag+=" & ";
-						else tag+=QString(" \\\\ \n");
-					}
-
-				}
-			}
-			else
-			{
-				for ( int j=0;j<x-1;j++)
-				{
-					item =quickDlg->ui.tableWidget->item(i,j);
-					if (item)
-					{
-						if (item->text().isEmpty()) tag +=placeholder+QString(" & ");
-						else tag +=item->text()+ QString(" & ");
-					}
-					else tag +=placeholder+QString(" & ");
-				}
-				item =quickDlg->ui.tableWidget->item(i,x-1);
-				if (item)
-				{
-					if (item->text().isEmpty()) tag +=placeholder+QString(" \\\\ \n");
-					else tag +=item->text()+ QString(" \\\\ \n");
-				}
-				else tag +=placeholder+QString(" \\\\ \n");
-			}
+		for (int j = 0; j < x; j++) {
+			tag += al;
 		}
-		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag +=QString("\\hline \n\\end{tabular} ");
-		else tag +=QString("\\end{tabular} ");
-		if (tag.contains("arraybackslash")) tag="% \\usepackage{array} is required\n"+tag;
-		insertTag(tag,0,0);
+		tag += QString("}\n");
+		for (int i = 0; i < y; i++) {
+			tag += hs;
+			for (int j = 0; j < x - 1; j++) {
+				QTableWidgetItem *item = quickDlg->ui.tableWidget->item(i, j);
+				if (item) tag += item->text() + QString(" & ");
+				else tag += QString(" & ");
+			}
+			QTableWidgetItem *item = quickDlg->ui.tableWidget->item(i, x - 1);
+			if (item) tag += item->text() + QString(" \\\\ \n");
+			else tag += QString(" \\\\ \n");
+		}
+		if (quickDlg->ui.checkBox->isChecked()) tag += QString("\\hline \n\\end{tabular} ");
+		else tag += QString("\\end{tabular} ");
+		insertTag(tag, 0, 0);
 	}
 
 }
-
 
 void Texstudio::quickArray()
 {
@@ -4942,7 +4886,6 @@ void Texstudio::quickArray()
 		insertTag(tag, 0, 0);
 	}
 }
-
 
 // returns true if line is inside in the specified environment. In that case start and end lines of the environment are supplied
 bool findEnvironmentLines(const QDocument *doc, const QString &env, int line, int &startLine, int &endLine, int scanRange)
