@@ -5,7 +5,7 @@ TeXstudio 2.10.6
 - global search button in search toolbar now updates the results instead of show/hide
 - option to store absolute paths in session files
 - use short title for sections in structure view (if available)
-- structures commands can now be defined in cwl
+- structure commands can now be defined in cwl
 - support memoir class
 - support right-click + wheel for zooming in internal pdf viewer
 - add --version and --help option to OS X and Linux command line (not possible for Win)
@@ -29,6 +29,7 @@ TeXstudio 2.10.6
 - fix: context help for \documentclass
 - fix: treat minted as verboten environment
 - fix: correctly handle files with uppercase extension .TEX as tex files
+- fix: workaround for pasting from LibreOffice (priorize text over image)
 - updates to translations
 - updates to the manual
 - updates to cwl files
