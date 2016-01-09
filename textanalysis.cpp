@@ -136,7 +136,6 @@ int lowestStructureLevel(StructureEntry *entry)
 
 void TextAnalysisDialog::interpretStructureTree(StructureEntry *entry)
 {
-	chapters.clear();
 	interpretStructureTreeRec(entry, lowestStructureLevel(entry));
 }
 
