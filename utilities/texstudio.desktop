@@ -7,6 +7,7 @@ GenericName[fr]=Editeur LaTeX
 Comment=LaTeX development environment
 Comment[fr]=Environnement de développement LaTeX
 Icon=texstudio
+Keywords=LaTeX;TeX;editor;
 MimeType=text/x-tex;
 Name=TeXstudio
 StartupNotify=false
