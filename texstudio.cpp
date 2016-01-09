@@ -106,6 +106,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	completerPreview = false;
 	recheckLabels = true;
 	findDlg = 0;
+	cursorHistory = 0;
 	recentSessionList = 0;
 	EditorTabs = 0;
 	contextEntry = 0;
@@ -756,8 +757,10 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "markprev", tr("Previous mark"), "gotoMark", MAC_OTHER(0, Qt::CTRL + Qt::Key_Up), "", QList<QVariant>() << true << -1); //, ":/images/errorprev.png");
 	newManagedAction(submenu, "marknext", tr("Next mark"), "gotoMark", MAC_OTHER(0, Qt::CTRL + Qt::Key_Down), "", QList<QVariant>() << false << -1); //, ":/images/errornext.png");
 	submenu->addSeparator();
-	cursorHistory->setBackAction(newManagedAction(submenu, "goback", tr("Go Back"), SLOT(goBack()), MAC_OTHER(0, Qt::ALT + Qt::Key_Left), "back"));
-	cursorHistory->setForwardAction(newManagedAction(submenu, "goforward", tr("Go Forward"), SLOT(goForward()), MAC_OTHER(0, Qt::ALT + Qt::Key_Right), "forward"));
+	if (cursorHistory) {
+		cursorHistory->setBackAction(newManagedAction(submenu, "goback", tr("Go Back"), SLOT(goBack()), MAC_OTHER(0, Qt::ALT + Qt::Key_Left), "back"));
+		cursorHistory->setForwardAction(newManagedAction(submenu, "goforward", tr("Go Forward"), SLOT(goForward()), MAC_OTHER(0, Qt::ALT + Qt::Key_Right), "forward"));
+	}
 
 	submenu = newManagedMenu(menu, "gotoBookmark", tr("Goto Bookmark"));
 	QList<int> bookmarkIndicies = QList<int>() << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 0;
