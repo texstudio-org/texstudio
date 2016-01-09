@@ -654,13 +654,22 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			
 		int ret = QMessageBox::Yes; //different to base qce2.2, where it defaults to ::no if silent
 		if ( !hasOption(Silent) /*&& hasOption(Prompt), to ask or not to ask that is the question; if it doesn't ask it fails silently if no match exists*/){
+			QString message;
+			if (backward) {
+				message = tr(
+							  "Start of scope reached with no match.\n"
+							  "Restart from the end?"
+						  );
+			} else {
+				message = tr(
+							  "End of scope reached with no match.\n"
+							  "Restart from the beginning?"
+						  );
+			}
 			ret=QMessageBox::question(
 							m_editor,
 							tr("Failure"),
-							tr(
-								"End of scope reached with no match.\n"
-								"Restart from the beginning ?"
-							),
+							message,
 							QMessageBox::Yes
 							| QMessageBox::No,
 							QMessageBox::Yes

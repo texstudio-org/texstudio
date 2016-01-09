@@ -590,7 +590,17 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			stack.push(tk);
 			continue;
 		}
-
+        if (tk.type == Tokens::punctuation || tk.type == Tokens::symbol) {
+            QString word = line.mid(tk.start, tk.length);
+            QStringList forbiddenSymbols;
+            forbiddenSymbols<<"^"<<"_";
+            if(forbiddenSymbols.contains(word) && !containsEnv(*ltxCommands, "math", activeEnv)){
+                Error elem;
+                elem.range = QPair<int, int>(tk.start, tk.length);
+                elem.type = ERR_MathCommandOutsideMath;
+                newRanges.append(elem);
+            }
+        }
 		if (tk.type == Tokens::commandUnknown) {
 			QString word = line.mid(tk.start, tk.length);
 			if (word.contains('@')) {
@@ -806,7 +816,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				newRanges.append(elem);
 			}
 		}
-		if (tk.type >= Tokens::specialArg) {
+        if (tk.type == Tokens::specialArg) {
 			QString value = line.mid(tk.start, tk.length);
 			QString special = ltxCommands->mapSpecialArgs.value(int(tk.type - Tokens::specialArg));
 			if (!ltxCommands->possibleCommands[special].contains(value)) {
@@ -815,7 +825,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				elem.type = ERR_unrecognizedKey;
 				newRanges.append(elem);
 			}
-		}
+        }
 		if (tk.type == Tokens::keyVal_key) {
 			// special treatment for key val checking
 			QString command = getCommandFromToken(tk);

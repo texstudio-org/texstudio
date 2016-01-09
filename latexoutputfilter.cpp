@@ -737,7 +737,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	static QRegExp reLaTeXWarning("^(((! )?(La|pdf|Lua)TeX)|Package|Class) .*Warning.*:(.*)", Qt::CaseInsensitive);
 	static QRegExp reLatex3Warning("^\\*\\s+(\\S.*)");
 	static QRegExp reLatex3WarningHeader("^\\*\\s*(.*warning:\\s*.*)", Qt::CaseInsensitive);
-	static QRegExp reNoFile("No file (.*)");
+	static QRegExp reNoFile("^No file (.*)");
 	static QRegExp reNoAsyFile("File .* does not exist."); // FIXME can be removed when http://sourceforge.net/tracker/index.php?func=detail&aid=1772022&group_id=120000&atid=685683 has promoted to the users
 
 	switch (dwCookie) {
@@ -745,7 +745,7 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 	case Start :
 		if (strLine.startsWith("****************************************")) {
 			found = true;
-			dwCookie = Latex3Warning;
+			dwCookie = MaybeLatex3Warning; // cannot decide yet, some packages just insert a starred line as separator. A Latex3Warning will start the next line with a star (will be checked later on).
 			m_currentItem.message = QString();
 			m_currentItem.logline = GetCurrentOutputLine();
 		} else if (reLaTeXWarning.indexIn(strLine) != -1) {
@@ -780,6 +780,14 @@ bool LatexOutputFilter::detectWarning(const QString &strLine, short &dwCookie)
 		flush = detectLaTeXLineNumber(warning, dwCookie, strLine.length());
 		m_currentItem.message = (warning);
 		break;
+	case MaybeLatex3Warning:
+		if (!strLine.startsWith('*')) {
+			found = false;
+			flush = false;
+			dwCookie = Start;
+			break;
+		}
+		// no break,
 	case Latex3Warning:
 		if (!strLine.startsWith('*') || strLine.startsWith("****************************************")) {
 			found = false;

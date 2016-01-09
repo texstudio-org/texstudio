@@ -10,6 +10,7 @@
 
 #if defined( WS_X11 )
 #include "xkb/XKeyboard.h"
+#include "xkb/X11Exception.h"
 #include <string>
 #endif
 
@@ -20,16 +21,22 @@ typedef int HKL;
 #endif
 
 static bool languagesInitialized = false;
-static HKL languageIdRTL, languageIdLTR;
+static HKL languageIdRTL, languageIdLTR, oldInputLanguageId;
 static InputLanguage oldInputLanguage = IL_UNCERTAIN;
+
 
 HKL getCurrentLanguage()
 {
 #if defined( Q_OS_WIN )
 	return GetKeyboardLayout(0);
 #elif defined( WS_X11 )
-	XKeyboard xkb;
-	return xkb.currentGroupNum() + 1;
+	try {
+		kb::XKeyboard xkb;
+		return xkb.get_group() + 1;
+	} catch (X11Exception) {
+		return 0;
+	}
+
 #else
 	return 0;
 #endif
@@ -54,32 +61,32 @@ bool isProbablyLTRLanguageCode(HKL id)
 #if defined( Q_OS_WIN )
 	return isProbablyLTRLanguageRaw(((int) id) & 0x000000FF);
 #elif defined( WS_X11 )
-	XKeyboard xkb;
-	StringVector installedLangSymbols = xkb.groupSymbols();
-	id --;
-	if (id >= 0 && id < (int) installedLangSymbols.size())
-		return isProbablyLTRLanguageRaw(installedLangSymbols[id]);
+	try {
+		kb::XKeyboard xkb;
+		kb::string_vector installedLangSymbols = kb::parse3(xkb.get_kb_string(), kb::nonsyms());
+		id --;
+		if (id >= 0 && id < (int) installedLangSymbols.size())
+			return isProbablyLTRLanguageRaw(installedLangSymbols[id]);
+	} catch (X11Exception) { }
 	return false;
 #else
 	return false;
 #endif
 }
 
-void rememberCurrentLanguage()
-{
-	if (oldInputLanguage != IL_UNCERTAIN) {
-		HKL curLayout = getCurrentLanguage();
-		if (oldInputLanguage == IL_LTR) languageIdLTR = curLayout;
-		else languageIdRTL = curLayout;
-	}
-}
-
 void initializeLanguages()
 {
 	languageIdLTR = 0;
 	languageIdRTL = 0;
-	oldInputLanguage = isProbablyLTRLanguageCode(getCurrentLanguage()) ? IL_LTR : IL_RTL;
-	rememberCurrentLanguage();
+	oldInputLanguageId = getCurrentLanguage();
+	if (isProbablyLTRLanguageCode(oldInputLanguageId)) {
+		oldInputLanguage = IL_LTR;
+		languageIdLTR = oldInputLanguageId;
+	} else {
+		oldInputLanguage = IL_RTL;
+		languageIdRTL = oldInputLanguageId;
+	}
+
 #if defined( Q_OS_WIN )
 	const int MAXSIZE = 32;
 	HKL langs[MAXSIZE];
@@ -101,18 +108,19 @@ void initializeLanguages()
 
 #endif //Q_OS_WIN
 #if defined( WS_X11 )
-	XKeyboard xkb;
-	int count = xkb.groupCount();
-	StringVector installedLangSymbols = xkb.groupSymbols();
-	int bestLTR = -1;
-	for (int i = 0; i < count; ++i) {
-		std::string symb = installedLangSymbols.at(i);
-		if (symb == "us") bestLTR = i;
-		if (isProbablyLTRLanguageRaw(symb)) {
-			if (bestLTR < 0) bestLTR = i;
-		} else if (!languageIdRTL) languageIdRTL = i + 1;
-	}
-	if (!languageIdLTR) languageIdLTR = bestLTR + 1;
+	try {
+		kb::XKeyboard xkb;
+		kb::string_vector installedLangSymbols = kb::parse3(xkb.get_kb_string(), kb::nonsyms());
+		int bestLTR = -1;
+		for (size_t i = 0; i < installedLangSymbols.size(); ++i) {
+			std::string symb = installedLangSymbols.at(i);
+			if (symb == "us") bestLTR = i;
+			if (isProbablyLTRLanguageRaw(symb)) {
+				if (bestLTR < 0) bestLTR = i;
+			} else if (!languageIdRTL) languageIdRTL = i + 1;
+		}
+		if (!languageIdLTR) languageIdLTR = bestLTR + 1;
+	} catch (X11Exception) {}
 #endif // WS_X11
 	languagesInitialized = true;
 }
@@ -120,28 +128,42 @@ void initializeLanguages()
 void setInputLanguage(HKL code)
 {
 	if (!code) return;
-	rememberCurrentLanguage();
 #if defined( Q_OS_WIN )
 	ActivateKeyboardLayout(code, KLF_SETFORPROCESS);
 #endif
 
 #if defined( WS_X11 )
-	XKeyboard xkb;
-	xkb.setGroupByNum(code - 1);
+	try{
+		kb::XKeyboard xkb;
+		xkb.set_group(code - 1);
+	} catch (X11Exception) {}
 #endif
 }
 
+
 void setInputLanguage(InputLanguage lang)
 {
-	if (lang == IL_UNCERTAIN) {
-		oldInputLanguage = lang;
-		return;
-	}
+	if (lang == oldInputLanguage) return;
 	if (!languagesInitialized)
 		initializeLanguages();
-	if (lang == oldInputLanguage) return;
-	rememberCurrentLanguage();
-	HKL newLanguage = lang == IL_LTR ? languageIdLTR : languageIdRTL;
-	setInputLanguage(newLanguage);
+
+	HKL curLayout = getCurrentLanguage();
+	HKL newLayout = 0;
+
+	if (curLayout != oldInputLanguageId) {
+		if (oldInputLanguage == IL_LTR) languageIdLTR = curLayout;
+		else if (oldInputLanguage == IL_RTL) languageIdRTL = curLayout;
+		else if (oldInputLanguage == IL_UNCERTAIN) {
+			if (lang == IL_LTR) languageIdLTR = curLayout;
+			else if (lang == IL_RTL) languageIdRTL = curLayout;
+		}
+	}
+	if (lang == IL_LTR) newLayout = languageIdLTR;
+	else if (lang == IL_RTL) newLayout = languageIdRTL;
+
+	if (newLayout && curLayout != newLayout) {
+		setInputLanguage(newLayout);
+		oldInputLanguageId = newLayout;
+	} else oldInputLanguageId = curLayout;
 	oldInputLanguage = lang;
 }

@@ -159,6 +159,7 @@ public:
 	int maxRecentFiles, maxRecentProjects, maxRecentSessions;
 	bool rememberFileFilter;
 	bool sessionRestore;
+	bool sessionStoreRelativePaths;
 	bool parseBibTeX, parseMaster;
 	QString bibFileEncoding;
 	bool autoLoadChildren;

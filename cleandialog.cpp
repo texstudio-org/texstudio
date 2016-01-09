@@ -56,7 +56,7 @@ bool CleanDialog::checkClean(const LatexDocuments &docs) {
 		if (scopeID == CleanDialog::Project) ui->cbScope->setCurrentIndex(ui->cbScope->count()-1);
 		somethingToClean = true;
 	}
-	if (docs.currentDocument && docs.currentDocument->getFileInfo().suffix()=="tex") {
+	if (docs.currentDocument && docs.currentDocument->getFileInfo().suffix().toLower() == "tex") {
 		currentTexFile = docs.currentDocument->getFileName();
 		ui->cbScope->addItem(tr("Current File"), CleanDialog::CurrentTexFile);
 		if (scopeID == CleanDialog::CurrentTexFile) ui->cbScope->setCurrentIndex(ui->cbScope->count()-1);
@@ -65,7 +65,7 @@ bool CleanDialog::checkClean(const LatexDocuments &docs) {
 		somethingToClean = true;
 	}
 	foreach (LatexDocument *doc, docs.documents) {
-		if (doc->getFileInfo().suffix()=="tex") openTexFiles.append(doc->getFileName());
+		if (doc->getFileInfo().suffix().toLower() == "tex") openTexFiles.append(doc->getFileName());
 	}
 	if (!openTexFiles.isEmpty()) {
 		ui->cbScope->addItem(tr("Open Files"), CleanDialog::OpenTexFiles);

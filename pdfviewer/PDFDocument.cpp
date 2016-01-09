@@ -451,6 +451,7 @@ PDFWidget::PDFWidget(bool embedded)
 	, scaleFactor(1.0)
 	, dpi(72.0)
 	, scaleOption(kFixedMag)
+	, inhibitNextContextMenuEvent(false)
 	, summedWheelDegrees(0)
 	, docPages(0)
 	, saveScaleFactor(1.0)
@@ -1111,6 +1112,11 @@ void PDFWidget::focusInEvent(QFocusEvent *event)
 
 void PDFWidget::contextMenuEvent(QContextMenuEvent *event)
 {
+	if (inhibitNextContextMenuEvent) {
+		inhibitNextContextMenuEvent = false;
+		return;
+	}
+
 	QMenu	menu(this);
 
 	PDFDocument *pdfDoc = getPDFDocument();
@@ -1197,7 +1203,10 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 	summedWheelDegrees += numDegrees;
 	const int degreesPerStep = 15; // for a typical mouse (some may have finer resolution, but that's k with the co
 
-	if (event->modifiers() == Qt::ControlModifier) {
+	if (event->modifiers() == Qt::ControlModifier || event->buttons() == Qt::RightButton) {
+		if (event->buttons() == Qt::RightButton) {
+			inhibitNextContextMenuEvent = true;
+		}
 		if (qAbs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
 			doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
 			summedWheelDegrees = 0;
@@ -3288,6 +3297,8 @@ void PDFDocument::search()
 	dwSearch->setFocus();
 }
 
+
+
 QString PDFDocument::debugSyncTeX(const QString &filename)
 {
 	int pos = filename.indexOf(SYNCTEX_EXT);
@@ -3313,13 +3324,16 @@ QString PDFDocument::debugSyncTeX(const QString &filename)
 	result.append("Inputs:");
 	synctex_node_t node = synctex_scanner_input(scanner);
 	while (node != NULL) {
-		result.append(QString("Input:%1:%2").arg(synctex_node_tag(node)).arg(synctex_node_name(node)));
+		int tag = synctex_node_tag(node);
+		const char * name = tag >= 0 ? synctex_scanner_get_name(scanner, tag) : NULL;
+		result.append(QString("Input:%1:%2").arg(tag).arg(name));
+
 		node = synctex_node_sibling(node);
 	}
 
 	result.append("");
 	result.append("Sheets:");
-	node = synctex_first_sheet(scanner);
+	node = synctex_sheet(scanner, 1);
 	while (node != NULL) {
 		synctex_node_t cur = synctex_node_child(node);
 		int page = synctex_node_page(cur);
@@ -4026,6 +4040,13 @@ void PDFDocument::showToolbars()
 void PDFDocument::setToolbarIconSize(int sz)
 {
 	toolBar->setIconSize(QSize(sz, sz));
+	// statusbar
+	foreach (QObject *c, statusbar->children()) {
+		QAbstractButton *bt = qobject_cast<QAbstractButton *>(c);
+		if (bt) {
+			bt->setIconSize(QSize(sz, sz));
+		}
+	}
 }
 
 void PDFDocument::showMessage(const QString &text)

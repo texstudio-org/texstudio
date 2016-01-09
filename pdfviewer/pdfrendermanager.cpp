@@ -13,6 +13,7 @@
 
 #include "pdfrendermanager.h"
 #include "smallUsefulFunctions.h"
+#include "configmanagerinterface.h"
 #include <QtCore/qmath.h>
 
 const int kMaxPageZoom = 1000000;
@@ -169,7 +170,12 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 
 	cachedNumPages = docPtr->numPages();
 
-	docPtr->setRenderBackend(Poppler::Document::SplashBackend);
+	Poppler::Document::RenderBackend backend = Poppler::Document::SplashBackend;
+	if (ConfigManagerInterface::getInstance()->getOption("Preview/RenderBackend").toInt() == 1) {
+		backend = Poppler::Document::ArthurBackend;
+	}
+	
+	docPtr->setRenderBackend(backend);
 	docPtr->setRenderHint(Poppler::Document::Antialiasing);
 	docPtr->setRenderHint(Poppler::Document::TextAntialiasing);
 
@@ -283,10 +289,8 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 					pageNr = pageNr + kMaxPageZoom;
 				CachePixmap *image = new CachePixmap(img);
 				image->setRes(xres, x, y);
-				int cost = qRound(xres * xres / 10000.0);
-				if (cost < 1)
-					cost = 1;
-				renderedPages.insert(pageNr, image, cost);
+				int sizeInMB = qCeil(image->width() * image->height() * image->depth() / 8388608.0);  // 8(bits depth -> bytes) * 1024**2 (bytes -> MB)
+				renderedPages.insert(pageNr, image, sizeInMB);
 			}
 		}
 		if (!cache && x > -1 && y > -1 && w > -1 && h > -1) {
@@ -372,7 +376,7 @@ void PDFRenderManager::addToCache(QImage img, int pageNr, int ticket)
 					pageNr = pageNr + kMaxPageZoom;
 				CachePixmap *image = new CachePixmap(QPixmap::fromImage(img));
 				image->setRes(info.xres, info.x, info.y);
-				int sizeInMB = qCeil(image->width() * image->height() * image->depth() / 8388608.0);
+				int sizeInMB = qCeil(image->width() * image->height() * image->depth() / 8388608.0);  // 8(bits depth -> bytes) * 1024**2 (bytes -> MB)
 				renderedPages.insert(pageNr, image, sizeInMB);
 			}
 			if (info.obj) {

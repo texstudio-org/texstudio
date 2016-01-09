@@ -272,6 +272,7 @@ private:
 	qreal	dpi;
 	autoScaleOption scaleOption;
 
+	bool inhibitNextContextMenuEvent;
 	float summedWheelDegrees;
 
 	int docPages;

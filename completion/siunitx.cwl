@@ -108,6 +108,8 @@ number-angle-product=
 \kV#*
 \kW#*
 \kWh#*
+\liter
+\litre
 \m#*
 \mA#*
 \mebi

@@ -2,33 +2,41 @@
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 
+extern void hideSplash();
+
 bool txsConfirm(const QString &message)
 {
+	hideSplash();
 	return QMessageBox::question(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
 }
 
 bool txsConfirmWarning(const QString &message)
 {
+	hideSplash();
 	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes;
 }
 
 QMessageBox::StandardButton txsConfirmWarning(const QString &message, QMessageBox::StandardButtons buttons)
 {
+	hideSplash();
 	return QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, buttons, QMessageBox::Yes);
 }
 
 void txsInformation(const QString &message)
 {
+	hideSplash();
 	QMessageBox::information(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
 
 void txsWarning(const QString &message)
 {
+	hideSplash();
 	QMessageBox::warning(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
 
 void txsWarning(const QString &message, bool &noWarnAgain)
 {
+	hideSplash();
 	QMessageBox msgBox(QMessageBox::Warning, TEXSTUDIO, message, QMessageBox::Ok, QApplication::activeWindow());
 	QCheckBox cbNoWarnAgain(QCoreApplication::translate("Texstudio", "Do not warn again.", "General warning dialog"), &msgBox);
 	cbNoWarnAgain.setChecked(noWarnAgain);
@@ -40,6 +48,7 @@ void txsWarning(const QString &message, bool &noWarnAgain)
 
 void txsCritical(const QString &message)
 {
+	hideSplash();
 	QMessageBox::critical(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
 

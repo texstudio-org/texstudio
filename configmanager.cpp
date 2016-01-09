@@ -453,6 +453,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	registerOption("Files/Bib Paths", &additionalBibPaths, env.value("BIBINPUTS", ""), &pseudoDialog->lineEditPathBib);
 	registerOption("Files/Image Paths", &additionalImagePaths, env.value("TEXINPUTS", ""), &pseudoDialog->lineEditPathImages);
+	
+	registerOption("Session/StoreRelativePaths", &sessionStoreRelativePaths, true, &pseudoDialog->checkBoxSessionStoreRelativePaths);
 
 	registerOption("Editor/UseEscForClosingFullscreen", &disableEscForClosingFullscreen, false, &pseudoDialog->checkBoxDisableEscForClosingfullscreen);
 	registerOption("Editor/GoToErrorWhenDisplayingLog", &goToErrorWhenDisplayingLog , true, &pseudoDialog->checkBoxGoToErrorWhenDisplayingLog);
@@ -656,6 +658,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Preview/CacheSize", &pdfDocumentConfig->cacheSizeMB, 512, &pseudoDialog->spinBoxCacheSizeMB);
 	registerOption("Preview/LoadStrategy", &pdfDocumentConfig->loadStrategy, 2, &pseudoDialog->comboBoxPDFLoadStrategy);
+	registerOption("Preview/RenderBackend", &pdfDocumentConfig->renderBackend, 0, &pseudoDialog->comboBoxPDFRenderBackend);
 	registerOption("Preview/DPI", &pdfDocumentConfig->dpi, QApplication::desktop()->logicalDpiX(), &pseudoDialog->spinBoxPreviewDPI);
 	registerOption("Preview/Scale Option", &pdfDocumentConfig->scaleOption, 1, &pseudoDialog->comboBoxPreviewScale);
 	registerOption("Preview/Scale", &pdfDocumentConfig->scale, 100, &pseudoDialog->spinBoxPreviewScale);
@@ -835,7 +838,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 	//----------------------------editor--------------------
 
 	//completion
-	QStringList cwlFiles = config->value("Editor/Completion Files", QStringList() << "tex.cwl" << "latex-document.cwl" << "latex-mathsymbols.cwl").toStringList();
+	QStringList cwlFiles = config->value("Editor/Completion Files", QStringList() << "tex.cwl" << "latex-document.cwl"  << "latex-dev.cwl" << "latex-mathsymbols.cwl").toStringList();
 	//completerConfig->words=loadCwlFiles(cwlFiles,ltxCommands,completerConfig);
 	LatexParser &latexParser = LatexParser::getInstance();
 
@@ -1206,13 +1209,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	else if (editorConfig->autoindent) confDlg->ui.comboBoxAutoIndent->setCurrentIndex(2);
 	else confDlg->ui.comboBoxAutoIndent->setCurrentIndex(0);
 
-	//completion
-	confDlg->ui.checkBoxCaseSensitive->setChecked(completerConfig->caseSensitive != LatexCompleterConfig::CCS_CASE_INSENSITIVE);
-	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->setChecked(completerConfig->caseSensitive == LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE);
-	// hide options !!!!
-	confDlg->ui.checkBoxCaseSensitive->hide();
-	confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->hide();
-
 	lastLanguage = language;
 	QStringList languageFiles = findResourceFiles("translations", "texstudio_*.qm") << findResourceFiles("", "texstudio_*.qm");
 	for (int i = languageFiles.count() - 1; i >= 0; i--) {
@@ -1493,9 +1489,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		}
 		//completion
 		completerConfig->enabled = confDlg->ui.checkBoxCompletion->isChecked();
-		if (!confDlg->ui.checkBoxCaseSensitive->isChecked()) completerConfig->caseSensitive = LatexCompleterConfig::CCS_CASE_INSENSITIVE;
-		else if (confDlg->ui.checkBoxCaseSensitiveInFirstCharacter->isChecked()) completerConfig->caseSensitive = LatexCompleterConfig::CCS_FIRST_CHARACTER_CASE_SENSITIVE;
-		else completerConfig->caseSensitive = LatexCompleterConfig::CCS_CASE_SENSITIVE;
+		completerConfig->caseSensitive = LatexCompleterConfig::CCS_CASE_INSENSITIVE;  // TODO: config removed from options due to performance issues. May be removed from completer code later on.
 		completerConfig->completeCommonPrefix = confDlg->ui.checkBoxCompletePrefix->isChecked();
 		completerConfig->eowCompletes = confDlg->ui.checkBoxEOWCompletes->isChecked();
 		completerConfig->tooltipHelp = confDlg->ui.checkBoxToolTipHelp->isChecked();
@@ -2217,6 +2211,7 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 {
 	QMenu *menu = newManagedMenu(parent, f.attributes().namedItem("id").nodeValue(), tr(qPrintable(f.attributes().namedItem("text").nodeValue())));
 	QDomNodeList children = f.childNodes();
+	QLocale::Language keyboardLanguage = getKeyboardLanguage();
 	for (int i = 0; i < children.count(); i++) {
 		QDomElement c = children.at(i).toElement();
 		if (c.nodeName() == "menu") loadManagedMenu(menu, c);
@@ -2229,10 +2224,14 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 				ba = att.namedItem("slot").nodeValue().toLocal8Bit();
 				slotfunc = ba.data();
 			}
+			QKeySequence shortcut(att.namedItem("shortcut").nodeValue());
+			if (keyboardLanguage == QLocale::Czech) {
+				shortcut = filterLocaleShortcut(shortcut);
+			}
 			QAction *act = newManagedAction(menu,
 			                                att.namedItem("id").nodeValue(),
 			                                tr(qPrintable(att.namedItem("text").nodeValue())), slotfunc,
-			                                QList<QKeySequence>() <<  QKeySequence(att.namedItem("shortcut").nodeValue()),
+											QList<QKeySequence>() << shortcut,
 			                                att.namedItem("icon").nodeValue());
 			act->setWhatsThis(att.namedItem("info").nodeValue());
 			act->setData(att.namedItem("insert").nodeValue());

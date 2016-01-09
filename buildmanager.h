@@ -192,6 +192,7 @@ private slots:
 private:
 	bool testAndRunInternalCommand(const QString &cmd, const QFileInfo &mainFile);
 signals:
+	void hideSplash();
 	void processNotification(const QString &message);
 	void previewAvailable(const QString &filename, const PreviewSource &source);
 

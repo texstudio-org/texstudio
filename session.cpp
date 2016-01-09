@@ -41,7 +41,12 @@ bool Session::load(const QString &file)
 	}
 	m_masterFile = QDir::cleanPath(dir.filePath(s.value("MasterFile").toString()));
 	m_currentFile = QDir::cleanPath(dir.filePath(s.value("CurrentFile").toString()));
-	m_bookmarks = s.value("Bookmarks").value<QList<QVariant> >();
+	
+	foreach (const QVariant &v, s.value("Bookmarks").value<QList<QVariant> >()) {
+		Bookmark bm = Bookmark::fromStringList(v.toStringList());
+		bm.filename = QDir::cleanPath(dir.filePath(bm.filename));
+		m_bookmarks << bm;
+	}
 	s.endGroup();
 
 	s.beginGroup("InternalPDFViewer");
@@ -49,32 +54,6 @@ bool Session::load(const QString &file)
 	m_pdfFile = (pdfFileName.trimmed().isEmpty()) ? "" : QDir::cleanPath(dir.filePath(pdfFileName));
 	m_pdfEmbedded = s.value("Embedded").toBool();
 	s.endGroup();
-	return true;
-}
-
-// legacy code to support reading the session information which was previously stored in the config file (TXS <= 2.5.1)
-// may be removed later on
-bool Session::load(const ConfigManager &config)
-{
-	QStringList sessionFilesToRestore = config.getOption("Files/Session/Files").toStringList();
-	QList<QVariant> sessionCurRowsToRestore = config.getOption("Files/Session/curRows").value<QList<QVariant> >();
-	QList<QVariant> sessionCurColsToRestore = config.getOption("Files/Session/curCols").value<QList<QVariant> >();
-	QList<QVariant> sessionFirstLinesToRestore = config.getOption("Files/Session/firstLines").value<QList<QVariant> >();
-	QString sessionCurrent = config.getOption("Files/Session/CurrentFile").toString();
-	QString sessionMaster = config.getOption("Files/Session/MasterFile").toString();
-	QList<QVariant> bookmarkList = config.getOption("Files/Bookmarks").value<QList<QVariant> >();
-
-	for (int i = 0; i < sessionFilesToRestore.size(); i++) {
-		FileInSession f;
-		f.fileName = sessionFilesToRestore[i];
-		f.cursorLine = sessionCurRowsToRestore.value(i, QVariant(0)).toInt();
-		f.cursorCol = sessionCurColsToRestore.value(i, 0).toInt();
-		f.firstLine = sessionFirstLinesToRestore.value(i, 0).toInt();
-		m_files.append(f);
-	}
-	m_masterFile = sessionMaster;
-	m_currentFile = sessionCurrent;
-	m_bookmarks = bookmarkList;
 	return true;
 }
 
@@ -97,7 +76,15 @@ bool Session::save(const QString &file, bool relPaths) const
 	}
 	s.setValue("MasterFile", fmtPath(dir, m_masterFile, relPaths));
 	s.setValue("CurrentFile", fmtPath(dir, m_currentFile, relPaths));
-	s.setValue("Bookmarks", m_bookmarks);
+	
+	QList<QVariant> bookmarkList;
+	foreach (Bookmark bm, m_bookmarks) {
+		if (relPaths) {
+			bm.filename = fmtPath(dir, bm.filename, relPaths);
+		}
+		bookmarkList << bm.toStringList();
+	}
+	s.setValue("Bookmarks", bookmarkList);
 	s.endGroup();
 
 	s.beginGroup("InternalPDFViewer");

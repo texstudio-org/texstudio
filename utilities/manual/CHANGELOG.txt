@@ -1,3 +1,38 @@
+TeXstudio 2.10.6
+----------------
+- add option to choose the poppler render backend
+- prevention of file corruption if saving fails for some reason
+- global search button in search toolbar now updates the results instead of show/hide
+- option to store absolute paths in session files
+- use short title for sections in structure view (if available)
+- structures commands can now be defined in cwl
+- support memoir class
+- support right-click + wheel for zooming in internal pdf viewer
+- add --version and --help option to OS X and Linux command line (not possible for Win)
+- fix: detection of new texlive paths on OS X El Capitan
+- fix: messages could be hidden by splash screen on OSX
+- fix: make glossary entries available as labels again
+- fix: format math environment as math
+- fix: $$ as math start
+- fix: spell checking for hyphen/abbreviations
+- fix: ignore leading/trailing quotes for spell check
+- fix: workaround for single code language identifiers in LanguageTool
+- fix: layout switching between uncertain and ltr (rtl) language parts
+- fix: do not use shortcut Ctrl+Alt+F with Turkish locale
+- fix: included badWords files were not found
+- fix: pdf cache limit was not respected correctly
+- fix: scale statusbar icons with secondary toolbar
+- fix: crash of "Open package documentation" in certain situations
+- fix: certain errors in log file were only detected as warnings
+- fix: single starred lines in log file were falsely detected as warning
+- fix: no syntax checking on non-LaTeX documents
+- fix: context help for \documentclass
+- fix: treat minted as verboten environment
+- fix: correctly handle files with uppercase extension .TEX as tex files
+- updates to translations
+- updates to the manual
+- updates to cwl files
+
 TeXstudio 2.10.4
 ----------------
 - adapt to changed TeXlive paths on Mac OS X El Capitan (path detection and change notification)

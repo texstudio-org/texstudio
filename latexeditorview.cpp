@@ -49,9 +49,6 @@
 
 #include "bidiextender.h"
 
-// languages for online checking (exact name from qnfa file)
-QStringList LatexEditorView::checkedLanguages = QStringList() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file";
-
 //------------------------------Default Input Binding--------------------------------
 class DefaultInputBinding: public QEditorInputBinding
 {
@@ -462,7 +459,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		//package help
-		if ( tk.type == Tokens::package) {
+        if ( tk.type == Tokens::package || tk.type == Tokens::documentclass) {
 			QAction *act = new QAction(LatexEditorView::tr("Open package documentation"), contextMenu);
 			QString packageName = tk.getText();
 			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
@@ -614,7 +611,7 @@ LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig
 	searchReplacePanel->setFont(QApplication::font());
 	searchReplacePanelAction = codeeditor->addPanel(searchReplacePanel, QCodeEdit::South, false);
 	searchReplacePanel->hide();
-	connect(searchReplacePanel, SIGNAL(extendToggled(bool)), this, SIGNAL(searchExtendToggled(bool)));
+	connect(searchReplacePanel, SIGNAL(showExtendedSearch()), this, SIGNAL(showExtendedSearch()));
 
 	connect(lineMarkPanel, SIGNAL(lineClicked(int)), this, SLOT(lineMarkClicked(int)));
 	connect(lineMarkPanel, SIGNAL(toolTipRequested(int, int)), this, SLOT(lineMarkToolTip(int, int)));
@@ -1666,7 +1663,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 	// checking
 	if (!QDocument::defaultFormatScheme()) return;
 	if (!config->realtimeChecking) return; //disable all => implicit disable environment color correction (optimization)
-	bool latexLikeChecking = editor->languageDefinition() && checkedLanguages.contains(editor->languageDefinition()->language());
+	const LatexDocument *ldoc = qobject_cast<const LatexDocument *>(editor->document());
+	bool latexLikeChecking = ldoc && ldoc->languageIsLatexLike();
 	if (!latexLikeChecking && !config->inlineCheckNonTeXFiles) return;
 
 	if (config->inlineGrammarChecking) {
@@ -1832,6 +1830,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			}// if latexLineCheking
 			if (tk.type == Tokens::word && (tk.subtype == Tokens::text || tk.subtype == Tokens::title || tk.subtype == Tokens::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
 				QString word = tk.getText();
+                if(tkNr+1 < tl.length()){
+                    //check if next token is . or -
+                    Tokens tk1 = tl.at(tkNr+1);
+                    if(tk1.type==Tokens::punctuation && tk1.start==(tk.start+tk.length)){
+                        QString add=tk1.getText();
+                        if(add=="."||add=="-"){
+                            word+=add;
+                            tkNr++;
+                        }
+                    }
+                }
 				word = latexToPlainWordwithReplacementList(word, mReplacementList); //remove special chars
 				if (config->hideNonTextSpellingErrors && (isNonTextFormat(line.getFormatAt(tk.start)) || isNonTextFormat(line.getFormatAt(tk.start + tk.length - 1)) )) // TODO:needs to be adapted
 					continue;

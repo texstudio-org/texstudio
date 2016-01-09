@@ -112,7 +112,7 @@ public:
 	//void sendProblems();
 	//void updateInfoLists(const QString &texfilename, int selrow, int docrow);
 
-	enum {Start = 0, FileName, HeuristicSearch, Error, Latex3Error, Latex3ErrorEnd, Warning, Latex3Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
+	enum {Start = 0, FileName, HeuristicSearch, Error, Latex3Error, Latex3ErrorEnd, Warning, MaybeLatex3Warning, Latex3Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
 	      // the following states are only used in updateFileStackHeuristic2
 	      ExpectingFileName = 100, InFileName, InQuotedFileName
 	     };

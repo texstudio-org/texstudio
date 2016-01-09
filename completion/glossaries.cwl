@@ -336,7 +336,7 @@
 \GLSuserv#S
 \GLSuservi#S
 \GlossariesWarning#S
-\Gls{label}#*
+\Gls{label}#*r
 \Glsdesc#S
 \Glsdescplural#S
 \Glsentrydesc#S
@@ -351,7 +351,7 @@
 \Glsfirst#S
 \Glsfirstplural#S
 \Glsname#S
-\Glspl{label}#*
+\Glspl{label}#*r
 \Glsplural#S
 \Glssymbol#S
 \Glssymbolplural#S
@@ -362,16 +362,16 @@
 \Glsuseriv#S
 \Glsuserv#S
 \Glsuservi#S
-\acrfull{label}
+\acrfull{label}#r
 \acrfullpl#S
-\acrlong{label}
+\acrlong{label}#r
 \acrlongpl#S
-\acrshort{label}
+\acrshort{label}#r
 \acrshortpl#S
 \defglsdisplay#S
 \equal#S
 \glossary#S
-\gls{label}
+\gls{label}#r
 \glsSetSuffixF#S
 \glsacrdescriptionfalse#S
 \glsacrdescriptiontrue#S
@@ -425,7 +425,7 @@
 \glsnumberlinefalse#S
 \glsnumberlinetrue#S
 \glsopenbrace#S
-\glspl{label}#
+\glspl{label}#r
 \glsplural#S
 \glsquote#S
 \glsreset#S

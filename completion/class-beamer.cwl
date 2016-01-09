@@ -72,6 +72,7 @@
 \begin{column}[placement]{column width}
 \begin{column}{column width}
 \end{column}
+\column[placement]{column width}
 \begin{semiverbatim}
 \end{semiverbatim}
 \begin{abstract}<action specification>
@@ -171,8 +172,8 @@
 \usebeamertemplate***{element name}
 \ifbeamertemplateempty{beamer template name}{executed if empty}{executed otherwise}
 \expandbeamertemplate{beamer template name}
-\setbeamertemplate{element name}[predefined option]{args}
-\setbeamertemplate{element name}{args}
+\setbeamertemplate{element name}[predefined option]{arguments}
+\setbeamertemplate{element name}{arguments}
 \addtobeamertemplate{element name}{pre-text}{post-text}
 \defbeamertemplate<mode specification>*{element name}{predefined option}[argument number][default optional argument]{predefined text}[action]{action command}
 \defbeamertemplate<mode specification>*{element name}{predefined option}[default optional argument]{predefined text}[action]{action command}
@@ -321,10 +322,10 @@
 \AtBeginLecture{text}
 \tableofcontents[comma-separated option list]
 \tableofcontents
-\bibitem<overlay specification>[citation text]{label name}
-\bibitem<overlay specification>{label name}
-\bibitem[citation text]{label name}
-\bibitem{label name}
+\bibitem<overlay specification>[citation text]{citekey}
+\bibitem<overlay specification>{citekey}
+\bibitem[citation text]{citekey}
+\bibitem{citekey}
 \appendix<mode specification>
 \appendix
 \hypertarget<overlay specification>{target name}{text}
@@ -372,12 +373,12 @@
 \structure{text}
 \alert<overlay specification>{highlighted text}
 \alert{highlighted text}
-\newtheorem*{environment name}[numbered same as]{head text}[number within]
-\newtheorem*{environment name}{head text}[number within]
-\newtheorem*{environment name}{head text}
-\newtheorem{environment name}[numbered same as]{head text}[number within]
-\newtheorem{environment name}{head text}[number within]
-\newtheorem{environment name}{head text}
+\newtheorem*{environment name}[numbered same as]{head text}[number within]#N
+\newtheorem*{environment name}{head text}[number within]#N
+\newtheorem*{environment name}{head text}#N
+\newtheorem{environment name}[numbered same as]{head text}[number within]#N
+\newtheorem{environment name}{head text}[number within]#N
+\newtheorem{environment name}{head text}#N
 \footnote<overlay specification>[options]{text}
 \footnote<overlay specification>{text}
 \footnote[options]{text}

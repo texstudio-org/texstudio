@@ -1,6 +1,7 @@
 #ifndef SESSION_H
 #define SESSION_H
 
+#include "bookmarks.h"
 #include "mostQtHeaders.h"
 
 struct FileInSession
@@ -23,7 +24,6 @@ public:
 	Session(const Session &s);
 
 	bool load(const QString &file);
-	bool load(const ConfigManager &config);
 	bool save(const QString &file, bool relPaths=true) const;
 
 	const QList<FileInSession> files() const { return m_files; }
@@ -35,8 +35,8 @@ public:
 	void setCurrentFile(const QString &file) { m_currentFile = file; }
 	QString currentFile() const { return m_currentFile; }
 
-	void setBookmarks(const QList<QVariant> &bookmarkList) { m_bookmarks = bookmarkList; }
-	QList<QVariant> bookmarks() const { return m_bookmarks; }
+	void setBookmarks(const QList<Bookmark> &bookmarkList) { m_bookmarks = bookmarkList; }
+	QList<Bookmark> bookmarks() const { return m_bookmarks; }
 
 	void setPDFFile(const QString &pdf) { m_pdfFile = pdf; }
 	QString PDFFile() const { return m_pdfFile; }
@@ -54,7 +54,7 @@ private:
 	QString m_masterFile;
 	QString m_currentFile;
 
-	QList<QVariant> m_bookmarks;
+	QList<Bookmark> m_bookmarks;
 
 	QString m_pdfFile;
 	bool m_pdfEmbedded;

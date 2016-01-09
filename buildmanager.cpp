@@ -369,6 +369,7 @@ void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const Q
 		msgBox.setInformativeText(info);
 		msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
 		msgBox.setDefaultButton(QMessageBox::Yes);
+		emit hideSplash();  // make sure the message box not hidden by the splash screen
 		int ret = msgBox.exec();
 		if (ret == QMessageBox::Yes) {
 			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
@@ -383,6 +384,9 @@ void BuildManager::checkOSXElCapitanDeprecatedPaths(QSettings &settings, const Q
 			config->setOption("Tools/CheckOSXElCapitanDeprecatedPaths", false);
 		}
 	}
+#else
+    Q_UNUSED(settings)
+    Q_UNUSED(commands)
 #endif
 }
 
@@ -744,7 +748,7 @@ QString searchBaseCommand(const QString &cmd, QString options)
 #endif
 #ifdef Q_OS_MAC
 			QStringList paths;
-			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/" << "/Library/TeX/texbin" << "/Library/TeX/local/bin" ;
+			paths << "/usr/bin/texbin/" << "/usr/local/bin/" << "/usr/texbin/" << "/Library/TeX/texbin/" << "/Library/TeX/local/bin/" ;
 			paths << "/usr/local/teTeX/bin/i386-apple-darwin-current/" << "/usr/local/teTeX/bin/powerpc-apple-darwin-current/" << "/usr/local/teTeX/bin/x86_64-apple-darwin-current/";
 
 			for (int i = 2013; i >= 2007; i--) {

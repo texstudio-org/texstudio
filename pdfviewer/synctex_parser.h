@@ -5,7 +5,7 @@ This file is part of the SyncTeX package.
 
 Latest Revision: Tue Jun 14 08:23:30 UTC 2011
 
-Version: 1.17
+Version: 1.18
 
 See synctex_parser_readme.txt for more details
 
@@ -58,6 +58,8 @@ Thu Jun 19 09:39:21 UTC 2008
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#   define SYNCTEX_VERSION_STRING "1.18"
 
 /*  synctex_node_t is the type for all synctex nodes.
  *  The synctex file is parsed into a tree of nodes, either sheet, boxes, math nodes... */
@@ -162,8 +164,9 @@ synctex_scanner_t synctex_scanner_parse(synctex_scanner_t scanner);
  *  Sumatra-PDF, Skim, iTeXMac2 and Texworks are examples of open source software that use this library.
  *  You can browse their code for a concrete implementation.
  */
-int synctex_display_query(synctex_scanner_t scanner,const char *  name,int line,int column);
-int synctex_edit_query(synctex_scanner_t scanner,int page,float h,float v);
+typedef long synctex_status_t;
+synctex_status_t synctex_display_query(synctex_scanner_t scanner,const char *  name,int line,int column);
+synctex_status_t synctex_edit_query(synctex_scanner_t scanner,int page,float h,float v);
 synctex_node_t synctex_next_result(synctex_scanner_t scanner);
 
 /*  Display all the information contained in the scanner object.
@@ -236,7 +239,6 @@ synctex_node_t synctex_node_sheet(synctex_node_t node);
 synctex_node_t synctex_node_child(synctex_node_t node);
 synctex_node_t synctex_node_sibling(synctex_node_t node);
 synctex_node_t synctex_node_next(synctex_node_t node);
-synctex_node_t synctex_first_sheet(synctex_scanner_t scanner);
 synctex_node_t synctex_sheet(synctex_scanner_t scanner,int page);
 synctex_node_t synctex_sheet_content(synctex_scanner_t scanner,int page);
 
@@ -276,10 +278,8 @@ synctex_charindex_t synctex_node_charindex(synctex_node_t node);
  *  The latter is not yet fully supported in TeX, the default implementation returns 0 which means the whole line.
  *  When the tag is known, the scanner of the node will give the corresponding file name.
  *  When the tag is known, the scanner of the node will give the name.
- *  The name can only be accessed for input nodes, not nodes on a sheet.
  */
 int synctex_node_tag(synctex_node_t node);
-const char * synctex_node_name(synctex_node_t node);
 int synctex_node_line(synctex_node_t node);
 int synctex_node_column(synctex_node_t node);
 

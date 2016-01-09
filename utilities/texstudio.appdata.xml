@@ -29,6 +29,13 @@
  <screenshots>
   <screenshot type="default" width="1344" height="756">http://texstudio.sourceforge.net/resources/appdata/txs_screenshot_application.png</screenshot>
  </screenshots>
+ <kudos>
+   <kudo>AppMenu</kudo>
+   <kudo>HiDpiIcon</kudo>
+   <kudo>HighContrast</kudo>
+   <kudo>ModernToolkit</kudo>
+   <kudo>UserDocs</kudo>
+ </kudos>
  <url type="homepage">http://texstudio.sourceforge.net/</url>
  <updatecontact>texstudio-list_at_lists.sourceforge.net</updatecontact>
 </application>

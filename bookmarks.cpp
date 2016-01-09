@@ -1,13 +1,49 @@
 #include "bookmarks.h"
 #include "latexdocument.h"
 
+
+Bookmark::Bookmark() : lineNumber(0), bookmarkNumber(-1) {}
+
+Bookmark Bookmark::fromStringList(QStringList slist)
+{
+	Bookmark bm;
+	if (!slist.isEmpty()) {
+		bm.filename = slist.takeFirst();
+	}
+	if (!slist.isEmpty()) {
+		bm.lineNumber = slist.takeFirst().toInt();
+	}
+	if (!slist.isEmpty()) {
+		bool ok;
+		int n = slist.first().toInt(&ok);
+		if (ok) {
+			bm.bookmarkNumber = n;
+			slist.removeFirst();
+		}
+	}
+	if (!slist.isEmpty()) {
+		bm.text = slist.takeFirst();
+	}
+	return bm;
+}
+
+QStringList Bookmark::toStringList() const
+{
+	QStringList slist;
+	slist << filename;
+	slist << QString::number(lineNumber);
+	slist << QString::number(bookmarkNumber);
+	slist << text;
+	return slist;
+}
+
+
 Bookmarks::Bookmarks(const LatexDocuments *docs, QObject *parent) :
 	QObject(parent)
 {
 	documents = docs;
 	initializeWidget();
 }
-
 void Bookmarks::initializeWidget()
 {
 	bookmarksWidget = new QListWidget();
@@ -41,37 +77,17 @@ void Bookmarks::createContextMenu()
 	bookmarksWidget->addAction(act);
 }
 
-void Bookmarks::setBookmarks(const QList<QVariant> &bookmarkList)
+void Bookmarks::setBookmarks(const QList<Bookmark> &bookmarkList)
 {
-	QStringList bookmark;
 	bookmarksWidget->clear();
-	for (int i = 0; i < bookmarkList.count(); i++) {
-		bookmark = bookmarkList.at(i).toStringList();
-		QString fn;
-		if (!bookmark.isEmpty())
-			fn = bookmark.takeFirst();
-		int lineNr = 0;
-		if (!bookmark.isEmpty())
-			lineNr = bookmark.takeFirst().toInt();
-		int bookmarkNumber = -1;
-		if (!bookmark.isEmpty()) {
-			bool ok;
-			bookmarkNumber = bookmark.first().toInt(&ok);
-			if (!ok)
-				bookmarkNumber = -1;
-			else
-				bookmark.removeFirst();
-		}
-		QString text;
-		if (!bookmark.isEmpty())
-			text = bookmark.takeFirst();
-		QListWidgetItem *item = new QListWidgetItem(text, bookmarksWidget);
-		item->setData(FileName, fn);
-		item->setData(LineNr, lineNr);
-		item->setData(BookmarkNr, bookmarkNumber);
-		LatexDocument *doc = documents->findDocumentFromName(fn);
-		if (doc && lineNr < doc->lineCount() && lineNr >= 0) {
-			QDocumentLineHandle *dlh = doc->line(lineNr).handle();
+	foreach (const Bookmark &bm, bookmarkList) {
+		QListWidgetItem *item = new QListWidgetItem(bm.text, bookmarksWidget);
+		item->setData(FileName, bm.filename);
+		item->setData(LineNr, bm.lineNumber);
+		item->setData(BookmarkNr, bm.bookmarkNumber);
+		LatexDocument *doc = documents->findDocumentFromName(bm.filename);
+		if (doc &&  bm.lineNumber < doc->lineCount() &&  bm.lineNumber >= 0) {
+			QDocumentLineHandle *dlh = doc->line( bm.lineNumber).handle();
 			item->setData(DocLineHandle, qVariantFromValue(dlh));
 		} else {
 			item->setData(DocLineHandle, 0);
@@ -79,12 +95,11 @@ void Bookmarks::setBookmarks(const QList<QVariant> &bookmarkList)
 	}
 }
 
-QList<QVariant> Bookmarks::getBookmarks()
+QList<Bookmark> Bookmarks::getBookmarks()
 {
-	QStringList bookmark;
-	QList<QVariant> bookmarkList;
+	QList<Bookmark> bookmarks;
 	for (int i = 0; i < bookmarksWidget->count(); i++) {
-		bookmark.clear();
+		Bookmark bm;
 		QListWidgetItem *item = bookmarksWidget->item(i);
 		QString fn = item->data(FileName).toString();
 		int lineNr = item->data(LineNr).toInt();
@@ -95,13 +110,13 @@ QList<QVariant> Bookmarks::getBookmarks()
 			int temp = doc->indexOf(dlh);
 			if (temp >= 0) lineNr = temp;
 		}
-		bookmark << fn;
-		bookmark << QString::number(lineNr);
-		bookmark << QString::number(bookmarkNumber);
-		bookmark << item->text();
-		bookmarkList << bookmark;
+		bm.filename = fn;
+		bm.lineNumber = lineNr;
+		bm.bookmarkNumber = bookmarkNumber;
+		bm.text = item->text();
+		bookmarks << bm;
 	}
-	return bookmarkList;
+	return bookmarks;
 }
 
 void Bookmarks::bookmarkDeleted(QDocumentLineHandle *dlh)

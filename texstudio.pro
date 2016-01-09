@@ -99,14 +99,7 @@ HEADERS += texstudio.h \
     tests/latexcompleter_t.h \
     tests/qdocumentline_t.h \
     userquickdialog.h \
-    PDFDocument.h \
-    PDFDocks.h \
-    synctex_parser_utils.h \
-    synctex_parser.h \
     latexstyleparser.h \
-    pdfrenderengine.h \
-    pdfrendermanager.h \
-    PDFDocument_config.h \
     scriptobject.h \
     directoryreader.h \
     insertgraphics_config.h \
@@ -139,8 +132,6 @@ HEADERS += texstudio.h \
     tests/help_t.h \
     titledpanel.h \
     latexlogwidget.h \
-    pdfannotationdlg.h \
-    pdfannotation.h \
     kpathseaParser.h \
     tests/latexoutputfilter_t.h \
     sessionlist.h \
@@ -204,11 +195,7 @@ SOURCES += main.cpp \
     tests/latexcompleter_t.cpp \
     tests/qdocumentline_t.cpp \
     userquickdialog.cpp \
-    PDFDocument.cpp \
-    PDFDocks.cpp \
     latexstyleparser.cpp \
-    pdfrenderengine.cpp \
-    pdfrendermanager.cpp \
     scriptobject.cpp \
     directoryreader.cpp \
     diff/diff_match_patch.cpp \
@@ -237,8 +224,6 @@ SOURCES += main.cpp \
     usermacro.cpp \
     titledpanel.cpp \
     latexlogwidget.cpp \
-    pdfannotationdlg.cpp \
-    pdfannotation.cpp \
     kpathseaParser.cpp \
     tests/latexoutputfilter_t.cpp \
     sessionlist.cpp \
@@ -272,27 +257,24 @@ FORMS += filechooser.ui \
     bibtexdialog.ui \
     findGlobalDialog.ui \
     userquickdialog.ui \
-    PDFDocument.ui \
     cleandialog.ui \
     maketemplatedialog.ui \
     texdocdialog.ui \
-    pdfannotationdlg.ui \
     pdfsplittool.ui
 TRANSLATIONS += texstudio_cs.ts \
-    texstudio_en.ts \
     texstudio_de.ts \
+    texstudio_el.ts \
     texstudio_es.ts \
     texstudio_fr.ts \
     texstudio_hu.ts \
     texstudio_it.ts \
+    texstudio_ja.ts \
     texstudio_pl.ts \
     texstudio_pt_BR.ts \
     texstudio_uk.ts \
-    texstudio_ru.ts \
-    texstudio_ja.ts \
-    texstudio_zh_CN.ts \
+    texstudio_ru_RU.ts \
     texstudio_vi.ts \
-    texstudio_el.ts
+    texstudio_zh_CN.ts
 
 # ###############################
 win32:RC_FILE = win.rc
@@ -354,6 +336,7 @@ unix {
         utilities/latex2e.css \
 	texstudio_cs.qm \
 	texstudio_de.qm \
+        texstudio_el.qm \
 	texstudio_es.qm \
 	texstudio_fr.qm \
 	texstudio_hu.qm \
@@ -362,8 +345,9 @@ unix {
 	texstudio_pl.qm \
 	texstudio_pt_BR.qm \
 	texstudio_uk.qm \
-	texstudio_ru.qm \
-	texstudio_zh_CN.qm \
+        texstudio_ru_RU.qm \
+        texstudio_vi.qm \
+        texstudio_zh_CN.qm \
         qt_cs.qm \
         qt_de.qm \
         qt_ja.qm \
@@ -431,11 +415,12 @@ unix {
 	utilities/dictionaries/hu_HU.dic \
 	utilities/dictionaries/pt_BR.aff \
 	utilities/dictionaries/pt_BR.dic \
-	utilities/dictionaries/de.badWords \
-	utilities/dictionaries/de.stopWords \
-	utilities/dictionaries/de.stopWords.level2 \
-	utilities/dictionaries/en.stopWords \
-	utilities/dictionaries/fr.stopWords \
+        utilities/dictionaries/de_DE.badWords \
+        utilities/dictionaries/de_DE.stopWords \
+        utilities/dictionaries/de_DE.stopWords.level2 \
+        utilities/dictionaries/en_GB.stopWords \
+        utilities/dictionaries/en_US.stopWords \
+        utilities/dictionaries/fr_FR.stopWords \
 	utilities/dictionaries/th_en_US_v2.dat \
 	utilities/dictionaries/th_fr_FR_v2.dat \
 	utilities/dictionaries/th_de_DE_v2.dat \
@@ -493,6 +478,7 @@ include(qcodeedit/qcodeedit.pri)
 DEFINES += QUAZIP_STATIC
 include(quazip/quazip/quazip.pri)
 
+include(pdfviewer/pdfviewer.pri)
 
 # ###############################
 
@@ -550,71 +536,6 @@ freebsd-* {
     LIBS += -lexecinfo
 }
 
-# ################################
-# Poppler PDF Preview, will only be used if NO_POPPLER_PREVIEW is not set
-isEmpty(NO_POPPLER_PREVIEW) {
-    !win32 {
-	macx { # PATH to pkgconfig needs to be present in build PATH
-	    QT_CONFIG -= no-pkg-config
-	}
-	poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
-
-	CONFIG += link_pkgconfig
-	PKGCONFIG += $${poppler_qt_pkg}
-	system(pkg-config --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
-    } else: {
-	!greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
-	   # unix:!macx {
-	   #
-	   #     INCLUDEPATH += /usr/include/poppler/qt4
-	   #     LIBS += -L/usr/lib \
-	   #         -lpoppler-qt4 \
-	   #         -lz
-	   # }
-	   # macx {
-	   #     INCLUDEPATH += /usr/local/include/poppler/qt4
-	   #     LIBS += -L/usr/lib \
-	   #         -L/usr/local/lib \
-	   #         -lpoppler-qt4 \
-	   #         -lz
-	   # }
-	    win32 {
-	       INCLUDEPATH  += ./include_win32
-	       LIBS += ./zlib1.dll \
-		   ./libpoppler-qt4.dll \
-
-	       DEFINES += HAS_POPPLER_24
-	    }
-	  }else:{ # Qt5
-	    #unix:!macx {
-	    #
-	#	INCLUDEPATH += /usr/include/poppler/qt5
-	 #       LIBS += -L/usr/lib \
-	#	     -L/usr/include/poppler/lib \
-	 #           -lpoppler-qt5 \
-	  #          -lz
-	   # }
-	    #macx {
-	    #    INCLUDEPATH += /usr/local/include/poppler/qt5
-	    #   LIBS += -L/usr/lib \
-	    #        -L/usr/local/lib \
-	    #       -lpoppler-qt5 \
-	    #        -lz
-	    #}
-	    win32 {
-		INCLUDEPATH  += ./include_win32_qt5
-		LIBS += ./zlib1.dll \
-			./libpoppler-qt5.dll
-
-		DEFINES += HAS_POPPLER_24
-	    }
-	}
-    }
-}
-!isEmpty(NO_POPPLER_PREVIEW) {
-    DEFINES += NO_POPPLER_PREVIEW
-    message("Internal pdf previewer disabled as you wish.")
-}
 !isEmpty(NO_CRASH_HANDLER) {
     DEFINES += NO_CRASH_HANDLER
     message("Internal crash handler disabled as you wish.")
@@ -659,9 +580,6 @@ exists(./.hg2) | exists(./.hg) {
   SOURCES += hg_revision.cpp
 }
 
-# moved to the end because it seems to destroy the precompiled header
-SOURCES+=synctex_parser_utils.c synctex_parser.c
-
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
 QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline
 
@@ -671,6 +589,3 @@ else {
   QMAKE_LFLAGS -= -Wl,-s
   QMAKE_LFLAGS_RELEASE -= -Wl,-s
 }
-
-
-
