@@ -57,6 +57,9 @@ QString getEnvironmentPath();
 QStringList getEnvironmentPathList();
 void updatePathSettings(QProcess *proc, QString additionalPaths);
 
+void showInGraphicalShell(QWidget *parent, const QString &pathIn);
+QString msgGraphicalShellAction();
+
 QString getTerminalCommand();
 
 //returns kde version 0,3,4

@@ -354,6 +354,7 @@ protected slots:
 	void structureContextMenuCollapseSubitems();
 	void structureContextMenuExpandAllDocuments();
 	void structureContextMenuCollapseAllDocuments();
+	void structureContextMenuShowInGraphicalShell();
 	void symbolGridContextMenu(QWidget *widget, const QPoint &point);
 	void mostUsedSymbolsTriggered(bool direct = false);
 	void symbolAddFavorite();
