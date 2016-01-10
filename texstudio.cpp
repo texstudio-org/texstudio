@@ -7454,6 +7454,8 @@ void Texstudio::StructureContextMenu(const QPoint &point)
 		menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
 		menu.addAction(tr("Expand all documents"), this, SLOT(structureContextMenuExpandAllDocuments()));
 		menu.addAction(tr("Collapse all documents"), this, SLOT(structureContextMenuCollapseAllDocuments()));
+		menu.addSeparator();
+		menu.addAction(msgGraphicalShellAction(), this, SLOT(structureContextMenuShowInGraphicalShell()));
 		menu.exec(structureTreeView->mapToGlobal(point));
 		return;
 	}
@@ -7625,6 +7627,16 @@ void Texstudio::structureContextMenuExpandAllDocuments()
 void Texstudio::structureContextMenuCollapseAllDocuments()
 {
 	setSubtreeExpanded(structureTreeView, structureTreeView->rootIndex(), false);
+}
+
+void Texstudio::structureContextMenuShowInGraphicalShell()
+{
+	if (!contextEntry)
+		return;
+	LatexDocument *document = contextEntry->document;
+	contextEntry = 0;
+	if (!document) return;
+	showInGraphicalShell(this, document->getFileName());
 }
 
 void Texstudio::editPasteRef()
