@@ -92,6 +92,7 @@ void SearchResultWidget::setQuery(SearchQuery *sq)
 	connect(replaceButton, SIGNAL(clicked()), query, SLOT(replaceAll()));
 
 	searchTree->setModel(query->model());
+	connect(query, SIGNAL(runCompleted()), this, SLOT(searchCompleted()));
 }
 
 void SearchResultWidget::updateSearch()
@@ -99,6 +100,15 @@ void SearchResultWidget::updateSearch()
 	if (query) query->setScope(searchScope());
 	emit runSearch(query);
 }
+
+void SearchResultWidget::searchCompleted()
+{
+	if (query && query->model()->rowCount(QModelIndex()) == 1) {
+		// only one top-level element. i.e. file
+		searchTree->expandAll();
+	}
+}
+
 void SearchResultWidget::updateSearchExpr(QString searchText){
     searchTextLabel->setText(searchText);
 }

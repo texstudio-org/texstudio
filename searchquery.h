@@ -47,6 +47,7 @@ public:
 	Scope scope() { return mScope; }
 	
 signals:
+	void runCompleted();
 	
 public slots:
 	virtual void run(LatexDocument *doc);
