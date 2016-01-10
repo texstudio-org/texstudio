@@ -170,7 +170,6 @@ private:
 	QAction *actRootDocSetExplicit;
 
 	//toolbars
-	QAction *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
 
 	QLabel *statusLabelMode, *statusLabelProcess;
