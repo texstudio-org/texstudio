@@ -90,6 +90,7 @@ void SearchQuery::run(LatexDocument *doc)
 			addDocSearchResult(doc, lines);
 		}
 	}
+	emit runCompleted();
 }
 
 void SearchQuery::setReplacementText(QString text)
