@@ -4205,6 +4205,23 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 				op = PreviousPlaceHolder;
 				break;
 			}
+	case NextPlaceHolderOrChar:
+		op = CursorRight;
+		foreach (const PlaceHolder& ph, m_placeHolders)
+			if (ph.cursor.selectionStart() > m_cursor.selectionEnd() && !ph.autoOverride &&
+				ph.cursor.selectionStart().lineNumber() - m_cursor.selectionEnd().lineNumber() <= MAX_JUMP_TO_PLACEHOLDER  ){
+				op = NextPlaceHolder;
+				break;
+			}
+		break;
+	case PreviousPlaceHolderOrChar:
+		op = CursorLeft;
+		foreach (const PlaceHolder& ph, m_placeHolders)
+			if (ph.cursor.selectionEnd() < m_cursor.selectionStart() && !ph.autoOverride &&
+				m_cursor.selectionStart().lineNumber() - ph.cursor.selectionEnd().lineNumber() <= MAX_JUMP_TO_PLACEHOLDER ){
+				op = PreviousPlaceHolder;
+				break;
+			}
 	default:;
 	}
 	return op;
@@ -4356,8 +4373,10 @@ QHash<QString, int> QEditor::getEditOperations(bool excludeDefault){
 		addEditOperation(NextPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Right);
 		addEditOperation(PreviousPlaceHolderOrWord, Qt::ControlModifier, Qt::Key_Left);
 	#endif
+		registerEditOperation(NextPlaceHolderOrChar);
+		registerEditOperation(PreviousPlaceHolderOrChar);
 
-        addEditOperation(TabOrIndentSelection, Qt::NoModifier, Qt::Key_Tab);
+		addEditOperation(TabOrIndentSelection, Qt::NoModifier, Qt::Key_Tab);
 		addEditOperation(UnindentSelection, Qt::ShiftModifier, Qt::Key_Backtab);
 
 		addEditOperation(Undo, QKeySequence::Undo);
@@ -4455,6 +4474,8 @@ QString QEditor::translateEditOperation(const EditOperation& op){
 	case PreviousPlaceHolder: return tr("Previous placeholder");
 	case NextPlaceHolderOrWord: return tr("Next placeholder or one word right");
 	case PreviousPlaceHolderOrWord: return tr("Previous placeholder or one word left");
+	case NextPlaceHolderOrChar: return tr("Next placeholder or character");
+	case PreviousPlaceHolderOrChar: return tr("Previous placeholder or character");
 	case TabOrIndentSelection: return tr("Tab or Indent selection");
 	case InsertTab: return tr("Insert tab");
 	case IndentSelection: return tr("Indent selection");
