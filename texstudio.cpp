@@ -360,7 +360,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	if (configManager.sessionRestore) {
 		fileRestoreSession(false, false);
-		ToggleRememberAct->setChecked(true);
 	}
 	splashscreen = 0;
 }
@@ -1123,10 +1122,6 @@ void Texstudio::setupMenus()
 	actRootDocExplicit->setVisible(false);
 	actgroupRootDocMode->addAction(actRootDocExplicit);
 	actRootDocSetExplicit = newManagedAction(submenu, "setExplicit", tr("Set Current Document As Explicit Root"), SLOT(setCurrentDocAsExplicitRoot()));
-	menu->addSeparator();
-
-	ToggleRememberAct = newManagedAction(menu, "remembersession", tr("Automatically Restore &Session at Next Start"));
-	ToggleRememberAct->setCheckable(true);
 
 	//---help---
 	menu = newManagedMenu("main/help", tr("&Help"));
@@ -4037,8 +4032,6 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("Geometries/MainwindowHeight", height());
 		config->setValue("Geometries/MainwindowX", x());
 		config->setValue("Geometries/MainwindowY", y());
-
-		config->setValue("Files/RestoreSession", ToggleRememberAct->isChecked());
 
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
