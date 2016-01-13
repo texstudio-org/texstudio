@@ -10,7 +10,7 @@ const QString Punctation = "!():\"?,.;-";
 const QString EscapedChars = "%&_";
 const QString CharacterAlteringChars = "\"'^`";
 
-const int LatexParser::MAX_STRUCTURE_LEVEL = 6;
+const int LatexParser::MAX_STRUCTURE_LEVEL = 10;
 
 LatexParser *LatexParserInstance = 0;
 
