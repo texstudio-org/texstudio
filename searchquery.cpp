@@ -103,7 +103,7 @@ QString SearchQuery::replacementText()
 	return mModel->replacementText();
 }
 void SearchQuery::setExpression(QString expr){
-    mModel->setSearchExpression(expr,flag(IsCaseSensitive) ? Qt::CaseSensitive : Qt::CaseInsensitive, flag(IsWord), flag(IsRegExp));
+	mModel->setSearchExpression(expr, flag(IsCaseSensitive) ? Qt::CaseSensitive : Qt::CaseInsensitive, flag(IsWord), flag(IsRegExp));
 }
 
 void SearchQuery::replaceAll()
