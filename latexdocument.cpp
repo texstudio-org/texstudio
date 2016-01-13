@@ -336,6 +336,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 	if (!baseStructure) return false;
 
+	static QRegExp rxMagicTexComment("^%\\ ?!T[eE]X");
+	static QRegExp rxMagicBibComment("^%\\ ?!BIB");
+
 	bool reRunSuggested = false;
 	bool recheckLabels = true;
 	if (count < 0) {
@@ -532,11 +535,11 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		col = lineFormatAnaylzer.firstCol(getFormatId("magicComment"));
 		if (col >= 0) {
 			QString text = curLine.mid(col);
-			if (text.startsWith("% !TeX", Qt::CaseInsensitive)) {
-				addMagicComment(text.mid(6).trimmed(), i, MapOfMagicComments, iter_magicComment);
-			} else if (text.startsWith("% !BIB", Qt::CaseInsensitive)) {
+			if (rxMagicTexComment.indexIn(text) == 0) {
+				addMagicComment(text.mid(rxMagicTexComment.matchedLength()).trimmed(), i, MapOfMagicComments, iter_magicComment);
+			} else if (rxMagicBibComment.indexIn(text) == 0) {
 				// workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
-				text = text.mid(6).trimmed();
+				text = text.mid(rxMagicTexComment.matchedLength()).trimmed();
 				QString name;
 				QString val;
 				splitMagicComment(text, name, val);
