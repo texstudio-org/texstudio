@@ -1,3 +1,9 @@
+TeXstudio 2.10.8
+----------------
+- fix crash when using \subparagraph
+- fix symbolgrid widget on OSX
+- detection of magic comment % !TeX is more permissive concerning case sensistivity
+
 TeXstudio 2.10.6
 ----------------
 - add option to choose the poppler render backend
