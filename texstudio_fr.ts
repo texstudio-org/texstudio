@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2474,7 +2474,7 @@ to set the key anyway?</source>
     <message>
         <location line="-48"/>
         <source>Restore Previous Session at Startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer la session précédente au démarrage</translation>
     </message>
     <message>
         <location line="+55"/>
@@ -2562,7 +2562,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="+356"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -8098,12 +8098,12 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
     <message>
         <location line="+1"/>
         <source>Next placeholder or character</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètre fictif ou caractère suivant</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Previous placeholder or character</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètre fictif ou caractère précédent</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -11186,7 +11186,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
     <message>
         <source>Automatically Restore &amp;Session at Next Start</source>
-        <translation type="vanished">Restaurer cette &amp;session au prochain démarrage</translation>
+        <translation type="obsolete">Restaurer cette &amp;session au prochain démarrage</translation>
     </message>
     <message>
         <location line="-7841"/>
@@ -13465,27 +13465,27 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <location filename="utilsSystem.cpp" line="+488"/>
         <source>Launching Windows Explorer Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du lancement de l&apos;explorateur Windows</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le programme explorer.exe de lancement de l&apos;explorateur Windows n&apos;a pas pu être trouvé dans le « PATH ».</translation>
     </message>
     <message>
         <location line="+39"/>
         <source>Show in Explorer</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher dans l&apos;explorateur</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Show in Finder</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher dans le « Finder »</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Show Containing Folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le dossier contenant le fichier</translation>
     </message>
 </context>
 <context>
@@ -14275,7 +14275,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="unixutils.cpp" line="+60"/>
         <source>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Expands to&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;directory of current file&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;file name (with full path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;file name (without path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Se développe en&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;dossier du fichier en cours&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;nom du fichier (chemin complet)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;nom du fichier (sans le chemin)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</translation>
     </message>
 </context>
 <context>
