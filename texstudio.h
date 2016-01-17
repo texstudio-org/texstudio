@@ -270,7 +270,7 @@ private slots:
 	void fileCheckinPdf(QString filename = "");
 	void fileUpdate(QString filename = "");
 	void fileUpdateCWD(QString filename = "");
-	void checkinAfterSave(QString filename);
+    void checkinAfterSave(QString filename, int checkIn=0);
 	void checkin(QString fn, QString text = "txs auto checkin", bool blocking = false);
 	bool svnadd(QString fn, int stage = 0);
 	void svncreateRep(QString fn);
@@ -691,7 +691,7 @@ signals:
 	void infoNewFile();
 	void infoNewFromTemplate();
 	void infoLoadFile(const QString &filename);
-	void infoFileSaved(const QString &filename);
+    void infoFileSaved(const QString &filename,const int checkin=0);
 	void infoFileClosed();
 	void infoAfterTypeset();
 	void imgPreview(const QString &fn);
