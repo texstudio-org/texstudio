@@ -110,6 +110,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	recentSessionList = 0;
 	EditorTabs = 0;
 	contextEntry = 0;
+    m_languages = 0; //initial state to avoid crash on OSX
 
 	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
 
