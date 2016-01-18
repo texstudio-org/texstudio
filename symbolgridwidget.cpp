@@ -12,6 +12,7 @@
 #include "symbolgridwidget.h"
 #include "icondelegate.h"
 #include "smallUsefulFunctions.h"
+#include "qsvgrenderer.h"
 
 SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map) : QTableWidget(parent)
 {
@@ -151,11 +152,31 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 				int code = StrCode.toInt(&ok);
 				if (ok)
 					helper += QChar(code);
-			}
+            }
 			UniCode = helper;
 
 		}
+#if defined( Q_OS_MAC ) && (QT_VERSION >= 0x050500)
+        // work-around for another QT/OSX bug
+        if(fileName.endsWith(".svg")){
+            QSvgRenderer svgRender(fileName);
+            QImage img(2*sz,2*sz,QImage::Format_ARGB32);
+            //img.setDevicePixelRatio(2.0);
+            img.fill(0x000000000);
+            QPainter p(&img);
+            QSize svgSize=svgRender.defaultSize()*4;
+            if(svgSize.width()>2*sz){
+                svgSize.setWidth(2*sz);
+                svgSize.setHeight(svgSize.height()*2*sz/svgSize.width());
+            }
+            svgRender.render(&p,QRectF(QPointF((2.0*sz-svgSize.width())/2,0),svgSize));
+            item->setIcon(QIcon(QPixmap::fromImage(img)));
+        }else{
+            item->setIcon(QIcon(fileName));
+        }
+#else
 		item->setIcon(QIcon(fileName));
+#endif
 		item->setText(Command);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 		if (Map) {
@@ -266,3 +287,4 @@ void SymbolGridWidget::SetUserPage(usercodelist ulist)
 	}
 	countOfItems = listOfItems.count();
 }
+

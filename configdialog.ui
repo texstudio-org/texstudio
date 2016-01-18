@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -469,6 +469,13 @@
               <bool>true</bool>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="QCheckBox" name="checkBoxRestoreSession">
+                <property name="text">
+                 <string>Restore Previous Session at Startup</string>
+                </property>
+               </widget>
+              </item>
               <item>
                <widget class="QCheckBox" name="checkBoxSessionStoreRelativePaths">
                 <property name="text">
@@ -1839,7 +1846,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>668</width>
             <height>1289</height>
            </rect>
           </property>
@@ -3039,7 +3046,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>494</width>
             <height>644</height>
            </rect>
           </property>
@@ -3520,8 +3527,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>344</width>
+            <height>241</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3782,8 +3789,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>490</width>
+            <height>407</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">

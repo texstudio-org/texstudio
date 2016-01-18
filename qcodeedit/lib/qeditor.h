@@ -184,7 +184,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 			TabOrIndentSelection,
 			InsertTab,
 			IndentSelection,
-			UnindentSelection
+			UnindentSelection,
+			NextPlaceHolderOrChar,
+			PreviousPlaceHolderOrChar
 		};
 
 		enum MoveFlagsEnum {

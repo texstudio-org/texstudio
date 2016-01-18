@@ -110,6 +110,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	recentSessionList = 0;
 	EditorTabs = 0;
 	contextEntry = 0;
+    m_languages = 0; //initial state to avoid crash on OSX
 
 	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
 
@@ -344,7 +345,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
 
-	connect(this, SIGNAL(infoFileSaved(QString)), this, SLOT(checkinAfterSave(QString)));
+    connect(this, SIGNAL(infoFileSaved(QString,int)), this, SLOT(checkinAfterSave(QString,int)));
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -360,7 +361,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	if (configManager.sessionRestore) {
 		fileRestoreSession(false, false);
-		ToggleRememberAct->setChecked(true);
 	}
 	splashscreen = 0;
 }
@@ -1123,10 +1123,6 @@ void Texstudio::setupMenus()
 	actRootDocExplicit->setVisible(false);
 	actgroupRootDocMode->addAction(actRootDocExplicit);
 	actRootDocSetExplicit = newManagedAction(submenu, "setExplicit", tr("Set Current Document As Explicit Root"), SLOT(setCurrentDocAsExplicitRoot()));
-	menu->addSeparator();
-
-	ToggleRememberAct = newManagedAction(menu, "remembersession", tr("Automatically Restore &Session at Next Start"));
-	ToggleRememberAct->setCheckable(true);
 
 	//---help---
 	menu = newManagedMenu("main/help", tr("&Help"));
@@ -2393,11 +2389,8 @@ void Texstudio::fileSave(const bool saveSilently)
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
-		if (configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) {
-			checkin(currentEditor()->fileName());
-			if (configManager.svnUndo) currentEditor()->document()->clearUndo();
-		}
-		//emit infoFileSaved(currentEditor()->fileName());
+        int checkIn=(configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) ? 2 : 1;
+        emit infoFileSaved(currentEditor()->fileName(),checkIn);
 	}
 	updateCaption();
 	//updateStructure(); (not needed anymore for autoupdate)
@@ -4038,8 +4031,6 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("Geometries/MainwindowX", x());
 		config->setValue("Geometries/MainwindowY", y());
 
-		config->setValue("Files/RestoreSession", ToggleRememberAct->isChecked());
-
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 
@@ -4796,104 +4787,45 @@ void Texstudio::insertBib()
 
 void Texstudio::quickTabular()
 {
-	if ( !currentEditorView() )	return;
-	QString placeholder;//(0x2022);
-	QStringList borderlist, alignlist;
-	borderlist<< QString("|") << QString("||") << QString("") << QString("@{}");
-	alignlist << QString("c") << QString("l") << QString("r") << QString("p{}") << QString(">{\\centering\\arraybackslash}p{}") << QString(">{\\raggedleft\\arraybackslash}p{}");
-	QString al="";
-	QString vs="";
-	QString el="";
-	QString tag;
-	TabDialog *quickDlg = new TabDialog(this,"Tabular");
-	QTableWidgetItem *item=new QTableWidgetItem();
-	if ( quickDlg->exec() )
-	{
-		int y = quickDlg->ui.spinBoxRows->value();
-		int x = quickDlg->ui.spinBoxColumns->value();
-		tag = QString("\\begin{tabular}{");
-		for ( int j=0;j<x;j++)
-		{
-			tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
-			tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
-		}
-		tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-		tag +=QString("}\n");
-		for ( int i=0;i<y;i++)
-		{
-			if (quickDlg->liDataList.at(i).topborder) tag+=QString("\\hline \n");
-			if (quickDlg->ui.checkBoxMargin->isChecked()) tag+="\\rule[-1ex]{0pt}{2.5ex} ";
-			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto>quickDlg->liDataList.at(i).mergefrom))
-			{
-				el="";
-				for ( int j=0;j<x;j++)
-				{
-					item =quickDlg->ui.tableWidget->item(i,j);
-
-					if (j==quickDlg->liDataList.at(i).mergefrom-1)
-					{
-						if (item) el+=item->text();
-						tag+=QString("\\multicolumn{");
-						tag+=QString::number(quickDlg->liDataList.at(i).mergeto-quickDlg->liDataList.at(i).mergefrom+1);
-						tag+=QString("}{");
-						if ((j==0) && (quickDlg->colDataList.at(j).leftborder<2)) tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
-						if (quickDlg->colDataList.at(j).alignment<3) tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
-						else tag+=QString("c");
-						if (quickDlg->liDataList.at(i).mergeto==x) tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-						else tag+=borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
-						tag+=QString("}{");
-					}
-					else if (j==quickDlg->liDataList.at(i).mergeto-1)
-					{
-						if (item) el+=item->text();
-						if (el.isEmpty()) el=placeholder;
-						tag+=el+QString("}");
-						if (j<x-1) tag+=" & ";
-						else tag+=QString(" \\\\ \n");
-					}
-					else if ((j>quickDlg->liDataList.at(i).mergefrom-1) && (j<quickDlg->liDataList.at(i).mergeto-1))
-					{
-						if (item) el+=item->text();
-					}
-					else
-					{
-						if (item)
-						{
-							if (item->text().isEmpty()) tag +=placeholder;
-							else tag +=item->text();
-						}
-						else tag +=placeholder;
-						if (j<x-1) tag+=" & ";
-						else tag+=QString(" \\\\ \n");
-					}
-
-				}
+	if (!currentEditorView())	return;
+	//TODO: move this in arraydialog class
+	QString al;
+	ArrayDialog *arrayDlg = new ArrayDialog(this, "Array");
+	if (arrayDlg->exec()) {
+		int y = arrayDlg->ui.spinBoxRows->value();
+		int x = arrayDlg->ui.spinBoxColumns->value();
+		QString env = arrayDlg->ui.comboEnvironment->currentText();
+		QString tag = QString("\\begin{") + env + "}";
+		if (env == "array") {
+			tag += "{";
+			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 0) al = QString("c");
+			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 1) al = QString("l");
+			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 2) al = QString("r");
+			for (int j = 0; j < x; j++) {
+				tag += al;
 			}
-			else
-			{
-				for ( int j=0;j<x-1;j++)
-				{
-					item =quickDlg->ui.tableWidget->item(i,j);
-					if (item)
-					{
-						if (item->text().isEmpty()) tag +=placeholder+QString(" & ");
-						else tag +=item->text()+ QString(" & ");
-					}
-					else tag +=placeholder+QString(" & ");
-				}
-				item =quickDlg->ui.tableWidget->item(i,x-1);
-				if (item)
-				{
-					if (item->text().isEmpty()) tag +=placeholder+QString(" \\\\ \n");
-					else tag +=item->text()+ QString(" \\\\ \n");
-				}
-				else tag +=placeholder+QString(" \\\\ \n");
-			}
+			tag += "}";
 		}
-		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag +=QString("\\hline \n\\end{tabular} ");
-		else tag +=QString("\\end{tabular} ");
-		if (tag.contains("arraybackslash")) tag="% \\usepackage{array} is required\n"+tag;
-		insertTag(tag,0,0);
+		tag += QString("\n");
+		for (int i = 0; i < y - 1; i++) {
+			for (int j = 0; j < x - 1; j++) {
+				QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, j);
+				if (item) tag += item->text() + QString(" & ");
+				else tag += QString(" & ");
+			}
+			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, x - 1);
+			if (item) tag += item->text() + QString(" \\\\ \n");
+			else tag += QString(" \\\\ \n");
+		}
+		for (int j = 0; j < x - 1; j++) {
+			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, j);
+			if (item) tag += item->text() + QString(" & ");
+			else tag += QString(" & ");
+		}
+		QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, x - 1);
+		if (item) tag += item->text() + QString("\n\\end{") + env + "} ";
+		else tag += QString("\n\\end{") + env + "} ";
+		insertTag(tag, 0, 0);
 	}
 
 }
@@ -7520,6 +7452,8 @@ void Texstudio::StructureContextMenu(const QPoint &point)
 		menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
 		menu.addAction(tr("Expand all documents"), this, SLOT(structureContextMenuExpandAllDocuments()));
 		menu.addAction(tr("Collapse all documents"), this, SLOT(structureContextMenuCollapseAllDocuments()));
+		menu.addSeparator();
+		menu.addAction(msgGraphicalShellAction(), this, SLOT(structureContextMenuShowInGraphicalShell()));
 		menu.exec(structureTreeView->mapToGlobal(point));
 		return;
 	}
@@ -7691,6 +7625,16 @@ void Texstudio::structureContextMenuExpandAllDocuments()
 void Texstudio::structureContextMenuCollapseAllDocuments()
 {
 	setSubtreeExpanded(structureTreeView, structureTreeView->rootIndex(), false);
+}
+
+void Texstudio::structureContextMenuShowInGraphicalShell()
+{
+	if (!contextEntry)
+		return;
+	LatexDocument *document = contextEntry->document;
+	contextEntry = 0;
+	if (!document) return;
+	showInGraphicalShell(this, document->getFileName());
 }
 
 void Texstudio::editPasteRef()
@@ -8456,24 +8400,32 @@ void Texstudio::fileUpdateCWD(QString filename)
 	outputView->insertMessageLine(buffer);
 }
 
-void Texstudio::checkinAfterSave(QString filename)
+void Texstudio::checkinAfterSave(QString filename,int checkIn)
 {
-	if (configManager.autoCheckinAfterSaveLevel > 1) {
-		if (svnadd(filename)) {
-			checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-		} else {
-			//create simple repository
-			svncreateRep(filename);
-			svnadd(filename);
-			checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-		}
-		// set SVN Properties if desired
-		if (configManager.svnKeywordSubstitution) {
-			QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
-			statusLabelProcess->setText(QString(" svn propset svn:keywords "));
-			runCommand(cmd, 0);
-		}
-	}
+    if(checkIn>1){// special treatment for save
+        // 2: checkin
+        // 1: don't check in
+        checkin(filename);
+        if (configManager.svnUndo) currentEditor()->document()->clearUndo();
+    }
+    if(checkIn==0){ // from fileSaveAs
+        if (configManager.autoCheckinAfterSaveLevel > 1) {
+            if (svnadd(filename)) {
+                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+            } else {
+                //create simple repository
+                svncreateRep(filename);
+                svnadd(filename);
+                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+            }
+            // set SVN Properties if desired
+            if (configManager.svnKeywordSubstitution) {
+                QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
+                statusLabelProcess->setText(QString(" svn propset svn:keywords "));
+                runCommand(cmd, 0);
+            }
+        }
+    }
 }
 
 void Texstudio::checkin(QString fn, QString text, bool blocking)
