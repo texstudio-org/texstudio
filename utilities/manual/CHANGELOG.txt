@@ -1,8 +1,11 @@
 TeXstudio 2.10.8
 ----------------
+- automatically expand search result if all matches are within one file
+- detection of magic comment % !TeX is more permissive concerning case sensistivity
 - fix crash when using \subparagraph
 - fix symbolgrid widget on OSX
-- detection of magic comment % !TeX is more permissive concerning case sensistivity
+- fix ?save-file trigger not working
+- update latex reference manual (Oct 2015)
 
 TeXstudio 2.10.6
 ----------------
