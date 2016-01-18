@@ -130,7 +130,8 @@ QStringList Macro::toStringList() const
 
 void Macro::parseTriggerLanguage(QLanguageFactory *langFactory)
 {
-	if (triggerLanguage.isEmpty()) return;
+    if(!langFactory) return;
+    if (triggerLanguage.isEmpty()) return;
 	triggerLanguages.clear();
 	QRegExp tempRE(triggerLanguage, Qt::CaseInsensitive);
 	foreach (const QString &lang, langFactory->languages()) {

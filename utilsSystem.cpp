@@ -1,4 +1,5 @@
 #include "utilsSystem.h"
+#include "unixutils.h"
 
 #ifdef Q_OS_MAC
 #include <CoreFoundation/CFURL.h>
@@ -475,6 +476,62 @@ void updatePathSettings(QProcess *proc, QString additionalPaths)
 	env.insert("PATH", path);
 	// Note: this modifies the path only for the context of the called program. It does not affect the search path for the program itself.
 	proc->setProcessEnvironment(env);
+}
+
+void showInGraphicalShell(QWidget *parent, const QString &pathIn)
+{
+	// Mac, Windows support folder or file.
+#if defined(Q_OS_WIN)
+	QFileInfo fiExplorer(QProcessEnvironment::systemEnvironment().value("WINDIR"), "explorer.exe");
+	if (!fiExplorer.exists()) {
+		QMessageBox::warning(parent,
+							 QApplication::translate("Texstudio",
+													 "Launching Windows Explorer Failed"),
+							 QApplication::translate("Texstudio",
+													 "Could not find explorer.exe in path to launch Windows Explorer."));
+		return;
+	}
+	QStringList param;
+	if (!QFileInfo(pathIn).isDir())
+		param += QLatin1String("/select,");
+	param += QDir::toNativeSeparators(pathIn);
+	QProcess::startDetached(fiExplorer.absoluteFilePath(), param);
+#elif defined(Q_OS_MAC)
+	QStringList scriptArgs;
+	scriptArgs << QLatin1String("-e")
+			   << QString::fromLatin1("tell application \"Finder\" to reveal POSIX file \"%1\"")
+									 .arg(pathIn);
+	QProcess::execute(QLatin1String("/usr/bin/osascript"), scriptArgs);
+	scriptArgs.clear();
+	scriptArgs << QLatin1String("-e")
+			   << QLatin1String("tell application \"Finder\" to activate");
+	QProcess::execute(QLatin1String("/usr/bin/osascript"), scriptArgs);
+#else
+	// we cannot select a file here, because no file browser really supports it...
+	using namespace Utils;
+	const QFileInfo fileInfo(pathIn);
+	const QString folder = fileInfo.isDir() ? fileInfo.absoluteFilePath() : fileInfo.filePath();
+	QSettings dummySettings;
+	const QString app = UnixUtils::fileBrowser(&dummySettings);
+	QProcess browserProc;
+	const QString browserArgs = UnixUtils::substituteFileBrowserParameters(app, folder);
+	bool success = browserProc.startDetached(browserArgs);
+	const QString error = QString::fromLocal8Bit(browserProc.readAllStandardError());
+	success = success && error.isEmpty();
+	if (!success)
+		QMessageBox::critical(parent, app, error);
+#endif
+}
+
+QString msgGraphicalShellAction()
+{
+#if defined(Q_OS_WIN)
+	return QApplication::translate("Texstudio", "Show in Explorer");
+#elif defined(Q_OS_MAC)
+	return QApplication::translate("Texstudio", "Show in Finder");
+#else
+	return QApplication::translate("Texstudio", "Show Containing Folder");
+#endif
 }
 
 QString getTerminalCommand()

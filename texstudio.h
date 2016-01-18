@@ -170,7 +170,6 @@ private:
 	QAction *actRootDocSetExplicit;
 
 	//toolbars
-	QAction *ToggleRememberAct;
 	QAction *actSave, *actUndo, *actRedo;
 
 	QLabel *statusLabelMode, *statusLabelProcess;
@@ -271,7 +270,7 @@ private slots:
 	void fileCheckinPdf(QString filename = "");
 	void fileUpdate(QString filename = "");
 	void fileUpdateCWD(QString filename = "");
-	void checkinAfterSave(QString filename);
+    void checkinAfterSave(QString filename, int checkIn=0);
 	void checkin(QString fn, QString text = "txs auto checkin", bool blocking = false);
 	bool svnadd(QString fn, int stage = 0);
 	void svncreateRep(QString fn);
@@ -355,6 +354,7 @@ protected slots:
 	void structureContextMenuCollapseSubitems();
 	void structureContextMenuExpandAllDocuments();
 	void structureContextMenuCollapseAllDocuments();
+	void structureContextMenuShowInGraphicalShell();
 	void symbolGridContextMenu(QWidget *widget, const QPoint &point);
 	void mostUsedSymbolsTriggered(bool direct = false);
 	void symbolAddFavorite();
@@ -691,7 +691,7 @@ signals:
 	void infoNewFile();
 	void infoNewFromTemplate();
 	void infoLoadFile(const QString &filename);
-	void infoFileSaved(const QString &filename);
+    void infoFileSaved(const QString &filename,const int checkin=0);
 	void infoFileClosed();
 	void infoAfterTypeset();
 	void imgPreview(const QString &fn);
