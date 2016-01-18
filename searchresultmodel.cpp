@@ -282,7 +282,7 @@ void SearchResultModel::setSearchExpression(const QString &exp, const QString &r
 void SearchResultModel::setSearchExpression(const QString &exp, const bool isCaseSensitive, const bool isWord, const bool isRegExp)
 {
 	mExpression = exp;
-	mReplacementText.clear();
+	// keep mReplacementText
 	mIsCaseSensitive = isCaseSensitive;
 	mIsWord = isWord;
 	mIsRegExp = isRegExp;

@@ -345,7 +345,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
 
-	connect(this, SIGNAL(infoFileSaved(QString)), this, SLOT(checkinAfterSave(QString)));
+    connect(this, SIGNAL(infoFileSaved(QString,int)), this, SLOT(checkinAfterSave(QString,int)));
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -2389,11 +2389,8 @@ void Texstudio::fileSave(const bool saveSilently)
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
-		if (configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) {
-			checkin(currentEditor()->fileName());
-			if (configManager.svnUndo) currentEditor()->document()->clearUndo();
-		}
-		//emit infoFileSaved(currentEditor()->fileName());
+        int checkIn=(configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) ? 2 : 1;
+        emit infoFileSaved(currentEditor()->fileName(),checkIn);
 	}
 	updateCaption();
 	//updateStructure(); (not needed anymore for autoupdate)
@@ -8403,24 +8400,32 @@ void Texstudio::fileUpdateCWD(QString filename)
 	outputView->insertMessageLine(buffer);
 }
 
-void Texstudio::checkinAfterSave(QString filename)
+void Texstudio::checkinAfterSave(QString filename,int checkIn)
 {
-	if (configManager.autoCheckinAfterSaveLevel > 1) {
-		if (svnadd(filename)) {
-			checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-		} else {
-			//create simple repository
-			svncreateRep(filename);
-			svnadd(filename);
-			checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-		}
-		// set SVN Properties if desired
-		if (configManager.svnKeywordSubstitution) {
-			QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
-			statusLabelProcess->setText(QString(" svn propset svn:keywords "));
-			runCommand(cmd, 0);
-		}
-	}
+    if(checkIn>1){// special treatment for save
+        // 2: checkin
+        // 1: don't check in
+        checkin(filename);
+        if (configManager.svnUndo) currentEditor()->document()->clearUndo();
+    }
+    if(checkIn==0){ // from fileSaveAs
+        if (configManager.autoCheckinAfterSaveLevel > 1) {
+            if (svnadd(filename)) {
+                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+            } else {
+                //create simple repository
+                svncreateRep(filename);
+                svnadd(filename);
+                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+            }
+            // set SVN Properties if desired
+            if (configManager.svnKeywordSubstitution) {
+                QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
+                statusLabelProcess->setText(QString(" svn propset svn:keywords "));
+                runCommand(cmd, 0);
+            }
+        }
+    }
 }
 
 void Texstudio::checkin(QString fn, QString text, bool blocking)
