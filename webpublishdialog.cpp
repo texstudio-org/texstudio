@@ -389,8 +389,8 @@ void WebPublishDialog::extractpage(QString psfile, int page)
 			return;
 		} else {
 			QTextStream outts(&outf);
-			while (!psts.atEnd()) {
-				bool go = true;
+			bool go = true;
+			while (!psts.atEnd()) {				
 				line = psts.readLine();
 				if (rxpage.indexIn(line) > -1) {
 					int numpage = rxpage.cap(1).toInt();
