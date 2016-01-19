@@ -4205,6 +4205,7 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 				op = PreviousPlaceHolder;
 				break;
 			}
+		break;
 	case NextPlaceHolderOrChar:
 		op = CursorRight;
 		foreach (const PlaceHolder& ph, m_placeHolders)
@@ -4222,6 +4223,7 @@ QEditor::EditOperation QEditor::getEditOperation(const Qt::KeyboardModifiers& mo
 				op = PreviousPlaceHolder;
 				break;
 			}
+		break;
 	default:;
 	}
 	return op;
