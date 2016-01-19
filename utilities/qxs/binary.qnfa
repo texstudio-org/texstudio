@@ -1,0 +1,29 @@
+<!DOCTYPE QNFA>
+<QNFA language="Binary" extensions="bin;dat" defaultLineMark="">
+    <word id="data/float" format="numbers">-?[0-9]*.[0-9]+</word>
+    <word id="data/decimal" format="numbers">-?[0-9]+</word>
+
+<!--    <sequence id="text" format="keyword">(-|[a-zA-Z0-9 .:%=_/()])(-|[a-zA-Z0-9 .:%=_/()])*[A-Za-z0-9](-|[a-zA-Z0-9 .:%=_/()])+</sequence>-->
+    <sequence id="text" format="keyword">[A-Za-z0-9][a-zA-Z0-9 .:%=_/()]+</sequence>
+    <sequence id="text" format="keyword">[a-zA-Z0-9 .:%=_/()][A-Za-z0-9][a-zA-Z0-9 .:%=_/()]+</sequence>
+    <sequence id="text" format="keyword">[a-zA-Z0-9 .:%=_/()][a-zA-Z0-9 .:%=_/()][A-Za-z0-9][a-zA-Z0-9 .:%=_/()]+</sequence>
+    <sequence id="text" format="keyword">[a-zA-Z0-9 .:%=_/()][a-zA-Z0-9 .:%=_/()][a-zA-Z0-9 .:%=_/()][A-Za-z0-9][a-zA-Z0-9 .:%=_/()]+</sequence>
+    <sequence id="text" format="keyword">[a-zA-Z0-9 .:%=_/()][a-zA-Z0-9 .:%=_/()][a-zA-Z0-9 .:%=_/()][a-zA-Z0-9 .:%=_/()][A-Za-z0-9][a-zA-Z0-9 .:%=_/()]+</sequence>
+<!--qce3 things:    <sequence name="cppld" noWordBoundaryCheck="true" format="keyword">
+        <subsequence format="numbers">_Z(NK?)?[0-9]*</subsequence>
+        <subsequence>[a-zA-Z_]+</subsequence>
+        <subsequence format="text">[0-9]*</subsequence>
+        <subsequence>[a-zA-Z_]*</subsequence>
+        <subsequence format="text">[0-9]*</subsequence>
+        <subsequence>[a-zA-Z_]*</subsequence>
+        <subsequence format="text">[0-9]*</subsequence>
+        <subsequence>[a-zA-Z_]*</subsequence>
+        <subsequence format="text">[0-9]*</subsequence>
+        <subsequence>[a-zA-Z_]*</subsequence>
+        <subsequence format="text">[0-9]*</subsequence>
+        <subsequence>[a-zA-Z_]*</subsequence>
+    </sequence>-->
+
+</QNFA>
+
+

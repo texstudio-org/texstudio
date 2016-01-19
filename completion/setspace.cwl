@@ -1,0 +1,12 @@
+\singlespacing
+\onehalfspacing
+\doublespacing
+\SetSinglespace{factor}
+\begin{singlespace}
+\begin{doublespace}
+\begin{onehalfspace}
+\begin{spacing}{factor}
+\end{singlespace}
+\end{doublespace}
+\end{onehalfspace}
+\end{spacing}
