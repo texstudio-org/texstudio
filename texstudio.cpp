@@ -6890,10 +6890,12 @@ void Texstudio::changeEvent(QEvent *e)
 	case QEvent::LanguageChange:
 		if (configManager.lastLanguage == configManager.language) return; //don't update if config not changed
 		//QMessageBox::information(0,"rt","retranslate",0);
-		setupMenus();
-		setupDockWidgets();
-		updateCaption();
-		updateMasterDocumentCaption();
+        if(!splashscreen){
+            setupMenus();
+            setupDockWidgets();
+            updateCaption();
+            updateMasterDocumentCaption();
+        }
 		break;
 	default:
 		break;
