@@ -114,6 +114,8 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 			// various commands
 			if (cmdArgument == "--start-always")
 				outStartAlways = true;
+            else if (cmdArgument == "--no-restore")
+                ConfigManager::dontRestoreSession = true;
 			else if ((cmdArgument == "-line" || cmdArgument == "--line") && (++i < args.count()))
 				cmdLine << "--line" << args[i];
 			else if ((cmdArgument == "-page" || cmdArgument == "--page") && (++i < args.count()))
@@ -142,7 +144,8 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 							<< "  --insert-cite CITATION  inserts the given citation\n"
 							<< "  --start-always          start a new instance, even if TXS is already running\n"
 							<< "  --pdf-viewer-only       run as a standalone pdf viewer without an editor\n"
-							<< "  --page PAGENUM          display a certain page in the pdf viewer\n";
+                            << "  --page PAGENUM          display a certain page in the pdf viewer\n"
+                            << "  --no-restore            do not restore session, session is not saved at closing either\n";
 		return true;
 	}
 
