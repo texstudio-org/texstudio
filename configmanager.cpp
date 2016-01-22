@@ -334,6 +334,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 
 QTextCodec *ConfigManager::newFileEncoding = 0;
 QString ConfigManager::iniFileOverride;
+bool ConfigManager::dontRestoreSession=false;
 
 QString getText(QWidget *w)
 {

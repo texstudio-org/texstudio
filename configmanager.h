@@ -222,6 +222,7 @@ public:
 	void triggerManagedAction(const QString &id);
 
 	static QString iniFileOverride;
+    static bool dontRestoreSession;
 private:
 	void connectExtendedSlot(QAction *act, const QString &slot);
 	bool modifyMenuContentsFirstCall;
