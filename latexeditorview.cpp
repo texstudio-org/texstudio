@@ -1848,7 +1848,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
 						continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
 					int l = tk.length;
-					if (word.endsWith('.')) l--;
+					//if (word.endsWith('.')) l--; // tk.length is only word without point
 					line.addOverlay(QFormatRange(tk.start, l, SpellerUtility::spellcheckErrorFormat));
 					addedOverlaySpellCheckError = true;
 				}
