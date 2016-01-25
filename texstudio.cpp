@@ -4789,49 +4789,107 @@ void Texstudio::insertBib()
 
 void Texstudio::quickTabular()
 {
-	if (!currentEditorView())	return;
-	//TODO: move this in arraydialog class
-	QString al;
-	ArrayDialog *arrayDlg = new ArrayDialog(this, "Array");
-	if (arrayDlg->exec()) {
-		int y = arrayDlg->ui.spinBoxRows->value();
-		int x = arrayDlg->ui.spinBoxColumns->value();
-		QString env = arrayDlg->ui.comboEnvironment->currentText();
-		QString tag = QString("\\begin{") + env + "}";
-		if (env == "array") {
-			tag += "{";
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 0) al = QString("c");
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 1) al = QString("l");
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 2) al = QString("r");
-			for (int j = 0; j < x; j++) {
-				tag += al;
+	if ( !currentEditorView() )	return;
+	QString placeholder;//(0x2022);
+	QStringList borderlist, alignlist;
+	borderlist<< QString("|") << QString("||") << QString("") << QString("@{}");
+	alignlist << QString("c") << QString("l") << QString("r") << QString("p{}") << QString(">{\\centering\\arraybackslash}p{}") << QString(">{\\raggedleft\\arraybackslash}p{}");
+	QString al="";
+	QString vs="";
+	QString el="";
+	QString tag;
+	TabDialog *quickDlg = new TabDialog(this,"Tabular");
+	QTableWidgetItem *item=new QTableWidgetItem();
+	if ( quickDlg->exec() )
+	{
+		int y = quickDlg->ui.spinBoxRows->value();
+		int x = quickDlg->ui.spinBoxColumns->value();
+		tag = QString("\\begin{tabular}{");
+		for ( int j=0;j<x;j++)
+		{
+			tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
+			tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
+		}
+		tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
+		tag +=QString("}\n");
+		for ( int i=0;i<y;i++)
+		{
+			if (quickDlg->liDataList.at(i).topborder) tag+=QString("\\hline \n");
+			if (quickDlg->ui.checkBoxMargin->isChecked()) tag+="\\rule[-1ex]{0pt}{2.5ex} ";
+			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto>quickDlg->liDataList.at(i).mergefrom))
+			{
+				el="";
+				for ( int j=0;j<x;j++)
+				{
+					item =quickDlg->ui.tableWidget->item(i,j);
+
+					if (j==quickDlg->liDataList.at(i).mergefrom-1)
+					{
+						if (item) el+=item->text();
+						tag+=QString("\\multicolumn{");
+						tag+=QString::number(quickDlg->liDataList.at(i).mergeto-quickDlg->liDataList.at(i).mergefrom+1);
+						tag+=QString("}{");
+						if ((j==0) && (quickDlg->colDataList.at(j).leftborder<2)) tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
+						if (quickDlg->colDataList.at(j).alignment<3) tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
+						else tag+=QString("c");
+						if (quickDlg->liDataList.at(i).mergeto==x) tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
+						else tag+=borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
+						tag+=QString("}{");
+					}
+					else if (j==quickDlg->liDataList.at(i).mergeto-1)
+					{
+						if (item) el+=item->text();
+						if (el.isEmpty()) el=placeholder;
+						tag+=el+QString("}");
+						if (j<x-1) tag+=" & ";
+						else tag+=QString(" \\\\ \n");
+					}
+					else if ((j>quickDlg->liDataList.at(i).mergefrom-1) && (j<quickDlg->liDataList.at(i).mergeto-1))
+					{
+						if (item) el+=item->text();
+					}
+					else
+					{
+						if (item)
+						{
+							if (item->text().isEmpty()) tag +=placeholder;
+							else tag +=item->text();
+						}
+						else tag +=placeholder;
+						if (j<x-1) tag+=" & ";
+						else tag+=QString(" \\\\ \n");
+					}
+
+				}
 			}
-			tag += "}";
-		}
-		tag += QString("\n");
-		for (int i = 0; i < y - 1; i++) {
-			for (int j = 0; j < x - 1; j++) {
-				QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, j);
-				if (item) tag += item->text() + QString(" & ");
-				else tag += QString(" & ");
+			else
+			{
+				for ( int j=0;j<x-1;j++)
+				{
+					item =quickDlg->ui.tableWidget->item(i,j);
+					if (item)
+					{
+						if (item->text().isEmpty()) tag +=placeholder+QString(" & ");
+						else tag +=item->text()+ QString(" & ");
+					}
+					else tag +=placeholder+QString(" & ");
+				}
+				item =quickDlg->ui.tableWidget->item(i,x-1);
+				if (item)
+				{
+					if (item->text().isEmpty()) tag +=placeholder+QString(" \\\\ \n");
+					else tag +=item->text()+ QString(" \\\\ \n");
+				}
+				else tag +=placeholder+QString(" \\\\ \n");
 			}
-			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, x - 1);
-			if (item) tag += item->text() + QString(" \\\\ \n");
-			else tag += QString(" \\\\ \n");
 		}
-		for (int j = 0; j < x - 1; j++) {
-			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, j);
-			if (item) tag += item->text() + QString(" & ");
-			else tag += QString(" & ");
-		}
-		QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, x - 1);
-		if (item) tag += item->text() + QString("\n\\end{") + env + "} ";
-		else tag += QString("\n\\end{") + env + "} ";
-		insertTag(tag, 0, 0);
+		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag +=QString("\\hline \n\\end{tabular} ");
+		else tag +=QString("\\end{tabular} ");
+		if (tag.contains("arraybackslash")) tag="% \\usepackage{array} is required\n"+tag;
+		insertTag(tag,0,0);
 	}
 
 }
-
 
 void Texstudio::quickArray()
 {
