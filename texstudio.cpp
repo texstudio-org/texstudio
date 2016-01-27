@@ -9461,7 +9461,7 @@ void Texstudio::updateTexQNFA()
 		if (env.contains('*')) {
 			env.replace("*", "\\*");
 		}
-		addEnvironmentToDom(doc, env, envMode);
+		addEnvironmentToDom(doc, env, envMode, envMode != "verbatim");
 	}
 	// structure commands
 	addStructureCommandsToDom(doc, latexParser.possibleCommands);
