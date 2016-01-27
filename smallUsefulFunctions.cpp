@@ -3427,7 +3427,7 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
                                + __GNUC_MINOR__ * 100 \
                                + __GNUC_PATCHLEVEL__)
 
-bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp)
+bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const LatexParser &lp)
 {
 	if (!dlh)
 		return false;
@@ -3445,8 +3445,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 		}
 	}
 	TokenList lexed;
-	QStack<CommandDescription> commandStack;
-	QStack<QString> commandNames;
 
 	QString verbatimSymbol;
 	int lastComma = -1;
@@ -3534,8 +3532,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 					tk.subtype = stack.top().subtype;
 					if (tk.subtype == Tokens::keyValArg && lastEqual > -1) {
 						tk.subtype = Tokens::keyVal_val;
-						if (!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top() + "/" + keyName)) {
-							CommandDescription cd = lp.commandDefs.value(commandNames.top() + "/" + keyName);
+						if (!commandStack.isEmpty() && lp.commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
+							CommandDescription cd = lp.commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
 							tk.subtype = cd.argTypes.value(0, Tokens::keyVal_val);
 						}
 					}
@@ -3553,15 +3551,14 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 					if (cd.args <= 0) {
 						// unknown arg, stop handling this command
 						commandStack.pop();
-						commandNames.pop();
 					}
 				}
 				if (lp.commandDefs.contains(command)) {
 					CommandDescription cd = lp.commandDefs.value(command);
 					cd.level = level;
 					if ((cd.args > 0 || cd.optionalArgs > 0 || cd.bracketArgs > 0 ) && tk.subtype != Tokens::def) { // don't interpret commands in defintion (\newcommand{def})
+                        cd.optionalCommandName=command;
 						commandStack.push(cd);
-						commandNames.push(command);
 					}
 				} else {
 					tk.type = Tokens::commandUnknown;
@@ -3687,8 +3684,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
                                     if (cd.args > 1) {
                                         cd.args--;
                                         cd.argTypes.takeFirst();
+                                        cd.optionalCommandName="\\begin{" + env + "}";
                                         commandStack.push(cd);
-                                        commandNames.push("\\begin{" + env + "}");
                                     }
                                 }
 							}
@@ -3699,7 +3696,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 						// remove commands from commandstack with higher level, as they can't have any valid arguments anymore
 						while (!commandStack.isEmpty() && commandStack.top().level > level) {
 							commandStack.pop();
-							commandNames.pop();
 						}
 					} else { // opening not found, whyever (should not happen)
 						level--;
@@ -3716,7 +3712,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 					if (cd.args <= 0 && cd.optionalArgs <= 0 && cd.bracketArgs <= 0) {
 						// all args handled, stop handling this command
 						commandStack.pop();
-						commandNames.pop();
 					}
 				}
 				continue;
@@ -3777,8 +3772,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 				} else {
 					tk.level = level;
 					tk.subtype = Tokens::keyVal_val;
-					if (!commandNames.isEmpty() && lp.commandDefs.contains(commandNames.top() + "/" + keyName)) {
-						CommandDescription cd = lp.commandDefs.value(commandNames.top() + "/" + keyName);
+					if (!commandStack.isEmpty() && lp.commandDefs.contains(commandStack.top().optionalCommandName + "/" + keyName)) {
+						CommandDescription cd = lp.commandDefs.value(commandStack.top().optionalCommandName + "/" + keyName);
 						tk.subtype = cd.argTypes.value(0, Tokens::keyVal_val);
 					}
 					lexed << tk;
@@ -3851,7 +3846,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 				if (cd.args <= 0) {
 					// unknown arg, stop handling this command
 					commandStack.pop();
-					commandNames.pop();
 				}
 			}
 			lexed << tk;
@@ -3895,6 +3889,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const 
 		}
 	}
 	dlh->setCookie(QDocumentLine::LEXER_REMAINDER_COOKIE, QVariant::fromValue<TokenStack>(stack));
+    dlh->setCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE, QVariant::fromValue<CommandStack>(commandStack));
 	dlh->unlock();
 
 	bool remainderChanged = (stack != oldRemainder);
