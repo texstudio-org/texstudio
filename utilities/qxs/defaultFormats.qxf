@@ -325,6 +325,9 @@
 		<bold>true</bold>
 		<foreground>#0095ff</foreground>
 	</format>
+	<format id="txs-test-summary" >
+		<bold>true</bold>
+	</format>
 	<format id="txs-test-pass" >
         <foreground>#008000</foreground>
 	</format>
