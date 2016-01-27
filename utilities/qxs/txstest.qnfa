@@ -6,6 +6,18 @@
 		<stop>\*\*\*\*\*\*\*\*\*</stop>
 	</context>
 
+	<context id="test/failed" format="txs-test-summary" stayOnLine="true" >
+		<start>Totals:</start>
+		<stop exclusive="false">\n</stop>
+		<word id="test/skippedsummary" format="txs-test-warn">[1-9][0-9]* skipped</word>
+		<word id="test/failedsummary" format="txs-test-fail">[1-9][0-9]* failed</word>
+	</context>
+
+	<context id="test/failed" format="txs-test-warn" stayOnLine="true" >
+		<start>XFAIL</start>
+		<stop exclusive="false">\n</stop>
+		</context>
+
 	<context id="test/failed" format="txs-test-fail" stayOnLine="true" >
 		<start>FAIL</start>
 		<stop exclusive="false">\n</stop>
@@ -15,7 +27,5 @@
 	<word id="test/passed" format="txs-test-pass">PASS</word>
 	<word id="test/debug" format="txs-test-qdebug">QDEBUG</word>
 	<word id="test/warn" format="txs-test-warn">WARNING</word>
-	<word id="test/skippedsummary" format="txs-test-warn">[1-9][0-9]* skipped</word>
-	<word id="test/failedsummary" format="txs-test-fail">[1-9][0-9]* failed</word>
 
 </QNFA>
