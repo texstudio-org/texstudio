@@ -95,8 +95,13 @@ public:
 	QList<Tokens::TokenType> argTypes;
 	QList<Tokens::TokenType> optTypes;
 	QList<Tokens::TokenType> bracketTypes;
+    QString optionalCommandName;
 	QString toDebugString() const;
 };
+
+typedef QStack<CommandDescription> CommandStack;
+
+Q_DECLARE_METATYPE(CommandStack);
 
 typedef QHash<QString, CommandDescription> CommandDescriptionHash;
 
@@ -370,6 +375,6 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos);
 QString getCommandFromToken(Tokens tk);
 Tokens getCommandTokenFromToken(TokenList tl, Tokens tk);
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh);
-bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, const LatexParser &lp);
+bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const LatexParser &lp);
 int getCompleterContext(QDocumentLineHandle *dlh, int column);
 #endif

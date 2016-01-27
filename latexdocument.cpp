@@ -380,6 +380,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	QStringList lstFilesToLoad;
 	//first pass: lex
 	TokenStack oldRemainder;
+    CommandStack oldCommandStack;
 	if (!recheck) {
 		QList<QDocumentLineHandle *> l_dlh;
 //#pragma omp parallel for shared(l_dlh)
@@ -392,9 +393,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	QDocumentLineHandle *lastHandle = line(linenr - 1).handle();
 	if (lastHandle) {
 		oldRemainder = lastHandle->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+        oldCommandStack = lastHandle->getCookieLocked(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
 	}
 	for (int i = linenr; i < lineCount() && i < linenr + count; i++) {
-		bool remainderChanged = latexDetermineContexts2(line(i).handle(), oldRemainder, lp);
+		bool remainderChanged = latexDetermineContexts2(line(i).handle(), oldRemainder, oldCommandStack, lp);
 		if (remainderChanged && i + 1 == linenr + count && i + 1 < lineCount()) { // remainder changed in last line which is to be checked
 			count++; // check also next line ...
 		}
