@@ -97,6 +97,7 @@ public:
 	QList<Tokens::TokenType> bracketTypes;
     QString optionalCommandName;
 	QString toDebugString() const;
+    bool operator==(const CommandDescription &v) const;
 };
 
 typedef QStack<CommandDescription> CommandStack;
