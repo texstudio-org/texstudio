@@ -845,7 +845,7 @@ QList<int> indicesOf(const QString &line, const QRegExp &rx)
 	return columns;
 }
 
-void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QString &EnvironMode)
+void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QString &EnvironMode, bool completeParentheses)
 {
 	QDomElement root = doc.documentElement();
 	QDomElement tag = doc.createElement("context");
@@ -853,14 +853,14 @@ void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QS
 	tag.setAttribute("format", EnvironMode);
 	if (EnvironMode != "comment") tag.setAttribute("transparency", "true");
 	QDomElement child1 = doc.createElement("start");
-	child1.setAttribute("parenthesis", QString("my%1:open").arg(EnvironName));
+	child1.setAttribute("parenthesis", QString("my%1:open%2").arg(EnvironName).arg(completeParentheses ? "" : "@nocomplete"));
 	child1.setAttribute("fold", "true");
 	child1.setAttribute("format", "extra-keyword");
 	child1.setAttribute("parenthesisWeight", "30");
 	QDomText dtxt = doc.createTextNode(QString("\\\\begin{%1}").arg(EnvironName));
 	child1.appendChild(dtxt);
 	QDomElement child2 = doc.createElement("stop");
-	child2.setAttribute("parenthesis", QString("my%1:close").arg(EnvironName));
+	child2.setAttribute("parenthesis", QString("my%1:close%2").arg(EnvironName).arg(completeParentheses ? "" : "@nocomplete"));
 	child2.setAttribute("fold", "true");
 	child2.setAttribute("format", "extra-keyword");
 	child2.setAttribute("parenthesisWeight", "30");
