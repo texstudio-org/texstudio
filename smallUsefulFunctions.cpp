@@ -3055,7 +3055,12 @@ QString tokenTypesToString(const QList<Tokens::TokenType>& types)
 
 QString CommandDescription::toDebugString() const
 {
-	return QString("%1:%2:%3").arg(tokenTypesToString(optTypes)).arg(tokenTypesToString(argTypes)).arg(tokenTypesToString(bracketTypes));
+    return QString("%1:%2:%3").arg(tokenTypesToString(optTypes)).arg(tokenTypesToString(argTypes)).arg(tokenTypesToString(bracketTypes));
+}
+
+bool CommandDescription::operator==(const CommandDescription &v) const
+{
+    return (this->optionalCommandName==v.optionalCommandName && this->args==v.args && this->argTypes==v.argTypes && this->level==v.level && this->optionalArgs==v.optionalArgs && this->optTypes==v.optTypes && this->bracketArgs==v.bracketArgs && this->bracketTypes==v.bracketTypes);
 }
 
 TokenList getArgContent(Tokens &tk)
@@ -3434,6 +3439,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	dlh->lockForWrite();
 	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
 	TokenStack oldRemainder = dlh->getCookie(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
+    CommandStack oldCommandStack = dlh->getCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE).value<CommandStack >();
 	QString line = dlh->text();
 	bool verbatimMode = false;
 	int level = 0;
@@ -3709,7 +3715,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 				}
 				if (!commandStack.isEmpty() && commandStack.top().level == level) {
 					CommandDescription &cd = commandStack.top();
-					if (cd.args <= 0 && cd.optionalArgs <= 0 && cd.bracketArgs <= 0) {
+					if (cd.args <= 0 && cd.bracketArgs <= 0) {
 						// all args handled, stop handling this command
 						commandStack.pop();
 					}
@@ -3852,13 +3858,13 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 		}
 	}
 	{
-		// remove tokens from stack which are not intended for mulitline: ([
+		// remove tokens from stack which are not intended for mulitline: (
 		QMutableVectorIterator<Tokens> i(stack);
 		while (i.hasNext()) {
 			Tokens &tk = i.next();
-			if (tk.type == Tokens::openBracket || tk.type == Tokens::openSquare) {
+			if (tk.type == Tokens::openBracket) {
 				i.remove();
-			} else if (tk.type == Tokens::openBrace && tk.dlh == dlh) {
+			} else if ((tk.type == Tokens::openBrace || tk.type == Tokens::openSquare ) && tk.dlh == dlh) {
 				// set length to whole line after brace
 				tk.length = line.length() - tk.start;
 			}
@@ -3879,6 +3885,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	dlh->setCookie(QDocumentLine::LEXER_COOKIE, QVariant::fromValue<TokenList>(lexed));
 	// run-away prevention
 	// reduce argLevel by 1, remove all elements with level <0
+    // TODO: needs to be applied on commandStack as well !!!
 	for (int i = 0; i < stack.size(); i++) {
 		if (stack[i].type == Tokens::verbatim)
 			continue;
@@ -3892,7 +3899,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
     dlh->setCookie(QDocumentLine::LEXER_COMMANDSTACK_COOKIE, QVariant::fromValue<CommandStack>(commandStack));
 	dlh->unlock();
 
-	bool remainderChanged = (stack != oldRemainder);
+	bool remainderChanged = (stack != oldRemainder) || (commandStack != oldCommandStack) ;
 
 	return remainderChanged;
 }
