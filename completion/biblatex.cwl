@@ -420,3 +420,7 @@ smartand # counter
 
 # memoir class
 \ifmemoirbibintoc{true}{false}
+
+#ifOption:natbib
+#include:natbib
+#endif

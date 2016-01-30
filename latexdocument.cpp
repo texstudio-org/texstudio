@@ -3073,7 +3073,7 @@ void LatexDocument::gatherCompletionFiles(QStringList &files, QStringList &loade
 			zw = parent->cachedPackages.value(elem);
 		} else {
 			QString fileName = LatexPackage::keyToCwlFilename(elem);
-			QStringList options = LatexPackage::keyToOptions(elem).split(',');
+			QStringList options = LatexPackage::keyToOptions(elem);
 			zw = loadCwlFile(fileName, completerConfig, options);
 			if (!zw.notFound) {
 				parent->cachedPackages.insert(elem, zw); // cache package

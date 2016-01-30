@@ -344,7 +344,7 @@ public:
 	static QString makeKey(const QString &cwlFilename, const QString &options);  // TODO not yet used: where are the keys actually created?
 	static QString keyToCwlFilename(const QString &key);
 	static QString keyToPackageName(const QString &key);
-	static QString keyToOptions(const QString &key);
+	static QStringList keyToOptions(const QString &key);
 
 	bool notFound;  // Workaround: explicit flag better than using a magic value in package name. TODO: Do we need not found packages?
 	QString packageName;
@@ -363,7 +363,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config = 
 
 class QDocumentLineHandle;
 
-QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
+QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
 QString getArg(const TokenList &tl,Tokens::TokenType type);
 QString findRestArg(QDocumentLineHandle *dlh, Tokens::TokenType type, int count = 10);
 CommandDescription extractCommandDef(QString line, QString definition);
