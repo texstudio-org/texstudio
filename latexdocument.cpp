@@ -2874,6 +2874,9 @@ void LatexDocuments::updateMasterSlaveRelations(LatexDocument *doc, bool recheck
 
 const LatexDocument *LatexDocument::getRootDocument(QSet<const LatexDocument *> *visitedDocs) const
 {
+    // special handling if explicit master is set
+    if(parent && parent->masterDocument)
+        return parent->masterDocument;
 	const LatexDocument *result = this;
 	bool deleteVisitedDocs = false;
 	if (!visitedDocs) {
