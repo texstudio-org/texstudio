@@ -2169,27 +2169,27 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 						if (res > -1) {
 							package.possibleCommands["%structure5"] << rxCom.cap(1);
 						}
-                    }else if (valid.contains("L6")) {
-                        valid.remove("L6");
-                        if (res > -1) {
-                            package.possibleCommands["%structure6"] << rxCom.cap(1);
-                        }
-                    }else if (valid.contains("L7")) {
-                        valid.remove("L7");
-                        if (res > -1) {
-                            package.possibleCommands["%structure7"] << rxCom.cap(1);
-                        }
-                    }else if (valid.contains("L8")) {
-                        valid.remove("L8");
-                        if (res > -1) {
-                            package.possibleCommands["%structure8"] << rxCom.cap(1);
-                        }
-                    }else if (valid.contains("L9")) {
-                        valid.remove("L9");
-                        if (res > -1) {
-                            package.possibleCommands["%structure9"] << rxCom.cap(1);
-                        }
-                    }
+					}else if (valid.contains("L6")) {
+						valid.remove("L6");
+						if (res > -1) {
+							package.possibleCommands["%structure6"] << rxCom.cap(1);
+						}
+					}else if (valid.contains("L7")) {
+						valid.remove("L7");
+						if (res > -1) {
+							package.possibleCommands["%structure7"] << rxCom.cap(1);
+						}
+					}else if (valid.contains("L8")) {
+						valid.remove("L8");
+						if (res > -1) {
+							package.possibleCommands["%structure8"] << rxCom.cap(1);
+						}
+					}else if (valid.contains("L9")) {
+						valid.remove("L9");
+						if (res > -1) {
+							package.possibleCommands["%structure9"] << rxCom.cap(1);
+						}
+					}
 				}
 				if (valid.contains('V')) { // verbatim command
 					if (res > -1) {
