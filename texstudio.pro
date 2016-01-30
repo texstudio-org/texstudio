@@ -294,8 +294,8 @@ macx {
     # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
     manual.path = Contents/Resources/
-    utilities.path = Contents/Resources/
-    QMAKE_BUNDLE_DATA += utilities
+    utilities.path = Contents/Resources/ 
+    QMAKE_BUNDLE_DATA += utilities manual
     ICON = texstudio.icns
     QMAKE_INFO_PLIST = Info.plist
 }
