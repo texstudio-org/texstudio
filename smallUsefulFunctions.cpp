@@ -1993,7 +1993,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 			}
 			if (line.startsWith("#ifOption:")) {
 				QString condition = line.mid(10);
-				skipSection = !conditions.contains(condition);
+				skipSection = !(conditions.contains(condition) || conditions.contains(condition+"=true"));
 				continue;
 			}
 			if (skipSection) // skip conditional sections (if condition is not met)
@@ -2491,11 +2491,22 @@ QString LatexPackage::keyToPackageName(const QString &key)
 	return name;
 }
 
-QString LatexPackage::keyToOptions(const QString &key)
+QStringList LatexPackage::keyToOptions(const QString &key)
 {
 	int i = key.indexOf('#');
-	if (i < 0) return QString();
-	else return key.left(i);
+	if (i < 0) return QStringList();
+	QString zw=key.left(i);
+    QStringList result=zw.split(',');
+    for(int k=0;k<result.size();k++){
+        QString elem=result.value(k);
+        if(elem.contains('%')){
+           i=elem.indexOf('%');
+           elem=elem.left(i);
+        }
+        elem=elem.simplified();
+        result[k]=elem;
+    }
+    return result;
 }
 
 void LatexPackage::unite(LatexPackage &add, bool forCompletion)
@@ -2693,11 +2704,13 @@ QString getArg(const TokenList &tl, Tokens::TokenType type){
     return QString();
 }
 
-QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type)
+QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type)
 {
 	// argNumber 0 -> first argument
+    QDocument *doc=dlh->document();
+    int lineNr=doc->indexOf(dlh);
+
 	QList<Tokens::TokenType> tkTypes;
-	QString line = dlh->text();
 	if (type == ArgumentList::Mandatory) {
 		tkTypes.append(Tokens::braces);
 		tkTypes.append(Tokens::word);
@@ -2709,33 +2722,43 @@ QString getArg(const TokenList &tl, QDocumentLineHandle *dlh, int argNumber, Arg
 		tkTypes.append(Tokens::squareBracket);
 		tkTypes.append(Tokens::openSquare);
 	}
-	int k = 0;
-	for (int i = 0; i < tl.length(); i++) {
-		Tokens tk = tl.at(i);
 
-		if (tkTypes.contains(tk.type)) {
-			QString result;
-			if (Tokens::tkBraces().contains(tk.type)) {
-				result = line.mid(tk.start + 1, tk.length - 2);
-			}
-			if (Tokens::tkOpen().contains(tk.type)) {
-				result = line.mid(tk.start + 1, tk.length) + findRestArg(dlh, Tokens::opposite(tk.type), 5);
-			}
-			if (Tokens::tkClose().contains(tk.type)) {
-				result = line.mid(tk.start + 1, tk.length);
-			}
-			if (result.isEmpty()) {
-				result = line.mid(tk.start, tk.length);
-			}
-			if (k == argNumber)
-				return result;
-			else
-				k++;
-		} else {
-			if (type == ArgumentList::Optional)
-				return QString(); //optional argument can't follow mandatory one
-		}
-	}
+	int k = 0;
+    while( (lineNr)<doc->lineCount()){
+        QString line = dlh->text();
+        for (int i = 0; i < tl.length(); i++) {
+            Tokens tk = tl.at(i);
+
+            if (tkTypes.contains(tk.type)) {
+                QString result;
+                if (Tokens::tkBraces().contains(tk.type)) {
+                    result = line.mid(tk.start + 1, tk.length - 2);
+                }
+                if (Tokens::tkOpen().contains(tk.type)) {
+                    result = line.mid(tk.start + 1, tk.length) + findRestArg(dlh, Tokens::opposite(tk.type), 5);
+                }
+                if (Tokens::tkClose().contains(tk.type)) {
+                    result = line.mid(tk.start + 1, tk.length);
+                }
+                if (result.isEmpty()) {
+                    result = line.mid(tk.start, tk.length);
+                }
+                if (k == argNumber)
+                    return result;
+                else
+                    k++;
+            } else {
+                if (type == ArgumentList::Optional)
+                    return QString(); //optional argument can't follow mandatory one
+            }
+        }
+        lineNr++;
+        dlh=doc->line(lineNr).handle();
+        if(dlh)
+            tl= dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+    }
+
+
 	return QString();
 }
 
