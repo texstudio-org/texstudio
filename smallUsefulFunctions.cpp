@@ -11,6 +11,7 @@ const QString EscapedChars = "%&_";
 const QString CharacterAlteringChars = "\"'^`";
 
 const int LatexParser::MAX_STRUCTURE_LEVEL = 10;
+const int RUNAWAYLIMIT=10; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the arbument is unclosed
 
 LatexParser *LatexParserInstance = 0;
 
@@ -2690,7 +2691,7 @@ QString getArg(const TokenList &tl, Tokens::TokenType type){
                 result = line.mid(1, line.length() - 2);
             }
             if (Tokens::tkOpen().contains(tk.type)) {
-                result = line.mid( 1) + findRestArg(tk.dlh, Tokens::opposite(tk.type), 5);
+                result = line.mid( 1) + findRestArg(tk.dlh, Tokens::opposite(tk.type), RUNAWAYLIMIT);
             }
             if (Tokens::tkClose().contains(tk.type)) {
                 result = line.left(line.length()-1);
@@ -2722,9 +2723,9 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 		tkTypes.append(Tokens::squareBracket);
 		tkTypes.append(Tokens::openSquare);
 	}
-
+    int cnt=0;
 	int k = 0;
-    while( (lineNr)<doc->lineCount()){
+    while( (lineNr)<doc->lineCount() && cnt<RUNAWAYLIMIT){
         QString line = dlh->text();
         for (int i = 0; i < tl.length(); i++) {
             Tokens tk = tl.at(i);
@@ -2735,7 +2736,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
                     result = line.mid(tk.start + 1, tk.length - 2);
                 }
                 if (Tokens::tkOpen().contains(tk.type)) {
-                    result = line.mid(tk.start + 1, tk.length) + findRestArg(dlh, Tokens::opposite(tk.type), 5);
+                    result = line.mid(tk.start + 1, tk.length) + findRestArg(dlh, Tokens::opposite(tk.type), RUNAWAYLIMIT);
                 }
                 if (Tokens::tkClose().contains(tk.type)) {
                     result = line.mid(tk.start + 1, tk.length);
@@ -2756,6 +2757,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
         dlh=doc->line(lineNr).handle();
         if(dlh)
             tl= dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        cnt++;
     }
 
 
@@ -3632,7 +3634,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 					}
 				}
 				tk.level = level;
-				tk.argLevel = 10; // run-away prevention
+				tk.argLevel = RUNAWAYLIMIT; // run-away prevention
 				stack.push(tk);
 				lexed << tk;
 				level++;
