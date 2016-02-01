@@ -5470,7 +5470,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Format de langage non valide</translation>
     </message>
     <message>
-        <location line="+2666"/>
+        <location line="+2668"/>
         <source>Invalid codec</source>
         <translation>Codec non valide</translation>
     </message>
@@ -5486,7 +5486,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Commentaire magique inconnu</translation>
     </message>
     <message>
-        <location line="-2680"/>
+        <location line="-2682"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHIE</translation>
     </message>
@@ -5494,7 +5494,7 @@ la commande \caption n&apos;est pas valide.</translation>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location line="+1605"/>
+        <location line="+1607"/>
         <source>untitled</source>
         <translation>sans nom</translation>
     </message>
@@ -12881,7 +12881,7 @@ included document in %1</source>
     <message>
         <location line="+33"/>
         <source>Editor Zoom</source>
-        <translation>Zomm de l&apos;éditeur</translation>
+        <translation type="unfinished">Zoom de l&apos;éditeur</translation>
     </message>
     <message>
         <location line="+1"/>
