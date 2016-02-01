@@ -414,6 +414,7 @@ protected slots:
 	void insertUserTag();
 	void editMacros();
 	void macroDialogAccepted();
+	void macroDialogRejected();
 
 	void insertRef(const QString &refCmd);
 	void insertRef();
