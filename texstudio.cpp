@@ -5231,6 +5231,7 @@ void Texstudio::editMacros()
 		}
 		userMacroDialog->init();
 		connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
+		connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
 		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(insertUserTag(QString)));
 	}
 	userMacroDialog->show();
@@ -5247,6 +5248,12 @@ void Texstudio::macroDialogAccepted()
 		configManager.completerConfig->userMacros << documents.documents[i]->localMacros;
 	updateUserMacros();
 	completer->updateAbbreviations();
+	userMacroDialog->deleteLater();
+	userMacroDialog = 0;
+}
+
+void Texstudio::macroDialogRejected()
+{
 	userMacroDialog->deleteLater();
 	userMacroDialog = 0;
 }
