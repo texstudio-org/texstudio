@@ -2228,6 +2228,7 @@ void Texstudio::insertTableTemplate()
 		}
 		QString tableDef = LatexTables::getSimplifiedDef(c);
 		QString tableText = LatexTables::getTableText(c);
+        QString widthDef;
 		//remove table
 		c.removeSelectedText();
 		m_edit->setCursor(c);
@@ -2248,6 +2249,7 @@ void Texstudio::insertTableTemplate()
 				int endExtra = tableText.indexOf("{", startExtra);
 				if (endExtra >= 0 && endExtra > startExtra) {
 					QString textHelper = tableText;
+                    widthDef=textHelper.mid(startExtra, endExtra - startExtra);
 					textHelper.remove(startExtra, endExtra - startExtra); // remove to/spread definition
 					values.clear();
 					starts.clear();
@@ -2280,7 +2282,7 @@ void Texstudio::insertTableTemplate()
 		QList<QStringList> tableContent;
 		foreach (QString line, lines) {
 			//line=line.simplified();
-			if (line.isEmpty() || line == "\n")
+			if (line.simplified().isEmpty())
 				continue;
 			QStringList elems = line.split(QRegExp("&"));
 			if (elems.count() > 0) {
@@ -2303,7 +2305,7 @@ void Texstudio::insertTableTemplate()
 			}
 			tableContent << elems;
 		}
-		LatexTables::generateTableFromTemplate(currentEditorView(), fname, tableDef, tableContent, env);
+		LatexTables::generateTableFromTemplate(currentEditorView(), fname, tableDef, tableContent, env,widthDef);
 	}
 }
 
