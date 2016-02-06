@@ -759,7 +759,7 @@ void LatexTables::executeScript(QString script, LatexEditorView *edView)
 	eng.run();
 }
 
-void LatexTables::generateTableFromTemplate(LatexEditorView *edView, QString templateFileName, QString def, QList<QStringList> table, QString env)
+void LatexTables::generateTableFromTemplate(LatexEditorView *edView, QString templateFileName, QString def, QList<QStringList> table, QString env,QString width)
 {
 	//read in js template which generates the tabular code
 	QFile file(templateFileName);
@@ -772,6 +772,9 @@ void LatexTables::generateTableFromTemplate(LatexEditorView *edView, QString tem
 	QString envDef = "var env=\"" + env + "\"\n";
 	//tabular column definition
 	QString templateDef = "var def=\"" + def + "\"\n";
+    // width def (only tabu at the moment)
+    QString widthDef= "var widthDef=\""+width+ "\"\n";
+    widthDef.replace("\\", "\\\\");
 	//tabular column definition, split
 	QString templateDefSplit = "var defSplit=[";
 	QStringList lst = splitColDef(def);
@@ -797,6 +800,7 @@ void LatexTables::generateTableFromTemplate(LatexEditorView *edView, QString tem
 	tableDef += "]\n";
 	//join js parts
 	templateText.prepend(tableDef);
+    templateText.prepend(widthDef);
 	templateText.prepend(envDef);
 	templateText.prepend(templateDefSplit);
 	templateText.prepend(templateDef);
