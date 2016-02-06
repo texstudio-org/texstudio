@@ -3271,7 +3271,10 @@ int getTokenAtCol(TokenList &tl, int pos, bool first)
  */
 QString getCommandFromToken(Tokens tk)
 {
-	QString cmd;
+    if(!tk.optionalCommandName.isEmpty())
+        return tk.optionalCommandName;
+
+    QString cmd;
 	QDocumentLineHandle *dlh = tk.dlh;
 	if (dlh) {
         TokenList tl;
@@ -3794,6 +3797,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 			if (lastComma < 0) {
 				tk.level = level;
 				tk.type = Tokens::keyVal_key;
+                if(!commandStack.isEmpty()){
+                    CommandDescription &cd = commandStack.top();
+                    tk.optionalCommandName=cd.optionalCommandName;
+                }
 				keyName = line.mid(tk.start, tk.length);
 				lexed << tk;
 				lastComma = lexed.length() - 1;

@@ -53,6 +53,7 @@ public:
 	int start;
 	int length;
 	int level;
+    QString optionalCommandName;
 	QDocumentLineHandle *dlh;
 
 	enum TokenType {none = 0, word, command, braces, bracket,

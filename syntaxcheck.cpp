@@ -828,7 +828,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
         }
 		if (tk.type == Tokens::keyVal_key) {
 			// special treatment for key val checking
-			QString command = getCommandFromToken(tk);
+			QString command = tk.optionalCommandName;
 			QString value = line.mid(tk.start, tk.length);
 
 			// search stored keyvals
