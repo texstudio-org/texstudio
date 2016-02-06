@@ -3271,6 +3271,7 @@ int getTokenAtCol(TokenList &tl, int pos, bool first)
  */
 QString getCommandFromToken(Tokens tk)
 {
+    // don't use outside of main thread as "previous" may be invalid
     if(!tk.optionalCommandName.isEmpty())
         return tk.optionalCommandName;
 
