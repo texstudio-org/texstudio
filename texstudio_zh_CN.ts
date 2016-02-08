@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="zh_CN">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -563,7 +565,7 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="357"/>
@@ -574,12 +576,12 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="368"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="782"/>
@@ -656,12 +658,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="1401"/>
         <source>Parent Command</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1402"/>
         <source>Primary Command</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1760"/>
@@ -735,16 +737,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
 <context>
     <name>CodeSnippet_PlaceHolder</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="90"/>
-        <location filename="additionaltranslations.cpp" line="92"/>
         <source>num</source>
-        <translation>分子</translation>
+        <translation type="obsolete">分子</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="91"/>
-        <location filename="additionaltranslations.cpp" line="93"/>
         <source>den</source>
-        <translation>分母</translation>
+        <translation type="obsolete">分母</translation>
     </message>
 </context>
 <context>
@@ -855,7 +853,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="3097"/>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3107"/>
@@ -886,9 +884,9 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <location filename="configdialog.ui" line="523"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="530"/>
@@ -898,7 +896,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="535"/>
         <source>Release Candidates</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="540"/>
@@ -928,7 +926,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="615"/>
         <source>Update Level:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="495"/>
@@ -943,12 +941,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="475"/>
         <source>Restore Previous Session at Startup</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="482"/>
         <source>Store relative paths</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="501"/>
@@ -1091,7 +1089,7 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1016"/>
@@ -1106,7 +1104,7 @@ Variables are written as: $MYVAR. They are case-sensitive.
     </message>
     <message>
         <location filename="configdialog.ui" line="1049"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1173,7 +1171,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1153"/>
@@ -1260,7 +1258,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1483"/>
         <location filename="configdialog.cpp" line="466"/>
-        <location filename="configmanager.cpp" line="1284"/>
+        <location filename="configmanager.cpp" line="1285"/>
         <source>Editor</source>
         <translation>编辑器</translation>
     </message>
@@ -1376,7 +1374,7 @@ Then you can select a new shortcut by one of the following ways:
         <source>Package csquotes: \enquote{  }</source>
         <translation>csquotes 宏包： \enquote{  }</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="configdialog.ui" line="1692"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>英语引号 (Unicode)： “ ”</translation>
@@ -1594,7 +1592,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2157"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2164"/>
@@ -1630,7 +1628,7 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="configdialog.ui" line="2205"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2209"/>
@@ -1640,12 +1638,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2216"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2223"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2231"/>
@@ -1675,27 +1673,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2267"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2274"/>
         <source>Reference commands in context menu:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2284"/>
         <source>Keep indentation of includes in structure tree</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2291"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2298"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2314"/>
@@ -1765,7 +1763,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2452"/>
         <source>Bi-Di</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2458"/>
@@ -1775,7 +1773,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2465"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2472"/>
@@ -1785,12 +1783,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2479"/>
         <source>depending on character direction</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2486"/>
         <source>depending on text/math mode</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2496"/>
@@ -1810,7 +1808,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2527"/>
         <source>Render Mode:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2535"/>
@@ -1830,12 +1828,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2553"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2556"/>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2563"/>
@@ -1850,7 +1848,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2577"/>
         <source>Use QImage as cache type</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2640"/>
@@ -1860,7 +1858,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2663"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2677"/>
@@ -1875,7 +1873,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2692"/>
         <source>Here you can add another environment for custom highlighting.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2695"/>
@@ -1903,12 +1901,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2793"/>
         <source>Insert Arguments</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2813"/>
         <source>Arguments as Placeholders</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2836"/>
@@ -1923,7 +1921,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2922"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2925"/>
@@ -1938,7 +1936,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2937"/>
         <source>Preferred Commands Set:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2945"/>
@@ -2002,17 +2000,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2861"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2803"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2806"/>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2981"/>
@@ -2023,7 +2021,7 @@ are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3173"/>
@@ -2038,7 +2036,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3183"/>
         <source>Words Between Repetitions:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3193"/>
@@ -2048,22 +2046,22 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3203"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3213"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3223"/>
         <source>Long Range Repetitions:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3233"/>
         <source>Min Length of Words with Long Repetition:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3243"/>
@@ -2083,7 +2081,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3260"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3287"/>
@@ -2123,7 +2121,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3352"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3359"/>
@@ -2141,7 +2139,7 @@ them here.</source>
         <location filename="configdialog.ui" line="3410"/>
         <location filename="configdialog.ui" line="3420"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3430"/>
@@ -2166,7 +2164,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3477"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3547"/>
@@ -2393,12 +2391,12 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4125"/>
         <source>Load Strategy:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4020"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4030"/>
@@ -2408,12 +2406,12 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4035"/>
         <source>Direct</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4040"/>
         <source>Hybrid</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3964"/>
@@ -2423,17 +2421,17 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="2989"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3057"/>
         <source>Spell Check</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3167"/>
         <source>Internal Grammar Check</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3812"/>
@@ -2445,40 +2443,40 @@ them here.</source>
         <location filename="configdialog.ui" line="4048"/>
         <location filename="configdialog.ui" line="4135"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4141"/>
         <source>Render Backend:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4161"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4204"/>
         <source>Select how txs checks in saved files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4208"/>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4213"/>
         <source>Check-in after File/Save only</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4218"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4226"/>
@@ -2488,12 +2486,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4233"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4236"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4245"/>
@@ -2792,7 +2790,7 @@ options again to only view the most common settings.</source>
 若只需查看常用设置，可再次禁用高级选项。</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1285"/>
+        <location filename="configmanager.cpp" line="1286"/>
         <source>Basic Key Mapping</source>
         <translation>基本键映射</translation>
     </message>
@@ -2976,469 +2974,511 @@ options again to only view the most common settings.</source>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="45"/>
+        <source>Boxes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="46"/>
+        <source>mbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="47"/>
+        <source>makebox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="48"/>
+        <source>fbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="49"/>
+        <source>framebox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="50"/>
+        <source>newsavebox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="51"/>
+        <source>sbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="52"/>
+        <source>savebox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="53"/>
+        <source>usebox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="54"/>
+        <source>raisebox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="55"/>
+        <source>parbox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="56"/>
+        <source>\begin{minipage}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="57"/>
+        <source>rule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="58"/>
         <source>Font St&amp;yles</source>
         <translation>字体格式(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="46"/>
+        <location filename="additionaltranslations.cpp" line="59"/>
         <source>Emphasis - \emph</source>
         <translation>重点 - \emph</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="47"/>
+        <location filename="additionaltranslations.cpp" line="60"/>
         <source>Italics - \textit</source>
         <translation>斜体 - \textit</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="48"/>
+        <location filename="additionaltranslations.cpp" line="61"/>
         <source>Slanted - \textsl</source>
         <translation>倾斜字体 - \textsl</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="49"/>
+        <location filename="additionaltranslations.cpp" line="62"/>
         <source>Boldface - \textbf</source>
         <translation>粗体 - \textbf</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="50"/>
+        <location filename="additionaltranslations.cpp" line="63"/>
         <source>Typewriter - \texttt</source>
         <translation>打字机字体 - \texttt</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="51"/>
+        <location filename="additionaltranslations.cpp" line="64"/>
         <source>Small Caps - \textsc</source>
         <translation>小型大写 - \textsc</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="52"/>
+        <location filename="additionaltranslations.cpp" line="65"/>
         <source>Sans Serif - \textsf</source>
         <translation>无衬线 - \textsf</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="53"/>
+        <location filename="additionaltranslations.cpp" line="66"/>
         <source>Underline - \underline</source>
         <translation>下划线 - \underline</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="54"/>
+        <location filename="additionaltranslations.cpp" line="67"/>
         <source>Font Sizes</source>
         <translation>字体大小</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="55"/>
+        <location filename="additionaltranslations.cpp" line="68"/>
         <source>tiny</source>
         <translation>极小</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="56"/>
+        <location filename="additionaltranslations.cpp" line="69"/>
         <source>scriptsize</source>
         <translation>脚本大小</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="57"/>
+        <location filename="additionaltranslations.cpp" line="70"/>
         <source>footnotesize</source>
         <translation>脚注大小</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="58"/>
+        <location filename="additionaltranslations.cpp" line="71"/>
         <source>small</source>
         <translation>小</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="59"/>
+        <location filename="additionaltranslations.cpp" line="72"/>
         <source>normalsize</source>
         <translation>正常大小</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="60"/>
+        <location filename="additionaltranslations.cpp" line="73"/>
         <source>large</source>
         <translation>较大</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="61"/>
+        <location filename="additionaltranslations.cpp" line="74"/>
         <source>Large</source>
         <translation>大</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="62"/>
+        <location filename="additionaltranslations.cpp" line="75"/>
         <source>LARGE</source>
         <translation>更大</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="63"/>
+        <location filename="additionaltranslations.cpp" line="76"/>
         <source>huge</source>
         <translation>巨大</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="64"/>
+        <location filename="additionaltranslations.cpp" line="77"/>
         <source>Huge</source>
         <translation>最大</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="65"/>
+        <location filename="additionaltranslations.cpp" line="78"/>
         <source>&amp;Tabular Environment</source>
         <translation>表格环境(&amp;T)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="66"/>
+        <location filename="additionaltranslations.cpp" line="79"/>
         <source>\begin{tabbing}</source>
         <translation>\begin{tabbing}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="67"/>
+        <location filename="additionaltranslations.cpp" line="80"/>
         <source>\begin{tabular}</source>
         <translation>\begin{tabular}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="68"/>
+        <location filename="additionaltranslations.cpp" line="81"/>
         <source>&amp;Vertical Spacing</source>
         <translation>垂直间距(&amp;V)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="69"/>
+        <location filename="additionaltranslations.cpp" line="82"/>
         <source>New line - \\</source>
         <translation>换行符 - \\</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="70"/>
+        <location filename="additionaltranslations.cpp" line="83"/>
         <source>International &amp;Accents</source>
         <translation>国际音标(&amp;A)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="71"/>
+        <location filename="additionaltranslations.cpp" line="84"/>
         <source>\includegraphics{file}</source>
         <translation>插入图片</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="72"/>
+        <location filename="additionaltranslations.cpp" line="85"/>
         <source>\include{file}</source>
         <translation>包含文件</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="73"/>
+        <location filename="additionaltranslations.cpp" line="86"/>
         <source>\input{file}</source>
         <translation>插入文件</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="74"/>
+        <location filename="additionaltranslations.cpp" line="87"/>
         <source>Cross References</source>
         <translation>交叉引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="75"/>
+        <location filename="additionaltranslations.cpp" line="88"/>
         <source>label</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="76"/>
+        <location filename="additionaltranslations.cpp" line="89"/>
         <source>ref</source>
         <translation>一般引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="77"/>
+        <location filename="additionaltranslations.cpp" line="90"/>
         <source>eqref</source>
         <translation>方程引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="78"/>
+        <location filename="additionaltranslations.cpp" line="91"/>
         <source>pageref</source>
         <translation>页面引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="79"/>
+        <location filename="additionaltranslations.cpp" line="92"/>
         <source>index</source>
         <translation>索引</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="80"/>
+        <location filename="additionaltranslations.cpp" line="93"/>
         <source>cite</source>
         <translation>文献引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="81"/>
+        <location filename="additionaltranslations.cpp" line="94"/>
         <source>footnote</source>
         <translation>脚注</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="82"/>
-        <source>&amp;Math</source>
-        <translation>数学(&amp;M)</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="83"/>
-        <source>Inline math mode $...$</source>
-        <translation>行内数学模式 $...$</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="84"/>
-        <source>Display math mode \[...\]</source>
-        <translation>显示数学模式 \[...\]</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="85"/>
-        <source>Numbered equation \begin{equation}</source>
-        <translation>编号方程 \begin{equation}</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="86"/>
-        <source>\begin{align}</source>
-        <translation>\begin{align}</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="87"/>
-        <source>\begin{eqnarray}</source>
-        <translation>\begin{eqnarray}</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="88"/>
-        <source>Subscript - _{}</source>
-        <translation>下标 - _{}</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="89"/>
-        <source>Superscript - ^{}</source>
-        <translation>上标 - ^{}</translation>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="94"/>
-        <source>\begin{array}</source>
-        <translation>\begin{array}</translation>
-    </message>
-    <message>
         <location filename="additionaltranslations.cpp" line="95"/>
+        <source>Bibliography</source>
+        <translation type="unfinished">文献</translation>
+    </message>
+    <message>
+        <source>&amp;Math</source>
+        <translation type="obsolete">数学(&amp;M)</translation>
+    </message>
+    <message>
+        <source>Inline math mode $...$</source>
+        <translation type="obsolete">行内数学模式 $...$</translation>
+    </message>
+    <message>
+        <source>Display math mode \[...\]</source>
+        <translation type="obsolete">显示数学模式 \[...\]</translation>
+    </message>
+    <message>
+        <source>Numbered equation \begin{equation}</source>
+        <translation type="obsolete">编号方程 \begin{equation}</translation>
+    </message>
+    <message>
+        <source>\begin{align}</source>
+        <translation type="obsolete">\begin{align}</translation>
+    </message>
+    <message>
+        <source>\begin{eqnarray}</source>
+        <translation type="obsolete">\begin{eqnarray}</translation>
+    </message>
+    <message>
+        <source>Subscript - _{}</source>
+        <translation type="obsolete">下标 - _{}</translation>
+    </message>
+    <message>
+        <source>Superscript - ^{}</source>
+        <translation type="obsolete">上标 - ^{}</translation>
+    </message>
+    <message>
+        <source>\begin{array}</source>
+        <translation type="obsolete">\begin{array}</translation>
+    </message>
+    <message>
         <source>Math &amp;Functions</source>
-        <translation>数学功能(&amp;F)</translation>
+        <translation type="obsolete">数学功能(&amp;F)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="96"/>
         <source>Math Font St&amp;yles</source>
-        <translation>数学字体格式(&amp;Y)</translation>
+        <translation type="obsolete">数学字体格式(&amp;Y)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="97"/>
         <source>Roman - \mathrm{}</source>
-        <translation>罗马字体 - \mathrm{}</translation>
+        <translation type="obsolete">罗马字体 - \mathrm{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="98"/>
         <source>Italic - \mathit{}</source>
-        <translation>斜体 - \mathit{}</translation>
+        <translation type="obsolete">斜体 - \mathit{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="99"/>
         <source>Bold - \mathbf{}</source>
-        <translation>粗体 - \mathbf{}</translation>
+        <translation type="obsolete">粗体 - \mathbf{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="100"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation>无衬线f - \mathsf{}</translation>
+        <translation type="obsolete">无衬线f - \mathsf{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="101"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation>打字机字体 - \mathtt{}</translation>
+        <translation type="obsolete">打字机字体 - \mathtt{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="102"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation>书法字体 - \mathcal{}</translation>
+        <translation type="obsolete">书法字体 - \mathcal{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="103"/>
         <source>Blackboard Bold - \mathbb{}</source>
-        <translation>黑板粗体 - \mathbb{}</translation>
+        <translation type="obsolete">黑板粗体 - \mathbb{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="104"/>
         <source>Fraktur - \mathfrak{}</source>
-        <translation>Fraktur 字体 - \mathfrak{}</translation>
+        <translation type="obsolete">Fraktur 字体 - \mathfrak{}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="105"/>
         <source>Math &amp;Accents</source>
-        <translation>数学重音(&amp;A)</translation>
+        <translation type="obsolete">数学重音(&amp;A)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="106"/>
         <source>Math S&amp;paces</source>
-        <translation>数学空格(&amp;P)</translation>
+        <translation type="obsolete">数学空格(&amp;P)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="107"/>
         <source>Negative - \!</source>
-        <translation>负空格 - \!</translation>
+        <translation type="obsolete">负空格 - \!</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="108"/>
         <source>Thin - \,</source>
-        <translation>窄空格 - \,</translation>
+        <translation type="obsolete">窄空格 - \,</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="109"/>
         <source>Medium - \:</source>
-        <translation>中等空格 - \:</translation>
+        <translation type="obsolete">中等空格 - \:</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="110"/>
         <source>Thick - \;</source>
-        <translation>宽空格 - \;</translation>
+        <translation type="obsolete">宽空格 - \;</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="111"/>
         <source>Interword - \ </source>
-        <translation>词间空格 - \ </translation>
+        <translation type="obsolete">词间空格 - \ </translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="112"/>
         <source>One quad - \quad</source>
-        <translation>四倍空格 - \quad</translation>
+        <translation type="obsolete">四倍空格 - \quad</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="113"/>
         <source>Two quads - \qquad</source>
-        <translation>八倍空格 - \qquad</translation>
+        <translation type="obsolete">八倍空格 - \qquad</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="938"/>
-        <location filename="configmanager.cpp" line="944"/>
-        <location filename="configmanager.cpp" line="960"/>
-        <location filename="configmanager.cpp" line="965"/>
+        <location filename="configmanager.cpp" line="939"/>
+        <location filename="configmanager.cpp" line="945"/>
+        <location filename="configmanager.cpp" line="961"/>
+        <location filename="configmanager.cpp" line="966"/>
         <source>Key replacement: %1 %2</source>
         <translation>关键词替换 : %1 %2</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="938"/>
-        <location filename="configmanager.cpp" line="960"/>
+        <location filename="configmanager.cpp" line="939"/>
+        <location filename="configmanager.cpp" line="961"/>
         <source>before word</source>
         <translation>单词之前</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="944"/>
-        <location filename="configmanager.cpp" line="965"/>
+        <location filename="configmanager.cpp" line="945"/>
+        <location filename="configmanager.cpp" line="966"/>
         <source>after word</source>
         <translation>单词之后</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1227"/>
         <location filename="configmanager.cpp" line="1228"/>
-        <location filename="configmanager.cpp" line="1380"/>
-        <location filename="configmanager.cpp" line="1382"/>
-        <location filename="configmanager.cpp" line="1666"/>
-        <location filename="configmanager.cpp" line="1675"/>
+        <location filename="configmanager.cpp" line="1229"/>
+        <location filename="configmanager.cpp" line="1381"/>
+        <location filename="configmanager.cpp" line="1383"/>
+        <location filename="configmanager.cpp" line="1667"/>
+        <location filename="configmanager.cpp" line="1676"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1278"/>
+        <location filename="configmanager.cpp" line="1279"/>
         <source>Menus</source>
         <translation>菜单</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1306"/>
-        <location filename="configmanager.cpp" line="2296"/>
+        <location filename="configmanager.cpp" line="1307"/>
+        <location filename="configmanager.cpp" line="2297"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;无&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1352"/>
+        <location filename="configmanager.cpp" line="1353"/>
         <source>Insert New Menu Item (before)</source>
         <translation>插入新菜单项 ( 之前 )</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1355"/>
+        <location filename="configmanager.cpp" line="1356"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>插入新子菜单 ( 之前 )</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1373"/>
+        <location filename="configmanager.cpp" line="1374"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/数学菜单</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1374"/>
+        <location filename="configmanager.cpp" line="1375"/>
         <source>All menus</source>
         <translation>所有菜单</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1375"/>
+        <location filename="configmanager.cpp" line="1376"/>
         <source>Special Tags</source>
         <translation>特殊标签</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1483"/>
+        <location filename="configmanager.cpp" line="1484"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>自动替换引号已启用，但是存在以 (?language:latex)(?&lt;=\s|^) 或是 (?language:latex)(?&lt;=\S) 触发的宏，这会覆盖替换引号的设置。
 是否删除这些宏？</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1729"/>
+        <location filename="configmanager.cpp" line="1730"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>为了充分利用内置 PDF 浏览器, synctex 将被激活. 现在就激活 ?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1744"/>
+        <location filename="configmanager.cpp" line="1745"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>最近的主文档 %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1747"/>
+        <location filename="configmanager.cpp" line="1748"/>
         <source>Recent File %1</source>
         <translation>最近的文件 %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1748"/>
+        <location filename="configmanager.cpp" line="1749"/>
         <source>File list</source>
         <translation>文件列表</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1749"/>
+        <location filename="configmanager.cpp" line="1750"/>
         <source>Open first non-open file</source>
         <translation>打开第一个</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1750"/>
+        <location filename="configmanager.cpp" line="1751"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* 打开所有文档</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1760"/>
+        <location filename="configmanager.cpp" line="1761"/>
         <source>Master Document: </source>
         <translation>主文档 :</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2297"/>
+        <location filename="configmanager.cpp" line="2298"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;默认&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2462"/>
+        <location filename="configmanager.cpp" line="2463"/>
         <source>Configure</source>
         <translation>配置</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2469"/>
+        <location filename="configmanager.cpp" line="2470"/>
         <source>Select Program</source>
         <translation>选择程序</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2476"/>
+        <location filename="configmanager.cpp" line="2477"/>
         <source>Restore Default</source>
         <translation>恢复默认</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2523"/>
+        <location filename="configmanager.cpp" line="2524"/>
         <source>Repeat contained compilation commands</source>
         <translation>重复包含的编译命令</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2569"/>
+        <location filename="configmanager.cpp" line="2570"/>
         <source>Add</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2632"/>
+        <location filename="configmanager.cpp" line="2633"/>
         <source>Browse program</source>
         <translation>选中程序</translation>
     </message>
@@ -3453,7 +3493,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="79"/>
         <source>text which &lt;i&gt;should&lt;/i&gt; be a &lt;b&gt;fair&lt;/b&gt; test of the font</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="114"/>
@@ -3577,7 +3617,7 @@ Do you want to remove them?</source>
         <location filename="encodingdialog.ui" line="98"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="32"/>
@@ -3685,7 +3725,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="grammarcheck.cpp" line="365"/>
         <source>Long range word repetition. Distance %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="grammarcheck.cpp" line="374"/>
@@ -3886,7 +3926,7 @@ Are you sure you want to undo all changes?</source>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>图片的位置属性：
@@ -3951,7 +3991,7 @@ The wizard does not support command </source>
     <message>
         <location filename="searchquery.cpp" line="161"/>
         <source>Label Search</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3997,7 +4037,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1575"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;文件名：%1&lt;/b&gt;
 </translation>
@@ -4036,17 +4076,17 @@ The wizard does not support command </source>
         <translation>块</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="2695"/>
+        <location filename="latexdocument.cpp" line="2697"/>
         <source>Invalid codec</source>
         <translation>无效编码</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="2709"/>
+        <location filename="latexdocument.cpp" line="2711"/>
         <source>Missing value for -job-name</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="2712"/>
+        <location filename="latexdocument.cpp" line="2714"/>
         <source>Unknown magic comment</source>
         <translation>未知魔术注释</translation>
     </message>
@@ -4054,23 +4094,23 @@ The wizard does not support command </source>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location filename="latexdocument.cpp" line="1637"/>
+        <location filename="latexdocument.cpp" line="1639"/>
         <source>untitled</source>
         <translation>未命名</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="1642"/>
-        <location filename="latexdocument.cpp" line="1665"/>
+        <location filename="latexdocument.cpp" line="1644"/>
+        <location filename="latexdocument.cpp" line="1667"/>
         <source> (Line %1)</source>
         <translation> (行 %1)</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="1658"/>
+        <location filename="latexdocument.cpp" line="1660"/>
         <source>Line</source>
         <translation>行</translation>
     </message>
     <message>
-        <location filename="latexdocument.cpp" line="1661"/>
+        <location filename="latexdocument.cpp" line="1663"/>
         <source>Label</source>
         <translation>标签</translation>
     </message>
@@ -4110,15 +4150,15 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="487"/>
-        <location filename="texstudio.cpp" line="7509"/>
-        <location filename="texstudio.cpp" line="7516"/>
+        <location filename="texstudio.cpp" line="7578"/>
+        <location filename="texstudio.cpp" line="7585"/>
         <source>Go to Definition</source>
         <translation>跳转到定义</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="493"/>
         <source>Find Usages</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="500"/>
@@ -4169,7 +4209,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2147"/>
         <location filename="latexeditorview.cpp" line="2219"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;文件：%1&lt;/b&gt;
 </translation>
@@ -4177,7 +4217,9 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2160"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>为 %n 添加标签 </numerusform></translation>
+        <translation>
+            <numerusform>为 %n 添加标签 </numerusform>
+        </translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2165"/>
@@ -4265,7 +4307,7 @@ The wizard does not support command </source>
         <translation>展开第 %1 层</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7515"/>
+        <location filename="texstudio.cpp" line="7584"/>
         <source>Open Document</source>
         <translation>打开文档</translation>
     </message>
@@ -4544,7 +4586,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="39"/>
         <source>Geometric</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="41"/>
@@ -4554,7 +4596,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="43"/>
         <source>Stamp</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="45"/>
@@ -4569,7 +4611,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="49"/>
         <source>Caret</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="51"/>
@@ -5374,7 +5416,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2923"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2926"/>
@@ -5620,7 +5662,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.ui" line="47"/>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="87"/>
@@ -5721,7 +5763,7 @@ You can now enter the password:</source>
     <message>
         <location filename="toolwidgets.cpp" line="127"/>
         <source>Fit</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="131"/>
@@ -5734,12 +5776,12 @@ You can now enter the password:</source>
     <message>
         <location filename="buildmanager.cpp" line="2088"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2097"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2266"/>
@@ -5820,13 +5862,13 @@ You can now enter the password:</source>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="659"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="664"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="671"/>
@@ -6053,7 +6095,7 @@ result in data loss.
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1005"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1017"/>
@@ -6061,21 +6103,21 @@ result in data loss.
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1030"/>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1035"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1161"/>
@@ -6156,289 +6198,289 @@ Do you wish to keep up to date by reloading the file?
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4415"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4417"/>
         <source>None</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4416"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4418"/>
         <source>Invalid</source>
         <translation>无效</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4418"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4434"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4450"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4420"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4436"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4452"/>
         <source>Internal</source>
         <translation>内部</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4420"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4422"/>
         <source>Move cursor up</source>
         <translation>向上移动光标</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4421"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4423"/>
         <source>Move cursor down</source>
         <translation>向下移动光标</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4422"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4424"/>
         <source>Move cursor left (1 character)</source>
         <translation>向左移动光标 (1 个字符)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4423"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4425"/>
         <source>Move cursor right (1 character)</source>
         <translation>向右移动光标 (1 个字符)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4424"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4426"/>
         <source>Move cursor left (1 word)</source>
         <translation>向左移动光标 (1 个单词)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4425"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4427"/>
         <source>Move cursor right (1 word)</source>
         <translation>向右移动光标 (1 个单词)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4426"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4428"/>
         <source>Move cursor to line start</source>
         <translation>光标移动到行首</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4427"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4429"/>
         <source>Move cursor to line end</source>
         <translation>光标移动到行尾</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4428"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4430"/>
         <source>Move cursor to document start</source>
         <translation>光标移动到文档开始</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4429"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4431"/>
         <source>Move cursor to document end</source>
         <translation>光标移动到文档结尾</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4431"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4433"/>
         <source>Move cursor one page up</source>
         <translation>光标向上移动一页</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4432"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4434"/>
         <source>Move cursor one page down</source>
         <translation>光标向下移动一页</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4436"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4438"/>
         <source>Select up</source>
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4437"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4439"/>
         <source>Select down</source>
         <translation>向下选择</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4438"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4440"/>
         <source>Select left (1 character)</source>
         <translation>选择左侧 (1个字符)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4439"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4441"/>
         <source>Select right (1 character)</source>
         <translation>选择右侧 (1个字符)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4440"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4442"/>
         <source>Select left (1 word)</source>
         <translation>选择左侧 (1个单词)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4441"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4443"/>
         <source>Select right (1 word)</source>
         <translation>选择右侧 (1个单词)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4442"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4444"/>
         <source>Select to line start</source>
         <translation>选择以开始行</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4443"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4445"/>
         <source>Select to line end</source>
         <translation>选择以结束行</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4444"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4446"/>
         <source>Select to document start</source>
         <translation>选择以开始文档</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4445"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4447"/>
         <source>Select to document end</source>
         <translation>选择以结束文档</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4447"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4449"/>
         <source>Select page up</source>
         <translation>选择向上翻页</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4448"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4450"/>
         <source>Select page down</source>
         <translation>选择向下翻页</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4452"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4454"/>
         <source>Delete left character</source>
         <translation>删除左侧字符</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4453"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4455"/>
         <source>Delete right character</source>
         <translation>删除右侧字符</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4454"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4456"/>
         <source>Delete left word</source>
         <translation>删除左侧单词</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4455"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4457"/>
         <source>Delete right word</source>
         <translation>删除右侧的单词</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4456"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4458"/>
         <source>New line</source>
         <translation>新行</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4458"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4460"/>
         <source>Change overwrite mode</source>
         <translation>修改覆写模式</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4459"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4461"/>
         <source>Undo</source>
         <translation>撤销</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4460"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4462"/>
         <source>Redo</source>
         <translation>重做</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4461"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4463"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4462"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4464"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4463"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4465"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4464"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4466"/>
         <source>Print</source>
         <translation>打印</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4465"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4467"/>
         <source>Select all</source>
         <translation>选择所有</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4466"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4468"/>
         <source>Find</source>
         <translation>查找</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4467"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4469"/>
         <source>Find next</source>
         <translation>查找下一个</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4468"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4470"/>
         <source>Find previous</source>
         <translation>查找上一个</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4469"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4471"/>
         <source>Replace</source>
         <translation>替换</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4471"/>
-        <source>Create cursor mirror up</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4472"/>
-        <source>Create cursor mirror down</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4473"/>
+        <source>Create cursor mirror up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4474"/>
+        <source>Create cursor mirror down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4475"/>
         <source>Next placeholder</source>
         <translation>后一个占位符</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4474"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4476"/>
         <source>Previous placeholder</source>
         <translation>前一个占位符</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4475"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4477"/>
         <source>Next placeholder or one word right</source>
         <translation>下一个占位符或单词</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4476"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4478"/>
         <source>Previous placeholder or one word left</source>
         <translation>前一个占位符或单词</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4477"/>
-        <source>Next placeholder or character</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4478"/>
-        <source>Previous placeholder or character</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4479"/>
-        <source>Tab or Indent selection</source>
-        <translation type="unfinished"/>
+        <source>Next placeholder or character</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4480"/>
+        <source>Previous placeholder or character</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4481"/>
+        <source>Tab or Indent selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4482"/>
         <source>Insert tab</source>
         <translation>插入tab</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4481"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4483"/>
         <source>Indent selection</source>
         <translation>缩进</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4482"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4484"/>
         <source>Unindent selection</source>
         <translation>取消缩进</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4485"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4487"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -6455,402 +6497,452 @@ Do you wish to keep up to date by reloading the file?
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="114"/>
+        <location filename="additionaltranslations.cpp" line="96"/>
         <source>background</source>
         <translation>背景</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="115"/>
+        <location filename="additionaltranslations.cpp" line="97"/>
         <source>line:error</source>
         <translation>行:错误</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="116"/>
+        <location filename="additionaltranslations.cpp" line="98"/>
         <source>line:warning</source>
         <translation>行:警告</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="117"/>
+        <location filename="additionaltranslations.cpp" line="99"/>
         <source>line:badbox</source>
         <translation>行 : badbox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="118"/>
+        <location filename="additionaltranslations.cpp" line="100"/>
         <source>line:bookmark</source>
         <translation>行:书签</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="119"/>
+        <location filename="additionaltranslations.cpp" line="101"/>
         <source>line:bookmark0</source>
         <translation>行:书签0</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="120"/>
+        <location filename="additionaltranslations.cpp" line="102"/>
         <source>line:bookmark1</source>
         <translation>行:书签1</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="121"/>
+        <location filename="additionaltranslations.cpp" line="103"/>
         <source>line:bookmark2</source>
         <translation>行:书签2</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="122"/>
+        <location filename="additionaltranslations.cpp" line="104"/>
         <source>line:bookmark3</source>
         <translation>行:书签3</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="123"/>
+        <location filename="additionaltranslations.cpp" line="105"/>
         <source>line:bookmark4</source>
         <translation>行:书签 4</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="124"/>
+        <location filename="additionaltranslations.cpp" line="106"/>
         <source>line:bookmark5</source>
         <translation>行:书签5</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="125"/>
+        <location filename="additionaltranslations.cpp" line="107"/>
         <source>line:bookmark6</source>
         <translation>行:书签6</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="126"/>
+        <location filename="additionaltranslations.cpp" line="108"/>
         <source>line:bookmark7</source>
         <translation>行:书签7</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="127"/>
+        <location filename="additionaltranslations.cpp" line="109"/>
         <source>line:bookmark8</source>
         <translation>行:书签8</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="128"/>
+        <location filename="additionaltranslations.cpp" line="110"/>
         <source>line:bookmark9</source>
         <translation>行:书签9</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="129"/>
+        <location filename="additionaltranslations.cpp" line="111"/>
         <source>magicComment</source>
         <translation>魔术注释</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="130"/>
+        <location filename="additionaltranslations.cpp" line="112"/>
         <source>commentTodo</source>
         <translation>注释 Todo</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="131"/>
+        <location filename="additionaltranslations.cpp" line="113"/>
         <source>comment</source>
         <translation>注释</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="132"/>
+        <location filename="additionaltranslations.cpp" line="114"/>
         <source>keyword</source>
         <translation>关键词</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="133"/>
+        <location filename="additionaltranslations.cpp" line="115"/>
         <source>extra-keyword</source>
         <translation>额外关键词</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="134"/>
+        <location filename="additionaltranslations.cpp" line="116"/>
         <source>math-keyword</source>
         <translation>数学关键词</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="135"/>
+        <location filename="additionaltranslations.cpp" line="117"/>
         <source>link</source>
         <translation>链接</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="136"/>
+        <location filename="additionaltranslations.cpp" line="118"/>
         <source>align-ampersand</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="137"/>
+        <location filename="additionaltranslations.cpp" line="119"/>
         <source>verbatim</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="138"/>
+        <location filename="additionaltranslations.cpp" line="120"/>
         <source>sweave-block</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="139"/>
+        <location filename="additionaltranslations.cpp" line="121"/>
         <source>sweave-delimiter</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="140"/>
+        <location filename="additionaltranslations.cpp" line="122"/>
         <source>pweave-block</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="141"/>
+        <location filename="additionaltranslations.cpp" line="123"/>
         <source>pweave-delimiter</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="142"/>
+        <location filename="additionaltranslations.cpp" line="124"/>
         <source>picture</source>
         <translation>图片</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="143"/>
+        <location filename="additionaltranslations.cpp" line="125"/>
         <source>braceMatch</source>
         <translation>括号匹配</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="144"/>
+        <location filename="additionaltranslations.cpp" line="126"/>
         <source>braceMismatch</source>
         <translation>括号不匹配</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="145"/>
+        <location filename="additionaltranslations.cpp" line="127"/>
         <source>search</source>
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="146"/>
+        <location filename="additionaltranslations.cpp" line="128"/>
         <source>numbers</source>
         <translation>编号</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="147"/>
+        <location filename="additionaltranslations.cpp" line="129"/>
         <source>math-delimiter</source>
         <translation>数学分隔符</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="148"/>
+        <location filename="additionaltranslations.cpp" line="130"/>
         <source>text</source>
         <translation>文本</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="149"/>
+        <location filename="additionaltranslations.cpp" line="131"/>
         <source>escapeseq</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="150"/>
+        <location filename="additionaltranslations.cpp" line="132"/>
         <source>spellingMistake</source>
         <translation>拼写错误</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="151"/>
+        <location filename="additionaltranslations.cpp" line="133"/>
         <source>wordRepetition</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="152"/>
+        <location filename="additionaltranslations.cpp" line="134"/>
         <source>wordRepetitionLongRange</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="153"/>
+        <location filename="additionaltranslations.cpp" line="135"/>
         <source>badWord</source>
         <translation>不妥用词</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="154"/>
+        <location filename="additionaltranslations.cpp" line="136"/>
         <source>grammarMistake</source>
         <translation>语法错误</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="155"/>
+        <location filename="additionaltranslations.cpp" line="137"/>
         <source>grammarMistakeSpecial1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="156"/>
+        <location filename="additionaltranslations.cpp" line="138"/>
         <source>grammarMistakeSpecial2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="157"/>
+        <location filename="additionaltranslations.cpp" line="139"/>
         <source>grammarMistakeSpecial3</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="158"/>
+        <location filename="additionaltranslations.cpp" line="140"/>
         <source>grammarMistakeSpecial4</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="159"/>
+        <location filename="additionaltranslations.cpp" line="141"/>
         <source>latexSyntaxMistake</source>
         <translation>LaTeX Syntax 错误</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="160"/>
+        <location filename="additionaltranslations.cpp" line="142"/>
         <source>temporaryCodeCompletion</source>
         <translation>临时代码补全</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="161"/>
+        <location filename="additionaltranslations.cpp" line="143"/>
         <source>environment</source>
         <translation>环境</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="162"/>
+        <location filename="additionaltranslations.cpp" line="144"/>
         <source>referencePresent</source>
         <translation>引用此处</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="163"/>
+        <location filename="additionaltranslations.cpp" line="145"/>
         <source>referenceMissing</source>
         <translation>缺少引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="164"/>
+        <location filename="additionaltranslations.cpp" line="146"/>
         <source>referenceMultiple</source>
         <translation>多次引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="165"/>
+        <location filename="additionaltranslations.cpp" line="147"/>
         <source>citationPresent</source>
         <translation>引述此处</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="166"/>
+        <location filename="additionaltranslations.cpp" line="148"/>
         <source>citationMissing</source>
         <translation>缺少引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="167"/>
+        <location filename="additionaltranslations.cpp" line="149"/>
         <source>packagePresent</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="168"/>
+        <location filename="additionaltranslations.cpp" line="150"/>
         <source>packageMissing</source>
         <translation>缺少宏包</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="169"/>
+        <location filename="additionaltranslations.cpp" line="151"/>
         <source>structure</source>
         <translation>结构</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="170"/>
+        <location filename="additionaltranslations.cpp" line="152"/>
         <source>current</source>
         <translation>当前</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="171"/>
+        <location filename="additionaltranslations.cpp" line="153"/>
         <source>selection</source>
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="172"/>
+        <location filename="additionaltranslations.cpp" line="154"/>
         <source>replacement</source>
         <translation>替换</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="173"/>
+        <location filename="additionaltranslations.cpp" line="155"/>
         <source>diffDelete</source>
         <translation>删除不同</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="174"/>
+        <location filename="additionaltranslations.cpp" line="156"/>
         <source>diffAdd</source>
         <translation>添加不同</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="175"/>
+        <location filename="additionaltranslations.cpp" line="157"/>
         <source>diffReplace</source>
         <translation>替换不同处</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="176"/>
+        <location filename="additionaltranslations.cpp" line="158"/>
+        <source>previewSelection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="159"/>
         <source>txs-test</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="160"/>
+        <source>txs-test-summary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="161"/>
+        <source>txs-test-pass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="162"/>
+        <source>txs-test-fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="163"/>
+        <source>txs-test-warn</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="164"/>
+        <source>txs-test-qdebug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="165"/>
+        <source>dtx:guard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="166"/>
+        <source>dtx:macro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="167"/>
+        <source>dtx:verbatim</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="168"/>
+        <source>dtx:specialchar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="169"/>
+        <source>dtx:commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="170"/>
+        <source>lua:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="171"/>
+        <source>lua:comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="172"/>
+        <source>asymptote:block</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="174"/>
+        <source>asymptote:type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="175"/>
+        <source>asymptote:numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="173"/>
+        <source>asymptote:keyword</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="176"/>
+        <source>asymptote:string</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="177"/>
-        <source>txs-test-pass</source>
-        <translation type="unfinished"/>
+        <source>asymptote:comment</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="178"/>
-        <source>txs-test-fail</source>
-        <translation type="unfinished"/>
+        <source>qtscript:comment</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="179"/>
-        <source>txs-test-warn</source>
-        <translation type="unfinished"/>
+        <source>qtscript:string</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="180"/>
-        <source>txs-test-qdebug</source>
-        <translation type="unfinished"/>
+        <source>qtscript:number</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="181"/>
-        <source>dtx:guard</source>
-        <translation type="unfinished"/>
+        <source>qtscript:keyword</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="182"/>
-        <source>dtx:macro</source>
-        <translation type="unfinished"/>
+        <source>qtscript:txs-variable</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="183"/>
-        <source>dtx:verbatim</source>
-        <translation type="unfinished"/>
+        <source>qtscript:txs-function</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="184"/>
-        <source>dtx:specialchar</source>
-        <translation type="unfinished"/>
+        <source>preedit</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="185"/>
-        <source>dtx:commands</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="186"/>
-        <source>lua:keyword</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="187"/>
-        <source>lua:comment</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="188"/>
-        <source>asymptote:type</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="189"/>
-        <source>asymptote:keyword</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="190"/>
-        <source>asymptote:number</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="191"/>
-        <source>asymptote:string</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="192"/>
-        <source>preedit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="additionaltranslations.cpp" line="193"/>
         <source>normal</source>
         <translation>正常</translation>
     </message>
@@ -6902,7 +6994,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="74"/>
         <source>Lines color (used by all lines formatting : underline, overline, ...)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
@@ -6919,17 +7011,17 @@ Do you wish to keep up to date by reloading the file?
         <source>Font size relative to editor font size.
 
 Note: If the size is larger that the line spacing, characters may be clipped.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="79"/>
         <source>Prio</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="80"/>
         <source>Priority determines which format is drawn on top, if multiple formats apply.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="277"/>
@@ -7026,7 +7118,7 @@ Some common regexps:
  r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,
  () groups expressions together, [xyz] will find x,y, or z, . matches everything, \. matches .
 You can use \1 to \9 in the replace text to insert a submatch.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="168"/>
@@ -7046,12 +7138,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="195"/>
         <source>Extended Search</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="259"/>
         <source>Ask before any match is replaced.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="267"/>
@@ -7153,7 +7245,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
         <source>Escape sequences</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="568"/>
@@ -7164,12 +7256,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="568"/>
         <source>The search text occurs %1 times after the current cursor. Do you want to restart from the beginning of the scope?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="573"/>
         <source>The search text occurs %1 times within the search scope.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7510,17 +7602,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="randomtextgenerator.ui" line="26"/>
         <source>First Order Word</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="33"/>
         <source>Second Order Words</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="43"/>
         <source>Third Order Words</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="66"/>
@@ -7546,17 +7638,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="randomtextgenerator.ui" line="130"/>
         <source>First Order Characters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="137"/>
         <source>Second Order Characters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="144"/>
         <source>Third Order Characters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="181"/>
@@ -7587,17 +7679,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="randomtextgenerator.cpp" line="47"/>
         <source>Reading all words
 (This will take a while but only on the first generation)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="82"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="106"/>
         <source>You didn&apos;t select an order!</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="109"/>
@@ -7625,23 +7717,23 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="311"/>
         <source>Yes, allow this call</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="312"/>
         <source>Yes, allow all calls it will ever make</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="312"/>
         <location filename="scriptobject.cpp" line="325"/>
         <source>No, abort the call</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="324"/>
@@ -7649,17 +7741,17 @@ Do you trust this script?</source>
 %1
 
 Do you trust this script?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="324"/>
         <source>Yes, allow this reading</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="scriptobject.cpp" line="325"/>
         <source>Yes, grant permanent read access to everything</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -7705,7 +7797,7 @@ Do you trust this script?</source>
         <location filename="searchresultwidget.cpp" line="26"/>
         <source>Update Search</source>
         <oldsource>Search Again</oldsource>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="29"/>
@@ -7815,7 +7907,7 @@ Do you trust this script?</source>
     <message>
         <location filename="spellerdialog.ui" line="108"/>
         <source>User-added Words</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="134"/>
@@ -7830,7 +7922,7 @@ Do you trust this script?</source>
     <message>
         <location filename="spellerdialog.ui" line="176"/>
         <source>Hide Added Words</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="spellerdialog.cpp" line="80"/>
@@ -7869,7 +7961,7 @@ Do you trust this script?</source>
     <message>
         <location filename="spellerutility.cpp" line="230"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="spellerutility.cpp" line="238"/>
@@ -7980,12 +8072,12 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="438"/>
         <source>unrecognized key in key option</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="438"/>
         <source>unrecognized value in key option</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="439"/>
@@ -7998,12 +8090,12 @@ Do you trust this script?</source>
     <message>
         <location filename="tabdialog.ui" line="78"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="86"/>
         <source>Column :</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="113"/>
@@ -8013,17 +8105,17 @@ Do you trust this script?</source>
     <message>
         <location filename="tabdialog.ui" line="127"/>
         <source>Left Border :</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="167"/>
         <source>Apply to all columns</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="194"/>
         <source>Right Border (last column) :</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="232"/>
@@ -8033,42 +8125,42 @@ Do you trust this script?</source>
     <message>
         <location filename="tabdialog.ui" line="263"/>
         <source>Rows</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="271"/>
         <source>Row :</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="296"/>
         <source>Top Border</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="305"/>
         <source>Merge columns :</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="321"/>
         <source>-&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="364"/>
         <source>Apply to all rows</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="389"/>
         <source>Bottom Border (last row)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="396"/>
         <source>Add vertical margin for each row</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="37"/>
@@ -8123,7 +8215,7 @@ From now on user templates are hosted at
 %1
 Should TeXstudio move the existing user templates there?
 If not, they will not be available via the Make Template dialog.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="79"/>
@@ -8150,7 +8242,7 @@ failed.</source>
     <message>
         <location filename="templatemanager.cpp" line="89"/>
         <source>There are still unmoved templates. Should TeXstudio stop monitoring them?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="138"/>
@@ -8191,7 +8283,7 @@ failed.</source>
     <message>
         <location filename="templatemanager_p.cpp" line="52"/>
         <source>The target folder is not empty. It is recommended to instantiate in new folders. Otherwise existing files may be overwritten. Do you wish to use this folder anyway?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="templatemanager_p.cpp" line="119"/>
@@ -8317,1729 +8409,1735 @@ failed.</source>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="194"/>
+        <location filename="additionaltranslations.cpp" line="186"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="195"/>
+        <location filename="additionaltranslations.cpp" line="187"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="196"/>
+        <location filename="additionaltranslations.cpp" line="188"/>
         <source>Edit</source>
         <translation>编辑</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="197"/>
+        <location filename="additionaltranslations.cpp" line="189"/>
         <source>Tools</source>
         <translation>工具</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="198"/>
+        <location filename="additionaltranslations.cpp" line="190"/>
         <source>Math</source>
         <translation>数学</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="199"/>
+        <location filename="additionaltranslations.cpp" line="191"/>
         <source>Format</source>
         <translation>格式</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="200"/>
+        <location filename="additionaltranslations.cpp" line="192"/>
         <source>Table</source>
         <translation>表格</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="201"/>
+        <location filename="additionaltranslations.cpp" line="193"/>
         <source>Diff</source>
         <translation>比较</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="202"/>
-        <location filename="texstudio.cpp" line="214"/>
+        <location filename="additionaltranslations.cpp" line="194"/>
+        <location filename="texstudio.cpp" line="215"/>
         <source>Central</source>
         <translation>居中</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="203"/>
+        <location filename="additionaltranslations.cpp" line="195"/>
+        <source>Asymptote</source>
+        <comment>Format name of language definition </comment>
+        <translation type="unfinished">渐近</translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="196"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="204"/>
+        <location filename="additionaltranslations.cpp" line="197"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>二进制文件</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="205"/>
+        <location filename="additionaltranslations.cpp" line="198"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtx 文件</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="206"/>
+        <location filename="additionaltranslations.cpp" line="199"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="207"/>
+        <location filename="additionaltranslations.cpp" line="200"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="208"/>
+        <location filename="additionaltranslations.cpp" line="201"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="209"/>
+        <location filename="additionaltranslations.cpp" line="202"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>Qt脚本</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="210"/>
+        <location filename="additionaltranslations.cpp" line="203"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Sweave</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="211"/>
+        <location filename="additionaltranslations.cpp" line="204"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="212"/>
+        <location filename="additionaltranslations.cpp" line="205"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX 宏</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="213"/>
+        <location filename="additionaltranslations.cpp" line="206"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TeXstudio 测试结果</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="214"/>
+        <location filename="additionaltranslations.cpp" line="207"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>纯文本</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="215"/>
+        <location filename="additionaltranslations.cpp" line="208"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1839"/>
+        <location filename="configmanager.cpp" line="1840"/>
         <source>Edit &amp;Macros...</source>
         <translation>编辑宏(&amp;M)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="282"/>
-        <location filename="texstudio.cpp" line="5718"/>
+        <location filename="texstudio.cpp" line="283"/>
+        <location filename="texstudio.cpp" line="5785"/>
         <source>Ready</source>
         <translation>已就绪</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="328"/>
+        <location filename="texstudio.cpp" line="329"/>
         <source>TeX files</source>
         <translation>TeX 文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="329"/>
+        <location filename="texstudio.cpp" line="330"/>
         <source>LilyPond files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="330"/>
+        <location filename="texstudio.cpp" line="331"/>
         <source>Plaintext files</source>
         <translation>纯文本</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="331"/>
+        <location filename="texstudio.cpp" line="332"/>
         <source>Pweave files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="332"/>
+        <location filename="texstudio.cpp" line="333"/>
         <source>Sweave files</source>
         <translation>Sweave 文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="333"/>
+        <location filename="texstudio.cpp" line="334"/>
         <source>Asymptote files</source>
         <translation>Asymptote 文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="334"/>
+        <location filename="texstudio.cpp" line="335"/>
         <source>PDF files</source>
         <translation>PDF 文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="335"/>
-        <location filename="texstudio.cpp" line="8958"/>
-        <location filename="texstudio.cpp" line="8968"/>
+        <location filename="texstudio.cpp" line="336"/>
+        <location filename="texstudio.cpp" line="9035"/>
+        <location filename="texstudio.cpp" line="9045"/>
         <source>All files</source>
         <translation>所有文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="487"/>
-        <location filename="texstudio.cpp" line="514"/>
+        <location filename="texstudio.cpp" line="488"/>
         <location filename="texstudio.cpp" line="515"/>
+        <location filename="texstudio.cpp" line="516"/>
         <source>Structure</source>
         <translation>结构</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="520"/>
         <location filename="texstudio.cpp" line="521"/>
+        <location filename="texstudio.cpp" line="522"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="524"/>
+        <location filename="texstudio.cpp" line="525"/>
         <source>Operator symbols</source>
         <translation>操作符号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="525"/>
+        <location filename="texstudio.cpp" line="526"/>
         <source>Relation symbols</source>
         <translation>关系符号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="526"/>
+        <location filename="texstudio.cpp" line="527"/>
         <source>Arrow symbols</source>
         <translation>箭头符号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="527"/>
+        <location filename="texstudio.cpp" line="528"/>
         <source>Delimiters</source>
         <translation>分隔符</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="528"/>
+        <location filename="texstudio.cpp" line="529"/>
         <source>Greek letters</source>
         <translation>希腊字母</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="529"/>
+        <location filename="texstudio.cpp" line="530"/>
         <source>Cyrillic letters</source>
         <translation>Cyrillic 字母</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="530"/>
+        <location filename="texstudio.cpp" line="531"/>
         <source>Miscellaneous math symbols</source>
         <translation>其他数学符号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="531"/>
+        <location filename="texstudio.cpp" line="532"/>
         <source>Miscellaneous text symbols</source>
         <translation>其他文本符号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="532"/>
+        <location filename="texstudio.cpp" line="533"/>
         <source>Miscellaneous text symbols (wasysym)</source>
         <translation>其他文本符号 (wasysym)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="533"/>
+        <location filename="texstudio.cpp" line="534"/>
         <source>Accented letters</source>
         <translation>重音字母</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="535"/>
+        <location filename="texstudio.cpp" line="536"/>
         <source>Most used symbols</source>
         <translation>最常使用符号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="537"/>
+        <location filename="texstudio.cpp" line="538"/>
         <source>Favorites</source>
         <translation>收藏夹</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="540"/>
+        <location filename="texstudio.cpp" line="541"/>
         <source>Left/Right Brackets</source>
         <translation>左/右括号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="541"/>
+        <location filename="texstudio.cpp" line="542"/>
         <source>Pstricks Commands</source>
         <translation>PSTricks 命令</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="542"/>
+        <location filename="texstudio.cpp" line="543"/>
         <source>MetaPost Commands</source>
         <translation>Metapost 命令</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="543"/>
+        <location filename="texstudio.cpp" line="544"/>
         <source>Tikz Commands</source>
         <translation>Tikz 命令</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="544"/>
+        <location filename="texstudio.cpp" line="545"/>
         <source>Asymptote Commands</source>
         <translation>Asymptote 命令</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="637"/>
+        <location filename="texstudio.cpp" line="638"/>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="639"/>
+        <location filename="texstudio.cpp" line="640"/>
         <source>&amp;New</source>
         <translation>新建(&amp;N)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="640"/>
+        <location filename="texstudio.cpp" line="641"/>
         <source>New From &amp;Template...</source>
         <translation>从模板新建(&amp;T)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="641"/>
+        <location filename="texstudio.cpp" line="642"/>
         <source>&amp;Open...</source>
         <translation>打开(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="643"/>
+        <location filename="texstudio.cpp" line="644"/>
         <source>Open &amp;Recent</source>
         <translation>打开最近的(&amp;R)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="645"/>
+        <location filename="texstudio.cpp" line="646"/>
         <source>Session</source>
         <translation>会话</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="646"/>
+        <location filename="texstudio.cpp" line="647"/>
         <source>Load Session...</source>
         <translation>加载会话...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="647"/>
+        <location filename="texstudio.cpp" line="648"/>
         <source>Save Session...</source>
         <translation>保存会话...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="648"/>
+        <location filename="texstudio.cpp" line="649"/>
         <source>Restore Previous Session</source>
         <translation>恢复前一个会话</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="657"/>
+        <location filename="texstudio.cpp" line="658"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="658"/>
+        <location filename="texstudio.cpp" line="659"/>
         <source>Save &amp;As...</source>
         <translation>另存为(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="659"/>
+        <location filename="texstudio.cpp" line="660"/>
         <source>Save A&amp;ll</source>
         <translation>保存所有(&amp;L)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="660"/>
+        <location filename="texstudio.cpp" line="661"/>
         <source>&amp;Make Template...</source>
         <translation>创建模板(&amp;M)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="663"/>
+        <location filename="texstudio.cpp" line="664"/>
         <source>Fifi&amp;x</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="664"/>
+        <location filename="texstudio.cpp" line="665"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>重命名保存/移动文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="665"/>
+        <location filename="texstudio.cpp" line="666"/>
         <source>Save copied file...</source>
         <translation>保存复制的文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="666"/>
+        <location filename="texstudio.cpp" line="667"/>
         <source>&amp;Delete file</source>
         <translation>删除文件(&amp;D)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="667"/>
+        <location filename="texstudio.cpp" line="668"/>
         <source>Set &amp;permissions...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="669"/>
+        <location filename="texstudio.cpp" line="670"/>
         <source>&amp;Revert to saved...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="671"/>
+        <location filename="texstudio.cpp" line="672"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>复制文件名到剪贴板</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="672"/>
+        <location filename="texstudio.cpp" line="673"/>
         <source>Copy master filename to clipboard</source>
         <translation>复制完整文件名到剪贴板</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="674"/>
+        <location filename="texstudio.cpp" line="675"/>
         <source>S&amp;VN...</source>
         <translation>S&amp;VN...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="675"/>
+        <location filename="texstudio.cpp" line="676"/>
         <source>Check &amp;in...</source>
         <translation>提交(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="676"/>
+        <location filename="texstudio.cpp" line="677"/>
         <source>SVN &amp;update...</source>
         <translation>SVN 更新(&amp;U)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="677"/>
+        <location filename="texstudio.cpp" line="678"/>
         <source>SVN update &amp;work directory</source>
         <translation>&amp;SVN 更新目录</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="678"/>
+        <location filename="texstudio.cpp" line="679"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>显示旧版本(&amp;O)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="679"/>
+        <location filename="texstudio.cpp" line="680"/>
         <source>Lock &amp;PDF</source>
         <translation>锁定 &amp;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="680"/>
+        <location filename="texstudio.cpp" line="681"/>
         <source>Check in P&amp;DF</source>
         <translation>提交 PDF(&amp;D)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="681"/>
+        <location filename="texstudio.cpp" line="682"/>
         <source>Show difference between two files</source>
         <translation>显示文档的不同</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="682"/>
+        <location filename="texstudio.cpp" line="683"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>显示文档的不同</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="683"/>
+        <location filename="texstudio.cpp" line="684"/>
         <source>Check SVN Conflict</source>
         <translation>检测 SVN 冲突</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="684"/>
+        <location filename="texstudio.cpp" line="685"/>
         <source>Try to merge differences</source>
         <translation>移植不同之处</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="685"/>
+        <location filename="texstudio.cpp" line="686"/>
         <source>Remove Difference-Markers</source>
         <translation>删除比较标记</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="686"/>
+        <location filename="texstudio.cpp" line="687"/>
         <source>Declare Conflict Resolved</source>
         <translation>解决冲突</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="687"/>
+        <location filename="texstudio.cpp" line="688"/>
         <source>Jump to next difference</source>
         <translation>跳到后一个不同</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="688"/>
+        <location filename="texstudio.cpp" line="689"/>
         <source>Jump to previous difference</source>
         <translation>跳到前一个不同</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="691"/>
-        <location filename="texstudio.cpp" line="9159"/>
+        <location filename="texstudio.cpp" line="692"/>
+        <location filename="texstudio.cpp" line="9236"/>
         <source>&amp;Close</source>
         <translation>关闭(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="692"/>
+        <location filename="texstudio.cpp" line="693"/>
         <source>Clos&amp;e All</source>
         <translation>全部关闭(&amp;E)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="695"/>
+        <location filename="texstudio.cpp" line="696"/>
         <source>Print Source Code...</source>
         <translation>打印源代码...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="698"/>
+        <location filename="texstudio.cpp" line="699"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="701"/>
+        <location filename="texstudio.cpp" line="702"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="702"/>
+        <location filename="texstudio.cpp" line="703"/>
         <source>&amp;Undo</source>
         <translation>撤销(&amp;U)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="703"/>
+        <location filename="texstudio.cpp" line="704"/>
         <source>&amp;Redo</source>
         <translation>重做(&amp;R)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="705"/>
+        <location filename="texstudio.cpp" line="706"/>
         <source>Debug undo stack</source>
         <translation>Debug undo stack</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="708"/>
+        <location filename="texstudio.cpp" line="709"/>
         <source>&amp;Copy</source>
         <translation>复制(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="709"/>
+        <location filename="texstudio.cpp" line="710"/>
         <source>C&amp;ut</source>
         <translation>剪切(&amp;U)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="710"/>
+        <location filename="texstudio.cpp" line="711"/>
         <source>&amp;Paste</source>
         <translation>粘贴(&amp;P)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="713"/>
+        <location filename="texstudio.cpp" line="714"/>
         <source>&amp;Selection</source>
         <translation>选择(&amp;S)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="714"/>
+        <location filename="texstudio.cpp" line="715"/>
         <source>Select &amp;All</source>
         <translation>选择所有(&amp;A)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="715"/>
-        <source>Select All &amp;Occurences</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="716"/>
-        <source>Expand Selection to Word</source>
-        <translation type="unfinished"/>
+        <source>Select All &amp;Occurences</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="717"/>
-        <source>Expand Selection to Line</source>
-        <translation type="unfinished"/>
+        <source>Expand Selection to Word</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="719"/>
+        <location filename="texstudio.cpp" line="718"/>
+        <source>Expand Selection to Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="texstudio.cpp" line="720"/>
         <source>&amp;Line Operations</source>
         <translation>行操作(&amp;L)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="720"/>
+        <location filename="texstudio.cpp" line="721"/>
         <source>Delete &amp;Line</source>
         <translation>删除行(&amp;L)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="721"/>
-        <source>Delete To &amp;End Of Line</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="722"/>
-        <source>Delete From &amp;Start Of Line</source>
-        <translation type="unfinished"/>
+        <source>Delete To &amp;End Of Line</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="723"/>
+        <source>Delete From &amp;Start Of Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="texstudio.cpp" line="724"/>
         <source>Move Line &amp;Up</source>
         <translation>上移行(&amp;U)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="724"/>
+        <location filename="texstudio.cpp" line="725"/>
         <source>Move Line &amp;Down</source>
         <translation>下移行(&amp;D)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="725"/>
+        <location filename="texstudio.cpp" line="726"/>
         <source>Du&amp;plicate Line</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="texstudio.cpp" line="727"/>
-        <source>&amp;Text Operations</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="728"/>
+        <source>&amp;Text Operations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="texstudio.cpp" line="729"/>
         <source>To Lowercase</source>
         <translation>转换成小写</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="729"/>
+        <location filename="texstudio.cpp" line="730"/>
         <source>To Uppercase</source>
         <translation>转换成大写</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="730"/>
-        <source>To Titlecase (strict)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="731"/>
-        <source>To Titlecase (smart)</source>
-        <translation type="unfinished"/>
+        <source>To Titlecase (strict)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="735"/>
+        <location filename="texstudio.cpp" line="732"/>
+        <source>To Titlecase (smart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="texstudio.cpp" line="736"/>
         <source>&amp;Searching</source>
         <translation>搜索(&amp;S)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="736"/>
+        <location filename="texstudio.cpp" line="737"/>
         <source>&amp;Find</source>
         <translation>查找(&amp;F)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="737"/>
+        <location filename="texstudio.cpp" line="738"/>
         <source>Find &amp;Next</source>
         <translation>查找下一个(&amp;N)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="738"/>
+        <location filename="texstudio.cpp" line="739"/>
         <source>Find &amp;Prev</source>
         <translation>查找上一个(&amp;P)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="739"/>
+        <location filename="texstudio.cpp" line="740"/>
         <source>Continue F&amp;ind</source>
         <translation>继续查找(&amp;I)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="740"/>
+        <location filename="texstudio.cpp" line="741"/>
         <source>&amp;Count</source>
         <translation>计数(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="741"/>
+        <location filename="texstudio.cpp" line="742"/>
         <source>&amp;Select all matches...</source>
         <translation>选中所有匹配项(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="744"/>
+        <location filename="texstudio.cpp" line="745"/>
         <source>&amp;Replace</source>
         <translation>替换(&amp;R)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="745"/>
+        <location filename="texstudio.cpp" line="746"/>
         <source>Replace Next</source>
         <translation>替换后一个</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="746"/>
+        <location filename="texstudio.cpp" line="747"/>
         <source>Replace Prev</source>
         <translation>替换前一个</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="747"/>
+        <location filename="texstudio.cpp" line="748"/>
         <source>Replace &amp;All</source>
         <translation>替换所有(&amp;A)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="750"/>
+        <location filename="texstudio.cpp" line="751"/>
         <source>Go to</source>
         <translation>跳转到</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="752"/>
+        <location filename="texstudio.cpp" line="753"/>
         <source>Line</source>
         <translation>行</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="753"/>
+        <location filename="texstudio.cpp" line="754"/>
         <source>Previous Change</source>
         <translation>前一处修改</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="754"/>
+        <location filename="texstudio.cpp" line="755"/>
         <source>Next Change</source>
         <translation>后一处修改</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="756"/>
+        <location filename="texstudio.cpp" line="757"/>
         <source>Previous mark</source>
         <translation>前一个标记</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="757"/>
+        <location filename="texstudio.cpp" line="758"/>
         <source>Next mark</source>
         <translation>后一个标记</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="760"/>
+        <location filename="texstudio.cpp" line="761"/>
         <source>Go Back</source>
         <translation>后退</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="761"/>
+        <location filename="texstudio.cpp" line="762"/>
         <source>Go Forward</source>
         <translation>前进</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="764"/>
+        <location filename="texstudio.cpp" line="765"/>
         <source>Goto Bookmark</source>
         <translation>跳到书签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="767"/>
-        <location filename="texstudio.cpp" line="773"/>
+        <location filename="texstudio.cpp" line="768"/>
+        <location filename="texstudio.cpp" line="774"/>
         <source>Bookmark %1</source>
         <translation>书签 %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="770"/>
+        <location filename="texstudio.cpp" line="771"/>
         <source>Toggle Bookmark</source>
         <translation>切换书签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="771"/>
+        <location filename="texstudio.cpp" line="772"/>
         <source>Unnamed Bookmark</source>
         <translation>未命名书签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="777"/>
+        <location filename="texstudio.cpp" line="778"/>
         <source>Line Ending</source>
         <translation>换行符</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="779"/>
+        <location filename="texstudio.cpp" line="780"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="783"/>
+        <location filename="texstudio.cpp" line="784"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="787"/>
+        <location filename="texstudio.cpp" line="788"/>
         <source>Old Mac (CR)</source>
         <translation>旧 Mac (CR)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="793"/>
+        <location filename="texstudio.cpp" line="794"/>
         <source>Setup Encoding...</source>
         <translation>设置编码...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="794"/>
+        <location filename="texstudio.cpp" line="795"/>
         <source>Insert Unicode Character...</source>
         <translation>插入 Unicode 字符...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="799"/>
+        <location filename="texstudio.cpp" line="800"/>
         <source>&amp;Idefix</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="800"/>
+        <location filename="texstudio.cpp" line="801"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>清除 &amp;Word/Cmd/Env</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="803"/>
+        <location filename="texstudio.cpp" line="804"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>粘贴为 La&amp;TeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="804"/>
+        <location filename="texstudio.cpp" line="805"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>转换为 LaTeX(&amp;N)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="805"/>
+        <location filename="texstudio.cpp" line="806"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>预览 选中/括号中 的部分</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="806"/>
+        <location filename="texstudio.cpp" line="807"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>清除行内预览(&amp;L)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="809"/>
+        <location filename="texstudio.cpp" line="810"/>
         <source>&amp;Comment</source>
         <translation>注释(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="810"/>
+        <location filename="texstudio.cpp" line="811"/>
         <source>&amp;Uncomment</source>
         <translation>取消注释(&amp;U)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="811"/>
+        <location filename="texstudio.cpp" line="812"/>
         <source>&amp;Indent</source>
         <translation>缩进(&amp;I)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="812"/>
+        <location filename="texstudio.cpp" line="813"/>
         <source>Unin&amp;dent</source>
         <translation>取消缩进(&amp;D)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="813"/>
+        <location filename="texstudio.cpp" line="814"/>
         <source>Hard Line &amp;Break...</source>
         <translation>硬断行(&amp;B)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="814"/>
+        <location filename="texstudio.cpp" line="815"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>重复硬断行(&amp;E)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="817"/>
+        <location filename="texstudio.cpp" line="818"/>
         <source>&amp;Go to</source>
         <translation>跳转到(&amp;G)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="819"/>
+        <location filename="texstudio.cpp" line="820"/>
         <source>Previous Error</source>
         <translation>前一个错误</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="819"/>
         <location filename="texstudio.cpp" line="820"/>
+        <location filename="texstudio.cpp" line="821"/>
         <source>No LaTeX errors detected !</source>
         <translation>没有检测到 LaTeX 错误 !</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="820"/>
+        <location filename="texstudio.cpp" line="821"/>
         <source>Next Error</source>
         <translation>后一个错误</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="821"/>
+        <location filename="texstudio.cpp" line="822"/>
         <source>Previous Warning</source>
         <translation>前一个警告</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="821"/>
         <location filename="texstudio.cpp" line="822"/>
+        <location filename="texstudio.cpp" line="823"/>
         <source>No LaTeX warnings detected !</source>
         <translation>没有检测到 LaTeX 警告 !</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="822"/>
+        <location filename="texstudio.cpp" line="823"/>
         <source>Next Warning</source>
         <translation>后一个警告</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="823"/>
+        <location filename="texstudio.cpp" line="824"/>
         <source>Previous Bad Box</source>
         <translation>上一个 Bad Box</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="823"/>
         <location filename="texstudio.cpp" line="824"/>
+        <location filename="texstudio.cpp" line="825"/>
         <source>No bad boxes detected !</source>
         <translation>没有 bad boxes ！</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="824"/>
+        <location filename="texstudio.cpp" line="825"/>
         <source>Next Bad Box</source>
         <translation>下一个 Bad Box</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="826"/>
+        <location filename="texstudio.cpp" line="827"/>
         <source>Definition</source>
         <translation>定义</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="829"/>
+        <location filename="texstudio.cpp" line="830"/>
         <source>Re&amp;name Environment</source>
         <translation>重命名环境(&amp;N)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="831"/>
+        <location filename="texstudio.cpp" line="832"/>
         <source>Parenthesis</source>
         <translation>括号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="832"/>
+        <location filename="texstudio.cpp" line="833"/>
         <source>Jump to Match</source>
         <translation>跳转到匹配括号</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="833"/>
+        <location filename="texstudio.cpp" line="834"/>
         <source>Select Inner</source>
         <translation>选择内部文字</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="834"/>
+        <location filename="texstudio.cpp" line="835"/>
         <source>Select Outer</source>
         <translation>选择括号及内部文字</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="835"/>
+        <location filename="texstudio.cpp" line="836"/>
         <source>Select Command</source>
         <translation>选择命令</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="836"/>
+        <location filename="texstudio.cpp" line="837"/>
         <source>Select Line</source>
         <translation>选择行</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="837"/>
+        <location filename="texstudio.cpp" line="838"/>
         <source>Select Inverting</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="840"/>
+        <location filename="texstudio.cpp" line="841"/>
         <source>Find Mismatch</source>
         <translation>查找不匹配项</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="842"/>
+        <location filename="texstudio.cpp" line="843"/>
         <source>Complete</source>
         <translation>补全</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="843"/>
+        <location filename="texstudio.cpp" line="844"/>
         <source>Normal</source>
         <translation>正常</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="844"/>
+        <location filename="texstudio.cpp" line="845"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ 补全</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="845"/>
+        <location filename="texstudio.cpp" line="846"/>
         <source>Normal Text</source>
         <translation>正常文本</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="846"/>
+        <location filename="texstudio.cpp" line="847"/>
         <source>Close latest open environment</source>
         <translation>关闭最后打开的环境</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="849"/>
+        <location filename="texstudio.cpp" line="850"/>
         <source>Refresh Structure</source>
         <translation>刷新结构</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="850"/>
+        <location filename="texstudio.cpp" line="851"/>
         <source>Refresh QNFA</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="851"/>
+        <location filename="texstudio.cpp" line="852"/>
         <source>Remove Placeholders</source>
         <translation>删除占位符</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="852"/>
+        <location filename="texstudio.cpp" line="853"/>
         <source>Remove Current Placeholder</source>
         <translation>删除当前占位符</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="857"/>
+        <location filename="texstudio.cpp" line="858"/>
         <source>&amp;Tools</source>
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="859"/>
+        <location filename="texstudio.cpp" line="860"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>构建并查看(&amp;B)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="860"/>
+        <location filename="texstudio.cpp" line="861"/>
         <source>&amp;Compile</source>
         <translation>编译(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="861"/>
+        <location filename="texstudio.cpp" line="862"/>
         <source>Stop Compile</source>
         <translation>停止编译</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="863"/>
-        <location filename="texstudio.cpp" line="1016"/>
+        <location filename="texstudio.cpp" line="864"/>
+        <location filename="texstudio.cpp" line="1017"/>
         <source>&amp;View</source>
         <translation>查看(&amp;V)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="864"/>
-        <location filename="texstudio.cpp" line="960"/>
+        <location filename="texstudio.cpp" line="865"/>
+        <location filename="texstudio.cpp" line="961"/>
         <source>&amp;Bibliography</source>
         <translation>参考文献(&amp;B)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="865"/>
+        <location filename="texstudio.cpp" line="866"/>
         <source>&amp;Glossary</source>
         <translation>&amp;术语表</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="866"/>
+        <location filename="texstudio.cpp" line="867"/>
         <source>&amp;Index</source>
         <translation>&amp;索引</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="869"/>
+        <location filename="texstudio.cpp" line="870"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>命令(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="870"/>
+        <location filename="texstudio.cpp" line="871"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="872"/>
-        <location filename="texstudio.cpp" line="920"/>
+        <location filename="texstudio.cpp" line="873"/>
+        <location filename="texstudio.cpp" line="921"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="873"/>
+        <location filename="texstudio.cpp" line="874"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="877"/>
+        <location filename="texstudio.cpp" line="878"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="878"/>
+        <location filename="texstudio.cpp" line="879"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="879"/>
+        <location filename="texstudio.cpp" line="880"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="881"/>
+        <location filename="texstudio.cpp" line="882"/>
         <source>View &amp;DVI</source>
         <translation>查看 &amp;DVI</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="882"/>
+        <location filename="texstudio.cpp" line="883"/>
         <source>Vie&amp;w PS</source>
         <translation>查看 &amp;PS</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="883"/>
+        <location filename="texstudio.cpp" line="884"/>
         <source>View PD&amp;F</source>
         <translation>查看 &amp;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="885"/>
+        <location filename="texstudio.cpp" line="886"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="886"/>
+        <location filename="texstudio.cpp" line="887"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="887"/>
+        <location filename="texstudio.cpp" line="888"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="889"/>
+        <location filename="texstudio.cpp" line="890"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="890"/>
+        <location filename="texstudio.cpp" line="891"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="891"/>
+        <location filename="texstudio.cpp" line="892"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="893"/>
+        <location filename="texstudio.cpp" line="894"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="894"/>
+        <location filename="texstudio.cpp" line="895"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="896"/>
+        <location filename="texstudio.cpp" line="897"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>&amp;用户</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="899"/>
+        <location filename="texstudio.cpp" line="900"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>清理辅助文件(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="900"/>
+        <location filename="texstudio.cpp" line="901"/>
         <source>Open &amp;Terminal</source>
         <translation>打开终端</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="902"/>
+        <location filename="texstudio.cpp" line="903"/>
         <source>View &amp;Log</source>
         <translation>查看日志(&amp;L)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="903"/>
+        <location filename="texstudio.cpp" line="904"/>
         <source>Show Log Markers</source>
         <translation>显示错误行</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="907"/>
+        <location filename="texstudio.cpp" line="908"/>
         <source>C&amp;onvert to Html...</source>
         <translation>转换为 html (&amp;O)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="908"/>
+        <location filename="texstudio.cpp" line="909"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>转换为 html (&amp;O)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="910"/>
+        <location filename="texstudio.cpp" line="911"/>
         <source>A&amp;nalyse Text...</source>
         <translation>分析文本(&amp;N)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="911"/>
+        <location filename="texstudio.cpp" line="912"/>
         <source>Generate &amp;Random Text...</source>
         <translation>生成随机文本(&amp;R)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="913"/>
+        <location filename="texstudio.cpp" line="914"/>
         <source>Check Spelling...</source>
         <translation>拼写检查...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="914"/>
+        <location filename="texstudio.cpp" line="915"/>
         <source>Thesaurus...</source>
         <translation>字典...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="915"/>
+        <location filename="texstudio.cpp" line="916"/>
         <source>Find Word Repetitions...</source>
         <translation>查找重复单词...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="922"/>
+        <location filename="texstudio.cpp" line="923"/>
         <source>Insert \ref to Next Label</source>
         <translation>插入 \ref 引用后一个标签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="923"/>
+        <location filename="texstudio.cpp" line="924"/>
         <source>Insert \ref to Previous Label</source>
         <translation>插入 \ref 引用前一个标签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="924"/>
+        <location filename="texstudio.cpp" line="925"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>表格操作</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="925"/>
+        <location filename="texstudio.cpp" line="926"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>添加行</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="926"/>
+        <location filename="texstudio.cpp" line="927"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>添加列</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="927"/>
+        <location filename="texstudio.cpp" line="928"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>删除行</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="928"/>
+        <location filename="texstudio.cpp" line="929"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>删除列</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="929"/>
+        <location filename="texstudio.cpp" line="930"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>剪切列</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="930"/>
+        <location filename="texstudio.cpp" line="931"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>粘贴列</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="931"/>
+        <location filename="texstudio.cpp" line="932"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>添加 \hline</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="932"/>
+        <location filename="texstudio.cpp" line="933"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>删除 \hline</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="933"/>
+        <location filename="texstudio.cpp" line="934"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>使用模板整理表格</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="934"/>
+        <location filename="texstudio.cpp" line="935"/>
         <source>Align Columns</source>
         <translation>对齐列</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="935"/>
+        <location filename="texstudio.cpp" line="936"/>
         <source>Add magic comments ...</source>
         <translation>添加魔术注释...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="936"/>
+        <location filename="texstudio.cpp" line="937"/>
         <source>Insert root document name as TeX comment</source>
         <translation>插入根文档做为 TeX 注释</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="937"/>
-        <location filename="texstudio.cpp" line="1273"/>
+        <location filename="texstudio.cpp" line="938"/>
+        <location filename="texstudio.cpp" line="1274"/>
         <source>Insert language as TeX comment</source>
         <translation>插入语言作为 TeX 注释</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="938"/>
+        <location filename="texstudio.cpp" line="939"/>
         <source>Insert document coding as TeX comment</source>
         <translation>插入文档编码作为 TeX 注释</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="940"/>
+        <location filename="texstudio.cpp" line="941"/>
         <source>&amp;Math</source>
         <translation>数学(&amp;M)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="944"/>
+        <location filename="texstudio.cpp" line="945"/>
         <source>&amp;Wizards</source>
         <translation>向导(&amp;W)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="945"/>
+        <location filename="texstudio.cpp" line="946"/>
         <source>Quick &amp;Start...</source>
         <translation>快速开始(&amp;S)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="946"/>
+        <location filename="texstudio.cpp" line="947"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>快速Beamer演示...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="947"/>
+        <location filename="texstudio.cpp" line="948"/>
         <source>Quick &amp;Letter...</source>
         <translation>信件向导(&amp;L)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="950"/>
+        <location filename="texstudio.cpp" line="951"/>
         <source>Quick &amp;Tabular...</source>
         <translation>表格向导(&amp;T)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="951"/>
+        <location filename="texstudio.cpp" line="952"/>
         <source>Quick T&amp;abbing...</source>
         <translation>表格向导(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="952"/>
+        <location filename="texstudio.cpp" line="953"/>
         <source>Quick &amp;Array...</source>
         <translation>矩阵向导(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="953"/>
+        <location filename="texstudio.cpp" line="954"/>
         <source>Insert &amp;Graphic...</source>
         <translation>插入图片(&amp;G)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="956"/>
+        <location filename="texstudio.cpp" line="957"/>
         <source>Math Assistant...</source>
         <translation>数学助手...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="985"/>
+        <location filename="texstudio.cpp" line="986"/>
         <source>&amp;Clean</source>
         <translation>清除(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="987"/>
+        <location filename="texstudio.cpp" line="988"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>插入参考文献条目(&amp;I)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="989"/>
+        <location filename="texstudio.cpp" line="990"/>
         <source>Type</source>
         <translation>类型</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="993"/>
-        <location filename="texstudio.cpp" line="1003"/>
+        <location filename="texstudio.cpp" line="994"/>
+        <location filename="texstudio.cpp" line="1004"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="998"/>
-        <location filename="texstudio.cpp" line="1004"/>
+        <location filename="texstudio.cpp" line="999"/>
+        <location filename="texstudio.cpp" line="1005"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1011"/>
+        <location filename="texstudio.cpp" line="1012"/>
         <source>Ma&amp;cros</source>
         <translation>宏(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1017"/>
+        <location filename="texstudio.cpp" line="1018"/>
         <source>Previous Document</source>
         <translation>前一个文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1018"/>
+        <location filename="texstudio.cpp" line="1019"/>
         <source>Next Document</source>
         <translation>后一个文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1019"/>
+        <location filename="texstudio.cpp" line="1020"/>
         <source>Open Documents</source>
         <translation>打开的文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1020"/>
+        <location filename="texstudio.cpp" line="1021"/>
         <source>List Of Open Documents</source>
         <translation>列出打开的文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1021"/>
+        <location filename="texstudio.cpp" line="1022"/>
         <source>List Of Hidden Documents</source>
         <translation>列出隐藏的文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1023"/>
+        <location filename="texstudio.cpp" line="1024"/>
         <source>Focus Editor</source>
         <translation>选中编辑器</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1024"/>
+        <location filename="texstudio.cpp" line="1025"/>
         <source>Focus Viewer</source>
         <translation>选中查看器</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1029"/>
+        <location filename="texstudio.cpp" line="1030"/>
         <source>Show embedded PDF large</source>
         <translation>大幅显示内嵌 PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1030"/>
+        <location filename="texstudio.cpp" line="1031"/>
         <source>Show embedded PDF small</source>
         <translation>小幅显示内嵌 PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1032"/>
+        <location filename="texstudio.cpp" line="1033"/>
         <source>Close Something</source>
         <translation>关闭某项</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1035"/>
+        <location filename="texstudio.cpp" line="1036"/>
         <source>Collapse</source>
         <translation>折叠</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1036"/>
-        <location filename="texstudio.cpp" line="1041"/>
+        <location filename="texstudio.cpp" line="1037"/>
+        <location filename="texstudio.cpp" line="1042"/>
         <source>Everything</source>
         <translation>所有</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1037"/>
-        <location filename="texstudio.cpp" line="1042"/>
+        <location filename="texstudio.cpp" line="1038"/>
+        <location filename="texstudio.cpp" line="1043"/>
         <source>Nearest Block</source>
         <translation>最接近的块</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1039"/>
-        <location filename="texstudio.cpp" line="1044"/>
+        <location filename="texstudio.cpp" line="1040"/>
+        <location filename="texstudio.cpp" line="1045"/>
         <source>Level %1</source>
         <translation>第 %1 层</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1040"/>
+        <location filename="texstudio.cpp" line="1041"/>
         <source>Expand</source>
         <translation>展开</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1046"/>
+        <location filename="texstudio.cpp" line="1047"/>
         <source>Grammar errors</source>
         <translation>语法错误</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1049"/>
+        <location filename="texstudio.cpp" line="1050"/>
         <source>Word Repetition</source>
         <translation>重复单词</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1050"/>
+        <location filename="texstudio.cpp" line="1051"/>
         <source>Long-range Word Repetition</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1051"/>
+        <location filename="texstudio.cpp" line="1052"/>
         <source>Bad words</source>
         <translation>不妥用词</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1052"/>
+        <location filename="texstudio.cpp" line="1053"/>
         <source>Grammar Mistake</source>
         <translation>语法错误</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1054"/>
+        <location filename="texstudio.cpp" line="1055"/>
         <source>Grammar Mistake Special %1</source>
         <translation>特殊语法错误 %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1063"/>
+        <location filename="texstudio.cpp" line="1064"/>
         <source>Editor Zoom</source>
         <translation>编辑器缩放</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1064"/>
+        <location filename="texstudio.cpp" line="1065"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1065"/>
+        <location filename="texstudio.cpp" line="1066"/>
         <source>Zoom Out</source>
         <translation>缩小</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1066"/>
+        <location filename="texstudio.cpp" line="1067"/>
         <source>Reset Zoom</source>
         <translation>重置缩放</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1068"/>
+        <location filename="texstudio.cpp" line="1069"/>
         <source>Align Windows</source>
         <translation>对齐窗口</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1070"/>
-        <location filename="texstudio.cpp" line="1072"/>
+        <location filename="texstudio.cpp" line="1071"/>
+        <location filename="texstudio.cpp" line="1073"/>
         <source>Fullscreen Mode</source>
         <translation>全屏幕</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1079"/>
+        <location filename="texstudio.cpp" line="1080"/>
         <source>Highlighting</source>
         <translation>高亮</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1103"/>
+        <location filename="texstudio.cpp" line="1104"/>
         <source>&amp;Options</source>
         <translation>选项(&amp;O)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1104"/>
+        <location filename="texstudio.cpp" line="1105"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>设置 TeXstudio(&amp;C)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1107"/>
+        <location filename="texstudio.cpp" line="1108"/>
         <source>Load &amp;Profile...</source>
         <translation>加载配置文件(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1108"/>
+        <location filename="texstudio.cpp" line="1109"/>
         <source>S&amp;ave Profile...</source>
         <translation>保存配置(&amp;A)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1109"/>
+        <location filename="texstudio.cpp" line="1110"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>保存当前设置(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1110"/>
+        <location filename="texstudio.cpp" line="1111"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>恢复默认设置(&amp;D)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1113"/>
+        <location filename="texstudio.cpp" line="1114"/>
         <source>Root Document</source>
         <comment>menu</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1116"/>
+        <location filename="texstudio.cpp" line="1117"/>
         <source>Detect &amp;Automatically</source>
         <translation>自动检测(&amp;A)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1124"/>
+        <location filename="texstudio.cpp" line="1125"/>
         <source>Set Current Document As Explicit Root</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1127"/>
+        <location filename="texstudio.cpp" line="1128"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1128"/>
+        <location filename="texstudio.cpp" line="1129"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeX 引用...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1129"/>
+        <location filename="texstudio.cpp" line="1130"/>
         <source>User Manual...</source>
         <translation>用户指南...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1130"/>
+        <location filename="texstudio.cpp" line="1131"/>
         <source>Packages Help...</source>
         <translation>宏包帮助...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1133"/>
+        <location filename="texstudio.cpp" line="1134"/>
         <source>Check LaTeX Installation</source>
         <translation>检查 LaTeX 安装信息</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1134"/>
+        <location filename="texstudio.cpp" line="1135"/>
         <source>Check Active Completion Files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1135"/>
+        <location filename="texstudio.cpp" line="1136"/>
         <source>About TeXstudio...</source>
         <translation>关于 TeXstudio...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1154"/>
+        <location filename="texstudio.cpp" line="1155"/>
         <location filename="texstudio.cpp" line="2541"/>
-        <location filename="texstudio.cpp" line="7492"/>
+        <location filename="texstudio.cpp" line="7561"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1155"/>
-        <location filename="texstudio.cpp" line="7493"/>
+        <location filename="texstudio.cpp" line="1156"/>
+        <location filename="texstudio.cpp" line="7562"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1156"/>
-        <location filename="texstudio.cpp" line="7494"/>
+        <location filename="texstudio.cpp" line="1157"/>
+        <location filename="texstudio.cpp" line="7563"/>
         <source>Paste Before</source>
         <translation>在之前粘贴</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1157"/>
-        <location filename="texstudio.cpp" line="7495"/>
+        <location filename="texstudio.cpp" line="1158"/>
+        <location filename="texstudio.cpp" line="7564"/>
         <source>Paste After</source>
         <translation>在之后粘贴</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1161"/>
-        <location filename="texstudio.cpp" line="7497"/>
+        <location filename="texstudio.cpp" line="1162"/>
+        <location filename="texstudio.cpp" line="7566"/>
         <source>Indent Section</source>
         <translation>缩进</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1162"/>
-        <location filename="texstudio.cpp" line="7498"/>
+        <location filename="texstudio.cpp" line="1163"/>
+        <location filename="texstudio.cpp" line="7567"/>
         <source>Unindent Section</source>
         <translation>取消缩进</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1264"/>
+        <location filename="texstudio.cpp" line="1265"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1327"/>
+        <location filename="texstudio.cpp" line="1328"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1339"/>
         <location filename="texstudio.cpp" line="1340"/>
-        <location filename="texstudio.cpp" line="5361"/>
-        <location filename="texstudio.cpp" line="5364"/>
-        <location filename="texstudio.cpp" line="5365"/>
+        <location filename="texstudio.cpp" line="1341"/>
+        <location filename="texstudio.cpp" line="5428"/>
+        <location filename="texstudio.cpp" line="5431"/>
+        <location filename="texstudio.cpp" line="5432"/>
         <source>Encoding</source>
         <translation>编码</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1362"/>
+        <location filename="texstudio.cpp" line="1363"/>
         <source>More Encodings...</source>
         <translation>更多编码...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1370"/>
+        <location filename="texstudio.cpp" line="1371"/>
         <source>Insert encoding as TeX comment</source>
         <translation>插入编码作为 TeX 注释</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1384"/>
+        <location filename="texstudio.cpp" line="1385"/>
         <source>Go to bookmark</source>
         <translation>转到书签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1428"/>
-        <source>Automatic</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="1429"/>
-        <source>Automatic root document detection active</source>
-        <translation type="unfinished"/>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1434"/>
-        <source>&amp;Explicit</source>
-        <translation type="unfinished"/>
+        <location filename="texstudio.cpp" line="1430"/>
+        <source>Automatic root document detection active</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1435"/>
-        <source>Root</source>
-        <comment>explicit root document</comment>
-        <translation type="unfinished"/>
+        <source>&amp;Explicit</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1436"/>
+        <source>Root</source>
+        <comment>explicit root document</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="texstudio.cpp" line="1437"/>
         <source>Explict root document:
 %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1503"/>
+        <location filename="texstudio.cpp" line="1504"/>
         <source>
 included document in %1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1722"/>
+        <location filename="texstudio.cpp" line="1723"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>是否调试 SyncTeX 文件？</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1798"/>
+        <location filename="texstudio.cpp" line="1799"/>
         <location filename="texstudio.cpp" line="3521"/>
-        <location filename="texstudio.cpp" line="5398"/>
-        <location filename="texstudio.cpp" line="5905"/>
-        <location filename="texstudio.cpp" line="6052"/>
-        <location filename="texstudio.cpp" line="6054"/>
-        <location filename="texstudio.cpp" line="6061"/>
-        <location filename="texstudio.cpp" line="6063"/>
-        <location filename="texstudio.cpp" line="9656"/>
+        <location filename="texstudio.cpp" line="5465"/>
+        <location filename="texstudio.cpp" line="5972"/>
+        <location filename="texstudio.cpp" line="6119"/>
+        <location filename="texstudio.cpp" line="6121"/>
+        <location filename="texstudio.cpp" line="6128"/>
+        <location filename="texstudio.cpp" line="6130"/>
+        <location filename="texstudio.cpp" line="9733"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1798"/>
+        <location filename="texstudio.cpp" line="1799"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>没有权限读取文件 %1 。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1858"/>
+        <location filename="texstudio.cpp" line="1859"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1864"/>
+        <location filename="texstudio.cpp" line="1865"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>无法打开恢复文件 &quot;%1&quot;。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2007"/>
+        <location filename="texstudio.cpp" line="2008"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2091"/>
+        <location filename="texstudio.cpp" line="2092"/>
         <source>Could not write template data:</source>
         <translation>无法写入模板数据：</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2117"/>
+        <location filename="texstudio.cpp" line="2118"/>
         <source>Could not write template meta data:</source>
         <translation>无法写入模板元数据：</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2161"/>
-        <location filename="texstudio.cpp" line="2221"/>
+        <location filename="texstudio.cpp" line="2162"/>
+        <location filename="texstudio.cpp" line="2222"/>
         <source>File not found:</source>
         <translation>未找到文件：</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2165"/>
-        <location filename="texstudio.cpp" line="2225"/>
+        <location filename="texstudio.cpp" line="2166"/>
+        <location filename="texstudio.cpp" line="2226"/>
         <source>You do not have read permission to this file:</source>
         <translation>没有权限读取文件：</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2332"/>
-        <location filename="texstudio.cpp" line="9486"/>
+        <location filename="texstudio.cpp" line="2335"/>
+        <location filename="texstudio.cpp" line="9563"/>
         <source>Open Files</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2366"/>
+        <location filename="texstudio.cpp" line="2369"/>
         <source>Loading of last session failed.</source>
         <translation>上次会话加载失败。</translation>
     </message>
@@ -10055,7 +10153,7 @@ Otherwise there might be random errors and crashes.</source>
 is currently not possible because a modified version of a file
 with this name is open in TeXstudio. You have to save or close
 this other file before you can overwrite it.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2463"/>
@@ -10080,12 +10178,12 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="texstudio.cpp" line="2592"/>
         <source>Numeric permissions</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2593"/>
         <source>Verbose permissions</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2640"/>
@@ -10181,8 +10279,8 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="3504"/>
-        <location filename="texstudio.cpp" line="5822"/>
-        <location filename="texstudio.cpp" line="5851"/>
+        <location filename="texstudio.cpp" line="5889"/>
+        <location filename="texstudio.cpp" line="5918"/>
         <source>No document open</source>
         <translation>没有打开的文档</translation>
     </message>
@@ -10197,64 +10295,64 @@ this other file before you can overwrite it.</source>
         <translation>无法加载词典数据库</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="4122"/>
+        <location filename="texstudio.cpp" line="4124"/>
         <source>Unable to write to settings file %1</source>
         <translation>设置文件 %1 写入失败</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5050"/>
+        <location filename="texstudio.cpp" line="5110"/>
         <source>Quick Start</source>
         <translation>快速开始</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5072"/>
+        <location filename="texstudio.cpp" line="5132"/>
         <source>Quick Beamer Presentation</source>
         <translation>快速Beamer演示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5109"/>
+        <location filename="texstudio.cpp" line="5169"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;当前文件&gt;</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5141"/>
+        <location filename="texstudio.cpp" line="5201"/>
         <source>Type: %1</source>
         <translation>类型： %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5168"/>
+        <location filename="texstudio.cpp" line="5228"/>
         <source>Edit User &amp;Tags</source>
         <translation>编辑用户标签(&amp;T)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5210"/>
+        <location filename="texstudio.cpp" line="5277"/>
         <source>Labels:</source>
         <translation>标签:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5359"/>
+        <location filename="texstudio.cpp" line="5426"/>
         <source>Encoding Aliases: </source>
         <translation>编码别名：</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5398"/>
-        <source>Can't detect the file name.
+        <location filename="texstudio.cpp" line="5465"/>
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>无法检测文件名, 编译器请先保存.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5405"/>
+        <location filename="texstudio.cpp" line="5472"/>
         <source>Can&apos;t detect the file name</source>
         <translation>无法检测文件名</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5524"/>
+        <location filename="texstudio.cpp" line="5591"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>该版本 TeXStudio 没有内置 PDF 查看器.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5544"/>
+        <location filename="texstudio.cpp" line="5611"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10262,329 +10360,329 @@ Do you want to allow and run the new, overriding command?
 (a) Yes, allow the new command for this document (only if you trust this document)
 (b) Yes, allow the new command to be used for all documents (only if you trust the new command to handle arbitrary documents)
 (c) No, do not use the command &quot;%3&quot; and run the default &quot;%2&quot; command</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5550"/>
+        <location filename="texstudio.cpp" line="5617"/>
         <source>(a) allow for this document</source>
         <translation>(a) 仅为此文档允许</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5551"/>
+        <location filename="texstudio.cpp" line="5618"/>
         <source>(b) allow for all documents</source>
         <translation>(b) 为所有文档允许</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5552"/>
+        <location filename="texstudio.cpp" line="5619"/>
         <source>(c) use the default command</source>
         <translation>(c) 使用默认命令</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5611"/>
+        <location filename="texstudio.cpp" line="5678"/>
         <source>Unknown internal command: %1</source>
         <translation>未知内部命令： %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5694"/>
+        <location filename="texstudio.cpp" line="5761"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>文件夹无法写入.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5696"/>
+        <location filename="texstudio.cpp" line="5763"/>
         <source>Could not start %1.</source>
         <translation>无法启动 %1.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5724"/>
+        <location filename="texstudio.cpp" line="5791"/>
         <source>Error:</source>
         <translation>错误：</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5769"/>
+        <location filename="texstudio.cpp" line="5836"/>
         <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5787"/>
+        <location filename="texstudio.cpp" line="5854"/>
         <source>Do not show this message again.</source>
         <translation>不再显示此消息。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5790"/>
+        <location filename="texstudio.cpp" line="5857"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5815"/>
+        <location filename="texstudio.cpp" line="5882"/>
         <source>No open project or tex file to clean.</source>
         <translation>无可清理项目或 tex 文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5855"/>
+        <location filename="texstudio.cpp" line="5922"/>
         <source>Text Analysis</source>
         <translation>文本分析</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5876"/>
+        <location filename="texstudio.cpp" line="5943"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5905"/>
+        <location filename="texstudio.cpp" line="5972"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>查看日志前请先保存并编译文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="6052"/>
-        <location filename="texstudio.cpp" line="6061"/>
+        <location filename="texstudio.cpp" line="6119"/>
+        <location filename="texstudio.cpp" line="6128"/>
         <source>File not found</source>
         <translation>未找到文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="6054"/>
-        <location filename="texstudio.cpp" line="6063"/>
+        <location filename="texstudio.cpp" line="6121"/>
+        <location filename="texstudio.cpp" line="6130"/>
         <source>Could not open browser</source>
         <translation>无法打开浏览器</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="6494"/>
+        <location filename="texstudio.cpp" line="6561"/>
         <source>You have to save the file before it can be defined as root document.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7438"/>
+        <location filename="texstudio.cpp" line="7507"/>
         <source>Close document</source>
         <translation>关闭文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7439"/>
+        <location filename="texstudio.cpp" line="7508"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7440"/>
+        <location filename="texstudio.cpp" line="7509"/>
         <source>Open all related documents</source>
         <translation>打开所有的相关文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7441"/>
+        <location filename="texstudio.cpp" line="7510"/>
         <source>Close all related documents</source>
         <translation>关闭所有的相关文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7443"/>
+        <location filename="texstudio.cpp" line="7512"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7445"/>
+        <location filename="texstudio.cpp" line="7514"/>
         <source>Show all open documents in this tree</source>
         <translation>在此显示所有打开文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7447"/>
+        <location filename="texstudio.cpp" line="7516"/>
         <source>Show only current document in this tree</source>
         <translation>在此显示当前文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7450"/>
+        <location filename="texstudio.cpp" line="7519"/>
         <source>Move document to &amp;front</source>
         <translation>文档移到最上(&amp;F)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7451"/>
+        <location filename="texstudio.cpp" line="7520"/>
         <source>Move document to &amp;end</source>
         <translation>移动到文档结尾(&amp;E)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7453"/>
-        <location filename="texstudio.cpp" line="7501"/>
+        <location filename="texstudio.cpp" line="7522"/>
+        <location filename="texstudio.cpp" line="7570"/>
         <source>Expand Subitems</source>
         <translation>展开子项目</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7454"/>
-        <location filename="texstudio.cpp" line="7502"/>
+        <location filename="texstudio.cpp" line="7523"/>
+        <location filename="texstudio.cpp" line="7571"/>
         <source>Collapse Subitems</source>
         <translation>折叠子项目</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7455"/>
+        <location filename="texstudio.cpp" line="7524"/>
         <source>Expand all documents</source>
         <translation>展开所有文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7456"/>
+        <location filename="texstudio.cpp" line="7525"/>
         <source>Collapse all documents</source>
         <translation>折叠所有文档</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7465"/>
+        <location filename="texstudio.cpp" line="7534"/>
         <source>Insert</source>
         <translation>插入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7466"/>
-        <location filename="texstudio.cpp" line="7467"/>
+        <location filename="texstudio.cpp" line="7535"/>
+        <location filename="texstudio.cpp" line="7536"/>
         <source>Insert as %1</source>
         <translation>插入为 %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7469"/>
+        <location filename="texstudio.cpp" line="7538"/>
         <source>Find Usages</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7480"/>
+        <location filename="texstudio.cpp" line="7549"/>
         <source>Insert Label</source>
         <translation>插入标签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7484"/>
+        <location filename="texstudio.cpp" line="7553"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
         <translation>插入 %1 到标签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7488"/>
+        <location filename="texstudio.cpp" line="7557"/>
         <source>Create Label</source>
         <translation>新建标签</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8111"/>
-        <location filename="texstudio.cpp" line="8122"/>
+        <location filename="texstudio.cpp" line="8180"/>
+        <location filename="texstudio.cpp" line="8191"/>
         <source>Add to favorites</source>
         <translation>添加到收藏夹</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8112"/>
-        <location filename="texstudio.cpp" line="8168"/>
+        <location filename="texstudio.cpp" line="8181"/>
+        <location filename="texstudio.cpp" line="8237"/>
         <source>Remove</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8113"/>
+        <location filename="texstudio.cpp" line="8182"/>
         <source>Remove all</source>
         <translation>全部删除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8117"/>
+        <location filename="texstudio.cpp" line="8186"/>
         <source>Remove from favorites</source>
         <translation>从收藏夹删除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8118"/>
+        <location filename="texstudio.cpp" line="8187"/>
         <source>Remove all favorites</source>
         <translation>清空收藏夹</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8327"/>
+        <location filename="texstudio.cpp" line="8396"/>
         <source>commit comment:</source>
         <translation>注释 :</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8329"/>
+        <location filename="texstudio.cpp" line="8398"/>
         <source>check in whole directory ?</source>
         <translation>提交整个目录 ?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8640"/>
+        <location filename="texstudio.cpp" line="8717"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>注意: 如果文本被编辑则自动关闭对话框 !</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8936"/>
+        <location filename="texstudio.cpp" line="9013"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>文件 &quot;%1&quot; 不存在。
 是否创建该文件？</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8958"/>
+        <location filename="texstudio.cpp" line="9035"/>
         <source>Save Profile</source>
         <translation>保存配置文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8958"/>
-        <location filename="texstudio.cpp" line="8968"/>
+        <location filename="texstudio.cpp" line="9035"/>
+        <location filename="texstudio.cpp" line="9045"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TeXstudio 配置文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8968"/>
+        <location filename="texstudio.cpp" line="9045"/>
         <source>Load Profile</source>
         <translation>加载配置文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9018"/>
+        <location filename="texstudio.cpp" line="9095"/>
         <source>Failed to read profile file %1.</source>
         <translation>无法读取配置文件 %1 。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9141"/>
+        <location filename="texstudio.cpp" line="9218"/>
         <source>Problem</source>
         <translation>问题</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9141"/>
+        <location filename="texstudio.cpp" line="9218"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9146"/>
+        <location filename="texstudio.cpp" line="9223"/>
         <source>Find Word Repetitions</source>
         <translation>查找重复单词</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9155"/>
+        <location filename="texstudio.cpp" line="9232"/>
         <source>&amp;Find Next</source>
         <translation>查找下一个(&amp;)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9157"/>
+        <location filename="texstudio.cpp" line="9234"/>
         <source>&amp;Find Previous</source>
         <translation>查找上一个(&amp;F)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9208"/>
+        <location filename="texstudio.cpp" line="9285"/>
         <source>Reached beginning of text.</source>
         <translation>已到达文本开始。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9208"/>
+        <location filename="texstudio.cpp" line="9285"/>
         <source>Reached end of text.</source>
         <translation>已到达文本结尾。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9486"/>
-        <location filename="texstudio.cpp" line="9695"/>
-        <location filename="texstudio.cpp" line="9698"/>
+        <location filename="texstudio.cpp" line="9563"/>
+        <location filename="texstudio.cpp" line="9772"/>
+        <location filename="texstudio.cpp" line="9775"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeX 文件 (*.tex);;所有文件 (*)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9656"/>
+        <location filename="texstudio.cpp" line="9733"/>
         <source>You do not have read permission to this file.</source>
         <translation>没有权限读取文件。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9695"/>
+        <location filename="texstudio.cpp" line="9772"/>
         <source>Open Compare File</source>
         <translation>打开比较文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9698"/>
+        <location filename="texstudio.cpp" line="9775"/>
         <source>Open Base File</source>
         <translation>打开基本文件</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9746"/>
+        <location filename="texstudio.cpp" line="9823"/>
         <source>Conflict!</source>
         <translation>冲突 !</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9747"/>
+        <location filename="texstudio.cpp" line="9824"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -10596,12 +10694,12 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9791"/>
+        <location filename="texstudio.cpp" line="9868"/>
         <source>SVN Conflict!</source>
         <translation>SVN 冲突！</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9792"/>
+        <location filename="texstudio.cpp" line="9869"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -10612,76 +10710,76 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9889"/>
-        <location filename="texstudio.cpp" line="9980"/>
-        <location filename="texstudio.cpp" line="9986"/>
+        <location filename="texstudio.cpp" line="9966"/>
+        <location filename="texstudio.cpp" line="10057"/>
+        <location filename="texstudio.cpp" line="10063"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudio 紧急情况</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9893"/>
+        <location filename="texstudio.cpp" line="9970"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
 
 </source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9896"/>
+        <location filename="texstudio.cpp" line="9973"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9897"/>
+        <location filename="texstudio.cpp" line="9974"/>
         <source>Yes, try to recover</source>
         <translation>是，尝试恢复</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9898"/>
-        <location filename="texstudio.cpp" line="9903"/>
-        <location filename="texstudio.cpp" line="9982"/>
+        <location filename="texstudio.cpp" line="9975"/>
+        <location filename="texstudio.cpp" line="9980"/>
+        <location filename="texstudio.cpp" line="10059"/>
         <source>No, kill the program</source>
         <translation>不，终止程序</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9900"/>
+        <location filename="texstudio.cpp" line="9977"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9901"/>
+        <location filename="texstudio.cpp" line="9978"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>是，停止循环并尝试恢复</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9902"/>
+        <location filename="texstudio.cpp" line="9979"/>
         <source>Yes, continue the loop</source>
         <translation>是，继续循环</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9981"/>
+        <location filename="texstudio.cpp" line="10058"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9982"/>
+        <location filename="texstudio.cpp" line="10059"/>
         <source>Yes</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9986"/>
+        <location filename="texstudio.cpp" line="10063"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>我想死掉，却什么都没有发生。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10062"/>
+        <location filename="texstudio.cpp" line="10139"/>
         <source>System Report</source>
         <translation>系统报告</translation>
     </message>
@@ -10694,27 +10792,27 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="utilsSystem.cpp" line="488"/>
         <source>Launching Windows Explorer Failed</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="490"/>
         <source>Could not find explorer.exe in path to launch Windows Explorer.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="529"/>
         <source>Show in Explorer</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="531"/>
         <source>Show in Finder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="533"/>
         <source>Show Containing Folder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -10840,7 +10938,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 &quot;Minimum word length (all)&quot;: A phrase is only shown, if all of its words have at least this many characters. (e.g. &quot;a test&quot; has 1 character)
 &quot;Completely ignore&quot;: Shorter words are completely ignored.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown.)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="224"/>
@@ -10875,7 +10973,7 @@ If &quot;minimum word length (one)&quot; is selected, a phrase is only shown if 
 If &quot;minimum word length (all)&quot; is selected, a phrase is only shown if all words of it has at least so many characters. (e.g. &quot;a test&quot; has 1 character)
 If &quot;completely ignore&quot; is selected, shorter words are completely ignore.
 (e.g. with length 3, the sentence &quot;this is a test&quot; is equally to &quot;this test&quot;, while the other options would separate it in &quot;this is&quot;, &quot;is a&quot;, &quot;a test&quot;, even if non of this phrases would be shown)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="279"/>
@@ -10893,7 +10991,7 @@ If &quot;completely ignore&quot; is selected, shorter words are completely ignor
         <source>The controls in this row determine how many consecuting words are treated as a single phrase.
 If minimum and maximum are selected, exactly so many words are taken. (e.g. with 2,  in the sentence above: &quot;the controls&quot;, &quot;controls in&quot;,...)
 If only maximum is selected, words at the beginning are also taken. (e.g.  &quot;the&quot;, &quot;the controls&quot;, &quot;controls in&quot;,...)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="332"/>
@@ -10904,7 +11002,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
         <location filename="textanalysis.ui" line="351"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated at words of different phrases.
 If not, end characters are ignored.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="355"/>
@@ -10915,12 +11013,12 @@ If not, end characters are ignored.</source>
         <location filename="textanalysis.ui" line="362"/>
         <source>If &quot;respect phrase end chars&quot; is checked, words before and after a given character are always treated as words of different phrases.
 If not, end characters are ignored.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="366"/>
         <source>Respect phrase end chars:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="379"/>
@@ -11104,12 +11202,12 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="updatechecker.cpp" line="130"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="133"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="150"/>
@@ -11119,7 +11217,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="updatechecker.cpp" line="153"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="169"/>
@@ -11195,7 +11293,7 @@ and (?&lt;=\s|^) to mark replacements which should only occur before a word.
 
 
 You can use the special value ?txs-start to start the script at txs start.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="297"/>
@@ -11357,7 +11455,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="unixutils.cpp" line="60"/>
         <source>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Expands to&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;directory of current file&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;file name (with full path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;file name (without path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -11401,7 +11499,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="115"/>
         <source>The number of the ps page corresponding to the first numberline indexed in the toc file</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="131"/>
