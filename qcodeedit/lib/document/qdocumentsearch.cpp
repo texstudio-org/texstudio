@@ -201,6 +201,7 @@ void QDocumentSearch::clearMatches()
 		QDocumentLine(h).clearOverlays(sid);
 
 	m_highlights.clear();
+    m_newReplacementOverlays.clear();
 	m_searchedScope = QDocumentCursor();
 	//qDebug("clearing matches");
 
