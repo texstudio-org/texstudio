@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2558,7 +2558,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location line="+356"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -6579,7 +6579,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location line="+3"/>
         <source>Ctrl+Alt+Left</source>
-        <translation>Ctrl+Alt+←</translation>
+        <translation></translation>
     </message>
     <message>
         <location line="+8"/>
