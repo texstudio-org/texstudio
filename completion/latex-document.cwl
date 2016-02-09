@@ -251,7 +251,7 @@
 \inputlineno#*
 \it#*
 \item
-\item[%<text%>] %<description%>
+\item[%<label%>] %<description%>
 \iterate#*
 \itshape
 \kill#T
