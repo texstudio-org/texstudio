@@ -175,12 +175,31 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 				hc.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
 											
 				hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
-                m_editor->addMark(ln,Qt::darkYellow,"search"); // actual would need special treatment as it should be checked for the whole document, but one match per line is already sufficient
 				m_highlights.insert(l.handle());
 			}
 		} else hc.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::ThroughFolding);
 	}
-
+    int begLine=0;
+    int endLine=d->lines();
+    int offset=0;
+    int endOffset=-1;
+    if (m_scope.isValid() && m_scope.hasSelection()){
+        QDocumentSelection boundaries=m_scope.selection();
+        begLine=boundaries.startLine;
+        endLine=boundaries.endLine+1;
+        offset=boundaries.start;
+        endOffset=boundaries.end;
+    }
+    for(int i=begLine;i<endLine;i++){
+        QString txt=d->line(i).text();
+        if((endOffset>=0)&&(i+1==endLine)){
+            txt=txt.left(endOffset);
+        }
+        if(m_regexp.indexIn(txt,offset)>-1){
+            m_editor->addMark(i,Qt::darkYellow,"search");
+        }
+        offset=0;
+    }
 	m_editor->viewport()->update();
 }
 
