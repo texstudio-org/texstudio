@@ -541,7 +541,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				addMagicComment(text.mid(rxMagicTexComment.matchedLength()).trimmed(), i, MapOfMagicComments, iter_magicComment);
 			} else if (rxMagicBibComment.indexIn(text) == 0) {
 				// workaround to also support "% !BIB program = biber" syntax used by TeXShop and TeXWorks
-				text = text.mid(rxMagicTexComment.matchedLength()).trimmed();
+				text = text.mid(rxMagicBibComment.matchedLength()).trimmed();
 				QString name;
 				QString val;
 				splitMagicComment(text, name, val);
