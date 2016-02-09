@@ -140,7 +140,8 @@ HEADERS += texstudio.h \
     searchquery.h \
     bidiextender.h \
     tests/utilsversion_t.h \
-    unixutils.h
+    unixutils.h \
+	libqmarkedscrollbar-master/src/markedscrollbar.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -233,7 +234,8 @@ SOURCES += main.cpp \
     tests/smallUsefulFunctions_t.cpp \
     searchquery.cpp \
     bidiextender.cpp \
-    unixutils.cpp
+    unixutils.cpp \
+    libqmarkedscrollbar-master/src/markedscrollbar.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
