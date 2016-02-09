@@ -40,7 +40,7 @@
 #include "smallUsefulFunctions.h"
 #include <QDrag>
 
-#include "libqmarkedscrollbar-master/src/markedscrollbar.h"
+#include "libqmarkedscrollbar/src/markedscrollbar.h"
 
 #if QT_VERSION >= 0x040600
 #include <QPropertyAnimation>
