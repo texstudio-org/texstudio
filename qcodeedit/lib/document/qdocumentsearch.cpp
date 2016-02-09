@@ -175,6 +175,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 				hc.setColumnNumber(column + m_regexp.matchedLength(), QDocumentCursor::KeepAnchor);
 											
 				hc.line().addOverlay(QFormatRange(hc.anchorColumnNumber(), hc.columnNumber() - hc.anchorColumnNumber(), sid));
+                m_editor->addMark(ln,Qt::darkYellow,"search"); // actual would need special treatment as it should be checked for the whole document, but one match per line is already sufficient
 				m_highlights.insert(l.handle());
 			}
 		} else hc.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::ThroughFolding);
@@ -200,6 +201,8 @@ void QDocumentSearch::clearMatches()
 	foreach (QDocumentLineHandle* h, m_highlights)
 		QDocumentLine(h).clearOverlays(sid);
 
+    m_editor->removeMark("search");
+    m_editor->removeMark("replace");
 	m_highlights.clear();
     m_newReplacementOverlays.clear();
 	m_searchedScope = QDocumentCursor();
@@ -786,6 +789,7 @@ void QDocumentSearch::updateReplacementOverlays(){
 		return;
 	}
 	int rid = d->getFormatId("replacement");
+    m_editor->removeMark("replace");
 	if (!hasOption(HighlightReplacements) || !rid)  {
 		m_newReplacementOverlays.clear();
 		return;
@@ -795,13 +799,15 @@ void QDocumentSearch::updateReplacementOverlays(){
 		QDocumentLine startLine = d->line(boundaries.startLine);
 		QDocumentLine endLine = d->line(boundaries.endLine);
 		m_highlightedReplacements.insert(startLine.handle());
-		if (boundaries.startLine == boundaries.endLine)  //single line replacement
+        if (boundaries.startLine == boundaries.endLine){  //single line replacement
 			startLine.addOverlay(QFormatRange(boundaries.start, boundaries.end - boundaries.start, rid));
-		else {
+            m_editor->addMark(boundaries.startLine,Qt::red,"replace");
+		} else {
 			//multi line replacement
 			m_highlightedReplacements.insert(endLine.handle());
 			startLine.addOverlay(QFormatRange(boundaries.start, startLine.length() - boundaries.start, rid));
 			endLine.addOverlay(QFormatRange(0, boundaries.end, rid));
+            m_editor->addMarkRange(boundaries.startLine,boundaries.endLine,Qt::red,"replace");
 			for (int i=boundaries.startLine+1; i<boundaries.endLine; i++){
 				QDocumentLine curLine = d->line(i);
 				m_highlightedReplacements.insert(curLine.handle());

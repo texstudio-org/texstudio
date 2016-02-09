@@ -363,6 +363,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		    m_disableAccentHack=disable;
 		}
 
+        void addMark(int pos,QColor color,QString type="");
+        void addMarkRange(int start,int end,QColor color,QString type="");
+        void removeMark(int pos);
+        void removeMark(QString type);
+        void removeAllMarks();
+
 	public slots:
 		void undo();
 		void redo();
