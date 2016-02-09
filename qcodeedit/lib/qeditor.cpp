@@ -40,6 +40,8 @@
 #include "smallUsefulFunctions.h"
 #include <QDrag>
 
+#include "libqmarkedscrollbar-master/src/markedscrollbar.h"
+
 #if QT_VERSION >= 0x040600
 #include <QPropertyAnimation>
 #endif
@@ -425,6 +427,12 @@ void QEditor::init(bool actions,QDocument *doc)
 	viewport()->setAttribute(Qt::WA_KeyCompression, true);
 	viewport()->setAttribute(Qt::WA_InputMethodEnabled, true);
 	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
+
+
+    MarkedScrollBar *scrlBar=new MarkedScrollBar();
+    scrlBar->enableClipping(false);
+    setVerticalScrollBar(scrlBar);
+    //addMark(5,Qt::red);
 
 	verticalScrollBar()->setSingleStep(1);
 	horizontalScrollBar()->setSingleStep(20);
@@ -5964,6 +5972,33 @@ bool QEditor::isMirrored(){
             macroing=false;
     }
     return macroing;
+}
+
+void QEditor::addMark(int pos, QColor color, QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addMark(pos,color,type);
+    scrlBar->repaint();
+}
+
+void QEditor::removeMark(int pos){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->removeMark(pos);
+}
+
+void QEditor::removeMark(QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->removeMark(type);
+}
+
+void QEditor::removeAllMarks(){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->removeAllMarks();
+    scrlBar->removeAllShades();
+}
+
+void QEditor::addMarkRange(int start, int end, QColor color, QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addShade(start,end,color,type);
 }
 
 /*! @} */
