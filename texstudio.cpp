@@ -8921,6 +8921,7 @@ void Texstudio::generateBracketInverterMirror()
 	REQUIRE(currentEditor()->document() && currentEditor()->document()->languageDefinition());
 	QDocumentCursor orig, to;
 	currentEditor()->cursor().getMatchingPair(orig, to, false);
+	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 
 	PlaceHolder ph;
 	ph.cursor = orig.selectionStart();
@@ -8938,6 +8939,7 @@ void Texstudio::jumpToBracket()
 	QDocumentCursor orig, to;
 	const QDocumentCursor se = currentEditor()->cursor().selectionEnd();
 	se.getMatchingPair(orig, to, false);
+	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 	if (orig.selectionEnd() == se) currentEditor()->setCursor(to.selectionStart());
 	else currentEditor()->setCursor(to.selectionEnd());
 }
@@ -8949,7 +8951,7 @@ void Texstudio::selectBracket()
 	if (!currentEditor()->document()->languageDefinition()) return;
 	QDocumentCursor orig, to;
 	currentEditor()->cursor().getMatchingPair(orig, to, !sender()->property("minimal").toBool());
-	if (!orig.isValid() && !to.isValid()) return;
+	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 
 	if (sender()->property("line").toBool()) {
 		if (to < orig) to.setColumnNumber(0);
