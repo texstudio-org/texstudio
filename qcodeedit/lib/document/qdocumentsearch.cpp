@@ -190,15 +190,18 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
         offset=boundaries.start;
         endOffset=boundaries.end;
     }
-    for(int i=begLine;i<endLine;i++){
-        QString txt=d->line(i).text();
-        if((endOffset>=0)&&(i+1==endLine)){
-            txt=txt.left(endOffset);
+    if(clearSelection){
+        // don't run again when only visibleLines is changed
+        for(int i=begLine;i<endLine;i++){
+            QString txt=d->line(i).text();
+            if((endOffset>=0)&&(i+1==endLine)){
+                txt=txt.left(endOffset);
+            }
+            if(m_regexp.indexIn(txt,offset)>-1){
+                m_editor->addMark(i,Qt::darkYellow,"search");
+            }
+            offset=0;
         }
-        if(m_regexp.indexIn(txt,offset)>-1){
-            m_editor->addMark(i,Qt::darkYellow,"search");
-        }
-        offset=0;
     }
 	m_editor->viewport()->update();
 }
