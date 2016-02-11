@@ -82,6 +82,23 @@ void MarkedScrollBar::removeMark(int position)
         }
     }
 }
+/*!
+    Removes the mark at \a position.
+
+    \param position The position of the mark to be removed if type is correct.
+*/
+void MarkedScrollBar::removeMark(int position,QString type)
+{
+    QMutableListIterator<markData> i(m_marks);
+    while (i.hasNext())
+    {
+        if (i.next().pos == position && (type.isEmpty() || i.next().identifier == type) )
+        {
+            i.remove();
+            break;
+        }
+    }
+}
 
 /*!
     Removes the mark identified by \a identifier.

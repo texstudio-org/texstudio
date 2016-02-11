@@ -947,6 +947,7 @@ void LatexEditorView::removeBookmark(QDocumentLineHandle *dlh, int bookmarkNumbe
 	int rmid = bookMarkId(bookmarkNumber);
 	if (hasBookmark(dlh, bookmarkNumber)) {
 		document->removeMark(dlh, rmid);
+        editor->removeMark(dlh->position());
 		emit bookmarkRemoved(dlh);
 	}
 }
@@ -959,10 +960,15 @@ void LatexEditorView::removeBookmark(int lineNr, int bookmarkNumber)
 void LatexEditorView::addBookmark(int lineNr, int bookmarkNumber)
 {
 	int rmid = bookMarkId(bookmarkNumber);
-	if (bookmarkNumber >= 0)
-		document->line(document->findNextMark(rmid)).removeMark(rmid);
-	if (!document->line(lineNr).hasMark(rmid))
+    if (bookmarkNumber >= 0){
+        int ln=document->findNextMark(rmid);
+		document->line(ln).removeMark(rmid);
+        editor->removeMark(ln);
+    }
+    if (!document->line(lineNr).hasMark(rmid)){
 		document->line(lineNr).addMark(rmid);
+        editor->addMark(lineNr,Qt::darkMagenta,"bookmark");
+    }
 }
 
 bool LatexEditorView::hasBookmark(int lineNr, int bookmarkNumber)
@@ -986,6 +992,8 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 	int rmid = bookMarkId(bookmarkNumber);
 	if (line.hasMark(rmid)) {
 		line.removeMark(rmid);
+        int ln=document->indexOf(line);
+        editor->removeMark(ln);
 		emit bookmarkRemoved(line.handle());
 		return false;
 	}
@@ -993,6 +1001,7 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int ln = editor->document()->findNextMark(rmid);
 		if (ln >= 0) {
 			editor->document()->line(ln).removeMark(rmid);
+            editor->removeMark(ln);
 			emit bookmarkRemoved(editor->document()->line(ln).handle());
 		}
 	}
@@ -1000,10 +1009,14 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int rmid = bookMarkId(i);
 		if (line.hasMark(rmid)) {
 			line.removeMark(rmid);
+            int ln=document->indexOf(line);
+            editor->removeMark(ln);
 			emit bookmarkRemoved(line.handle());
 		}
 	}
 	line.addMark(rmid);
+    int ln=document->indexOf(line);
+    editor->addMark(ln,Qt::darkMagenta,"bookmark");
 	emit bookmarkAdded(line.handle(), bookmarkNumber);
 	return true;
 }
