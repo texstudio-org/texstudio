@@ -5980,14 +5980,16 @@ void QEditor::addMark(int pos, QColor color, QString type){
     scrlBar->repaint();
 }
 
-void QEditor::removeMark(int pos){
+void QEditor::removeMark(int pos,QString type){
     MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
-    scrlBar->removeMark(pos);
+    scrlBar->removeMark(pos,type);
+    scrlBar->repaint();
 }
 
 void QEditor::removeMark(QString type){
     MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
     scrlBar->removeMark(type);
+    scrlBar->repaint();
 }
 
 void QEditor::removeAllMarks(){
