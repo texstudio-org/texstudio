@@ -1,0 +1,11 @@
+%!
+/N{def}def/B{bind def}N/S{exch}N/X{SN}B
+/uscale 1 N
+/chp 10 string N
+/acp {currentpoint transform} B /rcp {chp cvs print} B
+/Cpos{/ishr X uscale mul /hbox X  uscale mul /dbox X  uscale mul /wbox X 
+acp /ycpt X ishr{wbox neg add}{dbox neg hbox add /hbox X 0 /dbox X }ifelse /xcpt X
+(x1=) print xcpt  rcp ( y1=) print ycpt hbox add rcp
+( x2=) print xcpt wbox add rcp ( y2=) print ycpt dbox add rcp =
+} B
+
