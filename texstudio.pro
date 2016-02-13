@@ -305,22 +305,23 @@ macx {
 # ###############################
 unix:!macx {
     isEmpty( PREFIX ):PREFIX = /usr
+    isEmpty( DATADIR ):DATADIR = $${PREFIX}/share
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
-    utilities.path = $${PREFIX}/share/texstudio
-    manual.path = $${PREFIX}/share/texstudio
+    utilities.path = $${DATADIR}/texstudio
+    manual.path = $${DATADIR}/texstudio
     utilities.files = utilities/texstudio16x16.png \
         utilities/texstudio22x22.png \
         utilities/texstudio32x32.png \
         utilities/texstudio48x48.png \
         utilities/texstudio64x64.png \
         utilities/texstudio128x128.png
-    applicationmenu.path = $${PREFIX}/share/applications
+    applicationmenu.path = $${DATADIR}/applications
     applicationmenu.files = utilities/texstudio.desktop
-    icon.path = $${PREFIX}/share/icons/hicolor/scalable/apps
+    icon.path = $${DATADIR}/icons/hicolor/scalable/apps
     icon.files = utilities/texstudio.svg
     isEmpty(NO_APPDATA) {
-      appdata.path = /usr/share/appdata
+      appdata.path = $${DATADIR}/appdata
       appdata.files = utilities/texstudio.appdata.xml
       INSTALLS += appdata
     }
