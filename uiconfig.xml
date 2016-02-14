@@ -199,17 +199,17 @@
   <menu id="equations" text="Math Equations">
         <insert id="equation" text="env equation" insert="\begin{equation}\label{%&lt;key%>}%\%|%\\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
 	<insert id="equation*" text="env equation*" insert="\begin{equation*}%\%|%\\end{equation*}"/>
-	<insert id="align" text="env align" insert="\begin{align}%\%|%\\end{align}"/>  
-        <insert id="align*" text="env align*" insert="\begin{align*}%\%|%\\end{align*}"/>
-        <insert id="alignat" text="env alignat" insert="\begin{alignat}%\%|%\\end{alignat}"/>  
-        <insert id="alignat*" text="env alignat*" insert="\begin{alignat*}%\%|%\\end{alignat*}"/>
-       	<insert id="flalign" text="env flalign" insert="\begin{flalign}%\%|%\\end{flalign}"/>  
-        <insert id="flalign*" text="env flalign*" insert="\begin{flalign*}%\%|%\\end{flalign*}"/>
-        <insert id="gather" text="env gather" insert="\begin{gather}%\%|%\\end{gather}"/>  
-        <insert id="gather*" text="env gather*" insert="\begin{gather*}%\%|%\\end{gather*}"/>
-        <insert id="multiline" text="env multiline" insert="\begin{multiline}%\%|%\\end{multiline}"/>  
-        <insert id="multiline*" text="env multiline*" insert="\begin{multiline*}%\%|%\\end{multiline*}"/>
-	<insert id="cases" text="env cases" insert="\begin{cases}%\%|%\\end{cases}"/>
+	<insert id="align" text="env align (amsmath)" insert="\begin{align}%\%|%\\end{align}"/>  
+        <insert id="align*" text="env align* (amsmath)" insert="\begin{align*}%\%|%\\end{align*}"/>
+        <insert id="alignat" text="env alignat (amsmath)" insert="\begin{alignat}%\%|%\\end{alignat}"/>  
+        <insert id="alignat*" text="env alignat* (amsmath)" insert="\begin{alignat*}%\%|%\\end{alignat*}"/>
+       	<insert id="flalign" text="env flalign (amsmath)" insert="\begin{flalign}%\%|%\\end{flalign}"/>  
+        <insert id="flalign*" text="env flalign* (amsmath)" insert="\begin{flalign*}%\%|%\\end{flalign*}"/>
+        <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\%|%\\end{gather}"/>  
+        <insert id="gather*" text="env gather* (amsmath)" insert="\begin{gather*}%\%|%\\end{gather*}"/>
+        <insert id="multiline" text="env multiline (amsmath)" insert="\begin{multiline}%\%|%\\end{multiline}"/>  
+        <insert id="multiline*" text="env multiline* (amsmath)" insert="\begin{multiline*}%\%|%\\end{multiline*}"/>
+	<insert id="cases" text="env cases (amsmath)" insert="\begin{cases}%\%|%\\end{cases}"/>
   </menu>   
       
   
@@ -246,7 +246,7 @@
     <insert id="tanh" text="\tanh" insert="\tanh "/>
   </menu>
   
-  
+  <!-- deactivated as they are user defined theorems and not part of any package
   <menu id="definitions" text="Math &amp;Definitions">
      <insert id="definition" text="definition" insert="\begin{definition}\label{%&lt;key%>}%\%|%\\end{definition}"/>
      <insert id="remark" text="remark" insert="\begin{remark}\label{%&lt;key%>}%\%|%\\end{remark}"/>
@@ -256,6 +256,7 @@
      <insert id="corollary" text="corollary" insert="\begin{corollary}\label{%&lt;key%>}%\%|%\\end{corollary}"/>
      <insert id="proof" text="proof" insert="\begin{proof}%\%|%\\end{proof}"/>
   </menu>
+  -->
    
   <menu id="fontstyles" text="Math Font St&amp;yles">
     <insert id="mathrm" text="Roman - \mathrm{}" insert="\mathrm{%|}" icon="font_mathrm"/>
@@ -264,8 +265,8 @@
     <insert id="mathsf" text="Sans Serif - \mathsf{}" insert="\mathsf{%|}" icon="font_mathsf"/>
     <insert id="mathtt" text="Typewriter - \mathtt{}" insert="\mathtt{%|}" icon="font_mathtt"/>
     <insert id="mathcal" text="Calligraphic - \mathcal{}" insert="\mathcal{%|}" icon="font_mathcal"/>
-    <insert id="mathbb" text="Blackboard Bold - \mathbb{}" insert="\mathbb{%|}" icon="font_mathbb"/>
-    <insert id="mathfrak" text="Fraktur - \mathfrak{}" insert="\mathfrak{%|}" icon="font_mathfrak"/>
+    <insert id="mathbb" text="Blackboard Bold - \mathbb{} (amssymb)" insert="\mathbb{%|}" icon="font_mathbb"/>
+    <insert id="mathfrak" text="Fraktur - \mathfrak{} (amssymb)" insert="\mathfrak{%|}" icon="font_mathfrak"/>
   </menu>
 
   <menu id="grouping" text="Math Stacking symbols">
@@ -276,9 +277,11 @@
      <insert id="overleftarrow" text="\overleftarrow" insert="\overleftarrow{%&lt;content%>}"/>
      <insert id="overrightarrow" text="\overrightarrow" insert="\overrightarrow{%&lt;content%>}"/>
      <insert id="stackrel" text="\stackrel" insert="\stackrel{%&lt;top symbol%>}{%&lt;bottom symbol%>}"/>
-     <insert id="overset" text="\overset" insert="\overset{%&lt;top symbol%>}{%&lt;symbol%>}"/>
-     <insert id="underset" text="\underset" insert="\underset{%&lt;bottom symbol%>}{%&lt;symbol%>}"/>
+     <insert id="overset" text="\overset (amsmath)" insert="\overset{%&lt;top symbol%>}{%&lt;symbol%>}"/>
+     <insert id="underset" text="\underset (amsmath)" insert="\underset{%&lt;bottom symbol%>}{%&lt;symbol%>}"/>
+     <!-- no package found where following command is valid
      <insert id="sideset" text="\sideset" insert="\sideset{%&lt;left ind+exp%>}{%&lt;right ind+exp%>}"/>
+    -->
   </menu>
   
   
