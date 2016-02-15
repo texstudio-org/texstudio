@@ -1101,6 +1101,7 @@ Typed text: #a
 triggerMatches[0] == '#a'
 triggerMatches[1] == 'a'
 </pre>
+<p>Note: Triggers are inactive while the completer is active. For example you cannot trigger on <code>\\sec</code> if the completer is open suggesting to complete <code>\section</code>.</p>
 
 <h4>4.5.4.2 Limitation of Scope</h4>
 <p>To the scope in which a macro will be active, you can prepend an expression of the pattern <code>(?[scope-type]:...)</code>.</p>
