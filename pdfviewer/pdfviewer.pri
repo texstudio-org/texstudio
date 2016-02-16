@@ -53,7 +53,9 @@ isEmpty(NO_POPPLER_PREVIEW) {
 
         CONFIG += link_pkgconfig
         PKGCONFIG += $${poppler_qt_pkg}
-        system(pkg-config --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
+
+        PKG_CONFIG_EXE = $$pkgConfigExecutable()
+        system($${PKG_CONFIG_EXE} --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
     }
 } else {
     DEFINES += NO_POPPLER_PREVIEW
