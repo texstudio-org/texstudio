@@ -289,12 +289,10 @@
 \marginpar{right}#*
 \markboth{lefthead}{righthead}#*
 \markright{righthead}#*
-\mathbb{text}#m
 \mathbf{text}#m
 \mathcal{text}#m
 \mathds{text}#m
 \mathellipsis#m
-\mathfrak{text}#m
 \mathgroup#m
 \mathit{text}#m
 \mathnormal{text}#m

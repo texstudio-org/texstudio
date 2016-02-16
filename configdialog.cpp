@@ -640,7 +640,7 @@ void ConfigDialog::comboBoxWithPathHighlighted(const QString &newText)
 
 void ConfigDialog::browseThesaurus()
 {
-	browse(ui.comboBoxThesaurusFileName, tr("Browse thesaurus database"), "Database (*.dat)");
+	browse(ui.comboBoxThesaurusFileName, tr("Select thesaurus database"), "Database (*.dat)");
 }
 
 void ConfigDialog::browseGrammarWordListsDir()
