@@ -475,13 +475,26 @@ unix {
         utilities
 }
 
-DEFINES += HUNSPELL_STATIC
-include(hunspell/hunspell.pri)
+isEmpty(USE_SYSTEM_HUNSPELL){
+  DEFINES += HUNSPELL_STATIC
+  include(hunspell/hunspell.pri)
+} else {
+  CONFIG += link_pkgconfig
+  PKGCONFIG += hunspell
+}
 
 include(qcodeedit/qcodeedit.pri)
 
-DEFINES += QUAZIP_STATIC
-include(quazip/quazip/quazip.pri)
+isEmpty(USE_SYSTEM_QUAZIP) {
+  DEFINES += QUAZIP_STATIC
+  include(quazip/quazip/quazip.pri)
+} else {
+  isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
+  isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
+
+  INCLUDEPATH += $${QUAZIP_INCLUDE}
+  LIBS += $${QUAZIP_LIB}
+}
 
 include(pdfviewer/pdfviewer.pri)
 
