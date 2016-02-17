@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -1846,7 +1846,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>668</width>
+            <width>863</width>
             <height>1289</height>
            </rect>
           </property>
@@ -2126,7 +2126,7 @@ Then you can select a new shortcut by one of the following ways:
               <item row="14" column="2">
                <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
                 <property name="text">
-                 <string>Disable key 'Esc' to close fullscreen-mode</string>
+                 <string>Don't leave full screen mode when pressing &lt;Esc&gt;</string>
                 </property>
                </widget>
               </item>
@@ -3046,7 +3046,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>494</width>
+            <width>863</width>
             <height>644</height>
            </rect>
           </property>
@@ -3527,8 +3527,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>344</width>
-            <height>241</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3789,8 +3789,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>490</width>
-            <height>407</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
