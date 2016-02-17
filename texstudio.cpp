@@ -56,7 +56,6 @@
 #include "fileselector.h"
 #include "utilsUI.h"
 #include "utilsSystem.h"
-#include "gitwidget.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -245,15 +244,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralVSplitter->setChildrenCollapsible(false);
 	centralVSplitter->addWidget(centralFrame);
 	centralVSplitter->setStretchFactor(0, 1);
-
-	TitledPanel *gitPanel = new TitledPanel();
-	GitWidget *gw = new GitWidget();
-	gw->setDocuments(&documents);
-	TitledPanelPage *gitPage = new TitledPanelPage(gw, "git", "git");
-	gitPage->addToolbarActions(gw->actions());
-	gitPanel->appendPage(gitPage);
-	centralVSplitter->addWidget(gitPanel);
-
 
 	mainHSplitter = new QSplitter(Qt::Horizontal, this);
 	mainHSplitter->addWidget(centralVSplitter);
