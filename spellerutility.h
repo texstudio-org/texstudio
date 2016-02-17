@@ -13,7 +13,12 @@
 
 #include "mostQtHeaders.h"
 
+#ifdef HUNSPELL_STATIC
 #include "hunspell/hunspell.hxx"
+#else
+#include <hunspell.hxx>
+#endif
+
 class SpellerUtility: public QObject {
 	Q_OBJECT
 
