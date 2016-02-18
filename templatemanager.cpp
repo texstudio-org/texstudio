@@ -198,7 +198,7 @@ QList<AbstractTemplateResource *> TemplateManager::resourcesFromXMLFile(const QS
 
 TemplateSelector *TemplateManager::createLatexTemplateDialog()
 {
-	TemplateSelector *dialog = new TemplateSelector(tr("Select Latex Template"));
+	TemplateSelector *dialog = new TemplateSelector(tr("Select LaTeX Template"));
 	connect(dialog, SIGNAL(editTemplateRequest(TemplateHandle)), SLOT(editTemplate(TemplateHandle)));
 	connect(dialog, SIGNAL(editTemplateInfoRequest(TemplateHandle)), SLOT(editTemplateInfo(TemplateHandle)));
 

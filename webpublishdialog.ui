@@ -68,7 +68,7 @@ p, li { white-space: pre-wrap; }
         <item row="0" column="2">
          <widget class="QSpinBox" name="compilationspinBox">
           <property name="toolTip">
-           <string>Number of latex compilations for the input file</string>
+           <string>Number of LaTeX compilations for the input file</string>
           </property>
           <property name="minimum">
            <number>1</number>
@@ -105,7 +105,7 @@ p, li { white-space: pre-wrap; }
         <item row="3" column="1" colspan="2">
          <widget class="QLineEdit" name="contentEdit">
           <property name="toolTip">
-           <string>Latex code for the title of the table of contents</string>
+           <string>LaTeX code for the title of the table of contents</string>
           </property>
          </widget>
         </item>
