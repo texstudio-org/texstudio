@@ -7,7 +7,7 @@
 #undef UNDEFINED
 #ifdef UNDEFINED
 static const char* translations[] = {
-QT_TRANSLATE_NOOP("ConfigManager", "&Latex"), 
+QT_TRANSLATE_NOOP("ConfigManager", "&LaTeX"), 
 QT_TRANSLATE_NOOP("ConfigManager", "AMS packages"), 
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{document}"), 
 QT_TRANSLATE_NOOP("ConfigManager", "&Sectioning"), 
