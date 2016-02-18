@@ -52,9 +52,14 @@ isEmpty(NO_POPPLER_PREVIEW) {
         poppler_qt_pkg = poppler-qt$${QT_MAJOR_VERSION}
 
         CONFIG += link_pkgconfig
+
         PKGCONFIG += $${poppler_qt_pkg}
 
-        PKG_CONFIG_EXE = $$pkgConfigExecutable()
+        greaterThan(QT_MAJOR_VERSION,4){
+            PKG_CONFIG_EXE = $$pkgConfigExecutable()
+        }else{
+            PKG_CONFIG_EXE = "pkg-config"
+        }
         system($${PKG_CONFIG_EXE} --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
     }
 } else {
