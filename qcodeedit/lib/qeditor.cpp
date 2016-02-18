@@ -3636,7 +3636,7 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		setCursorPosition(mapToContents(e->pos()));
 
 			m_cursor.clearSelection();
-		}
+	}
 
 	if ( flag(MousePressed) )
 	{
@@ -3682,11 +3682,16 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 			break;
 		}
 
+		setFlag(MousePressed, true);
 		setFlag(MaybeDrag, false);
 
 		repaintCursor();
 		clearCursorMirrors();
 		setCursorPosition(mapToContents(e->pos()));
+
+		m_multiClickCursor = m_cursor;
+		m_multiClickCursor.clearSelection();  // just store the click position
+		m_multiClickCursor.setProperty("isTripleClick", false);
 
 		if ( m_cursor.isValid() )
 		{
@@ -3701,10 +3706,6 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 		} else {
 			//qDebug("invalid cursor");
 		}
-
-		m_multiClickCursor = m_cursor;
-		m_multiClickCursor.clearSelection();  // just store the click position
-		m_multiClickCursor.setProperty("isTripleClick", false);
 
 		m_clickPoint = e->globalPos();
 		m_click.start(qApp->doubleClickInterval(), this);
