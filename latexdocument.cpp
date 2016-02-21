@@ -744,31 +744,35 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
             continue;
         }
 
-	    //// newenvironment ////
+        //// newenvironment ////
         static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
         if (envTokens.contains(cmd)) {
             completerNeedsUpdate = true;
             int optionCount = getArg(args, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
             if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-            firstArg.append("}");
             mUserCommandList.insert(line(i).handle(), "\\end{" + firstArg);
             QStringList lst;
-            lst << "\\begin{" + firstArg << "\\end{" + firstArg;
+            lst << "\\begin{" + firstArg + "}" << "\\end" + firstArg + "}";
             foreach (const QString &elem, lst) {
                 ltxCommands.possibleCommands["user"].insert(elem);
                 if (!removedUserCommands.removeAll(elem)) {
                     addedUserCommands << elem;
                 }
             }
-            for (int j = 0; j < optionCount; j++) {
-                if (j == 0) firstArg.append("{%<1%|%>}");
-                else firstArg.append(QString("{%<%1%>}").arg(j + 1));
+            bool hasDefaultArg = !getArg(args, dlh, 1, ArgumentList::Optional).isNull();
+            int mandatoryOptionCount = hasDefaultArg ? optionCount -1 : optionCount;
+            QString mandatoryArgString;
+            for (int j = 0; j < mandatoryOptionCount; j++) {
+                if (j == 0) mandatoryArgString.append("{%<1%>}");
+                else mandatoryArgString.append(QString("{%<%1%>}").arg(j + 1));
             }
-            //mUserCommandList.insert(line(i).handle(),firstArg);//???
-            mUserCommandList.insert(line(i).handle(), "\\begin{" + firstArg);
+            mUserCommandList.insert(line(i).handle(), "\\begin{" + firstArg + "}" + mandatoryArgString);
+            if (hasDefaultArg) {
+                mUserCommandList.insert(line(i).handle(), "\\begin{" + firstArg + "}" + "[%<opt%>]" + mandatoryArgString);
+            }
             continue;
-	    }
-	    //// newcounter ////
+        }
+        //// newcounter ////
         if (cmd == "\\newcounter") {
             completerNeedsUpdate = true;
             QStringList lst;
