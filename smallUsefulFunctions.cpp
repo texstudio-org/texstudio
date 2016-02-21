@@ -683,6 +683,7 @@ int findCommandWithArgsFromTL(const TokenList &tl, Tokens &cmd, TokenList &args,
 	return result;
 }
 
+
 // returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
 // not in command options. Return value is the index of the first char after the command (or pos if there was no command
 // TODO: currently does not work for command '\\'
@@ -2791,6 +2792,90 @@ QString findRestArg(QDocumentLineHandle *dlh, Tokens::TokenType type, int count)
 	return result + findRestArg(dlh, type, count - 1);
 }
 
+QDebug operator<<(QDebug dbg, Tokens::TokenType tk) {
+	dbg << "TokenType(" << qPrintable(Tokens::tokenTypeName(tk)) << ")";
+	return dbg;
+}
+
+QDebug operator<<(QDebug dbg, Tokens tk) {
+	dbg << qPrintable("Token(\"" + tk.getText() + "\"){"
+					  + QString("type: %1, ").arg(Tokens::tokenTypeName(tk.type))
+					  + QString("subtype: %1, ").arg(Tokens::tokenTypeName(tk.subtype))
+					  + QString("arglevel: %1").arg(tk.argLevel)
+					  + "}"
+					  );
+	return dbg;
+}
+
+void qDebugTokenList(TokenList tl) {
+	qDebug() << "TokenList:";
+	foreach (const Tokens &tk, tl) {
+		qDebug() << "  " << tk;
+	}
+}
+
+QString Tokens::tokenTypeName(TokenType t) {
+#define LITERAL_ENUM(e) case e: return #e;
+	switch(t) {
+	LITERAL_ENUM(none)
+	LITERAL_ENUM(word)
+	LITERAL_ENUM(command)
+	LITERAL_ENUM(braces)
+	LITERAL_ENUM(bracket)
+	LITERAL_ENUM(squareBracket)
+	LITERAL_ENUM(openBrace)
+	LITERAL_ENUM(openBracket)
+	LITERAL_ENUM(openSquare)
+	LITERAL_ENUM(closeBrace)
+	LITERAL_ENUM(closeBracket)
+	LITERAL_ENUM(closeSquareBracket)
+	LITERAL_ENUM(math)
+	LITERAL_ENUM(comment)
+	LITERAL_ENUM(commandUnknown)
+	LITERAL_ENUM(label)
+	LITERAL_ENUM(bibItem)
+	LITERAL_ENUM(file)
+	LITERAL_ENUM(imagefile)
+	LITERAL_ENUM(bibfile)
+	LITERAL_ENUM(keyValArg)
+	LITERAL_ENUM(keyVal_key)
+	LITERAL_ENUM(keyVal_val)
+	LITERAL_ENUM(list)
+	LITERAL_ENUM(text)
+	LITERAL_ENUM(env)
+	LITERAL_ENUM(beginEnv)
+	LITERAL_ENUM(def)
+	LITERAL_ENUM(labelRef)
+	LITERAL_ENUM(package)
+	LITERAL_ENUM(width)
+	LITERAL_ENUM(placement)
+	LITERAL_ENUM(colDef)
+	LITERAL_ENUM(title)
+	LITERAL_ENUM(url)
+	LITERAL_ENUM(documentclass)
+	LITERAL_ENUM(beamertheme)
+	LITERAL_ENUM(packageoption)
+	LITERAL_ENUM(color)
+	LITERAL_ENUM(verbatimStart)
+	LITERAL_ENUM(verbatimStop)
+	LITERAL_ENUM(verbatim)
+	LITERAL_ENUM(symbol)
+	LITERAL_ENUM(punctuation)
+	LITERAL_ENUM(number)
+	LITERAL_ENUM(generalArg)
+	LITERAL_ENUM(defArgNumber)
+	LITERAL_ENUM(optionalArgDefinition)
+	LITERAL_ENUM(definition)
+	LITERAL_ENUM(defWidth)
+	LITERAL_ENUM(labelRefList)
+	LITERAL_ENUM(specialArg)
+	LITERAL_ENUM(newTheorem)
+	LITERAL_ENUM(newBibItem)
+	LITERAL_ENUM(_end)
+	default: return "UnknownTokenType";
+	}
+#undef LITERAL_ENUM
+}
 
 QSet<Tokens::TokenType> Tokens::tkBraces()
 {

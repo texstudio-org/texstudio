@@ -60,8 +60,10 @@ public:
 	                squareBracket, openBrace, openBracket, openSquare, closeBrace,
 	                closeBracket, closeSquareBracket, math, comment, commandUnknown, label, bibItem, file, imagefile, bibfile,
 	                keyValArg, keyVal_key, keyVal_val, list, text, env, beginEnv, def, labelRef, package, width, placement, colDef, title, url, documentclass, beamertheme, packageoption,
-                    color, verbatimStart, verbatimStop, verbatim, symbol, punctuation, number, generalArg, defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList, specialArg, newTheorem,newBibItem,_end = 255
+	                color, verbatimStart, verbatimStop, verbatim, symbol, punctuation, number, generalArg, defArgNumber, optionalArgDefinition, definition, defWidth, labelRefList, specialArg, newTheorem,newBibItem,_end = 255
 	               };
+	static QString tokenTypeName(TokenType t);
+
 	TokenType type;
 	// subtype is used to determine the type of argument
 	TokenType subtype;
@@ -78,12 +80,15 @@ public:
 	bool operator==(const Tokens &v) const;
 	QString getText();
 };
+QDebug operator<<(QDebug dbg, Tokens::TokenType tk);
+QDebug operator<<(QDebug dbg, Tokens tk);
 
 typedef QList<Tokens> TokenList;
 typedef QStack<Tokens> TokenStack;
 
 Q_DECLARE_METATYPE(TokenList);
 Q_DECLARE_METATYPE(TokenStack);
+void qDebugTokenList(TokenList tl);
 
 class CommandDescription
 {
