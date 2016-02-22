@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="cs">
+<TS version="2.1" language="cs">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1389,7 +1389,7 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
         <source>Package csquotes: \enquote{  }</source>
         <translation>Balíček csquotes: \enquote{  }</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="configdialog.ui" line="1692"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Anglické uvozovky (unicode): “ ”</translation>
@@ -1586,8 +1586,9 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
     </message>
     <message>
         <location filename="configdialog.ui" line="2129"/>
-        <source>Disable key &apos;Esc&apos; to close fullscreen-mode</source>
-        <translation>Zakázat klávesu Esc pro zavření zobrazení v režimu na celou obrazovku</translation>
+        <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
+        <oldsource>Disable key &apos;Esc&apos; to close fullscreen-mode</oldsource>
+        <translation type="unfinished">Zakázat klávesu Esc pro zavření zobrazení v režimu na celou obrazovku</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2136"/>
@@ -2705,8 +2706,9 @@ chcete nastavit?</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="643"/>
-        <source>Browse thesaurus database</source>
-        <translation>Zvolit slovníkovou databázi</translation>
+        <source>Select thesaurus database</source>
+        <oldsource>Browse thesaurus database</oldsource>
+        <translation type="unfinished">Zvolit slovníkovou databázi</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="648"/>
@@ -3398,7 +3400,7 @@ vidět jen nejběžnější nastavení.</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1307"/>
-        <location filename="configmanager.cpp" line="2297"/>
+        <location filename="configmanager.cpp" line="2298"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;Žádný&gt;</translation>
     </message>
@@ -3470,37 +3472,37 @@ hcete je odstranit?</translation>
         <translation>Hlavní dokument:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2298"/>
+        <location filename="configmanager.cpp" line="2299"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;Výchozí&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2463"/>
+        <location filename="configmanager.cpp" line="2464"/>
         <source>Configure</source>
         <translation>Nastavit</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2470"/>
+        <location filename="configmanager.cpp" line="2471"/>
         <source>Select Program</source>
         <translation>Vybrat program</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2477"/>
+        <location filename="configmanager.cpp" line="2478"/>
         <source>Restore Default</source>
         <translation>Obnovit výchozí</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2524"/>
+        <location filename="configmanager.cpp" line="2525"/>
         <source>Repeat contained compilation commands</source>
         <translation>Opakovat obsažené příkazy k překladu</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2570"/>
+        <location filename="configmanager.cpp" line="2571"/>
         <source>Add</source>
         <translation>Přidat</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2633"/>
+        <location filename="configmanager.cpp" line="2634"/>
         <source>Browse program</source>
         <translation>Prohlížeč</translation>
     </message>
@@ -4174,8 +4176,8 @@ Průvodce nepodporuje příkaz </translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="487"/>
-        <location filename="texstudio.cpp" line="7578"/>
-        <location filename="texstudio.cpp" line="7585"/>
+        <location filename="texstudio.cpp" line="7588"/>
+        <location filename="texstudio.cpp" line="7595"/>
         <source>Go to Definition</source>
         <translation>Jít na definici</translation>
     </message>
@@ -4210,35 +4212,35 @@ Průvodce nepodporuje příkaz </translation>
         <translation>Bez názvu</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1927"/>
+        <location filename="latexeditorview.cpp" line="1940"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="1960"/>
+        <location filename="latexeditorview.cpp" line="1973"/>
         <source>Add to Dictionary</source>
         <translation>Přidat do slovníku</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2137"/>
+        <location filename="latexeditorview.cpp" line="2150"/>
         <source>label missing!</source>
         <translation>Štítek chybí!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2139"/>
-        <location filename="latexeditorview.cpp" line="2157"/>
+        <location filename="latexeditorview.cpp" line="2152"/>
+        <location filename="latexeditorview.cpp" line="2170"/>
         <source>label multiple times defined!</source>
         <translation>Štítek vymezen několikrát!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2147"/>
-        <location filename="latexeditorview.cpp" line="2219"/>
+        <location filename="latexeditorview.cpp" line="2160"/>
+        <location filename="latexeditorview.cpp" line="2232"/>
         <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="2160"/>
+        <location filename="latexeditorview.cpp" line="2173"/>
         <source>%n reference(s) to this label</source>
         <translation>
             <numerusform>%n odkaz k tomuto štítku</numerusform>
@@ -4247,92 +4249,92 @@ Průvodce nepodporuje příkaz </translation>
         </translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2165"/>
+        <location filename="latexeditorview.cpp" line="2178"/>
         <source>Class</source>
         <translation>Třída</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2165"/>
+        <location filename="latexeditorview.cpp" line="2178"/>
         <source>Package</source>
         <translation>Balík</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2169"/>
+        <location filename="latexeditorview.cpp" line="2182"/>
         <source>Beamer Theme</source>
         <translation>Styl Beamer</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2178"/>
+        <location filename="latexeditorview.cpp" line="2191"/>
         <source>not found</source>
         <translation>nenalezeno</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2194"/>
+        <location filename="latexeditorview.cpp" line="2207"/>
         <source>Citation correct (reading ...)</source>
         <translation>Správná citace (čte se...)</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2200"/>
+        <location filename="latexeditorview.cpp" line="2213"/>
         <source>Citation missing</source>
         <translation>Citace chybí</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2203"/>
+        <location filename="latexeditorview.cpp" line="2216"/>
         <source>Warning:</source>
         <translation>Varování:</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2203"/>
+        <location filename="latexeditorview.cpp" line="2216"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>ID BibTeXu končí mezerou. Mezery na konci nejsou BibTeXem přehlíženy.</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2567"/>
+        <location filename="latexeditorview.cpp" line="2580"/>
         <source>Save Preview Image</source>
         <translation>Uložit obrázek náhledu</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2567"/>
+        <location filename="latexeditorview.cpp" line="2580"/>
         <source>Images</source>
         <translation>Obrázky</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2697"/>
+        <location filename="latexeditorview.cpp" line="2710"/>
         <source>Remove Bookmark</source>
         <translation>Odstranit záložku</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2705"/>
+        <location filename="latexeditorview.cpp" line="2718"/>
         <source>Unnamed Bookmark</source>
         <translation>Nepojmenovaná záložka</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2710"/>
+        <location filename="latexeditorview.cpp" line="2723"/>
         <source>Bookmark</source>
         <translation>Záložka</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2737"/>
+        <location filename="latexeditorview.cpp" line="2750"/>
         <source>Collapse All</source>
         <translation>Složit vše</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2741"/>
+        <location filename="latexeditorview.cpp" line="2754"/>
         <source>Collapse Level %1</source>
         <translation>Složit úroveň %1</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2746"/>
+        <location filename="latexeditorview.cpp" line="2759"/>
         <source>Expand All</source>
         <translation>Rozbalit vše</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2750"/>
+        <location filename="latexeditorview.cpp" line="2763"/>
         <source>Expand Level %1</source>
         <translation>Rozbalit úroveň %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7584"/>
+        <location filename="texstudio.cpp" line="7594"/>
         <source>Open Document</source>
         <translation>Otevřít dokument</translation>
     </message>
@@ -5864,58 +5866,58 @@ Nyní můžete zadat heslo:</translation>
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="615"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="641"/>
         <source>Replacement prompt</source>
         <translation>Dialog pro nahrazení</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="616"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="642"/>
         <source>Shall it be replaced?</source>
         <translation>Má se nález nahradit?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="621"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="647"/>
         <source>Replacing Canceled</source>
         <translation>Nahrazení zrušeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="621"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="647"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>%1 (z %2 dosud nalezených) výskytů bylo nahrazeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="659"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="685"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
         <translation>Začátku prohledávané oblasti dosaženo bez nálezu.
 Má se dále hledat od konce?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="664"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="690"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
         <translation>Konce prohledávané oblasti dosaženo bez nálezu.
 Má se dále hledat od začátku?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="671"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="697"/>
         <source>Failure</source>
         <translation>Neúspěch</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="691"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="713"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="717"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="739"/>
         <source>Replacing Finished</source>
         <translation>Nahrazení dokončeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="692"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="713"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="718"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="739"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>%1 (z %2) výskytů bylo nahrazeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="693"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="719"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Chcete, aby nahrazování pokračovalo od začátku?</translation>
     </message>
@@ -5933,144 +5935,144 @@ Má se dále hledat od začátku?</translation>
         <translation>&amp;Pohled</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="192"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="680"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1396"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="194"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="688"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1404"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="505"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1369"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="513"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1377"/>
         <source>&amp;Undo</source>
         <translation>&amp;Zpět</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="516"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1370"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="524"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1378"/>
         <source>&amp;Redo</source>
         <translation>&amp;Znovu</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="531"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1372"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="539"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1380"/>
         <source>Cu&amp;t</source>
         <translation>Vyj&amp;mout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="542"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1373"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="550"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1381"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="553"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1374"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="561"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1382"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="569"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1376"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="577"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1384"/>
         <source>&amp;Indent</source>
         <translation>&amp;Odsadit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="577"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1377"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="585"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1385"/>
         <source>&amp;Unindent</source>
         <translation>&amp;Zrušit odsazení</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="589"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1378"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="597"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1386"/>
         <source>Co&amp;mment</source>
         <translation>Opatřit po&amp;známkou</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="597"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1379"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="605"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1387"/>
         <source>Unc&amp;omment</source>
         <translation>Odstranit poz&amp;námku</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="609"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1381"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="617"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1389"/>
         <source>&amp;Select all</source>
         <translation>&amp;Vybrat vše</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="621"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1383"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="629"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1391"/>
         <source>&amp;Find</source>
         <translation>&amp;Najít</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="629"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1384"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="637"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1392"/>
         <source>Fin&amp;d next</source>
         <translation>Hle&amp;dat dál</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="637"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1385"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="645"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1393"/>
         <source>&amp;Replace</source>
         <translation>&amp;Nahradit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="649"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1387"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="657"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1395"/>
         <source>&amp;Goto line...</source>
         <translation>&amp;Jít na řádek...</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="661"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="669"/>
         <source>Dynamic line wrapping</source>
         <translation>Dynamické lámání řádků</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="673"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1393"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="681"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1401"/>
         <source>Input binding</source>
         <translation>Vstupní vazba</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="698"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="706"/>
         <source>Line endings</source>
         <translation>Konce řádků</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="705"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="713"/>
         <source>Conservative</source>
         <translation>Staromilský</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="706"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="714"/>
         <source>Local</source>
         <translation>Obvyklé v místním systému</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="707"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="715"/>
         <source>Unix/Linux</source>
         <translation>Unix/Linux</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="708"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="716"/>
         <source>Dos/Windows</source>
         <translation>DOS/Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="709"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="717"/>
         <source>Old Mac</source>
         <translation>Starý Mac (CR)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="894"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="902"/>
         <source>Conflict!</source>
         <translation>Rozpor!</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="895"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="903"/>
         <source>%1
 has been modified by another application.
 Press &quot;Save&quot; to overwrite the file on disk
@@ -6085,14 +6087,14 @@ Klepněte na &quot;Nevšímat si&quot; pro přehlížení tohoto upozornění.
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="973"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1017"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1039"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="981"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1025"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1047"/>
         <source>Saving failed</source>
         <translation>Uložení se nezdařilo</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="974"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="982"/>
         <source>There seems to be not enough space to save the file at
 %1
 
@@ -6119,17 +6121,17 @@ to ke ztrátě dat.
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1004"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1012"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1005"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1013"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
         <translation>Nepodařilo se vytvořit zálohu souboru. Můžete dále pokračovat v ukládání. Pokud však ukládání selže, můžete přijít o data v původním souboru. Chcete pokračovat?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1017"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1025"/>
         <source>I failed to acquire write permissions on the file
 %1.
 
@@ -6140,7 +6142,7 @@ Perhaps it is read-only or opened in another program?</source>
 Možná je pouze pro čtení nebo je otevřen v jiném programu?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1030"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1038"/>
         <source>Writing the document to file
 %1
 failed.</source>
@@ -6148,7 +6150,7 @@ failed.</source>
 %1.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1035"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1043"/>
         <source>The original file on disk was destroyed during the save operation.
 You&apos;ll find a copy at
 %1</source>
@@ -6157,13 +6159,13 @@ Kopii najdete v
 %1</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1161"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1165"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1169"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1173"/>
         <source>File deleted</source>
         <translation>Soubor byl smazán</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1161"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1169"/>
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
@@ -6172,19 +6174,19 @@ Má se dokument uložit tak, jak je, aby byl tento soubor obnoven?
 </translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1165"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1173"/>
         <source>Well, this is strange: The file %1 is not deleted anymore.
 Probably someone else restored it and therefore I&apos;m not going to override the (possible modified) version on the disk.</source>
         <translation>Dobře, je to divné: Soubor %1 již více není smazán.
 Někdo jiný jej obnovil, a z toho důvodu nebude verze na disku (možná změněná) přepsána.</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1191"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1199"/>
         <source>File changed</source>
         <translation>Soubor je změněn</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1192"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1200"/>
         <source>%1
 has been modified by another application.
 
@@ -6201,324 +6203,324 @@ Chcete uchovat datum znovunahráním souboru?
 (Poznámka: Tiché znovunahrání můžete povolit ve volbách v nastavení.)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1268"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1276"/>
         <source>Print Source Code</source>
         <translation>Vytisknout zdrojový text</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1399"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1407"/>
         <source>&amp;Edit</source>
         <translation>Úp&amp;ravy</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1400"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1408"/>
         <source>&amp;Search</source>
         <translation>&amp;Hledání</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1402"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1410"/>
         <source>Edit</source>
         <translation>Upravit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1403"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1411"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1525"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1533"/>
         <source>Windows</source>
         <translation>Windows</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="1527"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="1535"/>
         <source>Unix</source>
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4417"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4425"/>
         <source>None</source>
         <translation>Žádný</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4418"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4426"/>
         <source>Invalid</source>
         <translation>Neplatný</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4420"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4436"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4452"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4428"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4444"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4460"/>
         <source>Internal</source>
         <translation>Vnitřní</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4422"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4430"/>
         <source>Move cursor up</source>
         <translation>Posunout ukazatel nahoru</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4423"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4431"/>
         <source>Move cursor down</source>
         <translation>Posunout ukazatel dolů</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4424"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4432"/>
         <source>Move cursor left (1 character)</source>
         <translation>Posunout ukazatel doleva (jeden znak)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4425"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4433"/>
         <source>Move cursor right (1 character)</source>
         <translation>Posunout ukazatel doprava (jeden znak)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4426"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4434"/>
         <source>Move cursor left (1 word)</source>
         <translation>Posunout ukazatel doleva (jedno slovo)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4427"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4435"/>
         <source>Move cursor right (1 word)</source>
         <translation>Posunout ukazatel doprava (jedno slovo)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4428"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4436"/>
         <source>Move cursor to line start</source>
         <translation>Posunout ukazatel na začátek řádku</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4429"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4437"/>
         <source>Move cursor to line end</source>
         <translation>Posunout ukazatel na konec řádku</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4430"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4438"/>
         <source>Move cursor to document start</source>
         <translation>Posunout ukazatel na začátek dokumentu</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4431"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4439"/>
         <source>Move cursor to document end</source>
         <translation>Posunout ukazatel na konec dokumentu</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4433"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4441"/>
         <source>Move cursor one page up</source>
         <translation>Posunout ukazatel o jednu stranu nahoru</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4434"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4442"/>
         <source>Move cursor one page down</source>
         <translation>Posunout ukazatel o jednu stranu dolů</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4438"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4446"/>
         <source>Select up</source>
         <translation>Posunout ukazatel a vybrat nahoru</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4439"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4447"/>
         <source>Select down</source>
         <translation>Posunout ukazatel a vybrat dolů</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4440"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4448"/>
         <source>Select left (1 character)</source>
         <translation>Posunout ukazatel a vybrat doleva (jeden znak)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4441"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4449"/>
         <source>Select right (1 character)</source>
         <translation>Posunout ukazatel a vybrat doprava (jeden znak)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4442"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4450"/>
         <source>Select left (1 word)</source>
         <translation>Posunout ukazatel a vybrat doleva (jedno slovo)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4443"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4451"/>
         <source>Select right (1 word)</source>
         <translation>Posunout ukazatel a vybrat doprava (jedno slovo)</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4444"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4452"/>
         <source>Select to line start</source>
         <translation>Vybrat až po začátek řádku</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4445"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4453"/>
         <source>Select to line end</source>
         <translation>Vybrat až po konec řádku</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4446"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4454"/>
         <source>Select to document start</source>
         <translation>Vybrat až po začátek dokumentu</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4447"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4455"/>
         <source>Select to document end</source>
         <translation>Vybrat až po konec dokumentu</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4449"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4457"/>
         <source>Select page up</source>
         <translation>Posunout ukazatel o jednu stranu nahoru a vybrat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4450"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4458"/>
         <source>Select page down</source>
         <translation>Posunout ukazatel o jednu dolů nahoru a vybrat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4454"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4462"/>
         <source>Delete left character</source>
         <translation>Smazat levé písmeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4455"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4463"/>
         <source>Delete right character</source>
         <translation>Smazat pravé písmeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4456"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4464"/>
         <source>Delete left word</source>
         <translation>Smazat levé slovo</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4457"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4465"/>
         <source>Delete right word</source>
         <translation>Smazat pravé slovo</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4458"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4466"/>
         <source>New line</source>
         <translation>Nový řádek</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4460"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4468"/>
         <source>Change overwrite mode</source>
         <translation>Změnit přepisovací režim</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4461"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4469"/>
         <source>Undo</source>
         <translation>Zpět</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4462"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4470"/>
         <source>Redo</source>
         <translation>Znovu</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4463"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4471"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4464"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4472"/>
         <source>Paste</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4465"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4473"/>
         <source>Cut</source>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4466"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4474"/>
         <source>Print</source>
         <translation>Tisk</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4467"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4475"/>
         <source>Select all</source>
         <translation>Vybrat vše</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4468"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4476"/>
         <source>Find</source>
         <translation>Najít</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4469"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4477"/>
         <source>Find next</source>
         <translation>Najít další</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4470"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4478"/>
         <source>Find previous</source>
         <translation>Najít předchozí</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4471"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4479"/>
         <source>Replace</source>
         <translation>Nahradit</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4473"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4481"/>
         <source>Create cursor mirror up</source>
         <translation>Vytvořit zrcadlový ukazatel nahoru</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4474"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4482"/>
         <source>Create cursor mirror down</source>
         <translation>Vytvořit zrcadlový ukazatel dolů</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4475"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4483"/>
         <source>Next placeholder</source>
         <translation>Další zástupný znak</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4476"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4484"/>
         <source>Previous placeholder</source>
         <translation>Předchozí zástupný znak</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4477"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4485"/>
         <source>Next placeholder or one word right</source>
         <translation>Další zástupný znak nebo slovo doprava</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4478"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4486"/>
         <source>Previous placeholder or one word left</source>
         <translation>Předchozí zástupný znak nebo slovo doleva</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4479"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4487"/>
         <source>Next placeholder or character</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4480"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4488"/>
         <source>Previous placeholder or character</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4481"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4489"/>
         <source>Tab or Indent selection</source>
         <translation>Zarážka nebo odsadit výběr</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4482"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4490"/>
         <source>Insert tab</source>
         <translation>Vložit zarážku</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4483"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4491"/>
         <source>Indent selection</source>
         <translation>Odsadit výběr</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4484"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4492"/>
         <source>Unindent selection</source>
         <translation>Zrušit odsazení výběru</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4487"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4495"/>
         <source>Unknown</source>
         <translation>Neznámý</translation>
     </message>
@@ -8513,7 +8515,7 @@ se nepodařilo odstranit.</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="194"/>
-        <location filename="texstudio.cpp" line="215"/>
+        <location filename="texstudio.cpp" line="216"/>
         <source>Central</source>
         <translation>Středový</translation>
     </message>
@@ -8607,1568 +8609,1572 @@ se nepodařilo odstranit.</translation>
         <translation>Upravit &amp;makra...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="283"/>
-        <location filename="texstudio.cpp" line="5785"/>
+        <location filename="texstudio.cpp" line="293"/>
+        <location filename="texstudio.cpp" line="5795"/>
         <source>Ready</source>
         <translation>Připraven</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="329"/>
+        <location filename="texstudio.cpp" line="339"/>
         <source>TeX files</source>
         <translation>Soubory TeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="330"/>
+        <location filename="texstudio.cpp" line="340"/>
         <source>LilyPond files</source>
         <translation>Soubory LilyPond</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="331"/>
+        <location filename="texstudio.cpp" line="341"/>
         <source>Plaintext files</source>
         <translation>Soubory prostého textu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="332"/>
+        <location filename="texstudio.cpp" line="342"/>
         <source>Pweave files</source>
         <translation>Soubory Pweave</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="333"/>
+        <location filename="texstudio.cpp" line="343"/>
         <source>Sweave files</source>
         <translation>Sweave soubory</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="334"/>
+        <location filename="texstudio.cpp" line="344"/>
         <source>Asymptote files</source>
         <translation>Soubory Asymptote</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="335"/>
+        <location filename="texstudio.cpp" line="345"/>
         <source>PDF files</source>
         <translation>Soubory PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="336"/>
-        <location filename="texstudio.cpp" line="9035"/>
-        <location filename="texstudio.cpp" line="9045"/>
+        <location filename="texstudio.cpp" line="346"/>
+        <location filename="texstudio.cpp" line="9047"/>
+        <location filename="texstudio.cpp" line="9057"/>
         <source>All files</source>
         <translation>Všechny soubory</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="488"/>
-        <location filename="texstudio.cpp" line="515"/>
-        <location filename="texstudio.cpp" line="516"/>
+        <location filename="texstudio.cpp" line="498"/>
+        <location filename="texstudio.cpp" line="525"/>
+        <location filename="texstudio.cpp" line="526"/>
         <source>Structure</source>
         <translation>Stavba</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="521"/>
-        <location filename="texstudio.cpp" line="522"/>
+        <location filename="texstudio.cpp" line="531"/>
+        <location filename="texstudio.cpp" line="532"/>
         <source>Bookmarks</source>
         <translation>Záložky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="525"/>
+        <location filename="texstudio.cpp" line="535"/>
         <source>Operator symbols</source>
         <translation>Symboly operátorů</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="526"/>
+        <location filename="texstudio.cpp" line="536"/>
         <source>Relation symbols</source>
         <translation>Symboly a operátory</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="527"/>
+        <location filename="texstudio.cpp" line="537"/>
         <source>Arrow symbols</source>
         <translation>Šipky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="528"/>
+        <location filename="texstudio.cpp" line="538"/>
         <source>Delimiters</source>
         <translation>Oddělovací znaky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="529"/>
+        <location filename="texstudio.cpp" line="539"/>
         <source>Greek letters</source>
         <translation>Řecká písmena</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="530"/>
+        <location filename="texstudio.cpp" line="540"/>
         <source>Cyrillic letters</source>
         <translation>Cyrilská písmena</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="531"/>
+        <location filename="texstudio.cpp" line="541"/>
         <source>Miscellaneous math symbols</source>
         <translation>Různé matematické symboly</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="532"/>
+        <location filename="texstudio.cpp" line="542"/>
         <source>Miscellaneous text symbols</source>
         <translation>Různé textové symboly</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="533"/>
+        <location filename="texstudio.cpp" line="543"/>
         <source>Miscellaneous text symbols (wasysym)</source>
         <translation>Různé textové symboly (wasysym)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="534"/>
+        <location filename="texstudio.cpp" line="544"/>
         <source>Accented letters</source>
         <translation>Písmena s přízvukem</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="536"/>
+        <location filename="texstudio.cpp" line="546"/>
         <source>Most used symbols</source>
         <translation>Často užívané symboly</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="538"/>
+        <location filename="texstudio.cpp" line="548"/>
         <source>Favorites</source>
         <translation>Oblíbené</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="541"/>
+        <location filename="texstudio.cpp" line="551"/>
         <source>Left/Right Brackets</source>
         <translation>Levé/Pravé závorky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="542"/>
+        <location filename="texstudio.cpp" line="552"/>
         <source>Pstricks Commands</source>
         <translation>Příkazy Pstricks</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="543"/>
+        <location filename="texstudio.cpp" line="553"/>
         <source>MetaPost Commands</source>
         <translation>Příkazy Metapost</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="544"/>
+        <location filename="texstudio.cpp" line="554"/>
         <source>Tikz Commands</source>
         <translation>Příkazy Tikz</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="545"/>
+        <location filename="texstudio.cpp" line="555"/>
         <source>Asymptote Commands</source>
         <translation>Příkazy Asymptote</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="638"/>
+        <location filename="texstudio.cpp" line="648"/>
         <source>&amp;File</source>
         <translation>&amp;Soubor</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="640"/>
+        <location filename="texstudio.cpp" line="650"/>
         <source>&amp;New</source>
         <translation>&amp;Nový</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="641"/>
+        <location filename="texstudio.cpp" line="651"/>
         <source>New From &amp;Template...</source>
         <translation>Nový z &amp;předlohy...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="642"/>
+        <location filename="texstudio.cpp" line="652"/>
         <source>&amp;Open...</source>
         <translation>&amp;Otevřít...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="644"/>
+        <location filename="texstudio.cpp" line="654"/>
         <source>Open &amp;Recent</source>
         <translation>Otevřít &amp;nedávný</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="646"/>
+        <location filename="texstudio.cpp" line="656"/>
         <source>Session</source>
         <translation>Sezení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="647"/>
+        <location filename="texstudio.cpp" line="657"/>
         <source>Load Session...</source>
         <translation>Nahrát sezení...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="648"/>
+        <location filename="texstudio.cpp" line="658"/>
         <source>Save Session...</source>
         <translation>Uložit sezení...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="649"/>
+        <location filename="texstudio.cpp" line="659"/>
         <source>Restore Previous Session</source>
         <translation>Obnovit předchozí sezení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="658"/>
+        <location filename="texstudio.cpp" line="668"/>
         <source>&amp;Save</source>
         <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="659"/>
+        <location filename="texstudio.cpp" line="669"/>
         <source>Save &amp;As...</source>
         <translation>Uložit &amp;jako...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="660"/>
+        <location filename="texstudio.cpp" line="670"/>
         <source>Save A&amp;ll</source>
         <translation>Uložit &amp;vše</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="661"/>
+        <location filename="texstudio.cpp" line="671"/>
         <source>&amp;Make Template...</source>
         <translation>&amp;Vytvořit předlohu...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="664"/>
+        <location filename="texstudio.cpp" line="674"/>
         <source>Fifi&amp;x</source>
         <translation>Fifi&amp;x</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="665"/>
+        <location filename="texstudio.cpp" line="675"/>
         <source>Save renamed/&amp;moved file...</source>
         <translation>Uložit přejmenovaný/&amp;přesunutý soubor...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="666"/>
+        <location filename="texstudio.cpp" line="676"/>
         <source>Save copied file...</source>
         <translation>Uložit zkopírovaný soubor...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="667"/>
+        <location filename="texstudio.cpp" line="677"/>
         <source>&amp;Delete file</source>
         <translation>&amp;Smazat soubor</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="668"/>
+        <location filename="texstudio.cpp" line="678"/>
         <source>Set &amp;permissions...</source>
         <translation>Nastavit &amp;oprávnění...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="670"/>
+        <location filename="texstudio.cpp" line="680"/>
         <source>&amp;Revert to saved...</source>
         <translation>&amp;Vrátit na poslední uložený stav...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="672"/>
+        <location filename="texstudio.cpp" line="682"/>
         <source>Copy filename to &amp;clipboard</source>
         <translation>Kopírovat název souboru do s&amp;chránky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="673"/>
+        <location filename="texstudio.cpp" line="683"/>
         <source>Copy master filename to clipboard</source>
         <translation>Kopírovat hlavní název souboru do schránky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="675"/>
+        <location filename="texstudio.cpp" line="685"/>
         <source>S&amp;VN...</source>
         <translation>S&amp;VN...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="676"/>
+        <location filename="texstudio.cpp" line="686"/>
         <source>Check &amp;in...</source>
         <translation>&amp;Zapsat (SVN)...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="677"/>
+        <location filename="texstudio.cpp" line="687"/>
         <source>SVN &amp;update...</source>
         <translation>&amp;Aktualizace SVN...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="678"/>
+        <location filename="texstudio.cpp" line="688"/>
         <source>SVN update &amp;work directory</source>
         <translation>&amp;Pracovní adresář pro aktualizaci SVN</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="679"/>
+        <location filename="texstudio.cpp" line="689"/>
         <source>Sh&amp;ow old Revisions</source>
         <translation>&amp;Ukázat staré revize</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="680"/>
+        <location filename="texstudio.cpp" line="690"/>
         <source>Lock &amp;PDF</source>
         <translation>Zamknout &amp;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="681"/>
+        <location filename="texstudio.cpp" line="691"/>
         <source>Check in P&amp;DF</source>
         <translation>Zapsat &amp;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="682"/>
+        <location filename="texstudio.cpp" line="692"/>
         <source>Show difference between two files</source>
         <translation>Ukázat rozdíly mezi dvěma soubory</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="683"/>
+        <location filename="texstudio.cpp" line="693"/>
         <source>Show difference between two files in relation to base file</source>
         <translation>Ukázat rozdíly mezi dvěma soubory vzhledem k základnímu souboru</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="684"/>
+        <location filename="texstudio.cpp" line="694"/>
         <source>Check SVN Conflict</source>
         <translation>Ověřit střet v SVN</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="685"/>
+        <location filename="texstudio.cpp" line="695"/>
         <source>Try to merge differences</source>
         <translation>Zkusit sloučit rozdíly</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="686"/>
+        <location filename="texstudio.cpp" line="696"/>
         <source>Remove Difference-Markers</source>
         <translation>Odstranit rozdílové značky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="687"/>
+        <location filename="texstudio.cpp" line="697"/>
         <source>Declare Conflict Resolved</source>
         <translation>Prohlásit střet za vyřešený</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="688"/>
+        <location filename="texstudio.cpp" line="698"/>
         <source>Jump to next difference</source>
         <translation>Skočit na další rozdíl</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="689"/>
+        <location filename="texstudio.cpp" line="699"/>
         <source>Jump to previous difference</source>
         <translation>Skočit na předchozí rozdíl</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="692"/>
-        <location filename="texstudio.cpp" line="9236"/>
+        <location filename="texstudio.cpp" line="702"/>
+        <location filename="texstudio.cpp" line="9248"/>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="693"/>
+        <location filename="texstudio.cpp" line="703"/>
         <source>Clos&amp;e All</source>
         <translation>Z&amp;avřít vše</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="696"/>
+        <location filename="texstudio.cpp" line="706"/>
         <source>Print Source Code...</source>
         <translation>Vytisknout zdrojový text...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="699"/>
+        <location filename="texstudio.cpp" line="709"/>
         <source>Exit</source>
         <translation>Ukončit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="702"/>
+        <location filename="texstudio.cpp" line="712"/>
         <source>&amp;Edit</source>
         <translation>Úp&amp;ravy</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="703"/>
+        <location filename="texstudio.cpp" line="713"/>
         <source>&amp;Undo</source>
         <translation>&amp;Zpět</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="704"/>
+        <location filename="texstudio.cpp" line="714"/>
         <source>&amp;Redo</source>
         <translation>&amp;Znovu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="706"/>
+        <location filename="texstudio.cpp" line="716"/>
         <source>Debug undo stack</source>
         <translation>Ladit zásobník kroků zpět</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="709"/>
+        <location filename="texstudio.cpp" line="719"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="710"/>
+        <location filename="texstudio.cpp" line="720"/>
         <source>C&amp;ut</source>
         <translation>&amp;Vyjmout</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="711"/>
+        <location filename="texstudio.cpp" line="721"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="714"/>
+        <location filename="texstudio.cpp" line="724"/>
         <source>&amp;Selection</source>
         <translation>&amp;Výběr</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="715"/>
+        <location filename="texstudio.cpp" line="725"/>
         <source>Select &amp;All</source>
         <translation>Vybrat &amp;vše</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="716"/>
+        <location filename="texstudio.cpp" line="726"/>
         <source>Select All &amp;Occurences</source>
         <translation>Vybrat všechny &amp;výskyty</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="717"/>
+        <location filename="texstudio.cpp" line="727"/>
         <source>Expand Selection to Word</source>
         <translation>Rozbalit výběr po slovo</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="718"/>
+        <location filename="texstudio.cpp" line="728"/>
         <source>Expand Selection to Line</source>
         <translation>Rozbalit výběr po řádek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="720"/>
+        <location filename="texstudio.cpp" line="730"/>
         <source>&amp;Line Operations</source>
         <translation>Řá&amp;dkové operace</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="721"/>
+        <location filename="texstudio.cpp" line="731"/>
         <source>Delete &amp;Line</source>
         <translation>Smazat řád&amp;ek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="722"/>
+        <location filename="texstudio.cpp" line="732"/>
         <source>Delete To &amp;End Of Line</source>
         <translation>Smazat až po &amp;konec řádku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="723"/>
+        <location filename="texstudio.cpp" line="733"/>
         <source>Delete From &amp;Start Of Line</source>
         <translation>Smazat od &amp;začátku řádku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="724"/>
+        <location filename="texstudio.cpp" line="734"/>
         <source>Move Line &amp;Up</source>
         <translation>Posunout řádek &amp;nahoru</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="725"/>
+        <location filename="texstudio.cpp" line="735"/>
         <source>Move Line &amp;Down</source>
         <translation>Posunout řádek &amp;dolů</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="726"/>
+        <location filename="texstudio.cpp" line="736"/>
         <source>Du&amp;plicate Line</source>
         <translation>Z&amp;dvojit řádek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="728"/>
+        <location filename="texstudio.cpp" line="738"/>
         <source>&amp;Text Operations</source>
         <translation>Operace s &amp;textem</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="729"/>
+        <location filename="texstudio.cpp" line="739"/>
         <source>To Lowercase</source>
         <translation>Malá písmena</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="730"/>
+        <location filename="texstudio.cpp" line="740"/>
         <source>To Uppercase</source>
         <translation>Velká písmena</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="731"/>
+        <location filename="texstudio.cpp" line="741"/>
         <source>To Titlecase (strict)</source>
         <translation>Velká písmena na začátku slova (silné)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="732"/>
+        <location filename="texstudio.cpp" line="742"/>
         <source>To Titlecase (smart)</source>
         <translation>Velká písmena na začátku slova (chytré)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="736"/>
+        <location filename="texstudio.cpp" line="746"/>
         <source>&amp;Searching</source>
         <translation>&amp;Hledání</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="737"/>
+        <location filename="texstudio.cpp" line="747"/>
         <source>&amp;Find</source>
         <translation>&amp;Najít</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="738"/>
+        <location filename="texstudio.cpp" line="748"/>
         <source>Find &amp;Next</source>
         <translation>Najít &amp;další</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="739"/>
+        <location filename="texstudio.cpp" line="749"/>
         <source>Find &amp;Prev</source>
         <translation>Najít &amp;předchozí</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="740"/>
+        <location filename="texstudio.cpp" line="750"/>
         <source>Continue F&amp;ind</source>
         <translation>Pokračovat v h&amp;ledání</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="741"/>
+        <location filename="texstudio.cpp" line="751"/>
         <source>&amp;Count</source>
         <translation>P&amp;očet</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="742"/>
+        <location filename="texstudio.cpp" line="752"/>
         <source>&amp;Select all matches...</source>
         <translation>&amp;Vybrat všechny shody...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="745"/>
+        <location filename="texstudio.cpp" line="755"/>
         <source>&amp;Replace</source>
         <translation>&amp;Nahradit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="746"/>
+        <location filename="texstudio.cpp" line="756"/>
         <source>Replace Next</source>
         <translation>Nahradit další</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="747"/>
+        <location filename="texstudio.cpp" line="757"/>
         <source>Replace Prev</source>
         <translation>Nahradit předchozí</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="748"/>
+        <location filename="texstudio.cpp" line="758"/>
         <source>Replace &amp;All</source>
         <translation>Nahradit vš&amp;e</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="751"/>
+        <location filename="texstudio.cpp" line="761"/>
         <source>Go to</source>
         <translation>Jít na</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="753"/>
+        <location filename="texstudio.cpp" line="763"/>
         <source>Line</source>
         <translation>Řádek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="754"/>
+        <location filename="texstudio.cpp" line="764"/>
         <source>Previous Change</source>
         <translation>Předchozí změna</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="755"/>
+        <location filename="texstudio.cpp" line="765"/>
         <source>Next Change</source>
         <translation>Další změna</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="757"/>
+        <location filename="texstudio.cpp" line="767"/>
         <source>Previous mark</source>
         <translation>Předchozí značka</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="758"/>
+        <location filename="texstudio.cpp" line="768"/>
         <source>Next mark</source>
         <translation>Další značka</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="761"/>
+        <location filename="texstudio.cpp" line="771"/>
         <source>Go Back</source>
         <translation>Jít zpět</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="762"/>
+        <location filename="texstudio.cpp" line="772"/>
         <source>Go Forward</source>
         <translation>Jít vpřed</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="765"/>
+        <location filename="texstudio.cpp" line="775"/>
         <source>Goto Bookmark</source>
         <translation>Jít na záložku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="768"/>
-        <location filename="texstudio.cpp" line="774"/>
+        <location filename="texstudio.cpp" line="778"/>
+        <location filename="texstudio.cpp" line="784"/>
         <source>Bookmark %1</source>
         <translation>Záložka %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="771"/>
+        <location filename="texstudio.cpp" line="781"/>
         <source>Toggle Bookmark</source>
         <translation>Přepnout záložku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="772"/>
+        <location filename="texstudio.cpp" line="782"/>
         <source>Unnamed Bookmark</source>
         <translation>Nepojmenovaná záložka</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="778"/>
+        <location filename="texstudio.cpp" line="788"/>
         <source>Line Ending</source>
         <translation>Konec řádku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="780"/>
+        <location filename="texstudio.cpp" line="790"/>
         <source>DOS/Windows (CR LF)</source>
         <translation>DOS/Windows (CR LF)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="784"/>
+        <location filename="texstudio.cpp" line="794"/>
         <source>Unix (LF)</source>
         <translation>Unix (LF)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="788"/>
+        <location filename="texstudio.cpp" line="798"/>
         <source>Old Mac (CR)</source>
         <translation>Starý Mac (CR)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="794"/>
+        <location filename="texstudio.cpp" line="804"/>
         <source>Setup Encoding...</source>
         <translation>Nastavit kódování znaků...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="795"/>
+        <location filename="texstudio.cpp" line="805"/>
         <source>Insert Unicode Character...</source>
         <translation>Vložit znak Unicode...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="800"/>
+        <location filename="texstudio.cpp" line="810"/>
         <source>&amp;Idefix</source>
         <translation>&amp;Idefix</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="801"/>
+        <location filename="texstudio.cpp" line="811"/>
         <source>Erase &amp;Word/Cmd/Env</source>
         <translation>Vymazat &amp;slovo/příkaz/prostředí</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="804"/>
+        <location filename="texstudio.cpp" line="814"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Vloži&amp;t jako LaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="805"/>
+        <location filename="texstudio.cpp" line="815"/>
         <source>Co&amp;nvert to LaTeX</source>
         <translation>&amp;Převést na LaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="806"/>
+        <location filename="texstudio.cpp" line="816"/>
         <source>Pre&amp;view Selection/Parentheses</source>
         <translation>&amp;Náhled výběru/závorek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="807"/>
+        <location filename="texstudio.cpp" line="817"/>
         <source>C&amp;lear Inline Preview</source>
         <translation>S&amp;mazat řadový náhled</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="810"/>
+        <location filename="texstudio.cpp" line="820"/>
         <source>&amp;Comment</source>
         <translation>&amp;Poznámka</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="811"/>
+        <location filename="texstudio.cpp" line="821"/>
         <source>&amp;Uncomment</source>
         <translation>&amp;Zrušit poznámku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="812"/>
+        <location filename="texstudio.cpp" line="822"/>
         <source>&amp;Indent</source>
         <translation>&amp;Odsadit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="813"/>
+        <location filename="texstudio.cpp" line="823"/>
         <source>Unin&amp;dent</source>
         <translation>&amp;Zrušit odsazení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="814"/>
+        <location filename="texstudio.cpp" line="824"/>
         <source>Hard Line &amp;Break...</source>
         <translation>Tvrdé &amp;zalomení řádků...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="815"/>
+        <location filename="texstudio.cpp" line="825"/>
         <source>R&amp;epeat Hard Line Break</source>
         <translation>&amp;Opakovat tvrdé zalomení řádků</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="818"/>
+        <location filename="texstudio.cpp" line="828"/>
         <source>&amp;Go to</source>
         <translation>&amp;Jít na</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="820"/>
+        <location filename="texstudio.cpp" line="830"/>
         <source>Previous Error</source>
         <translation>Předchozí chyba</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="820"/>
-        <location filename="texstudio.cpp" line="821"/>
+        <location filename="texstudio.cpp" line="830"/>
+        <location filename="texstudio.cpp" line="831"/>
         <source>No LaTeX errors detected !</source>
         <translation>Nenalezeny žádné LaTeXové chyby!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="821"/>
+        <location filename="texstudio.cpp" line="831"/>
         <source>Next Error</source>
         <translation>Další chyba</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="822"/>
+        <location filename="texstudio.cpp" line="832"/>
         <source>Previous Warning</source>
         <translation>Předchozí varování</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="822"/>
-        <location filename="texstudio.cpp" line="823"/>
+        <location filename="texstudio.cpp" line="832"/>
+        <location filename="texstudio.cpp" line="833"/>
         <source>No LaTeX warnings detected !</source>
         <translation>Nenalezena žádná LaTeXová varování!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="823"/>
+        <location filename="texstudio.cpp" line="833"/>
         <source>Next Warning</source>
         <translation>Další varování</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="824"/>
+        <location filename="texstudio.cpp" line="834"/>
         <source>Previous Bad Box</source>
         <translation>Předchozí špatné políčko</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="824"/>
-        <location filename="texstudio.cpp" line="825"/>
+        <location filename="texstudio.cpp" line="834"/>
+        <location filename="texstudio.cpp" line="835"/>
         <source>No bad boxes detected !</source>
         <translation>Nenalezena žádná špatná políčka!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="825"/>
+        <location filename="texstudio.cpp" line="835"/>
         <source>Next Bad Box</source>
         <translation>Další špatné políčko</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="827"/>
+        <location filename="texstudio.cpp" line="837"/>
         <source>Definition</source>
         <translation>Vymezení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="830"/>
+        <location filename="texstudio.cpp" line="840"/>
         <source>Re&amp;name Environment</source>
         <translation>&amp;Přejmenovat prostředí</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="832"/>
+        <location filename="texstudio.cpp" line="842"/>
         <source>Parenthesis</source>
         <translation>Závorky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="833"/>
+        <location filename="texstudio.cpp" line="843"/>
         <source>Jump to Match</source>
         <translation>Skočit na shodu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="834"/>
+        <location filename="texstudio.cpp" line="844"/>
         <source>Select Inner</source>
         <translation>Vybrat vnitřní</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="835"/>
+        <location filename="texstudio.cpp" line="845"/>
         <source>Select Outer</source>
         <translation>Vybrat vnější</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="836"/>
+        <location filename="texstudio.cpp" line="846"/>
         <source>Select Command</source>
         <translation>Vybrat příkaz</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="837"/>
+        <location filename="texstudio.cpp" line="847"/>
         <source>Select Line</source>
         <translation>Vybrat řádek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="838"/>
+        <location filename="texstudio.cpp" line="848"/>
         <source>Select Inverting</source>
         <translation>Vybrat obracející</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="841"/>
+        <location filename="texstudio.cpp" line="851"/>
         <source>Find Mismatch</source>
         <translation>Najít nesoulad</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="843"/>
+        <location filename="texstudio.cpp" line="853"/>
         <source>Complete</source>
         <translation>Doplnit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="844"/>
+        <location filename="texstudio.cpp" line="854"/>
         <source>Normal</source>
         <translation>Normální</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="845"/>
+        <location filename="texstudio.cpp" line="855"/>
         <source>\begin{ Completion</source>
         <translation>\begin{ doplnění</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="846"/>
+        <location filename="texstudio.cpp" line="856"/>
         <source>Normal Text</source>
         <translation>Normální text</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="847"/>
+        <location filename="texstudio.cpp" line="857"/>
         <source>Close latest open environment</source>
         <translation>Zavřít naposledy otevřené prostředí</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="850"/>
+        <location filename="texstudio.cpp" line="860"/>
         <source>Refresh Structure</source>
         <translation>Obnovit stavbu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="851"/>
+        <location filename="texstudio.cpp" line="861"/>
         <source>Refresh QNFA</source>
         <translation>Obnovit QNFA</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="852"/>
+        <location filename="texstudio.cpp" line="862"/>
         <source>Remove Placeholders</source>
         <translation>Odstranit zástupné znaky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="853"/>
+        <location filename="texstudio.cpp" line="863"/>
         <source>Remove Current Placeholder</source>
         <translation>Odstranit nynější zástupný znak</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="858"/>
+        <location filename="texstudio.cpp" line="868"/>
         <source>&amp;Tools</source>
         <translation>&amp;Nástroje</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="860"/>
+        <location filename="texstudio.cpp" line="870"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>&amp;Sestavení a zobrazení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="861"/>
+        <location filename="texstudio.cpp" line="871"/>
         <source>&amp;Compile</source>
         <translation>&amp;Překlad</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="862"/>
+        <location filename="texstudio.cpp" line="872"/>
         <source>Stop Compile</source>
         <translation>Zastavit překlad</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="864"/>
-        <location filename="texstudio.cpp" line="1017"/>
+        <location filename="texstudio.cpp" line="874"/>
+        <location filename="texstudio.cpp" line="1027"/>
         <source>&amp;View</source>
         <translation>&amp;Pohled</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="865"/>
-        <location filename="texstudio.cpp" line="961"/>
+        <location filename="texstudio.cpp" line="875"/>
+        <location filename="texstudio.cpp" line="971"/>
         <source>&amp;Bibliography</source>
         <translation>&amp;Bibliografie</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="866"/>
+        <location filename="texstudio.cpp" line="876"/>
         <source>&amp;Glossary</source>
         <translation>&amp;Slovníček</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="867"/>
+        <location filename="texstudio.cpp" line="877"/>
         <source>&amp;Index</source>
         <translation>&amp;Rejstřík</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="870"/>
+        <location filename="texstudio.cpp" line="880"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>&amp;Příkazy</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="871"/>
+        <location filename="texstudio.cpp" line="881"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;Latexmk</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="873"/>
-        <location filename="texstudio.cpp" line="921"/>
+        <location filename="texstudio.cpp" line="883"/>
+        <location filename="texstudio.cpp" line="931"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="874"/>
+        <location filename="texstudio.cpp" line="884"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="878"/>
+        <location filename="texstudio.cpp" line="888"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="879"/>
+        <location filename="texstudio.cpp" line="889"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="880"/>
+        <location filename="texstudio.cpp" line="890"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="882"/>
+        <location filename="texstudio.cpp" line="892"/>
         <source>View &amp;DVI</source>
         <translation>Zobrazit &amp;DVI</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="883"/>
+        <location filename="texstudio.cpp" line="893"/>
         <source>Vie&amp;w PS</source>
         <translation>Zobraz&amp;it PS</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="884"/>
+        <location filename="texstudio.cpp" line="894"/>
         <source>View PD&amp;F</source>
         <translation>Zobrazit PD&amp;F</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="886"/>
+        <location filename="texstudio.cpp" line="896"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="887"/>
+        <location filename="texstudio.cpp" line="897"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="888"/>
+        <location filename="texstudio.cpp" line="898"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="890"/>
+        <location filename="texstudio.cpp" line="900"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;MakeIndex</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="891"/>
+        <location filename="texstudio.cpp" line="901"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="892"/>
+        <location filename="texstudio.cpp" line="902"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="894"/>
+        <location filename="texstudio.cpp" line="904"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="895"/>
+        <location filename="texstudio.cpp" line="905"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="897"/>
+        <location filename="texstudio.cpp" line="907"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>&amp;Uživatel</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="900"/>
+        <location filename="texstudio.cpp" line="910"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>Smaz&amp;at pomocné soubory...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="901"/>
+        <location filename="texstudio.cpp" line="911"/>
         <source>Open &amp;Terminal</source>
         <translation>Otevřít &amp;terminál</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="903"/>
+        <location filename="texstudio.cpp" line="913"/>
         <source>View &amp;Log</source>
         <translation>Zobrazit &amp;zápis</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="904"/>
+        <location filename="texstudio.cpp" line="914"/>
         <source>Show Log Markers</source>
         <translation>Ukázat značky zápisů</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="908"/>
+        <location filename="texstudio.cpp" line="918"/>
         <source>C&amp;onvert to Html...</source>
         <translation>&amp;Převést na HTML...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="909"/>
+        <location filename="texstudio.cpp" line="919"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>&amp;Převést zdrojový text na HTML...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="911"/>
+        <location filename="texstudio.cpp" line="921"/>
         <source>A&amp;nalyse Text...</source>
         <translation>&amp;Rozebrat text...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="912"/>
+        <location filename="texstudio.cpp" line="922"/>
         <source>Generate &amp;Random Text...</source>
         <translation>Vytvořit &amp;náhodný text...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="914"/>
+        <location filename="texstudio.cpp" line="924"/>
         <source>Check Spelling...</source>
         <translation>Ověření pravopisu...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="915"/>
+        <location filename="texstudio.cpp" line="925"/>
         <source>Thesaurus...</source>
         <translation>Slovník...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="916"/>
+        <location filename="texstudio.cpp" line="926"/>
         <source>Find Word Repetitions...</source>
         <translation>Najít opakování slov...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="923"/>
+        <location filename="texstudio.cpp" line="933"/>
         <source>Insert \ref to Next Label</source>
         <translation>Vložit \ref k dalšímu štítku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="924"/>
+        <location filename="texstudio.cpp" line="934"/>
         <source>Insert \ref to Previous Label</source>
         <translation>Vložit \ref k předchozímu štítku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="925"/>
+        <location filename="texstudio.cpp" line="935"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>Zacházet s tabulkami</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="926"/>
+        <location filename="texstudio.cpp" line="936"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>Přidat řádek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="927"/>
+        <location filename="texstudio.cpp" line="937"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>Přidat sloupec</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="928"/>
+        <location filename="texstudio.cpp" line="938"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>Odstranit řádek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="929"/>
+        <location filename="texstudio.cpp" line="939"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>Odstranit sloupec</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="930"/>
+        <location filename="texstudio.cpp" line="940"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>Vyjmout sloupec</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="931"/>
+        <location filename="texstudio.cpp" line="941"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>Vložit sloupec</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="932"/>
+        <location filename="texstudio.cpp" line="942"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>Přidat \hline</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="933"/>
+        <location filename="texstudio.cpp" line="943"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>Odstranit \hline</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="934"/>
+        <location filename="texstudio.cpp" line="944"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>Předělat tabulku podle předlohy</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="935"/>
+        <location filename="texstudio.cpp" line="945"/>
         <source>Align Columns</source>
         <translation>Zarovnat sloupce</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="936"/>
+        <location filename="texstudio.cpp" line="946"/>
         <source>Add magic comments ...</source>
         <translation>Přidat kouzelné poznámky...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="937"/>
+        <location filename="texstudio.cpp" line="947"/>
         <source>Insert root document name as TeX comment</source>
         <translation>Vložit název kořenového dokumentu jako poznámku TeXu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="938"/>
-        <location filename="texstudio.cpp" line="1274"/>
+        <location filename="texstudio.cpp" line="948"/>
+        <location filename="texstudio.cpp" line="1284"/>
         <source>Insert language as TeX comment</source>
         <translation>Vložit jazyk jako poznámku TeXu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="939"/>
+        <location filename="texstudio.cpp" line="949"/>
         <source>Insert document coding as TeX comment</source>
         <translation>Vložit kódování dokumentu jako poznámku TeXu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="941"/>
+        <location filename="texstudio.cpp" line="951"/>
         <source>&amp;Math</source>
         <translation>&amp;Matematika</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="945"/>
+        <location filename="texstudio.cpp" line="955"/>
         <source>&amp;Wizards</source>
         <translation>Průvo&amp;dci</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="946"/>
+        <location filename="texstudio.cpp" line="956"/>
         <source>Quick &amp;Start...</source>
         <translation>Pomocník pro &amp;nový dokument...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="947"/>
+        <location filename="texstudio.cpp" line="957"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>Rychlé představení &amp;Beameru...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="948"/>
+        <location filename="texstudio.cpp" line="958"/>
         <source>Quick &amp;Letter...</source>
         <translation>Pomocník pro &amp;dopis...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="951"/>
+        <location filename="texstudio.cpp" line="961"/>
         <source>Quick &amp;Tabular...</source>
         <translation>Pomocník pro &amp;tabulky...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="952"/>
+        <location filename="texstudio.cpp" line="962"/>
         <source>Quick T&amp;abbing...</source>
         <translation>Pomocník pro &amp;zarážky...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="953"/>
+        <location filename="texstudio.cpp" line="963"/>
         <source>Quick &amp;Array...</source>
         <translation>Pomocník pro &amp;uspořádání...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="954"/>
+        <location filename="texstudio.cpp" line="964"/>
         <source>Insert &amp;Graphic...</source>
         <translation>Vložit &amp;obrázek...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="957"/>
+        <location filename="texstudio.cpp" line="967"/>
         <source>Math Assistant...</source>
         <translation>Pomocník pro matematický režim...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="986"/>
+        <location filename="texstudio.cpp" line="996"/>
         <source>&amp;Clean</source>
         <translation>&amp;Uklidit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="988"/>
+        <location filename="texstudio.cpp" line="998"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>&amp;Vložit bibliografický záznam...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="990"/>
+        <location filename="texstudio.cpp" line="1000"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="994"/>
         <location filename="texstudio.cpp" line="1004"/>
+        <location filename="texstudio.cpp" line="1014"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="999"/>
-        <location filename="texstudio.cpp" line="1005"/>
+        <location filename="texstudio.cpp" line="1009"/>
+        <location filename="texstudio.cpp" line="1015"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1012"/>
+        <location filename="texstudio.cpp" line="1022"/>
         <source>Ma&amp;cros</source>
         <translation>Ma&amp;kra</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1018"/>
+        <location filename="texstudio.cpp" line="1028"/>
         <source>Previous Document</source>
         <translation>Předchozí dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1019"/>
+        <location filename="texstudio.cpp" line="1029"/>
         <source>Next Document</source>
         <translation>Další dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1020"/>
+        <location filename="texstudio.cpp" line="1030"/>
         <source>Open Documents</source>
         <translation>Otevřít dokumenty</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1021"/>
+        <location filename="texstudio.cpp" line="1031"/>
         <source>List Of Open Documents</source>
         <translation>Seznam otevřených dokumentů</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1022"/>
+        <location filename="texstudio.cpp" line="1032"/>
         <source>List Of Hidden Documents</source>
         <translation>Seznam skrytých dokumentů</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1024"/>
+        <location filename="texstudio.cpp" line="1034"/>
         <source>Focus Editor</source>
         <translation>Zaměřit editor</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1025"/>
+        <location filename="texstudio.cpp" line="1035"/>
         <source>Focus Viewer</source>
         <translation>Zaměřit prohlížeč</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1030"/>
+        <location filename="texstudio.cpp" line="1040"/>
         <source>Show embedded PDF large</source>
         <translation>Ukázat vložené PDF velké</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1031"/>
+        <location filename="texstudio.cpp" line="1041"/>
         <source>Show embedded PDF small</source>
         <translation>Ukázat vložené PDF malé</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1033"/>
+        <location filename="texstudio.cpp" line="1043"/>
         <source>Close Something</source>
         <translation>Zavřít něco</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1036"/>
+        <location filename="texstudio.cpp" line="1046"/>
         <source>Collapse</source>
         <translation>Složit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1037"/>
-        <location filename="texstudio.cpp" line="1042"/>
+        <location filename="texstudio.cpp" line="1047"/>
+        <location filename="texstudio.cpp" line="1052"/>
         <source>Everything</source>
         <translation>Vše</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1038"/>
-        <location filename="texstudio.cpp" line="1043"/>
+        <location filename="texstudio.cpp" line="1048"/>
+        <location filename="texstudio.cpp" line="1053"/>
         <source>Nearest Block</source>
         <translation>Nejbližší blok</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1040"/>
-        <location filename="texstudio.cpp" line="1045"/>
+        <location filename="texstudio.cpp" line="1050"/>
+        <location filename="texstudio.cpp" line="1055"/>
         <source>Level %1</source>
         <translation>Úroveň %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1041"/>
+        <location filename="texstudio.cpp" line="1051"/>
         <source>Expand</source>
         <translation>Rozbalit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1047"/>
+        <location filename="texstudio.cpp" line="1057"/>
         <source>Grammar errors</source>
         <translation>Mluvnické chyby</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1050"/>
+        <location filename="texstudio.cpp" line="1060"/>
         <source>Word Repetition</source>
         <translation>Opakování slov</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1051"/>
+        <location filename="texstudio.cpp" line="1061"/>
         <source>Long-range Word Repetition</source>
         <translation>Opakování slova s dlouhým dosahem</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1052"/>
+        <location filename="texstudio.cpp" line="1062"/>
         <source>Bad words</source>
         <translation>Špatná slova</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1053"/>
+        <location filename="texstudio.cpp" line="1063"/>
         <source>Grammar Mistake</source>
         <translation>Mluvnický omyl</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1055"/>
+        <location filename="texstudio.cpp" line="1065"/>
         <source>Grammar Mistake Special %1</source>
         <translation>Zvláštní mluvnický omyl %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1064"/>
+        <location filename="texstudio.cpp" line="1074"/>
         <source>Editor Zoom</source>
         <translation>Zvětšení editoru</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1065"/>
+        <location filename="texstudio.cpp" line="1075"/>
         <source>Zoom In</source>
         <translation>Přiblížit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1066"/>
+        <location filename="texstudio.cpp" line="1076"/>
         <source>Zoom Out</source>
         <translation>Oddálit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1067"/>
+        <location filename="texstudio.cpp" line="1077"/>
         <source>Reset Zoom</source>
         <translation>Nastavit zvětšení znovu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1069"/>
+        <location filename="texstudio.cpp" line="1079"/>
         <source>Align Windows</source>
         <translation>Zarovnat okna</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1071"/>
-        <location filename="texstudio.cpp" line="1073"/>
-        <source>Fullscreen Mode</source>
-        <translation>Režim na celou obrazovku</translation>
+        <location filename="texstudio.cpp" line="1081"/>
+        <location filename="texstudio.cpp" line="1083"/>
+        <source>Full &amp;Screen</source>
+        <translation type="unfinished">Na celou &amp;obrazovku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1080"/>
+        <source>Fullscreen Mode</source>
+        <translation type="vanished">Režim na celou obrazovku</translation>
+    </message>
+    <message>
+        <location filename="texstudio.cpp" line="1090"/>
         <source>Highlighting</source>
         <translation>Zvýraznění</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1104"/>
+        <location filename="texstudio.cpp" line="1114"/>
         <source>&amp;Options</source>
         <translation>&amp;Volby</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1105"/>
+        <location filename="texstudio.cpp" line="1115"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;Nastavit TeXstudio...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1108"/>
+        <location filename="texstudio.cpp" line="1118"/>
         <source>Load &amp;Profile...</source>
         <translation>Nahrát &amp;profil...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1109"/>
+        <location filename="texstudio.cpp" line="1119"/>
         <source>S&amp;ave Profile...</source>
         <translation>&amp;Uložit profil...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1110"/>
+        <location filename="texstudio.cpp" line="1120"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>Uložit &amp;nynější nastavení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1111"/>
+        <location filename="texstudio.cpp" line="1121"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>Obnovit &amp;výchozí nastavení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1114"/>
+        <location filename="texstudio.cpp" line="1124"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>Kořenový dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1117"/>
+        <location filename="texstudio.cpp" line="1127"/>
         <source>Detect &amp;Automatically</source>
         <translation>Rozpoznat &amp;automaticky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1125"/>
+        <location filename="texstudio.cpp" line="1135"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>Nastavit nynější dokument jako kořenový dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1128"/>
+        <location filename="texstudio.cpp" line="1138"/>
         <source>&amp;Help</source>
         <translation>&amp;Nápověda</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1129"/>
+        <location filename="texstudio.cpp" line="1139"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeXový odkaz...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1130"/>
+        <location filename="texstudio.cpp" line="1140"/>
         <source>User Manual...</source>
         <translation>Uživatelská příručka...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1131"/>
+        <location filename="texstudio.cpp" line="1141"/>
         <source>Packages Help...</source>
         <translation>Nápověda k balíkům...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1134"/>
+        <location filename="texstudio.cpp" line="1144"/>
         <source>Check LaTeX Installation</source>
         <translation>Ověřit instalaci LaTeXu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1135"/>
+        <location filename="texstudio.cpp" line="1145"/>
         <source>Check Active Completion Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1136"/>
+        <location filename="texstudio.cpp" line="1146"/>
         <source>About TeXstudio...</source>
         <translation>O programu TeXstudio...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1155"/>
-        <location filename="texstudio.cpp" line="2541"/>
-        <location filename="texstudio.cpp" line="7561"/>
+        <location filename="texstudio.cpp" line="1165"/>
+        <location filename="texstudio.cpp" line="2551"/>
+        <location filename="texstudio.cpp" line="7571"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1156"/>
-        <location filename="texstudio.cpp" line="7562"/>
+        <location filename="texstudio.cpp" line="1166"/>
+        <location filename="texstudio.cpp" line="7572"/>
         <source>Cut</source>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1157"/>
-        <location filename="texstudio.cpp" line="7563"/>
+        <location filename="texstudio.cpp" line="1167"/>
+        <location filename="texstudio.cpp" line="7573"/>
         <source>Paste Before</source>
         <translation>Vložit před</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1158"/>
-        <location filename="texstudio.cpp" line="7564"/>
+        <location filename="texstudio.cpp" line="1168"/>
+        <location filename="texstudio.cpp" line="7574"/>
         <source>Paste After</source>
         <translation>Vložit za</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1162"/>
-        <location filename="texstudio.cpp" line="7566"/>
+        <location filename="texstudio.cpp" line="1172"/>
+        <location filename="texstudio.cpp" line="7576"/>
         <source>Indent Section</source>
         <translation>Odsadit oblast</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1163"/>
-        <location filename="texstudio.cpp" line="7567"/>
+        <location filename="texstudio.cpp" line="1173"/>
+        <location filename="texstudio.cpp" line="7577"/>
         <source>Unindent Section</source>
         <translation>Zrušit odsazení oblasti</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1265"/>
+        <location filename="texstudio.cpp" line="1275"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1328"/>
+        <location filename="texstudio.cpp" line="1338"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1340"/>
-        <location filename="texstudio.cpp" line="1341"/>
-        <location filename="texstudio.cpp" line="5428"/>
-        <location filename="texstudio.cpp" line="5431"/>
-        <location filename="texstudio.cpp" line="5432"/>
+        <location filename="texstudio.cpp" line="1350"/>
+        <location filename="texstudio.cpp" line="1351"/>
+        <location filename="texstudio.cpp" line="5438"/>
+        <location filename="texstudio.cpp" line="5441"/>
+        <location filename="texstudio.cpp" line="5442"/>
         <source>Encoding</source>
         <translation>Kódování znaků</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1363"/>
+        <location filename="texstudio.cpp" line="1373"/>
         <source>More Encodings...</source>
         <translation>Další kódování...</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1371"/>
+        <location filename="texstudio.cpp" line="1381"/>
         <source>Insert encoding as TeX comment</source>
         <translation>Vložit kódování jako poznámku TeXu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1385"/>
+        <location filename="texstudio.cpp" line="1395"/>
         <source>Go to bookmark</source>
         <translation>Jít na záložku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1429"/>
+        <location filename="texstudio.cpp" line="1439"/>
         <source>Automatic</source>
         <translation>Automaticky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1430"/>
+        <location filename="texstudio.cpp" line="1440"/>
         <source>Automatic root document detection active</source>
         <translation>Automatické rozpoznávání kořenového dokumentu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1435"/>
+        <location filename="texstudio.cpp" line="1445"/>
         <source>&amp;Explicit</source>
         <translation>&amp;Explicitní</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1436"/>
+        <location filename="texstudio.cpp" line="1446"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>Kořen</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1437"/>
+        <location filename="texstudio.cpp" line="1447"/>
         <source>Explict root document:
 %1</source>
         <translation>Explicitní kořenový dokument:
 %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1504"/>
+        <location filename="texstudio.cpp" line="1514"/>
         <source>
 included document in %1</source>
         <translation>
 zahrnut dokument v %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1723"/>
+        <location filename="texstudio.cpp" line="1733"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>Chcete ladit soubor SyncTeX?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1799"/>
-        <location filename="texstudio.cpp" line="3521"/>
-        <location filename="texstudio.cpp" line="5465"/>
-        <location filename="texstudio.cpp" line="5972"/>
-        <location filename="texstudio.cpp" line="6119"/>
-        <location filename="texstudio.cpp" line="6121"/>
-        <location filename="texstudio.cpp" line="6128"/>
-        <location filename="texstudio.cpp" line="6130"/>
-        <location filename="texstudio.cpp" line="9733"/>
+        <location filename="texstudio.cpp" line="1809"/>
+        <location filename="texstudio.cpp" line="3531"/>
+        <location filename="texstudio.cpp" line="5475"/>
+        <location filename="texstudio.cpp" line="5982"/>
+        <location filename="texstudio.cpp" line="6129"/>
+        <location filename="texstudio.cpp" line="6131"/>
+        <location filename="texstudio.cpp" line="6138"/>
+        <location filename="texstudio.cpp" line="6140"/>
+        <location filename="texstudio.cpp" line="9745"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1799"/>
+        <location filename="texstudio.cpp" line="1809"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>Nemáte oprávnění pro čtení souboru %1.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1859"/>
+        <location filename="texstudio.cpp" line="1869"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>Soubor s obnovou po pádu %1 byl nalezen pro &quot;%2&quot;.
 Chcete jej obnovit?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1865"/>
+        <location filename="texstudio.cpp" line="1875"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>Nepodařilo se otevřít obnovovací soubor &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2008"/>
+        <location filename="texstudio.cpp" line="2018"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -10177,45 +10183,45 @@ Získejte, prosím, správnou běhovou knihovnu (např. soubory dll, nebo tak po
 V opačném případě by se mohly objevit náhodné chyby a pády.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2092"/>
+        <location filename="texstudio.cpp" line="2102"/>
         <source>Could not write template data:</source>
         <translation>Nepodařilo se zapsat data předlohy:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2118"/>
+        <location filename="texstudio.cpp" line="2128"/>
         <source>Could not write template meta data:</source>
         <translation>Nepodařilo se zapsat popisná data k předloze:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2162"/>
-        <location filename="texstudio.cpp" line="2222"/>
+        <location filename="texstudio.cpp" line="2172"/>
+        <location filename="texstudio.cpp" line="2232"/>
         <source>File not found:</source>
         <translation>Soubor nenalezen:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2166"/>
-        <location filename="texstudio.cpp" line="2226"/>
+        <location filename="texstudio.cpp" line="2176"/>
+        <location filename="texstudio.cpp" line="2236"/>
         <source>You do not have read permission to this file:</source>
         <translation>Nemáte oprávnění pro čtení tohoto souboru:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2335"/>
-        <location filename="texstudio.cpp" line="9563"/>
+        <location filename="texstudio.cpp" line="2345"/>
+        <location filename="texstudio.cpp" line="9575"/>
         <source>Open Files</source>
         <translation>Otevřít soubory</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2369"/>
+        <location filename="texstudio.cpp" line="2379"/>
         <source>Loading of last session failed.</source>
         <translation>Nahrání posledního sezení se nezdařilo.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2428"/>
+        <location filename="texstudio.cpp" line="2438"/>
         <source>Save As</source>
         <translation>Uložit jako</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2445"/>
+        <location filename="texstudio.cpp" line="2455"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -10228,205 +10234,205 @@ verze souboru s tímto názvem. Tento jiný soubor musíte uložit nebo
 zavřít, předtím než jej budete moci přepsat.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2463"/>
+        <location filename="texstudio.cpp" line="2473"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>Toto PDF nelze seřídit se zdrojovým textem, protože zdrojový soubor byl pomocí Uložit jako přejmenován. Pro opětovné zapnutí seřizování se musí přejmenovaný zdrojový soubor přeložit znovu.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2541"/>
+        <location filename="texstudio.cpp" line="2551"/>
         <source>Rename/Move</source>
         <translation>Přejmenovat/Přesunout</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2556"/>
+        <location filename="texstudio.cpp" line="2566"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>Opravdu chcete smazat soubor &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2565"/>
+        <location filename="texstudio.cpp" line="2575"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>Opravdu chcete vrátit soubor &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2592"/>
+        <location filename="texstudio.cpp" line="2602"/>
         <source>Numeric permissions</source>
         <translation>Oprávnění pro čísla</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2593"/>
+        <location filename="texstudio.cpp" line="2603"/>
         <source>Verbose permissions</source>
         <translation>Podrobná oprávnění</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2640"/>
-        <location filename="texstudio.cpp" line="2698"/>
+        <location filename="texstudio.cpp" line="2650"/>
+        <location filename="texstudio.cpp" line="2708"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>Dokument &quot;%1&quot; byl změněn, a tak obsahuje neuloženou práci. Chcete ji před ukončením programu uložit?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2642"/>
-        <location filename="texstudio.cpp" line="2700"/>
+        <location filename="texstudio.cpp" line="2652"/>
+        <location filename="texstudio.cpp" line="2710"/>
         <source>Save and Close</source>
         <translation>Uložit a zavřít</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2642"/>
-        <location filename="texstudio.cpp" line="2700"/>
+        <location filename="texstudio.cpp" line="2652"/>
+        <location filename="texstudio.cpp" line="2710"/>
         <source>Close without Saving</source>
         <translation>Zavřít bez uložení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2642"/>
-        <location filename="texstudio.cpp" line="2700"/>
+        <location filename="texstudio.cpp" line="2652"/>
+        <location filename="texstudio.cpp" line="2710"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2778"/>
-        <location filename="texstudio.cpp" line="2830"/>
-        <location filename="texstudio.cpp" line="2912"/>
+        <location filename="texstudio.cpp" line="2788"/>
+        <location filename="texstudio.cpp" line="2840"/>
+        <location filename="texstudio.cpp" line="2922"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>Soubor &quot;%1&quot; již neexistuje. Chcete jej odstranit ze seznamu naposledy použitých souborů?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2925"/>
+        <location filename="texstudio.cpp" line="2935"/>
         <source>Loading of session failed.</source>
         <translation>Nahrání sezení se nezdařilo.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2942"/>
+        <location filename="texstudio.cpp" line="2952"/>
         <source>Load Session</source>
         <translation>Nahrát sezení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2942"/>
-        <location filename="texstudio.cpp" line="2960"/>
+        <location filename="texstudio.cpp" line="2952"/>
+        <location filename="texstudio.cpp" line="2970"/>
         <source>TeXstudio Session</source>
         <translation>Sezení TeXstudio</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2960"/>
+        <location filename="texstudio.cpp" line="2970"/>
         <source>Save Session</source>
         <translation>Uložit sezení</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2963"/>
+        <location filename="texstudio.cpp" line="2973"/>
         <source>Saving of session failed.</source>
         <translation>Uložení sezení se nezdařilo.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3038"/>
+        <location filename="texstudio.cpp" line="3048"/>
         <source>The following files could not be loaded:</source>
         <translation>Následující soubory se nepodařilo nahrát:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3188"/>
+        <location filename="texstudio.cpp" line="3198"/>
         <source>Image Formats (%1)</source>
         <translation>Obrázkové formáty (%1)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3190"/>
+        <location filename="texstudio.cpp" line="3200"/>
         <source>Save Image</source>
         <translation>Uložit obrázek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3195"/>
+        <location filename="texstudio.cpp" line="3205"/>
         <source>Could not save the image file.</source>
         <translation>Nepodařilo se uložit soubor s obrázkem.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3488"/>
+        <location filename="texstudio.cpp" line="3498"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Vložit tvrdé zalomení řádku po tolika znacích:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3489"/>
+        <location filename="texstudio.cpp" line="3499"/>
         <source>Smart scope selecting</source>
         <translation>Chytrý výběr oblasti</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3490"/>
+        <location filename="texstudio.cpp" line="3500"/>
         <source>Join lines before wrapping</source>
         <translation>Spojit řádky před zalomením</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3504"/>
-        <location filename="texstudio.cpp" line="5889"/>
-        <location filename="texstudio.cpp" line="5918"/>
+        <location filename="texstudio.cpp" line="3514"/>
+        <location filename="texstudio.cpp" line="5899"/>
+        <location filename="texstudio.cpp" line="5928"/>
         <source>No document open</source>
         <translation>Neotevřen žádný dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3510"/>
+        <location filename="texstudio.cpp" line="3520"/>
         <source>No dictionary available.</source>
         <translation>Není dostupný žádný slovník.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3521"/>
+        <location filename="texstudio.cpp" line="3531"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>Nelze nahrát slovníkovou databázi</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="4124"/>
+        <location filename="texstudio.cpp" line="4134"/>
         <source>Unable to write to settings file %1</source>
         <translation>Nepodařilo se zapsat soubor s nastavením %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5110"/>
+        <location filename="texstudio.cpp" line="5120"/>
         <source>Quick Start</source>
         <translation>Pomocník pro nový dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5132"/>
+        <location filename="texstudio.cpp" line="5142"/>
         <source>Quick Beamer Presentation</source>
         <translation>Rychlé představení Beameru</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5169"/>
+        <location filename="texstudio.cpp" line="5179"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Nynější soubor&gt;</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5201"/>
+        <location filename="texstudio.cpp" line="5211"/>
         <source>Type: %1</source>
         <translation>Typ: %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5228"/>
+        <location filename="texstudio.cpp" line="5238"/>
         <source>Edit User &amp;Tags</source>
         <translation>Upravit uživatelské &amp;značky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5277"/>
+        <location filename="texstudio.cpp" line="5287"/>
         <source>Labels:</source>
         <translation>Štítky:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5426"/>
+        <location filename="texstudio.cpp" line="5436"/>
         <source>Encoding Aliases: </source>
         <translation>Přezdívky kódování: </translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5465"/>
+        <location filename="texstudio.cpp" line="5475"/>
         <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nelze zjistit název souboru.
 Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5472"/>
+        <location filename="texstudio.cpp" line="5482"/>
         <source>Can&apos;t detect the file name</source>
         <translation>Nelze zjistit název souboru</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5591"/>
+        <location filename="texstudio.cpp" line="5601"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
         <translation>Zavolal jste příkaz k otevření vnitřního prohlížeče PDF.
 Používáte ovšem verzi programu TeXstudio, která byla sestavena bez vnitřního prohlížeče PDF.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5611"/>
+        <location filename="texstudio.cpp" line="5621"/>
         <source>The document &quot;%1&quot; wants to override the command &quot;%2&quot; with &quot;%3&quot;.
 
 Do you want to allow and run the new, overriding command?
@@ -10443,326 +10449,326 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
 (c) Ne, nepoužívat příkaz &quot;%3&quot; a spustit výchozí příkaz &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5617"/>
+        <location filename="texstudio.cpp" line="5627"/>
         <source>(a) allow for this document</source>
         <translation>(a) povolit pro tento dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5618"/>
+        <location filename="texstudio.cpp" line="5628"/>
         <source>(b) allow for all documents</source>
         <translation>(b) povolit pro všechny dokumenty</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5619"/>
+        <location filename="texstudio.cpp" line="5629"/>
         <source>(c) use the default command</source>
         <translation>(c) použít výchozí příkaz</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5678"/>
+        <location filename="texstudio.cpp" line="5688"/>
         <source>Unknown internal command: %1</source>
         <translation>Neznámý vnitřní příkaz: %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5761"/>
+        <location filename="texstudio.cpp" line="5771"/>
         <source>You cannot compile the document in a non writable directory.</source>
         <translation>Dokument nemůžete sestavit v nezapisovatelném adresáři.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5763"/>
+        <location filename="texstudio.cpp" line="5773"/>
         <source>Could not start %1.</source>
         <translation>Nepodařilo se spustit %1.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5791"/>
+        <location filename="texstudio.cpp" line="5801"/>
         <source>Error:</source>
         <translation>Chyba:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5836"/>
+        <location filename="texstudio.cpp" line="5846"/>
         <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
         <translation>&lt;h4&gt;Změna výchozích zkratek&lt;/h4&gt;&lt;p&gt;V průběhu času se zkratky hlavních nástrojů staly jaksi roztříštěnými. K tomu se částečně překrývaly s běžnými klávesami. Obzvláště F1, F3, F10, F11 a F12 mají v některých systémech vyhrazený účel.&lt;/p&gt;&lt;p&gt;Rozhodli jsme se to udělat řádně ve prospěch soudržnějšího rozvržení:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Zkratka pro &lt;code&gt;Sestavit a zobrazit&lt;/code&gt; se přesune z F1 na F5.&lt;/li&gt;&lt;li&gt;Zkratka pro &lt;code&gt;Bibliografie&lt;/code&gt; se přesune z F11 na F8.&lt;/li&gt;&lt;li&gt;Zkratka pro &lt;code&gt;Slovníček&lt;/code&gt; se přesune z F10 na F9.&lt;li&gt;Nástroj &lt;code&gt;Index&lt;/code&gt; už výchozí zkratku mít nebude (dříve F12), protože není volán moc často.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Je nám líto, že se budete muset naučit zkratku pro často používané &lt;code&gt;Sestavit a zobrazit&lt;/code&gt; znovu. Po přechodné období se budou dát použít jak F1 tak F5. Nakonec shromáždění nejdůležitějších nástrojů ve středovém bloku F5-F8 zvýší použitelnost. Jako obvykle můžete zkratky přizpůsobit ve volbách.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5854"/>
+        <location filename="texstudio.cpp" line="5864"/>
         <source>Do not show this message again.</source>
         <translation>Neukazovat tuto zprávu znovu.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5857"/>
+        <location filename="texstudio.cpp" line="5867"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5882"/>
+        <location filename="texstudio.cpp" line="5892"/>
         <source>No open project or tex file to clean.</source>
         <translation>Žádný otevřený projekt nebo soubor TeX ke smazání.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5922"/>
+        <location filename="texstudio.cpp" line="5932"/>
         <source>Text Analysis</source>
         <translation>Rozbor textu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5943"/>
+        <location filename="texstudio.cpp" line="5953"/>
         <source>The random text generator constructs new texts from existing words, so you have to open some text files</source>
         <translation>Tvůrce náhodného textu staví nové texty ze stávajících slov, takže musíte otevřít nějaké textové soubory</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5972"/>
+        <location filename="texstudio.cpp" line="5982"/>
         <source>File must be saved and compiling before you can view the log</source>
         <translation>Soubor musí být uložen a sestaven, dříve než si budete moci prohlédnout zápis</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="6119"/>
-        <location filename="texstudio.cpp" line="6128"/>
+        <location filename="texstudio.cpp" line="6129"/>
+        <location filename="texstudio.cpp" line="6138"/>
         <source>File not found</source>
         <translation>Soubor nebyl nalezen</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="6121"/>
-        <location filename="texstudio.cpp" line="6130"/>
+        <location filename="texstudio.cpp" line="6131"/>
+        <location filename="texstudio.cpp" line="6140"/>
         <source>Could not open browser</source>
         <translation>Nepodařilo se otevřít prohlížeč</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="6561"/>
+        <location filename="texstudio.cpp" line="6571"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Soubor se musí uložit, předtím než se může použít jako kořenový dokument.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7507"/>
+        <location filename="texstudio.cpp" line="7517"/>
         <source>Close document</source>
         <translation>Zavřít dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7508"/>
+        <location filename="texstudio.cpp" line="7518"/>
         <source>Set as explicit root document</source>
         <translation>Nastavit jako explicitní kořenový dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7509"/>
+        <location filename="texstudio.cpp" line="7519"/>
         <source>Open all related documents</source>
         <translation>Otevřít všechny související dokumenty</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7510"/>
+        <location filename="texstudio.cpp" line="7520"/>
         <source>Close all related documents</source>
         <translation>Zavřít všechny související dokumenty</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7512"/>
+        <location filename="texstudio.cpp" line="7522"/>
         <source>Remove explicit root document role</source>
         <translation>Odstranit roli explicitního kořenového dokumentu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7514"/>
+        <location filename="texstudio.cpp" line="7524"/>
         <source>Show all open documents in this tree</source>
         <translation>Ukázat všechny otevřené dokumenty v tomto stromu</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7516"/>
+        <location filename="texstudio.cpp" line="7526"/>
         <source>Show only current document in this tree</source>
         <translation>Ukázat v tomto stromu pouze současný dokument</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7519"/>
+        <location filename="texstudio.cpp" line="7529"/>
         <source>Move document to &amp;front</source>
         <translation>Přesunout dokument na z&amp;ačátek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7520"/>
+        <location filename="texstudio.cpp" line="7530"/>
         <source>Move document to &amp;end</source>
         <translation>Přesunout dokument na k&amp;onec</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7522"/>
-        <location filename="texstudio.cpp" line="7570"/>
+        <location filename="texstudio.cpp" line="7532"/>
+        <location filename="texstudio.cpp" line="7580"/>
         <source>Expand Subitems</source>
         <translation>Rozbalit podpoložky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7523"/>
-        <location filename="texstudio.cpp" line="7571"/>
+        <location filename="texstudio.cpp" line="7533"/>
+        <location filename="texstudio.cpp" line="7581"/>
         <source>Collapse Subitems</source>
         <translation>Složit podpoložky</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7524"/>
+        <location filename="texstudio.cpp" line="7534"/>
         <source>Expand all documents</source>
         <translation>Rozbalit všechny dokumenty</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7525"/>
+        <location filename="texstudio.cpp" line="7535"/>
         <source>Collapse all documents</source>
         <translation>Sbalit všechny dokumenty</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7534"/>
+        <location filename="texstudio.cpp" line="7544"/>
         <source>Insert</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7535"/>
-        <location filename="texstudio.cpp" line="7536"/>
+        <location filename="texstudio.cpp" line="7545"/>
+        <location filename="texstudio.cpp" line="7546"/>
         <source>Insert as %1</source>
         <translation>Vložit jako %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7538"/>
+        <location filename="texstudio.cpp" line="7548"/>
         <source>Find Usages</source>
         <translation>Najít použití</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7549"/>
+        <location filename="texstudio.cpp" line="7559"/>
         <source>Insert Label</source>
         <translation>Vložit štítek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7553"/>
+        <location filename="texstudio.cpp" line="7563"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
         <translation>Vložit %1 ke štítku</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7557"/>
+        <location filename="texstudio.cpp" line="7567"/>
         <source>Create Label</source>
         <translation>Vytvořit štítek</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8180"/>
-        <location filename="texstudio.cpp" line="8191"/>
+        <location filename="texstudio.cpp" line="8190"/>
+        <location filename="texstudio.cpp" line="8201"/>
         <source>Add to favorites</source>
         <translation>Přidat k nejoblíbenějším</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8181"/>
-        <location filename="texstudio.cpp" line="8237"/>
+        <location filename="texstudio.cpp" line="8191"/>
+        <location filename="texstudio.cpp" line="8247"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8182"/>
+        <location filename="texstudio.cpp" line="8192"/>
         <source>Remove all</source>
         <translation>Odstranit vše</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8186"/>
+        <location filename="texstudio.cpp" line="8196"/>
         <source>Remove from favorites</source>
         <translation>Odstranit z nejoblíbenějších</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8187"/>
+        <location filename="texstudio.cpp" line="8197"/>
         <source>Remove all favorites</source>
         <translation>Odstranit všechny nejoblíbenější</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8396"/>
+        <location filename="texstudio.cpp" line="8406"/>
         <source>commit comment:</source>
         <translation>Odeslat poznámku:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8398"/>
+        <location filename="texstudio.cpp" line="8408"/>
         <source>check in whole directory ?</source>
         <translation>Zapsat celý adresář?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8717"/>
+        <location filename="texstudio.cpp" line="8727"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>Pozor: Dialog je automaticky zavřen, je-li text ručně upravován!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9013"/>
+        <location filename="texstudio.cpp" line="9025"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>Soubor &quot;%1&quot; neexistuje.
 Chcete jej vytvořit?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9035"/>
+        <location filename="texstudio.cpp" line="9047"/>
         <source>Save Profile</source>
         <translation>Uložit profil</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9035"/>
-        <location filename="texstudio.cpp" line="9045"/>
+        <location filename="texstudio.cpp" line="9047"/>
+        <location filename="texstudio.cpp" line="9057"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>Profil TXS</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9045"/>
+        <location filename="texstudio.cpp" line="9057"/>
         <source>Load Profile</source>
         <translation>Nahrát profil</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9095"/>
+        <location filename="texstudio.cpp" line="9107"/>
         <source>Failed to read profile file %1.</source>
         <translation>Nepodařilo se přečíst soubor s profilem %1.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9218"/>
+        <location filename="texstudio.cpp" line="9230"/>
         <source>Problem</source>
         <translation>Potíže</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9218"/>
+        <location filename="texstudio.cpp" line="9230"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>Opakování slov jsou hledána jen při zapnutém ověřování pravopisu!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9223"/>
+        <location filename="texstudio.cpp" line="9235"/>
         <source>Find Word Repetitions</source>
         <translation>Najít opakování slov</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9232"/>
+        <location filename="texstudio.cpp" line="9244"/>
         <source>&amp;Find Next</source>
         <translation>&amp;Najít další</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9234"/>
+        <location filename="texstudio.cpp" line="9246"/>
         <source>&amp;Find Previous</source>
         <translation>Najít &amp;předchozí</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9285"/>
+        <location filename="texstudio.cpp" line="9297"/>
         <source>Reached beginning of text.</source>
         <translation>Dosaženo začátku textu.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9285"/>
+        <location filename="texstudio.cpp" line="9297"/>
         <source>Reached end of text.</source>
         <translation>Dosaženo konce textu.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9563"/>
-        <location filename="texstudio.cpp" line="9772"/>
-        <location filename="texstudio.cpp" line="9775"/>
+        <location filename="texstudio.cpp" line="9575"/>
+        <location filename="texstudio.cpp" line="9784"/>
+        <location filename="texstudio.cpp" line="9787"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>Soubory LaTeX (*.tex);;Všechny soubory (*.*)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9733"/>
+        <location filename="texstudio.cpp" line="9745"/>
         <source>You do not have read permission to this file.</source>
         <translation>Nemáte dostatečná oprávnění pro čtení tohoto souboru.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9772"/>
+        <location filename="texstudio.cpp" line="9784"/>
         <source>Open Compare File</source>
         <translation>Otevřít porovnávaný soubor</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9775"/>
+        <location filename="texstudio.cpp" line="9787"/>
         <source>Open Base File</source>
         <translation>Otevřít základní soubor</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9823"/>
+        <location filename="texstudio.cpp" line="9835"/>
         <source>Conflict!</source>
         <translation>Rozpor!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9824"/>
+        <location filename="texstudio.cpp" line="9836"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -10774,12 +10780,12 @@ Stiskněte OK pro ukázání rozdílů
 Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9868"/>
+        <location filename="texstudio.cpp" line="9880"/>
         <source>SVN Conflict!</source>
         <translation>Střet v SVN!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9869"/>
+        <location filename="texstudio.cpp" line="9881"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -10789,14 +10795,14 @@ Stiskněte OK pro ukázání rozdílů místo subversion vytvořeného zdroje
 Stiskněte Zrušit, aby se nedělalo nic.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9966"/>
-        <location filename="texstudio.cpp" line="10057"/>
-        <location filename="texstudio.cpp" line="10063"/>
+        <location filename="texstudio.cpp" line="9978"/>
+        <location filename="texstudio.cpp" line="10069"/>
+        <location filename="texstudio.cpp" line="10075"/>
         <source>TeXstudio Emergency</source>
         <translation>Mimořádná událost TeXstudia</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9970"/>
+        <location filename="texstudio.cpp" line="9982"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -10806,7 +10812,7 @@ Please provide this file if you send a bug report.
 Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9973"/>
+        <location filename="texstudio.cpp" line="9985"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10815,19 +10821,19 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
 %2Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9974"/>
+        <location filename="texstudio.cpp" line="9986"/>
         <source>Yes, try to recover</source>
         <translation>Ano, zkusit obnovit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9975"/>
-        <location filename="texstudio.cpp" line="9980"/>
-        <location filename="texstudio.cpp" line="10059"/>
+        <location filename="texstudio.cpp" line="9987"/>
+        <location filename="texstudio.cpp" line="9992"/>
+        <location filename="texstudio.cpp" line="10071"/>
         <source>No, kill the program</source>
         <translation>Ne, zabít program</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9977"/>
+        <location filename="texstudio.cpp" line="9989"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -10836,17 +10842,17 @@ Poskytněte, prosím, tento soubor, pokud posíláte zprávu o chybě.</translat
 %1Chcete program nechat běžet? To může způsobit poškození dat.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9978"/>
+        <location filename="texstudio.cpp" line="9990"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>Ano, zastavit smyčku a zkusit obnovit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9979"/>
+        <location filename="texstudio.cpp" line="9991"/>
         <source>Yes, continue the loop</source>
         <translation>Ano, pokračovat ve smyčce</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10058"/>
+        <location filename="texstudio.cpp" line="10070"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10855,17 +10861,17 @@ Vlákno bylo zastaveno.
 Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10059"/>
+        <location filename="texstudio.cpp" line="10071"/>
         <source>Yes</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10063"/>
+        <location filename="texstudio.cpp" line="10075"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>Byl učiněn pokus o ukončení, ale nestalo se nic.</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10139"/>
+        <location filename="texstudio.cpp" line="10151"/>
         <source>System Report</source>
         <translation>Zpráva systému</translation>
     </message>
