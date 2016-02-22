@@ -967,6 +967,7 @@ void LatexEditorView::addBookmark(int lineNr, int bookmarkNumber)
     }
     if (!document->line(lineNr).hasMark(rmid)){
 		document->line(lineNr).addMark(rmid);
+        lineNr=document->visualLineNumber(lineNr);
         editor->addMark(lineNr,Qt::darkMagenta,"bookmark");
     }
 }
@@ -1016,6 +1017,7 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 	}
 	line.addMark(rmid);
     int ln=document->indexOf(line);
+    ln=document->visualLineNumber(ln);
     editor->addMark(ln,Qt::darkMagenta,"bookmark");
 	emit bookmarkAdded(line.handle(), bookmarkNumber);
 	return true;
