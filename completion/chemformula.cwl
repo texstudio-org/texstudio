@@ -33,28 +33,28 @@
 #
 #
 #keyvals:\ch
-decimal-marker={%<marker%>} # default: .
-frac-style=#math,xfrac,nicefrac, # default: math
-frac-math-cmd={%<command sequence%>} # default: \frac
-stoich-space={%<skip%>} # default: .1667em plus .0333em minus .0117em
-stoich-paren-parse=#true,false, # default: false
-stoich-print={%<cs%>} # default: \chstoich
+decimal-marker={%<marker%>}
+frac-style=#math,xfrac,nicefrac
+frac-math-cmd={%<command sequence%>}
+stoich-space={%<skip%>}
+stoich-paren-parse=#true,false
+stoich-print={%<cs%>}
 #endkeyvals
 #keyvals:\setchemformula
-decimal-marker={%<marker%>} # default: .
-frac-style=#math,xfrac,nicefrac, # default: math
-frac-math-cmd={%<command sequence%>} # default: \frac
-stoich-space={%<skip%>} # default: .1667em plus .0333em minus .0117em
-stoich-paren-parse=#true,false, # default: false
-stoich-print={%<cs%>} # default: \chstoich
+decimal-marker={%<marker%>}
+frac-style=#math,xfrac,nicefrac
+frac-math-cmd={%<command sequence%>}
+stoich-space={%<skip%>}
+stoich-paren-parse=#true,false
+stoich-print={%<cs%>}
 #endkeyvals
 #keyvals:\chcpd
-decimal-marker={%<marker%>} # default: .
-frac-style=#math,xfrac,nicefrac, # default: math
-frac-math-cmd={%<command sequence%>} # default: \frac
-stoich-space={%<skip%>} # default: .1667em plus .0333em minus .0117em
-stoich-paren-parse=#true,false, # default: false
-stoich-print={%<cs%>} # default: \chstoich
+decimal-marker={%<marker%>}
+frac-style=#math,xfrac,nicefrac
+frac-math-cmd={%<command sequence%>}
+stoich-space={%<skip%>}
+stoich-paren-parse=#true,false
+stoich-print={%<cs%>}
 #endkeyvals
 #
 #
@@ -64,17 +64,17 @@ stoich-print={%<cs%>} # default: \chstoich
 # Section 6.4. Charges and Other Superscripts
 #
 #keyvals:\ch
-circled=#formal,all,none, # default: formal
-circletype=#chem,math, # default: chem
+circled=#formal,all,none
+circletype=#chem,math
 charge-hshift={%<dim%>}
 #endkeyvals
 #keyvals:\setchemformula
-circled=#formal,all,none, # default: formal
-circletype=#chem,math, # default: chem
+circled=#formal,all,none
+circletype=#chem,math
 #endkeyvals
 #keyvals:\chcpd
-circled=#formal,all,none, # default: formal
-circletype=#chem,math, # default: chem
+circled=#formal,all,none
+circletype=#chem,math
 #endkeyvals
 #
 # Section 6.5. Bonds
@@ -91,58 +91,58 @@ circletype=#chem,math, # default: chem
 # Section 6.6. Customization
 #
 #keyvals:\ch
-subscript-vshift={%<dim%>} # default: 0pt
-subscript-style=#text,math, # default: text
-charge-hshift={%<dim%>} # default: .25em
-charge-vshift={%<dim%>} # default: 0pt
-charge-style=#text,math, # default: text
-adduct-space={%<dim%>} # default: .1333em
-adduct-penalty={%<num%>} # default: 300
-bond-length={%<dim%>} # default: .5833em
-bond-offset={%<dim%>} # default: .07em
-bond-style={%<TikZ%>} # default: empty
-bond-penalty={%<num%>} # default: 10000
-radical-style={%<TikZ%>} # default: empty
-radical-radius={%<dim%>} # default: .2ex
-radical-hshift={%<dim%>} # default: .15em
-radical-vshift={%<dim%>} # default: .5ex
-radical-space={%<dim%>} # default: .15em
+subscript-vshift={%<dim%>}
+subscript-style=#text,math
+charge-hshift={%<dim%>}
+charge-vshift={%<dim%>}
+charge-style=#text,math
+adduct-space={%<dim%>}
+adduct-penalty={%<num%>}
+bond-length={%<dim%>}
+bond-offset={%<dim%>}
+bond-style={%<TikZ%>}
+bond-penalty={%<num%>}
+radical-style={%<TikZ%>}
+radical-radius={%<dim%>}
+radical-hshift={%<dim%>}
+radical-vshift={%<dim%>}
+radical-space={%<dim%>}
 #endkeyvals
 #keyvals:\setchemformula
-subscript-vshift={%<dim%>} # default: 0pt
-subscript-style=#text,math, # default: text
-charge-hshift={%<dim%>} # default: .25em
-charge-vshift={%<dim%>} # default: 0pt
-charge-style=#text,math, # default: text
-adduct-space={%<dim%>} # default: .1333em
-adduct-penalty={%<num%>} # default: 300
-bond-length={%<dim%>} # default: .5833em
-bond-offset={%<dim%>} # default: .07em
-bond-style={%<TikZ%>} # default: empty
-bond-penalty={%<num%>} # default: 10000
-radical-style={%<TikZ%>} # default: empty
-radical-radius={%<dim%>} # default: .2ex
-radical-hshift={%<dim%>} # default: .15em
-radical-vshift={%<dim%>} # default: .5ex
-radical-space={%<dim%>} # default: .15em
+subscript-vshift={%<dim%>}
+subscript-style=#text,math
+charge-hshift={%<dim%>}
+charge-vshift={%<dim%>}
+charge-style=#text,math
+adduct-space={%<dim%>}
+adduct-penalty={%<num%>}
+bond-length={%<dim%>}
+bond-offset={%<dim%>}
+bond-style={%<TikZ%>}
+bond-penalty={%<num%>}
+radical-style={%<TikZ%>}
+radical-radius={%<dim%>}
+radical-hshift={%<dim%>}
+radical-vshift={%<dim%>}
+radical-space={%<dim%>}
 #endkeyvals
 #keyvals:\chcpd
-subscript-vshift={%<dim%>} # default: 0pt
-subscript-style=#text,math, # default: text
-charge-hshift={%<dim%>} # default: .25em
-charge-vshift={%<dim%>} # default: 0pt
-charge-style=#text,math, # default: text
-adduct-space={%<dim%>} # default: .1333em
-adduct-penalty={%<num%>} # default: 300
-bond-length={%<dim%>} # default: .5833em
-bond-offset={%<dim%>} # default: .07em
-bond-style={%<TikZ%>} # default: empty
-bond-penalty={%<num%>} # default: 10000
-radical-style={%<TikZ%>} # default: empty
-radical-radius={%<dim%>} # default: .2ex
-radical-hshift={%<dim%>} # default: .15em
-radical-vshift={%<dim%>} # default: .5ex
-radical-space={%<dim%>} # default: .15em
+subscript-vshift={%<dim%>}
+subscript-style=#text,math
+charge-hshift={%<dim%>}
+charge-vshift={%<dim%>}
+charge-style=#text,math
+adduct-space={%<dim%>}
+adduct-penalty={%<num%>}
+bond-length={%<dim%>}
+bond-offset={%<dim%>}
+bond-style={%<TikZ%>}
+bond-penalty={%<num%>}
+radical-style={%<TikZ%>}
+radical-radius={%<dim%>}
+radical-hshift={%<dim%>}
+radical-vshift={%<dim%>}
+radical-space={%<dim%>}
 #endkeyvals
 #
 # Section 6.7. Standalone Formulae
@@ -167,28 +167,28 @@ radical-space={%<dim%>} # default: .15em
 \RenewChemAdditionSymbol{name}{input}{output}#*d
 \DeclareChemAdditionSymbol{name}{input}{output}#*d
 #keyvals:\ch
-plus-space={%<skip%>} # default: .3em plus .1em minus .1em
-plus-penalty={%<num%>} # default: 700
-plus-output-symbol={%<code%>} # default: +
-minus-space={%<skip%>} # default: .3em plus .1em minus .1em
-minus-penalty={%<num%>} # default: 700
-minus-output-symbol={%<code%>} # default: $-$
+plus-space={%<skip%>}
+plus-penalty={%<num%>}
+plus-output-symbol={%<code%>}
+minus-space={%<skip%>}
+minus-penalty={%<num%>}
+minus-output-symbol={%<code%>}
 #endkeyvals
 #keyvals:\setchemformula
-plus-space={%<skip%>} # default: .3em plus .1em minus .1em
-plus-penalty={%<num%>} # default: 700
-plus-output-symbol={%<code%>} # default: +
-minus-space={%<skip%>} # default: .3em plus .1em minus .1em
-minus-penalty={%<num%>} # default: 700
-minus-output-symbol={%<code%>} # default: $-$
+plus-space={%<skip%>}
+plus-penalty={%<num%>}
+plus-output-symbol={%<code%>}
+minus-space={%<skip%>}
+minus-penalty={%<num%>}
+minus-output-symbol={%<code%>}
 #endkeyvals
 #keyvals:\chcpd
-plus-space={%<skip%>} # default: .3em plus .1em minus .1em
-plus-penalty={%<num%>} # default: 700
-plus-output-symbol={%<code%>} # default: +
-minus-space={%<skip%>} # default: .3em plus .1em minus .1em
-minus-penalty={%<num%>} # default: 700
-minus-output-symbol={%<code%>} # default: $-$
+plus-space={%<skip%>}
+plus-penalty={%<num%>}
+plus-output-symbol={%<code%>}
+minus-space={%<skip%>}
+minus-penalty={%<num%>}
+minus-output-symbol={%<code%>}
 #endkeyvals
 \NewChemSymbol{input}{output}#d
 \ProvideChemSymbol{input}{output}#*d
@@ -202,13 +202,13 @@ minus-output-symbol={%<code%>} # default: $-$
 # Section 8.2. Math
 #
 #keyvals:\ch
-math-space={%<skip%>} # default: .1667em plus .0333em minus .0117em
+math-space={%<skip%>}
 #endkeyvals
 #keyvals:\setchemformula
-math-space={%<skip%>} # default: .1667em plus .0333em minus .0117em
+math-space={%<skip%>}
 #endkeyvals
 #keyvals:\chcpd
-math-space={%<skip%>} # default: .1667em plus .0333em minus .0117em
+math-space={%<skip%>}
 #endkeyvals
 #
 #
@@ -218,37 +218,37 @@ math-space={%<skip%>} # default: .1667em plus .0333em minus .0117em
 # Section 9.3. Customization
 #
 #keyvals:\ch
-arrow-offset={%<dim%>} # default: .75em
-arrow-min-length={%<dim%>} # default: 0pt
-arrow-yshift={%<dim%>} # default: 0pt
-arrow-ratio={%<factor%>} # default: .6
-compound-sep={%<dim%>} # default: .5em
-label-offset={%<dim%>} # default: 2pt
-label-style={%<font command%>} # default: \footnotesize
-arrow-penalty={%<num%>} # default: 0
-arrow-style={%<TikZ%>} # default: empty
+arrow-offset={%<dim%>}
+arrow-min-length={%<dim%>}
+arrow-yshift={%<dim%>}
+arrow-ratio={%<factor%>}
+compound-sep={%<dim%>}
+label-offset={%<dim%>}
+label-style={%<font command%>}
+arrow-penalty={%<num%>}
+arrow-style={%<TikZ%>}
 #endkeyvals
 #keyvals:\setchemformula
-arrow-offset={%<dim%>} # default: .75em
-arrow-min-length={%<dim%>} # default: 0pt
-arrow-yshift={%<dim%>} # default: 0pt
-arrow-ratio={%<factor%>} # default: .6
-compound-sep={%<dim%>} # default: .5em
-label-offset={%<dim%>} # default: 2pt
-label-style={%<font command%>} # default: \footnotesize
-arrow-penalty={%<num%>} # default: 0
-arrow-style={%<TikZ%>} # default: empty
+arrow-offset={%<dim%>}
+arrow-min-length={%<dim%>}
+arrow-yshift={%<dim%>}
+arrow-ratio={%<factor%>}
+compound-sep={%<dim%>}
+label-offset={%<dim%>}
+label-style={%<font command%>}
+arrow-penalty={%<num%>}
+arrow-style={%<TikZ%>}
 #endkeyvals
 #keyvals:\chcpd
-arrow-offset={%<dim%>} # default: .75em
-arrow-min-length={%<dim%>} # default: 0pt
-arrow-yshift={%<dim%>} # default: 0pt
-arrow-ratio={%<factor%>} # default: .6
-compound-sep={%<dim%>} # default: .5em
-label-offset={%<dim%>} # default: 2pt
-label-style={%<font command%>} # default: \footnotesize
-arrow-penalty={%<num%>} # default: 0
-arrow-style={%<TikZ%>} # default: empty
+arrow-offset={%<dim%>}
+arrow-min-length={%<dim%>}
+arrow-yshift={%<dim%>}
+arrow-ratio={%<factor%>}
+compound-sep={%<dim%>}
+label-offset={%<dim%>}
+label-style={%<font command%>}
+arrow-penalty={%<num%>}
+arrow-style={%<TikZ%>}
 #endkeyvals
 #
 # Section 9.4. Modify Arrow Types
@@ -272,16 +272,16 @@ arrow-style={%<TikZ%>} # default: empty
 # Section 10.2. Customization
 #
 #keyvals:\ch
-name-format={%<comands%>} # default: \scriptsize\centering
-name-width=#{%<dim%>},auto, # default: auto
+name-format={%<comands%>}
+name-width=#{%<dim%>},auto
 #endkeyvals
 #keyvals:\setchemformula
-name-format={%<comands%>} # default: \scriptsize\centering
-name-width=#{%<dim%>},auto, # default: auto
+name-format={%<comands%>}
+name-width=#{%<dim%>},auto
 #endkeyvals
 #keyvals:\chcpd
-name-format={%<comands%>} # default: \scriptsize\centering
-name-width=#{%<dim%>},auto, # default: auto
+name-format={%<comands%>}
+name-width=#{%<dim%>},auto
 #endkeyvals
 #
 # Section 10.3. Standalone Names
@@ -293,31 +293,31 @@ name-width=#{%<dim%>},auto, # default: auto
 #
 #
 #keyvals:\ch
-format={%<code%>} # default: empty
-atom-format={%<code%>} # default: empty
-font-family={%<family%>} # default: empty
-font-series={%<series%>} # default: empty
-font-shape={%<shape%>} # default: empty
-font-spec={%<font%>} # default: empty
-font-spec={[%<options%>]%<font%>} # default: empty
+format={%<code%>}
+atom-format={%<code%>}
+font-family={%<family%>}
+font-series={%<series%>}
+font-shape={%<shape%>}
+font-spec={%<font%>}
+font-spec={[%<options%>]%<font%>}
 #endkeyvals
 #keyvals:\setchemformula
-format={%<code%>} # default: empty
-atom-format={%<code%>} # default: empty
-font-family={%<family%>} # default: empty
-font-series={%<series%>} # default: empty
-font-shape={%<shape%>} # default: empty
-font-spec={%<font%>} # default: empty
-font-spec={[%<options%>]%<font%>} # default: empty
+format={%<code%>}
+atom-format={%<code%>}
+font-family={%<family%>}
+font-series={%<series%>}
+font-shape={%<shape%>}
+font-spec={%<font%>}
+font-spec={[%<options%>]%<font%>}
 #endkeyvals
 #keyvals:\chcpd
-format={%<code%>} # default: empty
-atom-format={%<code%>} # default: empty
-font-family={%<family%>} # default: empty
-font-series={%<series%>} # default: empty
-font-shape={%<shape%>} # default: empty
-font-spec={%<font%>} # default: empty
-font-spec={[%<options%>]%<font%>} # default: empty
+format={%<code%>}
+atom-format={%<code%>}
+font-family={%<family%>}
+font-series={%<series%>}
+font-shape={%<shape%>}
+font-spec={%<font%>}
+font-spec={[%<options%>]%<font%>}
 #endkeyvals
 #
 #
@@ -325,7 +325,7 @@ font-spec={[%<options%>]%<font%>} # default: empty
 #
 #
 #keyvals:\setchemformula
-tikz-external-disable=#true,false, # default: true
+tikz-external-disable=#true,false
 #endkeyvals
 #
 #
@@ -335,18 +335,18 @@ tikz-external-disable=#true,false, # default: true
 \chlewis{electron spec}{atom}#
 \chlewis[%<options%>]{electron spec}{atom}#
 #keyvals:\chlewis
-lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty, # default: pair
-lewis-distance={%<dim%>} # default: 1ex
-lewis-line-length={%<dim%>} # default: 1.5ex
-lewis-line-width={%<dim%>} # default: 1pt
-lewis-offset={%<dim%>} # default: .5ex
+lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty
+lewis-distance={%<dim%>}
+lewis-line-length={%<dim%>}
+lewis-line-width={%<dim%>}
+lewis-offset={%<dim%>}5ex
 #endkeyvals
 #keyvals:\setchemformula
-lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty, # default: pair
-lewis-distance={%<dim%>} # default: 1ex
-lewis-line-length={%<dim%>} # default: 1.5ex
-lewis-line-width={%<dim%>} # default: 1pt
-lewis-offset={%<dim%>} # default: .5ex
+lewis-default=#.,:,|,o,single,pair,{pair (dotted)},{pair (line)},empty
+lewis-distance={%<dim%>}
+lewis-line-length={%<dim%>}
+lewis-line-width={%<dim%>}
+lewis-offset={%<dim%>}
 #endkeyvals
 #
 #
@@ -354,22 +354,22 @@ lewis-offset={%<dim%>} # default: .5ex
 #
 #
 #keyvals:\ch
-kroeger-vink=#true,false, # default: false
-kv-positive-style={%<TikZ%>} # default: empty
-kv-positive-radius={%<dim%>} # default: .3ex
-kv-positive-hshift={%<dim%>} # default: .15ex
-kv-positive-vshift={%<dim%>} # default: .5ex
-kv-positive-offset={%<dim%>} # default: .4em
-kv-positive-symbol={%<TeX code%>} # default: $\time$
+kroeger-vink=#true,false
+kv-positive-style={%<TikZ%>}
+kv-positive-radius={%<dim%>}
+kv-positive-hshift={%<dim%>}
+kv-positive-vshift={%<dim%>}
+kv-positive-offset={%<dim%>}
+kv-positive-symbol={%<TeX code%>}
 #endkeyvals
 #keyvals:\setchemformula
-kroeger-vink=#true,false, # default: false
-kv-positive-style={%<TikZ%>} # default: empty
-kv-positive-radius={%<dim%>} # default: .3ex
-kv-positive-hshift={%<dim%>} # default: .15ex
-kv-positive-vshift={%<dim%>} # default: .5ex
-kv-positive-offset={%<dim%>} # default: .4em
-kv-positive-symbol={%<TeX code%>} # default: $\time$
+kroeger-vink=#true,false
+kv-positive-style={%<TikZ%>}
+kv-positive-radius={%<dim%>}
+kv-positive-hshift={%<dim%>}
+kv-positive-vshift={%<dim%>}
+kv-positive-offset={%<dim%>}
+kv-positive-symbol={%<TeX code%>}
 #endkeyvals
 #
 #
