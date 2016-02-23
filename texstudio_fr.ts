@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1568,7 +1568,7 @@ Cependant, ce chemin n&apos;est pas contenu dans la liste des chemins de diction
         <location line="+169"/>
         <source>Select thesaurus database</source>
         <oldsource>Browse thesaurus database</oldsource>
-        <translation type="unfinished">Localiser thésaurus</translation>
+        <translation>Sélectionner la base de données du thésaurus</translation>
     </message>
     <message>
         <source>Browse program</source>
@@ -2559,7 +2559,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="+356"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -3473,7 +3473,7 @@ Remarque : modifier ce paramètre n&apos;affectera que les documents ouverts ens
         <location line="-7"/>
         <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
         <oldsource>Disable key &apos;Esc&apos; to close fullscreen-mode</oldsource>
-        <translation type="unfinished">Désactiver la fermeture du plein écran par la touche « Échap » </translation>
+        <translation>Ne pas quitter le plein écran lorsque la touche « Échap » est pressée</translation>
     </message>
     <message>
         <location line="-1676"/>
@@ -3898,7 +3898,8 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+10"/>
-        <source>&amp;Latex</source>
+        <source>&amp;LaTeX</source>
+        <oldsource>&amp;Latex</oldsource>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
@@ -4450,67 +4451,67 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <location line="+6"/>
         <source>Boxes</source>
-        <translation type="unfinished"></translation>
+        <translation>Boîtes</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>mbox</source>
-        <translation type="unfinished"></translation>
+        <translation>mbox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>makebox</source>
-        <translation type="unfinished"></translation>
+        <translation>makebox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>fbox</source>
-        <translation type="unfinished"></translation>
+        <translation>fbox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>framebox</source>
-        <translation type="unfinished"></translation>
+        <translation>framebox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>newsavebox</source>
-        <translation type="unfinished"></translation>
+        <translation>newsavebox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>sbox</source>
-        <translation type="unfinished"></translation>
+        <translation>sbox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>savebox</source>
-        <translation type="unfinished"></translation>
+        <translation>savebox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>usebox</source>
-        <translation type="unfinished"></translation>
+        <translation>usebox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>raisebox</source>
-        <translation type="unfinished"></translation>
+        <translation>raisebox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>parbox</source>
-        <translation type="unfinished"></translation>
+        <translation>parbox</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>\begin{minipage}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{minipage}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>rule</source>
-        <translation type="unfinished"></translation>
+        <translation>rule</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -4560,7 +4561,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <location line="+14"/>
         <source>Bibliography</source>
-        <translation type="unfinished">Bibliographie</translation>
+        <translation>Bibliographie</translation>
     </message>
     <message>
         <source>Subscript - _{}</source>
@@ -5510,7 +5511,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Format de langage non valide</translation>
     </message>
     <message>
-        <location line="+2668"/>
+        <location line="+2672"/>
         <source>Invalid codec</source>
         <translation>Codec non valide</translation>
     </message>
@@ -5526,7 +5527,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Commentaire magique inconnu</translation>
     </message>
     <message>
-        <location line="-2682"/>
+        <location line="-2686"/>
         <source>BIBLIOGRAPHY</source>
         <translation>BIBLIOGRAPHIE</translation>
     </message>
@@ -5534,7 +5535,7 @@ la commande \caption n&apos;est pas valide.</translation>
 <context>
     <name>LatexDocumentsModel</name>
     <message>
-        <location line="+1607"/>
+        <location line="+1611"/>
         <source>untitled</source>
         <translation>sans nom</translation>
     </message>
@@ -5576,7 +5577,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Chercher les usages</translation>
     </message>
     <message>
-        <location line="+1447"/>
+        <location line="+1449"/>
         <source>Delete</source>
         <translation>Effacer</translation>
     </message>
@@ -5624,7 +5625,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">citation manquante !</translation>
     </message>
     <message>
-        <location line="-1726"/>
+        <location line="-1728"/>
         <source>Open %1</source>
         <translation>Ouvrir %1</translation>
     </message>
@@ -5664,7 +5665,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Citation correcte</translation>
     </message>
     <message>
-        <location line="+1682"/>
+        <location line="+1684"/>
         <source>Citation missing</source>
         <translation>Citation manquante</translation>
     </message>
@@ -5683,13 +5684,13 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Citation correcte (lecture en cours...)</translation>
     </message>
     <message>
-        <location line="-1660"/>
+        <location line="-1662"/>
         <source>Go to PDF</source>
         <translation>Atteindre le PDF</translation>
     </message>
     <message>
         <location line="-60"/>
-        <location filename="texstudio.cpp" line="+7588"/>
+        <location filename="texstudio.cpp" line="+7578"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Aller à la définition</translation>
@@ -5712,7 +5713,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation type="obsolete">Package non reconnu !</translation>
     </message>
     <message>
-        <location line="+1285"/>
+        <location line="+1287"/>
         <source>Class</source>
         <translation>Classe</translation>
     </message>
@@ -5786,7 +5787,7 @@ la commande \caption n&apos;est pas valide.</translation>
         <translation>Images</translation>
     </message>
     <message>
-        <location line="-2126"/>
+        <location line="-2128"/>
         <source>Open Bibliography</source>
         <translation>Ouvrir la bibliographie</translation>
     </message>
@@ -7527,7 +7528,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="+697"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="+698"/>
         <source>Failure</source>
         <translation>Échec</translation>
     </message>
@@ -7883,7 +7884,7 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
         <translation></translation>
     </message>
     <message>
-        <location line="+2890"/>
+        <location line="+2891"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
@@ -8171,7 +8172,7 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location line="-3514"/>
+        <location line="-3515"/>
         <location line="+44"/>
         <location line="+22"/>
         <source>Saving failed</source>
@@ -8411,12 +8412,12 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     <message>
         <location line="+7"/>
         <source>txs-test-summary</source>
-        <translation type="unfinished"></translation>
+        <translation>Test TXS (résumé)</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>asymptote:block</source>
-        <translation type="unfinished"></translation>
+        <translation>Bloc</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -8427,32 +8428,32 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     <message>
         <location line="+5"/>
         <source>qtscript:comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Commentaire</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>qtscript:string</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne de caractères</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>qtscript:number</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>qtscript:keyword</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot clé</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>qtscript:txs-variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Variable TXS</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>qtscript:txs-function</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonction TXS</translation>
     </message>
     <message>
         <source>asymptote:number</source>
@@ -8461,7 +8462,7 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     <message>
         <location line="-25"/>
         <source>previewSelection</source>
-        <translation type="unfinished">Prévisualisation de la sélection</translation>
+        <translation>Prévisualisation de la sélection</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -8476,17 +8477,17 @@ vraiment pas assez de place, il peut en résulter une perte des données.</trans
     <message>
         <location line="+1"/>
         <source>asymptote:numbers</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombres</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:string</source>
-        <translation>Chaîne de caractère</translation>
+        <translation>Chaîne de caractères</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>asymptote:comment</source>
-        <translation type="unfinished">Commentaire</translation>
+        <translation>Commentaire</translation>
     </message>
     <message>
         <source>dtx:environment</source>
@@ -10400,7 +10401,8 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
     <message>
         <location line="+135"/>
-        <source>Select Latex Template</source>
+        <source>Select LaTeX Template</source>
+        <oldsource>Select Latex Template</oldsource>
         <translation>Sélectionner un modèle LaTeX</translation>
     </message>
     <message>
@@ -11243,7 +11245,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     </message>
     <message>
         <source>Fullscreen Mode</source>
-        <translation type="vanished">Mode plein écran</translation>
+        <translation type="obsolete">Mode plein écran</translation>
     </message>
     <message>
         <location line="+63"/>
@@ -11747,7 +11749,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="+2"/>
-        <location filename="texstudio.cpp" line="-589"/>
+        <location filename="texstudio.cpp" line="-580"/>
         <source>Central</source>
         <translation>Central</translation>
     </message>
@@ -11764,7 +11766,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">Trouver le &amp;précédent</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="+703"/>
+        <location filename="texstudio.cpp" line="+694"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>C&amp;onvertir le fichier source en html...</translation>
     </message>
@@ -12209,7 +12211,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <location filename="additionaltranslations.cpp" line="+2"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished">Asymptote</translation>
+        <translation>Asymptote</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -12962,7 +12964,7 @@ included document in %1</source>
     <message>
         <location line="+33"/>
         <source>Editor Zoom</source>
-        <translation type="unfinished">Zoom de l&apos;éditeur</translation>
+        <translation>Zoom de l&apos;éditeur</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -12983,7 +12985,7 @@ included document in %1</source>
         <location line="+4"/>
         <location line="+2"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished">&amp;Plein Écran</translation>
+        <translation>&amp;Plein Écran</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -14384,8 +14386,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+20"/>
-        <source>Number of latex compilations for the input file</source>
-        <translation>Nombre de compilations latex nécessaires</translation>
+        <source>Number of LaTeX compilations for the input file</source>
+        <oldsource>Number of latex compilations for the input file</oldsource>
+        <translation>Nombre de compilations latex pour le fichier importé</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -14404,8 +14407,9 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location line="+7"/>
-        <source>Latex code for the title of the table of contents</source>
-        <translation>Code latex pour le titre du sommaire</translation>
+        <source>LaTeX code for the title of the table of contents</source>
+        <oldsource>Latex code for the title of the table of contents</oldsource>
+        <translation>Code LaTeX pour le titre de la table des matières</translation>
     </message>
     <message>
         <location line="+7"/>
