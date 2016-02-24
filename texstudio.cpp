@@ -8371,17 +8371,21 @@ void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 		return;
 	}
 
-	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
-		if (inForeground || viewer->followCursor()) {
+	LatexDocument *doc = qobject_cast<LatexDocument *>(cur.document());
+	if (!doc) doc = documents.currentDocument;
+	if (doc) {
+		QString filename = doc->getFileNameOrTemporaryFileName();
+		if (!filename.isEmpty()) {
 			int lineNumber = cur.isValid() ? cur.lineNumber() : currentLine;
-			LatexDocument *doc = qobject_cast<LatexDocument *>(cur.document());
-			if (doc) {
-				int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
-				if (originalLineNumber >= 0) lineNumber = originalLineNumber;
-			}
+			int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
+			if (originalLineNumber >= 0) lineNumber = originalLineNumber;
 			PDFDocument::DisplayFlags displayPolicy = PDFDocument::NoDisplayFlags;
 			if (inForeground) displayPolicy = PDFDocument::Raise | PDFDocument::Focus;
-			viewer->syncFromSource(getCurrentFileName(), lineNumber, displayPolicy);
+			foreach (PDFDocument *viewer, PDFDocument::documentList()) {
+				if (inForeground || viewer->followCursor()) {
+					viewer->syncFromSource(filename, lineNumber, displayPolicy);
+				}
+			}
 		}
 	}
 #endif
