@@ -2399,8 +2399,12 @@ void PDFDocument::init(bool embedded)
 	actionEnlargeViewer->setIcon(getRealIcon("view-left-close"));
 	actionShrinkViewer->setIcon(getRealIcon("embedded-viewer"));
 
-	actionCursor_follows_scrolling->setIcon(getRealIcon("syncSource"));
-	actionScrolling_follows_cursor->setIcon(getRealIcon("syncViewer"));
+	QIcon icon = getRealIcon("syncSource-off");
+	icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
+	actionCursor_follows_scrolling->setIcon(icon);
+	icon = getRealIcon("syncViewer-off");
+	icon.addFile(getRealIconFile("syncViewer"), QSize(), QIcon::Normal, QIcon::On);
+	actionScrolling_follows_cursor->setIcon(icon);
 
 	if (embedded) {
 		actionToggleEmbedded->setIcon(getRealIcon("windowed-viewer"));

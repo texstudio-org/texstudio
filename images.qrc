@@ -143,7 +143,9 @@
 <file>images-ng/subsection.svg</file>
 <file>images-ng/subsubsection.svg</file>
 <file>images-ng/syncSource.svg</file>
+<file>images-ng/syncSource-off.svg</file>
 <file>images-ng/syncViewer.svg</file>
+<file>images-ng/syncViewer-off.svg</file>
 <file>images-ng/tikz.svg</file>
 <file>images-ng/underline.svg</file>
 <file>images-ng/undo.svg</file>
