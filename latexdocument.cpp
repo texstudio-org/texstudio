@@ -1153,6 +1153,12 @@ QString LatexDocument::getTemporaryFileName() const
 	return temporaryFileName;
 }
 
+QString LatexDocument::getFileNameOrTemporaryFileName() const
+{
+	if (!fileName.isEmpty()) return fileName;
+	return temporaryFileName;
+}
+
 QFileInfo LatexDocument::getTemporaryFileInfo() const
 {
 	return QFileInfo(temporaryFileName);
