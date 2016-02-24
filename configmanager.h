@@ -224,6 +224,8 @@ public:
 	static QString iniFileOverride;
     static bool dontRestoreSession;
 private:
+	void setupDirectoryStructure();
+	void moveCwls();
 	void connectExtendedSlot(QAction *act, const QString &slot);
 	bool modifyMenuContentsFirstCall;
 	void modifyMenuContent(QStringList &ids, const QString &id);

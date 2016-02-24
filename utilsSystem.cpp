@@ -326,6 +326,11 @@ QString ensureTrailingDirSeparator(const QString &dirPath)
 	return dirPath + "/";
 }
 
+QString joinPath(const QString &dirname, const QString &filename)
+{
+	return ensureTrailingDirSeparator(dirname) + filename;
+}
+
 QString replaceFileExtension(const QString &filename, const QString &newExtension, bool appendIfNoExt)
 {
 	QFileInfo fi(filename);

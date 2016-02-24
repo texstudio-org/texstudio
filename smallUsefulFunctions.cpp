@@ -1966,14 +1966,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	LatexPackage package;
 
-	QStringList addPaths;
-	if (config)
-		addPaths << config->importedCwlBaseDir;
-	QString fn = findResourceFile("completion/" + fileName, false, addPaths);
-
-	QFile tagsfile(fn);
+	QFile tagsfile("cwl:" + fileName);
 	bool skipSection = false;
-	if (!fn.isEmpty() && tagsfile.open(QFile::ReadOnly)) {
+	if (tagsfile.exists() && tagsfile.open(QFile::ReadOnly)) {
 		QString line;
 		QTextStream stream(&tagsfile);
 		stream.setCodec("UTF-8");
