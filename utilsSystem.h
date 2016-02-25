@@ -46,6 +46,7 @@ bool isFileRealWritable(const QString &filename);
 bool isExistingFileRealWritable(const QString &filename);
 QString ensureTrailingDirSeparator(const QString &dirPath);
 QString joinPath(const QString &dirname, const QString &filename);
+QString joinPath(const QString &dirname, const QString &dirname2, const QString &filename);
 // replaces "somdir/file.ext" to "somedir/file.newext"
 QString replaceFileExtension(const QString &filename, const QString &newExtension, bool appendIfNoExt = false);
 QString getRelativeBaseNameToPath(const QString &file, QString basepath, bool baseFile = false, bool keepSuffix = false);
