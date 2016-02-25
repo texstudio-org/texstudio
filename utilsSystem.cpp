@@ -331,6 +331,12 @@ QString joinPath(const QString &dirname, const QString &filename)
 	return ensureTrailingDirSeparator(dirname) + filename;
 }
 
+QString joinPath(const QString &dirname, const QString &dirname2, const QString &filename)
+{
+	return ensureTrailingDirSeparator(dirname) + ensureTrailingDirSeparator(dirname2) + filename;
+}
+
+
 QString replaceFileExtension(const QString &filename, const QString &newExtension, bool appendIfNoExt)
 {
 	QFileInfo fi(filename);
