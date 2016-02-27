@@ -24,6 +24,8 @@
 #include <QPaintEvent>
 #include <QList>
 
+#include "qdocument.h"
+
 class MarkedScrollBar : public QScrollBar
 {
     Q_OBJECT
@@ -32,6 +34,8 @@ public:
     MarkedScrollBar(QWidget *parent = 0);
 
     void addMark(int position, const QColor &colour,
+                 const QString &identifier = "");
+    void addMark(QDocumentLineHandle *dlh, const QColor &colour,
                  const QString &identifier = "");
     void removeMark(int position);
     void removeMark(const QString &identifier);
@@ -48,14 +52,24 @@ public:
 	
 	bool isClipped() const;
 	void enableClipping(bool clip);
+
+    void setDocument(QDocument *newDoc){
+        doc=newDoc;
+    }
 	
-	Q_PROPERTY(bool clipped READ isClipped WRITE enableClipping);
+	Q_PROPERTY(bool clipped READ isClipped WRITE enableClipping)
 
 protected:
     struct markData
     {
-        /// Position of the mark
+        /// Position of the mark (visualLine)
         int pos;
+
+        /// real lineNumber
+        int realLn;
+
+        /// Position of the mark (realLine)
+        QDocumentLineHandle *dlh;
 
         /// Colour of the mark
         QColor colour;
@@ -84,7 +98,10 @@ protected:
 	
 	bool m_isClipped;
 
+    QDocument *doc;
+
     virtual void paintEvent(QPaintEvent *event);
+    virtual void sliderChange(SliderChange change);
 };
 
 #endif // MARKEDSCROLLBAR_H

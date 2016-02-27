@@ -46,7 +46,7 @@
 */
 
 MarkedScrollBar::MarkedScrollBar(QWidget *parent)
- : QScrollBar(parent), m_isClipped(true)
+ : QScrollBar(parent), m_isClipped(true), doc(0)
 {
 }
 
@@ -61,7 +61,16 @@ MarkedScrollBar::MarkedScrollBar(QWidget *parent)
 void MarkedScrollBar::addMark(int position, const QColor& colour,
                               const QString& identifier)
 {
-    markData mark = { position, colour, identifier };
+    int ln=position;
+    if(doc)
+        ln=doc->visualLineNumber(position);
+    markData mark = { ln, position, NULL, colour, identifier };
+    m_marks.append(mark);
+}
+
+void MarkedScrollBar::addMark(QDocumentLineHandle *dlh, const QColor &colour,
+             const QString &identifier){
+    markData mark = { -1,-1, dlh, colour, identifier };
     m_marks.append(mark);
 }
 
@@ -249,6 +258,17 @@ void MarkedScrollBar::enableClipping(bool clip)
 	m_isClipped = clip;
 }
 
+void MarkedScrollBar::sliderChange(SliderChange change){
+    if(change==QAbstractSlider::SliderRangeChange && doc){
+        // recalculate positions
+        for(QList<markData>::iterator mark=m_marks.begin();mark!=m_marks.end();++mark)
+        {
+            mark->pos=-1;
+        }
+    }
+    QScrollBar::sliderChange(change);
+}
+
 void MarkedScrollBar::paintEvent(QPaintEvent *event)
 {
     // Draw the scrollbar control
@@ -295,19 +315,32 @@ void MarkedScrollBar::paintEvent(QPaintEvent *event)
            / ((qreal) pageStep() + maximum() - minimum());
     }
 
-    foreach (markData mark, m_marks)
+    for(QList<markData>::iterator mark=m_marks.begin();mark!=m_marks.end();++mark)
     {
-        p.setPen(mark.colour);
+        p.setPen(mark->colour);
 
         if (orientation() == Qt::Horizontal)
         {
-            p.drawLine(QPoint(mark.pos * sf, 2),
-                       QPoint(mark.pos * sf, slider.height() - 3));
+            p.drawLine(QPoint(mark->pos * sf, 2),
+                       QPoint(mark->pos * sf, slider.height() - 3));
         }
         else if (orientation() == Qt::Vertical)
         {
-            p.drawLine(QPoint(2, mark.pos * sf),
-                       QPoint(slider.width() - 3, mark.pos * sf));
+            if(doc){
+                if(mark->pos<0){ // not cached
+                    if(mark->dlh!=0){
+                        int ln=doc->indexOf(mark->dlh);
+                        if(ln<0)
+                            continue; // did not find line
+                        mark->pos=doc->visualLineNumber(ln);
+                    }
+                    if(mark->realLn>=0){
+                        mark->pos=doc->visualLineNumber(mark->realLn);
+                    }
+                }
+            }
+            p.drawLine(QPoint(2, mark->pos * sf),
+                       QPoint(slider.width() - 3, mark->pos * sf));
         }
     }
 

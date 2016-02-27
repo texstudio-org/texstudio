@@ -431,6 +431,7 @@ void QEditor::init(bool actions,QDocument *doc)
 
     MarkedScrollBar *scrlBar=new MarkedScrollBar();
     scrlBar->enableClipping(false);
+    scrlBar->setDocument(doc);
     setVerticalScrollBar(scrlBar);
     //addMark(5,Qt::red);
 
@@ -5978,6 +5979,12 @@ bool QEditor::isMirrored(){
 void QEditor::addMark(int pos, QColor color, QString type){
     MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
     scrlBar->addMark(pos,color,type);
+    scrlBar->repaint();
+}
+
+void QEditor::addMark(QDocumentLineHandle *dlh, QColor color, QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addMark(dlh,color,type);
     scrlBar->repaint();
 }
 

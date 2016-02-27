@@ -192,14 +192,15 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
     }
     if(clearSelection){
         // don't run again when only visibleLines is changed
+        // remove old marks first
+        m_editor->removeMark("search");
         for(int i=begLine;i<endLine;i++){
             QString txt=d->line(i).text();
             if((endOffset>=0)&&(i+1==endLine)){
                 txt=txt.left(endOffset);
             }
             if(m_regexp.indexIn(txt,offset)>-1){
-                int ln=m_editor->document()->visualLineNumber(i);
-                m_editor->addMark(ln,Qt::darkYellow,"search");
+                m_editor->addMark(i,Qt::darkYellow,"search");
             }
             offset=0;
         }
@@ -823,9 +824,8 @@ void QDocumentSearch::updateReplacementOverlays(){
 		QDocumentLine endLine = d->line(boundaries.endLine);
 		m_highlightedReplacements.insert(startLine.handle());
         if (boundaries.startLine == boundaries.endLine){  //single line replacement
-            int ln=m_editor->document()->visualLineNumber(boundaries.startLine);
 			startLine.addOverlay(QFormatRange(boundaries.start, boundaries.end - boundaries.start, rid));
-            m_editor->addMark(ln,Qt::red,"replace");
+            m_editor->addMark(boundaries.startLine,Qt::red,"replace");
 		} else {
 			//multi line replacement
 			m_highlightedReplacements.insert(endLine.handle());

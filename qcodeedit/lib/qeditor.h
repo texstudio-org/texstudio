@@ -364,6 +364,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		}
 
         void addMark(int pos,QColor color,QString type="");
+        void addMark(QDocumentLineHandle *dlh, QColor color, QString type="");
         void addMarkRange(int start,int end,QColor color,QString type="");
         void removeMark(int pos, QString type="");
         void removeMark(QString type);
