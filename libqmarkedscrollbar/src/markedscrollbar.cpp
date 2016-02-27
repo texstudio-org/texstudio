@@ -101,10 +101,23 @@ void MarkedScrollBar::removeMark(int position,QString type)
     QMutableListIterator<markData> i(m_marks);
     while (i.hasNext())
     {
-        if (i.next().pos == position && (type.isEmpty() || i.next().identifier == type) )
+        markData mark=i.next();
+        if (mark.pos == position && (type.isEmpty() || mark.identifier == type) )
         {
             i.remove();
-            break;
+        }
+    }
+}
+
+void MarkedScrollBar::removeMark(QDocumentLineHandle *dlh,QString type)
+{
+    QMutableListIterator<markData> i(m_marks);
+    while (i.hasNext())
+    {
+        markData mark=i.next();
+        if (mark.dlh == dlh && (type.isEmpty() || mark.identifier == type) )
+        {
+            i.remove();
         }
     }
 }

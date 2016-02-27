@@ -40,6 +40,7 @@ public:
     void removeMark(int position);
     void removeMark(const QString &identifier);
     void removeMark(int position,QString type);
+    void removeMark(QDocumentLineHandle *dlh,QString type);
     void removeAllMarks();
     void removeMarksLessThan(int position);
     void removeMarksGreaterThan(int position);
