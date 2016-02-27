@@ -947,7 +947,7 @@ void LatexEditorView::removeBookmark(QDocumentLineHandle *dlh, int bookmarkNumbe
 	int rmid = bookMarkId(bookmarkNumber);
 	if (hasBookmark(dlh, bookmarkNumber)) {
 		document->removeMark(dlh, rmid);
-        editor->removeMark(dlh->position());
+        editor->removeMark(dlh,"bookmark");
 		emit bookmarkRemoved(dlh);
 	}
 }
@@ -963,7 +963,7 @@ void LatexEditorView::addBookmark(int lineNr, int bookmarkNumber)
     if (bookmarkNumber >= 0){
         int ln=document->findNextMark(rmid);
 		document->line(ln).removeMark(rmid);
-        editor->removeMark(ln);
+        editor->removeMark(document->line(ln).handle(),"bookmark");
     }
     if (!document->line(lineNr).hasMark(rmid)){
 		document->line(lineNr).addMark(rmid);
@@ -992,8 +992,7 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 	int rmid = bookMarkId(bookmarkNumber);
 	if (line.hasMark(rmid)) {
 		line.removeMark(rmid);
-        int ln=document->indexOf(line);
-        editor->removeMark(ln);
+        editor->removeMark(line.handle(),"bookmark");
 		emit bookmarkRemoved(line.handle());
 		return false;
 	}
@@ -1001,7 +1000,7 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int ln = editor->document()->findNextMark(rmid);
 		if (ln >= 0) {
 			editor->document()->line(ln).removeMark(rmid);
-            editor->removeMark(ln);
+            editor->removeMark(editor->document()->line(ln).handle(),"bookmark");
 			emit bookmarkRemoved(editor->document()->line(ln).handle());
 		}
 	}
@@ -1009,8 +1008,7 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int rmid = bookMarkId(i);
 		if (line.hasMark(rmid)) {
 			line.removeMark(rmid);
-            int ln=document->indexOf(line);
-            editor->removeMark(ln);
+            editor->removeMark(line.handle(),"bookmark");
 			emit bookmarkRemoved(line.handle());
 		}
 	}
