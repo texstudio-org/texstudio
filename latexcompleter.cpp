@@ -1201,7 +1201,8 @@ void LatexCompleter::updateAbbreviations()
 		//CompletionWord cw(abbr);
 		// for compatibility to texmaker ...
 		QString s = macro.tag;
-		if (macro.type == Macro::Environment) {
+		if (s.left(1) == "%") {
+			s = s.remove(0, 1);
 			s = "\\begin{" + s + "}";
 		}
 		CompletionWord cw(s);
