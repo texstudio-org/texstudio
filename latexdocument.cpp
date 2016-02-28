@@ -3183,7 +3183,7 @@ void LatexDocument::updateMagicCommentScripts()
 		if (seName == "TXS-SCRIPT") {
 			QString name = val;
 			QString trigger = "";
-			QString tag = "%SCRIPT\n";
+			QString tag;
 
 			int l = se->getRealLineNumber() + 1;
 			for (; l < lineCount(); l++) {
@@ -3195,7 +3195,7 @@ void LatexDocument::updateMagicCommentScripts()
 					trigger = rxTrigger.cap(2).trimmed();
 			}
 
-			Macro newMacro(name, tag, "", trigger);
+			Macro newMacro(name, Macro::Script, tag, "", trigger);
 			newMacro.document = this;
 			localMacros.append(newMacro);
 		}

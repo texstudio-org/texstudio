@@ -1597,6 +1597,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(openCompleter()), this, SLOT(normalCompletion()));
 	connect(edit, SIGNAL(openInternalDocViewer(QString, QString)), this, SLOT(openInternalDocViewer(QString, QString)));
 	connect(edit, SIGNAL(showExtendedSearch()), this, SLOT(showExtendedSearch()));
+	connect(edit, SIGNAL(execMacro(Macro, MacroExecContext)), this, SLOT(execMacro(Macro, MacroExecContext)));
 
 	connect(edit->editor, SIGNAL(fileReloaded()), this, SLOT(fileReloaded()));
 	connect(edit->editor, SIGNAL(fileInConflict()), this, SLOT(fileInConflict()));
@@ -2018,8 +2019,8 @@ void Texstudio::runScripts(int trigger)
 void Texstudio::runScriptsInList(int trigger, const QList<Macro> &scripts)
 {
 	foreach (const Macro &macro, scripts) {
-		if (macro.isActiveForTrigger((Macro::SpecialTrigger)trigger))
-			insertUserTag(macro.tag, trigger);
+		if (macro.type == Macro::Script && macro.isActiveForTrigger((Macro::SpecialTrigger) trigger))
+			runScript(macro.script(), MacroExecContext(trigger));
 	}
 }
 
@@ -4766,10 +4767,7 @@ void Texstudio::insertFromAction()
 	if (action)	{
 		if (completer->isVisible())
 			completer->close();
-		/*QDocumentCursor c = currentEditorView()->editor->cursor();
-		CodeSnippet cs=CodeSnippet(action->data().toString());
-		    cs.insertAt(currentEditorView()->editor,&c);*/
-		edView->insertMacro(action->data().toString(), QRegExp(), 0, true);
+		execMacro(Macro::fromTypedTag(action->data().toString()), MacroExecContext(), true);
 		generateMirror();
 		outputView->setMessage(CodeSnippet(action->whatsThis(), false).lines.join("\n"));
 	}
@@ -5117,7 +5115,7 @@ void Texstudio::quickDocument()
 			Q_ASSERT(currentEditorView());
 		}
 		Q_ASSERT(currentEditor());
-		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
+		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
 		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
@@ -5139,7 +5137,7 @@ void Texstudio::quickBeamer()
 			Q_ASSERT(currentEditorView());
 		}
 		Q_ASSERT(currentEditor());
-		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
+		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
 		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
@@ -5212,14 +5210,31 @@ void Texstudio::insertUserTag()
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
 	int id = action->data().toInt();
-	const QString &userTag = configManager.completerConfig->userMacros.value(id, Macro()).tag;
-	insertUserTag(userTag);
+	execMacro(configManager.completerConfig->userMacros.value(id, Macro()));
 }
 
-void Texstudio::insertUserTag(const QString &macro, int triggerId)
+void Texstudio::execMacro(const Macro &m, const MacroExecContext &context, bool allowWrite)
 {
-	//dont'check that, if (!currentEditorView()) return; insertMacro is 0 save
-	currentEditorView()->insertMacro(macro, QRegExp(), triggerId);
+	if (m.type == Macro::Script) {
+		runScript(m.script(), context, allowWrite);
+	} else {
+		if (currentEditorView()) {
+			currentEditorView()->insertSnippet(m.snippet());
+		}
+	}
+}
+
+void Texstudio::runScript(const QString &script, const MacroExecContext &context, bool allowWrite)
+{
+	scriptengine *eng = new scriptengine();
+	eng->triggerMatches = context.triggerMatches;
+	eng->triggerId = context.triggerId;
+	if (currentEditorView()) eng->setEditorView(currentEditorView());
+
+	eng->setScript(script, allowWrite);
+	eng->run();
+	if (!eng->globalObject) delete eng;
+	else QObject::connect(reinterpret_cast<QObject *>(eng->globalObject), SIGNAL(destroyed()), eng, SLOT(deleteLater()));
 }
 
 void Texstudio::editMacros()
@@ -5234,7 +5249,7 @@ void Texstudio::editMacros()
 		userMacroDialog->init();
 		connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
 		connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
-		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(insertUserTag(QString)));
+		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
 	}
 	userMacroDialog->show();
 	userMacroDialog->setFocus();

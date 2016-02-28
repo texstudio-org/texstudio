@@ -206,7 +206,7 @@ UserMenuDialog::~UserMenuDialog()
 void UserMenuDialog::addMacro(const Macro &m)
 {
 	names << m.name;
-	tags << m.tag;
+	tags << m.typedTag();
 	abbrevs << m.abbrev;
 	triggers << m.trigger;
 }
