@@ -410,8 +410,10 @@ protected slots:
 	void insertBibEntry(const QString &id = "");
 	void setBibTypeFromAction();
 
-	void insertUserTag(const QString &macro, int triggerId = 0);
 	void insertUserTag();
+	void execMacro(const Macro &m, const MacroExecContext &context = MacroExecContext(), bool allowWrite = false);
+	void runScript(const QString &script, const MacroExecContext &context = MacroExecContext(), bool allowWrite = false);
+
 	void editMacros();
 	void macroDialogAccepted();
 	void macroDialogRejected();

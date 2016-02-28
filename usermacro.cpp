@@ -1,3 +1,4 @@
+#include "mostQtHeaders.h"
 #include "usermacro.h"
 #include "smallUsefulFunctions.h"
 #include "qformatscheme.h"
@@ -8,21 +9,36 @@ Macro::Macro() : triggerLookBehind(false), document(0)
 {
 }
 
-Macro::Macro(const QString &nname, const QString &ntag, const QString &nabbrev, const QString &ntrigger): document(0)
+Macro::Macro(const QString &nname, const QString &typedTag, const QString &nabbrev, const QString &ntrigger): triggerLookBehind(false), document(0)
 {
-	init(nname, ntag, nabbrev, ntrigger);
+	Macro::Type typ;
+	QString tag = parseTypedTag(typedTag, typ);
+	init(nname, typ, tag, nabbrev, ntrigger);
+}
+
+Macro::Macro(const QString &nname, Macro::Type ntype, const QString &ntag, const QString &nabbrev, const QString &ntrigger): triggerLookBehind(false), document(0)
+{
+	init(nname, ntype, ntag, nabbrev, ntrigger);
 }
 
 Macro::Macro(const QStringList &fieldList): triggerLookBehind(false), document(0)
 {
 	if (fieldList.count() >= 4) {
-		init(fieldList[0], fieldList[1], fieldList[2], fieldList[3]);
+		Macro::Type t;
+		QString tag = parseTypedTag(fieldList[1], t);
+		init(fieldList[0], t, tag, fieldList[2], fieldList[3]);
 	}
 }
 
-void Macro::init(const QString &nname, const QString &ntag, const QString &nabbrev, const QString &ntrigger)
+Macro Macro::fromTypedTag(const QString &typedTag)
+{
+	return Macro("unnamed", typedTag);
+}
+
+void Macro::init(const QString &nname, Macro::Type ntype, const QString &ntag, const QString &nabbrev, const QString &ntrigger)
 {
 	name = nname;
+	type = ntype;
 	tag = ntag;
 	abbrev = nabbrev;
 	trigger = ntrigger;
@@ -125,7 +141,48 @@ void Macro::initTriggerFormats()
 
 QStringList Macro::toStringList() const
 {
-	return QStringList() << name << tag << abbrev << trigger;
+	return QStringList() << name << typedTag() << abbrev << trigger;
+}
+
+QString Macro::snippet() const
+{
+	if (type == Snippet)
+		return tag;
+	else if (type == Environment)
+		return "\begin{" + tag + "}";
+	return QString();
+}
+
+QString Macro::script() const
+{
+	if (type == Script)
+		return tag;
+	return QString();
+}
+
+QString Macro::typedTag() const
+{
+	switch(type) {
+	case Snippet: return tag;
+	case Environment: return "%" + tag;
+	case Script: return "%SCRIPT\n" + tag;
+	default:
+		qDebug() << "unknown macro type" << type;
+	}
+	return QString();
+}
+
+QString Macro::parseTypedTag(QString typedTag, Macro::Type &retType)
+{
+	if (typedTag.startsWith("%SCRIPT\n")) {
+		retType = Script;
+		return typedTag.mid(8);
+	} else if (typedTag.startsWith("%")) {
+		retType = Environment;
+		return typedTag.mid(1);
+	}
+	retType = Snippet;
+	return typedTag;
 }
 
 void Macro::parseTriggerLanguage(QLanguageFactory *langFactory)

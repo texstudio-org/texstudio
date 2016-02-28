@@ -33,6 +33,8 @@ class SpellerUtility;
 class SpellerManager;
 class DefaultInputBinding;
 class LatexEditorViewConfig;
+class Macro;
+class MacroExecContext;
 
 struct LinkOverlay {
 	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UrlOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay};
@@ -246,7 +248,7 @@ public slots:
 	void viewActivated();
 	void clearOverlays();
 	void paste();
-	void insertMacro(QString macro, const QRegExp &trigger = QRegExp(), int triggerId = 0, bool allowWrite = false);
+	void insertSnippet(QString text);
 
 	void checkForLinkOverlay(QDocumentCursor cursor);
 	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
@@ -294,6 +296,7 @@ signals:
 	void bookmarkRemoved(QDocumentLineHandle *dlh);
 	void bookmarkAdded(QDocumentLineHandle *dlh, int nr);
 	void saveCurrentCursorToHistoryRequested();
+	void execMacro(const Macro &macro, const MacroExecContext &context);
 
 	void mouseBackPressed();
 	void mouseForwardPressed();

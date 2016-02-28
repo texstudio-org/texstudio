@@ -57,7 +57,7 @@
     }else{
 	ins=ins+&quot; &quot;
     }
-    editorView.insertMacro(ins)" 
+    editorView.insertSnippet(ins)" 
     info="\item[label] Hello" icon="item" shortcut="Ctrl+Shift+I"/>
   </menu>
   

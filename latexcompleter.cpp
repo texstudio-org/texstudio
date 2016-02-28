@@ -1196,16 +1196,11 @@ void LatexCompleter::updateAbbreviations()
 	REQUIRE(config);
 	QList<CompletionWord> wordsAbbrev;
 	foreach (const Macro &macro, config->userMacros) {
-		if (macro.abbrev.isEmpty())
+		if (macro.abbrev.isEmpty() || macro.snippet().isEmpty())
 			continue;
 		//CompletionWord cw(abbr);
 		// for compatibility to texmaker ...
-		QString s = macro.tag;
-		if (s.left(1) == "%") {
-			s = s.remove(0, 1);
-			s = "\\begin{" + s + "}";
-		}
-		CompletionWord cw(s);
+		CompletionWord cw(macro.snippet());
 		// <!compatibility>
 		cw.word = macro.abbrev;
 		cw.sortWord = makeSortWord(cw.word);

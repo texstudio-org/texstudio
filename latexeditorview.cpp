@@ -118,8 +118,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 
 			LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
 			REQUIRE_RET(view, true);
-			view->insertMacro(m.tag, r, Macro::ST_REGEX);
-			//editor->insertText(c, m.tag);
+			emit view->execMacro(m, MacroExecContext(Macro::ST_REGEX, r.capturedTexts()));
 			if (block) editor->document()->endMacro();
 			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 			/*			if (editor->languageDefinition())
@@ -700,28 +699,9 @@ void LatexEditorView::paste()
 	}
 }
 
-void LatexEditorView::insertMacro(QString macro, const QRegExp &trigger, int triggerId, bool allowWrite)
+void LatexEditorView::insertSnippet(QString text)
 {
-	if (macro.isEmpty()) return;
-	if (macro.left(8) == "%SCRIPT\n") {
-		scriptengine *eng = new scriptengine();
-		for (int i = 0; i <= trigger.captureCount(); i++)
-			eng->triggerMatches << trigger.cap(i);
-		eng->triggerId = triggerId;
-		if (this) eng->setEditorView(this);
-		macro = macro.remove(0, 8);
-		eng->setScript(macro, allowWrite);
-		eng->run();
-		if (!eng->globalObject) delete eng;
-		else QObject::connect(reinterpret_cast<QObject *>(eng->globalObject), SIGNAL(destroyed()), eng, SLOT(deleteLater()));
-		return;
-	}
-	if (!this) return;
-	if (macro.size() > 1 && macro.startsWith("%") && !macro.startsWith("%%")) {
-		macro = macro.remove(0, 1);
-		CodeSnippet s("\\begin{" + macro + "}");
-		s.insert(editor);
-	} else CodeSnippet(macro).insert(editor);
+	CodeSnippet(text).insert(editor);
 }
 
 void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
