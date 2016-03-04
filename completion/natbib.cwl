@@ -5,6 +5,7 @@
 \citep{keylist}#c
 \citep[prefix]{keylist}
 \citep[postfix][prefix]{keylist}
+\cite[postfix][prefix]{keylist}
 \citet*{keylist}#c
 \citep*{keylist}#c
 \citealt{keylist}#c
