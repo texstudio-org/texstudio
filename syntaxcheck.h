@@ -17,6 +17,7 @@ public:
 	Environment(): id(-1), excessCol(0), dlh(0), ticket(0) {}
 
 	QString name;
+    QString origName;
 	int id;
 	int excessCol;
 	QDocumentLineHandle *dlh;
@@ -24,11 +25,11 @@ public:
 
 	bool operator ==(const Environment &env) const
 	{
-		return (name == env.name) && (id == env.id) && (excessCol == env.excessCol);
+		return (name == env.name) && (id == env.id) && (excessCol == env.excessCol) && (origName == env.origName);
 	}
 	bool operator !=(const Environment &env) const
 	{
-		return (name != env.name) || (id != env.id) || (excessCol != env.excessCol);
+		return (name != env.name) || (id != env.id) || (excessCol != env.excessCol) || (origName != env.origName);
 	}
 };
 

@@ -43,8 +43,8 @@ void LatexParser::init()
 	//citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 	environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
 	//definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
-	mathStartCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\(" << "\\[" );
-	mathStopCommands = QSet<QString>::fromList(QStringList() << "$" << "$$" << "\\)" << "\\]" );
+	mathStartCommands  << "$" << "$$" << "\\(" << "\\[" ;
+	mathStopCommands  << "$" << "$$" << "\\)" << "\\]" ;
 	//tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
 	//fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
 	//includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
