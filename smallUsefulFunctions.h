@@ -244,8 +244,8 @@ public:
 
 	QSet<QString> environmentCommands;
 	QSet<QString> optionCommands;
-	QSet<QString> mathStartCommands;
-	QSet<QString> mathStopCommands;
+	QStringList mathStartCommands;
+	QStringList mathStopCommands;
 	QSet<QString> customCommands;
 	int structureDepth()
 	{

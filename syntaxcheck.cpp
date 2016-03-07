@@ -236,6 +236,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
 				env.name = "math";
+                env.origName=word;
 				env.id = 1; // to be changed
 				env.dlh = dlh;
 				env.ticket = ticket;
@@ -243,7 +244,11 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
-				activeEnv.pop();
+                int i=ltxCommands->mathStopCommands.indexOf(word);
+                QString txt=ltxCommands->mathStartCommands.value(i);
+                if(activeEnv.top().origName==txt){
+                    activeEnv.pop();
+                }// ignore mismatching mathstop commands
 				continue;
 			}
 			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
@@ -611,6 +616,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
 				env.name = "math";
+                env.origName=word;
 				env.id = 1; // to be changed
 				env.dlh = dlh;
 				env.ticket = ticket;
@@ -618,7 +624,11 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
-				activeEnv.pop();
+                int i=ltxCommands->mathStopCommands.indexOf(word);
+                QString txt=ltxCommands->mathStartCommands.value(i);
+                if(activeEnv.top().origName==txt){
+                    activeEnv.pop();
+                }// ignore mismatching mathstop commands
 				continue;
 			}
 			if (word == "\\\\" && topEnv("tabular", activeEnv) != 0) {
@@ -739,6 +749,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
 				env.name = "math";
+                env.origName=word;
 				env.id = 1; // to be changed
 				env.dlh = dlh;
 				env.ticket = ticket;
@@ -746,7 +757,11 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				continue;
 			}
 			if (ltxCommands->mathStopCommands.contains(word) && !activeEnv.isEmpty() && activeEnv.top().name == "math") {
-				activeEnv.pop();
+                int i=ltxCommands->mathStopCommands.indexOf(word);
+                QString txt=ltxCommands->mathStartCommands.value(i);
+                if(activeEnv.top().origName==txt){
+                    activeEnv.pop();
+                }// ignore mismatching mathstop commands
 				continue;
 			}
 

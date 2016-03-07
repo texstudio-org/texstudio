@@ -10298,7 +10298,14 @@ void Texstudio::closeEnvironment()
 			if (env_end.isEmpty()) // last env is for internal use only
 				break;
 			if (e == mostRecentEnv) { // found, now close it
-				QString txt = "\\end{" + e.name + "}";
+                QString txt;
+                if(e.origName.isEmpty()){
+                    txt = "\\end{" + e.name + "}";
+                } else {
+                    txt = e.origName;
+                    int i=latexParser.mathStartCommands.indexOf(txt);
+                    txt=latexParser.mathStopCommands.value(i);
+                }
 				m_edit->insertText(txt);
 				break;
 			}
