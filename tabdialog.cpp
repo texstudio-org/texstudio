@@ -52,24 +52,24 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.spinBoxSpanFrom->setRange(1,1);
 	ui.spinBoxSpanTo->setRange(2,2);
 
-	ui.comboBoxColAl->insertItem(0,"Center" );
-	ui.comboBoxColAl->insertItem(1,"Left" );
-	ui.comboBoxColAl->insertItem(2,"Right" );
-	ui.comboBoxColAl->insertItem(3, "p{} (fixed width - left)");
-	ui.comboBoxColAl->insertItem(4, "p{} (fixed width - center)");
-	ui.comboBoxColAl->insertItem(5, "p{} (fixed width - right)");
+	ui.comboBoxColAl->insertItem(0, tr("Center", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(1, tr("Left", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(2, tr("Right", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(3, tr("p{} (fixed width - left)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(4, tr("p{} (fixed width - center)", "tabular alignment"));
+	ui.comboBoxColAl->insertItem(5, tr("p{} (fixed width - right)", "tabular alignment"));
 	ui.comboBoxColAl->setCurrentIndex(0);
 
-	ui.comboLeftBorder->insertItem(0,"|");
-	ui.comboLeftBorder->insertItem(1,"||");
-	ui.comboLeftBorder->insertItem(2,"none");
-	ui.comboLeftBorder->insertItem(3, "@{text}" );
+	ui.comboLeftBorder->insertItem(0, "|");
+	ui.comboLeftBorder->insertItem(1, "||");
+	ui.comboLeftBorder->insertItem(2, tr("None", "tabular left border"));
+	ui.comboLeftBorder->insertItem(3, tr("@{text}", "tabular left border");
 	ui.comboLeftBorder->setCurrentIndex(0);
 
-	ui.comboBoxEndBorder->insertItem(0,"|");
-	ui.comboBoxEndBorder->insertItem(1,"||");
-	ui.comboBoxEndBorder->insertItem(2,"none");
-	ui.comboBoxEndBorder->insertItem(3, "@{text}" );
+	ui.comboBoxEndBorder->insertItem(0, "|");
+	ui.comboBoxEndBorder->insertItem(1, "||");
+	ui.comboBoxEndBorder->insertItem(2, tr("None", "tabular right border"));
+	ui.comboBoxEndBorder->insertItem(3, tr("@{text}", "tabular right border"));
 	ui.comboLeftBorder->setCurrentIndex(0);
 
 	ui.spinBoxNumCol->setValue(1);
