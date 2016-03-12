@@ -194,16 +194,20 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
         // don't run again when only visibleLines is changed
         // remove old marks first
         m_editor->removeMark("search");
+        bool needsUpdate=false;
         for(int i=begLine;i<endLine;i++){
             QString txt=d->line(i).text();
             if((endOffset>=0)&&(i+1==endLine)){
                 txt=txt.left(endOffset);
             }
             if(m_regexp.indexIn(txt,offset)>-1){
-                m_editor->addMark(i,Qt::darkYellow,"search");
+                m_editor->addMarkDelayed(i,Qt::darkYellow,"search");
+                needsUpdate=true;
             }
             offset=0;
         }
+        if(needsUpdate)
+            m_editor->paintMarks();
     }
 	m_editor->viewport()->update();
 }

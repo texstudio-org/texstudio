@@ -5981,6 +5981,15 @@ void QEditor::addMark(int pos, QColor color, QString type){
     scrlBar->addMark(pos,color,type);
     scrlBar->repaint();
 }
+void QEditor::addMarkDelayed(int pos, QColor color, QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addMark(pos,color,type);
+    //scrlBar->repaint();
+}
+void QEditor::paintMarks(){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->repaint();
+}
 
 void QEditor::addMark(QDocumentLineHandle *dlh, QColor color, QString type){
     if(dlh==NULL)
