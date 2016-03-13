@@ -455,7 +455,7 @@ QString getEnvironmentPath()
 #ifdef Q_OS_MAC
 #if (QT_VERSION >= 0x040600)
 		QProcess *myProcess = new QProcess();
-		myProcess->start("bash -l -c \"echo $PATH\"");
+        myProcess->start("bash -l -c \"echo -n $PATH\"");
 		myProcess->waitForFinished(3000);
 		if (myProcess->exitStatus() == QProcess::NormalExit) {
 			QByteArray res = myProcess->readAllStandardOutput();
