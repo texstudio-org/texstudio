@@ -452,7 +452,6 @@ unix {
         utilities/manual/doc20.png \
         utilities/manual/doc21.png \
         utilities/manual/doc3.png \
-        utilities/manual/doc4.png \
         utilities/manual/doc5.png \
         utilities/manual/doc6.png \
         utilities/manual/doc7.png \
