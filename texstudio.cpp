@@ -4793,7 +4793,7 @@ void Texstudio::quickTabular()
 	QString placeholder;//(0x2022);
 	QStringList borderlist, alignlist;
 	borderlist<< QString("|") << QString("||") << QString("") << QString("@{}");
-	alignlist << QString("c") << QString("l") << QString("r") << QString("p{}") << QString(">{\\centering\\arraybackslash}p{}") << QString(">{\\raggedleft\\arraybackslash}p{}");
+	alignlist << QString("c") << QString("l") << QString("r") << QString("p{}") << QString(">{\\raggedright\\arraybackslash}p{}") << QString(">{\\centering\\arraybackslash}p{}") << QString(">{\\raggedleft\\arraybackslash}p{}");
 	QString al="";
 	QString vs="";
 	QString el="";
