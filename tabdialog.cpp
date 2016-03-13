@@ -63,7 +63,7 @@ TabDialog::TabDialog(QWidget *parent, const char *name)
 	ui.comboLeftBorder->insertItem(0, "|");
 	ui.comboLeftBorder->insertItem(1, "||");
 	ui.comboLeftBorder->insertItem(2, tr("None", "tabular left border"));
-	ui.comboLeftBorder->insertItem(3, tr("@{text}", "tabular left border");
+	ui.comboLeftBorder->insertItem(3, tr("@{text}", "tabular left border"));
 	ui.comboLeftBorder->setCurrentIndex(0);
 
 	ui.comboBoxEndBorder->insertItem(0, "|");
