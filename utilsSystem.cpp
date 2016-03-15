@@ -78,6 +78,11 @@ QKeySequence filterLocaleShortcut(QKeySequence ks)
 		} else if (ks.matches(QKeySequence("Ctrl+Alt+L"))) {
 			return QKeySequence("Ctrl+Alt+Shift+L");
 		}
+	case QLocale::Croatian:
+		if (ks.matches(QKeySequence("Ctrl+Alt+F"))) {
+			return QKeySequence("Ctrl+Alt+Shift+F");
+		}
+		break;
 	default:
 		return ks;
 	}
