@@ -599,7 +599,7 @@ To access the document these objects are introduced:
   </tr>
   <tr><td> writeFile(name, value) </td>	<td> Writes value to file name (requires write privileges) </td></tr>
   <tr><td> readFile(name) </td>	<td> Reads the entire file name (requires read privileges) </td></tr>
-  <tr><td> system(cmd) </td>	<td> Calls cmd and returns a ProcessX object which has this methodes:
+  <tr><td> system(cmd, workingDirectory="") </td>	<td> Calls cmd and returns a ProcessX object which has this methodes:
     <ul>
     <li>waitForFinished: Wait until the process is finished</li>
     <li>readAllStandardOutputStr: Returns the stdout</li>
@@ -607,8 +607,9 @@ To access the document these objects are introduced:
     <li>exitCode: The exit code</li>
     <li>exitStatus: The qt exit status</li>
     <li>terminate or kill: Stops the process</li>
-
-    </ul>  </td></tr>
+    </ul> 
+	If workingDirectory is not set, the working directory will be inherited from the TeXstudio executable.
+  </td></tr>
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
   <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
   <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>

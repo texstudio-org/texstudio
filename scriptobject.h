@@ -70,7 +70,7 @@ public slots:
 
 	bool fileExists(const QString &fn);
 
-	ProcessX *system(const QString &commandline);
+	ProcessX *system(const QString &commandline, const QString &workingDirectory=QString());
 
 	void writeFile(const QString &filename, const QString &content);
 	QVariant readFile(const QString &filename);
