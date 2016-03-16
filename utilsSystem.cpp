@@ -464,11 +464,11 @@ QString getEnvironmentPath()
 		myProcess->waitForFinished(3000);
 		if (myProcess->exitStatus() == QProcess::NormalExit) {
 			QByteArray res = myProcess->readAllStandardOutput();
-			delete myProcess;
 			path = QString(res).split('\n').last();  // bash may have some initial output. path is on the last line
 		} else {
 			path = "";
 		}
+		delete myProcess;
 #endif
 #else
 		path = QProcessEnvironment::systemEnvironment().value("PATH");
