@@ -65,7 +65,7 @@ void LatexParser::init()
 	possibleCommands["%label"] << "\\label";
 	possibleCommands["%bibliography"] << "\\bibliography";
 	possibleCommands["%file"] << "\\include" << "\\input" << "\\import" << "\\includeonly" << "\\includegraphics" << "\\bibliographystyle" << "\\bibliography";
-	possibleCommands["%ref"] << "\\ref" << "\\pageref";
+	possibleCommands["%ref"] = QSet<QString>();  // will all be populated via cwl
 	possibleCommands["%include"] << "\\include" << "\\input";
 	possibleCommands["%import"] << "\\import" << "\\importfrom" << "\\subimport" << "\\subimportfrom";
 	commandDefs.clear();
@@ -2383,7 +2383,6 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				// normal parsing for completer
 				if (hideFromCompletion)
 					continue; // command for spell checking only (auto parser)
-				if (line.startsWith("\\pageref") || line.startsWith("\\ref")) continue;
 				// remove special option classification e.g. %l
 				line.remove(QRegExp("%[a-zA-Z]+")); // not n
 				if (!line.contains("%")) {

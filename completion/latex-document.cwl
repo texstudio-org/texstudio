@@ -348,7 +348,7 @@
 \pagebreak[number]
 \pagename
 \pagenumbering{numstyle}
-\pageref{key}
+\pageref{label}#r
 \pagestyle{option}
 \pagetotal
 \paragraph*{title}#L5
@@ -371,7 +371,7 @@
 \qquad
 \quad
 \r{letter}
-\ref{key}
+\ref{label}#r
 \refname{name}
 \righthyphenmin
 \rightmargin
