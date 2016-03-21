@@ -973,7 +973,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         QString firstOptArg = getArg(args, dlh, 0, ArgumentList::Optional);
         if(!firstOptArg.isEmpty())
             firstArg=firstOptArg;
-		newSection->title = parseTexOrPDFString(firstArg);
+		newSection->title = latexToText(firstArg);
 		newSection->level = level;
 		newSection->setLine(line(i).handle(), i);
 		newSection->columnNumber = cmdStart;

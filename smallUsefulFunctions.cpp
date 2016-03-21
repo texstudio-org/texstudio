@@ -443,8 +443,13 @@ QString textToLatex(const QString &text)
 	return result;
 }
 
-QString &parseTexOrPDFString(QString &s)
+/*!
+ * Parses a Latex string to a plain string.
+ * Specifically, this substitues \texorpdfstring and removes explicit hyphens.
+ */
+QString latexToText(QString s)
 {
+	// substitute \texorpdfstring
 	int start, stop;
 	start = s.indexOf("\\texorpdfstring");
 	while (start >= 0) {
@@ -459,6 +464,8 @@ QString &parseTexOrPDFString(QString &s)
 		}
 		start = s.indexOf("\\texorpdfstring");
 	}
+	// remove expicit hyphenations
+	s.remove("\\-");
 	return s;
 }
 
