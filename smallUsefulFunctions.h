@@ -126,7 +126,6 @@ int findClosingBracket(const QString &word, int &start, QChar oc = QChar('{'), Q
 int findOpeningBracket(const QString &word, int start, QChar oc = QChar('{'), QChar cc = QChar('}'));
 //replaces character with corresponding LaTeX commands
 QString textToLatex(const QString &text);
-// replaces \texorpdfstring{tex}{pdfString} with pdfString
 QString latexToText(QString s);
 
 QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines);
