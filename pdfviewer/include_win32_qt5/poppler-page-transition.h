@@ -1,6 +1,7 @@
 /* PageTransition.h
  * Copyright (C) 2005, Net Integration Technologies, Inc.
  * Copyright (C) 2005, Brad Hards <bradh@frogmouth.net>
+ * Copyright (C) 2015, Arseniy Lartsev <arseniy@alumni.chalmers.se>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +22,8 @@
 #define __PAGETRANSITION_X_H__
 
 #include "poppler-export.h"
+
+#include <QtCore/qglobal.h>
 
 namespace Poppler {
 
@@ -109,9 +112,16 @@ class POPPLER_QT5_EXPORT PageTransition {
   Type type() const;
   
   /**
-     \brief Get duration of the transition in seconds.
+     \brief Get duration of the transition in seconds as integer
+
+     \deprecated This function is left for backward compatibility, use durationReal() instead.
   */
-  int duration() const;
+  Q_DECL_DEPRECATED int duration() const;
+
+  /**
+     \brief Get duration of the transition in seconds
+  */
+  double durationReal() const;
   
   /**
      \brief Get dimension in which the transition effect occurs.

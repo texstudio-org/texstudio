@@ -3,7 +3,7 @@
  * Copyright (C) 2006, 2008 Pino Toscano <pino@kde.org>
  * Copyright (C) 2007, Brad Hards <bradh@frogmouth.net>
  * Copyright (C) 2010, Philip Lorenz <lorenzph+freedesktop@gmail.com>
- * Copyright (C) 2012, Tobias Koenig <tokoe@kdab.com>
+ * Copyright (C) 2012, 2015, Tobias Koenig <tobias.koenig@kdab.com>
  * Copyright (C) 2012, Guillermo A. Amaral B. <gamaral@kde.org>
  * Copyright (C) 2012, 2013 Fabio D'Urso <fabiodurso@hotmail.it>
  * Copyright (C) 2013, Anthony Granger <grangeranthony@gmail.com>
@@ -34,6 +34,7 @@
 #include <QtCore/QList>
 #include <QtCore/QPointF>
 #include <QtCore/QRectF>
+#include <QtCore/QScopedPointer>
 #include <QtCore/QVector>
 #include <QtGui/QColor>
 #include <QtGui/QFont>
@@ -57,6 +58,7 @@ class SoundAnnotationPrivate;
 class MovieAnnotationPrivate;
 class ScreenAnnotationPrivate;
 class WidgetAnnotationPrivate;
+class RichMediaAnnotationPrivate;
 class EmbeddedFile;
 class Link;
 class SoundObject;
@@ -197,6 +199,7 @@ class POPPLER_QT5_EXPORT Annotation
         AMovie = 11,          ///< MovieAnnotation
         AScreen = 12,         ///< ScreenAnnotation \since 0.20
         AWidget = 13,         ///< WidgetAnnotation \since 0.22
+        ARichMedia = 14,      ///< RichMediaAnnotation \since 0.36
         A_BASE = 0
     };
 
@@ -1023,6 +1026,332 @@ class POPPLER_QT5_EXPORT WidgetAnnotation : public Annotation
     virtual void store( QDomNode &parentNode, QDomDocument &document ) const; // stub
     Q_DECLARE_PRIVATE( WidgetAnnotation )
     Q_DISABLE_COPY( WidgetAnnotation )
+};
+
+/**
+ * \short RichMedia annotation.
+ *
+ * The RichMedia annotation represents a video or sound on a page.
+ *
+ * \since 0.36
+ */
+class POPPLER_QT5_EXPORT RichMediaAnnotation : public Annotation
+{
+  friend class AnnotationPrivate;
+
+  public:
+    virtual ~RichMediaAnnotation();
+
+    virtual SubType subType() const;
+
+    /**
+     * The params object of a RichMediaAnnotation::Instance object.
+     *
+     * The params object provides media specific parameters, to play
+     * back the media inside the PDF viewer.
+     *
+     * At the moment only parameters for flash player are supported.
+     */
+    class POPPLER_QT5_EXPORT Params
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        Params();
+        ~Params();
+
+        /**
+         * Returns the parameters for the flash player.
+         */
+        QString flashVars() const;
+
+      private:
+        void setFlashVars( const QString &flashVars );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * The instance object of a RichMediaAnnotation::Configuration object.
+     *
+     * The instance object represents one media object, that should be shown
+     * on the page. It has a media type and a Params object, to define the
+     * media specific parameters.
+     */
+    class POPPLER_QT5_EXPORT Instance
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        /**
+         * Describes the media type of the instance.
+         */
+        enum Type
+        {
+          Type3D,     ///< A 3D media file.
+          TypeFlash,  ///< A Flash media file.
+          TypeSound,  ///< A sound media file.
+          TypeVideo   ///< A video media file.
+        };
+
+        Instance();
+        ~Instance();
+
+        /**
+         * Returns the media type of the instance.
+         */
+        Type type() const;
+
+        /**
+         * Returns the params object of the instance or @c 0 if it doesn't exist.
+         */
+        RichMediaAnnotation::Params* params() const;
+
+      private:
+        void setType( Type type );
+        void setParams( RichMediaAnnotation::Params *params );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * The configuration object of a RichMediaAnnotation::Content object.
+     *
+     * The configuration object provides access to the various Instance objects
+     * of the rich media annotation.
+     */
+    class POPPLER_QT5_EXPORT Configuration
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        /**
+         * Describes the media type of the configuration.
+         */
+        enum Type
+        {
+          Type3D,     ///< A 3D media file.
+          TypeFlash,  ///< A Flash media file.
+          TypeSound,  ///< A sound media file.
+          TypeVideo   ///< A video media file.
+        };
+
+        Configuration();
+        ~Configuration();
+
+        /**
+         * Returns the media type of the configuration.
+         */
+        Type type() const;
+
+        /**
+         * Returns the name of the configuration.
+         */
+        QString name() const;
+
+        /**
+         * Returns the list of Instance objects of the configuration.
+         */
+        QList< RichMediaAnnotation::Instance* > instances() const;
+
+      private:
+        void setType( Type type );
+        void setName( const QString &name );
+        void setInstances( const QList< RichMediaAnnotation::Instance* > &instances );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * The asset object of a RichMediaAnnotation::Content object.
+     *
+     * The asset object provides a mapping between identifier name, as
+     * used in the flash vars string of RichMediaAnnotation::Params,  and the
+     * associated file spec object.
+     */
+    class POPPLER_QT5_EXPORT Asset
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        Asset();
+        ~Asset();
+
+        /**
+         * Returns the identifier name of the asset.
+         */
+        QString name() const;
+
+        /**
+         * Returns the embedded file the asset points to.
+         */
+        EmbeddedFile* embeddedFile() const;
+
+      private:
+        void setName( const QString &name );
+        void setEmbeddedFile( EmbeddedFile *embeddedFile );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * The content object of a RichMediaAnnotation.
+     *
+     * The content object provides access to the list of configurations
+     * and assets of the rich media annotation.
+     */
+    class POPPLER_QT5_EXPORT Content
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        Content();
+        ~Content();
+
+        /**
+         * Returns the list of configuration objects of the content object.
+         */
+        QList< RichMediaAnnotation::Configuration* > configurations() const;
+
+        /**
+         * Returns the list of asset objects of the content object.
+         */
+        QList< RichMediaAnnotation::Asset* > assets() const;
+
+      private:
+        void setConfigurations( const QList< RichMediaAnnotation::Configuration* > &configurations );
+        void setAssets( const QList< RichMediaAnnotation::Asset* > &assets );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * The activation object of the RichMediaAnnotation::Settings object.
+     *
+     * The activation object is a wrapper around the settings for the activation
+     * state. At the moment it provides only the activation condition.
+     */
+    class POPPLER_QT5_EXPORT Activation
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        /**
+         * Describes the condition for activating the rich media.
+         */
+        enum Condition {
+          PageOpened,   ///< Activate when page is opened.
+          PageVisible,  ///< Activate when page becomes visible.
+          UserAction    ///< Activate when user interacts with the annotation.
+        };
+
+        Activation();
+        ~Activation();
+
+        /**
+         * Returns the activation condition.
+         */
+        Condition condition() const;
+
+      private:
+        void setCondition( Condition condition );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * The deactivation object of the RichMediaAnnotation::Settings object.
+     *
+     * The deactivation object is a wrapper around the settings for the deactivation
+     * state. At the moment it provides only the deactivation condition.
+     */
+    class POPPLER_QT5_EXPORT Deactivation
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        /**
+         * Describes the condition for deactivating the rich media.
+         */
+        enum Condition {
+          PageClosed,     ///< Deactivate when page is closed.
+          PageInvisible,  ///< Deactivate when page becomes invisible.
+          UserAction      ///< Deactivate when user interacts with the annotation.
+        };
+
+        Deactivation();
+        ~Deactivation();
+
+        /**
+         * Returns the deactivation condition.
+         */
+        Condition condition() const;
+
+      private:
+        void setCondition( Condition condition );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * The settings object of a RichMediaAnnotation.
+     *
+     * The settings object provides access to the configuration objects
+     * for annotation activation and deactivation.
+     */
+    class POPPLER_QT5_EXPORT Settings
+    {
+      friend class AnnotationPrivate;
+
+      public:
+        Settings();
+        ~Settings();
+
+        /**
+         * Returns the Activation object of the settings object or @c 0 if it doesn't exist.
+         */
+        RichMediaAnnotation::Activation* activation() const;
+
+        /**
+         * Returns the Deactivation object of the settings object or @c 0 if it doesn't exist.
+         */
+        RichMediaAnnotation::Deactivation* deactivation() const;
+
+      private:
+        void setActivation( RichMediaAnnotation::Activation *activation );
+        void setDeactivation( RichMediaAnnotation::Deactivation *deactivation );
+
+        class Private;
+        QScopedPointer<Private> d;
+    };
+
+    /**
+     * Returns the Settings object of the rich media annotation or @c 0 if it doesn't exist.
+     */
+    RichMediaAnnotation::Settings* settings() const;
+
+    /**
+     * Returns the Content object of the rich media annotation or @c 0 if it doesn't exist.
+     */
+    RichMediaAnnotation::Content* content() const;
+
+  private:
+    void setSettings( RichMediaAnnotation::Settings *settings );
+    void setContent( RichMediaAnnotation::Content *content );
+
+    RichMediaAnnotation();
+    RichMediaAnnotation( const QDomNode &node );
+    RichMediaAnnotation( RichMediaAnnotationPrivate &dd );
+    virtual void store( QDomNode &parentNode, QDomDocument &document ) const;
+    Q_DECLARE_PRIVATE( RichMediaAnnotation )
+    Q_DISABLE_COPY( RichMediaAnnotation )
 };
 
 }
