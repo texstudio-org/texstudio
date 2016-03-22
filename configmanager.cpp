@@ -503,8 +503,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Hide Grammar Errors in Non Text", &editorConfig->hideNonTextGrammarErrors, true, &pseudoDialog->checkBoxHideGrammarErrorsInNonText);
 	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, false, &pseudoDialog->checkBoxShowWhitespace);
 	registerOption("Editor/TabStop", &editorConfig->tabStop, 4 , &pseudoDialog->sbTabSpace);
-	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true , &pseudoDialog->checkBoxToolTipHelp2);
-	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true , &pseudoDialog->checkBoxToolTipPreview);
+	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true, &pseudoDialog->checkBoxToolTipHelp2);
+	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true, &pseudoDialog->checkBoxToolTipPreview);
+	registerOption("Editor/ImageToolTip", &editorConfig->imageToolTip, true, &pseudoDialog->checkBoxImageToolTip);
 	registerOption("Editor/MaxImageTooltipWidth", &editorConfig->maxImageTooltipWidth, 400);
 	registerOption("Editor/ContextMenuKeyboardModifiers", &editorConfig->contextMenuKeyboardModifiers, Qt::ShiftModifier);
 	registerOption("Editor/ContextMenuSpellcheckingEntryLocation", &editorConfig->contextMenuSpellcheckingEntryLocation, 0, &pseudoDialog->comboBoxContextMenuSpellcheckingEntryLocation);

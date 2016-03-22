@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>547</width>
+            <height>563</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -888,7 +888,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>860</width>
+               <width>198</width>
                <height>76</height>
               </rect>
              </property>
@@ -2123,6 +2123,20 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
+              <item row="8" column="0">
+               <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
+                <property name="text">
+                 <string>Double-Click Selection: Include Leading Backslash</string>
+                </property>
+               </widget>
+              </item>
+              <item row="16" column="0">
+               <widget class="QLabel" name="label_70">
+                <property name="text">
+                 <string>Spellchecking via context menu:</string>
+                </property>
+               </widget>
+              </item>
               <item row="14" column="2">
                <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
                 <property name="text">
@@ -2144,34 +2158,10 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="15" column="2">
-               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
-                <property name="text">
-                 <string>Go to error when displaying log</string>
-                </property>
-               </widget>
-              </item>
               <item row="6" column="0" colspan="2">
                <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
                 <property name="text">
                  <string>Overwrite Opening Bracket Followed by a Placeholder</string>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_23">
-                <property name="text">
-                 <string>Maximal Characters:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2" colspan="2">
-               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
-                <property name="text">
-                 <string>Show help as tooltip on text in editor</string>
                 </property>
                </widget>
               </item>
@@ -2197,6 +2187,23 @@ Then you can select a new shortcut by one of the following ways:
                   <string>Hard Line Wrap after max. Characters</string>
                  </property>
                 </item>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Maximal Characters:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="2">
+               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
+                <property name="text">
+                 <string>Go to error when displaying log</string>
+                </property>
                </widget>
               </item>
               <item row="14" column="0">
@@ -2238,17 +2245,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </item>
                </widget>
               </item>
-              <item row="16" column="0">
-               <widget class="QLabel" name="label_70">
+              <item row="4" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
                 <property name="text">
-                 <string>Spellchecking via context menu:</string>
+                 <string>Show help as tooltip on text in editor</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
-               <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
+              <item row="3" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxImageToolTip">
                 <property name="text">
-                 <string>Double-Click Selection: Include Leading Backslash</string>
+                 <string>Show image tooltip on image files</string>
                 </property>
                </widget>
               </item>
@@ -3046,7 +3053,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>494</width>
             <height>644</height>
            </rect>
           </property>
@@ -3527,8 +3534,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>344</width>
+            <height>241</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3789,8 +3796,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>490</width>
+            <height>407</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4321,7 +4328,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>checkBoxSearchOnlyInSelection</tabstop>
   <tabstop>checkBoxAutoCompleteParens</tabstop>
   <tabstop>checkBoxMouseWheelZoom</tabstop>
-  <tabstop>checkBoxToolTipHelp2</tabstop>
   <tabstop>comboBoxLineWrap</tabstop>
   <tabstop>spinBoxWrapLineWidth</tabstop>
   <tabstop>comboBoxAutoSave</tabstop>

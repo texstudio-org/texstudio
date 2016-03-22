@@ -2227,7 +2227,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}
-		if (tk.type == Tokens::imagefile && config->toolTipPreview) {
+		if (tk.type == Tokens::imagefile && config->imageToolTip) {
 			handled = true;
 			QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
 			QString fname;
