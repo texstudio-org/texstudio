@@ -1,7 +1,7 @@
 /* poppler-qt.h: qt interface to poppler
  * Copyright (C) 2005, Net Integration Technologies, Inc.
  * Copyright (C) 2005, 2007, Brad Hards <bradh@frogmouth.net>
- * Copyright (C) 2005-2014, Albert Astals Cid <aacid@kde.org>
+ * Copyright (C) 2005-2015, Albert Astals Cid <aacid@kde.org>
  * Copyright (C) 2005, Stefan Kebekus <stefan.kebekus@math.uni-koeln.de>
  * Copyright (C) 2006-2011, Pino Toscano <pino@kde.org>
  * Copyright (C) 2009 Shawn Rutledge <shawn.t.rutledge@gmail.com>
@@ -891,7 +891,8 @@ delete it;
 	    TextSlightHinting = 0x00000008, ///< Lighter hinting for text when combined with TextHinting \since 0.18
 	    OverprintPreview = 0x00000010,  ///< Overprint preview \since 0.22
 	    ThinLineSolid = 0x00000020,     ///< Enhance thin lines solid \since 0.24
-	    ThinLineShape = 0x00000040      ///< Enhance thin lines shape. Wins over ThinLineSolid \since 0.24
+	    ThinLineShape = 0x00000040,     ///< Enhance thin lines shape. Wins over ThinLineSolid \since 0.24
+	    IgnorePaperColor = 0x00000080   ///< Do not compose with the paper color \since 0.35
 	};
 	Q_DECLARE_FLAGS( RenderHints, RenderHint )
 
