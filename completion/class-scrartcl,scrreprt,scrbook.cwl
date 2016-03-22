@@ -1,14 +1,14 @@
 # mode: koma classes (scrartcl,scrreprt,scrbook)
 # dani/2006-02-21
-\addchap[short]{title}#*
-\addchap{title}#*
-\addchap*{title}#*
-\addpart[short]{title}#*
-\addpart{title}#*
-\addpart*{title}#*
-\addsec[short]{title}#*
-\addsec{title}#*
-\addsec*{title}#*
+\addchap[short title]{title}#L0
+\addchap{title}#L0
+\addchap*{title}#L0
+\addpart[short title]{title}#L1
+\addpart{title}#L1
+\addpart*{title}#L1
+\addsec[short title]{title}#L2
+\addsec{title}#L2
+\addsec*{title}#L2
 \addtokomafont{name}{cmd}#*
 \areaset[bcor]{width}{height}#*
 \areaset{width}{height}#*
