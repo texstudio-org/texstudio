@@ -2750,7 +2750,10 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
                     return result;
                 else
                     k++;
-            }
+			} else {
+				if (type == ArgumentList::Optional)
+					return QString(); //optional argument can't follow mandatory one
+			}
         }
         lineNr++;
         dlh=doc->line(lineNr).handle();
