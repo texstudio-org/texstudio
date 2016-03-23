@@ -1510,6 +1510,7 @@ void LatexEditorView::lineMarkClicked(int line)
 	for (int i = -1; i < 10; i++)
 		if (l.hasMark(bookMarkId(i))) {
 			l.removeMark(bookMarkId(i));
+            editor->removeMark(l.handle(),"bookmark");
 			emit bookmarkRemoved(l.handle());
 			return;
 		}
@@ -1530,11 +1531,13 @@ void LatexEditorView::lineMarkClicked(int line)
 	for (int i = 1; i <= 10; i++) {
 		if (editor->document()->findNextMark(bookMarkId(i % 10)) < 0) {
 			l.addMark(bookMarkId(i % 10));
+            editor->addMark(l.handle(),Qt::darkMagenta,"bookmark");
 			emit bookmarkAdded(l.handle(), i);
 			return;
 		}
 	}
 	l.addMark(bookMarkId(-1));
+    editor->addMark(l.handle(),Qt::darkMagenta,"bookmark");
 	emit bookmarkAdded(l.handle(), -1);
 }
 
