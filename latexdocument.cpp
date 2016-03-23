@@ -748,18 +748,20 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
         static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
         if (envTokens.contains(cmd)) {
             completerNeedsUpdate = true;
-            int optionCount = getArg(args, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
+            TokenList argsButFirst=args;
+            argsButFirst.removeFirst();
+            int optionCount = getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
             if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-            mUserCommandList.insert(line(i).handle(), "\\end{" + firstArg);
+            mUserCommandList.insert(line(i).handle(), "\\end{" + firstArg +"}");
             QStringList lst;
-            lst << "\\begin{" + firstArg + "}" << "\\end" + firstArg + "}";
+            lst << "\\begin{" + firstArg + "}" << "\\end{" + firstArg + "}";
             foreach (const QString &elem, lst) {
                 ltxCommands.possibleCommands["user"].insert(elem);
                 if (!removedUserCommands.removeAll(elem)) {
                     addedUserCommands << elem;
                 }
             }
-            bool hasDefaultArg = !getArg(args, dlh, 1, ArgumentList::Optional).isNull();
+            bool hasDefaultArg = !getArg(argsButFirst, dlh, 1, ArgumentList::Optional).isNull();
             int mandatoryOptionCount = hasDefaultArg ? optionCount -1 : optionCount;
             QString mandatoryArgString;
             for (int j = 0; j < mandatoryOptionCount; j++) {
