@@ -65,7 +65,8 @@ private:
 };
 
 
-struct MacroExecContext {
+class MacroExecContext {
+public:
 	MacroExecContext() { triggerId = Macro::ST_NO_TRIGGER; }
 	MacroExecContext(int triggerType) { this->triggerId = triggerType; }
 	MacroExecContext(int triggerType, QStringList triggerMatches) { this->triggerId = triggerType; this->triggerMatches = triggerMatches; }
