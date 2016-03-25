@@ -271,10 +271,8 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("makeglossaries", "makeglossaries", "Makeglossaries", "%");
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
-	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
-	QStringList ltxmk_cmds;
-    ltxmk_cmds << "latexmk -pdf -silent -synctex=1 %" << "latexmk -dvi -src -silent %";
-	registerCommand("latexmk",     "Latexmk", ltxmk_cmds, "", false);
+	registerCommand("gs",          "gs;mgs",       "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
+	registerCommand("latexmk",     "latexmk",      "Latexmk",     "-pdf -silent -synctex=1 %");
 
 
 	QStringList descriptionList;
