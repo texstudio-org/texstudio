@@ -193,7 +193,7 @@ QScriptValue insertSnippet(QScriptContext *context, QScriptEngine *engine)
 	CodeSnippet cs(context->argument(0).toString());
 
 	QEditor *editor = qobject_cast<QEditor *>(context->thisObject().toQObject());
-	if (!editor) QScriptValue();
+	if (!editor) return QScriptValue();
 	foreach (QDocumentCursor c, editor->cursors()) {
 		cs.insertAt(editor, &c);
 	}
