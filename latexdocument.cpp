@@ -424,6 +424,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	QMutableListIterator<StructureEntry *> iter_bibTeX(bibTeXList->children);
 	findStructureEntryBefore(iter_bibTeX, MapOfBibtex, lineNrStart, newCount);
 
+	bool isLatexLike = languageIsLatexLike();
 
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
 	// force command from all line of which the actual line maybe subsequent lines (multiline commands)
@@ -432,6 +433,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (edView && edView->hasBookmark(i, -1)) {
 			emit bookmarkLineUpdated(i);
 		}
+
+		if (!isLatexLike) continue;
 
 		QString curLine = line(i).text();
 		QDocumentLineHandle *dlh = line(i).handle();
