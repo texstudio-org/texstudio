@@ -534,12 +534,12 @@ PDFWidget::PDFWidget(bool embedded)
 	connect(action, SIGNAL(triggered()), this, SLOT(fitWindow()));
 	addAction(action);
 
-	if (!embedded) {
-		shortcutUp = new QShortcut(QKeySequence("Up"), this, SLOT(upOrPrev()));
-		shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()));
-		shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()));
-		shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()));
-	}
+	Qt::ShortcutContext context = embedded ? Qt::WidgetWithChildrenShortcut : Qt::WindowShortcut;
+	shortcutUp = new QShortcut(QKeySequence("Up"), this, SLOT(upOrPrev()), 0, context);
+	shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()), 0, context);
+	shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()), 0, context);
+	shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()), 0, context);
+
 	highlightRemover.setSingleShot(true);
 	highlightPage = -1;
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
