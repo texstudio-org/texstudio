@@ -1603,7 +1603,6 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0, "\\documentclass{article}\n\\usepackage{beamerarticle}");
 	}
-	//preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
 
 	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
 	QStringList addPaths;

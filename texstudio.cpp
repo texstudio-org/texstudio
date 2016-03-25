@@ -8142,17 +8142,24 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 	return header;
 }
 
+/*!
+ * Add a format overlay to the provided selection. Existing overlays of the format will be deleted
+ * from all lines that are touched by the selection.
+ *
+ * \param c: a QDocumentCursor with a selection
+ * \param sid: formatScheme id
+ */
 void Texstudio::updateEmphasizedRegion(QDocumentCursor c, int sid)
 {
 	QDocument *doc = c.document();
 	QDocumentCursor ss = c.selectionStart();
 	QDocumentCursor se = c.selectionEnd();
 	for (int i = ss.anchorLineNumber(); i <= se.anchorLineNumber(); i++) {
-		int beg = i == ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
-		int en = i == se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
+		int begin = i == ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
+		int end = i == se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
 		if (sid > 0) {
 			doc->line(i).clearOverlays(sid);
-			doc->line(i).addOverlay(QFormatRange(beg, en - beg, sid));
+			doc->line(i).addOverlay(QFormatRange(begin, end - begin, sid));
 		} else {
 			// remove overlay if sid <0 (removes -sid)
 			doc->line(i).clearOverlays(-sid);
