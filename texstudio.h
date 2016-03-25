@@ -553,6 +553,7 @@ protected slots:
 	void showPreview(const QString &text);
 	void showPreview(const QDocumentCursor &c);
 	void showPreview(const QDocumentCursor &c, bool addToList);
+	QStringList makePreviewHeader(const LatexDocument *rootDoc);
 	void showPreviewQueue();
 	void showImgPreview(const QString &fname);
 	void showImgPreviewFinished(const QPixmap &pm, int page);
