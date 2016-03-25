@@ -5252,6 +5252,7 @@ void Texstudio::editMacros()
 		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
 	}
 	userMacroDialog->show();
+	userMacroDialog->raise();
 	userMacroDialog->setFocus();
 }
 
