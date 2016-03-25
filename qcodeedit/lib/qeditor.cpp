@@ -46,6 +46,10 @@
 #include <QPropertyAnimation>
 #endif
 
+#if QT_VERSION >= 0x050100
+#include <QSaveFile>
+#endif
+
 #ifdef Q_OS_MAC
 #include <QSysInfo>
 #endif
@@ -960,19 +964,46 @@ void QEditor::save()
 
 bool QEditor::saveCopy(const QString& filename){
 	Q_ASSERT(m_doc);
-	bool sucessfullySaved = false;
 	
 	emit slowOperationStarted();
 
-    // insert hard line breaks on modified lines (if desired)
-    if(flag(HardLineWrap)){
-        QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
-        m_doc->applyHardLineWrap(handles);
-    }
+	// insert hard line breaks on modified lines (if desired)
+	if(flag(HardLineWrap)){
+		QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
+		m_doc->applyHardLineWrap(handles);
+	}
 	
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
+#if QT_VERSION >= 0x050100
+	QSaveFile file(filename);
+	if (file.open(QIODevice::WriteOnly)) {
+		file.write(data);
+		return file.commit();
+	}
+	return false;
+#else
+	return writeToFile(filename, data);
+#endif
+}
+
+/*!
+ * Securely writes data to a file. If this is not successfull, the original file stays intact.
+ * This procedure is only necessary for Qt < 5.1.0. More recent versions of Qt provide a standard
+ * way for this using QSaveFile.
+ *
+ * This is our safe saving strategy:
+ * 1. Prepare: If the file exists, create a copy backupFilename so that it's content is not lost in case of error.
+ * 2. Save: Write the file.
+ * 3. Cleanup: In case of error, rename the backupFilename back to the original filename.
+ *
+ * \return true if the data were written to the file successfully.
+ */
+bool QEditor::writeToFile(const QString &filename, const QByteArray &data) const {
+	bool sucessfullySaved = false;
+
+	// check available disk space
 	quint64 freeBytes;
 	while (1) {
 		if (!getDiskFreeSpace(QFileInfo(filename).canonicalPath(), freeBytes)) break;
@@ -993,11 +1024,6 @@ bool QEditor::saveCopy(const QString& filename){
 		else if (bt == QMessageBox::Ignore) break;
 	}
 
-	// This is our safe saving strategy:
-	// 1. Prepare: If the file exists, create a copy backupFilename so that it's content is not lost in case of error.
-	// 2. Save: Write the file.
-	// 3. Cleanup: In case of error, rename the backupFilename back to the original filename.
-	
 	// 1. Prepare
 	QString backupFilename;
 	if (QFileInfo(filename).exists()) {
@@ -1018,8 +1044,6 @@ bool QEditor::saveCopy(const QString& filename){
 		}
 	}
 
-    // txsInformation("backup created");
-	
 	// 2. Save
 	QFile f(filename);
 	if ( !f.open(QFile::WriteOnly) ) {
@@ -1047,14 +1071,15 @@ bool QEditor::saveCopy(const QString& filename){
 			}
 			QMessageBox::critical(this, tr("Saving failed"), message, QMessageBox::Ok);
 		}
-		
+
 		f.close(); //explicite close for watcher (??? is this necessary anymore?)
 	}
 
 	emit slowOperationEnded();
-	
+
 	return sucessfullySaved;
 }
+
 
 /*!
 	\brief Save the content of the editor to a file
