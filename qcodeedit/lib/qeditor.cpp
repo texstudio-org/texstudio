@@ -1000,7 +1000,7 @@ bool QEditor::saveCopy(const QString& filename){
  *
  * \return true if the data were written to the file successfully.
  */
-bool QEditor::writeToFile(const QString &filename, const QByteArray &data) const {
+bool QEditor::writeToFile(const QString &filename, const QByteArray &data) {
 	bool sucessfullySaved = false;
 
 	// check available disk space
