@@ -538,7 +538,7 @@ The "abbreviation" is a pseudo-command for the latex completer. If the pseudo-co
 <p><IMG src="doc17.png" border="1" alt="doc17"></p>
 
 <p>
-<h3 id="SECTION33a">4.5.1 Text macros</h3>
+<h3 id="sec_textmacros">4.5.1 Text macros</h3>
 Apart from normal text, some special codes are recognized and replaced on insertion.<br>
 <ul>
 <li>If you write %| somewhere the cursor will be placed at that place in the inserted text. (A second %| will select everything between them).</li>
@@ -659,6 +659,10 @@ To access the document these objects are introduced:
   	    Examples:<br>
   	    <code>editor.replaceSelectedText("world", {"append": true} )</code> Appends "world" to the current selections.<br>
   	    <code>editor.replaceSelectedText(function(s){return s.toUpperCase();})</code> Converts the current selection to uppercase.  </td>
+  </tr>
+  <tr>
+    <td>editor.insertSnippet(text);</td>
+    <td> Inserts a text snippet into the editor. For a list of extended features and syntax see <a href="#sec_textmacros">Text Macros</a>.</td>
   </tr>
   <tr>
     <td> editor.undo();</td>

@@ -187,6 +187,19 @@ void qScriptValueToStringPtr(const QScriptValue &value, QString *&str)
 #define SCRIPT_TO_BOOLEAN toBoolean
 #endif
 
+QScriptValue insertSnippet(QScriptContext *context, QScriptEngine *engine)
+{
+	SCRIPT_REQUIRE(context->argumentCount() == 1, "exactly one argument is required");
+	CodeSnippet cs(context->argument(0).toString());
+
+	QEditor *editor = qobject_cast<QEditor *>(context->thisObject().toQObject());
+	if (!editor) QScriptValue();
+	foreach (QDocumentCursor c, editor->cursors()) {
+		cs.insertAt(editor, &c);
+	}
+	return QScriptValue();
+}
+
 QScriptValue replaceSelectedText(QScriptContext *context, QScriptEngine *engine)
 {
 	QEditor *editor = qobject_cast<QEditor *>(context->thisObject().toQObject());
@@ -452,6 +465,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 	qScriptRegisterQObjectMetaType<PDFWidget *>(engine);
 #endif
 	QScriptValue extendedQEditor = engine->newObject();
+	extendedQEditor.setProperty("insertSnippet", engine->newFunction(&insertSnippet), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replaceSelectedText", engine->newFunction(&replaceSelectedText), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly | QScriptValue::Undeletable);
