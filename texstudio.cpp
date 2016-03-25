@@ -8077,22 +8077,11 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 	// get document definitions
 	//preliminary code ...
 	const LatexDocument *rootDoc = documents.getRootDocumentForDoc();
-	LatexEditorView *edView = (rootDoc && rootDoc->getEditorView()) ? rootDoc->getEditorView() : currentEditorView();
-	if (!edView) return;
-	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
-	if (m_endingLine < 0) return; // can't create header
-	QStringList header;
-	for (int l = 0; l < m_endingLine; l++)
-		header << edView->editor->document()->line(l).text();
-	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
-		header << "\\usepackage[active,tightpage]{preview}"
-		       << "\\usepackage{varwidth}"
-		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
-		       << "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
-	}
-	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	if (!rootDoc) return;
+	QStringList header = makePreviewHeader(rootDoc);
+	if (header.isEmpty()) return;
 	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
-	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), rootDoc->codec());
 
 	if (!addToList)
 		return;
@@ -8117,6 +8106,40 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 		if (sid)
 			updateEmphasizedRegion(c, sid);
 	}
+}
+
+QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
+{
+	LatexEditorView *edView = rootDoc->getEditorView();
+	if (!edView) QStringList();
+	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
+	if (m_endingLine < 0) return QStringList(); // can't create header
+	QStringList header;
+	for (int l = 0; l < m_endingLine; l++) {
+		const QString &line = edView->editor->document()->line(l).text();
+		int start = line.indexOf("\\input{");
+		if (start < 0) {
+			header << line;
+		} else {
+			// rewrite input to absolute paths
+			QString newLine(line);
+			start += 7;  // behind curly brace of \\input{
+			int end = newLine.indexOf('}', start);
+			if (end >= 0) {
+				QString filename(newLine.mid(start, end-start));
+				newLine.replace(start, end-start, documents.getAbsoluteFilePath(filename));
+			}
+			header << newLine;
+		}
+	}
+	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
+		header << "\\usepackage[active,tightpage]{preview}"
+		       << "\\usepackage{varwidth}"
+		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
+		       << "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+	}
+	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	return header;
 }
 
 void Texstudio::updateEmphasizedRegion(QDocumentCursor c, int sid)
