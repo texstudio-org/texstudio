@@ -829,18 +829,22 @@ void QDocument::startChunkLoading()
 */
 void QDocument::stopChunkLoading()
 {
+	bool emptyEndingLine = false;
 	if ( m_leftOver.count() )
 	{
-		m_impl->m_lines << new QDocumentLineHandle(
-								m_leftOver,
-								this
-							);
+		if (m_leftOver.endsWith('\r')) {
+			emptyEndingLine = true;
+			m_impl->_mac++;
+			m_leftOver.chop(1);
+		}
+		m_impl->m_lines << new QDocumentLineHandle( m_leftOver, this );
 
 		m_leftOver.clear();
 
-	} else {
+	} else emptyEndingLine = true;
+
+	if (emptyEndingLine)
 		m_impl->m_lines << new QDocumentLineHandle(this);
-	}
 
 	//qDebug("[chunk] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
 
@@ -935,25 +939,27 @@ void QDocument::addChunk(const QString& txt)
 	while ( idx < m_leftOver.length() )
 	{
 		if ( m_leftOver.at(idx) == '\r') {
+			++idx;
+			if (idx >= m_leftOver.length())
+				break; //there might be a \n in the next chunk
 			m_impl->m_lines << new QDocumentLineHandle(
-                                    m_leftOver.mid(last, idx - last),
-                                    this
-                                );
-            ++idx;
-		    if (idx < m_leftOver.length() && m_leftOver.at(idx) == '\n') {
-                ++(m_impl->_dos);
-                ++idx;
+							    m_leftOver.mid(last, idx - last - 1),
+							    this
+							    );
+			if (m_leftOver.at(idx) == '\n') {
+				++(m_impl->_dos);
+				++idx;
 			} else ++(m_impl->_mac);
 			last = idx;
 		} else if ( m_leftOver.at(idx) == '\n') {
 			++(m_impl->_nix);
 
-            m_impl->m_lines << new QDocumentLineHandle(
-										m_leftOver.mid(last, idx - last),
-										this
-                                );
+			m_impl->m_lines << new QDocumentLineHandle(
+							    m_leftOver.mid(last, idx - last),
+							    this
+							    );
 			last = ++idx;
-        } else {
+		} else {
 			++idx;
 		}
 	}
@@ -7577,6 +7583,7 @@ void QDocumentPrivate::insertLines(int after, const QList<QDocumentLineHandle*>&
 		if ( (it.key() <= after) && ((it.key() + *it) > after) )
 		{
 			*it += l.count();
+
 
 			foreach ( QDocumentLineHandle *h, l )
 				h->setFlag(QDocumentLine::Hidden, true);
