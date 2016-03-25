@@ -418,6 +418,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		void setWrapAfterNumChars(int numChars);
 protected:
 		void setWrapLineWidth(int l);
+		bool writeToFile(const QString &filename, const QByteArray &data);
 public:		
 		virtual void save();
 		void save(const QString& filename);
