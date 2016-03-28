@@ -868,6 +868,11 @@ void LatexEditorView::viewActivated()
 	if (!LatexEditorView::completer) return;
 }
 
+/*!
+ * Returns the name to be displayed when a short textual reference to the editor is required
+ * such as in the tab or in a list of open documents.
+ * This name is not necessarily unique.
+ */
 QString LatexEditorView::displayName() const
 {
 	return (!editor || editor->fileName().isEmpty() ? tr("untitled") : editor->name());
