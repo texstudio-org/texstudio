@@ -33,6 +33,7 @@
 #include "textanalysis.h"
 #include "toolwidgets.h"
 #include "txstabwidget.h"
+#include "editors.h"
 #include "searchresultwidget.h"
 #include "unicodeinsertion.h"
 #include "tablemanipulation.h"
@@ -125,7 +126,7 @@ private:
 	void createStatusBar();
 	bool activateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
 	bool saveAllFilesForClosing(); // checks for unsaved files and asks the user if they should be saved
-	bool saveFilesForClosing(const QList<LatexEditorView *> &editors); // checks for unsaved files and asks the user if they should be saved
+	bool saveFilesForClosing(const QList<LatexEditorView *> &editorList); // checks for unsaved files and asks the user if they should be saved
 	void closeAllFiles();
 	bool canCloseNow(bool saveSettings = true); //asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
@@ -143,7 +144,7 @@ private:
 	QPointer<UnicodeInsertion> unicodeInsertionDialog;
 
 	//gui
-	TxsTabWidget *EditorTabs;
+	Editors *editors;
 	QSplitter *mainHSplitter;
 	QSplitter *centralVSplitter;
 	QFrame *centralFrame;
@@ -361,8 +362,6 @@ protected slots:
 	void symbolRemoveFavorite();
 	void symbolRemoveAllFavorites();
 
-	void editorTabContextMenu(const QPoint &point);
-
 	void addDocToLoad(QString filename);
 
 	void moveCursorTodlh();
@@ -503,6 +502,7 @@ protected slots:
 	void gotoPrevDocument();
 	void gotoOpenDocument();
 	void updateOpenDocumentMenu(bool localChange = false);
+	void onEditorsReordered();
 
 	void focusEditor();
 	void focusViewer();

@@ -1790,12 +1790,15 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems)
 	}
 }
 
-QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems, int additionalEntries)
+QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems, int additionalEntries, const QList<QVariant> data)
 {
 	QSet<int> reservedShortcuts = QSet<int>() << Qt::SHIFT+Qt::Key_F3;  // workaround to prevent overwriting search backward
 	QMenu *menu = getManagedMenu(menuName);
 	REQUIRE_RET(menu, 0);
 	Q_ASSERT(menu->objectName() == menuName);
+	Q_ASSERT(data.isEmpty() || data.length()==items.length());
+	bool hasData = !data.isEmpty();
+
 	QList<QAction *> actions = menu->actions();
 	if (!alwaysRecreateMenuItems &&
 	        actions.count() == items.size() + additionalEntries) {
@@ -1818,7 +1821,12 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		QList<QKeySequence> shortcuts;
 		if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
 			shortcuts << baseShortCut + i;
-		newOrLostOldManagedAction(menu, id, prefixNumber ? QString("%1: %2").arg(i + 1).arg(items[i]) : items[i], slotName,  shortcuts)->setData(i);
+		QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, shortcuts);
+		if (hasData) {
+			act->setData(data[i]);
+		} else {
+			act->setData(i);
+		}
 	}
 	if (watchedMenus.contains(menuName))
 		emit watchedMenuChanged(menuName);

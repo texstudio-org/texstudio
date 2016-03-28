@@ -391,6 +391,8 @@ public:
 	Q_INVOKABLE LatexDocument *findDocument(const QDocument *qDoc) const;
 	Q_INVOKABLE LatexDocument *findDocumentFromName(const QString &fileName) const;
 
+	void reorder(const QList<LatexDocument *> &order);
+
 	void settingsRead();
 
 	Q_INVOKABLE bool singleMode() const;

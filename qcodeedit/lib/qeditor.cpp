@@ -4022,6 +4022,7 @@ void QEditor::focusInEvent(QFocusEvent *e)
 		m_blink.start(QApplication::cursorFlashTime() / 2, this);
 	}
 	//ensureCursorVisible();
+	emit focusReceived();
 
 	QAbstractScrollArea::focusInEvent(e);
 }

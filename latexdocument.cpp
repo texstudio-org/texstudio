@@ -2296,6 +2296,23 @@ LatexDocument *LatexDocuments::findDocumentFromName(const QString &fileName) con
 	return 0;
 }
 
+/*!
+ * Adjust the internal order of documents to the given order.
+ * \param order should contain exactly the same documents as this.
+ */
+void LatexDocuments::reorder(const QList<LatexDocument *> &order)
+{
+	model->layoutAboutToBeChanged();
+	if (order.size() != documents.size()) qDebug() << "Warning: Size of list of documents for reordering differs from current documents";
+	foreach(LatexDocument *doc, order) {
+		int n = documents.removeAll(doc);
+		if (n > 1) qDebug() << "Warning: document listed multiple times in LatexDocuments";
+		if (n < 1) qDebug() << "Warning: encountered a document that is not listed in LatexDocuments";
+		documents.append(doc);
+	}
+	model->layoutChanged();
+}
+
 LatexDocument *LatexDocuments::findDocument(const QDocument *qDoc) const
 {
 	QList<LatexDocument *> docs = getDocuments();
