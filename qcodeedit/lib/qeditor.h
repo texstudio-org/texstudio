@@ -492,6 +492,7 @@ public slots:
 		
 		void contentModified(bool y);
 		void titleChanged(const QString& title);
+		void focusReceived();
 		
 		void textEdited(QKeyEvent *e);
 		void cursorPositionChanged();

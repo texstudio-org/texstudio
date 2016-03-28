@@ -52,7 +52,7 @@ void txsCritical(const QString &message)
 	QMessageBox::critical(QApplication::activeWindow(), TEXSTUDIO, message, QMessageBox::Ok);
 }
 
-QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, const QList<QIcon> &icons, int height, const QObject *receiver, const char *member, QString defaultElem, QToolButton *combo)
+QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, const QList<QIcon> &icons, int height, const QObject *receiver, const char *member, int defaultIndex, QToolButton *combo)
 {
 	Q_UNUSED(icons)
 	const QFontMetrics &fm = parent->fontMetrics();
@@ -84,7 +84,7 @@ QToolButton *createComboToolButton(QWidget *parent, const QStringList &list, con
 		//QIcon icon = (i<icons.length()) ? icons[i] : QIcon();
 		QAction *mAction = mMenu->addAction(text, receiver, member);
 		max = qMax(max, fm.width(text + "        "));
-		if (text == defaultElem) {
+		if (i == defaultIndex) {
 			combo->setDefaultAction(mAction);
 			defaultSet = true;
 		}

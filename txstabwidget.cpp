@@ -13,6 +13,7 @@ TxsTabWidget::TxsTabWidget(QWidget *parent) :
 	tb->setUsesScrollButtons(true);
 	connect(tb, SIGNAL(customContextMenuRequested(QPoint)), this, SIGNAL(tabBarContextMenuRequested(QPoint)));
 	connect(tb, SIGNAL(currentTabAboutToChange(int, int)), this, SLOT(currentTabAboutToChange(int, int)));
+	connect(tb, SIGNAL(currentTabLeftClicked()), this, SIGNAL(activationRequest()));
 	connect(tb, SIGNAL(middleMouseButtonPressed(int)), this, SLOT(closeTab(int)));
 	setTabBar(tb);
 
@@ -80,6 +81,36 @@ void TxsTabWidget::setCurrentEditor(LatexEditorView *edView)
 	setCurrentWidget(edView);
 }
 
+LatexEditorView *TxsTabWidget::editorAt(QPoint p) {
+	int index = tabBar()->tabAt(p);
+	if (index < 0) return 0;
+	return qobject_cast<LatexEditorView *>(widget(index));
+}
+
+void TxsTabWidget::setActive(bool active) {
+	// somehow mark the widget (or selected tab visually as active)
+	// we currently use bold but due to a Qt bug we're required to increase
+	// the tab width all tabs in the active widget.
+	// see https://bugreports.qt.io/browse/QTBUG-6905
+	if (active) {
+		setStyleSheet("QTabBar {font-weight: bold;} QTabBar::tab:!selected {font-weight: normal;}");
+	} else {
+		setStyleSheet(QString());
+	}
+}
+
+bool TxsTabWidget::isEmpty() const {
+	return (count() == 0);
+}
+
+bool TxsTabWidget::currentEditorViewIsFirst() const {
+	return (currentIndex() == 0);
+}
+
+bool TxsTabWidget::currentEditorViewIsLast() const {
+	return (currentIndex() >= count()-1);
+}
+
 void TxsTabWidget::gotoNextDocument()
 {
 	if (count() <= 1) return;
@@ -94,6 +125,16 @@ void TxsTabWidget::gotoPrevDocument()
 	int cPage = currentIndex() - 1;
 	if (cPage < 0) setCurrentIndex(count() - 1);
 	else setCurrentIndex(cPage);
+}
+
+void TxsTabWidget::gotoFirstDocument() {
+	if (count() <= 1) return;
+	setCurrentIndex(0);
+}
+
+void TxsTabWidget::gotoLastDocument() {
+	if (count() <= 1) return;
+	setCurrentIndex(count()-1);
 }
 
 void TxsTabWidget::currentTabAboutToChange(int from, int to)
@@ -138,10 +179,11 @@ void TxsTabWidget::insertEditor(LatexEditorView *edView, int pos, bool asCurrent
 
 void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event)
 {
+	int current = currentIndex();
+	int toIndex = tabAt(event->pos());
 	if (event->button() == Qt::LeftButton) {
-		int toIndex = tabAt(event->pos());
 		if (toIndex >= 0) {
-			emit currentTabAboutToChange(currentIndex(), toIndex);
+			emit currentTabAboutToChange(current, toIndex);
 		}
 	}
 #if QT_VERSION>=0x040700
@@ -153,4 +195,7 @@ void ChangeAwareTabBar::mousePressEvent(QMouseEvent *event)
 	}
 #endif
 	QTabBar::mousePressEvent(event);
+	if (event->button() == Qt::LeftButton && current == toIndex) {
+		emit currentTabLeftClicked();
+	}
 }

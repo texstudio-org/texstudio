@@ -18,6 +18,12 @@ public:
 
 	LatexEditorView *currentEditorView() const;
 	void setCurrentEditor(LatexEditorView *edView);
+	LatexEditorView *editorAt(QPoint p);
+	void setActive(bool active);
+
+	bool isEmpty() const;
+	bool currentEditorViewIsFirst() const;
+	bool currentEditorViewIsLast() const;
 
 signals:
 	void tabMoved(int from, int to);
@@ -25,12 +31,15 @@ signals:
 	void editorAboutToChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
 	void closeCurrentEditorRequest();
 	void currentEditorChanged();
+	void activationRequest();
 
 public slots:
 	void closeTab(LatexEditorView *edView);
 
 	void gotoNextDocument();
 	void gotoPrevDocument();
+	void gotoFirstDocument();
+	void gotoLastDocument();
 
 	// low level public functions
 	void insertEditor(LatexEditorView *edView, int pos = -1 /*append*/, bool asCurrent = true);
@@ -49,6 +58,7 @@ public:
 
 signals:
 	void currentTabAboutToChange(int from, int to);
+        void currentTabLeftClicked();
 	void middleMouseButtonPressed(int tabNr);
 
 protected:
