@@ -3430,6 +3430,11 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
                 m_cursor.movePosition(preEditLength,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
                 m_cursor.removeSelectedText();
             }
+        }else{
+#ifdef Q_OS_MAC
+            // work-around for bug 1723
+            return;
+#endif
         }
 
 		m_cursor.insertText(e->commitString());
