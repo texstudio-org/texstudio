@@ -200,9 +200,23 @@ QHash<QString, QString> getEnvVariables(bool uppercaseNames)
 	return result;
 }
 
-QString BuildManager::replaceEnvironmentVariables(const QString &command, const QHash<QString, QString> &variables, bool compareNamesToUpper)
+QString BuildManager::replaceEnvironmentVariables(const QString &s)
 {
-	QString result(command);
+#ifdef Q_OS_WIN
+	Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+#else
+	Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+#endif
+	static QHash<QString, QString> envVariables = getEnvVariables(caseSensitivity == Qt::CaseInsensitive);  // environment variables can be static because they do not change during program execution.
+	return replaceEnvironmentVariables(s, envVariables, caseSensitivity == Qt::CaseInsensitive);
+}
+
+/*!
+ * Replace environment variables in the string.
+ */
+QString BuildManager::replaceEnvironmentVariables(const QString &s, const QHash<QString, QString> &variables, bool compareNamesToUpper)
+{
+	QString result(s);
 #ifdef Q_OS_WIN
 	QRegExp rxEnvVar("%(\\w+)%");
 #else
@@ -222,6 +236,17 @@ QString BuildManager::replaceEnvironmentVariables(const QString &command, const 
 		}
 	}
 	return result;
+}
+
+/*!
+ * returns additionalSearchPaths, optionally with replacement of environment variables
+ */
+QString BuildManager::resolvedAdditionalSearchPaths()
+{
+	if (m_replaceEnvironmentVariables)
+		return replaceEnvironmentVariables(additionalSearchPaths);
+	else
+		return additionalSearchPaths;
 }
 
 BuildManager::BuildManager(): processWaitedFor(0)
@@ -427,13 +452,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 	ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
 	str = config->parseDir(str);
 	if (m_replaceEnvironmentVariables) {
-#ifdef Q_OS_WIN
-		Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
-#else
-		Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
-#endif
-		static QHash<QString, QString> envVariables = getEnvVariables(caseSensitivity);  // environment variables can be static because they do not change during program execution.
-		str = replaceEnvironmentVariables(str, envVariables, caseSensitivity == Qt::CaseInsensitive);
+		str = replaceEnvironmentVariables(str);
 	}
 	// need to reformat literal quotes before the file insertion logic, because ?a"
 	// might be extended to "C:\somepath\" which would then be misinterpreted as an
@@ -1511,7 +1530,7 @@ ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &
 	if (cmd.startsWith(TXS_CMD_PREFIX))
 		connect(proc, SIGNAL(startedX()), SLOT(runInternalCommandThroughProcessX()));
 
-	updatePathSettings(proc, additionalSearchPaths);
+	updatePathSettings(proc, resolvedAdditionalSearchPaths());
 	return proc;
 }
 
@@ -2144,10 +2163,10 @@ void ProcessX::startCommand()
 	QByteArray path = qgetenv("PATH");
 #ifdef Q_OS_OSX
 	QString basePath = getEnvironmentPath();
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
+	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvedAdditionalSearchPaths().toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
 	// needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #else
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
+	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvedAdditionalSearchPaths().toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #endif
 	QProcess::start(cmd);
 	qputenv("PATH", path); // restore

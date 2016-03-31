@@ -121,7 +121,9 @@ public:
 
 	static QStringList splitOptions(const QString &s);
 	static QString findFileInPath(QString fileName);
+	static QString replaceEnvironmentVariables(const QString &s);
 	static QString replaceEnvironmentVariables(const QString &s, const QHash<QString, QString> &variables, bool compareNamesToUpper);
+	static QString resolvedAdditionalSearchPaths();
 	static QStringList parseExtendedCommandLine(QString str, const QFileInfo &mainFile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0);
 	static QString extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr);
 	ExpandedCommands expandCommandLine(const QString &str, ExpandingOptions &expandingOptions);
