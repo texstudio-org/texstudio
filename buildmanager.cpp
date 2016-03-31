@@ -218,7 +218,7 @@ QString BuildManager::replaceEnvironmentVariables(const QString &s, const QHash<
 {
 	QString result(s);
 #ifdef Q_OS_WIN
-	QRegExp rxEnvVar("%(\\w+)%");
+	QRegExp rxEnvVar("%([\\w()]+)%");  // word and brackets between %...%
 #else
 	QRegExp rxEnvVar("\\$(\\w+)");
 #endif
