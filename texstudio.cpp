@@ -3647,6 +3647,9 @@ void Texstudio::editUnIndentSection()
 	}
 }
 
+/*!
+ * copy in structure-view selected section from text
+ */
 void Texstudio::editSectionCopy()
 {
 	// called by action
@@ -3657,6 +3660,9 @@ void Texstudio::editSectionCopy()
 	editSectionCopy(sel.startLine + 1, sel.endLine);
 }
 
+/*!
+ * cut in structure-view selected section from text
+ */
 void Texstudio::editSectionCut()
 {
 	// called by action
@@ -3702,7 +3708,9 @@ void Texstudio::editSectionPasteBefore()
 	editSectionPasteBefore(entry->getRealLineNumber());
 	//UpdateStructure();
 }
-
+/*!
+ * \brief paste clipboard after selected section (in structureview)
+ */
 void Texstudio::editSectionPasteAfter()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
@@ -3756,20 +3764,35 @@ void changeCase(QEditor *editor, QString(*method)(QString))
 		c.replaceSelectedText( method(c.selectedText()) );
 	editor->document()->endMacro();
 }
-
+/*!
+ * Helperfunction to convert a string to lower case.
+ * \param in input string
+ * \result string in lower case
+ */
 QString txsToLower(QString in){
     return in.toLower();
 }
 
+/*!
+ * Converts the selected text to lower case.
+ */
 void Texstudio::editTextToLowercase()
 {
     changeCase(currentEditor(), &txsToLower);
 }
+/*!
+ * Helperfunction to convert a string to upper case.
+ * \param in input string
+ * \result string in upper case
+ */
 
 QString txsToUpper(QString in){
     return in.toUpper();
 }
 
+/*!
+ * Converts the selected text to upper case.
+ */
 void Texstudio::editTextToUppercase()
 {
     changeCase(currentEditor(), &txsToUpper);

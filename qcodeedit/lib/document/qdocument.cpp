@@ -14,6 +14,12 @@
 ****************************************************************************/
 
 #include "qdocument.h"
+
+/*!
+	\file qdocument.cpp
+	\brief Implementation of the QDocument class
+ */
+
 #include "smallUsefulFunctions.h"
 
 // returns the number of chars/columns from column to the next tab location
@@ -181,27 +187,42 @@ static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
 static int PICTURE_BORDER = 2;
 
-
+/*! check if character c is a letter or nummber or backslah (part of command)
+ */
 inline static bool isWord(QChar c)
 {
     QString extraChars="\\";
     return c.isLetterOrNumber() || extraChars.contains(c);
 } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
 
+/*! check if character c is a delimiter ( "(){}$+-/*,;." )
+ */
 inline static bool isDelimiter(QChar c)
 {
     QString delimiters="(){}$+-/*,;.";
 	return delimiters.contains(c);
 }
 
+/*! activate a work-around
+ *  DisableFixedPitchMode	= 0x01,
+ *  DisableWidthCache		= 0x02,
+ *	DisableLineCache            = 0x04,
+ *	ForceQTextLayout            = 0x08,
+ *  ForceSingleCharacterDrawing = 0x10,
+ *  QImageCache = 0x20
+ */
 void QDocument::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
 	QDocumentPrivate::setWorkAround(workAround, newValue);
 }
 
+/*! check if worariound is activated
+ */
 bool QDocument::hasWorkAround(QDocument::WorkAroundFlag workAround){
 	return QDocumentPrivate::hasWorkAround(workAround);
 }
 
+/*! check if fixed pitch font is used
+ */
 bool QDocument::getFixedPitch() const{
 	return m_impl && m_impl->getFixedPitch();
 }
@@ -434,7 +455,7 @@ void QDocument::clear()
 }
 
 /*!
-	\return whether there commands to undo on the command stack
+	\return whether there are commands to undo on the command stack
 */
 bool QDocument::canUndo() const
 {
@@ -474,6 +495,8 @@ void QDocument::redo()
 
 }
 
+/*! clear undo stack
+ */
 void QDocument::clearUndo()
 {
 	if ( m_impl )
@@ -482,6 +505,14 @@ void QDocument::clearUndo()
 	}
 }
 
+/*!
+ * \brief give current state of undo-stack for debugging
+ *
+ * return the cuurent content of the undo-stack as string
+ * \note This function is used for debugging only
+ * \param limit number of results
+ * \return commands on undo-stack
+ */
 QString QDocument::debugUndoStack(int limit) const{
 	if (!m_impl) return QString();
 	const QUndoStack& commands = m_impl->m_commands;
@@ -583,6 +614,9 @@ QString QDocument::text(bool removeTrailing, bool preserveIndent) const
 	return text(mode);
 }
 
+/*!
+ * \return give the complete text as stringlist
+ */
 QStringList QDocument::textLines() const{
 	QStringList res;
 	if ( !m_impl || m_impl->m_lines.isEmpty() )
@@ -708,7 +742,11 @@ QTextCodec* guessEncoding(const QByteArray& data){
 	else return QTextCodec::codecForName("UTF-8"); //default
 }
 
-
+/*!
+ * \brief load text from file using codec
+ * \param file
+ * \param codec
+ */
 void QDocument::load(const QString& file, QTextCodec* codec){
 	QFile f(file);
 
