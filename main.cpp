@@ -12,6 +12,11 @@
  ***************************************************************************/
 
 #include "mostQtHeaders.h"
+/*! \mainpage TexStudio
+ *
+ * \see Texstudio
+ * \see PDFDocument
+ */
 
 #include "texstudio.h"
 #include "smallUsefulFunctions.h"

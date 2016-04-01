@@ -23,11 +23,24 @@
 
 #include "mostQtHeaders.h"
 // Based on code by Pino Toscano from Poppler / qt4 / Demos, released under GPL 2 or later
+/*! \class PDFDock
+ *  \file PDFDocks.cpp
+ *  \brief docking panel for PDF viewer
+ *
+ *  This class provides the base functions for dockable side-panel.
+ * It is used for additional information like table of contents, preview images, etc.
+ *
+ * \see PDFDocument
+  */
 
 #include "PDFDocks.h"
 #include "PDFDocument.h"
 #include "math.h"
 
+/*!
+ * \brief constructor
+ * \param doc actual pdf document which is displayed
+ */
 PDFDock::PDFDock(PDFDocument *doc)
 	: QDockWidget("", doc), document(doc), filled(false)
 {
@@ -98,7 +111,17 @@ static void fillToc(const QDomNode &parent, QTreeWidget *tree, QTreeWidgetItem *
 			fillToc(node, tree, newitem);
 	}
 }
-
+/*! \class PDFOutlineDock
+ *
+ * \brief sidepanel for preview
+ *
+ * show page preview in the sidepanel
+ *
+ * the actual rendering is done in extra threads
+/*!
+ * \brief constructor
+ * \param doc
+ */
 PDFOutlineDock::PDFOutlineDock(PDFDocument *doc)
 	: PDFDock(doc)
 {

@@ -14,6 +14,26 @@
 #include "smallUsefulFunctions.h"
 #include "qsvgrenderer.h"
 
+/*! \class SymbolGridWidget
+ *
+ * side panel widget which displays graphical symbols pertaining to one category.
+ * clicking on them inserts the corresponsing latex-command into the active editor
+ *
+ * The actual symbols are read-in from a list of available image.
+ * The actual latex-commands are embedded in the image-files.
+ * svg and png images can be used. Principally svg-images should be preferred, since they are scalable.
+ * However Qt does not offer a complete SVG-renderbackend which causes display errors in some symbols which are to be reoplaced with png version.
+ */
+
+/*!
+ * \brief constructor
+ *
+ * Set-up the widget. Symbol are not yet loaded as loading is time consuming with 1000+ symbols.
+ * \param parent Parent-Widget
+ * \param SymbolList Category of symbols which are to be loaderd from images-ng/ * SymbolList *
+ * \param Map Usage info of the symbols for most-used category
+ */
+
 SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map) : QTableWidget(parent)
 {
 	listOfItems.clear();
@@ -42,7 +62,9 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 		viewport()->setPalette(p);
 	}
 }
-
+/*!
+ * \brief destructor
+ */
 SymbolGridWidget::~SymbolGridWidget()
 {
 	foreach (QTableWidgetItem *elem, listOfItems)
@@ -50,6 +72,10 @@ SymbolGridWidget::~SymbolGridWidget()
 	listOfItems.clear();
 }
 
+/*!
+ * \brief set symbol size within grid-display
+ * \param size size in pixels
+ */
 void SymbolGridWidget::setSymbolSize(int size)
 {
 	setIconSize(QSize(size, size));
@@ -57,6 +83,10 @@ void SymbolGridWidget::setSymbolSize(int size)
 		adaptTable();
 }
 
+/*!
+ * \brief latex-command of current symbol
+ * \return latex-command of current symbol as Qstring
+ */
 QString SymbolGridWidget::getCurrentSymbol()
 {
 	QTableWidgetItem *cur = currentItem();
@@ -64,6 +94,15 @@ QString SymbolGridWidget::getCurrentSymbol()
 	return cur->data(Qt::UserRole + 2).toString();
 }
 
+/*!
+ * \brief load symbols
+ *
+ * Loads all symbols from disk.
+ * It searches images-ng, then images and prefers svg over png.
+ * The actual latex-command is extrated from the image-file.
+ * \param fileNames list of all symbol-filenames
+ * \param Map usage statitics for most-used category
+ */
 void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Map)
 {
 	mLoadedSymbols = true;
