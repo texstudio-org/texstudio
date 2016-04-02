@@ -30,64 +30,70 @@ class LatexCompleterConfig;
 class LatexReference;
 //class Reference;
 
+/*!
+ * \brief Implements the actual completer
+ *
+ * It uses codesnippet, also called completionwords for inserting into text.
+ * \see Codesnippet
+ */
 class LatexCompleter : public QObject
 {
 	Q_OBJECT
 
 public:
-	enum CompletionFlag {CF_FORCE_VISIBLE_LIST = 1,
-						 CF_NORMAL_TEXT = 2,
-						 CF_FORCE_REF = 4,
+	enum CompletionFlag {CF_FORCE_VISIBLE_LIST = 1, ///< force visible of completer
+						 CF_NORMAL_TEXT = 2, ///< complete normal text words
+						 CF_FORCE_REF = 4, ///< completes labels in a reference, e.g. \ref{label}
 						 CF_OVERRIDEN_BACKSLASH = 8,
-						 CF_FORCE_GRAPHIC = 16,
-						 CF_FORCE_CITE = 32,
-						 CF_FORCE_PACKAGE = 64,
-						 CF_FORCE_KEYVAL = 128,
+						 CF_FORCE_GRAPHIC = 16, ///< complete a filename for an image
+						 CF_FORCE_CITE = 32, ///< complete a citation
+						 CF_FORCE_PACKAGE = 64, ///< complete a package name
+						 CF_FORCE_KEYVAL = 128, ///< complete key/value pair
 						 CF_FORCE_SPECIALOPTION = 256,
 						 CF_FORCE_LENGTH = 512,
 						 CF_FORCE_REFLIST = 1024};
 	Q_DECLARE_FLAGS(CompletionFlags, CompletionFlag)
 
-	LatexCompleter(const LatexParser &latexParser, QObject *p = 0);
+	LatexCompleter(const LatexParser &latexParser, QObject *p = 0); ///< constructor
 	virtual ~LatexCompleter();
 
-	void complete(QEditor *newEditor, const CompletionFlags &flags);
+	void complete(QEditor *newEditor, const CompletionFlags &flags); ///< initiate completion with given flags
 	void setAdditionalWords(const CodeSnippetList &newwords, CompletionType completionType = CT_COMMANDS);
 	void setAdditionalWords(const QSet<QString> &newwords, CompletionType completionType);
 	void setKeyValWords(const QString &name, const QSet<QString> &newwords);
 	void setContextWords(const QSet<QString> &newwords, const QString &context);
 	void updateAbbreviations();
 
-	static void setLatexReference(LatexReference *ref) { latexReference = ref; }
-	static LatexReference *getLatexReference() { return latexReference; }
+	static void setLatexReference(LatexReference *ref) { latexReference = ref; } ///< set latexreference which is used for showing help per tooltip on selecetd completion commands
+	static LatexReference *getLatexReference() { return latexReference; } ///< get used latexreference
 
 	bool acceptTriggerString(const QString &trigger);
 
 	void setConfig(LatexCompleterConfig *config);
 	LatexCompleterConfig *getConfig() const;
 
-	void setPackageList(QSet<QString> *lst);
+	void setPackageList(QSet<QString> *lst); ///< set a list with available latex package names
 
-	bool close();
+	bool close(); ///< close completer (without insertion)
 	bool isVisible() { return list->isVisible(); }
-	bool existValues();
+	bool existValues(); ///< are still completion ssuggestions available
 
 	void setWorkPath(const QString cwd) { workingDir = cwd; }
 	bool completingGraphic() { return forcedGraphic; }
 	bool completingKey() { return forcedKeyval; }
 
 	int countWords();
-	void setTab(int index);
+	void setTab(int index); ///< bring given 'tab' to front
 
-	void insertText(QString txt);
+	void insertText(QString txt); ///< insert 'txt'
 
-	void showTooltip(QString text);
+	void showTooltip(QString text); ///< show tooltip
 
 signals:
-	void setDirectoryForCompletion(QString fn);
+	void setDirectoryForCompletion(QString fn); ///< set the used directory for filename completion
 	void searchBibtexSection(QString file, QString bibId);
-	void showImagePreview(QString fn);
-	void showPreview(QString text);
+	void showImagePreview(QString fn); ///< show preview of selected image
+	void showPreview(QString text); ///< show preview of selected item, usually references or citations
 
 private:
 	friend class CompleterInputBinding;
