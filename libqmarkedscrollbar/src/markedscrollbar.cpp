@@ -67,7 +67,14 @@ void MarkedScrollBar::addMark(int position, const QColor& colour,
     markData mark = { ln, position, NULL, colour, identifier };
     m_marks.append(mark);
 }
+/*!
+    Adds a new mark to the scroll bar. If no identifier is specified then this
+    defaults to a blank string.
 
+    \param dlh The position in the scroll bar to add the mark to.
+    \param colour The colour of the mark.
+    \param identifier A string which can later be used to identify the mark.
+*/
 void MarkedScrollBar::addMark(QDocumentLineHandle *dlh, const QColor &colour,
              const QString &identifier){
     markData mark = { -1,-1, dlh, colour, identifier };
@@ -92,9 +99,10 @@ void MarkedScrollBar::removeMark(int position)
     }
 }
 /*!
-    Removes the mark at \a position.
+    Removes the mark at \a position if it has \a type.
 
     \param position The position of the mark to be removed if type is correct.
+    \param type
 */
 void MarkedScrollBar::removeMark(int position,QString type)
 {
@@ -108,7 +116,12 @@ void MarkedScrollBar::removeMark(int position,QString type)
         }
     }
 }
+/*!
+    Removes the mark at position \a dlh if it has \a type.
 
+    \param dlh The position of the mark to be removed if type is correct.
+    \param type
+*/
 void MarkedScrollBar::removeMark(QDocumentLineHandle *dlh,QString type)
 {
     QMutableListIterator<markData> i(m_marks);
