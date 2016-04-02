@@ -1,7 +1,20 @@
 #include "syntaxcheck.h"
 #include "latexdocument.h"
 #include "tablemanipulation.h"
+/*! \class SyntaxCheck
+ *
+ * asynchrnous thread which checks latex syntax of the text lines
+ * It gets the linehandle via a queue, together with a ticket number.
+ * The ticket number is increased with every change of the text of a line, thus it can be determined of the processed handle is still unchanged and can be discarded otherwise.
+ * Syntaxinformation are stated via markers on the text.
+ * Furthermore environment information, especially tabular information are stored in "cookies" as they are needed in subsequent lines.
+ *
+ */
 
+/*!
+ * \brief contructor
+ * \param parent
+ */
 SyntaxCheck::SyntaxCheck(QObject *parent) :
 	SafeThread(parent), syntaxErrorFormat(-1), ltxCommands(0), newLtxCommandsAvailable(false)
 {
@@ -13,11 +26,21 @@ SyntaxCheck::SyntaxCheck(QObject *parent) :
 	//mLtxCommandLock.unlock();
 }
 
+/*!
+ * \brief set the errorformat for syntax errors
+ * \param errFormat
+ */
 void SyntaxCheck::setErrFormat(int errFormat)
 {
 	syntaxErrorFormat = errFormat;
 }
-
+/*!
+ * \brief add line to queue
+ * \param dlh linehandle
+ * \param previous linehandle of previous line
+ * \param stack tokenstack at line start (for handling open arguments of previous commands)
+ * \param clearOverlay clear syntaxcheck overlay
+ */
 void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, TokenStack stack, bool clearOverlay)
 {
 	REQUIRE(dlh);
@@ -37,13 +60,18 @@ void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, T
 	//mResultLock.lock(); not possible under windows
 	mLinesAvailable.release();
 }
-
+/*!
+ * \brief stop processing syntax checks
+ */
 void SyntaxCheck::stop()
 {
 	stopped = true;
 	mLinesAvailable.release();
 }
 
+/*!
+ * \brief actual thread loop
+ */
 void SyntaxCheck::run()
 {
 	ltxCommands = new LatexParser();
@@ -114,6 +142,18 @@ void SyntaxCheck::run()
 	ltxCommands = 0;
 }
 
+/*!
+ * \brief check one line
+ *
+ * Checks one line. Context information needs to be given by newRanges,activeEnv,dlh and ticket.
+ * This method is obsolete as the new system relies on tokens.
+ * \warning obsolete method
+ * \param line text of line as string
+ * \param newRanges will return the result as ranges
+ * \param activeEnv environmwent context
+ * \param dlh linehandle
+ * \param ticket ticket number for current processed line
+ */
 void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, int ticket)
 {
 	// do syntax check on that line
@@ -443,6 +483,10 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 	         << tr("\\\\ missing") << tr("closing environment which has not been opened") << tr("environment not closed") << tr("unrecognized key in key option") << tr("unrecognized value in key option");
 	return messages.value(int(result), tr("unknown"));
 }
+/*!
+ * \brief set latex commands which are referenced for syntax checking
+ * \param cmds
+ */
 void SyntaxCheck::setLtxCommands(const LatexParser &cmds)
 {
 	if (stopped) return;
@@ -451,19 +495,30 @@ void SyntaxCheck::setLtxCommands(const LatexParser &cmds)
 	newLtxCommands = cmds;
 	mLtxCommandLock.unlock();
 }
-
+/*!
+ * \brief wait for queue to be empty. Used for self-test only.
+ */
 void SyntaxCheck::waitForQueueProcess()
 {
 	while (!crashed && mLinesAvailable.available() > 0) {
 		wait(1);
 	}
 }
-
+/*!
+ * \brief check if queue is empty. Used for self-test only.
+ * \return queue is not empty
+ */
 bool SyntaxCheck::queuedLines()
 {
 	return mLinesAvailable.available() > 0;
 }
-
+/*!
+ * \brief check if top-most environment in 'envs' is `name`
+ * \param name environment name which is checked
+ * \param envs stack of environments
+ * \param id check for `id` of the environment, <0 means check is disabled
+ * \return environment id or 0
+ */
 int SyntaxCheck::topEnv(const QString &name, const StackEnvironment &envs, const int id)
 {
 	if (envs.isEmpty())
@@ -483,7 +538,14 @@ int SyntaxCheck::topEnv(const QString &name, const StackEnvironment &envs, const
 	}
 	return 0;
 }
-
+/*!
+ * \brief check if the environment stack contains a environment with name `name`
+ * \param parser reference to LatexParser. It is used to access environment aliases, e.g. equation is also a math environment
+ * \param name name of the checked environment
+ * \param envs stack of environements
+ * \param id if >=0 check if the env has the given id.
+ * \return environment id of  found env otherwise 0
+ */
 int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, const StackEnvironment &envs, const int id)
 {
 	for (int i = envs.size() - 1; i > -1; --i) {
@@ -502,7 +564,12 @@ int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, con
 	}
 	return 0;
 }
-
+/*!
+ * \brief check if the command is valid in the environment stack
+ * \param cmd name of command
+ * \param envs environment stack
+ * \return is valid
+ */
 bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 {
 	for (int i = 0; i < envs.size(); ++i) {
@@ -519,7 +586,12 @@ bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 	}
 	return false;
 }
-
+/*!
+ * \brief compare two environment stacks
+ * \param env1
+ * \param env2
+ * \return are equal
+ */
 bool SyntaxCheck::equalEnvStack(StackEnvironment env1, StackEnvironment env2)
 {
 	if (env1.isEmpty() || env2.isEmpty())
@@ -558,7 +630,11 @@ void SyntaxCheck::markUnclosedEnv(Environment env)
 	}
 	dlh->unlock();
 }
-
+/*!
+ * \brief check if the tokenstack contains a definition-token
+ * \param stack tokenstack
+ * \return contains a definition
+ */
 bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 {
 	for (int i = 0; i < stack.size(); i++) {
@@ -567,6 +643,19 @@ bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 	}
 	return false;
 }
+/*!
+ * \brief check one line
+ *
+ * Checks one line. Context information needs to be given by newRanges,activeEnv,dlh and ticket.
+ * This method is obsolete as the new system relies on tokens.
+ * \param line text of line as string
+ * \param newRanges will return the result as ranges
+ * \param activeEnv environment context
+ * \param dlh linehandle
+ * \param tl tokenlist of line
+ * \param stack token stack at start of line
+ * \param ticket ticket number for current processed line
+ */
 
 void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket)
 {
