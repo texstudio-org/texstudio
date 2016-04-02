@@ -50,6 +50,11 @@
 
 #include <QProgressDialog>
 
+/*!
+ * \file texstudio.h
+ * \brief Definition for Mainwindow
+ */
+
 typedef QHash<QString, int> SymbolList;
 
 typedef QSet<QString> StringSet;
@@ -78,18 +83,18 @@ public:
 	Texstudio(QWidget *parent = 0, Qt::WindowFlags flags = 0, QSplashScreen *splash = 0);
 	~Texstudio();
 
-	Q_INVOKABLE QString getCurrentFileName(); //returns the absolute file name of the current file or "" if none is opene
-	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension = ""); //treats the path relative to the compiled .tex file
-	Q_INVOKABLE QString getRelativeFileName(const QString &file, QString basepath, bool keepSuffix = false); //provide function for scripts
-	QByteArray windowstate;
+	Q_INVOKABLE QString getCurrentFileName(); ///< returns the absolute file name of the current file or "" if none is opene
+	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension = ""); ///< treats the path relative to the compiled .tex file
+	Q_INVOKABLE QString getRelativeFileName(const QString &file, QString basepath, bool keepSuffix = false); ///< provide function for scripts
+	QByteArray windowstate; ///< qt window state, used for state-restoring
 	bool tobemaximized, tobefullscreen;
 
 public slots:
 	LatexEditorView *load(const QString &f , bool asProject = false, bool hidden = false, bool recheck = true, bool dontAsk = false);
 	void executeCommandLine(const QStringList &args, bool realCmdLine);
-	void hideSplash();
+	void hideSplash(); ///< hide splash screen
 	void startupCompleted();
-	void onOtherInstanceMessage(const QString &);  // For messages for the single instance
+	void onOtherInstanceMessage(const QString &);  ///< For messages for the single instance
 
 	void fuzzCursorHistory();
 	void fuzzBackForward();
@@ -118,24 +123,24 @@ private slots:
 	void updateToolBarMenu(const QString &menuName);
 	void showTestProgress(const QString &message);
 private:
-	void executeTests(const QStringList &args);
+	void executeTests(const QStringList &args); ///< execute self-tests. Only works for debug-builds.
 	void generateAddtionalTranslations();
 	void setupMenus();
 	void setupDockWidgets();
 	void setupToolBars();
 	void createStatusBar();
 	bool activateEditorForFile(QString f, bool checkTemporaryNames = false, bool setFocus = true);
-	bool saveAllFilesForClosing(); // checks for unsaved files and asks the user if they should be saved
-	bool saveFilesForClosing(const QList<LatexEditorView *> &editorList); // checks for unsaved files and asks the user if they should be saved
+	bool saveAllFilesForClosing(); ///< checks for unsaved files and asks the user if they should be saved
+	bool saveFilesForClosing(const QList<LatexEditorView *> &editorList); ///< checks for unsaved files and asks the user if they should be saved
 	void closeAllFiles();
-	bool canCloseNow(bool saveSettings = true); //asks the user and close all files, and prepares to exit txs
+	bool canCloseNow(bool saveSettings = true); ///< asks the user and close all files, and prepares to exit txs
 	void closeEvent(QCloseEvent *e);
 
 	void updateUserMacros(bool updateMenu = true);
 
 	void updateEmphasizedRegion(QDocumentCursor c, int sid);
 
-	QSplashScreen *splashscreen;  // only used during startup
+	QSplashScreen *splashscreen;  ///< only used during startup
 	QFormatScheme *m_formats, *m_formatsOldDefault;
 	QLanguageFactory *m_languages;
 	LatexCompleter *completer;
@@ -158,7 +163,7 @@ private:
 public:
 	LatexDocuments documents;
 private:
-	OutputViewWidget *outputView; //contains output widgets (over OutputLayout)
+	OutputViewWidget *outputView; ///< contains output widgets (over OutputLayout)
 
 	//menu
 	QActionGroup *bibtexEntryActions;
@@ -236,22 +241,22 @@ private slots:
 	void fileSaveAs(const QString &fileName, const bool saveSilently);
 	void fileNewInternal(QString fileName = "");
 protected slots:
-	void fileUtilCopyMove(bool move);
-	void fileUtilDelete();
-	void fileUtilRevert();
-	void fileUtilPermissions();
-	void fileUtilCopyFileName();
-	void fileUtilCopyMasterFileName();
-	void fileClose();
-	void fileCloseAll();
-	void fileExit();
+	void fileUtilCopyMove(bool move); ///< call dialog to copy/move files
+	void fileUtilDelete(); ///< call dialog to remove file
+	void fileUtilRevert(); ///< reload file from disc, undoing all changes in memory
+	void fileUtilPermissions(); ///< call dialog to set file permissions
+	void fileUtilCopyFileName(); ///< copy file name into clipboard
+	void fileUtilCopyMasterFileName(); ///< copy file name of master file into clipboard
+	void fileClose(); ///< close current editor
+	void fileCloseAll(); ///< close all open editors
+	void fileExit(); ///< exit application
 private:
 	void centerFileSelector();
 protected slots:
 	void fileOpenRecent();
-	void fileOpenAllRecent();
+	void fileOpenAllRecent(); ///< open all files in recent file list
 	void fileRecentList();
-	void viewDocumentListHidden();
+	void viewDocumentListHidden(); ///< show names of all hidden document (for debug)
 	void fileDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column);
 	void viewDocumentList();
 	void viewDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column);
@@ -296,11 +301,11 @@ protected slots:
 	void openExternalFile();
 	void openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = 0); // signaled by latexViewer to open specific file
 
-	void editUndo();
-	void editRedo();
-	void editDebugUndoStack();
-	void editCopy();
-	void editPaste();
+	void editUndo(); ///< undo changes in text editor
+	void editRedo(); ///< redo changes in text editor
+	void editDebugUndoStack(); ///< print undo-stack content into a new text editor window
+	void editCopy(); ///< copy text
+	void editPaste(); ///< paste text
 	void editPasteImage(QImage image);
 	void editSectionCopy();
 	void editSectionCopy(int startingLine, int endLine);
@@ -314,7 +319,7 @@ protected slots:
 	void editTextToUppercase();
 	void editTextToTitlecase(bool smart = false);
 	void editTextToTitlecaseSmart();
-	void editFind();
+	void editFind(); ///< open search panel
 	void editPasteLatex();
 	void convertToLatex();
 	void editPasteRef();
@@ -322,7 +327,7 @@ protected slots:
 	void editUnIndentSection();
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
-	void editDeleteLine();
+	void editDeleteLine(); ///< delete current line in current text editor
 	void editDeleteToEndOfLine();
 	void editDeleteFromStartOfLine();
 	void editMoveLineUp();
@@ -334,7 +339,7 @@ protected slots:
 	void editThesaurus(int line = -1, int col = -1);
 	void editChangeLineEnding();
 	void editSetupEncoding();
-	void editInsertUnicode();
+	void editInsertUnicode(); ///< open dialog to insert a unicode character
 	void editInsertRefToNextLabel(const QString &refCmd = "\\ref", bool backward = false);
 	void editInsertRefToPrevLabel(const QString &refCmd = "\\ref");
 	void editFindGlobal();
@@ -367,9 +372,9 @@ protected slots:
 	void moveCursorTodlh();
 
 private slots:
-	void readSettings(bool reread = false);
-	void saveSettings(const QString &configName = "");
-	void restoreDefaultSettings();
+	void readSettings(bool reread = false); ///< read configured/default settings from ini
+	void saveSettings(const QString &configName = ""); ///< save all setting to ini
+	void restoreDefaultSettings(); ///< restore default settings, removing all changed values
 
 protected slots:
 	void showMarkTooltipForLogMessage(QList<int> errors);
@@ -390,9 +395,9 @@ protected slots:
 	void editRemovePlaceHolders();
 	void editRemoveCurrentPlaceHolder();
 
-	void normalCompletion();
-	void insertEnvironmentCompletion();
-	void insertTextCompletion();
+	void normalCompletion(); ///< activate normal completion
+	void insertEnvironmentCompletion(); ///< activate environment completion
+	void insertTextCompletion(); ///< activate normal text completion
 	void insertTag(const QString &Entity, int dx = 0, int dy = 0);
 	void insertCitation(const QString &text);
 	void insertFormula(const QString &formula);
@@ -413,9 +418,9 @@ protected slots:
 	void execMacro(const Macro &m, const MacroExecContext &context = MacroExecContext(), bool allowWrite = false);
 	void runScript(const QString &script, const MacroExecContext &context = MacroExecContext(), bool allowWrite = false);
 
-	void editMacros();
-	void macroDialogAccepted();
-	void macroDialogRejected();
+	void editMacros(); ///< open edit macros dialog
+	void macroDialogAccepted(); ///< macro dialog was closed with ok
+	void macroDialogRejected(); ///< macro dialog was closed with cancel
 
 	void insertRef(const QString &refCmd);
 	void insertRef();
@@ -432,14 +437,14 @@ protected slots:
 	void addMagicRoot();
 	void addMagicCoding();
 
-	void quickTabular();
-	void quickArray();
-	void quickTabbing();
-	void quickLetter();
-	void quickDocument();
-	void quickBeamer();
-	void quickGraphics(const QString &graphicsFile = QString());
-	void quickMath();
+	void quickTabular(); ///< start quick tabular wizard
+	void quickArray(); ///< start quick array wizard
+	void quickTabbing(); ///< start quick tabbing wizard
+	void quickLetter(); ///< start quick leter wizard
+	void quickDocument(); ///< start quick document wizard
+	void quickBeamer(); ///< start quick beamer wizard
+	void quickGraphics(const QString &graphicsFile = QString()); ///< start quick graphics wizard
+	void quickMath(); ///< start quick math wizard
 
 	bool checkProgramPermission(const QString &program, const QString &cmdId, LatexDocument *master);
 	void runInternalPdfViewer(const QFileInfo &master, const QString &options);
@@ -465,10 +470,10 @@ private slots:
 	bool runCommand(const QString &commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
 protected slots:
 	void processNotification(const QString &message);
-	void openTerminal();
+	void openTerminal(); ///< open external terminal
 	void cleanAll();
 	void checkShortcutChangeNotification(QAction *act);
-	void commandFromAction();  //calls a command given by sender.data, doesn't wait
+	void commandFromAction();  ///< calls a command given by sender.data, doesn't wait
 
 	void webPublish();
 	void webPublishSource();
@@ -480,7 +485,7 @@ protected slots:
 	void setLogMarksVisible(bool visible);
 	void clearLogEntriesInEditors();
 	void updateLogEntriesInEditors();
-	void showLog();
+	void showLog(); ///< show log viewer in bottom panel
 	void viewLog();
 	void viewLogOrReRun(LatexCompileResult *result);
 	bool gotoNearLogEntry(int lt, bool backward, QString notFoundMessage);
@@ -488,12 +493,12 @@ protected slots:
 	bool logExists();
 	void clearMarkers();
 	/////
-	void latexHelp();
-	void userManualHelp();
+	void latexHelp(); ///< open latex help document
+	void userManualHelp(); ///< open txs user manual
 	void texdocHelp();
-	void helpAbout();
+	void helpAbout(); ///< open about dialog
 
-	void generalOptions();
+	void generalOptions(); ///< open config dialog
 	void setAutomaticRootDetection();
 	void setExplicitRootDocument(LatexDocument *doc);
 	void setCurrentDocAsExplicitRoot();
@@ -677,7 +682,7 @@ public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);
 	Q_INVOKABLE QString clipboardText(const QClipboard::Mode &mode = QClipboard::Clipboard) const;
 	Q_INVOKABLE void setClipboardText(const QString &text, const QClipboard::Mode &mode = QClipboard::Clipboard);
-	Q_INVOKABLE int getVersion() const;
+	Q_INVOKABLE int getVersion() const; ///< return current version number of txs (coded in hex,32 bit)
 	Q_INVOKABLE void simulateKeyPress(const QString &shortcut);
 
 	static void recoverFromCrash();
@@ -692,12 +697,12 @@ public slots:
 	void slowOperationEnded();
 
 signals:
-	void infoNewFile();
-	void infoNewFromTemplate();
-	void infoLoadFile(const QString &filename);
-    void infoFileSaved(const QString &filename,const int checkin=0);
-	void infoFileClosed();
-	void infoAfterTypeset();
+	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
+	void infoNewFromTemplate(); ///< signal that a new file from template has been generated. Used for scritps as trigger.
+	void infoLoadFile(const QString &filename); ///< signal that a file has been loaded. Used for scritps as trigger.
+    void infoFileSaved(const QString &filename,const int checkin=0); ///< signal that a file has been saved. Used for scritps as trigger.
+	void infoFileClosed(); ///< signal that a file has been closed. Used for scritps as trigger.
+	void infoAfterTypeset(); ///< signal that a file has been compiled. Used for scritps as trigger.
 	void imgPreview(const QString &fn);
 };
 

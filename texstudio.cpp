@@ -68,6 +68,25 @@
 
 #include "qnfadefinition.h"
 
+/*! \file texstudio.cpp
+ * contains the GUI definition as well as some helper functions
+ */
+
+/*!
+    \defgroup txs Mainwindow
+	\ingroup txs
+	@{
+*/
+
+/*! \class Texstudio
+ * This class sets up the GUI and handles the GUI interaction (menus and toolbar).
+ * It uses QEditor with LatexDocument as actual text editor and PDFDocument for viewing pdf.
+ *
+ * \see QEditor
+ * \see LatexDocument
+ * \see PDFDocument
+ */
+
 
 
 const QString APPICON(":appicon");
@@ -83,7 +102,15 @@ void hideSplash() {
 		txsInstance->hideSplash();
 #endif
 }
-
+/*!
+ * \brief constructor
+ *
+ * set-up GUI
+ *
+ * \param parent
+ * \param flags
+ * \param splash
+ */
 Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
 	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false)
 {
@@ -368,7 +395,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	}
 	splashscreen = 0;
 }
-
+/*!
+ * \brief destructor
+ */
 Texstudio::~Texstudio()
 {
 
@@ -392,6 +421,12 @@ Texstudio::~Texstudio()
 	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
 }
 
+/*!
+ * \brief code to be executed at end of start-up
+ *
+ * Check for Latex installation.
+ * Read in all package names for usepackage completion.
+ */
 void Texstudio::startupCompleted()
 {
 	if (configManager.checkLatexConfiguration) {
@@ -469,7 +504,16 @@ SymbolGridWidget *Texstudio::addSymbolGrid(const QString &SymbolList,  const QSt
 	}
 	return list;
 }
-
+/*!
+ * \brief add TagList to side panel
+ *
+ * add Taglist to side panel.
+ *
+ * \param id
+ * \param iconName icon used for selecting taglist
+ * \param text name of taglist
+ * \param tagFile file to be read as tag list
+ */
 void Texstudio::addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile)
 {
 	XmlTagsListWidget *list = qobject_cast<XmlTagsListWidget *>(leftPanel->widget(id));
@@ -481,7 +525,8 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 		//(*list)->setProperty("mType",2);
 	} else leftPanel->setWidgetText(list, text);
 }
-
+/*! set-up side- and bottom-panel
+ */
 void Texstudio::setupDockWidgets()
 {
 	//to allow retranslate this function must be able to be called multiple times
@@ -649,7 +694,14 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 #else
 #define MAC_OTHER(shortcutMac, shortcutOther) shortcutOther
 #endif
-
+/*! \brief set-up all menus in the menu-bar
+ *
+ * This function is called whenever the menu changes (= start and retranslation)
+ * This means if you call it repeatedly with the same language setting it should not change anything
+ * Currently this is not true, because it adds additional separator, which are invisible
+ * creates new action groups and new context menu, although all invisible, they are a memory leak
+ * But not a bad one, because no one is expected to change the language multiple times
+ */
 void Texstudio::setupMenus()
 {
 	//This function is called whenever the menu changes (= start and retranslation)
@@ -1196,7 +1248,8 @@ void Texstudio::setupMenus()
 	configManager.modifyMenuContents();
 	configManager.modifyManagedShortcuts();
 }
-
+/*! \brief set-up all tool-bars
+ */
 void Texstudio::setupToolBars()
 {
 	//This method will be called multiple times and must not create something if this something already exists
@@ -1310,7 +1363,8 @@ void Texstudio::updateAvailableLanguages()
 		editorSpellerChanged("<default>");
 	}
 }
-
+/*! \brief set-up status bar
+ */
 void Texstudio::createStatusBar()
 {
 	QStatusBar *status = statusBar();
@@ -1477,7 +1531,11 @@ void Texstudio::currentEditorChanged()
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
 	currentEditorView()->checkRTLLTRLanguageSwitching();
 }
-
+/*!
+ * \brief called when a editor tab is moved in position
+ * \param from starting position
+ * \param to ending position
+ */
 void Texstudio::editorTabMoved(int from, int to)
 {
 	//documents.aboutToUpdateLayout();
@@ -1549,12 +1607,23 @@ void Texstudio::updateUndoRedoStatus()
 		actRedo->setEnabled(false);
 	}
 }
-
+/*!
+ * \brief return current editor
+ *
+ * return current editorview
+ * \return current editor (LatexEditorView)
+ */
 LatexEditorView *Texstudio::currentEditorView() const
 {
 	return editors->currentEditor();
 }
 
+/*!
+ * \brief return current editor
+ *
+ * return current editor
+ * \return current editor (QEditor)
+ */
 QEditor *Texstudio::currentEditor() const
 {
 	LatexEditorView *edView = currentEditorView();
@@ -1615,7 +1684,12 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 
 }
 
-//complete the new editor view configuration (edit->document is set)
+/*!
+ * \brief complete the new editor view configuration (edit->document is set)
+ * \param edit used editorview
+ * \param reloadFromDoc
+ * \param hidden if editor is not shown
+ */
 void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFromDoc, bool hidden)
 {
 	REQUIRE(edit->document);
@@ -1643,14 +1717,27 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
 		updateCaption();
 	}
 }
-
+/*!
+ * \brief get editor which handles FileName
+ *
+ * get editor which handles FileName
+ *
+ * \param fileName
+ * \param checkTemporaryNames
+ * \return editorview, 0 if no editor matches
+ */
 LatexEditorView *Texstudio::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames)
 {
 	LatexDocument *document = documents.findDocument(fileName, checkTemporaryNames);
 	if (!document) return 0;
 	return document->getEditorView();
 }
-
+/*!
+ * \brief get filename of current editor
+ *
+ * get filename of current editor
+ * \return filename
+ */
 QString Texstudio::getCurrentFileName()
 {
 	return documents.getCurrentFileName();
@@ -1701,7 +1788,17 @@ void guessLanguageFromContent(QLanguageFactory *m_languages, QEditor *e)
 	        doc->line(0).text().startsWith("<!DOCTYPE"))
 		m_languages->setLanguage(e, ".xml");
 }
-
+/*!
+ * \brief load file
+ *
+ * load file from disc
+ * \param f filename
+ * \param asProject load file as master-file
+ * \param hidden hide editor
+ * \param recheck
+ * \param dontAsk
+ * \return
+ */
 LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden, bool recheck, bool dontAsk)
 {
 	QString f_real = f;
@@ -2060,7 +2157,8 @@ void Texstudio::fileAutoReloading(QString fname)
 	if (!document) return;
 	document->initClearStructure();
 }
-
+/* \brief called when file has been reloaded from disc
+ */
 void Texstudio::fileReloaded()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
@@ -2074,7 +2172,9 @@ void Texstudio::fileReloaded()
 		document->patchStructure(0, -1);
 	}
 }
-
+/*!
+ * \brief make a template from current editor
+ */
 void Texstudio::fileMakeTemplate()
 {
 	if (!currentEditorView())
@@ -2124,12 +2224,17 @@ void Texstudio::fileMakeTemplate()
 		}
 	}
 }
-
+/*!
+ * \brief load template file for editing
+ * \param fname filename
+ */
 void Texstudio::templateEdit(const QString &fname)
 {
 	load(fname, false);
 }
-
+/*!
+ * \brief generate new file from template
+ */
 void Texstudio::fileNewFromTemplate()
 {
 	TemplateManager tmplMgr;
@@ -2202,7 +2307,9 @@ void Texstudio::fileNewFromTemplate()
 	}
 	delete dialog;
 }
-
+/*!
+ * \brief insert table template
+ */
 void Texstudio::insertTableTemplate()
 {
 	QEditor *m_edit = currentEditor();
@@ -2308,7 +2415,8 @@ void Texstudio::insertTableTemplate()
 		LatexTables::generateTableFromTemplate(currentEditorView(), fname, tableDef, tableContent, env,widthDef);
 	}
 }
-
+/*! \brief align columns of latex table in editor
+ */
 void Texstudio::alignTableCols()
 {
 	if (!currentEditor()) return;
@@ -2322,7 +2430,14 @@ void Texstudio::alignTableCols()
 	cur.setColumnNumber(col);
 	currentEditor()->setCursor(cur);
 }
-
+/*! \brief open file
+ *
+ * open file is triggered from menu action.
+ * It opens a file dialog and lets the user to select a file.
+ * If the file is already open, the apropriate editor subwindow is brought to front.
+ * If the file is open as hidden, an editor is created and brought to front.
+ * pdf files are handled as well and they are forwarded to the pdf viewer.
+ */
 void Texstudio::fileOpen()
 {
 	QString currentDir = QDir::homePath();
@@ -2371,7 +2486,11 @@ void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
 	}
 	restoreSession(s, showProgress, warnMissing);
 }
-
+/*!
+ * \brief save current editor content
+ *
+ * \param saveSilently
+ */
 void Texstudio::fileSave(const bool saveSilently)
 {
 	if (!currentEditor())
@@ -2397,7 +2516,13 @@ void Texstudio::fileSave(const bool saveSilently)
 	updateCaption();
 	//updateStructure(); (not needed anymore for autoupdate)
 }
-
+/*!
+ * \brief save current editor content to new filename
+ *
+ * save current editor content to new filename
+ * \param fileName
+ * \param saveSilently don't ask for new filename if fileName is empty
+ */
 void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 {
 	if (!currentEditorView())
@@ -2483,12 +2608,21 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 
 	updateCaption();
 }
-
+/*!
+ * \brief save all files
+ *
+ * This functions is called from menu-action.
+ */
 void Texstudio::fileSaveAll()
 {
 	fileSaveAll(true, true);
 }
-
+/*!
+ * \brief save all files
+ *
+ * \param alsoUnnamedFiles
+ * \param alwaysCurrentFile
+ */
 void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 {
 	//LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
@@ -2715,7 +2849,8 @@ repeatAfterFileSavingFailed:
 	editors->setCurrentEditor(savedCurrentEditorView);
 	return true;
 }
-
+/*! \brief close all files
+ */
 void Texstudio::closeAllFiles()
 {
 	while (currentEditorView())
@@ -2744,7 +2879,10 @@ bool Texstudio::canCloseNow(bool saveSettings)
 	Guardian::shutdown();
 	return true;
 }
-
+/*!
+ * \brief closeEvent
+ * \param e event
+ */
 void Texstudio::closeEvent(QCloseEvent *e)
 {
 	if (canCloseNow())  e->accept();
@@ -2764,7 +2902,11 @@ void Texstudio::centerFileSelector()
 	if (!fileSelector) return;
 	fileSelector.data()->setCentered(centralWidget()->geometry());
 }
-
+/*!
+ * \brief open file from recent list
+ *
+ * The filename is determind from the sender-action, where it is encoded in data.
+ */
 void Texstudio::fileOpenRecent()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
@@ -2960,7 +3102,14 @@ void Texstudio::fileSaveSession()
 	}
 	recentSessionList->addFilenameToList(fn);
 }
-
+/*!
+ * \brief restore session s
+ *
+ * closes all files and loads all files given in session s
+ * \param s session
+ * \param showProgress
+ * \param warnMissing give warning if files are missing
+ */
 void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMissing)
 {
 	fileCloseAll();
@@ -8497,7 +8646,12 @@ void Texstudio::fileCheckin(QString filename)
 		}
 	}
 }
-
+/*!
+ * \brief lock pdf file
+ *
+ * Determines pdf filename by using the current text file name and substitutes its extension to 'pdf'
+ * \param filename
+ */
 void Texstudio::fileLockPdf(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8512,7 +8666,13 @@ void Texstudio::fileLockPdf(QString filename)
 		svnLock(fi.filePath());
 	}
 }
-
+/*!
+ * \brief check-in pdf file
+ *
+ * Determines pdf filename by using the current text file name and substitutes its extension to 'pdf'
+ * If the file is not under version management, it tries to add the file.
+ * \param filename
+ */
 void Texstudio::fileCheckinPdf(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8529,7 +8689,10 @@ void Texstudio::fileCheckinPdf(QString filename)
 		svnadd(fn);
 	fileCheckin(fn);
 }
-
+/*!
+ * \brief svn update file
+ * \param filename
+ */
 void Texstudio::fileUpdate(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8541,7 +8704,12 @@ void Texstudio::fileUpdate(QString filename)
 	runCommand(cmd, &buffer);
 	outputView->insertMessageLine(buffer);
 }
-
+/*!
+ * \brief svn update work directory
+ *
+ * Uses the directory of the current file as cwd.
+ * \param filename
+ */
 void Texstudio::fileUpdateCWD(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -9906,7 +10074,9 @@ void Texstudio::declareConflictResolved()
 	runCommand(cmd, &buffer);
 	checkin(fn, "txs: commit after resolve");
 }
-
+/*!
+ * \brief mark svn conflict of current file resolved
+ */
 void Texstudio::fileInConflict()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
@@ -10172,7 +10342,9 @@ void Texstudio::slowOperationEnded()
 {
 	Guardian::instance()->slowOperationEnded();
 }
-
+/*!
+ * \brief check current latex install as it is visible from txs
+ */
 void Texstudio::checkLatexInstall()
 {
 
@@ -10234,7 +10406,11 @@ void Texstudio::checkLatexInstall()
 	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(result, false);
 }
-
+/*!
+ * \brief display which cwls are loaded.
+ *
+ * This function is for debugging.
+ */
 void Texstudio::checkCWLs(){
 	bool newFile = currentEditor();
 	if (!newFile) fileNew();
@@ -10300,7 +10476,13 @@ void Texstudio::checkCWLs(){
 	currentEditorView()->editor->setText(res.join("\n"), false);
 
 }
-
+/*!
+ * \brief load document hidden
+ *
+ * when parsing a document, child-documents can be loaded automatically.
+ * They are loaded here into the hidden state.
+ * \param filename
+ */
 void Texstudio::addDocToLoad(QString filename)
 {
 	//qDebug()<<"fname:"<<filename;
@@ -10324,7 +10506,11 @@ void Texstudio::moveCursorTodlh()
 		}
 	}
 }
-
+/*!
+ * \brief open pdf documentation of latex packages in the internal viewer
+ * \param package package name
+ * \param command latex command to search within that documentation
+ */
 void Texstudio::openInternalDocViewer(QString package, const QString command)
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -10340,7 +10526,14 @@ void Texstudio::openInternalDocViewer(QString package, const QString command)
 	}
 #endif
 }
-
+/*!
+ * \brief close a latex environment
+ *
+ * If the cursor is after a \begin{env} which is not closed by the end of the document, \end{env} is inserted.
+ * This only works on a succeding line of the \begin{env} statement, not in the same line.
+ * This function uses information which is generated by the syntax checker.
+ * As the syntaxchecker works asynchronously, a small delay between typing and functioning of this action is mandatory though that delay is probably too small for any user to notice.
+ */
 void Texstudio::closeEnvironment()
 {
 	LatexEditorView *edView = currentEditorView();
@@ -10385,7 +10578,10 @@ void Texstudio::closeEnvironment()
 		}
 	}
 }
-
+/*!
+ * \brief make embedded viewer larger so that it covers the text edit
+ * If the viewer is not embedded, no action is performed.
+ */
 void Texstudio::enlargeEmbeddedPDFViewer()
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -10400,7 +10596,10 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 	viewer->setStateEnlarged(true);
 #endif
 }
-
+/*!
+ * \brief set size of embedded viewer back to previous value
+ * \param preserveConfig note change in config
+ */
 void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -10416,7 +10615,11 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 	viewer->setStateEnlarged(false);
 #endif
 }
-
+/*!
+ * \brief open extended search in bottom panel
+ *
+ * This is called from the editor search panel by pressing '+'.
+ */
 void Texstudio::showExtendedSearch()
 {
 	LatexEditorView *edView = currentEditorView();
@@ -10431,7 +10634,13 @@ void Texstudio::showExtendedSearch()
 	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 	runSearch(query);
 }
-
+/*!
+ * \brief change icon size of toolbars
+ *
+ * This is intended to have larger symbols on high-resolution screens.
+ * The change is instantly performed from the config dialog as visual feed-back.
+ * \param value size in points
+ */
 void Texstudio::changeIconSize(int value)
 {
 	setIconSize(QSize(value, value));
@@ -10441,7 +10650,13 @@ void Texstudio::changeIconSize(int value)
 	}
 #endif
 }
-
+/*!
+ * \brief change icon size for central tool-bar
+ *
+ * This is intended to have larger symbols on high-resolution screens.
+ * The change is instantly performed from the config dialog as visual feed-back.
+ * \param value size in points
+ */
 void Texstudio::changeSecondaryIconSize(int value)
 {
 	centralToolBar->setIconSize(QSize(value, value));
@@ -10460,7 +10675,14 @@ void Texstudio::changeSecondaryIconSize(int value)
 	}
 #endif
 }
-
+/*!
+ * \brief change symbol grid icon size
+ *
+ * This is intended to have larger symbols on high-resolution screens.
+ * The change is instantly performed from the config dialog as visual feed-back.
+ * \param value size in points
+ * \param changePanel change to a symbolgrid in sidepanel in order to make the change directly visible
+ */
 void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 {
 	if (changePanel && !qobject_cast<SymbolGridWidget *>(leftPanel->currentWidget())) {
@@ -10476,3 +10698,4 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 	}
 }
 
+/*! @} */

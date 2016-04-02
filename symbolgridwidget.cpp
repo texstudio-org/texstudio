@@ -262,6 +262,9 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 	}
 }
 
+/*!
+ * \brief resize widget according to external size changes
+ */
 void SymbolGridWidget::resizeEvent ( QResizeEvent *event )
 {
 	if (!mLoadedSymbols) {
@@ -308,7 +311,12 @@ void SymbolGridWidget::adaptTable()
 	}
 	//qDebug("3");
 }
-
+/*!
+ * \brief set-up most used page
+ *
+ * Set up symbolgridwidget as most-used symbol page
+ * \param ulist list of symbols
+ */
 void SymbolGridWidget::SetUserPage(usercodelist ulist)
 {
 	foreach (QTableWidgetItem *elem, listOfItems) {
