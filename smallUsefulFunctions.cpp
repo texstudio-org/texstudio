@@ -38,18 +38,9 @@ LatexParser &LatexParser::getInstance()
 
 void LatexParser::init()
 {
-	//refCommands = QSet<QString>::fromList(QStringList() << "\\ref" << "\\pageref"  << "\\cref" << "\\Cref");
-	//labelCommands = QSet<QString>::fromList(QStringList() << "\\label");
-	//citeCommands = QSet<QString>::fromList(QStringList() << "\\cite" << "\\citet" << "\\citetitle" << "\\citep" << "\\citeauthor" << "\\footcite" << "\\nocite"  << "\\nptextcite" << "\\parencite" << "\\textcite");
 	environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
-	//definitionCommands = QSet<QString>::fromList(QStringList() << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\DeclareMathOperator" <<"\\newlength");
 	mathStartCommands  << "$" << "$$" << "\\(" << "\\[" ;
 	mathStopCommands  << "$" << "$$" << "\\)" << "\\]" ;
-	//tabularEnvirons = QSet<QString>::fromList(QStringList() << "tabular" << "tabularx" << "longtable");
-	//fileCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input" << "\\includegraphics" <<"\\bibliographystyle" << "\\bibliography");
-	//includeCommands = QSet<QString>::fromList(QStringList() << "\\include" << "\\input");
-	//graphicsIncludeCommands = QSet<QString>::fromList(QStringList() << "\\includegraphics" );
-	//usepackageCommands = QSet<QString>::fromList(QStringList() << "\\usepackage" << "\\documentclass");
 
 	possibleCommands.clear();
 	possibleCommands["tabular"] = QSet<QString>::fromList(QStringList() << "&" );
@@ -1876,7 +1867,17 @@ LatexReader::LatexReader(const LatexParser &lp, const QString &line, QMap<QStrin
 	setLine(line);
 	mReplacementList = replacementList;
 }
-
+/*! Returns the next word (giving meaning to the nextToken tokens)
+ * line: line to be examined
+ * index: start index as input and returns the first character after the found word
+ * outWord: found word (length can differ from index - wordStartIndex for text words)
+ * wordStartIndex: start of the word
+ * returnCommands: if this is true it returns \commands (NW_COMMAND), "normal" "text"  NW_TEXT and % (NW_COMMENT)  [or NW_NOTHING at the end]
+ *                 "    "  is false it only returns normal text (NW_TEXT, without things like filenames after \include), environment names
+ *                           (NW_ENVIRONMENT, they are treated as text in the other mode) and % (NW_COMMENT)       [or NW_NOTHING at the end]
+ * \return the type of outWord
+ * \warning obsolete with lexer based token system
+ */
 LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands)
 {
 	int reference = -1;
@@ -1993,6 +1994,10 @@ LatexReader::NextWordFlag LatexReader::nextWord(bool returnCommands)
 	return NW_NOTHING;
 }
 
+/*! searches the next text words and ignores command options, environments or comments
+ * returns false if none is found
+ * \warning obsolete with lexer based token system
+ */
 bool LatexReader::nextTextWord()
 {
 	NextWordFlag flag = NW_PUNCTATION;
@@ -3010,7 +3015,8 @@ QSet<Tokens::TokenType> Tokens::tkCommalist()
 	result.insert(labelRefList);
 	return result;
 }
-
+/*! get opposite tokentype for a bracket type tokentype
+ */
 Tokens::TokenType Tokens::opposite(TokenType type)
 {
 	switch (type) {
@@ -3030,7 +3036,11 @@ Tokens::TokenType Tokens::opposite(TokenType type)
 		return none;
 	}
 }
-
+/*!
+ * \brief get close token for open or complete tokentype
+ * \param type
+ * \return closed tokentype
+ */
 Tokens::TokenType Tokens::closed(TokenType type)
 {
 	switch (type) {
@@ -3051,12 +3061,20 @@ Tokens::TokenType Tokens::closed(TokenType type)
 	}
 
 }
-
+/*!
+ * \brief compare tokens
+ * \param v
+ * \return equal
+ */
 bool Tokens::operator ==(const Tokens &v) const
 {
 	return (this->dlh == v.dlh) && (this->length == v.length) && (this->level == v.level) && (this->type == v.type);
 }
 
+/*!
+ * \brief get text which is represented by the token
+ * \return text of token
+ */
 QString Tokens::getText()
 {
 	dlh->lockForRead();
@@ -3064,7 +3082,44 @@ QString Tokens::getText()
 	dlh->unlock();
 	return result;
 }
+/*!
+\brief extract command defintion from cwl line
 
+\a line contains a command with arguments.
+The argument names have special meanings which are recognized by the function and used accordingly.
+
+argument name | description
+----------|----------
+\em text or ends with \em \%text| The spellchecker will operate inside this argument (by default arguments are not spellchecked).
+\em title or <em> short title</em>| The spellchecker will operate inside this argument (by default arguments are not spellchecked). Furthermore the argument will be set in bold text (like in section)
+\em bibid or \em keylists| If used in a command classified as "C". See the classifier description below.
+\em cmd,\em command or ends with \em \%cmd| defintion for command, e.g. \\newcommand{cmd}. This "cmd" will considered to have no arguments and convey no functionality.
+\em def or \em definition| actual defintion for command, e.g. \\newcommand{cmd}{definition}. This "definition" will ignored for syntax check.
+\em args| number of arguments for command, e.g. \\newcommand{cmd}[args]{definition}.
+\em package|package name, e.g. \\usepackage{package}
+\em citekey|definition of new citation key name, e.g. \\bibitem{citekey}
+\em title or <em> short title</em>|section name, e.g. \\section{title}
+\em color|color name, e.g. \\textcolor{color}
+\em width,\em length,\em height or ends with \em \%l|width or length option e.g. \\abc{size\%l}
+\em cols or \em preamble|columns defintion in tabular,etc. , e.g. \\begin{tabular}{cols}
+\em file|file name
+\em URL|URL
+\em options|package options, e.g. \\usepackage[options]
+\em imagefile|file name of an image
+\em key|label/ref key
+\em label with option #r or key ending with \em \%ref|ref key
+\em labellist|list of labels as employed by cleveref
+<em>bib file</em> or <em>bib files</em>|bibliography file
+\em class|document class
+\em placement or \em position|position of env
+\em beamertheme|beamer theme, e.g. \\usebeamertheme{beamertheme}
+\em keys,\em keyvals or \em \%<options\%>|key/value list
+\em envname|environment name for \\newtheorem, e.g. \\newtheorem{envname}#N (classification N needs to be present !)
+
+ * \param line command definition until '#'
+ * \param definition context information right of '#'
+ * \return command definition
+ */
 CommandDescription extractCommandDef(QString line, QString definition)
 {
 	QRegExp rxCom("^(\\\\\\w+\\*?)");
@@ -3236,7 +3291,15 @@ bool CommandDescription::operator==(const CommandDescription &v) const
 {
     return (this->optionalCommandName==v.optionalCommandName && this->args==v.args && this->argTypes==v.argTypes && this->level==v.level && this->optionalArgs==v.optionalArgs && this->optTypes==v.optTypes && this->bracketArgs==v.bracketArgs && this->bracketTypes==v.bracketTypes);
 }
-
+/*!
+ * \brief get content of argument
+ *
+ * Handles multiline arguments.
+ * To avoid performance impact on unclosed arguments, the maximum number of processed lines is limited to 10.
+ * This is called run-away prevention.
+ * \param tk argument top-level
+ * \return tokenlist with all tokens within the argument
+ */
 TokenList getArgContent(Tokens &tk)
 {
 	TokenList results;
@@ -3254,7 +3317,18 @@ TokenList getArgContent(Tokens &tk)
 	}
 	return results;
 }
-
+/*!
+ * \brief get content of argument
+ *
+ * Handles multiline arguments.
+ * To avoid performance impact on unclosed arguments, the maximum number of processed lines is limited to 10.
+ * This is called run-away prevention.
+ * \param tl tokenlist of current line
+ * \param pos number of token in tokenlist
+ * \param level of argument
+ * \param runAwayPrevention counts down to zero for subsequent lines to prevent unlimited processing of lines on unclosed arguments
+ * \return tokenlist with all tokens within the argument
+ */
 TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention)
 {
 	TokenList result;
@@ -3303,7 +3377,15 @@ TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention
 	}
 	return result;
 }
-
+/*!
+ * \brief get context at line/column
+ *
+ * return a tokenstack of the context situation
+ * It contains (possibly) command/argument/word
+ * \param dlh linehandle
+ * \param pos column
+ * \return tokenstack
+ */
 TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 {
 	dlh->lockForRead();
@@ -3373,7 +3455,13 @@ TokenStack getContext(QDocumentLineHandle *dlh, int pos)
 	stack << ts;
 	return stack;
 }
-
+/*!
+ * \brief get token at column
+ * \param dlh linehandle
+ * \param pos columns number
+ * \param first get first token that encompasses \a pos, otherwise the latest token which fulfils the condition is returned
+ * \return found token
+ */
 Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
 {
 	if (!dlh) return Tokens();
@@ -3396,7 +3484,13 @@ Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
 	}
 	return tk;
 }
-
+/*!
+ * \brief get token at column
+ * \param tl tokenlist of line
+ * \param pos column
+ * \param first first get first token that encompasses \a pos, otherwise the latest token which fulfils the condition is returned
+ * \return number of token, -1 if not found
+ */
 int getTokenAtCol(TokenList &tl, int pos, bool first)
 {
 	int result = -1;
@@ -3413,7 +3507,7 @@ int getTokenAtCol(TokenList &tl, int pos, bool first)
 	return result;
 }
 
-/*
+/*!
  * tk is an argument token (inner content)
  * it assumes that the command is at level--
  * at the moment, only single line detection
@@ -3451,7 +3545,12 @@ QString getCommandFromToken(Tokens tk)
 	}
 	return cmd;
 }
-
+/*!
+ * \brief get token which represents the command of which \a tk is a argument
+ * \param tl tokenlist of line
+ * \param tk token which is argument of a command
+ * \return token of command
+ */
 Tokens getCommandTokenFromToken(TokenList tl, Tokens tk)
 {
 	Tokens result;
@@ -3474,7 +3573,16 @@ Tokens getCommandTokenFromToken(TokenList tl, Tokens tk)
 	}
 	return result;
 }
-
+/*!
+ * Realizes the first pass lexing
+ * Following functionality is implemented:
+ * + separate the the text into words,symbols
+ * + assign each symbol/word a basic context like word,command,symbol,open/close brace etc.
+ * + set tokenlist as LEXER_RAW_COOKIE on line
+ * + remove cookie LEXER_COOKIE (as it is invalid)
+ * \param dlh linehandle
+ * \return tokenlist
+ */
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
 {
 	// dumbed down lexer in order to allow full parallelization and full change of verbatim/non-verbatim later on
@@ -4085,7 +4193,12 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 
 	return remainderChanged;
 }
-
+/*!
+ * \brief get completer context
+ * \param dlh linehandle
+ * \param column
+ * \return 512 if token at column is 'width'
+ */
 int getCompleterContext(QDocumentLineHandle *dlh, int column)
 {
 	TokenStack ts = getContext(dlh, column);
