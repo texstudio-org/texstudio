@@ -54,7 +54,7 @@ public:
 	bool isClipped() const;
 	void enableClipping(bool clip);
 
-    void setDocument(QDocument *newDoc){
+    void setDocument(QDocument *newDoc){ ///< set document used in text editor in order to handle linehandles
         doc=newDoc;
     }
 	
