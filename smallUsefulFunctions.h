@@ -14,6 +14,13 @@
 #include "mostQtHeaders.h"
 #include "qglobal.h"
 
+/*! \file smallUsefulFunctions.h
+ * Defines helper functions for various purposes
+ * - helper functions for latex parsing
+ * - helper functions for character substitution
+ * - helper functions for setting-up commandlist to interpret commands
+ */
+
 // subgroups of utility functions:
 #include "utilsUI.h"
 #include "utilsSystem.h"
@@ -90,20 +97,23 @@ Q_DECLARE_METATYPE(TokenList);
 Q_DECLARE_METATYPE(TokenStack);
 void qDebugTokenList(TokenList tl);
 
+/*!
+ * \brief define available arguments for a command
+ */
 class CommandDescription
 {
 public:
 	CommandDescription();
-	int optionalArgs;
-	int bracketArgs;
-	int args;
+	int optionalArgs; ///< number of optional arguments
+	int bracketArgs; ///< number of () arguments
+	int args; ///< number of mandatory arguments (in braces)
 	int level;
-	QList<Tokens::TokenType> argTypes;
-	QList<Tokens::TokenType> optTypes;
-	QList<Tokens::TokenType> bracketTypes;
-    QString optionalCommandName;
-	QString toDebugString() const;
-    bool operator==(const CommandDescription &v) const;
+	QList<Tokens::TokenType> argTypes; ///< define argument type as token
+	QList<Tokens::TokenType> optTypes; ///< define argument type as token
+	QList<Tokens::TokenType> bracketTypes; ///< define argument type as token
+    QString optionalCommandName; ///< stores optionally command name. It is used for processing command description during lexing
+	QString toDebugString() const; ///< debug function to get easier information on command description
+    bool operator==(const CommandDescription &v) const; ///< compare two command descriptions
 };
 
 typedef QStack<CommandDescription> CommandStack;
@@ -117,21 +127,21 @@ typedef QString (QObject::*StringToStringCallback)(const QString &) ;
 QString getCommonEOW();
 
 
-//removes special latex characters
+/// removes special latex characters
 QString latexToPlainWord(const QString &word);
 QString latexToPlainWordwithReplacementList(const QString &word, QMap<QString, QString> &replacementList );
-//closing bracket (opening and closing bracket considered correctly)
+/// closing bracket (opening and closing bracket considered correctly)
 int findClosingBracket(const QString &word, int &start, QChar oc = QChar('{'), QChar cc = QChar('}'));
-//opening bracket (opening and closing bracket considered correctly), start at "start"
+/// opening bracket (opening and closing bracket considered correctly), start at "start"
 int findOpeningBracket(const QString &word, int start, QChar oc = QChar('{'), QChar cc = QChar('}'));
-//replaces character with corresponding LaTeX commands
+/// replaces character with corresponding LaTeX commands
 QString textToLatex(const QString &text);
 QString latexToText(QString s);
 
 QStringList joinLinesExceptCommentsAndEmptyLines(const QStringList &lines);
 QStringList splitLines(const QStringList &lines, int maxCharPerLine, const QRegExp &breakChars);
 
-//compares two strings locale aware
+/// compares two strings locale aware
 bool localeAwareLessThan(const QString &s1, const QString &s2);
 
 // true for characters that are valid in latex command names, e.g. \section*

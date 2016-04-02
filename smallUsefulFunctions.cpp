@@ -561,7 +561,15 @@ QString trimRight(const QString &s)
 		if (s[j] != ' ' && s[j] != '\t' && s[j] != '\r' && s[j] != '\n') break;
 	return s.left(j + 1);
 }
-
+/*!
+ * \brief get argument after command 'token'
+ *
+ * handles latex comments correctly
+ * \warning obsolete with lexer based token system
+ * \param line text of one line
+ * \param token latexcommand
+ * \return text after token
+ */
 QString findToken(const QString &line, const QString &token)
 {
 	int tagStart = line.indexOf(token);
@@ -574,7 +582,16 @@ QString findToken(const QString &line, const QString &token)
 	}
 	return "";
 }
-
+/*!
+ * \brief get argument after command 'token'
+ *
+ * handles latex comments correctly
+ * \warning obsolete with lexer based token system
+ * \param line text of one line
+ * \param token latexcommand
+ * \param start column number
+ * \return text after token
+ */
 QString findToken(const QString &line, const QString &token, int &start)
 {
 	int tagStart = line.indexOf(token, start);
@@ -589,7 +606,15 @@ QString findToken(const QString &line, const QString &token, int &start)
 	start = -2;
 	return "";
 }
-
+/*!
+ * \brief get argument after command 'token'
+ *
+ * handles latex comments correctly
+ * \warning obsolete with lexer based token system
+ * \param line text of one line
+ * \param token regexp to search
+ * \return text after token
+ */
 QString findToken(const QString &line, QRegExp &token)
 {
 	//ATTENTION: token is not const because, you can't call cap on const qregexp in qt < 4.5
@@ -628,15 +653,15 @@ bool findTokenWithArg(const QString &line, const QString &token, QString &outNam
 	return false;
 }
 
-/*
+/*!
  * Searches for the first latex command in line starting at offset. Comments are ignored.
  *
- * Outputs:
- *   cmd - the command name, e.g. \section
- *   args - a list of the arguments including their brackets, e.g. "[arg1]", "{arg2}"
- *   argStarts - a list of the starting positions of the arguments in line (if not needed, you can pass 0 in)
+ * \warning obsolete with lexer-based token system
+ * \param cmd the command name, e.g. \section
+ * \param args a list of the arguments including their brackets, e.g. "[arg1]", "{arg2}"
+ * \param argStarts a list of the starting positions of the arguments in line (if not needed, you can pass 0 in)
  *
- * Returns the starting position of cmd in line, or -1 if no command was found.
+ * \return Returns the starting position of cmd in line, or -1 if no command was found.
  */
 int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts, int offset, bool parseComment)
 {
@@ -654,7 +679,7 @@ int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QL
 	return cmdStart;
 }
 
-/*
+/*!
  * returns the position of the first command token after offset
  * args  Tokenlist with all token after command at the same level (top level args, no content)
  *
@@ -691,8 +716,10 @@ int findCommandWithArgsFromTL(const TokenList &tl, Tokens &cmd, TokenList &args,
 }
 
 
-// returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
-// not in command options. Return value is the index of the first char after the command (or pos if there was no command
+/*! returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
+ * not in command options. Return value is the index of the first char after the command (or pos if there was no command
+ * \warning obsolete with lexer-based token system
+ */
 // TODO: currently does not work for command '\\'
 int getCommand(const QString &line, QString &outCmd, int pos)
 {
@@ -710,8 +737,10 @@ int getCommand(const QString &line, QString &outCmd, int pos)
 	return i;
 }
 
-// returns command option list. pos has to be at the beginning of the first bracket
-// posBehind returns the position after the last bracket, you may pass the same variable as in pos
+/*! returns command option list. pos has to be at the beginning of the first bracket
+ * posBehind returns the position after the last bracket, you may pass the same variable as in pos
+ * \warning obsolete with lexer-based token system
+ */
 QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posBehind)
 {
 	static QMap<QChar, QChar> cbs;
@@ -744,8 +773,10 @@ QList<CommandArgument> getCommandOptions(const QString &line, int pos, int *posB
 	return options;
 }
 
-// returns the item at pos in a colon separated list of options (empty on colon
-// e.g. getParamItem("{one, two, three}", 7) returns "two"
+/* returns the item at pos in a colon separated list of options (empty on colon
+ * e.g. getParamItem("{one, two, three}", 7) returns "two"
+ * \warning obsolete with lexer-based token system
+ */
 QString getParamItem(const QString &line, int pos, bool stopAtWhiteSpace)
 {
 	REQUIRE_RET(pos <= line.length(), QString());
@@ -821,7 +852,7 @@ QStringList regExpFindAllMatches(const QString &searchIn, const QRegExp &regexp,
 	return res;
 }
 
-/*
+/*!
  * a multi-match equivalent of QString::indexOf(QString)
  */
 QList<int> indicesOf(const QString &line, const QString &word, Qt::CaseSensitivity cs)
@@ -837,7 +868,7 @@ QList<int> indicesOf(const QString &line, const QString &word, Qt::CaseSensitivi
 	return columns;
 }
 
-/*
+/*!
  * a multi-match equivalent of QString::indexOf(QRegExp)
  */
 QList<int> indicesOf(const QString &line, const QRegExp &rx)
@@ -897,8 +928,9 @@ void addEnvironmentToDom(QDomDocument &doc, const QString &EnvironName, const QS
 	root.insertBefore(tag, insertAt);
 }
 
-// adds entries for structure commands to the Dom of a QNFA file
-// commands are taken from possibleCommands["%structure0"] to possibleCommands["%structureN"]
+/*! adds entries for structure commands to the Dom of a QNFA file
+ * commands are taken from possibleCommands["%structure0"] to possibleCommands["%structureN"]
+ */
 void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QString> > &possibleCommands)
 {
 	QDomElement root = doc.documentElement();
@@ -935,7 +967,7 @@ void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QSt
 	}
 }
 
-/* returns true if the options are complete, false if the scanning ended while still in the options */
+/// returns true if the options are complete, false if the scanning ended while still in the options
 bool LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts)
 {
 	const QString BracketsOpen("[{(");
@@ -998,7 +1030,11 @@ bool LatexParser::resolveCommandOptions(const QString &line, int column, QString
 	}
 	return true;
 }
-
+/*!
+ * \brief remove option brackets from text on 'option'
+ * \param option text
+ * \return option without []
+ */
 QString LatexParser::removeOptionBrackets(const QString &option)
 {
 	if (option.isNull() || option.length() < 2) return option;
@@ -1007,7 +1043,11 @@ QString LatexParser::removeOptionBrackets(const QString &option)
 		return option.mid(1, option.length() - 2);
 	return option;
 }
-
+/*!
+ * \brief determines level of structure in a section-command
+ * \param cmd latex command
+ * \return level of stucture
+ */
 int LatexParser::structureCommandLevel(const QString &cmd) const
 {
 	for (int i=0; i<=MAX_STRUCTURE_LEVEL; i++) {
@@ -1018,16 +1058,18 @@ int LatexParser::structureCommandLevel(const QString &cmd) const
 	return -1;
 }
 
+/*! return a number for a context
+ * 0 unknown
+ * 1 command
+ * 2 option \command[option]{arg}
+ * 3 argument \command{arg}
+ * 4 argument 2   \command{arg}{arg2}
+ * etc
+ * \warning obsolete for lexer-based token system, though still in use in some code
+ */
 int LatexParser::findContext(QString &line, int &column) const
 {
-	/* return a number for a context
-	 * 0 unknown
-	 * 1 command
-	 * 2 option \command[option]{arg}
-	 * 3 argument \command{arg}
-	 * 4 argument 2   \command{arg}{arg2}
-	 * etc
-	 */
+
 	if (line.isEmpty())
 		return 0;
 	QString eow = "\\[]{}$";
@@ -1255,12 +1297,19 @@ int LatexParser::commentStart(const QString &text)
 	if (cs > -1) return cs + 1;
 	else return -1;
 }
-
+/// remove comments from 'text'
 QString LatexParser::cutComment(const QString &text)
 {
-	return text.left(LatexParser::commentStart(text)); // remove comments
+	return text.left(LatexParser::commentStart(text));
 }
 
+/*!
+ * \brief convert a list of integer in one string with a textual representation of said integers
+ *
+ * The numbers are given as text, separated by commas
+ * \param ints list of integer
+ * \return string containg a textual list of integers
+ */
 QString intListToStr(const QList<int> &ints)
 {
 	QString s = "";
@@ -1716,8 +1765,9 @@ int LatexParser::lineEnd(const QByteArray &data, int index)
 	return data.size();
 }
 
-//search for first \usepackage[.*]{<packageName>} outside of a comment
-// returns the string inside the square brackets
+/*! search for first \usepackage[.*]{<packageName>} outside of a comment
+ * returns the string inside the square brackets
+ */
 QString LatexParser::getEncodingFromPackage(const QByteArray &data, int headerSize, const QString &packageName)
 {
 	QByteArray packageEndToken(QString("]{%1}").arg(packageName).toLatin1());
