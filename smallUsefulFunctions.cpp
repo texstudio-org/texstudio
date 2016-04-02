@@ -2842,12 +2842,12 @@ QString findRestArg(QDocumentLineHandle *dlh, Tokens::TokenType type, int count)
 	}
 	return result + findRestArg(dlh, type, count - 1);
 }
-
+/// display tokentype for debugging
 QDebug operator<<(QDebug dbg, Tokens::TokenType tk) {
 	dbg << "TokenType(" << qPrintable(Tokens::tokenTypeName(tk)) << ")";
 	return dbg;
 }
-
+/// display content of token for debugging
 QDebug operator<<(QDebug dbg, Tokens tk) {
 	dbg << qPrintable("Token(\"" + tk.getText() + "\"){"
 					  + QString("type: %1, ").arg(Tokens::tokenTypeName(tk.type))
@@ -2857,14 +2857,14 @@ QDebug operator<<(QDebug dbg, Tokens tk) {
 					  );
 	return dbg;
 }
-
+/// display content of tokenlist for debugging
 void qDebugTokenList(TokenList tl) {
 	qDebug() << "TokenList:";
 	foreach (const Tokens &tk, tl) {
 		qDebug() << "  " << tk;
 	}
 }
-
+/// text for token for easier debugging
 QString Tokens::tokenTypeName(TokenType t) {
 #define LITERAL_ENUM(e) case e: return #e;
 	switch(t) {
@@ -2927,7 +2927,9 @@ QString Tokens::tokenTypeName(TokenType t) {
 	}
 #undef LITERAL_ENUM
 }
-
+/*!
+ * \brief define all possible group tokens
+ */
 QSet<Tokens::TokenType> Tokens::tkBraces()
 {
 	QSet<TokenType> result;
@@ -2936,7 +2938,8 @@ QSet<Tokens::TokenType> Tokens::tkBraces()
 	result.insert(squareBracket);
 	return result;
 }
-
+/*! define tokens which describe a mandatory argument
+ */
 QSet<Tokens::TokenType> Tokens::tkArg()
 {
 	QSet<TokenType> result;
@@ -2945,7 +2948,8 @@ QSet<Tokens::TokenType> Tokens::tkArg()
 	result.insert(word);
 	return result;
 }
-
+/*! define tokens which describe an optional argument
+ */
 QSet<Tokens::TokenType> Tokens::tkOption()
 {
 	QSet<TokenType> result;
@@ -2953,7 +2957,9 @@ QSet<Tokens::TokenType> Tokens::tkOption()
 	result.insert(openSquare);
 	return result;
 }
-
+/*!
+ * \brief define open group tokens
+ */
 QSet<Tokens::TokenType> Tokens::tkOpen()
 {
 	QSet<TokenType> result;
@@ -2962,7 +2968,9 @@ QSet<Tokens::TokenType> Tokens::tkOpen()
 	result.insert(openSquare);
 	return result;
 }
-
+/*!
+ * \brief define close group tokens
+ */
 QSet<Tokens::TokenType> Tokens::tkClose()
 {
 	QSet<TokenType> result;
@@ -2971,6 +2979,9 @@ QSet<Tokens::TokenType> Tokens::tkClose()
 	result.insert(closeSquareBracket);
 	return result;
 }
+/*! define argument-types (tokens) which are a single argument
+ * .e.g. \label{abc}
+ */
 QSet<Tokens::TokenType> Tokens::tkSingleArg()
 {
 	QSet<TokenType> result;
@@ -2986,7 +2997,9 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg()
 	result.insert(def);
 	return result;
 }
-
+/*! define argument-types (tokens) which consist of comma-separated lists
+ * .e.g. \usepackage{pck1,pck2}
+ */
 QSet<Tokens::TokenType> Tokens::tkCommalist()
 {
 	QSet<TokenType> result;
