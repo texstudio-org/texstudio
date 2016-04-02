@@ -445,7 +445,14 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 		}
 	}
 }
-
+/*!
+ * \brief get error description for syntax error in line 'dlh' at column 'pos'
+ * \param dlh linehandle
+ * \param pos column
+ * \param previous environment stack at start of line
+ * \param stack tokenstack at start of line
+ * \return error description
+ */
 QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironment previous, TokenStack stack)
 {
 	// do syntax check
@@ -604,7 +611,12 @@ bool SyntaxCheck::equalEnvStack(StackEnvironment env1, StackEnvironment env2)
 	}
 	return true;
 }
-
+/*!
+ * \brief mark environment start
+ *
+ * This function is used to mark unclosed environment,i.e. environments which are unclosed at the end of the text
+ * \param env used environment
+ */
 void SyntaxCheck::markUnclosedEnv(Environment env)
 {
 	QDocumentLineHandle *dlh = env.dlh;
