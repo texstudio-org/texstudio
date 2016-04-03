@@ -615,6 +615,7 @@ public slots:
 
 		Q_INVOKABLE void clearCursorMirrors();
 		Q_INVOKABLE void addCursorMirror(const QDocumentCursor& c);
+		Q_INVOKABLE void cursorMirrorsRemoveSelectedText();
 
 		void setCursorBold(bool bold);
 
