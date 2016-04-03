@@ -2467,8 +2467,7 @@ void QEditor::cut()
 		}
 	}
 
-	for ( int i = 0; i < m_mirrors.count(); ++i )
-		m_mirrors[i].removeSelectedText();
+	cursorMirrorsRemoveSelectedText();
 
 	if ( macroing )
 		m_doc->endMacro();
@@ -3892,10 +3891,8 @@ void QEditor::dropEvent(QDropEvent *e)
 		m_doc->beginMacro();
 		
 		m_cursor.removeSelectedText();
+		cursorMirrorsRemoveSelectedText();
 
-		for ( int i = 0; i < m_mirrors.count(); ++i )
-			m_mirrors[i].removeSelectedText();
-			
 		clearCursorMirrors();
 		m_cursor=insertCursor;//.moveTo(cursorForPosition(mapToContents(e->pos())));
 		insertFromMimeData(e->mimeData());
@@ -4542,12 +4539,10 @@ void QEditor::startDrag()
 	Qt::DropActions actions = Qt::CopyAction | Qt::MoveAction;
 	Qt::DropAction action = drag->exec(actions, Qt::MoveAction);
 
-    if ( (action == Qt::MoveAction) && (drag->target() != this))
+	if ( (action == Qt::MoveAction) && (drag->target() != this))
 	{
 		m_cursor.removeSelectedText();
-
-		for ( int i = 0; i < m_mirrors.count(); ++i )
-			m_mirrors[i].removeSelectedText();
+		cursorMirrorsRemoveSelectedText();
 	}
 }
 
@@ -5566,8 +5561,6 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 		if ( d->hasFormat("text/column-selection") )
 		{
-			clearCursorMirrors();
-
 			QStringList columns = QString::fromLocal8Bit(
 										d->data("text/column-selection")
 									).split('\n');
@@ -5576,6 +5569,8 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			if ( s )
 				m_cursor.removeSelectedText();
+			cursorMirrorsRemoveSelectedText();
+			clearCursorMirrors();
 
 			int col = m_cursor.columnNumber();
 			//m_cursor.insertText(columns.takeFirst());
@@ -5700,6 +5695,14 @@ void QEditor::addCursorMirror(const QDocumentCursor& c)
 	m_mirrors.last().setSilent(true);
 	m_mirrors.last().setAutoUpdated(true);
 	m_mirrors.last().setAutoErasable(false);
+}
+
+void QEditor::cursorMirrorsRemoveSelectedText()
+{
+	for ( int i = 0; i < m_mirrors.count(); ++i )
+	{
+		m_mirrors[i].removeSelectedText();
+	}
 }
 
 void QEditor::setCursorBold(bool bold)
