@@ -3,7 +3,6 @@
 #include "mostQtHeaders.h"
 #include "utilsSystem.h"
 #include "latexeditorview.h"
-#include "latexdocument.h"  // TODO: used for toolip in updateDocumentStatus. Anyway, tooltip content should be genereated dynamically. So this will go away here.
 
 
 /*!
@@ -40,6 +39,10 @@ Editors::Editors(QWidget *parent) :
 	QVBoxLayout *layout = new QVBoxLayout(this);
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(splitter);
+
+	changes = new EditorChangeProxy(this);
+	connect(changes, SIGNAL(currentEditorChanged()), this, SIGNAL(currentEditorChanged()));
+	connect(changes, SIGNAL(listOfEditorsChanged()), this, SIGNAL(listOfEditorsChanged()));
 	connect(this, SIGNAL(editorsReordered()), this, SIGNAL(listOfEditorsChanged()));
 }
 
@@ -56,10 +59,10 @@ void Editors::addTabWidget(TxsTabWidget *w)
 	} else {
 		if (w->isEmpty()) w->hide();
 	}
-	connect(w, SIGNAL(currentEditorChanged()), SLOT(onTabWidgetEditorChanged()));
+	connect(w, SIGNAL(currentEditorChanged()), changes, SLOT(currentEditorChange()));
 	connect(w, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)), this, SLOT(onEditorChangeByTabClick(LatexEditorView *, LatexEditorView *)));
-	connect(w, SIGNAL(activationRequest()), SLOT(activateTabWidgetFromSender()));
-	connect(w, SIGNAL(closeCurrentEditorRequest()), SIGNAL(closeCurrentEditorRequest()));
+	connect(w, SIGNAL(activationRequested()), SLOT(activateTabWidgetFromSender()));
+	connect(w, SIGNAL(closeEditorRequested(LatexEditorView*)), SLOT(requestCloseEditor(LatexEditorView *)));
 	connect(w, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(tabBarContextMenu(QPoint)));
 	connect(w, SIGNAL(tabMoved(int, int)), SIGNAL(editorsReordered()));
 }
@@ -128,6 +131,7 @@ void Editors::moveEditor(LatexEditorView *edView, Editors::Position pos)
 void Editors::insertEditor(LatexEditorView *edView, TxsTabWidget *tabWidget, int pos, bool asCurrent)
 {
 
+	bool b = changes->block();
 	if (!tabWidget) return;
 	if (!tabWidget->isVisible()) {
 		tabWidget->setVisible(true);
@@ -143,7 +147,32 @@ void Editors::insertEditor(LatexEditorView *edView, TxsTabWidget *tabWidget, int
 	if (asCurrent) {
 		setCurrentEditor(edView);
 	}
-	emit listOfEditorsChanged();
+	if (b) changes->release();
+}
+
+/*! \brief request to close the given editor.
+ *
+ * The widget cannot decide if the tab can really be closed, which can only be
+ * determined at top level with user interaction if there are unsaved changes to
+ * the editor. So we propagate the request up.
+ */
+void Editors::requestCloseEditor(LatexEditorView *edView)
+{
+	LatexEditorView *originalCurrent = currentEditor();
+
+	if (edView == originalCurrent) {
+		// request to close the current editor
+		emit closeCurrentEditorRequested();
+	} else {
+		// request to close a non-current editor
+		setCurrentEditor(edView);
+		emit closeCurrentEditorRequested();
+		if (currentEditor() != edView) {
+			// closing (of the originally non-current) editor was successful.
+			// Therefore we activate the originally current editor again.
+			setCurrentEditor(originalCurrent);
+		}
+	}
 }
 
 /*!
@@ -161,10 +190,10 @@ void Editors::removeEditor(LatexEditorView *edView)
 void Editors::removeEditor(LatexEditorView *edView, TxsTabWidget *tabWidget)
 {
 	if (!tabWidget) return;
+	bool b = changes->block();
 	bool isLastEditorInGroup = (tabWidget->indexOf(edView) == tabWidget->count() - 1);
-	bool isLastGroup = (currentGroupIndex == tabGroups.length() - 1);
 	if (edView == currentEditor()) {
-		if (isLastGroup && isLastEditorInGroup) {
+		if (isLastEditorInGroup) {
 			activatePreviousEditor();
 		} else {
 			activateNextEditor();
@@ -174,42 +203,7 @@ void Editors::removeEditor(LatexEditorView *edView, TxsTabWidget *tabWidget)
 	if (tabWidget->isEmpty() && tabWidget != tabGroups[0]) {
 		tabWidget->hide();
 	}
-	emit listOfEditorsChanged();
-}
-
-/*!
- * Send the signal closeCurrentEditorRequest() and closes the editor.
- * This functions was inherited from the TxsTabWidget API. In contrast to removeEditor(),
- * which is a low-level function (purpose 1: maintain an abstract order of editors), this
- * is part of the purpose 2 API (editor container widget).
- *
- * TODO: Check if we really need this or if it can be simplified.
- */
-void Editors::closeEditor(LatexEditorView *edView)
-{
-	TxsTabWidget *tabWidget = tabWidgetFromEditor(edView);
-	if (!tabWidget) return;
-	bool isLastEditorInGroup = (tabWidget->indexOf(edView) == tabWidget->count() - 1);
-	bool isLastGroup = (currentGroupIndex == tabGroups.length() - 1);
-
-	// lot's of workaround because claseTab assumes the edView is current
-	LatexEditorView *oldEditor = currentEditor();
-	if (edView == currentEditor()) {
-		if (isLastGroup && isLastEditorInGroup) {
-			activatePreviousEditor();
-		} else {
-			activateNextEditor();
-		}
-	}
-	LatexEditorView *newEditor = currentEditor();
-	setCurrentEditor(oldEditor);
-
-	tabWidget->closeTab(edView);
-	if (tabWidget->isEmpty() && tabWidget != tabGroups[0]) {
-		tabWidget->hide();
-	}
-	setCurrentEditor(newEditor);
-	emit listOfEditorsChanged();
+	if (b) changes->release();
 }
 
 bool Editors::containsEditor(LatexEditorView *edView) const
@@ -224,51 +218,6 @@ TxsTabWidget *Editors::currentTabWidget() const
 	return 0;
 }
 
-/*!
- * Returns the tabText of the current editor or a null string.
- */
-QString Editors::currentTabText() const
-{
-	TxsTabWidget *tw = currentTabWidget();
-	if (tw && tw->currentIndex() >= 0)
-		return tw->tabText(tw->currentIndex());
-	return QString();
-}
-
-/*!
- * This updates icon tab text and tooltip.
- * This is called from the main program, when it thinks that the
- * document status of the current editor is changed.
- *
- * TODO: can we make the LatexEditorView notify us when a change is
- * necessary instead of the main program?
- */
-void Editors::updateDocumentStatus()
-{
-	//cache icons, getRealIcon is *really* slow
-	static QIcon modified = getRealIcon("modified");
-	static QIcon empty = QIcon(":/images/empty.png");
-
-	TxsTabWidget *tabGroup = currentTabWidget();
-	LatexEditorView *edView = currentEditor();
-	if (!tabGroup) return;
-	if (!edView) return;
-
-	// update icon
-	int index = tabGroup->currentIndex();
-	tabGroup->setTabIcon(index, edView->editor->isContentModified() ? modified : empty);
-	// update tab text
-	tabGroup->setTabText(index, edView->displayName().replace("&", "&&"));
-	// update tooltip text
-	LatexDocument *doc = edView->document;
-	LatexDocument *rootDoc = doc->getRootDocument();
-	QString tooltip = QDir::toNativeSeparators(edView->editor->fileName());
-	if (doc != rootDoc) {
-		tooltip += tr("\nincluded document in %1").arg(rootDoc->getName());
-	}
-	tabGroup->setTabToolTip(index, tooltip);
-}
-
 LatexEditorView *Editors::currentEditor() const
 {
 	TxsTabWidget *tabs = currentTabWidget();
@@ -281,15 +230,17 @@ LatexEditorView *Editors::currentEditor() const
  */
 void Editors::setCurrentEditor(LatexEditorView *edView)
 {
-	if (currentEditor() == edView)
+	if (currentEditor() == edView) {
 		return;
+	}
 
 	int group = tabGroupIndexFromEditor(edView);
 	if (group >= 0) {
+		bool b = changes->block();
 		setCurrentGroup(group);
 		tabGroups[group]->setCurrentEditor(edView);
 		edView->setFocus();
-		emit currentEditorChanged();
+		if (b) changes->release();
 		return;
 	}
 	// catch calls in which editor is not a member tab.
@@ -323,10 +274,11 @@ void Editors::setCurrentEditorFromSender()
 	setCurrentEditor(edView);
 }
 
-void Editors::activateNextEditor()
+bool Editors::activateNextEditor()
 {
-	if (currentGroupIndex < 0) return;
+	if (currentGroupIndex < 0) return false;
 
+	bool b = changes->block();
 	if (!tabGroups[currentGroupIndex]->currentEditorViewIsLast()) {
 		tabGroups[currentGroupIndex]->gotoNextDocument();
 	} else {
@@ -335,57 +287,57 @@ void Editors::activateNextEditor()
 		for (int unused = 0; unused < tabGroups.length(); unused++) { // counter is only used as a stopping criterion
 			newIndex = (newIndex + 1) % tabGroups.length();
 			if (!tabGroups[newIndex]->isEmpty()) {
+				if (newIndex == currentGroupIndex && tabGroups[currentGroupIndex]->count() == 1) {
+					if (b) changes->release();
+					return false;  // only one editor: we cannot change
+				}
 				setCurrentGroup(newIndex);
 				break;
 			}
 		}
 		tabGroups[currentGroupIndex]->gotoFirstDocument();
 	}
-	emit currentEditorChanged();
+	if (b) changes->release();
+	return true;
 }
 
-void Editors::activatePreviousEditor()
+bool Editors::activatePreviousEditor()
 {
-	if (currentGroupIndex < 0) return;
+	if (currentGroupIndex < 0) return false;
 
+	bool b = changes->block();
 	if (!tabGroups[currentGroupIndex]->currentEditorViewIsFirst()) {
 		tabGroups[currentGroupIndex]->gotoPrevDocument();
 	} else {
 		// find the previous non-empty group
 		int newIndex = currentGroupIndex;
 		for (int unused = 0; unused < tabGroups.length(); unused++) { // counter is only used as a stopping criterion
-			newIndex = (newIndex - 1) % tabGroups.length();
+			newIndex = (newIndex == 0) ? (tabGroups.length() -1) : (newIndex - 1);
 			if (!tabGroups[newIndex]->isEmpty()) {
+				if (newIndex == currentGroupIndex && tabGroups[currentGroupIndex]->count() == 1) {
+					return false;  // only one editor: we cannot change
+				}
 				setCurrentGroup(newIndex);
 				break;
 			}
 		}
 		tabGroups[currentGroupIndex]->gotoLastDocument();
 	}
-	emit currentEditorChanged();
+	if (b) changes->release();
+	return true;
 }
 
 /*!
- * Activates the tabWidget that is the sender()
+ * Activates the tabWidget that is the sender(). Returns true if the widget could be activated.
  */
-void Editors::activateTabWidgetFromSender()
+bool Editors::activateTabWidgetFromSender()
 {
 	TxsTabWidget *tabWidget = qobject_cast<TxsTabWidget *>(sender());
-	//qDebug() << "activating" << tabWidget;
-	if (!tabWidget) return;
-	setCurrentEditor(tabWidget->currentEditorView());
-}
-
-/*!
- * Called from a tab widget when its editor changes.
- * Note: This handles the case the currentEditor changes because the current tab
- * of the tabWidget changes.
- */
-void Editors::onTabWidgetEditorChanged()
-{
-	activateTabWidgetFromSender();
-	//qDebug() << "tabWidgetEditorChanged to" << currentEditor() << "(sender: " << sender() << ")";
-	emit currentEditorChanged();
+	if (!tabWidget) return false;
+	LatexEditorView *edView = tabWidget->currentEditor();
+	if (!edView) return false;
+	setCurrentEditor(tabWidget->currentEditor());
+	return true;
 }
 
 /*!
@@ -399,7 +351,7 @@ void Editors::tabBarContextMenu(const QPoint &point)
 
 	QMenu menu;
 	foreach (LatexEditorView *edView, editors()) {
-		QAction *act = menu.addAction(edView->displayName().replace("&", "&&"));
+		QAction *act = menu.addAction(edView->displayNameForUI());
 		act->setData(QVariant::fromValue<LatexEditorView *>(edView));
 		connect(act, SIGNAL(triggered()), SLOT(setCurrentEditorFromAction()));
 	}
@@ -418,6 +370,7 @@ void Editors::tabBarContextMenu(const QPoint &point)
 
 void Editors::onEditorChangeByTabClick(LatexEditorView *from, LatexEditorView *to)
 {
+	Q_UNUSED(from);
 	// the original event comes from a tab widget. from is the previously selected tab in that widget
 	// which has not been the current one one if the tab widget has not been the current
 	emit editorAboutToChangeByTabClick(currentEditor(), to);
@@ -451,10 +404,11 @@ void Editors::moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int 
 		target->moveTab(target->indexOf(edView), targetIndex);
 		emit editorsReordered();
 	} else {
+		bool b = changes->block();
 		TxsTabWidget *source = tabWidgetFromEditor(edView);
 		removeEditor(edView, source);
 		insertEditor(edView, target, targetIndex, true);
-		emit editorsReordered();
+		if (b) changes->release();
 	}
 }
 
@@ -489,9 +443,95 @@ TxsTabWidget *Editors::tabWidgetFromEditor(LatexEditorView *edView) const
 
 void Editors::setCurrentGroup(int index)
 {
+	if (index == currentGroupIndex) return;
 	if (currentGroupIndex >= 0) {
 		tabGroups[currentGroupIndex]->setActive(false);
 	}
 	currentGroupIndex = index;
 	tabGroups[currentGroupIndex]->setActive(true);
 }
+
+
+
+/*! \class EditorChangeProxy
+ *
+ * This class handles changes of the currentEditor
+ *
+ * There are two ways that can lead to emission of the signal currentEditorChanged():
+ *
+ * 1) First, other components can connect to the slot editorChange(). These signals are
+ * just propagated, except if the EditorChangeProxy is blocked.
+ *
+ * 2) Second, one can block() the propagation of changes and release() later on. At release(),
+ * the proxy checks if the currentEditor has changed from the one at blocking. If so, the
+ * currentEditorChanged() signal is emitted.
+ * Use the block/release mechanism to perform complex actions that consist of multiple
+ * editor changes (potentially even with inconsistent intermediate states) during which
+ * you don't want to emit currentEditorChanged().
+ * You have to make sure that you release the block if and only if you acquired it. Therefore,
+ * blocking should always use this pattern:
+ *
+ *     bool b = changes->block();
+ *     ...
+ *     if (b) changes->release();
+ *
+ * If you have return statements in the intermediate code, be sure to place the release command
+ * also before every return.
+ */
+EditorChangeProxy::EditorChangeProxy(Editors *e) : editors(e), currentEditorAtBlock(0), blocked(false) {}
+
+//#define ecpDebug(x) qDebug(x)
+#define ecpDebug(x)
+bool EditorChangeProxy::block()
+{
+	if (blocked) {
+		ecpDebug("already blocked");
+		return false;
+	}
+	blocked = true;
+	currentEditorAtBlock = editors->currentEditor();
+	listOfEditorsAtBlock = editors->editors();
+	ecpDebug("block activated");
+	return true;
+}
+
+void EditorChangeProxy::release()
+{
+	ecpDebug("release");
+	if (blocked) {
+		blocked = false;
+		if (editors->currentEditor() != currentEditorAtBlock) {
+			ecpDebug("currentEditorChanged signaled at release");
+			emit currentEditorChanged();
+		}
+		if (editors->editors() != listOfEditorsAtBlock) {
+			ecpDebug("listOfEditorsChanged signaled at release");
+			emit listOfEditorsChanged();
+		}
+	} else {
+		// can only happen if the above mentioned blocking pattern was not used.
+		qDebug("WARNING: trying to realease an unblocked EditorChangeProxy. This hints at inconsistent code.");
+	}
+}
+
+void EditorChangeProxy::currentEditorChange()
+{
+	if (!blocked) {
+		ecpDebug("currentEditorChanged passed");
+		emit currentEditorChanged();
+	} else {
+		ecpDebug("currentEditorChanged blocked");
+	}
+}
+
+void EditorChangeProxy::listOfEditorsChange()
+{
+	if (!blocked) {
+		ecpDebug("listOfEditorsChanged passed");
+		emit listOfEditorsChanged();
+	} else {
+		ecpDebug("listOfEditorsChanged blocked");
+	}
+}
+#undef ecpDebug
+

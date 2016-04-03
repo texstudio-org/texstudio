@@ -378,7 +378,6 @@ private slots:
 
 protected slots:
 	void showMarkTooltipForLogMessage(QList<int> errors);
-	void newDocumentStatus();
 	void newDocumentLineEnding();
 	void updateCaption();
 	void updateMasterDocumentCaption();
