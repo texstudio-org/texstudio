@@ -259,7 +259,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	connect(editors, SIGNAL(currentEditorChanged()), SLOT(currentEditorChanged()));
 	connect(editors, SIGNAL(listOfEditorsChanged()), SLOT(updateOpenDocumentMenu()));
 	connect(editors, SIGNAL(editorsReordered()), SLOT(onEditorsReordered()));
-	connect(editors, SIGNAL(closeCurrentEditorRequest()), this, SLOT(fileClose()));
+	connect(editors, SIGNAL(closeCurrentEditorRequested()), this, SLOT(fileClose()));
 	connect(editors, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)), this, SLOT(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)));
 
 	cursorHistory = new CursorHistory(&documents);
@@ -1486,9 +1486,9 @@ void Texstudio::updateCaption()
 	} else {
 		QString file = QDir::toNativeSeparators(getCurrentFileName());
 		if (file.isEmpty())
-			file = editors->currentTabText();
+			file = currentEditorView()->displayNameForUI();
 		title = file + " - " + TEXSTUDIO;
-		newDocumentStatus();
+		updateStatusBarEncoding();
 		updateOpenDocumentMenu(true);
 		newDocumentLineEnding();
 	}
@@ -1531,6 +1531,7 @@ void Texstudio::currentEditorChanged()
 	currentEditorView()->lastUsageTime = QDateTime::currentDateTime();
 	currentEditorView()->checkRTLLTRLanguageSwitching();
 }
+
 /*!
  * \brief called when a editor tab is moved in position
  * \param from starting position
@@ -1556,16 +1557,6 @@ void Texstudio::showMarkTooltipForLogMessage(QList<int> errors)
 	REQUIRE(outputView->getLogWidget()->getLogModel());
 	QString msg = outputView->getLogWidget()->getLogModel()->htmlErrorTable(errors);
 	currentEditorView()->setLineMarkToolTip(msg);
-}
-
-void Texstudio::newDocumentStatus()
-{
-	editors->updateDocumentStatus();
-	// TODO: This is probably called way too often.
-	// We should remove this from here and only call it when
-	//   a) the encoding of the editor changed or
-	//   b) the editor changed
-	updateStatusBarEncoding();
 }
 
 void Texstudio::newDocumentLineEnding()
@@ -1642,7 +1633,6 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
 	connect(edit->editor, SIGNAL(requestClose()), &documents, SLOT(requestedClose()));
 	connect(edit->editor, SIGNAL(redoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
-	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(newDocumentStatus()));
 	connect(edit->editor->document(), SIGNAL(lineEndingChanged(int)), this, SLOT(newDocumentLineEnding()));
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
@@ -1711,7 +1701,6 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
 
 	if (!hidden) {
 		int index = reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1;  // index: we still assume here that the order of documents and editors is synchronized
-		qDebug() << edit->document->getFileName() << index;
 		editors->insertEditor(edit, index);
 		edit->editor->setFocus();
 		updateCaption();
@@ -2598,7 +2587,6 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 		LatexDocument *doc = currentEditorView()->document;
 		documents.updateMasterSlaveRelations(doc);
 
-		editors->updateDocumentStatus();
 		updateOpenDocumentMenu(true);  // TODO: currently duplicate functionality with updateCaption() below
 		if (currentEditor()->fileInfo().suffix().toLower() != "tex")
 			m_languages->setLanguage(currentEditor(), fn);
@@ -6788,7 +6776,7 @@ void Texstudio::updateOpenDocumentMenu(bool localChange)
 		if (!menu) return;
 		foreach (QAction *act, menu->actions()) {
 			if (edView == act->data().value<LatexEditorView *>()) {
-				act->setText(edView->displayName().replace("&", "&&"));
+				act->setText(edView->displayNameForUI());
 				//qDebug() << "local SUCCESS" << act->text() << edView->displayName();
 				return;
 			}
@@ -6799,7 +6787,7 @@ void Texstudio::updateOpenDocumentMenu(bool localChange)
 	QStringList names;
 	QList<QVariant> data;
 	foreach (LatexEditorView *edView, editors->editors()) {
-		names << (edView->displayName().replace("&", "&&"));
+		names << edView->displayNameForUI();
 		data << QVariant::fromValue<LatexEditorView *>(edView);
 	}
 	//qDebug() << "complete" << names;
@@ -7814,7 +7802,7 @@ void Texstudio::structureContextMenuCloseDocument()
 	LatexDocument *document = contextEntry->document;
 	contextEntry = 0;
 	if (!document) return;
-	if (document->getEditorView()) editors->closeEditor(document->getEditorView());
+	if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
 	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
 }
 

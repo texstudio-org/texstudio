@@ -5,6 +5,7 @@
 
 class TxsTabWidget;
 class LatexEditorView;
+class EditorChangeProxy;
 
 class Editors : public QWidget
 {
@@ -17,19 +18,15 @@ public:
 	enum Position {AbsoluteFront, AbsoluteEnd, GroupFront, GroupEnd};
 	void moveEditor(LatexEditorView *edView, Position pos);
 public slots:
+	void requestCloseEditor(LatexEditorView *edView);
 	void removeEditor(LatexEditorView *edView);
 protected:
 	void insertEditor(LatexEditorView *edView, TxsTabWidget *tabWidget=0 /*current*/, int pos=-1 /*append*/, bool asCurrent = true);
 	void removeEditor(LatexEditorView *edView, TxsTabWidget *tabWidget);
 public:
-	void closeEditor(LatexEditorView *edView);
 	bool containsEditor(LatexEditorView *edView) const;
 
 	TxsTabWidget * currentTabWidget() const;
-
-	QString currentTabText() const;
-
-	void updateDocumentStatus();
 
 	LatexEditorView * currentEditor() const;
 	void setCurrentEditor(LatexEditorView *edView);
@@ -39,20 +36,19 @@ public:
 signals:
 	void currentEditorChanged();
 	void editorAboutToChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
-	void closeCurrentEditorRequest();
+	void closeCurrentEditorRequested();
 	void listOfEditorsChanged();
 	void editorsReordered();
 
 public slots:
 	void setCurrentEditorFromAction();
 	void setCurrentEditorFromSender();
-	void activateNextEditor();
-	void activatePreviousEditor();
+	bool activateNextEditor();
+	bool activatePreviousEditor();
 
 protected slots:
 	void setCurrentGroup(int index);
-	void activateTabWidgetFromSender();
-	void onTabWidgetEditorChanged();
+	bool activateTabWidgetFromSender();
 	void tabBarContextMenu(const QPoint &point);
 	void onEditorChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
 	void moveToOtherTabGroup();
@@ -67,6 +63,31 @@ private:
 	QSplitter *splitter;
 	QList<TxsTabWidget *> tabGroups;
 	int currentGroupIndex;
+
+	EditorChangeProxy *changes;
+};
+
+
+
+class EditorChangeProxy : public QObject
+{
+	Q_OBJECT
+public:
+	EditorChangeProxy(Editors *e);
+
+	bool block();
+	void release();
+signals:
+	void currentEditorChanged();
+	void listOfEditorsChanged();
+public slots:
+	void currentEditorChange();
+	void listOfEditorsChange();
+private:
+	Editors *editors;
+	LatexEditorView *currentEditorAtBlock;
+	QList<LatexEditorView *> listOfEditorsAtBlock;
+	bool blocked;
 };
 
 #endif // EDITORS_H

@@ -878,6 +878,15 @@ QString LatexEditorView::displayName() const
 	return (!editor || editor->fileName().isEmpty() ? tr("untitled") : editor->name());
 }
 
+/*!
+ * Returns the displayName() with properly escaped ampersands for UI elements
+ * such as tabs and actions.
+ */
+QString LatexEditorView::displayNameForUI() const
+{
+	return displayName().replace('&', "&&");
+}
+
 void LatexEditorView::complete(int flags)
 {
 	if (!LatexEditorView::completer) return;

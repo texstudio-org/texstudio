@@ -84,6 +84,7 @@ public:
 	LatexEditorViewConfig *getConfig() { return config; }
 
 	Q_INVOKABLE	QString displayName() const;
+	QString displayNameForUI() const;
 
 	//  FindWidget *findwidget;
 	//Functions affecting the editor
