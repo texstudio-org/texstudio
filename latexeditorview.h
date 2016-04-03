@@ -314,6 +314,7 @@ private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
 	void foldContextMenuRequested(int lineNumber, QPoint globalPos);
 };
+Q_DECLARE_METATYPE(LatexEditorView *)
 
 
 class BracketInvertAffector: public PlaceHolder::Affector
