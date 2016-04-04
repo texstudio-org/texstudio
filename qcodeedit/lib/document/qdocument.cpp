@@ -195,7 +195,7 @@ inline static bool isWord(QChar c)
     return c.isLetterOrNumber() || extraChars.contains(c);
 } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
 
-/*! check if character c is a delimiter ( "(){}$+-/*,;." )
+/*! check if character c is a delimiter ( "(){}$+-*,/;." )
  */
 inline static bool isDelimiter(QChar c)
 {

@@ -524,7 +524,7 @@ private:
 	int curLineNumber;
 };
 
-Q_DECLARE_METATYPE(LatexEditorView *)
+//Q_DECLARE_METATYPE(LatexEditorView *)
 
 CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
 //------------------------------Item Delegate--------------------------------

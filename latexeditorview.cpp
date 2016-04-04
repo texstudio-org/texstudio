@@ -575,7 +575,7 @@ DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 LatexCompleter *LatexEditorView::completer = 0;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
-Q_DECLARE_METATYPE(LatexEditorView *)
+//Q_DECLARE_METATYPE(LatexEditorView *)
 
 LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig, LatexDocument *doc) : QWidget(parent), document(0), latexPackageList(0), spellerManager(0), speller(0), useDefaultSpeller(true), curChangePos(-1), config(aconfig), bibReader(0)
 {
