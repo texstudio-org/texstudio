@@ -11,7 +11,7 @@
 
 Q_DECLARE_METATYPE(QDocument *)
 Q_DECLARE_METATYPE(LatexDocuments *)
-Q_DECLARE_METATYPE(LatexEditorView *)
+//Q_DECLARE_METATYPE(LatexEditorView *)
 Q_DECLARE_METATYPE(BuildManager *)
 Q_DECLARE_METATYPE(RunCommandFlags)
 Q_DECLARE_METATYPE(ProcessX *)

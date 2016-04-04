@@ -118,6 +118,7 @@ static void fillToc(const QDomNode &parent, QTreeWidget *tree, QTreeWidgetItem *
  * show page preview in the sidepanel
  *
  * the actual rendering is done in extra threads
+ */
 /*!
  * \brief constructor
  * \param doc
