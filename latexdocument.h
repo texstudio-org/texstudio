@@ -15,36 +15,42 @@ class QDocument;
 class QDocumentCursor;
 struct QDocumentSelection;
 
+/*!
+ * \brief leaf of structure reqresentation of document structure
+ *
+ * The structure is organized as a tree with SE_DOCUMENT_ROOT as root
+ * Section are organized hierarchical depending on the section level, MAGIC comments, label are below a root-marker below root
+ */
 struct StructureEntry {
 	enum Type {SE_DOCUMENT_ROOT, SE_OVERVIEW, SE_SECTION, SE_BIBTEX, SE_TODO, SE_MAGICCOMMENT, SE_INCLUDE, SE_LABEL, SE_BLOCK = SE_LABEL};
-	enum Context {
+    enum Context { ///< mark if entry is located beyond appendix/end document commands
 		InAppendix = 0x0001,
 		BeyondEnd = 0x0010
 	};
 	Q_DECLARE_FLAGS(Contexts, Context)
 	Type type;
-	QString title;
-	QString tooltip; // optional because most tooltips are automatically generated.
-	int level; //only used for section types!
-	bool valid; //currently only used for includes and magic comments
-	QList<StructureEntry *> children;
-	StructureEntry *parent;
+    QString title; ///< actual text to be displayed
+    QString tooltip; ///< optional because most tooltips are automatically generated.
+    int level; ///< only used for section types!
+    bool valid; ///< currently only used for includes and magic comments
+    QList<StructureEntry *> children; ///< children
+    StructureEntry *parent; ///< parent for easier tree structure parsing
 	LatexDocument *document;
 
-	StructureEntry(LatexDocument *doc, Type newType);
+    StructureEntry(LatexDocument *doc, Type newType); ///< constructor
 	~StructureEntry();
-	void add(StructureEntry *child);
-	void insert(int pos, StructureEntry *child);
+    void add(StructureEntry *child); ///< add child element
+    void insert(int pos, StructureEntry *child); ///< insert child elemet at pos
 
 	int columnNumber; //position of the entry in the line, only used for correct sorting of structure update (TODO: use a local variable for it)
-	void setLine(QDocumentLineHandle *handle, int lineNr = -1);
-	QDocumentLineHandle *getLineHandle() const;
-	int getCachedLineNumber() const;
-	int getRealLineNumber() const;
-	int getRealParentRow() const;
+    void setLine(QDocumentLineHandle *handle, int lineNr = -1); ///< set linehandle for automatic update of line number
+    QDocumentLineHandle *getLineHandle() const; ///< get linehandle for entry
+    int getCachedLineNumber() const; ///< get cached line number
+    int getRealLineNumber() const; ///< get line number from given linehandle. More time consuming than from cached line number.
+    int getRealParentRow() const; ///< determine position of this element in parent
 
-	bool hasContext(Context c) const { return m_contexts & c; }
-	void setContext(Context c, bool b = true) { if (b) m_contexts |= c; else m_contexts &= ~c; }
+    bool hasContext(Context c) const { return m_contexts & c; } ///< get context
+    void setContext(Context c, bool b = true) { if (b) m_contexts |= c; else m_contexts &= ~c; } ///< change context
 
 	void debugPrint(const char *message) const;
 
