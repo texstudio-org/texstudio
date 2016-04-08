@@ -54,6 +54,21 @@ class QDocument;
 class LatexCompleterConfig;
 /*!
  * \brief repesent syntax information on text element
+ * The objective for this class is to translate a text(-line) into a series of tokens which can be interpreted much faster and easier subsequently
+ * The translation process is divided into 2 passes.
+ *
+ * Pass 1 simply determines word limits and symbols
+ * e.g.
+ * \\label{abc} def
+ * is translated to
+ * [command 0 6] [openBrace 7 1] [word 8 3] [closeBrace 12 1] [word 14 3]
+ * no context is used
+ *
+ * Pass 2 interprets the data in order to assign arguments to commands and to assign a purpose for the arguments if they are defined in the cwl
+ * It uses the tokens from the first pass to speed-up processing
+ * e.g. (from previous example, level is represented by the line, type/subtype is given)
+ * level=0 [command/none 0 6] [braces/label 7 1]                  [word/none 14 3]
+ * level=1                                       [label/none 8 3]
  */
 class Tokens
 {
