@@ -50,6 +50,9 @@
 #include "bidiextender.h"
 
 //------------------------------Default Input Binding--------------------------------
+/*!
+ * \brief default keyboard binding for normal operation
+ */
 class DefaultInputBinding: public QEditorInputBinding
 {
 	//  Q_OBJECT not possible because inputbinding is no qobject

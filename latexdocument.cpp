@@ -16,7 +16,10 @@ FileNamePair::FileNamePair(const QString &rel, const QString &abs): relative(rel
 
 // languages for LaTeX syntax checking (exact name from qnfa file)
 const QSet<QString> LatexDocument::LATEX_LIKE_LANGUAGES = QSet<QString>() << "(La)TeX" << "Pweave" << "Sweave" << "TeX dtx file";
-
+/*! \brief constructor
+ * sets up structure for structure view
+ * starts the syntax checker in a separate thread
+ */
 LatexDocument::LatexDocument(QObject *parent): QDocument(parent), remeberAutoReload(false), mayHaveDiffMarkers(false), edView(0), mAppendixLine(0), mBeyondEnd(0)
 {
 	baseStructure = new StructureEntry(this, StructureEntry::SE_DOCUMENT_ROOT);
@@ -130,7 +133,10 @@ QStringList LatexDocument::listOfMentionedBibTeXFiles() const
 		result << fnp.absolute;
 	return result;
 }
-
+/*! select a complete section with the text
+ * this method is called from structureview via contex menu
+ *
+ */
 QDocumentSelection LatexDocument::sectionSelection(StructureEntry *section)
 {
 	QDocumentSelection result = { -1, -1, -1, -1};
@@ -164,7 +170,9 @@ QDocumentSelection LatexDocument::sectionSelection(StructureEntry *section)
 	result.start = 0;
 	return result;
 }
-
+/*! clear all internal data
+ * preparation for rebuilding structure or for first parsing
+ */
 void LatexDocument::initClearStructure()
 {
 	mUserCommandList.clear();
@@ -197,7 +205,9 @@ void LatexDocument::initClearStructure()
 
 	baseStructure->title = fileName;
 }
-
+/*! rebuild structure view completely
+ *  /note very expensive call
+ */
 void LatexDocument::updateStructure()
 {
 	initClearStructure();
@@ -207,7 +217,8 @@ void LatexDocument::updateStructure()
 	emit structureLost(this);
 }
 
-/* Removes a deleted line from the structure view */
+/*! Removes a deleted line from the structure view
+*/
 void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 {
 	if (!baseStructure) return;
@@ -325,6 +336,19 @@ inline bool isDefinitionArgument(const QString &arg)
 	return (pos >= 0 && pos < arg.length() - 1 && arg[pos + 1].isDigit());
 }
 
+/*!
+ * \brief parse lines to update syntactical and structure information
+ *
+ * updates structure informationen from the changed lines only
+ * parses the lines to gather syntactical information on the latex content
+ * e.g. find labels/references, new command definitions etc.
+ * the syntax parsing has been largely changed to the token system which is tranlated here for faster information extraction \see Tokens
+ * \param linenr first line to check
+ * \param count number of lines to check (-1: all)
+ * \param recheck method has been called a second time to handle profound syntax changes from first call (like newly loaded packages). This allows to avoid some costly operations on the second call.
+ * \return true means a second run is suggested as packages are loadeed which change the outcome
+ *         e.g. definition of specialDef command, but packages are load at the end of this method.
+ */
 bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 {
 	/* true means a second run is suggested as packages are loadeed which change the outcome
@@ -2795,7 +2819,7 @@ bool LatexDocument::fileExits(QString fname)
 	return exist;
 }
 
-/*
+/*!
  * A line snapshot is a list of DocumentLineHandles at a given time.
  * For example, this is used to reconstruct the line number at latex compile time
  * allowing syncing from PDF to the correct source line also after altering the source document

@@ -35,7 +35,11 @@ class DefaultInputBinding;
 class LatexEditorViewConfig;
 class Macro;
 class MacroExecContext;
-
+/*!
+ * \brief represent link overlays
+ * When pressing control, some structural elements in the text can be changed to links in order to jump to corresponding places
+ *
+ */
 struct LinkOverlay {
 	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UrlOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay};
 	// for simpler access everything is public - only access for reading
@@ -57,7 +61,9 @@ struct LinkOverlay {
 	}
 	QString text() const;
 };
-
+/*!
+ * \brief actual editor widget
+ */
 class LatexEditorView : public QWidget
 {
 	Q_OBJECT
@@ -89,7 +95,7 @@ public:
 	//  FindWidget *findwidget;
 	//Functions affecting the editor
 
-	Q_INVOKABLE void complete(int flags);
+    Q_INVOKABLE void complete(int flags); ///< complete text
 	bool gotoLineHandleAndSearchCommand(const QDocumentLineHandle *dlh, const QSet<QString> &searchFor, const QString &id);
 	Q_INVOKABLE bool gotoToLabel(const QString &label);
 	Q_INVOKABLE bool gotoToBibItem(const QString &bibId);
