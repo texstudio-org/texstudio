@@ -58,17 +58,23 @@ class LatexCompleterConfig;
  * The translation process is divided into 2 passes.
  *
  * Pass 1 simply determines word limits and symbols
- * e.g.
- * \\label{abc} def
+ * e.g.\n
+ * \\label{abc} def\n
  * is translated to
- * [command 0 6] [openBrace 7 1] [word 8 3] [closeBrace 12 1] [word 14 3]
+ \verbatim
+ [command 0 6] [openBrace 7 1] [word 8 3] [closeBrace 12 1] [word 14 3]
+ \endverbatim
+ *
  * no context is used
  *
  * Pass 2 interprets the data in order to assign arguments to commands and to assign a purpose for the arguments if they are defined in the cwl
- * It uses the tokens from the first pass to speed-up processing
- * e.g. (from previous example, level is represented by the line, type/subtype is given)
- * level=0 [command/none 0 6] [braces/label 7 1]                  [word/none 14 3]
- * level=1                                       [label/none 8 3]
+ * It uses the tokens from the first pass to speed-up processing\n
+ * e.g. (from previous example, level is represented by the line, type/subtype is given)\n
+ \verbatim
+ level=0 [command/none 0 6] [braces/label 7 5]                  [word/none 14 3]
+ level=1                                       [label/none 8 3]
+ \endverbatim
+ The level is encoded via the level-property. The list is actually still linear.
  */
 class Tokens
 {
