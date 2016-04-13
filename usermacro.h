@@ -2,9 +2,8 @@
 #define USERMACRO_H
 
 #include "mostQtHeaders.h"
-#include "qlanguagedefinition.h"
 
-//class QLanguageDefinition;
+class QLanguageDefinition;
 class QLanguageFactory;
 class LatexDocument;
 
