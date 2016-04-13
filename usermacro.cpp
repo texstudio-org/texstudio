@@ -202,21 +202,10 @@ bool Macro::isActiveForTrigger(Macro::SpecialTrigger trigger) const
 	return (triggers & trigger);
 }
 
-/*! \brief check if macro is active for given language
- */
 bool Macro::isActiveForLanguage(QLanguageDefinition *lang) const
 {
 	// if no trigger language is specified, the macro is active for all languages.
-    // apparently lang can change when documentclass is used
-    // compare language names only !
-    if(triggerLanguage.isEmpty())
-        return true;
-    foreach(QLanguageDefinition *elem,triggerLanguages){
-        if(elem->language()==lang->language())
-            return true;
-    }
-
-    return false;
+	return triggerLanguage.isEmpty() || triggerLanguages.contains(lang);
 }
 
 bool Macro::isActiveForFormat(int format) const
