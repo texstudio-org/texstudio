@@ -6580,11 +6580,11 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		}
 	}
 
-	if (line != -1) {
-		QApplication::processEvents();
-		gotoLine(line, col, 0, QEditor::KeepSurrounding | QEditor::ExpandFold);
-		QTimer::singleShot(1000, currentEditor(), SLOT(ensureCursorVisible()));
-	}
+if (line != -1) {
+	QApplication::processEvents();
+	gotoLine(line, col, 0, QEditor::KeepSurrounding | QEditor::ExpandFold);
+	QTimer::singleShot(1000, currentEditor(), SLOT(ensureCursorVisible()));
+}
 
 	if (!cite.isNull()) {
 		insertCitation(cite);
@@ -9735,16 +9735,18 @@ void Texstudio::updateTexQNFA()
 	newLaTeX = m_lang.d;
 	Q_ASSERT(oldLaTeX != newLaTeX);
 
-	if (!editors) return;
-	documents.enablePatch(false);
-	foreach (LatexEditorView *edView, editors->editors()) {
-		QEditor *ed = edView->editor;
-        if (ed->languageDefinition() == oldLaTeX) {
-			ed->setLanguageDefinition(newLaTeX);
-			ed->highlight();
+	if (editors) {
+		documents.enablePatch(false);
+		foreach (LatexEditorView *edView, editors->editors()) {
+			QEditor *ed = edView->editor;
+			if (ed->languageDefinition() == oldLaTeX) {
+				ed->setLanguageDefinition(newLaTeX);
+				ed->highlight();
+			}
 		}
+		documents.enablePatch(true);
 	}
-	documents.enablePatch(true);
+	updateUserMacros(false); //update macro triggers depending on the language to newLatex
 }
 
 /// Updates the highlighting of environments specified via environmentAliases
@@ -9780,7 +9782,6 @@ void Texstudio::updateHighlighting()
 		return;
 
 	updateTexQNFA();
-	updateUserMacros(false); //update macros depending on the language to newLatex
 }
 
 void Texstudio::toggleGrammar(int type)
