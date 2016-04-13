@@ -503,3 +503,20 @@
 \glssymbolnav#S
 #tree
 \glssetwidest{arg1}{arg2}#S
+#Synonyms provided by the package option shortcuts
+\acs{label}#r
+\Acs#*
+\acsp#*
+\Acsp#*
+\acl{label}#r
+\Acl#*
+\aclp#*
+\Aclp#*
+\acf{label}#r
+\Acf#*
+\acfp#*
+\Acfp#*
+\ac{label}#r
+\Ac{label}#r
+\acp{label}#r
+\Acp#*
