@@ -4698,7 +4698,7 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 		break;
 
 	case NewLine:
-		insertText("\n");
+		insertText(c, "\n");
 		cutBuffer.clear();
 		break;
 
