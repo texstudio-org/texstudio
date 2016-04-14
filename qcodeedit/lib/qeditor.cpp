@@ -5612,7 +5612,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			bool slow = txt.size() > 5*1024;
 			if (slow) emit slowOperationStarted();
 			
-			bool macroing = isMirrored();
+			bool macroing = isMirrored() || m_mirrors.size();
 
 			if ( macroing )
 				m_doc->beginMacro();
