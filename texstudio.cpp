@@ -6580,11 +6580,10 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		}
 	}
 
-if (line != -1) {
-	QApplication::processEvents();
-	gotoLine(line, col, 0, QEditor::KeepSurrounding | QEditor::ExpandFold);
-	QTimer::singleShot(1000, currentEditor(), SLOT(ensureCursorVisible()));
-}
+	if (line != -1) {
+		gotoLine(line, col, 0, QEditor::KeepSurrounding | QEditor::ExpandFold);
+		QTimer::singleShot(500, currentEditor(), SLOT(ensureCursorVisible())); //reshow cursor in case the windows size changes
+	}
 
 	if (!cite.isNull()) {
 		insertCitation(cite);
