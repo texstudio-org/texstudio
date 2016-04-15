@@ -2405,14 +2405,14 @@ void QEditor::undo()
 		if ( m_definition )
 			m_definition->clearMatches(m_doc);
 
-        m_doc->setProposedPosition(QDocumentCursor());
+		m_doc->setProposedPosition(QDocumentCursor());
 
 		m_doc->undo();
 
-        QDocumentCursor c=m_doc->getProposedPosition();
-        if(c.isValid()){
-            setCursor(c);
-        }
+		QDocumentCursor c=m_doc->getProposedPosition();
+		if(c.isValid() && !m_mirrors.size())
+			setCursor(c);
+
 
 		ensureCursorVisible();
 		setFlag(CursorOn, true);
