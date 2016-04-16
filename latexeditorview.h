@@ -261,7 +261,7 @@ public slots:
 	void moveLines(int delta);
 	QList<QPair<int, int> > getSelectedLineBlocks();
 	static QMultiMap<int, QDocumentCursor* > getSelectedLines(QList<QDocumentCursor>& cursors);
-
+	void alignMirrors();
 
 	void checkForLinkOverlay(QDocumentCursor cursor);
 	bool hasLinkOverlay() const { return linkOverlay.isValid(); }

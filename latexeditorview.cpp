@@ -826,6 +826,38 @@ QMultiMap<int, QDocumentCursor* > LatexEditorView::getSelectedLines(QList<QDocum
 	return map;
 }
 
+bool cursorPointerLessThan(QDocumentCursor* c1, QDocumentCursor* c2)
+{
+	return c1->columnNumber() < c2->columnNumber();
+}
+
+void LatexEditorView::alignMirrors()
+{
+	QList<QDocumentCursor> cursors = editor->cursors();
+	QMultiMap<int, QDocumentCursor* > map = getSelectedLines(cursors);
+	QList<int> lines = map.uniqueKeys();
+	QList<QList<QDocumentCursor*> > cs;
+	int colCount = 0;
+	foreach (int l, lines) {
+		QList<QDocumentCursor*> row = map.values(l);
+		colCount = qMax(colCount, row.size());
+		qSort(row.begin(), row.end(), cursorPointerLessThan);
+		cs.append(row);
+	}
+	document->beginMacro();
+	for (int col=0;col<colCount;col++) {
+		int pos = 0;
+		for (int j=0;j<cs.size();j++)
+			if (col < cs[j].size())
+				pos = qMax(pos, cs[j][col]->columnNumber());
+		for (int j=0;j<cs.size();j++)
+			if (col < cs[j].size() && pos > cs[j][col]->columnNumber()) {
+				cs[j][col]->insertText(QString(pos -  cs[j][col]->columnNumber(), ' '));
+			}
+	}
+	document->endMacro();
+}
+
 void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 {
 	if (cursor.atBlockEnd()) {
