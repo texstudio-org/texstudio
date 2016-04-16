@@ -707,6 +707,125 @@ void LatexEditorView::insertSnippet(QString text)
 	CodeSnippet(text).insert(editor);
 }
 
+void LatexEditorView::deleteLines(bool toStart, bool toEnd)
+{
+	QList<QDocumentCursor> cursors = editor->cursors();
+	if (cursors.empty()) return;
+	document->beginMacro();
+	for (int i=0;i<cursors.size();i++)
+		cursors[i].removeSelectedText();
+
+	int cursorLine = cursors[0].lineNumber();
+	QMultiMap< int, QDocumentCursor* > map = getSelectedLines(cursors);
+	QList<int> lines = map.uniqueKeys();
+	QList<QDocumentCursor> newMirrors;
+	for (int i=lines.size()-1;i>=0;i--) {
+		QList<QDocumentCursor*> cursors = map.values(lines[i]);
+		REQUIRE(cursors.size());
+		if (toStart && toEnd) cursors[0]->eraseLine();
+		else {
+			int len = document->line(lines[i]).length();
+			int column = toStart ? 0 : len;
+			foreach (QDocumentCursor* c, cursors)
+				if (toStart) column = qMax(c->columnNumber(), column);
+				else column = qMin(c->columnNumber(), column);
+			QDocumentCursor c = document->cursor(lines[i], column, lines[i], toStart ? 0 : len);
+			c.removeSelectedText();
+
+			if (!toStart || !toEnd){
+				if (lines[i] == cursorLine) editor->setCursor(c);
+				else newMirrors << c;
+			}
+		}
+	}
+	document->endMacro();
+	if (!toStart || !toEnd)
+		for (int i=0;i<newMirrors.size();i++)
+			editor->addCursorMirror(newMirrors[i]); //one cursor / line
+}
+
+void LatexEditorView::moveLines(int delta)
+{
+	REQUIRE(delta == -1 || delta == +1);
+	QList<QDocumentCursor> cursors = editor->cursors();
+	for (int i=0;i<cursors.length();i++)
+		cursors[i].setAutoUpdated(false);
+	QList<QPair<int, int> > blocks = getSelectedLineBlocks();
+	document->beginMacro();
+	int i = delta < 0 ? blocks.size() - 1 : 0;
+	while (i >= 0 && i < blocks.size()) {
+		//edit
+		QDocumentCursor edit = document->cursor(blocks[i].first, 0, blocks[i].second);
+		QString text = edit.selectedText();
+		edit.removeSelectedText();
+		edit.eraseLine();
+		if (delta < 0) {
+			if (blocks[i].second < document->lineCount())
+				edit.movePosition(1, QDocumentCursor::PreviousLine);
+			edit.movePosition(1, QDocumentCursor::StartOfLine);
+			edit.insertText(text + "\n");
+		} else {
+			edit.movePosition(1, QDocumentCursor::EndOfLine);
+			edit.insertText("\n" + text);
+		}
+		i += delta;
+	}
+	document->endMacro();
+	//move cursors
+	for (int i=0;i<cursors.length();i++) {
+		cursors[i].setAutoUpdated(true);
+		if (cursors[i].hasSelection()) {
+			cursors[i].setAnchorLineNumber(cursors[i].anchorLineNumber() + delta);
+			cursors[i].setLineNumber(cursors[i].lineNumber() + delta, QDocumentCursor::KeepAnchor);
+		} else
+			cursors[i].setLineNumber(cursors[i].lineNumber() + delta);
+		if (i == 0) editor->setCursor(cursors[i]);
+		else editor->addCursorMirror(cursors[i]);
+	}
+}
+
+QList<QPair<int, int> > LatexEditorView::getSelectedLineBlocks()
+{
+	QList<QDocumentCursor> cursors = editor->cursors();
+	QList<int> lines;
+	//get affected lines
+	for (int i=0;i<cursors.length();i++) {
+		if (cursors[i].hasSelection()) {
+			QDocumentSelection sel = cursors[i].selection();
+			for (int l=sel.startLine;l<=sel.endLine;l++)
+				lines << l;
+		} else lines << cursors[i].lineNumber();
+	}
+	qSort(lines);
+	//merge blocks as speed up and to remove duplicates
+	QList<QPair<int, int> > result;
+	int i = 0;
+	while (i < lines.size()) {
+		int start = lines[i];
+		int end = lines[i];
+		i++;
+		while ( i >= 0 && i < lines.size() && (lines[i] == end || lines[i] == end + 1)) {
+			end = lines[i];
+			i++;
+		}
+		result << QPair<int,int> (start, end);
+	}
+	return result;
+}
+
+QMultiMap<int, QDocumentCursor* > LatexEditorView::getSelectedLines(QList<QDocumentCursor>& cursors)
+{
+	QMultiMap<int, QDocumentCursor* > map;
+	for (int i=0;i<cursors.length();i++) {
+		if (cursors[i].hasSelection()) {
+			QDocumentSelection sel = cursors[i].selection();
+			for (int l=sel.startLine;l<=sel.endLine;l++)
+				map.insert(l, &cursors[i]);
+		} else map.insert(cursors[i].lineNumber(), &cursors[i]);
+	}
+	return map;
+}
+
 void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 {
 	if (cursor.atBlockEnd()) {

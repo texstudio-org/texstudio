@@ -3358,97 +3358,46 @@ void Texstudio::convertToLatex()
 void Texstudio::editDeleteLine()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	c.beginEditBlock();
-	c.removeSelectedText(); // reduces multi-line selections to a single line
-	c.eraseLine();
-	c.endEditBlock();
+	currentEditorView()->deleteLines(true, true);
 }
 
 void Texstudio::editDeleteToEndOfLine()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	c.beginEditBlock();
-	if (!c.hasSelection()) {
-		c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-	}
-	c.removeSelectedText();
-	c.endEditBlock();
+	currentEditorView()->deleteLines(false, true);
 }
 
 void Texstudio::editDeleteFromStartOfLine()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	c.beginEditBlock();
-	if (!c.hasSelection()) {
-		c.movePosition(1, QDocumentCursor::StartOfLine, QDocumentCursor::KeepAnchor);
-	}
-	c.removeSelectedText();
-	c.endEditBlock();
+	currentEditorView()->deleteLines(true, false);
 }
 
 void Texstudio::editMoveLineUp()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentCursor anchor(c.document(), c.anchorLineNumber(), c.anchorColumnNumber());
-	QDocumentCursor start = c.selectionStart();
-	QDocumentCursor end = c.selectionEnd();
-	if (start.lineNumber() <= 0) return;
-	start.movePosition(1, QDocumentCursor::StartOfLine);
-	end.movePosition(1, QDocumentCursor::EndOfLine);
-	QDocumentCursor edit(start, end);
-	edit.beginEditBlock();
-	QString text = edit.selectedText();
-	edit.removeSelectedText();
-	edit.eraseLine();
-	edit.movePosition(1, QDocumentCursor::PreviousLine);
-	edit.movePosition(1, QDocumentCursor::StartOfLine);
-	edit.insertText(text + "\n");
-	edit.endEditBlock();
-	c.movePosition(1, QDocumentCursor::Up);
-	anchor.movePosition(1, QDocumentCursor::Up);
-	currentEditorView()->editor->setCursor(QDocumentCursor(anchor, c));
+	currentEditorView()->moveLines(-1);
 }
 
 void Texstudio::editMoveLineDown()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentCursor anchor(c.document(), c.anchorLineNumber(), c.anchorColumnNumber());
-	QDocumentCursor start = c.selectionStart();
-	QDocumentCursor end = c.selectionEnd();
-	if (end.lineNumber() >= c.document()->lineCount() - 1) return;
-	start.movePosition(1, QDocumentCursor::StartOfLine);
-	end.movePosition(1, QDocumentCursor::EndOfLine);
-	QDocumentCursor edit(start, end);
-	edit.beginEditBlock();
-	QString text = edit.selectedText();
-	edit.removeSelectedText();
-	edit.eraseLine();
-	edit.movePosition(1, QDocumentCursor::EndOfLine);
-	edit.insertText("\n" + text);
-	edit.endEditBlock();
-	c.movePosition(1, QDocumentCursor::Down);
-	anchor.movePosition(1, QDocumentCursor::Down);
-	currentEditorView()->editor->setCursor(QDocumentCursor(anchor, c));
+	currentEditorView()->moveLines(1);
 }
 
 void Texstudio::editDuplicateLine()
 {
-	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentCursor start = c.selectionStart();
-	QDocumentCursor end = c.selectionEnd();
-	start.movePosition(1, QDocumentCursor::StartOfLine);
-	end.movePosition(1, QDocumentCursor::EndOfLine);
-	QDocumentCursor edit(start, end);
-	//edit.beginEditBlock();
-	QString text = edit.selectedText();
-	start.insertText(text + "\n");
-	currentEditorView()->editor->setCursor(c);
+	if (!currentEditor()) return;
+	QEditor* ed = currentEditor();
+	QList<QDocumentCursor> cursors = ed->cursors();
+	for (int i=0;i<cursors.length();i++)
+		cursors[i].setAutoUpdated(false);
+	QList<QPair<int, int> > blocks = currentEditorView()->getSelectedLineBlocks();
+	for (int i=blocks.size()-1;i>=0;i--) {
+		QDocumentCursor edit = ed->document()->cursor(blocks[i].first, 0, blocks[i].second);
+		QString text = edit.selectedText();
+		edit.selectionEnd().insertText("\n" + text);
+	}
 }
 
 void Texstudio::editEraseWordCmdEnv()
