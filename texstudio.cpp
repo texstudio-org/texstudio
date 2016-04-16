@@ -804,6 +804,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "moveLineUp", tr("Move Line &Up"), SLOT(editMoveLineUp()));
 	newManagedAction(submenu, "moveLineDown", tr("Move Line &Down"), SLOT(editMoveLineDown()));
 	newManagedAction(submenu, "duplicateLine", tr("Du&plicate Line"), SLOT(editDuplicateLine()));
+	newManagedAction(submenu, "alignMirrors", tr("&Align Cursors"), SLOT(editAlignMirrors()));
 
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
 	newManagedAction(submenu, "textToLowercase", tr("To Lowercase"), SLOT(editTextToLowercase()));
@@ -3398,6 +3399,12 @@ void Texstudio::editDuplicateLine()
 		QString text = edit.selectedText();
 		edit.selectionEnd().insertText("\n" + text);
 	}
+}
+
+void Texstudio::editAlignMirrors()
+{
+	if (!currentEditor()) return;
+	currentEditorView()->alignMirrors();
 }
 
 void Texstudio::editEraseWordCmdEnv()
