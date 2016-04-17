@@ -68,6 +68,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		
 		QString replaceText() const;
 		void setReplaceText(const QString& r);
+		QString replaceTextExpanded() const;
 		
 		QDocumentCursor lastReplacedPosition() const;
 		
@@ -86,7 +87,7 @@ class QCE_EXPORT QDocumentSearch: public QObject
 	private:
 		void connectToEditor();
 
-		void replaceCursorText(QRegExp& m_regexp, bool backward);
+		void replaceCursorText(bool backward);
 		QList<QPair<QDocumentSelection, QDocumentSelection> > m_newReplacementOverlays;
 		void updateReplacementOverlays();
 		
@@ -94,11 +95,12 @@ class QCE_EXPORT QDocumentSearch: public QObject
 		void clearMatches();
 		void clearReplacements();
 		
-		QRegExp currentRegExp();
+		void recreateRegExp();
 		
 //		int m_index;
 		Options m_option;
 		QString m_string;
+		QRegExp m_regexp;
 		QString m_replace;
 		QPointer<QEditor> m_editor;
 		QDocumentCursor m_cursor, m_scope, m_highlightedScope, m_searchedScope, m_lastReplacedPosition;
