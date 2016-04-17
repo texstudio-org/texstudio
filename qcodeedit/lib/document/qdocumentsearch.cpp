@@ -137,7 +137,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 
 	QDocumentCursor hc = hscope.selectionStart();
 	QDocumentSelection boundaries=hscope.selection();
-	QRegExp m_regexp = currentRegExp();
+	recreateRegExp();
 	
 	if (!clearAll) {//otherwise it was already cleaned above
 		int from = boundaries.startLine, to = boundaries.endLine;
@@ -266,14 +266,13 @@ QDocument* QDocumentSearch::currentDocument(){
 /*
   returns a regexp which fully describes the search text (including flags like casesensitivity, wholewords,...)
   */
-QRegExp QDocumentSearch::currentRegExp(){
+void QDocumentSearch::recreateRegExp(){
 	Qt::CaseSensitivity cs = hasOption(CaseSensitive)
 								?
 									Qt::CaseSensitive
 								:
 									Qt::CaseInsensitive;
 	
-	QRegExp m_regexp;
 	if ( hasOption(RegExp) )
 	{
 		m_regexp = QRegExp(m_string, cs, QRegExp::RegExp);
@@ -288,7 +287,6 @@ QRegExp QDocumentSearch::currentRegExp(){
 	} else {
 		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
 	}
-	return m_regexp;
 }
 
 
@@ -398,6 +396,58 @@ void QDocumentSearch::setReplaceText(const QString& r)
 	m_lastReplacedPosition = QDocumentCursor();
 }
 
+
+static QString escapeCpp(const QString& s)
+{
+	QString es;
+//TODO: numbers (e.g. \xA6)
+	for ( int i = 0; i < s.count(); ++i )
+	{
+		if ( (s.at(i) == '\\') && ((i + 1) < s.count()) )
+		{
+			QChar c = s.at(++i);
+
+			if ( c == '\\' )
+				es += '\\';
+			else if ( c == 't' )
+				es += '\t';
+			else if ( c == 'n' )
+				es += '\n';
+			else if ( c == 'r' )
+				es += '\r';
+			//else if ( c == '0' )
+			//	es += '\0';
+			else es += '\\', es += c;
+
+		} else {
+			es += s.at(i);
+		}
+	}
+
+	//qDebug("\"%s\" => \"%s\"", qPrintable(s), qPrintable(es));
+
+	return es;
+}
+
+/*!
+	\return the replacement text after expanding escape characters
+*/
+
+QString QDocumentSearch::replaceTextExpanded() const
+{
+	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
+
+	if (hasOption(RegExp))
+#if QT_VERSION<0x040600
+	   for ( int i = m_regexp.numCaptures(); i >= 0; --i )
+#else
+	   for ( int i = m_regexp.captureCount(); i >= 0; --i )
+#endif
+			replacement.replace(QString("\\") + QString::number(i),
+								m_regexp.cap(i));
+	return replacement;
+}
+
 QDocumentCursor QDocumentSearch::lastReplacedPosition() const{
 	return m_lastReplacedPosition;
 }
@@ -500,13 +550,13 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 
 	QDocumentCursor firstMatch;
 
-	QRegExp m_regexp=currentRegExp();
+	recreateRegExp();
 	
 	int replaceCount = 0;
 	
 	if (hasOption(Replace) && again && !all) 
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
-			replaceCursorText(m_regexp,backward);
+			replaceCursorText(backward);
 			updateReplacementOverlays();
 			replaceCount++;
 			//foundCount++; we can't set this here, because it has to search the next match
@@ -656,7 +706,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 					}
 					
 					if ( rep ) {
-						replaceCursorText(m_regexp,backward);
+						replaceCursorText(backward);
 						if (!all) updateReplacementOverlays();
 						replaceCount++;
 					}
@@ -750,52 +800,11 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 }
 /*! @} */
 
-static QString escapeCpp(const QString& s)
-{
-	QString es;
-//TODO: numbers (e.g. \xA6)
-	for ( int i = 0; i < s.count(); ++i )
-	{
-		if ( (s.at(i) == '\\') && ((i + 1) < s.count()) )
-		{
-			QChar c = s.at(++i);
 
-			if ( c == '\\' )
-				es += '\\';
-			else if ( c == 't' )
-				es += '\t';
-			else if ( c == 'n' )
-				es += '\n';
-			else if ( c == 'r' )
-				es += '\r';
-			//else if ( c == '0' )
-			//	es += '\0';
-			else es += '\\', es += c;
 
-		} else {
-			es += s.at(i);
-		}
-	}
-
-	//qDebug("\"%s\" => \"%s\"", qPrintable(s), qPrintable(es));
-
-	return es;
-}
-
-void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
-	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
-	
-	if (hasOption(RegExp)) 
-#if QT_VERSION<0x040600
-        for ( int i = m_regexp.numCaptures(); i >= 0; --i )
-#else
-        for ( int i = m_regexp.captureCount(); i >= 0; --i )
-#endif
-			replacement.replace(QString("\\") + QString::number(i),
-								m_regexp.cap(i));
-
+void QDocumentSearch::replaceCursorText(bool backward){
 	QDocumentSelection old_boundaries = m_cursor.selection();
-	m_cursor.replaceSelectedText(replacement);
+	m_cursor.replaceSelectedText(replaceTextExpanded());
 	m_newReplacementOverlays << QPair<QDocumentSelection,QDocumentSelection>(old_boundaries, m_cursor.selection());
 
 	m_lastReplacedPosition = m_cursor;
