@@ -982,11 +982,6 @@ void registerCrashHandler(int mode) {}
 
 //========================NEW ASSERT==============================
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#define ASSERT_THROW Q_DECL_NOTHROW
-#else
-#define ASSERT_THROW
-#endif
 
 #undef qt_assert
 Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line) ASSERT_THROW ;
