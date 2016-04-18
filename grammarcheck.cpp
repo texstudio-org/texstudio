@@ -461,10 +461,7 @@ GrammarCheckLanguageToolSOAP::~GrammarCheckLanguageToolSOAP()
 
 void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 {
-	if (!nam) {
-		nam = new QNetworkAccessManager();
-		connect(nam, SIGNAL(finished(QNetworkReply *)), SLOT(finished(QNetworkReply *)));
-	}
+
 	server = config.languageToolURL;
 	ltPath = config.languageToolAutorun ? config.languageToolPath : "";
 	if (!ltPath.endsWith("jar")) {
@@ -539,6 +536,11 @@ const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribut
 
 void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString &language, const QString &text)
 {
+    if (!nam) {
+		nam = new QNetworkAccessManager();
+		connect(nam, SIGNAL(finished(QNetworkReply *)), SLOT(finished(QNetworkReply *)));
+	}
+
 	REQUIRE(nam);
 
 	QString lang = language;
@@ -578,6 +580,8 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 		javaProcess->deleteLater();
 	}
 	connectionAvailability = -2;
+    delete nam;
+    nam=0;
 }
 
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
@@ -598,6 +602,8 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 		tryToStart();
 		if (connectionAvailability == -1) {
 			if (delayedRequests.size()) delayedRequests.clear();
+            delete nam; // shutdown unnecessary network manager (Bug 1717/1738)
+            nam=0;
 			return; //confirmed: no backend
 		}
 		//there might be a backend now, but we still don't have the results
