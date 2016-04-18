@@ -31,4 +31,7 @@ void txs_assert_x(const char *where, const char *assertion, const char *file, in
 
 #endif
 #endif
+
+#include <QObject>
+
 #endif
