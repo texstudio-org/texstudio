@@ -12,7 +12,9 @@ UpdateChecker::UpdateChecker() :
 	QObject(0), silent(true)
 {
 	QNetworkProxyFactory::setUseSystemConfiguration(true);
-	networkManager = new QNetworkAccessManager();
+	//networkManager = new QNetworkAccessManager();
+    // activate networkManager only when directly needed as it causes network delays on mac (Bug 1717/1738)
+    networkManager=0;
 }
 
 UpdateChecker::~UpdateChecker()
@@ -43,6 +45,7 @@ void UpdateChecker::autoCheck()
 void UpdateChecker::check(bool silent)
 {
 	this->silent = silent;
+    networkManager = new QNetworkAccessManager();
 	QNetworkRequest request = QNetworkRequest(QUrl("http://texstudio.sourceforge.net/update/txsUpdate.xml"));
 	request.setRawHeader("User-Agent", "TeXstudio Update Checker");
 	QNetworkReply *reply = networkManager->get(request);
@@ -57,6 +60,9 @@ void UpdateChecker::onRequestError()
 	if (!reply) return;
 
 	txsCritical(tr("Update check failed with error:\n") + reply->errorString());
+
+    delete networkManager;
+    networkManager=0;
 }
 
 void UpdateChecker::onRequestCompleted()
@@ -68,6 +74,9 @@ void UpdateChecker::onRequestCompleted()
 
 	parseData(ba);
 	checkForNewVersion();
+
+    delete networkManager;
+    networkManager=0;
 }
 
 void UpdateChecker::parseData(const QByteArray &data)
