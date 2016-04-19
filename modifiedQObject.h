@@ -19,17 +19,20 @@
 #define qt_assert_x txs_assert_x
 
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
-#define ASSERT_THROW Q_DECL_NOTHROW
-#else
-#define ASSERT_THROW
-#endif
+
 
 void txs_assert(const char *assertion, const char *file, int line) ASSERT_THROW;
 void txs_assert_x(const char *where, const char *assertion, const char *file, int line) ASSERT_THROW;
 
 
 #endif
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#define ASSERT_THROW Q_DECL_NOTHROW
+#else
+#define ASSERT_THROW
+#endif
+
 #endif
 
 #include <QObject>
