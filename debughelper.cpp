@@ -554,6 +554,7 @@ QString print_backtrace(const QString &message)
 //#include "ucontext.h"
 #include "sys/signal.h"
 #include "sys/ucontext.h"
+#include "pthread.h"
 #define USE_SIGNAL_HANDLER
 //names from http://google-glog.googlecode.com/svn-history/r75/trunk/m4/pc_from_ucontext.m4
 //for mac <= 10.4/tiger: if __ss.__ doesn't compile, replace it by ss.
