@@ -990,11 +990,6 @@ Q_CORE_EXPORT void qt_assert_x(const char *where, const char *what, const char *
 
 QString lastAssert;
 
-void txs_assert(const char *assertion, const char *file, int line) ASSERT_THROW
-{
-	txs_assert_x("something", assertion, file, line);
-}
-
 void txs_assert_x(const char *where, const char *assertion, const char *file, int line) ASSERT_THROW
 {
 	lastAssert = QString("Assert failure: %1 at %2 in %3:%4").arg(assertion).arg(where).arg(file).arg(line);
@@ -1006,6 +1001,11 @@ void txs_assert_x(const char *where, const char *assertion, const char *file, in
 	//won't be called:
 	qt_assert(assertion, file, line);
 	exit(1);
+}
+
+void txs_assert(const char *assertion, const char *file, int line) ASSERT_THROW
+{
+	txs_assert_x("something", assertion, file, line);
 }
 
 QString getLastCrashInformation(bool &wasLoop)
