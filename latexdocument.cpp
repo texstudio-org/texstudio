@@ -1000,7 +1000,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
 		if (mBeyondEnd && indexOf(mBeyondEnd) < i) newSection->setContext(StructureEntry::BeyondEnd);
         QString firstOptArg = getArg(args, dlh, 0, ArgumentList::Optional);
-        if(!firstOptArg.isEmpty())
+        if(!firstOptArg.isEmpty() && firstOptArg != "[]")  // workaround, actually getArg should return "" for "[]"
             firstArg=firstOptArg;
 		newSection->title = latexToText(firstArg);
 		newSection->level = level;
