@@ -41,10 +41,8 @@ public:
     QString sortWord; ///< for sorting used snippet name, allows change of sort-order by replacement special characters especially braces
 	QStringList lines; ///< to be inserted code
 	//TODO: Multirow selection
-	int cursorLine;  ///< placement of cursor after insert concerning line of codesnippet
-                     ///< -1 => not defined
-	int cursorOffset; ///< placement of cursor after insert concerning column
-                      ///< -1 => not defined
+	int cursorLine;  ///< placement of cursor after insert concerning line of codesnippet; -1 => not defined
+	int cursorOffset; ///< placement of cursor after insert concerning column; -1 => not defined
 	int anchorOffset; ///< placement of cursor anchor after insert
 	QList<QList<CodeSnippetPlaceHolder> > placeHolders; //used to draw
 	int usageCount; ///< usage count for favourite detection

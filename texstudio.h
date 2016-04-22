@@ -276,7 +276,7 @@ private slots:
 	void fileCheckinPdf(QString filename = "");
 	void fileUpdate(QString filename = "");
 	void fileUpdateCWD(QString filename = "");
-    void checkinAfterSave(QString filename, int checkIn=0);
+	void checkinAfterSave(QString filename, int checkIn = 0);
 	void checkin(QString fn, QString text = "txs auto checkin", bool blocking = false);
 	bool svnadd(QString fn, int stage = 0);
 	void svncreateRep(QString fn);
@@ -700,7 +700,7 @@ signals:
 	void infoNewFile(); ///< signal that a new file has been generated. Used for scritps as trigger.
 	void infoNewFromTemplate(); ///< signal that a new file from template has been generated. Used for scritps as trigger.
 	void infoLoadFile(const QString &filename); ///< signal that a file has been loaded. Used for scritps as trigger.
-    void infoFileSaved(const QString &filename,const int checkin=0); ///< signal that a file has been saved. Used for scritps as trigger.
+	void infoFileSaved(const QString &filename,const int checkin = 0); ///< signal that a file has been saved. Used for scritps as trigger.
 	void infoFileClosed(); ///< signal that a file has been closed. Used for scritps as trigger.
 	void infoAfterTypeset(); ///< signal that a file has been compiled. Used for scritps as trigger.
 	void imgPreview(const QString &fn);

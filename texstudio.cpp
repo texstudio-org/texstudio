@@ -96,7 +96,8 @@ Texstudio *txsInstance = 0;
 QCache<QString, QIcon> iconCache;
 
 // workaround needed on OSX due to https://bugreports.qt.io/browse/QTBUG-49576
-void hideSplash() {
+void hideSplash()
+{
 #ifdef Q_OS_MAC
 	if (txsInstance)
 		txsInstance->hideSplash();
@@ -137,7 +138,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	recentSessionList = 0;
 	editors = 0;
 	contextEntry = 0;
-    m_languages = 0; //initial state to avoid crash on OSX
+	m_languages = 0; //initial state to avoid crash on OSX
 
 	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
 
@@ -376,7 +377,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
 
-    connect(this, SIGNAL(infoFileSaved(QString,int)), this, SLOT(checkinAfterSave(QString,int)));
+	connect(this, SIGNAL(infoFileSaved(QString, int)), this, SLOT(checkinAfterSave(QString, int)));
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -390,7 +391,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	connectWithAdditionalArguments(this, SIGNAL(infoAfterTypeset()), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_TYPESET);
 	connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
 
-    if (configManager.sessionRestore && !ConfigManager::dontRestoreSession) {
+	if (configManager.sessionRestore && !ConfigManager::dontRestoreSession) {
 		fileRestoreSession(false, false);
 	}
 	splashscreen = 0;
@@ -652,7 +653,7 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 							actionTexts.append(act->text());
 							actionIcons.append(act->icon());
 							if (menuName == "main/view/documents" && edView == act->data().value<LatexEditorView *>()) {
-								defaultIndex = actionTexts.length()-1;
+								defaultIndex = actionTexts.length() - 1;
 							}
 						}
 
@@ -663,7 +664,7 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 					/*
 					if (menuName == "main/view/documents") {
 						// workaround to select the current document
-			 			// combobox uses separate actions. So we have to get the current action from the menu (by comparing its data()
+						// combobox uses separate actions. So we have to get the current action from the menu (by comparing its data()
 						// attribute to the currentEditorView(). Then map it to a combobox action using the index.
 						LatexEditorView *edView = currentEditorView();
 						foreach (QAction* act, menu->actions()) {
@@ -1701,7 +1702,7 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
 	edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
 	if (!hidden) {
-		int index = reloadFromDoc ? documents.documents.indexOf(edit->document,0) : -1;  // index: we still assume here that the order of documents and editors is synchronized
+		int index = reloadFromDoc ? documents.documents.indexOf(edit->document, 0) : -1; // index: we still assume here that the order of documents and editors is synchronized
 		editors->insertEditor(edit, index);
 		edit->editor->setFocus();
 		updateCaption();
@@ -2325,7 +2326,7 @@ void Texstudio::insertTableTemplate()
 		}
 		QString tableDef = LatexTables::getSimplifiedDef(c);
 		QString tableText = LatexTables::getTableText(c);
-        QString widthDef;
+		QString widthDef;
 		//remove table
 		c.removeSelectedText();
 		m_edit->setCursor(c);
@@ -2346,7 +2347,7 @@ void Texstudio::insertTableTemplate()
 				int endExtra = tableText.indexOf("{", startExtra);
 				if (endExtra >= 0 && endExtra > startExtra) {
 					QString textHelper = tableText;
-                    widthDef=textHelper.mid(startExtra, endExtra - startExtra);
+					widthDef = textHelper.mid(startExtra, endExtra - startExtra);
 					textHelper.remove(startExtra, endExtra - startExtra); // remove to/spread definition
 					values.clear();
 					starts.clear();
@@ -2402,7 +2403,7 @@ void Texstudio::insertTableTemplate()
 			}
 			tableContent << elems;
 		}
-		LatexTables::generateTableFromTemplate(currentEditorView(), fname, tableDef, tableContent, env,widthDef);
+		LatexTables::generateTableFromTemplate(currentEditorView(), fname, tableDef, tableContent, env, widthDef);
 	}
 }
 /*! \brief align columns of latex table in editor
@@ -2500,8 +2501,8 @@ void Texstudio::fileSave(const bool saveSilently)
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
-        int checkIn=(configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) ? 2 : 1;
-        emit infoFileSaved(currentEditor()->fileName(),checkIn);
+		int checkIn = (configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) ? 2 : 1;
+		emit infoFileSaved(currentEditor()->fileName(), checkIn);
 	}
 	updateCaption();
 	//updateStructure(); (not needed anymore for autoupdate)
@@ -3389,12 +3390,12 @@ void Texstudio::editMoveLineDown()
 void Texstudio::editDuplicateLine()
 {
 	if (!currentEditor()) return;
-	QEditor* ed = currentEditor();
+	QEditor *ed = currentEditor();
 	QList<QDocumentCursor> cursors = ed->cursors();
-	for (int i=0;i<cursors.length();i++)
+	for (int i = 0; i < cursors.length(); i++)
 		cursors[i].setAutoUpdated(false);
 	QList<QPair<int, int> > blocks = currentEditorView()->getSelectedLineBlocks();
-	for (int i=blocks.size()-1;i>=0;i--) {
+	for (int i = blocks.size() - 1; i >= 0; i--) {
 		QDocumentCursor edit = ed->document()->cursor(blocks[i].first, 0, blocks[i].second);
 		QString text = edit.selectedText();
 		edit.selectionEnd().insertText("\n" + text);
@@ -3862,8 +3863,9 @@ void changeCase(QEditor *editor, QString(*method)(QString))
  * \param in input string
  * \result string in lower case
  */
-QString txsToLower(QString in){
-    return in.toLower();
+QString txsToLower(QString in)
+{
+	return in.toLower();
 }
 
 /*!
@@ -3871,7 +3873,7 @@ QString txsToLower(QString in){
  */
 void Texstudio::editTextToLowercase()
 {
-    changeCase(currentEditor(), &txsToLower);
+	changeCase(currentEditor(), &txsToLower);
 }
 /*!
  * Helperfunction to convert a string to upper case.
@@ -3879,8 +3881,9 @@ void Texstudio::editTextToLowercase()
  * \result string in upper case
  */
 
-QString txsToUpper(QString in){
-    return in.toUpper();
+QString txsToUpper(QString in)
+{
+	return in.toUpper();
 }
 
 /*!
@@ -3888,7 +3891,7 @@ QString txsToUpper(QString in){
  */
 void Texstudio::editTextToUppercase()
 {
-    changeCase(currentEditor(), &txsToUpper);
+	changeCase(currentEditor(), &txsToUpper);
 }
 
 /*!
@@ -4147,10 +4150,10 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 
-        if(!ConfigManager::dontRestoreSession){// don't save session when using --no-restore as this is used for single doc handling
-            Session s = getCurrentSession();
-            s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath(), configManager.sessionStoreRelativePaths);
-        }
+		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
+			Session s = getCurrentSession();
+			s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath(), configManager.sessionStoreRelativePaths);
+		}
 	}
 
 
@@ -4437,7 +4440,7 @@ void Texstudio::normalCompletion()
 	Tokens::TokenType type = tk.type;
 	if (tk.subtype != Tokens::none)
 		type = tk.subtype;
-    if (type == Tokens::specialArg) {
+	if (type == Tokens::specialArg) {
 		int df = int(type - Tokens::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
@@ -4902,101 +4905,80 @@ void Texstudio::quickTabular()
 	if ( !currentEditorView() )	return;
 	QString placeholder;//(0x2022);
 	QStringList borderlist, alignlist;
-	borderlist<< QString("|") << QString("||") << QString("") << QString("@{}");
+	borderlist << QString("|") << QString("||") << QString("") << QString("@{}");
 	alignlist << QString("c") << QString("l") << QString("r") << QString("p{3cm}") << QString(">{\\raggedright\\arraybackslash}p{3cm}") << QString(">{\\centering\\arraybackslash}p{%<3cm%>}") << QString(">{\\raggedleft\\arraybackslash}p{3cm}");
-	QString al="";
-	QString vs="";
-	QString el="";
+	QString al = "";
+	QString vs = "";
+	QString el = "";
 	QString tag;
-	TabDialog *quickDlg = new TabDialog(this,"Tabular");
-	QTableWidgetItem *item=new QTableWidgetItem();
-	if ( quickDlg->exec() )
-	{
+	TabDialog *quickDlg = new TabDialog(this, "Tabular");
+	QTableWidgetItem *item = new QTableWidgetItem();
+	if ( quickDlg->exec() ) {
 		int y = quickDlg->ui.spinBoxRows->value();
 		int x = quickDlg->ui.spinBoxColumns->value();
 		tag = QString("\\begin{tabular}{");
-		for ( int j=0;j<x;j++)
-		{
-			tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
-			tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
+		for ( int j = 0; j < x; j++) {
+			tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
+			tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
 		}
-		tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-		tag +=QString("}\n");
-		for ( int i=0;i<y;i++)
-		{
-			if (quickDlg->liDataList.at(i).topborder) tag+=QString("\\hline \n");
-			if (quickDlg->ui.checkBoxMargin->isChecked()) tag+="\\rule[-1ex]{0pt}{2.5ex} ";
-			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto>quickDlg->liDataList.at(i).mergefrom))
-			{
-				el="";
-				for ( int j=0;j<x;j++)
-				{
-					item =quickDlg->ui.tableWidget->item(i,j);
+		tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
+		tag += QString("}\n");
+		for ( int i = 0; i < y; i++) {
+			if (quickDlg->liDataList.at(i).topborder) tag += QString("\\hline \n");
+			if (quickDlg->ui.checkBoxMargin->isChecked()) tag += "\\rule[-1ex]{0pt}{2.5ex} ";
+			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto > quickDlg->liDataList.at(i).mergefrom)) {
+				el = "";
+				for ( int j = 0; j < x; j++) {
+					item = quickDlg->ui.tableWidget->item(i, j);
 
-					if (j==quickDlg->liDataList.at(i).mergefrom-1)
-					{
-						if (item) el+=item->text();
-						tag+=QString("\\multicolumn{");
-						tag+=QString::number(quickDlg->liDataList.at(i).mergeto-quickDlg->liDataList.at(i).mergefrom+1);
-						tag+=QString("}{");
-						if ((j==0) && (quickDlg->colDataList.at(j).leftborder<2)) tag+=borderlist.at(quickDlg->colDataList.at(j).leftborder);
-						if (quickDlg->colDataList.at(j).alignment<3) tag+=alignlist.at(quickDlg->colDataList.at(j).alignment);
-						else tag+=QString("c");
-						if (quickDlg->liDataList.at(i).mergeto==x) tag+=borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
-						else tag+=borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
-						tag+=QString("}{");
-					}
-					else if (j==quickDlg->liDataList.at(i).mergeto-1)
-					{
-						if (item) el+=item->text();
-						if (el.isEmpty()) el=placeholder;
-						tag+=el+QString("}");
-						if (j<x-1) tag+=" & ";
-						else tag+=QString(" \\\\ \n");
-					}
-					else if ((j>quickDlg->liDataList.at(i).mergefrom-1) && (j<quickDlg->liDataList.at(i).mergeto-1))
-					{
-						if (item) el+=item->text();
-					}
-					else
-					{
-						if (item)
-						{
-							if (item->text().isEmpty()) tag +=placeholder;
-							else tag +=item->text();
-						}
-						else tag +=placeholder;
-						if (j<x-1) tag+=" & ";
-						else tag+=QString(" \\\\ \n");
+					if (j == quickDlg->liDataList.at(i).mergefrom - 1) {
+						if (item) el += item->text();
+						tag += QString("\\multicolumn{");
+						tag += QString::number(quickDlg->liDataList.at(i).mergeto - quickDlg->liDataList.at(i).mergefrom + 1);
+						tag += QString("}{");
+						if ((j == 0) && (quickDlg->colDataList.at(j).leftborder < 2)) tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
+						if (quickDlg->colDataList.at(j).alignment < 3) tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
+						else tag += QString("c");
+						if (quickDlg->liDataList.at(i).mergeto == x) tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
+						else tag += borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
+						tag += QString("}{");
+					} else if (j == quickDlg->liDataList.at(i).mergeto - 1) {
+						if (item) el += item->text();
+						if (el.isEmpty()) el = placeholder;
+						tag += el + QString("}");
+						if (j < x - 1) tag += " & ";
+						else tag += QString(" \\\\ \n");
+					} else if ((j > quickDlg->liDataList.at(i).mergefrom - 1) && (j < quickDlg->liDataList.at(i).mergeto - 1)) {
+						if (item) el += item->text();
+					} else {
+						if (item) {
+							if (item->text().isEmpty()) tag += placeholder;
+							else tag += item->text();
+						} else tag += placeholder;
+						if (j < x - 1) tag += " & ";
+						else tag += QString(" \\\\ \n");
 					}
 
 				}
-			}
-			else
-			{
-				for ( int j=0;j<x-1;j++)
-				{
-					item =quickDlg->ui.tableWidget->item(i,j);
-					if (item)
-					{
-						if (item->text().isEmpty()) tag +=placeholder+QString(" & ");
-						else tag +=item->text()+ QString(" & ");
-					}
-					else tag +=placeholder+QString(" & ");
+			} else {
+				for ( int j = 0; j < x - 1; j++) {
+					item = quickDlg->ui.tableWidget->item(i, j);
+					if (item) {
+						if (item->text().isEmpty()) tag += placeholder + QString(" & ");
+						else tag += item->text() + QString(" & ");
+					} else tag += placeholder + QString(" & ");
 				}
-				item =quickDlg->ui.tableWidget->item(i,x-1);
-				if (item)
-				{
-					if (item->text().isEmpty()) tag +=placeholder+QString(" \\\\ \n");
-					else tag +=item->text()+ QString(" \\\\ \n");
-				}
-				else tag +=placeholder+QString(" \\\\ \n");
+				item = quickDlg->ui.tableWidget->item(i, x - 1);
+				if (item) {
+					if (item->text().isEmpty()) tag += placeholder + QString(" \\\\ \n");
+					else tag += item->text() + QString(" \\\\ \n");
+				} else tag += placeholder + QString(" \\\\ \n");
 			}
 		}
-		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag +=QString("\\hline \n\\end{tabular} ");
-		else tag +=QString("\\end{tabular} ");
-		if (tag.contains("arraybackslash")) tag="% \\usepackage{array} is required\n"+tag;
-		insertTag(tag,0,0);
+		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag += QString("\\hline \n\\end{tabular} ");
+		else tag += QString("\\end{tabular} ");
+		if (tag.contains("arraybackslash")) tag = "% \\usepackage{array} is required\n" + tag;
+		insertTag(tag, 0, 0);
 	}
 
 }
@@ -5449,7 +5431,7 @@ void Texstudio::createLabelFromAction()
 	// find column position after structure command
 	QString lineText = edView->getDocument()->line(lineNr).text();
 	int pos = -1;
-	for (int i=0; i<latexParser.structureDepth(); i++) {
+	for (int i = 0; i < latexParser.structureDepth(); i++) {
 		foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
 			pos = lineText.indexOf(cmd);
 			if (pos >= 0) {
@@ -6749,13 +6731,14 @@ void Texstudio::updateOpenDocumentMenu(bool localChange)
 	configManager.updateListMenu("main/view/documents", names, "doc", false, SLOT(gotoOpenDocument()), 0, true, 0, data);
 }
 
-void Texstudio::onEditorsReordered() {
+void Texstudio::onEditorsReordered()
+{
 	// we currently reorder the documents so that their order matches the order of editors
 	// this is purely conventional now (structure view inherits the order of the documents.)
 	// There is no technical necessity to align the order of editors and documents. We could drop
 	// this behavior in the future
 	QList<LatexDocument *> docs;
-	foreach(const LatexEditorView *edView, editors->editors()) {
+	foreach (const LatexEditorView *edView, editors->editors()) {
 		docs.append(edView->getDocument());
 	}
 	documents.reorder(docs);
@@ -7110,12 +7093,12 @@ void Texstudio::changeEvent(QEvent *e)
 	case QEvent::LanguageChange:
 		if (configManager.lastLanguage == configManager.language) return; //don't update if config not changed
 		//QMessageBox::information(0,"rt","retranslate",0);
-        if(!splashscreen){
-            setupMenus();
-            setupDockWidgets();
-            updateCaption();
-            updateMasterDocumentCaption();
-        }
+		if (!splashscreen) {
+			setupMenus();
+			setupDockWidgets();
+			updateCaption();
+			updateMasterDocumentCaption();
+		}
 		break;
 	default:
 		break;
@@ -7931,7 +7914,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 	float max = 100;
 	scale = qMax(min, qMin(max, scale)) * devPixelRatio;
 	bool fromPDF = false;
-	
+
 #ifndef NO_POPPLER_PREVIEW
 	fromPDF = imageFile.toLower().endsWith(".pdf");
 	if (fromPDF) {
@@ -7971,7 +7954,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		pixmap.setDevicePixelRatio(devPixelRatio);
 	}
 #endif
-	
+
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_PANEL ||
 	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
@@ -8262,8 +8245,8 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 			start += 7;  // behind curly brace of \\input{
 			int end = newLine.indexOf('}', start);
 			if (end >= 0) {
-				QString filename(newLine.mid(start, end-start));
-				newLine.replace(start, end-start, documents.getAbsoluteFilePath(filename));
+				QString filename(newLine.mid(start, end - start));
+				newLine.replace(start, end - start, documents.getAbsoluteFilePath(filename));
 			}
 			header << newLine;
 		}
@@ -8476,12 +8459,12 @@ void Texstudio::editFindGlobal()
 void Texstudio::runSearch(SearchQuery *query)
 {
 	if (!currentEditorView() || !query) return;
-    QString searchText=currentEditorView()->getSearchText();
-    query->setExpression(searchText);
-    SearchResultWidget *srw=outputView->getSearchResultWidget();
-    if(srw){
-        srw->updateSearchExpr(searchText);
-    }
+	QString searchText = currentEditorView()->getSearchText();
+	query->setExpression(searchText);
+	SearchResultWidget *srw = outputView->getSearchResultWidget();
+	if (srw) {
+		srw->updateSearchExpr(searchText);
+	}
 	query->run(currentEditorView()->document);
 }
 
@@ -8667,32 +8650,32 @@ void Texstudio::fileUpdateCWD(QString filename)
 	outputView->insertMessageLine(buffer);
 }
 
-void Texstudio::checkinAfterSave(QString filename,int checkIn)
+void Texstudio::checkinAfterSave(QString filename, int checkIn)
 {
-    if(checkIn>1){// special treatment for save
-        // 2: checkin
-        // 1: don't check in
-        checkin(filename);
-        if (configManager.svnUndo) currentEditor()->document()->clearUndo();
-    }
-    if(checkIn==0){ // from fileSaveAs
-        if (configManager.autoCheckinAfterSaveLevel > 1) {
-            if (svnadd(filename)) {
-                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-            } else {
-                //create simple repository
-                svncreateRep(filename);
-                svnadd(filename);
-                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-            }
-            // set SVN Properties if desired
-            if (configManager.svnKeywordSubstitution) {
-                QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
-                statusLabelProcess->setText(QString(" svn propset svn:keywords "));
-                runCommand(cmd, 0);
-            }
-        }
-    }
+	if (checkIn > 1) { // special treatment for save
+		// 2: checkin
+		// 1: don't check in
+		checkin(filename);
+		if (configManager.svnUndo) currentEditor()->document()->clearUndo();
+	}
+	if (checkIn == 0) { // from fileSaveAs
+		if (configManager.autoCheckinAfterSaveLevel > 1) {
+			if (svnadd(filename)) {
+				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+			} else {
+				//create simple repository
+				svncreateRep(filename);
+				svnadd(filename);
+				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+			}
+			// set SVN Properties if desired
+			if (configManager.svnKeywordSubstitution) {
+				QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
+				statusLabelProcess->setText(QString(" svn propset svn:keywords "));
+				runCommand(cmd, 0);
+			}
+		}
+	}
 }
 
 void Texstudio::checkin(QString fn, QString text, bool blocking)
@@ -10333,7 +10316,7 @@ void Texstudio::checkLatexInstall()
 
 	result += "\nTeXstudio:\n";
 	result += "Path        : " + QDir::toNativeSeparators(QCoreApplication::applicationFilePath()) + "\n";
-    result += "Program call: " + QCoreApplication::arguments().join(" ") + "\n";
+	result += "Program call: " + QCoreApplication::arguments().join(" ") + "\n";
 	result += "Setting file: " + QDir::toNativeSeparators(configManager.configFileName) + "\n";
 
 	result += "\nCommand configuration in TeXstudio:\n";
@@ -10355,7 +10338,8 @@ void Texstudio::checkLatexInstall()
  *
  * This function is for debugging.
  */
-void Texstudio::checkCWLs(){
+void Texstudio::checkCWLs()
+{
 	bool newFile = currentEditor();
 	if (!newFile) fileNew();
 
@@ -10364,13 +10348,13 @@ void Texstudio::checkCWLs(){
 	QSet<QString> cwls;
 	// collect user commands and references
 	foreach (LatexDocument *doc, docs) {
-		const QSet<QString>& cwl = doc->getCWLFiles();
+		const QSet<QString> &cwl = doc->getCWLFiles();
 		cwls.unite(cwl);
 		res << doc->getFileName() + ": " + QStringList(cwl.toList()).join(", ");
 		QList<CodeSnippet> users = doc->userCommandList();
 		if (!users.isEmpty()) {
 			QString line = QString("\t%1 user commands: ").arg(users.size());
-			foreach (const CodeSnippet& cs, users) line += (line.isEmpty() ? "" : "; ") + cs.word;
+			foreach (const CodeSnippet & cs, users) line += (line.isEmpty() ? "" : "; ") + cs.word;
 			res << line;
 		}
 	}
@@ -10388,29 +10372,29 @@ void Texstudio::checkCWLs(){
 		} else package = documents.cachedPackages.value(s);
 
 		res << "\tpossible commands";
-		foreach (const QString& key, package.possibleCommands.keys())
+		foreach (const QString &key, package.possibleCommands.keys())
 			res << QString("\t\t%1: %2").arg(key).arg(QStringList(package.possibleCommands.value(key).toList()).join(", "));
 		res << "\tspecial def commands";
-		foreach (const QString& key, package.specialDefCommands.keys())
+		foreach (const QString &key, package.specialDefCommands.keys())
 			res << QString("\t\t%1: %2").arg(key).arg(package.specialDefCommands.value(key));
 		res << "\tspecial treatment commands";
-		foreach (const QString& key, package.specialDefCommands.keys()) {
+		foreach (const QString &key, package.specialDefCommands.keys()) {
 			QString line = QString("\t\t%1: ").arg(key);
-			foreach (const QPairQStringInt& pair, package.specialTreatmentCommands.value(key))
+			foreach (const QPairQStringInt &pair, package.specialTreatmentCommands.value(key))
 				line += QString("%1 (%2)").arg(pair.first).arg(pair.second) + ", ";
 			line.chop(2);
 			res << line;
 		}
 		res << QString("\toption Commands: %1").arg(QStringList(package.optionCommands.toList()).join(", "));
 		QString line = QString("\tkinds: ");
-		foreach (const QString& key, package.commandDescriptions.keys()){
-			const CommandDescription& cmd = package.commandDescriptions.value(key);
+		foreach (const QString &key, package.commandDescriptions.keys()) {
+			const CommandDescription &cmd = package.commandDescriptions.value(key);
 			line += key + "(" + cmd.toDebugString() + "), ";
 		}
 		line.chop(2);
 		res << line;
 		line = QString("\tall commands: ");
-		foreach (const CodeSnippet& cs, package.completionWords) line += (line.isEmpty() ? "" : "; ") + cs.word;
+		foreach (const CodeSnippet & cs, package.completionWords) line += (line.isEmpty() ? "" : "; ") + cs.word;
 		res << line;
 		res << "" << "";
 	}
@@ -10508,14 +10492,14 @@ void Texstudio::closeEnvironment()
 			if (env_end.isEmpty()) // last env is for internal use only
 				break;
 			if (e == mostRecentEnv) { // found, now close it
-                QString txt;
-                if(e.origName.isEmpty()){
-                    txt = "\\end{" + e.name + "}";
-                } else {
-                    txt = e.origName;
-                    int i=latexParser.mathStartCommands.indexOf(txt);
-                    txt=latexParser.mathStopCommands.value(i);
-                }
+				QString txt;
+				if (e.origName.isEmpty()) {
+					txt = "\\end{" + e.name + "}";
+				} else {
+					txt = e.origName;
+					int i = latexParser.mathStartCommands.indexOf(txt);
+					txt = latexParser.mathStopCommands.value(i);
+				}
 				m_edit->insertText(txt);
 				break;
 			}
