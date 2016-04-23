@@ -660,12 +660,11 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 					//qDebug() << "**" << actionTexts;
 					createComboToolButton(tb.toolbar, actionTexts, actionIcons, -1, this, SLOT(callToolButtonAction()), defaultIndex, combo);
 
-					qDebug() << "TODO: repopulate documents menu. Still necessary or does editors provide it?";
-					/*
 					if (menuName == "main/view/documents") {
 						// workaround to select the current document
 						// combobox uses separate actions. So we have to get the current action from the menu (by comparing its data()
 						// attribute to the currentEditorView(). Then map it to a combobox action using the index.
+						// TODO: should this menu be provided by Editors?
 						LatexEditorView *edView = currentEditorView();
 						foreach (QAction* act, menu->actions()) {
 							qDebug() << act->data().value<LatexEditorView *>() << combo;
@@ -683,7 +682,7 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 								combo->setDefaultAction(combo->menu()->actions()[i]);
 							}
 						}
-					}*/
+					}
 				}
 }
 
