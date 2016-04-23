@@ -598,7 +598,6 @@ protected slots:
 	void latexModelViewMode();
 	void moveDocumentToFront();
 	void moveDocumentToEnd();
-	void moveDocumentToDest(int dest);
 
 	void updateTexQNFA();
 	void updateHighlighting();
