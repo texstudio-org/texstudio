@@ -170,7 +170,6 @@
 <file>images-ng/zoom-out.svgz</file>
 <file>images-ng/classic/close.svg</file>
 <file>images-ng/classic/dfrac.svg</file>
-<file>images-ng/classic/format-justify-center.svgz</file>
 <file>images-ng/classic/mathmode.svg</file>
 <file>images-ng/classic/newline.svg</file>
 <file>images-ng/classic/smallfrac.svg</file>
@@ -179,7 +178,6 @@
 <file>images-ng/classic/superscript.svg</file>
 <file>images-ng/modern/close.svg</file>
 <file>images-ng/modern/dfrac.svg</file>
-<file>images-ng/modern/document-open.svgz</file>
 <file>images-ng/modern/frac.svg</file>
 <file>images-ng/modern/mathmode.svg</file>
 <file>images-ng/modern/newline.svg</file>

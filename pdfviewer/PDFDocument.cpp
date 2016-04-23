@@ -2388,11 +2388,11 @@ void PDFDocument::init(bool embedded)
 #ifdef Q_OS_WIN32
 	//action_Print->setVisible(false);
 #endif
-	actionUndo->setIcon(getRealIcon("undo"));
-	actionRedo->setIcon(getRealIcon("redo"));
-	actionCut->setIcon(getRealIcon("cut"));
-	actionCopy->setIcon(getRealIcon("copy"));
-	actionPaste->setIcon(getRealIcon("paste"));
+	actionUndo->setIcon(getRealIcon("edit-undo"));
+	actionRedo->setIcon(getRealIcon("edit-redo"));
+	actionCut->setIcon(getRealIcon("edit-cut"));
+	actionCopy->setIcon(getRealIcon("edit-copy"));
+	actionPaste->setIcon(getRealIcon("edit-paste"));
 	actionMagnify->setIcon(getRealIcon("zoom-in"));
 	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(getRealIcon("build"));
