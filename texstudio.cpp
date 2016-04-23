@@ -9485,19 +9485,6 @@ void Texstudio::moveDocumentToEnd()
 	editors->moveEditor(entry->document->getEditorView(), Editors::AbsoluteEnd);
 }
 
-void Texstudio::moveDocumentToDest(int dest)
-{
-	qDebug() << "TODO: not supported anymore by new class EDITORS. Is this still needed?";
-	/*
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || entry->type != StructureEntry::SE_DOCUMENT_ROOT) return;
-	int cur = documents.documents.indexOf(entry->document);
-	if (cur < 0) return;
-	EditorTabs->moveTab(cur, dest);
-	editorTabMoved(cur, dest);
-	*/
-}
-
 void Texstudio::importPackage(QString name)
 {
 	if (!latexStyleParser) {
