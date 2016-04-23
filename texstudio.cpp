@@ -718,9 +718,9 @@ void Texstudio::setupMenus()
 	//file
 	QMenu *menu = newManagedMenu("main/file", tr("&File"));
 	getManagedMenu("main/file");
-	newManagedAction(menu, "new", tr("&New"), SLOT(fileNew()), QKeySequence::New, "filenew");
+	newManagedAction(menu, "new", tr("&New"), SLOT(fileNew()), QKeySequence::New, "document-new");
 	newManagedAction(menu, "newfromtemplate", tr("New From &Template..."), SLOT(fileNewFromTemplate()));
-	newManagedAction(menu, "open", tr("&Open..."), SLOT(fileOpen()), QKeySequence::Open, "fileopen");
+	newManagedAction(menu, "open", tr("&Open..."), SLOT(fileOpen()), QKeySequence::Open, "document-open");
 
 	QMenu *submenu = newManagedMenu(menu, "openrecent", tr("Open &Recent")); //only create the menu here, actions are created by config manager
 
@@ -736,7 +736,7 @@ void Texstudio::setupMenus()
 	recentSessionList->updateMostRecentMenu();
 
 	menu->addSeparator();
-	actSave = newManagedAction(menu, "save", tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "filesave");
+	actSave = newManagedAction(menu, "save", tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "document-save");
 	newManagedAction(menu, "saveas", tr("Save &As..."), SLOT(fileSaveAs()), filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_S));
 	newManagedAction(menu, "saveall", tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL + Qt::SHIFT + Qt::ALT + Qt::Key_S);
 	newManagedAction(menu, "maketemplate", tr("&Make Template..."), SLOT(fileMakeTemplate()));
@@ -770,7 +770,7 @@ void Texstudio::setupMenus()
 	newManagedAction(svnSubmenu, "prevdiff", tr("Jump to previous difference"), SLOT(jumpPrevDiff()), 0, "go-previous-diff");
 
 	menu->addSeparator();
-	newManagedAction(menu, "close", tr("&Close"), SLOT(fileClose()), Qt::CTRL + Qt::Key_W, "fileclose");
+	newManagedAction(menu, "close", tr("&Close"), SLOT(fileClose()), Qt::CTRL + Qt::Key_W, "document-close");
 	newManagedAction(menu, "closeall", tr("Clos&e All"), SLOT(fileCloseAll()));
 
 	menu->addSeparator();
@@ -787,10 +787,9 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "debughistory", tr("Debug undo stack"), SLOT(editDebugUndoStack()));
 #endif
 	menu->addSeparator();
-	newManagedAction(menu, "copy", tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "editcopy");
-	newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "editcut");
-	newManagedAction(menu, "paste", tr("&Paste"), SLOT(editPaste()), QKeySequence::Paste, "editpaste");
-	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
+	newManagedAction(menu, "copy", tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "edit-copy");
+	newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "edit-cut");
+	newManagedAction(menu, "paste", tr("&Paste"), SLOT(editPaste()), QKeySequence::Paste, "edit-paste");
 
 	submenu = newManagedMenu(menu, "selection", tr("&Selection"));
 	newManagedEditorAction(submenu, "selectAll", tr("Select &All"), "selectAll", Qt::CTRL + Qt::Key_A);
@@ -1208,8 +1207,8 @@ void Texstudio::setupMenus()
 
 	//---help---
 	menu = newManagedMenu("main/help", tr("&Help"));
-	newManagedAction(menu, "latexreference", tr("LaTeX Reference..."), SLOT(latexHelp()), 0, "help");
-	newManagedAction(menu, "usermanual", tr("User Manual..."), SLOT(userManualHelp()), 0, "help");
+	newManagedAction(menu, "latexreference", tr("LaTeX Reference..."), SLOT(latexHelp()), 0, "help-contents");
+	newManagedAction(menu, "usermanual", tr("User Manual..."), SLOT(userManualHelp()), 0, "help-contents");
 	newManagedAction(menu, "texdocdialog", tr("Packages Help..."), SLOT(texdocHelp()));
 
 	menu->addSeparator();

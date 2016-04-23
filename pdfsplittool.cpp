@@ -123,7 +123,7 @@ void PDFSplitMergeTool::addInput()
 
 	wigs << new QLabel(tr("Input file:"), parent);
 	wigs << new QLineEdit(parent);
-	wigs << new QPushButton(getRealIcon("fileopen"), "", parent);
+	wigs << new QPushButton(getRealIcon("document-open"), "", parent);
 	connect(wigs.last(), SIGNAL(clicked()), SLOT(inputFileDialog()));
 	wigs << new QPushButton(getRealIcon("list-remove"), "", parent);
 	connect(wigs.last(), SIGNAL(clicked()), SLOT(removeInput()));
