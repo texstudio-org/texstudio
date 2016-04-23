@@ -1273,7 +1273,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 
-	QIcon fileOpenIcon = getRealIcon("fileopen");
+	QIcon fileOpenIcon = getRealIcon("document-open");
 	confDlg->ui.pushButtonDictDir->setIcon(fileOpenIcon);
 	confDlg->ui.btSelectThesaurusFileName->setIcon(fileOpenIcon);
 
@@ -2509,7 +2509,7 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 		buttons << pb;
 	}
 
-	pb = new QPushButton(getRealIcon("fileopen"), "", parent);
+	pb = new QPushButton(getRealIcon("document-open"), "", parent);
 	pb->setToolTip(tr("Select Program"));
 	pb->setProperty(PROPERTY_WIDGET_TYPE, CG_PROGRAM);
 	connect(pb, SIGNAL(clicked()), SLOT(browseCommand()));

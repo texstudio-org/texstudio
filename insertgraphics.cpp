@@ -47,8 +47,8 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	setWindowTitle(tr("Insert Graphic"));
 	setModal(true);
 	ui.setupUi(this);
-	ui.fileSelectButton->setIcon(getRealIcon("fileopen"));
-	ui.pbSaveDefault->setIcon(getRealIcon("filesave"));
+	ui.fileSelectButton->setIcon(getRealIcon("document-open"));
+	ui.pbSaveDefault->setIcon(getRealIcon("document-save"));
 
 	connect(ui.leFile, SIGNAL(textChanged(const QString &)), this, SIGNAL(fileNameChanged(const QString &)));
 	connect(ui.fileSelectButton, SIGNAL(clicked()), this, SLOT(chooseFile()));

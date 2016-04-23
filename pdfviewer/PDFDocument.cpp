@@ -2381,8 +2381,8 @@ void PDFDocument::init(bool embedded)
 	actionActual_Size->setIcon(getRealIcon("zoom-original"));
 	actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
 	actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
-	actionNew->setIcon(getRealIcon("filenew"));
-	actionFileOpen->setIcon(getRealIcon("fileopen"));
+	actionNew->setIcon(getRealIcon("docuemtn-new"));
+	actionFileOpen->setIcon(getRealIcon("document-open"));
 	actionClose->setIcon(getRealIcon("close"));
 	action_Print->setIcon(getRealIcon("fileprint"));
 #ifdef Q_OS_WIN32
