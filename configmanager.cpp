@@ -2516,7 +2516,7 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 	buttons << pb;
 
 	if (!cmd.user && cmd.metaSuggestionList.isEmpty()) {
-		pb = new QPushButton(getRealIcon("undo"), "", parent);
+		pb = new QPushButton(getRealIcon("edit-undo"), "", parent);
 		pb->setToolTip(tr("Restore Default"));
 		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_RESET);
 		connect(pb, SIGNAL(clicked()), SLOT(undoCommand()));

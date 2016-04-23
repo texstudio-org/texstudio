@@ -781,8 +781,8 @@ void Texstudio::setupMenus()
 
 	//edit
 	menu = newManagedMenu("main/edit", tr("&Edit"));
-	actUndo = newManagedAction(menu, "undo", tr("&Undo"), SLOT(editUndo()), QKeySequence::Undo, "undo");
-	actRedo = newManagedAction(menu, "redo", tr("&Redo"), SLOT(editRedo()), QKeySequence::Redo, "redo");
+	actUndo = newManagedAction(menu, "undo", tr("&Undo"), SLOT(editUndo()), QKeySequence::Undo, "edit-undo");
+	actRedo = newManagedAction(menu, "redo", tr("&Redo"), SLOT(editRedo()), QKeySequence::Redo, "edit-redo");
 #ifndef QT_NO_DEBUG
 	newManagedAction(menu, "debughistory", tr("Debug undo stack"), SLOT(editDebugUndoStack()));
 #endif
