@@ -62,7 +62,6 @@ public:
 
 	//build
 	BuildManager *buildManager;
-	bool singleViewerInstance;
 	bool showMessagesWhenCompiling;
 	bool runLaTeXBibTeXLaTeX;
 	int showStdoutOption; //never = 0, user commands, always

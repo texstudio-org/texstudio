@@ -25,6 +25,7 @@ const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 int BuildManager::autoRerunLatex = 5;
 bool BuildManager::m_replaceEnvironmentVariables = true;
 bool BuildManager::m_supportShellStyleLiteralQuotes = true;
+bool BuildManager::singleViewerInstance = false;
 QString BuildManager::autoRerunCommands;
 QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
 
@@ -975,7 +976,9 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
 #ifdef Q_OS_WIN
 	isAcrobat = subcmd.contains("Acrobat.exe") || subcmd.contains("AcroRd32.exe");
 #endif
-	if (viewerCommands.contains(subcmd) && !isAcrobat) result |= RCF_SINGLE_INSTANCE;
+
+	if (viewerCommands.contains(subcmd) && !isAcrobat && singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
+	qDebug() << viewerCommands << subcmd << bool(result & RCF_SINGLE_INSTANCE);
 	return (RunCommandFlags)(result);
 }
 
