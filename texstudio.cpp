@@ -9189,15 +9189,20 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	if (!loaded) {
 		Q_ASSERT(curPaths.count() > 0);
 		QFileInfo fi(getAbsoluteFilePath(curPaths[0] + name, defaultExt));
-		if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
-			int lineNr = -1;
-			if (currentEditor()) {
-				lineNr = currentEditor()->cursor().lineNumber();
+		if (fi.exists()) {
+			txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
+		} else {
+			if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
+				int lineNr = -1;
+				if (currentEditor()) {
+					lineNr = currentEditor()->cursor().lineNumber();
+				}
+				if (!fi.absoluteDir().exists())
+					fi.absoluteDir().mkpath(".");
+				fileNew(fi.absoluteFilePath());
+				qDebug() << doc->getFileName() << lineNr;
+				doc->patchStructure(lineNr, 1);
 			}
-			if (!fi.absoluteDir().exists())
-				fi.absoluteDir().mkpath(".");
-			fileNew(fi.absoluteFilePath());
-			doc->patchStructure(lineNr, 1);
 		}
 	}
 }
