@@ -149,7 +149,7 @@ QString Macro::snippet() const
 	if (type == Snippet)
 		return tag;
 	else if (type == Environment)
-		return "\begin{" + tag + "}";
+		return "\\begin{" + tag + "}";
 	return QString();
 }
 
