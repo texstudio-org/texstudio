@@ -57,7 +57,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
 
         greaterThan(QT_MAJOR_VERSION,4){
             PKG_CONFIG_EXE = $$pkgConfigExecutable()
-            isEmpty($${PKG_CONFIG_EXE}) {
+            isEmpty(PKG_CONFIG_EXE) {
                 error("pkg-config not found. This tool is required if building with poppler. Please install it.")
             }
         }else{
