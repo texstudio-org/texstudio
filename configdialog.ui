@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>547</width>
-            <height>563</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -888,7 +888,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>198</width>
+               <width>860</width>
                <height>76</height>
               </rect>
              </property>
@@ -927,7 +927,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -961,7 +961,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -978,7 +978,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -2435,7 +2435,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -2446,7 +2446,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3053,7 +3053,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>494</width>
+            <width>863</width>
             <height>644</height>
            </rect>
           </property>
@@ -3083,8 +3083,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3134,8 +3134,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3280,8 +3280,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3341,8 +3341,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3386,8 +3386,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3534,8 +3534,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>344</width>
-            <height>241</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3796,8 +3796,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>490</width>
-            <height>407</height>
+            <width>880</width>
+            <height>617</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
