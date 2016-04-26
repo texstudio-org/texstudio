@@ -177,7 +177,8 @@ QString Macro::parseTypedTag(QString typedTag, Macro::Type &retType)
 	if (typedTag.startsWith("%SCRIPT\n")) {
 		retType = Script;
 		return typedTag.mid(8);
-	} else if (typedTag.startsWith("%")) {
+	} else if (typedTag.startsWith('%') && (typedTag.length() == 1 || typedTag.at(1).isLetter())) {
+		// Note: while % is an empty environemnt, reserved sequences like %%, %<, %| are snippets.
 		retType = Environment;
 		return typedTag.mid(1);
 	}
