@@ -164,7 +164,7 @@ QString QuickBeamerDialog::getNewDocumentText()
 
 	tag += ui.comboBoxSize->currentText();
 	tag += opt + QString("]{beamer}\n");
-	tag += "\\usetheme{" + ui.comboBoxTheme->currentText() + "}\n\n";
+
 	if (ui.comboBoxEncoding->currentText() != "NONE") {
 		tag += QString("\\usepackage[") + ui.comboBoxEncoding->currentText() + QString("]{inputenc}");
 	}
@@ -207,26 +207,26 @@ QString QuickBeamerDialog::getNewDocumentText()
 		tag += QString("\\usepackage{amsmath}\n\\usepackage{amsfonts}\n\\usepackage{amssymb}\n");
 	if (ui.checkBoxGraphicx->isChecked())
 		tag += QString("\\usepackage{graphicx}\n");
-	tag += QString("\n");
 
-	if (ui.lineEditAuthor->text() != "")
-		tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
-	else
-		tag += "%\\author{}\n";
-	if (ui.lineEditTitle->text() != "")
-		tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
-	else
-		tag += "%\\title{}\n";
-	tag += QString("%\\subtitle{}\n");
-	tag += QString("%\\logo{}\n");
-	tag += QString("%\\institute{}\n");
-	tag += QString("%\\date{}\n");
-	tag += QString("%\\subject{}\n");
-	tag += QString("%\\setbeamercovered{transparent}\n");
-	tag += QString("%\\setbeamertemplate{navigation symbols}{}\n");
+    tag += "\\usetheme{" + ui.comboBoxTheme->currentText() + "}\n";
 
-	tag += QString("\n\\begin{document}\n");
-	tag += QString("\\maketitle\n\n\\begin{frame}\n\t\\frametitle{%|}\n\\end{frame}\n");
+    tag += QString("\\begin{document}\n");
+    if (ui.lineEditAuthor->text() != "")
+        tag += "\\author{" + ui.lineEditAuthor->text() + "}\n";
+    else
+        tag += "%%\\author{}\n";
+    if (ui.lineEditTitle->text() != "")
+        tag += "\\title{" + ui.lineEditTitle->text() + "}\n";
+    else
+        tag += "%%\\title{}\n";
+    tag += QString("%%\\subtitle{}\n");
+    tag += QString("%%\\logo{}\n");
+    tag += QString("%%\\institute{}\n");
+    tag += QString("%%\\date{}\n");
+    tag += QString("%%\\subject{}\n");
+    tag += QString("%%\\setbeamercovered{transparent}\n");
+    tag += QString("%%\\setbeamertemplate{navigation symbols}{}\n");
+    tag += QString("\\frame[plain]{\\maketitle}\n\n\\begin{frame}\n\t\\frametitle{%|}\n\\end{frame}\n");
 	tag += QString("\\end{document}");
 	return tag;
 }
