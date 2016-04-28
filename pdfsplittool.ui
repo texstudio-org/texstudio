@@ -117,7 +117,7 @@
      </property>
      <property name="icon">
       <iconset resource="images.qrc">
-       <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+       <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
      </property>
     </widget>
    </item>
