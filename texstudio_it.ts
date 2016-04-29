@@ -1426,7 +1426,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1796"/>
         <source>Scan LaTeX distribution for installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Cerca pacchetti installati di distribuzioni LaTex</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1806"/>
@@ -2237,12 +2237,12 @@ possono essere controllate per ripetizioni a grande distanza.</translation>
         <location filename="configdialog.ui" line="3633"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation type="unfinished"/>
+        <translation>Mostra all&apos;interno della finestra</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3641"/>
         <source>Update the preview on text change</source>
-        <translation type="unfinished"/>
+        <translation>Aggiorna l&apos;anteprima quando il testo viene modificato</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3644"/>
@@ -2378,7 +2378,7 @@ possono essere controllate per ripetizioni a grande distanza.</translation>
     <message>
         <location filename="configdialog.ui" line="4004"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
-        <translation type="unfinished"/>
+        <translation>Nascondi le barre quando viene attivata la Modalità visualizzazione</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3994"/>
@@ -3482,12 +3482,12 @@ Desideri che TeXstudio lo attivi adesso?</translation>
     <message>
         <location filename="editors.cpp" line="366"/>
         <source>Split Vertically</source>
-        <translation type="unfinished"/>
+        <translation>Dividi verticalmente</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="366"/>
         <source>Split Horizontally</source>
-        <translation type="unfinished"/>
+        <translation>Dividi orizzontalmente</translation>
     </message>
 </context>
 <context>
@@ -4470,7 +4470,7 @@ Desideri sovrascriverlo?</translation>
         <location filename="toolwidgets.cpp" line="149"/>
         <location filename="toolwidgets.cpp" line="235"/>
         <source>Messages / Log File</source>
-        <translation type="unfinished"/>
+        <translation>Messaggi / Registro</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="160"/>
@@ -5356,7 +5356,7 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2935"/>
         <source>PDF password</source>
-        <translation type="unfinished"/>
+        <translation>Password del PDF</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2935"/>
@@ -8788,7 +8788,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="texstudio.cpp" line="748"/>
         <source>&amp;Delete file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Cancella file</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="749"/>
@@ -8974,7 +8974,7 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="texstudio.cpp" line="802"/>
         <source>Delete &amp;Line</source>
-        <translation type="unfinished"/>
+        <translation>Elimina &amp;riga</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="803"/>
@@ -9014,12 +9014,12 @@ Desideri comunque usare questa cartella?</translation>
     <message>
         <location filename="texstudio.cpp" line="811"/>
         <source>To Lowercase</source>
-        <translation type="unfinished"/>
+        <translation>minuscole</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="812"/>
         <source>To Uppercase</source>
-        <translation type="unfinished"/>
+        <translation>maiuscole</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="813"/>
