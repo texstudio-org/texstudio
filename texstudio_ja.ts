@@ -1679,7 +1679,7 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="configdialog.ui" line="2258"/>
         <source>Show image tooltip on image files</source>
-        <translation type="unfinished"/>
+        <translation>画像ファイル上に画像ツールチップを表示</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2268"/>
@@ -3491,17 +3491,17 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="360"/>
         <source>Move to other view</source>
-        <translation type="unfinished"/>
+        <translation>他の表示方法へ変更</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="366"/>
         <source>Split Vertically</source>
-        <translation type="unfinished"/>
+        <translation>垂直方向に分割</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="366"/>
         <source>Split Horizontally</source>
-        <translation type="unfinished"/>
+        <translation>水平方向に分割</translation>
     </message>
 </context>
 <context>
@@ -8147,25 +8147,25 @@ Do you trust this script?</source>
         <location filename="tabdialog.cpp" line="58"/>
         <source>p{} (fixed width - justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 両端揃え）</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="59"/>
         <source>p{} (fixed width - left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 左揃え）</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="60"/>
         <source>p{} (fixed width - center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 中揃え）</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="61"/>
         <source>p{} (fixed width - right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} （固定幅 - 右揃え）</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="66"/>
@@ -8302,7 +8302,7 @@ failed.</source>
         <location filename="templatemanager.cpp" line="201"/>
         <source>Select LaTeX Template</source>
         <oldsource>Select Latex Template</oldsource>
-        <translation type="unfinished"/>
+        <translation>LaTeXテンプレートを選択</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="219"/>
@@ -9017,7 +9017,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="808"/>
         <source>&amp;Align Cursors</source>
-        <translation type="unfinished"/>
+        <translation>カーソル位置を揃える(&amp;A)</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="810"/>
@@ -11562,7 +11562,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="webpublishdialog.ui" line="71"/>
         <source>Number of LaTeX compilations for the input file</source>
         <oldsource>Number of latex compilations for the input file</oldsource>
-        <translation type="unfinished"/>
+        <translation>入力ファイルをコンパイルする回数</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="87"/>
@@ -11583,7 +11583,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="webpublishdialog.ui" line="108"/>
         <source>LaTeX code for the title of the table of contents</source>
         <oldsource>Latex code for the title of the table of contents</oldsource>
-        <translation type="unfinished"/>
+        <translation>目次の名前を示すLaTeXコマンドを入力してください</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="115"/>
