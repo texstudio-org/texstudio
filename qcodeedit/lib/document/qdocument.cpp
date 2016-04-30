@@ -6977,14 +6977,14 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 					QDocumentCursor curHelper(cur,false);
 					curHelper.movePosition(1);
 					QPoint pt2=curHelper.documentPosition();
-					int wt;
-					if(pt.y()==pt2.y()){
-						wt=pt2.x()-pt.x();
-					}else{
-						wt=textWidth(0," ");
+					int width = 0;
+					if (pt.y() == pt2.y()) {
+						width = pt2.x() - pt.x();
 					}
-					QPoint curHt(wt,QDocumentPrivate::m_lineSpacing-1);
-					p->drawRect(pt.x(),pt.y(),curHt.x(),curHt.y());
+					if (width == 0) {
+						width = textWidth(0, " ");
+					}
+					p->drawRect(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing-1);
 				}else{
 					QPoint pt=cur.documentPosition();
 					QPoint curHt(0,QDocumentPrivate::m_lineSpacing-1);
