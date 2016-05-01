@@ -11,10 +11,10 @@
 
 #ifndef NO_POPPLER_PREVIEW
 
-#include <QtMath>
 #include "pdfrendermanager.h"
 #include "smallUsefulFunctions.h"
 #include "configmanagerinterface.h"
+#include <QtCore/qmath.h>
 
 const int kMaxPageZoom = 1000000;
 const qreal kMaxDpiForFullPage = isRetinaMac() ? 1000.0 : 500.0;

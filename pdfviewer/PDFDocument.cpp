@@ -30,7 +30,7 @@
 #include <QUrl>
 #include <QShortcut>
 #include <QtNumeric>
-#include <QtMath>
+#include <QtCore/qmath.h>
 
 #include "universalinputdialog.h"
 
