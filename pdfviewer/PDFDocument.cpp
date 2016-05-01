@@ -29,7 +29,7 @@
 #include <QRegion>
 #include <QUrl>
 #include <QShortcut>
-#include <QtNumeric>
+#include <QtCore/qnumeric.h>
 #include <QtCore/qmath.h>
 
 #include "universalinputdialog.h"
@@ -2956,7 +2956,7 @@ retryNow:
 			pdfWidget->setFocus();
 
 		// set page viewer only once
-		int maxDigits = 1 + qFloor(std::log10(pdfWidget->realNumPages()));
+                int maxDigits = 1 + qFloor(log10(pdfWidget->realNumPages()));
 		//if (maxDigits < 2) maxDigits = 2;
 		leCurrentPage->setMaxLength(maxDigits);
 		leCurrentPage->setFixedWidth(fontMetrics().width(QString(maxDigits + 1, '#')));
