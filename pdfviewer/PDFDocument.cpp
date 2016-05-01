@@ -30,7 +30,7 @@
 #include <QUrl>
 #include <QShortcut>
 
-#include <math.h>
+#include <cmath>
 #include "universalinputdialog.h"
 
 #include "configmanager.h"
@@ -965,17 +965,17 @@ void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
 
 	scrollArea->goToPage(page);
 
-	if (isnan(xinpdf)) xinpdf = 0;
+	if (std::isnan(xinpdf)) xinpdf = 0;
 	xinpdf = qBound<float>(0, xinpdf, 1);
-	if (isnan(yinpdf)) yinpdf = 0;
+	if (std::isnan(yinpdf)) yinpdf = 0;
 	yinpdf = qBound<float>(0, yinpdf, 1);
 
 	QPoint p = mapFromScaledPosition(page, QPointF( xinpdf, yinpdf));
 
-	if (!isnan(xinpdf))
+	if (!std::isnan(xinpdf))
 		scrollArea->horizontalScrollBar()->setValue(p.x());
 
-	if (!isnan(yinpdf)) {
+	if (!std::isnan(yinpdf)) {
 		int val = 0;
 		if (scrollArea->getContinuous())
 			val = scrollArea->verticalScrollBar()->value();
