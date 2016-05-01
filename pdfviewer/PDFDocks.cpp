@@ -35,7 +35,6 @@
 
 #include "PDFDocks.h"
 #include "PDFDocument.h"
-#include "math.h"
 
 /*!
  * \brief constructor
