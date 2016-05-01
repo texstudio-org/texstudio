@@ -29,8 +29,9 @@
 #include <QRegion>
 #include <QUrl>
 #include <QShortcut>
+#include <QtNumeric>
+#include <QtMath>
 
-#include <cmath>
 #include "universalinputdialog.h"
 
 #include "configmanager.h"
@@ -49,8 +50,6 @@
 
 #define SYNCTEX_GZ_EXT	".synctex.gz"
 #define SYNCTEX_EXT		".synctex"
-
-#define ROUND(x) floor((x)+0.5)
 
 const qreal kMaxScaleFactor = 4.0;
 const qreal kMinScaleFactor = 0.125;
@@ -943,7 +942,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 void PDFWidget::goToDestination(const Poppler::LinkDestination &dest)
 {
 	if (dest.pageNumber() > 0)
-		goToPageRelativePosition(dest.pageNumber() - 1, dest.isChangeLeft() ? dest.left() : NAN, dest.isChangeTop() ? dest.top() : NAN);
+		goToPageRelativePosition(dest.pageNumber() - 1, dest.isChangeLeft() ? dest.left() : qQNaN(), dest.isChangeTop() ? dest.top() : qQNaN());
 
 	/*if (dest.isChangeZoom()) {
 		// FIXME
@@ -965,17 +964,17 @@ void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
 
 	scrollArea->goToPage(page);
 
-	if (std::isnan(xinpdf)) xinpdf = 0;
+	if (qIsNaN(xinpdf)) xinpdf = 0;
 	xinpdf = qBound<float>(0, xinpdf, 1);
-	if (std::isnan(yinpdf)) yinpdf = 0;
+	if (qIsNaN(yinpdf)) yinpdf = 0;
 	yinpdf = qBound<float>(0, yinpdf, 1);
 
 	QPoint p = mapFromScaledPosition(page, QPointF( xinpdf, yinpdf));
 
-	if (!std::isnan(xinpdf))
+	if (!qIsNaN(xinpdf))
 		scrollArea->horizontalScrollBar()->setValue(p.x());
 
-	if (!std::isnan(yinpdf)) {
+	if (!qIsNaN(yinpdf)) {
 		int val = 0;
 		if (scrollArea->getContinuous())
 			val = scrollArea->verticalScrollBar()->value();
@@ -1207,7 +1206,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		if (event->buttons() == Qt::RightButton) {
 			inhibitNextContextMenuEvent = true;
 		}
-		if (qAbs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
+		if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
 			doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
 			summedWheelDegrees = 0;
 		}
@@ -1220,7 +1219,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
 			int oldValue = scrollBar->value();
 			const int scrollPerWheelStep = scrollBar->singleStep() * QApplication::wheelScrollLines();
-			scrollBar->setValue(scrollBar->value() - round(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
+			scrollBar->setValue(scrollBar->value() - qRound(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
 			int delta = oldValue - scrollBar->value();
 			if (delta != 0) {
 				lastScrollTime = QTime::currentTime();
@@ -1887,14 +1886,14 @@ void PDFWidget::doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor) //
 	QPoint globalPos = mapToGlobal(clickPos);
 	if (dir > 0 && scaleFactor < kMaxScaleFactor) {
 		scaleFactor *= zoomStepFactor;
-		if (fabs(scaleFactor - ROUND(scaleFactor)) < 0.01)
-			scaleFactor = ROUND(scaleFactor);
+		if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+			scaleFactor = qRound(scaleFactor);
 		if (scaleFactor > kMaxScaleFactor)
 			scaleFactor = kMaxScaleFactor;
 	} else if (dir < 0 && scaleFactor > kMinScaleFactor) {
 		scaleFactor /= zoomStepFactor;
-		if (fabs(scaleFactor - ROUND(scaleFactor)) < 0.01)
-			scaleFactor = ROUND(scaleFactor);
+		if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+			scaleFactor = qRound(scaleFactor);
 		if (scaleFactor < kMinScaleFactor)
 			scaleFactor = kMinScaleFactor;
 	} else if (dir == 0) {
@@ -2957,7 +2956,7 @@ retryNow:
 			pdfWidget->setFocus();
 
 		// set page viewer only once
-		int maxDigits = 1 + floor(log10(pdfWidget->realNumPages()));
+		int maxDigits = 1 + qFloor(std::log10(pdfWidget->realNumPages()));
 		//if (maxDigits < 2) maxDigits = 2;
 		leCurrentPage->setMaxLength(maxDigits);
 		leCurrentPage->setFixedWidth(fontMetrics().width(QString(maxDigits + 1, '#')));
@@ -3593,7 +3592,7 @@ void PDFDocument::showPage(int page)
 
 void PDFDocument::showScale(qreal scale)
 {
-	QString scaleString = QString("%1%").arg(ROUND(scale * 100.0));
+	QString scaleString = QString("%1%").arg(qRound(scale * 100.0));
 	scaleButton->setText(scaleString);
 	zoomSlider->blockSignals(true);
 	// don't emit value changed: This is only used to update the value. It does not initiate changes
