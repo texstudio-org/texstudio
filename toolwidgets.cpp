@@ -1,4 +1,4 @@
-#include <QtMath>
+#include <QtCore/qmath.h>
 
 #include "toolwidgets.h"
 #include "smallUsefulFunctions.h"
