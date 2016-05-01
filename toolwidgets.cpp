@@ -1,5 +1,6 @@
+#include <QtMath>
+
 #include "toolwidgets.h"
-#include "cmath"
 #include "smallUsefulFunctions.h"
 #include "utilsSystem.h"
 #include "configmanagerinterface.h"
@@ -112,7 +113,7 @@ void PreviewWidget::wheelEvent(QWheelEvent *event)
 	if (event->modifiers() == Qt::ControlModifier) {
 		float numDegrees = event->delta() / 8.0f;
 		float numSteps = numDegrees / 15.0f;
-		scaleImage(std::pow(1.4, numSteps));
+		scaleImage(qPow(1.4, numSteps));
 		event->accept();
 	} else QScrollArea::wheelEvent(event);
 }
