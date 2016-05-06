@@ -586,7 +586,7 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 {
-    if (connectionAvailability >= -1) return; //shutting down, don't continue if failed before
+    if (connectionAvailability < 0) return; //shutting down, don't continue if failed before
 
 	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
 	int subticket = nreply->request().attribute(AttributeSubTicket).toInt();
