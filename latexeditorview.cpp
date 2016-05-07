@@ -1844,6 +1844,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			LineInfo temp;
 			temp.line = line.handle();
 			temp.text = line.text();
+            // blank irrelevant content, i.e. commands, non-text, comments, verbatim
+            QDocumentLineHandle *dlh = line.handle();
+            TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            foreach(Tokens tk,tl){
+                if(tk.type==Tokens::word && tk.subtype==Tokens::none)
+                    continue;
+                if(tk.type==Tokens::punctuation && tk.subtype==Tokens::none)
+                    continue;
+                temp.text.replace(tk.start,tk.length,QString(tk.length,' '));
+            }
+
 			changedLines << temp;
 			if (line.firstChar() == -1) {
 				emit linesChanged(speller->name(), document, changedLines, truefirst);
