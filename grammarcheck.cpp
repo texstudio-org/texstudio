@@ -328,8 +328,8 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 	QMap<QString, LanguageGrammarData>::const_iterator it = languages.constFind(cr.language);
 	if (it == languages.constEnd()) {
 		LanguageGrammarData lgd;
-		lgd.stopWords = readWordList(config.wordlistsDir + "/" + cr.language + ".stopWords");
-		lgd.badWords = readWordList(config.wordlistsDir + "/" + cr.language + ".badWords");
+        lgd.stopWords = readWordList(config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".stopWords");
+        lgd.badWords = readWordList(config.wordlistsDir + "/" + languageFromLanguageToolToHunspell(cr.language) + ".badWords");
 		languages.insert(cr.language, lgd);
 		it = languages.constFind(cr.language);
 	}
@@ -440,6 +440,18 @@ QString GrammarCheck::languageFromHunspellToLanguageTool(QString language)
 	return languageMapping.value(language, language);
 }
 
+/*!
+ * Reformats a language identifier from the LanguageTool notation to hunspell notation
+ * e.g. en-GB -> en_GB and it -> it
+ */
+QString GrammarCheck::languageFromLanguageToolToHunspell(QString language)
+{
+    if(languageMapping.values().contains(language)){
+        language=languageMapping.key(language);
+    }
+    language.replace('-', '_');
+    return language;
+}
 
 
 GrammarCheckBackend::GrammarCheckBackend(QObject *parent): QObject(parent) {}
