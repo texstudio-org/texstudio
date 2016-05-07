@@ -267,15 +267,22 @@ void GrammarCheck::process(int reqId)
 		const TokenizedBlock &tb = crBlocks.at(b);
 		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
-			QString joined;
 			const QStringList &words = tb.words;
+            QString joined=words.first();
+            /*
 			int expectedLength = 0;
 			foreach (const QString & s, words) expectedLength += s.length();
-			joined.reserve(expectedLength + words.length());
-			for (int i = 0;;) {
+            joined.reserve(expectedLength + words.length());*/
+            for (int i = 1;i<words.length();i++) {
+                if(tb.lines[i]==tb.lines[i-1]){
+                    int delta=tb.indices[i]-tb.endindices[i-1];
+                    joined += QString(delta,' ');
+                }else{
+                    joined += " ";
+                }
 				joined += words[i];
-				CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words);
-				joined += " ";
+                /*CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words);
+                joined += " ";*/
 			}
 			backend->check(crTicket, b, crLanguage, joined);
 		}
