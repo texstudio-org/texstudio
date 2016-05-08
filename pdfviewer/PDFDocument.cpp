@@ -2488,7 +2488,6 @@ void PDFDocument::init(bool embedded)
 
 	pageLabel = new QLabel(statusBar());
 	statusBar()->addPermanentWidget(pageLabel);
-	pageLabel->setFont(statusBar()->font());
 
 	scaleButton = new QToolButton(toolBar);
 	scaleButton->setToolTip(tr("Scale"));
