@@ -753,7 +753,7 @@ Bạn có muốn TeXstudio để thay đổi tất cả các đường dẫn l�
         <location filename="configdialog.ui" line="208"/>
         <location filename="configdialog.ui" line="1866"/>
         <source>Appearance</source>
-        <translation type="unfinished"/>
+        <translation>Giao diện</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="224"/>
@@ -763,7 +763,7 @@ Bạn có muốn TeXstudio để thay đổi tất cả các đường dẫn l�
     <message>
         <location filename="configdialog.ui" line="231"/>
         <source>Ignore Most System Colors</source>
-        <translation type="unfinished"/>
+        <translation>Bỏ qua hầu hết các màu sắc hệ thống</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="247"/>
@@ -1507,7 +1507,7 @@ Sau đó, bạn có thể chọn một phím tắt mới theo một trong các c
     <message>
         <location filename="configdialog.ui" line="1991"/>
         <source>Bold Cursor</source>
-        <translation type="unfinished"/>
+        <translation>Chuột đậm</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2007"/>
@@ -1577,13 +1577,13 @@ Sau đó, bạn có thể chọn một phím tắt mới theo một trong các c
     <message>
         <location filename="configdialog.ui" line="2122"/>
         <source>Smooth Scrolling</source>
-        <translation type="unfinished"/>
+        <translation>Cuộn mượt</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2143"/>
         <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
         <oldsource>Disable key 'Esc' to close fullscreen-mode</oldsource>
-        <translation type="unfinished"/>
+        <translation>Đừng tắt chế độ toàn màn hình khi nhấn &lt;Esc&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2150"/>
@@ -10791,7 +10791,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="utilsUI.cpp" line="41"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Không cảnh báo một lần nữa.</translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>
@@ -10816,7 +10816,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="utilsSystem.cpp" line="549"/>
         <source>Show Containing Folder</source>
-        <translation type="unfinished"/>
+        <translation>Hiện thư mục chứa</translation>
     </message>
 </context>
 <context>
@@ -10829,7 +10829,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="20"/>
         <source>Actions</source>
-        <translation type="unfinished"/>
+        <translation>Thực thi</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="26"/>
@@ -10840,7 +10840,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="33"/>
         <source>Search selection in the document</source>
-        <translation type="unfinished"/>
+        <translation>Tìm kiếm lựa chọn trong tài liệu</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="40"/>

@@ -1708,22 +1708,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2327"/>
         <source>bib File Encoding:</source>
-        <translation type="unfinished"/>
+        <translation>Bib-bestandsencodering</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2334"/>
         <source>Parse BibTeX</source>
-        <translation type="unfinished"/>
+        <translation>Ontleed BibTeX</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2347"/>
         <source>Table Autoformating</source>
-        <translation type="unfinished"/>
+        <translation>Tabel auto-opmaak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2353"/>
         <source>One Line Per Cell</source>
-        <translation type="unfinished"/>
+        <translation>Een lijn per cel.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2361"/>
@@ -1733,7 +1733,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2366"/>
         <source>Separate Line (No Indent)</source>
-        <translation type="unfinished"/>
+        <translation>Gescheiden lijn (geen insprong)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2371"/>
