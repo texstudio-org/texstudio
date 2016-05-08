@@ -12,6 +12,8 @@
 \begin{subfigure}[pos]{width}
 \begin{subtable}{width}
 \begin{subtable}[pos]{width}
+\end{subfigure}
+\end{subtable}
 \subcaption{heading}
 \subcaption[list entry]{heading}
 \subcaption*{heading}#/minipage
