@@ -160,7 +160,7 @@ public:
 	bool sessionRestore;
 	bool sessionStoreRelativePaths;
 	bool parseBibTeX, parseMaster;
-	QString bibFileEncoding;
+	QString logFileEncoding, bibFileEncoding;
 	bool autoLoadChildren;
 
 	//autosave

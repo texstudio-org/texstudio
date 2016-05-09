@@ -107,7 +107,8 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	log->setVisible(false);
 }
 
-bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiledFileName)
+
+bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiledFileName, QTextCodec* fallbackCodec)
 {
 	resetLog();
 	QFileInfo fi(logname);
@@ -132,7 +133,7 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
 
 		int sure;
 		QTextCodec *codec = guessEncodingBasic(fullLog, &sure);
-		if (!sure || !codec) codec = QTextCodec::codecForLocale();
+		if (sure < 2 || !codec) codec = fallbackCodec ? fallbackCodec : QTextCodec::codecForLocale();
 
 		log->setPlainText(codec->toUnicode(fullLog));
 

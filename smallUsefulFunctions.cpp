@@ -1660,13 +1660,21 @@ QTextCodec *guessEncodingBasic(const QByteArray &data, int *outSure)
 		}
 		// less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
 		if (utf16le > utf16be) {
-			if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) guess = QTextCodec::codecForMib(MIB_UTF16LE);
+			if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) {
+				guess = QTextCodec::codecForMib(MIB_UTF16LE);
+				sure = 2;
+			}
 		} else {
-			if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) guess = QTextCodec::codecForMib(MIB_UTF16BE);
+			if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) {
+				guess = QTextCodec::codecForMib(MIB_UTF16BE);
+				sure = 2;
+			}
 		}
 		if (!guess) {
-			if (goodUtf8 > 10 * badUtf8) guess = QTextCodec::codecForMib(MIB_UTF8);
-			else {
+			if (goodUtf8 > 10 * badUtf8) {
+				guess = QTextCodec::codecForMib(MIB_UTF8);
+				sure = 2;
+			} else {
 				if (badIso1 > 0) guess = QTextCodec::codecForMib(MIB_WINDOWS1252);
 				else guess = QTextCodec::codecForMib(MIB_LATIN1);
 				if (badUtf8 == 0) sure = 0;
