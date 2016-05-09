@@ -1816,7 +1816,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
 	        txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-		outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName());
+		outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
 		setLogMarksVisible(true);
 		return 0;
 	}
@@ -6079,7 +6079,8 @@ bool Texstudio::loadLog()
 		return false;
 	}
 	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(buildManager.additionalLogPaths));
-	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName);
+	QTextCodec * codec = QTextCodec::codecForName(configManager.logFileEncoding.toLatin1());
+	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName, codec ? codec : documents.getCurrentDocument()->codec() );
 }
 
 void Texstudio::showLog()
