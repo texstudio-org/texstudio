@@ -599,18 +599,20 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 		javaProcess->deleteLater();
 	}
 	connectionAvailability = -2;
-    delete nam;
-    nam=0;
+	if (nam) {
+		nam->deleteLater();
+		nam = 0;
+	}
 }
 
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 {
-    if (connectionAvailability < 0) return; //shutting down, don't continue if failed before
+	if (connectionAvailability < 0) return; //shutting down, don't continue if failed before
+	if (nam != sender()) return; //safety check, in case nam was deleted and recreated
 
 	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
 	int subticket = nreply->request().attribute(AttributeSubTicket).toInt();
 	QString text = nreply->request().attribute(AttributeText).toString();
-	QByteArray reply = nreply->readAll();
 	int status = nreply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
 	//qDebug() << status << ": " << reply;
@@ -621,8 +623,8 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 		tryToStart();
 		if (connectionAvailability == -1) {
 			if (delayedRequests.size()) delayedRequests.clear();
-            delete nam; // shutdown unnecessary network manager (Bug 1717/1738)
-            nam=0;
+			nam->deleteLater(); // shutdown unnecessary network manager (Bug 1717/1738)
+			nam = 0;
 			return; //confirmed: no backend
 		}
 		//there might be a backend now, but we still don't have the results
@@ -631,6 +633,8 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 		nreply->deleteLater();
 		return;
 	}
+
+	QByteArray reply = nreply->readAll();
 
 	if (status == 500 && reply.contains("language code") && reply.contains("IllegalArgumentException")) {
 		QString lang = nreply->request().attribute(AttributeLanguage).toString();
