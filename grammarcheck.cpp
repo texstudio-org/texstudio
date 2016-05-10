@@ -612,7 +612,8 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 {
-	if (connectionAvailability < Unknown) return; //shutting down, don't continue if failed before
+	if (connectionAvailability == Terminated) return;  // shutting down
+	if (connectionAvailability == Broken) return;  // don't continue if failed before
 	if (nam != sender()) return; //safety check, in case nam was deleted and recreated
 
 	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
