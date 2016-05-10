@@ -978,7 +978,6 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
 #endif
 
 	if (viewerCommands.contains(subcmd) && !isAcrobat && singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
-	qDebug() << viewerCommands << subcmd << bool(result & RCF_SINGLE_INSTANCE);
 	return (RunCommandFlags)(result);
 }
 
