@@ -176,6 +176,7 @@
 <file>images-ng/classic/sqrt.svg</file>
 <file>images-ng/classic/subscript.svg</file>
 <file>images-ng/classic/superscript.svg</file>
+<file>images-ng/classic/languagetool.svg</file>
 <file>images-ng/modern/close.svg</file>
 <file>images-ng/modern/dfrac.svg</file>
 <file>images-ng/modern/frac.svg</file>
@@ -185,5 +186,6 @@
 <file>images-ng/modern/sqrt.svg</file>
 <file>images-ng/modern/subscript.svg</file>
 <file>images-ng/modern/superscript.svg</file>
+<file>images-ng/modern/languagetool.svg</file>
 </qresource>
 </RCC>
