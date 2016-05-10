@@ -6422,15 +6422,6 @@ void Texstudio::generalOptions()
 		changeIconSize(configManager.guiToolbarIconSize);
 		changeSecondaryIconSize(configManager.guiSecondaryToolbarIconSize);
 		changeSymbolGridIconSize(configManager.guiSymbolGridIconSize, false);
-		/*setIconSize(QSize(configManager.guiToolbarIconSize,configManager.guiToolbarIconSize));
-		centralToolBar->setIconSize(QSize(configManager.guiSecondaryToolbarIconSize,configManager.guiSecondaryToolbarIconSize));
-		QList<QWidget*> lstOfWidgets=leftPanel->getWidgets();
-		foreach(QWidget *wdg,lstOfWidgets){
-		    SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(wdg);
-		    if(list){
-		        list->setSymbolSize(configManager.guiSymbolGridIconSize);
-		    }
-		}*/
 		//custom toolbar
 		setupToolBars();
 		// custom evironments
