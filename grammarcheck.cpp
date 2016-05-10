@@ -497,6 +497,7 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 				break;
 			}
 	}
+	ltArguments = config.languageToolArguments;
 	javaPath = config.languageToolJavaPath;
 
 	ignoredRules.clear();
@@ -545,8 +546,7 @@ void GrammarCheckLanguageToolSOAP::tryToStart()
 	connect(javaProcess, SIGNAL(finished(int)), javaProcess, SLOT(deleteLater()));
 	connect(this, SIGNAL(destroyed()), javaProcess, SLOT(deleteLater()));
 
-	javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  org.languagetool.server.HTTPServer -p " + QString::number(server.port(8081)));
-	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
+	javaProcess->start(quoteSpaces(javaPath) + " -cp " + quoteSpaces(ltPath) + "  " + ltArguments);
 	javaProcess->waitForStarted();
 
 	connectionAvailability = Unknown;
