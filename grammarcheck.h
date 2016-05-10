@@ -119,7 +119,8 @@ private:
 	QNetworkAccessManager *nam;
 	QUrl server;
 
-	int connectionAvailability; //-2: terminated -1: broken, 0: don't know, 1: worked at least once
+	enum Availability {Terminated = -2, Broken = -1, Unknown = 0, WorkedAtLeastOnce = 1};
+	Availability connectionAvailability;
 
 	bool triedToStart;
 	bool firstRequest;
