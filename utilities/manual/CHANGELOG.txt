@@ -18,11 +18,14 @@ TeXstudio 2.10.9
 - eneable left/right shortcuts for embedded viewer
 - remove multiple default values for latexmk (fixes bug 1694)
 - support environment variables in additional search paths
+- add statusbar icon for LanguageTool
+- make LanguageTool arguments configurable
 - add align cursor mirrors options
 - make pasting into cursor mirrors a single undo block
 - do not remove cursor mirrors on undo
 - added optional workingDirectory argument to script function system()
 - added editor->insertSnippet() to scripting environment
+- added option to choose log encoding
 - make icons greyscale for viewer sync buttons if they are not activated
 - added a table template
 - added some elements to math/latex menus
@@ -30,6 +33,9 @@ TeXstudio 2.10.9
 - add the option to use system hunspell and quazip
 - add images to windows installer
 - document advanced code snippet properties in the manual
+- don't show dialog for creating a file if it could not be opened but exists
+- use Freedesktop Icon Naming Specification for standard icons
+- add qt5 autodetection to BUILD.sh
 - fix duplicated line endings for larger files (chunked loading)
 - fix: windows environment variables may contain brackets: PROGRAMFILES(X86)
 - fix env closing with $,$$,etc.
@@ -51,6 +57,10 @@ TeXstudio 2.10.9
 - fix auto paren completion for cursor mirrors
 - fix line operations to work with cursor mirrors
 - fix sychronize text of placeholder mirror when inserting an environment on a selection (Ctrl+E)
+- fix font in pdf viewer status bar did not scale
+- fix loading of badword lists
+- fix LanguageTool startup
+- fix: retain spaces when sending text to LanguageTool
 - fix: don't translate Ctrl+Alt+Left as the translation breaks the shortcut
 - several updates to cwl files
 - update poppler for windows to 0.39.0
