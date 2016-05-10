@@ -468,7 +468,7 @@ struct CheckRequestBackend {
 	CheckRequestBackend(int ti, int st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
 };
 
-GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(false), triedToStart(false), firstRequest(true)
+GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
 {
 
 }
@@ -497,8 +497,8 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 	ignoredRules.clear();
 	foreach (const QString &r, config.languageToolIgnoredRules.split(","))
 		ignoredRules << r.trimmed();
-	connectionAvailability = 0;
-	if (config.languageToolURL.isEmpty()) connectionAvailability = -1;
+	connectionAvailability = Unknown;
+	if (config.languageToolURL.isEmpty()) connectionAvailability = Broken;
 	triedToStart = false;
 	firstRequest = true;
 
@@ -515,7 +515,7 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 
 bool GrammarCheckLanguageToolSOAP::isAvailable()
 {
-	return connectionAvailability >= 0;
+	return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
 }
 
 QString quoteSpaces(const QString &s)
@@ -528,7 +528,7 @@ void GrammarCheckLanguageToolSOAP::tryToStart()
 {
 	if (triedToStart) {
 		if (QDateTime::currentDateTime().toTime_t() - startTime < 60 * 1000 ) {
-			connectionAvailability = 0;
+			connectionAvailability = Unknown;
 			ThreadBreaker::sleep(1);
 		}
 		return;
@@ -544,7 +544,7 @@ void GrammarCheckLanguageToolSOAP::tryToStart()
 	//qDebug() <<javaPath + " -cp "+ltPath+ "  org.languagetool.server.HTTPServer";
 	javaProcess->waitForStarted();
 
-	connectionAvailability = 0;
+	connectionAvailability = Unknown;
 	startTime = QDateTime::currentDateTime().toTime_t(); //TODO: fix this in year 2106 when hopefully noone uses qt4.6 anymore
 }
 
@@ -566,7 +566,7 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 	if (languagesCodesFail.contains(lang) && lang.contains('-'))
 		lang = lang.left(lang.indexOf('-'));
 
-	if (connectionAvailability == 0) {
+	if (connectionAvailability == Unknown) {
 		if (firstRequest) firstRequest = false;
 		else {
 			delayedRequests << CheckRequestBackend(ticket, subticket, lang, text);
@@ -598,7 +598,7 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 		javaProcess->terminate();
 		javaProcess->deleteLater();
 	}
-	connectionAvailability = -2;
+	connectionAvailability = Terminated;
 	if (nam) {
 		nam->deleteLater();
 		nam = 0;
@@ -607,7 +607,7 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 {
-	if (connectionAvailability < 0) return; //shutting down, don't continue if failed before
+	if (connectionAvailability < Unknown) return; //shutting down, don't continue if failed before
 	if (nam != sender()) return; //safety check, in case nam was deleted and recreated
 
 	uint ticket = nreply->request().attribute(AttributeTicket).toUInt();
@@ -619,9 +619,9 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 
 	if (status == 0) {
 		//no response
-		connectionAvailability = -1; //assume no backend
+		connectionAvailability = Broken; //assume no backend
 		tryToStart();
-		if (connectionAvailability == -1) {
+		if (connectionAvailability == Broken) {
 			if (delayedRequests.size()) delayedRequests.clear();
 			nam->deleteLater(); // shutdown unnecessary network manager (Bug 1717/1738)
 			nam = 0;
@@ -645,7 +645,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 		return;
 	}
 
-	connectionAvailability = 1;
+	connectionAvailability = WorkedAtLeastOnce;
 
 	QDomDocument dd;
 	dd.setContent(reply);
