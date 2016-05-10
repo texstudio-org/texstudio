@@ -3496,12 +3496,16 @@ them here.</string>
                </widget>
               </item>
               <item row="9" column="2" colspan="2">
-               <widget class="QLineEdit" name="lineEditGrammarLTArguments"/>
+               <widget class="QLineEdit" name="lineEditGrammarLTArguments">
+                <property name="toolTip">
+                 <string>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
+                </property>
+               </widget>
               </item>
               <item row="9" column="0">
                <widget class="QLabel" name="label_81">
                 <property name="toolTip">
-                 <string>Aruments passed when starting languagetool. This option does only have an effect if languagetool is started from texstudio (i.e. not for an already running server).</string>
+                 <string>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
                 </property>
                 <property name="text">
                  <string>LT Arguments:</string>
