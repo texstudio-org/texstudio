@@ -178,7 +178,7 @@ private:
 	//toolbars
 	QAction *actSave, *actUndo, *actRedo;
 
-	QLabel *statusLabelMode, *statusLabelProcess;
+	QLabel *statusLabelMode, *statusLabelProcess, *statusLabelLanguageTool;
 	QToolButton *statusTbLanguage;
 	QToolButton *statusTbEncoding;
 	QActionGroup *spellLanguageActions;
@@ -430,6 +430,7 @@ protected slots:
 
 	void changeTextCodec();
 	void updateAvailableLanguages();
+	void updateLanguageToolStatus();
 	void editorSpellerChanged(const QString &name);
 	void changeEditorSpeller();
 	void insertSpellcheckMagicComment();

@@ -1363,6 +1363,27 @@ void Texstudio::updateAvailableLanguages()
 		editorSpellerChanged("<default>");
 	}
 }
+
+void Texstudio::updateLanguageToolStatus()
+{
+	QIcon icon = getRealIconCached("languagetool");
+	QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
+	switch (grammarCheck->languageToolStatus()) {
+		case GrammarCheck::LTS_Working:
+			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize));
+			statusLabelLanguageTool->setToolTip(tr("LanguageTool is running"));
+			break;
+		case GrammarCheck::LTS_Error:
+			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
+			statusLabelLanguageTool->setToolTip(tr("No LanguageTool server found"));
+			break;
+		case GrammarCheck::LTS_Unknown:
+		default:
+			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
+			statusLabelLanguageTool->setToolTip(tr("LanguageTool status unknown"));
+	}
+}
+
 /*! \brief set-up status bar
  */
 void Texstudio::createStatusBar()
@@ -1404,6 +1425,12 @@ void Texstudio::createStatusBar()
 	QLabel *messageArea = new QLabel(status);
 	connect(status, SIGNAL(messageChanged(QString)), messageArea, SLOT(setText(QString)));
 	status->addPermanentWidget(messageArea, 1);
+
+	// LanguageTool
+	connect(grammarCheck, SIGNAL(languageToolStatusChanged()), this, SLOT(updateLanguageToolStatus()));
+	statusLabelLanguageTool = new QLabel();
+	updateLanguageToolStatus();
+	status->addPermanentWidget(statusLabelLanguageTool);
 
 	// language
 	statusTbLanguage = new QToolButton(status);
@@ -6430,6 +6457,7 @@ void Texstudio::generalOptions()
 			ed->update();
 		}
 		if (oldModernStyle != modernStyle || oldSystemTheme != useSystemTheme) {
+			iconCache.clear();
 			setupMenus();
 			setupDockWidgets();
 		}

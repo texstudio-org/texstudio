@@ -7,7 +7,7 @@ GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error
 GrammarError::GrammarError(int offset, int length, const GrammarError &other): offset(offset), length(length), error(other.error), message(other.message), corrections(other.corrections) {}
 
 GrammarCheck::GrammarCheck(QObject *parent) :
-	QObject(parent), backend(0), ticket(0), pendingProcessing(false), shuttingDown(false)
+	QObject(parent), ltstatus(LTS_Unknown), backend(0), ticket(0), pendingProcessing(false), shuttingDown(false)
 {
 	latexParser = new LatexParser();
 }
@@ -258,6 +258,11 @@ void GrammarCheck::process(int reqId)
 	}
 
 	bool backendAvailable = backend->isAvailable();
+	LTStatus newstatus = backendAvailable ? LTS_Working : LTS_Error;
+	if (newstatus != ltstatus) {
+		ltstatus = newstatus;
+		emit languageToolStatusChanged();
+	}
 
 	QList<TokenizedBlock> crBlocks = cr.blocks; //cr itself might become invalid during the following loop
 	int crTicket = cr.ticket;
