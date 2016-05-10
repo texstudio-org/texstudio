@@ -16,7 +16,7 @@ public:
 	//LanguageTool
 	QString languageToolURL;
 	bool languageToolAutorun;
-	QString languageToolPath, languageToolJavaPath;
+	QString languageToolPath, languageToolArguments, languageToolJavaPath;
 	QString languageToolIgnoredRules;
 
 	QString specialIds1, specialIds2, specialIds3, specialIds4;

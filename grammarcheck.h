@@ -130,7 +130,7 @@ private:
 	bool firstRequest;
 	QPointer<QProcess> javaProcess;
 
-	QString ltPath, javaPath;
+	QString ltPath, javaPath, ltArguments;
 	QSet<QString> ignoredRules;
 	QList<QSet<QString> >  specialRules;
 	uint startTime;
