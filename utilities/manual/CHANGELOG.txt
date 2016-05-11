@@ -1,5 +1,5 @@
-TeXstudio 2.10.9
-----------------
+TeXstudio 2.10.10 Release Candidate
+-----------------------------------
 - support two editors next to each other
 - new tabular wizard
 - support multi-line commands
