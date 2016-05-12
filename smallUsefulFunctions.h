@@ -213,6 +213,8 @@ QString dequoteStr(const QString &s);
 QString quotePath(const QString &s);
 QString removeQuote(const QString &s);
 QString removePathDelim(const QString &s);
+QString removeAccents(const QString &s);
+QString makeLatexLabel(const QString &s);
 
 uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate);
 

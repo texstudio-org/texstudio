@@ -5475,11 +5475,10 @@ void Texstudio::createLabelFromAction()
 	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
 	QString label = "sec:";
 	if (args.length() > 0) {
-		label += args.at(0).value.toLower();
-		label.replace(' ', '-');
-	}
-	if (label.contains('\\') || label.contains('$')) { // title too complicated to extract label: fall back
-		label = "sec:";
+		QString title(args.at(0).value);
+		if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
+			label += makeLatexLabel(title);
+		}
 	}
 
 	gotoLine(lineNr, pos, edView, mflags);
