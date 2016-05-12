@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!DOCTYPE KileSymbolSources>
+<symbols>
+
+   <formatVersion major="0" minor ="22" />
+
+   <symbolGroupName>user</symbolGroupName>
+
+   <preamble>
+      <class>article</class>
+      <arguments>12pt</arguments>
+      <additional>\pagestyle{empty}
+		  \setlength{\parindent}{0cm}
+		  \usepackage[T1]{fontenc}
+      </additional>
+   </preamble>
+
+   <unicodeCommandPackages>
+      <package>
+         <name>inputenc</name>
+         <arguments>utf8</arguments>
+      </package>
+   </unicodeCommandPackages>
+
+   <!-- insert stuff here    -->
+<symbolGroupName>relation</symbolGroupName>
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \bowtie  -->
+<commandDefinition>
+   <latexCommand>\bowtie</latexCommand>
+   <unicodeCommand>⋈</unicodeCommand>
+   <mathMode>true</mathMode>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \Join  -->
+<commandDefinition>
+   <latexCommand>\Join</latexCommand>
+   <unicodeCommand>⨝</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+   <forcePNG>true</forcePNG>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \propto  -->
+<commandDefinition>
+   <latexCommand>\propto</latexCommand>
+   <unicodeCommand>∝</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \varpropto  -->
+<commandDefinition>
+   <latexCommand>\varpropto</latexCommand>
+   <unicodeCommand>∝</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \multimap  -->
+<commandDefinition>
+   <latexCommand>\multimap</latexCommand>
+   <unicodeCommand>⊸</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \pitchfork  -->
+<commandDefinition>
+   <latexCommand>\pitchfork</latexCommand>
+   <unicodeCommand>⋔</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \therefore  -->
+<commandDefinition>
+   <latexCommand>\therefore</latexCommand>
+   <unicodeCommand>∴</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \because  -->
+<commandDefinition>
+   <latexCommand>\because</latexCommand>
+   <unicodeCommand>∵</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math =  -->
+<commandDefinition>
+   <latexCommand>=</latexCommand>
+   <unicodeCommand>=</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \neq  -->
+<commandDefinition>
+   <latexCommand>\neq</latexCommand>
+   <unicodeCommand>≠</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \equiv  -->
+<commandDefinition>
+   <latexCommand>\equiv</latexCommand>
+   <unicodeCommand>≡</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \approx  -->
+<commandDefinition>
+   <latexCommand>\approx</latexCommand>
+   <unicodeCommand>≈</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \sim  -->
+<commandDefinition>
+   <latexCommand>\sim</latexCommand>
+   <unicodeCommand>∼</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<commandDefinition>
+   <latexCommand>\nsim</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \simeq  -->
+<commandDefinition>
+   <latexCommand>\simeq</latexCommand>
+   <unicodeCommand>≃</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \backsimeq  -->
+<commandDefinition>
+   <latexCommand>\backsimeq</latexCommand>
+   <unicodeCommand>⋍</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \approxeq  -->
+<commandDefinition>
+   <latexCommand>\approxeq</latexCommand>
+   <unicodeCommand>≊</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \cong  -->
+<commandDefinition>
+   <latexCommand>\cong</latexCommand>
+   <unicodeCommand>≅</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \ncong  -->
+<commandDefinition>
+   <latexCommand>\ncong</latexCommand>
+   <unicodeCommand>≇</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \smile  -->
+<commandDefinition>
+   <latexCommand>\smile</latexCommand>
+   <unicodeCommand>⌣</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \frown  -->
+<commandDefinition>
+   <latexCommand>\frown</latexCommand>
+   <unicodeCommand>⌢</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \asymp  -->
+<commandDefinition>
+   <latexCommand>\asymp</latexCommand>
+   <unicodeCommand>≍</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \smallfrown  -->
+<commandDefinition>
+   <latexCommand>\smallfrown</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \smallsmile  -->
+<commandDefinition>
+   <latexCommand>\smallsmile</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \between  -->
+<commandDefinition>
+   <latexCommand>\between</latexCommand>
+   <unicodeCommand>≬</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \prec  -->
+<commandDefinition>
+   <latexCommand>\prec</latexCommand>
+   <unicodeCommand>≺</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \succ  -->
+<commandDefinition>
+   <latexCommand>\succ</latexCommand>
+   <unicodeCommand>≻</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \nprec  -->
+<commandDefinition>
+   <latexCommand>\nprec</latexCommand>
+   <unicodeCommand>⊀</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \nsucc  -->
+<commandDefinition>
+   <latexCommand>\nsucc</latexCommand>
+   <unicodeCommand>⊁</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \preceq  -->
+<commandDefinition>
+   <latexCommand>\preceq</latexCommand>
+   <unicodeCommand>⪯</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \succeq  -->
+<commandDefinition>
+   <latexCommand>\succeq</latexCommand>
+   <unicodeCommand>⪰</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \npreceq  -->
+<commandDefinition>
+   <latexCommand>\npreceq</latexCommand>
+   <unicodeCommand>⋠</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nsucceq  -->
+<commandDefinition>
+   <latexCommand>\nsucceq</latexCommand>
+   <unicodeCommand>⋡</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \preccurlyeq  -->
+<commandDefinition>
+   <latexCommand>\preccurlyeq</latexCommand>
+   <unicodeCommand>≼</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \succcurlyeq  -->
+<commandDefinition>
+   <latexCommand>\succcurlyeq</latexCommand>
+   <unicodeCommand>≽</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \curlyeqprec  -->
+<commandDefinition>
+   <latexCommand>\curlyeqprec</latexCommand>
+   <unicodeCommand>⋞</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \curlyeqsucc  -->
+<commandDefinition>
+   <latexCommand>\curlyeqsucc</latexCommand>
+   <unicodeCommand>⋟</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \precsim  -->
+<commandDefinition>
+   <latexCommand>\precsim</latexCommand>
+   <unicodeCommand>≾</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \succsim  -->
+<commandDefinition>
+   <latexCommand>\succsim</latexCommand>
+   <unicodeCommand>≿</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \precnsim  -->
+<commandDefinition>
+   <latexCommand>\precnsim</latexCommand>
+   <unicodeCommand>⋨</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \succnsim  -->
+<commandDefinition>
+   <latexCommand>\succnsim</latexCommand>
+   <unicodeCommand>⋩</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \precapprox  -->
+<commandDefinition>
+   <latexCommand>\precapprox</latexCommand>
+   <unicodeCommand>⪷</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \succapprox  -->
+<commandDefinition>
+   <latexCommand>\succapprox</latexCommand>
+   <unicodeCommand>⪸</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \precnapprox  -->
+<commandDefinition>
+   <latexCommand>\precnapprox</latexCommand>
+   <unicodeCommand>⪹</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \succnapprox  -->
+<commandDefinition>
+   <latexCommand>\succnapprox</latexCommand>
+   <unicodeCommand>⪺</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \perp  -->
+<commandDefinition>
+   <latexCommand>\perp</latexCommand>
+   <unicodeCommand>⟂</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \vdash  -->
+<commandDefinition>
+   <latexCommand>\vdash</latexCommand>
+   <unicodeCommand>⊢</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \dashv  -->
+<commandDefinition>
+   <latexCommand>\dashv</latexCommand>
+   <unicodeCommand>⊣</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nvdash  -->
+<commandDefinition>
+   <latexCommand>\nvdash</latexCommand>
+   <unicodeCommand>⊬</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \Vdash  -->
+<commandDefinition>
+   <latexCommand>\Vdash</latexCommand>
+   <unicodeCommand>⊩</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \Vvdash  -->
+<commandDefinition>
+   <latexCommand>\Vvdash</latexCommand>
+   <unicodeCommand>⊪</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \models  -->
+<commandDefinition>
+   <latexCommand>\models</latexCommand>
+   <unicodeCommand>⊧</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \vDash  -->
+<commandDefinition>
+   <latexCommand>\vDash</latexCommand>
+   <unicodeCommand>⊨</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nvDash  -->
+<commandDefinition>
+   <latexCommand>\nvDash</latexCommand>
+   <unicodeCommand>⊭</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nVDash  -->
+<commandDefinition>
+   <latexCommand>\nVDash</latexCommand>
+   <unicodeCommand>⊯</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \mid  -->
+<commandDefinition>
+   <latexCommand>\mid</latexCommand>
+   <unicodeCommand>∣</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \nmid  -->
+<commandDefinition>
+   <latexCommand>\nmid</latexCommand>
+   <unicodeCommand>∤</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \parallel  -->
+<commandDefinition>
+   <latexCommand>\parallel</latexCommand>
+   <unicodeCommand>∥</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nparallel  -->
+<commandDefinition>
+   <latexCommand>\nparallel</latexCommand>
+   <unicodeCommand>∦</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \shortmid  -->
+<commandDefinition>
+   <latexCommand>\shortmid</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nshortmid  -->
+<commandDefinition>
+   <latexCommand>\nshortmid</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \shortparallel  -->
+<commandDefinition>
+   <latexCommand>\shortparallel</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nshortparallel  -->
+<commandDefinition>
+   <latexCommand>\nshortparallel</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math <  -->
+<commandDefinition>
+   <latexCommand>&lt;</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math >  -->
+<commandDefinition>
+   <latexCommand>&gt;</latexCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nless  -->
+<commandDefinition>
+   <latexCommand>\nless</latexCommand>
+   <unicodeCommand>≮</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ngtr  -->
+<commandDefinition>
+   <latexCommand>\ngtr</latexCommand>
+   <unicodeCommand>≯</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lessdot  -->
+<commandDefinition>
+   <latexCommand>\lessdot</latexCommand>
+   <unicodeCommand>⋖</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gtrdot  -->
+<commandDefinition>
+   <latexCommand>\gtrdot</latexCommand>
+   <unicodeCommand>⋗</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \ll  -->
+<commandDefinition>
+   <latexCommand>\ll</latexCommand>
+   <unicodeCommand>≪</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \gg  -->
+<commandDefinition>
+   <latexCommand>\gg</latexCommand>
+   <unicodeCommand>≫</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \lll  -->
+<commandDefinition>
+   <latexCommand>\lll</latexCommand>
+   <unicodeCommand>⋘</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \ggg  -->
+<commandDefinition>
+   <latexCommand>\ggg</latexCommand>
+   <unicodeCommand>⋙</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \leq  -->
+<commandDefinition>
+   <latexCommand>\leq</latexCommand>
+   <unicodeCommand>≤</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \geq  -->
+<commandDefinition>
+   <latexCommand>\geq</latexCommand>
+   <unicodeCommand>≥</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lneq  -->
+<commandDefinition>
+   <latexCommand>\lneq</latexCommand>
+   <unicodeCommand>⪇</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gneq  -->
+<commandDefinition>
+   <latexCommand>\gneq</latexCommand>
+   <unicodeCommand>⪈</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nleq  -->
+<commandDefinition>
+   <latexCommand>\nleq</latexCommand>
+   <unicodeCommand>≰</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ngeq  -->
+<commandDefinition>
+   <latexCommand>\ngeq</latexCommand>
+   <unicodeCommand>≱</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \leqq  -->
+<commandDefinition>
+   <latexCommand>\leqq</latexCommand>
+   <unicodeCommand>≦</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \geqq  -->
+<commandDefinition>
+   <latexCommand>\geqq</latexCommand>
+   <unicodeCommand>≧</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lneqq  -->
+<commandDefinition>
+   <latexCommand>\lneqq</latexCommand>
+   <unicodeCommand>≨</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gneqq  -->
+<commandDefinition>
+   <latexCommand>\gneqq</latexCommand>
+   <unicodeCommand>≩</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lvertneqq  -->
+<commandDefinition>
+   <latexCommand>\lvertneqq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gvertneqq  -->
+<commandDefinition>
+   <latexCommand>\gvertneqq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nleqq  -->
+<commandDefinition>
+   <latexCommand>\nleqq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ngeqq  -->
+<commandDefinition>
+   <latexCommand>\ngeqq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \leqslant  -->
+<commandDefinition>
+   <latexCommand>\leqslant</latexCommand>
+   <unicodeCommand>⩽</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \geqslant  -->
+<commandDefinition>
+   <latexCommand>\geqslant</latexCommand>
+   <unicodeCommand>⩾</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nleqslant  -->
+<commandDefinition>
+   <latexCommand>\nleqslant</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ngeqslant  -->
+<commandDefinition>
+   <latexCommand>\ngeqslant</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \eqslantless  -->
+<commandDefinition>
+   <latexCommand>\eqslantless</latexCommand>
+   <unicodeCommand>⪕</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \eqslantgtr  -->
+<commandDefinition>
+   <latexCommand>\eqslantgtr</latexCommand>
+   <unicodeCommand>⪖</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lessgtr  -->
+<commandDefinition>
+   <latexCommand>\lessgtr</latexCommand>
+   <unicodeCommand>≶</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gtrless  -->
+<commandDefinition>
+   <latexCommand>\gtrless</latexCommand>
+   <unicodeCommand>≷</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lesseqgtr  -->
+<commandDefinition>
+   <latexCommand>\lesseqgtr</latexCommand>
+   <unicodeCommand>⋚</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gtreqless  -->
+<commandDefinition>
+   <latexCommand>\gtreqless</latexCommand>
+   <unicodeCommand>⋛</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lesseqqgtr  -->
+<commandDefinition>
+   <latexCommand>\lesseqqgtr</latexCommand>
+   <unicodeCommand>⪋</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gtreqqless  -->
+<commandDefinition>
+   <latexCommand>\gtreqqless</latexCommand>
+   <unicodeCommand>⪌</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lesssim  -->
+<commandDefinition>
+   <latexCommand>\lesssim</latexCommand>
+   <unicodeCommand>≲</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gtrsim  -->
+<commandDefinition>
+   <latexCommand>\gtrsim</latexCommand>
+   <unicodeCommand>≳</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lnsim  -->
+<commandDefinition>
+   <latexCommand>\lnsim</latexCommand>
+   <unicodeCommand>⋦</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gnsim  -->
+<commandDefinition>
+   <latexCommand>\gnsim</latexCommand>
+   <unicodeCommand>⋧</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lessapprox  -->
+<commandDefinition>
+   <latexCommand>\lessapprox</latexCommand>
+   <unicodeCommand>⪅</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gtrapprox  -->
+<commandDefinition>
+   <latexCommand>\gtrapprox</latexCommand>
+   <unicodeCommand>⪆</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \lnapprox  -->
+<commandDefinition>
+   <latexCommand>\lnapprox</latexCommand>
+   <unicodeCommand>⪉</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \gnapprox  -->
+<commandDefinition>
+   <latexCommand>\gnapprox</latexCommand>
+   <unicodeCommand>⪊</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \vartriangleleft  -->
+<commandDefinition>
+   <latexCommand>\vartriangleleft</latexCommand>
+   <unicodeCommand>⊲</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \vartriangleright  -->
+<commandDefinition>
+   <latexCommand>\vartriangleright</latexCommand>
+   <unicodeCommand>⊳</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ntriangleleft  -->
+<commandDefinition>
+   <latexCommand>\ntriangleleft</latexCommand>
+   <unicodeCommand>⋪</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ntriangleright  -->
+<commandDefinition>
+   <latexCommand>\ntriangleright</latexCommand>
+   <unicodeCommand>⋫</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \trianglelefteq  -->
+<commandDefinition>
+   <latexCommand>\trianglelefteq</latexCommand>
+   <unicodeCommand>⊴</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \trianglerighteq  -->
+<commandDefinition>
+   <latexCommand>\trianglerighteq</latexCommand>
+   <unicodeCommand>⊵</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ntrianglelefteq  -->
+<commandDefinition>
+   <latexCommand>\ntrianglelefteq</latexCommand>
+   <unicodeCommand>⋬</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \ntrianglerighteq  -->
+<commandDefinition>
+   <latexCommand>\ntrianglerighteq</latexCommand>
+   <unicodeCommand>⋭</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \blacktriangleleft  -->
+<commandDefinition>
+   <latexCommand>\blacktriangleleft</latexCommand>
+   <unicodeCommand>◂</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \blacktriangleright  -->
+<commandDefinition>
+   <latexCommand>\blacktriangleright</latexCommand>
+   <unicodeCommand>▸</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \subset  -->
+<commandDefinition>
+   <latexCommand>\subset</latexCommand>
+   <unicodeCommand>⊂</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \supset  -->
+<commandDefinition>
+   <latexCommand>\supset</latexCommand>
+   <unicodeCommand>⊃</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \subseteq  -->
+<commandDefinition>
+   <latexCommand>\subseteq</latexCommand>
+   <unicodeCommand>⊆</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \supseteq  -->
+<commandDefinition>
+   <latexCommand>\supseteq</latexCommand>
+   <unicodeCommand>⊇</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \subsetneq  -->
+<commandDefinition>
+   <latexCommand>\subsetneq</latexCommand>
+   <unicodeCommand>⊊</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \supsetneq  -->
+<commandDefinition>
+   <latexCommand>\supsetneq</latexCommand>
+   <unicodeCommand>⊋</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \varsubsetneq  -->
+<commandDefinition>
+   <latexCommand>\varsubsetneq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \varsupsetneq  -->
+<commandDefinition>
+   <latexCommand>\varsupsetneq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nsubseteq  -->
+<commandDefinition>
+   <latexCommand>\nsubseteq</latexCommand>
+   <unicodeCommand>⊈</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nsupseteq  -->
+<commandDefinition>
+   <latexCommand>\nsupseteq</latexCommand>
+   <unicodeCommand>⊉</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \subseteqq  -->
+<commandDefinition>
+   <latexCommand>\subseteqq</latexCommand>
+   <unicodeCommand>⫅</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \supseteqq  -->
+<commandDefinition>
+   <latexCommand>\supseteqq</latexCommand>
+   <unicodeCommand>⫆</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \subsetneqq  -->
+<commandDefinition>
+   <latexCommand>\subsetneqq</latexCommand>
+   <unicodeCommand>⫋</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \supsetneqq  -->
+<commandDefinition>
+   <latexCommand>\supsetneqq</latexCommand>
+   <unicodeCommand>⫌</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nsubseteqq  -->
+<commandDefinition>
+   <latexCommand>\nsubseteqq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \nsupseteqq  -->
+<commandDefinition>
+   <latexCommand>\nsupseteqq</latexCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \backepsilon  -->
+<commandDefinition>
+   <latexCommand>\backepsilon</latexCommand>
+   <unicodeCommand>϶</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \Subset  -->
+<commandDefinition>
+   <latexCommand>\Subset</latexCommand>
+   <unicodeCommand>⋐</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \Supset  -->
+<commandDefinition>
+   <latexCommand>\Supset</latexCommand>
+   <unicodeCommand>⋑</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \sqsubset  -->
+<commandDefinition>
+   <latexCommand>\sqsubset</latexCommand>
+   <unicodeCommand>⊏</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs=amssymb ,pkgsarg= ,savepkgs=amssymb ,savepkgsarg=-->
+<!-- arg math \sqsupset  -->
+<commandDefinition>
+   <latexCommand>\sqsupset</latexCommand>
+   <unicodeCommand>⊐</unicodeCommand>
+   <mathMode>true</mathMode>
+   <package>
+      <name>amssymb</name>
+   </package>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \sqsubseteq  -->
+<commandDefinition>
+   <latexCommand>\sqsubseteq</latexCommand>
+   <unicodeCommand>⊑</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- arg math \sqsupseteq  -->
+<commandDefinition>
+   <latexCommand>\sqsupseteq</latexCommand>
+   <unicodeCommand>⊒</unicodeCommand>
+   <mathMode>true</mathMode>
+</commandDefinition>
+
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+<!-- pkgs= ,pkgsarg= ,savepkgs= ,savepkgsarg=-->
+</symbols>
