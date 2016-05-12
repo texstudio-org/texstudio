@@ -465,7 +465,8 @@ public:
 		if (!active) return;
 		QToolTip::hideText();
 		//reenable auto close chars
-		editor->setFlag(QEditor::AutoCloseChars, completer->editorAutoCloseChars);
+        if(completer)
+            editor->setFlag(QEditor::AutoCloseChars, completer->editorAutoCloseChars);
 		editor->setInputBinding(oldBinding);
 		if (completer && completer->widget && completer->widget->isVisible())
 			editor->setFocus();
