@@ -134,7 +134,7 @@ QString InsertGraphics::graphicsFile() const
 QString InsertGraphics::generateLabel(QString fname)
 {
 	QFileInfo info(fname);
-	return "fig:" + info.baseName().remove(' ');
+	return "fig:" + makeLatexLabel(info.baseName());
 }
 
 InsertGraphicsConfig InsertGraphics::getConfig() const
