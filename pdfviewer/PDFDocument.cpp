@@ -2367,13 +2367,6 @@ void PDFDocument::init(bool embedded)
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
-
-	if (embedded) {
-		shortcutOnlyIfFocused(QList<QAction *>()
-		                      << actionNext_Page
-		                      << actionPrevious_Page
-		                     );
-	}
 	actionZoom_In->setIcon(getRealIcon("zoom-in"));
 	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
 	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
