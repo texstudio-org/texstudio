@@ -1663,7 +1663,7 @@ LaTeXでは元々ユニコードはサポートされていないので、文書
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>既定のログエンコーディング</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
@@ -2224,12 +2224,12 @@ them here.</source>
         <location filename="configdialog.ui" line="3501"/>
         <location filename="configdialog.ui" line="3508"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool起動時に渡される引数。このオプションはLanguageToolがTeXstudioから起動される場合にのみ有効である（つまり、既に起動しているサーバーに対しては効果は無い）。</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3511"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>LT引数：</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3581"/>
@@ -10053,17 +10053,17 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1374"/>
         <source>LanguageTool is running</source>
-        <translation type="unfinished"/>
+        <translation>LanguageToolは起動しています</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1378"/>
         <source>No LanguageTool server found</source>
-        <translation type="unfinished"/>
+        <translation>LanguageToolサーバーが見つかりませんでした</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1383"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>LanguageToolの状態が不明です</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1437"/>
@@ -10662,7 +10662,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="9213"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>ファイル&quot;%1&quot;を開けません。</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9215"/>
