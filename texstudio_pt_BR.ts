@@ -1658,7 +1658,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Codificação padrão do Log</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
@@ -2220,12 +2220,12 @@ pode forçar o seu uso selecionando-o aqui.</translation>
         <location filename="configdialog.ui" line="3501"/>
         <location filename="configdialog.ui" line="3508"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Argumentos passados ao iniciar a Ferramenta de Idioma. Esta opção somente tem efeito se a Ferramenta de Idioma for iniciada pelo TeXstudio (i.e. não por um servidor já em execução).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3511"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>Argumentos LT:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3581"/>
@@ -10052,17 +10052,17 @@ não pode ser removido.</translation>
     <message>
         <location filename="texstudio.cpp" line="1374"/>
         <source>LanguageTool is running</source>
-        <translation type="unfinished"/>
+        <translation>Ferramenta de Idioma está em execução</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1378"/>
         <source>No LanguageTool server found</source>
-        <translation type="unfinished"/>
+        <translation>Servidor para Ferramenta de Idioma não encontrado</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1383"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>Estatus da Ferramenta de Idioma desconhecido</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1437"/>
@@ -10662,7 +10662,7 @@ Voce deseja permitir e executar o novo comando?
     <message>
         <location filename="texstudio.cpp" line="9213"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Impossível abrir arquivo &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9215"/>
