@@ -1661,7 +1661,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Усталене кодування журналу</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
@@ -2223,12 +2223,12 @@ them here.</source>
         <location filename="configdialog.ui" line="3501"/>
         <location filename="configdialog.ui" line="3508"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Аргументи надсилаються під час запуску LanguageTool. Цей параметр має вплив лише, коли LanguageTool запускається із TeXstudio (тобто він безсильний для вже запущеного сервера).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3511"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>Аргументи LT:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3581"/>
@@ -10058,17 +10058,17 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1374"/>
         <source>LanguageTool is running</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool — запущений</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1378"/>
         <source>No LanguageTool server found</source>
-        <translation type="unfinished"/>
+        <translation>Не знайдено сервер LanguageTool</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1383"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>Стан LanguageTool — невідомий</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1437"/>
@@ -10668,7 +10668,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="9213"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Не вдалося відкрити файл &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9215"/>

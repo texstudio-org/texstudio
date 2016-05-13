@@ -1656,12 +1656,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2258"/>
         <source>Show image tooltip on image files</source>
-        <translation type="unfinished"/>
+        <translation>Показывать всплывающее изображение для файлов с изображениями</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Кодировка логов по умолчанию</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
@@ -2224,12 +2224,12 @@ them here.</source>
         <location filename="configdialog.ui" line="3501"/>
         <location filename="configdialog.ui" line="3508"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Аргументы, передаваемые при запуске LanguageTool. Эта настройка влияет только на запуск LanguageTool из TeXstudio (т.е. не на уже работающий сервер).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3511"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>Аргументы LT:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3581"/>
@@ -3504,7 +3504,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="360"/>
         <source>Move to other view</source>
-        <translation type="unfinished"/>
+        <translation>Переместить в другое представление</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="366"/>
@@ -8162,25 +8162,25 @@ Do you trust this script?</source>
         <location filename="tabdialog.cpp" line="58"/>
         <source>p{} (fixed width - justified)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фиксированная ширина - по формату)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="59"/>
         <source>p{} (fixed width - left)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фиксированная ширина - слева)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="60"/>
         <source>p{} (fixed width - center)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фиксированная ширина - по центру)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="61"/>
         <source>p{} (fixed width - right)</source>
         <comment>tabular alignment</comment>
-        <translation type="unfinished"/>
+        <translation>p{} (фиксированная ширина - справа)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="66"/>
@@ -10054,17 +10054,17 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1374"/>
         <source>LanguageTool is running</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool запущен</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1378"/>
         <source>No LanguageTool server found</source>
-        <translation type="unfinished"/>
+        <translation>Сервер LanguageTool не найден</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1383"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>Статус LanguageTool неизвестен</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1437"/>
@@ -10666,7 +10666,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="9213"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Невозможно открыть файл &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9215"/>
