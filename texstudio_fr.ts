@@ -4069,22 +4069,22 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     <message>
         <location line="+1"/>
         <source>\begin{itemize}</source>
-        <translation>Liste à p&amp;uces - \begin{itemize}</translation>
+        <translation>Non ordonnée (« à p&amp;uces ») - \begin{itemize}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>\begin{enumerate}</source>
-        <translation>Liste &amp;numérotée - \begin{enumerate}</translation>
+        <translation>Ordonnée (&amp;numérotée) - \begin{enumerate}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>\begin{description}</source>
-        <translation>Liste de &amp;description - \begin{description}</translation>
+        <translation>De &amp;description - \begin{description}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>\begin{list}</source>
-        <translation>Liste générique - \begin{list}</translation>
+        <translation>Liste &amp;générique - \begin{list}</translation>
     </message>
     <message>
         <location line="+14"/>
@@ -4950,17 +4950,17 @@ Voulez-vous supprimer ces macros ?</translation>
     <message>
         <location line="+5"/>
         <source>Unix/Linux</source>
-        <translation>&amp;Unix/Linux</translation>
+        <translation>Unix/Linux</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>DOS/Windows</source>
-        <translation>DOS/&amp;Windows</translation>
+        <translation>DOS/Windows</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Old Mac</source>
-        <translation>&amp;Mac ancien</translation>
+        <translation>Mac ancien</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -6142,7 +6142,7 @@ Voulez-vous l&apos;écraser ?</translation>
         <location line="-87"/>
         <location line="+86"/>
         <source>Messages / Log File</source>
-        <translation>Messages/Fichier log</translation>
+        <translation>&amp;Messages/Fichier log</translation>
     </message>
     <message>
         <location line="-70"/>
@@ -7740,7 +7740,7 @@ Reprendre du début ?</translation>
         <location line="-757"/>
         <location line="+759"/>
         <source>&amp;Goto line...</source>
-        <translation>&amp;Atteindre la li&amp;gne...</translation>
+        <translation>&amp;Atteindre la ligne...</translation>
     </message>
     <message>
         <location line="-747"/>
@@ -7781,7 +7781,7 @@ Reprendre du début ?</translation>
     <message>
         <location line="+1"/>
         <source>Old Mac</source>
-        <translation>Mac antérieur</translation>
+        <translation>Mac ancien</translation>
     </message>
     <message>
         <location line="+185"/>
@@ -10704,7 +10704,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
-        <translation>Structure</translation>
+        <translation>S&amp;tructure</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -10860,12 +10860,12 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="-77"/>
         <source>&amp;Find</source>
-        <translation>&amp;Chercher</translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Find &amp;Next</source>
-        <translation>Chercher &amp;suivant</translation>
+        <translation>&amp;Chercher suivant</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -10922,18 +10922,18 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+69"/>
         <source>Definition</source>
-        <translation>Définition</translation>
+        <translation>Dé&amp;finition</translation>
     </message>
     <message>
         <location line="-62"/>
         <source>Goto Bookmark</source>
-        <translation>Atteindre le &amp;signet</translation>
+        <translation>Atteindre le si&amp;gnet</translation>
     </message>
     <message>
         <location line="+3"/>
         <location line="+6"/>
         <source>Bookmark %1</source>
-        <translation>Signet %1</translation>
+        <translation>Signet &amp;%1</translation>
     </message>
     <message>
         <location line="-3"/>
@@ -10969,17 +10969,17 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+2"/>
         <source>DOS/Windows (CR LF)</source>
-        <translation></translation>
+        <translation>&amp;DOS/Windows (CR LF)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Unix (LF)</source>
-        <translation></translation>
+        <translation>&amp;Unix/Linux(LF)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Old Mac (CR)</source>
-        <translation>Mac antérieur (CR)</translation>
+        <translation>Mac ancien (CR)</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -11069,17 +11069,17 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="-4199"/>
         <source>Quick &amp;Start...</source>
-        <translation>A&amp;ssistant nouveau document...</translation>
+        <translation>&amp;Nouveau document...</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Quick &amp;Tabular...</source>
-        <translation>Assistant &amp;tableau...</translation>
+        <translation>&amp;Tableau...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Quick T&amp;abbing...</source>
-        <translation>Assistant t&amp;abulation...</translation>
+        <translation>T&amp;abulation...</translation>
     </message>
     <message>
         <location line="-87"/>
@@ -11159,7 +11159,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+3"/>
         <source>Select &amp;All</source>
-        <translation>Tout s&amp;électionner</translation>
+        <translation>&amp;Tout sélectionner</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -11196,7 +11196,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="-70"/>
         <source>&amp;Replace</source>
-        <translation>&amp;Remplacer</translation>
+        <translation>Re&amp;mplacer</translation>
     </message>
     <message>
         <location line="+85"/>
@@ -11263,17 +11263,17 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+36"/>
         <source>Quick &amp;Letter...</source>
-        <translation>Assistant &amp;lettre...</translation>
+        <translation>&amp;Lettre...</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Quick &amp;Array...</source>
-        <translation>Assistant matri&amp;ce...</translation>
+        <translation>&amp;Matrice...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insert &amp;Graphic...</source>
-        <translation>Insertion de &amp;graphique...</translation>
+        <translation>&amp;Graphique...</translation>
     </message>
     <message>
         <location line="+32"/>
@@ -11309,12 +11309,12 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <location line="-4416"/>
         <location line="+153"/>
         <source>&amp;View</source>
-        <translation>Affi&amp;chage</translation>
+        <translation>&amp;Affichage</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Next Document</source>
-        <translation>Document suivant</translation>
+        <translation>Document &amp;suivant</translation>
     </message>
     <message>
         <location line="-1"/>
@@ -11324,18 +11324,18 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+15"/>
         <source>Close Something</source>
-        <translation>Fermer quelque chose</translation>
+        <translation>&amp;Fermer quelque chose</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Collapse</source>
-        <translation>Réduire</translation>
+        <translation>&amp;Réduire</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+5"/>
         <source>Everything</source>
-        <translation>Tout</translation>
+        <translation>&amp;Tout</translation>
     </message>
     <message>
         <source>Nearest block</source>
@@ -11345,12 +11345,12 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <location line="-2"/>
         <location line="+5"/>
         <source>Level %1</source>
-        <translation>Niveau %1</translation>
+        <translation>Niveau &amp;%1</translation>
     </message>
     <message>
         <location line="-4"/>
         <source>Expand</source>
-        <translation>Développer</translation>
+        <translation>&amp;Développer</translation>
     </message>
     <message>
         <source>Fullscreen Mode</source>
@@ -11391,12 +11391,12 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+1"/>
         <source>LaTeX Reference...</source>
-        <translation>Aide LaTeX...</translation>
+        <translation>&amp;Aide LaTeX...</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>User Manual...</source>
-        <translation>Manuel de TeXstudio...</translation>
+        <translation>&amp;Manuel de TeXstudio...</translation>
     </message>
     <message>
         <source>Paste before</source>
@@ -11993,7 +11993,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location line="+339"/>
         <source>Open Documents</source>
-        <translation>Documents ouverts</translation>
+        <translation>Documents &amp;ouverts</translation>
     </message>
     <message>
         <location line="-737"/>
@@ -12035,7 +12035,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location line="+277"/>
         <source>S&amp;ave Profile...</source>
-        <translation>E&amp;nregistrer le profil actif...</translation>
+        <translation>&amp;Enregistrer le profil actif...</translation>
     </message>
     <message>
         <location line="+4706"/>
@@ -12060,12 +12060,12 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location line="-8422"/>
         <source>&amp;Searching</source>
-        <translation>&amp;Recherche</translation>
+        <translation>C&amp;hercher/remplacer</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Continue F&amp;ind</source>
-        <translation>Continuer à &amp;chercher</translation>
+        <translation>Cont&amp;inuer à chercher</translation>
     </message>
     <message>
         <location line="-1"/>
@@ -12084,7 +12084,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location line="+5"/>
         <source>Replace Next</source>
-        <translation>Remplacer &amp;suivant</translation>
+        <translation>&amp;Remplacer suivant</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -12104,7 +12104,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location line="-76"/>
         <source>&amp;Select all matches...</source>
-        <translation>Sélectionner &amp;toutes les occurrences...</translation>
+        <translation>&amp;Sélectionner toutes les occurrences...</translation>
     </message>
     <message>
         <source>Sorry, I couldn&apos;t find the file &quot;%1&quot;</source>
@@ -12118,7 +12118,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location line="+31"/>
         <source>About TeXstudio...</source>
-        <translation>À propos de TeXstudio...</translation>
+        <translation>À propos de &amp;TeXstudio...</translation>
     </message>
     <message>
         <source>You are trying to save the file under the name %1, but a file with this name is already open.
@@ -12233,7 +12233,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <location line="-328"/>
         <location line="+337"/>
         <source>Insert language as TeX comment</source>
-        <translation>... pour spécifier la &amp;langue du document</translation>
+        <translation>... spécifiant la &amp;langue du fichier</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -12320,73 +12320,73 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <location filename="additionaltranslations.cpp" line="+2"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation>Asymptote</translation>
+        <translation>&amp;Asymptote</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
-        <translation>BibTeX</translation>
+        <translation>&amp;BibTeX</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation>Binaire</translation>
+        <translation>Bi&amp;naire</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation>Homespring</translation>
+        <translation>&amp;Homespring</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation>Pweave</translation>
+        <translation>&amp;Pweave</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
-        <translation>QtScript</translation>
+        <translation>&amp;QtScript</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
-        <translation>Sweave</translation>
+        <translation>&amp;Sweave</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation>(La)TeX</translation>
+        <translation>(&amp;La)TeX</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
-        <translation>Macros (La)TeX</translation>
+        <translation>&amp;Macros (La)TeX</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation>XML</translation>
+        <translation>&amp;XML</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
-        <translation>Texte ordinaire</translation>
+        <translation>&amp;Texte simple</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="-9498"/>
         <location line="+1"/>
         <source>Bookmarks</source>
-        <translation>Signets</translation>
+        <translation>Si&amp;gnets</translation>
     </message>
     <message>
         <source>move up</source>
@@ -12413,7 +12413,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <location line="+326"/>
         <source>Grammar errors</source>
-        <translation>Erreurs grammaticales</translation>
+        <translation>&amp;Erreurs grammaticales</translation>
     </message>
     <message>
         <source>Word repetition</source>
@@ -12422,7 +12422,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
     <message>
         <location line="+5"/>
         <source>Bad words</source>
-        <translation>Mots incorrects</translation>
+        <translation>&amp;Mots incorrects</translation>
     </message>
     <message>
         <source>Grammer mistake</source>
@@ -12524,7 +12524,7 @@ Faites-vous confiance à ce document ?</translation>
         <location filename="additionaltranslations.cpp" line="-1"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
-        <translation>Résultats du test TXS</translation>
+        <translation>&amp;Résultats du test TXS</translation>
     </message>
     <message>
         <source>Yes, always run the overridden command</source>
@@ -12586,13 +12586,13 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location line="+782"/>
         <source>Align Windows</source>
-        <translation>Aligner les fenêtres</translation>
+        <translation>Aligner les &amp;fenêtres</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="-8"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
-        <translation>Fichiers TeX dtx</translation>
+        <translation>Fichiers TeX &amp;dtx</translation>
     </message>
     <message>
         <source>TeXstudio has been paused due to a possible endless loop.
@@ -12611,7 +12611,7 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location filename="texstudio.cpp" line="+11"/>
         <source>Highlighting</source>
-        <translation>Surlignement</translation>
+        <translation>S&amp;urlignement</translation>
     </message>
     <message>
         <location line="-210"/>
@@ -12663,7 +12663,7 @@ included document in %1</source>
         <location line="+4"/>
         <location line="+10"/>
         <source>BibTeX</source>
-        <translation>BibTeX</translation>
+        <translation>&amp;BibTeX</translation>
     </message>
     <message>
         <location line="-5"/>
@@ -12684,7 +12684,7 @@ included document in %1</source>
         <location filename="additionaltranslations.cpp" line="+2"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
-        <translation>Lua</translation>
+        <translation>L&amp;ua</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="+99"/>
@@ -12738,7 +12738,7 @@ included document in %1</source>
     <message>
         <location line="+1"/>
         <source>Save renamed/&amp;moved file...</source>
-        <translation>Enregistrer le fichier reno&amp;mmé/déplacé</translation>
+        <translation>&amp;Enregistrer le fichier renommé/déplacé</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -12783,7 +12783,7 @@ included document in %1</source>
     <message>
         <location line="+2"/>
         <source>Select All &amp;Occurences</source>
-        <translation>Sélectionner toutes les &amp;occurrences</translation>
+        <translation>&amp;Sélectionner toutes les occurrences</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -12846,7 +12846,7 @@ included document in %1</source>
     <message>
         <location line="+17"/>
         <source>Unnamed Bookmark</source>
-        <translation>Signet sans nom</translation>
+        <translation>&amp;Signet sans nom</translation>
     </message>
     <message>
         <location line="+48"/>
@@ -12866,7 +12866,7 @@ included document in %1</source>
     <message>
         <location line="+1"/>
         <source>Next Warning</source>
-        <translation>&amp;Avertissement &amp;suivant</translation>
+        <translation>&amp;Avertissement suivant</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -13057,27 +13057,27 @@ included document in %1</source>
     <message>
         <location line="+13"/>
         <source>Quick &amp;Beamer Presentation...</source>
-        <translation>Assistant présentation &amp;Beamer...</translation>
+        <translation>&amp;Diaporama Beamer...</translation>
     </message>
     <message>
         <location line="+75"/>
         <source>List Of Hidden Documents</source>
-        <translation>Liste des fichiers cachés</translation>
+        <translation>Liste des fichiers &amp;cachés</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Show embedded PDF large</source>
-        <translation>Afficher le PDF embarqué en grand</translation>
+        <translation>Afficher le PDF embarqué en &amp;grand</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show embedded PDF small</source>
-        <translation>Afficher le PDF embarqué en petit</translation>
+        <translation>Afficher le PDF embarqué en &amp;petit</translation>
     </message>
     <message>
         <location line="+33"/>
         <source>Editor Zoom</source>
-        <translation>Zoom de l&apos;éditeur</translation>
+        <translation>&amp;Zoom de l&apos;éditeur</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -13087,35 +13087,35 @@ included document in %1</source>
     <message>
         <location line="+1"/>
         <source>Zoom Out</source>
-        <translation>Zoom arrière</translation>
+        <translation>Zoom &amp;arrière</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Reset Zoom</source>
-        <translation>Réinitialiser le zoom</translation>
+        <translation>&amp;Réinitialiser le zoom</translation>
     </message>
     <message>
         <location line="+4"/>
         <location line="+2"/>
         <source>Full &amp;Screen</source>
-        <translation>&amp;Plein Écran</translation>
+        <translation>Plei&amp;n écran</translation>
     </message>
     <message>
         <location line="+37"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
-        <translation>Sauver la configuration en &amp;cours</translation>
+        <translation>&amp;Sauver la configuration en cours</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Restore &amp;Default Settings...</source>
-        <translation>Restaurer la configuration par &amp;défaut...</translation>
+        <translation>&amp;Restaurer la configuration par défaut...</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Root Document</source>
         <comment>menu</comment>
-        <translation>Document maître</translation>
+        <translation>Document &amp;maître</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -13125,12 +13125,12 @@ included document in %1</source>
     <message>
         <location line="+8"/>
         <source>Set Current Document As Explicit Root</source>
-        <translation>Déclarer le document en cours comme document maître explicite</translation>
+        <translation>&amp;Déclarer le document en cours comme document maître explicite</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Check Active Completion Files</source>
-        <translation>Vérifier les fichiers de complétion actifs</translation>
+        <translation>Vérifier les fichiers de &amp;complétion actifs</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -13300,7 +13300,7 @@ Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
     <message>
         <location line="-6979"/>
         <source>New From &amp;Template...</source>
-        <translation>Nouveau à par&amp;tir d&apos;un modèle...</translation>
+        <translation>Nouveau à partir d&apos;un &amp;modèle...</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -13316,24 +13316,24 @@ Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
         <location line="+122"/>
         <location line="+5"/>
         <source>Nearest Block</source>
-        <translation>Bloc le plus proche</translation>
+        <translation>&amp;Bloc le plus proche</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Word Repetition</source>
-        <translation>Répétition de mots</translation>
+        <translation>&amp;Répétition de mots</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Grammar Mistake</source>
         <oldsource>Grammer Mistake</oldsource>
-        <translation>Erreur grammaticale</translation>
+        <translation>&amp;Erreur grammaticale</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Grammar Mistake Special %1</source>
         <oldsource>Grammer Mistake Special %1</oldsource>
-        <translation>Erreur grammaticale spéciale %1</translation>
+        <translation>Erreur grammaticale spéciale &amp;%1</translation>
     </message>
     <message>
         <source>Save Current Settings</source>
@@ -13343,7 +13343,7 @@ Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
     <message>
         <location line="+79"/>
         <source>Check LaTeX Installation</source>
-        <translation>Vérifier l&apos;installation LaTeX</translation>
+        <translation>&amp;Vérifier l&apos;installation LaTeX</translation>
     </message>
     <message>
         <location line="+8000"/>
@@ -13370,7 +13370,7 @@ Voulez-vous le créer ?</translation>
     <message>
         <location line="-8306"/>
         <source>Long-range Word Repetition</source>
-        <translation>Longue plage de répétition de mot</translation>
+        <translation>&amp;Longue plage de répétition de mots</translation>
     </message>
     <message>
         <source>&amp;Build+View</source>
@@ -13439,7 +13439,7 @@ Voulez-vous le restaurer ?</translation>
     <message>
         <location line="-941"/>
         <source>Math Assistant...</source>
-        <translation>Assistant mathématique...</translation>
+        <translation>&amp;Mathématique...</translation>
     </message>
     <message>
         <source>%1 has been compiled with qt%2, but is running with qt%3.
@@ -13461,12 +13461,12 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     <message>
         <location line="-1017"/>
         <source>Focus Editor</source>
-        <translation>Focus sur l&apos;éditeur</translation>
+        <translation>Focus sur l&apos;&amp;éditeur</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Focus Viewer</source>
-        <translation>Focus sur l&apos;afficheur</translation>
+        <translation>Focus sur l&apos;&amp;afficheur</translation>
     </message>
     <message>
         <source>Select LaTeX Template</source>
@@ -13506,12 +13506,12 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     <message>
         <location line="+37"/>
         <source>Go Back</source>
-        <translation>Revenir à la position précédente</translation>
+        <translation>Position &amp;précédente</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Go Forward</source>
-        <translation>Aller à la position suivante</translation>
+        <translation>Position &amp;suivante</translation>
     </message>
     <message>
         <location line="+532"/>
@@ -13579,12 +13579,12 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
     <message>
         <location line="+1"/>
         <source>Insert root document name as TeX comment</source>
-        <translation>... pour spécifier le nom du document &amp;maître du fichier</translation>
+        <translation>... spécifiant le document &amp;maître du fichier</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Insert document coding as TeX comment</source>
-        <translation>... pour spécifier le &amp;codage d&apos;entrée du fichier</translation>
+        <translation>... spécifiant le &amp;codage d&apos;entrée du fichier</translation>
     </message>
     <message>
         <source>Saving under the name
@@ -13658,7 +13658,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <location line="-2014"/>
         <source>List Of Open Documents</source>
-        <translation>Liste des documents ouverts</translation>
+        <translation>&amp;Liste des documents ouverts</translation>
     </message>
     <message>
         <location line="+348"/>
