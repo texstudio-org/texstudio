@@ -577,7 +577,13 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation type="unfinished"/>
+        <translation>OSX 10.11 non permette più alle applicazioni di scrivere qui. Potrebbe 
+essere necessario aggiornare MacTeX alla versione 2015.
+
+In seguito, i programmi MacTeX saranno collocati su /Library/TeX/texbin/
+
+Vuoi che TeXstudio cambi tutti i percorsi dei comandi da /usr/texbin/ a
+/Library/TeX/texbin/?</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="392"/>
@@ -858,7 +864,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="482"/>
         <source>Store relative paths</source>
-        <translation type="unfinished"/>
+        <translation>Salva i percorsi relativi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="495"/>
@@ -1119,7 +1125,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1119"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"/>
+        <translation>Qui sono elencati le voci del menù e possono essere nascosti o modificati</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1132"/>
@@ -1140,7 +1146,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"/>
+        <translation>Questo controlla se la lista qui sopra mostra tutte le voci del menu o solo quelle generalmente modificate.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1153"/>
