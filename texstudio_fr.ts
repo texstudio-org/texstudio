@@ -11309,7 +11309,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <location line="-4416"/>
         <location line="+153"/>
         <source>&amp;View</source>
-        <translation>&amp;Affichage</translation>
+        <translation>Afficha&amp;ge</translation>
     </message>
     <message>
         <location line="+2"/>
