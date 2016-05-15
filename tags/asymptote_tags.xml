@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texmakertags title="Asymptote">
+<section title="General (Asymptote)">
+<item txt="\\begin{asy} \\end{asy}" tag="\\begin{asy}"/>
+<item txt="\\begin{asydef} \\end{asydef}" tag="\\begin{asydef}"/>
+<item tag="usepackage(%|);"/>
+<item tag="texpreamble(%|);"/>
+<item tag="import %|;"/>
+<item tag="size(%|,);"/>
+<item tag="pair "/>
+<item tag="real "/>
+<item tag="path "/>
+<item tag="pen "/>
+</section>
+<section title="Draw  (Asymptote)">
+<item tag="draw(%|);"/>
+<item tag="fill(%|);"/>
+<item tag="clip(%|);"/>
+<item tag="label(%|);"/>
+<item tag="dot(%|);"/>
+</section>
+</texmakertags>
