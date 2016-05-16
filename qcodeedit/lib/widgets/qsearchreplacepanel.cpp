@@ -88,7 +88,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
 	bClose->setMaximumSize(buttonSize);
-    bClose->setIcon(getRealIconCached("file-close"));
+    bClose->setIcon(getRealIconCached("document-close"));
 	gridLayout->addWidget(bClose, 0, 0, 1, 1);
 
 	QLabel* lbFind = new QLabel(this);
