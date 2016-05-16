@@ -2889,7 +2889,7 @@ void QEditor::selectAllOccurences()
 	//       1. initialize the search with the required parameters
 	//       2. select all matches
 	//       3. close the search panel which was opened as a side effect of 1.
-	// It would be better to be able to perform the seach and select without interfering 
+	// It would be better to be able to perform the search and select without interfering
 	// with the search panel UI.
 	find(text, false, false, isWord && atBoundaries, true);
 	selectAllMatches();
