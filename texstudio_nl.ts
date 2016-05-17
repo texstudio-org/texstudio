@@ -1551,12 +1551,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2129"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation type="unfinished"/>
+        <translation>Dubbel-klik selectie: inclusief eerste backslash</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2136"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Spellingscontrole via contextmenu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2143"/>
@@ -1576,7 +1576,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2164"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Overschrijf openend haakje gevolgd door een placeholder.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2172"/>
@@ -1586,17 +1586,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2177"/>
         <source>Soft Line Wrap at Window Edge</source>
-        <translation type="unfinished"/>
+        <translation>Zachte tekstterugloop bij vensterrand.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2182"/>
         <source>Soft Line Wrap after max. Characters</source>
-        <translation type="unfinished"/>
+        <translation>Zachte tekstterugloop na max. letterteken</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2187"/>
         <source>Hard Line Wrap after max. Characters</source>
-        <translation type="unfinished"/>
+        <translation>Harde tekstterugloop na max. lettertekens.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2195"/>
@@ -1617,22 +1617,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2216"/>
         <source>Insert Symbol as Unicode</source>
-        <translation type="unfinished"/>
+        <translation>Voeg symbool in als unicode</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2223"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"/>
+        <translation>Toon logmarkeringen bij het aanklikken van de logboekvermelding</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2230"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Overschrijf eindhaakje dat een placeholder volgt.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2238"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"/>
+        <translation>Voeg element direct toe aan contextmenu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2243"/>
@@ -1647,32 +1647,32 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2258"/>
         <source>Show image tooltip on image files</source>
-        <translation type="unfinished"/>
+        <translation>Toon afbeeldingknopinfo op afbeeldingsbestanden</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Standaard log-encoding</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
         <source>Structure Panel</source>
-        <translation type="unfinished"/>
+        <translation>Structuur Paneel</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2284"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"/>
+        <translation>Markeer structuurelementen na  \end{document}</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2291"/>
         <source>Reference commands in context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Referentiecommando&apos;s in contectmenu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2301"/>
         <source>Keep indentation of includes in structure tree</source>
-        <translation type="unfinished"/>
+        <translation>Behoud insprong van includes in structuuroverzicht.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2308"/>
@@ -1682,7 +1682,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2315"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"/>
+        <translation>Markeer structuurelementen in appendix</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2331"/>
@@ -1712,7 +1712,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2371"/>
         <source>Behind Line Break</source>
-        <translation type="unfinished"/>
+        <translation>Na regeleinde</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2376"/>
@@ -1762,7 +1762,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2482"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation type="unfinished"/>
+        <translation>Visuele kolom muisaanwijzer (bv. beweeg muisaanwijzer in de richting van de pijltjestoetsen in recht-naar-links-tekst)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2489"/>
@@ -1772,12 +1772,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2496"/>
         <source>depending on character direction</source>
-        <translation type="unfinished"/>
+        <translation>Afhankelijk van lettertekenrichting</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2503"/>
         <source>depending on text/math mode</source>
-        <translation type="unfinished"/>
+        <translation>afhankelijk van text/wiskunde modus</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2513"/>
@@ -1787,12 +1787,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2519"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
-        <translation type="unfinished"/>
+        <translation>Schakel work-around bij het typen van accenten uit (enkel Mac OS X)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2526"/>
         <source>Try to automatically choose best display options</source>
-        <translation type="unfinished"/>
+        <translation>Probeer om automatisch de beste weergave-opties te kiezen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2544"/>
@@ -1822,22 +1822,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2573"/>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"/>
+        <translation>Schakel cache van gerenderde lijnen uit</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2580"/>
         <source>Disable fixed pitch mode</source>
-        <translation type="unfinished"/>
+        <translation>Schakel vaste pitch modus uit</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2587"/>
         <source>Disable cache of character width</source>
-        <translation type="unfinished"/>
+        <translation>Schakel cache van lettertekenbreedte uit</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2594"/>
         <source>Use QImage as cache type</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik Qimage als cache </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2657"/>
@@ -1847,12 +1847,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2680"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Hier kan de markering van aangepaste omgevingen worden aangepast.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2694"/>
         <source>Custom Environment</source>
-        <translation type="unfinished"/>
+        <translation>Aangepaste omgeving</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2699"/>
@@ -1862,7 +1862,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2709"/>
         <source>Here you can add another environment for custom highlighting.</source>
-        <translation type="unfinished"/>
+        <translation>Hier kun je een omgeving toevoegen voor aangepaste markering</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2712"/>
@@ -1895,47 +1895,47 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2820"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"/>
+        <translation>Toon knopinfo met doeltekst voor labels/bibitem, voorbeeldweergaven van kleuren en afbeeldingen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2823"/>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"/>
+        <translation>Knopinfo-voorbeeld</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2830"/>
         <source>Arguments as Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Argumenten als placeholders</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2840"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
-        <translation type="unfinished"/>
+        <translation>Toon knopinfo met een beschrijving van het geselecteerde complement commando</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2843"/>
         <source>ToolTip-Help</source>
-        <translation type="unfinished"/>
+        <translation>Knopinfo-help</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2853"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
-        <translation type="unfinished"/>
+        <translation>Toon de completer zodra &apos;\&apos; is ingegeven. Alternatief kan de completer altijd manueel worden opgestart met Ctrl+Spatie.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2856"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation type="unfinished"/>
+        <translation>Start completer automatisch bij het typen van LaTeX-commando&apos;s</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2865"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
-        <translation type="unfinished"/>
+        <translation>Grootte van de tabbalk aan de onder- of bovenkant van de completer</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2868"/>
         <source>Tab Bar Size</source>
-        <translation type="unfinished"/>
+        <translation>Tabblad afmetingen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2878"/>
@@ -1962,7 +1962,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2932"/>
         <source>Auto Replace Latex-Commands</source>
-        <translation type="unfinished"/>
+        <translation>Automatisch vervangen van LaTeX-commando&apos;s</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2939"/>
@@ -2440,7 +2440,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4074"/>
         <source>Hybrid</source>
-        <translation type="unfinished"/>
+        <translation>Hybride</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4082"/>
@@ -3201,7 +3201,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="88"/>
         <source>label</source>
-        <translation type="unfinished"/>
+        <translation>etiket</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="89"/>
@@ -3302,7 +3302,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="configmanager.cpp" line="1385"/>
         <source>Special Tags</source>
-        <translation type="unfinished"/>
+        <translation>Speciale Labels</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1493"/>
@@ -3479,12 +3479,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="366"/>
         <source>Split Vertically</source>
-        <translation type="unfinished"/>
+        <translation>Verticaal Splitsen</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="366"/>
         <source>Split Horizontally</source>
-        <translation type="unfinished"/>
+        <translation>Horizontaal Splitsen</translation>
     </message>
 </context>
 <context>
@@ -3517,7 +3517,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="encodingdialog.ui" line="48"/>
         <source>Change To</source>
-        <translation type="unfinished"/>
+        <translation>Verander Naar</translation>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="90"/>
@@ -3766,12 +3766,12 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="insertgraphics.ui" line="327"/>
         <source>Top</source>
-        <translation type="unfinished"/>
+        <translation>Hoofd</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="334"/>
         <source>Bottom</source>
-        <translation type="unfinished"/>
+        <translation>Grond</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="341"/>
@@ -3975,7 +3975,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="36"/>
         <source>BLOCKS</source>
-        <translation type="unfinished"/>
+        <translation>BLOKKEN</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="2753"/>
@@ -4080,7 +4080,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="549"/>
         <source>Go to PDF</source>
-        <translation type="unfinished"/>
+        <translation>Ga naar PDF</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="1032"/>
@@ -4123,7 +4123,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2337"/>
         <source>Class</source>
-        <translation type="unfinished"/>
+        <translation>Klasse</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2337"/>
@@ -4259,7 +4259,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexlog.cpp" line="69"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Bericht</translation>
     </message>
 </context>
 <context>
@@ -4598,7 +4598,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="497"/>
         <source> Find :</source>
-        <translation type="unfinished"/>
+        <translation>Zoek:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="499"/>
@@ -4770,7 +4770,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="226"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;OngedaanMaken</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="229"/>
@@ -4780,7 +4780,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="240"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Opnieuw</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="243"/>
@@ -4893,7 +4893,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="401"/>
         <source>Magnify</source>
-        <translation type="unfinished"/>
+        <translation>Vergroten</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="409"/>
@@ -5812,13 +5812,13 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="518"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1403"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;OngedaanMaken</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="529"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1404"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Opnieuw</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="544"/>
@@ -6952,7 +6952,7 @@ Do you want them to be saved?</source>
     <message>
         <location filename="codesnippet.cpp" line="263"/>
         <source>label</source>
-        <translation type="unfinished"/>
+        <translation>etiket</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="263"/>
@@ -8831,12 +8831,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="783"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;OngedaanMaken</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="784"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Opnieuw</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="786"/>
