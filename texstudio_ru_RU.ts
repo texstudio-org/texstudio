@@ -319,7 +319,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="304"/>
         <source>&amp;Report</source>
-        <translation>&amp;Отчет</translation>
+        <translation>&amp;Отчёт</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="313"/>
@@ -1656,12 +1656,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2258"/>
         <source>Show image tooltip on image files</source>
-        <translation>Показывать всплывающее изображение для файлов с изображениями</translation>
+        <translation>Показывать всплывающий предварительный просмотр при наведении на изображение</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation>Кодировка логов по умолчанию</translation>
+        <translation>Кодировка лог-файлов по умолчанию</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
@@ -3504,7 +3504,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="360"/>
         <source>Move to other view</source>
-        <translation>Переместить в другое представление</translation>
+        <translation>Переместить в другую область</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="366"/>
@@ -8162,25 +8162,25 @@ Do you trust this script?</source>
         <location filename="tabdialog.cpp" line="58"/>
         <source>p{} (fixed width - justified)</source>
         <comment>tabular alignment</comment>
-        <translation>p{} (фиксированная ширина - по формату)</translation>
+        <translation>p{} (фиксированная ширина — по обоим краям)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="59"/>
         <source>p{} (fixed width - left)</source>
         <comment>tabular alignment</comment>
-        <translation>p{} (фиксированная ширина - слева)</translation>
+        <translation>p{} (фиксированная ширина — слева)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="60"/>
         <source>p{} (fixed width - center)</source>
         <comment>tabular alignment</comment>
-        <translation>p{} (фиксированная ширина - по центру)</translation>
+        <translation>p{} (фиксированная ширина — по центру)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="61"/>
         <source>p{} (fixed width - right)</source>
         <comment>tabular alignment</comment>
-        <translation>p{} (фиксированная ширина - справа)</translation>
+        <translation>p{} (фиксированная ширина — справа)</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="66"/>
@@ -10666,7 +10666,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="9213"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation>Невозможно открыть файл &quot;%1&quot;.</translation>
+        <translation>Невозможно открыть файл «%1».</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9215"/>
@@ -11274,7 +11274,8 @@ If not, end characters are ignored.</source>
         <location filename="txstabwidget.cpp" line="239"/>
         <source>
 included document in %1</source>
-        <translation>Включить документ в %1</translation>
+        <translation>
+включённый документ в %1</translation>
     </message>
 </context>
 <context>
@@ -11616,7 +11617,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="135"/>
         <source>LaTeX code for the title of the table of contents</source>
-        <translation>Код LaTeX для заголовка в оглавлении</translation>
+        <translation>Код LaTeX для названия оглавления</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="142"/>
