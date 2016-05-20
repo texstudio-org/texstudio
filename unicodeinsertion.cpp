@@ -43,13 +43,13 @@ UnicodeInsertion::UnicodeInsertion(QWidget *parent, int defCharCode): QWidget(pa
     int bw = (fm.maxWidth() + 1);
     int bh = qMax(fm.height(), fm.lineSpacing()) + 1;
     int bw_average=fm.averageCharWidth();
-	table->setMinimumWidth(16 * bw);
-	table->setMinimumHeight(3 * bh);
+    table->setMinimumWidth(16 * bw);
+    table->setMinimumHeight(3 * bh);
 	table->setRowCount(3);
 	table->setColumnCount(16);
 	for (int i = 0; i < table->rowCount(); i++)
 		table->setRowHeight(i, bh);;
-	for (int i = 0; i < table->rowCount(); i++)
+    for (int i = 0; i < table->columnCount(); i++)
 		table->setColumnWidth(i, bw);;
 	table->horizontalHeader()->hide();
 	table->verticalHeader()->hide();
