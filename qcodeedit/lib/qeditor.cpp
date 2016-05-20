@@ -3432,7 +3432,14 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
         }else{
 #ifdef Q_OS_MAC
             // work-around for bug 1723
-            return;
+            // needs to handle chinese punctuation here, so filter only special, non-printable chars
+            // see bug 1770
+
+            if(e->commitString().count()==1){
+                ushort code=e->commitString().at(0).unicode();
+                if(code<32)
+                    return;
+            }
 #endif
         }
 
