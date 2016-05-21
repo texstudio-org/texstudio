@@ -240,14 +240,16 @@ QString BuildManager::replaceEnvironmentVariables(const QString &s, const QHash<
 }
 
 /*!
- * returns additionalSearchPaths, optionally with replacement of environment variables
+ * returns paths with replaced [txs-app-dir], [txs-config-dir] and optionally with replaced environment variables
+ * paths may be an arbitrary string, in particular a single path or a list of paths
  */
-QString BuildManager::resolvedAdditionalSearchPaths()
+QString BuildManager::resolvePaths(QString paths)
 {
+	paths = ConfigManagerInterface::getInstance()->parseDir(paths);
 	if (m_replaceEnvironmentVariables)
-		return replaceEnvironmentVariables(additionalSearchPaths);
+		return replaceEnvironmentVariables(paths);
 	else
-		return additionalSearchPaths;
+		return paths;
 }
 
 BuildManager::BuildManager(): processWaitedFor(0)
@@ -1532,7 +1534,7 @@ ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &
 	if (cmd.startsWith(TXS_CMD_PREFIX))
 		connect(proc, SIGNAL(startedX()), SLOT(runInternalCommandThroughProcessX()));
 
-	updatePathSettings(proc, resolvedAdditionalSearchPaths());
+	updatePathSettings(proc, resolvePaths(additionalSearchPaths));
 	return proc;
 }
 
@@ -2168,7 +2170,7 @@ void ProcessX::startCommand()
 	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvedAdditionalSearchPaths().toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
 	// needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #else
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvedAdditionalSearchPaths().toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
+	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvePaths(BuildManager::additionalSearchPaths).toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #endif
 	QProcess::start(cmd);
 	qputenv("PATH", path); // restore

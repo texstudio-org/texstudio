@@ -3178,7 +3178,6 @@ void ConfigManager::getDefaultEncoding(const QByteArray &, QTextCodec *&guess, i
 
 QString ConfigManager::parseDir(QString s) const
 {
-	//QString cbd = configBaseDir;
 	s.replace("[txs-settings-dir]", removePathDelim(configBaseDir));
 	s.replace("[txs-app-dir]", removePathDelim(QCoreApplication::applicationDirPath()));
 	return s;
