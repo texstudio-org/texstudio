@@ -766,10 +766,13 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 				} else if ( kc == Qt::Key_Tab || kc == Qt::Key_Backtab ) {
 					if ( cbReplace->isChecked() )
 					{
-						if ( cbHasFocus(cFind) )
+						if ( cbHasFocus(cFind) ) {
 							cReplace->setFocus();
-						else
+							cReplace->lineEdit()->selectAll();
+						} else {
 							cFind->setFocus();
+							cFind->lineEdit()->selectAll();
+						}
 					}
 					return true;
 				}
