@@ -928,7 +928,8 @@ void Texstudio::setupMenus()
 
 	menu->addSeparator();
 	newManagedAction(menu, "reparse", tr("Refresh Structure"), SLOT(updateStructure()));
-	newManagedAction(menu, "refreshQNFA", tr("Refresh QNFA"), SLOT(updateTexQNFA()));
+	act = newManagedAction(menu, "refreshQNFA", tr("Refresh Language Model"), SLOT(updateTexQNFA()));
+	act->setStatusTip(tr("Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic."));
 	newManagedAction(menu, "removePlaceHolders", tr("Remove Placeholders"), SLOT(editRemovePlaceHolders()), Qt::CTRL + Qt::SHIFT + Qt::Key_K);
 	newManagedAction(menu, "removeCurrentPlaceHolder", tr("Remove Current Placeholder"), SLOT(editRemoveCurrentPlaceHolder()));
 
