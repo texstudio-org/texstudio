@@ -2811,7 +2811,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="10"/>
         <source>&amp;LaTeX</source>
-        <translation type="unfinished"/>
+        <translation>&amp;LaTeX</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="11"/>
@@ -2826,7 +2826,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="13"/>
         <source>&amp;Sectioning</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sectioning</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="14"/>
@@ -2961,7 +2961,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="40"/>
         <source>&amp;List Environments</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Lijst Omgevingen</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="41"/>
@@ -3006,7 +3006,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="49"/>
         <source>framebox</source>
-        <translation type="unfinished"/>
+        <translation>framebox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="50"/>
@@ -3166,17 +3166,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="81"/>
         <source>&amp;Vertical Spacing</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Verticale Spatiëring</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="82"/>
         <source>New line - \\</source>
-        <translation type="unfinished"/>
+        <translation>Nieuw regel - \\</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="83"/>
         <source>International &amp;Accents</source>
-        <translation type="unfinished"/>
+        <translation>Internationale &amp;Accenten</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="84"/>
@@ -3186,17 +3186,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="85"/>
         <source>\include{file}</source>
-        <translation type="unfinished"/>
+        <translation>\include{bestand}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="86"/>
         <source>\input{file}</source>
-        <translation type="unfinished"/>
+        <translation>\input{bestand}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="87"/>
         <source>Cross References</source>
-        <translation type="unfinished"/>
+        <translation>Kruisverwijzingen</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="88"/>
@@ -3206,17 +3206,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="89"/>
         <source>ref</source>
-        <translation type="unfinished"/>
+        <translation>ref</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="90"/>
         <source>eqref</source>
-        <translation type="unfinished"/>
+        <translation>eqref</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="91"/>
         <source>pageref</source>
-        <translation type="unfinished"/>
+        <translation>pageref</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="92"/>
@@ -3226,7 +3226,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>cite</source>
-        <translation type="unfinished"/>
+        <translation>cite</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="94"/>
@@ -3244,19 +3244,19 @@ options again to only view the most common settings.</source>
         <location filename="configmanager.cpp" line="966"/>
         <location filename="configmanager.cpp" line="971"/>
         <source>Key replacement: %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Toets vervanging: %1 %2</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="944"/>
         <location filename="configmanager.cpp" line="966"/>
         <source>before word</source>
-        <translation type="unfinished"/>
+        <translation>Voor woord</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="950"/>
         <location filename="configmanager.cpp" line="971"/>
         <source>after word</source>
-        <translation type="unfinished"/>
+        <translation>Na woord</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1233"/>
@@ -3277,22 +3277,22 @@ options again to only view the most common settings.</source>
         <location filename="configmanager.cpp" line="1316"/>
         <location filename="configmanager.cpp" line="2342"/>
         <source>&lt;none&gt;</source>
-        <translation type="unfinished"/>
+        <translation>[geen]</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1362"/>
         <source>Insert New Menu Item (before)</source>
-        <translation type="unfinished"/>
+        <translation>Voeg Nieuw Menu Item in (voor)</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1365"/>
         <source>Insert New Sub Menu (before)</source>
-        <translation type="unfinished"/>
+        <translation>Voeg Nieuw Submenu in (voor)</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1383"/>
         <source>Latex/Math menus</source>
-        <translation type="unfinished"/>
+        <translation>Latex/Math menus</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1384"/>
@@ -3318,37 +3318,37 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="1754"/>
         <source>Recent &apos;Master Document&apos; %1</source>
-        <translation type="unfinished"/>
+        <translation>Recent &apos;Brondocument&apos; %1</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1757"/>
         <source>Recent File %1</source>
-        <translation type="unfinished"/>
+        <translation>Recent Bestand %1</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1758"/>
         <source>File list</source>
-        <translation type="unfinished"/>
+        <translation>Bestandslijst</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1759"/>
         <source>Open first non-open file</source>
-        <translation type="unfinished"/>
+        <translation>Open eerst niet open bestand</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1760"/>
         <source>&amp;* Open all files</source>
-        <translation type="unfinished"/>
+        <translation>&amp;* Open alle bestanden</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1770"/>
         <source>Master Document: </source>
-        <translation type="unfinished"/>
+        <translation>Brondocument</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2343"/>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;standaard&gt;</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2508"/>
@@ -3363,12 +3363,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="2522"/>
         <source>Restore Default</source>
-        <translation type="unfinished"/>
+        <translation>Standaard heractiveren.</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2569"/>
         <source>Repeat contained compilation commands</source>
-        <translation type="unfinished"/>
+        <translation>Herhaal ingehouden compileercommando&apos;s</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2615"/>
@@ -3378,7 +3378,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="2678"/>
         <source>Browse program</source>
-        <translation type="unfinished"/>
+        <translation>Blader naar programma</translation>
     </message>
 </context>
 <context>
@@ -3391,7 +3391,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="79"/>
         <source>text which &lt;i&gt;should&lt;/i&gt; be a &lt;b&gt;fair&lt;/b&gt; test of the font</source>
-        <translation type="unfinished"/>
+        <translation>Tekst die &lt;i&gt;zou moeten&lt;/i&gt; een &lt;b&gt;redelijke&lt;/b&gt; test zijn voor het lettertype</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="114"/>
@@ -6904,7 +6904,7 @@ Note: If the size is larger that the line spacing, characters may be clipped.</s
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="322"/>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="553"/>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;standaard&gt;</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="591"/>
@@ -7704,12 +7704,12 @@ Do you trust this script?</source>
     <message>
         <location filename="configdialog.cpp" line="33"/>
         <source>&lt;default&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;standaard&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="34"/>
         <source>&lt;none&gt;</source>
-        <translation type="unfinished"/>
+        <translation>[geen]</translation>
     </message>
 </context>
 <context>
@@ -7727,7 +7727,7 @@ Do you trust this script?</source>
     <message>
         <location filename="configdialog.cpp" line="184"/>
         <source>&lt;none&gt;</source>
-        <translation type="unfinished"/>
+        <translation>[geen]</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="251"/>
@@ -9359,7 +9359,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="953"/>
         <location filename="texstudio.cpp" line="1001"/>
         <source>&amp;LaTeX</source>
-        <translation type="unfinished"/>
+        <translation>&amp;LaTeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="954"/>

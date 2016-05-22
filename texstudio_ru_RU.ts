@@ -4045,7 +4045,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="1678"/>
         <source>untitled</source>
-        <translation>без названия</translation>
+        <translation>untitled</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1683"/>
@@ -4132,7 +4132,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="1032"/>
         <source>untitled</source>
-        <translation>без названия</translation>
+        <translation>untitled</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2099"/>
@@ -6451,7 +6451,7 @@ Do you wish to keep up to date by reloading the file?
         <location filename="qcodeedit/lib/qeditorfactory.cpp" line="197"/>
         <location filename="qcodeedit/lib/qeditorfactory.cpp" line="242"/>
         <source>untitled</source>
-        <translation>без названия</translation>
+        <translation>untitled</translation>
     </message>
 </context>
 <context>
