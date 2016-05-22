@@ -436,7 +436,7 @@
     <message>
         <location filename="buildmanager.cpp" line="+73"/>
         <location line="+22"/>
-        <location line="+1714"/>
+        <location line="+1716"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;introuvable&gt;</translation>
     </message>
@@ -5733,7 +5733,7 @@ la commande \caption n&apos;est pas valide.</translation>
     </message>
     <message>
         <location line="-60"/>
-        <location filename="texstudio.cpp" line="+7729"/>
+        <location filename="texstudio.cpp" line="+7730"/>
         <location line="+7"/>
         <source>Go to Definition</source>
         <translation>Aller à la définition</translation>
@@ -7927,7 +7927,7 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
         <translation></translation>
     </message>
     <message>
-        <location line="+2894"/>
+        <location line="+2901"/>
         <source>None</source>
         <translation>Aucun</translation>
     </message>
@@ -8215,7 +8215,7 @@ Souhaitez-vous maintenir le fichier à jour en le rechargeant ?
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location line="-3512"/>
+        <location line="-3519"/>
         <location line="+37"/>
         <location line="+22"/>
         <source>Saving failed</source>
@@ -10682,7 +10682,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>texte de la description</translation>
     </message>
     <message>
-        <location filename="texdocdialog.cpp" line="+91"/>
+        <location filename="texdocdialog.cpp" line="+93"/>
         <source>No Documentation Available</source>
         <translation>Aucune documentation disponible</translation>
     </message>
@@ -10694,13 +10694,13 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation type="obsolete">Mode normal</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="-7420"/>
-        <location line="+5602"/>
+        <location filename="texstudio.cpp" line="-7421"/>
+        <location line="+5603"/>
         <source>Ready</source>
         <translation>Prêt</translation>
     </message>
     <message>
-        <location line="-5379"/>
+        <location line="-5380"/>
         <location line="+27"/>
         <location line="+1"/>
         <source>Structure</source>
@@ -10805,18 +10805,18 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation type="obsolete">Rest&amp;aurer la session précédente</translation>
     </message>
     <message>
-        <location line="+1851"/>
+        <location line="+1852"/>
         <source>Save As</source>
         <translation>&amp;Enregistrer sous</translation>
     </message>
     <message>
-        <location line="-1830"/>
+        <location line="-1831"/>
         <source>Save &amp;As...</source>
         <translation>&amp;Enregistrer sous...</translation>
     </message>
     <message>
         <location line="+33"/>
-        <location line="+8667"/>
+        <location line="+8668"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
@@ -10825,7 +10825,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation type="obsolete">Im&amp;primer...</translation>
     </message>
     <message>
-        <location line="-8660"/>
+        <location line="-8661"/>
         <source>Exit</source>
         <translation>&amp;Quitter</translation>
     </message>
@@ -10835,7 +10835,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location line="+453"/>
+        <location line="+454"/>
         <location line="+1454"/>
         <location line="+5023"/>
         <source>Copy</source>
@@ -10848,7 +10848,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Couper</translation>
     </message>
     <message>
-        <location line="-6829"/>
+        <location line="-6830"/>
         <source>Pas&amp;te as LaTeX</source>
         <translation>Coller en La&amp;TeX</translation>
     </message>
@@ -10987,7 +10987,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Codage d&apos;&amp;entrée...</translation>
     </message>
     <message>
-        <location line="+120"/>
+        <location line="+121"/>
         <source>Check Spelling...</source>
         <translation>Vérifier l&apos;ortho&amp;graphe...</translation>
     </message>
@@ -10997,12 +10997,12 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Th&amp;ésaurus...</translation>
     </message>
     <message>
-        <location line="-65"/>
+        <location line="-66"/>
         <source>Refresh Structure</source>
         <translation>Ra&amp;fraîchir la structure</translation>
     </message>
     <message>
-        <location line="+2"/>
+        <location line="+3"/>
         <source>Remove Placeholders</source>
         <translation>&amp;Supprimer les paramètres fictifs</translation>
     </message>
@@ -11088,7 +11088,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>&amp;Bibliographie</translation>
     </message>
     <message>
-        <location line="-321"/>
+        <location line="-322"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
@@ -11186,7 +11186,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
     <message>
         <location line="+5"/>
         <source>&amp;Uncomment</source>
-        <translation>Décommen&amp;ter</translation>
+        <translation>D&amp;écommenter</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -11204,7 +11204,7 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation>Re&amp;nommer environnement</translation>
     </message>
     <message>
-        <location line="+54"/>
+        <location line="+55"/>
         <source>View PD&amp;F</source>
         <translation>Afficher PD&amp;F</translation>
     </message>
@@ -11496,8 +11496,8 @@ Sinon, ils ne seront pas disponibles dans la boîte de dialogue « Créer un mod
         <translation type="obsolete">Modèles</translation>
     </message>
     <message>
-        <location line="-9563"/>
-        <location line="+8870"/>
+        <location line="-9564"/>
+        <location line="+8871"/>
         <location line="+10"/>
         <source>All files</source>
         <translation>Tous les fichiers</translation>
@@ -11610,7 +11610,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
         <translation type="obsolete">Fichier log introuvable !</translation>
     </message>
     <message>
-        <location line="-5204"/>
+        <location line="-5205"/>
         <location line="+1"/>
         <source>No LaTeX errors detected !</source>
         <translation>Aucune erreur LaTeX détectée !</translation>
@@ -11628,7 +11628,7 @@ Vous devez enregistrer le document avant de le compiler.</translation>
         <translation>Aucun dépassement de marge détecté !</translation>
     </message>
     <message>
-        <location line="+5347"/>
+        <location line="+5348"/>
         <location line="+9"/>
         <source>File not found</source>
         <translation>Fichier introuvable</translation>
@@ -11823,12 +11823,12 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">LaTeX</translation>
     </message>
     <message>
-        <location line="-8552"/>
+        <location line="-8553"/>
         <source>TeX files</source>
         <translation>Fichiers TeX</translation>
     </message>
     <message>
-        <location line="+3241"/>
+        <location line="+3242"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>Forcer des changements de ligne après le nombre de caractères suivant:</translation>
     </message>
@@ -11848,7 +11848,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Tableau</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="-2729"/>
+        <location filename="texstudio.cpp" line="-2730"/>
         <source>Insert Unicode Character...</source>
         <translation>&amp;Insérer un caractère unicode...</translation>
     </message>
@@ -11875,7 +11875,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">Trouver le &amp;précédent</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="+746"/>
+        <location filename="texstudio.cpp" line="+747"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>C&amp;onvertir le fichier source en html...</translation>
     </message>
@@ -11946,7 +11946,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Impossible d&apos;ouvrir le navigateur</translation>
     </message>
     <message>
-        <location line="-5506"/>
+        <location line="-5507"/>
         <source>SVN &amp;update...</source>
         <translation>&amp;Mise à jour SVN...</translation>
     </message>
@@ -11991,12 +11991,12 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>&amp;Contrôler le PDF</translation>
     </message>
     <message>
-        <location line="+339"/>
+        <location line="+340"/>
         <source>Open Documents</source>
         <translation>Documents &amp;ouverts</translation>
     </message>
     <message>
-        <location line="-737"/>
+        <location line="-738"/>
         <source>Plaintext files</source>
         <translation>Fichiers texte brut</translation>
     </message>
@@ -12011,12 +12011,12 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Purger l&apos;aperçu en &amp;ligne</translation>
     </message>
     <message>
-        <location line="+7688"/>
+        <location line="+7689"/>
         <source>check in whole directory ?</source>
         <translation>Contrôler tout le répertoire ?</translation>
     </message>
     <message>
-        <location line="-7663"/>
+        <location line="-7664"/>
         <source>Parenthesis</source>
         <translation>Parent&amp;hèses</translation>
     </message>
@@ -12033,7 +12033,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">Sélection (inversée)</translation>
     </message>
     <message>
-        <location line="+277"/>
+        <location line="+278"/>
         <source>S&amp;ave Profile...</source>
         <translation>&amp;Enregistrer le profil actif...</translation>
     </message>
@@ -12058,7 +12058,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation>Enregistrer le profil actif</translation>
     </message>
     <message>
-        <location line="-8422"/>
+        <location line="-8423"/>
         <source>&amp;Searching</source>
         <translation>C&amp;hercher/remplacer</translation>
     </message>
@@ -12111,7 +12111,7 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
         <translation type="obsolete">Désolé, je n&apos;ai pas trouvé le fichier « %1 »</translation>
     </message>
     <message>
-        <location line="+363"/>
+        <location line="+364"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>&amp;Configurer TeXstudio...</translation>
     </message>
@@ -12140,7 +12140,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation type="obsolete">Fichiers Pdf</translation>
     </message>
     <message>
-        <location line="-4961"/>
+        <location line="-4962"/>
         <source>Show difference between two files</source>
         <translation>Montrer la &amp;différence entre deux fichiers</translation>
     </message>
@@ -12173,7 +12173,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation type="obsolete">Activer le sur&amp;lignage...</translation>
     </message>
     <message>
-        <location line="+6884"/>
+        <location line="+6885"/>
         <source>Move document to &amp;front</source>
         <translation>Placer le document tout au-dess&amp;us</translation>
     </message>
@@ -12195,7 +12195,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation>Différences</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="-9608"/>
+        <location filename="texstudio.cpp" line="-9609"/>
         <source>Sweave files</source>
         <translation>Fichiers sweave</translation>
     </message>
@@ -12225,7 +12225,7 @@ Cependant, cette version de TeXstudio a été compilée sans le support de cette
         <translation>Déclarer le conflit comme &amp;résolu</translation>
     </message>
     <message>
-        <location line="+579"/>
+        <location line="+580"/>
         <source>Default</source>
         <translation>Par défaut</translation>
     </message>
@@ -12383,7 +12383,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <translation>&amp;Texte simple</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="-9498"/>
+        <location filename="texstudio.cpp" line="-9499"/>
         <location line="+1"/>
         <source>Bookmarks</source>
         <translation>Si&amp;gnets</translation>
@@ -12411,7 +12411,7 @@ Cliquer sur « Annuler » pour ne rien faire.</translation>
         <translation>Supprimer jusqu&apos;à la &amp;fin de la ligne</translation>
     </message>
     <message>
-        <location line="+326"/>
+        <location line="+327"/>
         <source>Grammar errors</source>
         <translation>&amp;Erreurs grammaticales</translation>
     </message>
@@ -12579,12 +12579,12 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <translation>J&apos;essaie de m&apos;arrêter, mais il ne se passe rien.</translation>
     </message>
     <message>
-        <location line="-9896"/>
+        <location line="-9897"/>
         <source>PDF files</source>
         <translation>Fichiers PDF</translation>
     </message>
     <message>
-        <location line="+782"/>
+        <location line="+783"/>
         <source>Align Windows</source>
         <translation>Aligner les &amp;fenêtres</translation>
     </message>
@@ -12711,7 +12711,7 @@ included document in %1</source>
         <translation>Oui, continuer la boucle</translation>
     </message>
     <message>
-        <location line="-9345"/>
+        <location line="-9346"/>
         <source>Previous Change</source>
         <translation>Modification &amp;précédente</translation>
     </message>
@@ -12935,8 +12935,14 @@ included document in %1</source>
     </message>
     <message>
         <location line="+4"/>
-        <source>Refresh QNFA</source>
-        <translation>Rafraîchir &amp;QNFA</translation>
+        <source>Refresh Language Model</source>
+        <oldsource>Refresh QNFA</oldsource>
+        <translation>Rafraîchir le m&amp;odèle de langage</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
+        <translation>Force la mise à jour du modèle de langage dynamique utilisé pour la coloration syntaxique et le pliage de code.Probablement inutile car les mises à jour sont en général automatiques.</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -13298,7 +13304,7 @@ Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
         <translation type="obsolete">Insérer \ref pour label</translation>
     </message>
     <message>
-        <location line="-6979"/>
+        <location line="-6980"/>
         <source>New From &amp;Template...</source>
         <translation>Nouveau à partir d&apos;un &amp;modèle...</translation>
     </message>
@@ -13308,7 +13314,7 @@ Veuillez le fournir si vous envoyez un rapport de bogue.</translation>
         <translation>&amp;Restaurer la session précédente</translation>
     </message>
     <message>
-        <location line="+267"/>
+        <location line="+268"/>
         <source>Find Word Repetitions...</source>
         <translation>Chercher les &amp;répétitions de mots...</translation>
     </message>
@@ -13489,7 +13495,7 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
         <translation type="obsolete">Sélectionner un modèle de tableau</translation>
     </message>
     <message>
-        <location line="-1550"/>
+        <location line="-1551"/>
         <source>&amp;Line Operations</source>
         <translation>Opérations sur les &amp;lignes</translation>
     </message>
@@ -13514,7 +13520,7 @@ Sans quoi il pourrait y avoir des erreurs aléatoires et des arrêts brutaux.</t
         <translation>Position &amp;suivante</translation>
     </message>
     <message>
-        <location line="+532"/>
+        <location line="+533"/>
         <source>LanguageTool is running</source>
         <translation>LanguageTool est lancé</translation>
     </message>
@@ -13597,7 +13603,7 @@ this other file before you can overwrite it.</source>
 est actuellement impossible car une version modifiée d&apos;un fichier avec ce nom est ouvert dans TeXstudio. Vous devez enregistrer ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     </message>
     <message>
-        <location line="-293"/>
+        <location line="-294"/>
         <source>Session</source>
         <translation>&amp;Session</translation>
     </message>
@@ -13612,7 +13618,7 @@ est actuellement impossible car une version modifiée d&apos;un fichier avec ce 
         <translation>&amp;Enregistrer une session...</translation>
     </message>
     <message>
-        <location line="+1772"/>
+        <location line="+1773"/>
         <source>Loading of last session failed.</source>
         <translation>Le chargement de la dernière session a échoué.</translation>
     </message>
