@@ -47,6 +47,7 @@ void TexdocDialog::setPackageNames(const QStringList &packages)
 		pkgs.sort();
 		ui->cbPackages->addItems(pkgs);
 		ui->cbPackages->setCurrentIndex(0);
+		ui->cbPackages->lineEdit()->selectAll();
 	}
 }
 
@@ -60,6 +61,7 @@ void TexdocDialog::setPreferredPackage(const QString &package)
 		index = ui->cbPackages->findText(package);
 	}
 	ui->cbPackages->setCurrentIndex(index);
+	ui->cbPackages->lineEdit()->selectAll();
 }
 
 QString TexdocDialog::selectedPackage() const
