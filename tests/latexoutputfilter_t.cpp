@@ -17,6 +17,10 @@ QString LatexOutputFilterTest::stackTopFilename(const LatexOutputFilter &f) {
 	return f.m_stackFile.top().file();
 }
 
+QString LatexOutputFilterTest::currentMessage(const LatexOutputFilter &f)
+{
+	return f.m_currentItem.message;
+}
 
 void LatexOutputFilterTest::run_data() {
 	QTest::addColumn<QStringList>("log");
@@ -530,6 +534,62 @@ void LatexOutputFilterTest::isBadBoxTextQuote() {
 	QFETCH(bool, result);
 
 	QEQUAL(LatexOutputFilter::isBadBoxTextQuote(line), result);
+}
+
+void LatexOutputFilterTest::detectError_data()
+{
+	QTest::addColumn<QStringList>("log");
+	QTest::addColumn<short>("cookieAtEnd");
+	QTest::addColumn<QString>("message");
+
+	QTest::newRow("TeX error line 1")
+			<< (QStringList()
+				<< "! Undefined control sequence."
+				)
+			<< short(LatexOutputFilter::LineNumber)
+			<< "Undefined control sequence.";
+	QTest::newRow("TeX error line 2")
+			<< (QStringList()
+				<< "! Undefined control sequence."
+				<< "l.14 spam \eggs"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "";
+	QTest::newRow("TeX error multiline 1")
+			<< (QStringList()
+				<< "! Error with a very long description"  // no dot at end indicating that the message continues.
+				)
+			<< short(LatexOutputFilter::Error)
+			<< "Error with a very long description";
+	QTest::newRow("TeX error multiline 2")
+			<< (QStringList()
+				<< "! Error with a very long description "
+				<< "ending in the sceond line."
+				)
+			<< short(LatexOutputFilter::LineNumber)
+			<< "Error with a very long description ending in the sceond line.";
+	QTest::newRow("PackageError")
+			<< (QStringList()
+				<< "! LaTeX Error: File `paralisy.sty' not found."
+				)
+			<< short(LatexOutputFilter::LineNumber)
+			<< "File `paralisy.sty' not found.";
+}
+
+void LatexOutputFilterTest::detectError()
+{
+	QFETCH(QStringList, log);
+	QFETCH(short, cookieAtEnd);
+	QFETCH(QString, message);
+
+	LatexOutputFilter filter;
+	short sCookie = LatexOutputFilter::Start;
+	foreach (const QString &line, log) {
+		sCookie = filter.parseLine(line, sCookie);
+	}
+
+	QEQUAL(sCookie, cookieAtEnd);
+	QEQUAL(currentMessage(filter), message);
 }
 
 #endif
