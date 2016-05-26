@@ -551,7 +551,7 @@ void LatexOutputFilterTest::detectError_data()
 	QTest::newRow("TeX error line 2")
 			<< (QStringList()
 				<< "! Undefined control sequence."
-				<< "l.14 spam \eggs"
+				<< "l.14 spam \\eggs"
 				)
 			<< short(LatexOutputFilter::Start)
 			<< "";
@@ -574,6 +574,47 @@ void LatexOutputFilterTest::detectError_data()
 				)
 			<< short(LatexOutputFilter::LineNumber)
 			<< "File `paralisy.sty' not found.";
+
+	QTest::newRow("Undefinded control sequence II 1")
+			<< (QStringList()
+				<< "! Undefined control sequence."
+				)
+			<< short(LatexOutputFilter::LineNumber)
+			<< "Undefined control sequence.";
+	QTest::newRow("Undefinded control sequence II 2")
+			<< (QStringList()
+				<< "! Undefined control sequence."
+				<< "<recently read> \\uspackage "
+				)
+			<< short(LatexOutputFilter::LineNumber)
+			<< "Undefined control sequence.";
+	QTest::newRow("Undefinded control sequence II 3")
+			<< (QStringList()
+				<< "! Undefined control sequence."
+				<< "<recently read> \\uspackage "
+				<< ""
+				)
+			<< short(LatexOutputFilter::LineNumber)
+			<< "Undefined control sequence.";
+	QTest::newRow("Undefinded control sequence II 4")
+			<< (QStringList()
+				<< "! Undefined control sequence."
+				<< "<recently read> \\uspackage "
+				<< ""
+				<< "l.3 \\uspackage"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "";
+	QTest::newRow("Undefinded control sequence II 5")
+			<< (QStringList()
+				<< "! Undefined control sequence."
+				<< "<recently read> \\uspackage "
+				<< ""
+				<< "l.3 \\uspackage"
+				<< "              {paralisi}"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "";
 }
 
 void LatexOutputFilterTest::detectError()
