@@ -4803,7 +4803,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="204"/>
         <source>Open Recent</source>
-        <translation>Открыть последний</translation>
+        <translation>Открыть недавно изменённый</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="212"/>
@@ -8753,7 +8753,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="724"/>
         <source>Open &amp;Recent</source>
-        <translation>Открыть &amp;последний</translation>
+        <translation>Открыть &amp;недавно изменённый</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="726"/>
@@ -9029,7 +9029,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="806"/>
         <source>&amp;Align Cursors</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Выровнять курсоры</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="808"/>
