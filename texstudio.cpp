@@ -6614,26 +6614,27 @@ void Texstudio::generateAddtionalTranslations()
 	xmlFile.open(QIODevice::ReadOnly);
 	QDomDocument xml;
 	xml.setContent(&xmlFile);
-	QDomNode current = xml.documentElement();
-	CodeSnippet::debugDisableAutoTranslate = true;
-	while (!current.isNull()) {
-		QDomNamedNodeMap attribs = current.attributes();
-		QString text = attribs.namedItem("text").nodeValue();
-		if (text != "" && !commandOnly.exactMatch(text))
-			translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
-		QString insert = attribs.namedItem("insert").nodeValue();
-		if (insert != "") {
-			CodeSnippet cs(insert, false);
-			for (int i = 0; i < cs.placeHolders.size(); i++)
-				for (int j = 0; j < cs.placeHolders[i].size(); j++)
-					if (cs.placeHolders[i][j].flags & CodeSnippetPlaceHolder::Translatable)
-						translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"" + cs.lines[i].mid(cs.placeHolders[i][j].offset, cs.placeHolders[i][j].length) + "\"), ";
 
+	CodeSnippet::debugDisableAutoTranslate = true;
+	QStringList tagNames = QStringList() << "menu" << "insert" << "action";
+	foreach (const QString &tag, tagNames) {
+		QDomNodeList nodes = xml.elementsByTagName(tag);
+		for(int i = 0; i < nodes.count(); i++)
+		{
+			QDomNode current = nodes.at(i);
+			QDomNamedNodeMap attribs = current.attributes();
+			QString text = attribs.namedItem("text").nodeValue();
+			if (!text.isEmpty() && !commandOnly.exactMatch(text))
+				translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
+			QString insert = attribs.namedItem("insert").nodeValue();
+			if (!insert.isEmpty()) {
+				CodeSnippet cs(insert, false);
+				for (int i = 0; i < cs.placeHolders.size(); i++)
+					for (int j = 0; j < cs.placeHolders[i].size(); j++)
+						if (cs.placeHolders[i][j].flags & CodeSnippetPlaceHolder::Translatable)
+							translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"" + cs.lines[i].mid(cs.placeHolders[i][j].offset, cs.placeHolders[i][j].length) + "\"), ";
+			}
 		}
-		if (current.hasChildNodes()) current = current.firstChild();
-		else if (!current.nextSibling().isNull()) current = current.nextSibling();
-		else if (!current.parentNode().isNull()) current = current.parentNode().nextSibling();
-		else current = current.parentNode();
 	}
 	CodeSnippet::debugDisableAutoTranslate = false;
 	//copy
