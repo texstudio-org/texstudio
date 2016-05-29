@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -750,13 +748,13 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <location filename="additionaltranslations.cpp" line="104"/>
         <location filename="additionaltranslations.cpp" line="106"/>
         <source>num</source>
-        <translation type="unfinished"></translation>
+        <translation>чис</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <location filename="additionaltranslations.cpp" line="107"/>
         <source>den</source>
-        <translation type="unfinished"></translation>
+        <translation>знам</translation>
     </message>
 </context>
 <context>
@@ -903,7 +901,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <location filename="configdialog.ui" line="523"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Визначає тип одержуваних сповіщень про оновлення:
  — Стабільні версії: виберіть цей тип, якщо стабільність найважливіша для вас.
@@ -1108,7 +1106,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="configdialog.ui" line="1049"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2484,8 +2482,8 @@ them here.</source>
         <location filename="configdialog.ui" line="4082"/>
         <location filename="configdialog.ui" line="4169"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Обробник вимальовування зображення, що використовується PDF-бібліотекою poppler.
 &apos;Splash&apos; використовується типово і підходить в більшості випадків.
@@ -2877,37 +2875,37 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="22"/>
         <source>&amp;Math</source>
-        <translation type="unfinished">&amp;Математика</translation>
+        <translation>&amp;Математика</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation type="unfinished"></translation>
+        <translation>Математичні рівняння</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="24"/>
         <source>Math &amp;Functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Математичні &amp;функції</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>Math Font St&amp;yles</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Стилі математичних шрифтів</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Багаторядкові рівняння</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Accents</source>
-        <translation type="unfinished"></translation>
+        <translation>Математичні &amp;акценти</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="28"/>
         <source>Math S&amp;paces</source>
-        <translation type="unfinished"></translation>
+        <translation>Математичні &amp;пропуски</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
@@ -3287,177 +3285,177 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="100"/>
         <source>Inline math mode $...$</source>
-        <translation type="unfinished"></translation>
+        <translation>Математичний режим $ ... $</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <source>Display math mode \[...\]</source>
-        <translation type="unfinished"></translation>
+        <translation>Режим формули \[ ... \]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="102"/>
         <source>Subscript - _{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Нижній індекс - _{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>Superscript - ^{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Верхній індекс - ^{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="108"/>
         <source>\begin{array}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{array}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>env equation</source>
-        <translation type="unfinished"></translation>
+        <translation>середовище equation</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation*</source>
-        <translation type="unfinished"></translation>
+        <translation>середовище equation*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
         <source>env align (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="112"/>
         <source>env align* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="113"/>
         <source>env alignat (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="114"/>
         <source>env alignat* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="115"/>
         <source>env flalign (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="116"/>
         <source>env flalign* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>env gather (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="118"/>
         <source>env gather* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multiline (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multiline* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
         <source>env cases (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>Roman - \mathrm{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Із зарубинами - \mathrm{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Курсив - \mathit{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="124"/>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Напівжирний - \mathbf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="125"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Без зарубин - \mathsf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="126"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Друкарський - \mathtt{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="127"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Каліграфічний - \mathcal{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="128"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="130"/>
         <source>\overset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>\underset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="132"/>
         <source>Negative - \!</source>
-        <translation type="unfinished"></translation>
+        <translation>Від&apos;ємний - \!</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
         <source>Thin - \,</source>
-        <translation type="unfinished"></translation>
+        <translation>Малий - \,</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="134"/>
         <source>Medium - \:</source>
-        <translation type="unfinished"></translation>
+        <translation>Середній - \:</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="135"/>
         <source>Thick - \;</source>
-        <translation type="unfinished"></translation>
+        <translation>Великий - \;</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="136"/>
         <source>Interword - \ </source>
-        <translation type="unfinished"></translation>
+        <translation>Міжслівний - \</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="137"/>
         <source>One quad - \quad</source>
-        <translation type="unfinished"></translation>
+        <translation>Одна шпація - \quad</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="138"/>
         <source>Two quads - \qquad</source>
-        <translation type="unfinished"></translation>
+        <translation>Дві шпації - \qquad</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="139"/>
@@ -4103,7 +4101,7 @@ Are you sure you want to undo all changes?</source>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Пріоритет розташування малюнка:
@@ -4214,7 +4212,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1571"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4386,7 +4384,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2319"/>
         <location filename="latexeditorview.cpp" line="2391"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4394,11 +4392,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2332"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилань на цю мітку</numerusform>
-        </translation>
+        <translation><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2337"/>
@@ -6018,58 +6012,58 @@ You can now enter the password:</source>
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="698"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="697"/>
         <source>Replacement prompt</source>
         <translation>Запит заміни</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="699"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="698"/>
         <source>Shall it be replaced?</source>
         <translation>Замінити?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="704"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="703"/>
         <source>Replacing Canceled</source>
         <translation>Заміна скасована</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="704"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="703"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>%1 (з %2 досі знайдених) входжень були замінені</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="742"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="741"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
         <translation>Досягнуто початок області без збігів.
 Почати знову із кінця?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="747"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="746"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
         <translation>Досягнуто кінець області без збігів.
 Почати знову із початку?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="754"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="753"/>
         <source>Failure</source>
         <translation>Невдача</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="796"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="773"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="795"/>
         <source>Replacing Finished</source>
         <translation>Заміна завершена</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="775"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="796"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="795"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>%1 (з %2) входжень були замінені</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="776"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="775"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Ви хочете продовжити заміни від початку?</translation>
     </message>
@@ -6306,7 +6300,7 @@ failed.</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1068"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Оригінальний файл на диску був знищений під час збереження.
 Ви можете знайти копію у
@@ -9634,12 +9628,12 @@ failed.</source>
         <location filename="texstudio.cpp" line="931"/>
         <source>Refresh Language Model</source>
         <oldsource>Refresh QNFA</oldsource>
-        <translation type="unfinished">Оновити QNFA</translation>
+        <translation>Оновити мовну схему</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="932"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation type="unfinished"></translation>
+        <translation>Примусове оновлення схеми вибору мови, яка використовується для виділення і складання. Вірогідно вам не потрібно викликати цю функцію, бо оновлення, як правило, автоматично працює.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="933"/>
@@ -10642,7 +10636,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5598"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Не вдається виявити назву файлу.
  Ви повинні зберегти документ, перш ніж його компілювати.</translation>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -750,13 +748,13 @@ Chcete, aby TeXstudio změnil všechny příkazové cesty z /usr/texbin/ na
         <location filename="additionaltranslations.cpp" line="104"/>
         <location filename="additionaltranslations.cpp" line="106"/>
         <source>num</source>
-        <translation type="unfinished"></translation>
+        <translation>Čitatel</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <location filename="additionaltranslations.cpp" line="107"/>
         <source>den</source>
-        <translation type="unfinished"></translation>
+        <translation>Jmenovatel</translation>
     </message>
 </context>
 <context>
@@ -903,7 +901,7 @@ Chcete, aby TeXstudio změnil všechny příkazové cesty z /usr/texbin/ na
         <location filename="configdialog.ui" line="523"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Určuje druh oznámení o aktualizaci, jejž budete přijímat:
 - Stálá vydání: Vyberte, pokud je pro vás stálost důležitá.
@@ -1106,7 +1104,7 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     </message>
     <message>
         <location filename="configdialog.ui" line="1049"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1676,7 +1674,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
@@ -2237,12 +2235,12 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
         <location filename="configdialog.ui" line="3501"/>
         <location filename="configdialog.ui" line="3508"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3511"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3581"/>
@@ -2481,8 +2479,8 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
         <location filename="configdialog.ui" line="4082"/>
         <location filename="configdialog.ui" line="4169"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Vykreslovací jádro používané knihovnou PDF poppler.
 Stříknutí (Splash) je výchozí a ve většině případů vhodný.
@@ -2873,37 +2871,37 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="22"/>
         <source>&amp;Math</source>
-        <translation type="unfinished">&amp;Matematika</translation>
+        <translation>&amp;Matematika</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="24"/>
         <source>Math &amp;Functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematické &amp;funkce</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>Math Font St&amp;yles</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Styly matematických znaků</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Accents</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematické &amp;akcenty</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="28"/>
         <source>Math S&amp;paces</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematické &amp;mezery</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
@@ -3283,177 +3281,177 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="100"/>
         <source>Inline math mode $...$</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematický režim v řádku  - $...$</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <source>Display math mode \[...\]</source>
-        <translation type="unfinished"></translation>
+        <translation>Matematický režim vně řádku - \[...\]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="102"/>
         <source>Subscript - _{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Dolní index - _{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>Superscript - ^{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Horní index - ^{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="108"/>
         <source>\begin{array}</source>
-        <translation type="unfinished"></translation>
+        <translation>\begin{array}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>env equation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation*</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
         <source>env align (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="112"/>
         <source>env align* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="113"/>
         <source>env alignat (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="114"/>
         <source>env alignat* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="115"/>
         <source>env flalign (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="116"/>
         <source>env flalign* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>env gather (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="118"/>
         <source>env gather* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multiline (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multiline* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
         <source>env cases (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>Roman - \mathrm{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Antikva - \mathrm{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Kurzíva - \mathit{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="124"/>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Tučné - \mathbf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="125"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezpatkové - \mathsf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="126"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Psací stroj - \mathtt{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="127"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation type="unfinished"></translation>
+        <translation>Krasopisné - \mathcal{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="128"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="130"/>
         <source>\overset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>\underset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="132"/>
         <source>Negative - \!</source>
-        <translation type="unfinished"></translation>
+        <translation>Negativ - \!</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
         <source>Thin - \,</source>
-        <translation type="unfinished"></translation>
+        <translation>Tenké - \,</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="134"/>
         <source>Medium - \:</source>
-        <translation type="unfinished"></translation>
+        <translation>Střední - \:</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="135"/>
         <source>Thick - \;</source>
-        <translation type="unfinished"></translation>
+        <translation>Tlusté - \;</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="136"/>
         <source>Interword - \ </source>
-        <translation type="unfinished"></translation>
+        <translation>Mezislovo - \</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="137"/>
         <source>One quad - \quad</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeden čtverec - \quad</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="138"/>
         <source>Two quads - \qquad</source>
-        <translation type="unfinished"></translation>
+        <translation>Dva čtverce - \qquad</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="139"/>
@@ -4098,7 +4096,7 @@ Tyto změny budou ztraceny, pokud bude nahrán s novým kódováním znaků.Opra
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Nastavení umístění obrázku
@@ -4209,7 +4207,7 @@ Průvodce nepodporuje příkaz </translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1571"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
@@ -4380,18 +4378,14 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="latexeditorview.cpp" line="2319"/>
         <location filename="latexeditorview.cpp" line="2391"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Souborový název: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2332"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n odkaz k tomuto štítku</numerusform>
-            <numerusform>%n odkazy k tomuto štítku</numerusform>
-            <numerusform>%n odkazů k tomuto štítku</numerusform>
-        </translation>
+        <translation><numerusform>%n odkaz k tomuto štítku</numerusform><numerusform>%n odkazy k tomuto štítku</numerusform><numerusform>%n odkazů k tomuto štítku</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2337"/>
@@ -6011,58 +6005,58 @@ Nyní můžete zadat heslo:</translation>
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="698"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="697"/>
         <source>Replacement prompt</source>
         <translation>Dialog pro nahrazení</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="699"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="698"/>
         <source>Shall it be replaced?</source>
         <translation>Má se nález nahradit?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="704"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="703"/>
         <source>Replacing Canceled</source>
         <translation>Nahrazení zrušeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="704"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="703"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>%1 (z %2 dosud nalezených) výskytů bylo nahrazeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="742"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="741"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
         <translation>Začátku prohledávané oblasti dosaženo bez nálezu.
 Má se dále hledat od konce?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="747"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="746"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
         <translation>Konce prohledávané oblasti dosaženo bez nálezu.
 Má se dále hledat od začátku?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="754"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="753"/>
         <source>Failure</source>
         <translation>Neúspěch</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="796"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="773"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="795"/>
         <source>Replacing Finished</source>
         <translation>Nahrazení dokončeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="775"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="796"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="795"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>%1 (z %2) výskytů bylo nahrazeno</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="776"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="775"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>Chcete, aby nahrazování pokračovalo od začátku?</translation>
     </message>
@@ -6297,7 +6291,7 @@ failed.</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1068"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Původní soubor na disku byl při ukládání zničen.
 Kopii najdete v
@@ -9629,12 +9623,12 @@ se nepodařilo odstranit.</translation>
         <location filename="texstudio.cpp" line="931"/>
         <source>Refresh Language Model</source>
         <oldsource>Refresh QNFA</oldsource>
-        <translation type="unfinished">Obnovit QNFA</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="932"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="933"/>
@@ -10290,17 +10284,17 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="1375"/>
         <source>LanguageTool is running</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1379"/>
         <source>No LanguageTool server found</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1384"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1438"/>
@@ -10635,7 +10629,7 @@ zavřít, předtím než jej budete moci přepsat.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5598"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nelze zjistit název souboru.
 Předtím, než budete moci sestavit dokument, jej musíte uložit.</translation>
@@ -10900,7 +10894,7 @@ Chcete to dovolit a spustit nový, hlavní příkaz?
     <message>
         <location filename="texstudio.cpp" line="9214"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9216"/>
