@@ -5,10 +5,10 @@
 \AmSfont
 \begin{align}#\math,array
 \begin{align*}#\math,array
-\begin{alignat}[alignment]{n}#\math,array
-\begin{alignat*}[alignment]{n}#\math,array
-\begin{alignat}{n}#\math,array
-\begin{alignat*}{n}#\math,array
+\begin{alignat}[alignment]{ncols}#\math,array
+\begin{alignat*}[alignment]{ncols}#\math,array
+\begin{alignat}{ncols}#\math,array
+\begin{alignat*}{ncols}#\math,array
 \begin{aligned}
 \begin{aligned}[alignment]
 \begin{alignedat}
