@@ -84,7 +84,7 @@ QDocumentLine::~QDocumentLine()
 }
 
 /*!
-	\brief Comparision operator
+	\brief Comparison operator
 */
 bool QDocumentLine::operator == (const QDocumentLine& l) const
 {
@@ -93,7 +93,7 @@ bool QDocumentLine::operator == (const QDocumentLine& l) const
 }
 
 /*!
-	\brief Comparision operator
+	\brief Comparison operator
 */
 bool QDocumentLine::operator != (const QDocumentLine& l) const
 {

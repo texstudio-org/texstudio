@@ -62,7 +62,6 @@ public:
 
 	//build
 	BuildManager *buildManager;
-	bool singleViewerInstance;
 	bool showMessagesWhenCompiling;
 	bool runLaTeXBibTeXLaTeX;
 	int showStdoutOption; //never = 0, user commands, always
@@ -161,7 +160,7 @@ public:
 	bool sessionRestore;
 	bool sessionStoreRelativePaths;
 	bool parseBibTeX, parseMaster;
-	QString bibFileEncoding;
+	QString logFileEncoding, bibFileEncoding;
 	bool autoLoadChildren;
 
 	//autosave
@@ -169,7 +168,7 @@ public:
 
 	bool addRecentFile(const QString &fileName, bool asMaster);  //adds a recent file
 	void updateRecentFiles(bool alwaysRecreateMenuItems = false);
-	QMenu *updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems = false, int additionalEntries = 2);
+	QMenu *updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems = false, int additionalEntries = 2, const QList<QVariant> data=QList<QVariant>());
 	void updateUserMacroMenu(bool alwaysRecreateMenuItems = false);
 
 	QString additionalBibPaths;
@@ -222,7 +221,10 @@ public:
 	void triggerManagedAction(const QString &id);
 
 	static QString iniFileOverride;
+    static bool dontRestoreSession;
 private:
+	void setupDirectoryStructure();
+	void moveCwls();
 	void connectExtendedSlot(QAction *act, const QString &slot);
 	bool modifyMenuContentsFirstCall;
 	void modifyMenuContent(QStringList &ids, const QString &id);

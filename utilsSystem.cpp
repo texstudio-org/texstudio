@@ -78,6 +78,11 @@ QKeySequence filterLocaleShortcut(QKeySequence ks)
 		} else if (ks.matches(QKeySequence("Ctrl+Alt+L"))) {
 			return QKeySequence("Ctrl+Alt+Shift+L");
 		}
+	case QLocale::Croatian:
+		if (ks.matches(QKeySequence("Ctrl+Alt+F"))) {
+			return QKeySequence("Ctrl+Alt+Shift+F");
+		}
+		break;
 	default:
 		return ks;
 	}
@@ -326,6 +331,17 @@ QString ensureTrailingDirSeparator(const QString &dirPath)
 	return dirPath + "/";
 }
 
+QString joinPath(const QString &dirname, const QString &filename)
+{
+	return ensureTrailingDirSeparator(dirname) + filename;
+}
+
+QString joinPath(const QString &dirname, const QString &dirname2, const QString &filename)
+{
+	return ensureTrailingDirSeparator(dirname) + ensureTrailingDirSeparator(dirname2) + filename;
+}
+
+
 QString replaceFileExtension(const QString &filename, const QString &newExtension, bool appendIfNoExt)
 {
 	QFileInfo fi(filename);
@@ -444,15 +460,15 @@ QString getEnvironmentPath()
 #ifdef Q_OS_MAC
 #if (QT_VERSION >= 0x040600)
 		QProcess *myProcess = new QProcess();
-		myProcess->start("bash -l -c \"echo $PATH\"");
+		myProcess->start("bash -l -c \"echo -n $PATH\"");  // -n ensures there is no newline at the end
 		myProcess->waitForFinished(3000);
 		if (myProcess->exitStatus() == QProcess::NormalExit) {
 			QByteArray res = myProcess->readAllStandardOutput();
-			delete myProcess;
-			path = QString(res);
+			path = QString(res).split('\n').last();  // bash may have some initial output. path is on the last line
 		} else {
 			path = "";
 		}
+		delete myProcess;
 #endif
 #else
 		path = QProcessEnvironment::systemEnvironment().value("PATH");

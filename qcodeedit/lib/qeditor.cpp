@@ -40,8 +40,14 @@
 #include "smallUsefulFunctions.h"
 #include <QDrag>
 
+#include "libqmarkedscrollbar/src/markedscrollbar.h"
+
 #if QT_VERSION >= 0x040600
 #include <QPropertyAnimation>
+#endif
+
+#if QT_VERSION >= 0x050100
+#include <QSaveFile>
 #endif
 
 #ifdef Q_OS_MAC
@@ -425,6 +431,13 @@ void QEditor::init(bool actions,QDocument *doc)
 	viewport()->setAttribute(Qt::WA_KeyCompression, true);
 	viewport()->setAttribute(Qt::WA_InputMethodEnabled, true);
 	viewport()->setAttribute(Qt::WA_AcceptTouchEvents, true);
+
+
+    MarkedScrollBar *scrlBar=new MarkedScrollBar();
+    scrlBar->enableClipping(false);
+    scrlBar->setDocument(doc);
+    setVerticalScrollBar(scrlBar);
+    //addMark(5,Qt::red);
 
 	verticalScrollBar()->setSingleStep(1);
 	horizontalScrollBar()->setSingleStep(20);
@@ -951,19 +964,46 @@ void QEditor::save()
 
 bool QEditor::saveCopy(const QString& filename){
 	Q_ASSERT(m_doc);
-	bool sucessfullySaved = false;
 	
 	emit slowOperationStarted();
 
-    // insert hard line breaks on modified lines (if desired)
-    if(flag(HardLineWrap)){
-        QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
-        m_doc->applyHardLineWrap(handles);
-    }
+	// insert hard line breaks on modified lines (if desired)
+	if(flag(HardLineWrap)){
+		QList<QDocumentLineHandle*> handles = m_doc->impl()->getStatus().keys();
+		m_doc->applyHardLineWrap(handles);
+	}
 	
 	QString txt = m_doc->text(flag(RemoveTrailing), flag(PreserveTrailingIndent));
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
+#if QT_VERSION >= 0x050100
+	QSaveFile file(filename);
+	if (file.open(QIODevice::WriteOnly)) {
+		file.write(data);
+		return file.commit();
+	}
+	return false;
+#else
+	return writeToFile(filename, data);
+#endif
+}
+
+/*!
+ * Securely writes data to a file. If this is not successfull, the original file stays intact.
+ * This procedure is only necessary for Qt < 5.1.0. More recent versions of Qt provide a standard
+ * way for this using QSaveFile.
+ *
+ * This is our safe saving strategy:
+ * 1. Prepare: If the file exists, create a copy backupFilename so that it's content is not lost in case of error.
+ * 2. Save: Write the file.
+ * 3. Cleanup: In case of error, rename the backupFilename back to the original filename.
+ *
+ * \return true if the data were written to the file successfully.
+ */
+bool QEditor::writeToFile(const QString &filename, const QByteArray &data) {
+	bool sucessfullySaved = false;
+
+	// check available disk space
 	quint64 freeBytes;
 	while (1) {
 		if (!getDiskFreeSpace(QFileInfo(filename).canonicalPath(), freeBytes)) break;
@@ -984,11 +1024,6 @@ bool QEditor::saveCopy(const QString& filename){
 		else if (bt == QMessageBox::Ignore) break;
 	}
 
-	// This is our safe saving strategy:
-	// 1. Prepare: If the file exists, create a copy backupFilename so that it's content is not lost in case of error.
-	// 2. Save: Write the file.
-	// 3. Cleanup: In case of error, rename the backupFilename back to the original filename.
-	
 	// 1. Prepare
 	QString backupFilename;
 	if (QFileInfo(filename).exists()) {
@@ -1009,8 +1044,6 @@ bool QEditor::saveCopy(const QString& filename){
 		}
 	}
 
-    // txsInformation("backup created");
-	
 	// 2. Save
 	QFile f(filename);
 	if ( !f.open(QFile::WriteOnly) ) {
@@ -1038,14 +1071,15 @@ bool QEditor::saveCopy(const QString& filename){
 			}
 			QMessageBox::critical(this, tr("Saving failed"), message, QMessageBox::Ok);
 		}
-		
+
 		f.close(); //explicite close for watcher (??? is this necessary anymore?)
 	}
 
 	emit slowOperationEnded();
-	
+
 	return sucessfullySaved;
 }
+
 
 /*!
 	\brief Save the content of the editor to a file
@@ -2371,14 +2405,14 @@ void QEditor::undo()
 		if ( m_definition )
 			m_definition->clearMatches(m_doc);
 
-        m_doc->setProposedPosition(QDocumentCursor());
+		m_doc->setProposedPosition(QDocumentCursor());
 
 		m_doc->undo();
 
-        QDocumentCursor c=m_doc->getProposedPosition();
-        if(c.isValid()){
-            setCursor(c);
-        }
+		QDocumentCursor c=m_doc->getProposedPosition();
+		if(c.isValid() && !m_mirrors.size())
+			setCursor(c);
+
 
 		ensureCursorVisible();
 		setFlag(CursorOn, true);
@@ -2433,8 +2467,7 @@ void QEditor::cut()
 		}
 	}
 
-	for ( int i = 0; i < m_mirrors.count(); ++i )
-		m_mirrors[i].removeSelectedText();
+	cursorMirrorsRemoveSelectedText();
 
 	if ( macroing )
 		m_doc->endMacro();
@@ -2856,7 +2889,7 @@ void QEditor::selectAllOccurences()
 	//       1. initialize the search with the required parameters
 	//       2. select all matches
 	//       3. close the search panel which was opened as a side effect of 1.
-	// It would be better to be able to perform the seach and select without interfering 
+	// It would be better to be able to perform the search and select without interfering
 	// with the search panel UI.
 	find(text, false, false, isWord && atBoundaries, true);
 	selectAllMatches();
@@ -3396,6 +3429,18 @@ void QEditor::inputMethodEvent(QInputMethodEvent* e)
                 m_cursor.movePosition(preEditLength,QDocumentCursor::Left,QDocumentCursor::KeepAnchor);
                 m_cursor.removeSelectedText();
             }
+        }else{
+#ifdef Q_OS_MAC
+            // work-around for bug 1723
+            // needs to handle chinese punctuation here, so filter only special, non-printable chars
+            // see bug 1770
+
+            if(e->commitString().count()==1){
+                ushort code=e->commitString().at(0).unicode();
+                if(code<32)
+                    return;
+            }
+#endif
         }
 
 		m_cursor.insertText(e->commitString());
@@ -3628,7 +3673,7 @@ void QEditor::mouseReleaseEvent(QMouseEvent *e)
 		setCursorPosition(mapToContents(e->pos()));
 
 			m_cursor.clearSelection();
-		}
+	}
 
 	if ( flag(MousePressed) )
 	{
@@ -3674,11 +3719,16 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 			break;
 		}
 
+		setFlag(MousePressed, true);
 		setFlag(MaybeDrag, false);
 
 		repaintCursor();
 		clearCursorMirrors();
 		setCursorPosition(mapToContents(e->pos()));
+
+		m_multiClickCursor = m_cursor;
+		m_multiClickCursor.clearSelection();  // just store the click position
+		m_multiClickCursor.setProperty("isTripleClick", false);
 
 		if ( m_cursor.isValid() )
 		{
@@ -3693,10 +3743,6 @@ void QEditor::mouseDoubleClickEvent(QMouseEvent *e)
 		} else {
 			//qDebug("invalid cursor");
 		}
-
-		m_multiClickCursor = m_cursor;
-		m_multiClickCursor.clearSelection();  // just store the click position
-		m_multiClickCursor.setProperty("isTripleClick", false);
 
 		m_clickPoint = e->globalPos();
 		m_click.start(qApp->doubleClickInterval(), this);
@@ -3852,10 +3898,8 @@ void QEditor::dropEvent(QDropEvent *e)
 		m_doc->beginMacro();
 		
 		m_cursor.removeSelectedText();
+		cursorMirrorsRemoveSelectedText();
 
-		for ( int i = 0; i < m_mirrors.count(); ++i )
-			m_mirrors[i].removeSelectedText();
-			
 		clearCursorMirrors();
 		m_cursor=insertCursor;//.moveTo(cursorForPosition(mapToContents(e->pos())));
 		insertFromMimeData(e->mimeData());
@@ -3987,6 +4031,7 @@ void QEditor::focusInEvent(QFocusEvent *e)
 		m_blink.start(QApplication::cursorFlashTime() / 2, this);
 	}
 	//ensureCursorVisible();
+	emit focusReceived();
 
 	QAbstractScrollArea::focusInEvent(e);
 }
@@ -4501,12 +4546,10 @@ void QEditor::startDrag()
 	Qt::DropActions actions = Qt::CopyAction | Qt::MoveAction;
 	Qt::DropAction action = drag->exec(actions, Qt::MoveAction);
 
-    if ( (action == Qt::MoveAction) && (drag->target() != this))
+	if ( (action == Qt::MoveAction) && (drag->target() != this))
 	{
 		m_cursor.removeSelectedText();
-
-		for ( int i = 0; i < m_mirrors.count(); ++i )
-			m_mirrors[i].removeSelectedText();
+		cursorMirrorsRemoveSelectedText();
 	}
 }
 
@@ -4662,7 +4705,7 @@ void QEditor::processEditOperation(QDocumentCursor& c, const QKeyEvent* e, EditO
 		break;
 
 	case NewLine:
-		insertText("\n");
+		insertText(c, "\n");
 		cutBuffer.clear();
 		break;
 
@@ -5028,8 +5071,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		if (autoComplete) {
 			if (!cutBuffer.isEmpty()) {
 				c.insertText(cutBuffer+autoBracket);
-				m_cursor.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-				m_cursor.movePosition(cutBuffer.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+				c.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+				c.movePosition(cutBuffer.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 			} 
 			
 			if (flag(QEditor::AutoInsertLRM) && c.isRTL() && autoBracket == "}")
@@ -5047,7 +5090,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			} else {
 				copiedCursor.insertText(autoBracket);
 				addPlaceHolder(ph);
-				m_cursor.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+				c.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
 			}
 		}
 	}
@@ -5525,8 +5568,6 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 		if ( d->hasFormat("text/column-selection") )
 		{
-			clearCursorMirrors();
-
 			QStringList columns = QString::fromLocal8Bit(
 										d->data("text/column-selection")
 									).split('\n');
@@ -5535,6 +5576,8 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			if ( s )
 				m_cursor.removeSelectedText();
+			cursorMirrorsRemoveSelectedText();
+			clearCursorMirrors();
 
 			int col = m_cursor.columnNumber();
 			//m_cursor.insertText(columns.takeFirst());
@@ -5576,7 +5619,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 			bool slow = txt.size() > 5*1024;
 			if (slow) emit slowOperationStarted();
 			
-			bool macroing = isMirrored();
+			bool macroing = isMirrored() || m_mirrors.size();
 
 			if ( macroing )
 				m_doc->beginMacro();
@@ -5659,6 +5702,14 @@ void QEditor::addCursorMirror(const QDocumentCursor& c)
 	m_mirrors.last().setSilent(true);
 	m_mirrors.last().setAutoUpdated(true);
 	m_mirrors.last().setAutoErasable(false);
+}
+
+void QEditor::cursorMirrorsRemoveSelectedText()
+{
+	for ( int i = 0; i < m_mirrors.count(); ++i )
+	{
+		m_mirrors[i].removeSelectedText();
+	}
 }
 
 void QEditor::setCursorBold(bool bold)
@@ -5964,6 +6015,58 @@ bool QEditor::isMirrored(){
             macroing=false;
     }
     return macroing;
+}
+
+void QEditor::addMark(int pos, QColor color, QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addMark(pos,color,type);
+    scrlBar->repaint();
+}
+void QEditor::addMarkDelayed(int pos, QColor color, QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addMark(pos,color,type);
+    //scrlBar->repaint();
+}
+void QEditor::paintMarks(){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->repaint();
+}
+
+void QEditor::addMark(QDocumentLineHandle *dlh, QColor color, QString type){
+    if(dlh==NULL)
+        return;
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addMark(dlh,color,type);
+    scrlBar->repaint();
+}
+
+void QEditor::removeMark(int pos,QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->removeMark(pos,type);
+    scrlBar->repaint();
+}
+
+void QEditor::removeMark(QDocumentLineHandle *dlh,QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->removeMark(dlh,type);
+    scrlBar->repaint();
+}
+
+void QEditor::removeMark(QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->removeMark(type);
+    scrlBar->repaint();
+}
+
+void QEditor::removeAllMarks(){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->removeAllMarks();
+    scrlBar->removeAllShades();
+}
+
+void QEditor::addMarkRange(int start, int end, QColor color, QString type){
+    MarkedScrollBar *scrlBar=qobject_cast<MarkedScrollBar*>(verticalScrollBar());
+    scrlBar->addShade(start,end,color,type);
 }
 
 /*! @} */

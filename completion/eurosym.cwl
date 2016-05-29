@@ -5,3 +5,5 @@
 \geneuronarrow#*
 \geneurowide#*
 \officialeuro#*
+\euro
+

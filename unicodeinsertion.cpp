@@ -40,14 +40,16 @@ UnicodeInsertion::UnicodeInsertion(QWidget *parent, int defCharCode): QWidget(pa
 	edit = new QLineEditWithMetaText(this);
 	table = new QTableWidget(this);
 	QFontMetrics fm(QApplication::font());
-	int bw = (fm.maxWidth() + 1), bh = qMax(fm.height(), fm.lineSpacing()) + 1;
-	table->setMinimumWidth(16 * bw);
-	table->setMinimumHeight(3 * bh);
+    int bw = (fm.maxWidth() + 1);
+    int bh = qMax(fm.height(), fm.lineSpacing()) + 1;
+    int bw_average=fm.averageCharWidth();
+    table->setMinimumWidth(16 * bw);
+    table->setMinimumHeight(3 * bh);
 	table->setRowCount(3);
 	table->setColumnCount(16);
 	for (int i = 0; i < table->rowCount(); i++)
 		table->setRowHeight(i, bh);;
-	for (int i = 0; i < table->rowCount(); i++)
+    for (int i = 0; i < table->columnCount(); i++)
 		table->setColumnWidth(i, bw);;
 	table->horizontalHeader()->hide();
 	table->verticalHeader()->hide();
@@ -60,7 +62,8 @@ UnicodeInsertion::UnicodeInsertion(QWidget *parent, int defCharCode): QWidget(pa
 
 	lay->addWidget(edit);
 	lay->addWidget(table);
-	resize(19 * bw, 5 * bh + 2 * edit->height());
+    int widgetWidth=qMax(19*bw,44*bw_average);
+    resize(widgetWidth, 5 * bh + 2 * edit->height());
 	this->setLayout(lay);
 
 

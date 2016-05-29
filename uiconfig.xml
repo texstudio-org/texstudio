@@ -1,5 +1,5 @@
 <TexMakerXUI>
-<menu id="main/latex" text="&amp;Latex">
+<menu id="main/latex" text="&amp;LaTeX">
   <insert id="documentclass" text="\documentclass" insert="\documentclass[%&lt;options%|%>]{%&lt;class%>}"/>
   <insert id="usepackage" text="\usepackage{}" insert="\usepackage[%&lt;options%>]{%&lt;package%|%>}"/>
   <insert id="amspackages" text="AMS packages" insert="\usepackage{amsmath}%\\usepackage{amsfonts}%\\usepackage{amssymb}" info="The main American Mathematical Society packages"/>
@@ -29,7 +29,7 @@
   </menu>
 
   <menu id="environment" text="&amp;Environments">
-    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%>}%\%&lt;content%>%\\end{environment-name}" shortcut="Ctrl+E"/>
+    <insert id="common" text="\begin{&lt;environment>}" insert="\begin{%&lt;environment-name%:id:1%>}%\%&lt;content%>%\\end{%&lt;environment-name%:id:1,mirror%>}" shortcut="Ctrl+E"/>
     <insert id="center" text="\begin{center}" insert="\begin{center}%\%|%\\end{center}" icon="format-justify-center"/>
     <insert id="flushleft" text="\begin{flushleft}" insert="\begin{flushleft}%\%|%\\end{flushleft}" icon="format-justify-left"/>
     <insert id="flushright" text="\begin{flushright}" insert="\begin{flushright}%\%|%\\end{flushright}" icon="format-justify-right"/>
@@ -41,6 +41,7 @@
     <insert id="figure" text="\begin{figure}" insert="\begin{figure}%\%|%\\caption{}%\\end{figure}"/>
     <insert id="titlepage" text="\begin{titlepage}" insert="\begin{titlepage}%\%|%\\end{titlepage}"/>
   </menu>
+  
 
   <menu id="listenvironment" text="&amp;List Environments">
     <insert id="itemize" text="\begin{itemize}" insert="\begin{itemize}%\\item %|%\\end{itemize}" info="The itemize environment produces a 'bulleted' list.%nEach item of an itemized list begins with an \item command." icon="itemize"/>
@@ -56,11 +57,27 @@
     }else{
 	ins=ins+&quot; &quot;
     }
-    editorView.insertMacro(ins)" 
+    editorView.insertSnippet(ins)" 
     info="\item[label] Hello" icon="item" shortcut="Ctrl+Shift+I"/>
   </menu>
   
-
+  
+  <menu id="boxes" text="Boxes">
+     <insert id="mbox" text="mbox" insert="\mbox{%&lt;content%>}"/>
+     <insert id="makebox" text="makebox" insert="\makebox[][]{%&lt;content%>}"/>
+     <insert id="fbox" text="fbox" insert="\fbox{%&lt;content%>}"/>
+     <insert id="framebox" text="framebox" insert="\framebox[][]{%&lt;content%>}"/>
+     <insert id="newsavebox" text="newsavebox" insert="\newsavebox{%&lt;name%>}"/>
+     <insert id="sbox" text="sbox" insert="\sbox{%&lt;name%>}{%&lt;content%>}"/>
+     <insert id="savebox" text="savebox" insert="\savebox{%&lt;name%>}[][]{%&lt;content%>}"/>
+     <insert id="usebox" text="usebox" insert="\usebox{%&lt;name%>}"/>
+     <insert id="raisebox" text="raisebox" insert="\raisebox{%&lt;voffset%>}[][]{%&lt;content%>}"/>
+     <insert id="parbox" text="parbox" insert="\parbox[]{%&lt;width%>}{%&lt;content%>}"/>
+     <insert id="minipage" text="\begin{minipage}" insert="\begin{minipage}[][][]{%&lt;width%>}%\%|%\\end{minipage}"/>
+     <insert id="rule" text="rule" insert="\rule[]{%&lt;width%>}{%&lt;height%>}"/>
+  </menu>
+  
+  
   <menu id="fontstyles" text="Font St&amp;yles">
     <insert id="emph" text="Emphasis - \emph" insert="\emph{%|}" icon="font_emph48" shortcut="Ctrl+Shift+E"/>
     <insert id="textit" text="Italics - \textit" insert="\textit{%|}" icon="font_textit48" shortcut="Ctrl+I"/>
@@ -90,6 +107,7 @@
     <insert id="tabbing" text="\begin{tabbing}" insert="\begin{tabbing}%\%|%\\end{tabbing}" info="\begin{tabbing}%ntext \= more text \= still more text \= last text \\%nsecond row \>  \> more \\%n\end{tabbing}"/>
     <insert id="tabular" text="\begin{tabular}" insert="\begin{tabular}{%&lt;columns%>}%\%|%\\end{tabular}" info="\begin{tabular}[pos]{cols}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{tabular}"/>
     <insert id="multicolumn" text="\multicolumn" insert="\multicolumn{%&lt;columns%|%>}{%&lt;position%>}{%&lt;text%>}" info="\multicolumn{cols}{pos}{text}%ncol, specifies the number of columns to span.%npos specifies the formatting of the entry: c for centred, l for flushleft, r for flushright.%ntext specifies what text is to make up the entry."/>
+    <insert id="multirow" text="\multirow" insert="\multirow{%&lt;rows%|%>}[]{%&lt;width%>}[]{%&lt;text%>}"/>
     <insert id="hline" text="\hline" insert="\hline" info="The \hline command draws a horizontal line the width of the table."/>
     <insert id="vline" text="\vline" insert="\vline" info="The \vline command draws a vertical line extending the full height and depth of its row."/>
     <insert id="cline" text="\cline" insert="\cline{%&lt;from%|%>-%&lt;to%>}" info=""/>
@@ -102,6 +120,7 @@
     <insert id="bigskip" text="\bigskip" insert="\bigskip" info="The \bigskip command adds a 'big' vertical space."/>
     <insert id="medskip" text="\medskip" insert="\medskip" info="The \medskip command adds a 'medium' vertical space."/>
     <insert id="smallskip" text="\smallskip" insert="\smallskip" info="The \smallskip command adds a 'small' vertical space."/>
+    <insert id="vspace" text="\vspace" insert="\vspace{%&lt;skip%>}"/>
     <insert id="newline" text="New line - \\" insert="\\%\" info="The \newline command breaks the line right where it is." icon="newline" shortcut="Ctrl+Return"/>
   </menu>
   
@@ -167,9 +186,6 @@
   
   <insert id="mathmode" text="Inline math mode $...$" insert="$ %| $" info="The math environment can be used in both paragraph and LR mode" icon="mathmode" shortcut="Ctrl+Shift+M"/>
   <insert id="displaymath" text="Display math mode \[...\]" insert="\[ %| \]" info="The displaymath environment can be used only in paragraph mode" shortcut="Alt+Shift+M"/>
-  <insert id="equation" text="Numbered equation \begin{equation}" insert="\begin{equation}%\%|%\\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
-  <insert id="align" text="\begin{align}" insert="\begin{align}%\%|%\\end{align}" info="The eqnarray environment is used to display a sequence of equations or inequalities. Needs the package amsmath" package="amsmath"/>  
-  <insert id="eqnarray" text="\begin{eqnarray}" insert="\begin{eqnarray}%\%|%\\end{eqnarray}" info="The eqnarray environment is used to display a sequence of equations or inequalities. (deprecated: use ams align instead)"/>  
   <insert id="subscript" text="Subscript - _{}" insert="_{%|}" icon="subscript" shortcut="Ctrl+Shift+D"/>  
   <insert id="superscript" text="Superscript - ^{}" insert="^{%|}"  icon="superscript" shortcut="Ctrl+Shift+U"/>  
   <insert id="frac" text="\frac{}{}" insert="\frac{%&lt;num%|%:translatable%>}{%&lt;den%:translatable%>}" icon="smallfrac" shortcut="Alt+Shift+F"/>    
@@ -179,6 +195,24 @@
   <insert id="right" text="\right" insert="\right " shortcut="Ctrl+Shift+R"/>  
   <insert id="array" text="\begin{array}" insert="\begin{array}{%&lt;columns%>}%\%&lt;content%|%>%\\end{array}" info="\begin{array}{col1col2...coln}%ncolumn 1 entry &amp; column 2 entry ... &amp; column n entry \\%n...%n\end{array}"/>  
 
+  
+  <menu id="equations" text="Math Equations">
+        <insert id="equation" text="env equation" insert="\begin{equation}\label{%&lt;key%>}%\%|%\\end{equation}" info="The equation environment centres your equation on the page and places the equation number in the right margin." shortcut="Ctrl+Shift+N"/>  
+	<insert id="equation*" text="env equation*" insert="\begin{equation*}%\%|%\\end{equation*}"/>
+	<insert id="align" text="env align (amsmath)" insert="\begin{align}%\%|%\\end{align}"/>  
+        <insert id="align*" text="env align* (amsmath)" insert="\begin{align*}%\%|%\\end{align*}"/>
+        <insert id="alignat" text="env alignat (amsmath)" insert="\begin{alignat}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat}"/>  
+        <insert id="alignat*" text="env alignat* (amsmath)" insert="\begin{alignat*}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat*}"/>
+       	<insert id="flalign" text="env flalign (amsmath)" insert="\begin{flalign}%\%|%\\end{flalign}"/>  
+        <insert id="flalign*" text="env flalign* (amsmath)" insert="\begin{flalign*}%\%|%\\end{flalign*}"/>
+        <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\%|%\\end{gather}"/>  
+        <insert id="gather*" text="env gather* (amsmath)" insert="\begin{gather*}%\%|%\\end{gather*}"/>
+        <insert id="multline" text="env multline (amsmath)" insert="\begin{multline}%\%|%\\end{multline}"/>  
+        <insert id="multline*" text="env multline* (amsmath)" insert="\begin{multline*}%\%|%\\end{multline*}"/>
+	<insert id="cases" text="env cases (amsmath)" insert="\begin{cases}%\%|%\\end{cases}"/>
+  </menu>   
+      
+  
   <menu id="functions" text="Math &amp;Functions">
     <insert id="arccos" text="\arccos" insert="\arccos "/>
     <insert id="arcsin" text="\arcsin" insert="\arcsin "/>
@@ -211,7 +245,19 @@
     <insert id="tan" text="\tan" insert="\tan "/>
     <insert id="tanh" text="\tanh" insert="\tanh "/>
   </menu>
-
+  
+  <!-- deactivated as they are user defined theorems and not part of any package
+  <menu id="definitions" text="Math &amp;Definitions">
+     <insert id="definition" text="definition" insert="\begin{definition}\label{%&lt;key%>}%\%|%\\end{definition}"/>
+     <insert id="remark" text="remark" insert="\begin{remark}\label{%&lt;key%>}%\%|%\\end{remark}"/>
+     <insert id="lemma" text="lemma" insert="\begin{lemma}\label{%&lt;key%>}%\%|%\\end{lemma}"/>
+     <insert id="proposition" text="proposition" insert="\begin{proposition}\label{%&lt;key%>}%\%|%\\end{proposition}"/>
+     <insert id="theorem" text="theorem" insert="\begin{theorem}\label{%&lt;key%>}%\%|%\\end{theorem}"/>
+     <insert id="corollary" text="corollary" insert="\begin{corollary}\label{%&lt;key%>}%\%|%\\end{corollary}"/>
+     <insert id="proof" text="proof" insert="\begin{proof}%\%|%\\end{proof}"/>
+  </menu>
+  -->
+   
   <menu id="fontstyles" text="Math Font St&amp;yles">
     <insert id="mathrm" text="Roman - \mathrm{}" insert="\mathrm{%|}" icon="font_mathrm"/>
     <insert id="mathit" text="Italic - \mathit{}" insert="\mathit{%|}" icon="font_mathit"/>
@@ -219,10 +265,26 @@
     <insert id="mathsf" text="Sans Serif - \mathsf{}" insert="\mathsf{%|}" icon="font_mathsf"/>
     <insert id="mathtt" text="Typewriter - \mathtt{}" insert="\mathtt{%|}" icon="font_mathtt"/>
     <insert id="mathcal" text="Calligraphic - \mathcal{}" insert="\mathcal{%|}" icon="font_mathcal"/>
-    <insert id="mathbb" text="Blackboard Bold - \mathbb{}" insert="\mathbb{%|}" icon="font_mathbb"/>
-    <insert id="mathfrak" text="Fraktur - \mathfrak{}" insert="\mathfrak{%|}" icon="font_mathfrak"/>
+    <insert id="mathbb" text="Blackboard Bold - \mathbb{} (amssymb)" insert="\mathbb{%|}" icon="font_mathbb"/>
+    <insert id="mathfrak" text="Fraktur - \mathfrak{} (amssymb)" insert="\mathfrak{%|}" icon="font_mathfrak"/>
   </menu>
 
+  <menu id="grouping" text="Math Stacking symbols">
+     <insert id="overline" text="\overline" insert="\overline{%&lt;content%>}"/>
+     <insert id="underline" text="\underline" insert="\underline{%&lt;content%>}"/> 
+     <insert id="overbrace" text="\overbrace" insert="\overbrace{%&lt;content%>}"/> 
+     <insert id="underbrace" text="\underbrace" insert="\underbrace{%&lt;content%>}"/> 
+     <insert id="overleftarrow" text="\overleftarrow" insert="\overleftarrow{%&lt;content%>}"/>
+     <insert id="overrightarrow" text="\overrightarrow" insert="\overrightarrow{%&lt;content%>}"/>
+     <insert id="stackrel" text="\stackrel" insert="\stackrel{%&lt;top symbol%>}{%&lt;bottom symbol%>}"/>
+     <insert id="overset" text="\overset (amsmath)" insert="\overset{%&lt;top symbol%>}{%&lt;symbol%>}"/>
+     <insert id="underset" text="\underset (amsmath)" insert="\underset{%&lt;bottom symbol%>}{%&lt;symbol%>}"/>
+     <!-- no package found where following command is valid
+     <insert id="sideset" text="\sideset" insert="\sideset{%&lt;left ind+exp%>}{%&lt;right ind+exp%>}"/>
+    -->
+  </menu>
+  
+  
   <menu id="fontaccent" text="Math &amp;Accents">
     <insert id="acute" text="\acute{}" insert="\acute{%|}" icon="acute"/>
     <insert id="grave" text="\grave{}" insert="\grave{%|}" icon="grave"/>
@@ -237,6 +299,7 @@
     <insert id="ddot" text="\ddot{}" insert="\ddot{%|}" icon="ddot"/>
   </menu>
   
+  
   <menu id="fontspaces" text="Math S&amp;paces">
     <insert id="negative" text="Negative - \!" insert="\!" info="Negative thin space"/>
     <insert id="small" text="Thin - \," insert="\," info="3/18 of a \quad"/>
@@ -248,3 +311,4 @@
   </menu>
 </menu>
 </TexMakerXUI>
+

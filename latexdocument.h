@@ -15,36 +15,49 @@ class QDocument;
 class QDocumentCursor;
 struct QDocumentSelection;
 
+/*!
+ * \brief leaf of structure reqresentation of document structure
+ *
+ * The structure is organized as a tree with SE_DOCUMENT_ROOT as root
+ * Section are organized hierarchical depending on the section level, MAGIC comments, label are below a root-marker below root
+ */
 struct StructureEntry {
 	enum Type {SE_DOCUMENT_ROOT, SE_OVERVIEW, SE_SECTION, SE_BIBTEX, SE_TODO, SE_MAGICCOMMENT, SE_INCLUDE, SE_LABEL, SE_BLOCK = SE_LABEL};
-	enum Context {
+	enum Context { ///< mark if entry is located beyond appendix/end document commands
 		InAppendix = 0x0001,
 		BeyondEnd = 0x0010
 	};
 	Q_DECLARE_FLAGS(Contexts, Context)
 	Type type;
-	QString title;
-	QString tooltip; // optional because most tooltips are automatically generated.
-	int level; //only used for section types!
-	bool valid; //currently only used for includes and magic comments
-	QList<StructureEntry *> children;
-	StructureEntry *parent;
+	QString title; ///< actual text to be displayed
+	QString tooltip; ///< optional because most tooltips are automatically generated.
+	int level; ///< only used for section types!
+	bool valid; ///< currently only used for includes and magic comments
+	QList<StructureEntry *> children; ///< children
+	StructureEntry *parent; ///< parent for easier tree structure parsing
 	LatexDocument *document;
 
-	StructureEntry(LatexDocument *doc, Type newType);
+	StructureEntry(LatexDocument *doc, Type newType); ///< constructor
 	~StructureEntry();
-	void add(StructureEntry *child);
-	void insert(int pos, StructureEntry *child);
+	void add(StructureEntry *child); ///< add child element
+	void insert(int pos, StructureEntry *child); ///< insert child elemet at pos
 
 	int columnNumber; //position of the entry in the line, only used for correct sorting of structure update (TODO: use a local variable for it)
-	void setLine(QDocumentLineHandle *handle, int lineNr = -1);
-	QDocumentLineHandle *getLineHandle() const;
-	int getCachedLineNumber() const;
-	int getRealLineNumber() const;
-	int getRealParentRow() const;
+	void setLine(QDocumentLineHandle *handle, int lineNr = -1); ///< set linehandle for automatic update of line number
+	QDocumentLineHandle *getLineHandle() const; ///< get linehandle for entry
+	int getCachedLineNumber() const; ///< get cached line number
+	int getRealLineNumber() const; ///< get line number from given linehandle. More time consuming than from cached line number.
+	int getRealParentRow() const; ///< determine position of this element in parent
 
-	bool hasContext(Context c) const { return m_contexts & c; }
-	void setContext(Context c, bool b = true) { if (b) m_contexts |= c; else m_contexts &= ~c; }
+	bool hasContext(Context c) const
+	{
+		return m_contexts & c;    ///< get context
+	}
+	void setContext(Context c, bool b = true)
+	{
+		if (b) m_contexts |= c;    ///< change context
+		else m_contexts &= ~c;
+	}
 
 	void debugPrint(const char *message) const;
 
@@ -56,7 +69,7 @@ private:
 };
 Q_DECLARE_METATYPE(StructureEntry *)
 
-//iterator for fast traversal of a structure entry tree
+/// iterator for fast traversal of a structure entry tree
 class StructureEntryIterator
 {
 public:
@@ -65,8 +78,8 @@ public:
 	StructureEntry *next();
 
 private:
-	QList<StructureEntry *> entryHierarchy; //hierarchy of next element (all parents and element itself)
-	QList<int> indexHierarchy; //for every element in entryHierarchy the index of this element in its parent children
+	QList<StructureEntry *> entryHierarchy; ///< hierarchy of next element (all parents and element itself)
+	QList<int> indexHierarchy; ///< for every element in entryHierarchy the index of this element in its parent children
 };
 
 struct FileNamePair {
@@ -78,7 +91,13 @@ struct ReferencePair {
 	QString name;
 	int start;
 };
-
+/*! \brief extended QDocument
+ *
+ * Extended document for handling latex documents
+ * Extension encompass filename handling, label,bibliography as well as syntax interpreting (Token system)
+ * Also structureview is maintained here
+ * The live-update of syntactical information is performed in \method patchStructure
+ */
 class LatexDocument: public QDocument
 {
 	Q_OBJECT
@@ -93,7 +112,7 @@ public:
 	static const QSet<QString> LATEX_LIKE_LANGUAGES;
 
 	void setFileName(const QString &fileName);
-	void setEditorView(LatexEditorView *edView);
+	void setEditorView(LatexEditorView *edView);///< set reference to actual GUI element of editor
 	LatexEditorView *getEditorView() const;
 	QString getFileName() const;
 	QFileInfo getFileInfo() const;
@@ -103,7 +122,7 @@ public:
 	Q_PROPERTY(QFileInfo fileInfo READ getFileInfo);
 	Q_PROPERTY(LatexEditorView *editorView READ getEditorView);
 
-	bool isHidden();
+	bool isHidden(); ///< true if editor is not displayed
 
 	//	References containedLabels,containedReferences;
 	QMultiHash<QDocumentLineHandle *, FileNamePair> &mentionedBibTeXFiles();
@@ -119,10 +138,10 @@ private:
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle *, ReferencePair> &list);
 
 public:
-	Q_INVOKABLE QStringList labelItems() const;
-	Q_INVOKABLE QStringList refItems() const;
-	Q_INVOKABLE QStringList bibItems() const;
-	Q_INVOKABLE QList<CodeSnippet> userCommandList() const
+	Q_INVOKABLE QStringList labelItems() const; ///< all labels in this document
+	Q_INVOKABLE QStringList refItems() const; ///< all references in this document
+	Q_INVOKABLE QStringList bibItems() const; ///< all bibitem defined in this document
+	Q_INVOKABLE QList<CodeSnippet> userCommandList() const ///< all user commands defined in this document
 	{
 		QList<CodeSnippet> csl = mUserCommandList.values();
 		qSort(csl);
@@ -135,9 +154,9 @@ public:
 	Q_INVOKABLE int countRefs(const QString &name);
 	Q_INVOKABLE bool bibIdValid(const QString &name);
 	Q_INVOKABLE bool isBibItem(const QString &name);
-	Q_INVOKABLE QString findFileFromBibId(const QString &name);
-	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name);
-	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name);
+	Q_INVOKABLE QString findFileFromBibId(const QString &name); ///< find bib-file from bibid
+	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getLabels(const QString &name); ///< get line/column from label name
+	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getRefs(const QString &name); ///< get line/column from reference name
 	Q_INVOKABLE QMultiHash<QDocumentLineHandle *, int> getBibItems(const QString &name);
 	Q_INVOKABLE void replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair> items, const QString &newName, QDocumentCursor *cursor = 0);
 	Q_INVOKABLE void replaceLabel(const QString &name, const QString &newName, QDocumentCursor *cursor = 0);
@@ -149,13 +168,17 @@ public:
 	StructureEntry *baseStructure;
 
 	QDocumentSelection sectionSelection(StructureEntry *section);
-	void clearAppendix() { mAppendixLine = 0; }
+	void clearAppendix()
+	{
+		mAppendixLine = 0;
+	}
 	StructureEntry *findSectionForLine(int currentLine);
 
 	LatexDocuments *parent;
 
 	void setTemporaryFileName(const QString &fileName);
 	Q_INVOKABLE QString getTemporaryFileName() const;
+	Q_INVOKABLE QString getFileNameOrTemporaryFileName() const;
 	Q_INVOKABLE QFileInfo getTemporaryFileInfo() const;
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension, const QStringList &additionalSearchPaths = QStringList()) const;
 
@@ -163,10 +186,16 @@ public:
 	void addChild(LatexDocument *doc);
 	void removeChild(LatexDocument *doc);
 	bool containsChild(LatexDocument *doc) const;
-	Q_INVOKABLE LatexDocument *getMasterDocument() const { return masterDocument; }
+	Q_INVOKABLE LatexDocument *getMasterDocument() const
+	{
+		return masterDocument;
+	}
 	const LatexDocument *getRootDocument(QSet<const LatexDocument *> *visitedDocs = 0) const;
 	Q_INVOKABLE LatexDocument *getRootDocument();
-	Q_INVOKABLE LatexDocument *getTopMasterDocument() { return getRootDocument(); }  // DEPRECATED: only the for backward compatibility of user scripts
+	Q_INVOKABLE LatexDocument *getTopMasterDocument()
+	{
+		return getRootDocument();    // DEPRECATED: only the for backward compatibility of user scripts
+	}
 
 	Q_INVOKABLE QStringList includedFiles();
 	Q_INVOKABLE QStringList includedFilesAndParent();
@@ -177,9 +206,12 @@ public:
 	Q_INVOKABLE bool containsPackage(const QString &name);
 	Q_INVOKABLE QStringList containedPackages();
 	bool updateCompletionFiles(bool forceUpdate, bool forceLabelUpdate = false, bool delayUpdate = false);
-	const QSet<QString>& getCWLFiles() const;
+	const QSet<QString> &getCWLFiles() const;
 
-	Q_INVOKABLE QString spellingDictName() const { return mSpellingDictName; }
+	Q_INVOKABLE QString spellingDictName() const
+	{
+		return mSpellingDictName;
+	}
 	Q_INVOKABLE QString getMagicComment(const QString &name) const;
 	Q_INVOKABLE StructureEntry *getMagicCommentEntry(const QString &name) const;
 	Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting = false);
@@ -209,7 +241,10 @@ public:
 	void getEnv(int lineNumber, StackEnvironment &env); // get Environment for syntax checking, number of cols is now part of env
 	Q_INVOKABLE QString getLastEnvName(int lineNumber); // special function to use with javascript (insert "\item" from menu)
 
-	void enableSyntaxCheck(bool enable) { syntaxChecking = enable; }
+	void enableSyntaxCheck(bool enable)
+	{
+		syntaxChecking = enable;
+	}
 
 private:
 	QString fileName; //absolute
@@ -305,7 +340,10 @@ signals:
 };
 Q_DECLARE_METATYPE(LatexDocument *)
 
-
+/*!
+ * \brief model to interpret structure view information for treeview
+ * The actual structure is stored in StructureEntry. This model extracts the necessary information for treeview.
+ */
 class LatexDocumentsModel: public QAbstractItemModel
 {
 	Q_OBJECT
@@ -352,37 +390,44 @@ private slots:
 	friend class LatexDocuments;
 };
 
-
+/*! \brief administrate all open documents
+ * organizes all open documents
+ * handles master/slave or root/child relation between documents
+ * documents can be hidden, i.e. they don't have a visible editor
+ * hidden documents are used to keep syntax information present in the editor without the necessesity to make an extra storage architecture for closed elements
+ * documents which are closed/deleted are hidden if they are child documents of still used documents
+ * Furthermore autimatically loaded documents are generally hidden
+ */
 class LatexDocuments: public QObject
 {
 	Q_OBJECT
 
 public:
-	LatexDocumentsModel *model;
-	LatexDocument *masterDocument;
-	LatexDocument *currentDocument;
-	QList<LatexDocument *> documents;
-	QList<LatexDocument *> hiddenDocuments;
+	LatexDocumentsModel *model; ///< reference to latexmodel which generates the structure information for treeview
+	LatexDocument *masterDocument; ///< master/root document if it is set (in automatic mode ==NULL)
+	LatexDocument *currentDocument; ///< current edited document
+	QList<LatexDocument *> documents; ///< list of open documents
+	QList<LatexDocument *> hiddenDocuments; ///< list of open documents with no visible editor
 
 	LatexDocuments();
 	~LatexDocuments();
 	void addDocument(LatexDocument *document, bool hidden = false);
 	void deleteDocument(LatexDocument *document, bool hidden = false, bool purge = false);
 	void move(int from, int to);
-	Q_INVOKABLE void setMasterDocument(LatexDocument *document);
+	Q_INVOKABLE void setMasterDocument(LatexDocument *document); ///< explicitely set master document
 	Q_INVOKABLE LatexDocument *getCurrentDocument() const;
-	Q_INVOKABLE LatexDocument *getMasterDocument() const;
-	Q_INVOKABLE QList<LatexDocument *> getDocuments() const;
+	Q_INVOKABLE LatexDocument *getMasterDocument() const; ///< get explicit master if set
+	Q_INVOKABLE QList<LatexDocument *> getDocuments() const; ///< get all documents (visible&hidden)
 
 	Q_PROPERTY(LatexDocument *currentDocument READ getCurrentDocument);
 	Q_PROPERTY(LatexDocument *masterDocument READ getMasterDocument);
 	Q_PROPERTY(QList<LatexDocument *> documents READ getDocuments); //<- semicolon necessary due to qt bug 22992
 
-	Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = 0) const ; // no argument means current doc ...
+	Q_INVOKABLE LatexDocument *getRootDocumentForDoc(LatexDocument *doc = 0) const ; ///< no argument means current doc ...
 
-	Q_INVOKABLE QString getCurrentFileName() const; //returns the absolute file name of the current file or "" if none is opened
-	Q_INVOKABLE QString getCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
-	Q_INVOKABLE QString getTemporaryCompileFileName() const; //returns the absolute file name of the file to be compiled (master or current)
+	Q_INVOKABLE QString getCurrentFileName() const; ///< returns the absolute file name of the current file or "" if none is opened
+	Q_INVOKABLE QString getCompileFileName() const; ///< returns the absolute file name of the file to be compiled (master or current)
+	Q_INVOKABLE QString getTemporaryCompileFileName() const; ///< returns the absolute file name of the file to be compiled (master or current)
 	Q_INVOKABLE QString getLogFileName() const;
 	Q_INVOKABLE QString getAbsoluteFilePath(const QString &relName, const QString &extension = "", const QStringList &additionalSearchPaths = QStringList()) const;
 
@@ -390,14 +435,16 @@ public:
 	Q_INVOKABLE LatexDocument *findDocument(const QDocument *qDoc) const;
 	Q_INVOKABLE LatexDocument *findDocumentFromName(const QString &fileName) const;
 
+	void reorder(const QList<LatexDocument *> &order);
+
 	void settingsRead();
 
 	Q_INVOKABLE bool singleMode() const;
 
 	//support for included BibTeX-files
-	QMap<QString, BibTeXFileInfo> bibTeXFiles; //bibtex files loaded by txs
-	bool bibTeXFilesModified; //true iff the BibTeX files were changed after the last compilation
-	QStringList mentionedBibTeXFiles; //bibtex files imported in the tex file (absolute after updateBibFiles)
+	QMap<QString, BibTeXFileInfo> bibTeXFiles; ///< bibtex files loaded by txs
+	bool bibTeXFilesModified; ///< true if the BibTeX files were changed after the last compilation
+	QStringList mentionedBibTeXFiles; ///< bibtex files imported in the tex file (absolute after updateBibFiles)
 	//QSet<QString> bibItems; // direct defined bibitems
 	//QSet<QString> allBibTeXIds;
 	void updateBibFiles(bool updateFiles = true);

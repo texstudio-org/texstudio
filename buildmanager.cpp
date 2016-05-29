@@ -25,6 +25,7 @@ const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 int BuildManager::autoRerunLatex = 5;
 bool BuildManager::m_replaceEnvironmentVariables = true;
 bool BuildManager::m_supportShellStyleLiteralQuotes = true;
+bool BuildManager::singleViewerInstance = false;
 QString BuildManager::autoRerunCommands;
 QString BuildManager::additionalSearchPaths, BuildManager::additionalPdfPaths, BuildManager::additionalLogPaths;
 
@@ -200,11 +201,25 @@ QHash<QString, QString> getEnvVariables(bool uppercaseNames)
 	return result;
 }
 
-QString BuildManager::replaceEnvironmentVariables(const QString &command, const QHash<QString, QString> &variables, bool compareNamesToUpper)
+QString BuildManager::replaceEnvironmentVariables(const QString &s)
 {
-	QString result(command);
 #ifdef Q_OS_WIN
-	QRegExp rxEnvVar("%(\\w+)%");
+	Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+#else
+	Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+#endif
+	static QHash<QString, QString> envVariables = getEnvVariables(caseSensitivity == Qt::CaseInsensitive);  // environment variables can be static because they do not change during program execution.
+	return replaceEnvironmentVariables(s, envVariables, caseSensitivity == Qt::CaseInsensitive);
+}
+
+/*!
+ * Replace environment variables in the string.
+ */
+QString BuildManager::replaceEnvironmentVariables(const QString &s, const QHash<QString, QString> &variables, bool compareNamesToUpper)
+{
+	QString result(s);
+#ifdef Q_OS_WIN
+	QRegExp rxEnvVar("%([\\w()]+)%");  // word and brackets between %...%
 #else
 	QRegExp rxEnvVar("\\$(\\w+)");
 #endif
@@ -222,6 +237,19 @@ QString BuildManager::replaceEnvironmentVariables(const QString &command, const 
 		}
 	}
 	return result;
+}
+
+/*!
+ * returns paths with replaced [txs-app-dir], [txs-config-dir] and optionally with replaced environment variables
+ * paths may be an arbitrary string, in particular a single path or a list of paths
+ */
+QString BuildManager::resolvePaths(QString paths)
+{
+	paths = ConfigManagerInterface::getInstance()->parseDir(paths);
+	if (m_replaceEnvironmentVariables)
+		return replaceEnvironmentVariables(paths);
+	else
+		return paths;
 }
 
 BuildManager::BuildManager(): processWaitedFor(0)
@@ -271,10 +299,8 @@ void BuildManager::initDefaultCommandNames()
 	registerCommand("makeglossaries", "makeglossaries", "Makeglossaries", "%");
 	registerCommand("metapost",    "mpost",        "Metapost",    "-interaction=nonstopmode ?me)", "Tools/Metapost");
 	registerCommand("asy",         "asy",          "Asymptote",   "?m*.asy", "Tools/Asy");
-	registerCommand("gs",          "gs;mgs",           "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
-	QStringList ltxmk_cmds;
-	ltxmk_cmds << "latexmk -pdf -silent -latexoption=\"-synctex=1\" %" << "latexmk -dvi -silent %";
-	registerCommand("latexmk",     "Latexmk", ltxmk_cmds, "", false);
+	registerCommand("gs",          "gs;mgs",       "Ghostscript", "\"?am.ps\"", "Tools/Ghostscript", &getCommandLineGhostscript);
+	registerCommand("latexmk",     "latexmk",      "Latexmk",     "-pdf -silent -synctex=1 %");
 
 
 	QStringList descriptionList;
@@ -429,13 +455,7 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
 	ConfigManagerInterface *config = ConfigManagerInterface::getInstance();
 	str = config->parseDir(str);
 	if (m_replaceEnvironmentVariables) {
-#ifdef Q_OS_WIN
-		Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
-#else
-		Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
-#endif
-		static QHash<QString, QString> envVariables = getEnvVariables(caseSensitivity);  // environment variables can be static because they do not change during program execution.
-		str = replaceEnvironmentVariables(str, envVariables, caseSensitivity == Qt::CaseInsensitive);
+		str = replaceEnvironmentVariables(str);
 	}
 	// need to reformat literal quotes before the file insertion logic, because ?a"
 	// might be extended to "C:\somepath\" which would then be misinterpreted as an
@@ -958,7 +978,8 @@ RunCommandFlags BuildManager::getSingleCommandFlags(const QString &subcmd) const
 #ifdef Q_OS_WIN
 	isAcrobat = subcmd.contains("Acrobat.exe") || subcmd.contains("AcroRd32.exe");
 #endif
-	if (viewerCommands.contains(subcmd) && !isAcrobat) result |= RCF_SINGLE_INSTANCE;
+
+	if (viewerCommands.contains(subcmd) && !isAcrobat && singleViewerInstance) result |= RCF_SINGLE_INSTANCE;
 	return (RunCommandFlags)(result);
 }
 
@@ -1513,7 +1534,7 @@ ProcessX *BuildManager::newProcessInternal(const QString &cmd, const QFileInfo &
 	if (cmd.startsWith(TXS_CMD_PREFIX))
 		connect(proc, SIGNAL(startedX()), SLOT(runInternalCommandThroughProcessX()));
 
-	updatePathSettings(proc, additionalSearchPaths);
+	updatePathSettings(proc, resolvePaths(additionalSearchPaths));
 	return proc;
 }
 
@@ -1603,7 +1624,6 @@ void BuildManager::preview(const QString &preamble, const PreviewSource &source,
 		preamble_mod.remove(beamerClass);
 		preamble_mod.insert(0, "\\documentclass{article}\n\\usepackage{beamerarticle}");
 	}
-	//preamble_mod.remove(QRegExp("\\\\input\\{[^/][^\\]?[^}]*\\}")); //remove all input commands that doesn't use an absolute path from the preamble
 
 	QString masterDir = QFileInfo(masterFile).dir().absolutePath();
 	QStringList addPaths;
@@ -2147,10 +2167,10 @@ void ProcessX::startCommand()
 	QByteArray path = qgetenv("PATH");
 #ifdef Q_OS_OSX
 	QString basePath = getEnvironmentPath();
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
+	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvedAdditionalSearchPaths().toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
 	// needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #else
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::additionalSearchPaths.toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
+	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvePaths(BuildManager::additionalSearchPaths).toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #endif
 	QProcess::start(cmd);
 	qputenv("PATH", path); // restore

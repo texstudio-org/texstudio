@@ -14,6 +14,12 @@
 ****************************************************************************/
 
 #include "qdocument.h"
+
+/*!
+	\file qdocument.cpp
+	\brief Implementation of the QDocument class
+ */
+
 #include "smallUsefulFunctions.h"
 
 // returns the number of chars/columns from column to the next tab location
@@ -181,27 +187,42 @@ static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
 static int PICTURE_BORDER = 2;
 
-
+/*! check if character c is a letter or nummber or backslah (part of command)
+ */
 inline static bool isWord(QChar c)
 {
     QString extraChars="\\";
     return c.isLetterOrNumber() || extraChars.contains(c);
 } // see qnfa.cpp isWord  || (c == QLatin1Char('_')); }, _ is no word character in LaTeX
 
+/*! check if character c is a delimiter ( "(){}$+-*,/;." )
+ */
 inline static bool isDelimiter(QChar c)
 {
     QString delimiters="(){}$+-/*,;.";
 	return delimiters.contains(c);
 }
 
+/*! activate a work-around
+ *  DisableFixedPitchMode	= 0x01,
+ *  DisableWidthCache		= 0x02,
+ *	DisableLineCache            = 0x04,
+ *	ForceQTextLayout            = 0x08,
+ *  ForceSingleCharacterDrawing = 0x10,
+ *  QImageCache = 0x20
+ */
 void QDocument::setWorkAround(QDocument::WorkAroundFlag workAround, bool newValue){
 	QDocumentPrivate::setWorkAround(workAround, newValue);
 }
 
+/*! check if worariound is activated
+ */
 bool QDocument::hasWorkAround(QDocument::WorkAroundFlag workAround){
 	return QDocumentPrivate::hasWorkAround(workAround);
 }
 
+/*! check if fixed pitch font is used
+ */
 bool QDocument::getFixedPitch() const{
 	return m_impl && m_impl->getFixedPitch();
 }
@@ -434,7 +455,7 @@ void QDocument::clear()
 }
 
 /*!
-	\return whether there commands to undo on the command stack
+	\return whether there are commands to undo on the command stack
 */
 bool QDocument::canUndo() const
 {
@@ -474,6 +495,8 @@ void QDocument::redo()
 
 }
 
+/*! clear undo stack
+ */
 void QDocument::clearUndo()
 {
 	if ( m_impl )
@@ -482,6 +505,14 @@ void QDocument::clearUndo()
 	}
 }
 
+/*!
+ * \brief give current state of undo-stack for debugging
+ *
+ * return the cuurent content of the undo-stack as string
+ * \note This function is used for debugging only
+ * \param limit number of results
+ * \return commands on undo-stack
+ */
 QString QDocument::debugUndoStack(int limit) const{
 	if (!m_impl) return QString();
 	const QUndoStack& commands = m_impl->m_commands;
@@ -583,6 +614,9 @@ QString QDocument::text(bool removeTrailing, bool preserveIndent) const
 	return text(mode);
 }
 
+/*!
+ * \return give the complete text as stringlist
+ */
 QStringList QDocument::textLines() const{
 	QStringList res;
 	if ( !m_impl || m_impl->m_lines.isEmpty() )
@@ -708,7 +742,11 @@ QTextCodec* guessEncoding(const QByteArray& data){
 	else return QTextCodec::codecForName("UTF-8"); //default
 }
 
-
+/*!
+ * \brief load text from file using codec
+ * \param file
+ * \param codec
+ */
 void QDocument::load(const QString& file, QTextCodec* codec){
 	QFile f(file);
 
@@ -829,18 +867,22 @@ void QDocument::startChunkLoading()
 */
 void QDocument::stopChunkLoading()
 {
+	bool emptyEndingLine = false;
 	if ( m_leftOver.count() )
 	{
-		m_impl->m_lines << new QDocumentLineHandle(
-								m_leftOver,
-								this
-							);
+		if (m_leftOver.endsWith('\r')) {
+			emptyEndingLine = true;
+			m_impl->_mac++;
+			m_leftOver.chop(1);
+		}
+		m_impl->m_lines << new QDocumentLineHandle( m_leftOver, this );
 
 		m_leftOver.clear();
 
-	} else {
+	} else emptyEndingLine = true;
+
+	if (emptyEndingLine)
 		m_impl->m_lines << new QDocumentLineHandle(this);
-	}
 
 	//qDebug("[chunk] dos : %i; nix : %i", m_impl->_dos, m_impl->_nix);
 
@@ -935,25 +977,27 @@ void QDocument::addChunk(const QString& txt)
 	while ( idx < m_leftOver.length() )
 	{
 		if ( m_leftOver.at(idx) == '\r') {
+			++idx;
+			if (idx >= m_leftOver.length())
+				break; //there might be a \n in the next chunk
 			m_impl->m_lines << new QDocumentLineHandle(
-                                    m_leftOver.mid(last, idx - last),
-                                    this
-                                );
-            ++idx;
-		    if (idx < m_leftOver.length() && m_leftOver.at(idx) == '\n') {
-                ++(m_impl->_dos);
-                ++idx;
+							    m_leftOver.mid(last, idx - last - 1),
+							    this
+							    );
+			if (m_leftOver.at(idx) == '\n') {
+				++(m_impl->_dos);
+				++idx;
 			} else ++(m_impl->_mac);
 			last = idx;
 		} else if ( m_leftOver.at(idx) == '\n') {
 			++(m_impl->_nix);
 
-            m_impl->m_lines << new QDocumentLineHandle(
-										m_leftOver.mid(last, idx - last),
-										this
-                                );
+			m_impl->m_lines << new QDocumentLineHandle(
+							    m_leftOver.mid(last, idx - last),
+							    this
+							    );
 			last = ++idx;
-        } else {
+		} else {
 			++idx;
 		}
 	}
@@ -6933,14 +6977,14 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 					QDocumentCursor curHelper(cur,false);
 					curHelper.movePosition(1);
 					QPoint pt2=curHelper.documentPosition();
-					int wt;
-					if(pt.y()==pt2.y()){
-						wt=pt2.x()-pt.x();
-					}else{
-						wt=textWidth(0," ");
+					int width = 0;
+					if (pt.y() == pt2.y()) {
+						width = pt2.x() - pt.x();
 					}
-					QPoint curHt(wt,QDocumentPrivate::m_lineSpacing-1);
-					p->drawRect(pt.x(),pt.y(),curHt.x(),curHt.y());
+					if (width == 0) {
+						width = textWidth(0, " ");
+					}
+					p->drawRect(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing-1);
 				}else{
 					QPoint pt=cur.documentPosition();
 					QPoint curHt(0,QDocumentPrivate::m_lineSpacing-1);
@@ -7577,6 +7621,7 @@ void QDocumentPrivate::insertLines(int after, const QList<QDocumentLineHandle*>&
 		if ( (it.key() <= after) && ((it.key() + *it) > after) )
 		{
 			*it += l.count();
+
 
 			foreach ( QDocumentLineHandle *h, l )
 				h->setFlag(QDocumentLine::Hidden, true);

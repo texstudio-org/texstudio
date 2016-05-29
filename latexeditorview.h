@@ -33,7 +33,13 @@ class SpellerUtility;
 class SpellerManager;
 class DefaultInputBinding;
 class LatexEditorViewConfig;
-
+class Macro;
+class MacroExecContext;
+/*!
+ * \brief represent link overlays
+ * When pressing control, some structural elements in the text can be changed to links in order to jump to corresponding places
+ *
+ */
 struct LinkOverlay {
 	enum LinkOverlayType {Invalid, RefOverlay, FileOverlay, UrlOverlay, UsepackageOverlay, BibFileOverlay, CiteOverlay};
 	// for simpler access everything is public - only access for reading
@@ -55,7 +61,9 @@ struct LinkOverlay {
 	}
 	QString text() const;
 };
-
+/*!
+ * \brief actual editor widget
+ */
 class LatexEditorView : public QWidget
 {
 	Q_OBJECT
@@ -82,11 +90,12 @@ public:
 	LatexEditorViewConfig *getConfig() { return config; }
 
 	Q_INVOKABLE	QString displayName() const;
+	QString displayNameForUI() const;
 
 	//  FindWidget *findwidget;
 	//Functions affecting the editor
 
-	Q_INVOKABLE void complete(int flags);
+    Q_INVOKABLE void complete(int flags); ///< complete text
 	bool gotoLineHandleAndSearchCommand(const QDocumentLineHandle *dlh, const QSet<QString> &searchFor, const QString &id);
 	Q_INVOKABLE bool gotoToLabel(const QString &label);
 	Q_INVOKABLE bool gotoToBibItem(const QString &bibId);
@@ -246,7 +255,13 @@ public slots:
 	void viewActivated();
 	void clearOverlays();
 	void paste();
-	void insertMacro(QString macro, const QRegExp &trigger = QRegExp(), int triggerId = 0, bool allowWrite = false);
+	void insertSnippet(QString text);
+
+	void deleteLines(bool toStart, bool toEnd);
+	void moveLines(int delta);
+	QList<QPair<int, int> > getSelectedLineBlocks();
+	static QMultiMap<int, QDocumentCursor* > getSelectedLines(QList<QDocumentCursor>& cursors);
+	void alignMirrors();
 
 	void checkForLinkOverlay(QDocumentCursor cursor);
 	bool hasLinkOverlay() const { return linkOverlay.isValid(); }
@@ -294,10 +309,12 @@ signals:
 	void bookmarkRemoved(QDocumentLineHandle *dlh);
 	void bookmarkAdded(QDocumentLineHandle *dlh, int nr);
 	void saveCurrentCursorToHistoryRequested();
+	void execMacro(const Macro &macro, const MacroExecContext &context);
 
 	void mouseBackPressed();
 	void mouseForwardPressed();
 	void cursorChangeByMouse();
+        void focusReceived();
 
 	void linesChanged(QString language, const void *doc, const QList<LineInfo> &lines, int firstLineNr);
 	void searchBibtexSection(QString file, QString bibId);
@@ -309,6 +326,7 @@ private slots:
 	void lineMarkContextMenuRequested(int lineNumber, QPoint globalPos);
 	void foldContextMenuRequested(int lineNumber, QPoint globalPos);
 };
+Q_DECLARE_METATYPE(LatexEditorView *)
 
 
 class BracketInvertAffector: public PlaceHolder::Affector

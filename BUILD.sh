@@ -7,11 +7,14 @@ if (uname -s | grep Darwin); then SYSTEM=2; else SYSTEM=1; fi
 if [ -f /bin/qmake ]; then QTDIR=; 
 elif [ -f /usr/bin/qmake ]; then QTDIR=/usr; 
 elif [ -f /usr/local/bin/qmake ]; then QTDIR=/usr/local; 
+elif [ -f /usr/lib/qt5/bin/qmake ]; then QTDIR=/usr/lib/qt5
 elif [ -f /usr/lib/qt4/bin/qmake ]; then QTDIR=/usr/lib/qt4
 elif [ -f /usr/local/Trolltech/Qt-4.7.2/bin/qmake ]; then QTDIR=/usr/local/Trolltech/Qt-4.7.2 
 elif [ -f /usr/local/Trolltech/Qt-4.7.3/bin/qmake ]; then QTDIR=/usr/local/Trolltech/Qt-4.7.3
 elif [ -f /usr/local/Trolltech/Qt-4.8.0/bin/qmake ]; then QTDIR=/usr/local/Trolltech/Qt-4.8.0
 fi
+
+
 
 #helper functions
 readvalue() {

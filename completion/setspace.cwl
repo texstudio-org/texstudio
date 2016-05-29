@@ -10,3 +10,4 @@
 \end{doublespace}
 \end{onehalfspace}
 \end{spacing}
+\setstretch{factor}

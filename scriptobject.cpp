@@ -105,7 +105,7 @@ void ScriptObject::crash_throw()
 	throw "debug crash";
 }
 
-ProcessX *ScriptObject::system(const QString &commandline)
+ProcessX *ScriptObject::system(const QString &commandline, const QString &workingDirectory)
 {
 	if (!buildManager || !needWritePrivileges("system", commandline))
 		return 0;
@@ -117,6 +117,8 @@ ProcessX *ScriptObject::system(const QString &commandline)
 	if (!p) return 0;
 	connect(p, SIGNAL(finished(int)), p, SLOT(deleteLater()));
 	QMetaObject::invokeMethod(reinterpret_cast<QObject *>(app), "connectSubCommand", Q_ARG(ProcessX *, p), Q_ARG(bool, true));
+	if (!workingDirectory.isEmpty())
+		p->setWorkingDirectory(workingDirectory);
 	p->startCommand();
 	p->waitForStarted();
 	return p;

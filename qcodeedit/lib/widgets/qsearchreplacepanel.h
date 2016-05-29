@@ -109,6 +109,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void on_bReplaceAll_clicked();
 		
 		void cursorPositionChanged();
+		void updateReplacementHint();
 
 	private:
 		void init();
@@ -145,6 +146,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QGridLayout *layoutReplaceOptions;
         QToolButton *cbPrompt;
         QToolButton *cbEscapeSeq;
+        QLabel *lReplacementText;
 		
 		bool useLineForSearch, searchOnlyInSelection;
 };

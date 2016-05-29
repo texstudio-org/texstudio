@@ -11,7 +11,7 @@
 
 Q_DECLARE_METATYPE(QDocument *)
 Q_DECLARE_METATYPE(LatexDocuments *)
-Q_DECLARE_METATYPE(LatexEditorView *)
+//Q_DECLARE_METATYPE(LatexEditorView *)
 Q_DECLARE_METATYPE(BuildManager *)
 Q_DECLARE_METATYPE(RunCommandFlags)
 Q_DECLARE_METATYPE(ProcessX *)
@@ -186,6 +186,19 @@ void qScriptValueToStringPtr(const QScriptValue &value, QString *&str)
 #else
 #define SCRIPT_TO_BOOLEAN toBoolean
 #endif
+
+QScriptValue insertSnippet(QScriptContext *context, QScriptEngine *engine)
+{
+	SCRIPT_REQUIRE(context->argumentCount() == 1, "exactly one argument is required");
+	CodeSnippet cs(context->argument(0).toString());
+
+	QEditor *editor = qobject_cast<QEditor *>(context->thisObject().toQObject());
+	if (!editor) return QScriptValue();
+	foreach (QDocumentCursor c, editor->cursors()) {
+		cs.insertAt(editor, &c);
+	}
+	return QScriptValue();
+}
 
 QScriptValue replaceSelectedText(QScriptContext *context, QScriptEngine *engine)
 {
@@ -373,14 +386,16 @@ QScriptValue include(QScriptContext *context, QScriptEngine *engine)
 	if (context->argumentCount() != 1) return engine->undefinedValue();
 	QString name = context->argument(0).toString();
 	bool found = false;
-	QString macro;
+	QString script;
 	if (scriptengine::macros) {
-		for (int i = 0; i < scriptengine::macros->size(); i++)
-			if (scriptengine::macros->at(i).name == name) {
+		for (int i = 0; i < scriptengine::macros->size(); i++) {
+			const Macro &m = scriptengine::macros->at(i);
+			if (m.name == name && m.type == Macro::Script) {
 				found = true;
-				macro = scriptengine::macros->at(i).tag;
+				script = m.script();
 				break;
 			}
+		}
 	}
 	if (!found) {
 		QString filename;
@@ -391,10 +406,9 @@ QScriptValue include(QScriptContext *context, QScriptEngine *engine)
 		QFile f(filename);
 		if (!f.open(QFile::ReadOnly))
 			return engine->undefinedValue();
-		macro = QString::fromUtf8(f.readAll().data());
+		script = QString::fromUtf8(f.readAll().data());
 	}
-	if (macro.startsWith("%SCRIPT")) macro.remove(0, strlen("%SCRIPT"));
-	if (macro.isEmpty()) return engine->undefinedValue();
+	if (script.isEmpty()) return engine->undefinedValue();
 
 	QScriptContext *currentContext = engine->currentContext();
 	QScriptContext *parentContext = currentContext->parentContext();
@@ -402,7 +416,7 @@ QScriptValue include(QScriptContext *context, QScriptEngine *engine)
 		currentContext->setActivationObject(parentContext->activationObject());
 		currentContext->setThisObject(parentContext->thisObject());
 	}
-	return engine->evaluate(macro);
+	return engine->evaluate(script);
 }
 
 QScriptValue setTimeout(QScriptContext *context, QScriptEngine *engine)
@@ -451,6 +465,7 @@ scriptengine::scriptengine(QObject *parent) : QObject(parent), triggerId(-1), gl
 	qScriptRegisterQObjectMetaType<PDFWidget *>(engine);
 #endif
 	QScriptValue extendedQEditor = engine->newObject();
+	extendedQEditor.setProperty("insertSnippet", engine->newFunction(&insertSnippet), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replaceSelectedText", engine->newFunction(&replaceSelectedText), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("search", engine->newFunction(&searchFunction), QScriptValue::ReadOnly | QScriptValue::Undeletable);
 	extendedQEditor.setProperty("replace", engine->newFunction(&replaceFunction), QScriptValue::ReadOnly | QScriptValue::Undeletable);

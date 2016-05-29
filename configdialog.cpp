@@ -387,14 +387,15 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	populateComboBoxFont(false);
 	connect(ui.checkBoxShowOnlyMonospacedFonts, SIGNAL(toggled(bool)), this, SLOT(populateComboBoxFont(bool)));
 
-	ui.comboBoxEncoding->addItem("UTF-8");
-	ui.comboBoxBibFileEncoding->addItem("UTF-8");
+	QComboBox * encodingBoxes[3] = {ui.comboBoxEncoding, ui.comboBoxBibFileEncoding, ui.comboBoxLogFileEncoding};
+	ui.comboBoxLogFileEncoding->addItem("Document"); //not translated so the config is language independent
+	for (int i=0;i<3;i++) encodingBoxes[i]->addItem("UTF-8");
 	foreach (int mib, QTextCodec::availableMibs()) {
 		QTextCodec *codec = QTextCodec::codecForMib(mib);
 		if (!codec) continue;
 		if (codec->name() != "UTF-8") {
-			ui.comboBoxEncoding->addItem(codec->name());
-			ui.comboBoxBibFileEncoding->addItem(codec->name());
+			for (int i=0;i<3;i++)
+				encodingBoxes[i]->addItem(codec->name());
 		}
 	}
 
@@ -640,7 +641,7 @@ void ConfigDialog::comboBoxWithPathHighlighted(const QString &newText)
 
 void ConfigDialog::browseThesaurus()
 {
-	browse(ui.comboBoxThesaurusFileName, tr("Browse thesaurus database"), "Database (*.dat)");
+	browse(ui.comboBoxThesaurusFileName, tr("Select thesaurus database"), "Database (*.dat)");
 }
 
 void ConfigDialog::browseGrammarWordListsDir()

@@ -55,8 +55,8 @@ void FileSelector::setCentered(const QRect &rect)
 		fsw = qMax(fsw, fm.width(rawFiles[i]) + scrollbarwidth );
 	fsw = qMin(fsw, s.width());
 
-	setMinimumWidth(fsw); //set geometry alone leads to a too small window
 	setGeometry(s.width() / 2 - fsw / 2 + p.x(), s.height() / 4 + p.y(), fsw, s.height() / 2);
+	setMinimumWidth(fsw); //set geometry alone leads to a too small window. but we need to call setGeometry first, or it crashes if fsw = s.width()
 }
 
 void FileSelector::filterChanged(const QString &newFilter)

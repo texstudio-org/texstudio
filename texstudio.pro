@@ -140,7 +140,9 @@ HEADERS += texstudio.h \
     searchquery.h \
     bidiextender.h \
     tests/utilsversion_t.h \
-    unixutils.h
+    unixutils.h \
+    editors.h \
+	libqmarkedscrollbar/src/markedscrollbar.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -233,7 +235,9 @@ SOURCES += main.cpp \
     tests/smallUsefulFunctions_t.cpp \
     searchquery.cpp \
     bidiextender.cpp \
-    unixutils.cpp
+    unixutils.cpp \
+    editors.cpp \
+    libqmarkedscrollbar/src/markedscrollbar.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
@@ -276,6 +280,7 @@ TRANSLATIONS += texstudio_cs.ts \
     texstudio_uk.ts \
     texstudio_ru_RU.ts \
     texstudio_vi.ts \
+    texstudio_nl.ts \
     texstudio_zh_CN.ts
 
 # ###############################
@@ -294,8 +299,8 @@ macx {
     # QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.4
     target.path = /Applications
     manual.path = Contents/Resources/
-    utilities.path = Contents/Resources/
-    QMAKE_BUNDLE_DATA += utilities
+    utilities.path = Contents/Resources/ 
+    QMAKE_BUNDLE_DATA += utilities manual
     ICON = texstudio.icns
     QMAKE_INFO_PLIST = Info.plist
 }
@@ -303,22 +308,23 @@ macx {
 # ###############################
 unix:!macx {
     isEmpty( PREFIX ):PREFIX = /usr
+    isEmpty( DATADIR ):DATADIR = $${PREFIX}/share
     DEFINES += PREFIX=\\\"$${PREFIX}\\\"
     target.path = $${PREFIX}/bin
-    utilities.path = $${PREFIX}/share/texstudio
-    manual.path = $${PREFIX}/share/texstudio
+    utilities.path = $${DATADIR}/texstudio
+    manual.path = $${DATADIR}/texstudio
     utilities.files = utilities/texstudio16x16.png \
         utilities/texstudio22x22.png \
         utilities/texstudio32x32.png \
         utilities/texstudio48x48.png \
         utilities/texstudio64x64.png \
         utilities/texstudio128x128.png
-    applicationmenu.path = $${PREFIX}/share/applications
+    applicationmenu.path = $${DATADIR}/applications
     applicationmenu.files = utilities/texstudio.desktop
-    icon.path = $${PREFIX}/share/icons/hicolor/scalable/apps
+    icon.path = $${DATADIR}/icons/hicolor/scalable/apps
     icon.files = utilities/texstudio.svg
     isEmpty(NO_APPDATA) {
-      appdata.path = /usr/share/appdata
+      appdata.path = $${DATADIR}/appdata
       appdata.files = utilities/texstudio.appdata.xml
       INSTALLS += appdata
     }
@@ -349,6 +355,7 @@ unix {
 	texstudio_uk.qm \
         texstudio_ru_RU.qm \
         texstudio_vi.qm \
+        texstudio_nl.qm \
         texstudio_zh_CN.qm \
         qt_cs.qm \
         qt_de.qm \
@@ -447,7 +454,6 @@ unix {
         utilities/manual/doc20.png \
         utilities/manual/doc21.png \
         utilities/manual/doc3.png \
-        utilities/manual/doc4.png \
         utilities/manual/doc5.png \
         utilities/manual/doc6.png \
         utilities/manual/doc7.png \
@@ -472,13 +478,26 @@ unix {
         utilities
 }
 
-DEFINES += HUNSPELL_STATIC
-include(hunspell/hunspell.pri)
+isEmpty(USE_SYSTEM_HUNSPELL){
+  DEFINES += HUNSPELL_STATIC
+  include(hunspell/hunspell.pri)
+} else {
+  CONFIG += link_pkgconfig
+  PKGCONFIG += hunspell
+}
 
 include(qcodeedit/qcodeedit.pri)
 
-DEFINES += QUAZIP_STATIC
-include(quazip/quazip/quazip.pri)
+isEmpty(USE_SYSTEM_QUAZIP) {
+  DEFINES += QUAZIP_STATIC
+  include(quazip/quazip/quazip.pri)
+} else {
+  isEmpty(QUAZIP_LIB): QUAZIP_LIB = -lquazip
+  isEmpty(QUAZIP_INCLUDE): QUAZIP_INCLUDE = $${PREFIX}/include/quazip
+
+  INCLUDEPATH += $${QUAZIP_INCLUDE}
+  LIBS += $${QUAZIP_LIB}
+}
 
 include(pdfviewer/pdfviewer.pri)
 

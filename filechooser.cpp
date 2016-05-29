@@ -23,7 +23,7 @@ FileChooser::FileChooser(QWidget *parent, QString name)
 	ui.setupUi(this);
 	connect(ui.lineEdit, SIGNAL(textChanged(const QString &)), this, SIGNAL(fileNameChanged(const QString &)));
 	connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
-	ui.pushButton->setIcon(getRealIcon("fileopen"));
+	ui.pushButton->setIcon(getRealIcon("document-open"));
 	setWindowTitle(name);
 }
 

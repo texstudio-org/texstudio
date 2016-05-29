@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>12</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>547</width>
+            <height>563</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -888,7 +888,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>860</width>
+               <width>198</width>
                <height>76</height>
               </rect>
              </property>
@@ -927,7 +927,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -961,7 +961,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -978,7 +978,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/fileopen.svgz</normaloff>:/images-ng/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -1483,6 +1483,13 @@ Then you can select a new shortcut by one of the following ways:
           <string>Editor</string>
          </property>
          <layout class="QGridLayout">
+          <item row="8" column="3" colspan="2">
+           <widget class="QCheckBox" name="checkBoxReplaceIndentTabByWhitespace">
+            <property name="text">
+             <string>Replace Indentation Tab by Spaces</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelFamily">
             <property name="text">
@@ -1490,14 +1497,14 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
+          <item row="10" column="0">
            <widget class="QLabel" name="label_39">
             <property name="text">
              <string>Replace Double Quotes:</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="0">
+          <item row="11" column="0">
            <widget class="QCheckBox" name="checkBoxRealTimeCheck">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1526,7 +1533,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="13" column="0" colspan="3">
+          <item row="14" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxAutoLoad">
             <property name="text">
              <string>Automatically load included files</string>
@@ -1536,21 +1543,21 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="7" column="0">
+          <item row="8" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Indentation Mode:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" colspan="4">
+          <item row="6" column="1" colspan="4">
            <widget class="QCheckBox" name="checkBoxFolding">
             <property name="text">
              <string>Folding</string>
             </property>
            </widget>
           </item>
-          <item row="11" column="2" colspan="3">
+          <item row="12" column="2" colspan="3">
            <widget class="QCheckBox" name="checkBoxHideGrammarErrorsInNonText">
             <property name="text">
              <string>Hide grammar errors in non-text environments</string>
@@ -1560,7 +1567,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="2">
+          <item row="12" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxHideSpellingErrorsInNonText">
             <property name="text">
              <string>Hide spelling errors in non-text environments</string>
@@ -1570,7 +1577,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_65">
             <property name="text">
              <string>Automatic Encoding Detection:</string>
@@ -1580,14 +1587,14 @@ Then you can select a new shortcut by one of the following ways:
           <item row="3" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxEncoding"/>
           </item>
-          <item row="4" column="1" colspan="2">
+          <item row="5" column="1" colspan="2">
            <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromLatex">
             <property name="text">
              <string>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</string>
             </property>
            </widget>
           </item>
-          <item row="4" column="3" colspan="2">
+          <item row="5" column="3" colspan="2">
            <widget class="QCheckBox" name="checkBoxAutoDetectEncodingFromChars">
             <property name="toolTip">
              <string>can only decide between utf16/utf-8 and ISO 8859-1 !</string>
@@ -1650,7 +1657,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="9" column="1" colspan="4">
+          <item row="10" column="1" colspan="4">
            <widget class="QComboBox" name="comboBoxReplaceQuotes">
             <item>
              <property name="text">
@@ -1701,7 +1708,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="7" column="1" colspan="2">
+          <item row="8" column="1" colspan="2">
            <widget class="QComboBox" name="comboBoxAutoIndent">
             <property name="advancedOption" stdset="0">
              <bool>false</bool>
@@ -1723,7 +1730,7 @@ Then you can select a new shortcut by one of the following ways:
             </item>
            </widget>
           </item>
-          <item row="12" column="0" colspan="2">
+          <item row="13" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxInlineCheckNonTeXFiles">
             <property name="text">
              <string>Check non tex files</string>
@@ -1733,7 +1740,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="10" column="1" colspan="4">
+          <item row="11" column="1" colspan="4">
            <widget class="QGroupBox" name="groupBoxInlineChecking">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -1790,7 +1797,7 @@ Then you can select a new shortcut by one of the following ways:
             </layout>
            </widget>
           </item>
-          <item row="14" column="0" colspan="2">
+          <item row="15" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxScanInstalledLatexPackages">
             <property name="text">
              <string>Scan LaTeX distribution for installed packages</string>
@@ -1800,14 +1807,7 @@ Then you can select a new shortcut by one of the following ways:
             </property>
            </widget>
           </item>
-          <item row="7" column="3" colspan="2">
-           <widget class="QCheckBox" name="checkBoxReplaceIndentTabByWhitespace">
-            <property name="text">
-             <string>Replace Indentation Tab by Spaces</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="3" colspan="2">
+          <item row="9" column="3" colspan="2">
            <widget class="QCheckBox" name="checkBoxReplaceTextTabByWhitespace">
             <property name="text">
              <string>Replace Tab in Text by Spaces</string>
@@ -1846,8 +1846,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>668</width>
-            <height>1289</height>
+            <width>863</width>
+            <height>1315</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2123,10 +2123,24 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
+              <item row="8" column="0">
+               <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
+                <property name="text">
+                 <string>Double-Click Selection: Include Leading Backslash</string>
+                </property>
+               </widget>
+              </item>
+              <item row="18" column="0">
+               <widget class="QLabel" name="label_70">
+                <property name="text">
+                 <string>Spellchecking via context menu:</string>
+                </property>
+               </widget>
+              </item>
               <item row="14" column="2">
                <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
                 <property name="text">
-                 <string>Disable key 'Esc' to close fullscreen-mode</string>
+                 <string>Don't leave full screen mode when pressing &lt;Esc&gt;</string>
                 </property>
                </widget>
               </item>
@@ -2144,34 +2158,10 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                </widget>
               </item>
-              <item row="15" column="2">
-               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
-                <property name="text">
-                 <string>Go to error when displaying log</string>
-                </property>
-               </widget>
-              </item>
               <item row="6" column="0" colspan="2">
                <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
                 <property name="text">
                  <string>Overwrite Opening Bracket Followed by a Placeholder</string>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_23">
-                <property name="text">
-                 <string>Maximal Characters:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2" colspan="2">
-               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
-                <property name="text">
-                 <string>Show help as tooltip on text in editor</string>
                 </property>
                </widget>
               </item>
@@ -2199,6 +2189,23 @@ Then you can select a new shortcut by one of the following ways:
                 </item>
                </widget>
               </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Maximal Characters:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="2">
+               <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
+                <property name="text">
+                 <string>Go to error when displaying log</string>
+                </property>
+               </widget>
+              </item>
               <item row="14" column="0">
                <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
                 <property name="toolTip">
@@ -2224,7 +2231,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="16" column="1" colspan="2">
+              <item row="18" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxContextMenuSpellcheckingEntryLocation">
                 <item>
                  <property name="text">
@@ -2238,19 +2245,29 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </item>
                </widget>
               </item>
-              <item row="16" column="0">
-               <widget class="QLabel" name="label_70">
+              <item row="4" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
                 <property name="text">
-                 <string>Spellchecking via context menu:</string>
+                 <string>Show help as tooltip on text in editor</string>
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
-               <widget class="QCheckBox" name="checkBoxDoubleClickSelectionIncludeLeadingBackslash">
+              <item row="3" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxImageToolTip">
                 <property name="text">
-                 <string>Double-Click Selection: Include Leading Backslash</string>
+                 <string>Show image tooltip on image files</string>
                 </property>
                </widget>
+              </item>
+              <item row="17" column="0">
+               <widget class="QLabel" name="label_80">
+                <property name="text">
+                 <string>Default Log Encoding</string>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="1" colspan="2">
+               <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
               </item>
              </layout>
             </widget>
@@ -2428,7 +2445,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -2439,7 +2456,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
-                  <normaloff>:/images-ng/modern/fileopen.svgz</normaloff>:/images-ng/modern/fileopen.svgz</iconset>
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3046,8 +3063,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>494</width>
-            <height>644</height>
+            <width>863</width>
+            <height>670</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3076,8 +3093,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3127,8 +3144,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3273,8 +3290,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3287,10 +3304,17 @@ them here.</string>
               <string>LanguageTool</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_9">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_44">
+              <item row="7" column="2">
+               <widget class="QLineEdit" name="lineEditGrammarLTPath">
+                <property name="toolTip">
+                 <string>Path containing the LanguageTool java archive.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_45">
                 <property name="text">
-                 <string>Server URL: </string>
+                 <string>LT Path:</string>
                 </property>
                </widget>
               </item>
@@ -3308,21 +3332,21 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_45">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_44">
                 <property name="text">
-                 <string>LT Path:</string>
+                 <string>Server URL: </string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="2">
-               <widget class="QLineEdit" name="lineEditGrammarLTPath">
+              <item row="3" column="2" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarLTIgnoredRules">
                 <property name="toolTip">
-                 <string>Path containing the LanguageTool java archive.</string>
+                 <string>Comma separated list of LanguageTool rules which will not be highlighted as errors.</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="3">
+              <item row="7" column="3">
                <widget class="QPushButton" name="pushButtonGrammarLTPath">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -3334,8 +3358,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
                 </property>
                </widget>
               </item>
@@ -3346,45 +3370,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="2" colspan="2">
-               <widget class="QLineEdit" name="lineEditGrammarLTIgnoredRules">
-                <property name="toolTip">
-                 <string>Comma separated list of LanguageTool rules which will not be highlighted as errors.</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0">
-               <widget class="QLabel" name="label_49">
-                <property name="text">
-                 <string>Java:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="2">
-               <widget class="QLineEdit" name="lineEditGrammarLTJava">
-                <property name="toolTip">
-                 <string>Java executable, used to start LanguageTool, if it is not running.</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="3">
-               <widget class="QPushButton" name="pushButtonGrammarLTJava">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/classic/images/classic/fileopen.png</normaloff>:/classic/images/classic/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="2" colspan="2">
+              <item row="10" column="2" colspan="2">
                <widget class="QLineEdit" name="lineEditGrammarSpecialRules1">
                 <property name="toolTip">
                  <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
@@ -3394,7 +3380,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="9" column="2" colspan="2">
+              <item row="11" column="2" colspan="2">
                <widget class="QLineEdit" name="lineEditGrammarSpecialRules2">
                 <property name="toolTip">
                  <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
@@ -3404,7 +3390,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="11" column="2" colspan="2">
+              <item row="13" column="2" colspan="2">
                <widget class="QLineEdit" name="lineEditGrammarSpecialRules4">
                 <property name="toolTip">
                  <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
@@ -3414,37 +3400,7 @@ them here.</string>
                 </property>
                </widget>
               </item>
-              <item row="10" column="2" colspan="2">
-               <widget class="QLineEdit" name="lineEditGrammarSpecialRules3">
-                <property name="toolTip">
-                 <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="label_50">
-                <property name="text">
-                 <string>Special Rules 2:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_51">
-                <property name="text">
-                 <string>Special Rules 1:</string>
-                </property>
-                <property name="advancedOption" stdset="0">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="0">
+              <item row="12" column="0">
                <widget class="QLabel" name="label_52">
                 <property name="text">
                  <string>Special Rules 3:</string>
@@ -3455,9 +3411,29 @@ them here.</string>
                </widget>
               </item>
               <item row="11" column="0">
-               <widget class="QLabel" name="label_53">
+               <widget class="QLabel" name="label_50">
                 <property name="text">
-                 <string>Special Rules 4:</string>
+                 <string>Special Rules 2:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="2" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarSpecialRules3">
+                <property name="toolTip">
+                 <string>Comma separated list of LanguageTool rules which will highlighted in a special format.</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_51">
+                <property name="text">
+                 <string>Special Rules 1:</string>
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
@@ -3471,10 +3447,68 @@ them here.</string>
                 </property>
                </widget>
               </item>
+              <item row="13" column="0">
+               <widget class="QLabel" name="label_53">
+                <property name="text">
+                 <string>Special Rules 4:</string>
+                </property>
+                <property name="advancedOption" stdset="0">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
               <item row="0" column="2" colspan="2">
                <widget class="QLabel" name="label_79">
                 <property name="text">
                  <string>Will be inferred from the language of the spell checker used in the document.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_49">
+                <property name="text">
+                 <string>Java:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="3">
+               <widget class="QPushButton" name="pushButtonGrammarLTJava">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="images.qrc">
+                  <normaloff>:/images-ng/document-open.svgz</normaloff>:/images-ng/document-open.svgz</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="2">
+               <widget class="QLineEdit" name="lineEditGrammarLTJava">
+                <property name="toolTip">
+                 <string>Java executable, used to start LanguageTool, if it is not running.</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="2" colspan="2">
+               <widget class="QLineEdit" name="lineEditGrammarLTArguments">
+                <property name="toolTip">
+                 <string>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_81">
+                <property name="toolTip">
+                 <string>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</string>
+                </property>
+                <property name="text">
+                 <string>LT Arguments:</string>
                 </property>
                </widget>
               </item>
@@ -4321,7 +4355,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>checkBoxSearchOnlyInSelection</tabstop>
   <tabstop>checkBoxAutoCompleteParens</tabstop>
   <tabstop>checkBoxMouseWheelZoom</tabstop>
-  <tabstop>checkBoxToolTipHelp2</tabstop>
   <tabstop>comboBoxLineWrap</tabstop>
   <tabstop>spinBoxWrapLineWidth</tabstop>
   <tabstop>comboBoxAutoSave</tabstop>
@@ -4347,8 +4380,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>checkBoxGrammarLTAutorun</tabstop>
   <tabstop>lineEditGrammarLTPath</tabstop>
   <tabstop>pushButtonGrammarLTPath</tabstop>
-  <tabstop>lineEditGrammarLTJava</tabstop>
-  <tabstop>pushButtonGrammarLTJava</tabstop>
   <tabstop>lineEditGrammarSpecialRules1</tabstop>
   <tabstop>lineEditGrammarSpecialRules2</tabstop>
   <tabstop>lineEditGrammarSpecialRules3</tabstop>

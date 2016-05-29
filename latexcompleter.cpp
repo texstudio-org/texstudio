@@ -465,7 +465,8 @@ public:
 		if (!active) return;
 		QToolTip::hideText();
 		//reenable auto close chars
-		editor->setFlag(QEditor::AutoCloseChars, completer->editorAutoCloseChars);
+        if(completer)
+            editor->setFlag(QEditor::AutoCloseChars, completer->editorAutoCloseChars);
 		editor->setInputBinding(oldBinding);
 		if (completer && completer->widget && completer->widget->isVisible())
 			editor->setFocus();
@@ -524,7 +525,7 @@ private:
 	int curLineNumber;
 };
 
-Q_DECLARE_METATYPE(LatexEditorView *)
+//Q_DECLARE_METATYPE(LatexEditorView *)
 
 CompleterInputBinding *completerInputBinding = new CompleterInputBinding();
 //------------------------------Item Delegate--------------------------------
@@ -1196,16 +1197,11 @@ void LatexCompleter::updateAbbreviations()
 	REQUIRE(config);
 	QList<CompletionWord> wordsAbbrev;
 	foreach (const Macro &macro, config->userMacros) {
-		if (macro.abbrev.isEmpty())
+		if (macro.abbrev.isEmpty() || macro.snippet().isEmpty())
 			continue;
 		//CompletionWord cw(abbr);
 		// for compatibility to texmaker ...
-		QString s = macro.tag;
-		if (s.left(1) == "%") {
-			s = s.remove(0, 1);
-			s = "\\begin{" + s + "}";
-		}
-		CompletionWord cw(s);
+		CompletionWord cw(macro.snippet());
 		// <!compatibility>
 		cw.word = macro.abbrev;
 		cw.sortWord = makeSortWord(cw.word);

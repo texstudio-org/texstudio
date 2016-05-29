@@ -538,13 +538,25 @@ The "abbreviation" is a pseudo-command for the latex completer. If the pseudo-co
 <p><IMG src="doc17.png" border="1" alt="doc17"></p>
 
 <p>
-<h3 id="SECTION33a">4.5.1 Text macros</h3>
+<h3 id="sec_textmacros">4.5.1 Text macros</h3>
 Apart from normal text, some special codes are recognized and replaced on insertion.<br>
-If you write %| somewhere the cursor will be placed at that place in the inserted text. (A second %| will select everything between them).<br>
-Write %&lt;something%&gt; to mark it as descriptive text which can be selected by Ctrl+Left/Right.
-<br>
-The option %(<i>filefilter</i>%) will be replaced by a filename which is asked for in a file dialog. The file filter is the standard Qt-Filefilterformat.
-For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)", see also <a href="http://doc.trolltech.com/4.6/qfiledialog.html#getOpenFileName">Qt-Doc</a>
+<ul>
+<li>If you write %| somewhere the cursor will be placed at that place in the inserted text. (A second %| will select everything between them).</li>
+<li>Write %&lt;something%&gt; to mark it as placeholder which is highlighted in the text and can be selected by Ctrl+Left/Right. <br>Additional properties of the placeholder can be set after a %:, e.g. %&lt;something%:persistent,id:123,mirror%&gt;. The available properties are:
+<ul>
+<li>select: The placeholder will be selected (similar to %|)</li>
+<li>multiline: The placeholder is used for multiline text. If a macro insertion replaces an existing text, the replaced text is again inserted into a placeholder in the macro. If the original text spans more than one line, it will be inserted into a placeholder with the multiline property. Otherwise in a placeholder with the select-property.</li>
+<li>persistent: The placeholder is not automatically removed, when its text is changed in the editor</li>
+<li>mirror: The placeholder is a mirror of another placeholder in the macro and thus will always have the same content as the original placeholder. You should set an id, so it knows which placeholders are connected</li>
+<li>id:123: The id of the placeholder</li>
+<li>columnShift:-12: The placeholder is not placed where the %&lt; markers are, but some columns to the left of it</li>
+<li>translatable: The text of the placeholder should be added to translations (only applicable to macros that are known during the compilation of texstudio).</li>
+</ul></li>
+<li>The option %(<i>filefilter</i>%) will be replaced by a filename which is asked for in a file dialog. The file filter is the standard Qt-Filefilterformat.
+For example "Images (*.png *.xpm *.jpg);;Text files (*.txt);;XML files (*.xml)", see also <a href="http://doc.trolltech.com/4.6/qfiledialog.html#getOpenFileName">Qt-Doc</a></li>
+</ul>
+
+
 </p>
 <h3 id="SECTION33b">4.5.2 Environment macros</h3>
 The text will be used as environment-name, thus "%environment" will be inserted as:<br>
@@ -587,7 +599,7 @@ To access the document these objects are introduced:
   </tr>
   <tr><td> writeFile(name, value) </td>	<td> Writes value to file name (requires write privileges) </td></tr>
   <tr><td> readFile(name) </td>	<td> Reads the entire file name (requires read privileges) </td></tr>
-  <tr><td> system(cmd) </td>	<td> Calls cmd and returns a ProcessX object which has this methodes:
+  <tr><td> system(cmd, workingDirectory="") </td>	<td> Calls cmd and returns a ProcessX object which has this methodes:
     <ul>
     <li>waitForFinished: Wait until the process is finished</li>
     <li>readAllStandardOutputStr: Returns the stdout</li>
@@ -595,8 +607,9 @@ To access the document these objects are introduced:
     <li>exitCode: The exit code</li>
     <li>exitStatus: The qt exit status</li>
     <li>terminate or kill: Stops the process</li>
-
-    </ul>  </td></tr>
+    </ul> 
+	If workingDirectory is not set, the working directory will be inherited from the TeXstudio executable.
+  </td></tr>
   <tr><td> setGlobal(name, value) </td>	<td> Sets a temporary, global variable </td></tr>
   <tr><td> getGlobal(name) </td>	<td> Reads a global variable </td></tr>
   <tr><td> hasGlobal(name) </td>	<td> Checks for the existence of a global variable </td></tr>
@@ -646,6 +659,10 @@ To access the document these objects are introduced:
   	    Examples:<br>
   	    <code>editor.replaceSelectedText("world", {"append": true} )</code> Appends "world" to the current selections.<br>
   	    <code>editor.replaceSelectedText(function(s){return s.toUpperCase();})</code> Converts the current selection to uppercase.  </td>
+  </tr>
+  <tr>
+    <td>editor.insertSnippet(text);</td>
+    <td> Inserts a text snippet into the editor. For a list of extended features and syntax see <a href="#sec_textmacros">Text Macros</a>.</td>
   </tr>
   <tr>
     <td> editor.undo();</td>
@@ -1101,6 +1118,7 @@ Typed text: #a
 triggerMatches[0] == '#a'
 triggerMatches[1] == 'a'
 </pre>
+<p>Note: Triggers are inactive while the completer is active. For example you cannot trigger on <code>\\sec</code> if the completer is open suggesting to complete <code>\section</code>.</p>
 
 <h4>4.5.4.2 Limitation of Scope</h4>
 <p>To the scope in which a macro will be active, you can prepend an expression of the pattern <code>(?[scope-type]:...)</code>.</p>
@@ -1299,11 +1317,12 @@ Changes during an edit session will only take effect when you reopen the file.
 <code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
 <table>
 <tr><td><code>--master</code></td><td>defines the document as <i>explicit root document</i> (formerly called <i>master document</i>).</td></tr>
-<tr><td><code>--line xx[:cc]</code></td><td>TeXstudio will jump to the xx line after loading the document. Optionally you can add a target column separated by a colon, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
-<tr><td><code>--insert-cite citation</code></td><td>Pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
-<tr><td><code>--start-always</code></td><td>TeXstudio will start, even if another instance of it is already running. This allows using of multiple instances.</td></tr>
-<tr><td><code>--pdf-viewer-only</code></td><td>TeXstudio will open as standalone pdf viewer without editor</td></tr>
-<tr><td><code>--page</code></td><td> option, TeXstudio displays a certain page if used as pdf viewer</td></tr>
+<tr><td><code>--line xx[:cc]</code></td><td>position the cursor at line LINE and column COL, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
+<tr><td><code>--insert-cite citation</code></td><td>pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
+<tr><td><code>--start-always</code></td><td>start a new instance, even if TXS is already running. This allows using of multiple instances.</td></tr>
+<tr><td><code>--pdf-viewer-only</code></td><td>run as a standalone pdf viewer without an editor</td></tr>
+<tr><td><code>--page</code></td><td>display a certain page in the pdf viewer</td></tr>
+<tr><td><code>--no-session</code></td><td>do not load/save the session at startup/close</td></tr>
 </table>
 </p>
 <p>Additional options only available in debug versions of texstudio:

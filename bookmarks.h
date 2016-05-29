@@ -24,16 +24,16 @@ class Bookmarks : public QObject
 	Q_OBJECT
 
 public:
-	Bookmarks(const LatexDocuments *docs, QObject *parent = 0);
+	Bookmarks(const LatexDocuments *docs, QObject *parent = 0); ///< constructor
 
-	void setBookmarks(const QList<Bookmark> &bookmarkList);
-	QList<Bookmark> getBookmarks();
+	void setBookmarks(const QList<Bookmark> &bookmarkList); ///< set list of bookmarks
+	QList<Bookmark> getBookmarks(); ///< get list of bookmarks
 
-	QListWidget *widget() { return bookmarksWidget; }
+	QListWidget *widget() { return bookmarksWidget; } ///< get reference to bookmark list widget
 
 signals:
-	void loadFileRequest(const QString &fileName);
-	void gotoLineRequest(int lineNr, int col, LatexEditorView *edView);
+	void loadFileRequest(const QString &fileName); ///< request loading of file in order to jump to a bookmark position there
+	void gotoLineRequest(int lineNr, int col, LatexEditorView *edView); ///< jump to line of bookmark
 
 public slots:
 	void bookmarkDeleted(QDocumentLineHandle *dlh);

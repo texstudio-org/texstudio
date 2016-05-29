@@ -88,7 +88,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
 	bClose->setMaximumSize(buttonSize);
-    bClose->setIcon(getRealIconCached("fileclose"));
+    bClose->setIcon(getRealIconCached("document-close"));
 	gridLayout->addWidget(bClose, 0, 0, 1, 1);
 
 	QLabel* lbFind = new QLabel(this);
@@ -260,7 +260,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbPrompt->setObjectName(("cbPrompt"));
     cbPrompt->setIcon(getRealIconCached("prompt"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, askConfig, false, "Search/Ask before Replace", cbPrompt);
-	layoutReplaceOptions->addWidget(cbPrompt);
+	layoutReplaceOptions->addWidget(cbPrompt, 0, 0);
 
     cbEscapeSeq = new QToolButton(frameReplaceOptions);
     cbEscapeSeq->setCheckable(true);
@@ -268,7 +268,11 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbEscapeSeq->setObjectName(("cbEscapeSeq"));
     cbEscapeSeq->setIcon(getRealIconCached("escape"));
 	CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, escapeConfig, false, "Search/Escape Sequence", cbEscapeSeq);
-	layoutReplaceOptions->addWidget(cbEscapeSeq);
+	layoutReplaceOptions->addWidget(cbEscapeSeq, 0, 1);
+
+	lReplacementText = new QLabel(frameReplaceOptions);
+	layoutReplaceOptions->addWidget(lReplacementText, 0, 2);
+
 
 	gridLayout->addWidget(frameReplaceOptions, 1, 6, 1, 1);
 
@@ -581,6 +585,7 @@ void QSearchReplacePanel::findReplace(bool backward, bool replace, bool replaceA
 		if (replace) cReplace->setFocus();
 		else cFind->setFocus();
 	}
+	updateReplacementHint();
 }
 
 void QSearchReplacePanel::find(QString text, bool backward, bool highlight, bool regex, bool word, bool caseSensitive, bool fromCursor, bool selection){
@@ -761,10 +766,13 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 				} else if ( kc == Qt::Key_Tab || kc == Qt::Key_Backtab ) {
 					if ( cbReplace->isChecked() )
 					{
-						if ( cbHasFocus(cFind) )
+						if ( cbHasFocus(cFind) ) {
 							cReplace->setFocus();
-						else
+							cReplace->lineEdit()->selectAll();
+						} else {
 							cFind->setFocus();
+							cFind->lineEdit()->selectAll();
+						}
 					}
 					return true;
 				}
@@ -844,6 +852,8 @@ void QSearchReplacePanel::cFind_textEdited(const QString& text)
 		cFind->lineEdit()->setStyleSheet(QString());
 		editor()->setCursor(m_search->cursor());
 	}
+
+	updateReplacementHint();
 }
 
 void QSearchReplacePanel::on_cFind_returnPressed(bool backward)
@@ -859,8 +869,10 @@ void QSearchReplacePanel::on_cReplace_returnPressed(bool backward){
 
 void QSearchReplacePanel::cReplace_textEdited(const QString& text)
 {
-	if ( m_search )
+	if ( m_search ) {
 		m_search->setReplaceText(text);
+		updateReplacementHint();
+	}
 
 }
 
@@ -898,6 +910,7 @@ void QSearchReplacePanel::on_cbRegExp_toggled(bool on)
 		cbWords->setChecked(false); //word and regexp is not possible
 	if ( cFind->isVisible() )
 		cFind->setFocus();
+	updateReplacementHint();
 }
 
 void QSearchReplacePanel::on_cbCase_toggled(bool on)
@@ -960,6 +973,8 @@ void QSearchReplacePanel::on_cbEscapeSeq_toggled(bool on)
 
 	if ( cFind->isVisible() )
 		cFind->setFocus();
+
+	updateReplacementHint();
 }
 
 void QSearchReplacePanel::on_bNext_clicked()
@@ -1064,6 +1079,14 @@ void QSearchReplacePanel::cursorPositionChanged()
 		if ( cbCursor->isChecked() )
 				m_search->setCursor(editor()->cursor());
 	}
+}
+
+void QSearchReplacePanel::updateReplacementHint(){
+	if (!m_search) return;
+	if (m_search->hasOption(QDocumentSearch::RegExp) || m_search->hasOption(QDocumentSearch::EscapeSeq))
+		lReplacementText->setText(m_search->replaceTextExpanded());
+	else
+		lReplacementText->setText("");
 }
 
 QString QSearchReplacePanel::getSearchText() const{

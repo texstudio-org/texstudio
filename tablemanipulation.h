@@ -27,7 +27,7 @@ public:
 	static QStringList splitColDef(QString def);
 	static void simplifyColDefs(QStringList &colDefs);
 	static void executeScript(QString script, LatexEditorView *edView);
-	static void generateTableFromTemplate(LatexEditorView *edView, QString templateFileName, QString def, QList<QStringList> table, QString env);
+	static void generateTableFromTemplate(LatexEditorView *edView, QString templateFileName, QString def, QList<QStringList> table, QString env, QString width);
 	static QString getTableText(QDocumentCursor &cur);
 	static void alignTableCols(QDocumentCursor &cur);
 

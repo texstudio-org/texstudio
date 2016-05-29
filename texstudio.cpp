@@ -68,6 +68,25 @@
 
 #include "qnfadefinition.h"
 
+/*! \file texstudio.cpp
+ * contains the GUI definition as well as some helper functions
+ */
+
+/*!
+    \defgroup txs Mainwindow
+	\ingroup txs
+	@{
+*/
+
+/*! \class Texstudio
+ * This class sets up the GUI and handles the GUI interaction (menus and toolbar).
+ * It uses QEditor with LatexDocument as actual text editor and PDFDocument for viewing pdf.
+ *
+ * \see QEditor
+ * \see LatexDocument
+ * \see PDFDocument
+ */
+
 
 
 const QString APPICON(":appicon");
@@ -77,13 +96,22 @@ Texstudio *txsInstance = 0;
 QCache<QString, QIcon> iconCache;
 
 // workaround needed on OSX due to https://bugreports.qt.io/browse/QTBUG-49576
-void hideSplash() {
+void hideSplash()
+{
 #ifdef Q_OS_MAC
 	if (txsInstance)
 		txsInstance->hideSplash();
 #endif
 }
-
+/*!
+ * \brief constructor
+ *
+ * set-up GUI
+ *
+ * \param parent
+ * \param flags
+ * \param splash
+ */
 Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *splash)
 	: QMainWindow(parent, flags), textAnalysisDlg(0), spellDlg(0), mDontScrollToItem(false), runBibliographyIfNecessaryEntered(false)
 {
@@ -108,9 +136,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	findDlg = 0;
 	cursorHistory = 0;
 	recentSessionList = 0;
-	EditorTabs = 0;
+	editors = 0;
 	contextEntry = 0;
-    m_languages = 0; //initial state to avoid crash on OSX
+	m_languages = 0; //initial state to avoid crash on OSX
 
 	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
 
@@ -219,17 +247,21 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	iconSize = qMax(16, configManager.guiSecondaryToolbarIconSize);
 	centralToolBar->setIconSize(QSize(iconSize, iconSize));
 
-	EditorTabs = new TxsTabWidget(centralFrame);
-	EditorTabs->setFocus();
+	editors = new Editors(centralFrame);
+	editors->setFocus();
 
-	connect(&documents, SIGNAL(docToHide(LatexEditorView *)), EditorTabs, SLOT(removeEditor(LatexEditorView *)));
-	connect(EditorTabs, SIGNAL(tabBarContextMenuRequested(QPoint)), SLOT(editorTabContextMenu(QPoint)));
-	connect(EditorTabs, SIGNAL(currentEditorChanged()), SLOT(currentEditorChanged()));
-	connect(EditorTabs, SIGNAL(closeCurrentEditorRequest()), this, SLOT(fileClose()));
-	if (hasAtLeastQt(4, 5)) {
-		connect(EditorTabs, SIGNAL(tabMoved(int, int)), this, SLOT(editorTabMoved(int, int)));
-	}
-	connect(EditorTabs, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)), this, SLOT(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)));
+	TxsTabWidget *leftEditors = new TxsTabWidget(this);
+	leftEditors->setActive(true);
+	editors->addTabWidget(leftEditors);
+	TxsTabWidget *rightEditors = new TxsTabWidget(this);
+	editors->addTabWidget(rightEditors);
+
+	connect(&documents, SIGNAL(docToHide(LatexEditorView *)), editors, SLOT(removeEditor(LatexEditorView *)));
+	connect(editors, SIGNAL(currentEditorChanged()), SLOT(currentEditorChanged()));
+	connect(editors, SIGNAL(listOfEditorsChanged()), SLOT(updateOpenDocumentMenu()));
+	connect(editors, SIGNAL(editorsReordered()), SLOT(onEditorsReordered()));
+	connect(editors, SIGNAL(closeCurrentEditorRequested()), this, SLOT(fileClose()));
+	connect(editors, SIGNAL(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)), this, SLOT(editorAboutToChangeByTabClick(LatexEditorView *, LatexEditorView *)));
 
 	cursorHistory = new CursorHistory(&documents);
 	bookmarks = new Bookmarks(&documents, this);
@@ -238,7 +270,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralLayout->setSpacing(0);
 	centralLayout->setMargin(0);
 	centralLayout->addWidget(centralToolBar);
-	centralLayout->addWidget(EditorTabs);
+	centralLayout->addWidget(editors);
 
 	centralVSplitter = new QSplitter(Qt::Vertical, this);
 	centralVSplitter->setChildrenCollapsible(false);
@@ -345,7 +377,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 		autosaveTimer.start(configManager.autosaveEveryMinutes * 1000 * 60);
 	}
 
-    connect(this, SIGNAL(infoFileSaved(QString,int)), this, SLOT(checkinAfterSave(QString,int)));
+	connect(this, SIGNAL(infoFileSaved(QString, int)), this, SLOT(checkinAfterSave(QString, int)));
 
 	//script things
 	setProperty("applicationName", TEXSTUDIO);
@@ -359,12 +391,14 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	connectWithAdditionalArguments(this, SIGNAL(infoAfterTypeset()), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_TYPESET);
 	connectWithAdditionalArguments(&buildManager, SIGNAL(endRunningCommands(QString, bool, bool, bool)), this, "runScripts", QList<QVariant>() << Macro::ST_AFTER_COMMAND_RUN);
 
-	if (configManager.sessionRestore) {
+	if (configManager.sessionRestore && !ConfigManager::dontRestoreSession) {
 		fileRestoreSession(false, false);
 	}
 	splashscreen = 0;
 }
-
+/*!
+ * \brief destructor
+ */
 Texstudio::~Texstudio()
 {
 
@@ -388,6 +422,12 @@ Texstudio::~Texstudio()
 	grammarCheckThread.wait(5000); //TODO: timeout causes sigsegv, is there any better solution?
 }
 
+/*!
+ * \brief code to be executed at end of start-up
+ *
+ * Check for Latex installation.
+ * Read in all package names for usepackage completion.
+ */
 void Texstudio::startupCompleted()
 {
 	if (configManager.checkLatexConfiguration) {
@@ -465,7 +505,16 @@ SymbolGridWidget *Texstudio::addSymbolGrid(const QString &SymbolList,  const QSt
 	}
 	return list;
 }
-
+/*!
+ * \brief add TagList to side panel
+ *
+ * add Taglist to side panel.
+ *
+ * \param id
+ * \param iconName icon used for selecting taglist
+ * \param text name of taglist
+ * \param tagFile file to be read as tag list
+ */
 void Texstudio::addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile)
 {
 	XmlTagsListWidget *list = qobject_cast<XmlTagsListWidget *>(leftPanel->widget(id));
@@ -477,7 +526,8 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 		//(*list)->setProperty("mType",2);
 	} else leftPanel->setWidgetText(list, text);
 }
-
+/*! set-up side- and bottom-panel
+ */
 void Texstudio::setupDockWidgets()
 {
 	//to allow retranslate this function must be able to be called multiple times
@@ -586,6 +636,7 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 {
 	QMenu *menu = configManager.getManagedMenu(menuName);
 	if (!menu) return;
+	LatexEditorView *edView = currentEditorView();
 	foreach (const ManagedToolBar &tb, configManager.managedToolBars)
 		if (tb.toolbar && tb.actualActions.contains(menuName))
 			foreach (QObject *w, tb.toolbar->children())
@@ -596,21 +647,43 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 					QFontMetrics fontMetrics(tb.toolbar->font());
 					QStringList actionTexts;
 					QList<QIcon> actionIcons;
+					int defaultIndex = -1;
 					foreach (const QAction *act, menu->actions())
 						if (!act->isSeparator()) {
 							actionTexts.append(act->text());
 							actionIcons.append(act->icon());
+							if (menuName == "main/view/documents" && edView == act->data().value<LatexEditorView *>()) {
+								defaultIndex = actionTexts.length() - 1;
+							}
 						}
-					createComboToolButton(tb.toolbar, actionTexts, actionIcons, -1, this, SLOT(callToolButtonAction()), "", combo);
+
+					//qDebug() << "**" << actionTexts;
+					createComboToolButton(tb.toolbar, actionTexts, actionIcons, -1, this, SLOT(callToolButtonAction()), defaultIndex, combo);
 
 					if (menuName == "main/view/documents") {
-						//workaround to select the current document
-						int index = EditorTabs->currentIndex();
-						if (index >= 0 && index < combo->menu()->actions().size())
-							combo->setDefaultAction(combo->menu()->actions()[index]);
+						// workaround to select the current document
+						// combobox uses separate actions. So we have to get the current action from the menu (by comparing its data()
+						// attribute to the currentEditorView(). Then map it to a combobox action using the index.
+						// TODO: should this menu be provided by Editors?
+						LatexEditorView *edView = currentEditorView();
+						foreach (QAction* act, menu->actions()) {
+							qDebug() << act->data().value<LatexEditorView *>() << combo;
+							if (edView == act->data().value<LatexEditorView *>()) {
+								int i = menu->actions().indexOf(act);
+								qDebug() << i << combo->menu()->actions().length();
+								if (i < 0 || i>= combo->menu()->actions().length()) continue;
+								foreach (QAction *act, menu->actions()) {
+									qDebug() << "menu" << act->text();
+								}
+								foreach (QAction *act, combo->menu()->actions()) {
+									qDebug() << "cmb" << act->text();
+								}
+
+								combo->setDefaultAction(combo->menu()->actions()[i]);
+							}
+						}
 					}
 				}
-
 }
 
 // we different native shortcuts on OSX and Win/Linux
@@ -621,7 +694,14 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 #else
 #define MAC_OTHER(shortcutMac, shortcutOther) shortcutOther
 #endif
-
+/*! \brief set-up all menus in the menu-bar
+ *
+ * This function is called whenever the menu changes (= start and retranslation)
+ * This means if you call it repeatedly with the same language setting it should not change anything
+ * Currently this is not true, because it adds additional separator, which are invisible
+ * creates new action groups and new context menu, although all invisible, they are a memory leak
+ * But not a bad one, because no one is expected to change the language multiple times
+ */
 void Texstudio::setupMenus()
 {
 	//This function is called whenever the menu changes (= start and retranslation)
@@ -637,9 +717,9 @@ void Texstudio::setupMenus()
 	//file
 	QMenu *menu = newManagedMenu("main/file", tr("&File"));
 	getManagedMenu("main/file");
-	newManagedAction(menu, "new", tr("&New"), SLOT(fileNew()), QKeySequence::New, "filenew");
+	newManagedAction(menu, "new", tr("&New"), SLOT(fileNew()), QKeySequence::New, "document-new");
 	newManagedAction(menu, "newfromtemplate", tr("New From &Template..."), SLOT(fileNewFromTemplate()));
-	newManagedAction(menu, "open", tr("&Open..."), SLOT(fileOpen()), QKeySequence::Open, "fileopen");
+	newManagedAction(menu, "open", tr("&Open..."), SLOT(fileOpen()), QKeySequence::Open, "document-open");
 
 	QMenu *submenu = newManagedMenu(menu, "openrecent", tr("Open &Recent")); //only create the menu here, actions are created by config manager
 
@@ -655,7 +735,7 @@ void Texstudio::setupMenus()
 	recentSessionList->updateMostRecentMenu();
 
 	menu->addSeparator();
-	actSave = newManagedAction(menu, "save", tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "filesave");
+	actSave = newManagedAction(menu, "save", tr("&Save"), SLOT(fileSave()), QKeySequence::Save, "document-save");
 	newManagedAction(menu, "saveas", tr("Save &As..."), SLOT(fileSaveAs()), filterLocaleShortcut(Qt::CTRL + Qt::ALT + Qt::Key_S));
 	newManagedAction(menu, "saveall", tr("Save A&ll"), SLOT(fileSaveAll()), Qt::CTRL + Qt::SHIFT + Qt::ALT + Qt::Key_S);
 	newManagedAction(menu, "maketemplate", tr("&Make Template..."), SLOT(fileMakeTemplate()));
@@ -689,7 +769,7 @@ void Texstudio::setupMenus()
 	newManagedAction(svnSubmenu, "prevdiff", tr("Jump to previous difference"), SLOT(jumpPrevDiff()), 0, "go-previous-diff");
 
 	menu->addSeparator();
-	newManagedAction(menu, "close", tr("&Close"), SLOT(fileClose()), Qt::CTRL + Qt::Key_W, "fileclose");
+	newManagedAction(menu, "close", tr("&Close"), SLOT(fileClose()), Qt::CTRL + Qt::Key_W, "document-close");
 	newManagedAction(menu, "closeall", tr("Clos&e All"), SLOT(fileCloseAll()));
 
 	menu->addSeparator();
@@ -700,16 +780,15 @@ void Texstudio::setupMenus()
 
 	//edit
 	menu = newManagedMenu("main/edit", tr("&Edit"));
-	actUndo = newManagedAction(menu, "undo", tr("&Undo"), SLOT(editUndo()), QKeySequence::Undo, "undo");
-	actRedo = newManagedAction(menu, "redo", tr("&Redo"), SLOT(editRedo()), QKeySequence::Redo, "redo");
+	actUndo = newManagedAction(menu, "undo", tr("&Undo"), SLOT(editUndo()), QKeySequence::Undo, "edit-undo");
+	actRedo = newManagedAction(menu, "redo", tr("&Redo"), SLOT(editRedo()), QKeySequence::Redo, "edit-redo");
 #ifndef QT_NO_DEBUG
 	newManagedAction(menu, "debughistory", tr("Debug undo stack"), SLOT(editDebugUndoStack()));
 #endif
 	menu->addSeparator();
-	newManagedAction(menu, "copy", tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "editcopy");
-	newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "editcut");
-	newManagedAction(menu, "paste", tr("&Paste"), SLOT(editPaste()), QKeySequence::Paste, "editpaste");
-	//newManagedEditorAction(menu,"paste",tr("&Paste"), "paste", (QList<QKeySequence>()<< Qt::CTRL+Qt::Key_V)<<Qt::AltModifier+Qt::Key_Insert, "editpaste");
+	newManagedAction(menu, "copy", tr("&Copy"), SLOT(editCopy()), QKeySequence::Copy, "edit-copy");
+	newManagedEditorAction(menu, "cut", tr("C&ut"), "cut", QKeySequence::Cut, "edit-cut");
+	newManagedAction(menu, "paste", tr("&Paste"), SLOT(editPaste()), QKeySequence::Paste, "edit-paste");
 
 	submenu = newManagedMenu(menu, "selection", tr("&Selection"));
 	newManagedEditorAction(submenu, "selectAll", tr("Select &All"), "selectAll", Qt::CTRL + Qt::Key_A);
@@ -724,6 +803,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "moveLineUp", tr("Move Line &Up"), SLOT(editMoveLineUp()));
 	newManagedAction(submenu, "moveLineDown", tr("Move Line &Down"), SLOT(editMoveLineDown()));
 	newManagedAction(submenu, "duplicateLine", tr("Du&plicate Line"), SLOT(editDuplicateLine()));
+	newManagedAction(submenu, "alignMirrors", tr("&Align Cursors"), SLOT(editAlignMirrors()));
 
 	submenu = newManagedMenu(menu, "textoperations", tr("&Text Operations"));
 	newManagedAction(submenu, "textToLowercase", tr("To Lowercase"), SLOT(editTextToLowercase()));
@@ -848,7 +928,8 @@ void Texstudio::setupMenus()
 
 	menu->addSeparator();
 	newManagedAction(menu, "reparse", tr("Refresh Structure"), SLOT(updateStructure()));
-	newManagedAction(menu, "refreshQNFA", tr("Refresh QNFA"), SLOT(updateTexQNFA()));
+	act = newManagedAction(menu, "refreshQNFA", tr("Refresh Language Model"), SLOT(updateTexQNFA()));
+	act->setStatusTip(tr("Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic."));
 	newManagedAction(menu, "removePlaceHolders", tr("Remove Placeholders"), SLOT(editRemovePlaceHolders()), Qt::CTRL + Qt::SHIFT + Qt::Key_K);
 	newManagedAction(menu, "removeCurrentPlaceHolder", tr("Remove Current Placeholder"), SLOT(editRemoveCurrentPlaceHolder()));
 
@@ -1068,9 +1149,9 @@ void Texstudio::setupMenus()
 
 	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 #if QT_VERSION>=0x050000
-	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Fullscreen Mode"), 0, QKeySequence::FullScreen);
+	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Full &Screen"), 0, QKeySequence::FullScreen);
 #else
-	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Fullscreen Mode"), 0, MAC_OTHER(Qt::CTRL + Qt::META + Qt::Key_F, Qt::Key_F11));
+	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Full &Screen"), 0, MAC_OTHER(Qt::CTRL + Qt::META + Qt::Key_F, Qt::Key_F11));
 #endif
 	fullscreenModeAction->setCheckable(true);
 	connectUnique(fullscreenModeAction, SIGNAL(toggled(bool)), this, SLOT(setFullScreenMode()));
@@ -1126,8 +1207,8 @@ void Texstudio::setupMenus()
 
 	//---help---
 	menu = newManagedMenu("main/help", tr("&Help"));
-	newManagedAction(menu, "latexreference", tr("LaTeX Reference..."), SLOT(latexHelp()), 0, "help");
-	newManagedAction(menu, "usermanual", tr("User Manual..."), SLOT(userManualHelp()), 0, "help");
+	newManagedAction(menu, "latexreference", tr("LaTeX Reference..."), SLOT(latexHelp()), 0, "help-contents");
+	newManagedAction(menu, "usermanual", tr("User Manual..."), SLOT(userManualHelp()), 0, "help-contents");
 	newManagedAction(menu, "texdocdialog", tr("Packages Help..."), SLOT(texdocHelp()));
 
 	menu->addSeparator();
@@ -1168,7 +1249,8 @@ void Texstudio::setupMenus()
 	configManager.modifyMenuContents();
 	configManager.modifyManagedShortcuts();
 }
-
+/*! \brief set-up all tool-bars
+ */
 void Texstudio::setupToolBars()
 {
 	//This method will be called multiple times and must not create something if this something already exists
@@ -1283,6 +1365,28 @@ void Texstudio::updateAvailableLanguages()
 	}
 }
 
+void Texstudio::updateLanguageToolStatus()
+{
+	QIcon icon = getRealIconCached("languagetool");
+	QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
+	switch (grammarCheck->languageToolStatus()) {
+		case GrammarCheck::LTS_Working:
+			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize));
+			statusLabelLanguageTool->setToolTip(tr("LanguageTool is running"));
+			break;
+		case GrammarCheck::LTS_Error:
+			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
+			statusLabelLanguageTool->setToolTip(tr("No LanguageTool server found"));
+			break;
+		case GrammarCheck::LTS_Unknown:
+		default:
+			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
+			statusLabelLanguageTool->setToolTip(tr("LanguageTool status unknown"));
+	}
+}
+
+/*! \brief set-up status bar
+ */
 void Texstudio::createStatusBar()
 {
 	QStatusBar *status = statusBar();
@@ -1322,6 +1426,12 @@ void Texstudio::createStatusBar()
 	QLabel *messageArea = new QLabel(status);
 	connect(status, SIGNAL(messageChanged(QString)), messageArea, SLOT(setText(QString)));
 	status->addPermanentWidget(messageArea, 1);
+
+	// LanguageTool
+	connect(grammarCheck, SIGNAL(languageToolStatusChanged()), this, SLOT(updateLanguageToolStatus()));
+	statusLabelLanguageTool = new QLabel();
+	updateLanguageToolStatus();
+	status->addPermanentWidget(statusLabelLanguageTool);
 
 	// language
 	statusTbLanguage = new QToolButton(status);
@@ -1403,10 +1513,11 @@ void Texstudio::updateCaption()
 		title = TEXSTUDIO;
 	} else {
 		QString file = QDir::toNativeSeparators(getCurrentFileName());
-		if (file.isEmpty() && EditorTabs->currentIndex() >= 0)
-			file = EditorTabs->tabText(EditorTabs->currentIndex());
+		if (file.isEmpty())
+			file = currentEditorView()->displayNameForUI();
 		title = file + " - " + TEXSTUDIO;
-		newDocumentStatus();
+		updateStatusBarEncoding();
+		updateOpenDocumentMenu(true);
 		newDocumentLineEnding();
 	}
 	setWindowTitle(title);
@@ -1449,12 +1560,16 @@ void Texstudio::currentEditorChanged()
 	currentEditorView()->checkRTLLTRLanguageSwitching();
 }
 
+/*!
+ * \brief called when a editor tab is moved in position
+ * \param from starting position
+ * \param to ending position
+ */
 void Texstudio::editorTabMoved(int from, int to)
 {
 	//documents.aboutToUpdateLayout();
 	documents.move(from, to);
 	//documents.updateLayout();
-	updateOpenDocumentMenu(false);
 }
 
 void Texstudio::editorAboutToChangeByTabClick(LatexEditorView *edFrom, LatexEditorView *edTo)
@@ -1470,45 +1585,6 @@ void Texstudio::showMarkTooltipForLogMessage(QList<int> errors)
 	REQUIRE(outputView->getLogWidget()->getLogModel());
 	QString msg = outputView->getLogWidget()->getLogModel()->htmlErrorTable(errors);
 	currentEditorView()->setLineMarkToolTip(msg);
-}
-
-void Texstudio::newDocumentStatus()
-{
-	LatexEditorView *edView = currentEditorView();
-	if (!edView) return;
-	int index = EditorTabs->currentIndex();
-	if (qobject_cast<QEditor *>(sender()) && edView->editor != sender()) {
-		edView = 0;
-		for (int i = 0; i < EditorTabs->count(); i++)
-			if (qobject_cast<LatexEditorView *>(EditorTabs->widget(i))->editor == sender()) {
-				edView =	qobject_cast<LatexEditorView *>(EditorTabs->widget(i));
-				index = i;
-				break;
-			}
-		if (!edView) return;
-	}
-	QEditor *ed = edView->editor;
-	actSave->setEnabled(ed->isContentModified() || ed->fileName().isEmpty());
-	static QIcon modified = getRealIcon("modified"), empty =  QIcon(":/images/empty.png"); //cache icons, getRealIcon is *really* slow
-	EditorTabs->setTabIcon(index, ed->isContentModified() ? modified : empty);
-	QString tabText = edView->displayName().replace("&", "&&");
-	if (EditorTabs->tabText(index) != tabText) {
-		EditorTabs->setTabText(index, tabText);
-		updateOpenDocumentMenu(true);
-	}
-	// child ?
-	LatexDocument *doc = edView->document;
-	LatexDocument *rootDoc = doc->getRootDocument();
-	QString tooltip = QDir::toNativeSeparators(ed->fileName());
-	if (rootDoc != doc) {
-		tooltip += tr("\nincluded document in %1").arg(rootDoc->getName());
-	}
-	EditorTabs->setTabToolTip(index, tooltip);
-	// TODO: This is probably called way too often.
-	// We should remove this from here and only call it when
-	//   a) the encoding of the editor changed or
-	//   b) the editor changed
-	updateStatusBarEncoding();
 }
 
 void Texstudio::newDocumentLineEnding()
@@ -1550,12 +1626,23 @@ void Texstudio::updateUndoRedoStatus()
 		actRedo->setEnabled(false);
 	}
 }
-
+/*!
+ * \brief return current editor
+ *
+ * return current editorview
+ * \return current editor (LatexEditorView)
+ */
 LatexEditorView *Texstudio::currentEditorView() const
 {
-	return EditorTabs->currentEditorView();
+	return editors->currentEditor();
 }
 
+/*!
+ * \brief return current editor
+ *
+ * return current editor
+ * \return current editor (QEditor)
+ */
 QEditor *Texstudio::currentEditor() const
 {
 	LatexEditorView *edView = currentEditorView();
@@ -1574,7 +1661,6 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit->editor, SIGNAL(undoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
 	connect(edit->editor, SIGNAL(requestClose()), &documents, SLOT(requestedClose()));
 	connect(edit->editor, SIGNAL(redoAvailable(bool)), this, SLOT(updateUndoRedoStatus()));
-	connect(edit->editor, SIGNAL(contentModified(bool)), this, SLOT(newDocumentStatus()));
 	connect(edit->editor->document(), SIGNAL(lineEndingChanged(int)), this, SLOT(newDocumentLineEnding()));
 	connect(edit->editor, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 	connect(edit->editor, SIGNAL(cursorHovered()), this, SLOT(cursorHovered()));
@@ -1597,6 +1683,7 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(openCompleter()), this, SLOT(normalCompletion()));
 	connect(edit, SIGNAL(openInternalDocViewer(QString, QString)), this, SLOT(openInternalDocViewer(QString, QString)));
 	connect(edit, SIGNAL(showExtendedSearch()), this, SLOT(showExtendedSearch()));
+	connect(edit, SIGNAL(execMacro(Macro, MacroExecContext)), this, SLOT(execMacro(Macro, MacroExecContext)));
 
 	connect(edit->editor, SIGNAL(fileReloaded()), this, SLOT(fileReloaded()));
 	connect(edit->editor, SIGNAL(fileInConflict()), this, SLOT(fileInConflict()));
@@ -1609,12 +1696,18 @@ void Texstudio::configureNewEditorView(LatexEditorView *edit)
 	connect(edit, SIGNAL(linesChanged(QString, const void *, QList<LineInfo>, int)), grammarCheck, SLOT(check(QString, const void *, QList<LineInfo>, int)));
 
 	connect(edit, SIGNAL(spellerChanged(QString)), this, SLOT(editorSpellerChanged(QString)));
+	connect(edit->editor, SIGNAL(focusReceived()), edit, SIGNAL(focusReceived()));
 	edit->setSpellerManager(&spellerManager);
 	edit->setSpeller("<default>");
 
 }
 
-//complete the new editor view configuration (edit->document is set)
+/*!
+ * \brief complete the new editor view configuration (edit->document is set)
+ * \param edit used editorview
+ * \param reloadFromDoc
+ * \param hidden if editor is not shown
+ */
 void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFromDoc, bool hidden)
 {
 	REQUIRE(edit->document);
@@ -1635,21 +1728,33 @@ void Texstudio::configureNewEditorViewEnd(LatexEditorView *edit, bool reloadFrom
 	edit->document->saveLineSnapshot(); // best guess of the lines used during last latex compilation
 
 	if (!hidden) {
-		EditorTabs->insertEditor(edit, reloadFromDoc ? documents.documents.indexOf(edit->document, 0) : -1);
-		updateOpenDocumentMenu(false);
-
+		int index = reloadFromDoc ? documents.documents.indexOf(edit->document, 0) : -1; // index: we still assume here that the order of documents and editors is synchronized
+		editors->insertEditor(edit, index);
 		edit->editor->setFocus();
 		updateCaption();
 	}
 }
-
+/*!
+ * \brief get editor which handles FileName
+ *
+ * get editor which handles FileName
+ *
+ * \param fileName
+ * \param checkTemporaryNames
+ * \return editorview, 0 if no editor matches
+ */
 LatexEditorView *Texstudio::getEditorViewFromFileName(const QString &fileName, bool checkTemporaryNames)
 {
 	LatexDocument *document = documents.findDocument(fileName, checkTemporaryNames);
 	if (!document) return 0;
 	return document->getEditorView();
 }
-
+/*!
+ * \brief get filename of current editor
+ *
+ * get filename of current editor
+ * \return filename
+ */
 QString Texstudio::getCurrentFileName()
 {
 	return documents.getCurrentFileName();
@@ -1670,8 +1775,8 @@ bool Texstudio::activateEditorForFile(QString f, bool checkTemporaryNames, bool 
 	LatexEditorView *edView = getEditorViewFromFileName(f, checkTemporaryNames);
 	if (!edView) return false;
 	saveCurrentCursorToHistory();
-	if (!EditorTabs->containsEditor(edView)) return false;
-	EditorTabs->setCurrentEditor(edView);
+	if (!editors->containsEditor(edView)) return false;
+	editors->setCurrentEditor(edView);
 	if (setFocus) {
 		edView->editor->setFocus();
 	}
@@ -1700,7 +1805,17 @@ void guessLanguageFromContent(QLanguageFactory *m_languages, QEditor *e)
 	        doc->line(0).text().startsWith("<!DOCTYPE"))
 		m_languages->setLanguage(e, ".xml");
 }
-
+/*!
+ * \brief load file
+ *
+ * load file from disc
+ * \param f filename
+ * \param asProject load file as master-file
+ * \param hidden hide editor
+ * \param recheck
+ * \param dontAsk
+ * \return
+ */
 LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden, bool recheck, bool dontAsk)
 {
 	QString f_real = f;
@@ -1729,7 +1844,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 
 	if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
 	        txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
-		outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName());
+		outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
 		setLogMarksVisible(true);
 		return 0;
 	}
@@ -1754,14 +1869,13 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 			existingView->editor->setSilentReloadOnExternalChanges(existingView->document->remeberAutoReload);
 			existingView->editor->setHidden(false);
 			documents.addDocument(existingView->document, false);
-			EditorTabs->insertEditor(existingView);
-			updateOpenDocumentMenu(false);
+			editors->addEditor(existingView);
 			updateStructure(false, existingView->document, true);
 			existingView->editor->setFocus();
 			updateCaption();
 			return existingView;
 		}
-		EditorTabs->setCurrentEditor(existingView);
+		editors->setCurrentEditor(existingView);
 		return existingView;
 	}
 
@@ -2018,8 +2132,8 @@ void Texstudio::runScripts(int trigger)
 void Texstudio::runScriptsInList(int trigger, const QList<Macro> &scripts)
 {
 	foreach (const Macro &macro, scripts) {
-		if (macro.isActiveForTrigger((Macro::SpecialTrigger)trigger))
-			insertUserTag(macro.tag, trigger);
+		if (macro.type == Macro::Script && macro.isActiveForTrigger((Macro::SpecialTrigger) trigger))
+			runScript(macro.script(), MacroExecContext(trigger));
 	}
 }
 
@@ -2060,7 +2174,8 @@ void Texstudio::fileAutoReloading(QString fname)
 	if (!document) return;
 	document->initClearStructure();
 }
-
+/* \brief called when file has been reloaded from disc
+ */
 void Texstudio::fileReloaded()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
@@ -2074,7 +2189,9 @@ void Texstudio::fileReloaded()
 		document->patchStructure(0, -1);
 	}
 }
-
+/*!
+ * \brief make a template from current editor
+ */
 void Texstudio::fileMakeTemplate()
 {
 	if (!currentEditorView())
@@ -2124,12 +2241,17 @@ void Texstudio::fileMakeTemplate()
 		}
 	}
 }
-
+/*!
+ * \brief load template file for editing
+ * \param fname filename
+ */
 void Texstudio::templateEdit(const QString &fname)
 {
 	load(fname, false);
 }
-
+/*!
+ * \brief generate new file from template
+ */
 void Texstudio::fileNewFromTemplate()
 {
 	TemplateManager tmplMgr;
@@ -2202,7 +2324,9 @@ void Texstudio::fileNewFromTemplate()
 	}
 	delete dialog;
 }
-
+/*!
+ * \brief insert table template
+ */
 void Texstudio::insertTableTemplate()
 {
 	QEditor *m_edit = currentEditor();
@@ -2228,6 +2352,7 @@ void Texstudio::insertTableTemplate()
 		}
 		QString tableDef = LatexTables::getSimplifiedDef(c);
 		QString tableText = LatexTables::getTableText(c);
+		QString widthDef;
 		//remove table
 		c.removeSelectedText();
 		m_edit->setCursor(c);
@@ -2248,6 +2373,7 @@ void Texstudio::insertTableTemplate()
 				int endExtra = tableText.indexOf("{", startExtra);
 				if (endExtra >= 0 && endExtra > startExtra) {
 					QString textHelper = tableText;
+					widthDef = textHelper.mid(startExtra, endExtra - startExtra);
 					textHelper.remove(startExtra, endExtra - startExtra); // remove to/spread definition
 					values.clear();
 					starts.clear();
@@ -2280,7 +2406,7 @@ void Texstudio::insertTableTemplate()
 		QList<QStringList> tableContent;
 		foreach (QString line, lines) {
 			//line=line.simplified();
-			if (line.isEmpty() || line == "\n")
+			if (line.simplified().isEmpty())
 				continue;
 			QStringList elems = line.split(QRegExp("&"));
 			if (elems.count() > 0) {
@@ -2303,10 +2429,11 @@ void Texstudio::insertTableTemplate()
 			}
 			tableContent << elems;
 		}
-		LatexTables::generateTableFromTemplate(currentEditorView(), fname, tableDef, tableContent, env);
+		LatexTables::generateTableFromTemplate(currentEditorView(), fname, tableDef, tableContent, env, widthDef);
 	}
 }
-
+/*! \brief align columns of latex table in editor
+ */
 void Texstudio::alignTableCols()
 {
 	if (!currentEditor()) return;
@@ -2320,7 +2447,14 @@ void Texstudio::alignTableCols()
 	cur.setColumnNumber(col);
 	currentEditor()->setCursor(cur);
 }
-
+/*! \brief open file
+ *
+ * open file is triggered from menu action.
+ * It opens a file dialog and lets the user to select a file.
+ * If the file is already open, the apropriate editor subwindow is brought to front.
+ * If the file is open as hidden, an editor is created and brought to front.
+ * pdf files are handled as well and they are forwarded to the pdf viewer.
+ */
 void Texstudio::fileOpen()
 {
 	QString currentDir = QDir::homePath();
@@ -2369,7 +2503,11 @@ void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
 	}
 	restoreSession(s, showProgress, warnMissing);
 }
-
+/*!
+ * \brief save current editor content
+ *
+ * \param saveSilently
+ */
 void Texstudio::fileSave(const bool saveSilently)
 {
 	if (!currentEditor())
@@ -2389,13 +2527,19 @@ void Texstudio::fileSave(const bool saveSilently)
 		currentEditor()->save();
 		currentEditor()->document()->markViewDirty();//force repaint of line markers (yellow -> green)
 		MarkCurrentFileAsRecent();
-        int checkIn=(configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) ? 2 : 1;
-        emit infoFileSaved(currentEditor()->fileName(),checkIn);
+		int checkIn = (configManager.autoCheckinAfterSaveLevel > 0 && !saveSilently) ? 2 : 1;
+		emit infoFileSaved(currentEditor()->fileName(), checkIn);
 	}
 	updateCaption();
 	//updateStructure(); (not needed anymore for autoupdate)
 }
-
+/*!
+ * \brief save current editor content to new filename
+ *
+ * save current editor content to new filename
+ * \param fileName
+ * \param saveSilently don't ask for new filename if fileName is empty
+ */
 void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 {
 	if (!currentEditorView())
@@ -2449,9 +2593,9 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 			}
 			// other editor does not contain unsaved changes, so it can be closed
 			LatexEditorView *currentEdView = currentEditorView();
-			EditorTabs->setCurrentEditor(otherEdView);
+			editors->setCurrentEditor(otherEdView);
 			fileClose();
-			EditorTabs->setCurrentEditor(currentEdView);
+			editors->setCurrentEditor(currentEdView);
 		}
 #ifndef NO_POPPLER_PREVIEW
 		// show message in viewer
@@ -2471,9 +2615,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 		LatexDocument *doc = currentEditorView()->document;
 		documents.updateMasterSlaveRelations(doc);
 
-		EditorTabs->setTabText(EditorTabs->currentIndex(), currentEditor()->name().replace("&", "&&"));
-		EditorTabs->setTabToolTip(EditorTabs->currentIndex(), QDir::toNativeSeparators(currentEditor()->fileName()));
-		updateOpenDocumentMenu(true);
+		updateOpenDocumentMenu(true);  // TODO: currently duplicate functionality with updateCaption() below
 		if (currentEditor()->fileInfo().suffix().toLower() != "tex")
 			m_languages->setLanguage(currentEditor(), fn);
 
@@ -2482,26 +2624,35 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 
 	updateCaption();
 }
-
+/*!
+ * \brief save all files
+ *
+ * This functions is called from menu-action.
+ */
 void Texstudio::fileSaveAll()
 {
 	fileSaveAll(true, true);
 }
-
+/*!
+ * \brief save all files
+ *
+ * \param alsoUnnamedFiles
+ * \param alwaysCurrentFile
+ */
 void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 {
 	//LatexEditorView *temp = new LatexEditorView(EditorView,colorMath,colorCommand,colorKeyword);
 	//temp=currentEditorView();
-	REQUIRE(EditorTabs);
+	REQUIRE(editors);
 
 	LatexEditorView *currentEdView = currentEditorView();
 
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+	foreach (LatexEditorView *edView, editors->editors()) {
 		REQUIRE(edView->editor);
 
 		if (edView->editor->fileName().isEmpty()) {
 			if ((alsoUnnamedFiles || (alwaysCurrentFile && edView == currentEdView) ) ) {
-				EditorTabs->setCurrentEditor(edView);
+				editors->setCurrentEditor(edView);
 				fileSaveAs();
 			} else if (!edView->document->getTemporaryFileName().isEmpty())
 				edView->editor->saveCopy(edView->document->getTemporaryFileName());
@@ -2525,7 +2676,7 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 	}
 
 	if (currentEditorView() != currentEdView)
-		EditorTabs->setCurrentEditor(currentEdView);
+		editors->setCurrentEditor(currentEdView);
 	documents.updateStructure(); //remove italics status from previous unsaved files
 	//UpdateCaption();
 }
@@ -2655,7 +2806,6 @@ repeatAfterFileSavingFailed:
 			break;
 		}
 	} else documents.deleteDocument(currentEditorView()->document);
-	updateOpenDocumentMenu();
 	//UpdateCaption(); unnecessary as called by tabChanged (signal)
 
 #ifndef NO_POPPLER_PREVIEW
@@ -2682,16 +2832,16 @@ void Texstudio::fileExit()
 
 bool Texstudio::saveAllFilesForClosing()
 {
-	return saveFilesForClosing(EditorTabs->editors());
+	return saveFilesForClosing(editors->editors());
 }
 
-bool Texstudio::saveFilesForClosing(const QList<LatexEditorView *> &editors)
+bool Texstudio::saveFilesForClosing(const QList<LatexEditorView *> &editorList)
 {
 	LatexEditorView *savedCurrentEditorView = currentEditorView();
-	foreach (LatexEditorView *edView, editors) {
+	foreach (LatexEditorView *edView, editorList) {
 repeatAfterFileSavingFailed:
 		if (edView->editor->isContentModified()) {
-			EditorTabs->setCurrentEditor(edView);
+			editors->setCurrentEditor(edView);
 			switch (QMessageBox::warning(this, TEXSTUDIO,
 			                             tr("The document \"%1\" contains unsaved work. "
 			                                "Do you want to save it before closing?").arg(edView->displayName()),
@@ -2707,21 +2857,20 @@ repeatAfterFileSavingFailed:
 				break;
 			case 2:
 			default:
-				updateOpenDocumentMenu();
-				EditorTabs->setCurrentEditor(savedCurrentEditorView);
+				editors->setCurrentEditor(savedCurrentEditorView);
 				return false;
 			}
 		}
 	}
-	EditorTabs->setCurrentEditor(savedCurrentEditorView);
+	editors->setCurrentEditor(savedCurrentEditorView);
 	return true;
 }
-
+/*! \brief close all files
+ */
 void Texstudio::closeAllFiles()
 {
 	while (currentEditorView())
 		documents.deleteDocument(currentEditorView()->document);
-	updateOpenDocumentMenu();
 #ifndef NO_POPPLER_PREVIEW
 	foreach (PDFDocument *viewer, PDFDocument::documentList())
 		viewer->close();
@@ -2746,7 +2895,10 @@ bool Texstudio::canCloseNow(bool saveSettings)
 	Guardian::shutdown();
 	return true;
 }
-
+/*!
+ * \brief closeEvent
+ * \param e event
+ */
 void Texstudio::closeEvent(QCloseEvent *e)
 {
 	if (canCloseNow())  e->accept();
@@ -2766,7 +2918,11 @@ void Texstudio::centerFileSelector()
 	if (!fileSelector) return;
 	fileSelector.data()->setCentered(centralWidget()->geometry());
 }
-
+/*!
+ * \brief open file from recent list
+ *
+ * The filename is determind from the sender-action, where it is encoded in data.
+ */
 void Texstudio::fileOpenRecent()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
@@ -2848,41 +3004,40 @@ void Texstudio::viewDocumentList()
 	if (fileSelector) fileSelector.data()->deleteLater();
 	fileSelector = new FileSelector(this, false);
 
-	QStringList sl;
 	LatexEditorView *curEdView = currentEditorView();
 	int curIndex = 0;
-	QList<LatexEditorView *> editors = EditorTabs->editors();
+	QList<LatexEditorView *> editorList = editors->editors();
 
 	if (configManager.mruDocumentChooser) {
-		qSort(editors.begin(), editors.end(), mruEditorViewLessThan);
-		if (editors.size() > 1)
-			if (editors.first() == currentEditorView())
+		qSort(editorList.begin(), editorList.end(), mruEditorViewLessThan);
+		if (editorList.size() > 1)
+			if (editorList.first() == currentEditorView())
 				curIndex = 1;
 	}
 
 	int i = 0;
-	foreach (LatexEditorView *edView, editors) {
-		sl << edView->displayName();
+	QStringList names;
+	foreach (LatexEditorView *edView, editorList) {
+		names << edView->displayName();
 		if (!configManager.mruDocumentChooser && edView == curEdView) curIndex = i;
 		i++;
 	}
 
-	fileSelector.data()->init(sl, curIndex);
+	fileSelector.data()->init(names, curIndex);
 	connect(fileSelector.data(), SIGNAL(fileChoosen(QString, int, int, int)), SLOT(viewDocumentOpenFromChoosen(QString, int, int, int)));
 	fileSelector.data()->setVisible(true);
 	centerFileSelector();
-
 }
 
 void Texstudio::viewDocumentOpenFromChoosen(const QString &doc, int duplicate, int lineNr, int column)
 {
 	if (duplicate < 0) return;
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+	foreach (LatexEditorView *edView, editors->editors()) {
 		QString  name = edView->displayName();
 		if (name == doc) {
 			duplicate -= 1;
 			if (duplicate < 0) {
-				EditorTabs->setCurrentWidget(edView);
+				editors->setCurrentEditor(edView);
 				if (lineNr >= 0)
 					edView->editor->setCursorPosition(lineNr, column);
 				edView->setFocus();
@@ -2963,7 +3118,14 @@ void Texstudio::fileSaveSession()
 	}
 	recentSessionList->addFilenameToList(fn);
 }
-
+/*!
+ * \brief restore session s
+ *
+ * closes all files and loads all files given in session s
+ * \param s session
+ * \param showProgress
+ * \param warnMissing give warning if files are missing
+ */
 void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMissing)
 {
 	fileCloseAll();
@@ -3041,7 +3203,7 @@ Session Texstudio::getCurrentSession()
 {
 	Session s;
 
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+	foreach (LatexEditorView *edView, editors->editors()) {
 		FileInSession f;
 		f.fileName = edView->editor->fileName();
 		f.cursorLine = edView->editor->cursor().lineNumber();
@@ -3224,97 +3386,52 @@ void Texstudio::convertToLatex()
 void Texstudio::editDeleteLine()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	c.beginEditBlock();
-	c.removeSelectedText(); // reduces multi-line selections to a single line
-	c.eraseLine();
-	c.endEditBlock();
+	currentEditorView()->deleteLines(true, true);
 }
 
 void Texstudio::editDeleteToEndOfLine()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	c.beginEditBlock();
-	if (!c.hasSelection()) {
-		c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-	}
-	c.removeSelectedText();
-	c.endEditBlock();
+	currentEditorView()->deleteLines(false, true);
 }
 
 void Texstudio::editDeleteFromStartOfLine()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	c.beginEditBlock();
-	if (!c.hasSelection()) {
-		c.movePosition(1, QDocumentCursor::StartOfLine, QDocumentCursor::KeepAnchor);
-	}
-	c.removeSelectedText();
-	c.endEditBlock();
+	currentEditorView()->deleteLines(true, false);
 }
 
 void Texstudio::editMoveLineUp()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentCursor anchor(c.document(), c.anchorLineNumber(), c.anchorColumnNumber());
-	QDocumentCursor start = c.selectionStart();
-	QDocumentCursor end = c.selectionEnd();
-	if (start.lineNumber() <= 0) return;
-	start.movePosition(1, QDocumentCursor::StartOfLine);
-	end.movePosition(1, QDocumentCursor::EndOfLine);
-	QDocumentCursor edit(start, end);
-	edit.beginEditBlock();
-	QString text = edit.selectedText();
-	edit.removeSelectedText();
-	edit.eraseLine();
-	edit.movePosition(1, QDocumentCursor::PreviousLine);
-	edit.movePosition(1, QDocumentCursor::StartOfLine);
-	edit.insertText(text + "\n");
-	edit.endEditBlock();
-	c.movePosition(1, QDocumentCursor::Up);
-	anchor.movePosition(1, QDocumentCursor::Up);
-	currentEditorView()->editor->setCursor(QDocumentCursor(anchor, c));
+	currentEditorView()->moveLines(-1);
 }
 
 void Texstudio::editMoveLineDown()
 {
 	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentCursor anchor(c.document(), c.anchorLineNumber(), c.anchorColumnNumber());
-	QDocumentCursor start = c.selectionStart();
-	QDocumentCursor end = c.selectionEnd();
-	if (end.lineNumber() >= c.document()->lineCount() - 1) return;
-	start.movePosition(1, QDocumentCursor::StartOfLine);
-	end.movePosition(1, QDocumentCursor::EndOfLine);
-	QDocumentCursor edit(start, end);
-	edit.beginEditBlock();
-	QString text = edit.selectedText();
-	edit.removeSelectedText();
-	edit.eraseLine();
-	edit.movePosition(1, QDocumentCursor::EndOfLine);
-	edit.insertText("\n" + text);
-	edit.endEditBlock();
-	c.movePosition(1, QDocumentCursor::Down);
-	anchor.movePosition(1, QDocumentCursor::Down);
-	currentEditorView()->editor->setCursor(QDocumentCursor(anchor, c));
+	currentEditorView()->moveLines(1);
 }
 
 void Texstudio::editDuplicateLine()
 {
-	if (!currentEditorView()) return;
-	QDocumentCursor c = currentEditorView()->editor->cursor();
-	QDocumentCursor start = c.selectionStart();
-	QDocumentCursor end = c.selectionEnd();
-	start.movePosition(1, QDocumentCursor::StartOfLine);
-	end.movePosition(1, QDocumentCursor::EndOfLine);
-	QDocumentCursor edit(start, end);
-	//edit.beginEditBlock();
-	QString text = edit.selectedText();
-	start.insertText(text + "\n");
-	currentEditorView()->editor->setCursor(c);
+	if (!currentEditor()) return;
+	QEditor *ed = currentEditor();
+	QList<QDocumentCursor> cursors = ed->cursors();
+	for (int i = 0; i < cursors.length(); i++)
+		cursors[i].setAutoUpdated(false);
+	QList<QPair<int, int> > blocks = currentEditorView()->getSelectedLineBlocks();
+	for (int i = blocks.size() - 1; i >= 0; i--) {
+		QDocumentCursor edit = ed->document()->cursor(blocks[i].first, 0, blocks[i].second);
+		QString text = edit.selectedText();
+		edit.selectionEnd().insertText("\n" + text);
+	}
+}
+
+void Texstudio::editAlignMirrors()
+{
+	if (!currentEditor()) return;
+	currentEditorView()->alignMirrors();
 }
 
 void Texstudio::editEraseWordCmdEnv()
@@ -3448,7 +3565,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), tk.getText());
 		if (!edView) return;
 		if (edView != currentEditorView()) {
-			EditorTabs->setCurrentEditor(edView);
+			editors->setCurrentEditor(edView);
 		}
 		edView->gotoToLabel(tk.getText());
 		break;
@@ -3595,7 +3712,7 @@ void Texstudio::editIndentSection()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorTabs->setCurrentEditor(entry->document->getEditorView());
+	editors->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
 	// replace list
@@ -3624,7 +3741,7 @@ void Texstudio::editUnIndentSection()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorTabs->setCurrentEditor(entry->document->getEditorView());
+	editors->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 
 	QStringList m_replace;
@@ -3650,22 +3767,28 @@ void Texstudio::editUnIndentSection()
 	}
 }
 
+/*!
+ * copy in structure-view selected section from text
+ */
 void Texstudio::editSectionCopy()
 {
 	// called by action
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorTabs->setCurrentEditor(entry->document->getEditorView());
+	editors->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	editSectionCopy(sel.startLine + 1, sel.endLine);
 }
 
+/*!
+ * cut in structure-view selected section from text
+ */
 void Texstudio::editSectionCut()
 {
 	// called by action
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorTabs->setCurrentEditor(entry->document->getEditorView());
+	editors->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	editSectionCut(sel.startLine + 1, sel.endLine);
 	//UpdateStructure();
@@ -3701,16 +3824,18 @@ void Texstudio::editSectionPasteBefore()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorTabs->setCurrentEditor(entry->document->getEditorView());
+	editors->setCurrentEditor(entry->document->getEditorView());
 	editSectionPasteBefore(entry->getRealLineNumber());
 	//UpdateStructure();
 }
-
+/*!
+ * \brief paste clipboard after selected section (in structureview)
+ */
 void Texstudio::editSectionPasteAfter()
 {
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || !entry->document->getEditorView()) return;
-	EditorTabs->setCurrentEditor(entry->document->getEditorView());
+	editors->setCurrentEditor(entry->document->getEditorView());
 	QDocumentSelection sel = entry->document->sectionSelection(entry);
 	editSectionPasteAfter(sel.endLine);
 	//UpdateStructure();
@@ -3759,23 +3884,40 @@ void changeCase(QEditor *editor, QString(*method)(QString))
 		c.replaceSelectedText( method(c.selectedText()) );
 	editor->document()->endMacro();
 }
-
-QString txsToLower(QString in){
-    return in.toLower();
+/*!
+ * Helperfunction to convert a string to lower case.
+ * \param in input string
+ * \result string in lower case
+ */
+QString txsToLower(QString in)
+{
+	return in.toLower();
 }
 
+/*!
+ * Converts the selected text to lower case.
+ */
 void Texstudio::editTextToLowercase()
 {
-    changeCase(currentEditor(), &txsToLower);
+	changeCase(currentEditor(), &txsToLower);
+}
+/*!
+ * Helperfunction to convert a string to upper case.
+ * \param in input string
+ * \result string in upper case
+ */
+
+QString txsToUpper(QString in)
+{
+	return in.toUpper();
 }
 
-QString txsToUpper(QString in){
-    return in.toUpper();
-}
-
+/*!
+ * Converts the selected text to upper case.
+ */
 void Texstudio::editTextToUppercase()
 {
-    changeCase(currentEditor(), &txsToUpper);
+	changeCase(currentEditor(), &txsToUpper);
 }
 
 /*!
@@ -4034,8 +4176,10 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 
-		Session s = getCurrentSession();
-		s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath(), configManager.sessionStoreRelativePaths);
+		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
+			Session s = getCurrentSession();
+			s.save(QFileInfo(QDir(configManager.configBaseDir), "lastSession.txss").filePath(), configManager.sessionStoreRelativePaths);
+		}
 	}
 
 
@@ -4238,7 +4382,7 @@ void Texstudio::clickedOnStructureEntry(const QModelIndex &index)
 	switch (entry->type) {
 	case StructureEntry::SE_DOCUMENT_ROOT:
 		if (entry->document->getEditorView())
-			EditorTabs->setCurrentEditor(entry->document->getEditorView());
+			editors->setCurrentEditor(entry->document->getEditorView());
 		else
 			load(entry->document->getFileName());
 		break;
@@ -4322,7 +4466,7 @@ void Texstudio::normalCompletion()
 	Tokens::TokenType type = tk.type;
 	if (tk.subtype != Tokens::none)
 		type = tk.subtype;
-    if (type == Tokens::specialArg) {
+	if (type == Tokens::specialArg) {
 		int df = int(type - Tokens::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
@@ -4762,10 +4906,7 @@ void Texstudio::insertFromAction()
 	if (action)	{
 		if (completer->isVisible())
 			completer->close();
-		/*QDocumentCursor c = currentEditorView()->editor->cursor();
-		CodeSnippet cs=CodeSnippet(action->data().toString());
-		    cs.insertAt(currentEditorView()->editor,&c);*/
-		edView->insertMacro(action->data().toString(), QRegExp(), 0, true);
+		execMacro(Macro::fromTypedTag(action->data().toString()), MacroExecContext(), true);
 		generateMirror();
 		outputView->setMessage(CodeSnippet(action->whatsThis(), false).lines.join("\n"));
 	}
@@ -4787,49 +4928,86 @@ void Texstudio::insertBib()
 
 void Texstudio::quickTabular()
 {
-	if (!currentEditorView())	return;
-	//TODO: move this in arraydialog class
-	QString al;
-	ArrayDialog *arrayDlg = new ArrayDialog(this, "Array");
-	if (arrayDlg->exec()) {
-		int y = arrayDlg->ui.spinBoxRows->value();
-		int x = arrayDlg->ui.spinBoxColumns->value();
-		QString env = arrayDlg->ui.comboEnvironment->currentText();
-		QString tag = QString("\\begin{") + env + "}";
-		if (env == "array") {
-			tag += "{";
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 0) al = QString("c");
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 1) al = QString("l");
-			if ((arrayDlg->ui.comboAlignment->currentIndex()) == 2) al = QString("r");
-			for (int j = 0; j < x; j++) {
-				tag += al;
+	if ( !currentEditorView() )	return;
+	QString placeholder;//(0x2022);
+	QStringList borderlist, alignlist;
+	borderlist << QString("|") << QString("||") << QString("") << QString("@{}");
+	alignlist << QString("c") << QString("l") << QString("r") << QString("p{3cm}") << QString(">{\\raggedright\\arraybackslash}p{3cm}") << QString(">{\\centering\\arraybackslash}p{%<3cm%>}") << QString(">{\\raggedleft\\arraybackslash}p{3cm}");
+	QString al = "";
+	QString vs = "";
+	QString el = "";
+	QString tag;
+	TabDialog *quickDlg = new TabDialog(this, "Tabular");
+	QTableWidgetItem *item = new QTableWidgetItem();
+	if ( quickDlg->exec() ) {
+		int y = quickDlg->ui.spinBoxRows->value();
+		int x = quickDlg->ui.spinBoxColumns->value();
+		tag = QString("\\begin{tabular}{");
+		for ( int j = 0; j < x; j++) {
+			tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
+			tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
+		}
+		tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
+		tag += QString("}\n");
+		for ( int i = 0; i < y; i++) {
+			if (quickDlg->liDataList.at(i).topborder) tag += QString("\\hline \n");
+			if (quickDlg->ui.checkBoxMargin->isChecked()) tag += "\\rule[-1ex]{0pt}{2.5ex} ";
+			if (quickDlg->liDataList.at(i).merge && (quickDlg->liDataList.at(i).mergeto > quickDlg->liDataList.at(i).mergefrom)) {
+				el = "";
+				for ( int j = 0; j < x; j++) {
+					item = quickDlg->ui.tableWidget->item(i, j);
+
+					if (j == quickDlg->liDataList.at(i).mergefrom - 1) {
+						if (item) el += item->text();
+						tag += QString("\\multicolumn{");
+						tag += QString::number(quickDlg->liDataList.at(i).mergeto - quickDlg->liDataList.at(i).mergefrom + 1);
+						tag += QString("}{");
+						if ((j == 0) && (quickDlg->colDataList.at(j).leftborder < 2)) tag += borderlist.at(quickDlg->colDataList.at(j).leftborder);
+						if (quickDlg->colDataList.at(j).alignment < 3) tag += alignlist.at(quickDlg->colDataList.at(j).alignment);
+						else tag += QString("c");
+						if (quickDlg->liDataList.at(i).mergeto == x) tag += borderlist.at(quickDlg->ui.comboBoxEndBorder->currentIndex());
+						else tag += borderlist.at(quickDlg->colDataList.at(quickDlg->liDataList.at(i).mergeto).leftborder);
+						tag += QString("}{");
+					} else if (j == quickDlg->liDataList.at(i).mergeto - 1) {
+						if (item) el += item->text();
+						if (el.isEmpty()) el = placeholder;
+						tag += el + QString("}");
+						if (j < x - 1) tag += " & ";
+						else tag += QString(" \\\\ \n");
+					} else if ((j > quickDlg->liDataList.at(i).mergefrom - 1) && (j < quickDlg->liDataList.at(i).mergeto - 1)) {
+						if (item) el += item->text();
+					} else {
+						if (item) {
+							if (item->text().isEmpty()) tag += placeholder;
+							else tag += item->text();
+						} else tag += placeholder;
+						if (j < x - 1) tag += " & ";
+						else tag += QString(" \\\\ \n");
+					}
+
+				}
+			} else {
+				for ( int j = 0; j < x - 1; j++) {
+					item = quickDlg->ui.tableWidget->item(i, j);
+					if (item) {
+						if (item->text().isEmpty()) tag += placeholder + QString(" & ");
+						else tag += item->text() + QString(" & ");
+					} else tag += placeholder + QString(" & ");
+				}
+				item = quickDlg->ui.tableWidget->item(i, x - 1);
+				if (item) {
+					if (item->text().isEmpty()) tag += placeholder + QString(" \\\\ \n");
+					else tag += item->text() + QString(" \\\\ \n");
+				} else tag += placeholder + QString(" \\\\ \n");
 			}
-			tag += "}";
 		}
-		tag += QString("\n");
-		for (int i = 0; i < y - 1; i++) {
-			for (int j = 0; j < x - 1; j++) {
-				QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, j);
-				if (item) tag += item->text() + QString(" & ");
-				else tag += QString(" & ");
-			}
-			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(i, x - 1);
-			if (item) tag += item->text() + QString(" \\\\ \n");
-			else tag += QString(" \\\\ \n");
-		}
-		for (int j = 0; j < x - 1; j++) {
-			QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, j);
-			if (item) tag += item->text() + QString(" & ");
-			else tag += QString(" & ");
-		}
-		QTableWidgetItem *item = arrayDlg->ui.tableWidget->item(y - 1, x - 1);
-		if (item) tag += item->text() + QString("\n\\end{") + env + "} ";
-		else tag += QString("\n\\end{") + env + "} ";
+		if (quickDlg->ui.checkBoxBorderBottom->isChecked()) tag += QString("\\hline \n\\end{tabular} ");
+		else tag += QString("\\end{tabular} ");
+		if (tag.contains("arraybackslash")) tag = "% \\usepackage{array} is required\n" + tag;
 		insertTag(tag, 0, 0);
 	}
 
 }
-
 
 void Texstudio::quickArray()
 {
@@ -5055,7 +5233,7 @@ void Texstudio::quickDocument()
 			Q_ASSERT(currentEditorView());
 		}
 		Q_ASSERT(currentEditor());
-		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
+		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
 		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
@@ -5077,7 +5255,7 @@ void Texstudio::quickBeamer()
 			Q_ASSERT(currentEditorView());
 		}
 		Q_ASSERT(currentEditor());
-		currentEditorView()->insertMacro(startDlg->getNewDocumentText());
+		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
 		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
@@ -5150,14 +5328,31 @@ void Texstudio::insertUserTag()
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
 	int id = action->data().toInt();
-	const QString &userTag = configManager.completerConfig->userMacros.value(id, Macro()).tag;
-	insertUserTag(userTag);
+	execMacro(configManager.completerConfig->userMacros.value(id, Macro()));
 }
 
-void Texstudio::insertUserTag(const QString &macro, int triggerId)
+void Texstudio::execMacro(const Macro &m, const MacroExecContext &context, bool allowWrite)
 {
-	//dont'check that, if (!currentEditorView()) return; insertMacro is 0 save
-	currentEditorView()->insertMacro(macro, QRegExp(), triggerId);
+	if (m.type == Macro::Script) {
+		runScript(m.script(), context, allowWrite);
+	} else {
+		if (currentEditorView()) {
+			currentEditorView()->insertSnippet(m.snippet());
+		}
+	}
+}
+
+void Texstudio::runScript(const QString &script, const MacroExecContext &context, bool allowWrite)
+{
+	scriptengine *eng = new scriptengine();
+	eng->triggerMatches = context.triggerMatches;
+	eng->triggerId = context.triggerId;
+	if (currentEditorView()) eng->setEditorView(currentEditorView());
+
+	eng->setScript(script, allowWrite);
+	eng->run();
+	if (!eng->globalObject) delete eng;
+	else QObject::connect(reinterpret_cast<QObject *>(eng->globalObject), SIGNAL(destroyed()), eng, SLOT(deleteLater()));
 }
 
 void Texstudio::editMacros()
@@ -5171,9 +5366,11 @@ void Texstudio::editMacros()
 		}
 		userMacroDialog->init();
 		connect(userMacroDialog, SIGNAL(accepted()), SLOT(macroDialogAccepted()));
-		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(insertUserTag(QString)));
+		connect(userMacroDialog, SIGNAL(rejected()), SLOT(macroDialogRejected()));
+		connect(userMacroDialog, SIGNAL(runScript(QString)), SLOT(runScript(QString)));
 	}
 	userMacroDialog->show();
+	userMacroDialog->raise();
 	userMacroDialog->setFocus();
 }
 
@@ -5187,6 +5384,12 @@ void Texstudio::macroDialogAccepted()
 		configManager.completerConfig->userMacros << documents.documents[i]->localMacros;
 	updateUserMacros();
 	completer->updateAbbreviations();
+	userMacroDialog->deleteLater();
+	userMacroDialog = 0;
+}
+
+void Texstudio::macroDialogRejected()
+{
 	userMacroDialog->deleteLater();
 	userMacroDialog = 0;
 }
@@ -5254,7 +5457,7 @@ void Texstudio::createLabelFromAction()
 	// find column position after structure command
 	QString lineText = edView->getDocument()->line(lineNr).text();
 	int pos = -1;
-	for (int i=0; i<latexParser.structureDepth(); i++) {
+	for (int i = 0; i < latexParser.structureDepth(); i++) {
 		foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
 			pos = lineText.indexOf(cmd);
 			if (pos >= 0) {
@@ -5273,11 +5476,10 @@ void Texstudio::createLabelFromAction()
 	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
 	QString label = "sec:";
 	if (args.length() > 0) {
-		label += args.at(0).value.toLower();
-		label.replace(' ', '-');
-	}
-	if (label.contains('\\') || label.contains('$')) { // title too complicated to extract label: fall back
-		label = "sec:";
+		QString title(args.at(0).value);
+		if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
+			label += makeLatexLabel(title);
+		}
 	}
 
 	gotoLine(lineNr, pos, edView, mflags);
@@ -5493,7 +5695,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 
 	if (pdfFile.isNull()) pdfFile = "?am.pdf";  // no file was explicitly specified in the command
 	QString pdfDefFile = BuildManager::parseExtendedCommandLine(pdfFile, master).first();
-	QStringList searchPaths = splitPaths(buildManager.additionalPdfPaths);
+	QStringList searchPaths = splitPaths(BuildManager::resolvePaths(buildManager.additionalPdfPaths));
 	searchPaths.insert(0, master.absolutePath());
 	pdfFile = buildManager.findFile(pdfDefFile, searchPaths);
 	if (pdfFile == "") pdfFile = pdfDefFile; //use old file name, so pdf viewer shows reasonable error message
@@ -5659,7 +5861,7 @@ void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool
 	}
 	if (latex) {
 		outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);//log to old (whenever latex is called)
-		foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		foreach (LatexEditorView *edView, editors->editors()) {
 			edView->document->saveLineSnapshot();
 		}
 	} else outputView->resetMessages(!configManager.showMessagesWhenCompiling);
@@ -5876,7 +6078,7 @@ void Texstudio::generateRandomText()
 	}
 
 	QStringList allLines;
-	foreach (LatexEditorView *edView, EditorTabs->editors())
+	foreach (LatexEditorView *edView, editors->editors())
 		allLines << edView->editor->document()->textLines();
 	RandomTextGenerator generator(this, allLines);
 	generator.exec();
@@ -5888,7 +6090,7 @@ bool Texstudio::logExists()
 	QString finame = documents.getTemporaryCompileFileName();
 	if (finame == "")
 		return false;
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(buildManager.additionalLogPaths));
+	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)));
 	QFileInfo fic(logFileName);
 	if (fic.exists() && fic.isReadable()) return true;
 	else return false;
@@ -5903,8 +6105,9 @@ bool Texstudio::loadLog()
 		QMessageBox::warning(this, tr("Error"), tr("File must be saved and compiling before you can view the log"));
 		return false;
 	}
-	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(buildManager.additionalLogPaths));
-	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName);
+	QString logFileName = buildManager.findFile(getAbsoluteFilePath(documents.getLogFileName()), splitPaths(BuildManager::resolvePaths(buildManager.additionalLogPaths)));
+	QTextCodec * codec = QTextCodec::codecForName(configManager.logFileEncoding.toLatin1());
+	return outputView->getLogWidget()->loadLogFile(logFileName, compileFileName, codec ? codec : documents.getCurrentDocument()->codec() );
 }
 
 void Texstudio::showLog()
@@ -5962,7 +6165,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
 // changes visibilita of log markers in all editors
 void Texstudio::setLogMarksVisible(bool visible)
 {
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+	foreach (LatexEditorView *edView, editors->editors()) {
 		edView->setLogMarksVisible(visible);
 	}
 	QAction *act = getManagedAction("main/tools/logmarkers");
@@ -5972,7 +6175,7 @@ void Texstudio::setLogMarksVisible(bool visible)
 // removes the log entries from all editors
 void Texstudio::clearLogEntriesInEditors()
 {
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
+	foreach (LatexEditorView *edView, editors->editors()) {
 		edView->clearLogMarks();
 	}
 }
@@ -6183,7 +6386,7 @@ void Texstudio::generalOptions()
 		buildManager.clearPreviewPreambleCache();//possible changed latex command / preview behaviour
 
 		if (currentEditorView()) {
-			foreach (LatexEditorView *edView, EditorTabs->editors()) {
+			foreach (LatexEditorView *edView, editors->editors()) {
 				edView->updateSettings();
 				if (updateHighlighting) {
 					edView->clearOverlays(); // for disabled syntax check
@@ -6219,15 +6422,6 @@ void Texstudio::generalOptions()
 		changeIconSize(configManager.guiToolbarIconSize);
 		changeSecondaryIconSize(configManager.guiSecondaryToolbarIconSize);
 		changeSymbolGridIconSize(configManager.guiSymbolGridIconSize, false);
-		/*setIconSize(QSize(configManager.guiToolbarIconSize,configManager.guiToolbarIconSize));
-		centralToolBar->setIconSize(QSize(configManager.guiSecondaryToolbarIconSize,configManager.guiSecondaryToolbarIconSize));
-		QList<QWidget*> lstOfWidgets=leftPanel->getWidgets();
-		foreach(QWidget *wdg,lstOfWidgets){
-		    SymbolGridWidget* list = qobject_cast<SymbolGridWidget*>(wdg);
-		    if(list){
-		        list->setSymbolSize(configManager.guiSymbolGridIconSize);
-		    }
-		}*/
 		//custom toolbar
 		setupToolBars();
 		// custom evironments
@@ -6248,12 +6442,13 @@ void Texstudio::generalOptions()
 				marks[i].color = Qt::transparent;
 		// update all docuemnts views as spellcheck may be different
 		QEditor::setEditOperations(configManager.editorKeys, false); // true -> false, otherwise edit operation can't be removed, e.g. tab for indentSelection
-		foreach (LatexEditorView *edView, EditorTabs->editors()) {
+		foreach (LatexEditorView *edView, editors->editors()) {
 			QEditor *ed = edView->editor;
 			ed->document()->markFormatCacheDirty();
 			ed->update();
 		}
 		if (oldModernStyle != modernStyle || oldSystemTheme != useSystemTheme) {
+			iconCache.clear();
 			setupMenus();
 			setupDockWidgets();
 		}
@@ -6342,9 +6537,8 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 	}
 
 	if (line != -1) {
-		QApplication::processEvents();
 		gotoLine(line, col, 0, QEditor::KeepSurrounding | QEditor::ExpandFold);
-		QTimer::singleShot(1000, currentEditor(), SLOT(ensureCursorVisible()));
+		QTimer::singleShot(500, currentEditor(), SLOT(ensureCursorVisible())); //reshow cursor in case the windows size changes
 	}
 
 	if (!cite.isNull()) {
@@ -6420,26 +6614,27 @@ void Texstudio::generateAddtionalTranslations()
 	xmlFile.open(QIODevice::ReadOnly);
 	QDomDocument xml;
 	xml.setContent(&xmlFile);
-	QDomNode current = xml.documentElement();
-	CodeSnippet::debugDisableAutoTranslate = true;
-	while (!current.isNull()) {
-		QDomNamedNodeMap attribs = current.attributes();
-		QString text = attribs.namedItem("text").nodeValue();
-		if (text != "" && !commandOnly.exactMatch(text))
-			translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
-		QString insert = attribs.namedItem("insert").nodeValue();
-		if (insert != "") {
-			CodeSnippet cs(insert, false);
-			for (int i = 0; i < cs.placeHolders.size(); i++)
-				for (int j = 0; j < cs.placeHolders[i].size(); j++)
-					if (cs.placeHolders[i][j].flags & CodeSnippetPlaceHolder::Translatable)
-						translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"" + cs.lines[i].mid(cs.placeHolders[i][j].offset, cs.placeHolders[i][j].length) + "\"), ";
 
+	CodeSnippet::debugDisableAutoTranslate = true;
+	QStringList tagNames = QStringList() << "menu" << "insert" << "action";
+	foreach (const QString &tag, tagNames) {
+		QDomNodeList nodes = xml.elementsByTagName(tag);
+		for(int i = 0; i < nodes.count(); i++)
+		{
+			QDomNode current = nodes.at(i);
+			QDomNamedNodeMap attribs = current.attributes();
+			QString text = attribs.namedItem("text").nodeValue();
+			if (!text.isEmpty() && !commandOnly.exactMatch(text))
+				translations << "QT_TRANSLATE_NOOP(\"ConfigManager\", \"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"), ";
+			QString insert = attribs.namedItem("insert").nodeValue();
+			if (!insert.isEmpty()) {
+				CodeSnippet cs(insert, false);
+				for (int i = 0; i < cs.placeHolders.size(); i++)
+					for (int j = 0; j < cs.placeHolders[i].size(); j++)
+						if (cs.placeHolders[i][j].flags & CodeSnippetPlaceHolder::Translatable)
+							translations << "QT_TRANSLATE_NOOP(\"CodeSnippet_PlaceHolder\", \"" + cs.lines[i].mid(cs.placeHolders[i][j].offset, cs.placeHolders[i][j].length) + "\"), ";
+			}
 		}
-		if (current.hasChildNodes()) current = current.firstChild();
-		else if (!current.nextSibling().isNull()) current = current.nextSibling();
-		else if (!current.parentNode().isNull()) current = current.parentNode().nextSibling();
-		else current = current.parentNode();
 	}
 	CodeSnippet::debugDisableAutoTranslate = false;
 	//copy
@@ -6485,7 +6680,7 @@ void Texstudio::setExplicitRootDocument(LatexDocument *doc)
 		return;
 	}
 	if (doc->getFileName().isEmpty() && doc->getEditorView()) {
-		EditorTabs->setCurrentEditor(doc->getEditorView());
+		editors->setCurrentEditor(doc->getEditorView());
 		fileSave();
 	}
 	if (doc->getFileName().isEmpty()) {
@@ -6505,39 +6700,67 @@ void Texstudio::setCurrentDocAsExplicitRoot()
 ////////////////// VIEW ////////////////
 void Texstudio::gotoNextDocument()
 {
-	// TODO check: can we have managed action connecting to the EditorView slot directly? Then we could remove this slot
-	EditorTabs->gotoNextDocument();
+	// TODO check: can we have managed action connecting to the Editors slot directly? Then we could remove this slot
+	editors->activateNextEditor();
 }
 
 void Texstudio::gotoPrevDocument()
 {
-	// TODO check: can we have managed action connecting to the EditorView slot directly? Then we could remove this slot
-	EditorTabs->gotoPrevDocument();
+	// TODO check: can we have managed action connecting to the Editors slot directly? Then we could remove this slot
+	editors->activatePreviousEditor();
 }
 
 void Texstudio::gotoOpenDocument()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	REQUIRE(act);
-	int doc = act->data().toInt();
-	EditorTabs->setCurrentIndex(doc);
+	editors->setCurrentEditor(act->data().value<LatexEditorView *>());
 }
 
+/*!
+ * Update the document menu. If only the name of the current file changed, use localChange = true
+ * for a faster update.
+ * Note: localChange is a low-cost variant which is basically there because updateCaption() calls this
+ * far too often even when it's not necessary. The calling logic (in particular updateCaption and its
+ * uses should be refactored).
+ */
 void Texstudio::updateOpenDocumentMenu(bool localChange)
 {
 	if (localChange) {
-		Q_ASSERT(currentEditorView());
-		int idx = EditorTabs->currentIndex();
-		QString id = "doc" + QString::number(idx);
+		LatexEditorView *edView = currentEditorView();
 		QMenu *menu = configManager.getManagedMenu("main/view/documents");
-		configManager.newManagedAction(menu, id, currentEditorView()->displayName().replace("&", "&&"), SLOT(gotoOpenDocument()))->setData(idx);
-		return;
+		if (!menu) return;
+		foreach (QAction *act, menu->actions()) {
+			if (edView == act->data().value<LatexEditorView *>()) {
+				act->setText(edView->displayNameForUI());
+				//qDebug() << "local SUCCESS" << act->text() << edView->displayName();
+				return;
+			}
+		}
+		//qDebug() << "local updateOpenDocumentMenu failed. Falling back to complete update.";
+		// if there was no editor for a local change, fall back to a complete update of the menu
 	}
-	QStringList sl;
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		sl << (edView->displayName().replace("&", "&&"));
+	QStringList names;
+	QList<QVariant> data;
+	foreach (LatexEditorView *edView, editors->editors()) {
+		names << edView->displayNameForUI();
+		data << QVariant::fromValue<LatexEditorView *>(edView);
 	}
-	configManager.updateListMenu("main/view/documents", sl, "doc", false, SLOT(gotoOpenDocument()), 0, false, 0);
+	//qDebug() << "complete" << names;
+	configManager.updateListMenu("main/view/documents", names, "doc", false, SLOT(gotoOpenDocument()), 0, true, 0, data);
+}
+
+void Texstudio::onEditorsReordered()
+{
+	// we currently reorder the documents so that their order matches the order of editors
+	// this is purely conventional now (structure view inherits the order of the documents.)
+	// There is no technical necessity to align the order of editors and documents. We could drop
+	// this behavior in the future
+	QList<LatexDocument *> docs;
+	foreach (const LatexEditorView *edView, editors->editors()) {
+		docs.append(edView->getDocument());
+	}
+	documents.reorder(docs);
 }
 
 void Texstudio::focusEditor()
@@ -6826,18 +7049,17 @@ void Texstudio::masterDocumentChanged(LatexDocument *doc)
 		outputView->resetMessagesAndLog();
 	} else {
 		configManager.addRecentFile(documents.masterDocument->getFileName(), true);
-		int pos = EditorTabs->currentIndex();
-		EditorTabs->moveTab(pos, 0);
+		editors->moveEditor(doc->getEditorView(), Editors::GroupFront);
 	}
 
 	updateMasterDocumentCaption();
-	updateOpenDocumentMenu();
 	completerNeedsUpdate();
 }
 
 void Texstudio::aboutToDeleteDocument(LatexDocument *doc)
 {
 	emit infoFileClosed();
+	editors->removeEditor(doc->getEditorView());
 	for (int i = configManager.completerConfig->userMacros.size() - 1; i >= 0; i--)
 		if (configManager.completerConfig->userMacros[i].document == doc)
 			configManager.completerConfig->userMacros.removeAt(i);
@@ -6890,10 +7112,12 @@ void Texstudio::changeEvent(QEvent *e)
 	case QEvent::LanguageChange:
 		if (configManager.lastLanguage == configManager.language) return; //don't update if config not changed
 		//QMessageBox::information(0,"rt","retranslate",0);
-		setupMenus();
-		setupDockWidgets();
-		updateCaption();
-		updateMasterDocumentCaption();
+		if (!splashscreen) {
+			setupMenus();
+			setupDockWidgets();
+			updateCaption();
+			updateMasterDocumentCaption();
+		}
 		break;
 	default:
 		break;
@@ -7141,8 +7365,8 @@ void Texstudio::gotoLine(int line, int col, LatexEditorView *edView, QEditor::Mo
 	saveCurrentCursorToHistory();
 
 	if (changeCurrentEditor) {
-		if (EditorTabs->containsEditor(edView)) {
-			EditorTabs->setCurrentEditor(edView);
+		if (editors->containsEditor(edView)) {
+			editors->setCurrentEditor(edView);
 			mflags &= ~QEditor::Animated;
 		} else {
 			load(edView->getDocument()->getFileName());
@@ -7363,7 +7587,7 @@ void Texstudio::setGlobalCursor(const QDocumentCursor &c)
 			LatexEditorView *edView = doc->getEditorView();
 			QEditor::MoveFlags mflags = QEditor::KeepSurrounding | QEditor::ExpandFold;
 			if (edView == currentEditorView()) mflags |= QEditor::Animated;
-			EditorTabs->setCurrentEditor(edView);
+			editors->setCurrentEditor(edView);
 			edView->editor->setFocus();
 			edView->editor->setCursor(c, false);
 			edView->editor->ensureCursorVisible(mflags);
@@ -7535,7 +7759,7 @@ void Texstudio::structureContextMenuCloseDocument()
 	LatexDocument *document = contextEntry->document;
 	contextEntry = 0;
 	if (!document) return;
-	if (document->getEditorView()) EditorTabs->closeTab(document->getEditorView());
+	if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
 	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
 }
 
@@ -7709,7 +7933,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 	float max = 100;
 	scale = qMax(min, qMin(max, scale)) * devPixelRatio;
 	bool fromPDF = false;
-	
+
 #ifndef NO_POPPLER_PREVIEW
 	fromPDF = imageFile.toLower().endsWith(".pdf");
 	if (fromPDF) {
@@ -7749,7 +7973,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 		pixmap.setDevicePixelRatio(devPixelRatio);
 	}
 #endif
-	
+
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_PANEL ||
 	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && outputView->isPreviewPanelVisible())) {
@@ -7991,22 +8215,11 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 	// get document definitions
 	//preliminary code ...
 	const LatexDocument *rootDoc = documents.getRootDocumentForDoc();
-	LatexEditorView *edView = (rootDoc && rootDoc->getEditorView()) ? rootDoc->getEditorView() : currentEditorView();
-	if (!edView) return;
-	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
-	if (m_endingLine < 0) return; // can't create header
-	QStringList header;
-	for (int l = 0; l < m_endingLine; l++)
-		header << edView->editor->document()->line(l).text();
-	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
-		header << "\\usepackage[active,tightpage]{preview}"
-		       << "\\usepackage{varwidth}"
-		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
-		       << "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
-	}
-	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	if (!rootDoc) return;
+	QStringList header = makePreviewHeader(rootDoc);
+	if (header.isEmpty()) return;
 	PreviewSource ps(originalText, previewc.selectionStart().lineNumber(), previewc.selectionEnd().lineNumber(), false);
-	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), edView->editor->document()->codec());
+	buildManager.preview(header.join("\n"), ps,  documents.getCompileFileName(), rootDoc->codec());
 
 	if (!addToList)
 		return;
@@ -8033,17 +8246,58 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 	}
 }
 
+QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
+{
+	LatexEditorView *edView = rootDoc->getEditorView();
+	if (!edView) QStringList();
+	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
+	if (m_endingLine < 0) return QStringList(); // can't create header
+	QStringList header;
+	for (int l = 0; l < m_endingLine; l++) {
+		const QString &line = edView->editor->document()->line(l).text();
+		int start = line.indexOf("\\input{");
+		if (start < 0) {
+			header << line;
+		} else {
+			// rewrite input to absolute paths
+			QString newLine(line);
+			start += 7;  // behind curly brace of \\input{
+			int end = newLine.indexOf('}', start);
+			if (end >= 0) {
+				QString filename(newLine.mid(start, end - start));
+				newLine.replace(start, end - start, documents.getAbsoluteFilePath(filename));
+			}
+			header << newLine;
+		}
+	}
+	if ((buildManager.dvi2pngMode == BuildManager::DPM_EMBEDDED_PDF) && configManager.previewMode != ConfigManager::PM_EMBEDDED) {
+		header << "\\usepackage[active,tightpage]{preview}"
+		       << "\\usepackage{varwidth}"
+		       << "\\AtBeginDocument{\\begin{preview}\\begin{varwidth}{\\linewidth}}"
+		       << "\\AtEndDocument{\\end{varwidth}\\end{preview}}";
+	}
+	header << "\\pagestyle{empty}";// << "\\begin{document}";
+	return header;
+}
+
+/*!
+ * Add a format overlay to the provided selection. Existing overlays of the format will be deleted
+ * from all lines that are touched by the selection.
+ *
+ * \param c: a QDocumentCursor with a selection
+ * \param sid: formatScheme id
+ */
 void Texstudio::updateEmphasizedRegion(QDocumentCursor c, int sid)
 {
 	QDocument *doc = c.document();
 	QDocumentCursor ss = c.selectionStart();
 	QDocumentCursor se = c.selectionEnd();
 	for (int i = ss.anchorLineNumber(); i <= se.anchorLineNumber(); i++) {
-		int beg = i == ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
-		int en = i == se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
+		int begin = i == ss.anchorLineNumber() ? ss.anchorColumnNumber() : 0;
+		int end = i == se.anchorLineNumber() ? se.anchorColumnNumber() : doc->line(i).length();
 		if (sid > 0) {
 			doc->line(i).clearOverlays(sid);
-			doc->line(i).addOverlay(QFormatRange(beg, en - beg, sid));
+			doc->line(i).addOverlay(QFormatRange(begin, end - begin, sid));
 		} else {
 			// remove overlay if sid <0 (removes -sid)
 			doc->line(i).clearOverlays(-sid);
@@ -8147,14 +8401,6 @@ void Texstudio::symbolRemoveAllFavorites()
 	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
 }
 
-void Texstudio::editorTabContextMenu(const QPoint &point)
-{
-	if (point.isNull()) return;
-
-	QMenu *documentsMenu = getManagedMenu("main/view/documents");
-	documentsMenu->exec(EditorTabs->mapToGlobal(point));
-}
-
 void Texstudio::mostUsedSymbolsTriggered(bool direct)
 {
 	QAction *action = 0;
@@ -8232,12 +8478,12 @@ void Texstudio::editFindGlobal()
 void Texstudio::runSearch(SearchQuery *query)
 {
 	if (!currentEditorView() || !query) return;
-    QString searchText=currentEditorView()->getSearchText();
-    query->setExpression(searchText);
-    SearchResultWidget *srw=outputView->getSearchResultWidget();
-    if(srw){
-        srw->updateSearchExpr(searchText);
-    }
+	QString searchText = currentEditorView()->getSearchText();
+	query->setExpression(searchText);
+	SearchResultWidget *srw = outputView->getSearchResultWidget();
+	if (srw) {
+		srw->updateSearchExpr(searchText);
+	}
 	query->run(currentEditorView()->document);
 }
 
@@ -8300,17 +8546,21 @@ void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 		return;
 	}
 
-	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
-		if (inForeground || viewer->followCursor()) {
+	LatexDocument *doc = qobject_cast<LatexDocument *>(cur.document());
+	if (!doc) doc = documents.currentDocument;
+	if (doc) {
+		QString filename = doc->getFileNameOrTemporaryFileName();
+		if (!filename.isEmpty()) {
 			int lineNumber = cur.isValid() ? cur.lineNumber() : currentLine;
-			LatexDocument *doc = qobject_cast<LatexDocument *>(cur.document());
-			if (doc) {
-				int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
-				if (originalLineNumber >= 0) lineNumber = originalLineNumber;
-			}
+			int originalLineNumber = doc->lineToLineSnapshotLineNumber(cur.line());
+			if (originalLineNumber >= 0) lineNumber = originalLineNumber;
 			PDFDocument::DisplayFlags displayPolicy = PDFDocument::NoDisplayFlags;
 			if (inForeground) displayPolicy = PDFDocument::Raise | PDFDocument::Focus;
-			viewer->syncFromSource(getCurrentFileName(), lineNumber, displayPolicy);
+			foreach (PDFDocument *viewer, PDFDocument::documentList()) {
+				if (inForeground || viewer->followCursor()) {
+					viewer->syncFromSource(filename, lineNumber, displayPolicy);
+				}
+			}
 		}
 	}
 #endif
@@ -8341,7 +8591,12 @@ void Texstudio::fileCheckin(QString filename)
 		}
 	}
 }
-
+/*!
+ * \brief lock pdf file
+ *
+ * Determines pdf filename by using the current text file name and substitutes its extension to 'pdf'
+ * \param filename
+ */
 void Texstudio::fileLockPdf(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8356,7 +8611,13 @@ void Texstudio::fileLockPdf(QString filename)
 		svnLock(fi.filePath());
 	}
 }
-
+/*!
+ * \brief check-in pdf file
+ *
+ * Determines pdf filename by using the current text file name and substitutes its extension to 'pdf'
+ * If the file is not under version management, it tries to add the file.
+ * \param filename
+ */
 void Texstudio::fileCheckinPdf(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8373,7 +8634,10 @@ void Texstudio::fileCheckinPdf(QString filename)
 		svnadd(fn);
 	fileCheckin(fn);
 }
-
+/*!
+ * \brief svn update file
+ * \param filename
+ */
 void Texstudio::fileUpdate(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8385,7 +8649,12 @@ void Texstudio::fileUpdate(QString filename)
 	runCommand(cmd, &buffer);
 	outputView->insertMessageLine(buffer);
 }
-
+/*!
+ * \brief svn update work directory
+ *
+ * Uses the directory of the current file as cwd.
+ * \param filename
+ */
 void Texstudio::fileUpdateCWD(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8400,32 +8669,32 @@ void Texstudio::fileUpdateCWD(QString filename)
 	outputView->insertMessageLine(buffer);
 }
 
-void Texstudio::checkinAfterSave(QString filename,int checkIn)
+void Texstudio::checkinAfterSave(QString filename, int checkIn)
 {
-    if(checkIn>1){// special treatment for save
-        // 2: checkin
-        // 1: don't check in
-        checkin(filename);
-        if (configManager.svnUndo) currentEditor()->document()->clearUndo();
-    }
-    if(checkIn==0){ // from fileSaveAs
-        if (configManager.autoCheckinAfterSaveLevel > 1) {
-            if (svnadd(filename)) {
-                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-            } else {
-                //create simple repository
-                svncreateRep(filename);
-                svnadd(filename);
-                checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
-            }
-            // set SVN Properties if desired
-            if (configManager.svnKeywordSubstitution) {
-                QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
-                statusLabelProcess->setText(QString(" svn propset svn:keywords "));
-                runCommand(cmd, 0);
-            }
-        }
-    }
+	if (checkIn > 1) { // special treatment for save
+		// 2: checkin
+		// 1: don't check in
+		checkin(filename);
+		if (configManager.svnUndo) currentEditor()->document()->clearUndo();
+	}
+	if (checkIn == 0) { // from fileSaveAs
+		if (configManager.autoCheckinAfterSaveLevel > 1) {
+			if (svnadd(filename)) {
+				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+			} else {
+				//create simple repository
+				svncreateRep(filename);
+				svnadd(filename);
+				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
+			}
+			// set SVN Properties if desired
+			if (configManager.svnKeywordSubstitution) {
+				QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
+				statusLabelProcess->setText(QString(" svn propset svn:keywords "));
+				runCommand(cmd, 0);
+			}
+		}
+	}
 }
 
 void Texstudio::checkin(QString fn, QString text, bool blocking)
@@ -8850,6 +9119,7 @@ void Texstudio::generateBracketInverterMirror()
 	REQUIRE(currentEditor()->document() && currentEditor()->document()->languageDefinition());
 	QDocumentCursor orig, to;
 	currentEditor()->cursor().getMatchingPair(orig, to, false);
+	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 
 	PlaceHolder ph;
 	ph.cursor = orig.selectionStart();
@@ -8867,6 +9137,7 @@ void Texstudio::jumpToBracket()
 	QDocumentCursor orig, to;
 	const QDocumentCursor se = currentEditor()->cursor().selectionEnd();
 	se.getMatchingPair(orig, to, false);
+	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 	if (orig.selectionEnd() == se) currentEditor()->setCursor(to.selectionStart());
 	else currentEditor()->setCursor(to.selectionEnd());
 }
@@ -8878,7 +9149,7 @@ void Texstudio::selectBracket()
 	if (!currentEditor()->document()->languageDefinition()) return;
 	QDocumentCursor orig, to;
 	currentEditor()->cursor().getMatchingPair(orig, to, !sender()->property("minimal").toBool());
-	if (!orig.isValid() && !to.isValid()) return;
+	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 
 	if (sender()->property("line").toBool()) {
 		if (to < orig) to.setColumnNumber(0);
@@ -8939,15 +9210,20 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 	if (!loaded) {
 		Q_ASSERT(curPaths.count() > 0);
 		QFileInfo fi(getAbsoluteFilePath(curPaths[0] + name, defaultExt));
-		if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
-			int lineNr = -1;
-			if (currentEditor()) {
-				lineNr = currentEditor()->cursor().lineNumber();
+		if (fi.exists()) {
+			txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
+		} else {
+			if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
+				int lineNr = -1;
+				if (currentEditor()) {
+					lineNr = currentEditor()->cursor().lineNumber();
+				}
+				if (!fi.absoluteDir().exists())
+					fi.absoluteDir().mkpath(".");
+				fileNew(fi.absoluteFilePath());
+				qDebug() << doc->getFileName() << lineNr;
+				doc->patchStructure(lineNr, 1);
 			}
-			if (!fi.absoluteDir().exists())
-				fi.absoluteDir().mkpath(".");
-			fileNew(fi.absoluteFilePath());
-			doc->patchStructure(lineNr, 1);
 		}
 	}
 }
@@ -9222,22 +9498,16 @@ void Texstudio::latexModelViewMode()
 
 void Texstudio::moveDocumentToFront()
 {
-	moveDocumentToDest(0);
+	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
+	if (!entry || entry->type != StructureEntry::SE_DOCUMENT_ROOT) return;
+	editors->moveEditor(entry->document->getEditorView(), Editors::AbsoluteFront);
 }
 
 void Texstudio::moveDocumentToEnd()
 {
-	moveDocumentToDest(EditorTabs->count() - 1);
-}
-
-void Texstudio::moveDocumentToDest(int dest)
-{
 	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
 	if (!entry || entry->type != StructureEntry::SE_DOCUMENT_ROOT) return;
-	int cur = documents.documents.indexOf(entry->document);
-	if (cur < 0) return;
-	EditorTabs->moveTab(cur, dest);
-	editorTabMoved(cur, dest);
+	editors->moveEditor(entry->document->getEditorView(), Editors::AbsoluteEnd);
 }
 
 void Texstudio::importPackage(QString name)
@@ -9399,7 +9669,7 @@ void Texstudio::updateTexQNFA()
 		if (env.contains('*')) {
 			env.replace("*", "\\*");
 		}
-		addEnvironmentToDom(doc, env, envMode);
+		addEnvironmentToDom(doc, env, envMode, envMode != "verbatim");
 	}
 	// structure commands
 	addStructureCommandsToDom(doc, latexParser.possibleCommands);
@@ -9414,16 +9684,18 @@ void Texstudio::updateTexQNFA()
 	newLaTeX = m_lang.d;
 	Q_ASSERT(oldLaTeX != newLaTeX);
 
-	if (!EditorTabs) return;
-	documents.enablePatch(false);
-	foreach (LatexEditorView *edView, EditorTabs->editors()) {
-		QEditor *ed = edView->editor;
-        if (ed->languageDefinition() == oldLaTeX) {
-			ed->setLanguageDefinition(newLaTeX);
-			ed->highlight();
+	if (editors) {
+		documents.enablePatch(false);
+		foreach (LatexEditorView *edView, editors->editors()) {
+			QEditor *ed = edView->editor;
+			if (ed->languageDefinition() == oldLaTeX) {
+				ed->setLanguageDefinition(newLaTeX);
+				ed->highlight();
+			}
 		}
+		documents.enablePatch(true);
 	}
-	documents.enablePatch(true);
+	updateUserMacros(false); //update macro triggers depending on the language to newLatex
 }
 
 /// Updates the highlighting of environments specified via environmentAliases
@@ -9459,7 +9731,6 @@ void Texstudio::updateHighlighting()
 		return;
 
 	updateTexQNFA();
-	updateUserMacros(false); //update macros depending on the language to newLatex
 }
 
 void Texstudio::toggleGrammar(int type)
@@ -9741,7 +10012,9 @@ void Texstudio::declareConflictResolved()
 	runCommand(cmd, &buffer);
 	checkin(fn, "txs: commit after resolve");
 }
-
+/*!
+ * \brief mark svn conflict of current file resolved
+ */
 void Texstudio::fileInConflict()
 {
 	QEditor *mEditor = qobject_cast<QEditor *>(sender());
@@ -9879,11 +10152,11 @@ void Texstudio::recoverFromCrash()
 	}
 
 	//hide editor views in case the error occured during drawing
-	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors())
+	foreach (LatexEditorView *edView, txsInstance->editors->editors())
 		edView->hide();
 
 	//save recover information
-	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors()) {
+	foreach (LatexEditorView *edView, txsInstance->editors->editors()) {
 		QEditor *ed = edView ? edView->editor : 0;
 		if (ed && ed->isContentModified() && !ed->fileName().isEmpty())
 			ed->saveEmergencyBackup(ed->fileName() + ".recover.bak~");
@@ -9929,7 +10202,7 @@ void Texstudio::recoverFromCrash()
 
 	//print edit history
 	int i = 0;
-	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors()) {
+	foreach (LatexEditorView *edView, txsInstance->editors->editors()) {
 		Q_ASSERT(edView);
 		if (!edView) continue;
 
@@ -9953,7 +10226,7 @@ void Texstudio::recoverFromCrash()
 	}
 
 	//restore editor views
-	foreach (LatexEditorView *edView, txsInstance->EditorTabs->editors())
+	foreach (LatexEditorView *edView, txsInstance->editors->editors())
 		edView->show();
 
 	if (!programStopped)
@@ -10007,7 +10280,9 @@ void Texstudio::slowOperationEnded()
 {
 	Guardian::instance()->slowOperationEnded();
 }
-
+/*!
+ * \brief check current latex install as it is visible from txs
+ */
 void Texstudio::checkLatexInstall()
 {
 
@@ -10052,7 +10327,7 @@ void Texstudio::checkLatexInstall()
 
 	result += "\nTeXstudio:\n";
 	result += "Path        : " + QDir::toNativeSeparators(QCoreApplication::applicationFilePath()) + "\n";
-    result += "Program call: " + QCoreApplication::arguments().join(" ") + "\n";
+	result += "Program call: " + QCoreApplication::arguments().join(" ") + "\n";
 	result += "Setting file: " + QDir::toNativeSeparators(configManager.configFileName) + "\n";
 
 	result += "\nCommand configuration in TeXstudio:\n";
@@ -10069,8 +10344,13 @@ void Texstudio::checkLatexInstall()
 	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(result, false);
 }
-
-void Texstudio::checkCWLs(){
+/*!
+ * \brief display which cwls are loaded.
+ *
+ * This function is for debugging.
+ */
+void Texstudio::checkCWLs()
+{
 	bool newFile = currentEditor();
 	if (!newFile) fileNew();
 
@@ -10079,13 +10359,13 @@ void Texstudio::checkCWLs(){
 	QSet<QString> cwls;
 	// collect user commands and references
 	foreach (LatexDocument *doc, docs) {
-		const QSet<QString>& cwl = doc->getCWLFiles();
+		const QSet<QString> &cwl = doc->getCWLFiles();
 		cwls.unite(cwl);
 		res << doc->getFileName() + ": " + QStringList(cwl.toList()).join(", ");
 		QList<CodeSnippet> users = doc->userCommandList();
 		if (!users.isEmpty()) {
 			QString line = QString("\t%1 user commands: ").arg(users.size());
-			foreach (const CodeSnippet& cs, users) line += (line.isEmpty() ? "" : "; ") + cs.word;
+			foreach (const CodeSnippet & cs, users) line += (line.isEmpty() ? "" : "; ") + cs.word;
 			res << line;
 		}
 	}
@@ -10103,29 +10383,29 @@ void Texstudio::checkCWLs(){
 		} else package = documents.cachedPackages.value(s);
 
 		res << "\tpossible commands";
-		foreach (const QString& key, package.possibleCommands.keys())
+		foreach (const QString &key, package.possibleCommands.keys())
 			res << QString("\t\t%1: %2").arg(key).arg(QStringList(package.possibleCommands.value(key).toList()).join(", "));
 		res << "\tspecial def commands";
-		foreach (const QString& key, package.specialDefCommands.keys())
+		foreach (const QString &key, package.specialDefCommands.keys())
 			res << QString("\t\t%1: %2").arg(key).arg(package.specialDefCommands.value(key));
 		res << "\tspecial treatment commands";
-		foreach (const QString& key, package.specialDefCommands.keys()) {
+		foreach (const QString &key, package.specialDefCommands.keys()) {
 			QString line = QString("\t\t%1: ").arg(key);
-			foreach (const QPairQStringInt& pair, package.specialTreatmentCommands.value(key))
+			foreach (const QPairQStringInt &pair, package.specialTreatmentCommands.value(key))
 				line += QString("%1 (%2)").arg(pair.first).arg(pair.second) + ", ";
 			line.chop(2);
 			res << line;
 		}
 		res << QString("\toption Commands: %1").arg(QStringList(package.optionCommands.toList()).join(", "));
 		QString line = QString("\tkinds: ");
-		foreach (const QString& key, package.commandDescriptions.keys()){
-			const CommandDescription& cmd = package.commandDescriptions.value(key);
+		foreach (const QString &key, package.commandDescriptions.keys()) {
+			const CommandDescription &cmd = package.commandDescriptions.value(key);
 			line += key + "(" + cmd.toDebugString() + "), ";
 		}
 		line.chop(2);
 		res << line;
 		line = QString("\tall commands: ");
-		foreach (const CodeSnippet& cs, package.completionWords) line += (line.isEmpty() ? "" : "; ") + cs.word;
+		foreach (const CodeSnippet & cs, package.completionWords) line += (line.isEmpty() ? "" : "; ") + cs.word;
 		res << line;
 		res << "" << "";
 	}
@@ -10135,7 +10415,13 @@ void Texstudio::checkCWLs(){
 	currentEditorView()->editor->setText(res.join("\n"), false);
 
 }
-
+/*!
+ * \brief load document hidden
+ *
+ * when parsing a document, child-documents can be loaded automatically.
+ * They are loaded here into the hidden state.
+ * \param filename
+ */
 void Texstudio::addDocToLoad(QString filename)
 {
 	//qDebug()<<"fname:"<<filename;
@@ -10159,7 +10445,11 @@ void Texstudio::moveCursorTodlh()
 		}
 	}
 }
-
+/*!
+ * \brief open pdf documentation of latex packages in the internal viewer
+ * \param package package name
+ * \param command latex command to search within that documentation
+ */
 void Texstudio::openInternalDocViewer(QString package, const QString command)
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -10175,7 +10465,14 @@ void Texstudio::openInternalDocViewer(QString package, const QString command)
 	}
 #endif
 }
-
+/*!
+ * \brief close a latex environment
+ *
+ * If the cursor is after a \begin{env} which is not closed by the end of the document, \end{env} is inserted.
+ * This only works on a succeding line of the \begin{env} statement, not in the same line.
+ * This function uses information which is generated by the syntax checker.
+ * As the syntaxchecker works asynchronously, a small delay between typing and functioning of this action is mandatory though that delay is probably too small for any user to notice.
+ */
 void Texstudio::closeEnvironment()
 {
 	LatexEditorView *edView = currentEditorView();
@@ -10206,14 +10503,24 @@ void Texstudio::closeEnvironment()
 			if (env_end.isEmpty()) // last env is for internal use only
 				break;
 			if (e == mostRecentEnv) { // found, now close it
-				QString txt = "\\end{" + e.name + "}";
+				QString txt;
+				if (e.origName.isEmpty()) {
+					txt = "\\end{" + e.name + "}";
+				} else {
+					txt = e.origName;
+					int i = latexParser.mathStartCommands.indexOf(txt);
+					txt = latexParser.mathStopCommands.value(i);
+				}
 				m_edit->insertText(txt);
 				break;
 			}
 		}
 	}
 }
-
+/*!
+ * \brief make embedded viewer larger so that it covers the text edit
+ * If the viewer is not embedded, no action is performed.
+ */
 void Texstudio::enlargeEmbeddedPDFViewer()
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -10228,7 +10535,10 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 	viewer->setStateEnlarged(true);
 #endif
 }
-
+/*!
+ * \brief set size of embedded viewer back to previous value
+ * \param preserveConfig note change in config
+ */
 void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -10244,7 +10554,11 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 	viewer->setStateEnlarged(false);
 #endif
 }
-
+/*!
+ * \brief open extended search in bottom panel
+ *
+ * This is called from the editor search panel by pressing '+'.
+ */
 void Texstudio::showExtendedSearch()
 {
 	LatexEditorView *edView = currentEditorView();
@@ -10259,7 +10573,13 @@ void Texstudio::showExtendedSearch()
 	outputView->showPage(outputView->SEARCH_RESULT_PAGE);
 	runSearch(query);
 }
-
+/*!
+ * \brief change icon size of toolbars
+ *
+ * This is intended to have larger symbols on high-resolution screens.
+ * The change is instantly performed from the config dialog as visual feed-back.
+ * \param value size in points
+ */
 void Texstudio::changeIconSize(int value)
 {
 	setIconSize(QSize(value, value));
@@ -10269,7 +10589,13 @@ void Texstudio::changeIconSize(int value)
 	}
 #endif
 }
-
+/*!
+ * \brief change icon size for central tool-bar
+ *
+ * This is intended to have larger symbols on high-resolution screens.
+ * The change is instantly performed from the config dialog as visual feed-back.
+ * \param value size in points
+ */
 void Texstudio::changeSecondaryIconSize(int value)
 {
 	centralToolBar->setIconSize(QSize(value, value));
@@ -10288,7 +10614,14 @@ void Texstudio::changeSecondaryIconSize(int value)
 	}
 #endif
 }
-
+/*!
+ * \brief change symbol grid icon size
+ *
+ * This is intended to have larger symbols on high-resolution screens.
+ * The change is instantly performed from the config dialog as visual feed-back.
+ * \param value size in points
+ * \param changePanel change to a symbolgrid in sidepanel in order to make the change directly visible
+ */
 void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 {
 	if (changePanel && !qobject_cast<SymbolGridWidget *>(leftPanel->currentWidget())) {
@@ -10304,3 +10637,4 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 	}
 }
 
+/*! @} */

@@ -7,6 +7,7 @@ class QLanguageDefinition;
 class QLanguageFactory;
 class LatexDocument;
 
+
 class Macro
 {
 public:
@@ -16,16 +17,29 @@ public:
 	                      ST_FILE_SAVED = 0x40, ST_FILE_CLOSED = 0x80, ST_MASTER_CHANGED = 0x100,
 	                      ST_AFTER_TYPESET = 0x200, ST_AFTER_COMMAND_RUN = 0x400
 	                    };
+	enum Type { Snippet, Environment, Script };
+
 	Q_DECLARE_FLAGS(SpecialTriggers, SpecialTrigger)
 	Macro();
-	Macro(const QString &nname, const QString &ntag, const QString &nabbrev, const QString &ntrigger);
+	Macro(const QString &nname, const Macro::Type ntype, const QString &ntag, const QString &nabbrev, const QString &ntrigger);
+	Macro(const QString &nname, const QString &typedTag, const QString &nabbrev=QString(), const QString &ntrigger=QString());
 	Macro(const QStringList &fieldList);
-	QString name, tag, abbrev;
+
+	static Macro fromTypedTag(const QString &typedTag);
+
+	QString name, abbrev;
+	Type type;
 	QString trigger;
 	QRegExp triggerRegex;
 	bool triggerLookBehind;
 
 	QStringList toStringList() const;
+
+	QString snippet() const;
+	QString script() const;
+
+	QString typedTag() const;
+	static QString parseTypedTag(QString typedTag, Macro::Type &retType);
 
 	void parseTriggerLanguage(QLanguageFactory *langFactory);
 	bool isActiveForTrigger(SpecialTrigger trigger) const;
@@ -35,9 +49,10 @@ public:
 	LatexDocument *document;
 
 private:
-	void init(const QString &nname, const QString &ntag, const QString &nabbrev, const QString &ntrigger);
+	void init(const QString &nname, Macro::Type ntype, const QString &ntag, const QString &nabbrev, const QString &ntrigger);
 	void initTriggerFormats();
 
+	QString tag;
 	SpecialTriggers triggers;
 
 	QString triggerLanguage;
@@ -47,6 +62,17 @@ private:
 	QList<int> triggerFormats;
 	QString triggerFormatExcludesUnprocessed;
 	QList<int> triggerFormatExcludes;
+};
+
+
+class MacroExecContext {
+public:
+	MacroExecContext() { triggerId = Macro::ST_NO_TRIGGER; }
+	MacroExecContext(int triggerType) { this->triggerId = triggerType; }
+	MacroExecContext(int triggerType, QStringList triggerMatches) { this->triggerId = triggerType; this->triggerMatches = triggerMatches; }
+
+	int triggerId;
+	QStringList triggerMatches;
 };
 
 #endif // USERMACRO_H

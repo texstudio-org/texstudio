@@ -270,7 +270,7 @@ void SpellerManager::setDictPaths(const QStringList &dictPaths)
 void SpellerManager::scanForDictionaries(const QString &path)
 {
 	if (path.isEmpty()) return;
-	QDirIterator iterator(path, QDirIterator::Subdirectories);
+    QDirIterator iterator(path);
 	while (iterator.hasNext()) {
 		iterator.next();
 		if (!iterator.fileInfo().isDir()) {

@@ -50,6 +50,9 @@
 #include "bidiextender.h"
 
 //------------------------------Default Input Binding--------------------------------
+/*!
+ * \brief default keyboard binding for normal operation
+ */
 class DefaultInputBinding: public QEditorInputBinding
 {
 	//  Q_OBJECT not possible because inputbinding is no qobject
@@ -118,8 +121,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 
 			LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
 			REQUIRE_RET(view, true);
-			view->insertMacro(m.tag, r, Macro::ST_REGEX);
-			//editor->insertText(c, m.tag);
+			emit view->execMacro(m, MacroExecContext(Macro::ST_REGEX, r.capturedTexts()));
 			if (block) editor->document()->endMacro();
 			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 			/*			if (editor->languageDefinition())
@@ -576,7 +578,7 @@ DefaultInputBinding *defaultInputBinding = new DefaultInputBinding();
 LatexCompleter *LatexEditorView::completer = 0;
 int LatexEditorView::hideTooltipWhenLeavingLine = -1;
 
-Q_DECLARE_METATYPE(LatexEditorView *)
+//Q_DECLARE_METATYPE(LatexEditorView *)
 
 LatexEditorView::LatexEditorView(QWidget *parent, LatexEditorViewConfig *aconfig, LatexDocument *doc) : QWidget(parent), document(0), latexPackageList(0), spellerManager(0), speller(0), useDefaultSpeller(true), curChangePos(-1), config(aconfig), bibReader(0)
 {
@@ -700,28 +702,160 @@ void LatexEditorView::paste()
 	}
 }
 
-void LatexEditorView::insertMacro(QString macro, const QRegExp &trigger, int triggerId, bool allowWrite)
+void LatexEditorView::insertSnippet(QString text)
 {
-	if (macro.isEmpty()) return;
-	if (macro.left(8) == "%SCRIPT\n") {
-		scriptengine *eng = new scriptengine();
-		for (int i = 0; i <= trigger.captureCount(); i++)
-			eng->triggerMatches << trigger.cap(i);
-		eng->triggerId = triggerId;
-		if (this) eng->setEditorView(this);
-		macro = macro.remove(0, 8);
-		eng->setScript(macro, allowWrite);
-		eng->run();
-		if (!eng->globalObject) delete eng;
-		else QObject::connect(reinterpret_cast<QObject *>(eng->globalObject), SIGNAL(destroyed()), eng, SLOT(deleteLater()));
-		return;
+	CodeSnippet(text).insert(editor);
+}
+
+void LatexEditorView::deleteLines(bool toStart, bool toEnd)
+{
+	QList<QDocumentCursor> cursors = editor->cursors();
+	if (cursors.empty()) return;
+	document->beginMacro();
+	for (int i=0;i<cursors.size();i++)
+		cursors[i].removeSelectedText();
+
+	int cursorLine = cursors[0].lineNumber();
+	QMultiMap< int, QDocumentCursor* > map = getSelectedLines(cursors);
+	QList<int> lines = map.uniqueKeys();
+	QList<QDocumentCursor> newMirrors;
+	for (int i=lines.size()-1;i>=0;i--) {
+		QList<QDocumentCursor*> cursors = map.values(lines[i]);
+		REQUIRE(cursors.size());
+		if (toStart && toEnd) cursors[0]->eraseLine();
+		else {
+			int len = document->line(lines[i]).length();
+			int column = toStart ? 0 : len;
+			foreach (QDocumentCursor* c, cursors)
+				if (toStart) column = qMax(c->columnNumber(), column);
+				else column = qMin(c->columnNumber(), column);
+			QDocumentCursor c = document->cursor(lines[i], column, lines[i], toStart ? 0 : len);
+			c.removeSelectedText();
+
+			if (!toStart || !toEnd){
+				if (lines[i] == cursorLine) editor->setCursor(c);
+				else newMirrors << c;
+			}
+		}
 	}
-	if (!this) return;
-	if (macro.size() > 1 && macro.startsWith("%") && !macro.startsWith("%%")) {
-		macro = macro.remove(0, 1);
-		CodeSnippet s("\\begin{" + macro + "}");
-		s.insert(editor);
-	} else CodeSnippet(macro).insert(editor);
+	document->endMacro();
+	if (!toStart || !toEnd)
+		for (int i=0;i<newMirrors.size();i++)
+			editor->addCursorMirror(newMirrors[i]); //one cursor / line
+}
+
+void LatexEditorView::moveLines(int delta)
+{
+	REQUIRE(delta == -1 || delta == +1);
+	QList<QDocumentCursor> cursors = editor->cursors();
+	for (int i=0;i<cursors.length();i++)
+		cursors[i].setAutoUpdated(false);
+	QList<QPair<int, int> > blocks = getSelectedLineBlocks();
+	document->beginMacro();
+	int i = delta < 0 ? blocks.size() - 1 : 0;
+	while (i >= 0 && i < blocks.size()) {
+		//edit
+		QDocumentCursor edit = document->cursor(blocks[i].first, 0, blocks[i].second);
+		QString text = edit.selectedText();
+		edit.removeSelectedText();
+		edit.eraseLine();
+		if (delta < 0) {
+			if (blocks[i].second < document->lineCount())
+				edit.movePosition(1, QDocumentCursor::PreviousLine);
+			edit.movePosition(1, QDocumentCursor::StartOfLine);
+			edit.insertText(text + "\n");
+		} else {
+			edit.movePosition(1, QDocumentCursor::EndOfLine);
+			edit.insertText("\n" + text);
+		}
+		i += delta;
+	}
+	document->endMacro();
+	//move cursors
+	for (int i=0;i<cursors.length();i++) {
+		cursors[i].setAutoUpdated(true);
+		if (cursors[i].hasSelection()) {
+			cursors[i].setAnchorLineNumber(cursors[i].anchorLineNumber() + delta);
+			cursors[i].setLineNumber(cursors[i].lineNumber() + delta, QDocumentCursor::KeepAnchor);
+		} else
+			cursors[i].setLineNumber(cursors[i].lineNumber() + delta);
+		if (i == 0) editor->setCursor(cursors[i]);
+		else editor->addCursorMirror(cursors[i]);
+	}
+}
+
+QList<QPair<int, int> > LatexEditorView::getSelectedLineBlocks()
+{
+	QList<QDocumentCursor> cursors = editor->cursors();
+	QList<int> lines;
+	//get affected lines
+	for (int i=0;i<cursors.length();i++) {
+		if (cursors[i].hasSelection()) {
+			QDocumentSelection sel = cursors[i].selection();
+			for (int l=sel.startLine;l<=sel.endLine;l++)
+				lines << l;
+		} else lines << cursors[i].lineNumber();
+	}
+	qSort(lines);
+	//merge blocks as speed up and to remove duplicates
+	QList<QPair<int, int> > result;
+	int i = 0;
+	while (i < lines.size()) {
+		int start = lines[i];
+		int end = lines[i];
+		i++;
+		while ( i >= 0 && i < lines.size() && (lines[i] == end || lines[i] == end + 1)) {
+			end = lines[i];
+			i++;
+		}
+		result << QPair<int,int> (start, end);
+	}
+	return result;
+}
+
+QMultiMap<int, QDocumentCursor* > LatexEditorView::getSelectedLines(QList<QDocumentCursor>& cursors)
+{
+	QMultiMap<int, QDocumentCursor* > map;
+	for (int i=0;i<cursors.length();i++) {
+		if (cursors[i].hasSelection()) {
+			QDocumentSelection sel = cursors[i].selection();
+			for (int l=sel.startLine;l<=sel.endLine;l++)
+				map.insert(l, &cursors[i]);
+		} else map.insert(cursors[i].lineNumber(), &cursors[i]);
+	}
+	return map;
+}
+
+bool cursorPointerLessThan(QDocumentCursor* c1, QDocumentCursor* c2)
+{
+	return c1->columnNumber() < c2->columnNumber();
+}
+
+void LatexEditorView::alignMirrors()
+{
+	QList<QDocumentCursor> cursors = editor->cursors();
+	QMultiMap<int, QDocumentCursor* > map = getSelectedLines(cursors);
+	QList<int> lines = map.uniqueKeys();
+	QList<QList<QDocumentCursor*> > cs;
+	int colCount = 0;
+	foreach (int l, lines) {
+		QList<QDocumentCursor*> row = map.values(l);
+		colCount = qMax(colCount, row.size());
+		qSort(row.begin(), row.end(), cursorPointerLessThan);
+		cs.append(row);
+	}
+	document->beginMacro();
+	for (int col=0;col<colCount;col++) {
+		int pos = 0;
+		for (int j=0;j<cs.size();j++)
+			if (col < cs[j].size())
+				pos = qMax(pos, cs[j][col]->columnNumber());
+		for (int j=0;j<cs.size();j++)
+			if (col < cs[j].size() && pos > cs[j][col]->columnNumber()) {
+				cs[j][col]->insertText(QString(pos -  cs[j][col]->columnNumber(), ' '));
+			}
+	}
+	document->endMacro();
 }
 
 void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
@@ -888,9 +1022,23 @@ void LatexEditorView::viewActivated()
 	if (!LatexEditorView::completer) return;
 }
 
+/*!
+ * Returns the name to be displayed when a short textual reference to the editor is required
+ * such as in the tab or in a list of open documents.
+ * This name is not necessarily unique.
+ */
 QString LatexEditorView::displayName() const
 {
 	return (!editor || editor->fileName().isEmpty() ? tr("untitled") : editor->name());
+}
+
+/*!
+ * Returns the displayName() with properly escaped ampersands for UI elements
+ * such as tabs and actions.
+ */
+QString LatexEditorView::displayNameForUI() const
+{
+	return displayName().replace('&', "&&");
 }
 
 void LatexEditorView::complete(int flags)
@@ -947,6 +1095,7 @@ void LatexEditorView::removeBookmark(QDocumentLineHandle *dlh, int bookmarkNumbe
 	int rmid = bookMarkId(bookmarkNumber);
 	if (hasBookmark(dlh, bookmarkNumber)) {
 		document->removeMark(dlh, rmid);
+        editor->removeMark(dlh,"bookmark");
 		emit bookmarkRemoved(dlh);
 	}
 }
@@ -959,10 +1108,15 @@ void LatexEditorView::removeBookmark(int lineNr, int bookmarkNumber)
 void LatexEditorView::addBookmark(int lineNr, int bookmarkNumber)
 {
 	int rmid = bookMarkId(bookmarkNumber);
-	if (bookmarkNumber >= 0)
-		document->line(document->findNextMark(rmid)).removeMark(rmid);
-	if (!document->line(lineNr).hasMark(rmid))
+    if (bookmarkNumber >= 0){
+        int ln=document->findNextMark(rmid);
+		document->line(ln).removeMark(rmid);
+        editor->removeMark(document->line(ln).handle(),"bookmark");
+    }
+    if (!document->line(lineNr).hasMark(rmid)){
 		document->line(lineNr).addMark(rmid);
+        editor->addMark(document->line(lineNr).handle(),Qt::darkMagenta,"bookmark");
+    }
 }
 
 bool LatexEditorView::hasBookmark(int lineNr, int bookmarkNumber)
@@ -986,6 +1140,7 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 	int rmid = bookMarkId(bookmarkNumber);
 	if (line.hasMark(rmid)) {
 		line.removeMark(rmid);
+        editor->removeMark(line.handle(),"bookmark");
 		emit bookmarkRemoved(line.handle());
 		return false;
 	}
@@ -993,6 +1148,7 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int ln = editor->document()->findNextMark(rmid);
 		if (ln >= 0) {
 			editor->document()->line(ln).removeMark(rmid);
+            editor->removeMark(editor->document()->line(ln).handle(),"bookmark");
 			emit bookmarkRemoved(editor->document()->line(ln).handle());
 		}
 	}
@@ -1000,10 +1156,12 @@ bool LatexEditorView::toggleBookmark(int bookmarkNumber, QDocumentLine line)
 		int rmid = bookMarkId(i);
 		if (line.hasMark(rmid)) {
 			line.removeMark(rmid);
+            editor->removeMark(line.handle(),"bookmark");
 			emit bookmarkRemoved(line.handle());
 		}
 	}
 	line.addMark(rmid);
+    editor->addMark(line.handle(),Qt::darkMagenta,"bookmark");
 	emit bookmarkAdded(line.handle(), bookmarkNumber);
 	return true;
 }
@@ -1520,6 +1678,7 @@ void LatexEditorView::lineMarkClicked(int line)
 	for (int i = -1; i < 10; i++)
 		if (l.hasMark(bookMarkId(i))) {
 			l.removeMark(bookMarkId(i));
+            editor->removeMark(l.handle(),"bookmark");
 			emit bookmarkRemoved(l.handle());
 			return;
 		}
@@ -1540,11 +1699,13 @@ void LatexEditorView::lineMarkClicked(int line)
 	for (int i = 1; i <= 10; i++) {
 		if (editor->document()->findNextMark(bookMarkId(i % 10)) < 0) {
 			l.addMark(bookMarkId(i % 10));
+            editor->addMark(l.handle(),Qt::darkMagenta,"bookmark");
 			emit bookmarkAdded(l.handle(), i);
 			return;
 		}
 	}
 	l.addMark(bookMarkId(-1));
+    editor->addMark(l.handle(),Qt::darkMagenta,"bookmark");
 	emit bookmarkAdded(l.handle(), -1);
 }
 
@@ -1683,6 +1844,17 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			LineInfo temp;
 			temp.line = line.handle();
 			temp.text = line.text();
+            // blank irrelevant content, i.e. commands, non-text, comments, verbatim
+            QDocumentLineHandle *dlh = line.handle();
+            TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+            foreach(Tokens tk,tl){
+                if(tk.type==Tokens::word && tk.subtype==Tokens::none)
+                    continue;
+                if(tk.type==Tokens::punctuation && tk.subtype==Tokens::none)
+                    continue;
+                temp.text.replace(tk.start,tk.length,QString(tk.length,' '));
+            }
+
 			changedLines << temp;
 			if (line.firstChar() == -1) {
 				emit linesChanged(speller->name(), document, changedLines, truefirst);
@@ -1848,7 +2020,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
 						continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
 					int l = tk.length;
-					if (word.endsWith('.')) l--;
+					//if (word.endsWith('.')) l--; // tk.length is only word without point
 					line.addOverlay(QFormatRange(tk.start, l, SpellerUtility::spellcheckErrorFormat));
 					addedOverlaySpellCheckError = true;
 				}
@@ -2237,7 +2409,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}
-		if (tk.type == Tokens::imagefile && config->toolTipPreview) {
+		if (tk.type == Tokens::imagefile && config->imageToolTip) {
 			handled = true;
 			QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
 			QString fname;

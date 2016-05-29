@@ -15,7 +15,7 @@ class LatexLogWidget : public QWidget
 public:
 	explicit LatexLogWidget(QWidget *parent = 0);
 
-	bool loadLogFile(const QString &logname, const QString &compiledFileName);
+	bool loadLogFile(const QString &logname, const QString &compiledFileName, QTextCodec* fallbackCodec);
 	LatexLogModel *getLogModel() { return logModel; }
 
 	bool logEntryNumberValid(int logEntryNumber);

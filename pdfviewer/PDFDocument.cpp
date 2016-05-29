@@ -29,8 +29,9 @@
 #include <QRegion>
 #include <QUrl>
 #include <QShortcut>
+#include <QtCore/qnumeric.h>
+#include <QtCore/qmath.h>
 
-#include <math.h>
 #include "universalinputdialog.h"
 
 #include "configmanager.h"
@@ -49,8 +50,6 @@
 
 #define SYNCTEX_GZ_EXT	".synctex.gz"
 #define SYNCTEX_EXT		".synctex"
-
-#define ROUND(x) floor((x)+0.5)
 
 const qreal kMaxScaleFactor = 4.0;
 const qreal kMinScaleFactor = 0.125;
@@ -534,12 +533,12 @@ PDFWidget::PDFWidget(bool embedded)
 	connect(action, SIGNAL(triggered()), this, SLOT(fitWindow()));
 	addAction(action);
 
-	if (!embedded) {
-		shortcutUp = new QShortcut(QKeySequence("Up"), this, SLOT(upOrPrev()));
-		shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()));
-		shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()));
-		shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()));
-	}
+	Qt::ShortcutContext context = embedded ? Qt::WidgetWithChildrenShortcut : Qt::WindowShortcut;
+	shortcutUp = new QShortcut(QKeySequence("Up"), this, SLOT(upOrPrev()), 0, context);
+	shortcutLeft = new QShortcut(QKeySequence("Left"), this, SLOT(leftOrPrev()), 0, context);
+	shortcutDown = new QShortcut(QKeySequence("Down"), this, SLOT(downOrNext()), 0, context);
+	shortcutRight = new QShortcut(QKeySequence("Right"), this, SLOT(rightOrNext()), 0, context);
+
 	highlightRemover.setSingleShot(true);
 	highlightPage = -1;
 	connect(&highlightRemover, SIGNAL(timeout()), this, SLOT(clearHighlight()));
@@ -943,7 +942,7 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 void PDFWidget::goToDestination(const Poppler::LinkDestination &dest)
 {
 	if (dest.pageNumber() > 0)
-		goToPageRelativePosition(dest.pageNumber() - 1, dest.isChangeLeft() ? dest.left() : NAN, dest.isChangeTop() ? dest.top() : NAN);
+		goToPageRelativePosition(dest.pageNumber() - 1, dest.isChangeLeft() ? dest.left() : qQNaN(), dest.isChangeTop() ? dest.top() : qQNaN());
 
 	/*if (dest.isChangeZoom()) {
 		// FIXME
@@ -965,17 +964,17 @@ void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
 
 	scrollArea->goToPage(page);
 
-	if (isnan(xinpdf)) xinpdf = 0;
+	if (qIsNaN(xinpdf)) xinpdf = 0;
 	xinpdf = qBound<float>(0, xinpdf, 1);
-	if (isnan(yinpdf)) yinpdf = 0;
+	if (qIsNaN(yinpdf)) yinpdf = 0;
 	yinpdf = qBound<float>(0, yinpdf, 1);
 
 	QPoint p = mapFromScaledPosition(page, QPointF( xinpdf, yinpdf));
 
-	if (!isnan(xinpdf))
+	if (!qIsNaN(xinpdf))
 		scrollArea->horizontalScrollBar()->setValue(p.x());
 
-	if (!isnan(yinpdf)) {
+	if (!qIsNaN(yinpdf)) {
 		int val = 0;
 		if (scrollArea->getContinuous())
 			val = scrollArea->verticalScrollBar()->value();
@@ -1207,7 +1206,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		if (event->buttons() == Qt::RightButton) {
 			inhibitNextContextMenuEvent = true;
 		}
-		if (qAbs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
+		if (qFabs(summedWheelDegrees) >= degreesPerStep ) { //avoid small zoom changes, as they use a lot of memory
 			doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
 			summedWheelDegrees = 0;
 		}
@@ -1220,7 +1219,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 		if (scrollBar->minimum() < scrollBar->maximum()) { //if scrollbar visible
 			int oldValue = scrollBar->value();
 			const int scrollPerWheelStep = scrollBar->singleStep() * QApplication::wheelScrollLines();
-			scrollBar->setValue(scrollBar->value() - round(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
+			scrollBar->setValue(scrollBar->value() - qRound(scrollPerWheelStep * summedWheelDegrees / degreesPerStep));
 			int delta = oldValue - scrollBar->value();
 			if (delta != 0) {
 				lastScrollTime = QTime::currentTime();
@@ -1887,14 +1886,14 @@ void PDFWidget::doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor) //
 	QPoint globalPos = mapToGlobal(clickPos);
 	if (dir > 0 && scaleFactor < kMaxScaleFactor) {
 		scaleFactor *= zoomStepFactor;
-		if (fabs(scaleFactor - ROUND(scaleFactor)) < 0.01)
-			scaleFactor = ROUND(scaleFactor);
+		if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+			scaleFactor = qRound(scaleFactor);
 		if (scaleFactor > kMaxScaleFactor)
 			scaleFactor = kMaxScaleFactor;
 	} else if (dir < 0 && scaleFactor > kMinScaleFactor) {
 		scaleFactor /= zoomStepFactor;
-		if (fabs(scaleFactor - ROUND(scaleFactor)) < 0.01)
-			scaleFactor = ROUND(scaleFactor);
+		if (qFabs(scaleFactor - qRound(scaleFactor)) < 0.01)
+			scaleFactor = qRound(scaleFactor);
 		if (scaleFactor < kMinScaleFactor)
 			scaleFactor = kMinScaleFactor;
 	} else if (dir == 0) {
@@ -2368,39 +2367,36 @@ void PDFDocument::init(bool embedded)
 	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
 	actionNext_Page->setIcon(getRealIcon("go-next"));
 	actionLast_Page->setIcon(getRealIcon("go-last"));
-
-	if (embedded) {
-		shortcutOnlyIfFocused(QList<QAction *>()
-		                      << actionNext_Page
-		                      << actionPrevious_Page
-		                     );
-	}
 	actionZoom_In->setIcon(getRealIcon("zoom-in"));
 	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
 	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
 	actionActual_Size->setIcon(getRealIcon("zoom-original"));
 	actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
 	actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
-	actionNew->setIcon(getRealIcon("filenew"));
-	actionFileOpen->setIcon(getRealIcon("fileopen"));
+	actionNew->setIcon(getRealIcon("docuemtn-new"));
+	actionFileOpen->setIcon(getRealIcon("document-open"));
 	actionClose->setIcon(getRealIcon("close"));
 	action_Print->setIcon(getRealIcon("fileprint"));
 #ifdef Q_OS_WIN32
 	//action_Print->setVisible(false);
 #endif
-	actionUndo->setIcon(getRealIcon("undo"));
-	actionRedo->setIcon(getRealIcon("redo"));
-	actionCut->setIcon(getRealIcon("cut"));
-	actionCopy->setIcon(getRealIcon("copy"));
-	actionPaste->setIcon(getRealIcon("paste"));
+	actionUndo->setIcon(getRealIcon("edit-undo"));
+	actionRedo->setIcon(getRealIcon("edit-redo"));
+	actionCut->setIcon(getRealIcon("edit-cut"));
+	actionCopy->setIcon(getRealIcon("edit-copy"));
+	actionPaste->setIcon(getRealIcon("edit-paste"));
 	actionMagnify->setIcon(getRealIcon("zoom-in"));
 	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(getRealIcon("build"));
 	actionEnlargeViewer->setIcon(getRealIcon("view-left-close"));
 	actionShrinkViewer->setIcon(getRealIcon("embedded-viewer"));
 
-	actionCursor_follows_scrolling->setIcon(getRealIcon("syncSource"));
-	actionScrolling_follows_cursor->setIcon(getRealIcon("syncViewer"));
+	QIcon icon = getRealIcon("syncSource-off");
+	icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
+	actionCursor_follows_scrolling->setIcon(icon);
+	icon = getRealIcon("syncViewer-off");
+	icon.addFile(getRealIconFile("syncViewer"), QSize(), QIcon::Normal, QIcon::On);
+	actionScrolling_follows_cursor->setIcon(icon);
 
 	if (embedded) {
 		actionToggleEmbedded->setIcon(getRealIcon("windowed-viewer"));
@@ -2485,7 +2481,6 @@ void PDFDocument::init(bool embedded)
 
 	pageLabel = new QLabel(statusBar());
 	statusBar()->addPermanentWidget(pageLabel);
-	pageLabel->setFont(statusBar()->font());
 
 	scaleButton = new QToolButton(toolBar);
 	scaleButton->setToolTip(tr("Scale"));
@@ -2953,7 +2948,7 @@ retryNow:
 			pdfWidget->setFocus();
 
 		// set page viewer only once
-		int maxDigits = 1 + floor(log10(pdfWidget->realNumPages()));
+                int maxDigits = 1 + qFloor(log10(pdfWidget->realNumPages()));
 		//if (maxDigits < 2) maxDigits = 2;
 		leCurrentPage->setMaxLength(maxDigits);
 		leCurrentPage->setFixedWidth(fontMetrics().width(QString(maxDigits + 1, '#')));
@@ -3589,7 +3584,7 @@ void PDFDocument::showPage(int page)
 
 void PDFDocument::showScale(qreal scale)
 {
-	QString scaleString = QString("%1%").arg(ROUND(scale * 100.0));
+	QString scaleString = QString("%1%").arg(qRound(scale * 100.0));
 	scaleButton->setText(scaleString);
 	zoomSlider->blockSignals(true);
 	// don't emit value changed: This is only used to update the value. It does not initiate changes

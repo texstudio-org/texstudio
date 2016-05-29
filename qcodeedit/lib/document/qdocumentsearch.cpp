@@ -137,7 +137,7 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 
 	QDocumentCursor hc = hscope.selectionStart();
 	QDocumentSelection boundaries=hscope.selection();
-	QRegExp m_regexp = currentRegExp();
+	recreateRegExp();
 	
 	if (!clearAll) {//otherwise it was already cleaned above
 		int from = boundaries.startLine, to = boundaries.endLine;
@@ -179,7 +179,36 @@ void QDocumentSearch::searchMatches(const QDocumentCursor& subHighlightScope, bo
 			}
 		} else hc.movePosition(1, QDocumentCursor::NextBlock, QDocumentCursor::ThroughFolding);
 	}
-
+    int begLine=0;
+    int endLine=d->lines();
+    int offset=0;
+    int endOffset=-1;
+    if (m_scope.isValid() && m_scope.hasSelection()){
+        QDocumentSelection boundaries=m_scope.selection();
+        begLine=boundaries.startLine;
+        endLine=boundaries.endLine+1;
+        offset=boundaries.start;
+        endOffset=boundaries.end;
+    }
+    if(clearSelection){
+        // don't run again when only visibleLines is changed
+        // remove old marks first
+        m_editor->removeMark("search");
+        bool needsUpdate=false;
+        for(int i=begLine;i<endLine;i++){
+            QString txt=d->line(i).text();
+            if((endOffset>=0)&&(i+1==endLine)){
+                txt=txt.left(endOffset);
+            }
+            if(m_regexp.indexIn(txt,offset)>-1){
+                m_editor->addMarkDelayed(i,Qt::darkYellow,"search");
+                needsUpdate=true;
+            }
+            offset=0;
+        }
+        if(needsUpdate)
+            m_editor->paintMarks();
+    }
 	m_editor->viewport()->update();
 }
 
@@ -200,7 +229,10 @@ void QDocumentSearch::clearMatches()
 	foreach (QDocumentLineHandle* h, m_highlights)
 		QDocumentLine(h).clearOverlays(sid);
 
+    m_editor->removeMark("search");
+    m_editor->removeMark("replace");
 	m_highlights.clear();
+    m_newReplacementOverlays.clear();
 	m_searchedScope = QDocumentCursor();
 	//qDebug("clearing matches");
 
@@ -234,14 +266,13 @@ QDocument* QDocumentSearch::currentDocument(){
 /*
   returns a regexp which fully describes the search text (including flags like casesensitivity, wholewords,...)
   */
-QRegExp QDocumentSearch::currentRegExp(){
+void QDocumentSearch::recreateRegExp(){
 	Qt::CaseSensitivity cs = hasOption(CaseSensitive)
 								?
 									Qt::CaseSensitive
 								:
 									Qt::CaseInsensitive;
 	
-	QRegExp m_regexp;
 	if ( hasOption(RegExp) )
 	{
 		m_regexp = QRegExp(m_string, cs, QRegExp::RegExp);
@@ -256,7 +287,6 @@ QRegExp QDocumentSearch::currentRegExp(){
 	} else {
 		m_regexp = QRegExp(m_string, cs, QRegExp::FixedString);
 	}
-	return m_regexp;
 }
 
 
@@ -366,6 +396,58 @@ void QDocumentSearch::setReplaceText(const QString& r)
 	m_lastReplacedPosition = QDocumentCursor();
 }
 
+
+static QString escapeCpp(const QString& s)
+{
+	QString es;
+//TODO: numbers (e.g. \xA6)
+	for ( int i = 0; i < s.count(); ++i )
+	{
+		if ( (s.at(i) == '\\') && ((i + 1) < s.count()) )
+		{
+			QChar c = s.at(++i);
+
+			if ( c == '\\' )
+				es += '\\';
+			else if ( c == 't' )
+				es += '\t';
+			else if ( c == 'n' )
+				es += '\n';
+			else if ( c == 'r' )
+				es += '\r';
+			//else if ( c == '0' )
+			//	es += '\0';
+			else es += '\\', es += c;
+
+		} else {
+			es += s.at(i);
+		}
+	}
+
+	//qDebug("\"%s\" => \"%s\"", qPrintable(s), qPrintable(es));
+
+	return es;
+}
+
+/*!
+	\return the replacement text after expanding escape characters
+*/
+
+QString QDocumentSearch::replaceTextExpanded() const
+{
+	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
+
+	if (hasOption(RegExp))
+#if QT_VERSION<0x040600
+	   for ( int i = m_regexp.numCaptures(); i >= 0; --i )
+#else
+	   for ( int i = m_regexp.captureCount(); i >= 0; --i )
+#endif
+			replacement.replace(QString("\\") + QString::number(i),
+								m_regexp.cap(i));
+	return replacement;
+}
+
 QDocumentCursor QDocumentSearch::lastReplacedPosition() const{
 	return m_lastReplacedPosition;
 }
@@ -468,13 +550,13 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 
 	QDocumentCursor firstMatch;
 
-	QRegExp m_regexp=currentRegExp();
+	recreateRegExp();
 	
 	int replaceCount = 0;
 	
 	if (hasOption(Replace) && again && !all) 
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
-			replaceCursorText(m_regexp,backward);
+			replaceCursorText(backward);
 			updateReplacementOverlays();
 			replaceCount++;
 			//foundCount++; we can't set this here, because it has to search the next match
@@ -624,7 +706,7 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 					}
 					
 					if ( rep ) {
-						replaceCursorText(m_regexp,backward);
+						replaceCursorText(backward);
 						if (!all) updateReplacementOverlays();
 						replaceCount++;
 					}
@@ -718,52 +800,11 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 }
 /*! @} */
 
-static QString escapeCpp(const QString& s)
-{
-	QString es;
-//TODO: numbers (e.g. \xA6)
-	for ( int i = 0; i < s.count(); ++i )
-	{
-		if ( (s.at(i) == '\\') && ((i + 1) < s.count()) )
-		{
-			QChar c = s.at(++i);
 
-			if ( c == '\\' )
-				es += '\\';
-			else if ( c == 't' )
-				es += '\t';
-			else if ( c == 'n' )
-				es += '\n';
-			else if ( c == 'r' )
-				es += '\r';
-			//else if ( c == '0' )
-			//	es += '\0';
-			else es += '\\', es += c;
 
-		} else {
-			es += s.at(i);
-		}
-	}
-
-	//qDebug("\"%s\" => \"%s\"", qPrintable(s), qPrintable(es));
-
-	return es;
-}
-
-void QDocumentSearch::replaceCursorText(QRegExp& m_regexp,bool backward){
-	QString replacement = hasOption(EscapeSeq)?escapeCpp(m_replace):m_replace;
-	
-	if (hasOption(RegExp)) 
-#if QT_VERSION<0x040600
-        for ( int i = m_regexp.numCaptures(); i >= 0; --i )
-#else
-        for ( int i = m_regexp.captureCount(); i >= 0; --i )
-#endif
-			replacement.replace(QString("\\") + QString::number(i),
-								m_regexp.cap(i));
-
+void QDocumentSearch::replaceCursorText(bool backward){
 	QDocumentSelection old_boundaries = m_cursor.selection();
-	m_cursor.replaceSelectedText(replacement);
+	m_cursor.replaceSelectedText(replaceTextExpanded());
 	m_newReplacementOverlays << QPair<QDocumentSelection,QDocumentSelection>(old_boundaries, m_cursor.selection());
 
 	m_lastReplacedPosition = m_cursor;
@@ -785,6 +826,7 @@ void QDocumentSearch::updateReplacementOverlays(){
 		return;
 	}
 	int rid = d->getFormatId("replacement");
+    m_editor->removeMark("replace");
 	if (!hasOption(HighlightReplacements) || !rid)  {
 		m_newReplacementOverlays.clear();
 		return;
@@ -794,13 +836,15 @@ void QDocumentSearch::updateReplacementOverlays(){
 		QDocumentLine startLine = d->line(boundaries.startLine);
 		QDocumentLine endLine = d->line(boundaries.endLine);
 		m_highlightedReplacements.insert(startLine.handle());
-		if (boundaries.startLine == boundaries.endLine)  //single line replacement
+        if (boundaries.startLine == boundaries.endLine){  //single line replacement
 			startLine.addOverlay(QFormatRange(boundaries.start, boundaries.end - boundaries.start, rid));
-		else {
+            m_editor->addMark(boundaries.startLine,Qt::red,"replace");
+		} else {
 			//multi line replacement
 			m_highlightedReplacements.insert(endLine.handle());
 			startLine.addOverlay(QFormatRange(boundaries.start, startLine.length() - boundaries.start, rid));
 			endLine.addOverlay(QFormatRange(0, boundaries.end, rid));
+            m_editor->addMarkRange(boundaries.startLine,boundaries.endLine,Qt::red,"replace");
 			for (int i=boundaries.startLine+1; i<boundaries.endLine; i++){
 				QDocumentLine curLine = d->line(i);
 				m_highlightedReplacements.insert(curLine.handle());

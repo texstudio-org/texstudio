@@ -58,8 +58,11 @@ class GrammarCheck : public QObject
 public:
 	explicit GrammarCheck(QObject *parent = 0);
 	~GrammarCheck();
+	enum LTStatus {LTS_Unknown, LTS_Working, LTS_Error};
+	LTStatus languageToolStatus() { return ltstatus; }
 signals:
 	void checked(const void *doc, const void *line, int lineNr, QList<GrammarError> errors);
+	void languageToolStatusChanged();
 public slots:
 	void init(const LatexParser &lp, const GrammarCheckerConfig &config);
 	void check(const QString &language, const void *doc, const QList<LineInfo> &lines, int firstLineNr);
@@ -70,6 +73,8 @@ private slots:
 	void backendChecked(uint ticket, int subticket, const QList<GrammarError> &errors, bool directCall = false);
 private:
 	QString languageFromHunspellToLanguageTool(QString language);
+	QString languageFromLanguageToolToHunspell(QString language);
+	LTStatus ltstatus;
 	LatexParser *latexParser;
 	GrammarCheckerConfig config;
 	GrammarCheckBackend *backend;
@@ -118,13 +123,14 @@ private:
 	QNetworkAccessManager *nam;
 	QUrl server;
 
-	int connectionAvailability; //-2: terminated -1: broken, 0: don't know, 1: worked at least once
+	enum Availability {Terminated = -2, Broken = -1, Unknown = 0, WorkedAtLeastOnce = 1};
+	Availability connectionAvailability;
 
 	bool triedToStart;
 	bool firstRequest;
 	QPointer<QProcess> javaProcess;
 
-	QString ltPath, javaPath;
+	QString ltPath, javaPath, ltArguments;
 	QSet<QString> ignoredRules;
 	QList<QSet<QString> >  specialRules;
 	uint startTime;

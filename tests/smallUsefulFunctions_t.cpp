@@ -103,9 +103,10 @@ void SmallUsefulFunctionsTest::test_latexLexing() {
         simpleLexLatexLine(dlh);
     }
     TokenStack stack;
+    CommandStack commandStack;
     for(int i=0;i<doc->lines();i++){
             QDocumentLineHandle *dlh=doc->line(i).handle();
-            latexDetermineContexts2(dlh,stack,lp);
+            latexDetermineContexts2(dlh,stack,commandStack,lp);
     }
     TokenList tl;
     for(int i=0;i<doc->lines();i++){

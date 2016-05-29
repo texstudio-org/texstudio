@@ -49,8 +49,8 @@ number-angle-product=
 \DeclareSIPrefix{%<prefix%>}{%<symbol%>}{%<power of 10%>}#d
 \DeclareSIPrePower{%<power macro%>}{%<number%>}#d
 \DeclareSIQualifier{%<qualifier%>}{%<symbol%>}#d
-\DeclareSIUnit[%<options%>]{%<unit%>}{%<definition%>}#d
-\DeclareSIUnit{%<unit%>}{%<definition%>}#d
+\DeclareSIUnit[options]{unit%cmd}{definition}#d
+\DeclareSIUnit{unit%cmd}{definition}#d
 \degreeCelsius
 \deka
 \dm#*

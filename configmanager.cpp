@@ -334,6 +334,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 
 QTextCodec *ConfigManager::newFileEncoding = 0;
 QString ConfigManager::iniFileOverride;
+bool ConfigManager::dontRestoreSession=false;
 
 QString getText(QWidget *w)
 {
@@ -460,6 +461,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/UseEscForClosingFullscreen", &disableEscForClosingFullscreen, false, &pseudoDialog->checkBoxDisableEscForClosingfullscreen);
 	registerOption("Editor/GoToErrorWhenDisplayingLog", &goToErrorWhenDisplayingLog , true, &pseudoDialog->checkBoxGoToErrorWhenDisplayingLog);
 	registerOption("Editor/ShowLogMarkersWhenClickingLogEntry", &showLogMarkersWhenClickingLogEntry , true, &pseudoDialog->checkBoxShowLogMarkersWhenClickingLogEntry);
+	registerOption("Editor/LogFileEncoding", &logFileEncoding, "Document", &pseudoDialog->comboBoxLogFileEncoding);
 	registerOption("Editor/ScanInstalledLatexPackages", &scanInstalledLatexPackages, true, &pseudoDialog->checkBoxScanInstalledLatexPackages);
 
 	registerOption("Tools/Insert Unicode From SymbolGrid", &insertUTF, false, &pseudoDialog->checkBoxInsertSymbolAsUCS);
@@ -502,8 +504,9 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Hide Grammar Errors in Non Text", &editorConfig->hideNonTextGrammarErrors, true, &pseudoDialog->checkBoxHideGrammarErrorsInNonText);
 	registerOption("Editor/Show Whitespace", &editorConfig->showWhitespace, false, &pseudoDialog->checkBoxShowWhitespace);
 	registerOption("Editor/TabStop", &editorConfig->tabStop, 4 , &pseudoDialog->sbTabSpace);
-	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true , &pseudoDialog->checkBoxToolTipHelp2);
-	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true , &pseudoDialog->checkBoxToolTipPreview);
+	registerOption("Editor/ToolTip Help", &editorConfig->toolTipHelp, true, &pseudoDialog->checkBoxToolTipHelp2);
+	registerOption("Editor/ToolTip Preview", &editorConfig->toolTipPreview, true, &pseudoDialog->checkBoxToolTipPreview);
+	registerOption("Editor/ImageToolTip", &editorConfig->imageToolTip, true, &pseudoDialog->checkBoxImageToolTip);
 	registerOption("Editor/MaxImageTooltipWidth", &editorConfig->maxImageTooltipWidth, 400);
 	registerOption("Editor/ContextMenuKeyboardModifiers", &editorConfig->contextMenuKeyboardModifiers, Qt::ShiftModifier);
 	registerOption("Editor/ContextMenuSpellcheckingEntryLocation", &editorConfig->contextMenuSpellcheckingEntryLocation, 0, &pseudoDialog->comboBoxContextMenuSpellcheckingEntryLocation);
@@ -574,6 +577,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Grammar/Language Tool URL", &grammarCheckerConfig->languageToolURL, "http://localhost:8081/", &pseudoDialog->lineEditGrammarLTUrl);
 #endif
 	registerOption("Grammar/Language Tool Path", &grammarCheckerConfig->languageToolPath, "", &pseudoDialog->lineEditGrammarLTPath);
+	registerOption("Grammar/Language Tool Arguments", &grammarCheckerConfig->languageToolArguments, "org.languagetool.server.HTTPServer -p 8081", &pseudoDialog->lineEditGrammarLTArguments);
 	registerOption("Grammar/Language Tool Java Path", &grammarCheckerConfig->languageToolJavaPath, "java", &pseudoDialog->lineEditGrammarLTJava);
 	registerOption("Grammar/Language Tool Autorun", &grammarCheckerConfig->languageToolAutorun, true, &pseudoDialog->checkBoxGrammarLTAutorun);
 	registerOption("Grammar/Language Tool Ignored Rules", &grammarCheckerConfig->languageToolIgnoredRules, "", &pseudoDialog->lineEditGrammarLTIgnoredRules);
@@ -590,7 +594,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Dialogs/Last Hard Wrap Join Lines", &lastHardWrapJoinLines, false);
 
 	//build commands
-	registerOption("Tools/SingleViewerInstance", &singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
+	registerOption("Tools/SingleViewerInstance", &BuildManager::singleViewerInstance, false, &pseudoDialog->checkBoxSingleInstanceViewer);
 	registerOption("Tools/Show Messages When Compiling", &showMessagesWhenCompiling, true, &pseudoDialog->checkBoxShowMessagesOnCompile);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
@@ -737,11 +741,13 @@ QSettings *ConfigManager::readSettings(bool reread)
 		config = newQSettings();
 		configFileName = config->fileName();
 		configFileNameBase = configFileName;
-		configBaseDir = QFileInfo(configFileName).absolutePath();
-		if (!configBaseDir.endsWith("/")) configBaseDir += "/";
+		configBaseDir = ensureTrailingDirSeparator(QFileInfo(configFileName).absolutePath());
 		completerConfig->importedCwlBaseDir = configBaseDir; // set in LatexCompleterConfig to get access from LatexDocument
 		if (configFileNameBase.endsWith(".ini")) configFileNameBase = configFileNameBase.replace(QString(".ini"), "");
 		persistentConfig = config;
+		setupDirectoryStructure();
+		moveCwls();
+
 	}
 	config->beginGroup("texmaker");
 
@@ -1230,7 +1236,11 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	if (langId != -1) confDlg->ui.comboBoxLanguage->setCurrentIndex(langId);
 	else confDlg->ui.comboBoxLanguage->setCurrentIndex(confDlg->ui.comboBoxLanguage->count() - 1);
 
-	QStringList files = findResourceFiles("completion", "*.cwl", QStringList(configBaseDir));
+	QStringList files;
+	foreach(const QString &dirname, QDir::searchPaths("cwl")) {
+		files << QDir(dirname).entryList(QStringList("*.cwl"), QDir::Files);
+	}
+
 	const QStringList &loadedFiles = completerConfig->getLoadedFiles();
 	foreach (const QString &elem, files) {
 		QListWidgetItem *item = new QListWidgetItem(elem, confDlg->ui.completeListWidget);
@@ -1265,7 +1275,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	confDlg->ui.checkBoxRunAfterBibTeXChange->setChecked(runLaTeXBibTeXLaTeX);
 
-	QIcon fileOpenIcon = getRealIcon("fileopen");
+	QIcon fileOpenIcon = getRealIcon("document-open");
 	confDlg->ui.pushButtonDictDir->setIcon(fileOpenIcon);
 	confDlg->ui.btSelectThesaurusFileName->setIcon(fileOpenIcon);
 
@@ -1782,12 +1792,15 @@ void ConfigManager::updateRecentFiles(bool alwaysRecreateMenuItems)
 	}
 }
 
-QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems, int additionalEntries)
+QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList &items, const QString &namePrefix, bool prefixNumber, const char *slotName, const int baseShortCut, bool alwaysRecreateMenuItems, int additionalEntries, const QList<QVariant> data)
 {
 	QSet<int> reservedShortcuts = QSet<int>() << Qt::SHIFT+Qt::Key_F3;  // workaround to prevent overwriting search backward
 	QMenu *menu = getManagedMenu(menuName);
 	REQUIRE_RET(menu, 0);
 	Q_ASSERT(menu->objectName() == menuName);
+	Q_ASSERT(data.isEmpty() || data.length()==items.length());
+	bool hasData = !data.isEmpty();
+
 	QList<QAction *> actions = menu->actions();
 	if (!alwaysRecreateMenuItems &&
 	        actions.count() == items.size() + additionalEntries) {
@@ -1810,7 +1823,12 @@ QMenu *ConfigManager::updateListMenu(const QString &menuName, const QStringList 
 		QList<QKeySequence> shortcuts;
 		if (baseShortCut && i < 10 && !reservedShortcuts.contains(baseShortCut + i))
 			shortcuts << baseShortCut + i;
-		newOrLostOldManagedAction(menu, id, prefixNumber ? QString("%1: %2").arg(i + 1).arg(items[i]) : items[i], slotName,  shortcuts)->setData(i);
+		QAction *act = newOrLostOldManagedAction(menu, id, prefixNumber?QString("%1: %2").arg(i+1).arg(items[i]) : items[i], slotName, shortcuts);
+		if (hasData) {
+			act->setData(data[i]);
+		} else {
+			act->setData(i);
+		}
 	}
 	if (watchedMenus.contains(menuName))
 		emit watchedMenuChanged(menuName);
@@ -1995,6 +2013,33 @@ void ConfigManager::triggerManagedAction(const QString &id)
 {
 	QAction *act = getManagedAction(id);
 	if (act) act->trigger();
+}
+
+void ConfigManager::setupDirectoryStructure()
+{
+	QDir base(configBaseDir);
+	base.mkpath("completion/user");
+	base.mkpath("completion/autogenerated");
+	QDir::setSearchPaths("cwl", QStringList() << base.absoluteFilePath("completion/user") << ":/completion" << base.absoluteFilePath("completion/autogenerated"));
+}
+
+// Move existing cwls from configBaseDir to new location at configBaseDir/completion/user or configBaseDir/completion/autogenerated
+void ConfigManager::moveCwls()
+{
+	QDir basedir(configBaseDir);
+	foreach (const QString &fileName, basedir.entryList(QStringList("*.cwl"), QDir::Files)) {
+		QFile f(basedir.filePath(fileName));
+		bool autogenerated = false;
+		if (f.open(QFile::ReadOnly)) {
+			autogenerated = f.readLine().startsWith("# autogenerated");
+			f.close();
+		}
+		if (autogenerated) {
+			basedir.rename(fileName, joinPath("completion/autogenerated", fileName));
+		} else {
+			basedir.rename(fileName, joinPath("completion/user", fileName));
+		}
+	}
 }
 
 QList<QVariant> parseCommandArguments (const QString &str)
@@ -2235,6 +2280,7 @@ void ConfigManager::loadManagedMenu(QMenu *parent, const QDomElement &f)
 											QList<QKeySequence>() << shortcut,
 			                                att.namedItem("icon").nodeValue());
 			act->setWhatsThis(att.namedItem("info").nodeValue());
+            act->setStatusTip(att.namedItem("info").nodeValue());
 			act->setData(att.namedItem("insert").nodeValue());
 		} else if (c.nodeName() == "separator") menu->addSeparator();
 	}
@@ -2465,14 +2511,14 @@ void ConfigManager::addCommandRow(QGridLayout *gl, const CommandInfo &cmd, int r
 		buttons << pb;
 	}
 
-	pb = new QPushButton(getRealIcon("fileopen"), "", parent);
+	pb = new QPushButton(getRealIcon("document-open"), "", parent);
 	pb->setToolTip(tr("Select Program"));
 	pb->setProperty(PROPERTY_WIDGET_TYPE, CG_PROGRAM);
 	connect(pb, SIGNAL(clicked()), SLOT(browseCommand()));
 	buttons << pb;
 
 	if (!cmd.user && cmd.metaSuggestionList.isEmpty()) {
-		pb = new QPushButton(getRealIcon("undo"), "", parent);
+		pb = new QPushButton(getRealIcon("edit-undo"), "", parent);
 		pb->setToolTip(tr("Restore Default"));
 		pb->setProperty(PROPERTY_WIDGET_TYPE, CG_RESET);
 		connect(pb, SIGNAL(clicked()), SLOT(undoCommand()));
@@ -3132,7 +3178,6 @@ void ConfigManager::getDefaultEncoding(const QByteArray &, QTextCodec *&guess, i
 
 QString ConfigManager::parseDir(QString s) const
 {
-	//QString cbd = configBaseDir;
 	s.replace("[txs-settings-dir]", removePathDelim(configBaseDir));
 	s.replace("[txs-app-dir]", removePathDelim(QCoreApplication::applicationDirPath()));
 	return s;

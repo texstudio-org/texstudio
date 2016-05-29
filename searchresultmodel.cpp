@@ -12,7 +12,7 @@ const int SearchResultModel::LineNumberRole = Qt::UserRole;
  * 00000000 00000000 00000000 00000000
  *
  * - The upper 16 bits encode the search (i.e. a top-level group):
- *     m_seaches[i] maps to (i + 1) * (1 << 16)
+ *     m_searches[i] maps to (i + 1) * (1 << 16)
  * - Bit 16 (1<<15) is a flag indcating that the item is a result entry within a search
  * - Bits 1-15 indicate the position of the result entry within the search
  *

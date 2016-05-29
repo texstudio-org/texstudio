@@ -32,7 +32,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	}
 	ui->leExtensions->setValidator(rxValExtensionList);
 
-	ui->pbResetExtensions->setIcon(getRealIcon("undo"));
+	ui->pbResetExtensions->setIcon(getRealIcon("edit-undo"));
 
 	connect(ui->pbResetExtensions, SIGNAL(clicked()), SLOT(resetExtensions()));
 	connect(ui->cbScope, SIGNAL(currentIndexChanged(int)), SLOT(updateFilesToRemove()));

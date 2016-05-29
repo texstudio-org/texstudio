@@ -251,7 +251,7 @@
 \inputlineno#*
 \it#*
 \item
-\item[%<text%>] %<description%>
+\item[%<label%>] %<description%>
 \iterate#*
 \itshape
 \kill#T
@@ -289,12 +289,10 @@
 \marginpar{right}#*
 \markboth{lefthead}{righthead}#*
 \markright{righthead}#*
-\mathbb{text}#m
 \mathbf{text}#m
 \mathcal{text}#m
 \mathds{text}#m
 \mathellipsis#m
-\mathfrak{text}#m
 \mathgroup#m
 \mathit{text}#m
 \mathnormal{text}#m
@@ -350,7 +348,7 @@
 \pagebreak[number]
 \pagename
 \pagenumbering{numstyle}
-\pageref{key}
+\pageref{label}#r
 \pagestyle{option}
 \pagetotal
 \paragraph*{title}#L5
@@ -373,7 +371,7 @@
 \qquad
 \quad
 \r{letter}
-\ref{key}
+\ref{label}#r
 \refname{name}
 \righthyphenmin
 \rightmargin

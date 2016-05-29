@@ -554,6 +554,7 @@ QString print_backtrace(const QString &message)
 //#include "ucontext.h"
 #include "sys/signal.h"
 #include "sys/ucontext.h"
+#include "pthread.h"
 #define USE_SIGNAL_HANDLER
 //names from http://google-glog.googlecode.com/svn-history/r75/trunk/m4/pc_from_ucontext.m4
 //for mac <= 10.4/tiger: if __ss.__ doesn't compile, replace it by ss.
@@ -982,18 +983,14 @@ void registerCrashHandler(int mode) {}
 
 //========================NEW ASSERT==============================
 
+
 #undef qt_assert
-Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line);
-Q_CORE_EXPORT void qt_assert_x(const char *where, const char *what, const char *file, int line);
+Q_CORE_EXPORT void qt_assert(const char *assertion, const char *file, int line) ASSERT_THROW ;
+Q_CORE_EXPORT void qt_assert_x(const char *where, const char *what, const char *file, int line) ASSERT_THROW ;
 
 QString lastAssert;
 
-void txs_assert(const char *assertion, const char *file, int line)
-{
-	txs_assert_x("something", assertion, file, line);
-}
-
-void txs_assert_x(const char *where, const char *assertion, const char *file, int line)
+void txs_assert_x(const char *where, const char *assertion, const char *file, int line) ASSERT_THROW
 {
 	lastAssert = QString("Assert failure: %1 at %2 in %3:%4").arg(assertion).arg(where).arg(file).arg(line);
 	print_backtrace(lastAssert);
@@ -1004,6 +1001,11 @@ void txs_assert_x(const char *where, const char *assertion, const char *file, in
 	//won't be called:
 	qt_assert(assertion, file, line);
 	exit(1);
+}
+
+void txs_assert(const char *assertion, const char *file, int line) ASSERT_THROW
+{
+	txs_assert_x("something", assertion, file, line);
 }
 
 QString getLastCrashInformation(bool &wasLoop)
@@ -1038,14 +1040,15 @@ void SimulatedCPU::set_all(void *ccontext)
 //		fprintf(stderr, "Regs: %i: %p\n", i, context->uc_mcontext.gregs[i]);
 }
 
+
 void SimulatedCPU::get_all(void *ccontext)
 {
 	CPU_CONTEXT_TYPE *context = static_cast<CPU_CONTEXT_TYPE *>(ccontext);
-	*(char **)(&PC_FROM_UCONTEXT(context)) = this->pc;
-	*(char **)(&FRAME_FROM_UCONTEXT(context)) = this->frame;
-	*(char **)(&STACK_FROM_UCONTEXT(context)) = this->stack;
+	memcpy(&PC_FROM_UCONTEXT(context), &this->pc, sizeof(char*));
+	memcpy(&FRAME_FROM_UCONTEXT(context), &this->frame, sizeof(char*));
+	memcpy(&STACK_FROM_UCONTEXT(context), &this->stack, sizeof(char*));
 #ifdef RETURNTO_FROM_UCONTEXT
-	*(char **)(&RETURNTO_FROM_UCONTEXT(context)) = this->returnTo;
+	memcpy(&RETURNTO_FROM_UCONTEXT(context), &this->returnTo, sizeof(char*));
 #endif
 }
 
@@ -1288,7 +1291,7 @@ void catchUnhandledException() {}
 #ifndef NO_CRASH_HANDLER
 int gdb_check()
 {
-	int pid = fork();
+	pid_t pid = fork();
 	int status;
 	int res;
 
@@ -1298,7 +1301,7 @@ int gdb_check()
 	}
 
 	if (pid == 0) {
-		int ppid = getppid();
+		pid_t ppid = getppid();
 		/* Child */
 		if (ptrace(PTRACE_ATTACH, ppid, NULL, NULL) == 0) {
 			/* Wait for the parent to stop and continue it */
