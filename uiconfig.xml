@@ -201,8 +201,8 @@
 	<insert id="equation*" text="env equation*" insert="\begin{equation*}%\%|%\\end{equation*}"/>
 	<insert id="align" text="env align (amsmath)" insert="\begin{align}%\%|%\\end{align}"/>  
         <insert id="align*" text="env align* (amsmath)" insert="\begin{align*}%\%|%\\end{align*}"/>
-        <insert id="alignat" text="env alignat (amsmath)" insert="\begin{alignat}%\%|%\\end{alignat}"/>  
-        <insert id="alignat*" text="env alignat* (amsmath)" insert="\begin{alignat*}%\%|%\\end{alignat*}"/>
+        <insert id="alignat" text="env alignat (amsmath)" insert="\begin{alignat}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat}"/>  
+        <insert id="alignat*" text="env alignat* (amsmath)" insert="\begin{alignat*}{%&lt;ncols%>}%\%&lt;content%>%\\end{alignat*}"/>
        	<insert id="flalign" text="env flalign (amsmath)" insert="\begin{flalign}%\%|%\\end{flalign}"/>  
         <insert id="flalign*" text="env flalign* (amsmath)" insert="\begin{flalign*}%\%|%\\end{flalign*}"/>
         <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\%|%\\end{gather}"/>  
