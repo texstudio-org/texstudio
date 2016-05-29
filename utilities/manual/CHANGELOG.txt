@@ -18,11 +18,14 @@ TeXstudio 2.10.10 Release Candidate
 - eneable left/right shortcuts for embedded viewer
 - remove multiple default values for latexmk (fixes bug 1694)
 - support environment variables in additional search paths
+- support [txs-app-dir] and [txs-settings-dir] in additional search paths for log and pdf
 - add statusbar icon for LanguageTool
 - make LanguageTool arguments configurable
 - add align cursor mirrors options
 - make pasting into cursor mirrors a single undo block
 - do not remove cursor mirrors on undo
+- select text of current item in Packages Help to allow easier overwriting (feature request 1063)
+- select search/replace texts when switchting there using Tab / Backtab (feature request 1064)
 - added optional workingDirectory argument to script function system()
 - added editor->insertSnippet() to scripting environment
 - added option to choose log encoding
@@ -60,10 +63,13 @@ TeXstudio 2.10.10 Release Candidate
 - fix font in pdf viewer status bar did not scale
 - fix loading of badword lists
 - fix LanguageTool startup
+- fix overlapping in unicodeinsert on osx
+- fix: pinyin input of punctuation (bug 1770)
 - fix: retain spaces when sending text to LanguageTool
 - fix: don't translate Ctrl+Alt+Left as the translation breaks the shortcut
 - several updates to cwl files
 - update poppler for windows to 0.39.0
+- improved generation of label texts
 
 TeXstudio 2.10.8
 ----------------
