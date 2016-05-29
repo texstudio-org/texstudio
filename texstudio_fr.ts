@@ -3359,13 +3359,15 @@ de base, il suffit de désactiver ces options avancées.</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
-        <source>env multiline (amsmath)</source>
-        <translation>&amp;multiline (amsmath)</translation>
+        <source>env multline (amsmath)</source>
+        <oldsource>env multiline (amsmath)</oldsource>
+        <translation>&amp;multline (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
-        <source>env multiline* (amsmath)</source>
-        <translation>&amp;multiline* (amsmath)</translation>
+        <source>env multline* (amsmath)</source>
+        <oldsource>env multiline* (amsmath)</oldsource>
+        <translation>&amp;multline* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
