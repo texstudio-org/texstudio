@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ja">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -370,194 +372,194 @@
     <message>
         <location filename="buildmanager.cpp" line="73"/>
         <location filename="buildmanager.cpp" line="95"/>
-        <location filename="buildmanager.cpp" line="1809"/>
+        <location filename="buildmanager.cpp" line="1811"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;unknown&gt;</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="261"/>
+        <location filename="buildmanager.cpp" line="263"/>
         <source>Stop Compile</source>
         <translation>コンパイルを停止</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="285"/>
-        <location filename="buildmanager.cpp" line="312"/>
+        <location filename="buildmanager.cpp" line="287"/>
+        <location filename="buildmanager.cpp" line="314"/>
         <source>DVI Viewer</source>
         <translation>DVIビューア</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="286"/>
-        <location filename="buildmanager.cpp" line="312"/>
+        <location filename="buildmanager.cpp" line="288"/>
+        <location filename="buildmanager.cpp" line="314"/>
         <source>PS Viewer</source>
         <translation>PSビューア</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="287"/>
-        <location filename="buildmanager.cpp" line="312"/>
-        <location filename="buildmanager.cpp" line="315"/>
+        <location filename="buildmanager.cpp" line="289"/>
+        <location filename="buildmanager.cpp" line="314"/>
+        <location filename="buildmanager.cpp" line="317"/>
         <source>External PDF Viewer</source>
         <translation>外部PDFビューア</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
+        <location filename="buildmanager.cpp" line="307"/>
         <source>Compile &amp; View</source>
         <translation>コンパイル &amp; 表示</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
-        <location filename="buildmanager.cpp" line="327"/>
+        <location filename="buildmanager.cpp" line="307"/>
+        <location filename="buildmanager.cpp" line="329"/>
         <source>PS Chain</source>
         <translation>PSチェーン</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
-        <location filename="buildmanager.cpp" line="328"/>
+        <location filename="buildmanager.cpp" line="307"/>
+        <location filename="buildmanager.cpp" line="330"/>
         <source>DVI Chain</source>
         <translation>DVIチェーン</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
-        <location filename="buildmanager.cpp" line="329"/>
+        <location filename="buildmanager.cpp" line="307"/>
+        <location filename="buildmanager.cpp" line="331"/>
         <source>PDF Chain</source>
         <translation>PDFチェーン</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
-        <location filename="buildmanager.cpp" line="330"/>
+        <location filename="buildmanager.cpp" line="307"/>
+        <location filename="buildmanager.cpp" line="332"/>
         <source>DVI-&gt;PDF Chain</source>
         <translation>DVI-&gt;PDFチェーン</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
-        <location filename="buildmanager.cpp" line="331"/>
+        <location filename="buildmanager.cpp" line="307"/>
+        <location filename="buildmanager.cpp" line="333"/>
         <source>DVI-&gt;PS-&gt;PDF Chain</source>
         <translation>DVI-&gt;PS-&gt;PDFチェーン</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
-        <location filename="buildmanager.cpp" line="332"/>
+        <location filename="buildmanager.cpp" line="307"/>
+        <location filename="buildmanager.cpp" line="334"/>
         <source>Asymptote DVI Chain</source>
         <translation>Asymptote DVIチェーン</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="305"/>
-        <location filename="buildmanager.cpp" line="333"/>
+        <location filename="buildmanager.cpp" line="307"/>
+        <location filename="buildmanager.cpp" line="335"/>
         <source>Asymptote PDF Chain</source>
         <translation>Asymptote PDFチェーン</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="306"/>
+        <location filename="buildmanager.cpp" line="308"/>
         <source>Build &amp; View</source>
         <translation>ビルド &amp; 表示</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="309"/>
+        <location filename="buildmanager.cpp" line="311"/>
         <source>PdfLaTeX</source>
         <translation>PdfLaTeX</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="309"/>
+        <location filename="buildmanager.cpp" line="311"/>
         <source>LaTeX</source>
         <translation>LaTeX</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="309"/>
+        <location filename="buildmanager.cpp" line="311"/>
         <source>XeLaTeX</source>
         <translation>XeLaTeX</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="309"/>
+        <location filename="buildmanager.cpp" line="311"/>
         <source>LuaLaTeX</source>
         <translation>LuaLaTeX</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="309"/>
+        <location filename="buildmanager.cpp" line="311"/>
         <source>Latexmk</source>
         <translation>Latexmk</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="310"/>
+        <location filename="buildmanager.cpp" line="312"/>
         <source>Default Compiler</source>
         <translation>既定のコンパイラ</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="312"/>
-        <location filename="buildmanager.cpp" line="316"/>
+        <location filename="buildmanager.cpp" line="314"/>
+        <location filename="buildmanager.cpp" line="318"/>
         <source>PDF Viewer</source>
         <translation>PDFビューア</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="312"/>
-        <location filename="buildmanager.cpp" line="315"/>
+        <location filename="buildmanager.cpp" line="314"/>
+        <location filename="buildmanager.cpp" line="317"/>
         <source>Internal PDF Viewer (Windowed)</source>
         <translation>組み込みPDFビューア（別枠）</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="312"/>
-        <location filename="buildmanager.cpp" line="315"/>
+        <location filename="buildmanager.cpp" line="314"/>
+        <location filename="buildmanager.cpp" line="317"/>
         <source>Internal PDF Viewer (Embedded)</source>
         <translation>組み込みPDFビューア（埋め込み）</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="313"/>
+        <location filename="buildmanager.cpp" line="315"/>
         <source>Default Viewer</source>
         <translation>既定のビューワー</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="318"/>
-        <location filename="buildmanager.cpp" line="321"/>
+        <location filename="buildmanager.cpp" line="320"/>
+        <location filename="buildmanager.cpp" line="323"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="318"/>
-        <location filename="buildmanager.cpp" line="321"/>
+        <location filename="buildmanager.cpp" line="320"/>
+        <location filename="buildmanager.cpp" line="323"/>
         <source>BibTeX 8-Bit</source>
         <translation>BibTex 8ビット</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="318"/>
-        <location filename="buildmanager.cpp" line="321"/>
+        <location filename="buildmanager.cpp" line="320"/>
+        <location filename="buildmanager.cpp" line="323"/>
         <source>Biber</source>
         <translation>Biber</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="319"/>
+        <location filename="buildmanager.cpp" line="321"/>
         <source>Default Bibliography Tool</source>
         <translation>既定の文献作成ツール</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="322"/>
+        <location filename="buildmanager.cpp" line="324"/>
         <source>Default Index Tool</source>
         <translation>既定の索引ツール</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="324"/>
+        <location filename="buildmanager.cpp" line="326"/>
         <source>Makeglossaries</source>
         <translation>Makeglossaries</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="325"/>
+        <location filename="buildmanager.cpp" line="327"/>
         <source>Default Glossary Tool</source>
         <translation>既定の用語集作成ツール</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="335"/>
+        <location filename="buildmanager.cpp" line="337"/>
         <source>Precompile</source>
         <translation>プリコンパイル</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="336"/>
+        <location filename="buildmanager.cpp" line="338"/>
         <source>Internal Precompile</source>
         <translation>内部プリコンパイル</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="337"/>
+        <location filename="buildmanager.cpp" line="339"/>
         <source>Recompile Bibliography</source>
         <translation>参考文献の再コンパイル</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="370"/>
+        <location filename="buildmanager.cpp" line="372"/>
         <source>OSX 10.11 does not allow applications to write there anymore. Therefore,
 recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
@@ -571,7 +573,7 @@ TeXstudioですべてのコマンドのパスを/usr/texbin/から
 へ変更しますか？</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="381"/>
+        <location filename="buildmanager.cpp" line="383"/>
         <source>OSX 10.11 does not allow applications to write there anymore. You may
 need to update MacTeX to version 2015.
 
@@ -588,99 +590,99 @@ TeXstudioですべてのコマンドのパスを/usr/texbin/から
 /Library/TeX/texbin/へ変更しますか？</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="392"/>
+        <location filename="buildmanager.cpp" line="394"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
         <translation>コマンドのいくつかは/usr/texbin/内の位置を参照しています</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="800"/>
+        <location filename="buildmanager.cpp" line="802"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
         <translation>コマンドが%1レベルに展開されています。&quot;%2&quot;の展開を続けますか?</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="853"/>
+        <location filename="buildmanager.cpp" line="855"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
         <translation>txs:///command[...またはtxs:///command{...の修飾子が使用されていますが、サポートされているのは構文を純粋にするためのスラッシュ接尾語付きのtxs:///command/[...かtxs:///command/{...の修飾子のみです。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="861"/>
-        <location filename="buildmanager.cpp" line="862"/>
+        <location filename="buildmanager.cpp" line="863"/>
+        <location filename="buildmanager.cpp" line="864"/>
         <source>Command %1 not defined</source>
         <translation>コマンド%1は定義されていません</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="935"/>
+        <location filename="buildmanager.cpp" line="937"/>
         <source>Failed to understand command %1</source>
         <translation>コマンド%1が理解できません</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1353"/>
+        <location filename="buildmanager.cpp" line="1355"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
         <translation>システム上にLaTeXディストリビューションが見つかりませんでした。その結果、対応するコマンドは設定されていません。つまり、文章を希望の出力フォーマット（例：pdf）にコンパイルできません。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1357"/>
+        <location filename="buildmanager.cpp" line="1359"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
         <translation>Windowsで人気のLaTeXディストリビューションは%1と%2です。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1359"/>
+        <location filename="buildmanager.cpp" line="1361"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
         <translation>LaTeXで作業をしたいのなら、きっとこれらの一つをインストールするでしょう。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1362"/>
+        <location filename="buildmanager.cpp" line="1364"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
         <translation>OSXで人気のLaTeXディストリビューションは%1です。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1364"/>
+        <location filename="buildmanager.cpp" line="1366"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
         <translation>LaTeXで作業をしたいのなら、きっとこれをインストールするでしょう。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1367"/>
+        <location filename="buildmanager.cpp" line="1369"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
         <translation>LaTeXで作業をしたいのなら、きっとLaTeXディストリビューションをインストールするでしょう。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1377"/>
+        <location filename="buildmanager.cpp" line="1379"/>
         <source>Error: No command given</source>
         <translation>エラー: コマンドが与えられていません</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1408"/>
+        <location filename="buildmanager.cpp" line="1410"/>
         <source>Error: No command expanded</source>
         <translation>エラー: コマンドが展開されませんでした</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1410"/>
-        <location filename="buildmanager.cpp" line="1423"/>
+        <location filename="buildmanager.cpp" line="1412"/>
+        <location filename="buildmanager.cpp" line="1425"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;(La)TeXディストリビューション（例：MiKTeXやTeX Live）がインストールされていること&lt;/b&gt;と、TeXstudioコマンド設定ページでそのディストリビューション（のコマンド）へのパスが正しく設定されていることを確認してください。&lt;br&gt;TeXstudioのような(La)TeXエディタはそうしたディストリビューションが提供している(La)TeXコマンドなしでは機能しません。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1419"/>
+        <location filename="buildmanager.cpp" line="1421"/>
         <source>Error: One command expansion invalid.</source>
         <translation>エラー: 一つのコマンド展開が無効です</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1420"/>
+        <location filename="buildmanager.cpp" line="1422"/>
         <source>Parent Command</source>
         <translation>元コマンド</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1421"/>
+        <location filename="buildmanager.cpp" line="1423"/>
         <source>Primary Command</source>
         <translation>主要コマンド</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1778"/>
+        <location filename="buildmanager.cpp" line="1780"/>
         <source>Internal Pdf Viewer</source>
         <translation>組み込みPDFビューア</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2008"/>
+        <location filename="buildmanager.cpp" line="2010"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>非推奨の2つのスラッシュのコマンドdde://を用いています。さらにスラッシュを加えて3つのスラッシュコマンドdde:///に変更してください。</translation>
     </message>
@@ -741,6 +743,21 @@ TeXstudioですべてのコマンドのパスを/usr/texbin/から
         <location filename="cleandialog.cpp" line="108"/>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
         <translation>安全な削除では次の拡張子を持つファイルは削除されません:</translation>
+    </message>
+</context>
+<context>
+    <name>CodeSnippet_PlaceHolder</name>
+    <message>
+        <location filename="additionaltranslations.cpp" line="104"/>
+        <location filename="additionaltranslations.cpp" line="106"/>
+        <source>num</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="105"/>
+        <location filename="additionaltranslations.cpp" line="107"/>
+        <source>den</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -887,7 +904,7 @@ TeXstudioですべてのコマンドのパスを/usr/texbin/から
         <location filename="configdialog.ui" line="523"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>受け取るアップデート通知の種類を定義：
 - 安定版リリース：安定性が最も重要な場合これを選択する。
@@ -1092,7 +1109,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="configdialog.ui" line="1049"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2468,8 +2485,8 @@ them here.</source>
         <location filename="configdialog.ui" line="4082"/>
         <location filename="configdialog.ui" line="4169"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>PDFライブラリのpopplerで使用される描画バックエンド。
 &apos;Splash&apos;が既定で、大抵の状況に適している。
@@ -2843,427 +2860,637 @@ options again to only view the most common settings.</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="11"/>
+        <location filename="additionaltranslations.cpp" line="29"/>
         <source>AMS packages</source>
         <translation>AMSパッケージ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="12"/>
+        <location filename="additionaltranslations.cpp" line="30"/>
         <source>\begin{document}</source>
         <translation>\begin{document}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="13"/>
+        <location filename="additionaltranslations.cpp" line="11"/>
         <source>&amp;Sectioning</source>
         <translation>見出し(&amp;S)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="14"/>
+        <location filename="additionaltranslations.cpp" line="22"/>
+        <source>&amp;Math</source>
+        <translation type="unfinished">数式(&amp;M)</translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="23"/>
+        <source>Math Equations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="24"/>
+        <source>Math &amp;Functions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="25"/>
+        <source>Math Font St&amp;yles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="26"/>
+        <source>Math Stacking symbols</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="27"/>
+        <source>Math &amp;Accents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="28"/>
+        <source>Math S&amp;paces</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="31"/>
         <source>part</source>
         <translation>部[part]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="15"/>
+        <location filename="additionaltranslations.cpp" line="32"/>
         <source>chapter</source>
         <translation>章[chapter]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="16"/>
+        <location filename="additionaltranslations.cpp" line="33"/>
         <source>section</source>
         <translation>節[section]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="17"/>
+        <location filename="additionaltranslations.cpp" line="34"/>
         <source>subsection</source>
         <translation>小節[subsection]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="18"/>
+        <location filename="additionaltranslations.cpp" line="35"/>
         <source>subsubsection</source>
         <translation>小小節[subsubsection]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="19"/>
+        <location filename="additionaltranslations.cpp" line="36"/>
         <source>paragraph</source>
         <translation>段落[paragraph]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="20"/>
+        <location filename="additionaltranslations.cpp" line="37"/>
         <source>subparagraph</source>
         <translation>小段落[subparagraph]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="21"/>
+        <location filename="additionaltranslations.cpp" line="38"/>
         <source>part*</source>
         <translation>部（番号なし）[part*]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="22"/>
+        <location filename="additionaltranslations.cpp" line="39"/>
         <source>chapter*</source>
         <translation>章（番号なし）[chapter*]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="23"/>
+        <location filename="additionaltranslations.cpp" line="40"/>
         <source>section*</source>
         <translation>節（番号なし）[section*]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="24"/>
+        <location filename="additionaltranslations.cpp" line="41"/>
         <source>subsection*</source>
         <translation>小節（番号なし）[subsection*]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="25"/>
+        <location filename="additionaltranslations.cpp" line="42"/>
         <source>subsubsection*</source>
         <translation>小小節（番号なし）[subsubsection*]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="26"/>
+        <location filename="additionaltranslations.cpp" line="43"/>
         <source>paragraph*</source>
         <translation>段落（番号なし）[paragraph*]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="27"/>
+        <location filename="additionaltranslations.cpp" line="44"/>
         <source>subparagraph*</source>
         <translation>小段落（番号なし）[subparagraph*]</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="28"/>
+        <location filename="additionaltranslations.cpp" line="12"/>
         <source>&amp;Environments</source>
         <translation>環境(&amp;E)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="29"/>
+        <location filename="additionaltranslations.cpp" line="45"/>
         <source>\begin{&lt;environment&gt;}</source>
         <translation>\begin{&lt;environment&gt;}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="30"/>
+        <location filename="additionaltranslations.cpp" line="46"/>
         <source>\begin{center}</source>
         <translation>\begin{center}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="31"/>
+        <location filename="additionaltranslations.cpp" line="47"/>
         <source>\begin{flushleft}</source>
         <translation>\begin{flushleft}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="32"/>
+        <location filename="additionaltranslations.cpp" line="48"/>
         <source>\begin{flushright}</source>
         <translation>\begin{flushright}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="33"/>
+        <location filename="additionaltranslations.cpp" line="49"/>
         <source>\begin{quote}</source>
         <translation>\begin{quote}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="34"/>
+        <location filename="additionaltranslations.cpp" line="50"/>
         <source>\begin{quotation}</source>
         <translation>\begin{quotation}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="35"/>
+        <location filename="additionaltranslations.cpp" line="51"/>
         <source>\begin{verse}</source>
         <translation>\begin{verse}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="36"/>
+        <location filename="additionaltranslations.cpp" line="52"/>
         <source>\begin{verbatim}</source>
         <translation>\begin{verbatim}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="37"/>
+        <location filename="additionaltranslations.cpp" line="53"/>
         <source>\begin{table}</source>
         <translation>\begin{table}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="38"/>
+        <location filename="additionaltranslations.cpp" line="54"/>
         <source>\begin{figure}</source>
         <translation>\begin{figure}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="39"/>
+        <location filename="additionaltranslations.cpp" line="55"/>
         <source>\begin{titlepage}</source>
         <translation>\begin{titlepage}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="40"/>
+        <location filename="additionaltranslations.cpp" line="13"/>
         <source>&amp;List Environments</source>
         <translation>箇条書き(&amp;L)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="41"/>
+        <location filename="additionaltranslations.cpp" line="56"/>
         <source>\begin{itemize}</source>
         <translation>\begin{itemize}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="42"/>
+        <location filename="additionaltranslations.cpp" line="57"/>
         <source>\begin{enumerate}</source>
         <translation>\begin{enumerate}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="43"/>
+        <location filename="additionaltranslations.cpp" line="58"/>
         <source>\begin{description}</source>
         <translation>\begin{description}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="44"/>
+        <location filename="additionaltranslations.cpp" line="59"/>
         <source>\begin{list}</source>
         <translation>\begin{list}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="45"/>
+        <location filename="additionaltranslations.cpp" line="14"/>
         <source>Boxes</source>
         <translation>ボックス</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="46"/>
+        <location filename="additionaltranslations.cpp" line="60"/>
         <source>mbox</source>
         <translation>mbox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="47"/>
+        <location filename="additionaltranslations.cpp" line="61"/>
         <source>makebox</source>
         <translation>makebox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="48"/>
+        <location filename="additionaltranslations.cpp" line="62"/>
         <source>fbox</source>
         <translation>fbox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="49"/>
+        <location filename="additionaltranslations.cpp" line="63"/>
         <source>framebox</source>
         <translation>framebox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="50"/>
+        <location filename="additionaltranslations.cpp" line="64"/>
         <source>newsavebox</source>
         <translation>newsavebox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="51"/>
+        <location filename="additionaltranslations.cpp" line="65"/>
         <source>sbox</source>
         <translation>sbox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="52"/>
+        <location filename="additionaltranslations.cpp" line="66"/>
         <source>savebox</source>
         <translation>savebox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="53"/>
+        <location filename="additionaltranslations.cpp" line="67"/>
         <source>usebox</source>
         <translation>usebox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="54"/>
+        <location filename="additionaltranslations.cpp" line="68"/>
         <source>raisebox</source>
         <translation>raisebox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="55"/>
+        <location filename="additionaltranslations.cpp" line="69"/>
         <source>parbox</source>
         <translation>parbox</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="56"/>
+        <location filename="additionaltranslations.cpp" line="70"/>
         <source>\begin{minipage}</source>
         <translation>\begin{minipage}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="57"/>
+        <location filename="additionaltranslations.cpp" line="71"/>
         <source>rule</source>
         <translation>rule</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="58"/>
+        <location filename="additionaltranslations.cpp" line="15"/>
         <source>Font St&amp;yles</source>
         <translation>書体(&amp;y)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="59"/>
+        <location filename="additionaltranslations.cpp" line="72"/>
         <source>Emphasis - \emph</source>
         <translation>強調 - \emph</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="60"/>
+        <location filename="additionaltranslations.cpp" line="73"/>
         <source>Italics - \textit</source>
         <translation>イタリック体 - \textit</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="61"/>
+        <location filename="additionaltranslations.cpp" line="74"/>
         <source>Slanted - \textsl</source>
         <translation>スラント体 - \textsl</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="62"/>
+        <location filename="additionaltranslations.cpp" line="75"/>
         <source>Boldface - \textbf</source>
         <translation>ボールド体 - \textbf</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="63"/>
+        <location filename="additionaltranslations.cpp" line="76"/>
         <source>Typewriter - \texttt</source>
         <translation>タイプライター体 - \texttt</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="64"/>
+        <location filename="additionaltranslations.cpp" line="77"/>
         <source>Small Caps - \textsc</source>
         <translation>スモールキャップス体 - \textsc</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="65"/>
+        <location filename="additionaltranslations.cpp" line="78"/>
         <source>Sans Serif - \textsf</source>
         <translation>サンセリフ体 - \textsf</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="66"/>
+        <location filename="additionaltranslations.cpp" line="79"/>
         <source>Underline - \underline</source>
         <translation>下線 - \underline</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="67"/>
+        <location filename="additionaltranslations.cpp" line="16"/>
         <source>Font Sizes</source>
         <translation>フォントサイズ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="68"/>
+        <location filename="additionaltranslations.cpp" line="80"/>
         <source>tiny</source>
         <translation>tiny</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="69"/>
+        <location filename="additionaltranslations.cpp" line="81"/>
         <source>scriptsize</source>
         <translation>scriptsize</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="70"/>
+        <location filename="additionaltranslations.cpp" line="82"/>
         <source>footnotesize</source>
         <translation>footnotesize</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="71"/>
+        <location filename="additionaltranslations.cpp" line="83"/>
         <source>small</source>
         <translation>small</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="72"/>
+        <location filename="additionaltranslations.cpp" line="84"/>
         <source>normalsize</source>
         <translation>normalsize</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="73"/>
+        <location filename="additionaltranslations.cpp" line="85"/>
         <source>large</source>
         <translation>large</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="74"/>
+        <location filename="additionaltranslations.cpp" line="86"/>
         <source>Large</source>
         <translation>Large</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="75"/>
+        <location filename="additionaltranslations.cpp" line="87"/>
         <source>LARGE</source>
         <translation>LARGE</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="76"/>
+        <location filename="additionaltranslations.cpp" line="88"/>
         <source>huge</source>
         <translation>huge</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="77"/>
+        <location filename="additionaltranslations.cpp" line="89"/>
         <source>Huge</source>
         <translation>Huge</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="78"/>
+        <location filename="additionaltranslations.cpp" line="17"/>
         <source>&amp;Tabular Environment</source>
         <translation>tabular環境(&amp;T)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="79"/>
+        <location filename="additionaltranslations.cpp" line="90"/>
         <source>\begin{tabbing}</source>
         <translation>\begin{tabbing}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="80"/>
+        <location filename="additionaltranslations.cpp" line="91"/>
         <source>\begin{tabular}</source>
         <translation>\begin{tabular}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="81"/>
+        <location filename="additionaltranslations.cpp" line="18"/>
         <source>&amp;Vertical Spacing</source>
         <translation>垂直方向のスペース(&amp;V)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="82"/>
+        <location filename="additionaltranslations.cpp" line="92"/>
         <source>New line - \\</source>
         <translation>強制改行 - \\</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="83"/>
+        <location filename="additionaltranslations.cpp" line="19"/>
         <source>International &amp;Accents</source>
         <translation>アクセント記号(&amp;A)</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="84"/>
+        <location filename="additionaltranslations.cpp" line="93"/>
         <source>\includegraphics{file}</source>
         <translation>\includegraphics{file}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="85"/>
+        <location filename="additionaltranslations.cpp" line="94"/>
         <source>\include{file}</source>
         <translation>\include{file}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="86"/>
+        <location filename="additionaltranslations.cpp" line="95"/>
         <source>\input{file}</source>
         <translation>\input{file}</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="87"/>
+        <location filename="additionaltranslations.cpp" line="20"/>
         <source>Cross References</source>
         <translation>相互参照</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="88"/>
+        <location filename="additionaltranslations.cpp" line="96"/>
         <source>label</source>
         <translation>ラベル</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="89"/>
+        <location filename="additionaltranslations.cpp" line="100"/>
+        <source>Inline math mode $...$</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="101"/>
+        <source>Display math mode \[...\]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="102"/>
+        <source>Subscript - _{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="103"/>
+        <source>Superscript - ^{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="108"/>
+        <source>\begin{array}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="109"/>
+        <source>env equation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="110"/>
+        <source>env equation*</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="111"/>
+        <source>env align (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="112"/>
+        <source>env align* (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="113"/>
+        <source>env alignat (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="114"/>
+        <source>env alignat* (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="115"/>
+        <source>env flalign (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="116"/>
+        <source>env flalign* (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="117"/>
+        <source>env gather (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="118"/>
+        <source>env gather* (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="119"/>
+        <source>env multiline (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="120"/>
+        <source>env multiline* (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="121"/>
+        <source>env cases (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="122"/>
+        <source>Roman - \mathrm{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="123"/>
+        <source>Italic - \mathit{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="124"/>
+        <source>Bold - \mathbf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="125"/>
+        <source>Sans Serif - \mathsf{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="126"/>
+        <source>Typewriter - \mathtt{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="127"/>
+        <source>Calligraphic - \mathcal{}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="128"/>
+        <source>Blackboard Bold - \mathbb{} (amssymb)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="129"/>
+        <source>Fraktur - \mathfrak{} (amssymb)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="130"/>
+        <source>\overset (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="131"/>
+        <source>\underset (amsmath)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="132"/>
+        <source>Negative - \!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="133"/>
+        <source>Thin - \,</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="134"/>
+        <source>Medium - \:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="135"/>
+        <source>Thick - \;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="136"/>
+        <source>Interword - \ </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="137"/>
+        <source>One quad - \quad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="138"/>
+        <source>Two quads - \qquad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="additionaltranslations.cpp" line="139"/>
         <source>ref</source>
         <translation>参照</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="90"/>
+        <location filename="additionaltranslations.cpp" line="140"/>
         <source>eqref</source>
         <translation>数式参照</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="91"/>
+        <location filename="additionaltranslations.cpp" line="141"/>
         <source>pageref</source>
         <translation>ページ参照</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="92"/>
+        <location filename="additionaltranslations.cpp" line="97"/>
         <source>index</source>
         <translation>索引</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="93"/>
+        <location filename="additionaltranslations.cpp" line="98"/>
         <source>cite</source>
         <translation>引用</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="94"/>
+        <location filename="additionaltranslations.cpp" line="99"/>
         <source>footnote</source>
         <translation>脚注</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="95"/>
+        <location filename="additionaltranslations.cpp" line="21"/>
         <source>Bibliography</source>
         <translation>参考文献</translation>
     </message>
@@ -3876,7 +4103,7 @@ Are you sure you want to undo all changes?</source>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>図の配置位置
@@ -3947,47 +4174,47 @@ The wizard does not support command </source>
 <context>
     <name>LatexCompleter</name>
     <message>
-        <location filename="latexcompleter.cpp" line="1059"/>
-        <location filename="latexcompleter.cpp" line="1068"/>
+        <location filename="latexcompleter.cpp" line="1060"/>
+        <location filename="latexcompleter.cpp" line="1069"/>
         <source>typical</source>
         <translation>典型的</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="1060"/>
-        <location filename="latexcompleter.cpp" line="1069"/>
+        <location filename="latexcompleter.cpp" line="1061"/>
+        <location filename="latexcompleter.cpp" line="1070"/>
         <source>most used</source>
         <translation>最も使用されている</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="1061"/>
-        <location filename="latexcompleter.cpp" line="1070"/>
+        <location filename="latexcompleter.cpp" line="1062"/>
+        <location filename="latexcompleter.cpp" line="1071"/>
         <source>all</source>
         <translation>すべて</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="1062"/>
-        <location filename="latexcompleter.cpp" line="1071"/>
+        <location filename="latexcompleter.cpp" line="1063"/>
+        <location filename="latexcompleter.cpp" line="1072"/>
         <source>press shift+space to change view</source>
         <translation>変更を表示するにはshift+spaceをタイプしてください</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="1207"/>
+        <location filename="latexcompleter.cpp" line="1208"/>
         <source> (Usertag)</source>
         <translation> (ユーザータグ)</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="1559"/>
+        <location filename="latexcompleter.cpp" line="1560"/>
         <source>label missing!</source>
         <translation>ラベルが見つかりません!</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="1561"/>
+        <location filename="latexcompleter.cpp" line="1562"/>
         <source>label multiple times defined!</source>
         <translation>ラベルが複数回定義されています!</translation>
     </message>
     <message>
-        <location filename="latexcompleter.cpp" line="1570"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <location filename="latexcompleter.cpp" line="1571"/>
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ファイル名: %1&lt;/b&gt;
 </translation>
@@ -4100,8 +4327,8 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="489"/>
-        <location filename="texstudio.cpp" line="7730"/>
-        <location filename="texstudio.cpp" line="7737"/>
+        <location filename="texstudio.cpp" line="7731"/>
+        <location filename="texstudio.cpp" line="7738"/>
         <source>Go to Definition</source>
         <translation>定義へ移動</translation>
     </message>
@@ -4159,14 +4386,16 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2319"/>
         <location filename="latexeditorview.cpp" line="2391"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;ファイル名: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2332"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>このラベルに対する%n回の参照</numerusform></translation>
+        <translation>
+            <numerusform>このラベルに対する%n回の参照</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2337"/>
@@ -4254,7 +4483,7 @@ The wizard does not support command </source>
         <translation>レベル %1を展開</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7736"/>
+        <location filename="texstudio.cpp" line="7737"/>
         <source>Open Document</source>
         <translation>文書を開く</translation>
     </message>
@@ -5281,153 +5510,153 @@ Do you want to overwrite it?</source>
         <translation>表示</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2410"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2403"/>
         <source>Windowed Viewer</source>
         <translation>ウィンドウ化ビューワー</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2413"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2406"/>
         <source>Embedded Viewer</source>
         <translation>埋め込みビューワー</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2470"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2463"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>/</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2493"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2486"/>
         <source>Scale</source>
         <translation>スケール</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2511"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2504"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2521"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2514"/>
         <source>Zoom</source>
         <translation>拡大縮小</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2530"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2523"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2554"/>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2557"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2547"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2550"/>
         <source>Annotations</source>
         <translation>注釈</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2718"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2711"/>
         <source>Page Down</source>
         <translation>次のページへ移動</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2722"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2715"/>
         <source>Page Up</source>
         <translation>前のページへ移動</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2899"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2892"/>
         <source>Retry</source>
         <translation>再試行</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2902"/>
-        <location filename="pdfviewer/PDFDocument.cpp" line="4056"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2895"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="4049"/>
         <source>Close</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2905"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2898"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
 は有効なPDF文書ではなさそうです。ファイルが破損しているか、作成途中であるかのいずれかです。2秒毎に再試行します。</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2919"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2912"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>ファイル&quot;%1&quot;が見つかりません; 消去されていると思われます。</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2922"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2915"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>ファイル&quot;%1&quot;の読み込みに失敗しました; 有効なPDFドキュメントではないと思われます。</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2925"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2918"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>bad allocのためファイル&quot;%1&quot;の読み込みに失敗しました; 有効なPDFドキュメントではないと思われます。</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2928"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2921"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>例外が発生してファイル&quot;%1&quot;の読み込みに失敗しました; 有効なPDFドキュメントではないと思われます。</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2931"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2924"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>PDFファイル&quot;%1&quot;はロックされています。</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2933"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2926"/>
         <source>PDF password</source>
         <translation>PDFパスワード</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2933"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2926"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>PDFファイル&quot;%1&quot;はロックされています。パスワードを入力してください：</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3250"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3243"/>
         <source>Searching for</source>
         <translation>次を検索</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3374"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3367"/>
         <source>No SyncTeX data available</source>
         <translation>利用できるSyncTeXデータがありません</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3377"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3370"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3507"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3500"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3585"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3578"/>
         <source>Page %1 of %2</source>
         <translation>%2のうちの%1ページ目</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3586"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3579"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>%3のうちの%1から%2ページ</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3611"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3604"/>
         <source>Open PDF</source>
         <translation>PDFを開く</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3891"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3884"/>
         <source>Print</source>
         <translation>印刷</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="4057"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="4050"/>
         <source>Close Message</source>
         <translation>メッセージを閉じる</translation>
     </message>
@@ -5720,42 +5949,42 @@ You can now enter the password:</source>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="2106"/>
+        <location filename="buildmanager.cpp" line="2108"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>指定の標準出力リダイレクトはサポートされていません：&quot;%1&quot;。詳細はマニュアルを参照してください。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2115"/>
+        <location filename="buildmanager.cpp" line="2117"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation>指定の標準エラーリダイレクトはサポートされていません：&quot;%1&quot;。詳細はマニュアルを参照してください。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2284"/>
+        <location filename="buildmanager.cpp" line="2286"/>
         <source>Process started: %1</source>
         <translation>開始されたプロセス: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2290"/>
+        <location filename="buildmanager.cpp" line="2292"/>
         <source>Error: Could not start the command: %1</source>
         <translation>エラー: コマンド%1を開始できませんでした</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2293"/>
+        <location filename="buildmanager.cpp" line="2295"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;(La)TeXディストリビューション（例：MiKTeXやTeX Live）がインストールされていること&lt;/b&gt;と、TeXstudioコマンド設定ページでそのディストリビューション（のコマンド）へのパスが正しく設定されていることを確認してください。&lt;br&gt;TeXstudioのような(La)TeXエディタはそうしたディストリビューションが提供している(La)TeXコマンドなしでは機能しません。</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2297"/>
+        <location filename="buildmanager.cpp" line="2299"/>
         <source>Error: Command crashed: %1</source>
         <translation>エラー: コマンド%1がクラッシュしました</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2304"/>
+        <location filename="buildmanager.cpp" line="2306"/>
         <source>Process exited with error(s)</source>
         <translation>プロセスはエラー終了しました</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2307"/>
+        <location filename="buildmanager.cpp" line="2309"/>
         <source>Process exited normally</source>
         <translation>プロセスは正常に終了しました</translation>
     </message>
@@ -5785,58 +6014,58 @@ You can now enter the password:</source>
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="697"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="698"/>
         <source>Replacement prompt</source>
         <translation>置換プロンプト</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="698"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="699"/>
         <source>Shall it be replaced?</source>
         <translation>置換しますか?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="703"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="704"/>
         <source>Replacing Canceled</source>
         <translation>置換がキャンセルされました</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="703"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="704"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
         <translation>（これまでに見つかった%2個のうち）%1個を置換しました</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="741"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="742"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
         <translation>一致対象がないまま範囲の始めまで到達しました。
 終わりからやり直しますか？</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="746"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="747"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
         <translation>一致対象がないまま範囲の終わりまで到達しました。
 初めからやり直しますか?</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="753"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="754"/>
         <source>Failure</source>
         <translation>失敗</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="773"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="795"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="796"/>
         <source>Replacing Finished</source>
         <translation>置換が終了しました</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="774"/>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="795"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="775"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="796"/>
         <source>%1 (of %2) occurences have been replaced</source>
         <translation>（%2ヶ所のうち）%1ヶ所を置換しました</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="775"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="776"/>
         <source>Do you want to continue replacing from the beginning?</source>
         <translation>初めから置換を続けますか?</translation>
     </message>
@@ -6069,7 +6298,7 @@ failed.</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1068"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
         <translation>保存操作中にディスク上の元のファイルは破壊されました。
 ファイルのコピーは次の場所にあります
@@ -6155,289 +6384,289 @@ Do you wish to keep up to date by reloading the file?
         <translation>Unix</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4455"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4462"/>
         <source>None</source>
         <translation>なし</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4456"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4463"/>
         <source>Invalid</source>
         <translation>無効</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4458"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4474"/>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4490"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4465"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4481"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4497"/>
         <source>Internal</source>
         <translation>内部</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4460"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4467"/>
         <source>Move cursor up</source>
         <translation>カーソルを上へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4461"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4468"/>
         <source>Move cursor down</source>
         <translation>カーソルを下へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4462"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4469"/>
         <source>Move cursor left (1 character)</source>
         <translation>カーソルを（1文字分）左へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4463"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4470"/>
         <source>Move cursor right (1 character)</source>
         <translation>カーソルを（1文字分）右へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4464"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4471"/>
         <source>Move cursor left (1 word)</source>
         <translation>カーソルを（1単語分）左へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4465"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4472"/>
         <source>Move cursor right (1 word)</source>
         <translation>カーソルを（1単語分）右へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4466"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4473"/>
         <source>Move cursor to line start</source>
         <translation>カーソルを行頭へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4467"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4474"/>
         <source>Move cursor to line end</source>
         <translation>カーソルを行末へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4468"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4475"/>
         <source>Move cursor to document start</source>
         <translation>カーソルをドキュメントの最初に移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4469"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4476"/>
         <source>Move cursor to document end</source>
         <translation>カーソルをドキュメントの終わりに移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4471"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4478"/>
         <source>Move cursor one page up</source>
         <translation>カーソルを1ページ分上へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4472"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4479"/>
         <source>Move cursor one page down</source>
         <translation>カーソルを1ページ分下へ移動</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4476"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4483"/>
         <source>Select up</source>
         <translation>上を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4477"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4484"/>
         <source>Select down</source>
         <translation>下を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4478"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4485"/>
         <source>Select left (1 character)</source>
         <translation>（1文字分）左を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4479"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4486"/>
         <source>Select right (1 character)</source>
         <translation>（1文字分）右を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4480"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4487"/>
         <source>Select left (1 word)</source>
         <translation>（1単語分）左を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4481"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4488"/>
         <source>Select right (1 word)</source>
         <translation>（1単語分）右を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4482"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4489"/>
         <source>Select to line start</source>
         <translation>行頭までを選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4483"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4490"/>
         <source>Select to line end</source>
         <translation>行末までを選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4484"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4491"/>
         <source>Select to document start</source>
         <translation>ドキュメントの最初までを選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4485"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4492"/>
         <source>Select to document end</source>
         <translation>ドキュメントの最後までを選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4487"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4494"/>
         <source>Select page up</source>
         <translation>1ページ分上を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4488"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4495"/>
         <source>Select page down</source>
         <translation>1ページ分下を選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4492"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4499"/>
         <source>Delete left character</source>
         <translation>左の文字を削除</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4493"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4500"/>
         <source>Delete right character</source>
         <translation>右の文字を削除</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4494"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4501"/>
         <source>Delete left word</source>
         <translation>左の単語を削除</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4495"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4502"/>
         <source>Delete right word</source>
         <translation>右の単語を削除</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4496"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4503"/>
         <source>New line</source>
         <translation>強制改行</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4498"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4505"/>
         <source>Change overwrite mode</source>
         <translation>上書きモードへ移行</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4499"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4506"/>
         <source>Undo</source>
         <translation>元に戻す</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4500"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4507"/>
         <source>Redo</source>
         <translation>やり直す</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4501"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4508"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4502"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4509"/>
         <source>Paste</source>
         <translation>貼り付け</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4503"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4510"/>
         <source>Cut</source>
         <translation>切り取り</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4504"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4511"/>
         <source>Print</source>
         <translation>印刷</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4505"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4512"/>
         <source>Select all</source>
         <translation>全て選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4506"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4513"/>
         <source>Find</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4507"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4514"/>
         <source>Find next</source>
         <translation>次を検索</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4508"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4515"/>
         <source>Find previous</source>
         <translation>前を検索</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4509"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4516"/>
         <source>Replace</source>
         <translation>置換</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4511"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4518"/>
         <source>Create cursor mirror up</source>
         <translation>カーソルのミラーを上に作成</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4512"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4519"/>
         <source>Create cursor mirror down</source>
         <translation>カーソルのミラーを下に作成</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4513"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4520"/>
         <source>Next placeholder</source>
         <translation>次のプレースホルダー</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4514"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4521"/>
         <source>Previous placeholder</source>
         <translation>前のプレースホルダー</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4515"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4522"/>
         <source>Next placeholder or one word right</source>
         <translation>次のプレースホルダーまたは1単語右</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4516"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4523"/>
         <source>Previous placeholder or one word left</source>
         <translation>前のプレースホルダーまたは1単語左</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4517"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4524"/>
         <source>Next placeholder or character</source>
         <translation>次のプレースホルダーまたは文字</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4518"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4525"/>
         <source>Previous placeholder or character</source>
         <translation>前のプレースホルダーまたは文字</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4519"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4526"/>
         <source>Tab or Indent selection</source>
         <translation>タブまたはインデントの選択</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4520"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4527"/>
         <source>Insert tab</source>
         <translation>タブを挿入</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4521"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4528"/>
         <source>Indent selection</source>
         <translation>選択部分のインデント</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4522"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4529"/>
         <source>Unindent selection</source>
         <translation>選択部分のインデントの解除</translation>
     </message>
     <message>
-        <location filename="qcodeedit/lib/qeditor.cpp" line="4525"/>
+        <location filename="qcodeedit/lib/qeditor.cpp" line="4532"/>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
@@ -6454,452 +6683,452 @@ Do you wish to keep up to date by reloading the file?
 <context>
     <name>QFormatConfig</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="96"/>
+        <location filename="additionaltranslations.cpp" line="142"/>
         <source>background</source>
         <translation>背景</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="97"/>
+        <location filename="additionaltranslations.cpp" line="143"/>
         <source>line:error</source>
         <translation>行: エラー</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="98"/>
+        <location filename="additionaltranslations.cpp" line="144"/>
         <source>line:warning</source>
         <translation>行: 警告</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="99"/>
+        <location filename="additionaltranslations.cpp" line="145"/>
         <source>line:badbox</source>
         <translation>行: 悪いボックス</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="100"/>
+        <location filename="additionaltranslations.cpp" line="146"/>
         <source>line:bookmark</source>
         <translation>行: ブックマーク</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="101"/>
+        <location filename="additionaltranslations.cpp" line="147"/>
         <source>line:bookmark0</source>
         <translation>行: ブックマーク0</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="102"/>
+        <location filename="additionaltranslations.cpp" line="148"/>
         <source>line:bookmark1</source>
         <translation>行: ブックマーク1</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="103"/>
+        <location filename="additionaltranslations.cpp" line="149"/>
         <source>line:bookmark2</source>
         <translation>行: ブックマーク2</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="104"/>
+        <location filename="additionaltranslations.cpp" line="150"/>
         <source>line:bookmark3</source>
         <translation>行: ブックマーク3</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="105"/>
+        <location filename="additionaltranslations.cpp" line="151"/>
         <source>line:bookmark4</source>
         <translation>行: ブックマーク4</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="106"/>
+        <location filename="additionaltranslations.cpp" line="152"/>
         <source>line:bookmark5</source>
         <translation>行: ブックマーク5</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="107"/>
+        <location filename="additionaltranslations.cpp" line="153"/>
         <source>line:bookmark6</source>
         <translation>行: ブックマーク6</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="108"/>
+        <location filename="additionaltranslations.cpp" line="154"/>
         <source>line:bookmark7</source>
         <translation>行: ブックマーク7</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="109"/>
+        <location filename="additionaltranslations.cpp" line="155"/>
         <source>line:bookmark8</source>
         <translation>行: ブックマーク8</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="110"/>
+        <location filename="additionaltranslations.cpp" line="156"/>
         <source>line:bookmark9</source>
         <translation>行: ブックマーク9</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="111"/>
+        <location filename="additionaltranslations.cpp" line="157"/>
         <source>magicComment</source>
         <translation>magicコメント</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="112"/>
+        <location filename="additionaltranslations.cpp" line="158"/>
         <source>commentTodo</source>
         <translation>Todoコメント</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="113"/>
+        <location filename="additionaltranslations.cpp" line="159"/>
         <source>comment</source>
         <translation>コメント</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="114"/>
+        <location filename="additionaltranslations.cpp" line="160"/>
         <source>keyword</source>
         <translation>キーワード</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="115"/>
+        <location filename="additionaltranslations.cpp" line="161"/>
         <source>extra-keyword</source>
         <translation>特別なキーワード</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="116"/>
+        <location filename="additionaltranslations.cpp" line="162"/>
         <source>math-keyword</source>
         <translation>数学キーワード</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="117"/>
+        <location filename="additionaltranslations.cpp" line="163"/>
         <source>link</source>
         <translation>リンク</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="118"/>
+        <location filename="additionaltranslations.cpp" line="164"/>
         <source>align-ampersand</source>
         <translation>行揃えの＆</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="119"/>
+        <location filename="additionaltranslations.cpp" line="165"/>
         <source>verbatim</source>
         <translation>verbatim</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="120"/>
+        <location filename="additionaltranslations.cpp" line="166"/>
         <source>sweave-block</source>
         <translation>sweaveブロック</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="121"/>
+        <location filename="additionaltranslations.cpp" line="167"/>
         <source>sweave-delimiter</source>
         <translation>sweave区切り記号</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="122"/>
+        <location filename="additionaltranslations.cpp" line="168"/>
         <source>pweave-block</source>
         <translation>pweaveブロック</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="123"/>
+        <location filename="additionaltranslations.cpp" line="169"/>
         <source>pweave-delimiter</source>
         <translation>pweave区切り記号</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="124"/>
+        <location filename="additionaltranslations.cpp" line="170"/>
         <source>picture</source>
         <translation>図画</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="125"/>
+        <location filename="additionaltranslations.cpp" line="171"/>
         <source>braceMatch</source>
         <translation>括弧の一致</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="126"/>
+        <location filename="additionaltranslations.cpp" line="172"/>
         <source>braceMismatch</source>
         <translation>括弧の不一致</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="127"/>
+        <location filename="additionaltranslations.cpp" line="173"/>
         <source>search</source>
         <translation>検索</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="128"/>
+        <location filename="additionaltranslations.cpp" line="174"/>
         <source>numbers</source>
         <translation>数字</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="129"/>
+        <location filename="additionaltranslations.cpp" line="175"/>
         <source>math-delimiter</source>
         <translation>数式の区切り記号</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="130"/>
+        <location filename="additionaltranslations.cpp" line="176"/>
         <source>text</source>
         <translation>テキスト</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="131"/>
+        <location filename="additionaltranslations.cpp" line="177"/>
         <source>escapeseq</source>
         <translation>エスケープ文字列</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="132"/>
+        <location filename="additionaltranslations.cpp" line="178"/>
         <source>spellingMistake</source>
         <translation>スペル間違い</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="133"/>
+        <location filename="additionaltranslations.cpp" line="179"/>
         <source>wordRepetition</source>
         <translation>単語の繰り返し</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="134"/>
+        <location filename="additionaltranslations.cpp" line="180"/>
         <source>wordRepetitionLongRange</source>
         <translation>広範囲の単語の繰り返し</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="135"/>
+        <location filename="additionaltranslations.cpp" line="181"/>
         <source>badWord</source>
         <translation>良くない単語</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="136"/>
+        <location filename="additionaltranslations.cpp" line="182"/>
         <source>grammarMistake</source>
         <translation>文法上の間違い</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="137"/>
+        <location filename="additionaltranslations.cpp" line="183"/>
         <source>grammarMistakeSpecial1</source>
         <translation>文法上の間違い（スペシャル1）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="138"/>
+        <location filename="additionaltranslations.cpp" line="184"/>
         <source>grammarMistakeSpecial2</source>
         <translation>文法上の間違い（スペシャル2）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="139"/>
+        <location filename="additionaltranslations.cpp" line="185"/>
         <source>grammarMistakeSpecial3</source>
         <translation>文法上の間違い（スペシャル3）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="140"/>
+        <location filename="additionaltranslations.cpp" line="186"/>
         <source>grammarMistakeSpecial4</source>
         <translation>文法上の間違い（スペシャル4）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="141"/>
+        <location filename="additionaltranslations.cpp" line="187"/>
         <source>latexSyntaxMistake</source>
         <translation>LaTeX構文の間違い</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="142"/>
+        <location filename="additionaltranslations.cpp" line="188"/>
         <source>temporaryCodeCompletion</source>
         <translation>一時的なコード補完</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="143"/>
+        <location filename="additionaltranslations.cpp" line="189"/>
         <source>environment</source>
         <translation>環境</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="144"/>
+        <location filename="additionaltranslations.cpp" line="190"/>
         <source>referencePresent</source>
         <translation>参照の存在</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="145"/>
+        <location filename="additionaltranslations.cpp" line="191"/>
         <source>referenceMissing</source>
         <translation>参照の欠損</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="146"/>
+        <location filename="additionaltranslations.cpp" line="192"/>
         <source>referenceMultiple</source>
         <translation>参照の重複</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="147"/>
+        <location filename="additionaltranslations.cpp" line="193"/>
         <source>citationPresent</source>
         <translation>引用の存在</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="148"/>
+        <location filename="additionaltranslations.cpp" line="194"/>
         <source>citationMissing</source>
         <translation>引用の欠損</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="149"/>
+        <location filename="additionaltranslations.cpp" line="195"/>
         <source>packagePresent</source>
         <translation>パッケージの存在</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="150"/>
+        <location filename="additionaltranslations.cpp" line="196"/>
         <source>packageMissing</source>
         <translation>パッケージの欠如</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="151"/>
+        <location filename="additionaltranslations.cpp" line="197"/>
         <source>structure</source>
         <translation>文書の構造</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="152"/>
+        <location filename="additionaltranslations.cpp" line="198"/>
         <source>current</source>
         <translation>現在の行</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="153"/>
+        <location filename="additionaltranslations.cpp" line="199"/>
         <source>selection</source>
         <translation>選択</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="154"/>
+        <location filename="additionaltranslations.cpp" line="200"/>
         <source>replacement</source>
         <translation>置換</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="155"/>
+        <location filename="additionaltranslations.cpp" line="201"/>
         <source>diffDelete</source>
         <translation>差分（除去）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="156"/>
+        <location filename="additionaltranslations.cpp" line="202"/>
         <source>diffAdd</source>
         <translation>差分（追加）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="157"/>
+        <location filename="additionaltranslations.cpp" line="203"/>
         <source>diffReplace</source>
         <translation>差分（置換）</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="158"/>
+        <location filename="additionaltranslations.cpp" line="204"/>
         <source>previewSelection</source>
         <translation>プレビュー選択</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="159"/>
+        <location filename="additionaltranslations.cpp" line="205"/>
         <source>txs-test</source>
         <translation>txsのテスト</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="160"/>
+        <location filename="additionaltranslations.cpp" line="206"/>
         <source>txs-test-summary</source>
         <translation>txsのテストの要約</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="161"/>
+        <location filename="additionaltranslations.cpp" line="207"/>
         <source>txs-test-pass</source>
         <translation>txsのテストの通過</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="162"/>
+        <location filename="additionaltranslations.cpp" line="208"/>
         <source>txs-test-fail</source>
         <translation>txsのテストの失敗</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="163"/>
+        <location filename="additionaltranslations.cpp" line="209"/>
         <source>txs-test-warn</source>
         <translation>txsのテストの警告</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="164"/>
+        <location filename="additionaltranslations.cpp" line="210"/>
         <source>txs-test-qdebug</source>
         <translation>txsのテストのデバッグ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="165"/>
+        <location filename="additionaltranslations.cpp" line="211"/>
         <source>dtx:guard</source>
         <translation>dtx: 保護</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="166"/>
+        <location filename="additionaltranslations.cpp" line="212"/>
         <source>dtx:macro</source>
         <translation>dtx: マクロ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="167"/>
+        <location filename="additionaltranslations.cpp" line="213"/>
         <source>dtx:verbatim</source>
         <translation>dtx: verbatim</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="168"/>
+        <location filename="additionaltranslations.cpp" line="214"/>
         <source>dtx:specialchar</source>
         <translation>dtx: 特殊文字</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="169"/>
+        <location filename="additionaltranslations.cpp" line="215"/>
         <source>dtx:commands</source>
         <translation>dtx:コマンド</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="170"/>
+        <location filename="additionaltranslations.cpp" line="216"/>
         <source>lua:keyword</source>
         <translation>lua:キーワード</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="171"/>
+        <location filename="additionaltranslations.cpp" line="217"/>
         <source>lua:comment</source>
         <translation>lua:コメント</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="172"/>
+        <location filename="additionaltranslations.cpp" line="218"/>
         <source>asymptote:block</source>
         <translation>asymptote:ブロック</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="173"/>
+        <location filename="additionaltranslations.cpp" line="219"/>
         <source>asymptote:keyword</source>
         <translation>asymptote:キーワード</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="174"/>
+        <location filename="additionaltranslations.cpp" line="220"/>
         <source>asymptote:type</source>
         <translation>asymptote:タイプ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="175"/>
+        <location filename="additionaltranslations.cpp" line="221"/>
         <source>asymptote:numbers</source>
         <translation>asymptote:数字</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="176"/>
+        <location filename="additionaltranslations.cpp" line="222"/>
         <source>asymptote:string</source>
         <translation>asymptote:文字列</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="177"/>
+        <location filename="additionaltranslations.cpp" line="223"/>
         <source>asymptote:comment</source>
         <translation>asymptote:コメント</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="178"/>
+        <location filename="additionaltranslations.cpp" line="224"/>
         <source>qtscript:comment</source>
         <translation>qtscript:コメント</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="179"/>
+        <location filename="additionaltranslations.cpp" line="225"/>
         <source>qtscript:string</source>
         <translation>qtscript:文字列</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="180"/>
+        <location filename="additionaltranslations.cpp" line="226"/>
         <source>qtscript:number</source>
         <translation>qtscript:数字</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="181"/>
+        <location filename="additionaltranslations.cpp" line="227"/>
         <source>qtscript:keyword</source>
         <translation>qtscript:キーワード</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="182"/>
+        <location filename="additionaltranslations.cpp" line="228"/>
         <source>qtscript:txs-variable</source>
         <translation>qtscript:txsの変数</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="183"/>
+        <location filename="additionaltranslations.cpp" line="229"/>
         <source>qtscript:txs-function</source>
         <translation>qtscript:txsの関数</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="184"/>
+        <location filename="additionaltranslations.cpp" line="230"/>
         <source>preedit</source>
         <translation>事前編集</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="185"/>
+        <location filename="additionaltranslations.cpp" line="231"/>
         <source>normal</source>
         <translation>標準</translation>
     </message>
@@ -8441,7 +8670,7 @@ failed.</source>
         <translation>説明:</translation>
     </message>
     <message>
-        <location filename="texdocdialog.cpp" line="91"/>
+        <location filename="texdocdialog.cpp" line="93"/>
         <source>No Documentation Available</source>
         <translation>利用可能な文書がありません</translation>
     </message>
@@ -8449,131 +8678,131 @@ failed.</source>
 <context>
     <name>Texstudio</name>
     <message>
-        <location filename="additionaltranslations.cpp" line="186"/>
+        <location filename="additionaltranslations.cpp" line="232"/>
         <source>Custom</source>
         <translation>カスタマイズ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="187"/>
+        <location filename="additionaltranslations.cpp" line="233"/>
         <source>File</source>
         <translation>ファイル</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="188"/>
+        <location filename="additionaltranslations.cpp" line="234"/>
         <source>Edit</source>
         <translation>編集</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="189"/>
+        <location filename="additionaltranslations.cpp" line="235"/>
         <source>Tools</source>
         <translation>ツール</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="190"/>
+        <location filename="additionaltranslations.cpp" line="236"/>
         <source>Math</source>
         <translation>数式</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="191"/>
+        <location filename="additionaltranslations.cpp" line="237"/>
         <source>Format</source>
         <translation>書式</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="192"/>
+        <location filename="additionaltranslations.cpp" line="238"/>
         <source>Table</source>
         <translation>表</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="193"/>
+        <location filename="additionaltranslations.cpp" line="239"/>
         <source>Diff</source>
         <translation>差分</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="194"/>
+        <location filename="additionaltranslations.cpp" line="240"/>
         <location filename="texstudio.cpp" line="243"/>
         <source>Central</source>
         <translation>中央部</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="195"/>
+        <location filename="additionaltranslations.cpp" line="241"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
         <translation>Asymptote</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="196"/>
+        <location filename="additionaltranslations.cpp" line="242"/>
         <source>BibTeX</source>
         <comment>Format name of language definition </comment>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="197"/>
+        <location filename="additionaltranslations.cpp" line="243"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
         <translation>バイナリ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="198"/>
+        <location filename="additionaltranslations.cpp" line="244"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
         <translation>TeX dtxファイル</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="199"/>
+        <location filename="additionaltranslations.cpp" line="245"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
         <translation>Homespring</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="200"/>
+        <location filename="additionaltranslations.cpp" line="246"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
         <translation>Lua</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="201"/>
+        <location filename="additionaltranslations.cpp" line="247"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
         <translation>Pweave</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="202"/>
+        <location filename="additionaltranslations.cpp" line="248"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
         <translation>Qtスクリプト</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="203"/>
+        <location filename="additionaltranslations.cpp" line="249"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
         <translation>Sweave</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="204"/>
+        <location filename="additionaltranslations.cpp" line="250"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeX</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="205"/>
+        <location filename="additionaltranslations.cpp" line="251"/>
         <source>(La)TeX Macro</source>
         <comment>Format name of language definition </comment>
         <translation>(La)TeXマクロ</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="206"/>
+        <location filename="additionaltranslations.cpp" line="252"/>
         <source>TXS Test Results</source>
         <comment>Format name of language definition </comment>
         <translation>TXSテストの結果</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="207"/>
+        <location filename="additionaltranslations.cpp" line="253"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
         <translation>プレーンテキスト</translation>
     </message>
     <message>
-        <location filename="additionaltranslations.cpp" line="208"/>
+        <location filename="additionaltranslations.cpp" line="254"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
         <translation>XML</translation>
@@ -8626,8 +8855,8 @@ failed.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="368"/>
-        <location filename="texstudio.cpp" line="9239"/>
-        <location filename="texstudio.cpp" line="9249"/>
+        <location filename="texstudio.cpp" line="9240"/>
+        <location filename="texstudio.cpp" line="9250"/>
         <source>All files</source>
         <translation>すべてのファイル</translation>
     </message>
@@ -8911,7 +9140,7 @@ failed.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="772"/>
-        <location filename="texstudio.cpp" line="9440"/>
+        <location filename="texstudio.cpp" line="9441"/>
         <source>&amp;Close</source>
         <translation>閉じる(&amp;C)</translation>
     </message>
@@ -9396,683 +9625,689 @@ failed.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="931"/>
-        <source>Refresh QNFA</source>
-        <translation>QNFAのリフレッシュ</translation>
+        <source>Refresh Language Model</source>
+        <oldsource>Refresh QNFA</oldsource>
+        <translation type="unfinished">QNFAのリフレッシュ</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="932"/>
+        <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="texstudio.cpp" line="933"/>
         <source>Remove Placeholders</source>
         <translation>プレースホルダーを除去</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="933"/>
+        <location filename="texstudio.cpp" line="934"/>
         <source>Remove Current Placeholder</source>
         <translation>現在のプレースホルダを削除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="938"/>
+        <location filename="texstudio.cpp" line="939"/>
         <source>&amp;Tools</source>
         <translation>ツール(&amp;T)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="940"/>
+        <location filename="texstudio.cpp" line="941"/>
         <source>&amp;Build &amp;&amp; View</source>
         <translation>ビルド &amp;&amp; 表示(&amp;B)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="941"/>
+        <location filename="texstudio.cpp" line="942"/>
         <source>&amp;Compile</source>
         <translation>コンパイル(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="942"/>
+        <location filename="texstudio.cpp" line="943"/>
         <source>Stop Compile</source>
         <translation>コンパイルを停止</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="944"/>
-        <location filename="texstudio.cpp" line="1097"/>
+        <location filename="texstudio.cpp" line="945"/>
+        <location filename="texstudio.cpp" line="1098"/>
         <source>&amp;View</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="945"/>
-        <location filename="texstudio.cpp" line="1041"/>
+        <location filename="texstudio.cpp" line="946"/>
+        <location filename="texstudio.cpp" line="1042"/>
         <source>&amp;Bibliography</source>
         <translation>文献(&amp;B)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="946"/>
+        <location filename="texstudio.cpp" line="947"/>
         <source>&amp;Glossary</source>
         <translation>用語集(&amp;G)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="947"/>
+        <location filename="texstudio.cpp" line="948"/>
         <source>&amp;Index</source>
         <translation>索引(&amp;I)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="950"/>
+        <location filename="texstudio.cpp" line="951"/>
         <source>&amp;Commands</source>
         <comment>menu</comment>
         <translation>コマンド(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="951"/>
+        <location filename="texstudio.cpp" line="952"/>
         <source>&amp;Latexmk</source>
         <translation>&amp;LaTeXmk</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="953"/>
-        <location filename="texstudio.cpp" line="1001"/>
+        <location filename="texstudio.cpp" line="954"/>
+        <location filename="texstudio.cpp" line="1002"/>
         <source>&amp;LaTeX</source>
         <translation>&amp;LaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="954"/>
+        <location filename="texstudio.cpp" line="955"/>
         <source>&amp;PDFLaTeX</source>
         <translation>&amp;PDFLaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="958"/>
+        <location filename="texstudio.cpp" line="959"/>
         <source>DVI-&gt;PS</source>
         <translation>DVI-&gt;PS</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="959"/>
+        <location filename="texstudio.cpp" line="960"/>
         <source>P&amp;S-&gt;PDF</source>
         <translation>P&amp;S-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="960"/>
+        <location filename="texstudio.cpp" line="961"/>
         <source>DV&amp;I-&gt;PDF</source>
         <translation>DV&amp;I-&gt;PDF</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="962"/>
+        <location filename="texstudio.cpp" line="963"/>
         <source>View &amp;DVI</source>
         <translation>DVIファイルを表示(&amp;D)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="963"/>
+        <location filename="texstudio.cpp" line="964"/>
         <source>Vie&amp;w PS</source>
         <translation>PSファイルを表示(&amp;w)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="964"/>
+        <location filename="texstudio.cpp" line="965"/>
         <source>View PD&amp;F</source>
         <translation>PDFファイルを表示(&amp;F)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="966"/>
+        <location filename="texstudio.cpp" line="967"/>
         <source>&amp;Bibtex</source>
         <translation>&amp;Bibtex</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="967"/>
+        <location filename="texstudio.cpp" line="968"/>
         <source>&amp;Bibtex 8-Bit</source>
         <translation>&amp;Bibtex 8-Bit</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="968"/>
+        <location filename="texstudio.cpp" line="969"/>
         <source>Bibe&amp;r</source>
         <translation>Bibe&amp;r</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="970"/>
+        <location filename="texstudio.cpp" line="971"/>
         <source>&amp;MakeIndex</source>
         <translation>&amp;Makeindex</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="971"/>
+        <location filename="texstudio.cpp" line="972"/>
         <source>&amp;TexIndy</source>
         <translation>&amp;TexIndy</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="972"/>
+        <location filename="texstudio.cpp" line="973"/>
         <source>&amp;Makeglossaries</source>
         <translation>&amp;Makeglossaries</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="974"/>
+        <location filename="texstudio.cpp" line="975"/>
         <source>&amp;MetaPost</source>
         <translation>&amp;MetaPost</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="975"/>
+        <location filename="texstudio.cpp" line="976"/>
         <source>&amp;Asymptote</source>
         <translation>&amp;Asymptote</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="977"/>
+        <location filename="texstudio.cpp" line="978"/>
         <source>&amp;User</source>
         <comment>menu</comment>
         <translation>ユーザー(&amp;U)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="980"/>
+        <location filename="texstudio.cpp" line="981"/>
         <source>Cle&amp;an Auxiliary Files...</source>
         <translation>補助ファイルの削除(&amp;a)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="981"/>
+        <location filename="texstudio.cpp" line="982"/>
         <source>Open &amp;Terminal</source>
         <translation>端末を開く(&amp;T)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="983"/>
+        <location filename="texstudio.cpp" line="984"/>
         <source>View &amp;Log</source>
         <translation>ログを表示(&amp;L)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="984"/>
+        <location filename="texstudio.cpp" line="985"/>
         <source>Show Log Markers</source>
         <translation>ログマーカーを表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="988"/>
+        <location filename="texstudio.cpp" line="989"/>
         <source>C&amp;onvert to Html...</source>
         <translation>HTMLに変換(&amp;o)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="989"/>
+        <location filename="texstudio.cpp" line="990"/>
         <source>C&amp;onvert Source to Html...</source>
         <translation>ソースをHTMLに変換(&amp;o)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="991"/>
+        <location filename="texstudio.cpp" line="992"/>
         <source>A&amp;nalyse Text...</source>
         <translation>テキストを解析(&amp;n)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="992"/>
+        <location filename="texstudio.cpp" line="993"/>
         <source>Generate &amp;Random Text...</source>
         <translation>ランダムテキストを生成(&amp;R)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="994"/>
+        <location filename="texstudio.cpp" line="995"/>
         <source>Check Spelling...</source>
         <translation>スペルチェック</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="995"/>
+        <location filename="texstudio.cpp" line="996"/>
         <source>Thesaurus...</source>
         <translation>類語辞典</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="996"/>
+        <location filename="texstudio.cpp" line="997"/>
         <source>Find Word Repetitions...</source>
         <translation>単語の繰り返しを検索</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1003"/>
+        <location filename="texstudio.cpp" line="1004"/>
         <source>Insert \ref to Next Label</source>
         <translation>次のラベルに \ref を挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1004"/>
+        <location filename="texstudio.cpp" line="1005"/>
         <source>Insert \ref to Previous Label</source>
         <translation>前のラベルに \ref を挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1005"/>
+        <location filename="texstudio.cpp" line="1006"/>
         <source>Manipulate Tables</source>
         <comment>table</comment>
         <translation>表の操作</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1006"/>
+        <location filename="texstudio.cpp" line="1007"/>
         <source>Add Row</source>
         <comment>table</comment>
         <translation>行を追加</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1007"/>
+        <location filename="texstudio.cpp" line="1008"/>
         <source>Add Column</source>
         <comment>table</comment>
         <translation>列を追加</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1008"/>
+        <location filename="texstudio.cpp" line="1009"/>
         <source>Remove Row</source>
         <comment>table</comment>
         <translation>行を削除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1009"/>
+        <location filename="texstudio.cpp" line="1010"/>
         <source>Remove Column</source>
         <comment>table</comment>
         <translation>列を削除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1010"/>
+        <location filename="texstudio.cpp" line="1011"/>
         <source>Cut Column</source>
         <comment>table</comment>
         <translation>列の切り取り</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1011"/>
+        <location filename="texstudio.cpp" line="1012"/>
         <source>Paste Column</source>
         <comment>table</comment>
         <translation>列の貼り付け</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1012"/>
+        <location filename="texstudio.cpp" line="1013"/>
         <source>Add \hline</source>
         <comment>table</comment>
         <translation>\hline を追加</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1013"/>
+        <location filename="texstudio.cpp" line="1014"/>
         <source>Remove \hline</source>
         <comment>table</comment>
         <translation>\hline を削除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1014"/>
+        <location filename="texstudio.cpp" line="1015"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
         <translation>テンプレートを用いて表を再構築する</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1015"/>
+        <location filename="texstudio.cpp" line="1016"/>
         <source>Align Columns</source>
         <translation>列を揃える</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1016"/>
+        <location filename="texstudio.cpp" line="1017"/>
         <source>Add magic comments ...</source>
         <translation>マジックコメントを追加</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1017"/>
+        <location filename="texstudio.cpp" line="1018"/>
         <source>Insert root document name as TeX comment</source>
         <translation>TeXコメントとしてルートドキュメント名を挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1018"/>
-        <location filename="texstudio.cpp" line="1355"/>
+        <location filename="texstudio.cpp" line="1019"/>
+        <location filename="texstudio.cpp" line="1356"/>
         <source>Insert language as TeX comment</source>
         <translation>TeXコメントとして言語を挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1019"/>
+        <location filename="texstudio.cpp" line="1020"/>
         <source>Insert document coding as TeX comment</source>
         <translation>TeXコメントとして文書コーディングを挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1021"/>
+        <location filename="texstudio.cpp" line="1022"/>
         <source>&amp;Math</source>
         <translation>数式(&amp;M)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1025"/>
+        <location filename="texstudio.cpp" line="1026"/>
         <source>&amp;Wizards</source>
         <translation>ウィザード(&amp;W)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1026"/>
+        <location filename="texstudio.cpp" line="1027"/>
         <source>Quick &amp;Start...</source>
         <translation>簡単テンプレート(一般文書)(&amp;S)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1027"/>
+        <location filename="texstudio.cpp" line="1028"/>
         <source>Quick &amp;Beamer Presentation...</source>
         <translation>簡単beamerプレゼンテーション作成(&amp;B)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1028"/>
+        <location filename="texstudio.cpp" line="1029"/>
         <source>Quick &amp;Letter...</source>
         <translation>簡単テンプレート(手紙)(&amp;L)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1031"/>
+        <location filename="texstudio.cpp" line="1032"/>
         <source>Quick &amp;Tabular...</source>
         <translation>簡単表作成(&amp;T)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1032"/>
+        <location filename="texstudio.cpp" line="1033"/>
         <source>Quick T&amp;abbing...</source>
         <translation>簡単タブ区切り(&amp;a)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1033"/>
+        <location filename="texstudio.cpp" line="1034"/>
         <source>Quick &amp;Array...</source>
         <translation>簡単行列(&amp;A)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1034"/>
+        <location filename="texstudio.cpp" line="1035"/>
         <source>Insert &amp;Graphic...</source>
         <translation>画像挿入(&amp;G)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1037"/>
+        <location filename="texstudio.cpp" line="1038"/>
         <source>Math Assistant...</source>
         <translation>数式アシスタント</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1066"/>
+        <location filename="texstudio.cpp" line="1067"/>
         <source>&amp;Clean</source>
         <translation>関連ファイルの削除(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1068"/>
+        <location filename="texstudio.cpp" line="1069"/>
         <source>&amp;Insert Bibliography Entry...</source>
         <translation>文献項目を挿入(&amp;I)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1070"/>
+        <location filename="texstudio.cpp" line="1071"/>
         <source>Type</source>
         <translation>タイプ</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1074"/>
-        <location filename="texstudio.cpp" line="1084"/>
+        <location filename="texstudio.cpp" line="1075"/>
+        <location filename="texstudio.cpp" line="1085"/>
         <source>BibTeX</source>
         <translation>BibTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1079"/>
-        <location filename="texstudio.cpp" line="1085"/>
+        <location filename="texstudio.cpp" line="1080"/>
+        <location filename="texstudio.cpp" line="1086"/>
         <source>BibLaTeX</source>
         <translation>BibLaTeX</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1092"/>
+        <location filename="texstudio.cpp" line="1093"/>
         <source>Ma&amp;cros</source>
         <translation>マクロ(&amp;c)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1098"/>
+        <location filename="texstudio.cpp" line="1099"/>
         <source>Previous Document</source>
         <translation>前の文書</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1099"/>
+        <location filename="texstudio.cpp" line="1100"/>
         <source>Next Document</source>
         <translation>次の文書</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1100"/>
+        <location filename="texstudio.cpp" line="1101"/>
         <source>Open Documents</source>
         <translation>文章を開く</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1101"/>
+        <location filename="texstudio.cpp" line="1102"/>
         <source>List Of Open Documents</source>
         <translation>開いている文書のリスト</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1102"/>
+        <location filename="texstudio.cpp" line="1103"/>
         <source>List Of Hidden Documents</source>
         <translation>隠れた文書のリスト</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1104"/>
+        <location filename="texstudio.cpp" line="1105"/>
         <source>Focus Editor</source>
         <translation>エディタにフォーカスを移動</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1105"/>
+        <location filename="texstudio.cpp" line="1106"/>
         <source>Focus Viewer</source>
         <translation>ビューワーにフォーカスを移動</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1110"/>
+        <location filename="texstudio.cpp" line="1111"/>
         <source>Show embedded PDF large</source>
         <translation>埋め込みPDFを大きく表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1111"/>
+        <location filename="texstudio.cpp" line="1112"/>
         <source>Show embedded PDF small</source>
         <translation>埋め込みPDFを小さく表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1113"/>
+        <location filename="texstudio.cpp" line="1114"/>
         <source>Close Something</source>
         <translation>閉じる</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1116"/>
+        <location filename="texstudio.cpp" line="1117"/>
         <source>Collapse</source>
         <translation>非表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1117"/>
-        <location filename="texstudio.cpp" line="1122"/>
+        <location filename="texstudio.cpp" line="1118"/>
+        <location filename="texstudio.cpp" line="1123"/>
         <source>Everything</source>
         <translation>すべて</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1118"/>
-        <location filename="texstudio.cpp" line="1123"/>
+        <location filename="texstudio.cpp" line="1119"/>
+        <location filename="texstudio.cpp" line="1124"/>
         <source>Nearest Block</source>
         <translation>一番近くのブロック</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1120"/>
-        <location filename="texstudio.cpp" line="1125"/>
+        <location filename="texstudio.cpp" line="1121"/>
+        <location filename="texstudio.cpp" line="1126"/>
         <source>Level %1</source>
         <translation>レベル %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1121"/>
+        <location filename="texstudio.cpp" line="1122"/>
         <source>Expand</source>
         <translation>展開する</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1127"/>
+        <location filename="texstudio.cpp" line="1128"/>
         <source>Grammar errors</source>
         <translation>文法エラー</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1130"/>
+        <location filename="texstudio.cpp" line="1131"/>
         <source>Word Repetition</source>
         <translation>単語の繰り返し</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1131"/>
+        <location filename="texstudio.cpp" line="1132"/>
         <source>Long-range Word Repetition</source>
         <translation>広範囲の単語の繰り返し</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1132"/>
+        <location filename="texstudio.cpp" line="1133"/>
         <source>Bad words</source>
         <translation>良くない単語</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1133"/>
+        <location filename="texstudio.cpp" line="1134"/>
         <source>Grammar Mistake</source>
         <translation>文法上の間違い</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1135"/>
+        <location filename="texstudio.cpp" line="1136"/>
         <source>Grammar Mistake Special %1</source>
         <translation>文法上の間違い（スペシャル %1）</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1144"/>
+        <location filename="texstudio.cpp" line="1145"/>
         <source>Editor Zoom</source>
         <translation>エディタの拡大縮小</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1145"/>
+        <location filename="texstudio.cpp" line="1146"/>
         <source>Zoom In</source>
         <translation>拡大</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1146"/>
+        <location filename="texstudio.cpp" line="1147"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1147"/>
+        <location filename="texstudio.cpp" line="1148"/>
         <source>Reset Zoom</source>
         <translation>拡大縮小をリセット</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1149"/>
+        <location filename="texstudio.cpp" line="1150"/>
         <source>Align Windows</source>
         <translation>ウィンドウを並べる</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1151"/>
-        <location filename="texstudio.cpp" line="1153"/>
+        <location filename="texstudio.cpp" line="1152"/>
+        <location filename="texstudio.cpp" line="1154"/>
         <source>Full &amp;Screen</source>
         <translation>全画面表示(&amp;S)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1160"/>
+        <location filename="texstudio.cpp" line="1161"/>
         <source>Highlighting</source>
         <translation>強調表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1184"/>
+        <location filename="texstudio.cpp" line="1185"/>
         <source>&amp;Options</source>
         <translation>オプション(&amp;O)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1185"/>
+        <location filename="texstudio.cpp" line="1186"/>
         <source>&amp;Configure TeXstudio...</source>
         <translation>TeXstudioの設定(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1188"/>
+        <location filename="texstudio.cpp" line="1189"/>
         <source>Load &amp;Profile...</source>
         <translation>プロファイルの読み込み(&amp;P)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1189"/>
+        <location filename="texstudio.cpp" line="1190"/>
         <source>S&amp;ave Profile...</source>
         <translation>プロファイルを保存(&amp;a)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1190"/>
+        <location filename="texstudio.cpp" line="1191"/>
         <source>Save &amp;Current Settings</source>
         <comment>menu</comment>
         <translation>現在の設定を保存(&amp;C)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1191"/>
+        <location filename="texstudio.cpp" line="1192"/>
         <source>Restore &amp;Default Settings...</source>
         <translation>既定の設定に戻す(&amp;D)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1194"/>
+        <location filename="texstudio.cpp" line="1195"/>
         <source>Root Document</source>
         <comment>menu</comment>
         <translation>ルートドキュメント</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1197"/>
+        <location filename="texstudio.cpp" line="1198"/>
         <source>Detect &amp;Automatically</source>
         <translation>自動検出(&amp;A)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1205"/>
+        <location filename="texstudio.cpp" line="1206"/>
         <source>Set Current Document As Explicit Root</source>
         <translation>明示的に現在の文書をルートとして設定</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1208"/>
+        <location filename="texstudio.cpp" line="1209"/>
         <source>&amp;Help</source>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1209"/>
+        <location filename="texstudio.cpp" line="1210"/>
         <source>LaTeX Reference...</source>
         <translation>LaTeXコマンドリファレンス</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1210"/>
+        <location filename="texstudio.cpp" line="1211"/>
         <source>User Manual...</source>
         <translation>ユーザーマニュアル</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1211"/>
+        <location filename="texstudio.cpp" line="1212"/>
         <source>Packages Help...</source>
         <translation>パッケージヘルプ</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1214"/>
+        <location filename="texstudio.cpp" line="1215"/>
         <source>Check LaTeX Installation</source>
         <translation>LaTeXのインストールを確認</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1215"/>
+        <location filename="texstudio.cpp" line="1216"/>
         <source>Check Active Completion Files</source>
         <translation>有効な補完ファイルの確認</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1216"/>
+        <location filename="texstudio.cpp" line="1217"/>
         <source>About TeXstudio...</source>
         <translation>TeXstudioについて</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1235"/>
-        <location filename="texstudio.cpp" line="2689"/>
-        <location filename="texstudio.cpp" line="7713"/>
+        <location filename="texstudio.cpp" line="1236"/>
+        <location filename="texstudio.cpp" line="2690"/>
+        <location filename="texstudio.cpp" line="7714"/>
         <source>Copy</source>
         <translation>コピー</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1236"/>
-        <location filename="texstudio.cpp" line="7714"/>
+        <location filename="texstudio.cpp" line="1237"/>
+        <location filename="texstudio.cpp" line="7715"/>
         <source>Cut</source>
         <translation>切り取り</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1237"/>
-        <location filename="texstudio.cpp" line="7715"/>
+        <location filename="texstudio.cpp" line="1238"/>
+        <location filename="texstudio.cpp" line="7716"/>
         <source>Paste Before</source>
         <translation>前に貼り付け</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1238"/>
-        <location filename="texstudio.cpp" line="7716"/>
+        <location filename="texstudio.cpp" line="1239"/>
+        <location filename="texstudio.cpp" line="7717"/>
         <source>Paste After</source>
         <translation>後に貼り付け</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1242"/>
-        <location filename="texstudio.cpp" line="7718"/>
+        <location filename="texstudio.cpp" line="1243"/>
+        <location filename="texstudio.cpp" line="7719"/>
         <source>Indent Section</source>
         <translation>節のインデント</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1243"/>
-        <location filename="texstudio.cpp" line="7719"/>
+        <location filename="texstudio.cpp" line="1244"/>
+        <location filename="texstudio.cpp" line="7720"/>
         <source>Unindent Section</source>
         <translation>節のインデントの解除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1346"/>
+        <location filename="texstudio.cpp" line="1347"/>
         <source>Default</source>
         <translation>既定</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1374"/>
+        <location filename="texstudio.cpp" line="1375"/>
         <source>LanguageTool is running</source>
         <translation>LanguageToolは起動しています</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1378"/>
+        <location filename="texstudio.cpp" line="1379"/>
         <source>No LanguageTool server found</source>
         <translation>LanguageToolサーバーが見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1383"/>
+        <location filename="texstudio.cpp" line="1384"/>
         <source>LanguageTool status unknown</source>
         <translation>LanguageToolの状態が不明です</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1437"/>
+        <location filename="texstudio.cpp" line="1438"/>
         <source>Language</source>
         <translation>言語</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1449"/>
         <location filename="texstudio.cpp" line="1450"/>
+        <location filename="texstudio.cpp" line="1451"/>
         <location filename="texstudio.cpp" line="5561"/>
         <location filename="texstudio.cpp" line="5564"/>
         <location filename="texstudio.cpp" line="5565"/>
@@ -10080,85 +10315,85 @@ failed.</source>
         <translation>エンコーディング</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1472"/>
+        <location filename="texstudio.cpp" line="1473"/>
         <source>More Encodings...</source>
         <translation>その他のエンコーディング</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1480"/>
+        <location filename="texstudio.cpp" line="1481"/>
         <source>Insert encoding as TeX comment</source>
         <translation>TeXコメントとしてエンコーディングを挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1494"/>
+        <location filename="texstudio.cpp" line="1495"/>
         <source>Go to bookmark</source>
         <translation>ブックマークへ移動</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1539"/>
+        <location filename="texstudio.cpp" line="1540"/>
         <source>Automatic</source>
         <translation>自動</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1540"/>
+        <location filename="texstudio.cpp" line="1541"/>
         <source>Automatic root document detection active</source>
         <translation>ルートドキュメントの自動検出が有効</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1545"/>
+        <location filename="texstudio.cpp" line="1546"/>
         <source>&amp;Explicit</source>
         <translation>明示的(&amp;E)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1546"/>
+        <location filename="texstudio.cpp" line="1547"/>
         <source>Root</source>
         <comment>explicit root document</comment>
         <translation>ルート</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1547"/>
+        <location filename="texstudio.cpp" line="1548"/>
         <source>Explict root document:
 %1</source>
         <translation>明示的ルートドキュメント：
 %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1837"/>
+        <location filename="texstudio.cpp" line="1838"/>
         <source>Do you want to debug a SyncTeX file?</source>
         <translation>SyncTeXファイルのデバッグを行いますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1912"/>
-        <location filename="texstudio.cpp" line="3635"/>
+        <location filename="texstudio.cpp" line="1913"/>
+        <location filename="texstudio.cpp" line="3636"/>
         <location filename="texstudio.cpp" line="5598"/>
         <location filename="texstudio.cpp" line="6105"/>
         <location filename="texstudio.cpp" line="6253"/>
         <location filename="texstudio.cpp" line="6255"/>
         <location filename="texstudio.cpp" line="6262"/>
         <location filename="texstudio.cpp" line="6264"/>
-        <location filename="texstudio.cpp" line="9932"/>
+        <location filename="texstudio.cpp" line="9933"/>
         <source>Error</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1912"/>
+        <location filename="texstudio.cpp" line="1913"/>
         <source>You do not have read permission to the file %1.</source>
         <translation>ファイル%1の読み込み権限がありません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1972"/>
+        <location filename="texstudio.cpp" line="1973"/>
         <source>A crash recover file from %1 has been found for &quot;%2&quot;.
 Do you want to restore it?</source>
         <translation>%1 からクラッシュの復旧ファイルが &quot;%2&quot;にたいして見つかりました。
 元に戻しますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="1978"/>
+        <location filename="texstudio.cpp" line="1979"/>
         <source>Failed to open recover file &quot;%1&quot;.</source>
         <translation>復旧ファイル &quot;%1&quot; を開くのに失敗しました。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2121"/>
+        <location filename="texstudio.cpp" line="2122"/>
         <source>%1 has been compiled with Qt %2, but is running with Qt %3.
 Please get the correct runtime library (e.g. .dll or .so files).
 Otherwise there might be random errors and crashes.</source>
@@ -10167,45 +10402,45 @@ Otherwise there might be random errors and crashes.</source>
 さもないとランダムエラーやクラッシュが生じるかもしれません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2208"/>
+        <location filename="texstudio.cpp" line="2209"/>
         <source>Could not write template data:</source>
         <translation>テンプレートデータを書き込むことができません:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2234"/>
+        <location filename="texstudio.cpp" line="2235"/>
         <source>Could not write template meta data:</source>
         <translation>テンプレートメタデータを書き込めません:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2283"/>
-        <location filename="texstudio.cpp" line="2345"/>
+        <location filename="texstudio.cpp" line="2284"/>
+        <location filename="texstudio.cpp" line="2346"/>
         <source>File not found:</source>
         <translation>ファイルが見つかりませんでした:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2287"/>
-        <location filename="texstudio.cpp" line="2349"/>
+        <location filename="texstudio.cpp" line="2288"/>
+        <location filename="texstudio.cpp" line="2350"/>
         <source>You do not have read permission to this file:</source>
         <translation>このファイルの読み込み権限がありません:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2466"/>
-        <location filename="texstudio.cpp" line="9762"/>
+        <location filename="texstudio.cpp" line="2467"/>
+        <location filename="texstudio.cpp" line="9763"/>
         <source>Open Files</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2500"/>
+        <location filename="texstudio.cpp" line="2501"/>
         <source>Loading of last session failed.</source>
         <translation>最後のセッションの読み込みに失敗しました。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2569"/>
+        <location filename="texstudio.cpp" line="2570"/>
         <source>Save As</source>
         <translation>名前をつけて保存</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2586"/>
+        <location filename="texstudio.cpp" line="2587"/>
         <source>Saving under the name
 %1
 is currently not possible because a modified version of a file
@@ -10217,176 +10452,176 @@ this other file before you can overwrite it.</source>
 上書きする前にこの他のファイルを保存もしくは閉じてください。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2604"/>
+        <location filename="texstudio.cpp" line="2605"/>
         <source>This pdf cannot be synchronized with the tex source any more because the source file has been renamed due to a Save As operation. You should recompile the renamed file and view its result.</source>
         <translation>このPDFは、「名前をつけて保存」操作でソースファイル名が変更されたため、これ以上ソースファイルと同期出来ません。名前変更後のファイルを再コンパイルしてその結果を見てください。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2689"/>
+        <location filename="texstudio.cpp" line="2690"/>
         <source>Rename/Move</source>
         <translation>名前の変更 / 移動</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2704"/>
+        <location filename="texstudio.cpp" line="2705"/>
         <source>Do you really want to delete the file &quot;%1&quot;?</source>
         <translation>本当にファイル&quot;%1&quot;を削除しますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2713"/>
+        <location filename="texstudio.cpp" line="2714"/>
         <source>Do you really want to revert the file &quot;%1&quot;?</source>
         <translation>本当にファイル&quot;%1&quot;に対する変更を破棄しますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2740"/>
+        <location filename="texstudio.cpp" line="2741"/>
         <source>Numeric permissions</source>
         <translation>ファイルのパーミッション（数字版）</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2741"/>
+        <location filename="texstudio.cpp" line="2742"/>
         <source>Verbose permissions</source>
         <translation>ファイルのパーミッション（冗長版）</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2788"/>
-        <location filename="texstudio.cpp" line="2845"/>
+        <location filename="texstudio.cpp" line="2789"/>
+        <location filename="texstudio.cpp" line="2846"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
         <translation>未保存の内容が文書&quot;%1&quot;に含まれています。閉じる前に保存しますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2790"/>
-        <location filename="texstudio.cpp" line="2847"/>
+        <location filename="texstudio.cpp" line="2791"/>
+        <location filename="texstudio.cpp" line="2848"/>
         <source>Save and Close</source>
         <translation>保存して閉じる</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2790"/>
-        <location filename="texstudio.cpp" line="2847"/>
+        <location filename="texstudio.cpp" line="2791"/>
+        <location filename="texstudio.cpp" line="2848"/>
         <source>Close without Saving</source>
         <translation>保存せず閉じる</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2790"/>
-        <location filename="texstudio.cpp" line="2847"/>
+        <location filename="texstudio.cpp" line="2791"/>
+        <location filename="texstudio.cpp" line="2848"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="2931"/>
-        <location filename="texstudio.cpp" line="2983"/>
-        <location filename="texstudio.cpp" line="3064"/>
+        <location filename="texstudio.cpp" line="2932"/>
+        <location filename="texstudio.cpp" line="2984"/>
+        <location filename="texstudio.cpp" line="3065"/>
         <source>The file &quot;%1&quot; does not exist anymore. Do you want to remove it from the recent file list?</source>
         <translation>ファイル&quot;%1&quot;は存在していません。「最近開いたファイル」のリストから削除しますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3077"/>
+        <location filename="texstudio.cpp" line="3078"/>
         <source>Loading of session failed.</source>
         <translation>セッションの読み込みに失敗しました。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3094"/>
+        <location filename="texstudio.cpp" line="3095"/>
         <source>Load Session</source>
         <translation>セッションを読み込む</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3094"/>
-        <location filename="texstudio.cpp" line="3112"/>
+        <location filename="texstudio.cpp" line="3095"/>
+        <location filename="texstudio.cpp" line="3113"/>
         <source>TeXstudio Session</source>
         <translation>TeXstudioセッション</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3112"/>
+        <location filename="texstudio.cpp" line="3113"/>
         <source>Save Session</source>
         <translation>セッションを保存する</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3115"/>
+        <location filename="texstudio.cpp" line="3116"/>
         <source>Saving of session failed.</source>
         <translation>セッションの保存に失敗しました。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3197"/>
+        <location filename="texstudio.cpp" line="3198"/>
         <source>The following files could not be loaded:</source>
         <translation>次のファイルを読み込めません:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3347"/>
+        <location filename="texstudio.cpp" line="3348"/>
         <source>Image Formats (%1)</source>
         <translation>画像フォーマット(%1)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3349"/>
+        <location filename="texstudio.cpp" line="3350"/>
         <source>Save Image</source>
         <translation>画像を保存</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3354"/>
+        <location filename="texstudio.cpp" line="3355"/>
         <source>Could not save the image file.</source>
         <translation>画像ファイルを保存できません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3602"/>
+        <location filename="texstudio.cpp" line="3603"/>
         <source>Insert hard line breaks after so many characters:</source>
         <translation>ある一定の文字数後に強制改行を挿入します:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3603"/>
+        <location filename="texstudio.cpp" line="3604"/>
         <source>Smart scope selecting</source>
         <translation>スマートな範囲選択</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3604"/>
+        <location filename="texstudio.cpp" line="3605"/>
         <source>Join lines before wrapping</source>
         <translation>ワードラップを行う前に行を結合する</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3618"/>
+        <location filename="texstudio.cpp" line="3619"/>
         <location filename="texstudio.cpp" line="6022"/>
         <location filename="texstudio.cpp" line="6051"/>
         <source>No document open</source>
         <translation>開いているドキュメントはありません</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3624"/>
+        <location filename="texstudio.cpp" line="3625"/>
         <source>No dictionary available.</source>
         <translation>利用可能な辞書がありません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="3635"/>
+        <location filename="texstudio.cpp" line="3636"/>
         <source>Can&apos;t load Thesaurus Database</source>
         <translation>類語辞典データベースを読み込めません</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="4263"/>
+        <location filename="texstudio.cpp" line="4264"/>
         <source>Unable to write to settings file %1</source>
         <translation>設定ファイル%1へ書き込めません</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5225"/>
+        <location filename="texstudio.cpp" line="5226"/>
         <source>Quick Start</source>
         <translation>簡単テンプレート(一般文書)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5247"/>
+        <location filename="texstudio.cpp" line="5248"/>
         <source>Quick Beamer Presentation</source>
         <translation>簡単beamerプレゼンテーション作成</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5284"/>
+        <location filename="texstudio.cpp" line="5285"/>
         <source>&lt;Current File&gt;</source>
         <translation>&lt;Current File&gt;</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5316"/>
+        <location filename="texstudio.cpp" line="5317"/>
         <source>Type: %1</source>
         <translation>タイプ: %1</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5360"/>
+        <location filename="texstudio.cpp" line="5361"/>
         <source>Edit User &amp;Tags</source>
         <translation>ユーザタグを編集(&amp;T)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="5410"/>
+        <location filename="texstudio.cpp" line="5411"/>
         <source>Labels:</source>
         <translation>ラベル:</translation>
     </message>
@@ -10397,7 +10632,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5598"/>
-        <source>Can't detect the file name.
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>ファイルが見つかりません。
 コンパイル前にドキュメントを保存してください。</translation>
@@ -10514,249 +10749,249 @@ Do you want to allow and run the new, overriding command?
         <translation>ブラウザを開けません</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="6686"/>
+        <location filename="texstudio.cpp" line="6687"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>ルートドキュメントとして指定する前にファイルを保存する必要があります。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7659"/>
+        <location filename="texstudio.cpp" line="7660"/>
         <source>Close document</source>
         <translation>文章を閉じる</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7660"/>
+        <location filename="texstudio.cpp" line="7661"/>
         <source>Set as explicit root document</source>
         <translation>明示的にルートドキュメントとして設定</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7661"/>
+        <location filename="texstudio.cpp" line="7662"/>
         <source>Open all related documents</source>
         <translation>全ての関連する文書を開く</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7662"/>
+        <location filename="texstudio.cpp" line="7663"/>
         <source>Close all related documents</source>
         <translation>全ての関連する文書を閉じる</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7664"/>
+        <location filename="texstudio.cpp" line="7665"/>
         <source>Remove explicit root document role</source>
         <translation>明示的なルートドキュメントの役割を解除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7666"/>
+        <location filename="texstudio.cpp" line="7667"/>
         <source>Show all open documents in this tree</source>
         <translation>このツリーの開いている文章すべてを表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7668"/>
+        <location filename="texstudio.cpp" line="7669"/>
         <source>Show only current document in this tree</source>
         <translation>このツリーの現在の文章のみを表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7671"/>
+        <location filename="texstudio.cpp" line="7672"/>
         <source>Move document to &amp;front</source>
         <translation>文章を一番前へ移動(&amp;f)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7672"/>
+        <location filename="texstudio.cpp" line="7673"/>
         <source>Move document to &amp;end</source>
         <translation>文章を一番後ろへ移動(&amp;e)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7674"/>
-        <location filename="texstudio.cpp" line="7722"/>
+        <location filename="texstudio.cpp" line="7675"/>
+        <location filename="texstudio.cpp" line="7723"/>
         <source>Expand Subitems</source>
         <translation>サブ項目を展開</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7675"/>
-        <location filename="texstudio.cpp" line="7723"/>
+        <location filename="texstudio.cpp" line="7676"/>
+        <location filename="texstudio.cpp" line="7724"/>
         <source>Collapse Subitems</source>
         <translation>サブ項目を非表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7676"/>
+        <location filename="texstudio.cpp" line="7677"/>
         <source>Expand all documents</source>
         <translation>全ての文書を表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7677"/>
+        <location filename="texstudio.cpp" line="7678"/>
         <source>Collapse all documents</source>
         <translation>全ての文書を非表示</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7686"/>
+        <location filename="texstudio.cpp" line="7687"/>
         <source>Insert</source>
         <translation>挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7687"/>
         <location filename="texstudio.cpp" line="7688"/>
+        <location filename="texstudio.cpp" line="7689"/>
         <source>Insert as %1</source>
         <translation>%1として挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7690"/>
+        <location filename="texstudio.cpp" line="7691"/>
         <source>Find Usages</source>
         <translation>使用法検索</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7701"/>
+        <location filename="texstudio.cpp" line="7702"/>
         <source>Insert Label</source>
         <translation>ラベルを挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7705"/>
+        <location filename="texstudio.cpp" line="7706"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
         <translation>ラベルに%1を挿入</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="7709"/>
+        <location filename="texstudio.cpp" line="7710"/>
         <source>Create Label</source>
         <translation>ラベルを作成</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8362"/>
-        <location filename="texstudio.cpp" line="8373"/>
+        <location filename="texstudio.cpp" line="8363"/>
+        <location filename="texstudio.cpp" line="8374"/>
         <source>Add to favorites</source>
         <translation>お気に入りに追加する</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8363"/>
-        <location filename="texstudio.cpp" line="8411"/>
+        <location filename="texstudio.cpp" line="8364"/>
+        <location filename="texstudio.cpp" line="8412"/>
         <source>Remove</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8364"/>
+        <location filename="texstudio.cpp" line="8365"/>
         <source>Remove all</source>
         <translation>全て削除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8368"/>
+        <location filename="texstudio.cpp" line="8369"/>
         <source>Remove from favorites</source>
         <translation>お気に入りから削除する</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8369"/>
+        <location filename="texstudio.cpp" line="8370"/>
         <source>Remove all favorites</source>
         <translation>すべてのお気に入りを削除</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8574"/>
+        <location filename="texstudio.cpp" line="8575"/>
         <source>commit comment:</source>
         <translation>コメントをコミットする:</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8576"/>
+        <location filename="texstudio.cpp" line="8577"/>
         <source>check in whole directory ?</source>
         <translation>ディレクトリ全体をチェックインしますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="8914"/>
+        <location filename="texstudio.cpp" line="8915"/>
         <source>Attention: dialog is automatically closed if the text is manually edited!</source>
         <translation>注意: テキストが手動で編集されるとダイアログは自動的に閉じます!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9213"/>
+        <location filename="texstudio.cpp" line="9214"/>
         <source>Unable to open file &quot;%1&quot;.</source>
         <translation>ファイル&quot;%1&quot;を開けません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9215"/>
+        <location filename="texstudio.cpp" line="9216"/>
         <source>The file &quot;%1&quot; does not exist.
 Do you want to create it?</source>
         <translation>ファイル&quot;%1&quot;は存在しません。
 作成しますか?</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9239"/>
+        <location filename="texstudio.cpp" line="9240"/>
         <source>Save Profile</source>
         <translation>プロファイルを保存</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9239"/>
-        <location filename="texstudio.cpp" line="9249"/>
+        <location filename="texstudio.cpp" line="9240"/>
+        <location filename="texstudio.cpp" line="9250"/>
         <source>TXS Profile</source>
         <comment>filter</comment>
         <translation>TXSプロファイル</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9249"/>
+        <location filename="texstudio.cpp" line="9250"/>
         <source>Load Profile</source>
         <translation>プロファイルを読み込む</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9299"/>
+        <location filename="texstudio.cpp" line="9300"/>
         <source>Failed to read profile file %1.</source>
         <translation>プロファイルファイル%1の読み込みに失敗しました。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9422"/>
+        <location filename="texstudio.cpp" line="9423"/>
         <source>Problem</source>
         <translation>問題点</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9422"/>
+        <location filename="texstudio.cpp" line="9423"/>
         <source>Finding word repetitions only works with activated online spell checking !</source>
         <translation>単語の繰り返し検索は起動しているオンラインスペルチェックでしか作動しません!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9427"/>
+        <location filename="texstudio.cpp" line="9428"/>
         <source>Find Word Repetitions</source>
         <translation>単語の繰り返しを検索</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9436"/>
+        <location filename="texstudio.cpp" line="9437"/>
         <source>&amp;Find Next</source>
         <translation>次を検索(&amp;F)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9438"/>
+        <location filename="texstudio.cpp" line="9439"/>
         <source>&amp;Find Previous</source>
         <translation>前を検索(&amp;F)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9489"/>
+        <location filename="texstudio.cpp" line="9490"/>
         <source>Reached beginning of text.</source>
         <translation>テキストの最初に到達しました。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9489"/>
+        <location filename="texstudio.cpp" line="9490"/>
         <source>Reached end of text.</source>
         <translation>テキストの最後に到達しました。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9762"/>
-        <location filename="texstudio.cpp" line="9971"/>
-        <location filename="texstudio.cpp" line="9974"/>
+        <location filename="texstudio.cpp" line="9763"/>
+        <location filename="texstudio.cpp" line="9972"/>
+        <location filename="texstudio.cpp" line="9975"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
         <translation>LaTeXファイル(*.tex);;すべてのファイル(*)</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9932"/>
+        <location filename="texstudio.cpp" line="9933"/>
         <source>You do not have read permission to this file.</source>
         <translation>ファイルの読み込み権限がありません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9971"/>
+        <location filename="texstudio.cpp" line="9972"/>
         <source>Open Compare File</source>
         <translation>比較するファイルを開く</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="9974"/>
+        <location filename="texstudio.cpp" line="9975"/>
         <source>Open Base File</source>
         <translation>ベースとなるファイルを開く</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10024"/>
+        <location filename="texstudio.cpp" line="10025"/>
         <source>Conflict!</source>
         <translation>衝突!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10025"/>
+        <location filename="texstudio.cpp" line="10026"/>
         <source>%1
 has been modified by another application.
 Press &quot;OK&quot; to show differences
@@ -10769,12 +11004,12 @@ Press &quot;Cancel&quot;to do nothing.
 </translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10069"/>
+        <location filename="texstudio.cpp" line="10070"/>
         <source>SVN Conflict!</source>
         <translation>SVNで衝突!</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10070"/>
+        <location filename="texstudio.cpp" line="10071"/>
         <source>%1is conflicted with repository.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
@@ -10785,14 +11020,14 @@ subversionで生成されたソースの代わりに差分を表示するには�
 </translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10167"/>
-        <location filename="texstudio.cpp" line="10258"/>
-        <location filename="texstudio.cpp" line="10264"/>
+        <location filename="texstudio.cpp" line="10168"/>
+        <location filename="texstudio.cpp" line="10259"/>
+        <location filename="texstudio.cpp" line="10265"/>
         <source>TeXstudio Emergency</source>
         <translation>TeXstudioの非常事態</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10171"/>
+        <location filename="texstudio.cpp" line="10172"/>
         <source>A backtrace was written to
 %1
 Please provide this file if you send a bug report.
@@ -10803,7 +11038,7 @@ Please provide this file if you send a bug report.
 </translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10174"/>
+        <location filename="texstudio.cpp" line="10175"/>
         <source>TeXstudio has CRASHED due to a %1.
 
 %2Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10812,19 +11047,19 @@ Please provide this file if you send a bug report.
 %2 TeXstudioを起動しつづけたいですか？これはデータ破損につながるかもしれません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10175"/>
+        <location filename="texstudio.cpp" line="10176"/>
         <source>Yes, try to recover</source>
         <translation>はい、修復しようと試みます</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10176"/>
-        <location filename="texstudio.cpp" line="10181"/>
-        <location filename="texstudio.cpp" line="10260"/>
+        <location filename="texstudio.cpp" line="10177"/>
+        <location filename="texstudio.cpp" line="10182"/>
+        <location filename="texstudio.cpp" line="10261"/>
         <source>No, kill the program</source>
         <translation>いいえ、プログラムを停止します</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10178"/>
+        <location filename="texstudio.cpp" line="10179"/>
         <source>TeXstudio has been paused due to a possible endless loop.
 
 %1Do you want to keep the program running? This may cause data corruption.</source>
@@ -10833,17 +11068,17 @@ Please provide this file if you send a bug report.
 %1 プログラムを起動し続けますか？この操作はデータ破損につながるかもしれません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10179"/>
+        <location filename="texstudio.cpp" line="10180"/>
         <source>Yes, stop the loop and try to recover</source>
         <translation>はい、ループを止めて修復しようと試みます</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10180"/>
+        <location filename="texstudio.cpp" line="10181"/>
         <source>Yes, continue the loop</source>
         <translation>はい、ループを続けます</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10259"/>
+        <location filename="texstudio.cpp" line="10260"/>
         <source>TeXstudio has CRASHED due to a %1 in thread %2.
 The thread has been stopped.
 Do you want to keep TeXstudio running? This may cause data corruption.</source>
@@ -10852,17 +11087,17 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
 TeXstudioを実行し続けますか? これはデータの破壊につながるかもしれません。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10260"/>
+        <location filename="texstudio.cpp" line="10261"/>
         <source>Yes</source>
         <translation>はい</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10264"/>
+        <location filename="texstudio.cpp" line="10265"/>
         <source>I tried to die, but nothing happened.</source>
         <translation>停止しようとしましたが、何も起きませんでした。</translation>
     </message>
     <message>
-        <location filename="texstudio.cpp" line="10342"/>
+        <location filename="texstudio.cpp" line="10343"/>
         <source>System Report</source>
         <translation>システムレポート</translation>
     </message>
