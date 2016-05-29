@@ -209,7 +209,11 @@
         <insert id="gather*" text="env gather* (amsmath)" insert="\begin{gather*}%\%|%\\end{gather*}"/>
         <insert id="multline" text="env multline (amsmath)" insert="\begin{multline}%\%|%\\end{multline}"/>  
         <insert id="multline*" text="env multline* (amsmath)" insert="\begin{multline*}%\%|%\\end{multline*}"/>
+
+        <separator/>
+
 	<insert id="cases" text="env cases (amsmath)" insert="\begin{cases}%\%|%\\end{cases}"/>
+        <insert id="split" text="env split (amsmath)" insert="\begin{split}%\%|%\\end{split}"/>
   </menu>   
       
   
