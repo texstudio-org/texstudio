@@ -207,8 +207,8 @@
         <insert id="flalign*" text="env flalign* (amsmath)" insert="\begin{flalign*}%\%|%\\end{flalign*}"/>
         <insert id="gather" text="env gather (amsmath)" insert="\begin{gather}%\%|%\\end{gather}"/>  
         <insert id="gather*" text="env gather* (amsmath)" insert="\begin{gather*}%\%|%\\end{gather*}"/>
-        <insert id="multiline" text="env multiline (amsmath)" insert="\begin{multiline}%\%|%\\end{multiline}"/>  
-        <insert id="multiline*" text="env multiline* (amsmath)" insert="\begin{multiline*}%\%|%\\end{multiline*}"/>
+        <insert id="multline" text="env multline (amsmath)" insert="\begin{multline}%\%|%\\end{multline}"/>  
+        <insert id="multline*" text="env multline* (amsmath)" insert="\begin{multline*}%\%|%\\end{multline*}"/>
 	<insert id="cases" text="env cases (amsmath)" insert="\begin{cases}%\%|%\\end{cases}"/>
   </menu>   
       
