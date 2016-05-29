@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -990,13 +990,13 @@ Voulez-vous que TeXstudio remplace tous les chemins des commandes de
         <location filename="additionaltranslations.cpp" line="+105"/>
         <location line="+2"/>
         <source>den</source>
-        <translation type="unfinished">dénominateur</translation>
+        <translation>dénominateur</translation>
     </message>
     <message>
         <location line="-3"/>
         <location line="+2"/>
         <source>num</source>
-        <translation type="unfinished">numérateur</translation>
+        <translation>numérateur</translation>
     </message>
 </context>
 <context>
@@ -2572,7 +2572,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Scale Symbols</source>
         <translation type="obsolete">Taille des symboles</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location line="+363"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -4233,87 +4233,87 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     <message>
         <location line="+13"/>
         <source>env equation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;equation</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env equation*</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;equation*</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env align (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;align (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env align* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;align* (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env alignat (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>aligna&amp;t (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env alignat* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>aligna&amp;t* (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env flalign (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;flalign (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env flalign* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;flalign* (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env gather (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;gather (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env gather* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;gather* (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env multiline (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;multiline (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env multiline* (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;multiline* (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>env cases (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;cases (amsmath)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Caractères &amp;ajourés - \mathbb{} (amssymb)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"></translation>
+        <translation>Caractères go&amp;thiques - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>\overset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>\over&amp;set (amsmath)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>\underset (amsmath)</source>
-        <translation type="unfinished"></translation>
+        <translation>\under&amp;set (amsmath)</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -4343,17 +4343,17 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     <message>
         <location line="-77"/>
         <source>&amp;Math</source>
-        <translation type="unfinished">&amp;Maths</translation>
+        <translation>&amp;Maths</translation>
     </message>
     <message>
         <location line="+78"/>
         <source>Inline math mode $...$</source>
-        <translation type="unfinished">Mode math. en ligne - $...$</translation>
+        <translation>Mode en &amp;ligne - $...$</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Display math mode \[...\]</source>
-        <translation type="unfinished">Mode math. hors ligne - \[...\]</translation>
+        <translation>Mode &amp;hors texte - \[...\]</translation>
     </message>
     <message>
         <source>Numbered equations \begin{equation}</source>
@@ -4378,17 +4378,17 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     <message>
         <location line="+7"/>
         <source>\begin{array}</source>
-        <translation type="unfinished">\begin{array}</translation>
+        <translation>&amp;Tableau math. - \begin{array}</translation>
     </message>
     <message>
         <location line="-84"/>
         <source>Math &amp;Functions</source>
-        <translation type="unfinished">&amp;Fonctions mathématiques</translation>
+        <translation>&amp;Fonctions</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Math Font St&amp;yles</source>
-        <translation type="unfinished">St&amp;yles des caractères mathématiques</translation>
+        <translation>St&amp;yles des caractères</translation>
     </message>
     <message>
         <source>\mathrm{} [selection]</source>
@@ -4425,12 +4425,12 @@ préfixe &lt;b&gt;c&lt;/b&gt; pour le fichier en cours plutôt que le document m
     <message>
         <location line="+2"/>
         <source>Math &amp;Accents</source>
-        <translation type="unfinished">&amp;Accents mathématiques</translation>
+        <translation>« A&amp;ccents »</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Math S&amp;paces</source>
-        <translation type="unfinished">Es&amp;paces mathématiques</translation>
+        <translation>E&amp;spaces</translation>
     </message>
     <message>
         <source>medium</source>
@@ -4578,12 +4578,12 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <location line="+9"/>
         <source>Math Equations</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Équations</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Em&amp;pilements de symboles</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -4698,12 +4698,12 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <location line="+81"/>
         <source>Subscript - _{}</source>
-        <translation type="unfinished">Indice - _{}</translation>
+        <translation>&amp;Indice - _{}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Superscript - ^{}</source>
-        <translation type="unfinished">Exposant - ^{}</translation>
+        <translation>&amp;Exposant - ^{}</translation>
     </message>
     <message>
         <source>arccos</source>
@@ -4828,22 +4828,22 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <location line="+19"/>
         <source>Roman - \mathrm{}</source>
-        <translation type="unfinished">Romain - \mathrm{}</translation>
+        <translation>&amp;Romain - \mathrm{}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Italic - \mathit{}</source>
-        <translation type="unfinished">Italique - \mathit{}</translation>
+        <translation>&amp;Italique - \mathit{}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Bold - \mathbf{}</source>
-        <translation type="unfinished">Gras - \mathbf{}</translation>
+        <translation>&amp;Gras - \mathbf{}</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation type="unfinished">Sans empattement - \mathsf{}</translation>
+        <translation>&amp;Sans empattement - \mathsf{}</translation>
     </message>
     <message>
         <source>Courier - \mathtt{}</source>
@@ -4852,7 +4852,7 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <location line="+2"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation type="unfinished">Calligraphique - \mathcal{}</translation>
+        <translation>&amp;Calligraphique - \mathcal{}</translation>
     </message>
     <message>
         <source>Blackboard Bold - \mathbb{}</source>
@@ -4915,42 +4915,42 @@ Voulez-vous supprimer ces balises utilisateur ?</translation>
     <message>
         <location line="+34"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation type="unfinished">À chasse fixe - \mathtt{}</translation>
+        <translation>À chasse &amp;fixe - \mathtt{}</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Negative - \!</source>
-        <translation type="unfinished">Négative - \!</translation>
+        <translation>&amp;Négative - \!</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Thin - \,</source>
-        <translation type="unfinished">Fine - \,</translation>
+        <translation>&amp;Fine - \,</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Medium - \:</source>
-        <translation type="unfinished">Moyenne - \:</translation>
+        <translation>&amp;Moyenne - \:</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Thick - \;</source>
-        <translation type="unfinished">Épaisse - \;</translation>
+        <translation>&amp;Épaisse - \;</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Interword - \ </source>
-        <translation type="unfinished">Intermot - \ </translation>
+        <translation>&amp;Intermot - \ </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>One quad - \quad</source>
-        <translation type="unfinished">Un cadratin - \quad</translation>
+        <translation>&amp;Un cadratin - \quad</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Two quads - \qquad</source>
-        <translation type="unfinished">Deux cadratins - \qquad</translation>
+        <translation>&amp;Deux cadratins - \qquad</translation>
     </message>
     <message>
         <source>You have enabled auto quote replacement. However, there are user tags with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
@@ -7693,7 +7693,7 @@ Soit ce fichier est corrompu, soit il est en train d&apos;être (re)créé. Vous
 <context>
     <name>QDocumentSearch</name>
     <message>
-        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="+754"/>
+        <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="+753"/>
         <source>Failure</source>
         <translation>Échec</translation>
     </message>
