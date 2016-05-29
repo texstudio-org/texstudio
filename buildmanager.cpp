@@ -2167,7 +2167,7 @@ void ProcessX::startCommand()
 	QByteArray path = qgetenv("PATH");
 #ifdef Q_OS_OSX
 	QString basePath = getEnvironmentPath();
-	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvedAdditionalSearchPaths().toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
+    qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvePaths(BuildManager::additionalSearchPaths).toUtf8() + getPathListSeparator().toLatin1() + basePath.toUtf8());
 	// needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
 #else
 	qputenv("PATH", path + getPathListSeparator().toLatin1() + BuildManager::resolvePaths(BuildManager::additionalSearchPaths).toUtf8()); // needed for searching the executable in the additional paths see https://bugreports.qt-project.org/browse/QTBUG-18387
