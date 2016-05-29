@@ -1,0 +1,8 @@
+{
+"Name"        : "Moderncv",
+"Author"      : "Denis Bitouzé",
+"Date"        : "2013-03-03",
+"Version"     : "1.0",
+"Description" : "Template for CV based on moderncv class",
+"License"     : "LaTeX Project Public License (LPPL)"
+}
