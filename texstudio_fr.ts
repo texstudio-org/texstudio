@@ -3314,8 +3314,9 @@ de base, il suffit de désactiver ces options avancées.</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="110"/>
-        <source>env equation*</source>
-        <translation>&amp;equation*</translation>
+        <source>env equation* (amsmath)</source>
+        <oldsource>env equation*</oldsource>
+        <translation>&amp;equation* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
