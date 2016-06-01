@@ -2582,10 +2582,33 @@ void QEditor::tabOrIndentSelection()
 void QEditor::insertTab()
 {
 	if (flag(ReplaceTextTabs)) {
-		int spaceCount = m_doc->tabStop() - m_cursor.columnNumber() % m_doc->tabStop();
+		int tabStop = m_doc->tabStop();
+
+		bool macroing = m_mirrors.count();
+		if (macroing) m_doc->beginMacro();
+
+		int spaceCount = tabStop - m_cursor.columnNumber() % tabStop;
 		m_cursor.insertText(QString(spaceCount, ' '));
+
+		for ( int i = 0; i < m_mirrors.count(); ++i ) {
+			spaceCount = tabStop - m_mirrors[i].columnNumber() % tabStop;
+			m_mirrors[i].insertText(QString(spaceCount, ' '));
+		}
+
+		if (macroing) m_doc->endMacro();
+
 	} else {
-		m_cursor.insertText("\t");
+
+		bool macroing = m_mirrors.count();
+		if (macroing) m_doc->beginMacro();
+
+		insertText(m_cursor, "\t");
+
+		for ( int i = 0; i < m_mirrors.count(); ++i )
+			insertText(m_mirrors[i], "\t");
+
+		if (macroing) m_doc->endMacro();
+
 	}
 }
 
