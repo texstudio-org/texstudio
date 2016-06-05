@@ -82,7 +82,6 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		virtual void hideEvent(QHideEvent *e);
 		virtual void closeEvent(QCloseEvent *e);
 
-		virtual void resizeEvent(QResizeEvent *e);
 
 	private slots:
 		void cFind_textEdited(const QString& text);
