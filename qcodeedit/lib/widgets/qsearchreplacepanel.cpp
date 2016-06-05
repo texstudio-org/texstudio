@@ -77,9 +77,10 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	ConfigManagerInterface* conf = ConfigManagerInterface::getInstance();
 	//setupUi(this);
 	// do it completely programatic
-    this->resize(801, 21);
+    //this->resize(801, 21);
     QVBoxLayout *vboxLayout=new QVBoxLayout(this);
     QWidget *searchWidget=new QWidget(0);
+    //searchWidget->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::MinimumExpanding);
     vboxLayout->addWidget(searchWidget);
     FlowLayout *flowLayout=new FlowLayout(searchWidget,1,1,1);
 
@@ -617,6 +618,7 @@ void QSearchReplacePanel::setOptions(int searchOptions, bool cursor, bool select
 void QSearchReplacePanel::hideEvent(QHideEvent *)
 {
 }
+
 
 void QSearchReplacePanel::closeEvent(QCloseEvent *)
 {

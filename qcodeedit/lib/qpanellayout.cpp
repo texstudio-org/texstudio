@@ -319,10 +319,14 @@ void QPanelLayout::setGeometry(const QRect &r)
 			
 			northHeight += item->geometry().height() + spacing();
 		} else if (position == South) {
+            int ht=item->sizeHint().height();
+            if(item->widget()->hasHeightForWidth()){
+                ht=item->heightForWidth(rect.width());
+            }
 			item->setGeometry(QRect(item->geometry().x(),
 									item->geometry().y(),
 									rect.width(),
-									item->sizeHint().height()
+                                    ht
 									)
 							);
 			
