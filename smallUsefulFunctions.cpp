@@ -3791,7 +3791,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 				QString smb = line.mid(tk.start, 1);
 				if (smb == verbatimSymbol) {
 					// stop verbatimSymbol mode
-					verbatimSymbol = QChar();
+                    verbatimSymbol.clear();
 					continue;
 				}
 			}
@@ -3841,6 +3841,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 				if (i + 1 < tl.length() && tl.at(i + 1).type == Tokens::symbol && tl.at(i + 1).start == tk.start + tk.length) {
 					// well formed \verb
 					verbatimSymbol = line.mid(tl.at(i + 1).start, 1);
+                    i++;
 				}
 				// not valid \verb
 				if (!stack.isEmpty()) {
