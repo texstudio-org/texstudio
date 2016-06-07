@@ -147,6 +147,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbWords->setCheckable(true);
 	cbWords->setToolTip(tr("Only searches for whole words."));
 	cbWords->setObjectName(("cbWords"));
+    cbWords->setMinimumSize(buttonSize);
+    cbWords->setMaximumSize(buttonSize);
     cbWords->setIcon(getRealIconCached("word"));
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
     flowLayout->addWidget(cbWords);
@@ -155,6 +157,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbRegExp->setCheckable(true);
 	cbRegExp->setToolTip(tr("This interprets the search text as a regular expression.\nSome common regexps:\n r* will find any amount of r, r+ is equal to rr*, a? will matches a or nothing,\n () groups expressions together, [xyz] will find x,y, or z, . matches everything, \\. matches .\nYou can use \\1 to \\9 in the replace text to insert a submatch."));
 	cbRegExp->setObjectName(("cbRegExp"));
+    cbRegExp->setMinimumSize(buttonSize);
+    cbRegExp->setMaximumSize(buttonSize);
     cbRegExp->setIcon(getRealIconCached("regex"));
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
     flowLayout->addWidget(cbRegExp);
@@ -205,6 +209,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cbReplace = new QCheckBox(this);
 	cbReplace->setObjectName(("cbReplace"));
 	cbReplace->setChecked(true);
+    cbReplace->setMinimumSize(buttonSize);
+    cbReplace->setMaximumSize(buttonSize);
     flowLayout2->addWidget(cbReplace);
 
 	QLabel *lbReplace = new QLabel(this);
