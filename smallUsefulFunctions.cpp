@@ -3790,9 +3790,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 			if (tk.type == Tokens::symbol) {
 				QString smb = line.mid(tk.start, 1);
 				if (smb == verbatimSymbol) {
-					// stop verbatimSymbol mode
-                    verbatimSymbol.clear();
-					continue;
+                                    // stop verbatimSymbol mode
+                                    verbatimSymbol.clear();
+                                    continue;
 				}
 			}
 			tk.type = Tokens::verbatim;
