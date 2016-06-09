@@ -2671,14 +2671,12 @@ void Texstudio::fileSaveAll(bool alsoUnnamedFiles, bool alwaysCurrentFile)
 
 			emit infoFileSaved(edView->editor->fileName());
 		}
-		//currentEditor()->save();
-		//UpdateCaption();
 	}
 
 	if (currentEditorView() != currentEdView)
 		editors->setCurrentEditor(currentEdView);
 	documents.updateStructure(); //remove italics status from previous unsaved files
-	//UpdateCaption();
+	updateUndoRedoStatus();
 }
 
 //TODO: handle svn in all these methods
