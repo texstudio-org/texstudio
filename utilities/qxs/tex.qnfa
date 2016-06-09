@@ -223,7 +223,7 @@ environments in smallUsefulFunctions.cpp)
 
 	<context id="comment/todocmd" format="commentTodo">
 		<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
-		<start parenthesis="todo:open" prenthesisweight="12">\\todo\{</start>
+		<start parenthesis="todo:open" prenthesisweight="12">\\todo[a-zA-Z]*\{</start>
 		<start parenthesis="todo:open" prenthesisweight="12">\\missingfigure\{</start>
 
 		<!-- need to track inner curly braces for matching to allow a correct matching of the outer curly brace.
