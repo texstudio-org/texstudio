@@ -74,7 +74,7 @@ public:
 	void setIgnoreFilePrefix(const QString &ignoreFilePrefix);
 	QStringList dictPaths() {return m_dictPaths;}
 	void setDictPaths(const QStringList &dictPaths);
-	void scanForDictionaries(const QString &path);
+	void scanForDictionaries(const QString &path, bool scansubdirs=true);
 
 	QStringList availableDicts();
 
