@@ -1852,6 +1852,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                     continue;
                 if(tk.type==Tokens::punctuation && tk.subtype==Tokens::none)
                     continue;
+                if(tk.type==Tokens::symbol && tk.subtype==Tokens::none)
+                    continue; // don't blank symbol like '~'
                 temp.text.replace(tk.start,tk.length,QString(tk.length,' '));
             }
 

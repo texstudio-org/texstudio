@@ -210,11 +210,11 @@ void GrammarCheck::process(int reqId)
 
 			if (type == LatexReader::NW_TEXT) tb.words << lr.word;
 			else { /*if (type == LatexReader::NW_PUNCTATION) */
-				if (lr.word == "-" && !tb.words.isEmpty()) {
+                if ((lr.word == "-" || lr.word == "~" )&& !tb.words.isEmpty()) {
 					//- can either mean a word-separator or a sentence -- separator
 					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
 					if (lr.wordStartIndex == tb.endindices.last()) {
-						tb.words.last() += '-';
+                        tb.words.last() += lr.word;
 						tb.endindices.last()++;
 
 						int tempIndex = lr.index;
