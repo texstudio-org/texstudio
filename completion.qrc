@@ -44,6 +44,7 @@
 <file>completion/colortbl.cwl</file>
 <file>completion/commath.cwl</file>
 <file>completion/coordsys.cwl</file>
+<file>completion/cquthesis.cwl</file>
 <file>completion/csquotes.cwl</file>
 <file>completion/currvita.cwl</file>
 <file>completion/cyrillic.cwl</file>
