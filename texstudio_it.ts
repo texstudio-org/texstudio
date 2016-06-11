@@ -1233,7 +1233,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1357"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Cambia lo scaling della barra degli strumenti orizzontale (per monitor ad alta risoluzione).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1382"/>
@@ -1567,7 +1567,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="2136"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Controllo ortografico via menu contestuale:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2143"/>
@@ -1688,7 +1688,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2308"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"/>
+        <translation>Mostra elementi nei commenti</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2315"/>
@@ -1778,7 +1778,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2489"/>
         <source>Automatically switch keyboard layout: </source>
-        <translation type="unfinished"/>
+        <translation>Cambia automaticamente layout tasiera:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2496"/>
@@ -2724,7 +2724,7 @@ Desideri proseguire comunque?</translation>
     <message>
         <location filename="configdialog.cpp" line="516"/>
         <source>(option filter)</source>
-        <translation type="unfinished"/>
+        <translation>(filtro opzioni)</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="644"/>
@@ -2979,7 +2979,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="46"/>
         <source>\begin{center}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{centrato}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="47"/>
@@ -2994,7 +2994,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="49"/>
         <source>\begin{quote}</source>
-        <translation type="unfinished"/>
+        <translation>\bign{citazione}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="50"/>
@@ -3014,12 +3014,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="53"/>
         <source>\begin{table}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabella}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="54"/>
         <source>\begin{figure}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{immagine}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="55"/>
@@ -3044,7 +3044,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="58"/>
         <source>\begin{description}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{descrizione}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="59"/>
