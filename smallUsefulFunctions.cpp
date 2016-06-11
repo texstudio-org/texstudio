@@ -3258,8 +3258,9 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		}
 		if (def == "key" || def == "key1" || def == "key2" || def.endsWith("%ref")) {
 			type = Tokens::labelRef;
-			if (command == "\\label")
-				type = Tokens::label;
+		}
+		if (def.endsWith("%labeldef")) {
+			type = Tokens::label;
 		}
 		if((def=="envname"||def=="environment name") && definition.contains('N')){
 		    type=Tokens::newTheorem;
