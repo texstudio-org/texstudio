@@ -3116,6 +3116,110 @@ QString Tokens::getText()
 	dlh->unlock();
 	return result;
 }
+Tokens::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
+{
+	if (arg == "text" || arg.endsWith("%text")) {
+		type = Tokens::text;
+	}
+	if (arg == "title" || arg == "short title"|| arg.endsWith("%title")) {
+		type = Tokens::title;
+	}
+	if (arg == "package") {
+		type = Tokens::package;
+	}
+	if (arg == "cols" || arg == "preamble") {
+		type = Tokens::colDef;
+	}
+	if (arg == "color") {
+		type = Tokens::color;
+	}
+	if (arg == "width" || arg == "length" || arg == "height" || arg.endsWith("%l")) {
+		type = Tokens::width;
+	}
+	if (arg == "bib files" || arg == "bib file") {
+		type = Tokens::bibfile;
+	}
+	if (arg == "command" || arg == "cmd" || arg.endsWith("%cmd")) {
+		type = Tokens::def;
+	}
+	if (arg == "def" || arg == "definition" || arg == "begdef" || arg == "enddef") {
+		type = Tokens::definition; // actual definition: \newcommand def defArgNumber definition
+	}
+	if (arg == "args") {
+		type = Tokens::defArgNumber;
+	}
+	if (arg == "citekey") {
+		type = Tokens::newBibItem;
+	}
+	if (arg == "default") {
+		type = Tokens::optionalArgDefinition;
+	}
+	if (arg == "newlength") {
+		type = Tokens::defWidth;
+	}
+	if (arg == "file") {
+		type = Tokens::file;
+	}
+	if (arg == "imagefile") {
+		type = Tokens::imagefile;
+	}
+	if (arg.contains("URL")) {
+		type = Tokens::url;
+	}
+	if (arg.contains("keys") || arg == "keyvals" || arg == "%<options%>" || arg.endsWith("%keyvals")) {
+		type = Tokens::keyValArg;
+	}
+	if (arg.endsWith("%special")) {
+		type = Tokens::specialArg;
+		arg.chop(8);
+		if (LatexParserInstance) {
+			if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + arg)) {
+				int cnt = LatexParserInstance->mapSpecialArgs.count();
+				LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
+				type = Tokens::TokenType(type + cnt);
+			}
+		}
+	}
+	if (arg == "options") {
+		type = Tokens::packageoption;
+	}
+	if (arg == "class") {
+		type = Tokens::documentclass;
+	}
+	if (arg == "beamertheme") {
+		type = Tokens::beamertheme;
+	}
+	if (arg == "keylist" || arg == "bibid") {
+		type = Tokens::bibItem;
+	}
+	if (arg == "placement" || arg == "position") {
+		type = Tokens::placement;
+	}
+	if (arg == "key" || arg == "key1" || arg == "key2" || arg.endsWith("%ref")) {
+		type = Tokens::labelRef;
+	}
+	if (arg.endsWith("%labeldef")) {
+		type = Tokens::label;
+	}
+	if((arg=="envname"||arg=="environment name") && definition.contains('N')){
+		type=Tokens::newTheorem;
+	}
+	if (arg == "label"||arg=="%<label%>") {
+		//reference with keyword label
+		if(definition.contains('r'))
+			type = Tokens::labelRef;
+		if(definition.contains('l'))
+			type = Tokens::label;
+	}
+	if (arg == "labellist") {
+		type = Tokens::labelRefList;
+	}
+	if (arg.endsWith("%plain")) {
+		type = Tokens::generalArg;  // reset any previously defined type
+	}
+	return type;
+}
+
 /*!
 \brief extract command defintion from cwl line
 
@@ -3142,6 +3246,7 @@ argument name | description
 \em imagefile|file name of an image
 \em key|label/ref key
 \em label with option #r or key ending with \em \%ref|ref key
+\em label with option #l or key ending with \em \%labeldef|defines a label
 \em labellist|list of labels as employed by cleveref
 <em>bib file</em> or <em>bib files</em>|bibliography file
 \em class|document class
@@ -3149,6 +3254,7 @@ argument name | description
 \em beamertheme|beamer theme, e.g. \\usebeamertheme{beamertheme}
 \em keys,\em keyvals or \em \%<options\%>|key/value list
 \em envname|environment name for \\newtheorem, e.g. \\newtheorem{envname}#N (classification N needs to be present !)
+\em ends with %plain|ignore a special meaning of the key
 
  * \param line command definition until '#'
  * \param definition context information right of '#'
@@ -3171,114 +3277,16 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		int j = specialChars.indexOf(c);
 		QChar closingChar = specialChars2.at(j);
 		i = line.indexOf(closingChar);
-		QString def = line.mid(1, i - 1);
+		QString arg = line.mid(1, i - 1);
 		Tokens::TokenType type = Tokens::generalArg; // assume that unknown argument is not a text
 		if (loop == 1 && command == "\\begin") {
 			type = Tokens::beginEnv;
-		}
-		if (loop == 1 && command == "\\end") {
+		} else if (loop == 1 && command == "\\end") {
 			type = Tokens::env;
+		} else {
+			type = tokenTypeFromCwlArg(arg, definition);
 		}
-		if (def == "text" || def.endsWith("%text")) {
-			type = Tokens::text;
-		}
-        if (def == "title" || def == "short title"|| def.endsWith("%title")) {
-			type = Tokens::title;
-		}
-		if (def == "package") {
-			type = Tokens::package;
-		}
-		if (def == "cols" || def == "preamble") {
-			type = Tokens::colDef;
-		}
-		if (def == "color") {
-			type = Tokens::color;
-		}
-		if (def == "width" || def == "length" || def == "height" || def.endsWith("%l")) {
-			type = Tokens::width;
-		}
-		if (def == "bib files" || def == "bib file") {
-			type = Tokens::bibfile;
-		}
-		if (def == "command" || def == "cmd" || def.endsWith("%cmd")) {
-			type = Tokens::def;
-		}
-		if (def == "def" || def == "definition" || def == "begdef" || def == "enddef") {
-			type = Tokens::definition; // actual definition: \newcommand def defArgNumber definition
-		}
-		if (def == "args") {
-			type = Tokens::defArgNumber;
-		}
-		if (def == "citekey") {
-			type = Tokens::newBibItem;
-		}
-		if (def == "default") {
-			type = Tokens::optionalArgDefinition;
-		}
-		if (def == "newlength") {
-			type = Tokens::defWidth;
-		}
-		if (def == "file") {
-			type = Tokens::file;
-		}
-		if (def == "imagefile") {
-			type = Tokens::imagefile;
-		}
-		if (def.contains("URL")) {
-			type = Tokens::url;
-		}
-		if (def.contains("keys") || def == "keyvals" || def == "%<options%>" || def.endsWith("%keyvals")) {
-			type = Tokens::keyValArg;
-		}
-		if (def.endsWith("%special")) {
-			type = Tokens::specialArg;
-			def.chop(8);
-			if (LatexParserInstance) {
-				if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + def)) {
-					int cnt = LatexParserInstance->mapSpecialArgs.count();
-					LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + def);
-					type = Tokens::TokenType(type + cnt);
-				}
-			}
-		}
-		if (def == "options") {
-			type = Tokens::packageoption;
-		}
-		if (def == "class") {
-			type = Tokens::documentclass;
-		}
-		if (def == "beamertheme") {
-			type = Tokens::beamertheme;
-		}
-		if (def == "keylist" || def == "bibid") {
-			type = Tokens::bibItem;
-		}
-		if (def == "placement" || def == "position") {
-			type = Tokens::placement;
-		}
-		if (def == "key" || def == "key1" || def == "key2" || def.endsWith("%ref")) {
-			type = Tokens::labelRef;
-		}
-		if (def.endsWith("%labeldef")) {
-			type = Tokens::label;
-		}
-		if((def=="envname"||def=="environment name") && definition.contains('N')){
-		    type=Tokens::newTheorem;
-		}
-        if (def == "label"||def=="%<label%>") {
-			//reference with keyword label
-            if(definition.contains('r'))
-                type = Tokens::labelRef;
-            if(definition.contains('l'))
-                type = Tokens::label;
-		}
-		if (def == "labellist") {
-			type = Tokens::labelRefList;
-		}
-		if (def.endsWith("%plain")) {
-			type = Tokens::generalArg;  // reset any previously defined type
-		}
-		if (!def.isEmpty()) { //ignore empty arguments
+		if (!arg.isEmpty()) { //ignore empty arguments
 			switch (j) {
 			case 0:
 				cd.args = cd.args + 1;
