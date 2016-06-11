@@ -3118,6 +3118,7 @@ QString Tokens::getText()
 }
 Tokens::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 {
+	Tokens::TokenType type(Tokens::none);
 	if (arg == "text" || arg.endsWith("%text")) {
 		type = Tokens::text;
 	}
