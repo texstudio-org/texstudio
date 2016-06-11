@@ -2,15 +2,15 @@
 # http://ctan.org/tex-archive/macros/latex/contrib/titlesec
 # By astroscion: 2012-02-15
 \titlelabel{label-format}
-\titleformat*{command}{format}
-\titleformat{command}[shape]{format}{label}{sep%l}{before-code}{after-code}
+\titleformat*{command%plain}{format}
+\titleformat{command%plain}[shape]{format}{label}{sep%l}{before-code}{after-code}
 \chaptertitlename
 \titlespacing
-\titlespacing{command}{left%l}{before-sep%l}{after-sep%l}
-\titlespacing{command}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
+\titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}
+\titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
 \titlespacing*
-\titlespacing*{command}{left%l}{before-sep%l}{after-sep%l}
-\titlespacing*{command}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
+\titlespacing*{command%plain}{left%l}{before-sep%l}{after-sep%l}
+\titlespacing*{command%plain}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
 \filright
 \filcenter
 \filleft
@@ -30,7 +30,7 @@
 \titlerule[height]
 \titlerule*[width]{text}
 \iftitlemeasuring{true}{false}
-\assignpagestyle{command}{pagestyle}
+\assignpagestyle{command%plain}{pagestyle}
 \sectionbreak
 \subsectionbreak
 \subsubsectionbreak

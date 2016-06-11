@@ -8,7 +8,7 @@
 \dolistcsloop{listcsname}#*
 \dolistloop{listmacro}#*
 \do{arg1}#*
-\expandonce{command}#*
+\expandonce{command%plain}#*
 \forlistcsloop{handler}{listcsname}#*
 \forlistloop{handler}{listmacro}#*
 \ifblank{string}{true}{false}#*
@@ -72,7 +72,7 @@
 \DeclareListParser{command}{separator}#*
 \DeclareListParser*{command}{separator}#*
 \appto{hook}{code}#*
-\apptocmdd{command}{code}{success}{failure}#*
+\apptocmd{command%plain}{code}{success}{failure}#*
 \boolfalse{name}#*
 \booltrue{name}#*
 \csappto{csname}{code}#*
@@ -118,12 +118,12 @@
 \ifcsstring{true}{false}#*
 \ifdef{true}{false}#*
 \ifdefltxprotect{true}{false}#*
-\ifdefstrequal{command}{command}{true}{false}#*
-\ifdefstring{command}{string}{true}{false}#*
+\ifdefstrequal{command%plain}{command%plain}{true}{false}#*
+\ifdefstring{command%plain}{string}{true}{false}#*
 \ifinlist{elem}{listmacro}{true}{false}#*
 \ifinlistcs{elem}{listcsname}{true}{false}#*
-\ifpatchable{command}{search}{true}{false}#*
-\ifpatchable*{command}{true}{false}#*
+\ifpatchable{command%plain}{search}{true}{false}#*
+\ifpatchable*{command%plain}{true}{false}#*
 \ifstrequal{string}{string}{true}{false}#*
 \letcs{command}{csname}#*
 \listadd{listmacro}{elem}#*d
@@ -140,23 +140,23 @@
 \newtoggle{name}#*
 \numdef{command}{integr expression}#*
 \numgdef{command}{integr expression}#*
-\patchcmd[prefix]{command}{search}{replace}{success}{failure}#*
+\patchcmd[prefix]{command%plain}{search}{replace}{success}{failure}#*
 \preto{hook}{code}#*
-\pretocmd{command}{code}{success}{failure}#*
+\pretocmd{command%plain}{code}{success}{failure}#*
 \protecting{code}#*
 \providebool{name}#*
 \providerobustcmd{command}[arguments]{code}#*
 \providerobustcmd*{command}[arguments]{code}#*
 \providetoggle{name}#*
-\renewrobustcmd{command}[arguments]{code}#*
-\renewrobustcmd*{command}[arguments]{code}#*
-\robustify{command}#*
+\renewrobustcmd{command%plain}[arguments]{code}#*
+\renewrobustcmd*{command%plain}[arguments]{code}#*
+\robustify{command%plain}#*
 \setbool{name}{value}#*
 \settoggle{name}{value}#*
 \togglefalse{name}#*
 \toggletrue{name}#*
 \tracingpatches#*
-\undef{command}#*
+\undef{command%plain}#*
 \unlessboolexpr{expression}{code}#*
 \whileboolexpr{expression}{code}#*
 \xappto#*
