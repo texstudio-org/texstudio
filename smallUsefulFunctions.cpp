@@ -3118,107 +3118,60 @@ QString Tokens::getText()
 }
 Tokens::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 {
-	Tokens::TokenType type(Tokens::none);
-	if (arg == "text" || arg.endsWith("%text")) {
-		type = Tokens::text;
-	}
-	if (arg == "title" || arg == "short title"|| arg.endsWith("%title")) {
-		type = Tokens::title;
-	}
-	if (arg == "package") {
-		type = Tokens::package;
-	}
-	if (arg == "cols" || arg == "preamble") {
-		type = Tokens::colDef;
-	}
-	if (arg == "color") {
-		type = Tokens::color;
-	}
-	if (arg == "width" || arg == "length" || arg == "height" || arg.endsWith("%l")) {
-		type = Tokens::width;
-	}
-	if (arg == "bib files" || arg == "bib file") {
-		type = Tokens::bibfile;
-	}
-	if (arg == "command" || arg == "cmd" || arg.endsWith("%cmd")) {
-		type = Tokens::def;
-	}
-	if (arg == "def" || arg == "definition" || arg == "begdef" || arg == "enddef") {
-		type = Tokens::definition; // actual definition: \newcommand def defArgNumber definition
-	}
-	if (arg == "args") {
-		type = Tokens::defArgNumber;
-	}
-	if (arg == "citekey") {
-		type = Tokens::newBibItem;
-	}
-	if (arg == "default") {
-		type = Tokens::optionalArgDefinition;
-	}
-	if (arg == "newlength") {
-		type = Tokens::defWidth;
-	}
-	if (arg == "file") {
-		type = Tokens::file;
-	}
-	if (arg == "imagefile") {
-		type = Tokens::imagefile;
-	}
-	if (arg.contains("URL")) {
-		type = Tokens::url;
-	}
-	if (arg.contains("keys") || arg == "keyvals" || arg == "%<options%>" || arg.endsWith("%keyvals")) {
-		type = Tokens::keyValArg;
-	}
-	if (arg.endsWith("%special")) {
-		type = Tokens::specialArg;
-		arg.chop(8);
-		if (LatexParserInstance) {
-			if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + arg)) {
-				int cnt = LatexParserInstance->mapSpecialArgs.count();
-				LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
-				type = Tokens::TokenType(type + cnt);
+	int i = arg.indexOf('%');
+	// type from suffix
+	if (i >= 0) {
+		QString suffix = arg.mid(i);
+		if (suffix == "%plain") return Tokens::generalArg;
+		if (suffix == "%text") return Tokens::text;
+		if (suffix == "%title") return Tokens::title;
+		if (suffix == "%l") return Tokens::width;
+		if (suffix == "%cmd") return Tokens::def;
+		if (suffix == "%keyvals") return Tokens::keyValArg;
+		if (suffix == "%ref") return Tokens::labelRef;
+		if (suffix == "%labeldef") return Tokens::label;
+		if (suffix == "%special") {
+			Tokens::TokenType type = Tokens::specialArg;
+			arg.chop(8);
+			if (LatexParserInstance) {
+				if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + arg)) {
+					int cnt = LatexParserInstance->mapSpecialArgs.count();
+					LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
+					type = Tokens::TokenType(type + cnt);
+				}
 			}
+			return type;
 		}
 	}
-	if (arg == "options") {
-		type = Tokens::packageoption;
-	}
-	if (arg == "class") {
-		type = Tokens::documentclass;
-	}
-	if (arg == "beamertheme") {
-		type = Tokens::beamertheme;
-	}
-	if (arg == "keylist" || arg == "bibid") {
-		type = Tokens::bibItem;
-	}
-	if (arg == "placement" || arg == "position") {
-		type = Tokens::placement;
-	}
-	if (arg == "key" || arg == "key1" || arg == "key2" || arg.endsWith("%ref")) {
-		type = Tokens::labelRef;
-	}
-	if (arg.endsWith("%labeldef")) {
-		type = Tokens::label;
-	}
-	if((arg=="envname"||arg=="environment name") && definition.contains('N')){
-		type=Tokens::newTheorem;
-	}
-	if (arg == "label"||arg=="%<label%>") {
-		//reference with keyword label
-		if(definition.contains('r'))
-			type = Tokens::labelRef;
-		if(definition.contains('l'))
-			type = Tokens::label;
-	}
-	if (arg == "labellist") {
-		type = Tokens::labelRefList;
-	}
-	if (arg.endsWith("%plain")) {
-		type = Tokens::generalArg;  // reset any previously defined type
-	}
-	return type;
+	// type from name
+	if (arg == "text") return Tokens::text;
+	if (arg == "title" || arg == "short title" ) return Tokens::title;
+	if (arg == "package") return Tokens::package;
+	if (arg == "cols" || arg == "preamble") return Tokens::colDef;
+	if (arg == "color") return Tokens::color;
+	if (arg == "width" || arg == "length" || arg == "height") return Tokens::width;
+	if (arg == "bib files" || arg == "bib file") return Tokens::bibfile;
+	if (arg == "command" || arg == "cmd") return Tokens::def;
+	if (arg == "def" || arg == "definition" || arg == "begdef" || arg == "enddef") return Tokens::definition; // actual definition: \newcommand def defArgNumber definition
+	if (arg == "args") return Tokens::defArgNumber;
+	if (arg == "citekey") return Tokens::newBibItem;
+	if (arg == "default") return Tokens::optionalArgDefinition;
+	if (arg == "newlength") return Tokens::defWidth;
+	if (arg == "file") return Tokens::file;
+	if (arg == "imagefile") return Tokens::imagefile;
+	if (arg.contains("URL")) return Tokens::url;
+	if (arg.contains("keys") || arg == "keyvals" || arg == "%<options%>") return Tokens::keyValArg;
+	if (arg == "options") return Tokens::packageoption;
+	if (arg == "class") return Tokens::documentclass;
+	if (arg == "beamertheme") return Tokens::beamertheme;
+	if (arg == "keylist" || arg == "bibid") return Tokens::bibItem;
+	if (arg == "placement" || arg == "position") return Tokens::placement;
+	if (arg == "key" || arg == "key1" || arg == "key2") return Tokens::labelRef;
+	if ((arg == "envname" || arg=="environment name") && definition.contains('N')) return Tokens::newTheorem;
+	if ((arg == "label" || arg == "%<label%>") && definition.contains('r')) return Tokens::labelRef;  // reference with keyword label
+	if ((arg == "label" || arg == "%<label%>") && definition.contains('l')) return Tokens::label;
+	if (arg == "labellist") return Tokens::labelRefList;
+	return Tokens::generalArg;
 }
 
 /*!
