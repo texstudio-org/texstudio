@@ -255,7 +255,7 @@
 \iterate#*
 \itshape
 \kill#T
-\label{key}
+\label{key%labeldef}
 \language#*
 \LARGE
 \Large
