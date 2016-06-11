@@ -4,7 +4,7 @@
 
 \ifthenelse{test}{then clause}{else clause}
 \isodd{number}
-\isundefined{command}
+\isundefined{command%plain}
 \equal{string}{string}
 \AND
 \OR

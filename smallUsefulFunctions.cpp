@@ -3274,6 +3274,9 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		if (def == "labellist") {
 			type = Tokens::labelRefList;
 		}
+		if (def.endsWith("%plain")) {
+			type = Tokens::generalArg;  // reset any previously defined type
+		}
 		if (!def.isEmpty()) { //ignore empty arguments
 			switch (j) {
 			case 0:

@@ -2,7 +2,7 @@
 # mario 09/06/2007
 # URL: http://tug.ctan.org/tex-archive/macros/latex/required/graphics/
 \DeclareGraphicsExtensions{ext-list}
-\DeclareGraphicsRule{ext}{type}{read-file}{command}
+\DeclareGraphicsRule{ext}{type}{read-file}{command%plain}
 \graphicspath{dir-list}
 \includegraphics*[keyvals]{imagefile}
 \includegraphics[keyvals]{imagefile}
