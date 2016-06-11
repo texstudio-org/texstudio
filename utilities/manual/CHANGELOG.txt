@@ -1,3 +1,15 @@
+TeXstudio 2.11.1
+----------------
+- use flow layout for search/replace panel
+- improved bracket detection for \todo highlighting
+- cwl-format: suffix %plain disables possible semantics associated with an argument name
+- cwl-format: suffix %labeldef for definition of labels
+- cwl-format: %suffix notation takes precedence over detection by argument name
+- fix: make insertion of tabs work with cursor mirrors
+- fix: verbatim setting for \verb|abc|
+- fix: update of save icon after SaveAll
+- fix: dictionaries in extracted .oxt files not recognized (bug 1804)
+
 TeXstudio 2.11.0
 ----------------
 - support two editors next to each other
