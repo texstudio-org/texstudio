@@ -34,12 +34,12 @@
     <message>
         <location filename="aboutdialog.cpp" line="29"/>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation>TeXstudio a TeXworks PDF nézőjét használja.</translation>
+        <translation>TeXstudio a TeXworks PDF-megjelenítőjét használja.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="30"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation>A TeXstudio használja a DSingleApplication osztályt (Szerző: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licenc: GPL).</translation>
+        <translation>A TeXstudio használja a DSingleApplication osztályt (Szerző: Dima Fedorov Levit – Copyright (C) BioImage Informatics – Licenc: GPL).</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="31"/>
@@ -319,7 +319,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="304"/>
         <source>&amp;Report</source>
-        <translation>&amp;Riport</translation>
+        <translation>&amp;Jelentés</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="313"/>
@@ -383,20 +383,20 @@
         <location filename="buildmanager.cpp" line="287"/>
         <location filename="buildmanager.cpp" line="314"/>
         <source>DVI Viewer</source>
-        <translation>DVI megjelenítő</translation>
+        <translation>DVI-megjelenítő</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="288"/>
         <location filename="buildmanager.cpp" line="314"/>
         <source>PS Viewer</source>
-        <translation>PS megjelenítő</translation>
+        <translation>PS-megjelenítő</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="289"/>
         <location filename="buildmanager.cpp" line="314"/>
         <location filename="buildmanager.cpp" line="317"/>
         <source>External PDF Viewer</source>
-        <translation>Külső PDF megjelenítő</translation>
+        <translation>Külső PDF-megjelenítő</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="307"/>
@@ -484,19 +484,19 @@
         <location filename="buildmanager.cpp" line="314"/>
         <location filename="buildmanager.cpp" line="318"/>
         <source>PDF Viewer</source>
-        <translation>PDF megjelenítő</translation>
+        <translation>PDF-megjelenítő</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="314"/>
         <location filename="buildmanager.cpp" line="317"/>
         <source>Internal PDF Viewer (Windowed)</source>
-        <translation>Belső PDF néző (ablakban)</translation>
+        <translation>Belső PDF-megjelenítő (ablakban)</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="314"/>
         <location filename="buildmanager.cpp" line="317"/>
         <source>Internal PDF Viewer (Embedded)</source>
-        <translation>Belső PDF néző (beágyazva)</translation>
+        <translation>Belső PDF-megjelenítő (beágyazva)</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="315"/>
@@ -563,7 +563,12 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation type="unfinished"/>
+        <translation>Az OSX 10.11 már nem engedi az alkalmazásoknak, hogy oda írjanak.
+Ezért a MacTeX újabb verziói megváltoztatták a bináris útvonalat erre:
+/Library/TeX/texbin/
+
+Szeretné, hogy a TeXstudio módosítson minden parancsútvonalat erről: /usr/texbin/, erre:
+%1?</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="383"/>
@@ -574,12 +579,18 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation type="unfinished"/>
+        <translation>Az OSX 10.11 már nem engedi alkalmazásoknak, hogy oda írjanak.
+Lehet, hogy a MacTeX 2015-ös verziójára kell frissítenie.
+
+Ezután, a MacTeX programok itt lesznek megtalálhatóak: /Library/Tex/texbin/
+
+Szeretné, hogy a TeXstudio módosítson minden parancsútvonalat erről: /usr/texbin/, erre:
+/Library/TeX/texbin/?</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="394"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="unfinished"/>
+        <translation>Néhány parancs az /usr/texbin/ helyre hivatkozik.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="802"/>
@@ -606,7 +617,7 @@ támogatott.</translation>
     <message>
         <location filename="buildmanager.cpp" line="1355"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation type="unfinished"/>
+        <translation>Nem található LaTeX disztribúció a rendszerén. Emiatt a kapcsolódó parancsok nincsenek beállítva. Ez azt jelenti, hogy nem fordíthat dokumentumokat a kívánt kimeneti formátumra (pl. PDF).</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1359"/>
@@ -667,7 +678,7 @@ támogatott.</translation>
     <message>
         <location filename="buildmanager.cpp" line="1780"/>
         <source>Internal Pdf Viewer</source>
-        <translation>Belső PDF megjelenítő</translation>
+        <translation>Belső PDF-megjelenítő</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2010"/>
@@ -894,7 +905,10 @@ támogatott.</translation>
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Meghatározza, hogy milyen frissítési értesítéseket fog kapni:
+– Stabil kiadások: válassza ezt, ha a stabilitás a legfontosabb.
+– Kiadásra jelölt változatok: közel vannak a jövőbeli kiadásokhoz a funkciók és a stabilitás szempontjából. Válassza ezt, hogy belátást kapjon a jövőbeli kiadásokba, és segítsen nekünk tesztelni a verziót, mielőtt az hivatalos kiadásra kerülne. (A stabil kiadásokról is ad értesítést)
+– Fejlesztői verziók: a legfrissebb funkciókat tartalmazzák, de instabilak lehetnek. (A stabil és a kiadásra jelölt változatokról is ad értesítést)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="530"/>
@@ -1007,7 +1021,7 @@ figyelembe vesz &lt;b&gt;c:&lt;/b&gt; a jelenlegi a mesterfájl helyett (tartalm
     <message>
         <location filename="configdialog.ui" line="825"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation>Ne indítsa a néző újabb példányát, ha a dvi/ps/pdf már meg van nyitva</translation>
+        <translation>Ne indítsa a megjelenítő újabb példányát, ha a dvi/ps/pdf már meg van nyitva</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="832"/>
@@ -1071,7 +1085,14 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Lecseréli a környezeti változókat a parancsokban. A viselkedés OS-függő.
+
+Windows:
+A változókat %MYVAR%-ként kell megadni. Nem kis-nagybetű érzékeny.
+
+Linux, OS X:
+A változókat $MYVAR-ként kell megadni. Kis-nagybetű érzékeny.
+</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1016"/>
@@ -1153,7 +1174,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"/>
+        <translation>Ez szabályozza, hogy a fenti lista az összes menüt mutatja, vagy csak a gyakran változókat.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1153"/>
@@ -1188,12 +1209,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1260"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Itt kiválaszthatja a parancsok listáját, amelyek az eszköztárra tehetőek.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1267"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Ez mutatja meg az eszköztárra tehető, elérhető műveleteket.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1306"/>
@@ -1569,7 +1590,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2150"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation>Parancsok súgójának mutatása a belső pdf nézőben (texdoc)</translation>
+        <translation>Parancsok súgójának mutatása a belső pdf-megjelenítőben (texdoc)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2157"/>
@@ -1615,7 +1636,8 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="configdialog.ui" line="2212"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Amikor unicode karaktereket használ a forráskódban, akkor a LaTeXnek
+le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az unicode-ot, ezért a megfelelő csomagokat kell használni a dokumentumban található unicode karakterekhez.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2216"/>
@@ -1655,7 +1677,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2265"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Alapértelmezett naplókódolás</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2278"/>
@@ -1765,7 +1787,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2482"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation>Vizuális oszlop kurzor mód (vagyis az rtl szövegben a kurzort a kurzorvezérlő billenytyűk (nyilak) mozgatják)</translation>
+        <translation>Vizuális oszlop kurzor mód (vagyis az rtl szövegben a kurzort a nyílbillentyűk mozgatják)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2489"/>
@@ -1780,7 +1802,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2503"/>
         <source>depending on text/math mode</source>
-        <translation>szöveges/matematikai módtól föüggően</translation>
+        <translation>szöveges/matematikai módtól függően</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2513"/>
@@ -1800,7 +1822,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2544"/>
         <source>Render Mode:</source>
-        <translation>Rederelési mód:</translation>
+        <translation>Renderelési mód:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2552"/>
@@ -1850,7 +1872,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2680"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Itt az egyéni környezetek kiemelései változtathatóak meg.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2694"/>
@@ -1865,7 +1887,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2709"/>
         <source>Here you can add another environment for custom highlighting.</source>
-        <translation type="unfinished"/>
+        <translation>Itt további környezeteket adhat hozzá az egyéni kiemeléshez.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2712"/>
@@ -1898,7 +1920,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2820"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"/>
+        <translation>Buboréksúgót jelenít meg a címkék/bibligráfia elemek, előnézet színek vagy képek célszövegéhez</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2823"/>
@@ -2019,7 +2041,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="configdialog.ui" line="3006"/>
         <source>Permanently active completion files:</source>
-        <translation type="unfinished"/>
+        <translation>Állandóan aktív kiegészítésfájlok</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3074"/>
@@ -2207,18 +2229,18 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="configdialog.ui" line="3463"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
-        <translation type="unfinished"/>
+        <translation>A dokumentumban használt helyesírás-ellenőrző nyelvéből lesz kitalálva.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3501"/>
         <location filename="configdialog.ui" line="3508"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>A LanguageTool indításakor átadott argumentumok. Ennek a beállításnak csak akkor van hatása, ha a LanguageTool a TeXstudióból kerül indítésra (tehát egy már futó kiszolgáló esetén nem).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3511"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>LT argumentumok</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3581"/>
@@ -2331,7 +2353,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
         <location filename="configdialog.ui" line="3846"/>
         <location filename="configdialog.cpp" line="474"/>
         <source>Internal PDF Viewer</source>
-        <translation>Belső PDF megjelenítő</translation>
+        <translation>Belső PDF-megjelenítő</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3853"/>
@@ -2436,7 +2458,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="configdialog.ui" line="4054"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDF fájlok betöltésének meghatározása:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Tárolt:&lt;/b&gt; Betölti a fájlt egy tárolóba és ellenőrzi a teljességét, ezután adja át a popplernek. Elsődlegesen sebességnövelés céljára vezették ben régi poppler verziókhoz (&amp;lt;0.24) melyek nem voltak szálbiztosak. Nagy fájlok esetén ez összeomlást okozhat. Így ez az opció elavult.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Közvetlen:&lt;/b&gt; A fájl közvetlenül a popplerhez kerül. Így a leggyorsabb, de a fájlok teljessége ily módon nincs ellenőrizve.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Vegyes (ajánlott):&lt;/b&gt; Kis dokumentumok (&amp;lt; 50MB) esetén először betölti a fájlt egy tárolóba és ellenőrzi a teljességét), nagy fájlok közvetlenül a popplerhez kerülnek. Ez a módszer kombinálja a problémák megelőzésére végzett fájlellenőrzést a nagy PDF fájlok optimális kezelésével.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;PDF fájlok betöltésének meghatározása:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Tárolt:&lt;/b&gt; Betölti a fájlt egy tárolóba és ellenőrzi a teljességét, ezután adja át a popplernek. Elsődlegesen sebességnövelés céljára vezették be régi poppler verziókhoz (&amp;lt;0.24) melyek nem voltak szálbiztosak. Nagy fájlok esetén ez összeomlást okozhat. Így ez az opció elavult.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Közvetlen:&lt;/b&gt; A fájl közvetlenül a popplerhez kerül. Így a leggyorsabb, de a fájlok teljessége ily módon nincs ellenőrizve.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Vegyes (ajánlott):&lt;/b&gt; Kis dokumentumok (&amp;lt; 50MB) esetén először betölti a fájlt egy tárolóba és ellenőrzi a teljességét), a nagy fájlok közvetlenül a popplerhez kerülnek. Ez a módszer kombinálja a problémák megelőzésére végzett fájlellenőrzést a nagy PDF fájlok optimális kezelésével.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4064"/>
@@ -2460,7 +2482,10 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"/>
+        <translation>A poppler PDF-könyvtár által használt renderelési háttérrendszer:
+A „Splash” az alapértelmezett, és a megfelelő a legtöbb helyzetben.
+Ha renderelési problémák vannak, akkor kipróbálhatja az alternatív „Arthur” háttérrendszert.
+Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentumokra érvényes.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4105"/>
@@ -2470,7 +2495,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4127"/>
         <source>Cache Size:</source>
-        <translation>Tároló méret:</translation>
+        <translation>Gyorsítótár méret:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4137"/>
@@ -2495,7 +2520,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4195"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Megjegyzés: az ablakos/beágyazott mód az Fordítás -&gt; PDF-megjelenítő lapon állítható be</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4238"/>
@@ -2505,12 +2530,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4242"/>
         <source>No automatic check-in after save</source>
-        <translation type="unfinished"/>
+        <translation>Nincs automatikus bejelentkezés mentés után</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4247"/>
         <source>Check-in after File/Save only</source>
-        <translation type="unfinished"/>
+        <translation>Bejelentkezés csak Fájl/Mentés után</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4252"/>
@@ -2573,7 +2598,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="configdialog.cpp" line="434"/>
         <source>Here the syntax highlighting for various commands, environments and selections can be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Itt a különböző parancsok, környezetek és kijelölések szintaktikai kiemelései változtathatóak meg.</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="435"/>
@@ -2704,7 +2729,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="configdialog.cpp" line="516"/>
         <source>(option filter)</source>
-        <translation type="unfinished"/>
+        <translation>(szűrő)</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="644"/>
@@ -2769,7 +2794,7 @@ Biztosan ezt szeretné beállítani?</translation>
     <message>
         <location filename="configdialog.cpp" line="962"/>
         <source>Insert Separator</source>
-        <translation>Elválasztó jel beszúrása</translation>
+        <translation>Elválasztójel beszúrása</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="970"/>
@@ -2847,7 +2872,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation type="unfinished"/>
+        <translation>Matematikai egyenletek</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="24"/>
@@ -2862,7 +2887,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"/>
+        <translation>Matematikai halmozási szimbólumok</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
@@ -3032,67 +3057,67 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="14"/>
         <source>Boxes</source>
-        <translation type="unfinished"/>
+        <translation>Dobozok</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="60"/>
         <source>mbox</source>
-        <translation type="unfinished"/>
+        <translation>mbox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="61"/>
         <source>makebox</source>
-        <translation type="unfinished"/>
+        <translation>makebox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="62"/>
         <source>fbox</source>
-        <translation type="unfinished"/>
+        <translation>fbox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="63"/>
         <source>framebox</source>
-        <translation type="unfinished"/>
+        <translation>framebox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="64"/>
         <source>newsavebox</source>
-        <translation type="unfinished"/>
+        <translation>newsavebox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="65"/>
         <source>sbox</source>
-        <translation type="unfinished"/>
+        <translation>sbox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="66"/>
         <source>savebox</source>
-        <translation type="unfinished"/>
+        <translation>savebox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="67"/>
         <source>usebox</source>
-        <translation type="unfinished"/>
+        <translation>usebox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="68"/>
         <source>raisebox</source>
-        <translation type="unfinished"/>
+        <translation>raisebox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="69"/>
         <source>parbox</source>
-        <translation type="unfinished"/>
+        <translation>parbox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="70"/>
         <source>\begin{minipage}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{minipage}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="71"/>
         <source>rule</source>
-        <translation type="unfinished"/>
+        <translation>vonal</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="15"/>
@@ -3252,12 +3277,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="100"/>
         <source>Inline math mode $...$</source>
-        <translation>Matematikai mód $...$ (sorok között)</translation>
+        <translation>Sorközi matematikai mód $...$</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <source>Display math mode \[...\]</source>
-        <translation>Matematikai mód \[...\] (kirakatban)</translation>
+        <translation>Kiemelt matematikai mód \[...\]</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="102"/>
@@ -3277,117 +3302,117 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>env equation</source>
-        <translation type="unfinished"/>
+        <translation>env equation</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation*</source>
-        <translation type="unfinished"/>
+        <translation>env equation*</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
         <source>env align (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env align (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="112"/>
         <source>env align* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env align* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="113"/>
         <source>env alignat (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env alignat (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="114"/>
         <source>env alignat* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env alignat* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="115"/>
         <source>env flalign (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env flalign (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="116"/>
         <source>env flalign* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env flalign* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>env gather (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env gather (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="118"/>
         <source>env gather* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env gather* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multiline (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env multiline (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multiline* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env multiline* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
         <source>env cases (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env cases (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>Roman - \mathrm{}</source>
-        <translation>Normál - \mathrm{}</translation>
+        <translation>Normál – \mathrm{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
         <source>Italic - \mathit{}</source>
-        <translation>Dőlt - \mathit{}</translation>
+        <translation>Dőlt – \mathit{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="124"/>
         <source>Bold - \mathbf{}</source>
-        <translation>Félkövér - \mathbf{}</translation>
+        <translation>Félkövér – \mathbf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="125"/>
         <source>Sans Serif - \mathsf{}</source>
-        <translation>Sans Serif - \mathsf{}</translation>
+        <translation>Talpatlan – \mathsf{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="126"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation>Írógép- \mathtt{}</translation>
+        <translation>Írógép – \mathtt{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="127"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation>Kalligrafikus - \mathcal{}</translation>
+        <translation>Kalligrafikus – \mathcal{}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="128"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Kontúros – \mathbb{} (amssymb)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Fraktúr – \mathfrak{} (amssymb)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="130"/>
         <source>\overset (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>\overset (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>\underset (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>\underset (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="132"/>
@@ -3432,7 +3457,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="140"/>
         <source>eqref</source>
-        <translation>eqref</translation>
+        <translation>Egyenlethivatkozás</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="141"/>
@@ -3535,7 +3560,7 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <location filename="configmanager.cpp" line="1739"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
-        <translation>A belső pdf megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
+        <translation>A belső pdf-megjelenítő jobb kihasználásához ajánlatos lenne aktivizálni a synctex programot. Megtegye most a TeXstudio Ön helyett?</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1754"/>
@@ -3755,7 +3780,8 @@ Szeretné azokat eltávolítani?</translation>
         <location filename="encodingdialog.ui" line="98"/>
         <source>The codec names as the inputenc package expects them. The names are only given for reference.
 You have to make sure yourself that the file encoding and the value passed to the inputenc package match together.</source>
-        <translation>Az inputenc csomaghoz kódolási névnek kell tartozni. A nevek csak hivatkozásra szolgálnak. Bizonyosodjon meg róla, hogy a fájlkódolás és az inputenc csomag nevei egymáshoz tartoznak.</translation>
+        <translation>Az inputenc csomaghoz kódolási névnek kell tartoznia. A nevek csak hivatkozásra szolgálnak.
+Bizonyosodjon meg róla, hogy a fájlkódolás és az inputenc csomag nevei egymáshoz tartoznak.</translation>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="32"/>
@@ -4090,7 +4116,8 @@ Insufficient number of arguments to </source>
         <location filename="insertgraphics.cpp" line="272"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation>Értelmezhetetlen grafikus kód: varázsló által nem támogatott környezet</translation>
+        <translation>Értelmezhetetlen grafikus kód:
+A varázsló nem támogatja a környezetet</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="281"/>
@@ -4110,7 +4137,8 @@ Hiányzó \includegraphics opciók.</translation>
         <location filename="insertgraphics.cpp" line="305"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation>Értelmezhetetlen grafikus kód: varázsló által nem támogatott parancs</translation>
+        <translation>Értelmezhetetlen grafikus kód:
+A varázsló nem támogatja a parancsot</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="387"/>
@@ -4301,7 +4329,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="502"/>
         <source>Thesaurus...</source>
-        <translation>Tezaurusz...</translation>
+        <translation>Tezaurusz…</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="529"/>
@@ -4380,7 +4408,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2366"/>
         <source>Citation correct (reading ...)</source>
-        <translation>Forrásmegjelölés helyes (olvasás ...)</translation>
+        <translation>Forrásmegjelölés helyes (olvasás …)</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2372"/>
@@ -4425,7 +4453,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2909"/>
         <source>Collapse All</source>
-        <translation>Mindent összecsuk</translation>
+        <translation>Mind összecsukása</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2913"/>
@@ -4435,7 +4463,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2918"/>
         <source>Expand All</source>
-        <translation>Mindent szétnyit</translation>
+        <translation>Mind szétnyitása</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2922"/>
@@ -4616,7 +4644,7 @@ The wizard does not support command </source>
     <message>
         <location filename="maketemplatedialog.ui" line="27"/>
         <source>Meta Data</source>
-        <translation>Meta adat</translation>
+        <translation>Metaadatok</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="33"/>
@@ -4665,7 +4693,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="mathassistant.cpp" line="27"/>
         <source>Math Assistant</source>
-        <translation>Math Assistant</translation>
+        <translation>Matematikai segéd</translation>
     </message>
     <message>
         <location filename="mathassistant.cpp" line="69"/>
@@ -4679,7 +4707,7 @@ Do you want to overwrite it?</source>
         <location filename="toolwidgets.cpp" line="150"/>
         <location filename="toolwidgets.cpp" line="236"/>
         <source>Messages / Log File</source>
-        <translation>Üzenet- / naplófájl</translation>
+        <translation>Üzenetek / naplófájl</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="161"/>
@@ -4741,7 +4769,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="47"/>
         <source>Link</source>
-        <translation>Link</translation>
+        <translation>Hivatkozás</translation>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="49"/>
@@ -4751,7 +4779,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="51"/>
         <source>Attachment</source>
-        <translation>Csatolás</translation>
+        <translation>Csatolmány</translation>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="53"/>
@@ -4835,7 +4863,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="497"/>
         <source> Find :</source>
-        <translation>Keresendő:</translation>
+        <translation>Keresés:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="499"/>
@@ -4868,7 +4896,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="959"/>
         <source>%1min</source>
-        <translation>%1 min</translation>
+        <translation>%1 perc</translation>
     </message>
 </context>
 <context>
@@ -4886,7 +4914,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="64"/>
         <source>&amp;About TeXstudio...</source>
-        <translation>&amp;A TeXstudio névjegye...</translation>
+        <translation>&amp;A TeXstudio névjegye…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="72"/>
@@ -4911,7 +4939,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="110"/>
         <source>&amp;Go to Page...</source>
-        <translation>U&amp;grás az oldalra...</translation>
+        <translation>U&amp;grás az oldalra…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="113"/>
@@ -4941,7 +4969,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="146"/>
         <source>Fit to &amp;Window</source>
-        <translation>Ké&amp;pernyőhöz igazít</translation>
+        <translation>Ké&amp;pernyőhöz igazítás</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="149"/>
@@ -4981,7 +5009,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="193"/>
         <source>Open...</source>
-        <translation>Megnyitás...</translation>
+        <translation>Megnyitás…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="196"/>
@@ -5110,7 +5138,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="370"/>
         <source>New from Template...</source>
-        <translation>Új, sablonból...</translation>
+        <translation>Új, sablonból…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="373"/>
@@ -5150,7 +5178,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="430"/>
         <source>User &amp;Manual...</source>
-        <translation>&amp;Felhasználói kézikönyv...</translation>
+        <translation>&amp;Felhasználói kézikönyv…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="435"/>
@@ -5165,17 +5193,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="448"/>
         <source>Place on Left</source>
-        <translation>Balra helyez</translation>
+        <translation>Balra helyezés</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="453"/>
         <source>Place on Right</source>
-        <translation>Jobbra helyez</translation>
+        <translation>Jobbra helyezés</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="458"/>
         <source>&amp;Quit TeXstudio</source>
-        <translation>&amp;Kilépés aTeXstudio-ból</translation>
+        <translation>&amp;Kilépés a TeXstudióból</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="461"/>
@@ -5185,7 +5213,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="469"/>
         <source>Find...</source>
-        <translation>Keresés...</translation>
+        <translation>Keresés…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="472"/>
@@ -5221,7 +5249,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="521"/>
         <source>About Scripts...</source>
-        <translation>Parancsfájlokról...</translation>
+        <translation>Parancsfájlokról…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="529"/>
@@ -5251,7 +5279,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="558"/>
         <source>&amp;Find...</source>
-        <translation>&amp;Keresés...</translation>
+        <translation>&amp;Keresés…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="566"/>
@@ -5301,17 +5329,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="627"/>
         <source>Custom...</source>
-        <translation>Custom...</translation>
+        <translation>Egyéni…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="641"/>
         <source>Single Page Step</source>
-        <translation>Lapozás egy oldallal</translation>
+        <translation>Lapozás oldalanként</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="652"/>
         <source>Synchronize multiple views</source>
-        <translation>Többszörös nézet összehangolása</translation>
+        <translation>Több nézet szinkronizálása</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="660"/>
@@ -5331,7 +5359,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="679"/>
         <source>&amp;Print...</source>
-        <translation>&amp;Nyomtatás...</translation>
+        <translation>&amp;Nyomtatás…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="682"/>
@@ -5341,7 +5369,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="687"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Megnyitás...</translation>
+        <translation>&amp;Megnyitás…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="695"/>
@@ -5426,7 +5454,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="770"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation>Felosztás és egyesítés…</translation>
+        <translation>Felosztás és &amp;egyesítés…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2320"/>
@@ -5466,7 +5494,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2353"/>
         <source>Show</source>
-        <translation>Megjelenít</translation>
+        <translation>Megjelenítés</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2403"/>
@@ -5482,7 +5510,7 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocument.cpp" line="2463"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
-        <translation>\</translation>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2486"/>
@@ -5535,33 +5563,33 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocument.cpp" line="2898"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation>A(z) &quot;%1&quot; PDF fájl nem tűnik igazi PDF dokumentumnak. A fájl vagy sérült, vagy még csak most jön létre. 
-Megnyitása programösszeomlást okozhat. Két másodpercenként megpróbálkozunk megnyitásával.</translation>
+        <translation>%1
+nem tűnik igazi PDF dokumentumnak. A fájl vagy sérült, vagy még csak most jön létre. Újrapróbálkozás két másodpercenként.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2912"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation>A(z) &quot;%1&quot; nevű fájl nem található, talán törölve lett.</translation>
+        <translation>A(z) „%1” nevű fájl nem található, talán törölve lett.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2915"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation>Nem sikerült betölteni a &quot;%1&quot; fájlt, talán nem szabványos PDF dokumentum.</translation>
+        <translation>Nem sikerült betölteni a(z) „%1” fájlt, talán nem szabványos PDF dokumentum.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2918"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation>Nem sikerült betölteni a &quot;%1&quot; fájlt, talán nem szabványos PDF dokumentum.</translation>
+        <translation>Nem sikerült betölteni a(z) „%1” fájlt hibás memóriafoglalás miatt, talán nem szabványos PDF dokumentum.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2921"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation>Egy kivétel miatt nem sikerült betölteni a(z) &quot;%1&quot; fájlt, talán nem szabványos PDF dokumentum.</translation>
+        <translation>Egy kivétel miatt nem sikerült betölteni a(z) „%1” fájlt, talán nem szabványos PDF dokumentum.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2924"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
-        <translation type="unfinished"/>
+        <translation>A(z) „%1” PDF-fájl zárolt.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2926"/>
@@ -5572,7 +5600,8 @@ Megnyitása programösszeomlást okozhat. Két másodpercenként megpróbálkozu
         <location filename="pdfviewer/PDFDocument.cpp" line="2926"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
-        <translation type="unfinished"/>
+        <translation>A(z) „%1” PDF-fájl zárolt.
+Most megadhatja a jelszót:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3243"/>
@@ -5587,7 +5616,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3370"/>
         <source>SyncTeX: &quot;%1&quot;</source>
-        <translation>SyncTeX: &quot;%1&quot;</translation>
+        <translation>SyncTeX: „%1”</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3500"/>
@@ -5597,12 +5626,12 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3578"/>
         <source>Page %1 of %2</source>
-        <translation>%1\%2 oldal</translation>
+        <translation>%1 / %2 oldal</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3579"/>
         <source>Pages %1 to %2 of %3</source>
-        <translation>%1-%2/%3 oldal</translation>
+        <translation>%1 - %2 / %3 oldal</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3604"/>
@@ -5625,7 +5654,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="364"/>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="364"/>
@@ -5681,7 +5710,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="371"/>
         <source>File %1 does not exists</source>
-        <translation>A(z) &quot;%1&quot; nevű fájl nem létezik</translation>
+        <translation>A(z) „%1” fájl nem létezik</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="377"/>
@@ -5701,7 +5730,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="381"/>
         <source>S&amp;eek</source>
-        <translation>&amp;Keresés</translation>
+        <translation>&amp;Pozicionálás</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="382"/>
@@ -5724,12 +5753,12 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="159"/>
         <source>No TOC</source>
-        <translation>Nincs tartalomjegyzék PDF fájl</translation>
+        <translation>Nincs tartalomjegyzék</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.h" line="105"/>
         <source>Contents</source>
-        <translation>Tartalmak</translation>
+        <translation>Tartalom</translation>
     </message>
 </context>
 <context>
@@ -5791,7 +5820,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.ui" line="40"/>
         <source>Split &amp;&amp; Merge</source>
-        <translation>Felosztás és egyesítés</translation>
+        <translation>Felosztás és &amp;egyesítés</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="47"/>
@@ -5849,7 +5878,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1012"/>
         <source>Could not open link:</source>
-        <translation>A linket nem lehet megnyitni:</translation>
+        <translation>A hivatkozást nem lehet megnyitni:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1123"/>
@@ -5910,32 +5939,32 @@ You can now enter the password:</source>
     <message>
         <location filename="buildmanager.cpp" line="2108"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation>A megadott stdout átirányítás nem támogatott: „%1”. Kérjük tekintse meg a leírást a részletekért.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2117"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation>A megadott stderr átirányítás nem támogatott: „%1”. Kérjük tekintse meg a leírást a részletekért.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2286"/>
         <source>Process started: %1</source>
-        <translation>%1. művelet elindult</translation>
+        <translation>Művelet elindítva: %1</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2292"/>
         <source>Error: Could not start the command: %1</source>
-        <translation>Hiba a(z) %1. parancs végrehajtása során</translation>
+        <translation>Hiba a parancs végrehajtása során: %1</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2295"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX változatot,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a &quot;Parancsok&quot; beállítási fülön.&lt;br&gt; A(La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztés nélkül dolgozni.</translation>
+        <translation>&lt;b&gt;Ellenőrizze, hogy telepített-e valamilyen (La)TeX terjesztést,&lt;/b&gt; mint pl. a MiKTeX vagy a TeX Live, valamint megadta-e helyesen annak elérési útját a parancsok beállítási oldalán.&lt;br&gt;A (La)TeX szerkesztők, mint amilyen a TeXstudio is, nem tudnak (La)TeX parancsokat biztosító (La)TeX terjesztések nélkül dolgozni.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2299"/>
         <source>Error: Command crashed: %1</source>
-        <translation>Hiba: a(z) %1. parancs összeomlást okozott</translation>
+        <translation>Hiba: a parancs összeomlott: %1</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2306"/>
@@ -5967,7 +5996,7 @@ You can now enter the password:</source>
         <location filename="qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
         <location filename="qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
         <source>&amp;Trigger completion</source>
-        <translation>&amp;Előidézett kiegészítés</translation>
+        <translation>Kiegészítés &amp;előidézése</translation>
     </message>
 </context>
 <context>
@@ -5996,14 +6025,14 @@ You can now enter the password:</source>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="741"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
-        <translation>Nincs találat a keresési környezetben.
+        <translation>Nincs találat a keresés hatókörében.
 Újrakezdi a végéről?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="746"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
-        <translation>Nincs találat a keresési környezetben.
+        <translation>Nincs találat a keresés hatókörében.
 Újrakezdi az elejéről?</translation>
     </message>
     <message>
@@ -6237,7 +6266,9 @@ Fel kellene szabadítania némi helyet és újra meg kellene próbálni a menté
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation>Meghiúsult a(z) %1 fájl írása.
+
+Talán írásvédett vagy egy másik program használja?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1063"/>
@@ -6607,7 +6638,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4527"/>
         <source>Insert tab</source>
-        <translation type="unfinished"/>
+        <translation>Tabulátor beszúrása</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4528"/>
@@ -6949,7 +6980,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location filename="additionaltranslations.cpp" line="204"/>
         <source>previewSelection</source>
-        <translation type="unfinished"/>
+        <translation>előnézetKiválasztása</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="205"/>
@@ -6959,7 +6990,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location filename="additionaltranslations.cpp" line="206"/>
         <source>txs-test-summary</source>
-        <translation type="unfinished"/>
+        <translation>txs-teszt-eredmény</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="207"/>
@@ -7019,7 +7050,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location filename="additionaltranslations.cpp" line="218"/>
         <source>asymptote:block</source>
-        <translation type="unfinished"/>
+        <translation>asymptote:blokk</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="219"/>
@@ -7034,7 +7065,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location filename="additionaltranslations.cpp" line="221"/>
         <source>asymptote:numbers</source>
-        <translation type="unfinished"/>
+        <translation>asymptote:számok</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="222"/>
@@ -7044,37 +7075,37 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location filename="additionaltranslations.cpp" line="223"/>
         <source>asymptote:comment</source>
-        <translation type="unfinished"/>
+        <translation>asymptote:komment</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="224"/>
         <source>qtscript:comment</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:komment</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="225"/>
         <source>qtscript:string</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:sztring</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="226"/>
         <source>qtscript:number</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:szám</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="227"/>
         <source>qtscript:keyword</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:kulcsszó</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="228"/>
         <source>qtscript:txs-variable</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:txs-változó</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="229"/>
         <source>qtscript:txs-function</source>
-        <translation type="unfinished"/>
+        <translation>qtscript:txs-függvény</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="230"/>
@@ -7224,7 +7255,7 @@ Akarja menteni ezeket?</translation>
     <message>
         <location filename="codesnippet.cpp" line="263"/>
         <source>description</source>
-        <translation type="unfinished"/>
+        <translation>leírás</translation>
     </message>
     <message>
         <location filename="latexoutputfilter.cpp" line="49"/>
@@ -7867,6 +7898,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
 Do you trust this script?</source>
         <translation>A parancsfájl igényli az írási mód engedélyezését, és az alábbi függvényt akarja futtatni:
 %1
+
 Megbízik a parancsfájlban?</translation>
     </message>
     <message>
@@ -7891,8 +7923,9 @@ Megbízik a parancsfájlban?</translation>
 %1
 
 Do you trust this script?</source>
-        <translation>A parancsfájl igényli a privilégizált mód engedélyezését, és olvasni akarja az alábbi értéket:
+        <translation>A parancsfájl igényli a privilegizált mód engedélyezését, és olvasni akarja az alábbi értéket:
 %1
+
 Megbízik a parancsfájlban?</translation>
     </message>
     <message>
@@ -8117,7 +8150,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="spellerutility.cpp" line="238"/>
         <source>Dictionary import failed: No files could be extracted.</source>
-        <translation type="unfinished"/>
+        <translation>Szótár importálása meghiúsult: Nem sikerült fájlokat kinyerni.</translation>
     </message>
 </context>
 <context>
@@ -8218,7 +8251,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="syntaxcheck.cpp" line="490"/>
         <source>environment not closed</source>
-        <translation>A környetet nincs bezárva</translation>
+        <translation>A környezet nincs bezárva</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="490"/>
@@ -9389,7 +9422,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="881"/>
         <source>Erase &amp;Word/Cmd/Env</source>
-        <translation>Szó/&amp;Par./Körny. törlése</translation>
+        <translation>Szó/&amp;Parancs/Környezet törlése</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="884"/>
@@ -9578,7 +9611,7 @@ fájlt nem lehet eltávolítani.</translation>
         <location filename="texstudio.cpp" line="931"/>
         <source>Refresh Language Model</source>
         <oldsource>Refresh QNFA</oldsource>
-        <translation type="unfinished"/>
+        <translation>Nyelvi modell frissítése</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="932"/>
@@ -9858,7 +9891,7 @@ fájlt nem lehet eltávolítani.</translation>
         <location filename="texstudio.cpp" line="1015"/>
         <source>Remodel Table Using Template</source>
         <comment>table</comment>
-        <translation>Újramodellezi a táblázatot sablon alapján</translation>
+        <translation>Táblázat újramodellezése sablon alapján</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1016"/>
@@ -10239,17 +10272,17 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="1375"/>
         <source>LanguageTool is running</source>
-        <translation type="unfinished"/>
+        <translation>A LanguageTool fut</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1379"/>
         <source>No LanguageTool server found</source>
-        <translation type="unfinished"/>
+        <translation>Nem találtam LanguageTool szervert</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1384"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool státusza ismeretlen</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1438"/>
@@ -10599,7 +10632,7 @@ El kell mentenie a dokumentumot fordítás előtt.</translation>
         <location filename="texstudio.cpp" line="5724"/>
         <source>You have called the command to open the internal pdf viewer.
 However, you are using a version of TeXstudio that was compiled without the internal pdf viewer.</source>
-        <translation>Belső pdf megjelenítőt szeretett volna használni, de az ön által használt TeXstudio változat anélkül lett fordítva.</translation>
+        <translation>Belső pdf-megjelenítőt szeretett volna használni, de az Ön által használt TeXstudio változat anélkül lett fordítva.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5744"/>
@@ -10849,7 +10882,7 @@ Beleegyezik a cserébe?
     <message>
         <location filename="texstudio.cpp" line="9214"/>
         <source>Unable to open file &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>A(z) &quot;%1&quot; fájl megnyitása sikertelen.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9216"/>
@@ -11503,7 +11536,7 @@ included document in %1</source>
     <message>
         <location filename="updatechecker.cpp" line="159"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>Frissítés ellenőrzése fejlesztői verzióhoz meghiúsult (hibás frissítési fájlformátum).</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="162"/>
