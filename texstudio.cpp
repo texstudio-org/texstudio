@@ -5131,14 +5131,7 @@ void Texstudio::quickGraphics(const QString &graphicsFile)
 	if (!graphicsFile.isNull()) graphicsDlg->setGraphicsFile(graphicsFile);
 
 	if (graphicsDlg->exec()) {
-		QString code = graphicsDlg->getCode();
-
-		cur.beginEditBlock();
-		editor->cursor().replaceSelectedText(code);
-		if (editor->cursor().hasSelection()) {
-			editor->setCursor(cur.selectionEnd());
-		}
-		cur.endEditBlock();
+		editor->insertText(cur, graphicsDlg->getCode());
 	} else {
 		editor->setCursor(origCur);
 	}
