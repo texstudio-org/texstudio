@@ -2433,7 +2433,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="configdialog.ui" line="3998"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Vízszintes görgetés letiltása „Teljes szélesség” esetén</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4021"/>
@@ -2525,22 +2525,22 @@ Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentum
     <message>
         <location filename="configdialog.ui" line="4238"/>
         <source>Select how txs checks in saved files</source>
-        <translation type="unfinished"/>
+        <translation>Válassza ki hogy csekkolja be a txs a mentett fájlokat</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4242"/>
         <source>No automatic check-in after save</source>
-        <translation>Nincs automatikus bejelentkezés mentés után</translation>
+        <translation>Nincs automatikus becsekkolás mentés után</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4247"/>
         <source>Check-in after File/Save only</source>
-        <translation>Bejelentkezés csak Fájl/Mentés után</translation>
+        <translation>Becsekkolás csak Fájl/Mentés után</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4252"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
-        <translation type="unfinished"/>
+        <translation>Becsekkolás minden mentés művelet után, tehát fordítás előtt is.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4260"/>
@@ -6258,7 +6258,7 @@ Fel kellene szabadítania némi helyet és újra meg kellene próbálni a menté
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1040"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation>A fájl biztonsági mentése sikertelen. Így is folytathatja a mentést. Viszont, ha a mentés sikertelen, akkor elvesztheti az eredeti fájl adatait. Biztosan folytatja?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1050"/>
@@ -8145,7 +8145,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="spellerutility.cpp" line="230"/>
         <source>The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?</source>
-        <translation type="unfinished"/>
+        <translation>A kiválasztott fájl úgy tűnik nem tartalmaz Hunspell szótárat. Mindenképp importálni szeretné?</translation>
     </message>
     <message>
         <location filename="spellerutility.cpp" line="238"/>
@@ -9616,7 +9616,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="932"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation type="unfinished"/>
+        <translation>A kiemeléshez és tördeléshez használt dinamikus nyelvi modell erőltetett frissítése. Valószínűleg ezt nem kell meghívnia, mert a frissítés általában automatikus.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="933"/>
@@ -10689,7 +10689,7 @@ Beleegyezik a cserébe?
     <message>
         <location filename="texstudio.cpp" line="5969"/>
         <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h4&gt;Alapértelmezett gyorsbillentyűk változása&lt;/h4&gt;&lt;p&gt;Idővel a fő eszközök gyorsbillentyűi némileg töredezetté váltak. Továbba ütköztek a szabványos billentyűkkel. Különösen az F1, F3, F10, F11 és F12 gomboknak van foglalt jelentése egyes rendszereken.&lt;/p&gt;&lt;p&gt;Úgy döntöttünk, hogy ezt helyretesszük egy konzisztensebb kiosztással:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;A &lt;code&gt;Fordítás és megtekintés&lt;/code&gt; az F1-ről az F5-re kerül.&lt;/li&gt;&lt;li&gt;A &lt;code&gt;Bibliográfia&lt;/code&gt; az F11-ről az F8-ra kerül.&lt;/li&gt;&lt;li&gt;A &lt;code&gt;Szójegyzék&lt;/code&gt; az F10-ről az F9-re kerül.&lt;li&gt;Az &lt;code&gt;Index&lt;/code&gt; eszköznek nem lesz többé gyorsbillentyűje (előzőleg F12 volt), mert nem túl gyakran használt.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Sajnáljuk, hogy újra kell tanulni a legtöbbet használt &lt;code&gt;Fordítás és megtekintés&lt;/code&gt; gyorsbillentyűt. Az átmeneti időszakban mind az F1, mind az F5 működni fog. Végül, a legfontosabb eszközök F5-F8 blokkba szervezése javítani fogja a használhatóságot. Szokás szerint, továbbra is teljesen testreszabhatja a gyorsbillentyűket a beállításokban.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5987"/>
@@ -11018,7 +11018,11 @@ Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
 Please provide this file if you send a bug report.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Egy nyomkövetés lett kiírva ide:
+%1
+Kérjük adja meg ezt a fájlt, ha hibajelentést küld.
+
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10175"/>
@@ -11521,32 +11525,32 @@ included document in %1</source>
         <location filename="updatechecker.cpp" line="88"/>
         <location filename="updatechecker.cpp" line="133"/>
         <source>Update check failed (invalid update file format).</source>
-        <translation>Frissítés ellenőrzése meghiúsult (hibás frissítési fájlformátum).</translation>
+        <translation>A frissítés ellenőrzése meghiúsult (hibás frissítési fájlformátum).</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="139"/>
         <source>Update check for release candidate failed (invalid update file format).</source>
-        <translation type="unfinished"/>
+        <translation>A frissítés ellenőrzése a kiadásra jelölt verzióhoz meghiúsult (hibás frissítési fájlformátum).</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="142"/>
         <source>A new release candidate of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Release candidate:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>A TeXstudio egy új kiadásra jelölt verziója elérhető.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Jelenlegi verzió:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Legfrissebb stabil verzió:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Kiadásra jelölt változat:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Letöltheti a &lt;a href=&apos;%7&apos;&gt;TeXstudio weboldaláról&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="159"/>
         <source>Update check for development version failed (invalid update file format).</source>
-        <translation>Frissítés ellenőrzése fejlesztői verzióhoz meghiúsult (hibás frissítési fájlformátum).</translation>
+        <translation>A frissítés ellenőrzése a fejlesztői verzióhoz meghiúsult (hibás frissítési fájlformátum).</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="162"/>
         <source>A new development version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest development version:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%7&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>A TeXstudio egy új fejlesztői verziója elérhető.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Jelenlegi verzió:&lt;/td&gt;&lt;td&gt;%1 (%2)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Legfrissebb stabil verzió:&lt;/td&gt;&lt;td&gt;%3 (%4)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Legfrissebb fejlesztői verzió:&lt;/td&gt;&lt;td&gt;%5 (%6)&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Letöltheti a &lt;a href=&apos;%7&apos;&gt;TeXstudio weboldaláról&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="178"/>
         <source>A new version of TeXstudio is available.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Current version:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Latest stable version:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;You can download it from the &lt;a href=&apos;%3&apos;&gt;TeXstudio website&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>A TeXstudio egy új verziója elérhető.&lt;br&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;Jelenlegi verzió:&lt;/td&gt;&lt;td&gt;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Legfrissebb stabil verzió:&lt;/td&gt;&lt;td&gt;%2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Letöltheti a &lt;a href=&apos;%3&apos;&gt;TeXstudio weboldaláról&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="187"/>
@@ -11786,7 +11790,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="unixutils.cpp" line="60"/>
         <source>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Expands to&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;directory of current file&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;file name (with full path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;file name (without path)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;table border=1 cellspacing=0 cellpadding=3&gt;&lt;tr&gt;&lt;th&gt;Változó&lt;/th&gt;&lt;th&gt;Behelyettesítés&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%d&lt;/td&gt;&lt;td&gt;a jelenlegi fájl könyvtára&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%f&lt;/td&gt;&lt;td&gt;fájlnév (teljes elérési úttal)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%n&lt;/td&gt;&lt;td&gt;fájlnév (elérési út nélkül)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;%%&lt;/td&gt;&lt;td&gt;%&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</translation>
     </message>
 </context>
 <context>
