@@ -5584,8 +5584,6 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 */
 void QEditor::insertFromMimeData(const QMimeData *d)
 {
-	bool s = m_cursor.hasSelection();
-
 	if ( d && m_cursor.isValid() /*&& !d->hasFormat("text/uri-list")*/ )
 	{
 
@@ -5597,7 +5595,7 @@ void QEditor::insertFromMimeData(const QMimeData *d)
 
 			m_doc->beginMacro();
 
-			if ( s )
+			if ( m_cursor.hasSelection() )
 				m_cursor.removeSelectedText();
 			cursorMirrorsRemoveSelectedText();
 			clearCursorMirrors();
