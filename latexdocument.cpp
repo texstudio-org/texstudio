@@ -1002,7 +1002,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				QString firstOptArg = getArg(args, dlh, 0, ArgumentList::Optional);
 				if (!firstOptArg.isEmpty() && firstOptArg != "[]") // workaround, actually getArg should return "" for "[]"
 					firstArg = firstOptArg;
-				newSection->title = latexToText(firstArg);
+				newSection->title = latexToText(firstArg).trimmed();
 				newSection->level = level;
 				newSection->setLine(line(i).handle(), i);
 				newSection->columnNumber = cmdStart;
