@@ -434,6 +434,16 @@ QString textToLatex(const QString &text)
 	return result;
 }
 
+
+int startOfArg(const QString &s, int index) {
+	for (int i=index; i < s.length(); i++) {
+		if (s.at(i).isSpace()) continue;
+		if (s.at(i) == '{') return i;
+		return -1;
+	}
+	return -1;
+}
+
 /*!
  * Parses a Latex string to a plain string.
  * Specifically, this substitues \texorpdfstring and removes explicit hyphens.
@@ -444,18 +454,25 @@ QString latexToText(QString s)
 	int start, stop;
 	start = s.indexOf("\\texorpdfstring");
 	while (start >= 0) {
-		stop = start + 15;
-		stop = findClosingBracket(s, stop);
-		if (stop < 0) return s;
-		s.remove(start, stop - start + 1);
-		if (s[start] == '{') {
-			s.remove(start, 1); // 2nd opening bracket
-			stop = findClosingBracket(s, start);
-			s.remove(stop, 1);  // 2nd closing bracket
-		}
-		start = s.indexOf("\\texorpdfstring");
+		// first arg
+		int i = startOfArg(s, start + 15);
+		if (i < 0) continue;  // no arguments for \\texorpdfstring
+		i++;
+		stop = findClosingBracket(s, i);
+		if (stop < 0) continue;
+
+		// second arg
+		i = startOfArg(s, stop + 1);
+		if (i < 0) continue;  // no arguments for \\texorpdfstring
+		i++;
+		stop = findClosingBracket(s, i);
+		if (stop < 0) continue;
+
+		s.remove(stop, 1);
+		s.remove(start, i - start);
+		start = s.indexOf("\\texorpdfstring", start);
 	}
-	// remove expicit hyphenations
+	// remove discretionary  hyphenations
 	s.remove("\\-");
 	return s;
 }
