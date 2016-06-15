@@ -678,7 +678,11 @@ QString getMiKTeXBinPathReal()
 		foreach (const QString &p, QDir(d).entryList(QStringList(), QDir::AllDirs, QDir::Time))
 			if (p.toLower().contains("miktex") && QDir(d + addPathDelimeter(p) + "miktex\\bin\\").exists())
 				return d + addPathDelimeter(p) + "miktex\\bin\\";
-	static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin" << "C:\\tex\\texmf\\miktex\\bin" << "C:\\miktex\\bin";
+	static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin"
+														<< "C:\\tex\\texmf\\miktex\\bin"
+														<< "C:\\miktex\\bin"
+														<< QString(getenv("LOCALAPPDATA")) + "\\Programs\\MiKTeX 2.9\\miktex\\bin";
+
 	foreach (const QString &d, candidates)
 		if (QDir(d).exists())
 			return d + "\\";
