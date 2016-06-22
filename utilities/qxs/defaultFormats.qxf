@@ -109,6 +109,9 @@
     <format id="picture" >
         <foreground>#804000</foreground>
     </format>
+    <format id="picture-keyword" >
+        <foreground>#c06000</foreground>
+    </format>
     <format id="braceMatch" >
         <bold>true</bold>
         <italic>false</italic>

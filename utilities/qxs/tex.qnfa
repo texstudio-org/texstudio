@@ -250,6 +250,8 @@ environments in smallUsefulFunctions.cpp)
 		<context id="$env" format="picture" transparency="true">	
 			<start parenthesis="$env:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{$env}</start>
 			<stop parenthesis="$env:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{$env}</stop>
+			<!-- transparency does not work for subsequent commands. Therefore keywords/single is not matched. Anyway, let's define a picture keyword. -->
+			<sequence id="$env/keyword" ambiguous="true" format="picture-keyword">\\[a-zA-Z@]+</sequence>
 		</context>        
 		</body>
 	</foreach>
