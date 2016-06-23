@@ -411,6 +411,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 		void commentSelection();
 		void uncommentSelection();
+		void toggleCommentSelection();
 		
 		void setLineWrapping(bool on);
 		void setHardLineWrapping(bool on);

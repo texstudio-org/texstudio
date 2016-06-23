@@ -217,6 +217,15 @@ int QDocumentLine::lastChar() const
 	return previousNonSpaceChar(length() - 1);
 }
 
+/*!
+	\return true if the line starts with txt, neglecting spaces
+*/
+bool QDocumentLine::startsWith(const QString &txt)
+{
+	int pos = firstChar();
+	return pos >= 0 && pos == text().indexOf(txt);
+}
+
 int QDocumentLine::indent() const
 {
 	return m_handle ? m_handle->indent() : 0;

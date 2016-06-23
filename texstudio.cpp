@@ -887,7 +887,8 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "removePreviewLatex", tr("C&lear Inline Preview"), SLOT(clearPreview()));
 
 	menu->addSeparator();
-	newManagedEditorAction(menu, "comment", tr("&Comment"), "commentSelection", Qt::CTRL + Qt::Key_T);
+	newManagedEditorAction(menu, "togglecomment", tr("Toggle &Comment"), "toggleCommentSelection", Qt::CTRL + Qt::Key_T);
+	newManagedEditorAction(menu, "comment", tr("&Comment"), "commentSelection");
 	newManagedEditorAction(menu, "uncomment", tr("&Uncomment"), "uncommentSelection", Qt::CTRL + Qt::Key_U);
 	newManagedEditorAction(menu, "indent", tr("&Indent"), "indentSelection");
 	newManagedEditorAction(menu, "unindent", tr("Unin&dent"), "unindentSelection");
