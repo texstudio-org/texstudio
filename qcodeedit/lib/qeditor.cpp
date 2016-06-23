@@ -599,6 +599,11 @@ void QEditor::init(bool actions,QDocument *doc)
 		sep->setSeparator(true);
 		addAction(sep, "&Edit", "");
 
+		a = new QAction(tr("Toggle &Comment"), this);
+		a->setObjectName("togglecomment");
+		connect(a	, SIGNAL( triggered() ),
+				this, SLOT  ( toggleCommentSelection() ) );
+
 		a = new QAction(QIcon(":/comment.png"), tr("Co&mment"), this);
 		a->setObjectName("comment");
 		Q_SHORTCUT(a, "Ctrl+D", "Edit");
@@ -2798,6 +2803,44 @@ void QEditor::uncommentSelection()
 
 			m_doc->endMacro();
 		}
+	}
+}
+
+/*!
+	\brief Toggle comments
+	If all lines touched by a cursor or selection are commented remove the comment mark.
+	Otherwise insert the comment mark
+*/
+void QEditor::toggleCommentSelection()
+{
+	if ( !m_definition )
+		return;
+
+	QString commentMark = m_definition->singleLineComment();
+	bool allCommented = true;
+
+	foreach (const QDocumentCursor &cursor, cursors()) {
+		if (cursor.hasSelection()) {
+			QDocumentCursor cur = cursor.selectionStart();
+			for (int i = 0; i < cursor.endLineNumber() - cursor.startLineNumber() + 1; i++) {
+				if (!cur.line().startsWith(commentMark)) {
+					allCommented = false;
+					break;
+				}
+				cur.movePosition(1, QDocumentCursor::NextLine);
+			}
+		} else {
+			if (!cursor.line().startsWith(commentMark)) {
+				allCommented = false;
+			}
+		}
+		if (!allCommented) break;
+	}
+
+	if (allCommented) {
+		uncommentSelection();
+	} else {
+		commentSelection();
 	}
 }
 

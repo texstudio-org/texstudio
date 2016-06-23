@@ -258,6 +258,7 @@ void QEditorTest::foldedText(){
 	else if (operation=="unindent") editor->unindentSelection();
 	else if (operation=="comment") editor->commentSelection();
 	else if (operation=="uncomment") editor->uncommentSelection();
+	else if (operation=="togglecomment") editor->toggleCommentSelection();
 	else qFatal("invalid operation");
 	QEQUAL(editor->document()->text(), newEditorText);
 	for (int i=0;i<editor->document()->lines();i++)

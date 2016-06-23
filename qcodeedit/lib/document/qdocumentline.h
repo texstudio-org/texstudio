@@ -129,6 +129,7 @@ class QCE_EXPORT QDocumentLine
 		
 		int firstChar() const;
 		int lastChar() const;
+		bool startsWith(const QString &txt);
 		
 		int indent() const;
 		
