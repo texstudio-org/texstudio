@@ -9678,12 +9678,15 @@ void Texstudio::updateTexQNFA()
 
 	if (editors) {
 		documents.enablePatch(false);
-		foreach (LatexEditorView *edView, editors->editors()) {
-			QEditor *ed = edView->editor;
-			if (ed->languageDefinition() == oldLaTeX) {
-				ed->setLanguageDefinition(newLaTeX);
-				ed->highlight();
-			}
+        foreach (LatexDocument *doc, documents.getDocuments()) {
+            LatexEditorView *edView=doc->getEditorView();
+            if(edView){
+                QEditor *ed = edView->editor;
+                if (ed->languageDefinition() == oldLaTeX) {
+                    ed->setLanguageDefinition(newLaTeX);
+                    ed->highlight();
+                }
+            }
 		}
 		documents.enablePatch(true);
 	}
