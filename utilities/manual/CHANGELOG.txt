@@ -1,14 +1,22 @@
 TeXstudio 2.11.1
 ----------------
+- add comment toggle
 - use flow layout for search/replace panel
-- improved bracket detection for \todo highlighting
+- improved bracket detection for \todo highlighting (bug 1789)
+- improved parsing of section titles (bug 1817)
+- detection of user-local installation of MikTeX
 - cwl-format: suffix %plain disables possible semantics associated with an argument name
 - cwl-format: suffix %labeldef for definition of labels
 - cwl-format: %suffix notation takes precedence over detection by argument name
-- fix: make insertion of tabs work with cursor mirrors
-- fix: verbatim setting for \verb|abc|
-- fix: update of save icon after SaveAll
+- fix crash on qt4 if update check is sucessful
+- fix: make insertion of tabs work with cursor mirrors (bug 1788)
+- fix: verbatim setting for \verb|abc| (bug 1795)
+- fix: update of save icon after SaveAll (bug 1808)
 - fix: dictionaries in extracted .oxt files not recognized (bug 1804)
+- fix: replace with regexp containing lookahead (bug 1779)
+- fix: keep indentation when using the graphics wizard (1816)
+- fix: quote replacement on formerly hidden child documents (1827)
+- fix: do not interpret double backslash within braces as column end in tabular environment (bug 1831)
 
 TeXstudio 2.11.0
 ----------------
