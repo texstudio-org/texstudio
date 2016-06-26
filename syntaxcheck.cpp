@@ -721,6 +721,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				env.id = 1; // to be changed
 				env.dlh = dlh;
 				env.ticket = ticket;
+                env.level = tk.level;
 				activeEnv.push(env);
 				continue;
 			}
@@ -732,7 +733,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }// ignore mismatching mathstop commands
 				continue;
 			}
-			if (word == "\\\\" && topEnv("tabular", activeEnv) != 0) {
+            if (word == "\\\\" && topEnv("tabular", activeEnv) != 0 && tk.level == activeEnv.top().level) {
 				if (activeEnv.top().excessCol < (activeEnv.top().id - 1)) {
 					Error elem;
 					elem.range = QPair<int, int>(tk.start, tk.length);
@@ -797,6 +798,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			tp.excessCol = 0;
 			tp.dlh = dlh;
 			tp.ticket = ticket;
+            tp.level = tk.level-1; // tk is the argument, not the command, hence -1
 			if (env == "tabular" || ltxCommands->environmentAliases.values(env).contains("tabular")) {
 				// tabular env opened
 				// get cols !!!!
@@ -854,6 +856,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				env.id = 1; // to be changed
 				env.dlh = dlh;
 				env.ticket = ticket;
+                env.level = tk.level;
 				activeEnv.push(env);
 				continue;
 			}

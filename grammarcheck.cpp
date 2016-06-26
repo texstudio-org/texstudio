@@ -11,12 +11,20 @@ GrammarCheck::GrammarCheck(QObject *parent) :
 {
 	latexParser = new LatexParser();
 }
-
+/*!
+ * \brief GrammarCheck::~GrammarCheck
+ * Destructor
+ */
 GrammarCheck::~GrammarCheck()
 {
 	if (latexParser) delete latexParser;
 }
-
+/*!
+ * \brief GrammarCheck::init
+ * initialize grammar checker
+ * \param lp reference to latex parser
+ * \param config reference to config
+ */
 void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &config)
 {
 	*latexParser = lp;
@@ -42,7 +50,12 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 	languageMapping.insert("sv-SV", "sv");
 }
 
-
+/*!
+ * \brief readWordList
+ * Read bad words/stop words from file
+ * \param file
+ * \return word list as set
+ */
 QSet<QString> readWordList(const QString &file)
 {
 	QFile f(file);
@@ -475,7 +488,11 @@ GrammarCheckLanguageToolSOAP::~GrammarCheckLanguageToolSOAP()
 {
 	if (nam) delete nam;
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::init
+ * Initialize LanguageTool as grammar backend
+ * \param config reference to config
+ */
 void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 {
 
@@ -511,7 +528,10 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 		specialRules << temp;
 	}
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::isAvailable
+ * \return LanguageTool is available (or possibly so)
+ */
 bool GrammarCheckLanguageToolSOAP::isAvailable()
 {
 	return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
@@ -522,7 +542,10 @@ QString quoteSpaces(const QString &s)
 	if (!s.contains(' ')) return s;
 	return '"' + s + '"';
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::tryToStart
+ * try to start LanguageTool-Server on local machine
+ */
 void GrammarCheckLanguageToolSOAP::tryToStart()
 {
 	if (triedToStart) {
@@ -550,7 +573,14 @@ const QNetworkRequest::Attribute AttributeTicket = (QNetworkRequest::Attribute)(
 const QNetworkRequest::Attribute AttributeLanguage = (QNetworkRequest::Attribute)(QNetworkRequest::User + 2);
 const QNetworkRequest::Attribute AttributeText = (QNetworkRequest::Attribute)(QNetworkRequest::User + 3);
 const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User + 4);
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::check
+ * Place data to be checked on LT-Server
+ * \param ticket
+ * \param subticket
+ * \param language
+ * \param text
+ */
 void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString &language, const QString &text)
 {
     if (!nam) {
@@ -589,7 +619,10 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 
 	nam->post(req, post);
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::shutdown
+ * shutdown LT-Server
+ */
 void GrammarCheckLanguageToolSOAP::shutdown()
 {
 	if (javaProcess) {
@@ -602,7 +635,11 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 		nam = 0;
 	}
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::finished
+ * Slot for postprocessing LT data
+ * \param nreply
+ */
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 {
 	if (connectionAvailability == Terminated) return;  // shutting down
