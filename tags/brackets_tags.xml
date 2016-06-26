@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texmakertags title="Left/Right" id="brackets">
+<section title="Left" id="left">
+<item tag="\\left( "/>
+<item tag="\\left[ "/>
+<item txt="\\left{ " tag="\\left\\lbrace "/>
+<item txt="\\left&lt; " tag="\\left\\langle "/>
+<item tag="\\left) "/>
+<item tag="\\left] "/>
+<item txt="\\left} " tag="\\left\\rbrace "/>
+<item txt="\\left&gt; " tag="\\left\\rangle "/>
+<item txt="\\left| " tag="\\left| "/>
+<item txt="\\left\\| " tag="\\left\\| "/>
+<item tag="\\left. "/>
+</section>
+<section title="Right" id="right">
+<item tag="\\right) "/>
+<item tag="\\right] "/>
+<item txt="\\right} " tag="\\right\\rbrace "/>
+<item txt="\\right&gt; " tag="\\right\\rangle "/>
+<item tag="\\right( "/>
+<item tag="\\right[ "/>
+<item txt="\\right{ " tag="\\right\\lbrace "/>
+<item txt="\\right&lt; " tag="\\right\\langle "/>
+<item txt="\\right| " tag="\\right| "/>
+<item txt="\\right\\| " tag="\\right\\| "/>
+<item tag="\\right. "/>
+</section>
+</texmakertags>
