@@ -900,6 +900,35 @@ LatexTableModel::LatexTableModel(QObject *parent) : QAbstractTableModel(parent),
 	}
 }
 
+// return the index of the first double backslash ("\\\\") after startCol which is on the same
+// brace level as startCol (i.e. ignoring double slash within braces)
+int LatexTableModel::findRowBreak(const QString &text, int startCol) const
+{
+	bool previousIsBackslash = false;
+	int braceDepth = 0;
+	for (int col=startCol; col < text.length(); col++) {
+		switch (text.at(col).toLatin1()) {
+		case '{':
+			braceDepth++;
+			break;
+		case '}':
+			braceDepth--;
+			break;
+		case '\\':
+			if (braceDepth == 0) {
+				if (previousIsBackslash) {
+					return col-1;
+				} else {
+					previousIsBackslash = true;
+					continue;
+				}
+			}
+		}
+		previousIsBackslash = false;
+	}
+	return -1;
+}
+
 // parses text up to the end of the next line. Returns column after the line in startCol
 // return value is 0 in case of error
 LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCol)
@@ -908,7 +937,7 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 	QString line;
 	QString lineBreakOption;
 
-	int endCol = text.indexOf("\\\\", startCol);
+	int endCol = findRowBreak(text, startCol);
 	if (endCol < 0) {
 		line = text.mid(startCol).trimmed();
 		endCol = text.length();

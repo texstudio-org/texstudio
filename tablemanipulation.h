@@ -88,6 +88,7 @@ class LatexTableModel : public QAbstractTableModel
 public:
 	LatexTableModel(QObject *parent = 0);
 
+
 	void setContent(const QString &text);
 	QStringList getAlignedLines(const QStringList alignment, const QString &rowIndent = "\t") const;
 
@@ -96,6 +97,7 @@ public:
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
 private:
+	int findRowBreak(const QString &text, int startCol) const;
 	LatexTableLine *parseNextLine(const QString &text, int &startCol);
 
 	QStringList metaLineCommands;
