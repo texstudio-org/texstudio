@@ -719,7 +719,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 void PDFWidget::setImage(QPixmap, int)
 {
 	forceUpdate = true;
-	update();
+    update();
 }
 
 void PDFWidget::useMagnifier(const QMouseEvent *inEvent)
