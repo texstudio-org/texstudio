@@ -280,6 +280,8 @@ QPixmap PDFRenderManager::renderToImage(int pageNr, QObject *obj, const char *re
 		scale = sz.width() * xres / (72.0 * img.width());
 		if (scale < 0)
 			scale = 1.0;
+        if(w==img.width())
+            scale = 1.0;
 		int sx = qRound(img.width() * scale);
 		int sy = qRound(img.height() * scale);
 		if (scale > 1.01 || scale < 0.99) {
