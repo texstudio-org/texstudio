@@ -200,8 +200,8 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 {
 	static const QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)(\\s*#1)?(\\s*#2)?(\\s*#3)?(\\s*#4)?(\\s*#5)?");
 	static const QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
-	static const QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?\\s*\\[?(\\d+)?\\]?");
-	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?\\s*\\[?(\\d+)?\\]?");
+	static const QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]+)\\])?");
+	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]+)\\])?");
 	static const QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
 	static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
 	static QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");
