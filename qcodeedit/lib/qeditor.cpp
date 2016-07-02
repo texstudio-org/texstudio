@@ -969,7 +969,7 @@ void QEditor::save()
 
 bool QEditor::saveCopy(const QString& filename){
 	Q_ASSERT(m_doc);
-	
+
 	emit slowOperationStarted();
 
 	// insert hard line breaks on modified lines (if desired)
@@ -987,6 +987,7 @@ bool QEditor::saveCopy(const QString& filename){
 		file.write(data);
 		return file.commit();
 	}
+	QMessageBox::warning(this, tr("Saving failed"), tr("Could not get write permissions on file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(QDir::toNativeSeparators(filename)), QMessageBox::Ok);
 	return false;
 #else
 	return writeToFile(filename, data);
@@ -1052,7 +1053,7 @@ bool QEditor::writeToFile(const QString &filename, const QByteArray &data) {
 	// 2. Save
 	QFile f(filename);
 	if ( !f.open(QFile::WriteOnly) ) {
-		QMessageBox::warning(this, tr("Saving failed"), tr("I failed to acquire write permissions on the file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(filename),QMessageBox::Ok);
+		QMessageBox::warning(this, tr("Saving failed"), tr("Could not get write permissions on file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(QDir::toNativeSeparators(filename)), QMessageBox::Ok);
 
 		// 3. Cleanup
 		QFile::remove(backupFilename);  // original was not modified
