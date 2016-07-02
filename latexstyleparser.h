@@ -23,6 +23,7 @@ public:
 protected:
 	void run();
 
+	QString makeArgString(int count, bool withOptional=false) const;
 	QStringList parseLine(const QString &line, bool &inRequirePackage, QStringList &parsedPackages, const QString &fileName) const;
 	QStringList readPackage(QString fileName, QStringList &parsedPackages) const;
 	QStringList readPackageTexDef(QString fn) const;

@@ -174,19 +174,34 @@ void LatexStyleParser::addFile(QString filename)
 }
 
 /*!
+ * \return "{arg1}..{argN}" where N=count. If with optional, return "[opt]{arg1}..{argN}"
+ */
+QString LatexStyleParser::makeArgString(int count, bool withOptional) const
+{
+	QString args;
+	if (withOptional) {
+		args.append("[opt]");
+	}
+	for (int j = 0; j < count; j++) {
+		args.append(QString("{arg%1}").arg(j + 1));
+	}
+	return args;
+}
+
+/*!
  * \brief LatexStyleParser::parseLine
- * \param line
- * \param inRequirePackage
- * \param parsedPackages
- * \param fileName
- * \return
+ * \param line: the text line to parse
+ * \param inRequirePackage: context information: are we inside \\RequirePackage{ - This may be modified by the function.
+ * \param parsedPackages: context information. - This may be modified by the function.
+ * \param fileName: the file from which line comes
+ * \return a list of cwl commands
  */
 QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePackage, QStringList &parsedPackages, const QString &fileName) const
 {
 	static const QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
 	static const QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
-	static const QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
-	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
+	static const QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?\\s*\\[?(\\d+)?\\]?");
+	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?\\s*\\[?(\\d+)?\\]?");
 	static const QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
 	static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
 	static QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");
@@ -247,13 +262,15 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 		QString name = rxCom.cap(2);
 		if (name.contains("@"))
 			return results;
-		QString optionStr = rxCom.cap(3);
-		//qDebug()<< name << ":"<< optionStr;
-		options = optionStr.toInt(); //returns 0 if conversion fails
-		for (int j = 0; j < options; j++) {
-			name.append(QString("{arg%1}").arg(j + 1));
+		int optionCount = rxCom.cap(3).toInt(); //returns 0 if conversion fails
+		QString optionalArg = rxCom.cap(4);
+		if (!optionalArg.isEmpty()) {
+			optionCount--;
+			QString nameWithOpt = name + makeArgString(optionCount, true) + "#S";
+			if (!results.contains(nameWithOpt))
+				results << nameWithOpt;
 		}
-		name.append("#S");
+		name += makeArgString(optionCount) + "#S";
 		if (!results.contains(name))
 			results << name;
 		return results;
@@ -262,13 +279,15 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 		QString name = rxComNoBrace.cap(2);
 		if (name.contains("@"))
 			return results;
-		QString optionStr = rxComNoBrace.cap(3);
-		//qDebug()<< name << ":"<< optionStr;
-		options = optionStr.toInt(); //returns 0 if conversion fails
-		for (int j = 0; j < options; j++) {
-			name.append(QString("{arg%1}").arg(j + 1));
+		int optionCount = rxComNoBrace.cap(3).toInt(); //returns 0 if conversion fails
+		QString optionalArg = rxComNoBrace.cap(4);
+		if (!optionalArg.isEmpty()) {
+			optionCount--;
+			QString nameWithOpt = name + makeArgString(optionCount, true) + "#S";
+			if (!results.contains(nameWithOpt))
+				results << nameWithOpt;
 		}
-		name.append("#S");
+		name += makeArgString(optionCount) + "#S";
 		if (!results.contains(name))
 			results << name;
 		return results;
