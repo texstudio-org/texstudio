@@ -6575,6 +6575,12 @@ void Texstudio::executeTests(const QStringList &args)
 		QString result = testManager.execute(allTests ? TestManager::TL_ALL : TestManager::TL_FAST, currentEditorView(), currentEditorView()->codeeditor, currentEditorView()->editor, &buildManager);
 		m_languages->setLanguageFromName(currentEditorView()->editor, "TXS Test Results");
 		currentEditorView()->editor->setText(result, false);
+		if (result.startsWith("*** THERE SEEM TO BE FAILED TESTS! ***")) {
+			QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(currentEditorView()->codeeditor->panels("Search")[0]);
+			if (searchpanel) {
+				searchpanel->find("FAIL!", false, false, false, false, true);
+			}
+		}
 		configManager.debugLastFileModification = QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 	}
 #endif
