@@ -198,7 +198,7 @@ QString LatexStyleParser::makeArgString(int count, bool withOptional) const
  */
 QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePackage, QStringList &parsedPackages, const QString &fileName) const
 {
-	static const QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
+	static const QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)(\\s*#1)?(\\s*#2)?(\\s*#3)?(\\s*#4)?(\\s*#5)?");
 	static const QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
 	static const QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?\\s*\\[?(\\d+)?\\]?");
 	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?\\s*\\[?(\\d+)?\\]?");
@@ -214,7 +214,6 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 	QStringList results;
 	if (line.startsWith("\\endinput"))
 		return results;
-	int options = 0;
 	if (inRequirePackage) {
 		int col = line.indexOf('}');
 		if (col > -1) {
@@ -238,13 +237,14 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 		QString name = rxDef.cap(1);
 		if (name.contains("@"))
 			return results;
-		QString optionStr = rxDef.cap(2);
-		//qDebug()<< name << ":"<< optionStr;
-		options = optionStr.mid(1).toInt(); //returns 0 if conversion fails
-		for (int j = 0; j < options; j++) {
-			name.append(QString("{arg%1}").arg(j + 1));
+		int optionCount = 0;
+		for (int c = 2; c <= rxDef.captureCount(); c++) {
+			if (rxDef.cap(c).isEmpty())
+				break;
+			optionCount++;
 		}
-		name.append("#S");
+		qDebug() << line << rxDef.capturedTexts() << optionCount;
+		name += makeArgString(optionCount) + "#S";
 		if (!results.contains(name))
 			results << name;
 		return results;

@@ -17,6 +17,9 @@ private slots:
 		QTest::addColumn<QStringList>("expectedResult");
 
 		QTest::newRow("def") << "\\def \\cmd {foo}" << (QStringList() << "\\cmd#S");
+		QTest::newRow("def1") << "\\def \\cmd#1{foo}" << (QStringList() << "\\cmd{arg1}#S");
+		QTest::newRow("def3") << "\\def\\cmd #1 #2 #3 #4 #5 {foo}" << (QStringList() << "\\cmd{arg1}{arg2}{arg3}{arg4}{arg5}#S");
+		QTest::newRow("let") << "\\let \\cmd" << (QStringList() << "\\cmd#S");
 
 		QTest::newRow("newcommand") << "\\newcommand{\\cmd}" << (QStringList() << "\\cmd#S");
 		QTest::newRow("newcommand1") << "\\newcommand{\\cmd}[1]" << (QStringList() << "\\cmd{arg1}#S");
