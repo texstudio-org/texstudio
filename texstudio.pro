@@ -143,7 +143,8 @@ HEADERS += texstudio.h \
     unixutils.h \
     editors.h \
     libqmarkedscrollbar/src/markedscrollbar.h \
-    flowlayout.h
+    flowlayout.h \
+    tests/latexstyleparser_t.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
