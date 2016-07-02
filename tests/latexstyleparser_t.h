@@ -16,6 +16,8 @@ private slots:
 		QTest::addColumn<QString>("line");
 		QTest::addColumn<QStringList>("expectedResult");
 
+		QTest::newRow("def") << "\\def \\cmd {foo}" << (QStringList() << "\\cmd#S");
+
 		QTest::newRow("newcommand") << "\\newcommand{\\cmd}" << (QStringList() << "\\cmd#S");
 		QTest::newRow("newcommand1") << "\\newcommand{\\cmd}[1]" << (QStringList() << "\\cmd{arg1}#S");
 		QTest::newRow("newcommand2") << "\\newcommand{\\cmd}[2]" << (QStringList() << "\\cmd{arg1}{arg2}#S");
@@ -23,6 +25,11 @@ private slots:
 		QTest::newRow("newcommand-star") << "\\newcommand*{\\cmd}" << (QStringList() << "\\cmd#S");
 		QTest::newRow("newcommand-nobrace1") << "\\newcommand\\cmd[1]" << (QStringList() << "\\cmd{arg1}#S");
 		QTest::newRow("newcommand-spaces") << "bla foo \\newcommand  {\\cmd}   [1]" << (QStringList() << "\\cmd{arg1}#S");
+		QTest::newRow("newcommand-optional") << "\\newcommand{\\cmd}[1][1]" << (QStringList() << "\\cmd[opt]#S" << "\\cmd#S");
+		QTest::newRow("newcommand-optional2") << "\\newcommand{\\cmd}[2][1]" << (QStringList() << "\\cmd[opt]{arg1}#S" << "\\cmd{arg1}#S");
+		QTest::newRow("newcommand-nobrace-optional") << "\\newcommand \\cmd[1][1]" << (QStringList() << "\\cmd[opt]#S" << "\\cmd#S");
+		QTest::newRow("newcommand-nobrace-optional2") << "\\newcommand\\cmd[2][1]" << (QStringList() << "\\cmd[opt]{arg1}#S" << "\\cmd{arg1}#S");
+
 		QTest::newRow("providecommand1") << "\\providecommand{\\cmd}[1]" << (QStringList() << "\\cmd{arg1}#S");
 		QTest::newRow("declareRobustCommand1") << "\\DeclareRobustCommand{\\cmd}[1]" << (QStringList() << "\\cmd{arg1}#S");
 		QTest::newRow("newenvironment") << "\\newenvironment{myenv}" << (QStringList() << "\\begin{myenv}#S" << "\\end{myenv}#S");
