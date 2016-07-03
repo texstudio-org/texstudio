@@ -1034,7 +1034,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	}//for each line handle
 	QVector<StructureEntry *> parent_level(lp.structureDepth());
 	if (!isHidden()) {
-		mergeStructure(baseStructure, parent_level, flatStructure, linenr, count);
+        mergeStructure(baseStructure, parent_level, flatStructure, lineNrStart, newCount);
 
 		const QList<StructureEntry *> categories =
 		    QList<StructureEntry *>() << magicCommentList << blockList << labelList << todoList << bibTeXList;
