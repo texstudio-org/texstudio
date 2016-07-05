@@ -503,7 +503,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	//	ui.listCustomToolBar->setSelectionMode(QAbstractItemView::ExtendedSelection);
 	//	ui.treePossibleToolbarActions->setSelectionMode(QAbstractItemView::ExtendedSelection);
 
-#if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11))
+#if (QT_VERSION < 0x040600) || (!defined(Q_WS_X11)&&!defined(Q_OS_UNIX))
 	ui.checkBoxUseSystemTheme->setVisible(false);
 #endif
 
