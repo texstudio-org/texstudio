@@ -3183,6 +3183,7 @@ Tokens::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 	if (arg == "beamertheme") return Tokens::beamertheme;
 	if (arg == "keylist" || arg == "bibid") return Tokens::bibItem;
 	if (arg == "placement" || arg == "position") return Tokens::placement;
+    if (arg == "key"  && definition.contains('l')) return Tokens::label;
 	if (arg == "key" || arg == "key1" || arg == "key2") return Tokens::labelRef;
 	if ((arg == "envname" || arg=="environment name") && definition.contains('N')) return Tokens::newTheorem;
 	if ((arg == "label" || arg == "%<label%>") && definition.contains('r')) return Tokens::labelRef;  // reference with keyword label
