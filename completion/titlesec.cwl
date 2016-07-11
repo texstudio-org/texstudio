@@ -5,10 +5,8 @@
 \titleformat*{command%plain}{format}
 \titleformat{command%plain}[shape]{format}{label}{sep%l}{before-code}{after-code}
 \chaptertitlename
-\titlespacing
 \titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}
 \titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
-\titlespacing*
 \titlespacing*{command%plain}{left%l}{before-sep%l}{after-sep%l}
 \titlespacing*{command%plain}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
 \filright
@@ -39,8 +37,8 @@
 \subsubparagraphbreak
 \chaptertolists
 \titleclass{name}{class}
-\titleclass{name}{class}{super-level-cmd}
-\titleclass{name}{start-level-num}{class}
+\titleclass{name}{class}[super-level-cmd]
+\titleclass{name}[start-level-num]{class}
 \dottecontents{section}[left%l]{above-code}{label-width%l}{leader-width%l}
 \titlecontents{section}[left%l]{above-code}{numbered-entry-format}{numberless-entry-format}{filler-page-format}[below-code]
 \contentsmargin{right%l}
