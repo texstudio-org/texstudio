@@ -54,11 +54,11 @@
 \ProcessOptions#*
 \ProcessOptions*#*
 \ProvidesClass{name}#*
-\ProvidesClass{name}[release]#*
-\ProvidesFile{ma,e}#*
-\ProvidesFile{name}{release}#*
+\ProvidesClass{name}[release info]#*
+\ProvidesFile{name}#*
+\ProvidesFile{name}[release info]#*
 \ProvidesPackage{name}#*
-\ProvidesPackage{name}[release]#*
+\ProvidesPackage{name}[release info]#*
 \ProvideTextCommand{cmd}{encoding}[num][default]{definition}#*
 \RequirePackage[optionlist]{package}#*
 \RequirePackage[optionlist]{package}[release]#*

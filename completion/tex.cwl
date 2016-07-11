@@ -216,7 +216,6 @@
 \left..\right
 \leftskip#*
 \leqno
-\let#*
 # for command interpretation
 \let{cmd}{def}#dS
 \limits#*
