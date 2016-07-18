@@ -134,7 +134,7 @@ void QuickBeamerDialog::Init()
 	ui.listWidgetBabel->addItem("francais" );
 	ui.listWidgetBabel->addItem("french" );
 	ui.listWidgetBabel->addItem("frenchb" );
-	ui.listWidgetBabel->addItem("german" );
+	ui.listWidgetBabel->addItem("ngerman" );
 	ui.listWidgetBabel->addItem("greek" );
 	ui.listWidgetBabel->addItem("icelandic" );
 	ui.listWidgetBabel->addItem("italian" );
