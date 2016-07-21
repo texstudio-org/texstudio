@@ -60,12 +60,12 @@ void ScriptEngineTest::script_data(){
 		<< "beHallo";
 
 	QTest::newRow("check cursor movement out of range")
-		<< "cursor.movePosition(20,cursorEnums.Right);cursor.deleteChar();cursor.deletePreviousChar()"
-		<< "bello";  // a movement out of range is canceled completely
+		<< "cursor.movePosition(2,cursorEnums.Left);cursor.movePosition(20,cursorEnums.Right);cursor.deleteChar();cursor.deletePreviousChar()"
+		<< "ballo";  // a movement out of range is canceled completely
 
-	QTest::newRow("check cursor movement out of range")
+	QTest::newRow("check cursor movement out of range2")
 		<< "cursor.moveTo(20,10);cursor.deleteChar();cursor.deletePreviousChar();cursor.eraseLine();cursor.insertText(\"as\")"
-		<< "bello";  // invalid cursors are not executed
+		<< "ballo";  // invalid cursors are not executed
 
 
 	QTest::newRow("Search/Replace Test 1")

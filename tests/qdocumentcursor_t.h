@@ -20,6 +20,8 @@ class QDocumentCursorTest: public QObject{
 		void const2Methods();
 		void subtractBoundaries_data();
 		void subtractBoundaries();
+		void movePosition_data();
+		void movePosition();
 		void bidiMoving_data();
 		void bidiMoving();
 		void isForwardSelection_data();
