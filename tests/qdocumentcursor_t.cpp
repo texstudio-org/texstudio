@@ -586,6 +586,54 @@ void QDocumentCursorTest::subtractBoundaries(){
 	r = doc->cursor(r.lineNumber(),r.columnNumber(),r.anchorLineNumber(),r.anchorColumnNumber());
 	QCEEQUAL2(c,r, "swapped");
 }
+void QDocumentCursorTest::movePosition_data(){
+	QTest::addColumn<QString>("text");
+	QTest::addColumn<int>("line");
+	QTest::addColumn<int>("column");
+	QTest::addColumn<int>("moveCount");
+	QTest::addColumn<int>("operation");
+	QTest::addColumn<int>("newLine");
+	QTest::addColumn<int>("newColumn");
+	QTest::addColumn<bool>("expectedReturnValue");
+
+	QString text = "0123 5678\n0123 5678\n0123 5678";
+	QTest::newRow("left") << text << 1 << 1 << 1 << (int)QDocumentCursor::Left << 1 << 0 << true;
+	QTest::newRow("left5") << text << 1 << 6 << 5 << (int)QDocumentCursor::Left << 1 << 1 << true;
+	QTest::newRow("left to start") << text << 0 << 2 << 2 << (int)QDocumentCursor::Left << 0 << 0 << true;
+	QTest::newRow("left beyond start") << text << 0 << 2 << 3 << (int)QDocumentCursor::Left << 0 << 2 << false;
+	QTest::newRow("left across line") << text << 2 << 1 << 3 << (int)QDocumentCursor::Left << 1 << 8 << true;
+	QTest::newRow("left across multi line") << text << 2 << 1 << 13 << (int)QDocumentCursor::Left << 0 << 8 << true;
+	QTest::newRow("left across empty line") << "0123 5678\n\n0123 5678" << 2 << 1 << 4 << (int)QDocumentCursor::Left << 0 << 8 << true;
+
+	QTest::newRow("right") << text << 0 << 1 << 1 << (int)QDocumentCursor::Right << 0 << 2 << true;
+	QTest::newRow("right5") << text << 0 << 1 << 5 << (int)QDocumentCursor::Right << 0 << 6 << true;
+	QTest::newRow("right to line end") << text << 0 << 1 << 8 << (int)QDocumentCursor::Right << 0 << 9 << true;
+	QTest::newRow("right to end") << text << 2 << 2 << 7 << (int)QDocumentCursor::Right << 2 << 9 << true;
+	QTest::newRow("right beyond end") << text << 2 << 2 << 20 << (int)QDocumentCursor::Right << 2 << 2 << false;
+	QTest::newRow("right across line") << text << 0 << 8 << 3 << (int)QDocumentCursor::Right << 1 << 1 << true;
+	QTest::newRow("right across multi line") << text << 0 << 8 << 13 << (int)QDocumentCursor::Right << 2 << 1 << true;
+	QTest::newRow("right across empty line") << "0123 5678\n\n0123 5678" << 0 << 8 << 4 << (int)QDocumentCursor::Right << 2 << 1 << true;
+}
+void QDocumentCursorTest::movePosition(){
+	QFETCH(QString, text);
+	QFETCH(int, line);
+	QFETCH(int, column);
+	QFETCH(int, moveCount);
+	QFETCH(int, operation);
+	QFETCH(int, newLine);
+	QFETCH(int, newColumn);
+	QFETCH(bool, expectedReturnValue);
+
+	doc->setText(text, false);
+	for (int i=0;i<doc->lineCount();i++)
+		doc->line(i).handle()->layout(i);
+
+	QDocumentCursor c(doc, line, column);
+	bool b = c.movePosition(moveCount, (QDocumentCursor::MoveOperation) operation);
+	QEQUAL2(c.lineNumber(), newLine, "line" );
+	QEQUAL2(c.columnNumber(), newColumn, "column" );
+	QEQUAL2(b, expectedReturnValue, "return value" );
+}
 void QDocumentCursorTest::bidiMoving_data(){
 	QTest::addColumn<QString>("text");
 	QTest::addColumn<int>("line");

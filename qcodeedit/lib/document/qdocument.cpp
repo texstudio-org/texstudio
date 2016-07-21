@@ -4679,8 +4679,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 	QDocumentLine l, l1 = m_doc->line(m_begLine), l2 = m_doc->line(m_endLine);
 
+	int origLine = m_begLine;
+	int origOffset = m_begOffset;
 	int &line = m_begLine;
 	int &offset = m_begOffset;
+
 	static QRegExp wordStart("\\b\\w+$"), wordEnd("^\\w+\\b");
 	static QRegExp wordOrCommandStart("\\\\?\\b\\w+$"), wordOrCommandEnd("^\\\\?\\w+\\b");
 
@@ -4765,13 +4768,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( atStart() )
 				return false;
 
-			int remaining = offset;
-
 			do
 			{
-				if ( remaining >= count )
+				if ( offset >= count )  // cursorCol is larger than required count of left steps -> just reduce col
 				{
-					offset = remaining - count;
+					offset -= count;
 
 					const QString& textline = m_doc->line(line).text();
 					if (offset < textline.length())
@@ -4780,9 +4781,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 							offset--;
 
 					break;
-				} else if ( line == beg ) {
-					offset = 0;
-					break;
+				} else if ( line == beg ) {  // not enough way to move: undo (no partial operation)
+					line = origLine;
+					offset = origOffset;
+					return false;
 				}
 
 				do
@@ -4792,9 +4794,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 				//*line = *it;
 
-				count -= remaining + 1; // jumping a line is one char
-				offset = remaining = m_doc->line(line).length();
-			} while ( count && remaining );
+				count -= offset + 1; // +1: jumping a line is one char
+				offset = m_doc->line(line).length();
+			} while ( count );
 
 			refreshColumnMemory();
 
@@ -4811,7 +4813,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			do
 			{
-				if ( remaining >= count )
+				if ( remaining >= count )  // enough line left -> just increase col
 				{
 					offset += count;
 
@@ -4822,9 +4824,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 							offset++;
 
 					break;
-				} else if ( (line + 1) == end ) {
-					offset = remaining;
-					break;
+				} else if ( (line + 1) == end ) {  // not enough way to move: undo (no partial operation)
+					line = origLine;
+					offset = origOffset;
+					return false;
 				}
 
 				do
@@ -4835,9 +4838,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				//*line = *it;
 
 				offset = 0;
-				count -= remaining + 1;
+				count -= remaining + 1;  // +1: jumping a line is one char
 				remaining = m_doc->line(line).length();
-			} while ( count && remaining );
+			} while ( count );
 
 			refreshColumnMemory();
 
