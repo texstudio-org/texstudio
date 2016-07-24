@@ -1210,6 +1210,7 @@ void PDFWidget::wheelEvent(QWheelEvent *event)
 			doZoom(event->pos(), (summedWheelDegrees > 0) ? 1 : -1);
 			summedWheelDegrees = 0;
 		}
+		event->accept();
 	} else	{
 		static QTime lastScrollTime = QTime::currentTime();
 		QScrollBar *scrollBar = (event->orientation() == Qt::Horizontal)
