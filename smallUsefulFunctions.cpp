@@ -2312,7 +2312,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				if (valid.contains('V')) { // verbatim command
 					if (res > -1) {
 						package.possibleCommands["%verbatimEnv"] << rxCom.cap(3);
-                        env<< "verbatim";
+                                                env<< "verbatim";
 					}
 					valid.remove('V');
 				}
