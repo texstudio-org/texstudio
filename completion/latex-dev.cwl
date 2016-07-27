@@ -8,6 +8,9 @@
 \CheckCommand{cmd}[args][default]{def}#*
 \CheckCommand{cmd}[args]{def}#*
 \CheckCommand{cmd}{def}#*
+\ClassError{class}{text}#*
+\ClassInfo{class}{text}#*
+\ClassWarning{class}{text}#*
 \CurrentOption#*
 \DeclareFixedFont{cmd}{encoding}{family}{series}{shape}{size}#*
 \DeclareFontEncoding{encoding}{text-settings}{math-settings}#*
@@ -213,4 +216,5 @@
 \pdfpagewidth#*
 \pdflinkmargin#*
 \pdfthreadmargin#*
+\pdfminorversion#*
  

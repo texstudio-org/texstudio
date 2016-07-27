@@ -194,6 +194,8 @@
 \ifvmode..\else..\fi#*
 \ifvoid..\else..\fi#*
 \ifx..\else..\fi#*
+\ifcase..\or..\fi#*
+\ifcase..\or..\else..\fi#*
 \ignorespaces#*
 \immediate#*
 \indent#*
