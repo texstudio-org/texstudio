@@ -409,6 +409,78 @@ highnamepenalty
 \mkbibacro{text}
 \autocap{character}
 
+# Formatting Directives
+\DeclareFieldFormat[entrytype, ...]{format}{code}#*
+\DeclareFieldFormat*{format}{code}#*
+\DeclareListFormat[entrytype, ...]{format}{code}#*
+\DeclareListFormat*{format}{code}#*
+\DeclareNameFormat[entrytype, ...]{format}{code}#*
+\DeclareNameFormat*{format}{code}#*
+\DeclareIndexFieldFormat[entrytype, ...]{format}{code}#*
+\DeclareIndexFieldFormat*{format}{code}#*
+\DeclareIndexListFormat[entrytype, ...]{format}{code}#*
+\DeclareIndexListFormat*{format}{code}#*
+\DeclareIndexNameFormat[entrytype, ...]{format}{code}#*
+\DeclareIndexNameFormat*{format}{code}#*
+\DeclareFieldAlias[entry type]{alias}[format entry type]{format}#*
+\DeclareFieldAlias{alias}{format}#*
+\DeclareListAlias[entry type]{alias}[format entry type]{format}#*
+\DeclareListAlias{alias}{format}#*
+\DeclareNameAlias[entry type]{alias}[format entry type]{format}#*
+\DeclareNameAlias{alias}{format}#*
+\DeclareIndexFieldAlias[entry type]{alias}[format entry type]{format}#*
+\DeclareIndexFieldAlias{alias}{format}#*
+\DeclareIndexListAlias[entry type]{alias}[format entry type]{format}#*
+\DeclareIndexListAlias{alias}{format}#*
+\DeclareIndexNameAlias[entry type]{alias}[format entry type]{format}#*
+\DeclareIndexNameAlias{alias}{format}#*
+
+\mkbibemph{text}#*
+\mkbibitalic{text}#*
+\mkbibbold{text}#*
+\mkbibquote{text}#*
+\mkbibparens{text}#*
+\mkbibbrackets{text}#*
+\mkbibfootnote{text}#*
+\mkbibfootnotetext{text}#*
+\mkbibendnote{text}#*
+\mkbibendnotetext{text}#*
+\mkbibsuperscript{text}#*
+
+# Localization Strings
+\bibstring{string key}#*
+\biblstring{string key}#*
+\bibsstring{string key}#*
+\bibcpstring{string key}#*
+\bibcplstring{string key}#*
+\bibcpsstring{string key}#*
+\bibucstring{string key}#*
+\bibuclstring{string key}#*
+\bibuscstring{string key}#*
+\biblcstring{string key}#*
+\biblclstring{string key}#*
+\biblcsstring{string key}#*
+\bibxstring{string key}#*
+\bibxlstring{string key}#*
+\bibxsstring{string key}#*
+\mainlang{string key}#*
+
+# Adding whitespace
+\unspace#*
+\addspace#*
+\addnbspace#*
+\addthinspace#*
+\addnbthinspace#*
+\addlowpenspace#*
+\addhighpenspace#*
+\addlpthinspace#*
+\addhpthinspace#*
+\addabbrvspace#*
+\addabthinspace#*
+\adddotspace#*
+\addslash#*
+
+
 # spanish
 smartand # counter
 \forceE
