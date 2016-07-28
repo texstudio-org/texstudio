@@ -4470,7 +4470,7 @@ void Texstudio::normalCompletion()
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
 		completer->setWorkPath(cmd);
-		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
+        currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);
 	}
 	switch (type) {
 	case Tokens::command:

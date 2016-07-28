@@ -3008,7 +3008,8 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 	//recheck syntax of ALL documents ...
 	LatexPackage pck;
 	pck.commandDescriptions = latexParser.commandDefs;
-	QStringList loadedFiles;
+    pck.specialDefCommands = latexParser.specialDefCommands;
+    QStringList loadedFiles;
 	for (int i = 0; i < files.count(); i++) {
 		if (!files.at(i).endsWith(".cwl"))
 			files[i] = files[i] + ".cwl";

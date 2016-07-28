@@ -879,6 +879,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 		completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
 		latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
+        latexParser.specialDefCommands.unite(pck.specialDefCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
 		latexParser.commandDefs.unite(pck.commandDescriptions);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
