@@ -27,7 +27,7 @@ class-scrartcl,scrreprt,scrbook
 latex-document
 latex-mathsymbols
 tex
-scrreport:
+scrreprt:
 class-scrartcl,scrreprt,scrbook
 latex-document
 latex-mathsymbols
