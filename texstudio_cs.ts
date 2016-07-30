@@ -2240,7 +2240,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="configdialog.ui" line="3511"/>
         <source>LT Arguments:</source>
-        <translation>LanguageTool argumenty:</translation>
+        <translation>Argumenty pro LanguageTool:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3581"/>
@@ -2891,7 +2891,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"/>
+        <translation>Navršené symboly</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
@@ -3306,67 +3306,67 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
         <source>env equation</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;Rovnice&quot;</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation*</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;Rovnice*&quot;</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
         <source>env align (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;align&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="112"/>
         <source>env align* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;align*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="113"/>
         <source>env alignat (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;alignat&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="114"/>
         <source>env alignat* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;alignat*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="115"/>
         <source>env flalign (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;flalign&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="116"/>
         <source>env flalign* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;flalign*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>env gather (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;gather&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="118"/>
         <source>env gather* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;gather*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multiline (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;multiline&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multiline* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;multiline*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
         <source>env cases (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;cases&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
@@ -3401,22 +3401,22 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="128"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Školní tabule - tučné - \mathbb{} (amssymb)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Fraktura - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="130"/>
         <source>\overset (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>\overset (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>\underset (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>\underset (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="132"/>
