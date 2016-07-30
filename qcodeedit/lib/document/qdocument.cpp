@@ -6366,6 +6366,7 @@ QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 bool QDocumentPrivate::m_fixedPitch;
 QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=0;
 double QDocumentPrivate::m_lineSpacingFactor = 1.0;
+int QDocumentPrivate::m_staticCachesLogicalDpiY = -1;// resolution for which the caches are valid (depends on OS gui scaling)
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
 int QDocumentPrivate::m_leading;// = m_fontMetrics.leading();
@@ -6568,14 +6569,16 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
     //t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false;
+
+	p->setFont(*m_font);
+	updateStaticCaches(p->device());
+
 	int i, realln, pos = 0, visiblePos = 0,
 		firstLine = qMax(0, cxt.yoffset / m_lineSpacing),
 		lastLine = qMax(0, firstLine + (cxt.height / m_lineSpacing));
 
 	if ( cxt.height % m_lineSpacing )
 		++lastLine;
-
-	p->setFont(*m_font);	
 
 	int lineCacheWidth = m_oldLineCacheWidth;
 	if(m_oldLineCacheOffset!=cxt.xoffset || m_oldLineCacheWidth < cxt.width) {
@@ -7357,19 +7360,7 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 
 
 	QFontMetrics fm(*m_font);
-	m_spaceWidth = fm.width(' ');
-	m_ascent = fm.ascent();
-	m_descent = fm.descent();
-	m_lineHeight = fm.height();
-	m_leading = fm.leading() + qRound((m_lineSpacingFactor-1.0)*m_lineHeight);
-	m_lineSpacing = m_leading+m_lineHeight;
-
-	if(m_lineHeight>m_lineSpacing) m_lineSpacing=m_lineHeight;
-	//m_lineHeight = m_ascent + m_descent - 2;
-
-	updateFormatCache();
-	//if ( !m_fixedPitch )
-	//	qDebug("unsafe computations...");
+	updateStaticCaches(0);
 
 	foreach ( QDocumentPrivate *d, m_documents )
 	{
@@ -7377,6 +7368,39 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 		d->setHeight();
 		d->m_LineCache.clear();
 		d->emitFontChanged();
+	}
+}
+
+/*!
+ * Check that the used caches are suitable for the given painter by checking its logicalDpiY
+ * If not, the cached information is updated / resetted.
+ * This will happen if screens or scaling is switched.
+ */
+void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
+{
+	if (!pd || m_staticCachesLogicalDpiY != pd->logicalDpiY()) {
+		const QPaintDevice *device = pd ? pd : QApplication::activeWindow();
+		//qDebug() << "invalidate static caches. old dpi:" << m_staticCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
+		m_staticCachesLogicalDpiY = device->logicalDpiY();
+
+		// need to get the font metrics in the context of the paint device to get correct UI scaling
+		QFontMetrics fm = QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));
+		m_spaceWidth = fm.width(' ');
+		m_ascent = fm.ascent();
+		m_descent = fm.descent();
+		m_lineHeight = fm.height();
+		m_leading = fm.leading() + qRound((m_lineSpacingFactor-1.0)*m_lineHeight);
+		m_lineSpacing = m_leading+m_lineHeight;
+		//if ( !m_fixedPitch )
+		//	qDebug("unsafe computations...");
+
+		if(m_lineHeight>m_lineSpacing) m_lineSpacing=m_lineHeight;
+
+		m_fmtWidthCache.clear();
+		m_fmtCharacterCache[0].clear();
+		m_fmtCharacterCache[1].clear();
+
+		updateFormatCache(device);
 	}
 }
 
@@ -7526,8 +7550,7 @@ void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, b
 	}
 }
 
-
-void QDocumentPrivate::updateFormatCache()
+void QDocumentPrivate::updateFormatCache(const QPaintDevice *pd)
 {
 	if ( !m_font )
 		return;
@@ -7540,7 +7563,7 @@ void QDocumentPrivate::updateFormatCache()
 	if ( !m_formatScheme )
 	{
 		m_fonts << *m_font;
-		m_fontMetrics << QFontMetrics(*m_font);
+		m_fontMetrics << QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
 		return;
 	}
 
@@ -7566,7 +7589,7 @@ void QDocumentPrivate::updateFormatCache()
 		}
 
 		m_fonts << f;
-		m_fontMetrics << QFontMetrics(f);
+		m_fontMetrics << QFontMetrics(f, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
 	}
 
 	foreach ( QDocumentPrivate *d, m_documents )
@@ -8454,7 +8477,7 @@ void QDocumentPrivate::setWorkAround(QDocument::WorkAroundFlag workAround, bool 
 	if (newValue) m_workArounds |= workAround;
 	else m_workArounds &= ~workAround;
 	if (workAround == QDocument::DisableFixedPitchMode)
-		updateFormatCache();
+		updateFormatCache(QApplication::activeWindow());
 
 }
 
