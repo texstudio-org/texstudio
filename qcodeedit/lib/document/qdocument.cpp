@@ -6398,7 +6398,8 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	_mac(0),
 	m_lineEnding(m_defaultLineEnding),
 	m_codec(m_defaultCodec),
-	m_oldLineCacheOffset(0), m_oldLineCacheWidth(0),
+	m_lineCacheXOffset(0), m_lineCacheWidth(0),
+	m_instanceCachesLogicalDpiY(-1),
 	m_forceLineWrapCalculation(false),
 	m_overwrite(false)
 {
@@ -6572,6 +6573,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	p->setFont(*m_font);
 	updateStaticCaches(p->device());
+	updateInstanceCaches(p->device(), cxt);
 
 	int i, realln, pos = 0, visiblePos = 0,
 		firstLine = qMax(0, cxt.yoffset / m_lineSpacing),
@@ -6579,15 +6581,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 
 	if ( cxt.height % m_lineSpacing )
 		++lastLine;
-
-	int lineCacheWidth = m_oldLineCacheWidth;
-	if(m_oldLineCacheOffset!=cxt.xoffset || m_oldLineCacheWidth < cxt.width) {
-		m_LineCache.clear();
-        m_LineCacheAlternative.clear();
-		if (m_width) lineCacheWidth = cxt.width;
-		else lineCacheWidth = (cxt.width+15) & (~16);         //a little bit larger if not wrapped
-		//qDebug("clear");
-	}
 
 	QFormatScheme* scheme = m_formatScheme;
 	if (!scheme) scheme = QDocument::defaultFormatScheme();
@@ -6814,10 +6807,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
            &&  (m_LineCache.contains(h)||m_LineCacheAlternative.contains(h))){
             if(imageCache){
                 QImage *px=m_LineCacheAlternative.object(h);
-                p->drawImage(m_oldLineCacheOffset,0,*px);
+                p->drawImage(m_lineCacheXOffset,0,*px);
             }else{
                 QPixmap *px=m_LineCache.object(h);
-                p->drawPixmap(m_oldLineCacheOffset,0,*px);
+                p->drawPixmap(m_lineCacheXOffset,0,*px);
             }
 		} else {
 			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
@@ -6828,10 +6821,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                 if(imageCache){
 #if QT_VERSION >= 0x050000
                     int pixelRatio=p->device()->devicePixelRatio();
-                    pi = new QImage(pixelRatio*lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
+                    pi = new QImage(pixelRatio*m_lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
                     pi->setDevicePixelRatio(pixelRatio);
 #else
-                    pi = new QImage(lineCacheWidth,ht,QImage::Format_RGB888);
+                    pi = new QImage(m_lineCacheWidth,ht,QImage::Format_RGB888);
 #endif
                     if(fullSel){
                         pi->fill(selbg.color().rgb());
@@ -6842,10 +6835,12 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                 }else{
 #if QT_VERSION >= 0x050000
                     int pixelRatio=p->device()->devicePixelRatio();
-                    px = new QPixmap(pixelRatio*lineCacheWidth,pixelRatio*ht);
+                    px = new QPixmap(pixelRatio*m_lineCacheWidth,pixelRatio*ht);
                     px->setDevicePixelRatio(pixelRatio);
+                    // TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
+                    // correct drawing on secondary screens with different scaling factors.
 #else
-                    px = new QPixmap(lineCacheWidth,ht);
+                    px = new QPixmap(m_lineCacheWidth,ht);
 #endif
                     if(fullSel){
                         px->fill(selbg.color());
@@ -6864,9 +6859,9 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
 			} else if (fullSel){
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
-				pr->fillRect(m_leftMargin, 0, qMax(m_width,lineCacheWidth), ht, fullSel ? selbg : bg);
+				pr->fillRect(m_leftMargin, 0, qMax(m_width,m_lineCacheWidth), ht, fullSel ? selbg : bg);
 			} else
-				pr->fillRect(0, 0, lineCacheWidth, ht, bg);
+				pr->fillRect(0, 0, m_lineCacheWidth, ht, bg);
 
             int y=0;
             if(!useLineCache && visiblePos>pos)
@@ -6878,7 +6873,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                 ht+=m_lineSpacing;
             }
 
-            h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
+            h->draw(i, pr, cxt.xoffset, m_lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
 
 			if (useLineCache) {
                 if(imageCache){
@@ -6927,8 +6922,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
         //qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
 
-	m_oldLineCacheOffset = cxt.xoffset;
-	m_oldLineCacheWidth = lineCacheWidth;
     //qDebug("painting done in %i ms...", t.elapsed());
 
 	//mark placeholder which will probably be removed
@@ -7401,6 +7394,22 @@ void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
 		m_fmtCharacterCache[1].clear();
 
 		updateFormatCache(device);
+	}
+}
+
+void QDocumentPrivate::updateInstanceCaches(const QPaintDevice *pd, QDocument::PaintContext &cxt)
+{
+	if (!pd || m_instanceCachesLogicalDpiY != pd->logicalDpiY() || m_lineCacheXOffset != cxt.xoffset || m_lineCacheWidth < cxt.width) {
+		const QPaintDevice *device = pd ? pd : QApplication::activeWindow();
+		//qDebug() << "invalidate instance caches. old dpi:" << m_instanceCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
+		m_instanceCachesLogicalDpiY = device->logicalDpiY();
+
+		m_LineCacheAlternative.clear();
+		m_LineCache.clear();
+
+		m_lineCacheXOffset = cxt.xoffset;
+		if (m_width) m_lineCacheWidth = cxt.width;
+		else m_lineCacheWidth = (cxt.width+15) & (~16);         //a little bit larger if not wrapped
 	}
 }
 

@@ -95,6 +95,7 @@ class QCE_EXPORT QDocumentPrivate
 protected:
         static void setFont(const QFont& f, bool forceUpdate = false);
 		static void updateStaticCaches(const QPaintDevice *pd);
+		void updateInstanceCaches(const QPaintDevice *pd, QDocument::PaintContext &cxt);
 
 public:
 		void beginChangeBlock();
@@ -299,7 +300,8 @@ public:
 
         QCache<QDocumentLineHandle*,QImage> m_LineCacheAlternative;
         QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
-		int m_oldLineCacheOffset, m_oldLineCacheWidth;
+		int m_lineCacheXOffset, m_lineCacheWidth;
+		int m_instanceCachesLogicalDpiY;
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
 		QHash<QDocumentCursorHandle*, int> m_autoUpdatedCursorIndex;
