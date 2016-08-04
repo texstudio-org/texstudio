@@ -7373,8 +7373,10 @@ void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
 {
 	if (!pd || m_staticCachesLogicalDpiY != pd->logicalDpiY()) {
 		const QPaintDevice *device = pd ? pd : QApplication::activeWindow();
-		//qDebug() << "invalidate static caches. old dpi:" << m_staticCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
-		m_staticCachesLogicalDpiY = device->logicalDpiY();
+		if (device) {
+			//qDebug() << "invalidate static caches. old dpi:" << m_staticCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
+			m_staticCachesLogicalDpiY = device->logicalDpiY();
+		}
 
 		// need to get the font metrics in the context of the paint device to get correct UI scaling
 		QFontMetrics fm = QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));
@@ -7401,8 +7403,10 @@ void QDocumentPrivate::updateInstanceCaches(const QPaintDevice *pd, QDocument::P
 {
 	if (!pd || m_instanceCachesLogicalDpiY != pd->logicalDpiY() || m_lineCacheXOffset != cxt.xoffset || m_lineCacheWidth < cxt.width) {
 		const QPaintDevice *device = pd ? pd : QApplication::activeWindow();
-		//qDebug() << "invalidate instance caches. old dpi:" << m_instanceCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
-		m_instanceCachesLogicalDpiY = device->logicalDpiY();
+		if (device) {
+			//qDebug() << "invalidate instance caches. old dpi:" << m_instanceCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
+			m_instanceCachesLogicalDpiY = device->logicalDpiY();
+		}
 
 		m_LineCacheAlternative.clear();
 		m_LineCache.clear();
