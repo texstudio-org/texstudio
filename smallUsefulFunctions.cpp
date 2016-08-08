@@ -2841,10 +2841,16 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 	}
     int cnt=0;
 	int k = 0;
+    int level=0;
+    if(!tl.isEmpty()){
+        level=tl.first().level;
+    }
     while( (lineNr)<doc->lineCount() && cnt<RUNAWAYLIMIT){
         QString line = dlh->text();
         for (int i = 0; i < tl.length(); i++) {
             Tokens tk = tl.at(i);
+            if(tk.level>level)
+                continue; //only use tokens from the same option-level
 
             if (tkTypes.contains(tk.type)) {
                 QString result;
