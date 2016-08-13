@@ -5010,7 +5010,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 	}
 
 	//insert
-	if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
+    if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
 	{
 		preInsertUnindent(c, lines.first(), 0);
 		
@@ -5030,7 +5030,9 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		if (firstChar == -1) firstChar = c.line().length(); //line contains only spaces
 		indent = c.line().text().left(qMax(0, qMin(firstChar, c.columnNumber())));
 
-		c.insertText(lines.takeFirst());
+
+        QString newText=lines.takeFirst();
+        //c.insertText(lines.takeFirst());
 		
 		
 		for (int i=0; i<lines.length(); i++)
@@ -5060,7 +5062,8 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 						indent.replace("\t", QString(m_doc->tabStop(), ' '));
 				}
 			}
-			c.insertLine();
+            //c.insertLine();
+            newText.append("\n");
 			if (i<lines.length()-1 || !l.isEmpty() || !originallyAtLineStart)
 			// always indent line except last line if it is empty and the cursor was at line start
 			// in that case, the original indentation is still present from the first line
@@ -5068,13 +5071,16 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			// >....a
 			// >|...c (and insert '....b\n'
 			{
-				c.insertText(indent);
+                //c.insertText(indent);
+                newText.append(indent);
 			}
 			
-			preInsertUnindent(c, l, additionalUnindent);
+            //preInsertUnindent(c, l, additionalUnindent);
 
-			c.insertText(l);
+            //c.insertText(l);
+            newText.append(l);
 		}
+        c.insertText(newText); // avoid inserting many single lines as it slows down txs considerably (contentschanged,patchStructure etc)
 	}
 
 	//bracket auto insertion
