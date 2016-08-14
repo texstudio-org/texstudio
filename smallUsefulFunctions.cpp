@@ -198,6 +198,14 @@ QList<QPair<QString,QString> > latexToPlainWordReplaceList =
 //	<< QPair<QString, QString> ("\"\"","") redunant
  << QPair<QString, QString> ("\\",""); // eliminating backslash which might remain from accents like \"a ...
 */
+/*!
+ * \brief transformCharacter
+ * Transform a character from a tex encoded to utf
+ * e.g. "a -> ä
+ * \param c
+ * \param context
+ * \return tranformed character
+ */
 QChar transformCharacter(const QChar &c, const QChar &context)
 {
 	// *INDENT-OFF*  (astyle-config)
