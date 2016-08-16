@@ -234,7 +234,6 @@ void UserMenuDialog::init()
 	model->addStringList(&tags, tr("Tag"));
 	ui.tableView->setModel(model);
 	ui.tableView->resizeColumnsToContents();
-	ui.tableView->resizeRowsToContents();
 	connect(ui.tableView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), SLOT(change(const QModelIndex &, const QModelIndex &)));
 	if (model->rowCount() > 0) ui.tableView->setCurrentIndex(model->index(0, 0));
 	connect(model, SIGNAL(dataChanged(QModelIndex, QModelIndex)), SLOT(modelDataChanged(QModelIndex, QModelIndex)));
