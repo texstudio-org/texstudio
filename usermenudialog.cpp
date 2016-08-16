@@ -274,7 +274,10 @@ void UserMenuDialog::slotOk()
 }
 void UserMenuDialog::slotRunScript()
 {
-	emit runScript(codeedit->editor()->text());
+	QString script = codeedit->editor()->text();
+	if (script.startsWith("%SCRIPT\n"))
+		script = script.mid(8);
+	emit runScript(script);
 }
 
 void UserMenuDialog::slotAdd()
