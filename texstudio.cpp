@@ -5673,10 +5673,6 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 	//open new
 	if (!embedded && !windowed) return;
 
-	if (embedded && configManager.viewerEnlarged) {
-		centralVSplitter->hide();
-	}
-
 	if (reuse) oldPDFs.insert(0, reuse);
 	if (oldPDFs.isEmpty()) {
 		PDFDocument *doc = qobject_cast<PDFDocument *>(newPdfPreviewer(embedded));
@@ -5701,8 +5697,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		viewer->loadFile(pdfFile, master, displayPolicy);
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln, displayPolicy);
 		viewer->fillRenderCache(pg);
-		if (embedded && configManager.viewerEnlarged) {
+        if (viewer->embeddedMode && configManager.viewerEnlarged) {
 			viewer->setStateEnlarged(true);
+            centralVSplitter->hide();
 		}
 
 		if (preserveDuplicates) break;
