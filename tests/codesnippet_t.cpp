@@ -172,19 +172,19 @@ void CodeSnippetTest::insert_data(){
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "In\\begin{indentMe}\n\tTextTextText\n\\end{indentMe}Out"
 		<< CP(1,13);
-	QTest::newRow("automatical indent, spaces perpended")
+    QTest::newRow("automatical indent, spaces prepended")
 		<< "   InOut"
 		<< (int)QEditor::AutoIndent << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "   In\\begin{indentMe}\n   \tTextTextText\n   \\end{indentMe}Out"
 		<< CP(1,16);
-	QTest::newRow("automatical indent, tab perpended")
+    QTest::newRow("automatical indent, tab prepended")
 		<< "\t\tInOut"
 		<< (int)QEditor::AutoIndent << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 4
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "\t\tIn\\begin{indentMe}\n\t\t\tTextTextText\n\t\t\\end{indentMe}Out"
 		<< CP(1,15);
-	QTest::newRow("automatical indent, tab+space perpended")
+    QTest::newRow("automatical indent, tab+space prepended")
 		<< "\t \tInOut"
 		<< (int)QEditor::AutoIndent << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
@@ -206,13 +206,13 @@ void CodeSnippetTest::insert_data(){
 		<< CP(1,12+spaceIndent.size());
 	//TODO: ATTENTION, the replace tab behaviour is inconsistent! Enter will keep the indentation as it is (even if it contains tabs, paste and snippets hovewer will convert the tabs into spaces)
 	/*
-	QTest::newRow("automatical indent with spaces, spaces perpended")
+    QTest::newRow("automatical indent with spaces, spaces prepended")
 		<< "   InOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceTabs) << (int)(QEditor::AutoIndent|QEditor::ReplaceTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "   In\\begin{indentMe}\n       TextTextText\n    \\end{indentMe}Out"
 		<< CP(1,19);
-	QTest::newRow("automatical indent with spaces, tab perpended")
+    QTest::newRow("automatical indent with spaces, tab prepended")
 		<< "\t\tInOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceTabs) << (int)(QEditor::AutoIndent|QEditor::ReplaceTabs|QEditor::WeakIndent) << 0 << 4
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
@@ -224,24 +224,25 @@ void CodeSnippetTest::insert_data(){
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "\t \tIn\\begin{indentMe}\n\t \t    TextTextText\n\t \t\\end{indentMe}Out"
 		<< CP(1,19);*/
-	QString tempIndentation = (spaceIndent.size() > 2)?"":spaceIndent; //adjust for up-rounding of indentation level (3 up => 2*2 but (1*3|4|5))
+    //QString tempIndentation = (spaceIndent.size() > 2)?"":spaceIndent; //adjust for up-rounding of indentation level (3 up => 2*2 but (1*3|4|5))
+    // I don't understand the logic here
 	QTest::newRow("automatical indent with spaces, spaces prepended")
 		<< "   InOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
-		<< "   In\\begin{indentMe}\n   "+spaceIndent+"TextTextText\n"+spaceIndent+tempIndentation+"\\end{indentMe}Out"
+        << "   In\\begin{indentMe}\n   "+spaceIndent+"TextTextText\n"+"   \\end{indentMe}Out"
 		<< CP(1,15+spaceIndent.size());
 	QTest::newRow("automatical indent with spaces, tab prepended")
 		<< "\t\tInOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 4
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
-		<< "\t\tIn\\begin{indentMe}\n"+spaceIndent+spaceIndent+spaceIndent+"TextTextText\n"+spaceIndent+spaceIndent+"\\end{indentMe}Out"
+        << "\t\tIn\\begin{indentMe}\n"+spaceIndent+spaceIndent+spaceIndent+"TextTextText\n"+spaceIndent+spaceIndent+"\\end{indentMe}Out"
 		<< CP(1,12+3*spaceIndent.size());
 	QTest::newRow("automatical indent with spaces, tab+space prepended")
 		<< "\t \tInOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
-		<< "\t \tIn\\begin{indentMe}\n"+spaceIndent+spaceIndent+spaceIndent+" "+"TextTextText\n"+spaceIndent+spaceIndent+spaceIndent+"\\end{indentMe}Out"
+        << "\t \tIn\\begin{indentMe}\n"+spaceIndent+spaceIndent+spaceIndent+" "+"TextTextText\n"+spaceIndent+spaceIndent+" "+"\\end{indentMe}Out"
 	          //<< "\t \tIn\\begin{indentMe}\n             TextTextText\n            \\end{indentMe}Out"
 		<< CP(1,13+3*spaceIndent.size());
 	/*TODO: fix this indentation bug!
@@ -258,19 +259,19 @@ void CodeSnippetTest::insert_data(){
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "In\\begin{indentMe}\nTextTextText\n\\end{indentMe}Out"
 		<< CP(1,12);
-	QTest::newRow("weak indent, spaces perpended")
+    QTest::newRow("weak indent, spaces prepended")
 		<< "   InOut"
 		<< (int)(QEditor::AutoIndent|QEditor::WeakIndent) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "   In\\begin{indentMe}\n   TextTextText\n   \\end{indentMe}Out"
 		<< CP(1,15);
-	QTest::newRow("weak indent, tab perpended")
+    QTest::newRow("weak indent, tab prepended")
 		<< "\t\tInOut"
 		<< (int)(QEditor::AutoIndent|QEditor::WeakIndent) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 4
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "\t\tIn\\begin{indentMe}\n\t\tTextTextText\n\t\t\\end{indentMe}Out"
 		<< CP(1,14);
-	QTest::newRow("weak indent, tab+space perpended")
+    QTest::newRow("weak indent, tab+space prepended")
 		<< "\t \tInOut"
 		<< (int)(QEditor::AutoIndent|QEditor::WeakIndent) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
@@ -292,24 +293,24 @@ void CodeSnippetTest::insert_data(){
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "In\\begin{indentMe}\nTextTextText\n\\end{indentMe}Out"
 		<< CP(1,12);
-	QTest::newRow("weak indent with space replace, spaces perpended")
+    QTest::newRow("weak indent with space replace, spaces prepended")
 		<< "   InOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
 		<< "   In\\begin{indentMe}\n   TextTextText\n   \\end{indentMe}Out"
 		<< CP(1,15);
-	QTest::newRow("weak indent with space replace, tab perpended")
+    QTest::newRow("weak indent with space replace, tab prepended")
 		<< "\t\tInOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 4
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
-		<< "\t\tIn\\begin{indentMe}\n\t\tTextTextText\n\t\t\\end{indentMe}Out"
-		<< CP(1,14);
-	QTest::newRow("weak indent with space replace, tab+space perpended")
+        << "\t\tIn\\begin{indentMe}\n"+spaceIndent+spaceIndent+"TextTextText\n"+spaceIndent+spaceIndent+"\\end{indentMe}Out"
+        << CP(1,12+2*spaceIndent.size());
+    QTest::newRow("weak indent with space replace, tab+space prepended")
 		<< "\t \tInOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 5
 		<< "\\begin{indentMe}\nTextTextText%|\n\\end{indentMe}"
-		<< "\t \tIn\\begin{indentMe}\n\t \tTextTextText\n\t \t\\end{indentMe}Out"
-		<< CP(1,15);
+        << "\t \tIn\\begin{indentMe}\n"+spaceIndent+spaceIndent+" TextTextText\n"+spaceIndent+spaceIndent+" "+"\\end{indentMe}Out"
+        << CP(1,13+2*spaceIndent.size());
 	QTest::newRow("weak indent with space replace, begin block starts after end block")
 		<< "\\end{abc}InOut"
 		<< (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << (int)(QEditor::AutoIndent|QEditor::ReplaceIndentTabs|QEditor::WeakIndent) << 0 << 11
