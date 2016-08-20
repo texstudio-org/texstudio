@@ -5024,14 +5024,29 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		bool originallyAtLineStart = c.atLineStart();
 		preInsertUnindent(c, lines.first(), 0);
 
+        QDocumentCursor cc(c);
+        if(!flag(WeakIndent)){
+            // remove all prepending spaces as it is done later
+            QString newText=lines.first().trimmed();
+
+            for(int i=1;i<lines.count();i++){
+                newText.append('\n');
+                newText.append(lines.at(i).trimmed());
+            }
+            c.insertText(newText,true);
+        }
+
 		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
-		QString indent;
-		int firstChar = c.line().firstChar();
-		if (firstChar == -1) firstChar = c.line().length(); //line contains only spaces
-		indent = c.line().text().left(qMax(0, qMin(firstChar, c.columnNumber())));
+        int firstChar = cc.line().firstChar();
+        if (firstChar == -1) firstChar = cc.line().length(); //line contains only spaces
+        QString constIndent = cc.line().text().left(qMax(0, qMin(firstChar, cc.columnNumber())));
+        if ( flag(ReplaceIndentTabs) )
+            constIndent.replace("\t", QString(m_doc->tabStop(), ' '));
+        QString indent;
 
 
         QString newText=lines.takeFirst();
+        cc.movePosition(1,QDocumentCursor::EndOfLine);
         //c.insertText(lines.takeFirst());
 		
 		
@@ -5055,10 +5070,10 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 					//             (then the indentCount can be removed and the function should return the unindented indent,
 					//              but still needs to check for an unindent caused by a } at the beginning of the line)
 					int indentCount = 0;
-					indent = m_definition->indent(c, &indentCount);
-					if (indentCount < 0) additionalUnindent = - indentCount;
+                    indent = m_definition->indent(cc, &indentCount);
+                    if (indentCount < 0) additionalUnindent = - indentCount;
 
-					if ( flag(ReplaceIndentTabs) )
+                    if ( flag(ReplaceIndentTabs) )
 						indent.replace("\t", QString(m_doc->tabStop(), ' '));
 				}
 			}
@@ -5072,9 +5087,14 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			// >|...c (and insert '....b\n'
 			{
                 //c.insertText(indent);
+                if(i>0 || flag(WeakIndent))
+                    newText.append(constIndent);  // indent is taken from previous line
                 newText.append(indent);
 			}
-			
+            if(!flag(WeakIndent)){
+                cc.movePosition(1,QDocumentCursor::Down);
+                cc.movePosition(1,QDocumentCursor::EndOfLine);
+            }
             //preInsertUnindent(c, l, additionalUnindent);
 
             //c.insertText(l);

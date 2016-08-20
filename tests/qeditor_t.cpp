@@ -778,8 +778,8 @@ void QEditorTest::indentation(){
 	QDocumentCursor c=editor->document()->cursor(line,col,anchorLine,anchorCol);
 	editor->insertText(c, insert);
 
-	QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
-	QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
+    //QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
+    //QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
 	QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
 	QEQUAL(editor->document()->text(), result);
 }
