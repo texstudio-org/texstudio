@@ -1107,8 +1107,13 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "focusviewer", tr("Focus Viewer"), SLOT(focusViewer()), QList<QKeySequence>() << Qt::ALT + Qt::CTRL + Qt::Key_Right);
 
 	menu->addSeparator();
-	newManagedAction(menu, "structureview", leftPanel->toggleViewAction());
-	newManagedAction(menu, "outputview", outputView->toggleViewAction());
+	submenu = newManagedMenu(menu, "show", tr("Show"));
+	newManagedAction(submenu, "structureview", leftPanel->toggleViewAction());
+	newManagedAction(submenu, "outputview", outputView->toggleViewAction());
+	act = newManagedAction(submenu, "statusbar", tr("Statusbar"), SLOT(showStatusbar()));
+	act->setCheckable(true);
+	act->setChecked(configManager.getOption("View/ShowStatusbar").toBool());
+
 	newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), SLOT(enlargeEmbeddedPDFViewer()));
 	newManagedAction(menu, "shrinkPDF", tr("Show embedded PDF small"), SLOT(shrinkEmbeddedPDFViewer()));
 
@@ -1392,11 +1397,12 @@ void Texstudio::createStatusBar()
 {
 	QStatusBar *status = statusBar();
 	status->setContextMenuPolicy(Qt::PreventContextMenu);
+	status->setVisible(configManager.getOption("View/ShowStatusbar").toBool());
 
 	QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
 	QAction *act;
 	QToolButton *tb;
-	act = getManagedAction("main/view/structureview");
+	act = getManagedAction("main/view/show/structureview");
 	if (act) {
 		tb = new QToolButton(status);
 		tb->setCheckable(true);
@@ -1409,7 +1415,7 @@ void Texstudio::createStatusBar()
 		connect(act, SIGNAL(toggled(bool)), tb, SLOT(setChecked(bool)));
 		status->addPermanentWidget(tb, 0);
 	}
-	act = getManagedAction("main/view/outputview");
+	act = getManagedAction("main/view/show/outputview");
 	if (act) {
 		tb = new QToolButton(status);
 		tb->setCheckable(true);
@@ -10515,6 +10521,10 @@ void Texstudio::closeEnvironment()
 		}
 	}
 }
+
+
+
+
 /*!
  * \brief make embedded viewer larger so that it covers the text edit
  * If the viewer is not embedded, no action is performed.
@@ -10551,6 +10561,15 @@ void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 		return;
 	viewer->setStateEnlarged(false);
 #endif
+}
+
+void Texstudio::showStatusbar()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		statusBar()->setVisible(act->isChecked());
+		configManager.setOption("View/ShowStatusbar", act->isChecked());
+	}
 }
 /*!
  * \brief open extended search in bottom panel

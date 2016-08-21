@@ -85,6 +85,7 @@ public:
 	bool mruDocumentChooser;
 	bool configShowAdvancedOptions, configRiddled;
 	bool centralVisible;
+	bool showStatusbar;
 	bool showLineNumbersInStructure;
 	int indentationInStructure;
 	bool indentIncludesInStructure;
