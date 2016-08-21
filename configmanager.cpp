@@ -636,6 +636,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
 
+	registerOption("View/ShowStatusbar", &showStatusbar, true);
+
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
 	registerOption("Interface/Config Riddled", &configRiddled, false);
 	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
