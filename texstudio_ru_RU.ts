@@ -1806,7 +1806,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2513"/>
         <source>Hacks/Workarounds</source>
-        <translation>Финты/Заплатки</translation>
+        <translation>Костыли и решения проблем</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2519"/>
@@ -1816,7 +1816,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2526"/>
         <source>Try to automatically choose best display options</source>
-        <translation>Пытаться автоматически выбрать лучшие параметры дисплея</translation>
+        <translation>Пытаться автоматически выбрать лучшие параметры отображения</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2544"/>
@@ -1841,22 +1841,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2570"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation>Если активирован кэш обрабатываемых строк, то такие строки сохраняются в кэше, что отменяет необходимость их повторной обработки. Целью этого является ускорение скорости обработки (особенно на Mac) за счет более высокого потребления памяти.</translation>
+        <translation>Если активирован кэш обрабатываемых строк, то такие строки сохраняются в кэше, что устраняет необходимость их повторной обработки. Ускоряет работу (особенно на Mac) за счёт потребления большего объёма памяти.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2573"/>
         <source>Disable cache of rendered lines</source>
-        <translation>Отменить кэш обрабатываемых строк</translation>
+        <translation>Отключить кэш обрабатываемых строк</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2580"/>
         <source>Disable fixed pitch mode</source>
-        <translation>Отменить моноширинный режим</translation>
+        <translation>Отключить режим постоянной ширины</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2587"/>
         <source>Disable cache of character width</source>
-        <translation>Отменить кэш ширины символов</translation>
+        <translation>Отключить кэш ширины символов</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2594"/>
@@ -1871,7 +1871,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2680"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation>Здесь можно изменить подсветку своих окружений.</translation>
+        <translation>Здесь можно настроить подсветку синтаксиса в своих окружениях.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2694"/>
@@ -1919,7 +1919,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2820"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation>При наведении мыши отображает предварительный просмотр элементов списков, ссылок библиографии или изображений</translation>
+        <translation>При наведении мыши отображает предварительный просмотр элементов, на которые ссылается метка: ссылки библиографии или изображения</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2823"/>
@@ -1929,7 +1929,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2830"/>
         <source>Arguments as Placeholders</source>
-        <translation>Аргументы в качестве заполнителей</translation>
+        <translation>Заполнители в роли аргументов</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2840"/>
@@ -1939,7 +1939,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2843"/>
         <source>ToolTip-Help</source>
-        <translation>Справка-подсказка</translation>
+        <translation>Подсказка при наведении мыши</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2853"/>
@@ -1949,7 +1949,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2856"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation>Автозавершение команд LaTeX&apos;а при вводе</translation>
+        <translation>Автоматически предлагать команды LaTeX&apos;а при вводе</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2865"/>
