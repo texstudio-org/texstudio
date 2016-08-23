@@ -1,5 +1,5 @@
-TeXstudio 2.11.2
-----------------
+TeXstudio 2.11.2 Release Candidate
+----------------------------------
 - major performance speedup, in case some default section commands were not defined in any used package
 - speed up pasting into large documents (factor 100x)
 - add comment toggle
