@@ -117,7 +117,7 @@
 \fontdimen#*
 \fontname#*
 \footins#*
-\footnote
+\footnote#*
 \footnoterule
 \frenchspacing#*
 \futurelet#*
