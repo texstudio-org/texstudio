@@ -67,6 +67,7 @@
 <file>completion/fancyunits_medium-fractions.cwl</file>
 <file>completion/fancyunits_small-fractions.cwl</file>
 <file>completion/fancyvrb.cwl</file>
+<file>completion/fhgtechdoku_additional.cwl</file>
 <file>completion/fixme.cwl</file>
 <file>completion/float.cwl</file>
 <file>completion/fontspec.cwl</file>
@@ -129,6 +130,7 @@
 <file>completion/pgfplots.cwl</file>
 <file>completion/physics.cwl</file>
 <file>completion/pifont.cwl</file>
+<file>completion/placeins.cwl</file>
 <file>completion/psfrag.cwl</file>
 <file>completion/pst-3d.cwl</file>
 <file>completion/pst-blur.cwl</file>
