@@ -4897,132 +4897,132 @@ void QEditor::preInsertUnindent(QDocumentCursor& c, const QString& s, int additi
 */
 void QEditor::insertText(QDocumentCursor& c, const QString& text)
 {
-	if ( protectedCursor(c) || text.isEmpty())
-		return;
+    if ( protectedCursor(c) || text.isEmpty())
+        return;
 
-	QStringList lines = text.split('\n', QString::KeepEmptyParts);
+    QStringList lines = text.split('\n', QString::KeepEmptyParts);
 
-	bool hasSelection = c.hasSelection();
-	if (hasSelection && c.selectedText() == text) {
-		if (!c.isForwardSelection())
-			c.flipSelection();
-		c.clearSelection();
-		return;  // replacing a selection with itself -> nothing to do. (It's more safe to directly stop here, because the below indentation correction does not get all cases right).
-	}
+    bool hasSelection = c.hasSelection();
+    if (hasSelection && c.selectedText() == text) {
+        if (!c.isForwardSelection())
+            c.flipSelection();
+        c.clearSelection();
+        return;  // replacing a selection with itself -> nothing to do. (It's more safe to directly stop here, because the below indentation correction does not get all cases right).
+    }
 
-	bool beginNewMacro = !m_doc->hasMacros() && (hasSelection || flag(Overwrite) || lines.size()>1);
-	if (beginNewMacro)
-		m_doc->beginMacro();
+    bool beginNewMacro = !m_doc->hasMacros() && (hasSelection || flag(Overwrite) || lines.size()>1);
+    if (beginNewMacro)
+        m_doc->beginMacro();
 
-	bool autoOverridePlaceHolder = false;
-	if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
-		c.deleteChar();
-	else {
-		if ( hasSelection ){
-			cutBuffer=c.selectedText();
-			c.removeSelectedText();
-		}
-		
-		//see isAutoOverrideText()
-		for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
-			if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
-			     m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
-			     (m_placeHolders[i].cursor.selectedText().startsWith(text)))
-			{
-				autoOverridePlaceHolder = true;
-				if (m_placeHolders[i].cursor.selectedText() == text) removePlaceHolder(i);
-			}
-		if (autoOverridePlaceHolder) {
-			for (int i=0; i<text.length(); i++)
-				c.deleteChar();
-		}
-		QChar text0 = text.at(0);
-		if (text0 == c.nextChar()) {
-			// special functions for overwriting existing text
-			if (flag(OverwriteClosingBracketFollowingPlaceholder) && (text0=='}' || text0==']')) {
-				// remove placeholder when typing closing bracket at the end of a placeholder
-				// e.g. \textbf{[ph]|} and typing '}'
-				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
-					if (m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
-						m_placeHolders[i].cursor.columnNumber() == c.columnNumber()
-						)
-					{
-						QChar openBracket = (text0=='}') ? '{' : '[';
-						if (findOpeningBracket(c.line().text(), c.columnNumber()-1, openBracket, text0) < m_placeHolders[i].cursor.anchorColumnNumber()) {
-							removePlaceHolder(i);
-							c.deleteChar();
-						}
-					}
-			} else if (flag(OverwriteOpeningBracketFollowedByPlaceholder) && (text0=='{' || text0=='[')) {
-				// skip over opening bracket if followed by a placeholder
-				for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
-					if (m_placeHolders[i].cursor.anchorLineNumber() == c.lineNumber() &&
-						m_placeHolders[i].cursor.anchorColumnNumber() == c.columnNumber() + 1
-						)  // anchor == start of placeholder
-					{
-						setPlaceHolder(i);
-						if (text.length() == 1) {
-							return; // don't insert the bracket because we've just jumped over it
-						} else {
-							QString remainder(text);
-							remainder.remove(0,1);
-							insertText(c, remainder);
-							return;
-						}
-					}
-			}
-		}
-	}
-	
-	//prepare for auto bracket insertion
-	QString writtenBracket;
-	QString autoBracket;
-	QDocumentCursor previousBracketMatch;
-	bool autoComplete = false;
-	if (flag(AutoCloseChars) && !autoOverridePlaceHolder
-	    && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())
-	    && languageDefinition() && languageDefinition()->possibleEndingOfOpeningParenthesis(text)){
-		autoComplete = true;
-		foreach (const QString& s, languageDefinition()->openingParenthesis())
-			if (s == text){
-				writtenBracket = s;
-				autoBracket = languageDefinition()->getClosingParenthesis(s);
-				break;
-			}
-		if (autoBracket == writtenBracket)
-			autoComplete = false; //don't things like "" or $$ (assuming only single letter self closing brackets exists)
+    bool autoOverridePlaceHolder = false;
+    if ( !hasSelection && flag(Overwrite) && !c.atLineEnd() )
+        c.deleteChar();
+    else {
+        if ( hasSelection ){
+            cutBuffer=c.selectedText();
+            c.removeSelectedText();
+        }
 
-		int prev = c.line().text().lastIndexOf(writtenBracket, c.columnNumber());
-		if (prev >= 0) {
-			QDocumentCursor prevc = c.document()->cursor(c.lineNumber(), prev, c.lineNumber(), prev + writtenBracket.size() );
-			QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(prevc);
-			for (int i=0; i < matches.size(); i++) {
-				if (matches[i][0].selectedText() == writtenBracket) {
-					previousBracketMatch = matches[i][1].selectionEnd();
-					break;
-				} else if (matches[i][1].selectedText() == writtenBracket) {
-					previousBracketMatch = matches[i][0].selectionEnd();
-					break;
-				}
-			}
-			if (!previousBracketMatch.isNull()) previousBracketMatch.setAutoUpdated(true);
-		}
-	}
+        //see isAutoOverrideText()
+        for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+            if ( m_placeHolders[i].autoOverride && m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
+                 m_placeHolders[i].cursor.anchorColumnNumber() == c.anchorColumnNumber() &&
+                 (m_placeHolders[i].cursor.selectedText().startsWith(text)))
+            {
+                autoOverridePlaceHolder = true;
+                if (m_placeHolders[i].cursor.selectedText() == text) removePlaceHolder(i);
+            }
+        if (autoOverridePlaceHolder) {
+            for (int i=0; i<text.length(); i++)
+                c.deleteChar();
+        }
+        QChar text0 = text.at(0);
+        if (text0 == c.nextChar()) {
+            // special functions for overwriting existing text
+            if (flag(OverwriteClosingBracketFollowingPlaceholder) && (text0=='}' || text0==']')) {
+                // remove placeholder when typing closing bracket at the end of a placeholder
+                // e.g. \textbf{[ph]|} and typing '}'
+                for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+                    if (m_placeHolders[i].cursor.lineNumber() == c.lineNumber() &&
+                            m_placeHolders[i].cursor.columnNumber() == c.columnNumber()
+                            )
+                    {
+                        QChar openBracket = (text0=='}') ? '{' : '[';
+                        if (findOpeningBracket(c.line().text(), c.columnNumber()-1, openBracket, text0) < m_placeHolders[i].cursor.anchorColumnNumber()) {
+                            removePlaceHolder(i);
+                            c.deleteChar();
+                        }
+                    }
+            } else if (flag(OverwriteOpeningBracketFollowedByPlaceholder) && (text0=='{' || text0=='[')) {
+                // skip over opening bracket if followed by a placeholder
+                for ( int i = m_placeHolders.size()-1; i >= 0 ; i-- )
+                    if (m_placeHolders[i].cursor.anchorLineNumber() == c.lineNumber() &&
+                            m_placeHolders[i].cursor.anchorColumnNumber() == c.columnNumber() + 1
+                            )  // anchor == start of placeholder
+                    {
+                        setPlaceHolder(i);
+                        if (text.length() == 1) {
+                            return; // don't insert the bracket because we've just jumped over it
+                        } else {
+                            QString remainder(text);
+                            remainder.remove(0,1);
+                            insertText(c, remainder);
+                            return;
+                        }
+                    }
+            }
+        }
+    }
 
-	//insert
+    //prepare for auto bracket insertion
+    QString writtenBracket;
+    QString autoBracket;
+    QDocumentCursor previousBracketMatch;
+    bool autoComplete = false;
+    if (flag(AutoCloseChars) && !autoOverridePlaceHolder
+            && (m_curPlaceHolder<0 || m_curPlaceHolder>=m_placeHolders.size() || m_placeHolders[m_curPlaceHolder].mirrors.isEmpty())
+            && languageDefinition() && languageDefinition()->possibleEndingOfOpeningParenthesis(text)){
+        autoComplete = true;
+        foreach (const QString& s, languageDefinition()->openingParenthesis())
+            if (s == text){
+                writtenBracket = s;
+                autoBracket = languageDefinition()->getClosingParenthesis(s);
+                break;
+            }
+        if (autoBracket == writtenBracket)
+            autoComplete = false; //don't things like "" or $$ (assuming only single letter self closing brackets exists)
+
+        int prev = c.line().text().lastIndexOf(writtenBracket, c.columnNumber());
+        if (prev >= 0) {
+            QDocumentCursor prevc = c.document()->cursor(c.lineNumber(), prev, c.lineNumber(), prev + writtenBracket.size() );
+            QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(prevc);
+            for (int i=0; i < matches.size(); i++) {
+                if (matches[i][0].selectedText() == writtenBracket) {
+                    previousBracketMatch = matches[i][1].selectionEnd();
+                    break;
+                } else if (matches[i][1].selectedText() == writtenBracket) {
+                    previousBracketMatch = matches[i][0].selectionEnd();
+                    break;
+                }
+            }
+            if (!previousBracketMatch.isNull()) previousBracketMatch.setAutoUpdated(true);
+        }
+    }
+
+    //insert
     if ( (lines.count() == 1) || !flag(AdjustIndent)  || !flag(AutoIndent)) //|| flag(WeakIndent) || !flag(AdjustIndent)  || !flag(AutoIndent))
-	{
-		preInsertUnindent(c, lines.first(), 0);
-		
-		if ( flag(ReplaceIndentTabs) )
-		{
-			// TODO : replace tabs by spaces properly
-		}
-	 
-		c.insertText(text);
-	} else {
-		bool originallyAtLineStart = c.atLineStart();
-		preInsertUnindent(c, lines.first(), 0);
+    {
+        preInsertUnindent(c, lines.first(), 0);
+
+        if ( flag(ReplaceIndentTabs) )
+        {
+            // TODO : replace tabs by spaces properly
+        }
+
+        c.insertText(text);
+    } else {
+        bool originallyAtLineStart = c.atLineStart();
+        preInsertUnindent(c, lines.first(), 0);
 
         QDocumentCursor cc(c,false);
         if(!flag(WeakIndent)){
@@ -5036,7 +5036,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
             c.insertText(newText,true);
         }
 
-		// FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
+        // FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
         int firstChar = cc.line().firstChar();
         if (firstChar == -1) firstChar = cc.line().length(); //line contains only spaces
         QString constIndent = cc.line().text().left(qMax(0, qMin(firstChar, cc.columnNumber())));
@@ -5044,6 +5044,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
             constIndent.replace("\t", QString(m_doc->tabStop(), ' '));
         QString indent;
         int indentCount = 0;
+        int delayedDeltaIndentCount=0; // this indent change is applied on the next line (e.g. unindentation is inhibited by prior characters like xy})
 
         QString newText=lines.takeFirst();
         cc.movePosition(1,QDocumentCursor::EndOfLine);
@@ -5061,26 +5062,26 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                 --indentCount;
             }
         }
-        //c.insertText(lines.takeFirst());
-		
-		
-		for (int i=0; i<lines.length(); i++)
-		{
-			QString l = lines[i];
-			
-			if(!flag(WeakIndent)){
-				int n = 0;
 
-				while ( n < l.count() && l.at(n).isSpace() )
-					++n;
+        for (int i=0; i<lines.length(); i++)
+        {
+            QString l = lines[i];
+            indentCount+=delayedDeltaIndentCount;
+            delayedDeltaIndentCount=0;
 
-				l.remove(0, n);
+            if(!flag(WeakIndent)){
+                int n = 0;
 
-				if ( m_definition )
-				{
-					// TODO: FIXME ? work on strings to make sure command grouping does not interfere with cursor state... 
-					//             (then the indentCount can be removed and the function should return the unindented indent,
-					//              but still needs to check for an unindent caused by a } at the beginning of the line)
+                while ( n < l.count() && l.at(n).isSpace() )
+                    ++n;
+
+                l.remove(0, n);
+
+                if ( m_definition )
+                {
+                    // TODO: FIXME ? work on strings to make sure command grouping does not interfere with cursor state...
+                    //             (then the indentCount can be removed and the function should return the unindented indent,
+                    //              but still needs to check for an unindent caused by a } at the beginning of the line)
 
                     //int deltaIndentCount=0;
                     //m_definition->indent(cc, &deltaIndentCount);
@@ -5097,11 +5098,15 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 
                         if ( p.role & QParenthesis::Open )
                         {
-                            ++indentCount;
+                            ++delayedDeltaIndentCount;
                         }
                         if ( p.role & QParenthesis::Close )
                         {
-                            --indentCount;
+                            if(delayedDeltaIndentCount){
+                                --delayedDeltaIndentCount;
+                            }else{
+                                --indentCount;
+                            }
                         }
                     }
 
@@ -5123,119 +5128,119 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                     }
 
                     if ( flag(ReplaceIndentTabs) )
-						indent.replace("\t", QString(m_doc->tabStop(), ' '));
-				}
-			}
+                        indent.replace("\t", QString(m_doc->tabStop(), ' '));
+                }
+            }
             //c.insertLine();
             newText.append("\n");
-			if (i<lines.length()-1 || !l.isEmpty() || !originallyAtLineStart)
-			// always indent line except last line if it is empty and the cursor was at line start
-			// in that case, the original indentation is still present from the first line
-			// example:
-			// >....a
-			// >|...c (and insert '....b\n'
-			{
+            if (i<lines.length()-1 || !l.isEmpty() || !originallyAtLineStart)
+                // always indent line except last line if it is empty and the cursor was at line start
+                // in that case, the original indentation is still present from the first line
+                // example:
+                // >....a
+                // >|...c (and insert '....b\n'
+            {
                 //c.insertText(indent);
                 //if(i>0 || flag(WeakIndent))
-                    newText.append(constIndent);  // indent is taken from previous line
+                newText.append(constIndent);  // indent is taken from previous line
                 newText.append(indent);
-			}
+            }
 
             //preInsertUnindent(c, l, additionalUnindent);
 
             //c.insertText(l);
             newText.append(l);
-		}
+        }
         c.insertText(newText); // avoid inserting many single lines as it slows down txs considerably (contentschanged,patchStructure etc)
-	}
+    }
 
-	//bracket auto insertion
-	if (autoComplete){
-		QString newAutoBracket;
-		const QString& lineText = c.line().text().mid(0, c.columnNumber());
-		foreach (const QString& s, languageDefinition()->openingParenthesis())
-			if (s.length() >= text.length() &&  //don't complete bracket of pasted text or codesnippets
-			    lineText.endsWith(s)){
-				newAutoBracket = languageDefinition()->getClosingParenthesis(s);
-				writtenBracket = s;				
-				break;
-			}
-		if (newAutoBracket != autoBracket) { //we complete a bracket which was already partly written
-			autoBracket = newAutoBracket;
-			previousBracketMatch = QDocumentCursor();
-		}
-		//a opening parenthesis was written, perform checks if it should be auto closed
-		autoComplete = false;
-		if (!autoBracket.isEmpty()) {
-			QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(c);
-			QDocumentCursor matchingCloseBracket;
-			for (int i=0; i < matches.size(); i++) {
-				if (matches[i][0].selectedText() == writtenBracket) {
-					matchingCloseBracket = matches[i][1];
-					break;
-				} else if (matches[i][1].selectedText() == writtenBracket) {
-					matchingCloseBracket = matches[i][0];
-					break;
-				}
-			}
-			
-			autoComplete = matchingCloseBracket.isNull()
-					 || matchingCloseBracket.selectedText() != autoBracket //bracket mismatch
-					 || (!previousBracketMatch.isNull() &&
-					     matchingCloseBracket.anchorLineNumber() == matchingCloseBracket.lineNumber() &&
-					     matchingCloseBracket.selectionEnd() == previousBracketMatch.selectionEnd());
-			if (!autoComplete && matchingCloseBracket.isValid()) {
-				// inserting a bracket may steal the closing bracket from a following pair.
-				// If that's the case, we have a matching close for the new insert, but a unmatched open bracket
-				// of the same type between the newly inserted bracket and its now-matching closing bracket.
-				// Then, auto-insertion of a closing bracket is required as well.
-				QDocumentCursor mismatch = languageDefinition()->getNextMismatch(c);
-				while (mismatch.isValid()
-					   && (mismatch.lineNumber() < matchingCloseBracket.lineNumber() 
-					       || (mismatch.lineNumber() == matchingCloseBracket.lineNumber() && mismatch.columnNumber() < matchingCloseBracket.columnNumber()))
-				){
-					if (writtenBracket.endsWith(mismatch.selectedText())) {
-						// subsequent opening bracket found, that has now a mismatch
-						// note: endsWith is a workaround, because in "\( \( \)" the unmatched bracket is detected as "("
-						autoComplete = true;
-						break;
-					}
-					QDocumentCursor cEnd = mismatch.selectionEnd();
-					cEnd.movePosition(1);
-					mismatch = languageDefinition()->getNextMismatch(cEnd);
-				}
-			}
-		}
+    //bracket auto insertion
+    if (autoComplete){
+        QString newAutoBracket;
+        const QString& lineText = c.line().text().mid(0, c.columnNumber());
+        foreach (const QString& s, languageDefinition()->openingParenthesis())
+            if (s.length() >= text.length() &&  //don't complete bracket of pasted text or codesnippets
+                    lineText.endsWith(s)){
+                newAutoBracket = languageDefinition()->getClosingParenthesis(s);
+                writtenBracket = s;
+                break;
+            }
+        if (newAutoBracket != autoBracket) { //we complete a bracket which was already partly written
+            autoBracket = newAutoBracket;
+            previousBracketMatch = QDocumentCursor();
+        }
+        //a opening parenthesis was written, perform checks if it should be auto closed
+        autoComplete = false;
+        if (!autoBracket.isEmpty()) {
+            QList<QList<QDocumentCursor> > matches = languageDefinition()->getMatches(c);
+            QDocumentCursor matchingCloseBracket;
+            for (int i=0; i < matches.size(); i++) {
+                if (matches[i][0].selectedText() == writtenBracket) {
+                    matchingCloseBracket = matches[i][1];
+                    break;
+                } else if (matches[i][1].selectedText() == writtenBracket) {
+                    matchingCloseBracket = matches[i][0];
+                    break;
+                }
+            }
 
-		if (autoComplete) {
-			if (!cutBuffer.isEmpty()) {
-				c.insertText(cutBuffer+autoBracket);
-				c.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-				c.movePosition(cutBuffer.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-			} 
-			
-			if (flag(QEditor::AutoInsertLRM) && c.isRTL() && autoBracket == "}")
-				autoBracket = "}" + QString(QChar(LRM));
+            autoComplete = matchingCloseBracket.isNull()
+                    || matchingCloseBracket.selectedText() != autoBracket //bracket mismatch
+                    || (!previousBracketMatch.isNull() &&
+                        matchingCloseBracket.anchorLineNumber() == matchingCloseBracket.lineNumber() &&
+                        matchingCloseBracket.selectionEnd() == previousBracketMatch.selectionEnd());
+            if (!autoComplete && matchingCloseBracket.isValid()) {
+                // inserting a bracket may steal the closing bracket from a following pair.
+                // If that's the case, we have a matching close for the new insert, but a unmatched open bracket
+                // of the same type between the newly inserted bracket and its now-matching closing bracket.
+                // Then, auto-insertion of a closing bracket is required as well.
+                QDocumentCursor mismatch = languageDefinition()->getNextMismatch(c);
+                while (mismatch.isValid()
+                       && (mismatch.lineNumber() < matchingCloseBracket.lineNumber()
+                           || (mismatch.lineNumber() == matchingCloseBracket.lineNumber() && mismatch.columnNumber() < matchingCloseBracket.columnNumber()))
+                       ){
+                    if (writtenBracket.endsWith(mismatch.selectedText())) {
+                        // subsequent opening bracket found, that has now a mismatch
+                        // note: endsWith is a workaround, because in "\( \( \)" the unmatched bracket is detected as "("
+                        autoComplete = true;
+                        break;
+                    }
+                    QDocumentCursor cEnd = mismatch.selectionEnd();
+                    cEnd.movePosition(1);
+                    mismatch = languageDefinition()->getNextMismatch(cEnd);
+                }
+            }
+        }
 
-			QDocumentCursor copiedCursor = c.selectionEnd();
-			PlaceHolder ph(autoBracket.length(),copiedCursor);
-			ph.autoOverride = true;
-			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
-			ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
-			
-			if (!cutBuffer.isEmpty()) {
-				addPlaceHolder(ph);
-				cutBuffer.clear();
-			} else {
-				copiedCursor.insertText(autoBracket);
-				addPlaceHolder(ph);
-				c.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
-			}
-		}
-	}
+        if (autoComplete) {
+            if (!cutBuffer.isEmpty()) {
+                c.insertText(cutBuffer+autoBracket);
+                c.movePosition(cutBuffer.length()+autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+                c.movePosition(cutBuffer.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+            }
 
-	if (beginNewMacro)
-		m_doc->endMacro();
+            if (flag(QEditor::AutoInsertLRM) && c.isRTL() && autoBracket == "}")
+                autoBracket = "}" + QString(QChar(LRM));
+
+            QDocumentCursor copiedCursor = c.selectionEnd();
+            PlaceHolder ph(autoBracket.length(),copiedCursor);
+            ph.autoOverride = true;
+            ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepBegin);
+            ph.cursor.handle()->setFlag(QDocumentCursorHandle::AutoUpdateKeepEnd);
+
+            if (!cutBuffer.isEmpty()) {
+                addPlaceHolder(ph);
+                cutBuffer.clear();
+            } else {
+                copiedCursor.insertText(autoBracket);
+                addPlaceHolder(ph);
+                c.movePosition(autoBracket.length(), QDocumentCursor::PreviousCharacter, QDocumentCursor::MoveAnchor);
+            }
+        }
+    }
+
+    if (beginNewMacro)
+        m_doc->endMacro();
 }
 
 void QEditor::insertText(const QString& text){
