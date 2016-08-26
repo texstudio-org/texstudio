@@ -253,8 +253,8 @@ private:
 	QRect mapPopplerRectToWidget(QRectF rect, const QSizeF &pageSize) const;
 	void useMagnifier(const QMouseEvent *inEvent);
 	void goToDestination(const Poppler::LinkDestination &dest);
-	void doLink(const Poppler::Link *link);
-	void annotationClicked(Poppler::Annotation *annotation, int page);
+	void doLink(const QSharedPointer<Poppler::Link> link);
+	void annotationClicked(QSharedPointer<Poppler::Annotation> annotation, int page);
 	void doZoom(const QPoint &clickPos, int dir, qreal newScaleFactor = 1.0);
 
 	PDFScrollArea *getScrollArea();
@@ -263,8 +263,8 @@ private:
 	QMutex textwidthCalculationMutex;
 
 	//QList<int> pages;
-	Poppler::Link		*clickedLink;
-	Poppler::Annotation	*clickedAnnotation;
+	QSharedPointer<Poppler::Link> clickedLink;
+	QSharedPointer<Poppler::Annotation> clickedAnnotation;
 
 	int realPageIndex, oldRealPageIndex;
 	QList<int> pages;
