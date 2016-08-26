@@ -5043,18 +5043,30 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
         if ( flag(ReplaceIndentTabs) )
             constIndent.replace("\t", QString(m_doc->tabStop(), ' '));
         QString indent;
-
+        int indentCount = 0;
 
         QString newText=lines.takeFirst();
         cc.movePosition(1,QDocumentCursor::EndOfLine);
+        QDocumentLine dl=cc.line();
+        foreach (QParenthesis p, dl.parentheses()) {
+            if ( !(p.role & QParenthesis::Indent) )
+                continue;
+
+            if ( p.role & QParenthesis::Open )
+            {
+                ++indentCount;
+            }
+            if ( p.role & QParenthesis::Close )
+            {
+                --indentCount;
+            }
+        }
         //c.insertText(lines.takeFirst());
 		
 		
 		for (int i=0; i<lines.length(); i++)
 		{
 			QString l = lines[i];
-
-			int additionalUnindent = 0;
 			
 			if(!flag(WeakIndent)){
 				int n = 0;
@@ -5069,9 +5081,46 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 					// TODO: FIXME ? work on strings to make sure command grouping does not interfere with cursor state... 
 					//             (then the indentCount can be removed and the function should return the unindented indent,
 					//              but still needs to check for an unindent caused by a } at the beginning of the line)
-					int indentCount = 0;
-                    indent = m_definition->indent(cc, &indentCount);
-                    if (indentCount < 0) additionalUnindent = - indentCount;
+
+                    //int deltaIndentCount=0;
+                    //m_definition->indent(cc, &deltaIndentCount);
+
+
+
+                    cc.movePosition(1,QDocumentCursor::Down);
+                    cc.movePosition(1,QDocumentCursor::EndOfLine);
+
+                    dl=cc.line();
+                    foreach (QParenthesis p, dl.parentheses()) {
+                        if ( !(p.role & QParenthesis::Indent) )
+                            continue;
+
+                        if ( p.role & QParenthesis::Open )
+                        {
+                            ++indentCount;
+                        }
+                        if ( p.role & QParenthesis::Close )
+                        {
+                            --indentCount;
+                        }
+                    }
+
+                    if (indentCount >= 0){
+                        indent=QString(indentCount,'\t');
+                    }else{
+                        //remove indent from constIndent
+                        indent.clear();
+                        if(!constIndent.isEmpty()){
+                            int p=constIndent.indexOf('\t');
+                            if(p>-1){
+                                // remove one tab
+                                constIndent.remove(p,1);
+                            }else{
+                                // remove tabStop spaces
+                                constIndent.remove(0,m_doc->tabStop());
+                            }
+                        }
+                    }
 
                     if ( flag(ReplaceIndentTabs) )
 						indent.replace("\t", QString(m_doc->tabStop(), ' '));
@@ -5087,14 +5136,11 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 			// >|...c (and insert '....b\n'
 			{
                 //c.insertText(indent);
-                if(i>0 || flag(WeakIndent))
+                //if(i>0 || flag(WeakIndent))
                     newText.append(constIndent);  // indent is taken from previous line
                 newText.append(indent);
 			}
-            if(!flag(WeakIndent)){
-                cc.movePosition(1,QDocumentCursor::Down);
-                cc.movePosition(1,QDocumentCursor::EndOfLine);
-            }
+
             //preInsertUnindent(c, l, additionalUnindent);
 
             //c.insertText(l);
