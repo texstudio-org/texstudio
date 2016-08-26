@@ -5092,6 +5092,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                     cc.movePosition(1,QDocumentCursor::EndOfLine);
 
                     dl=cc.line();
+                    QString dummyText=dl.text();
                     foreach (QParenthesis p, dl.parentheses()) {
                         if ( !(p.role & QParenthesis::Indent) )
                             continue;
@@ -5105,7 +5106,12 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
                             if(delayedDeltaIndentCount){
                                 --delayedDeltaIndentCount;
                             }else{
-                                --indentCount;
+                                if(dummyText.left(p.offset).trimmed().isEmpty()){
+                                    --indentCount;
+                                    dummyText.replace(p.offset,p.length,QString(p.length,QChar(' ')));
+                                }else{
+                                    --delayedDeltaIndentCount;
+                                }
                             }
                         }
                     }

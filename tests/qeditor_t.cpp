@@ -697,7 +697,7 @@ void QEditorTest::indentation_data(){
 		<< "A\nB"
 		<< false << 1 << 0 << -1 << -1
 		<< "\\cmd{\\begin{env}\nTEXT\n\\end{env}}\nMORE\n"
-		<< "\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
+        << "A\n\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
 
 	QTest::newRow("pasting non-indented text with newline at end weak")
 		<< "\tfoo\n\tbar\n"
@@ -792,7 +792,7 @@ void QEditorTest::indentation(){
 
     //QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
     //QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
-	QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
+    //QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
 	QEQUAL(editor->document()->text(), result);
 }
 
