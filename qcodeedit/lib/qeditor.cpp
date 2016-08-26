@@ -5024,7 +5024,7 @@ void QEditor::insertText(QDocumentCursor& c, const QString& text)
 		bool originallyAtLineStart = c.atLineStart();
 		preInsertUnindent(c, lines.first(), 0);
 
-        QDocumentCursor cc(c);
+        QDocumentCursor cc(c,false);
         if(!flag(WeakIndent)){
             // remove all prepending spaces as it is done later
             QString newText=lines.first().trimmed();
