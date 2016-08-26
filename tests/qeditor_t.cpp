@@ -627,6 +627,18 @@ void QEditorTest::indentation_data(){
 		<< "  \\begin{abc}\n    abcdef\n  \\end{abc}"
 		<< "   hel  \\begin{abc}\n       abcdef\n     \\end{abc}lo\nworld\n";
 
+    QTest::newRow("block indentation multiline")
+        << "   hello\nworld\n"
+        << false << 0 << 6 << -1 << -1
+        << "\\begin{abc}\n    abcdef\n sdfsdf\n \\end{abc}"
+        << "   hel\\begin{abc}\n   \tabcdef\n   \tsdfsdf\n   \\end{abc}lo\nworld\n";
+
+    QTest::newRow("block indentation nested")
+        << "   \n"
+        << false << 0 << 3 << -1 << -1
+        << "{\n{\nabcdef\nsdfsdf\n}\n}"
+        << "   {\n   \t{\n   \t\tabcdef\n   \t\tsdfsdf\n   \t}\n   }\n";
+
 	QTest::newRow("block indentation + 3 space")
 		<< "   hello\nworld\n"
 		<< false << 0 << 6 << -1 << -1
