@@ -1550,6 +1550,16 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <translation>Zoom à la molette</translation>
     </message>
     <message>
+        <location filename="configdialog.ui" line="2092"/>
+        <source>1 minute</source>
+        <translation>1 minute</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="2097"/>
+        <source>2 minutes</source>
+        <translation>2 minutes</translation>
+    </message>
+    <message>
         <location filename="configdialog.ui" line="2102"/>
         <source>5 minutes</source>
         <translation>5 minutes</translation>
@@ -5481,194 +5491,194 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Séparer &amp;&amp; fusionner</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2321"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2327"/>
         <source>&amp;Help</source>
         <translation>Ai&amp;de</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2322"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2328"/>
         <source>&amp;File</source>
         <translation>&amp;Fichier</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2323"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2329"/>
         <source>&amp;Configure</source>
         <translation>&amp;Configurer</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2324"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2330"/>
         <source>&amp;View</source>
         <translation>Afficha&amp;ge</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2325"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2331"/>
         <source>Grid</source>
         <translation>Grille</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2326"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2332"/>
         <source>&amp;Window</source>
         <translation>&amp;Fenêtre</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2327"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2333"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2354"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2360"/>
         <source>Show</source>
         <translation>Montrer</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2404"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2410"/>
         <source>Windowed Viewer</source>
         <translation>Afficheur fenêtré</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2407"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2413"/>
         <source>Embedded Viewer</source>
         <translation>Afficheur embarqué</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2470"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
         <translation>sur</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2487"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2493"/>
         <source>Scale</source>
         <translation>Échelle</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2505"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2511"/>
         <source>Zoom Out</source>
         <translation>Zoom arrière</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2515"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2521"/>
         <source>Zoom</source>
         <translation>Zoom</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2524"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2530"/>
         <source>Zoom In</source>
         <translation>Zoom avant</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2548"/>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2551"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2554"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2557"/>
         <source>Annotations</source>
         <translation>Annotations</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2712"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2718"/>
         <source>Page Down</source>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2716"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2722"/>
         <source>Page Up</source>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2893"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2899"/>
         <source>Retry</source>
         <translation>Réessayer</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2896"/>
-        <location filename="pdfviewer/PDFDocument.cpp" line="4050"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2902"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="4049"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2899"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2905"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
         <translation>%1
 ne semble pas être un document PDF valide. Le fichier est soit corrompu, soit en train d&apos;être créé. Contrôle toutes les deux secondes.</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2913"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2919"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
         <translation>Le fichier « %1 » n&apos;a pas été trouvé ; peut-être a-t-il été supprimé.</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2916"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2922"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
         <translation>Échec du chargement du fichier « %1 »; ce n&apos;est peut-être pas un PDF valide.</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2919"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2925"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
         <translation>Échec du chargement du fichier « %1 » dû à une mauvaise allocation de mémoire ; peut-être n&apos;est-il pas un PDF valide.</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2922"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2928"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
         <translation>Échec du chargement du fichier « %1 » dû à une exception ; peut-être n&apos;est-il pas un PDF valide.</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2925"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2931"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
         <translation>Le fichier PDF « %1 » est verrouillé.</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2927"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2933"/>
         <source>PDF password</source>
         <translation>Mot de passe PDF</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2927"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2933"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
         <translation>Le fichier PDF « %1 » est verrouillé.
 Vous pouvez maintenant saisir le mot de passe :</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3244"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3249"/>
         <source>Searching for</source>
         <translation>Cherche</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3368"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3367"/>
         <source>No SyncTeX data available</source>
         <translation>Pas de données SyncTeX disponible</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3371"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3370"/>
         <source>SyncTeX: &quot;%1&quot;</source>
         <translation>SyncTeX : « %1 »</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3501"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3500"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3579"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3578"/>
         <source>Page %1 of %2</source>
         <translation>Page %1 sur %2</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3580"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3579"/>
         <source>Pages %1 to %2 of %3</source>
         <translation>Pages %1 à %2 de %3</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3605"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3604"/>
         <source>Open PDF</source>
         <translation>Ouvrir le PDF</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="3885"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="3884"/>
         <source>Print</source>
         <translation>Imprimer</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="4051"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="4050"/>
         <source>Close Message</source>
         <translation>Fermer le message</translation>
     </message>
@@ -5870,62 +5880,62 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
 <context>
     <name>PDFWidget</name>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="521"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="520"/>
         <source>Zoom In</source>
         <translation>Zoom avant</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="523"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="522"/>
         <source>Zoom Out</source>
         <translation>Zoom arrière</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="526"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="525"/>
         <source>Actual Size</source>
         <translation>Dimensions en cours</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="529"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="528"/>
         <source>Fit to Width</source>
         <translation>Ajuster à la largeur</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="532"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="531"/>
         <source>Fit to Window</source>
         <translation>Ajuster à la fenêtre</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="1012"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="1014"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="1012"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="1014"/>
         <source>Could not open link:</source>
         <translation>Impossible d&apos;ouvrir le lien :</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="1123"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="1125"/>
         <source>Go to Source</source>
         <translation>Aller au fichier source</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="1756"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="1764"/>
         <source>Go to Page</source>
         <translation>Atteindre la page</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="1757"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="1765"/>
         <source>Page number:</source>
         <translation>Numéros de page :</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2087"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2093"/>
         <source>Calculating text width</source>
         <translation>Calcul de la largeur du texte</translation>
     </message>
     <message>
-        <location filename="pdfviewer/PDFDocument.cpp" line="2087"/>
+        <location filename="pdfviewer/PDFDocument.cpp" line="2093"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
