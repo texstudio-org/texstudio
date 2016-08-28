@@ -96,6 +96,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	QLabel* lbFind = new QLabel(this);
 	lbFind->setObjectName(("lbFind"));
+	lbFind->setMinimumHeight(buttonSize.height());
     flowLayout->addWidget(lbFind);
 
 	cFind = new QComboBox(this);
@@ -215,6 +216,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	QLabel *lbReplace = new QLabel(this);
 	lbReplace->setObjectName("lbReplace");
+	lbReplace->setMinimumHeight(buttonSize.height());
     flowLayout2->addWidget(lbReplace);
 
 	cReplace = new QComboBox(this);
