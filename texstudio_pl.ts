@@ -8195,12 +8195,12 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="syntaxcheck.cpp" line="490"/>
         <source>closing environment which has not been opened</source>
-        <translation type="unfinished"/>
+        <translation>zamykanie nie otwartego otoczenia</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="490"/>
         <source>environment not closed</source>
-        <translation type="unfinished"/>
+        <translation>nie zamknięte otoczenie</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="490"/>
@@ -8228,7 +8228,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="tabdialog.ui" line="78"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Kolumn</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="86"/>
@@ -8243,17 +8243,17 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="tabdialog.ui" line="127"/>
         <source>Left Border :</source>
-        <translation type="unfinished"/>
+        <translation>Lewa krawędź :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="167"/>
         <source>Apply to all columns</source>
-        <translation type="unfinished"/>
+        <translation>Zastosuj do wszystkich kolumn</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="194"/>
         <source>Right Border (last column) :</source>
-        <translation type="unfinished"/>
+        <translation>Prawa krawędź (ostatnia kolumna) :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="232"/>
@@ -8263,7 +8263,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="tabdialog.ui" line="263"/>
         <source>Rows</source>
-        <translation type="unfinished"/>
+        <translation>Wierszy</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="271"/>
@@ -8273,7 +8273,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="tabdialog.ui" line="296"/>
         <source>Top Border</source>
-        <translation type="unfinished"/>
+        <translation>Górna krawędź</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="305"/>
@@ -8293,7 +8293,7 @@ Czy ufasz temu skryptowi?</translation>
     <message>
         <location filename="tabdialog.ui" line="389"/>
         <source>Bottom Border (last row)</source>
-        <translation type="unfinished"/>
+        <translation>Dolna krawędź (ostatni wiersz)</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="396"/>
@@ -8466,12 +8466,12 @@ nie powiodło się.</translation>
     <message>
         <location filename="templatemanager.cpp" line="148"/>
         <source>User created template files</source>
-        <translation type="unfinished"/>
+        <translation>Pliki szablonów utworzone przez użytkownika</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="201"/>
         <source>Select LaTeX Template</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz szablon LaTeX</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="219"/>
@@ -8505,7 +8505,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="templateselector.cpp" line="150"/>
         <source>Select Target Folder</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz folder docelowy</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="180"/>
@@ -8515,7 +8515,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="templateselector.cpp" line="183"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Data</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="184"/>
@@ -8552,7 +8552,7 @@ nie powiodło się.</translation>
         <location filename="templateselector.cpp" line="249"/>
         <location filename="templateselector.cpp" line="260"/>
         <source>This template cannot be edited.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można edytować tego szablonu.</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="265"/>
@@ -8573,7 +8573,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="templateselector.cpp" line="287"/>
         <source>Could not open location:</source>
-        <translation type="unfinished"/>
+        <translation>Nie można otworzyć lokalizacji:</translation>
     </message>
 </context>
 <context>
@@ -10217,17 +10217,17 @@ nie powiodło się.</translation>
     <message>
         <location filename="texstudio.cpp" line="1375"/>
         <source>LanguageTool is running</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool jest uruchomiony</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1379"/>
         <source>No LanguageTool server found</source>
-        <translation type="unfinished"/>
+        <translation>Nie znaleziono serwera LanguageTool</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1384"/>
         <source>LanguageTool status unknown</source>
-        <translation type="unfinished"/>
+        <translation>Status LanguageTool nieznany</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1438"/>
@@ -10330,7 +10330,7 @@ Otherwise there might be random errors and crashes.</source>
     <message>
         <location filename="texstudio.cpp" line="2209"/>
         <source>Could not write template data:</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zapisać danych szablonu:</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2235"/>
@@ -10483,7 +10483,7 @@ ten plik przed nadpisaniem.</translation>
     <message>
         <location filename="texstudio.cpp" line="3355"/>
         <source>Could not save the image file.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zapisać pliku obrazu.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="3603"/>
@@ -10520,7 +10520,7 @@ ten plik przed nadpisaniem.</translation>
     <message>
         <location filename="texstudio.cpp" line="4264"/>
         <source>Unable to write to settings file %1</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zapisać w pliku ustawień %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5226"/>
@@ -10589,17 +10589,17 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5750"/>
         <source>(a) allow for this document</source>
-        <translation type="unfinished"/>
+        <translation>(a) zezwól w tym dokumencie</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5751"/>
         <source>(b) allow for all documents</source>
-        <translation type="unfinished"/>
+        <translation>(a) zezwól we wszystkich dokumentach</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5752"/>
         <source>(c) use the default command</source>
-        <translation type="unfinished"/>
+        <translation>(c) użyj domyślnego polecenia</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5811"/>
@@ -10619,7 +10619,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5924"/>
         <source>Error:</source>
-        <translation type="unfinished"/>
+        <translation>Błąd:</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5969"/>
