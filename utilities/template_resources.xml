@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LatexTemplateResources>
+	<Resource>
+		<Name>%Builtin</Name>
+		<!-- special resource: data retrieved internally -->
+	</Resource>
+	<Resource>
+		<Name>%User</Name>
+		<!-- special resource: data retrieved internally -->
+	</Resource>
+<!-- Example for further resources 
+	<Resource>
+		<Name>Test Resource 1</Name>
+		<Path>g:/txsResources/LatexTemplates</Path>
+		<Description>Example Resource</Description>
+		<Editable>False</Editable>
+		<Icon>icon.png</Icon>
+	</Resource>
+-->
+</LatexTemplateResources>
