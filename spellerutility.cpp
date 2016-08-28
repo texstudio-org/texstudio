@@ -247,8 +247,6 @@ void SpellerManager::setIgnoreFilePrefix(const QString &prefix)
 
 void SpellerManager::setDictPaths(const QStringList &dictPaths)
 {
-	qDebug() << dictPaths;
-
 	if (dictPaths == m_dictPaths) return;
 	m_dictPaths = dictPaths;
 
