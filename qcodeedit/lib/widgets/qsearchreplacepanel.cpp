@@ -82,7 +82,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     QWidget *searchWidget=new QWidget(0);
     //searchWidget->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::MinimumExpanding);
     vboxLayout->addWidget(searchWidget);
-    FlowLayout *flowLayout=new FlowLayout(searchWidget,1,1,1);
+    FlowLayoutX *flowLayout=new FlowLayoutX(searchWidget,1,1,1);
 
 	QSize buttonSize(22,22);
 
@@ -103,7 +103,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cFind->completer()->setCompletionMode(QCompleter::PopupCompletion);
 	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cFind->setObjectName(("cFind"));
-	QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
+	QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	sizePolicy4.setHorizontalStretch(2);
 	cFind->setSizePolicy(sizePolicy4);
 	cFind->setMinimumSize(QSize(120, 22));
@@ -205,7 +205,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	// replace section
     QWidget *replaceWidget=new QWidget(0);
     vboxLayout->addWidget(replaceWidget);
-    FlowLayout *flowLayout2=new FlowLayout(replaceWidget,1,1,1);
+    FlowLayoutX *flowLayout2=new FlowLayoutX(replaceWidget,1,1,1);
 	cbReplace = new QCheckBox(this);
 	cbReplace->setObjectName(("cbReplace"));
 	cbReplace->setChecked(true);
@@ -304,6 +304,8 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     int wd=qMax(lbFind->sizeHint().width(),lbReplace->sizeHint().width());
     lbFind->setMinimumWidth(wd);
     lbReplace->setMinimumWidth(wd);
+    lbFind->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+    lbReplace->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
 
 
     cFind->installEventFilter(this);
