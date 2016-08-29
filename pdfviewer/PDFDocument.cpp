@@ -445,7 +445,6 @@ QCursor *PDFWidget::zoomOutCursor = NULL;
 
 PDFWidget::PDFWidget(bool embedded)
 	: QLabel()
-	, clickedLink(NULL), clickedAnnotation(0)
 	, realPageIndex(0), oldRealPageIndex(0)
 	, scaleFactor(1.0)
 	, dpi(72.0)
@@ -765,8 +764,8 @@ static Qt::KeyboardModifiers mouseDownModifiers;
 
 void PDFWidget::mousePressEvent(QMouseEvent *event)
 {
-	clickedLink = NULL;
-	clickedAnnotation = 0;
+	clickedLink.clear();
+	clickedAnnotation.clear();
 
 	switch (event->button()) {
 	case Qt::LeftButton:
@@ -795,65 +794,68 @@ void PDFWidget::mousePressEvent(QMouseEvent *event)
 	if (mouseDownModifiers & Qt::ControlModifier) {
 		// ctrl key - this is a sync click, don't handle the mouseDown here
 	} else if (currentTool != kPresentation) {
-		Poppler::Page *page = 0;
 		QPointF scaledPos;
 		int pageNr;
 		mapToScaledPosition(event->pos(), pageNr, scaledPos);
-		if (pageNr >= 0 && pageNr < realNumPages())
-			page = document->page(pageNr);
-		if (page) {
-			// check for click in link
-			foreach (Poppler::Link *link, page->links()) {
-				if (link->linkArea().contains(scaledPos)) {
-					clickedLink = link;
-					break;
+		if (pageNr >= 0 && pageNr < realNumPages()) {
+			QScopedPointer<Poppler::Page> page(document->page(pageNr));
+			if (page) {
+				// check for click in link
+				foreach (Poppler::Link *link, page->links()) {
+					if (link->linkArea().contains(scaledPos)) {
+						clickedLink = QSharedPointer<Poppler::Link>(link);
+						continue;  // no break because we have to delete all other links
+					}
+					delete link;
 				}
-			}
-			if (!clickedLink)
-				foreach (Poppler::Annotation *annon, page->annotations())
-					if (annon->boundary().contains(scaledPos)) {
-						clickedAnnotation = annon;
+				if (!clickedLink) {
+					foreach (Poppler::Annotation *annon, page->annotations()) {
+						if (annon->boundary().contains(scaledPos)) {
+							clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
+							continue;  // no break because we have to delete all other links
+						}
+						delete annon;
+					}
+				}
+				if (!clickedLink && !clickedAnnotation) {
+					switch (currentTool) {
+					case kMagnifier:
+						if (mouseDownModifiers & (Qt::ShiftModifier | Qt::AltModifier))
+							; // do nothing - zoom in or out (on mouseUp)
+						else
+							useMagnifier(event);
+						break;
+
+					case kScroll:
+						setCursor(Qt::ClosedHandCursor);
+						scrollClickPos = event->globalPos();
+						usingTool = kScroll;
 						break;
 					}
-
-			if (!clickedLink && !clickedAnnotation) {
-				switch (currentTool) {
-				case kMagnifier:
-					if (mouseDownModifiers & (Qt::ShiftModifier | Qt::AltModifier))
-						; // do nothing - zoom in or out (on mouseUp)
-					else
-						useMagnifier(event);
-					break;
-
-				case kScroll:
-					setCursor(Qt::ClosedHandCursor);
-					scrollClickPos = event->globalPos();
-					usingTool = kScroll;
-					break;
 				}
 			}
-			delete page;
 		}
 	} else {
-		Poppler::Page *page = 0;
 		QPointF scaledPos;
 		int pageNr;
 		mapToScaledPosition(event->pos(), pageNr, scaledPos);
-		if (pageNr >= 0 && pageNr < realNumPages())
-			page = document->page(pageNr);
-		if (page) {
-			foreach (Poppler::Annotation *annon, page->annotations())
-				if (annon->boundary().contains(scaledPos)) {
-					clickedAnnotation = annon;
-					break;
+		if (pageNr >= 0 && pageNr < realNumPages()) {
+			QScopedPointer<Poppler::Page> page(document->page(pageNr));
+			if (page) {
+				foreach (Poppler::Annotation *annon, page->annotations()) {
+					if (annon->boundary().contains(scaledPos)) {
+						clickedAnnotation = QSharedPointer<Poppler::Annotation>(annon);
+						continue; // no break because we have to delete all other links
+					}
+					delete annon;
 				}
+			}
 		}
-		delete page;
 	}
 	event->accept();
 }
 
-void PDFWidget::annotationClicked(Poppler::Annotation *annotation, int page)
+void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation, int page)
 {
 	switch (annotation->subType()) {
 	case Poppler::Annotation::AMovie: {
@@ -932,8 +934,8 @@ void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 			break;
 		}
 	}
-	clickedLink = NULL;
-	clickedAnnotation = 0;
+	clickedLink.clear();
+	clickedAnnotation.clear();
 	usingTool = kNone;
 	updateCursor(event->pos());
 	event->accept();
@@ -982,13 +984,13 @@ void PDFWidget::goToPageRelativePosition(int page, float xinpdf, float yinpdf)
 	}
 }
 
-void PDFWidget::doLink(const Poppler::Link *link)
+void PDFWidget::doLink(const QSharedPointer<Poppler::Link> link)
 {
 	switch (link->linkType()) {
 	case Poppler::Link::None:
 		break;
 	case Poppler::Link::Goto: {
-		const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link);
+		const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link.data());
 		Q_ASSERT(go != NULL);
 		if (go->isExternal()) {
 			QString file = go->fileName();
@@ -998,7 +1000,7 @@ void PDFWidget::doLink(const Poppler::Link *link)
 	}
 	break;
 	case Poppler::Link::Browse: {
-		const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link);
+		const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link.data());
 		Q_ASSERT(browse != NULL);
 		QUrl url = QUrl::fromEncoded(browse->url().toLatin1());
 		if (url.scheme() == "file" || url.scheme().isEmpty() /*i.e. is relative */) {
@@ -1330,16 +1332,19 @@ void listAnnotationDetails(const Poppler::Annotation *an)
 void PDFWidget::updateCursor(const QPoint &pos)
 {
 	if (document.isNull()) return;
-	Poppler::Page *page;
+
 	QPointF scaledPos;
 	int pageNr;
 	mapToScaledPosition(pos, pageNr, scaledPos);
 	if (pageNr < 0 || pageNr >= realNumPages()) return;
-	// check for link
-	page = document->page(pageNr);
+	QScopedPointer<Poppler::Page> page(document->page(pageNr));
 	if (!page)
 		return;
-	foreach (Poppler::Link *link, page->links()) {
+
+	// check for link
+	bool done = false;
+	QList<Poppler::Link *> links = page->links();
+	foreach (Poppler::Link *link, links) {
 		// poppler's linkArea is relative to the page rect
 		if (link->linkArea().contains(scaledPos)) {
 			setCursor(Qt::PointingHandCursor);
@@ -1349,12 +1354,15 @@ void PDFWidget::updateCursor(const QPoint &pos)
 				QRect r = mapPopplerRectToWidget(link->linkArea(), page->pageSizeF());
 				QToolTip::showText(mapToGlobal(pos), browse->url(), this, r);
 			}
-			delete page;
-			return;
+			done = true;
+			break;
 		}
 	}
+	while (!links.isEmpty()) delete links.takeFirst();
+	if (done) return;
 
-	foreach (Poppler::Annotation *annot, page->annotations()) {
+	QList<Poppler::Annotation *> annotations = page->annotations();
+	foreach (Poppler::Annotation *annot, annotations) {
 		if (annot->boundary().contains(scaledPos)) {
 			switch (annot->subType()) {
 			case Poppler::Annotation::AMovie:
@@ -1372,12 +1380,12 @@ void PDFWidget::updateCursor(const QPoint &pos)
 			default:
 				;
 			}
-			delete page;
-			return;
+			done = true;
 		}
 	}
+	while (!annotations.isEmpty()) delete annotations.takeFirst();
+	if (done) return;
 
-	delete page;
 	updateCursor();
 }
 
@@ -2029,18 +2037,17 @@ QRect PDFWidget::pageRect(int page) const
 	QRect grect;
 	if (realPageIndex == 0) grect = gridPageRect(page + getPageOffset());
 	else grect = gridPageRect(page - realPageIndex);
-	Poppler::Page *p = document->page(page);
-	if (!p)
+	QScopedPointer<Poppler::Page> popplerPage(document->page(page));
+	if (!popplerPage)
 		return grect;
-	int realSizeW =  dpi * scaleFactor / 72.0 * p->pageSizeF().width();
-	int realSizeH =  dpi * scaleFactor / 72.0 * p->pageSizeF().height();
+	int realSizeW =  dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().width();
+	int realSizeH =  dpi * scaleFactor / 72.0 * popplerPage->pageSizeF().height();
 	int xOffset = (grect.width() - realSizeW) / 2;
 	int yOffset = (grect.height() - realSizeH) / 2;
 	if (gridx == 2 && getPageOffset() == 1) {
 		if (page & 1) xOffset *= 2;
 		else xOffset = 0;
 	}
-	delete p;
 	return QRect(grect.left() + xOffset, grect.top() + yOffset, realSizeW, realSizeH);
 }
 
@@ -2052,11 +2059,10 @@ QSizeF PDFWidget::maxPageSizeF() const
 	if (!maxPageSize.isValid()) {
 		for (int page = 0; page < docPages; page++) {
 			//if (page < 0 || page >= numPages()) continue;
-			Poppler::Page *popplerPage = document->page(page);
+			QScopedPointer<Poppler::Page> popplerPage(document->page(page));
 			if (!popplerPage) break;
 			if (popplerPage->pageSizeF().width() > maxPageSize.width()) maxPageSize.setWidth(popplerPage->pageSizeF().width());
 			if (popplerPage->pageSizeF().height() > maxPageSize.height()) maxPageSize.setHeight(popplerPage->pageSizeF().height());
-			delete popplerPage;
 		}
 	}
 	return maxPageSize;
@@ -3181,7 +3187,6 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 		return;
 
 	int pageIdx;
-	Poppler::Page *page;
 	Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
 	Poppler::Page::SearchDirection searchDir; // = Poppler::Page::FromTop;
 	int deltaPage, firstPage, lastPage;
@@ -3243,10 +3248,9 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 			statusBar()->showMessage(tr("Searching for") + QString(" '%1' (Page %2)").arg(searchText).arg(pageIdx), 1000);
 
-			page = document->page(pageIdx);
+			QScopedPointer<Poppler::Page> page(document->page(pageIdx));
 			if (!page)
 				return;
-
 
 #if QT_VERSION < 0x050000
 			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
@@ -3272,16 +3276,11 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 				//scroll horizontally
 				//scrollArea->ensureVisiblePageAbsolutePos(lastSearchResult.pageIdx, lastSearchResult.selRect.topLeft());
 				pdfWidget->update();
-
-				delete page;
-
 				return;
 			}
 
 			lastSearchResult.selRect = backwards ? QRectF(0, 100000, 1, 1) : QRectF();
 			searchDir = (backwards ? Poppler::Page::PreviousResult : Poppler::Page::NextResult);
-
-			delete page;
 		}
 	}
 }
@@ -3415,9 +3414,9 @@ void PDFDocument::syncClick(int pageIndex, const QPointF &pos, bool activate)
 
 			QString word;
 			if (!document.isNull() && pageIndex >= 0 && pageIndex < pdfWidget->realNumPages()) {
-				Poppler::Page *pagecontent = document->page(pageIndex);
-				if (pagecontent) {
-					word = pagecontent->text(QRectF(pos, pos).adjusted(-35, -10, 35, 10));
+				QScopedPointer<Poppler::Page> popplerPage(document->page(pageIndex));
+				if (popplerPage) {
+					word = popplerPage->text(QRectF(pos, pos).adjusted(-35, -10, 35, 10));
 					if (word.contains("\n")) word = word.split("\n")[word.split("\n").size() / 2];
 					// replace ligatures
 					word.replace(QChar(L'\xFB00'), QString("ff"));

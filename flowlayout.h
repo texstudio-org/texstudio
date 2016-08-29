@@ -38,19 +38,19 @@
 **
 ****************************************************************************/
 
-#ifndef FLOWLAYOUT_H
-#define FLOWLAYOUT_H
+#ifndef FlowLayoutX_H
+#define FlowLayoutX_H
 
 #include <QLayout>
 #include <QRect>
 #include <QStyle>
 //! [0]
-class FlowLayout : public QLayout
+class FlowLayoutX : public QLayout
 {
 public:
-    explicit FlowLayout(QWidget *parent, int margin = -1, int hSpacing = -1, int vSpacing = -1);
-    explicit FlowLayout(int margin = -1, int hSpacing = -1, int vSpacing = -1);
-    ~FlowLayout();
+    explicit FlowLayoutX(QWidget *parent, int margin = -1, int hSpacing = -1, int vSpacing = -1);
+    explicit FlowLayoutX(int margin = -1, int hSpacing = -1, int vSpacing = -1);
+    ~FlowLayoutX();
 
     void addItem(QLayoutItem *item);
     int horizontalSpacing() const;
@@ -75,4 +75,4 @@ private:
 };
 //! [0]
 
-#endif // FLOWLAYOUT_H
+#endif // FlowLayoutX_H

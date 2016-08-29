@@ -627,6 +627,18 @@ void QEditorTest::indentation_data(){
 		<< "  \\begin{abc}\n    abcdef\n  \\end{abc}"
 		<< "   hel  \\begin{abc}\n       abcdef\n     \\end{abc}lo\nworld\n";
 
+    QTest::newRow("block indentation multiline")
+        << "   hello\nworld\n"
+        << false << 0 << 6 << -1 << -1
+        << "\\begin{abc}\n    abcdef\n sdfsdf\n \\end{abc}"
+        << "   hel\\begin{abc}\n   \tabcdef\n   \tsdfsdf\n   \\end{abc}lo\nworld\n";
+
+    QTest::newRow("block indentation nested")
+        << "   \n"
+        << false << 0 << 3 << -1 << -1
+        << "{\n{\nabcdef\nsdfsdf\n}\n}"
+        << "   {\n   \t{\n   \t\tabcdef\n   \t\tsdfsdf\n   \t}\n   }\n";
+
 	QTest::newRow("block indentation + 3 space")
 		<< "   hello\nworld\n"
 		<< false << 0 << 6 << -1 << -1
@@ -685,7 +697,7 @@ void QEditorTest::indentation_data(){
 		<< "A\nB"
 		<< false << 1 << 0 << -1 << -1
 		<< "\\cmd{\\begin{env}\nTEXT\n\\end{env}}\nMORE\n"
-		<< "\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
+        << "A\n\\cmd{\\begin{env}\n\t\tTEXT\n\\end{env}}\nMORE\nB";
 
 	QTest::newRow("pasting non-indented text with newline at end weak")
 		<< "\tfoo\n\tbar\n"
@@ -780,7 +792,7 @@ void QEditorTest::indentation(){
 
     //QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
     //QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
-	QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
+    //QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
 	QEQUAL(editor->document()->text(), result);
 }
 
