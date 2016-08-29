@@ -17,7 +17,7 @@ class PDFAnnotationDlg : public QDialog
 
 public:
 #ifndef NO_POPPLER_PREVIEW
-	explicit PDFAnnotationDlg(Poppler::Annotation *annot, QWidget *parent = 0);
+	explicit PDFAnnotationDlg(QSharedPointer<Poppler::Annotation> annot, QWidget *parent = 0);
 	~PDFAnnotationDlg();
 #endif
 

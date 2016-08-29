@@ -4,7 +4,7 @@
 #include "poppler-annotation.h"
 #include "pdfannotation.h"
 
-PDFAnnotationDlg::PDFAnnotationDlg(Poppler::Annotation *annot, QWidget *parent) :
+PDFAnnotationDlg::PDFAnnotationDlg(QSharedPointer<Poppler::Annotation> annot, QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::PDFAnnotationDlg)
 {
