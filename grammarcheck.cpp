@@ -364,7 +364,12 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 
 			//check words
 			bool realCheck = true; //cr.lines[w] >= cr.linesToSkipDelta;
+			int truncatedChars = 0;
 			QString normalized = words[w].toLower();
+			if (normalized.endsWith('.')) {
+				normalized = normalized.left(normalized.length() -1);
+				truncatedChars =  1;
+			}
 			if (ld.stopWords.contains(normalized)) {
 				if (checkLastWord) {
 					if (prevSW == normalized)
@@ -378,7 +383,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 				if (lastSeen > -1) {
 					int delta = totalWords - lastSeen;
 					if (delta <= MAX_REP_DELTA)
-						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w] - truncatedChars, GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
 					else if (config.maxRepetitionLongRangeDelta > config.maxRepetitionDelta && delta <= config.maxRepetitionLongRangeDelta && normalized.length() >= config.maxRepetitionLongRangeMinWordLength)
 						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
 				}
