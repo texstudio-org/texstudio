@@ -1919,34 +1919,40 @@ void QEditor::getCursorPosition(int &line, int &index)
 }
 
 /*!
-	\brief
+	\brief Return the position below the cursor
 */
 bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height){
-    bool above;
-	return getPositionBelowCursor(offset,width,height,above);
+	bool above;
+	return getPositionBelowCursor(offset, width, height, above);
 }
 
-bool QEditor::getPositionBelowCursor(QPoint& offset, int width, int height,bool& above){
+/*!
+ * \brief Calculate an optimal position for a widget of width and height that should be displayed close to the cursor
+ * \param outOffset: output Position in Editor coordinates
+ * \param outAbove: indicates whether it's better to place the widget above the cursor than below
+ * \return false if there is no valid cursor, true otherwise
+ */
+bool QEditor::getPositionBelowCursor(QPoint& outOffset, int width, int height, bool& outAbove){
 	QDocumentCursor c(m_cursor, false);
-	QDocumentLine line=c.line();
+	QDocumentLine line = c.line();
 	if (!c.line().isValid()) return false;
-	if (c.columnNumber()<0 || c.columnNumber()>line.length()) return false;
+	if (c.columnNumber() < 0 || c.columnNumber() > line.length()) return false;
 
-	offset=line.cursorToDocumentOffset(c.columnNumber()-1);
-	offset.setY(offset.y()+document()->y(c.lineNumber())+document()->getLineSpacing());
-	offset=mapFromContents(offset);
+	outOffset = line.cursorToDocumentOffset(c.columnNumber()-1);
+	outOffset.setY(outOffset.y() + document()->y(c.lineNumber()) + document()->getLineSpacing());
+	outOffset = mapFromContents(outOffset);
 	int left;
 	int temp;
-	getPanelMargins(&left,&temp,&temp,&temp);
-	offset.setX(offset.x()+left);
-	if (offset.y()+height>this->height()){
-		offset.setY(offset.y()-document()->getLineSpacing() - height);
-		above=true;
-	    } else {
-		above=false;
-	    }
-	if(offset.x()+width>this->width())
-		offset.setX(this->width() - width);
+	getPanelMargins(&left, &temp, &temp, &temp);
+	outOffset.setX(outOffset.x() + left);
+	if (outOffset.y() + height > this->height()) {
+		outOffset.setY(outOffset.y() - document()->getLineSpacing() - height);
+		outAbove = true;
+	} else {
+		outAbove = false;
+	}
+	if (outOffset.x() + width > this->width())
+		outOffset.setX(this->width() - width);
 	return true;
 }
 
