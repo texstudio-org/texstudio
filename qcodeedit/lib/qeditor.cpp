@@ -1951,8 +1951,11 @@ bool QEditor::getPositionBelowCursor(QPoint& outOffset, int width, int height, b
 	} else {
 		outAbove = false;
 	}
-	if (outOffset.x() + width > this->width())
-		outOffset.setX(this->width() - width);
+	if (outOffset.x() + width > this->width()) {
+		// box will extend beyond editor width
+		// move to left but not further than the left border of the editor widget
+		outOffset.setX(qMax(0, this->width() - width));
+	}
 	return true;
 }
 
