@@ -464,7 +464,13 @@ QString latexToText(QString s)
 	while (start >= 0) {
 		// first arg
 		int i = startOfArg(s, start + 15);
-		if (i < 0) continue;  // no arguments for \\texorpdfstring
+        if (i < 0){
+            if(start+15>=s.length()){ // argument is only \texorpdfstring
+                s.clear();
+                break;
+            }
+            continue;  // no arguments for \\texorpdfstring
+        }
 		i++;
 		stop = findClosingBracket(s, i);
 		if (stop < 0) continue;
