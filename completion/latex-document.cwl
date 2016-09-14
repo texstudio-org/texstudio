@@ -464,13 +464,14 @@
 \textsf{text}
 \textsl{text}
 \textsterling
-\textsuperscript
+\textsubscript{arg}
+\textsuperscript{arg}
 \texttrademark
 \texttt{text}
 \textunderscore
 \textup{text}
 \textvisiblespace
-\textwidth#L
+\textwidth
 \thanks{text}
 \thicklines
 \thinlines
