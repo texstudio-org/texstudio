@@ -290,7 +290,7 @@ QScriptValue searchReplaceFunction(QScriptContext *context, QScriptEngine *engin
 	int handlerCount = 0;
 	for (int i = 1; i < context->argumentCount(); i++)
 		if (context->argument(i).isString() || context->argument(i).isFunction()) handlerCount++;
-	SCRIPT_REQUIRE(handlerCount <= (replace ? 2 : 1), "too many string or function arguments");
+	SCRIPT_REQUIRE(handlerCount <= (replace ? 3 : 2), "too many string or function arguments");
 	for (int i = 1; i < context->argumentCount(); i++) {
 		QScriptValue a = context->argument(i);
 		if (a.isFunction()) {
