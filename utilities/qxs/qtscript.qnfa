@@ -1,0 +1,153 @@
+<!DOCTYPE QNFA>
+<QNFA language="QtScript" extensions="js;qs;java;c;cpp;h;py" >
+
+	<word id="tag/script" format="qtscript:comment">%SCRIPT</word>
+
+	<context id="comment/single" format="qtscript:comment" >
+		<start>//</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	
+	<context id="comment/single" format="qtscript:comment" >
+		<start parenthesis="jscomment:open" indent="1" fold="1">/\*</start>
+		<stop parenthesis="jscomment:close" indent="1" fold="1">\*/</stop>
+	</context>
+	
+	<context id="data/string1" format="qtscript:string" >
+		<start parenthesis="string:open">&quot;</start>
+		<stop parenthesis="string:close">&quot;</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+	
+	<context id="data/string2" format="qtscript:string" >
+		<start parenthesis="simplestring:open">&apos;</start>
+		<stop parenthesis="simplestring:close">&apos;</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+	
+	<context id="data/regexp" format="qtscript:string" >
+		<start>\(/</start>
+		<stop>/</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+	<context id="data/regexpb" format="qtscript:string" >
+		<start>/[^0-9 ]</start>
+		<stop>/</stop>
+		<stop exclusive="false">\n</stop>
+		<sequence id="escape" format="escapeseq" >\\[nrtvf\\"'\n]</sequence>
+	</context>
+
+	<sequence parenthesis="round:open">\(</sequence>
+	<sequence parenthesis="round:close">\)</sequence>
+	<sequence parenthesis="curly:open" fold="true">\{</sequence>
+	<sequence parenthesis="curly:close" fold="true">\}</sequence>
+	<sequence parenthesis="square:open">\[</sequence>
+	<sequence parenthesis="square:close">\]</sequence>
+	
+	<list id="keywords" format="qtscript:keyword">
+		<word>Infinity</word>
+		<word>NaN</word>
+		<word>abstract</word>
+		<word>boolean</word>
+		<word>break</word>
+		<word>byte</word>
+		<word>case</word>
+		<word>catch</word>
+		<word>char</word>
+		<word>class</word>
+		<word>const</word>
+		<word>constructor</word>
+		<word>continue</word>
+		<word>debugger</word>
+		<word>default</word>
+		<word>delete</word>
+		<word>do</word>
+		<word>double</word>
+		<word>else</word>
+		<word>enum</word>
+		<word>export</word>
+		<word>extends</word>
+		<word>false</word>
+		<word>final</word>
+		<word>finally</word>
+		<word>float</word>
+		<word>for</word>
+		<word>function</word>
+		<word>goto</word>
+		<word>if</word>
+		<word>implements</word>
+		<word>import</word>
+		<word>in</word>
+		<word>instanceof</word>
+		<word>int</word>
+		<word>interface</word>
+		<word>long</word>
+		<word>native</word>
+		<word>new</word>
+		<word>package</word>
+		<word>private</word>
+		<word>protected</word>
+		<word>public</word>
+		<word>return</word>
+		<word>short</word>
+		<word>static</word>
+		<word>super</word>
+		<word>switch</word>
+		<word>synchronized</word>
+		<word>this</word>
+		<word>throw</word>
+		<word>throws</word>
+		<word>transient</word>
+		<word>true</word>
+		<word>try</word>
+		<word>typeof</word>
+		<word>undefined</word>
+		<word>var</word>
+		<word>void</word>
+		<word>volatile</word>
+		<word>with</word>
+		<word>while</word>
+	</list>
+
+	<list id="txs-variables" format="qtscript:txs-variable">
+		<word>editor</word>
+		<word>documentManager</word>
+		<word>documents</word>
+		<word>cursor</word>
+		<word>cursorEnums</word>
+		<word>app</word>
+		<word>pdfs</word>
+		<word>triggerMatches</word>
+		<word>triggerId</word>
+		<word>fileChooser</word>
+	</list>
+
+	<list id="txs-functions" format="qtscript:txs-function">
+		<word>alert</word>
+		<word>information</word>
+		<word>critical</word>
+		<word>confirm</word>
+		<word>confirmWarning</word>
+		<word>debug</word>
+		<word>writeFile</word>
+		<word>readFile</word>
+		<word>system</word>
+		<word>setGlobal</word>
+		<word>getGlobal</word>
+		<word>hasGlobal</word>
+		<word>setPersistent</word>
+		<word>getPersistent</word>
+		<word>hasPersistent</word>
+		<word>hasPriviledges</word>
+		<word>hasWritePriviledges</word>
+		<word>registerAsBackgroundScript</word>
+		<word>include</word>
+	</list>
+
+	
+	<word id="data/float" format="qtscript:number">-?[0-9]*.[0-9]+</word>
+	<word id="data/decimal" format="qtscript:number">-?[0-9]+</word>
+</QNFA>
