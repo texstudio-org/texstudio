@@ -1,9 +1,9 @@
-TeXstudio 2.11.2 Release Candidate
-----------------------------------
+TeXstudio 2.11.2
+----------------
 - major performance speedup, in case some default section commands were not defined in any used package
 - speed up pasting into large documents (factor 100x)
 - add comment toggle
-- use flow layout for search/replace panel
+- improved search panel layout
 - improved bracket detection for \todo highlighting (bug 1789)
 - improved parsing of section titles (bug 1817)
 - added shorter auto-save intervals (1 min, 2 min)
@@ -15,6 +15,7 @@ TeXstudio 2.11.2 Release Candidate
 - replace babel german by ngerman in presentation wizard
 - highlight cursorEnums in script
 - fix crash on qt4 if update check is sucessful
+- fix: auto-indent
 - fix: make insertion of tabs work with cursor mirrors (bug 1788)
 - fix: verbatim setting for \verb|abc| (bug 1795)
 - fix: update of save icon after SaveAll (bug 1808)
@@ -36,6 +37,11 @@ TeXstudio 2.11.2 Release Candidate
 - fix: argument scanning when option contain key/val pairs
 - fix: editor hiding when updating a windowed pdf viewer which was enlarged
 before changing to windowed mode (Bug #1876)
+- fix: repetition checking for words followed by colon (bug 1884)
+- fix: position of completer when competion words become very large
+- fix: freeze while typing \texorpdfstring (bug 1898)
+- fix: script error on editor.search with options and callback (bug 1899)
+- fix: regExp replace in multi doc search
 - updated some cwl files
 
 
