@@ -8266,7 +8266,11 @@ QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 			int end = newLine.indexOf('}', start);
 			if (end >= 0) {
 				QString filename(newLine.mid(start, end - start));
-				newLine.replace(start, end - start, documents.getAbsoluteFilePath(filename));
+				QString absPath = documents.getAbsoluteFilePath(filename);
+#ifdef Q_OS_WIN
+				absPath.replace('\\', '/');  // make sure the path argumment to \input uses '/' as dir separator
+#endif
+				newLine.replace(start, end - start, absPath);
 			}
 			header << newLine;
 		}
