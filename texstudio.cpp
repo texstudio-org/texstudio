@@ -168,6 +168,13 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
 	setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 
+	QFile styleSheetFile(configManager.configBaseDir + "stylesheet.qss");
+	if (styleSheetFile.exists()) {
+		styleSheetFile.open(QFile::ReadOnly);
+		setStyleSheet(styleSheetFile.readAll());
+		styleSheetFile.close();
+	}
+
 	setWindowIcon(QIcon(":/images/logo128.png"));
 
 	int iconSize = qMax(16, configManager.guiToolbarIconSize);
