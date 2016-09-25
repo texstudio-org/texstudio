@@ -18,5 +18,5 @@
 
 \nohang
 
-\ulemheading{command}
+\ulemheading{style}
 

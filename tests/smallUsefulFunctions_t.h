@@ -594,6 +594,22 @@ private slots:
 			QEQUAL2(ret_args[i], args[i], QString("in argument %1").arg(i));
 		}
 	}
+	void test_latexToText_data(){
+		QTest::addColumn<QString>("in");
+		QTest::addColumn<QString>("out");
+
+		QTest::newRow("basic") << "\\texorpdfstring{foo}{bar}" << "bar";
+		QTest::newRow("context") << "spam \\texorpdfstring{foo}{bar} and eggs" << "spam bar and eggs";
+		QTest::newRow("multiple") << "spam \\texorpdfstring{foo}{bar} and \\texorpdfstring{foo}{eggs}" << "spam bar and eggs";
+		QTest::newRow("spaces") << "\\texorpdfstring  {foo}  {bar}" << "bar";
+		QTest::newRow("tabs") << "\\texorpdfstring\t\t{foo}\t\t{bar} spam" << "bar spam";
+		QTest::newRow("discretionary hyphen") << "Wurst\\-salat" << "Wurstsalat";
+	}
+	void test_latexToText(){
+		QFETCH(QString, in);
+		QFETCH(QString, out);
+		QEQUAL(latexToText(in), out);
+	}
 	void test_joinLinesExceptCommentsAndEmptyLines_data(){
         QTest::addColumn<QStringList>("in");
 		QTest::addColumn<QStringList>("out");

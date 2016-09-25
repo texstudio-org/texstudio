@@ -11,12 +11,20 @@ GrammarCheck::GrammarCheck(QObject *parent) :
 {
 	latexParser = new LatexParser();
 }
-
+/*!
+ * \brief GrammarCheck::~GrammarCheck
+ * Destructor
+ */
 GrammarCheck::~GrammarCheck()
 {
 	if (latexParser) delete latexParser;
 }
-
+/*!
+ * \brief GrammarCheck::init
+ * initialize grammar checker
+ * \param lp reference to latex parser
+ * \param config reference to config
+ */
 void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &config)
 {
 	*latexParser = lp;
@@ -42,7 +50,12 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 	languageMapping.insert("sv-SV", "sv");
 }
 
-
+/*!
+ * \brief readWordList
+ * Read bad words/stop words from file
+ * \param file
+ * \return word list as set
+ */
 QSet<QString> readWordList(const QString &file)
 {
 	QFile f(file);
@@ -210,11 +223,11 @@ void GrammarCheck::process(int reqId)
 
 			if (type == LatexReader::NW_TEXT) tb.words << lr.word;
 			else { /*if (type == LatexReader::NW_PUNCTATION) */
-				if (lr.word == "-" && !tb.words.isEmpty()) {
+                if ((lr.word == "-" || lr.word == "~" )&& !tb.words.isEmpty()) {
 					//- can either mean a word-separator or a sentence -- separator
 					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
 					if (lr.wordStartIndex == tb.endindices.last()) {
-						tb.words.last() += '-';
+                        tb.words.last() += lr.word;
 						tb.endindices.last()++;
 
 						int tempIndex = lr.index;
@@ -273,21 +286,14 @@ void GrammarCheck::process(int reqId)
 		if (tb.words.isEmpty() || !backendAvailable) backendChecked(crTicket, b, QList<GrammarError>(), true);
 		else  {
 			const QStringList &words = tb.words;
-            QString joined=words.first();
-            /*
+            QString joined;
 			int expectedLength = 0;
 			foreach (const QString & s, words) expectedLength += s.length();
-            joined.reserve(expectedLength + words.length());*/
-            for (int i = 1;i<words.length();i++) {
-                if(tb.lines[i]==tb.lines[i-1]){
-                    int delta=tb.indices[i]-tb.endindices[i-1];
-                    joined += QString(delta,' ');
-                }else{
-                    joined += " ";
-                }
-				joined += words[i];
-                /*CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words);
-                joined += " ";*/
+            joined.reserve(expectedLength + words.length());
+            for (int i = 0;;) {
+                joined += words[i];
+                CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words);
+                joined += " ";
 			}
 			backend->check(crTicket, b, crLanguage, joined);
 		}
@@ -358,7 +364,12 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 
 			//check words
 			bool realCheck = true; //cr.lines[w] >= cr.linesToSkipDelta;
+			int truncatedChars = 0;
 			QString normalized = words[w].toLower();
+			if (normalized.endsWith('.')) {
+				normalized = normalized.left(normalized.length() -1);
+				truncatedChars =  1;
+			}
 			if (ld.stopWords.contains(normalized)) {
 				if (checkLastWord) {
 					if (prevSW == normalized)
@@ -372,7 +383,7 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 				if (lastSeen > -1) {
 					int delta = totalWords - lastSeen;
 					if (delta <= MAX_REP_DELTA)
-						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
+						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w] - truncatedChars, GET_WORD_REPETITION, tr("Word repetition. Distance %1").arg(delta), QStringList() << "");
 					else if (config.maxRepetitionLongRangeDelta > config.maxRepetitionDelta && delta <= config.maxRepetitionLongRangeDelta && normalized.length() >= config.maxRepetitionLongRangeMinWordLength)
 						cr.errors[tb.lines[w]] << GrammarError(tb.indices[w], tb.endindices[w] - tb.indices[w], GET_LONG_RANGE_WORD_REPETITION, tr("Long range word repetition. Distance %1").arg(delta), QStringList() << "");
 				}
@@ -482,7 +493,11 @@ GrammarCheckLanguageToolSOAP::~GrammarCheckLanguageToolSOAP()
 {
 	if (nam) delete nam;
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::init
+ * Initialize LanguageTool as grammar backend
+ * \param config reference to config
+ */
 void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 {
 
@@ -518,7 +533,10 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 		specialRules << temp;
 	}
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::isAvailable
+ * \return LanguageTool is available (or possibly so)
+ */
 bool GrammarCheckLanguageToolSOAP::isAvailable()
 {
 	return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
@@ -529,7 +547,10 @@ QString quoteSpaces(const QString &s)
 	if (!s.contains(' ')) return s;
 	return '"' + s + '"';
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::tryToStart
+ * try to start LanguageTool-Server on local machine
+ */
 void GrammarCheckLanguageToolSOAP::tryToStart()
 {
 	if (triedToStart) {
@@ -557,7 +578,14 @@ const QNetworkRequest::Attribute AttributeTicket = (QNetworkRequest::Attribute)(
 const QNetworkRequest::Attribute AttributeLanguage = (QNetworkRequest::Attribute)(QNetworkRequest::User + 2);
 const QNetworkRequest::Attribute AttributeText = (QNetworkRequest::Attribute)(QNetworkRequest::User + 3);
 const QNetworkRequest::Attribute AttributeSubTicket = (QNetworkRequest::Attribute)(QNetworkRequest::User + 4);
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::check
+ * Place data to be checked on LT-Server
+ * \param ticket
+ * \param subticket
+ * \param language
+ * \param text
+ */
 void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QString &language, const QString &text)
 {
     if (!nam) {
@@ -596,7 +624,10 @@ void GrammarCheckLanguageToolSOAP::check(uint ticket, int subticket, const QStri
 
 	nam->post(req, post);
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::shutdown
+ * shutdown LT-Server
+ */
 void GrammarCheckLanguageToolSOAP::shutdown()
 {
 	if (javaProcess) {
@@ -609,7 +640,11 @@ void GrammarCheckLanguageToolSOAP::shutdown()
 		nam = 0;
 	}
 }
-
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::finished
+ * Slot for postprocessing LT data
+ * \param nreply
+ */
 void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 {
 	if (connectionAvailability == Terminated) return;  // shutting down

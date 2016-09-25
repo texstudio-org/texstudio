@@ -1,3 +1,51 @@
+TeXstudio 2.11.2
+----------------
+- major performance speedup, in case some default section commands were not defined in any used package
+- speed up pasting into large documents (factor 100x)
+- add comment toggle
+- improved search panel layout
+- improved bracket detection for \todo highlighting (bug 1789)
+- improved parsing of section titles (bug 1817)
+- added shorter auto-save intervals (1 min, 2 min)
+- detection of user-local installation of MikTeX
+- cwl-format: suffix %plain disables possible semantics associated with an argument name
+- cwl-format: suffix %labeldef for definition of labels
+- cwl-format: %suffix notation takes precedence over detection by argument name
+- cwl-format: allow 'key' to be used in label if #l is set
+- replace babel german by ngerman in presentation wizard
+- highlight cursorEnums in script
+- support reading an application style sheet from stylesheet.qss
+- fix crash on qt4 if update check is sucessful
+- fix: auto-indent
+- fix: make insertion of tabs work with cursor mirrors (bug 1788)
+- fix: verbatim setting for \verb|abc| (bug 1795)
+- fix: update of save icon after SaveAll (bug 1808)
+- fix: dictionaries in extracted .oxt files not recognized (bug 1804)
+- fix: replace with regexp containing lookahead (bug 1779)
+- fix: keep indentation when using the graphics wizard (1816)
+- fix: quote replacement on formerly hidden child documents (1827)
+- fix: do not interpret double backslash within braces as column end in tabular environment (bug 1831)
+- fix: show a warning if file could not be saved
+- fix: correctly handle optional arguments in command definitions
+- fix: handling of \let arguments
+- fix: spellchecking of words with apostrophe
+- fix: visibility of option for system theme icons on Linux
+- fix: scripting: cursor.movePostition(n, Left/Right) across empty lines and beyond end of file
+- fix: running scripts from the macro window
+- fix: mixture of zoom and scroll on ctrl+mouse wheel (bug 1847)
+- fix: scrreprt detection
+- fix: editor font rendering in case of UI scaling (note: this fix is partial and does currently only apply if Options -> Advanced Editor -> Disable Line Cache is chosen)
+- fix: argument scanning when option contain key/val pairs
+- fix: editor hiding when updating a windowed pdf viewer which was enlarged
+before changing to windowed mode (Bug #1876)
+- fix: repetition checking for words followed by colon (bug 1884)
+- fix: position of completer when competion words become very large
+- fix: freeze while typing \texorpdfstring (bug 1898)
+- fix: script error on editor.search with options and callback (bug 1899)
+- fix: regExp replace in multi doc search
+- updated some cwl files
+
+
 TeXstudio 2.11.0
 ----------------
 - support two editors next to each other

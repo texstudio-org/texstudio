@@ -4679,8 +4679,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 	QDocumentLine l, l1 = m_doc->line(m_begLine), l2 = m_doc->line(m_endLine);
 
+	int origLine = m_begLine;
+	int origOffset = m_begOffset;
 	int &line = m_begLine;
 	int &offset = m_begOffset;
+
 	static QRegExp wordStart("\\b\\w+$"), wordEnd("^\\w+\\b");
 	static QRegExp wordOrCommandStart("\\\\?\\b\\w+$"), wordOrCommandEnd("^\\\\?\\w+\\b");
 
@@ -4765,13 +4768,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			if ( atStart() )
 				return false;
 
-			int remaining = offset;
-
 			do
 			{
-				if ( remaining >= count )
+				if ( offset >= count )  // cursorCol is larger than required count of left steps -> just reduce col
 				{
-					offset = remaining - count;
+					offset -= count;
 
 					const QString& textline = m_doc->line(line).text();
 					if (offset < textline.length())
@@ -4780,9 +4781,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 							offset--;
 
 					break;
-				} else if ( line == beg ) {
-					offset = 0;
-					break;
+				} else if ( line == beg ) {  // not enough way to move: undo (no partial operation)
+					line = origLine;
+					offset = origOffset;
+					return false;
 				}
 
 				do
@@ -4792,9 +4794,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 				//*line = *it;
 
-				count -= remaining + 1; // jumping a line is one char
-				offset = remaining = m_doc->line(line).length();
-			} while ( count && remaining );
+				count -= offset + 1; // +1: jumping a line is one char
+				offset = m_doc->line(line).length();
+			} while ( count );
 
 			refreshColumnMemory();
 
@@ -4811,7 +4813,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 
 			do
 			{
-				if ( remaining >= count )
+				if ( remaining >= count )  // enough line left -> just increase col
 				{
 					offset += count;
 
@@ -4822,9 +4824,10 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 							offset++;
 
 					break;
-				} else if ( (line + 1) == end ) {
-					offset = remaining;
-					break;
+				} else if ( (line + 1) == end ) {  // not enough way to move: undo (no partial operation)
+					line = origLine;
+					offset = origOffset;
+					return false;
 				}
 
 				do
@@ -4835,9 +4838,9 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 				//*line = *it;
 
 				offset = 0;
-				count -= remaining + 1;
+				count -= remaining + 1;  // +1: jumping a line is one char
 				remaining = m_doc->line(line).length();
-			} while ( count && remaining );
+			} while ( count );
 
 			refreshColumnMemory();
 
@@ -6363,6 +6366,7 @@ QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 bool QDocumentPrivate::m_fixedPitch;
 QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=0;
 double QDocumentPrivate::m_lineSpacingFactor = 1.0;
+int QDocumentPrivate::m_staticCachesLogicalDpiY = -1;// resolution for which the caches are valid (depends on OS gui scaling)
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
 int QDocumentPrivate::m_leading;// = m_fontMetrics.leading();
@@ -6394,7 +6398,8 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	_mac(0),
 	m_lineEnding(m_defaultLineEnding),
 	m_codec(m_defaultCodec),
-	m_oldLineCacheOffset(0), m_oldLineCacheWidth(0),
+	m_lineCacheXOffset(0), m_lineCacheWidth(0),
+	m_instanceCachesLogicalDpiY(-1),
 	m_forceLineWrapCalculation(false),
 	m_overwrite(false)
 {
@@ -6565,23 +6570,17 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
     //t.start();
 	QDocumentLineHandle *h;
 	bool inSel = false;
+
+	p->setFont(*m_font);
+	updateStaticCaches(p->device());
+	updateInstanceCaches(p->device(), cxt);
+
 	int i, realln, pos = 0, visiblePos = 0,
 		firstLine = qMax(0, cxt.yoffset / m_lineSpacing),
 		lastLine = qMax(0, firstLine + (cxt.height / m_lineSpacing));
 
 	if ( cxt.height % m_lineSpacing )
 		++lastLine;
-
-	p->setFont(*m_font);	
-
-	int lineCacheWidth = m_oldLineCacheWidth;
-	if(m_oldLineCacheOffset!=cxt.xoffset || m_oldLineCacheWidth < cxt.width) {
-		m_LineCache.clear();
-        m_LineCacheAlternative.clear();
-		if (m_width) lineCacheWidth = cxt.width;
-		else lineCacheWidth = (cxt.width+15) & (~16);         //a little bit larger if not wrapped
-		//qDebug("clear");
-	}
 
 	QFormatScheme* scheme = m_formatScheme;
 	if (!scheme) scheme = QDocument::defaultFormatScheme();
@@ -6808,10 +6807,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
            &&  (m_LineCache.contains(h)||m_LineCacheAlternative.contains(h))){
             if(imageCache){
                 QImage *px=m_LineCacheAlternative.object(h);
-                p->drawImage(m_oldLineCacheOffset,0,*px);
+                p->drawImage(m_lineCacheXOffset,0,*px);
             }else{
                 QPixmap *px=m_LineCache.object(h);
-                p->drawPixmap(m_oldLineCacheOffset,0,*px);
+                p->drawPixmap(m_lineCacheXOffset,0,*px);
             }
 		} else {
 			int ht=m_lineSpacing*(wrap+1 - pseudoWrap);
@@ -6822,10 +6821,10 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                 if(imageCache){
 #if QT_VERSION >= 0x050000
                     int pixelRatio=p->device()->devicePixelRatio();
-                    pi = new QImage(pixelRatio*lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
+                    pi = new QImage(pixelRatio*m_lineCacheWidth,pixelRatio*ht,QImage::Format_RGB888);
                     pi->setDevicePixelRatio(pixelRatio);
 #else
-                    pi = new QImage(lineCacheWidth,ht,QImage::Format_RGB888);
+                    pi = new QImage(m_lineCacheWidth,ht,QImage::Format_RGB888);
 #endif
                     if(fullSel){
                         pi->fill(selbg.color().rgb());
@@ -6836,10 +6835,12 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                 }else{
 #if QT_VERSION >= 0x050000
                     int pixelRatio=p->device()->devicePixelRatio();
-                    px = new QPixmap(pixelRatio*lineCacheWidth,pixelRatio*ht);
+                    px = new QPixmap(pixelRatio*m_lineCacheWidth,pixelRatio*ht);
                     px->setDevicePixelRatio(pixelRatio);
+                    // TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
+                    // correct drawing on secondary screens with different scaling factors.
 #else
-                    px = new QPixmap(lineCacheWidth,ht);
+                    px = new QPixmap(m_lineCacheWidth,ht);
 #endif
                     if(fullSel){
                         px->fill(selbg.color());
@@ -6858,9 +6859,9 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
 			} else if (fullSel){
 				pr->fillRect(0, 0, m_leftMargin, ht, bg);
-				pr->fillRect(m_leftMargin, 0, qMax(m_width,lineCacheWidth), ht, fullSel ? selbg : bg);
+				pr->fillRect(m_leftMargin, 0, qMax(m_width,m_lineCacheWidth), ht, fullSel ? selbg : bg);
 			} else
-				pr->fillRect(0, 0, lineCacheWidth, ht, bg);
+				pr->fillRect(0, 0, m_lineCacheWidth, ht, bg);
 
             int y=0;
             if(!useLineCache && visiblePos>pos)
@@ -6872,7 +6873,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
                 ht+=m_lineSpacing;
             }
 
-            h->draw(i, pr, cxt.xoffset, lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
+            h->draw(i, pr, cxt.xoffset, m_lineCacheWidth, m_selectionBoundaries, cxt.palette, fullSel,y,ht);
 
 			if (useLineCache) {
                 if(imageCache){
@@ -6921,8 +6922,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
         //qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
 
-	m_oldLineCacheOffset = cxt.xoffset;
-	m_oldLineCacheWidth = lineCacheWidth;
     //qDebug("painting done in %i ms...", t.elapsed());
 
 	//mark placeholder which will probably be removed
@@ -7354,19 +7353,7 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 
 
 	QFontMetrics fm(*m_font);
-	m_spaceWidth = fm.width(' ');
-	m_ascent = fm.ascent();
-	m_descent = fm.descent();
-	m_lineHeight = fm.height();
-	m_leading = fm.leading() + qRound((m_lineSpacingFactor-1.0)*m_lineHeight);
-	m_lineSpacing = m_leading+m_lineHeight;
-
-	if(m_lineHeight>m_lineSpacing) m_lineSpacing=m_lineHeight;
-	//m_lineHeight = m_ascent + m_descent - 2;
-
-	updateFormatCache();
-	//if ( !m_fixedPitch )
-	//	qDebug("unsafe computations...");
+	updateStaticCaches(0);
 
 	foreach ( QDocumentPrivate *d, m_documents )
 	{
@@ -7374,6 +7361,59 @@ void QDocumentPrivate::setFont(const QFont& f, bool forceUpdate)
 		d->setHeight();
 		d->m_LineCache.clear();
 		d->emitFontChanged();
+	}
+}
+
+/*!
+ * Check that the used caches are suitable for the given painter by checking its logicalDpiY
+ * If not, the cached information is updated / resetted.
+ * This will happen if screens or scaling is switched.
+ */
+void QDocumentPrivate::updateStaticCaches(const QPaintDevice *pd)
+{
+	if (!pd || m_staticCachesLogicalDpiY != pd->logicalDpiY()) {
+		const QPaintDevice *device = pd ? pd : QApplication::activeWindow();
+		if (device) {
+			//qDebug() << "invalidate static caches. old dpi:" << m_staticCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
+			m_staticCachesLogicalDpiY = device->logicalDpiY();
+		}
+
+		// need to get the font metrics in the context of the paint device to get correct UI scaling
+		QFontMetrics fm = QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));
+		m_spaceWidth = fm.width(' ');
+		m_ascent = fm.ascent();
+		m_descent = fm.descent();
+		m_lineHeight = fm.height();
+		m_leading = fm.leading() + qRound((m_lineSpacingFactor-1.0)*m_lineHeight);
+		m_lineSpacing = m_leading+m_lineHeight;
+		//if ( !m_fixedPitch )
+		//	qDebug("unsafe computations...");
+
+		if(m_lineHeight>m_lineSpacing) m_lineSpacing=m_lineHeight;
+
+		m_fmtWidthCache.clear();
+		m_fmtCharacterCache[0].clear();
+		m_fmtCharacterCache[1].clear();
+
+		updateFormatCache(device);
+	}
+}
+
+void QDocumentPrivate::updateInstanceCaches(const QPaintDevice *pd, QDocument::PaintContext &cxt)
+{
+	if (!pd || m_instanceCachesLogicalDpiY != pd->logicalDpiY() || m_lineCacheXOffset != cxt.xoffset || m_lineCacheWidth < cxt.width) {
+		const QPaintDevice *device = pd ? pd : QApplication::activeWindow();
+		if (device) {
+			//qDebug() << "invalidate instance caches. old dpi:" << m_instanceCachesLogicalDpiY << "new dpi:" << device->logicalDpiY();
+			m_instanceCachesLogicalDpiY = device->logicalDpiY();
+		}
+
+		m_LineCacheAlternative.clear();
+		m_LineCache.clear();
+
+		m_lineCacheXOffset = cxt.xoffset;
+		if (m_width) m_lineCacheWidth = cxt.width;
+		else m_lineCacheWidth = (cxt.width+15) & (~16);         //a little bit larger if not wrapped
 	}
 }
 
@@ -7523,8 +7563,7 @@ void QDocumentPrivate::drawText(QPainter& p, int fid, const QColor& baseColor, b
 	}
 }
 
-
-void QDocumentPrivate::updateFormatCache()
+void QDocumentPrivate::updateFormatCache(const QPaintDevice *pd)
 {
 	if ( !m_font )
 		return;
@@ -7537,7 +7576,7 @@ void QDocumentPrivate::updateFormatCache()
 	if ( !m_formatScheme )
 	{
 		m_fonts << *m_font;
-		m_fontMetrics << QFontMetrics(*m_font);
+		m_fontMetrics << QFontMetrics(*m_font, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
 		return;
 	}
 
@@ -7563,7 +7602,7 @@ void QDocumentPrivate::updateFormatCache()
 		}
 
 		m_fonts << f;
-		m_fontMetrics << QFontMetrics(f);
+		m_fontMetrics << QFontMetrics(f, const_cast<QPaintDevice *>(pd));  // const_cast: workaround because QFontMetrics() is missing the const qualifier
 	}
 
 	foreach ( QDocumentPrivate *d, m_documents )
@@ -8451,7 +8490,7 @@ void QDocumentPrivate::setWorkAround(QDocument::WorkAroundFlag workAround, bool 
 	if (newValue) m_workArounds |= workAround;
 	else m_workArounds &= ~workAround;
 	if (workAround == QDocument::DisableFixedPitchMode)
-		updateFormatCache();
+		updateFormatCache(QApplication::activeWindow());
 
 }
 

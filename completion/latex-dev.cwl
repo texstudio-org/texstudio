@@ -8,6 +8,9 @@
 \CheckCommand{cmd}[args][default]{def}#*
 \CheckCommand{cmd}[args]{def}#*
 \CheckCommand{cmd}{def}#*
+\ClassError{class}{text}#*
+\ClassInfo{class}{text}#*
+\ClassWarning{class}{text}#*
 \CurrentOption#*
 \DeclareFixedFont{cmd}{encoding}{family}{series}{shape}{size}#*
 \DeclareFontEncoding{encoding}{text-settings}{math-settings}#*
@@ -54,11 +57,11 @@
 \ProcessOptions#*
 \ProcessOptions*#*
 \ProvidesClass{name}#*
-\ProvidesClass{name}[release]#*
-\ProvidesFile{ma,e}#*
-\ProvidesFile{name}{release}#*
+\ProvidesClass{name}[release info]#*
+\ProvidesFile{name}#*
+\ProvidesFile{name}[release info]#*
 \ProvidesPackage{name}#*
-\ProvidesPackage{name}[release]#*
+\ProvidesPackage{name}[release info]#*
 \ProvideTextCommand{cmd}{encoding}[num][default]{definition}#*
 \RequirePackage[optionlist]{package}#*
 \RequirePackage[optionlist]{package}[release]#*
@@ -213,4 +216,5 @@
 \pdfpagewidth#*
 \pdflinkmargin#*
 \pdfthreadmargin#*
+\pdfminorversion#*
  

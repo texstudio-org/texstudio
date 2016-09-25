@@ -4,7 +4,7 @@
 
 TEMPLATE = app
 LANGUAGE = C++
-TARGET = 
+TARGET = gesymb-ng
 DEPENDPATH += .
 INCLUDEPATH += .
 CONFIG += qt

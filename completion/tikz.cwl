@@ -5,6 +5,8 @@
 \expandafter#*
 \tikzset#*
 \tikzoption{arg1}#*
+\tikzsetexternalprefix{prefix}#*
+\tikzexternalize#*
 \csname#*
 \tikzaddafternodepathoption{arg1}#*
 \tikzparentanchor#*

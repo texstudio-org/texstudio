@@ -40,7 +40,6 @@
 \end{addmargin}#*
 \end{addmargin*}#*
 \end{captionbeside}
-\end{captionbeside}[short]{title}[pos][width][offset]
 \end{labeling}
 \enlargethispage
 \extratitle{shorttitle}

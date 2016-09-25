@@ -1852,6 +1852,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                     continue;
                 if(tk.type==Tokens::punctuation && tk.subtype==Tokens::none)
                     continue;
+                if(tk.type==Tokens::symbol && tk.subtype==Tokens::none)
+                    continue; // don't blank symbol like '~'
                 temp.text.replace(tk.start,tk.length,QString(tk.length,' '));
             }
 
@@ -1910,23 +1912,6 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 			}
 		}
-
-		// start syntax checking
-		/*
-		if(latexLikeChecking && config->inlineSyntaxChecking) {
-			StackEnvironment env;
-			getEnv(i,env);
-			QString text=line.text();
-
-			QVector<int>fmts=line.getFormats();
-			for(int i=0;i<text.length() && i < fmts.size();i++){
-				if(fmts[i]==verbatimFormat || fmts[i]==commentFormat){
-					text[i]=QChar(' ');
-				}
-			}
-			SynChecker.putLine(line.handle(),env,false);
-		}
-		*/
 
 		// alternative context detection
 		QDocumentLineHandle *dlh = line.handle();
@@ -2000,6 +1985,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					addedOverlayCitation = true;
 				}
 			}// if latexLineCheking
+            int tkLength=tk.length;
 			if (tk.type == Tokens::word && (tk.subtype == Tokens::text || tk.subtype == Tokens::title || tk.subtype == Tokens::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
 				QString word = tk.getText();
                 if(tkNr+1 < tl.length()){
@@ -2010,6 +1996,18 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                         if(add=="."||add=="-"){
                             word+=add;
                             tkNr++;
+                            tkLength+=tk1.length;
+                        }
+                        if(add=="'"){
+                            if(tkNr+2 < tl.length()){
+                                Tokens tk2 = tl.at(tkNr+2);
+                                if(tk2.type==Tokens::word && tk2.start==(tk1.start+tk1.length)){
+                                    add+=tk2.getText();
+                                    word+=add;
+                                    tkNr+=2;
+                                    tkLength+=tk1.length+tk2.length;
+                                }
+                            }
                         }
                     }
                 }
@@ -2019,9 +2017,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				if (!speller->check(word) ) {
 					if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
 						continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
-					int l = tk.length;
-					//if (word.endsWith('.')) l--; // tk.length is only word without point
-					line.addOverlay(QFormatRange(tk.start, l, SpellerUtility::spellcheckErrorFormat));
+                    line.addOverlay(QFormatRange(tk.start, tkLength, SpellerUtility::spellcheckErrorFormat));
 					addedOverlaySpellCheckError = true;
 				}
 			}

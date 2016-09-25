@@ -267,7 +267,7 @@ void SpellerManager::setDictPaths(const QStringList &dictPaths)
 	emit dictPathChanged();
 }
 
-void SpellerManager::scanForDictionaries(const QString &path)
+void SpellerManager::scanForDictionaries(const QString &path, bool scansubdirs)
 {
 	if (path.isEmpty()) return;
     QDirIterator iterator(path);
@@ -281,6 +281,8 @@ void SpellerManager::scanForDictionaries(const QString &path)
 					continue;
 				dictFiles.insert(fi.baseName(), realDictFile);
 			}
+		} else if (scansubdirs) {
+			scanForDictionaries(iterator.filePath(), false);
 		}
 	}
 }

@@ -554,8 +554,30 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 	
 	int replaceCount = 0;
 	
-	if (hasOption(Replace) && again && !all) 
+	// replace
+	if (hasOption(Replace) && again && !all) {
+		bool replaceSelectedText = false;
 		if (m_regexp.exactMatch(m_cursor.selectedText()))  {
+			replaceSelectedText = true;
+		} else if (m_regexp.pattern().contains("(?=") or m_regexp.pattern().contains("(?!")) {
+			// special handling for lookahead: The selected text is not enough to match the regexp
+			// because the lookahead context is missing. Therefore we have to find matches to the
+			// whole line until we find the original selection. Only then, we know that the original
+			// selection is match and should be replaced.
+			int start = 0;
+			while (true) {
+				start = m_regexp.indexIn(m_cursor.line().text(), start);
+				if (start < 0)
+					break;
+				int end = start + m_regexp.matchedLength();
+				if ((start == m_cursor.startColumnNumber() && end == m_cursor.endColumnNumber()) ||
+				    (end == m_cursor.startColumnNumber() && start == m_cursor.endColumnNumber())) {
+					replaceSelectedText = true;
+				}
+				start = end;
+			}
+		}
+		if (replaceSelectedText) {
 			replaceCursorText(backward);
 			updateReplacementOverlays();
 			replaceCount++;
@@ -563,6 +585,9 @@ int QDocumentSearch::next(bool backward, bool all, bool again, bool allowWrapAro
 			//and if (foundCount) is true, it thinks already found something and doesn't restart from scope
 		}
 
+	}
+
+	// search next
 	//ensure that the current selection isn't searched
 	if ( m_cursor.hasSelection() ) {
 		if (m_cursor.selectionStart() == scope.selectionStart() &&

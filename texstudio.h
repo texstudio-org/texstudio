@@ -515,6 +515,7 @@ protected slots:
 	void enlargeEmbeddedPDFViewer();
 	void shrinkEmbeddedPDFViewer(bool preserveConfig = false);
 
+	void showStatusbar();
 	void viewCloseSomething();
 	void setFullScreenMode();
 	void viewAlignWindows();

@@ -1171,8 +1171,13 @@ void LatexCompleter::setContextWords(const QSet<QString> &newwords, const QStrin
 	listModel->setContextWords(newwords, context);
 }
 
+/*!
+ * \brief adjust width and position of the widget.
+ * \return BelowCursor if the calculated position is below the cursor, otherwise AboveCursor
+ */
 void LatexCompleter::adjustWidget()
 {
+	// adjust width
 	int newWordMax = 0;
 	QFont f = QApplication::font();
 	f.setItalic(true);
@@ -1184,12 +1189,28 @@ void LatexCompleter::adjustWidget()
 		if (temp > newWordMax) newWordMax = temp;
 	}
 	maxWordLen = newWordMax;
-	int wd = 200 > maxWordLen ? 200 : maxWordLen;
+	int width = qMax(200, maxWordLen);
 	QScrollBar *bar = list->verticalScrollBar();
 	if (bar && bar->isVisible()) {
-		wd += bar->width() * 4;
+		width += bar->width() * 4;
 	}
-	widget->resize(wd, 200);
+	widget->resize(width, 200);
+
+	// adjust position
+	QPoint offset;
+	bool isAboveCursor = false;
+	if (editor->getPositionBelowCursor(offset, widget->width(), widget->height(), isAboveCursor))
+		widget->move(editor->mapTo(qobject_cast<QWidget *>(parent()), offset));
+
+	// adjust visible tab bar depending on location relative to cursor
+	QTabBar *tbOn = (isAboveCursor) ? tbAbove : tbBelow;
+	QTabBar *tbOff = (isAboveCursor) ? tbBelow : tbAbove;
+	disconnect(tbOn, SIGNAL(currentChanged(int)), this, SLOT(changeView(int)));
+	disconnect(tbOff, SIGNAL(currentChanged(int)), this, SLOT(changeView(int)));
+	tbOn->show();
+	tbOff->hide();
+	tbOn->setCurrentIndex(config->preferedCompletionTab);
+	connect(tbOn, SIGNAL(currentChanged(int)), this, SLOT(changeView(int)));
 }
 
 void LatexCompleter::updateAbbreviations()
@@ -1245,28 +1266,12 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 		c.setColumnNumber(qMax(c.columnNumber(), c.anchorColumnNumber()));
 		editor->setCursor(c);
 	}
-	QPoint offset;
-	bool above = false;
-	if (!editor->getPositionBelowCursor(offset, widget->width(), widget->height(), above))
-		return;
 
 	//disable auto close char while completer is open
 	editorAutoCloseChars = editor->flag(QEditor::AutoCloseChars);
 	editor->setFlag(QEditor::AutoCloseChars, false);
 
-	//list->move(editor->mapTo(qobject_cast<QWidget*>(parent()),offset));
-	QTabBar *tbOn = above ? tbAbove : tbBelow;
-	QTabBar *tbOff = above ? tbBelow : tbAbove;
-	disconnect(tbOn, SIGNAL(currentChanged(int)), this, SLOT(changeView(int)));
-	disconnect(tbOff, SIGNAL(currentChanged(int)), this, SLOT(changeView(int)));
-	tbOn->show();
-	tbOff->hide();
-	tbOn->setCurrentIndex(config->preferedCompletionTab);
-	connect(tbOn, SIGNAL(currentChanged(int)), this, SLOT(changeView(int)));
-
 	completerInputBinding->setMostUsed(config->preferedCompletionTab, true);
-	widget->move(editor->mapTo(qobject_cast<QWidget *>(parent()), offset));
-	//widget->show();
 	bool handled = false;
 	if (forcedGraphic) {
 		if (!dirReader) {

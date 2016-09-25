@@ -142,7 +142,9 @@ HEADERS += texstudio.h \
     tests/utilsversion_t.h \
     unixutils.h \
     editors.h \
-	libqmarkedscrollbar/src/markedscrollbar.h
+    libqmarkedscrollbar/src/markedscrollbar.h \
+    flowlayout.h \
+    tests/latexstyleparser_t.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -237,7 +239,8 @@ SOURCES += main.cpp \
     bidiextender.cpp \
     unixutils.cpp \
     editors.cpp \
-    libqmarkedscrollbar/src/markedscrollbar.cpp
+    libqmarkedscrollbar/src/markedscrollbar.cpp \
+    flowlayout.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \

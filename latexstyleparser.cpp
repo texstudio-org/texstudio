@@ -173,191 +173,224 @@ void LatexStyleParser::addFile(QString filename)
 	mFilesAvailable.release();
 }
 
-QStringList LatexStyleParser::readPackage(QString fn, QStringList &parsedPackages)
+/*!
+ * \return "{arg1}..{argN}" where N=count. If with optional, return "[opt]{arg1}..{argN}"
+ */
+QString LatexStyleParser::makeArgString(int count, bool withOptional) const
 {
-	if (parsedPackages.contains(fn))
-		return QStringList();
-	QFile data(fn);
+	QString args;
+	if (withOptional) {
+		args.append("[opt]");
+	}
+	for (int j = 0; j < count; j++) {
+		args.append(QString("{arg%1}").arg(j + 1));
+	}
+	return args;
+}
+
+/*!
+ * \brief LatexStyleParser::parseLine
+ * \param line: the text line to parse
+ * \param inRequirePackage: context information: are we inside \\RequirePackage{ - This may be modified by the function.
+ * \param parsedPackages: context information. - This may be modified by the function.
+ * \param fileName: the file from which line comes
+ * \return a list of cwl commands
+ */
+QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePackage, QStringList &parsedPackages, const QString &fileName) const
+{
+	static const QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)(\\s*#1)?(\\s*#2)?(\\s*#3)?(\\s*#4)?(\\s*#5)?");
+	static const QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
+	static const QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]+)\\])?");
+	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]+)\\])?");
+	static const QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
+	static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
+	static QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");
+	rxRequire.setMinimal(true);
+	static const QRegExp rxRequireStart("\\\\RequirePackage\\s*\\{(.+)");
+	static const QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
+	static const QRegExp rxNewLength("\\\\newlength\\s*\\{\\\\(\\w+)\\}");
+	static const QRegExp rxNewCounter("\\\\newcounter\\s*\\{(\\w+)\\}");
+	static const QRegExp rxLoadClass("\\\\LoadClass\\s*\\{(\\w+)\\}");
 	QStringList results;
-	if (data.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		QTextStream stream(&data);
-		parsedPackages << fn;
-		QString line;
-		QRegExp rxDef("\\\\def\\s*(\\\\[\\w@]+)\\s*(#\\d+)?");
-		QRegExp rxLet("\\\\let\\s*(\\\\[\\w@]+)");
-		QRegExp rxCom("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*\\{(\\\\\\w+)\\}\\s*\\[?(\\d+)?\\]?");
-		QRegExp rxCom2("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?");
-		QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
-		QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
-		QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");
-		rxRequire.setMinimal(true);
-		QRegExp rxRequireStart("\\\\RequirePackage\\s*\\{(.+)");
-		QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
-		QRegExp rxNewLength("\\\\newlength\\s*\\{\\\\(\\w+)\\}");
-		QRegExp rxNewCounter("\\\\newcounter\\s*\\{(\\w+)\\}");
-		QRegExp rxLoadClass("\\\\LoadClass\\s*\\{(\\w+)\\}");
-		bool inReq = false;
-		while (!stream.atEnd()) {
-			line = stream.readLine();
-			line = LatexParser::cutComment(line);
-			if (line.startsWith("\\endinput"))
+	if (line.startsWith("\\endinput"))
+		return results;
+	if (inRequirePackage) {
+		int col = line.indexOf('}');
+		if (col > -1) {
+			QString zw = line.left(col);
+			foreach (QString elem, zw.split(',')) {
+				QString package = elem.remove(' ');
+				if (!package.isEmpty())
+					results << "#include:" + package;
+			}
+			inRequirePackage = false;
+		} else {
+			foreach (QString elem, line.split(',')) {
+				QString package = elem.remove(' ');
+				if (!package.isEmpty())
+					results << "#include:" + package;
+			}
+		}
+		return results;
+	}
+	if (rxDef.indexIn(line) > -1) {
+		QString name = rxDef.cap(1);
+		if (name.contains("@"))
+			return results;
+		int optionCount = 0;
+		for (int c = 2; c <= rxDef.captureCount(); c++) {
+			if (rxDef.cap(c).isEmpty())
 				break;
-			int options = 0;
-			if (inReq) {
-				int col = line.indexOf('}');
-				if (col > -1) {
-					QString zw = line.left(col);
-					foreach (QString elem, zw.split(',')) {
-						QString package = elem.remove(' ');
-						if (!package.isEmpty())
-							results << "#include:" + package;
-					}
-					inReq = false;
-				} else {
-					foreach (QString elem, line.split(',')) {
-						QString package = elem.remove(' ');
-						if (!package.isEmpty())
-							results << "#include:" + package;
-					}
+			optionCount++;
+		}
+		qDebug() << line << rxDef.capturedTexts() << optionCount;
+		name += makeArgString(optionCount) + "#S";
+		if (!results.contains(name))
+			results << name;
+		return results;
+	}
+	if (rxLet.indexIn(line) > -1) {
+		QString name = rxLet.cap(1);
+		if (name.contains("@"))
+			return results;
+		name.append("#S");
+		if (!results.contains(name))
+			results << name;
+		return results;
+	}
+	if (rxCom.indexIn(line) > -1) {
+		QString name = rxCom.cap(2);
+		if (name.contains("@"))
+			return results;
+		int optionCount = rxCom.cap(3).toInt(); //returns 0 if conversion fails
+		QString optionalArg = rxCom.cap(4);
+		if (!optionalArg.isEmpty()) {
+			optionCount--;
+			QString nameWithOpt = name + makeArgString(optionCount, true) + "#S";
+			if (!results.contains(nameWithOpt))
+				results << nameWithOpt;
+		}
+		name += makeArgString(optionCount) + "#S";
+		if (!results.contains(name))
+			results << name;
+		return results;
+	}
+	if (rxComNoBrace.indexIn(line) > -1) {
+		QString name = rxComNoBrace.cap(2);
+		if (name.contains("@"))
+			return results;
+		int optionCount = rxComNoBrace.cap(3).toInt(); //returns 0 if conversion fails
+		QString optionalArg = rxComNoBrace.cap(4);
+		if (!optionalArg.isEmpty()) {
+			optionCount--;
+			QString nameWithOpt = name + makeArgString(optionCount, true) + "#S";
+			if (!results.contains(nameWithOpt))
+				results << nameWithOpt;
+		}
+		name += makeArgString(optionCount) + "#S";
+		if (!results.contains(name))
+			results << name;
+		return results;
+	}
+	if (rxEnv.indexIn(line) > -1) {
+		QString name = rxEnv.cap(1);
+		if (name.contains("@"))
+			return results;
+		QString optionStr = rxEnv.cap(2);
+		//qDebug()<< name << ":"<< optionStr;
+		QString zw = "\\begin{" + name + "}#S";
+		if (!results.contains(zw))
+			results << zw;
+		zw = "\\end{" + name + "}#S";
+		if (!results.contains(zw))
+			results << zw;
+		return results;
+	}
+	if (rxInput.indexIn(line) > -1) {
+		QString name = rxInput.cap(1);
+		name = kpsewhich(name);
+		if (!name.isEmpty() && name != fileName) // avoid indefinite loops
+			results << readPackage(name, parsedPackages);
+		return results;
+	}
+	if (rxNewLength.indexIn(line) > -1) {
+		QString name = "\\" + rxNewLength.cap(1);
+		if (name.contains("@"))
+			return results;
+		if (!results.contains(name))
+			results << name;
+		return results;
+	}
+	if (rxNewCounter.indexIn(line) > -1) {
+		QString name = "\\the" + rxNewCounter.cap(1);
+		if (name.contains("@"))
+			return results;
+		if (!results.contains(name))
+			results << name;
+		return results;
+	}
+	if (rxDecMathSym.indexIn(line) > -1) {
+		QString name = "\\" + rxDecMathSym.cap(1);
+		if (name.contains("@"))
+			return results;
+		name.append("#Sm");
+		if (!results.contains(name))
+			results << name;
+		return results;
+	}
+	if (rxRequire.indexIn(line) > -1) {
+		QString arg = rxRequire.cap(1);
+		foreach (QString elem, arg.split(',')) {
+			QString package = elem.remove(' ');
+			if (!package.isEmpty())
+				results << "#include:" + package;
+		}
+		return results;
+	}
+	if (rxRequireStart.indexIn(line) > -1) {
+		QString arg = rxRequireStart.cap(1);
+		foreach (QString elem, arg.split(',')) {
+			QString package = elem.remove(' ');
+			if (!package.isEmpty())
+				results << "#include:" + package;
+		}
+		inRequirePackage = true;
+	}
+	if (rxLoadClass.indexIn(line) > -1) {
+		QString arg = rxLoadClass.cap(1);
+		if (!arg.isEmpty()) {
+			if (mPackageAliases.contains(arg))
+				foreach (QString elem, mPackageAliases.values(arg)) {
+					results << "#include:" + elem;
 				}
-				continue;
-			}
-			if (rxDef.indexIn(line) > -1) {
-				QString name = rxDef.cap(1);
-				if (name.contains("@"))
-					continue;
-				QString optionStr = rxDef.cap(2);
-				//qDebug()<< name << ":"<< optionStr;
-				options = optionStr.mid(1).toInt(); //returns 0 if conversion fails
-				for (int j = 0; j < options; j++) {
-					name.append(QString("{arg%1}").arg(j + 1));
-				}
-				name.append("#S");
-				if (!results.contains(name))
-					results << name;
-				continue;
-			}
-			if (rxLet.indexIn(line) > -1) {
-				QString name = rxLet.cap(1);
-				if (name.contains("@"))
-					continue;
-				name.append("#S");
-				if (!results.contains(name))
-					results << name;
-				continue;
-			}
-			if (rxCom.indexIn(line) > -1) {
-				QString name = rxCom.cap(2);
-				if (name.contains("@"))
-					continue;
-				QString optionStr = rxCom.cap(3);
-				//qDebug()<< name << ":"<< optionStr;
-				options = optionStr.toInt(); //returns 0 if conversion fails
-				for (int j = 0; j < options; j++) {
-					name.append(QString("{arg%1}").arg(j + 1));
-				}
-				name.append("#S");
-				if (!results.contains(name))
-					results << name;
-				continue;
-			}
-			if (rxCom2.indexIn(line) > -1) {
-				QString name = rxCom2.cap(2);
-				if (name.contains("@"))
-					continue;
-				QString optionStr = rxCom2.cap(3);
-				//qDebug()<< name << ":"<< optionStr;
-				options = optionStr.toInt(); //returns 0 if conversion fails
-				for (int j = 0; j < options; j++) {
-					name.append(QString("{arg%1}").arg(j + 1));
-				}
-				name.append("#S");
-				if (!results.contains(name))
-					results << name;
-				continue;
-			}
-			if (rxEnv.indexIn(line) > -1) {
-				QString name = rxEnv.cap(1);
-				if (name.contains("@"))
-					continue;
-				QString optionStr = rxEnv.cap(2);
-				//qDebug()<< name << ":"<< optionStr;
-				QString zw = "\\begin{" + name + "}#S";
-				if (!results.contains(zw))
-					results << zw;
-				zw = "\\end{" + name + "}#S";
-				if (!results.contains(zw))
-					results << zw;
-				continue;
-			}
-			if (rxInput.indexIn(line) > -1) {
-				QString name = rxInput.cap(1);
-				name = kpsewhich(name);
-				if (!name.isEmpty() && name != fn) // avoid indefinite loops
-					results << readPackage(name, parsedPackages);
-				continue;
-			}
-			if (rxNewLength.indexIn(line) > -1) {
-				QString name = "\\" + rxNewLength.cap(1);
-				if (name.contains("@"))
-					continue;
-				if (!results.contains(name))
-					results << name;
-				continue;
-			}
-			if (rxNewCounter.indexIn(line) > -1) {
-				QString name = "\\the" + rxNewCounter.cap(1);
-				if (name.contains("@"))
-					continue;
-				if (!results.contains(name))
-					results << name;
-				continue;
-			}
-			if (rxDecMathSym.indexIn(line) > -1) {
-				QString name = "\\" + rxDecMathSym.cap(1);
-				if (name.contains("@"))
-					continue;
-				name.append("#Sm");
-				if (!results.contains(name))
-					results << name;
-				continue;
-			}
-			if (rxRequire.indexIn(line) > -1) {
-				QString arg = rxRequire.cap(1);
-				foreach (QString elem, arg.split(',')) {
-					QString package = elem.remove(' ');
-					if (!package.isEmpty())
-						results << "#include:" + package;
-				}
-				continue;
-			}
-			if (rxRequireStart.indexIn(line) > -1) {
-				QString arg = rxRequireStart.cap(1);
-				foreach (QString elem, arg.split(',')) {
-					QString package = elem.remove(' ');
-					if (!package.isEmpty())
-						results << "#include:" + package;
-				}
-				inReq = true;
-			}
-			if (rxLoadClass.indexIn(line) > -1) {
-				QString arg = rxLoadClass.cap(1);
-				if (!arg.isEmpty()) {
-					if (mPackageAliases.contains(arg))
-						foreach (QString elem, mPackageAliases.values(arg)) {
-							results << "#include:" + elem;
-						}
-					else
-						results << "#include:" + arg;
-				}
-				continue;
-			}
-		} // while line
-	} // open data
+			else
+				results << "#include:" + arg;
+		}
+		return results;
+	}
 	return results;
 }
 
-QString LatexStyleParser::kpsewhich(QString name, QString dirName)
+QStringList LatexStyleParser::readPackage(QString fileName, QStringList &parsedPackages) const
+{
+	if (parsedPackages.contains(fileName))
+		return QStringList();
+	QFile data(fileName);
+	QStringList results;
+	if (data.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QTextStream stream(&data);
+		parsedPackages << fileName;
+		QString line;
+		bool inRequirePackage = false;
+		while (!stream.atEnd()) {
+			line = LatexParser::cutComment(stream.readLine());
+			results << parseLine(line, inRequirePackage, parsedPackages, fileName);
+		}
+	}
+	return results;
+}
+
+QString LatexStyleParser::kpsewhich(QString name, QString dirName) const
 {
 	if (name.startsWith("."))
 		return "";  // don't check .sty/.cls
@@ -380,7 +413,7 @@ QString LatexStyleParser::kpsewhich(QString name, QString dirName)
 	return fn;
 }
 
-QStringList LatexStyleParser::readPackageTexDef(QString fn)
+QStringList LatexStyleParser::readPackageTexDef(QString fn) const
 {
 	if (!fn.endsWith(".sty"))
 		return QStringList();
@@ -445,7 +478,7 @@ QStringList LatexStyleParser::readPackageTexDef(QString fn)
 	return args;
 }
 
-QStringList LatexStyleParser::readPackageTracing(QString fn)
+QStringList LatexStyleParser::readPackageTracing(QString fn) const
 {
 	if (!fn.endsWith(".sty"))
 		return QStringList();

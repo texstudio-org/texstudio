@@ -94,6 +94,8 @@ class QCE_EXPORT QDocumentPrivate
         static void setFontSizeModifier(int m, bool forceUpdate = false);
 protected:
         static void setFont(const QFont& f, bool forceUpdate = false);
+		static void updateStaticCaches(const QPaintDevice *pd);
+		void updateInstanceCaches(const QPaintDevice *pd, QDocument::PaintContext &cxt);
 
 public:
 		void beginChangeBlock();
@@ -199,7 +201,7 @@ public:
 		void emitHeightChanged();
 		void emitFontChanged();
 		
-		static void updateFormatCache();
+		static void updateFormatCache(const QPaintDevice *pd);
 		void setFormatScheme(QFormatScheme *f);
 		void tunePainter(QPainter *p, int fid);
 
@@ -260,6 +262,9 @@ public:
 		static QDocument::WhiteSpaceMode m_showSpaces;
 		static QDocument::LineEnding m_defaultLineEnding;
 		static QTextCodec* m_defaultCodec;
+
+		// caches
+		static int m_staticCachesLogicalDpiY;
 		static int m_lineHeight;
 		static int m_lineSpacing;
 		static int m_spaceWidth;
@@ -295,7 +300,8 @@ public:
 
         QCache<QDocumentLineHandle*,QImage> m_LineCacheAlternative;
         QCache<QDocumentLineHandle*,QPixmap> m_LineCache;
-		int m_oldLineCacheOffset, m_oldLineCacheWidth;
+		int m_lineCacheXOffset, m_lineCacheWidth;
+		int m_instanceCachesLogicalDpiY;
 
 		QList<QDocumentCursorHandle*> m_autoUpdatedCursorList;
 		QHash<QDocumentCursorHandle*, int> m_autoUpdatedCursorIndex;

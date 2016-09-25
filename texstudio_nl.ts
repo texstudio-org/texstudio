@@ -748,13 +748,13 @@ Wens je dat TeXstudio alle commandopaden aanpast van  /usr/texbin/ naar
         <location filename="additionaltranslations.cpp" line="104"/>
         <location filename="additionaltranslations.cpp" line="106"/>
         <source>num</source>
-        <translation type="unfinished"/>
+        <translation>num</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <location filename="additionaltranslations.cpp" line="107"/>
         <source>den</source>
-        <translation type="unfinished"/>
+        <translation>den</translation>
     </message>
 </context>
 <context>
@@ -2489,7 +2489,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4175"/>
         <source>Render Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Render Backend:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4185"/>
@@ -2846,37 +2846,37 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="22"/>
         <source>&amp;Math</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Math</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation type="unfinished"/>
+        <translation>Wiskunde vergelijking</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="24"/>
         <source>Math &amp;Functions</source>
-        <translation type="unfinished"/>
+        <translation>Wiskunde &amp;Functies</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>Math Font St&amp;yles</source>
-        <translation type="unfinished"/>
+        <translation>Wiskunde lettertypestijl</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation type="unfinished"/>
+        <translation>Wiskunde stacking symbolen</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Accents</source>
-        <translation type="unfinished"/>
+        <translation>Wiskunde &amp;Accenten</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="28"/>
         <source>Math S&amp;paces</source>
-        <translation type="unfinished"/>
+        <translation>Wiskunde Spaties</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
@@ -3256,7 +3256,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="100"/>
         <source>Inline math mode $...$</source>
-        <translation type="unfinished"/>
+        <translation>Inline wiskunde modus $...$</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
@@ -9827,7 +9827,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1022"/>
         <source>&amp;Math</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Math</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1026"/>

@@ -117,7 +117,7 @@
 \fontdimen#*
 \fontname#*
 \footins#*
-\footnote
+\footnote#*
 \footnoterule
 \frenchspacing#*
 \futurelet#*
@@ -194,6 +194,8 @@
 \ifvmode..\else..\fi#*
 \ifvoid..\else..\fi#*
 \ifx..\else..\fi#*
+\ifcase..\or..\fi#*
+\ifcase..\or..\else..\fi#*
 \ignorespaces#*
 \immediate#*
 \indent#*
@@ -216,7 +218,6 @@
 \left..\right
 \leftskip#*
 \leqno
-\let#*
 # for command interpretation
 \let{cmd}{def}#dS
 \limits#*

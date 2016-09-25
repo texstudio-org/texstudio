@@ -636,6 +636,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("GUI/SymbolSize", &guiSymbolGridIconSize, 32);
 	registerOption("GUI/SecondaryToobarIconSize", &guiSecondaryToolbarIconSize, 16);
 
+	registerOption("View/ShowStatusbar", &showStatusbar, true);
+
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
 	registerOption("Interface/Config Riddled", &configRiddled, false);
 	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
@@ -879,6 +881,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 		completerConfig->words.unite(pck.completionWords);
 		latexParser.optionCommands.unite(pck.optionCommands);
 		latexParser.specialTreatmentCommands.unite(pck.specialTreatmentCommands);
+        latexParser.specialDefCommands.unite(pck.specialDefCommands);
 		latexParser.environmentAliases.unite(pck.environmentAliases);
 		latexParser.commandDefs.unite(pck.commandDescriptions);
 		//ltxCommands->possibleCommands.unite(pck.possibleCommands); // qt error, does not work properly
@@ -1253,10 +1256,12 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	//Autosave
 	if (autosaveEveryMinutes == 0) confDlg->ui.comboBoxAutoSave->setCurrentIndex(0);
-	if (0 < autosaveEveryMinutes && autosaveEveryMinutes < 6) confDlg->ui.comboBoxAutoSave->setCurrentIndex(1);
-	if (5 < autosaveEveryMinutes && autosaveEveryMinutes < 11) confDlg->ui.comboBoxAutoSave->setCurrentIndex(2);
-	if (10 < autosaveEveryMinutes && autosaveEveryMinutes < 21) confDlg->ui.comboBoxAutoSave->setCurrentIndex(3);
-	if (20 < autosaveEveryMinutes) confDlg->ui.comboBoxAutoSave->setCurrentIndex(4);
+	if (0 < autosaveEveryMinutes && autosaveEveryMinutes <= 1) confDlg->ui.comboBoxAutoSave->setCurrentIndex(1);
+	if (1 < autosaveEveryMinutes && autosaveEveryMinutes <= 2) confDlg->ui.comboBoxAutoSave->setCurrentIndex(2);
+	if (2 < autosaveEveryMinutes && autosaveEveryMinutes <= 5) confDlg->ui.comboBoxAutoSave->setCurrentIndex(3);
+	if (5 < autosaveEveryMinutes && autosaveEveryMinutes <= 10) confDlg->ui.comboBoxAutoSave->setCurrentIndex(4);
+	if (10 < autosaveEveryMinutes && autosaveEveryMinutes <= 20) confDlg->ui.comboBoxAutoSave->setCurrentIndex(5);
+	if (20 < autosaveEveryMinutes) confDlg->ui.comboBoxAutoSave->setCurrentIndex(6);
 	//--build things
 	//normal commands
 	pdflatexEdit = 0;
@@ -1475,7 +1480,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 		//autosave
 		QList<int> times;
-		times << 0 << 5 << 10 << 20 << 60;
+		times << 0 << 1 << 2 << 5 << 10 << 20 << 60;
 		autosaveEveryMinutes = times.value(confDlg->ui.comboBoxAutoSave->currentIndex(), 0);
 		// update macros menu to update quote replacement
 		if (changedProperties.contains(&replaceQuotes)) {

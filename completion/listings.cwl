@@ -3,8 +3,9 @@
 \begin{lstlisting}#V
 \begin{lstlisting}[kv-list]
 \end{lstlisting}
-\lstalias{alias}{language}
-\lstdefinestyle{style name}{kv-list}
+\lstalias{alias}{language}#*
+\lstdefinelanguage{language name}{kv-list}#*
+\lstdefinestyle{style name}{kv-list}#*
 \lstinline|%<code%>|
 \lstinline[kv-list]|%<code%>|
 \lstinputlisting{filename}
@@ -13,8 +14,8 @@
 \lstlistlistingname
 \lstlistoflistings
 \lstname
-\lstnewenvironment{name}[params][default]{starting code}{ending code}
-\lstnewenvironment{name}[params]{starting code}{ending code}
-\lstnewenvironment{name}{starting code}{ending code}
-\lstset{kv-list}
+\lstnewenvironment{name}[params][default]{starting code}{ending code}#*
+\lstnewenvironment{name}[params]{starting code}{ending code}#*
+\lstnewenvironment{name}{starting code}{ending code}#*
+\lstset{kv-list}#*
 \thelstlisting

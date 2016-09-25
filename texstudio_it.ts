@@ -534,7 +534,7 @@
     <message>
         <location filename="buildmanager.cpp" line="326"/>
         <source>Makeglossaries</source>
-        <translation type="unfinished"/>
+        <translation>Makeglossaries</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="327"/>
@@ -655,17 +655,17 @@ Vuoi che TeXstudio cambi tutti i percorsi dei comandi da /usr/texbin/ a
         <location filename="buildmanager.cpp" line="1412"/>
         <location filename="buildmanager.cpp" line="1425"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Assicurati di aver installato una distribuzione (La)Tex &lt;/b&gt; es. MiKTeX o TeX Live, e di aver settato il percorso corretto sulla pagina di configurazione comandi.&lt;br&gt;Un&apos;editor (La)Tex come TeXstudio non può lavorare senza i comandi (La)Tex forniti dalla distribuzione stessa.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1421"/>
         <source>Error: One command expansion invalid.</source>
-        <translation type="unfinished"/>
+        <translation>Errore: Un comando di espansione non valido</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1422"/>
         <source>Parent Command</source>
-        <translation type="unfinished"/>
+        <translation>Comando superiore</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1423"/>
@@ -902,7 +902,10 @@ Vuoi che TeXstudio cambi tutti i percorsi dei comandi da /usr/texbin/ a
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Definisce i tipi di notifiche di aggiornamento che riceverai:
+- Stable Releases: Scegli questo se la stabilità è la più importante.
+- Release Candidates: Sono vicine al futuro rilascio in termini di caratteristiche e stabilità. Scegli questa per avere un&apos;anteprima dei rilasci futuri e per aiutarci testando la versione prima che sia pubblicata come rilascio ufficiale. (Le Stable releases sono comunque notificate)
+- Development Versions: Contiene le ultime caratteristiche, ma potrebbe essere instabile.(Le Stable releases e le Release Candidates sono comunque notificate).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="530"/>
@@ -1079,7 +1082,14 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Sostituisce le variabili d&apos;ambiente nei comandi. Il comportamento e specifico per SO
+
+Windows:
+Le variabili sono scritte come: %MYVAR%. Nessuna differenza tra minuscole e maiuscole.
+
+Linux, OS X:
+Le variabili sono scritte come: %MYVAR%. C&apos;è differenza tra minuscole e maiuscole.
+</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1016"/>
@@ -1176,7 +1186,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1185"/>
         <source>This shows all actions on the currently edited toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Mostra tutte le azioni sulla barra strumenti in modifica.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1210"/>
@@ -1196,12 +1206,12 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1260"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Qui puoi scegliere una lista di comandi che possono essere mappati sulla barra strumenti.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1267"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Mostra le azioni disponibili da mappare su una barra strumenti.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1306"/>
@@ -1233,17 +1243,17 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1357"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Cambia lo scaling della barra degli strumenti orizzontale (per monitor ad alta risoluzione).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1382"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Cambia la scalatura della griglia dei simboli (per display ad alta risoluzione).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1426"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Cambia la scalatura della barra strumenti verticalei (per display ad alta risoluzione).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1483"/>
@@ -1305,7 +1315,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="1593"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
-        <translation type="unfinished"/>
+        <translation>Analizza LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1600"/>
@@ -1562,12 +1572,12 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="2129"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation type="unfinished"/>
+        <translation>Selezione doppio click: Include il backslash iniziale</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2136"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Controllo ortografico via menu contestuale:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2143"/>
@@ -1587,7 +1597,7 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
     <message>
         <location filename="configdialog.ui" line="2164"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Sovrascrive Parentesi Aperta Seguita da un Segnaposto</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2172"/>
@@ -1623,7 +1633,8 @@ Poi, puoi selezionare una nuova scorciatoia da tastiera in uno dei modi seguenti
         <location filename="configdialog.ui" line="2212"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Quando si usano caratteri unicode nel testo sorgente, LaTex deve 
+ancora convertirli in caratteri. Finchè unicode non sarà supportato nativamente in LaTex dovrai includerenel tuo documento i pacchetti appropriati per i caratteri unicode.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2216"/>
@@ -1633,7 +1644,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2223"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"/>
+        <translation>Mostra i log markers quando cliccato su elemento di log</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2230"/>
@@ -1688,7 +1699,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2308"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"/>
+        <translation>Mostra elementi nei commenti</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2315"/>
@@ -1778,7 +1789,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2489"/>
         <source>Automatically switch keyboard layout: </source>
-        <translation type="unfinished"/>
+        <translation>Cambia automaticamente layout tasiera:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2496"/>
@@ -2724,7 +2735,7 @@ Desideri proseguire comunque?</translation>
     <message>
         <location filename="configdialog.cpp" line="516"/>
         <source>(option filter)</source>
-        <translation type="unfinished"/>
+        <translation>(filtro opzioni)</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="644"/>
@@ -2979,7 +2990,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="46"/>
         <source>\begin{center}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{centrato}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="47"/>
@@ -2994,7 +3005,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="49"/>
         <source>\begin{quote}</source>
-        <translation type="unfinished"/>
+        <translation>\bign{citazione}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="50"/>
@@ -3014,12 +3025,12 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="53"/>
         <source>\begin{table}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{tabella}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="54"/>
         <source>\begin{figure}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{immagine}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="55"/>
@@ -3044,7 +3055,7 @@ Disattiva le opzioni avanzate per visualizzare solo le impostazioni più comuni.
     <message>
         <location filename="additionaltranslations.cpp" line="58"/>
         <source>\begin{description}</source>
-        <translation type="unfinished"/>
+        <translation>\begin{descrizione}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="59"/>
@@ -5964,7 +5975,7 @@ You can now enter the password:</source>
     <message>
         <location filename="buildmanager.cpp" line="2295"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Assicurati di aver installato una distribuzione (La)Tex &lt;/b&gt; es. MiKTeX o TeX Live, e di aver settato il percorso corretto sulla pagina di configurazione comandi.&lt;br&gt;Un&apos;editor (La)Tex come TeXstudio non può lavorare senza i comandi (La)Tex forniti dalla distribuzione stessa.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2299"/>

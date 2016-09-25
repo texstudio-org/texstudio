@@ -6,7 +6,7 @@
 #include "codesnippet.h"
 
 const QString CommonEOW = QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
-const QString Punctation = "!():\"?,.;-";
+const QString Punctation = "!():\"?,.;-~";
 const QString EscapedChars = "%&_";
 const QString CharacterAlteringChars = "\"'^`";
 
@@ -198,6 +198,14 @@ QList<QPair<QString,QString> > latexToPlainWordReplaceList =
 //	<< QPair<QString, QString> ("\"\"","") redunant
  << QPair<QString, QString> ("\\",""); // eliminating backslash which might remain from accents like \"a ...
 */
+/*!
+ * \brief transformCharacter
+ * Transform a character from a tex encoded to utf
+ * e.g. "a -> ä
+ * \param c
+ * \param context
+ * \return tranformed character
+ */
 QChar transformCharacter(const QChar &c, const QChar &context)
 {
 	// *INDENT-OFF*  (astyle-config)
@@ -434,6 +442,16 @@ QString textToLatex(const QString &text)
 	return result;
 }
 
+
+int startOfArg(const QString &s, int index) {
+	for (int i=index; i < s.length(); i++) {
+		if (s.at(i).isSpace()) continue;
+		if (s.at(i) == '{') return i;
+		return -1;
+	}
+	return -1;
+}
+
 /*!
  * Parses a Latex string to a plain string.
  * Specifically, this substitues \texorpdfstring and removes explicit hyphens.
@@ -444,18 +462,31 @@ QString latexToText(QString s)
 	int start, stop;
 	start = s.indexOf("\\texorpdfstring");
 	while (start >= 0) {
-		stop = start + 15;
-		stop = findClosingBracket(s, stop);
-		if (stop < 0) return s;
-		s.remove(start, stop - start + 1);
-		if (s[start] == '{') {
-			s.remove(start, 1); // 2nd opening bracket
-			stop = findClosingBracket(s, start);
-			s.remove(stop, 1);  // 2nd closing bracket
-		}
-		start = s.indexOf("\\texorpdfstring");
+		// first arg
+		int i = startOfArg(s, start + 15);
+        if (i < 0){
+            if(start+15>=s.length()){ // argument is only \texorpdfstring
+                s.clear();
+                break;
+            }
+            continue;  // no arguments for \\texorpdfstring
+        }
+		i++;
+		stop = findClosingBracket(s, i);
+		if (stop < 0) continue;
+
+		// second arg
+		i = startOfArg(s, stop + 1);
+		if (i < 0) continue;  // no arguments for \\texorpdfstring
+		i++;
+		stop = findClosingBracket(s, i);
+		if (stop < 0) continue;
+
+		s.remove(stop, 1);
+		s.remove(start, i - start);
+		start = s.indexOf("\\texorpdfstring", start);
 	}
-	// remove expicit hyphenations
+	// remove discretionary  hyphenations
 	s.remove("\\-");
 	return s;
 }
@@ -2195,9 +2226,17 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				}
 				if (package.commandDescriptions.contains(cmd)) {
 					CommandDescription cd_old = package.commandDescriptions.value(cmd);
-					if (cd_old.args > cd.args || cd_old.optionalArgs > cd.optionalArgs) {
+                    if(cd_old.args == cd.args && cd_old.optionalArgs > cd.optionalArgs ){
+                        cd = cd_old;
+                    }
+                    if (cd_old.args < cd.args && cd_old.args>0){
 						cd = cd_old;
+                        qDebug()<<"inconsistent command arguments:"<<cmd<<fileName;
+                        // commands with different numbers of mandatory arguments are not distinguished by the parser and lead to unreliable results.
+                        // the lower numer of mandatory arguments is handled only (however not an command with zero arguments)
+                        // this leads to incomplete handling e.g. for hyperref (which disregards any standards and distinguishes command based on the presence of an optional argument)
 					}
+
 				}
 				package.commandDescriptions.insert(cmd, cd);
 
@@ -2287,7 +2326,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 				if (valid.contains('V')) { // verbatim command
 					if (res > -1) {
 						package.possibleCommands["%verbatimEnv"] << rxCom.cap(3);
-                        env<< "verbatim";
+                                                env<< "verbatim";
 					}
 					valid.remove('V');
 				}
@@ -2816,10 +2855,16 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 	}
     int cnt=0;
 	int k = 0;
+    int level=0;
+    if(!tl.isEmpty()){
+        level=tl.first().level;
+    }
     while( (lineNr)<doc->lineCount() && cnt<RUNAWAYLIMIT){
         QString line = dlh->text();
         for (int i = 0; i < tl.length(); i++) {
             Tokens tk = tl.at(i);
+            if(tk.level>level)
+                continue; //only use tokens from the same option-level
 
             if (tkTypes.contains(tk.type)) {
                 QString result;
@@ -3116,6 +3161,65 @@ QString Tokens::getText()
 	dlh->unlock();
 	return result;
 }
+Tokens::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
+{
+	int i = arg.indexOf('%');
+	// type from suffix
+	if (i >= 0) {
+		QString suffix = arg.mid(i);
+		if (suffix == "%plain") return Tokens::generalArg;
+		if (suffix == "%text") return Tokens::text;
+		if (suffix == "%title") return Tokens::title;
+		if (suffix == "%l") return Tokens::width;
+		if (suffix == "%cmd") return Tokens::def;
+		if (suffix == "%keyvals") return Tokens::keyValArg;
+		if (suffix == "%ref") return Tokens::labelRef;
+		if (suffix == "%labeldef") return Tokens::label;
+		if (suffix == "%special") {
+			Tokens::TokenType type = Tokens::specialArg;
+			arg.chop(8);
+			if (LatexParserInstance) {
+				if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + arg)) {
+					int cnt = LatexParserInstance->mapSpecialArgs.count();
+					LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
+					type = Tokens::TokenType(type + cnt);
+				}
+			}
+			return type;
+		}
+	}
+	// type from name
+	if (arg == "text") return Tokens::text;
+	if (arg == "title" || arg == "short title" ) return Tokens::title;
+	if (arg == "package") return Tokens::package;
+	if (arg == "cols" || arg == "preamble") return Tokens::colDef;
+	if (arg == "color") return Tokens::color;
+	if (arg == "width" || arg == "length" || arg == "height") return Tokens::width;
+	if (arg == "bib files" || arg == "bib file") return Tokens::bibfile;
+	if (arg == "command" || arg == "cmd") return Tokens::def;
+	if (arg == "def" || arg == "definition" || arg == "begdef" || arg == "enddef") return Tokens::definition; // actual definition: \newcommand def defArgNumber definition
+	if (arg == "args") return Tokens::defArgNumber;
+	if (arg == "citekey") return Tokens::newBibItem;
+	if (arg == "default") return Tokens::optionalArgDefinition;
+	if (arg == "newlength") return Tokens::defWidth;
+	if (arg == "file") return Tokens::file;
+	if (arg == "imagefile") return Tokens::imagefile;
+	if (arg.contains("URL")) return Tokens::url;
+	if (arg.contains("keys") || arg == "keyvals" || arg == "%<options%>") return Tokens::keyValArg;
+	if (arg == "options") return Tokens::packageoption;
+	if (arg == "class") return Tokens::documentclass;
+	if (arg == "beamertheme") return Tokens::beamertheme;
+	if (arg == "keylist" || arg == "bibid") return Tokens::bibItem;
+	if (arg == "placement" || arg == "position") return Tokens::placement;
+    if (arg == "key"  && definition.contains('l')) return Tokens::label;
+	if (arg == "key" || arg == "key1" || arg == "key2") return Tokens::labelRef;
+	if ((arg == "envname" || arg=="environment name") && definition.contains('N')) return Tokens::newTheorem;
+	if ((arg == "label" || arg == "%<label%>") && definition.contains('r')) return Tokens::labelRef;  // reference with keyword label
+	if ((arg == "label" || arg == "%<label%>") && definition.contains('l')) return Tokens::label;
+	if (arg == "labellist") return Tokens::labelRefList;
+	return Tokens::generalArg;
+}
+
 /*!
 \brief extract command defintion from cwl line
 
@@ -3142,6 +3246,7 @@ argument name | description
 \em imagefile|file name of an image
 \em key|label/ref key
 \em label with option #r or key ending with \em \%ref|ref key
+\em label with option #l or key ending with \em \%labeldef|defines a label
 \em labellist|list of labels as employed by cleveref
 <em>bib file</em> or <em>bib files</em>|bibliography file
 \em class|document class
@@ -3149,6 +3254,7 @@ argument name | description
 \em beamertheme|beamer theme, e.g. \\usebeamertheme{beamertheme}
 \em keys,\em keyvals or \em \%<options\%>|key/value list
 \em envname|environment name for \\newtheorem, e.g. \\newtheorem{envname}#N (classification N needs to be present !)
+\em ends with %plain|ignore a special meaning of the key
 
  * \param line command definition until '#'
  * \param definition context information right of '#'
@@ -3171,110 +3277,16 @@ CommandDescription extractCommandDef(QString line, QString definition)
 		int j = specialChars.indexOf(c);
 		QChar closingChar = specialChars2.at(j);
 		i = line.indexOf(closingChar);
-		QString def = line.mid(1, i - 1);
+		QString arg = line.mid(1, i - 1);
 		Tokens::TokenType type = Tokens::generalArg; // assume that unknown argument is not a text
 		if (loop == 1 && command == "\\begin") {
 			type = Tokens::beginEnv;
-		}
-		if (loop == 1 && command == "\\end") {
+		} else if (loop == 1 && command == "\\end") {
 			type = Tokens::env;
+		} else {
+			type = tokenTypeFromCwlArg(arg, definition);
 		}
-		if (def == "text" || def.endsWith("%text")) {
-			type = Tokens::text;
-		}
-        if (def == "title" || def == "short title"|| def.endsWith("%title")) {
-			type = Tokens::title;
-		}
-		if (def == "package") {
-			type = Tokens::package;
-		}
-		if (def == "cols" || def == "preamble") {
-			type = Tokens::colDef;
-		}
-		if (def == "color") {
-			type = Tokens::color;
-		}
-		if (def == "width" || def == "length" || def == "height" || def.endsWith("%l")) {
-			type = Tokens::width;
-		}
-		if (def == "bib files" || def == "bib file") {
-			type = Tokens::bibfile;
-		}
-		if (def == "command" || def == "cmd" || def.endsWith("%cmd")) {
-			type = Tokens::def;
-		}
-		if (def == "def" || def == "definition" || def == "begdef" || def == "enddef") {
-			type = Tokens::definition; // actual definition: \newcommand def defArgNumber definition
-		}
-		if (def == "args") {
-			type = Tokens::defArgNumber;
-		}
-		if (def == "citekey") {
-			type = Tokens::newBibItem;
-		}
-		if (def == "default") {
-			type = Tokens::optionalArgDefinition;
-		}
-		if (def == "newlength") {
-			type = Tokens::defWidth;
-		}
-		if (def == "file") {
-			type = Tokens::file;
-		}
-		if (def == "imagefile") {
-			type = Tokens::imagefile;
-		}
-		if (def.contains("URL")) {
-			type = Tokens::url;
-		}
-		if (def.contains("keys") || def == "keyvals" || def == "%<options%>" || def.endsWith("%keyvals")) {
-			type = Tokens::keyValArg;
-		}
-		if (def.endsWith("%special")) {
-			type = Tokens::specialArg;
-			def.chop(8);
-			if (LatexParserInstance) {
-				if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + def)) {
-					int cnt = LatexParserInstance->mapSpecialArgs.count();
-					LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + def);
-					type = Tokens::TokenType(type + cnt);
-				}
-			}
-		}
-		if (def == "options") {
-			type = Tokens::packageoption;
-		}
-		if (def == "class") {
-			type = Tokens::documentclass;
-		}
-		if (def == "beamertheme") {
-			type = Tokens::beamertheme;
-		}
-		if (def == "keylist" || def == "bibid") {
-			type = Tokens::bibItem;
-		}
-		if (def == "placement" || def == "position") {
-			type = Tokens::placement;
-		}
-		if (def == "key" || def == "key1" || def == "key2" || def.endsWith("%ref")) {
-			type = Tokens::labelRef;
-			if (command == "\\label")
-				type = Tokens::label;
-		}
-		if((def=="envname"||def=="environment name") && definition.contains('N')){
-		    type=Tokens::newTheorem;
-		}
-        if (def == "label"||def=="%<label%>") {
-			//reference with keyword label
-            if(definition.contains('r'))
-                type = Tokens::labelRef;
-            if(definition.contains('l'))
-                type = Tokens::label;
-		}
-		if (def == "labellist") {
-			type = Tokens::labelRefList;
-		}
-		if (!def.isEmpty()) { //ignore empty arguments
+		if (!arg.isEmpty()) { //ignore empty arguments
 			switch (j) {
 			case 0:
 				cd.args = cd.args + 1;
@@ -3790,9 +3802,9 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 			if (tk.type == Tokens::symbol) {
 				QString smb = line.mid(tk.start, 1);
 				if (smb == verbatimSymbol) {
-					// stop verbatimSymbol mode
-					verbatimSymbol = QChar();
-					continue;
+                                    // stop verbatimSymbol mode
+                                    verbatimSymbol.clear();
+                                    continue;
 				}
 			}
 			tk.type = Tokens::verbatim;
@@ -3841,6 +3853,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 				if (i + 1 < tl.length() && tl.at(i + 1).type == Tokens::symbol && tl.at(i + 1).start == tk.start + tk.length) {
 					// well formed \verb
 					verbatimSymbol = line.mid(tl.at(i + 1).start, 1);
+                    i++;
 				}
 				// not valid \verb
 				if (!stack.isEmpty()) {

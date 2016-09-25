@@ -8,7 +8,7 @@
 \newboolean{name}
 \setboolean{name}{truth value}
 \isodd{number}
-\isundefined{command}
+\isundefined{command%plain}
 \equal{string}{string}
 \AND
 \OR
@@ -18,10 +18,10 @@
 # in xifthen but not in ifthen
 \isnamedefined{command name}
 \isempty{content}
-\isequivalentto{command}{command}
+\isequivalentto{command%plain}{command%plain}
 \isin{substring}{string}
 \endswith{string}{substring}
 \cnttest{counter expression}<comparison>{counter expression}
 \dimtest{dimen expression}<comparison>{dimen expression}
-\newtest{command}[n]{testexpression}
+\newtest{command%plain}[n]{testexpression}
 

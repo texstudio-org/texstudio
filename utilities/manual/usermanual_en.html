@@ -72,7 +72,13 @@
 	<li><a href="#SECTION39">4.12 Keyboard shortcuts</a></li>
 	<li><a href="#CWLDESCRIPTION">4.13 Description of the cwl format</a></li>
 	<li><a href="#TABLETEMPLATE">4.14 Using table templates</a></li>
-	<li><a href="#LANGUAGEDEF">4.15 Writing your own language definitions</a></li>
+	</ul>
+</li>
+<li><a href="#TENTATIVE-FEATURES">5. Experimental Features</a>
+	<ul>
+	<li><a href="#ADVANCED-SCRIPTING">5.1 Advanced Skripting</a></li>
+	<li><a href="#STYLESHEETS">5.2 Style Sheets</a></li>
+	<li><a href="#LANGUAGEDEF">5.3 Writing your own language definitions</a></li>
 	</ul>
 </li>
 <li><a href="#SECTIONNEW">Changelog</a></li>
@@ -565,7 +571,7 @@ The text will be used as environment-name, thus "%environment" will be inserted 
 \end{environment }<br>
 <br>
 Note: texstudio needs that the env-name starts with "%", though that character is not placed on insertion.
-<h3 id="SECTION33c">4.5.3 Javascript macros</h3>
+<h3 id="JAVASCRIPT-MACROS">4.5.3 Javascript macros</h3>
 Instead of using code snippets, you can also make use of javascript.
 To do so, put "%SCRIPT" in the first line. The following code will be interpreted as javascript.
 The language is based on <a href="http://doc.trolltech.com/4.5/ecmascript.html">ECMAScript</a>.
@@ -1016,12 +1022,14 @@ eval(editor.text());</pre>
 </li>
 <li>Show all properties of an object: <pre>
 %SCRIPT
-obj = editor;                                                    //object to show (e.g. the current editor)
+function write_properties(obj) {
+    app.fileNew();
+    newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
+    newEditor.setText(Object.getOwnPropertyNames(obj).join("\n"));   //print the properties
+}
 
-app.fileNew();                                                   //create a new document
-newEditor = documentManager.currentDocument.editorView.editor;   //access the newly created document
-for (var prop in obj)
-  newEditor.write(prop+"\n");                                    //print the properties
+obj = editor;                                                        //object to show (e.g. the current editor)
+write_properties(obj)
 </pre>
 </li>
 <li>Additional action in the edit menu<pre>
@@ -1037,73 +1045,8 @@ ui.accepted.connect(function(){alert("x");})         //react to dialog closing
 registerAsBackgroundScript("abc");                   //keep function valid
 ui.show();                                           //show dialog
 </pre> The dialog is described in an ui file which can be created with the Qt Designer. </li>
-<li>Calculator:<pre>
-%SCRIPT
-currentLine=editor.text(cursor.lineNumber());
-from=currentLine.lastIndexOf("%")+1;
-to=currentLine.lastIndexOf("=");
-if (from>=0 && to > from) {
-  toEvaluate = currentLine.substring(from, to);
-  with (Math) { value = eval(toEvaluate);}
-  cursor.eraseLine();
-  cursor.insertText(currentLine.substring(0, from)+toEvaluate+"="+value);
-  cursor.insertLine();
-  cursor.movePosition(1,cursorEnums.Left );
-}
-</pre>
-This will evaluate everything between % and = and write the result after the =. You can use it like a calculator if you write %5+3= in the tex file.
-
-<li>(tikz) Coordinate pair mover:
-<pre>
-%SCRIPT
-var doit = function(){
-var mytext=cursor.selectedText();
-var regExNumberPre = " *[0-9]+([.][0-9]*)? *";
-var regExDigit = /[0-9]/;
-var regExSpace = / /g;
-var regExPairPre = " *(-?"+regExNumberPre+")";
-var regExPair = new RegExp("()[(]"+regExPairPre+","+regExPairPre+"[)]"); ;
-
-//read first coordinate pair
-var regExFirstPairPre = regExPairPre + " *([+-]"+regExNumberPre+")?";
-var regExFirstPair = new RegExp("()[(]"+regExFirstPairPre+","+regExFirstPairPre+"[)]");
-
-//extract offsets (start regex search from first digit, to allow -x - y)
-var matches = regExFirstPair.exec(mytext);
-if (matches == null) throw "missing";
-//throw matches;
-var offsetXPre = matches[4];
-var offsetYPre = matches[8];
-if (offsetXPre == "" && offsetYPre == "") throw "abc";
-var offsetX = offsetXPre == ""?0.0:offsetXPre.replace(regExSpace, "")*1.0;
-var offsetY = offsetYPre == ""?0.0:offsetYPre.replace(regExSpace, "")*1.0;
-
-//move first pair
-var matchpos = mytext.search(regExFirstPair);
-editor.write(mytext.slice(0,matchpos));
-editor.write("("+(matches[2].replace(regExSpace, "")*1.0+offsetX));
-editor.write(", "+(matches[6].replace(regExSpace, "")*1.0+offsetY)+")");
-
-//move other pairs
-var remaining = mytext.slice(matchpos+matches[0].length);
-while (remaining != ""){
-	matches = regExPair.exec(remaining);
-	if (matches == null) break;
-	matchpos = remaining.search(regExPair);
-	editor.write(remaining.slice(0,matchpos));
-	remaining = remaining.slice(matchpos+matches[0].length);
-	editor.write("(" + ((matches[2].replace(regExSpace, "")*1.0)+offsetX) + ", "+ ((matches[4].replace(regExSpace, "")*1.0)+offsetY) + ")");
-}
-editor.write(remaining);
-}
-doit();
-
-</pre>
-
-This will add to all selected coordinate pairs the offset of the first pair which translates all pairs in a given direction. E.g. if you have (1 + 1, 2 - 1.5) (3, 4) it will change it to (2, 0.5) (4, 2.5).
-
 </ul>
-
+<p>More examples can be found in the <a href='https://sourceforge.net/p/texstudio/wiki/Scripts/'>Wiki</a>.
 <h3 id="sectionTriggers">4.5.4 Triggers</h3>
 <h4>4.5.4.1 Regular Expressions</h4>
 <p>In its simplest form, the trigger is simply a text, which is replaced by the macro.
@@ -1511,15 +1454,18 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>imagefile</code>:file name of an image</li>
   <li><code>key</code>:label/ref key</li>
   <li><code>label</code> with option <code>#r</code> or key ending with <code>%ref</code>:ref key</li>
+  <li><code>label</code> with option <code>#l</code> or key ending with <code>%labeldef</code>:defines a label</li>
+  
   <li><code>labellist</code>:list of labels as employed by cleveref</li>
   <li><code>bib file</code> and <code>bib files</code>:bibliography file</li>
   <li><code>class</code>:document class</li>
   <li><code>placement</code> and <code>position</code>:position of env</li>
+  <li><code>%plain</code>: options ending with <code>%plain</code> are interpreted to have no special meaning. This way, you can e.g. define <code>label%plain</code> to have a placeholder named <code>label</code> without the semantics that it defines a label.</li>
   <li><code>beamertheme</code>:beamer theme, e.g. \usebeamertheme{beamertheme}</li>
   <li><code>keys</code>,<code>keyvals</code> and <code>%&lt;options%&gt;</code>:key/value list</li>
   <li><code>envname</code>:environment name for \newtheorem, e.g. \newtheorem{envname}#N (classification N needs to be present !)</li>
 </ul>
-</p>
+<p>A %-suffix takes precedence over detection by name, i.e. an argument <code>file%text</code> will be treated as text not as file.</p>
 <h3>4.13.3 Classification format</h3>
 <p>The follwing classifications are known to TXS:</p>
 <table>
@@ -1676,7 +1622,20 @@ println("\\end{"+env+"}")
 </pre>
 </p>
 
-<h2 id="LANGUAGEDEF">4.15 Writing your own language definitions</h2>
+<h1 id="TENTATIVE-FEATURES">5. Tentative Features</h1>
+<p>These features allow you to modify core aspects of TeXstudio and thus provide a great flexibility of adapting TeXstudio to your needs. Since these features are either complex or are tightly bound to the internals, we cannot guarantee functionality in all cases and forever. For once, we do not have enough resources to provide full support. Additionaly, the dependence on internals conficts with our need to freely change internals without restriction for future development.</p>
+<p>Nevertheless, we decided that these features may be of interest for experiended users. As a compromize, we provide these features tentatively.</p>
+<p><strong>We do not guarantee any of this will still be working in future versions. Functionality may change or be removed without notice.</strong></p>
+
+<h2 id="ADVANCED-SCRIPTING">5.1 Advanced Skripting</h2>
+<p>You can modify the behavior or add new functionality using <a href="#JAVASCRIPT-MACROS">Javascript Macros</a>. The section above lists the core commands, but there are more commands which are not documented. A number of them are used in the <a href="https://sourceforge.net/p/texstudio/wiki/Scripts/">examples section in the wiki</a>. The names and signatures of these functions are directly bound to the internal C++ code of TeXstudio and thus may change as we further develop TeXstudio.</p>
+
+<h2 id="STYLESHEETS">5.2 Style Sheets</h2>
+<p>Qt supports modifying the appearence of an application using <a href="http://doc.qt.io/qt-5/stylesheet-syntax.html">style sheets</a>. You may use this to adapt the GUI of the main window by placing a file <code>stylesheet.qss</code> into the settings directory. The file is read at program startup.</p>
+
+<p>Please note that the style sheet may interfere with other ways of configuring the GUI, in particular the style color scheme and other options. Therefore we do not guarantee a consistent behavior when using style sheets</p>
+
+<h2 id="LANGUAGEDEF">5.3 Writing your own language definitions</h2>
 <p>TeXstudio uses QCodeEdit as editor component. It specifies languages in a special xml format named QNFA. This includes highlighting, parentheses (for matching) and code folding. In a normal TeXstudio installation you won't find any .qnfa files, because we compile the files of the included languages into the binary. You can add your own languages or overwrite the default ones by placing appropriate .qnfa files in a <code>languages</code> folder inside the settings directory. Definitions here take precedence over the builtin ones.</p>
 
 <p>The .qnfa file specifies the syntax of the language. The actual format information is specified in a .qxf file. You can either use the formats specified in <a href="https://sourceforge.net/p/texstudio/hg/ci/default/tree/utilities/qxs/">defaultFormats.qxf</a> or provide your own .qxf file along with the .qnfa file.<p>

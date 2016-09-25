@@ -19,6 +19,10 @@
 \shorthandoff{characters}
 \languageattribute{language}{list of attributes}
 
+# from version 3.9
+\babelhyphenation[language, ...]{hyphenations}#*
+\babelhyphenation{hyphenations}#*
+
 # extracted from gernmanb.ldf
 \prefacename
 \refname

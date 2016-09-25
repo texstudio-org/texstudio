@@ -18,7 +18,6 @@
 \arabic{counter}#*
 \author{names}
 %<%:TEXSTUDIO-GENERIC-ENVIRONMENT-TEMPLATE%>
-\begin{}
 \begin{abstract}
 \begin{alltt}
 \begin{array}{cols}#m
@@ -84,7 +83,6 @@
 \begin{Vmatrix}#m\array
 \begin{vmatrix}#m\array
 \begin{verse}
-\end{}
 \end{abstract}
 \end{alltt}
 \end{array}
@@ -255,7 +253,7 @@
 \iterate#*
 \itshape
 \kill#T
-\label{key}
+\label{key%labeldef}
 \language#*
 \LARGE
 \Large
@@ -466,13 +464,14 @@
 \textsf{text}
 \textsl{text}
 \textsterling
-\textsuperscript
+\textsubscript{arg}
+\textsuperscript{arg}
 \texttrademark
 \texttt{text}
 \textunderscore
 \textup{text}
 \textvisiblespace
-\textwidth#L
+\textwidth
 \thanks{text}
 \thicklines
 \thinlines

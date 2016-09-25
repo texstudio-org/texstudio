@@ -61,7 +61,7 @@ void UpdateChecker::onRequestError()
 
 	txsCritical(tr("Update check failed with error:\n") + reply->errorString());
 
-    delete networkManager;
+    networkManager->deleteLater();
     networkManager=0;
 }
 
@@ -75,7 +75,7 @@ void UpdateChecker::onRequestCompleted()
 	parseData(ba);
 	checkForNewVersion();
 
-    delete networkManager;
+    networkManager->deleteLater();
     networkManager=0;
 }
 
