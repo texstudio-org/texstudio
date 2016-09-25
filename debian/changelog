@@ -1,0 +1,155 @@
+texstudio (2.11.2) unstable; urgency=low
+
+  * 2.11.2 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 15 Sep 2016 16:00:00 +0200
+
+texstudio (2.11.0) unstable; urgency=low
+
+  * 2.11.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 29 May 2016 16:00:00 +0200
+
+texstudio (2.10.8) unstable; urgency=low
+
+  * 2.10.8 bugfix release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sat, 16 Jan 2016 16:00:00 +0200
+
+texstudio (2.10.6) unstable; urgency=low
+
+  * 2.10.6 bugfix release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sat, 09 Jan 2016 16:00:00 +0200
+
+ texstudio (2.10.4) unstable; urgency=low
+
+  * 2.10.4 bugfix release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 25 Oct 2015 12:00:00 +0200
+
+texstudio (2.10.2) unstable; urgency=low
+
+  * 2.10.2 bugfix release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 14 Sep 2015 16:00:00 +0200
+
+texstudio (2.10.0) unstable; urgency=low
+
+  * 2.10.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 30 Aug 2015 16:00:00 +0200
+
+texstudio (2.9.4) unstable; urgency=low
+
+  * 2.9.4 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 23 Mar 2014 22:00:00 +0200
+
+texstudio (2.9.2) unstable; urgency=low
+
+  * 2.9.2 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 22 Mar 2014 15:00:00 +0200
+
+texstudio (2.9.0) unstable; urgency=low
+
+  * 2.9.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 02 Mar 2014 20:00:00 +0200
+
+texstudio (2.8.8) unstable; urgency=low
+
+  * 2.8.8 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 23 Nov 2014 20:00:00 +0200
+
+  * 2.8.6 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 26 Okt 2014 20:00:00 +0200
+
+texstudio (2.8.4) unstable; urgency=low
+
+  * 2.8.4 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sun, 7 Sep 2014 20:00:00 +0200
+
+texstudio (2.8.2) unstable; urgency=low
+
+  * 2.8.2 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Thu, 24 Jul 2014 20:00:00 +0200
+ 
+texstudio (2.8.0) unstable; urgency=low
+
+  * 2.8.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Thu, 12 Jun 2014 20:00:00 +0200
+
+texstudio (2.7.0) unstable; urgency=low
+
+  * 2.7.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 17 Mar 2014 11:03:00 +0100
+
+texstudio (2.6.6) unstable; urgency=low
+
+  * 2.6.6 bugfixes (home/end keys)
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 30 Oct 2013 14:10:00 +0200
+
+texstudio (2.6.4) unstable; urgency=low
+
+  * 2.6.4 bugfix and feature release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 20 Oct 2013 17:38:00 +0200
+
+texstudio (2.6.2) unstable; urgency=low
+
+  * 2.6.2 bugfix release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 14 Jul 2013 16:19:00 +0200
+
+texstudio (2.6.0) unstable; urgency=low
+
+  * 2.6.0 new release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 12 Jun 2013 12:17:00 +0200
+
+texstudio (2.5.1) unstable; urgency=low
+
+  * 2.5.1 bug fix release 
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 15 Nov 2012 00:00:00 +0200
+
+texstudio (2.5) unstable; urgency=low
+
+  * 2.5 release 
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 17 Oct 2012 00:00:00 +0200
+
+texstudio (2.4) unstable; urgency=low
+
+  * 2.4 release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Mon, 03 Sep 2012 19:19:28 +0200
+
+texstudio (2.3) unstable; urgency=low
+
+  * 2.3 release
+
+ -- Benito van der Zander <benibela@users.sourceforge.net>  Sat Mar 2012 00:46:28 +0200
+
+texstudio (2.2-2) unstable; urgency=low
+
+  * direct linking to libpoppler removed
+
+ -- J. Sundermeyer <jsundermeyer@users.sourceforge.net>  Sun, 26 Jun 2011 17:50:28 +0200
+
+texstudio (2.2-1) unstable; urgency=low
+
+  * Initial release (2.2) 
+
+ -- J. Sundermeyer <jsundermeyer@users.sourceforge.net>  Sun, 26 Jun 2011 13:22:28 +0200
+
+
