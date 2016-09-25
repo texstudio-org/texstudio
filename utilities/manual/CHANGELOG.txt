@@ -14,6 +14,7 @@ TeXstudio 2.11.2
 - cwl-format: allow 'key' to be used in label if #l is set
 - replace babel german by ngerman in presentation wizard
 - highlight cursorEnums in script
+- support reading an application style sheet from stylesheet.qss
 - fix crash on qt4 if update check is sucessful
 - fix: auto-indent
 - fix: make insertion of tabs work with cursor mirrors (bug 1788)
