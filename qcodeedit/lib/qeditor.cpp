@@ -1176,7 +1176,7 @@ void QEditor::reconnectWatcher()
 */
 void QEditor::fileChanged(const QString& file)
 {
-	if ( (file != fileName()) || (m_saveState == Saving) )
+	if ( (file != fileName()) || (m_saveState == Saving) || mIgnoreExternalChanges )
 		return;
 	
 	/*

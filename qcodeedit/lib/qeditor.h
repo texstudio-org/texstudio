@@ -292,6 +292,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool displayModifyTime() const;
 		void setDisplayModifyTime(bool flag) {mDisplayModifyTime=flag;}
 
+		bool ignoreExternalChanges() const {return mIgnoreExternalChanges;}
+		void setIgnoreExternalChanges(bool flag) {mIgnoreExternalChanges=flag;}
+
 		bool silentReloadOnExternalChanges() const {return mSilentReloadOnExternalChanges;}
 		void setSilentReloadOnExternalChanges(bool flag) {mSilentReloadOnExternalChanges=flag;}
 
@@ -688,6 +691,7 @@ public slots:
 		QBasicTimer m_blink, m_click, m_drag;
 
 		bool mDisplayModifyTime;
+		bool mIgnoreExternalChanges;
 		bool mSilentReloadOnExternalChanges;
 		
 		static QReliableFileWatch* watcher();
