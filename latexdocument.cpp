@@ -776,6 +776,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (envTokens.contains(cmd)) {
 				completerNeedsUpdate = true;
 				TokenList argsButFirst = args;
+                if(argsButFirst.isEmpty())
+                    continue; // no arguments present
 				argsButFirst.removeFirst();
 				int optionCount = getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
