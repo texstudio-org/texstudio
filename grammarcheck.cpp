@@ -50,6 +50,10 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 	languageMapping.insert("sv-SV", "sv");
 }
 
+QString GrammarCheck::serverUrl() {
+	return backend->url();
+}
+
 /*!
  * \brief readWordList
  * Read bad words/stop words from file
@@ -540,6 +544,11 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 bool GrammarCheckLanguageToolSOAP::isAvailable()
 {
 	return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
+}
+
+QString GrammarCheckLanguageToolSOAP::url()
+{
+	return server.toDisplayString();
 }
 
 QString quoteSpaces(const QString &s)

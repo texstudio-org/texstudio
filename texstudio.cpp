@@ -1385,11 +1385,11 @@ void Texstudio::updateLanguageToolStatus()
 	switch (grammarCheck->languageToolStatus()) {
 		case GrammarCheck::LTS_Working:
 			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize));
-			statusLabelLanguageTool->setToolTip(tr("LanguageTool is running"));
+			statusLabelLanguageTool->setToolTip(QString(tr("Connected to LanguageTool at %1")).arg(grammarCheck->serverUrl()));
 			break;
 		case GrammarCheck::LTS_Error:
 			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
-			statusLabelLanguageTool->setToolTip(tr("No LanguageTool server found"));
+			statusLabelLanguageTool->setToolTip(QString(tr("No LanguageTool server found at %1")).arg(grammarCheck->serverUrl()));
 			break;
 		case GrammarCheck::LTS_Unknown:
 		default:
