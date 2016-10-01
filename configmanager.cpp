@@ -512,6 +512,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ContextMenuSpellcheckingEntryLocation", &editorConfig->contextMenuSpellcheckingEntryLocation, 0, &pseudoDialog->comboBoxContextMenuSpellcheckingEntryLocation);
 
 	registerOption("Editor/TexDoc Help Internal", &editorConfig->texdocHelpInInternalViewer, true , &pseudoDialog->checkBoxTexDocInternal);
+	registerOption("Editor/MonitorFilesForExternalChanges", &editorConfig->monitorFilesForExternalChanges, true, &pseudoDialog->checkBoxMonitorFilesForExternalChanges);
 	registerOption("Editor/SilentReload", &editorConfig->silentReload, false, &pseudoDialog->checkBoxSilentReload);
 
 	registerOption("Editor/Replace Quotes", &replaceQuotes, 0 , &pseudoDialog->comboBoxReplaceQuotes);

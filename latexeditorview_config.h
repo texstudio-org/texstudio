@@ -42,6 +42,7 @@ public:
 	bool imageToolTip;
 	int maxImageTooltipWidth;
 	bool texdocHelpInInternalViewer;
+	bool monitorFilesForExternalChanges;
 	bool silentReload;
 
 	bool autoInsertLRM, visualColumnMode, switchLanguagesDirection, switchLanguagesMath;
