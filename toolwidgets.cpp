@@ -149,6 +149,7 @@ OutputViewWidget::OutputViewWidget(QWidget *parent) :
 	setSelectorStyle(TabSelector);
 	mToggleViewAction->setText(tr("Messages / Log File"));
 	mToggleViewAction->setIcon(getRealIcon("logpanel"));
+	setFrameStyle(NoFrame);
 
 
 	// messages

@@ -56,6 +56,8 @@
 #include "fileselector.h"
 #include "utilsUI.h"
 #include "utilsSystem.h"
+#include "minisplitter.h"
+
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -279,12 +281,12 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralLayout->addWidget(centralToolBar);
 	centralLayout->addWidget(editors);
 
-	centralVSplitter = new QSplitter(Qt::Vertical, this);
+	centralVSplitter = new MiniSplitter(Qt::Vertical, this);
 	centralVSplitter->setChildrenCollapsible(false);
 	centralVSplitter->addWidget(centralFrame);
-	centralVSplitter->setStretchFactor(0, 1);
+	centralVSplitter->setStretchFactor(0, 1);  // all stretch goes to the editor (0th widget)
 
-	mainHSplitter = new QSplitter(Qt::Horizontal, this);
+	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);
 	mainHSplitter->addWidget(centralVSplitter);
 	mainHSplitter->setChildrenCollapsible(false);
 	setCentralWidget(mainHSplitter);
