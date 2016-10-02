@@ -712,15 +712,15 @@ QString ConfigManager::iniPath()
 	return configFileName;
 }
 
-bool ConfigManager::isUsbMode()
+bool ConfigManager::isPortableMode()
 {
-	bool usbMode = false;
+	bool portableMode = false;
 	if (!persistentConfig) {
-		usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(iniPath());
+		portableMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(iniPath());
 	} else {
-		usbMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
+		portableMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
 	}
-	return usbMode;
+	return portableMode;
 }
 
 /*!
@@ -728,7 +728,7 @@ bool ConfigManager::isUsbMode()
  */
 QSettings *ConfigManager::newQSettings()
 {
-	if (isUsbMode()) {
+	if (isPortableMode()) {
 		return new QSettings(iniPath(), QSettings::IniFormat);
 	} else {
 		return new QSettings(QSettings::IniFormat, QSettings::UserScope, "texstudio", "texstudio");
@@ -739,7 +739,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 {
 	//load config
 	QSettings *config = persistentConfig;
-	bool usbMode = isUsbMode();
+	bool portableMode = isPortableMode();
 	if (!config) {
 		config = newQSettings();
 		configFileName = config->fileName();
@@ -808,7 +808,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 		QFileInfo fi(dic);
 		if (fi.exists()) {
 			spellDictDir = QDir::toNativeSeparators(fi.absolutePath());
-			if (usbMode) {
+			if (portableMode) {
 				spellDictDir = reverseParseDir(spellDictDir);
 			}
 			spellLanguage = fi.baseName();
