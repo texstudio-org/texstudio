@@ -222,7 +222,7 @@ public:
 	void removeManagedMenus();
 	void triggerManagedAction(const QString &id);
 
-	static QString iniFileOverride;
+	static QString configDirOverride;
     static bool dontRestoreSession;
 private:
 	void setupDirectoryStructure();
