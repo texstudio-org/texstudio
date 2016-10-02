@@ -38,7 +38,7 @@ public:
 	~ConfigManager();
 
 	QString iniPath();
-	bool isUsbMode();
+	bool isPortableMode();
 
 	QSettings *newQSettings();
 	QSettings *readSettings(bool reread = false);
