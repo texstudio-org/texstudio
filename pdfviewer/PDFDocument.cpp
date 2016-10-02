@@ -2395,8 +2395,8 @@ void PDFDocument::init(bool embedded)
 	actionMagnify->setIcon(getRealIcon("zoom-in"));
 	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(getRealIcon("build"));
-	actionEnlargeViewer->setIcon(getRealIcon("view-left-close"));
-	actionShrinkViewer->setIcon(getRealIcon("embedded-viewer"));
+	actionEnlargeViewer->setIcon(getRealIcon("enlarge-viewer"));
+	actionShrinkViewer->setIcon(getRealIcon("shrink-viewer"));
 
 	QIcon icon = getRealIcon("syncSource-off");
 	icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
@@ -2443,11 +2443,9 @@ void PDFDocument::init(bool embedded)
 
 	int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
 	toolBar->setIconSize(QSize(sz, sz));
-	if (embedded) {
-		QWidget *spacer = new QWidget(toolBar);
-		spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-		toolBar->insertWidget(actionClose, spacer);
-	}
+	QWidget *spacer = new QWidget(toolBar);
+	spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	toolBar->insertWidget(actionEnlargeViewer, spacer);
 	addAction(toolBar->toggleViewAction());
 
 	leCurrentPage = new QLineEdit(toolBar);
