@@ -1257,10 +1257,12 @@ Changes during an edit session will only take effect when you reopen the file.
 </ul>
 <h2 id="SECTION38">4.11 Synopsis of the TeXstudio command</h2>
 <p>
-<code>texstudio file [--config DIR] [--root] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
+<code>texstudio file [--config DIR] [--root] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy] [--no-session]</code><br><br>
 <table>
 <tr><td><code>--config DIR</code></td><td>use the specified settings directory.</td></tr>
+<tr><td><code>--ini-file FILE</code></td><td><i>deprecated</i>:use <code>--config</code> instead.</td></tr>
 <tr><td><code>--root</code></td><td>defines the document as <i>explicit root document</i> (formerly called <i>master document</i>).</td></tr>
+<tr><td><code>--master</code></td><td><i>deprecated</i>:use <code>--root</code> instead.</td></tr>
 <tr><td><code>--line xx[:cc]</code></td><td>position the cursor at line LINE and column COL, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
 <tr><td><code>--insert-cite citation</code></td><td>pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
 <tr><td><code>--start-always</code></td><td>start a new instance, even if TXS is already running. This allows using of multiple instances.</td></tr>
