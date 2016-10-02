@@ -6484,7 +6484,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		if (args[i] == "") continue;
 		if (args[i][0] != '-')  filesToLoad << args[i];
 		//-form is for backward compatibility
-		if (args[i] == "--master") activateMasterMode = true;
+		if (args[i] == "--root" || args[i] == "--master") activateMasterMode = true;
 		if (args[i] == "--line" && i + 1 < args.size()) {
 			QStringList lineCol = args[++i].split(":");
 			line = lineCol.at(0).toInt() - 1;
