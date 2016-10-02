@@ -444,6 +444,7 @@ void QEditor::init(bool actions,QDocument *doc)
 
 	setAcceptDrops(true);
 	//setDragEnabled(true);
+	setFrameStyle(QFrame::NoFrame);
 	setFrameShadow(QFrame::Plain);
 	setFocusPolicy(Qt::WheelFocus);
 	setAttribute(Qt::WA_KeyCompression, true);

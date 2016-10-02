@@ -2538,6 +2538,9 @@ void PDFDocument::init(bool embedded)
 	scrollArea->setBackgroundRole(QPalette::Dark);
 	//scrollArea->setAlignment(Qt::AlignCenter);
 	scrollArea->setPDFWidget(pdfWidget);
+	if (embedded) {
+		scrollArea->setFrameStyle(QFrame::NoFrame);
+	}
 
 	QWidget *container = new QWidget;
 	QVBoxLayout *layout = new QVBoxLayout;
