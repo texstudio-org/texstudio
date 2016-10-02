@@ -333,7 +333,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 #undef READ_FROM_OBJECT
 
 QTextCodec *ConfigManager::newFileEncoding = 0;
-QString ConfigManager::iniFileOverride;
+QString ConfigManager::configDirOverride;
 bool ConfigManager::dontRestoreSession=false;
 
 QString getText(QWidget *w)
@@ -705,9 +705,9 @@ ConfigManager::~ConfigManager()
 QString ConfigManager::iniPath()
 {
 	if (!persistentConfig) {
-		QString ini = iniFileOverride;
-		if (ini.isEmpty()) ini = portableConfigDir() + "/texstudio.ini";
-		return ini;
+		QString configDir = configDirOverride;
+		if (configDir.isEmpty()) configDir = portableConfigDir();
+		return configDir + "/texstudio.ini";
 	}
 	return configFileName;
 }
