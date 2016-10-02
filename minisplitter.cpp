@@ -47,6 +47,7 @@ public:
         setMask(QRegion(contentsRect()));
         setAttribute(Qt::WA_MouseNoMask, true);
     }
+    QSize sizeHint() const;
 protected:
     void resizeEvent(QResizeEvent *event);
     void paintEvent(QPaintEvent *event);
@@ -55,6 +56,14 @@ protected:
 } // namespace Internal
 
 using namespace Internal;
+
+QSize MiniSplitterHandle::sizeHint() const {
+    // This is a workaround to force 1px wide splitter handles
+    // Strictly, this is not needed with manhattanstyle and vertical splitters on any style,
+    // but horizontal splitters on non-manhattanstyle yield large ~5px size hints resulting
+    // in unwanted large splitters.
+    return QSize(1, 1);
+}
 
 void MiniSplitterHandle::resizeEvent(QResizeEvent *event)
 {
