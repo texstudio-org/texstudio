@@ -3,6 +3,7 @@
 #include "mostQtHeaders.h"
 #include "utilsSystem.h"
 #include "latexeditorview.h"
+#include "minisplitter.h"
 
 
 /*!
@@ -31,10 +32,8 @@
 Editors::Editors(QWidget *parent) :
 	QWidget(parent), splitter(0), currentGroupIndex(-1)
 {
-	splitter = new QSplitter();
-	splitter->setOrientation(Qt::Horizontal);
+	splitter = new MiniSplitter(Qt::Horizontal);
 	splitter->setChildrenCollapsible(false);
-	splitter->setHandleWidth(0);
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
 	layout->setContentsMargins(0, 0, 0, 0);
