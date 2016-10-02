@@ -6471,7 +6471,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 {
 	// parse command line
 	QStringList filesToLoad;
-	bool activateMasterMode = false;
+	bool hasExplicitRoot = false;
 
 	int line = -1;
 	int col = 0;
@@ -6484,7 +6484,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		if (args[i] == "") continue;
 		if (args[i][0] != '-')  filesToLoad << args[i];
 		//-form is for backward compatibility
-		if (args[i] == "--root" || args[i] == "--master") activateMasterMode = true;
+		if (args[i] == "--root" || args[i] == "--master") hasExplicitRoot = true;
 		if (args[i] == "--line" && i + 1 < args.size()) {
 			QStringList lineCol = args[++i].split(":");
 			line = lineCol.at(0).toInt() - 1;
@@ -6526,11 +6526,11 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 				if (ftl.suffix() == Session::fileExtension()) {
 					loadSession(ftl.filePath());
 				} else {
-					load(fileToLoad, activateMasterMode);
+					load(fileToLoad, hasExplicitRoot);
 				}
 			} else if (ftl.absoluteDir().exists()) {
 				fileNew(ftl.absoluteFilePath());
-				if (activateMasterMode) {
+				if (hasExplicitRoot) {
 					setExplicitRootDocument(currentEditorView()->getDocument());
 				}
 				//return ;
