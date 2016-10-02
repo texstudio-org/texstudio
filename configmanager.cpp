@@ -706,21 +706,20 @@ QString ConfigManager::iniPath()
 {
 	if (!persistentConfig) {
 		QString ini = iniFileOverride;
-		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath() + "/texstudio.ini";
+		if (ini.isEmpty()) ini = portableConfigDir() + "/texstudio.ini";
 		return ini;
 	}
 	return configFileName;
 }
 
+QString ConfigManager::portableConfigDir()
+{
+	return QCoreApplication::applicationDirPath() + "/config";
+}
+
 bool ConfigManager::isPortableMode()
 {
-	bool portableMode = false;
-	if (!persistentConfig) {
-		portableMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(iniPath());
-	} else {
-		portableMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
-	}
-	return portableMode;
+	return QDir(portableConfigDir()).exists();
 }
 
 /*!

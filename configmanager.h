@@ -38,6 +38,7 @@ public:
 	~ConfigManager();
 
 	QString iniPath();
+	static QString portableConfigDir();
 	bool isPortableMode();
 
 	QSettings *newQSettings();
