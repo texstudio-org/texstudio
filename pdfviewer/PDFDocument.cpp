@@ -2399,7 +2399,7 @@ void PDFDocument::init(bool embedded)
 	actionCut->setIcon(getRealIcon("edit-cut"));
 	actionCopy->setIcon(getRealIcon("edit-copy"));
 	actionPaste->setIcon(getRealIcon("edit-paste"));
-	actionMagnify->setIcon(getRealIcon("zoom-in"));
+	actionMagnify->setIcon(getRealIcon("magnifier-button"));
 	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(getRealIcon("build"));
 	actionEnlargeViewer->setIcon(getRealIcon("enlarge-viewer"));
