@@ -884,6 +884,13 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 	}
 }
 
+void PDFWidget::openAnnotationDialog(const PDFAnnotation *annon)
+{
+	PDFAnnotationDlg *dlg = new PDFAnnotationDlg(annon->popplerAnnotation(), this);
+	qDebug() << annon->popplerAnnotation()->revisionType() << annon->popplerAnnotation()->revisions().count();
+	dlg->show();
+}
+
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if (pdfdocument && pdfdocument->embeddedMode)
@@ -2552,6 +2559,7 @@ void PDFDocument::init(bool embedded)
 	vSplitter->addWidget(container);
 
 	annotationPanel = new TitledPanel();
+	annotationPanel->setFrameShape(QFrame::NoFrame);
 	annotationPanel->toggleViewAction()->setText(tr("Annotations"));
 	annotationPanel->setVisible(globalConfig->annotationPanelVisible);
 	annotationTable = new PDFAnnotationTableView();
@@ -2951,6 +2959,7 @@ retryNow:
 		annotationTable->resizeColumnsToContents();
 		annotationTable->resizeRowsToContents();
 		connect(annotationTable, SIGNAL(annotationClicked(const PDFAnnotation *)), SLOT(gotoAnnotation(const PDFAnnotation *)));
+		connect(annotationTable, SIGNAL(annotationDoubleClicked(const PDFAnnotation *)), pdfWidget, SLOT(openAnnotationDialog(const PDFAnnotation *)));
 
 		if (!embeddedMode)
 			pdfWidget->setFocus();
