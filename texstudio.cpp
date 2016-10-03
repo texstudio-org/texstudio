@@ -7526,8 +7526,13 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 
 void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate, const QString &guessedWord)
 {
-	if (!activateEditorForFile(fileName, true, activate))
-		if (!load(fileName)) return;
+	if (!activateEditorForFile(fileName, true, activate)) {
+		QWidget *w = focusWidget();
+		bool success = load(fileName);
+		if (!activate)
+			w->setFocus();  // restore focus
+		if (!success) return;
+	}
 	shrinkEmbeddedPDFViewer();
 
 	QDocumentLine l = currentEditorView()->document->lineFromLineSnapshot(line);
