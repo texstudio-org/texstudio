@@ -15,10 +15,9 @@ class PDFAnnotation: public QObject
 	Q_OBJECT
 
 public:
-	PDFAnnotation(Poppler::Annotation *ann, int pageNum, QObject *parent = 0);
-	~PDFAnnotation();
+	PDFAnnotation(QSharedPointer<Poppler::Annotation> ann, int pageNum, QObject *parent = 0);
 
-	const Poppler::Annotation *popplerAnnotation() const { return m_popplerAnnotation; }
+	const QSharedPointer<Poppler::Annotation> popplerAnnotation() const { return m_popplerAnnotation; }
 
 	QString subTypeText() const;
 	QString subTypeIconName() const;
@@ -28,7 +27,7 @@ public:
 	static QString subTypeIconName(Poppler::Annotation::SubType subtype);
 
 private:
-	Poppler::Annotation *m_popplerAnnotation;
+	QSharedPointer<Poppler::Annotation> m_popplerAnnotation;
 	int m_pageNum;
 };
 
@@ -99,9 +98,11 @@ public slots:
 
 signals:
 	void annotationClicked(const PDFAnnotation *ann);
+	void annotationDoubleClicked(const PDFAnnotation *ann);
 
 private slots:
 	void onClick(const QModelIndex &index);
+	void onDoubleClick(const QModelIndex &index);
 
 private:
 };

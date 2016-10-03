@@ -207,6 +207,7 @@ protected slots: //not private, so scripts have access
 	void pageDownOrNext();
 
 	void clearHighlight();
+	void openAnnotationDialog(const PDFAnnotation *annon);
 
 public slots:
 	void setSinglePageStep(bool step);
