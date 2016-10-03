@@ -931,7 +931,7 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "findMissingBracket", tr("Find Mismatch"), SLOT(findMissingBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_M));
 
 	submenu = newManagedMenu(menu, "complete", tr("Complete"));
-	newManagedAction(submenu, "normal", tr("Normal"), SLOT(normalCompletion()), Qt::CTRL + Qt::Key_Space);
+	newManagedAction(submenu, "normal", tr("Normal"), SLOT(normalCompletion()), MAC_OTHER(Qt::META + Qt::Key_Space, Qt::CTRL + Qt::Key_Space));
 	newManagedAction(submenu, "environment", tr("\\begin{ Completion"), SLOT(insertEnvironmentCompletion()), Qt::CTRL + Qt::ALT + Qt::Key_Space);
 	newManagedAction(submenu, "text", tr("Normal Text"), SLOT(insertTextCompletion()), Qt::SHIFT + Qt::ALT + Qt::Key_Space);
 	newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(closeEnvironment()), Qt::ALT + Qt::Key_Return);
