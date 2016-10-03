@@ -40,6 +40,7 @@
 #include "configmanagerinterface.h"
 #include "pdfannotationdlg.h"
 #include "pdfannotation.h"
+#include "minisplitter.h"
 #include "titledpanel.h"
 
 #include "pdfsplittool.h"
@@ -2536,7 +2537,7 @@ void PDFDocument::init(bool embedded)
 	statusBar()->addPermanentWidget(buttonZoomIn);
 	connect(buttonZoomIn, SIGNAL(clicked()), actionZoom_In, SLOT(trigger()));
 
-	QSplitter *vSplitter = new QSplitter(Qt::Vertical);
+	QSplitter *vSplitter = new MiniSplitter(Qt::Vertical);
 
 	// TODO: Make Frame around Label and Scroll area
 	scrollArea = new PDFScrollArea;
