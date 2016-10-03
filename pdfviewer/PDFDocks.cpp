@@ -950,7 +950,6 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 	}
 	QBrush backgroundBrush = palette().window();  //QColor::fromRgb(96, 96, 96));
 	QColor textColor = palette().text().color();
-	qDebug() << style()->property("manhattanstyle").toBool() << style();
 	if (style()->property("manhattanstyle").toBool()) {
 		backgroundBrush = QBrush(QColor::fromRgb(96, 96, 96));
 		textColor = QColor(Qt::white);
