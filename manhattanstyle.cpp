@@ -132,6 +132,7 @@ ManhattanStyle::ManhattanStyle(const QString &baseStyleName)
 	: QProxyStyle(), d(new ManhattanStylePrivate(baseStyleName))
 #endif
 {
+	setProperty("manhattanstyle", true);
 }
 
 ManhattanStyle::~ManhattanStyle()
