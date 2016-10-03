@@ -89,7 +89,6 @@
 <file>images-ng/go-previous-diff.svg</file>
 <file>images-ng/go-previous.svg</file>
 <file>images-ng/goto.svg</file>
-<file>images-ng/hand.svgz</file>
 <file>images-ng/help-contents.svgz</file>
 <file>images-ng/highlight.svg</file>
 <file>images-ng/home.svg</file>
@@ -164,11 +163,11 @@
 <file>images-ng/zoom-fit-best.svg</file>
 <file>images-ng/zoom-fit-text-width.svgz</file>
 <file>images-ng/zoom-fit-width.svgz</file>
-<file>images-ng/zoom-in.svgz</file>
 <file>images-ng/zoom-original.svgz</file>
-<file>images-ng/zoom-out.svgz</file>
 <file>images-ng/classic/close.svg</file>
 <file>images-ng/classic/dfrac.svg</file>
+<file>images-ng/classic/hand.svgz</file>
+<file>images-ng/classic/magnifier-button.svgz</file>
 <file>images-ng/classic/mathmode.svg</file>
 <file>images-ng/classic/newline.svg</file>
 <file>images-ng/classic/smallfrac.svg</file>
@@ -180,9 +179,13 @@
 <file>images-ng/classic/shrink-viewer.svgz</file>
 <file>images-ng/classic/embedded-viewer.svg</file>
 <file>images-ng/classic/windowed-viewer.svgz</file>
+<file>images-ng/classic/zoom-in.svgz</file>
+<file>images-ng/classic/zoom-out.svgz</file>
 <file>images-ng/modern/close.svg</file>
 <file>images-ng/modern/dfrac.svg</file>
 <file>images-ng/modern/frac.svg</file>
+<file>images-ng/modern/hand.svgz</file>
+<file>images-ng/modern/magnifier-button.svgz</file>
 <file>images-ng/modern/mathmode.svg</file>
 <file>images-ng/modern/newline.svg</file>
 <file>images-ng/modern/smallfrac.svg</file>
@@ -194,5 +197,7 @@
 <file>images-ng/modern/shrink-viewer.svgz</file>
 <file>images-ng/modern/embedded-viewer.svg</file>
 <file>images-ng/modern/windowed-viewer.svgz</file>
+<file>images-ng/modern/zoom-in.svgz</file>
+<file>images-ng/modern/zoom-out.svgz</file>
 </qresource>
 </RCC>
