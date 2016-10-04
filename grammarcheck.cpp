@@ -548,7 +548,11 @@ bool GrammarCheckLanguageToolSOAP::isAvailable()
 
 QString GrammarCheckLanguageToolSOAP::url()
 {
+#if QT_VERSION < 0x050000
+    return server.toString();
+#else
 	return server.toDisplayString();
+#endif
 }
 
 QString quoteSpaces(const QString &s)
