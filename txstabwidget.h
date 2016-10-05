@@ -58,7 +58,7 @@ private slots:
 private:
 	bool m_active;
 };
-
+Q_DECLARE_METATYPE(TxsTabWidget *)
 
 
 class ChangeAwareTabBar : public QTabBar
