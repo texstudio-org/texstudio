@@ -1,11 +1,11 @@
 # mode: koma classes (scrartcl,scrreprt,scrbook)
 # dani/2006-02-21
-\addchap[short title]{title}#L0
-\addchap{title}#L0
-\addchap*{title}#L0
-\addpart[short title]{title}#L1
-\addpart{title}#L1
-\addpart*{title}#L1
+\addchap[short title]{title}#L1
+\addchap{title}#L1
+\addchap*{title}#L1
+\addpart[short title]{title}#L0
+\addpart{title}#L0
+\addpart*{title}#L0
 \addsec[short title]{title}#L2
 \addsec{title}#L2
 \addsec*{title}#L2
