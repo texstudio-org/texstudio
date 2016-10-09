@@ -1849,12 +1849,18 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
             QDocumentLineHandle *dlh = line.handle();
             TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
             foreach(Tokens tk,tl){
-                if(tk.type==Tokens::word && tk.subtype==Tokens::none)
+                if(tk.type==Tokens::word && (tk.subtype==Tokens::none||tk.subtype==Tokens::text))
                     continue;
-                if(tk.type==Tokens::punctuation && tk.subtype==Tokens::none)
+                if(tk.type==Tokens::punctuation && (tk.subtype==Tokens::none||tk.subtype==Tokens::text))
                     continue;
-                if(tk.type==Tokens::symbol && tk.subtype==Tokens::none)
+                if(tk.type==Tokens::symbol && (tk.subtype==Tokens::none||tk.subtype==Tokens::text))
                     continue; // don't blank symbol like '~'
+                if(tk.type==Tokens::braces && tk.subtype==Tokens::text){
+                    //remove braces around text argument
+                    temp.text.replace(tk.start,1,QString(' '));
+                    temp.text.replace(tk.start+tk.length-1,1,QString(' '));
+                    continue;
+                }
                 temp.text.replace(tk.start,tk.length,QString(tk.length,' '));
             }
 
