@@ -104,7 +104,7 @@ class PDFMovie: public Phonon::VideoPlayer
 {
 	Q_OBJECT
 public:
-	PDFMovie(PDFWidget *parent, Poppler::MovieAnnotation *annot, int page);
+	PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> annot, int page);
 	void place();
 protected:
 	void contextMenuEvent(QContextMenuEvent *);
