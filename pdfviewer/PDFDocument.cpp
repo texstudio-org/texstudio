@@ -862,7 +862,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 	case Poppler::Annotation::AMovie: {
 #ifdef PHONON
 		if (movie) delete movie;
-		movie = new PDFMovie(this, qSharedPointerDynamicCast<QSharedPointer<Poppler::MovieAnnotation> >(annotation), page);
+		movie = new PDFMovie(this, qSharedPointerDynamicCast<Poppler::MovieAnnotation>(annotation), page);
 		movie->place();
 		movie->show();
 		movie->play();
