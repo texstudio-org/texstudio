@@ -210,10 +210,15 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		nextStart = end + 2;
 		QString temp = text.mid(start, end-start);
 		int w = option.fontMetrics.width(temp);
-		if (inHighlight && !isSelected) {
+		if (inHighlight) {
 			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
+			painter->save();
+			painter->setPen(option.palette.color(cg, QPalette::Text));
+			painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
+			painter->restore();
+		} else {
+			painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 		}
-		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 		r.setLeft(r.left() + w + 1);
 		inHighlight = !inHighlight;
 	}
