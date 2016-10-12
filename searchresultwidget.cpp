@@ -1,11 +1,13 @@
 #include "searchresultwidget.h"
 #include "latexdocument.h"
+#include "configmanagerinterface.h"
 
 
 SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query(0)
 {
 	query = new SearchQuery("", "", SearchQuery::NoFlags);
-	SearchTreeDelegate *searchDelegate = new SearchTreeDelegate(this);
+	QString editorFontFamily = ConfigManagerInterface::getInstance()->getOption("Editor/Font Family").toString();
+	SearchTreeDelegate *searchDelegate = new SearchTreeDelegate(editorFontFamily, this);
 
 	QHBoxLayout *hLayout = new QHBoxLayout;
 	hLayout->setContentsMargins(4, 2, 4, 2);
@@ -145,7 +147,7 @@ SearchQuery::Scope SearchResultWidget::searchScope() const
 //====================================================================
 // CustomDelegate for search results
 //====================================================================
-SearchTreeDelegate::SearchTreeDelegate(QObject *parent): QItemDelegate(parent)
+SearchTreeDelegate::SearchTreeDelegate(QString editorFontFamily, QObject *parent): QItemDelegate(parent), m_editorFontFamily(editorFontFamily)
 {
 	;
 }
@@ -200,12 +202,17 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
 	// draw regular line
 	bool isSelected = option.state & QStyle::State_Selected;
+	if (!m_editorFontFamily.isEmpty()) {
+		QFont font = painter->font();
+		font.setFamily(m_editorFontFamily);
+		painter->setFont(font);
+	}
 
 	// draw line number
 	QVariant vLineNumber = index.data(SearchResultModel::LineNumberRole);
 	if (vLineNumber.isValid()) {
 		int hPadding = 1;
-		int lwidth = option.fontMetrics.width("00000") + 2 * hPadding;
+		int lwidth = painter->fontMetrics().width("00000") + 2 * hPadding;
 		QRect lineNumberRect = QRect(r.left(), r.top(), lwidth, r.height());
 		if (!isSelected) {
 			painter->fillRect(lineNumberRect, option.palette.window());
@@ -225,7 +232,7 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 			end = text.length();
 		nextStart = end + 2;
 		QString temp = text.mid(start, end-start);
-		int w = option.fontMetrics.width(temp);
+		int w = painter->fontMetrics().width(temp);
 		if (inHighlight) {
 			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
 			painter->save();
@@ -245,6 +252,8 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 QSize SearchTreeDelegate::sizeHint(const QStyleOptionViewItem &option,
                                    const QModelIndex &index) const
 {
+	// TODO: the size hint is not exact because the with of the checkbox is missing and
+	// result lines do not use option.font but m_editorFontFamily
 	QFontMetrics fontMetrics = option.fontMetrics;
 	QRect rect = fontMetrics.boundingRect(index.data().toString());
 	return QSize(rect.width(), rect.height());
