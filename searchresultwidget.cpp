@@ -158,13 +158,16 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	/*if( cg == QPalette::Normal && !(option.state & QStyle::State_Active) )
 	    cg = QPalette::Inactive;*/
 
+	painter->save();
 	if (option.state & QStyle::State_Selected) {
 		painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
 		painter->setPen(option.palette.color(cg, QPalette::HighlightedText));
 	} else {
 		painter->setPen(option.palette.color(cg, QPalette::Text));
 	}
+	QRect r = option.rect;  // active area. Will be moved during drawing actions
 
+	// draw checkbox
 	QSize size;
 	if (index.data(Qt::CheckStateRole).isValid()) {
 #if QT_VERSION >= 0x050200  /* QItemDelegate::check is an internal function which has been renamed (maybe already in Qt5.2?) */
@@ -175,15 +178,27 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		QRect checkboxRect(option.rect.x(), option.rect.y(), size.width(), size.height());
 		QItemDelegate::drawCheck(painter, option, checkboxRect, (Qt::CheckState) index.data(Qt::CheckStateRole).toInt());
 	}
-
-	if (index.data().toString().isEmpty()) {
-		return;
-	}
-	painter->save();
-
-	QRect r = option.rect;
 	int spacing = 2;
 	r.adjust(size.width() + spacing, 0, 0, 0);
+
+	if (index.data().toString().isEmpty()) {
+		painter->restore();
+		return;
+	}
+
+	// draw filename line
+	bool isFileName = !index.parent().isValid();
+	if (isFileName) {
+		QString text = index.data().toString();
+		QFont font = painter->font();
+		font.setBold(true);
+		painter->setFont(font);
+		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, text);
+		painter->restore();
+		return;
+	}
+
+	// draw regular line
 	bool isSelected = option.state & QStyle::State_Selected;
 
 	// draw line number
@@ -198,6 +213,7 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		painter->drawText(lineNumberRect.adjusted(hPadding, 0, -hPadding, 0), Qt::AlignRight | Qt::AlignTop | Qt::TextSingleLine, vLineNumber.toString());
 		r.adjust(lwidth + spacing, 0, 0, 0);
 	}
+
 	// draw text
 	QString text = index.data().toString();
 	bool inHighlight = false;
