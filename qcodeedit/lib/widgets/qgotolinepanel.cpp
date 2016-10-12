@@ -51,8 +51,11 @@ QGotoLinePanel::QGotoLinePanel(QWidget *p)
 	setDefaultVisibility(false);
 	
 	setObjectName("gotoLinePanel");
-	
-    bClose->setIcon(getRealIconCached("document-close"));
+
+	bClose->setAutoRaise(true);
+	QIcon closeIcon = getRealIconCached("close-tab");
+	closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
+    bClose->setIcon(closeIcon);
 }
 
 /*!
