@@ -92,7 +92,6 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
 	bClose->setMaximumSize(buttonSize);
-
 	QIcon closeIcon = getRealIconCached("close-tab");
 	closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
     bClose->setIcon(closeIcon);
