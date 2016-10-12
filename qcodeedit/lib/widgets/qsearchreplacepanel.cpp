@@ -88,10 +88,14 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 	// find section
 	bClose = new QToolButton(this);
+	bClose->setAutoRaise(true);
 	bClose->setObjectName(("bClose"));
 	bClose->setMinimumSize(buttonSize);
 	bClose->setMaximumSize(buttonSize);
-    bClose->setIcon(getRealIconCached("document-close"));
+
+	QIcon closeIcon = getRealIconCached("close-tab");
+	closeIcon.addFile(":/images-ng/close-tab-hover.svgz", QSize(), QIcon::Active);
+    bClose->setIcon(closeIcon);
     flowLayout->addWidget(bClose);
 
 	QLabel* lbFind = new QLabel(this);
@@ -204,15 +208,13 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     connect(bExtend, SIGNAL(clicked()), this, SIGNAL(showExtendedSearch()));
 
 	// replace section
-    QWidget *replaceWidget=new QWidget(0);
+    replaceWidget=new QWidget(this);
     vboxLayout->addWidget(replaceWidget);
     FlowLayoutX *flowLayout2=new FlowLayoutX(replaceWidget,1,1,1);
-	cbReplace = new QCheckBox(this);
-	cbReplace->setObjectName(("cbReplace"));
-	cbReplace->setChecked(true);
-    cbReplace->setMinimumSize(buttonSize);
-    cbReplace->setMaximumSize(buttonSize);
-    flowLayout2->addWidget(cbReplace);
+	QWidget *closeButtonPlaceHolder = new QWidget();  // takes exactly the same amount of space as the close button in the find panel
+	closeButtonPlaceHolder->setMinimumSize(buttonSize);
+    closeButtonPlaceHolder->setMaximumSize(buttonSize);
+    flowLayout2->addWidget(closeButtonPlaceHolder);
 
 	QLabel *lbReplace = new QLabel(this);
 	lbReplace->setObjectName("lbReplace");
@@ -282,7 +284,6 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 
 
 	//retranslateUi(this);
-    QObject::connect(cbReplace, SIGNAL(toggled(bool)), replaceWidget, SLOT(setVisible(bool)));
 	QObject::connect(bClose, SIGNAL(clicked()), this, SLOT(close()));
 
 	// connect by name
@@ -336,7 +337,7 @@ QString QSearchReplacePanel::type() const
 }
 
 bool QSearchReplacePanel::isReplaceModeActive() const{
-	return cbReplace->isChecked();
+	return replaceWidget->isVisible();
 }
 
 QDocumentCursor QSearchReplacePanel::getSearchScope() const{
@@ -400,7 +401,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 	bool visible = true;
 
 	if ( mode < 0 )
-		visible = (replace != cbReplace->isChecked()) || isHidden();
+		visible = (replace != isReplaceModeActive()) || isHidden();
 	else
 		visible = mode;
 
@@ -439,7 +440,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 			if (cbHighlight->isChecked() && !m_search->hasOption(QDocumentSearch::HighlightAll))
 				m_search->setOption(QDocumentSearch::HighlightAll, true);
 		}
-		cbReplace->setChecked(replace);
+		replaceWidget->setVisible(replace);
 		if (focusFindEdit) {
 			cFind->setFocus();
 			cFind->lineEdit()->selectAll();
@@ -616,7 +617,7 @@ void QSearchReplacePanel::setOptions(int searchOptions, bool cursor, bool select
 	cbCase->setChecked(searchOptions &QDocumentSearch::CaseSensitive);
 	cbWords->setChecked(searchOptions &QDocumentSearch::WholeWords);
 	cbHighlight->setChecked(searchOptions &QDocumentSearch::HighlightAll);
-	cbReplace->setChecked(searchOptions & QDocumentSearch::Replace);
+	replaceWidget->setVisible(searchOptions & QDocumentSearch::Replace);
 	cbPrompt->setChecked(searchOptions & QDocumentSearch::Prompt);
 	cbEscapeSeq->setChecked(searchOptions & QDocumentSearch::EscapeSeq);
 	cbCursor->setChecked(cursor);
@@ -687,13 +688,13 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 						on_cFind_returnPressed(Qt::ShiftModifier & static_cast<QKeyEvent*>(e)->modifiers());
 					return true;
 				} else if ( kc == Qt::Key_Escape) {
-					if ( cbReplace->isChecked() )
+					if ( isReplaceModeActive() )
 						display(0,false);
 					else
 						display(0,false);
 					return true;
 				} else if ( kc == Qt::Key_Tab || kc == Qt::Key_Backtab ) {
-					if ( cbReplace->isChecked() )
+					if ( isReplaceModeActive() )
 					{
 						if ( cbHasFocus(cFind) ) {
 							cReplace->setFocus();
@@ -727,7 +728,7 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 				return true;
 			} else if ( kc == Qt::Key_Tab || kc == Qt::Key_Backtab ) {
 				qobject_cast<QWidget*>(o)->hide();
-				if ( cbReplace->isChecked() )
+				if ( isReplaceModeActive() )
 				{
 					if ( cbHasFocus(cFind) )
 						cReplace->setFocus();
@@ -963,7 +964,7 @@ void QSearchReplacePanel::init()
 	if ( cbHighlight->isChecked())
 		opt |= QDocumentSearch::HighlightAll;
 
-	if ( cbReplace->isChecked())
+	if ( isReplaceModeActive() )
 		opt |= QDocumentSearch::Replace;
 
 	if ( cbPrompt->isChecked() )
@@ -975,7 +976,7 @@ void QSearchReplacePanel::init()
 	m_search = new QDocumentSearch(	editor(),
 									cFind->currentText(),
 									opt,
-									cbReplace->isChecked()
+									isReplaceModeActive()
 										?
 											cReplace->currentText()
 										:
