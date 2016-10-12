@@ -200,16 +200,24 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	}
 	// draw text
 	QString text = index.data().toString();
-	QStringList textList = text.split("|");
-	for (int i = 0; i < textList.size(); i++) {
-		QString temp = textList.at(i);
+	bool inHighlight = false;
+	int nextStart = 0;
+	while (nextStart >= 0 && nextStart < text.length()) {
+		int start = nextStart;
+		int end = (inHighlight) ? text.indexOf("|>", start) : text.indexOf("<|", start);
+		if (end < 0)
+			end = text.length();
+		nextStart = end + 2;
+		QString temp = text.mid(start, end-start);
 		int w = option.fontMetrics.width(temp);
-		if (i % 2 && !isSelected) {
+		if (inHighlight && !isSelected) {
 			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(Qt::yellow));
 		}
 		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 		r.setLeft(r.left() + w + 1);
+		inHighlight = !inHighlight;
 	}
+
 	painter->restore();
 }
 
