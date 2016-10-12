@@ -407,7 +407,6 @@ void QSearchReplacePanel::display(int mode, bool replace)
 
 	if ( visible )
 	{
-		//frameReplace->setVisible(replace);
 		bool focusFindEdit = true;
 		if (m_search){
 			if(editor()->cursor().hasSelection()){
@@ -809,15 +808,6 @@ void QSearchReplacePanel::cReplace_textEdited(const QString& text)
 void QSearchReplacePanel::on_cbPrompt_toggled(bool on){
 	if ( m_search )
 		m_search->setOption(QDocumentSearch::Prompt, on);
-	if ( cFind->isVisible() )
-		cFind->setFocus();
-}
-
-void QSearchReplacePanel::on_cbReplace_toggled(bool on)
-{
-	if ( m_search )
-		m_search->setOption(QDocumentSearch::Replace, on);
-
 	if ( cFind->isVisible() )
 		cFind->setFocus();
 }
