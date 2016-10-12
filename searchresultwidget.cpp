@@ -211,7 +211,7 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		QString temp = text.mid(start, end-start);
 		int w = option.fontMetrics.width(temp);
 		if (inHighlight && !isSelected) {
-			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(Qt::yellow));
+			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
 		}
 		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 		r.setLeft(r.left() + w + 1);
