@@ -51,11 +51,14 @@ class SearchTreeDelegate: public QItemDelegate
 	Q_OBJECT
 
 public:
-	SearchTreeDelegate(QObject *parent = 0);
+	SearchTreeDelegate(QString editorFontFamily, QObject *parent = 0);
 
 protected:
 	void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 	QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+private:
+	QString m_editorFontFamily;
 };
 
 
