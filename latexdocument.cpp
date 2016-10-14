@@ -1010,6 +1010,22 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newSection->columnNumber = cmdStart;
 				flatStructure << newSection;
 			}
+                        /// auto user command for \symbol_...
+                        if(j+2<tl.length()){
+                            Tokens tk2=tl.at(j+1);
+                            if(tk2.getText()=="_"){
+                                QString txt=cmd+"_";
+                                tk2=tl.at(j+2);
+                                txt.append(tk2.getText());
+                                if(tk2.type==Tokens::command && j+3<tl.length()){
+                                       Tokens tk3=tl.at(j+3);
+                                       if(tk3.level==tk2.level && tk.subtype!=Tokens::none)
+                                           txt.append(tk3.getText());
+                                }
+                                CodeSnippet cs(txt);
+                                mUserCommandList.insert(line(i).handle(), cs);
+                            }
+                        }
 		} // while(findCommandWithArgs())
 
 		if (!oldBibs.isEmpty())
