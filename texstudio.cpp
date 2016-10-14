@@ -4661,13 +4661,30 @@ void Texstudio::insertTextCompletion()
 	while ((i = my_text.indexOf(QRegExp("\\b" + word), end)) > 0) {
 		end = my_text.indexOf(QRegExp("\\b"), i + 1);
 		if (end > i) {
-			if (word == my_text.mid(i, end - i)) {
-				k = k + 1;
-				if (k == 2) words << my_text.mid(i, end - i);
-			} else {
-				if (!words.contains(my_text.mid(i, end - i)))
-					words << my_text.mid(i, end - i);
-			}
+            bool addVar=false;
+            do {
+                addVar=false;
+                if (word == my_text.mid(i, end - i)) {
+                    k = k + 1;
+                    if (k == 2) words << my_text.mid(i, end - i);
+                } else {
+                    if (!words.contains(my_text.mid(i, end - i)))
+                        words << my_text.mid(i, end - i);
+                }
+                // add more variants if word boundary is \_ \- or -
+                if(my_text.length()>end+1){
+                    addVar|=(my_text.mid(end,2)=="\\_");
+                    addVar|=(my_text.mid(end,2)=="\\-");
+                    if(addVar)
+                        end++;
+                }
+                if(my_text.mid(end,1)=="-")
+                    addVar=true;
+                if(addVar){
+                    end = my_text.indexOf(QRegExp("\\b"), end+2);
+                    addVar=(end>i);
+                }
+            } while(addVar);
 		} else {
 			if (word == my_text.mid(i, end - i)) {
 				k = k + 1;
