@@ -4668,8 +4668,21 @@ void Texstudio::insertTextCompletion()
                     k = k + 1;
                     if (k == 2) words << my_text.mid(i, end - i);
                 } else {
-                    if (!words.contains(my_text.mid(i, end - i)))
-                        words << my_text.mid(i, end - i);
+                    QString txt=my_text.mid(i, end - i);
+                    if(txt.endsWith("_")){
+                        if(my_text.mid(end,1)=="\\"||my_text.mid(end,1)=="{"){
+                            // special handling for abc_\cmd{dsfsdf}
+                            QRegExp rx("(\\\\[a-zA-Z]+)?(\\{\\w+\\})?"); // better solution would be employing tokens ...
+                            int zw=rx.indexIn(my_text,end);
+                            if(zw==end){
+                                txt.append(rx.cap());
+                                words << txt;
+                            }
+                        }
+                    }else{
+                        if (!words.contains(txt))
+                            words << txt;
+                    }
                 }
                 // add more variants if word boundary is \_ \- or -
                 if(my_text.length()>end+1){
