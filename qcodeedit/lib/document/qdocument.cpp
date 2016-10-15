@@ -5498,7 +5498,7 @@ QChar QDocumentCursorHandle::nextChar() const
 
 	QDocumentLine l = m_doc->line(m_begLine);
 
-	if ( !l.isValid() )
+	if ( !l.isValid() || m_begOffset < 0 )
 		return QChar();
 
 	return m_begOffset < l.length() ? l.text().at(m_begOffset) : (atEnd()?QLatin1Char('\0'):QLatin1Char('\n'));
