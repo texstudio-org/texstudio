@@ -888,7 +888,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 void PDFWidget::openAnnotationDialog(const PDFAnnotation *annon)
 {
 	PDFAnnotationDlg *dlg = new PDFAnnotationDlg(annon->popplerAnnotation(), this);
-	qDebug() << annon->popplerAnnotation()->revisionType() << annon->popplerAnnotation()->revisions().count();
+	//qDebug() << annon->popplerAnnotation()->revisionType() << annon->popplerAnnotation()->revisions().count();
 	dlg->show();
 }
 
