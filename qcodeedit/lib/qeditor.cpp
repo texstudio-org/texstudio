@@ -986,7 +986,17 @@ bool QEditor::saveCopy(const QString& filename){
 	QSaveFile file(filename);
 	if (file.open(QIODevice::WriteOnly)) {
 		file.write(data);
-		return file.commit();
+		bool success = file.commit();
+		if (!success) {
+			QMessageBox::warning(this, tr("Saving failed"),
+								 tr("%1\nCould not be written. Error (%2): %3.\n"
+									"If the file already existed on disk, it was not modified by this operation.")
+								    .arg(QDir::toNativeSeparators(filename))
+								    .arg(file.error())
+								    .arg(file.errorString()),
+								 QMessageBox::Ok);
+		}
+		return success;
 	}
 	QMessageBox::warning(this, tr("Saving failed"), tr("Could not get write permissions on file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(QDir::toNativeSeparators(filename)), QMessageBox::Ok);
 	return false;
