@@ -74,7 +74,8 @@ Version Version::current()
 bool Version::operator >(const Version &other) const
 {
 	VersionCompareResult res = compareStringVersion(versionNumber, other.versionNumber);
-	return (res == Higher || (res == Same && revision > other.revision));
+	bool revisionLarger = (revision > 0 && other.revision > 0 && revision > other.revision);
+	return (res == Higher || (res == Same && revisionLarger));
 }
 
 bool Version::isEmpty() const
