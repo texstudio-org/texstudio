@@ -4649,7 +4649,50 @@ void Texstudio::insertTextCompletion()
 	for (; col > 0 && !eow.contains(line[col - 1]); col-- )
 		;
 
-	QString my_text = currentEditorView()->editor->text();
+    QString word = line.mid(col, c.columnNumber() - col);
+    QSet<QString> words;
+
+    QDocument *doc=currentEditor()->document();
+
+    for(int i=0;i<doc->lineCount();i++){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        QString txt;
+        for(int k=0;k<tl.size();k++) {
+            Tokens tk=tl.at(k);
+            if(!txt.isEmpty() || tk.type==Tokens::word && (tk.subtype==Tokens::none || tk.subtype==Tokens::text)){
+                txt+=tk.getText();
+                if(txt.startsWith(word) && word.length()<txt.length()){
+                    words<<txt;
+                    // add more variants for variable-name like constructions
+                    if(k+2<tl.size()){
+                        Tokens tk2=tl.at(k+1);
+                        Tokens tk3=tl.at(k+2);
+                        if(tk2.length==1 && tk2.start==tk.start+tk.length && tk2.type==Tokens::punctuation&&tk3.start==tk2.start+tk2.length){
+                            // next token is directly adjacent and of length 1
+                            QString txt2=tk2.getText();
+                            if(txt2=="_"){
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                        }
+                        // previous was an already appended command, check if argument is present
+                        if(tk.type==Tokens::command){
+                            if(tk2.level==tk.level && tk2.subtype!=Tokens::none){
+                                txt.append(tk2.getText());
+                                words<<txt;
+                                k++;
+                            }
+                        }
+                    }
+                }
+            }
+            txt.clear();
+        }
+
+    }
+    /*QString my_text = currentEditorView()->editor->text();
 	int end = 0;
 	int k = 0; // number of occurences of search word.
 	QString word = line.mid(col, c.columnNumber() - col);
@@ -4708,7 +4751,7 @@ void Texstudio::insertTextCompletion()
 			}
 		}
 	}
-
+    */
 	completer->setAdditionalWords(words, CT_NORMALTEXT);
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 }
