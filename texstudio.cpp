@@ -4671,7 +4671,7 @@ void Texstudio::insertTextCompletion()
                         if(tk2.length==1 && tk2.start==tk.start+tk.length && tk2.type==Tokens::punctuation&&tk3.start==tk2.start+tk2.length){
                             // next token is directly adjacent and of length 1
                             QString txt2=tk2.getText();
-                            if(txt2=="_"){
+                            if(txt2=="_" || txt2=="-"){
                                 txt.append(txt2);
                                 k++;
                                 continue;
