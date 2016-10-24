@@ -4660,10 +4660,12 @@ void Texstudio::insertTextCompletion()
         QString txt;
         for(int k=0;k<tl.size();k++) {
             Tokens tk=tl.at(k);
-            if(!txt.isEmpty() || (tk.type==Tokens::word && (tk.subtype==Tokens::none || tk.subtype==Tokens::text))){
+            if(!txt.isEmpty() || (tk.type==Tokens::word && (tk.subtype==Tokens::none || tk.subtype==Tokens::text || tk.subtype==Tokens::generalArg))){
                 txt+=tk.getText();
-                if(txt.startsWith(word) && word.length()<txt.length()){
-                    words<<txt;
+                if(txt.startsWith(word)){
+                    if(word.length()<txt.length()){
+                        words<<txt;
+                    }
                     // advance k if tk comprehends several sub-tokens (braces)
                     while(k+1<tl.size() && tl.at(k+1).start<(tk.start+tk.length)){
                         k++;
