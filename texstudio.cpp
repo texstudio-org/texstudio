@@ -4660,7 +4660,7 @@ void Texstudio::insertTextCompletion()
         QString txt;
         for(int k=0;k<tl.size();k++) {
             Tokens tk=tl.at(k);
-            if(!txt.isEmpty() || (tk.type==Tokens::word && (tk.subtype==Tokens::none || tk.subtype==Tokens::text || tk.subtype==Tokens::generalArg))){
+            if(!txt.isEmpty() || (tk.type==Tokens::word && (tk.subtype==Tokens::none || tk.subtype==Tokens::text || tk.subtype==Tokens::generalArg || tk.subtype==Tokens::title))){
                 txt+=tk.getText();
                 if(txt.startsWith(word)){
                     if(word.length()<txt.length()){
@@ -4683,6 +4683,16 @@ void Texstudio::insertTextCompletion()
                                 continue;
                             }
                             if(txt2=="'" && tk3.type==Tokens::word){ // e.g. don't but not abc''
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                        }
+                        // combine abc\_def
+                        if(tk2.length==2 && tk2.start==tk.start+tk.length && (tk2.type==Tokens::command||tk2.type==Tokens::commandUnknown)&&tk3.start==tk2.start+tk2.length){
+                            // next token is directly adjacent and of length 1
+                            QString txt2=tk2.getText();
+                            if(txt2=="\\_" ){
                                 txt.append(txt2);
                                 k++;
                                 continue;
