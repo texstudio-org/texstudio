@@ -460,28 +460,39 @@ QString latexToText(QString s)
 {
 	// substitute \texorpdfstring
 	int start, stop;
+	int texorpdfstringLength = 15;
 	start = s.indexOf("\\texorpdfstring");
-	while (start >= 0) {
+	while (start >= 0 && start < s.length()) {
+
 		// first arg
-		int i = startOfArg(s, start + 15);
-        if (i < 0){
-            if(start+15>=s.length()){ // argument is only \texorpdfstring
-                s.clear();
-                break;
-            }
-            continue;  // no arguments for \\texorpdfstring
-        }
+		int i = startOfArg(s, start + texorpdfstringLength);
+		if (i < 0) {  // no arguments for \\texorpdfstring
+			start += texorpdfstringLength;
+			start = s.indexOf("\\texorpdfstring", start);
+			continue;
+		}
 		i++;
 		stop = findClosingBracket(s, i);
-		if (stop < 0) continue;
+		if (stop < 0) {  // missing closing bracket for first argument of \\texorpdfstring
+			start += texorpdfstringLength;
+			start = s.indexOf("\\texorpdfstring", start);
+			continue;
+		}
 
 		// second arg
 		i = startOfArg(s, stop + 1);
-		if (i < 0) continue;  // no arguments for \\texorpdfstring
+		if (i < 0) {  // no second arg for \\texorpdfstring
+			start += texorpdfstringLength;
+			start = s.indexOf("\\texorpdfstring", start);
+			continue;
+		}
 		i++;
 		stop = findClosingBracket(s, i);
-		if (stop < 0) continue;
-
+		if (stop < 0) {
+			start += texorpdfstringLength;
+			start = s.indexOf("\\texorpdfstring", start);
+			continue;  // no second arg for \\texorpdfstring
+		}
 		s.remove(stop, 1);
 		s.remove(start, i - start);
 		start = s.indexOf("\\texorpdfstring", start);

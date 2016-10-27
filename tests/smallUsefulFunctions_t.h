@@ -603,6 +603,10 @@ private slots:
 		QTest::newRow("multiple") << "spam \\texorpdfstring{foo}{bar} and \\texorpdfstring{foo}{eggs}" << "spam bar and eggs";
 		QTest::newRow("spaces") << "\\texorpdfstring  {foo}  {bar}" << "bar";
 		QTest::newRow("tabs") << "\\texorpdfstring\t\t{foo}\t\t{bar} spam" << "bar spam";
+		QTest::newRow("texorpdfstring-noarg") << "a \\texorpdfstring no arg" << "a \\texorpdfstring no arg";
+		QTest::newRow("texorpdfstring-unbalanced") << "a \\texorpdfstring{unbalanced arg" << "a \\texorpdfstring{unbalanced arg";
+		QTest::newRow("texorpdfstring-singlearg") << "a \\texorpdfstring{single} arg" << "a \\texorpdfstring{single} arg";
+		QTest::newRow("texorpdfstring-unbalanced2") << "a \\texorpdfstring{second}{unbalanced arg" <<  "a \\texorpdfstring{second}{unbalanced arg" ;
 		QTest::newRow("discretionary hyphen") << "Wurst\\-salat" << "Wurstsalat";
 	}
 	void test_latexToText(){
