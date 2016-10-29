@@ -117,6 +117,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 			if (m.triggerRegex.matchedLength() > 1) {
 				c.movePosition(realMatchLen - 1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				c.removeSelectedText();
+                editor->setCursor(c);
 			}
 
 			LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
