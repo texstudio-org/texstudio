@@ -246,10 +246,13 @@ void Bookmarks::clickedOnBookmark(QListWidgetItem *item)
 		if (!doc) return;
 	}
 
-	if (doc->indexOf(dlh) < 0) {
+    int ln=doc->indexOf(dlh);
+    if (ln < 0) {
 		dlh = doc->line(lineNr).handle();
 		item->setData(DocLineHandle, qVariantFromValue(dlh));
-	}
+    }else{ // linenr in case it has been shifted
+        lineNr=ln;
+    }
 
 	emit gotoLineRequest(lineNr, 0, doc->getEditorView());
 }
