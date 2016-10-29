@@ -346,7 +346,12 @@ QString getText(QWidget *w)
 void setText(QWidget *w, const QString &t)
 {
 	if (qobject_cast<QLineEdit *>(w)) qobject_cast<QLineEdit *>(w)->setText(t);
-	else if (qobject_cast<QComboBox *>(w)) qobject_cast<QComboBox *>(w)->setEditText(t);
+    else if (qobject_cast<QComboBox *>(w)) {
+        QComboBox * cb=qobject_cast<QComboBox *>(w);
+        if(!cb->isEditable())
+            cb->setEditable(true);
+        cb->setEditText(t);
+    }
 	else REQUIRE(false);
 }
 
@@ -1560,7 +1565,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 				if (cb && !configShowAdvancedOptions) {
 					// the display text has to be mappend to the actual command in case of the non-advanced dialog
 					int i = cb->findText(text);
-					text = it.value().metaSuggestionList.value(i);
+                    if(i>=0)
+                        text = it.value().metaSuggestionList.value(i);
 				}
 				it.value().commandLine = text;
 			}
