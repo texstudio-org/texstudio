@@ -5,7 +5,9 @@
 
 class LatexEditorView;
 class LatexDocuments;
+class LatexDocument;
 class QDocumentLineHandle;
+
 
 struct Bookmark {
 	Bookmark();

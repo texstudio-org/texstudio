@@ -170,24 +170,6 @@ void Bookmarks::updateLineWithBookmark(int lineNr)
 			return;
 		}
 	}
-	// no bookmark found, add one (why)
-	/*
-	 text=doc->getFileInfo().fileName();
-	 text+="\n"+dlh->text().trimmed();
-	 QListWidgetItem *item=new QListWidgetItem(text,bookmarksWidget);
-	 item->setData(FileName,documents.currentDocument->getFileName());
-	 item->setData(LineNr,lineNr);
-	 item->setData(DocLineHandle,qVariantFromValue(dlh));
-	 lineNr = lineNr>1 ? lineNr-2 : 0;
-	 text.clear();
-	 for(int i=lineNr;(i<lineNr+4)&&(i<doc->lineCount());i++){
-		 QString ln=doc->line(i).text().trimmed();
-		 if(ln.length()>40)
-			 ln=ln.left(40)+"...";
-		 text+=ln+"\n";
-	 }
-	 item->setToolTip(text);
-	 */
 }
 
 void Bookmarks::restoreBookmarks(LatexEditorView *edView)
@@ -223,9 +205,17 @@ void Bookmarks::updateBookmarks(LatexEditorView *edView)
 	QList<QListWidgetItem *> lst = bookmarksWidget->findItems(text, Qt::MatchStartsWith);
 	foreach (QListWidgetItem *item, lst) {
 		QDocumentLineHandle *dlh = qvariant_cast<QDocumentLineHandle *>(item->data(DocLineHandle));
-		int lineNr = doc->indexOf(dlh);
-		item->setData(LineNr, lineNr);
-		item->setData(DocLineHandle, 0);
+        if(text.isEmpty()){
+            if(dlh->document() == doc){
+                int row = bookmarksWidget->row(item);
+                if (row < 0) continue;
+                bookmarksWidget->takeItem(row);
+            }
+        }else{
+            int lineNr = doc->indexOf(dlh);
+            item->setData(LineNr, lineNr);
+            item->setData(DocLineHandle, 0);
+        }
 	}
 }
 
