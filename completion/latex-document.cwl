@@ -338,9 +338,7 @@
 \onecolumn
 \oval(width,height)#*/picture
 \oval(width,height)[portion]#*/picture
-\overbrace{text}
 \overleftarrow{text}
-\overline{text}
 \overrightarrow{text}
 \pagebreak
 \pagebreak[number]
