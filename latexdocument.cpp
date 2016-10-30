@@ -1009,6 +1009,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newSection->setLine(line(i).handle(), i);
 				newSection->columnNumber = cmdStart;
 				flatStructure << newSection;
+                                continue;
 			}
                         /// auto user command for \symbol_...
                         if(j+2<tl.length()){
@@ -1026,6 +1027,18 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                                 mUserCommandList.insert(line(i).handle(), cs);
                             }
                         }
+                        /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
+                        if(j+2<tl.length() && !firstArg.isEmpty() && lp.possibleCommands["math"].contains(cmd) ){
+                            if (lp.commandDefs.contains(cmd)) {
+                                    CommandDescription cd = lp.commandDefs.value(cmd);
+                                    if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
+                                        QString txt=cmd+"{"+firstArg+"}";
+                                        CodeSnippet cs(txt);
+                                        mUserCommandList.insert(line(i).handle(), cs);
+                                    }
+                            }
+                        }
+
 		} // while(findCommandWithArgs())
 
 		if (!oldBibs.isEmpty())
