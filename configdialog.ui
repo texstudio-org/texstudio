@@ -1845,9 +1845,9 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-184</y>
+            <y>0</y>
             <width>863</width>
-            <height>1340</height>
+            <height>1363</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2046,38 +2046,10 @@ Then you can select a new shortcut by one of the following ways:
               <bool>false</bool>
              </property>
              <layout class="QGridLayout" columnstretch="0,1,1,1">
-              <item row="17" column="2">
+              <item row="18" column="2">
                <widget class="QCheckBox" name="checkBoxGoToErrorWhenDisplayingLog">
                 <property name="text">
                  <string>Go to error when displaying log</string>
-                </property>
-               </widget>
-              </item>
-              <item row="10" column="0">
-               <widget class="QLabel" name="label_23">
-                <property name="text">
-                 <string>Maximal Characters:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="16" column="0">
-               <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
-                <property name="toolTip">
-                 <string>When using unicode characters in the source code, LaTeX still has
-to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
-                </property>
-                <property name="text">
-                 <string>Insert Symbol as Unicode</string>
-                </property>
-               </widget>
-              </item>
-              <item row="17" column="0">
-               <widget class="QCheckBox" name="checkBoxShowLogMarkersWhenClickingLogEntry">
-                <property name="text">
-                 <string>Show log markers when clicking log entry</string>
                 </property>
                </widget>
               </item>
@@ -2105,7 +2077,42 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </item>
                </widget>
               </item>
-              <item row="20" column="1" colspan="2">
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Maximal Characters:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
+                <property name="text">
+                 <string>Show help as tooltip on text in editor</string>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="0">
+               <widget class="QCheckBox" name="checkBoxInsertSymbolAsUCS">
+                <property name="toolTip">
+                 <string>When using unicode characters in the source code, LaTeX still has
+to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</string>
+                </property>
+                <property name="text">
+                 <string>Insert Symbol as Unicode</string>
+                </property>
+               </widget>
+              </item>
+              <item row="18" column="0">
+               <widget class="QCheckBox" name="checkBoxShowLogMarkersWhenClickingLogEntry">
+                <property name="text">
+                 <string>Show log markers when clicking log entry</string>
+                </property>
+               </widget>
+              </item>
+              <item row="21" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxContextMenuSpellcheckingEntryLocation">
                 <item>
                  <property name="text">
@@ -2119,13 +2126,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </item>
                </widget>
               </item>
-              <item row="4" column="2" colspan="2">
-               <widget class="QCheckBox" name="checkBoxToolTipHelp2">
-                <property name="text">
-                 <string>Show help as tooltip on text in editor</string>
-                </property>
-               </widget>
-              </item>
               <item row="3" column="2" colspan="2">
                <widget class="QCheckBox" name="checkBoxImageToolTip">
                 <property name="text">
@@ -2133,22 +2133,8 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="19" column="0">
-               <widget class="QLabel" name="label_80">
-                <property name="text">
-                 <string>Default Log Encoding</string>
-                </property>
-               </widget>
-              </item>
-              <item row="19" column="1" colspan="2">
+              <item row="20" column="1" colspan="2">
                <widget class="QComboBox" name="comboBoxLogFileEncoding"/>
-              </item>
-              <item row="20" column="0">
-               <widget class="QLabel" name="label_70">
-                <property name="text">
-                 <string>Spellchecking via context menu:</string>
-                </property>
-               </widget>
               </item>
               <item row="6" column="0" colspan="2">
                <widget class="QCheckBox" name="checkOverwriteOpeningBracketFollowedByPlaceholder">
@@ -2157,41 +2143,24 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="16" column="2">
+              <item row="20" column="0">
+               <widget class="QLabel" name="label_80">
+                <property name="text">
+                 <string>Default Log Encoding</string>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="2">
                <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
                 <property name="text">
                  <string>Don't leave full screen mode when pressing &lt;Esc&gt;</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="2" colspan="2">
-               <widget class="QCheckBox" name="checkBoxTexDocInternal">
+              <item row="21" column="0">
+               <widget class="QLabel" name="label_70">
                 <property name="text">
-                 <string>Show help on commands in internal pdf viewer (texdoc)</string>
-                </property>
-               </widget>
-              </item>
-              <item row="12" column="0">
-               <widget class="QLabel" name="label_24">
-                <property name="text">
-                 <string>Auto Save All Files:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="checkBoxAutoCompleteParens">
-                <property name="text">
-                 <string>Auto Complete Parentheses</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QCheckBox" name="checkBoxMouseWheelZoom">
-                <property name="text">
-                 <string>Mouse Wheel Zoom</string>
+                 <string>Spellchecking via context menu:</string>
                 </property>
                </widget>
               </item>
@@ -2234,6 +2203,44 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </item>
                </widget>
               </item>
+              <item row="12" column="0">
+               <widget class="QLabel" name="label_24">
+                <property name="text">
+                 <string>Auto Save All Files:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="checkBoxMouseWheelZoom">
+                <property name="text">
+                 <string>Mouse Wheel Zoom</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBoxAutoCompleteParens">
+                <property name="text">
+                 <string>Auto Complete Parentheses</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="2" colspan="2">
+               <widget class="QCheckBox" name="checkBoxTexDocInternal">
+                <property name="text">
+                 <string>Show help on commands in internal pdf viewer (texdoc)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_41">
+                <property name="text">
+                 <string>Line Wrapping:</string>
+                </property>
+               </widget>
+              </item>
               <item row="10" column="1">
                <widget class="QSpinBox" name="spinBoxWrapLineWidth">
                 <property name="minimum">
@@ -2251,13 +2258,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
-               <widget class="QLabel" name="label_41">
-                <property name="text">
-                 <string>Line Wrapping:</string>
-                </property>
-               </widget>
-              </item>
               <item row="5" column="0">
                <widget class="QCheckBox" name="checkBoxSmoothScrolling">
                 <property name="text">
@@ -2265,21 +2265,14 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="13" column="0" colspan="2">
+              <item row="14" column="0" colspan="2">
                <widget class="QCheckBox" name="checkBoxMonitorFilesForExternalChanges">
                 <property name="text">
                  <string>Monitor open files for external changes</string>
                 </property>
                </widget>
               </item>
-              <item row="7" column="0" colspan="2">
-               <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
-                <property name="text">
-                 <string>Overwrite Closing Bracket Following a Placeholder</string>
-                </property>
-               </widget>
-              </item>
-              <item row="14" column="0" colspan="3">
+              <item row="15" column="0" colspan="3">
                <layout class="QVBoxLayout" name="verticalLayout_12">
                 <property name="leftMargin">
                  <number>16</number>
@@ -2292,6 +2285,23 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                  </widget>
                 </item>
                </layout>
+              </item>
+              <item row="7" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkOverwriteClosingBracketFollowingPlaceholder">
+                <property name="text">
+                 <string>Overwrite Closing Bracket Following a Placeholder</string>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxUseQSaveWrite">
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Safe writing of files</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>

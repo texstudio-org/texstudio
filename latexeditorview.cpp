@@ -1508,6 +1508,7 @@ void LatexEditorView::updateSettings()
 	editor->setDoubleClickSelectionType(config->doubleClickSelectionIncludeLeadingBackslash ? QDocumentCursor::WordOrCommandUnderCursor : QDocumentCursor::WordUnderCursor);
 	editor->setIgnoreExternalChanges(!config->monitorFilesForExternalChanges);
 	editor->setSilentReloadOnExternalChanges(config->silentReload);
+	editor->setUseQSaveFile(config->useQSaveFile);
 	editor->setHidden(false);
 	editor->setCursorSurroundingLines(config->cursorSurroundLines);
 	editor->setCursorBold(config->boldCursor);
