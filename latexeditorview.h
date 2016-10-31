@@ -170,7 +170,7 @@ private:
 
 	QPoint m_point;
 
-	static int environmentFormat, referencePresentFormat, referenceMissingFormat, referenceMultipleFormat, citationMissingFormat, citationPresentFormat, structureFormat,
+	static int environmentFormat, referencePresentFormat, referenceMissingFormat, referenceMultipleFormat, citationMissingFormat, citationPresentFormat, structureFormat, todoFormat,
 	       packagePresentFormat, packageMissingFormat, packageUndefinedFormat,
 	       wordRepetitionFormat, wordRepetitionLongRangeFormat, badWordFormat, grammarMistakeFormat, grammarMistakeSpecial1Format, grammarMistakeSpecial2Format, grammarMistakeSpecial3Format, grammarMistakeSpecial4Format,
 	       numbersFormat, verbatimFormat, commentFormat, pictureFormat, pweaveDelimiterFormat, pweaveBlockFormat, sweaveDelimiterFormat, sweaveBlockFormat, math_DelimiterFormat, math_KeywordFormat,

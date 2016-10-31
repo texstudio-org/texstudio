@@ -2997,6 +2997,7 @@ QString Tokens::tokenTypeName(TokenType t) {
 	LITERAL_ENUM(placement)
 	LITERAL_ENUM(colDef)
 	LITERAL_ENUM(title)
+	LITERAL_ENUM(todo)
 	LITERAL_ENUM(url)
 	LITERAL_ENUM(documentclass)
 	LITERAL_ENUM(beamertheme)
@@ -3181,6 +3182,7 @@ Tokens::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 		if (suffix == "%plain") return Tokens::generalArg;
 		if (suffix == "%text") return Tokens::text;
 		if (suffix == "%title") return Tokens::title;
+		if (suffix == "%todo") return Tokens::todo;
 		if (suffix == "%l") return Tokens::width;
 		if (suffix == "%cmd") return Tokens::def;
 		if (suffix == "%keyvals") return Tokens::keyValArg;
