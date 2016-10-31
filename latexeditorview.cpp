@@ -1468,7 +1468,7 @@ void LatexEditorView::setLineMarkToolTip(const QString &tooltip)
 	lineMarkPanel->setToolTipForTouchedMark(tooltip);
 }
 
-int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat, LatexEditorView::structureFormat, LatexEditorView::packageMissingFormat, LatexEditorView::packagePresentFormat, LatexEditorView::packageUndefinedFormat,
+int LatexEditorView::environmentFormat, LatexEditorView::referencePresentFormat, LatexEditorView::referenceMissingFormat, LatexEditorView::referenceMultipleFormat, LatexEditorView::citationMissingFormat, LatexEditorView::citationPresentFormat, LatexEditorView::structureFormat, LatexEditorView::todoFormat, LatexEditorView::packageMissingFormat, LatexEditorView::packagePresentFormat, LatexEditorView::packageUndefinedFormat,
     LatexEditorView::wordRepetitionFormat, LatexEditorView::wordRepetitionLongRangeFormat, LatexEditorView::badWordFormat, LatexEditorView::grammarMistakeFormat, LatexEditorView::grammarMistakeSpecial1Format, LatexEditorView::grammarMistakeSpecial2Format, LatexEditorView::grammarMistakeSpecial3Format, LatexEditorView::grammarMistakeSpecial4Format,
     LatexEditorView::numbersFormat, LatexEditorView::verbatimFormat, LatexEditorView::commentFormat, LatexEditorView::pictureFormat, LatexEditorView::math_DelimiterFormat, LatexEditorView::math_KeywordFormat,
     LatexEditorView::pweaveDelimiterFormat, LatexEditorView::pweaveBlockFormat, LatexEditorView::sweaveDelimiterFormat, LatexEditorView::sweaveBlockFormat,
@@ -1551,6 +1551,7 @@ void LatexEditorView::updateFormatSettings()
 		                         &packageUndefinedFormat, "normal",
 		                         &syntaxErrorFormat, "latexSyntaxMistake", //TODO: rename all to xFormat, "x"
 		                         F(structure)
+		                         &todoFormat, "commentTodo",
 		                         &deleteFormat, "diffDelete",
 		                         &insertFormat, "diffAdd",
 		                         &replaceFormat, "diffReplace",
@@ -1583,7 +1584,7 @@ void LatexEditorView::updateFormatSettings()
 		grammarFormatsDisabled.fill(false);
 		formatsList << SpellerUtility::spellcheckErrorFormat << referencePresentFormat << citationPresentFormat << referenceMissingFormat;
 		formatsList << referenceMultipleFormat << citationMissingFormat << packageMissingFormat << packagePresentFormat << packageUndefinedFormat << environmentFormat;
-		formatsList << wordRepetitionFormat << structureFormat << insertFormat << deleteFormat << replaceFormat;
+		formatsList << wordRepetitionFormat << structureFormat << todoFormat << insertFormat << deleteFormat << replaceFormat;
 		LatexDocument::syntaxErrorFormat = syntaxErrorFormat;
 	}
 }
@@ -1740,6 +1741,7 @@ void LatexEditorView::clearOverlays()
 		line.clearOverlays(environmentFormat);
 		line.clearOverlays(syntaxErrorFormat);
 		line.clearOverlays(structureFormat);
+		line.clearOverlays(todoFormat);
 		foreach (const int f, grammarFormats)
 			line.clearOverlays(f);
 	}
@@ -1897,6 +1899,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 		bool addedOverlayCitation = false;
 		bool addedOverlayEnvironment = false;
 		bool addedOverlayStructure = false;
+		bool addedOverlayTodo = false;
 		bool addedOverlayPackage = false;
 
 		// diff presentation
@@ -1935,6 +1938,10 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				if (tk.subtype == Tokens::title && tk.type == Tokens::braces) {
 					line.addOverlay(QFormatRange(tk.start + 1, tk.length - 2, structureFormat));
 					addedOverlayStructure = true;
+				}
+				if (tk.subtype == Tokens::todo && tk.type == Tokens::braces) {
+					line.addOverlay(QFormatRange(tk.start + 1, tk.length - 2, todoFormat));
+					addedOverlayTodo = true;
 				}
 				if (tk.type == Tokens::env || tk.type == Tokens::beginEnv) {
 					line.addOverlay(QFormatRange(tk.start, tk.length, environmentFormat));
@@ -1995,7 +2002,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				}
 			}// if latexLineCheking
             int tkLength=tk.length;
-			if (tk.type == Tokens::word && (tk.subtype == Tokens::text || tk.subtype == Tokens::title || tk.subtype == Tokens::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
+			if (tk.type == Tokens::word && (tk.subtype == Tokens::text || tk.subtype == Tokens::title || tk.subtype == Tokens::todo || tk.subtype == Tokens::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
 				QString word = tk.getText();
                 if(tkNr+1 < tl.length()){
                     //check if next token is . or -
@@ -2044,6 +2051,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			updateWrapping |= addedOverlayPackage && (ff->format(packagePresentFormat).widthChanging() || ff->format(packageMissingFormat).widthChanging());
 			updateWrapping |= addedOverlayEnvironment && ff->format(environmentFormat).widthChanging();
 			updateWrapping |= addedOverlayStructure && ff->format(structureFormat).widthChanging();
+			updateWrapping |= addedOverlayTodo && ff->format(todoFormat).widthChanging();
 			if (updateWrapping)
 				line.handle()->updateWrapAndNotifyDocument(i);
 

@@ -1455,6 +1455,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>URL</code>:URL</li>
   <li><code>options</code>:package options, e.g. \usepackage[options]</li>
   <li><code>imagefile</code>:file name of an image</li>
+  <li>ends with <code>%todo</code>: The argument is highlighted as todo. Note: To add the element to the todo list in the structure panel, you have to additionally add the classifier <code>D</code>. See todonotes.cwl for an example.</li>
   <li><code>key</code>:label/ref key</li>
   <li><code>label</code> with option <code>#r</code> or key ending with <code>%ref</code>:ref key</li>
   <li><code>label</code> with option <code>#l</code> or key ending with <code>%labeldef</code>:defines a label</li>
@@ -1489,7 +1490,8 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>u</td><td>this command declares an used package like "\usepackage{package}"</td></tr>
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>
-  <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel)</td></tr>
+  <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix <code>%todo</code>. See todonotes.cwl for an example.</li>
+</td></tr>
   <tr><td>B</td><td>this command declares a color (will be used for color completion only, no syntax checking)</td></tr>
   <tr><td>s</td><td>this command declares a special definition, the definition class is given after a "#". The class name needs a preceding %. (e.g. %color), also see the examples below.</td></tr>
   <tr><td>V</td><td>this command declares a verbatim-like environment "\begin{Verbatim}"</td></tr>
