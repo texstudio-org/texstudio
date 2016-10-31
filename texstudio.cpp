@@ -10601,22 +10601,24 @@ void Texstudio::closeEnvironment()
 
 	// handle current line -- based on text parsing of current line
 	// the below method is not exact and will fail on certain edge cases
-	QString text = cursor.line().text();
-	QRegExp rxBegin = QRegExp("\\\\begin\\{([^}]+)\\}");
-	int beginCol = text.lastIndexOf(rxBegin, cursor.columnNumber());
-	while (beginCol >= 0) {
-		QDocumentCursor from, to;
-		QDocumentCursor c = cursor.clone(false);
-		c.setColumnNumber(beginCol);
-		c.getMatchingPair(from, to);
-		QString endText = "\\end{" + rxBegin.cap(1) + "}";
-		if (!to.isValid() || to.selectedText() != endText) {
-			cursor.insertText(endText);
-			return;
+	if (cursor.columnNumber() > 0) {
+		QString text = cursor.line().text();
+		QRegExp rxBegin = QRegExp("\\\\begin\\{([^}]+)\\}");
+		int beginCol = text.lastIndexOf(rxBegin, cursor.columnNumber()-1);
+		while (beginCol >= 0) {
+			QDocumentCursor from, to;
+			QDocumentCursor c = cursor.clone(false);
+			c.setColumnNumber(beginCol);
+			c.getMatchingPair(from, to);
+			QString endText = "\\end{" + rxBegin.cap(1) + "}";
+			if (!to.isValid() || to.selectedText() != endText) {
+				cursor.insertText(endText);
+				return;
+			}
+			beginCol -= 6;
+			if (beginCol < 0) break;
+			beginCol = text.lastIndexOf(rxBegin, beginCol);
 		}
-		beginCol -= 6;
-		if (beginCol < 0) break;
-		beginCol = text.lastIndexOf(rxBegin, beginCol);
 	}
 
 	// handle previous lines -- based on StackEnvironment / syntax checker
