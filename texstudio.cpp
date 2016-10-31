@@ -10601,6 +10601,9 @@ void Texstudio::closeEnvironment()
 
 	// handle current line -- based on text parsing of current line
 	// the below method is not exact and will fail on certain edge cases
+	// for the time being this is good enough. An alternative approach may use the token system:
+	//   QDocumentLineHandle *dlh = edView->document->line(cursor.lineNumber()).handle();
+	//   TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	if (cursor.columnNumber() > 0) {
 		QString text = cursor.line().text();
 		QRegExp rxBegin = QRegExp("\\\\begin\\{([^}]+)\\}");
