@@ -44,6 +44,7 @@ public:
 	bool texdocHelpInInternalViewer;
 	bool monitorFilesForExternalChanges;
 	bool silentReload;
+	bool useQSaveFile;
 
 	bool autoInsertLRM, visualColumnMode, switchLanguagesDirection, switchLanguagesMath;
 

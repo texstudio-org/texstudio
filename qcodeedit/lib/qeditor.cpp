@@ -379,6 +379,7 @@ QEditor::QEditor(const QString& s, QWidget *p)
 */
 QEditor::QEditor(const QString& s, bool actions, QWidget *p)
  : QAbstractScrollArea(p),
+	m_useQSaveFile(true),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
@@ -983,23 +984,27 @@ bool QEditor::saveCopy(const QString& filename){
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
 #if QT_VERSION >= 0x050100
-	QSaveFile file(filename);
-	if (file.open(QIODevice::WriteOnly)) {
-		file.write(data);
-		bool success = file.commit();
-		if (!success) {
-			QMessageBox::warning(this, tr("Saving failed"),
-								 tr("%1\nCould not be written. Error (%2): %3.\n"
-									"If the file already existed on disk, it was not modified by this operation.")
-								    .arg(QDir::toNativeSeparators(filename))
-								    .arg(file.error())
-								    .arg(file.errorString()),
-								 QMessageBox::Ok);
+	if (m_useQSaveFile) {
+		QSaveFile file(filename);
+		if (file.open(QIODevice::WriteOnly)) {
+			file.write(data);
+			bool success = file.commit();
+			if (!success) {
+				QMessageBox::warning(this, tr("Saving failed"),
+									 tr("%1\nCould not be written. Error (%2): %3.\n"
+										"If the file already existed on disk, it was not modified by this operation.")
+										.arg(QDir::toNativeSeparators(filename))
+										.arg(file.error())
+										.arg(file.errorString()),
+									 QMessageBox::Ok);
+			}
+			return success;
 		}
-		return success;
+		QMessageBox::warning(this, tr("Saving failed"), tr("Could not get write permissions on file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(QDir::toNativeSeparators(filename)), QMessageBox::Ok);
+		return false;
+	} else {
+		return writeToFile(filename, data);
 	}
-	QMessageBox::warning(this, tr("Saving failed"), tr("Could not get write permissions on file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(QDir::toNativeSeparators(filename)), QMessageBox::Ok);
-	return false;
 #else
 	return writeToFile(filename, data);
 #endif

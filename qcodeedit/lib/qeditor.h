@@ -297,6 +297,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		bool silentReloadOnExternalChanges() const {return mSilentReloadOnExternalChanges;}
 		void setSilentReloadOnExternalChanges(bool flag) {mSilentReloadOnExternalChanges=flag;}
+		void setUseQSaveFile(bool flag) {m_useQSaveFile=flag;}
 
 		inline int horizontalOffset() const
         {
@@ -693,6 +694,7 @@ public slots:
 		bool mDisplayModifyTime;
 		bool mIgnoreExternalChanges;
 		bool mSilentReloadOnExternalChanges;
+		bool m_useQSaveFile;
 		
 		static QReliableFileWatch* watcher();
 		
