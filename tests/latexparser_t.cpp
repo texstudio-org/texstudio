@@ -1,3 +1,4 @@
+#ifndef QT_NO_DEBUG
 #include "latexparser_t.h"
 
 TestToken LatexParserTest::env(const QString &str)
@@ -429,3 +430,5 @@ void LatexParserTest::test_findClosingBracket()
 	int ret = findClosingBracket(line, start, oc, cc);
 	QEQUAL(ret, out);
 }
+
+#endif // QT_NO_DEBUG

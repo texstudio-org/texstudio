@@ -1,3 +1,4 @@
+#ifndef QT_NO_DEBUG
 #include "encoding_t.h"
 
 
@@ -109,3 +110,5 @@ void EncodingTest::test_encodingEnum()
 	Q_ASSERT(QTextCodec::codecForMib(MIB_UTF16BE)->mibEnum() == MIB_UTF16BE);
 	Q_ASSERT(QTextCodec::codecForMib(MIB_LATIN1)->mibEnum() == MIB_LATIN1);
 }
+
+#endif // QT_NO_DEBUG
