@@ -5,17 +5,17 @@
 #Basics 
 \fxsetup{setup}#*
 \listoffixmes#*
-\fxnote{FIX}#D
-\fxwarning{FIX}#D
-\fxerror{FIX}#D
-\fxfatal{FIX}#D
+\fxnote{FIX%todo}#D
+\fxwarning{FIX%todo}#D
+\fxerror{FIX%todo}#D
+\fxfatal{FIX%todo}#D
 #
 #Starred
 \fxsetup*{setup}#*
-\fxnote*{FIX}#D
-\fxwarning*{FIX}#D
-\fxerror*{FIX}#D
-\fxfatal*{FIX}#D
+\fxnote*{FIX%todo}#D
+\fxwarning*{FIX%todo}#D
+\fxerror*{FIX%todo}#D
+\fxfatal*{FIX%todo}#D
 #
 # Environments
 \begin{anfxerror*}{summary}#
