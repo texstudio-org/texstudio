@@ -57,6 +57,7 @@
 #include "utilsUI.h"
 #include "utilsSystem.h"
 #include "minisplitter.h"
+#include "latexparser/latextokens.h"
 
 
 #ifndef QT_NO_DEBUG
