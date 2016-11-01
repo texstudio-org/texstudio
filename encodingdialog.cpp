@@ -1,4 +1,5 @@
 #include "encodingdialog.h"
+#include "encoding.h"
 
 EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 	QDialog(parent), edit(editor)
@@ -21,7 +22,7 @@ EncodingDialog::EncodingDialog(QWidget *parent, QEditor *editor) :
 		}
 		encodings->setItem(row, 0, it);
 		if (mib == edit->getFileCodec()->mibEnum()) encodings->setCurrentItem(it);
-		it = new QTableWidgetItem(LatexParser::latexNamesForTextCodec(codec).join(" or "));
+		it = new QTableWidgetItem(Encoding::latexNamesForTextCodec(codec).join(" or "));
 		it->setData(Qt::UserRole, mib);
 		encodings->setItem(row, 1, it);
 		row++;

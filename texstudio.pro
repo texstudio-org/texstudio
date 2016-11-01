@@ -145,7 +145,10 @@ HEADERS += texstudio.h \
     libqmarkedscrollbar/src/markedscrollbar.h \
     flowlayout.h \
     tests/latexstyleparser_t.h \
-    minisplitter.h
+    minisplitter.h \
+    encoding.h \
+    tests/latexparser_t.h \
+    tests/encoding_t.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -242,7 +245,10 @@ SOURCES += main.cpp \
     editors.cpp \
     libqmarkedscrollbar/src/markedscrollbar.cpp \
     flowlayout.cpp \
-    minisplitter.cpp
+    minisplitter.cpp \
+    encoding.cpp \
+    tests/latexparser_t.cpp \
+    tests/encoding_t.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \

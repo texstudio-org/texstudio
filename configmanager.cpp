@@ -9,7 +9,7 @@
 #include "insertgraphics_config.h"
 #include "grammarcheck_config.h"
 #include "PDFDocument_config.h"
-#include "smallUsefulFunctions.h"
+#include "encoding.h"
 #include "codesnippet.h"
 #include "updatechecker.h"
 
@@ -3166,6 +3166,8 @@ void ConfigManager::getDefaultEncoding(const QByteArray &, QTextCodec *&guess, i
 {
 	if (sure >= 100) return;
 	if (!newFileEncoding) return;
+
+	using namespace Encoding;
 	//guess is utf-8 or latin1, no latex encoding definition detected
 	if (guess && guess->mibEnum() == MIB_UTF8) return; //trust utf8 detection
 	//guess is latin1, no latex encoding definition detected

@@ -144,7 +144,7 @@ QVariant ScriptObject::readFile(const QString &filename)
 		return QVariant();
 	QTextStream ts(&f);
 	ts.setAutoDetectUnicode(true);
-	ts.setCodec(QTextCodec::codecForMib(MIB_UTF8));
+	ts.setCodec(QTextCodec::codecForName("UTF-8"));
 	return ts.readAll();
 }
 

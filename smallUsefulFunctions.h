@@ -28,6 +28,8 @@
 
 #include "codesnippet.h"
 #include "latexparser/latextokens.h"
+#include "latexparser/commanddescription.h"
+class LatexParser;
 
 //#inlcude "latexcompleter_config.h"
 
@@ -53,43 +55,12 @@ Q_DECLARE_METATYPE( CommandArgument )
 
 class LatexCompleterConfig;
 
-/*!
- * \brief define available arguments for a command
- */
-class CommandDescription
-{
-public:
-	CommandDescription();
-	int optionalArgs; ///< number of optional arguments
-	int bracketArgs; ///< number of () arguments
-	int args; ///< number of mandatory arguments (in braces)
-	int level;
-	QList<Tokens::TokenType> argTypes; ///< define argument type as token
-	QList<Tokens::TokenType> optTypes; ///< define argument type as token
-	QList<Tokens::TokenType> bracketTypes; ///< define argument type as token
-    QString optionalCommandName; ///< stores optionally command name. It is used for processing command description during lexing
-	QString toDebugString() const; ///< debug function to get easier information on command description
-    bool operator==(const CommandDescription &v) const; ///< compare two command descriptions
-};
-
-typedef QStack<CommandDescription> CommandStack;
-
-Q_DECLARE_METATYPE(CommandStack);
-
-typedef QHash<QString, CommandDescription> CommandDescriptionHash;
-
 typedef QString (QObject::*StringToStringCallback)(const QString &) ;
-
-QString getCommonEOW();
 
 
 /// removes special latex characters
 QString latexToPlainWord(const QString &word);
 QString latexToPlainWordwithReplacementList(const QString &word, QMap<QString, QString> &replacementList );
-/// closing bracket (opening and closing bracket considered correctly)
-int findClosingBracket(const QString &word, int &start, QChar oc = QChar('{'), QChar cc = QChar('}'));
-/// opening bracket (opening and closing bracket considered correctly), start at "start"
-int findOpeningBracket(const QString &word, int start, QChar oc = QChar('{'), QChar cc = QChar('}'));
 /// replaces character with corresponding LaTeX commands
 QString textToLatex(const QString &text);
 QString latexToText(QString s);
@@ -151,16 +122,6 @@ QString makeLatexLabel(const QString &s);
 
 uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate);
 
-QTextCodec *guessEncodingBasic(const QByteArray &data, int *outSure);
-
-enum {
-	MIB_LATIN1 = 4,
-	MIB_WINDOWS1252 = 2252,
-	MIB_UTF8 = 106,
-	MIB_UTF16BE = 1013,
-	MIB_UTF16LE = 1014
-
-};
 /*! encode image as text for html
  * This is used to generate images for tooltips.
  */
@@ -185,73 +146,7 @@ public:
 	ArgType argType(int index) const;
 	int count(ArgType type) const;
 };
-/*!
- * \brief class for storing latex syntax informtion and latex parsing
- *
- * The latex parsing is less important since the token based system, but the storage of syntax information is still used.
- */
-class LatexParser
-{
-	friend class SmallUsefulFunctionsTest;
-public:
-	LatexParser(); ///< constructor
-	~LatexParser();
-	void init(); ///< set default values
 
-	static const int MAX_STRUCTURE_LEVEL;
-	
-	enum ContextType {Unknown, Command, Environment, Label, Reference, Citation, Citation_Ext, Option, Graphics, Package, Keyval, KeyvalValue, OptionEx, ArgEx};
-	// could do with some generalization as well, optionEx/argEx -> special treatment with specialOptionCommands
-
-	/// realizes whether col is in a \command or in a parameter {}
-	int findContext(QString &line, int &column) const;
-
-	///position of the % starting a comment (takes care of multiple backslashes before comment character ..)
-	static int commentStart(const QString &text);
-
-	/// remove comment from text, take care of multiple backslashes before comment character ...
-	static QString cutComment(const QString &text);
-
-	ContextType findContext(const QString &line, int column, QString &command, QString &value) const;
-	static bool resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts = 0);
-	static QString removeOptionBrackets(const QString &option);
-
-	QSet<QString> environmentCommands; ///< used by LatexReader only, obsolete
-	QSet<QString> optionCommands; ///< used by LatexReader only, obsolete
-	QStringList mathStartCommands; ///< commands to start math-mode like '$'
-	QStringList mathStopCommands; ///< commands to stop math-mode like '$'
-	QSet<QString> customCommands; ///< commands defined in config dialog as custom commands
-	int structureDepth()
-	{
-		return MAX_STRUCTURE_LEVEL;
-	}
-	int structureCommandLevel(const QString &cmd) const;
-	QMultiHash<QString, QString> packageAliases; ///< aliases for classes to packages e.g. article = latex-document, latex-mathsymbols, etc
-	QMultiHash<QString, QString> environmentAliases; ///< aliases for environments, e.g. equation is math, supertabular is also tab etc.
-	/// commands used for syntax check (per doc basis)
-	QHash<QString, QSet<QString> > possibleCommands;
-	QHash<QString, QSet<QPair<QString, int> > > specialTreatmentCommands; ///< special commands, obsolete
-	QHash<QString, QString> specialDefCommands; ///< define special elements, e.g. define color etc
-	QMap<int, QString> mapSpecialArgs;
-
-	CommandDescriptionHash commandDefs; ///< command definitions
-
-	void append(const LatexParser &elem); ///< append values
-	void substract(const LatexParser &elem); ///< remove values
-	void importCwlAliases(); ///< import package aliases from disc
-	void clear(); ///< set to default values
-	static QTextCodec *QTextCodecForLatexName(QString str); ///< get textcodec from codec name
-	static QStringList latexNamesForTextCodec(const QTextCodec *codec); ///< get codec name used in latex from text codec
-	static void guessEncoding(const QByteArray &data, QTextCodec *&guess, int &sure); ///< guess text codec for file
-
-	static LatexParser &getInstance();
-private:
-	static int lineStart(const QByteArray &data, int index);
-	static int lineEnd(const QByteArray &data, int index);
-	static QString getEncodingFromPackage(const QByteArray &data, int headerSize, const QString &packageName); ///< get encoding from usepackage definition in file
-};
-
-Q_DECLARE_METATYPE(LatexParser)
 /*!
  * \brief class for parsing latex code
  *

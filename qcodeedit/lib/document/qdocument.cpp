@@ -21,6 +21,8 @@
  */
 
 #include "smallUsefulFunctions.h"
+#include "encoding.h"
+#include "latexparser/latexparser.h"
 
 // returns the number of chars/columns from column to the next tab location
 // for a given tabstop periodicity
@@ -734,7 +736,7 @@ void QDocument::setText(const QString& s, bool allowUndo)
 QTextCodec* guessEncoding(const QByteArray& data){
 	QTextCodec* guess = 0;
 	int sure = 1;
-	guess = guessEncodingBasic(data, &sure);
+	guess = Encoding::guessEncodingBasic(data, &sure);
 	if (!guessEncodingCallbacks.empty())
 		foreach (const GuessEncodingCallback& callback, guessEncodingCallbacks)
 			callback(data, guess, sure);

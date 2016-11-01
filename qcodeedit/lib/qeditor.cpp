@@ -38,6 +38,7 @@
 
 #include "qreliablefilewatch.h"
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
 #include <QDrag>
 
 #include "libqmarkedscrollbar/src/markedscrollbar.h"

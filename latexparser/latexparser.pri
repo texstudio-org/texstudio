@@ -5,9 +5,13 @@ INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
 HEADERS += \
-    latexparser/latextokens.h
+    $$PWD/latextokens.h \
+    $$PWD/latexparser.h \
+    $$PWD/commanddescription.h
 
 SOURCES += \
-    latexparser/latextokens.cpp
+    $$PWD/latextokens.cpp \
+    $$PWD/latexparser.cpp \
+    $$PWD/commanddescription.cpp
 
 

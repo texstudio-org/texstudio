@@ -1,5 +1,5 @@
 #include "latexlogwidget.h"
-#include "smallUsefulFunctions.h"
+#include "encoding.h"
 #include "configmanager.h"
 
 /*
@@ -132,7 +132,7 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
 		f.close();
 
 		int sure;
-		QTextCodec *codec = guessEncodingBasic(fullLog, &sure);
+		QTextCodec *codec = Encoding::guessEncodingBasic(fullLog, &sure);
 		if (sure < 2 || !codec) codec = fallbackCodec ? fallbackCodec : QTextCodec::codecForLocale();
 
 		log->setPlainText(codec->toUnicode(fullLog));
