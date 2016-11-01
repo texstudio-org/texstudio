@@ -14,6 +14,7 @@
 #include "insertgraphics_config.h"
 
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
 
 
 PlacementValidator::PlacementValidator(QObject *parent)

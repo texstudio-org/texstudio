@@ -38,6 +38,7 @@
 #include "usertooldialog.h"
 #include "aboutdialog.h"
 #include "encodingdialog.h"
+#include "encoding.h"
 #include "randomtextgenerator.h"
 #include "webpublishdialog.h"
 #include "thesaurusdialog.h"
@@ -58,6 +59,7 @@
 #include "utilsSystem.h"
 #include "minisplitter.h"
 #include "latexparser/latextokens.h"
+#include "latexparser/latexparser.h"
 
 
 #ifndef QT_NO_DEBUG
@@ -188,7 +190,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	outputView = 0;
 
 	qRegisterMetaType<LatexParser>();
-	latexParser.importCwlAliases();
+	latexParser.importCwlAliases(findResourceFile("completion/cwlAliases.dat"));
 
 	m_formatsOldDefault = QDocument::defaultFormatScheme();
 	QDocument::setDefaultFormatScheme(m_formats);
@@ -212,7 +214,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(0);
 	else QDocument::setDefaultCodec(configManager.newFileEncoding);
 	if (configManager.autoDetectEncodingFromLatex)
-		QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding); // encodingcallbacks before restoer session !!!
+		QDocument::addGuessEncodingCallback(&Encoding::guessEncoding); // encodingcallbacks before restoer session !!!
 	if (configManager.autoDetectEncodingFromChars)
 		QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
@@ -1991,7 +1993,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 				QFile f(f_real + ".recover.bak~");
 				if (f.open(QFile::ReadOnly)) {
 					QByteArray ba = f.readAll();
-					QString recovered = QTextCodec::codecForMib(MIB_UTF8)->toUnicode(ba); //TODO: chunk loading?
+					QString recovered = QTextCodec::codecForName("UTF-8")->toUnicode(ba); //TODO: chunk loading?
 					edit->document->setText(recovered, true);
 				} else txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
 			}
@@ -2313,7 +2315,7 @@ void Texstudio::fileNewFromTemplate()
 		QString mTemplate;
 		bool loadAsSnippet = false;
 		QTextStream in(&file);
-		in.setCodec(QTextCodec::codecForMib(MIB_UTF8));
+		in.setCodec(QTextCodec::codecForName("UTF-8"));
 		QString line = in.readLine();
 		if (line.contains(QRegExp("^%\\s*!TXS\\s+template"))) {
 			loadAsSnippet = true;
@@ -5336,7 +5338,7 @@ void Texstudio::quickDocument()
 		}
 		Q_ASSERT(currentEditor());
 		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
-		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
+		QTextCodec *codec = Encoding::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
 			updateCaption();
@@ -5358,7 +5360,7 @@ void Texstudio::quickBeamer()
 		}
 		Q_ASSERT(currentEditor());
 		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
-		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
+		QTextCodec *codec = Encoding::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
 			updateCaption();
@@ -6450,9 +6452,9 @@ void Texstudio::generalOptions()
 		if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 		QDocument::removeGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
-		QDocument::removeGuessEncodingCallback(&LatexParser::guessEncoding);
+		QDocument::removeGuessEncodingCallback(&Encoding::guessEncoding);
 		if (configManager.autoDetectEncodingFromLatex)
-			QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
+			QDocument::addGuessEncodingCallback(&Encoding::guessEncoding);
 		if (configManager.autoDetectEncodingFromChars)
 			QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 

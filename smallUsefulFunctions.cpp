@@ -4,173 +4,14 @@
 #include "qdocument.h"
 #include <QBuffer>
 #include "codesnippet.h"
+#include "latexparser/latexparser.h"
 
-const QString CommonEOW = QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") + QChar(171) + QChar(187) + QChar(8223) + QChar(8222) + QChar(8221) + QChar(8220) /* <= fancy quotation marks */;
 const QString Punctation = "!():\"?,.;-~";
 const QString EscapedChars = "%&_";
 const QString CharacterAlteringChars = "\"'^`";
 
-const int LatexParser::MAX_STRUCTURE_LEVEL = 10;
 const int RUNAWAYLIMIT=10; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the arbument is unclosed
 
-LatexParser *LatexParserInstance = 0;
-
-LatexParser::LatexParser()
-{
-	if (!LatexParserInstance) {
-		LatexParserInstance = this;
-		init();
-	}
-}
-
-LatexParser::~LatexParser()
-{
-	if (LatexParserInstance == this) {
-		LatexParserInstance = 0;
-	}
-}
-
-LatexParser &LatexParser::getInstance()
-{
-	Q_ASSERT(LatexParserInstance);
-	return *LatexParserInstance;
-}
-
-void LatexParser::init()
-{
-	environmentCommands = QSet<QString>::fromList(QStringList() << "\\begin" << "\\end" << "\\newenvironment" << "\\renewenvironment");
-	mathStartCommands  << "$" << "$$" << "\\(" << "\\[" ;
-	mathStopCommands  << "$" << "$$" << "\\)" << "\\]" ;
-
-	possibleCommands.clear();
-	possibleCommands["tabular"] = QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["array"] = QSet<QString>::fromList(QStringList() << "&" );
-	possibleCommands["tabbing"] = QSet<QString>::fromList(QStringList() << "\\<" << "\\>" << "\\=" << "\\+");
-	possibleCommands["normal"] = QSet<QString>::fromList(QStringList() << "\\\\" << "\\_" << "\\-" << "$" << "$$" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\'" << "\\`" << "\\^" << "\\=" << "\\." << "\\u" << "\\v" << "\\H" << "\\t" << "\\c" << "\\d" << "\\b" << "\\o" << "\\O" << "\\P" << "\\l" << "\\L" << "\\&" << "\\~" << "\\" << "\\," << "\\%" << "\\\"");
-	possibleCommands["math"] = QSet<QString>::fromList(QStringList() << "_" << "^" << "\\$" << "\\#" << "\\{" << "\\}" << "\\S" << "\\," << "\\!" << "\\;" << "\\:" << "\\\\" << "\\ " << "\\|");
-	possibleCommands["%definition"] << "\\newcommand" << "\\renewcommand" << "\\newcommand*" << "\renewcommand*" << "\\providecommand" << "\\newlength" << "\\let";
-	possibleCommands["%usepackage"] << "\\usepackage" << "\\documentclass";
-	possibleCommands["%graphics"] << "\\includegraphics";
-	possibleCommands["%bibitem"] << "\\bibitem";
-	possibleCommands["%cite"]  << "\\cite" <<  "\\nptextcite"  ;
-	possibleCommands["%label"] << "\\label";
-	possibleCommands["%bibliography"] << "\\bibliography";
-	possibleCommands["%file"] << "\\include" << "\\input" << "\\import" << "\\includeonly" << "\\includegraphics" << "\\bibliographystyle" << "\\bibliography";
-	possibleCommands["%ref"] = QSet<QString>();  // will all be populated via cwl
-	possibleCommands["%include"] << "\\include" << "\\input";
-	possibleCommands["%import"] << "\\import" << "\\importfrom" << "\\subimport" << "\\subimportfrom";
-	commandDefs.clear();
-}
-
-int LatexReader::nextToken(const QString &line, int &index, bool inOption, bool detectMath)
-{
-	bool inWord = false;
-	bool inCmd = false;
-	//bool reparse=false;
-	bool singleQuoteChar = false;
-	bool doubleQuoteChar = false;
-	bool ignoreBrace = false;
-	bool ignoreClosingBrace = false;
-	int start = -1;
-	int i = index;
-	for (i = (i > 0 ? i : 0); i < line.size(); i++) {
-		QChar cur = line.at(i);
-		if (ignoreBrace && cur == '{') {
-			ignoreBrace = false;
-			ignoreClosingBrace = true;
-			continue;
-		} else ignoreBrace = false;
-		if (ignoreClosingBrace && cur == '}') {
-			ignoreClosingBrace = false;
-			continue;
-		}
-		if (doubleQuoteChar)
-			//if (cur == '\'') break; // check for words starting with "' (german quotation mark)
-			if (CommonEOW.contains(cur)) break; // check for all quotation marks
-		doubleQuoteChar = false;
-		if (inCmd) {
-			if (CommonEOW.indexOf(cur) >= 0 || cur.isDigit()) {
-				if (i - start == 1) i++;
-				break;
-			}
-		} else if (inWord) {
-			if (cur == '\\') {
-				if (i + 1 >= line.size()) break;
-				const QChar &c = line.at(i + 1);
-				if (c == '-' || c == '&') i++; //allow \& in the middle/end of words, e.g. C&A
-				else if (CharacterAlteringChars.contains(c)) {
-					ignoreBrace = true;
-					i++;//ignore word separation marker
-				} else break;
-			} else if (cur == '"') { //ignore " like in "-, "", "| "a
-				if (i + 1 < line.size()) {
-					QChar nextChar = line.at(i + 1);
-					if (nextChar == '-' || nextChar == '"' || nextChar == '|')  i++;
-					else if (!nextChar.isLetterOrNumber()) break;
-				} else break;
-			} else if (cur == '\'') {
-				if (singleQuoteChar) break;	 //no word's with two '' => output
-				else singleQuoteChar = true; //but accept one
-			} else if (cur == '.' || cur == '-') {
-				if (i > 0 && line.at(i - 1).isLetter())
-					i++; //take '.' or '-' into word, so that abbreviations/hyphenations, at least German ones, are checked correctly
-				if (cur == '-' &&  i < line.size() && line.at(i).isLetter())
-					; // continue with composite words
-				else
-					break;
-			} else if (CommonEOW.indexOf(cur) >= 0 && !inOption) {
-				break;
-			} else if (cur == '}' || cur == ']') break;
-
-		} else if (cur == '\\') {
-			if (i + 1 >= line.size()) break;
-			const QChar &nextc = line.at(i + 1);
-			if (CharacterAlteringChars.contains(nextc))  {
-				inWord = true;
-				start = i;
-				ignoreBrace = true;
-				i++;
-			} else if (EscapedChars.contains(nextc)) {
-				i++;
-				Q_ASSERT(start == -1);
-			} else {
-				start = i;
-				inCmd = true;
-			}
-		} else if (cur == '{' || cur == '}' || cur == '%' || cur == '[' || cur == ']') {
-			index = i + 1;
-			return i;
-		} else if (detectMath && cur == '$') {
-			start = i;
-			i++;
-			if (i < line.size() && line[i] == '$')
-				i++; //detect $$
-			break;
-		} else if (detectMath && (cur == '_' || cur == '^' || cur == '&')) {
-			start = i;
-			i++;
-			break;
-		} else if ((CommonEOW.indexOf(cur) < 0 && cur != '\'' ) || cur == '"') {
-			start = i;
-			inWord = true;
-			doubleQuoteChar = ( cur == '"');
-		} else if (Punctation.contains(cur)) {
-			start = i;
-			i++;
-			while (i < line.length() && line.at(i) == '-') i++; //convert LaTeX --- to a single -
-			break;
-		}
-	}
-	if (singleQuoteChar && i - 1 < line.size() && i > 0 && line.at(i - 1) == '\'')
-		i--; //remove ' when a word ends with it  (starting is handled because ' does not start a word)
-	index = i;
-	return start;
-}
-
-QString getCommonEOW()
-{
-	return CommonEOW;
-}
 
 /*
 QList<QPair<QString,QString> > latexToPlainWordReplaceList =
@@ -383,40 +224,6 @@ QString latexToPlainWordwithReplacementList(const QString &word, QMap<QString, Q
     if(result.endsWith("\""))
         result.chop(1);
 	return result;
-}
-
-
-int findClosingBracket(const QString &word, int &start, QChar oc, QChar cc)
-{
-	int i = 0;
-	if (start < 0) start = word.indexOf(oc, i);
-	i = start > -1 ? start : 0;
-	int stop = word.indexOf(cc, i);
-	i = word.indexOf(oc, i + 1);
-	while (i > 0 && stop > 0 && i < stop) {
-		stop = word.indexOf(cc, stop + 1);
-		i = word.indexOf(oc, i + 1);
-	}
-	return stop;
-}
-
-int findOpeningBracket(const QString &word, int start, QChar oc, QChar cc)
-{
-	int i = start;
-	int n = 0;
-	while (i > -1) {
-		QChar ch = word.at(i);
-		if (ch == oc) {
-			n--;
-			if (n < 0)
-				break;
-		}
-		if (ch == cc) {
-			n++;
-		}
-		i--;
-	}
-	return i;
 }
 
 QString textToLatex(const QString &text)
@@ -1000,341 +807,7 @@ void addStructureCommandsToDom(QDomDocument &doc , const QHash<QString, QSet<QSt
 	}
 }
 
-/// returns true if the options are complete, false if the scanning ended while still in the options
-bool LatexParser::resolveCommandOptions(const QString &line, int column, QStringList &values, QList<int> *starts)
-{
-	const QString BracketsOpen("[{(");
-	const QString BracketsClose("]})");
-	int start = column;
-	int stop = -1;
-	int type;
-	// check if between command and options is located text or other command
-	int abort = line.indexOf(QRegExp("(\\s|\\\\)"), start + 1);
-	while (start < line.length()) {
-		// find first available bracket after position start
-		int found = -1;
-		type = -1;
-		for (int i = 0; i < BracketsOpen.size(); i++) {
-			int zw = line.indexOf(BracketsOpen[i], start);
-			if (zw > -1 && (zw < found || found == -1)) {
-				found = zw;
-				type = i;
-			}
-		}
-		if (type < 0) break;
-		// check if only space between cmd and opening bracket
-		if (abort > 0) {
-			if ((found - abort) > 0) {
-				QString test = line.mid(abort, found - abort);
-				test = test.simplified();
-				test.remove(' ');
-				if (!test.isEmpty())
-					break;
-			}
-			abort = -1;
-		}
-		// check wether a word letter appears before (next command text ...)
-		if (stop > -1) {
-			stop = line.indexOf(QRegExp("\\S+"), start);
-		}
-		if (stop < found && stop > -1) break;
-		// find apropriate closing bracket.
-		int lvl = 0;
-		stop = -1;
-		for (int i = found + 1; i < line.length(); i++) {
-			QChar c = line[i];
-			if (lvl == 0 && c == BracketsClose[type]) {
-				stop = i;
-				break;
-			}
-			if (BracketsOpen.contains(c)) {
-				lvl++;
-			}
-			if (lvl > 0 && BracketsClose.contains(c)) {
-				lvl--;
-			}
-		}
-		if (found > -1 && stop > -1) {
-			values << line.mid(found, stop - found + 1);
-			if (starts)
-				starts->append(found);
-			start = stop + 1;
-		} else return false;
-	}
-	return true;
-}
-/*!
- * \brief remove option brackets from text on 'option'
- * \param option text
- * \return option without []
- */
-QString LatexParser::removeOptionBrackets(const QString &option)
-{
-	if (option.isNull() || option.length() < 2) return option;
-	if ((option.at(0) == '{' && option.at(option.length() - 1) == '}') ||
-	        (option.at(0) == '[' && option.at(option.length() - 1) == ']'))
-		return option.mid(1, option.length() - 2);
-	return option;
-}
-/*!
- * \brief determines level of structure in a section-command
- * \param cmd latex command
- * \return level of stucture
- */
-int LatexParser::structureCommandLevel(const QString &cmd) const
-{
-	for (int i=0; i<=MAX_STRUCTURE_LEVEL; i++) {
-		if (possibleCommands[QString("%structure%1").arg(i)].contains(cmd)) {
-			return i;
-		}
-	}
-	return -1;
-}
 
-/*! return a number for a context
- * 0 unknown
- * 1 command
- * 2 option \command[option]{arg}
- * 3 argument \command{arg}
- * 4 argument 2   \command{arg}{arg2}
- * etc
- * \warning obsolete for lexer-based token system, though still in use in some code
- */
-int LatexParser::findContext(QString &line, int &column) const
-{
-
-	if (line.isEmpty())
-		return 0;
-	QString eow = "\\[]{}$";
-	int i = column;
-	if (i >= line.length())
-		i = line.length();
-	if (i > 0)
-		i--; // character left of pos is to be checked
-	else
-		return 0; // no context can be detected at line start (old behavior)
-	while (i >= 0 && !eow.contains(line.at(i)))
-		i--;
-	if (i < 0)
-		return 0; // no eow found
-	QChar ch = line.at(i);
-	if (ch == '\\') {
-		// command found
-		int start = i;
-		i++;
-		while (i < line.length() && !eow.contains(line.at(i)))
-			i++;
-		line = line.mid(start, i - start);
-		column = start;
-		return 1;
-	}
-	int start_ref = findOpeningBracket(line, i);
-	int start_opt = findOpeningBracket(line, i, '[', ']');
-	int ret = 0;
-	if (start_ref > start_opt) {
-		// assuming we are in command argument
-		ret = 3;
-		i = start_ref - 1;
-	} else {
-		if (start_opt > -1) {
-			//assuming we are in command option
-			ret = 2;
-			i = start_opt - 1;
-		}
-	}
-	if (ret == 0)
-		return 0;
-
-	int n = 0;
-	QString openBrackets = "[{";
-	QString closeBrackets = "]}";
-	eow = getCommonEOW();
-	eow.remove(' ');
-	int stop = i;
-	while (i > -1) {
-		ch = line.at(i);
-		if (openBrackets.contains(ch)) {
-			//TODO check if correct bracket was opened ...
-			n--;
-			if (n < 0)
-				break;
-			i--;
-			stop = i;
-			continue;
-		}
-		if (closeBrackets.contains(ch)) {
-			n++;
-			if (ch == '}')
-				++ret;  //going through another braces pair, [] is not checked
-			i--;
-			continue;
-		}
-		if (n == 0 && eow.contains(ch)) {
-			if (ch == '\\') {
-				//TODO: check if not \\ (newline) was found
-				line = line.mid(i, stop - i + 1).simplified();
-				column = i;
-				return ret;
-			} else { // this is a overly strict interpretation of command syntax
-				return 0;
-			}
-		}
-		i--;
-	}
-
-	return 0;
-}
-
-LatexParser::ContextType LatexParser::findContext(const QString &line, int column, QString &command, QString &value) const
-{
-	command = line;
-	int col = column; //remember column
-	int temp = findContext(command, column);
-	QStringList vals;
-	resolveCommandOptions(line, column, vals);
-	value = "";
-	if (!vals.isEmpty()) {
-		value = vals.takeFirst();
-		if (value.startsWith('[') && temp != 2) {
-			if (!vals.isEmpty()) {
-				value = vals.takeFirst();
-			}
-		}
-		if (value.startsWith('{') || value.startsWith('['))
-			value.remove(0, 1);
-		if (value.endsWith('}') || value.endsWith(']'))
-			value.chop(1);
-	}
-	switch (temp) {
-	case 0:
-		return Unknown;
-	case 1:
-		return Command;
-	case 3:
-		if (specialTreatmentCommands.contains(command)) {
-			QSet<QPair<QString, int> > helper = specialTreatmentCommands.value(command);
-			QPair<QString, int> elem;
-			foreach (elem, helper) {
-				if (elem.second == 1)
-					return ArgEx;
-			}
-		}
-		// check key/val
-		{
-			QStringList keys = possibleCommands.keys();
-			bool handled = false;
-			QString elem;
-			QStringList checkOptions;
-			checkOptions <<  "key%1" + command << "key%1" + command + "#c";
-
-			foreach (elem, checkOptions) {
-				if (keys.contains(elem)) {
-					handled = true;
-					command = elem.mid(4);
-					break;
-				}
-			}
-
-			if (handled) {
-				// check that cursor is within keyval
-				bool isKey = false;
-				for (int i = col; col > 0; col--) {
-					if (line.at(i - 1).isLetter())
-						continue;
-					if (line.at(i - 1) == '{' || line.at(i - 1) == ',')
-						isKey = true;
-					break;
-				}
-				if (isKey)
-					return Keyval;
-				else
-					return KeyvalValue;
-			}
-		}
-		// normal context
-		if (environmentCommands.contains(command))
-			return Environment;
-		else if (possibleCommands["%label"].contains(command))
-			return Label;
-		else if (possibleCommands["%ref"].contains(command))
-			return Reference;
-		else if (possibleCommands["%usepackage"].contains(command))
-			return Package;
-		else if (possibleCommands["%cite"].contains(command))
-			return Citation;
-		else if (possibleCommands["%citeExtendedCommand"].contains(command))
-			return Citation_Ext;
-		else if (possibleCommands["%graphics"].contains(command))
-			return Graphics;
-		else return Option;
-	case 2:
-		// find possible commands for keyval completion
-	{
-		if (specialTreatmentCommands.contains(command)) {
-			QSet<QPair<QString, int> > helper = specialTreatmentCommands.value(command);
-			QPair<QString, int> elem;
-			foreach (elem, helper) {
-				if (elem.second == 0)
-					return OptionEx;
-			}
-		}
-		QStringList keys = possibleCommands.keys();
-		QString arg;
-		if (!vals.isEmpty()) {
-			arg = vals.first();
-			if (arg.startsWith('{') )
-				arg.remove(0, 1);
-			if (arg.endsWith('}'))
-				arg.chop(1);
-		}
-		bool handled = false;
-		QString elem;
-		QStringList checkOptions;
-		checkOptions << "key%" + command + "/" + arg << "key%" + command + "/" + arg + "#c" << "key%" + command << "key%" + command + "#c";
-
-		foreach (elem, checkOptions) {
-			if (keys.contains(elem)) {
-				handled = true;
-				command = elem.mid(4);
-				break;
-			}
-		}
-
-		if (handled) {
-			// check that cursor is within keyval
-			bool isKey = false;
-			for (int i = col; col > 0; col--) {
-				if (line.at(i - 1).isLetter())
-					continue;
-				if (line.at(i - 1) == '[' || line.at(i - 1) == ',')
-					isKey = true;
-				break;
-			}
-			if (isKey)
-				return Keyval;
-			else
-				return KeyvalValue;
-		}
-	}
-	default:
-		return Unknown;
-	}
-}
-
-int LatexParser::commentStart(const QString &text)
-{
-	if (text.startsWith("%")) return 0;
-	QString test = text;
-	test.replace("\\\\", "  ");
-	int cs = test.indexOf(QRegExp("[^\\\\]%")); // find start of comment (if any)
-	if (cs > -1) return cs + 1;
-	else return -1;
-}
-/// remove comments from 'text'
-QString LatexParser::cutComment(const QString &text)
-{
-	return text.left(LatexParser::commentStart(text));
-}
 
 /*!
  * \brief convert a list of integer in one string with a textual representation of said integers
@@ -1506,36 +979,7 @@ uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate)
 	return code;
 }
 
-QTextCodec *QTextCodecForTeXShopName(const QByteArray &enc)
-{
-	//copied and modified from texworks
-	if (enc == "utf-8 unicode") return QTextCodec::codecForName("UTF-8");
-	if (enc == "standard unicode") return QTextCodec::codecForName("UTF-16");
-	if (enc == "windows cyrillic") return QTextCodec::codecForName("Windows-1251");
-	if (enc == "isolatin") return QTextCodec::codecForName("ISO 8859-1");
-	if (enc == "isolatin2") return QTextCodec::codecForName("ISO 8859-2");
-	if (enc == "isolatin5") return QTextCodec::codecForName("ISO 8859-5");
-	if (enc == "isolatin9") return QTextCodec::codecForName("ISO 8859-9");
-	if (enc == "macosroman") return QTextCodec::codecForName("Apple Roman");
-	//      "MacJapanese",          "",
-	//      "DOSJapanese",          "",
-	if (enc == "sjis_x0213") return QTextCodec::codecForName("Shift-JIS");
-	if (enc == "euc_jp") return QTextCodec::codecForName("EUC-JP");
-	//      "JISJapanese",          "",
-	//      "MacKorean",            "",
-	//      "Mac Cyrillic",         "",
-	//      "DOS Cyrillic",         "",
-	//      "DOS Russian",          "",
-	if (enc == "koi8_r") return QTextCodec::codecForName("KOI8-R");
-	if (enc == "gb 18030") return QTextCodec::codecForName("GB18030-0");
-	//      "Mac Chinese Traditional",      "",
-	//      "Mac Chinese Simplified",       "",
-	//      "DOS Chinese Traditional",      "",
-	//      "DOS Chinese Simplified",       "",
-	//      "GBK",                          "",
-	//      "GB 2312",                      "",
-	return 0;
-}
+
 
 /*!
  * returns the content (i.e. String without brackets) of the index-th argument
@@ -1584,341 +1028,6 @@ int ArgumentList::count(ArgumentList::ArgType type) const
 	return count;
 }
 
-QTextCodec *LatexParser::QTextCodecForLatexName(QString str)
-{
-	if (str.contains(',')) { //multiple options are allowed
-		foreach (const QString &splitter, str.split(',')) {
-			QTextCodec *codec = QTextCodecForLatexName(splitter);
-			if (codec) return codec;
-		}
-	}
-	str = str.toLower(); //probably unnecessary
-	if (str.startsWith("x-")) str = str.mid(2); //needed for inputenx encodings used as parameters for inputenc
-
-	//encodings as defined by inputenc 1.1d (2008/03/30)
-	//popular first
-	if (str == "utf8" || str == "utf8x") return QTextCodec::codecForName("UTF-8");
-	if (str.startsWith("latin")) return QTextCodec::codecForName(qPrintable(str));
-	//as in the docu
-	if (str == "ascii") return QTextCodec::codecForName("latin1"); //this is wrong (should be latin1 limited to 0x00-0x7f)
-	//if (str == "decmulti") return??
-	//if (str == "next") ??
-	if (str.startsWith("cp") && (str.length() == 5 || str.length() == 6)
-	        && (str[2] >= '0') && (str[2] <= '9')
-	        && (str[3] >= '0') && (str[3] <= '9')
-	        && (str[4] >= '0') && (str[4] <= '9') &&
-	        (str.length() == 5 || ((str[5] >= '0') && (str[5] <= '9')))) return QTextCodec::codecForName(qPrintable(str));
-	//if (str == "cp437de") return QTextCodec::codecForName("??");
-	if (str == "applemac") return QTextCodec::codecForName("macintosh");
-	if (str == "macce") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Central European code page.
-	if (str == "ansinew") return QTextCodec::codecForName("cp1252");
-
-	//additional encodings by inputenx
-	if (str == "us-ascii" || str == "clean7bit" || str == "ascii-print" || str == "ascii-printable") return QTextCodec::codecForName("latin1"); //this is wrong (should be latin1 limited to 0x00-0x7f)
-	//if (str == "atari" || )str == "atarist" ||  return QTextCodec::codecForName("???")
-	//if (str == "dec-mcs") return??
-	if (str == "koi8-r") return QTextCodec::codecForName("KOI8-R");
-	if (str.startsWith("iso-8859-")) return QTextCodec::codecForName(qPrintable(str));
-	if (str == "iso88595") return QTextCodec::codecForName("ISO-8859-5");
-	if (str == "mac-ce" || str == "mac-centeuro") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Central European code page.
-	if (str == "mac-cyrillic" || str == "maccyr" || str == "mac-ukrainian" || str == "macukr") return QTextCodec::codecForName("macintosh"); //wrong, should be Macintosh Cyrillic
-	//if (str == "nextstep, next?
-
-	//return QTextCodec::codecForName(str); //try it anyways
-	return 0;
-}
-
-QStringList LatexParser::latexNamesForTextCodec(const QTextCodec *codec)
-{
-	// *INDENT-OFF*  (astyle-config)
-	switch (codec->mibEnum()) {
-		//case 0 : return QStringList(); // "System"
-		case 4 : return QStringList() << "latin1"; // "ISO-8859-1"
-		case 5 : return QStringList() << "latin2"; // "ISO-8859-2"
-		case 6 : return QStringList() << "latin3"; // "ISO-8859-3"
-		case 7 : return QStringList() << "latin4"; // "ISO-8859-4"
-		//case 8 : return QStringList(); // "ISO-8859-5"
-		//case 10 : return QStringList(); // "ISO-8859-7"
-		case 12 : return QStringList() << "latin5"; // "ISO-8859-9"
-		//case 13 : return QStringList(); // "ISO-8859-10"
-		//case 17 : return QStringList(); // "Shift_JIS"
-		//case 18 : return QStringList(); // "EUC-JP"
-		//case 38 : return QStringList(); // "EUC-KR"
-		//case 39 : return QStringList(); // "ISO-2022-JP"
-		//case 85 : return QStringList(); // "ISO-8859-8"
-		//case 82 : return QStringList(); // "ISO-8859-6"
-		case 106 : return QStringList() << "utf8" << "utf8x"; // "UTF-8"
-		//case 109 : return QStringList(); // "ISO-8859-13"
-		//case 110 : return QStringList(); // "ISO-8859-14"
-		case 111 : return QStringList() << "latin9"; // "ISO-8859-15"
-		case 112 : return QStringList() << "latin10"; // "ISO-8859-16"
-		//case 113 : return QStringList(); // "GBK"
-		//case 114 : return QStringList(); // "GB18030"
-		//case 1013 : return QStringList(); // "UTF-16BE"
-		//case 1014 : return QStringList(); // "UTF-16LE"
-		//case 1015 : return QStringList(); // "UTF-16"
-		//case 1017 : return QStringList(); // "UTF-32"
-		//case 1018 : return QStringList(); // "UTF-32BE"
-		//case 1019 : return QStringList(); // "UTF-32LE"
-		//case 2004 : return QStringList(); // "roman8"
-		case 2009 : return QStringList() << "cp850"; // "IBM850"
-		//case 2025 : return QStringList(); // "GB2312"
-		//case 2026 : return QStringList(); // "Big5"
-		//case 2084 : return QStringList(); // "KOI8-R"
-		case 2086 : return QStringList() << "cp866"; // "IBM866"
-		//case 2088 : return QStringList(); // "KOI8-U"
-		//case 2101 : return QStringList(); // "Big5-HKSCS"
-		//case 2107 : return QStringList(); // "TSCII"
-		case 2250 : return QStringList() << "cp1250"; // "windows-1250"
-		case 2251 : return QStringList() << "cp1251"; // "windows-1251"
-		case 2252 : return QStringList() << "cp1252" << "ansinew"; // "windows-1252"
-		//case 2253 : return QStringList(); // "windows-1253"
-		//case 2254 : return QStringList(); // "windows-1254"
-		//case 2255 : return QStringList(); // "windows-1255"
-		//case 2256 : return QStringList(); // "windows-1256"
-		case 2257 : return QStringList() << "cp1257"; // "windows-1257"
-		//case 2258 : return QStringList(); // "windows-1258"
-		//case 2259 : return QStringList(); // "TIS-620"
-		//case -165 : return QStringList(); // "WINSAMI2"
-		case -168 : return QStringList() << "applemac"; // "Apple Roman"
-		//case -874 : return QStringList(); // "IBM874"
-		//case -3008 : return QStringList(); // "Iscii-Mlm"
-		//case -3007 : return QStringList(); // "Iscii-Knd"
-		//case -3006 : return QStringList(); // "Iscii-Tlg"
-		//case -3005 : return QStringList(); // "Iscii-Tml"
-		//case -3004 : return QStringList(); // "Iscii-Ori"
-		//case -3003 : return QStringList(); // "Iscii-Gjr"
-		//case -3002 : return QStringList(); // "Iscii-Pnj"
-		//case -3001 : return QStringList(); // "Iscii-Bng"
-		//case -3000 : return QStringList(); // "Iscii-Dev"
-		//case -949 : return QStringList(); // "cp949"
-	}
-	// *INDENT-ON*  (astyle-config)
-	return QStringList();
-}
-
-QTextCodec *guessEncodingBasic(const QByteArray &data, int *outSure)
-{
-	const char *str = data.data();
-	int size = data.size();
-	QTextCodec *guess = 0;
-	int sure = 1;
-	if (size > 0) {
-		unsigned char prev = str[0];
-		int goodUtf8 = 0;
-		int badUtf8 = 0;
-		int badIso1 = 0;
-		int utf16le = 0, utf16be = 0;
-		if (prev >= 0x80 && prev <= 0x9F) badIso1++;
-		for (int i = 1; i < size; i++) {
-			unsigned char cur = str[i];
-			if (cur >= 0x80 && cur <= 0x9F) badIso1++;
-			if ((cur & 0xC0) == 0x80) {
-				if ((prev & 0xC0) == 0xC0) goodUtf8++;
-				else if ((prev & 0x80) == 0x00) badUtf8++;
-			} else {
-				if ((prev & 0xC0) == 0xC0) badUtf8++;
-				//if (cur==0) { if (i & 1 == 0) utf16be++; else utf16le++;}
-				if (prev == 0) {
-					if ((i & 1) == 1) utf16be++;
-					else utf16le++;
-				}
-			}
-			prev = cur;
-		}
-		// less than 0.1% of the characters can be wrong for utf-16 if at least 1% are valid (for English text)
-		if (utf16le > utf16be) {
-			if (utf16be <= size / 1000 && utf16le >= size / 100 && utf16le >= 2) {
-				guess = QTextCodec::codecForMib(MIB_UTF16LE);
-				sure = 2;
-			}
-		} else {
-			if (utf16le <= size / 1000 && utf16be >= size / 100 && utf16be >= 2) {
-				guess = QTextCodec::codecForMib(MIB_UTF16BE);
-				sure = 2;
-			}
-		}
-		if (!guess) {
-			if (goodUtf8 > 10 * badUtf8) {
-				guess = QTextCodec::codecForMib(MIB_UTF8);
-				sure = 2;
-			} else {
-				if (badIso1 > 0) guess = QTextCodec::codecForMib(MIB_WINDOWS1252);
-				else guess = QTextCodec::codecForMib(MIB_LATIN1);
-				if (badUtf8 == 0) sure = 0;
-			}
-		}
-	} else sure = 0;
-	if (outSure) *outSure = sure;
-	return guess;
-}
-
-void LatexParser::guessEncoding(const QByteArray &data, QTextCodec *&guess, int &sure)
-{
-	if (guess && (guess->mibEnum() == MIB_UTF16LE || guess->mibEnum() == MIB_UTF16BE)) {
-		sure = 100;
-		return;
-	}
-	int headerSize = data.indexOf("\\begin{document}");
-	if (headerSize == -1) headerSize = data.size();
-	//search for % *!TeX +encoding *= *...\n
-	//slow c like search, without encoding we can't get a qstring, and bytearray neither supports
-	//regexp nor case insensitive search
-	int index = data.indexOf('=');
-	static const char *searchedLC = "%!tex encoding";
-	static const char *searchedUC = "%!TEX ENCODING";
-	static const int searchedLast = 13;
-	Q_ASSERT(searchedLC[searchedLast] == 'g');
-	while (index >= 0 && index < headerSize) {
-		int temp = index - 1;
-		int sp = searchedLast;
-		const char *d = data.constData();
-		for (; temp >= 0 && sp >= 0; temp--)
-			if (searchedLC[sp] == d[temp]) sp--;
-			else if (searchedUC[sp] == d[temp]) sp--;
-			else if (d[temp] == ' ') ;
-			else break;
-		if (sp == -1) {
-			int end = lineEnd(data, index);
-			QByteArray encName = data.mid(index + 1, end - index - 1).trimmed();
-			QTextCodec *codec = QTextCodec::codecForName(encName);
-			if (!codec)
-				codec = QTextCodecForTeXShopName(encName.toLower());
-			if (codec) {
-				sure = 100;
-				guess = codec;
-				return;
-			}
-		}
-		index = data.indexOf('=', index + 1);
-	}
-
-	QString encoding = getEncodingFromPackage(data, headerSize, "inputenc");
-	if (encoding.isEmpty())
-		encoding = getEncodingFromPackage(data, headerSize, "inputenx");
-	if (!encoding.isEmpty()) {
-		QTextCodec *codec = QTextCodecForLatexName(encoding);
-		if (codec) {
-			sure = 100;
-			guess = codec;
-			return;
-		}
-	}
-	return;
-}
-
-int LatexParser::lineStart(const QByteArray &data, int index)
-{
-	int n = qMax(data.lastIndexOf('\n', index), data.lastIndexOf('\r', index));
-	int o = data.lastIndexOf("\x20\x29", index);
-	if (n < 0 && o < 0) return 0;
-	if (n > o) return n + 1; // skip over character
-	else return n + 2; // skip over both chars
-}
-
-int LatexParser::lineEnd(const QByteArray &data, int index)
-{
-	int n = data.indexOf('\n', index);
-	int r = data.indexOf('\r', index);
-	if (n < 0) n = r; // prevent non-existing value (-1) to be smaller than existing one in qMin
-	else if (r < 0) r = n;
-	n = qMin(n, r);
-
-	r = data.indexOf("\x20\x29", index); // unicode paragraph separator, note this is equivalent to " )" in ASCII but this duplication is ok for the current usecase of lineEnd()
-	if (n < 0) n = r;
-	else if (r < 0) r = n;
-	n = qMin(n, r);
-	if (n >= 0) return n;
-	return data.size();
-}
-
-/*! search for first \usepackage[.*]{<packageName>} outside of a comment
- * returns the string inside the square brackets
- */
-QString LatexParser::getEncodingFromPackage(const QByteArray &data, int headerSize, const QString &packageName)
-{
-	QByteArray packageEndToken(QString("]{%1}").arg(packageName).toLatin1());
-	QByteArray packageStartToken("\\usepackage[");
-	int index = data.indexOf(packageEndToken);
-	while (index >= 0 && index < headerSize) {
-		int lStart = lineStart(data, index);
-		int lEnd = lineEnd(data, index);
-		QByteArray line(data.mid(lStart, lEnd - lStart));
-		int encEnd = index - lStart;
-		int encStart = line.lastIndexOf(packageStartToken, encEnd);
-		if (encStart >= 0) {
-			encStart += packageStartToken.length();
-			int commentStart = line.lastIndexOf('%', encEnd);
-			if (commentStart < 0) {
-				return QString(line.mid(encStart, encEnd - encStart));
-			}
-		}
-		index = data.indexOf(packageEndToken, index + 1);
-	}
-	return QString();
-}
-
-void LatexParser::append(const LatexParser &elem)
-{
-	QHash<QString, QSet<QString> >::const_iterator i = elem.possibleCommands.constBegin();
-	while (i != elem.possibleCommands.constEnd()) {
-		QString key = i.key();
-		QSet<QString> set = i.value();
-		possibleCommands[key].unite(set);
-		++i;
-	}
-	foreach (const QString key, elem.environmentAliases.keys()) {
-		QStringList values = elem.environmentAliases.values(key);
-		foreach (const QString value, values) {
-			if (!environmentAliases.contains(key, value))
-				environmentAliases.insert(key, value);
-		}
-	}
-	specialTreatmentCommands.unite(elem.specialTreatmentCommands);
-	specialDefCommands.unite(elem.specialDefCommands);
-	commandDefs.unite(elem.commandDefs);
-	mapSpecialArgs.unite(elem.mapSpecialArgs);
-}
-
-void LatexParser::clear()
-{
-	init();
-}
-
-void LatexParser::substract(const LatexParser &elem)
-{
-	QHash<QString, QSet<QString> >::const_iterator i = elem.possibleCommands.constBegin();
-	while (i != elem.possibleCommands.constEnd()) {
-		QString key = i.key();
-		QSet<QString> set = i.value();
-		possibleCommands[key].subtract(set);
-		++i;
-	}
-	foreach (QString key, elem.commandDefs.keys()) {
-		commandDefs.remove(key);
-	}
-}
-
-void LatexParser::importCwlAliases()
-{
-	QString fn = findResourceFile("completion/cwlAliases.dat");
-	QFile tagsfile(fn);
-	if (tagsfile.open(QFile::ReadOnly)) {
-		QString line;
-		QString alias;
-		while (!tagsfile.atEnd()) {
-			line = tagsfile.readLine().trimmed();
-			if (line.startsWith("#"))
-				continue;
-			if (line.endsWith(":")) {
-				alias = line.left(line.length() - 1);
-				continue;
-			}
-			if (!alias.isEmpty())
-				packageAliases.insertMulti(alias, line);
-		}
-	}
-}
 
 LatexReader::LatexReader(): index(0), wordStartIndex(0), lp(&LatexParser::getInstance())
 {
@@ -1943,6 +1052,112 @@ LatexReader::LatexReader(const LatexParser &lp, const QString &line, QMap<QStrin
 	setLine(line);
 	mReplacementList = replacementList;
 }
+
+int LatexReader::nextToken(const QString &line, int &index, bool inOption, bool detectMath)
+{
+	bool inWord = false;
+	bool inCmd = false;
+	//bool reparse=false;
+	bool singleQuoteChar = false;
+	bool doubleQuoteChar = false;
+	bool ignoreBrace = false;
+	bool ignoreClosingBrace = false;
+	int start = -1;
+	int i = index;
+	for (i = (i > 0 ? i : 0); i < line.size(); i++) {
+		QChar cur = line.at(i);
+		if (ignoreBrace && cur == '{') {
+			ignoreBrace = false;
+			ignoreClosingBrace = true;
+			continue;
+		} else ignoreBrace = false;
+		if (ignoreClosingBrace && cur == '}') {
+			ignoreClosingBrace = false;
+			continue;
+		}
+		if (doubleQuoteChar)
+			//if (cur == '\'') break; // check for words starting with "' (german quotation mark)
+			if (getCommonEOW().contains(cur)) break; // check for all quotation marks
+		doubleQuoteChar = false;
+		if (inCmd) {
+			if (getCommonEOW().indexOf(cur) >= 0 || cur.isDigit()) {
+				if (i - start == 1) i++;
+				break;
+			}
+		} else if (inWord) {
+			if (cur == '\\') {
+				if (i + 1 >= line.size()) break;
+				const QChar &c = line.at(i + 1);
+				if (c == '-' || c == '&') i++; //allow \& in the middle/end of words, e.g. C&A
+				else if (CharacterAlteringChars.contains(c)) {
+					ignoreBrace = true;
+					i++;//ignore word separation marker
+				} else break;
+			} else if (cur == '"') { //ignore " like in "-, "", "| "a
+				if (i + 1 < line.size()) {
+					QChar nextChar = line.at(i + 1);
+					if (nextChar == '-' || nextChar == '"' || nextChar == '|')  i++;
+					else if (!nextChar.isLetterOrNumber()) break;
+				} else break;
+			} else if (cur == '\'') {
+				if (singleQuoteChar) break;	 //no word's with two '' => output
+				else singleQuoteChar = true; //but accept one
+			} else if (cur == '.' || cur == '-') {
+				if (i > 0 && line.at(i - 1).isLetter())
+					i++; //take '.' or '-' into word, so that abbreviations/hyphenations, at least German ones, are checked correctly
+				if (cur == '-' &&  i < line.size() && line.at(i).isLetter())
+					; // continue with composite words
+				else
+					break;
+			} else if (getCommonEOW().indexOf(cur) >= 0 && !inOption) {
+				break;
+			} else if (cur == '}' || cur == ']') break;
+
+		} else if (cur == '\\') {
+			if (i + 1 >= line.size()) break;
+			const QChar &nextc = line.at(i + 1);
+			if (CharacterAlteringChars.contains(nextc))  {
+				inWord = true;
+				start = i;
+				ignoreBrace = true;
+				i++;
+			} else if (EscapedChars.contains(nextc)) {
+				i++;
+				Q_ASSERT(start == -1);
+			} else {
+				start = i;
+				inCmd = true;
+			}
+		} else if (cur == '{' || cur == '}' || cur == '%' || cur == '[' || cur == ']') {
+			index = i + 1;
+			return i;
+		} else if (detectMath && cur == '$') {
+			start = i;
+			i++;
+			if (i < line.size() && line[i] == '$')
+				i++; //detect $$
+			break;
+		} else if (detectMath && (cur == '_' || cur == '^' || cur == '&')) {
+			start = i;
+			i++;
+			break;
+		} else if ((getCommonEOW().indexOf(cur) < 0 && cur != '\'' ) || cur == '"') {
+			start = i;
+			inWord = true;
+			doubleQuoteChar = ( cur == '"');
+		} else if (Punctation.contains(cur)) {
+			start = i;
+			i++;
+			while (i < line.length() && line.at(i) == '-') i++; //convert LaTeX --- to a single -
+			break;
+		}
+	}
+	if (singleQuoteChar && i - 1 < line.size() && i > 0 && line.at(i - 1) == '\'')
+		i--; //remove ' when a word ends with it  (starting is handled because ' does not start a word)
+	index = i;
+	return start;
+}
+
 /*! Returns the next word (giving meaning to the nextToken tokens)
  * line: line to be examined
  * index: start index as input and returns the first character after the found word
@@ -2957,10 +2172,11 @@ Tokens::TokenType tokenTypeFromCwlArg(QString arg, QString definition)
 		if (suffix == "%special") {
 			Tokens::TokenType type = Tokens::specialArg;
 			arg.chop(8);
-			if (LatexParserInstance) {
-				if (!LatexParserInstance->mapSpecialArgs.values().contains("%" + arg)) {
-					int cnt = LatexParserInstance->mapSpecialArgs.count();
-					LatexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
+			LatexParser *latexParserInstance = LatexParser::getInstancePtr();
+			if (latexParserInstance) {
+				if (!latexParserInstance->mapSpecialArgs.values().contains("%" + arg)) {
+					int cnt = latexParserInstance->mapSpecialArgs.count();
+					latexParserInstance->mapSpecialArgs.insert(cnt, "%" + arg);
 					type = Tokens::TokenType(type + cnt);
 				}
 			}
@@ -3094,28 +2310,6 @@ CommandDescription extractCommandDef(QString line, QString definition)
 	return cd;
 }
 
-
-CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), args(0), level(0)
-{
-
-}
-
-QString tokenTypesToString(const QList<Tokens::TokenType>& types)
-{
-	QStringList res;
-	for (int i=0;i<types.length();i++) res << QString("%1").arg((int)types[i]);
-	return res.join(" ");
-}
-
-QString CommandDescription::toDebugString() const
-{
-    return QString("%1:%2:%3").arg(tokenTypesToString(optTypes)).arg(tokenTypesToString(argTypes)).arg(tokenTypesToString(bracketTypes));
-}
-
-bool CommandDescription::operator==(const CommandDescription &v) const
-{
-    return (this->optionalCommandName==v.optionalCommandName && this->args==v.args && this->argTypes==v.argTypes && this->level==v.level && this->optionalArgs==v.optionalArgs && this->optTypes==v.optTypes && this->bracketArgs==v.bracketArgs && this->bracketTypes==v.bracketTypes);
-}
 /*!
  * \brief get content of argument
  *
