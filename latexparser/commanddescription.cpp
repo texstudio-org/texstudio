@@ -5,7 +5,7 @@ CommandDescription::CommandDescription(): optionalArgs(0), bracketArgs(0), args(
 
 }
 
-QString tokenTypesToString(const QList<Tokens::TokenType>& types)
+QString tokenTypesToString(const QList<Token::TokenType>& types)
 {
 	QStringList res;
 	for (int i=0;i<types.length();i++) res << QString("%1").arg((int)types[i]);

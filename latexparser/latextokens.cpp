@@ -3,17 +3,17 @@
 
 
 /// display tokentype for debugging
-QDebug operator<<(QDebug dbg, Tokens::TokenType tk) {
-	dbg << "TokenType(" << qPrintable(Tokens::tokenTypeName(tk)) << ")";
+QDebug operator<<(QDebug dbg, Token::TokenType tk) {
+	dbg << "TokenType(" << qPrintable(Token::tokenTypeName(tk)) << ")";
 	return dbg;
 }
 
 
 /// display content of token for debugging
-QDebug operator<<(QDebug dbg, Tokens tk) {
+QDebug operator<<(QDebug dbg, Token tk) {
 	dbg << qPrintable("Token(\"" + tk.getText() + "\"){"
-					  + QString("type: %1, ").arg(Tokens::tokenTypeName(tk.type))
-					  + QString("subtype: %1, ").arg(Tokens::tokenTypeName(tk.subtype))
+					  + QString("type: %1, ").arg(Token::tokenTypeName(tk.type))
+					  + QString("subtype: %1, ").arg(Token::tokenTypeName(tk.subtype))
 					  + QString("arglevel: %1").arg(tk.argLevel)
 					  + "}"
 					  );
@@ -24,14 +24,14 @@ QDebug operator<<(QDebug dbg, Tokens tk) {
 /// display content of tokenlist for debugging
 void qDebugTokenList(TokenList tl) {
 	qDebug() << "TokenList:";
-	foreach (const Tokens &tk, tl) {
+	foreach (const Token &tk, tl) {
 		qDebug() << "  " << tk;
 	}
 }
 
 
 /// text for token for easier debugging
-QString Tokens::tokenTypeName(TokenType t) {
+QString Token::tokenTypeName(TokenType t) {
 #define LITERAL_ENUM(e) case e: return #e;
 	switch(t) {
 	LITERAL_ENUM(none)
@@ -99,7 +99,7 @@ QString Tokens::tokenTypeName(TokenType t) {
 /*!
  * define tokens which describe a mandatory argument
  */
-QSet<Tokens::TokenType> Tokens::tkArg()
+QSet<Token::TokenType> Token::tkArg()
 {
 	QSet<TokenType> result;
 	result.insert(openBrace);
@@ -111,7 +111,7 @@ QSet<Tokens::TokenType> Tokens::tkArg()
 
 /*! define tokens which describe an optional argument
  */
-QSet<Tokens::TokenType> Tokens::tkOption()
+QSet<Token::TokenType> Token::tkOption()
 {
 	QSet<TokenType> result;
 	result.insert(squareBracket);
@@ -123,7 +123,7 @@ QSet<Tokens::TokenType> Tokens::tkOption()
 /*!
  * \brief define all possible group tokens
  */
-QSet<Tokens::TokenType> Tokens::tkBraces()
+QSet<Token::TokenType> Token::tkBraces()
 {
 	QSet<TokenType> result;
 	result.insert(braces);
@@ -136,7 +136,7 @@ QSet<Tokens::TokenType> Tokens::tkBraces()
 /*!
  * \brief define open group tokens
  */
-QSet<Tokens::TokenType> Tokens::tkOpen()
+QSet<Token::TokenType> Token::tkOpen()
 {
 	QSet<TokenType> result;
 	result.insert(openBrace);
@@ -149,7 +149,7 @@ QSet<Tokens::TokenType> Tokens::tkOpen()
 /*!
  * \brief define close group tokens
  */
-QSet<Tokens::TokenType> Tokens::tkClose()
+QSet<Token::TokenType> Token::tkClose()
 {
 	QSet<TokenType> result;
 	result.insert(closeBrace);
@@ -162,7 +162,7 @@ QSet<Tokens::TokenType> Tokens::tkClose()
 /*! define argument-types (tokens) which consist of comma-separated lists
  * .e.g. \usepackage{pck1,pck2}
  */
-QSet<Tokens::TokenType> Tokens::tkCommalist()
+QSet<Token::TokenType> Token::tkCommalist()
 {
 	QSet<TokenType> result;
 	result.insert(bibItem);
@@ -177,7 +177,7 @@ QSet<Tokens::TokenType> Tokens::tkCommalist()
 /*! define argument-types (tokens) which are a single argument
  * .e.g. \label{abc}
  */
-QSet<Tokens::TokenType> Tokens::tkSingleArg()
+QSet<Token::TokenType> Token::tkSingleArg()
 {
 	QSet<TokenType> result;
 	result.insert(label);
@@ -196,7 +196,7 @@ QSet<Tokens::TokenType> Tokens::tkSingleArg()
 
 /*! get opposite tokentype for a bracket type tokentype
  */
-Tokens::TokenType Tokens::opposite(TokenType type)
+Token::TokenType Token::opposite(TokenType type)
 {
 	switch (type) {
 	case closeBrace:
@@ -220,7 +220,7 @@ Tokens::TokenType Tokens::opposite(TokenType type)
 /*!
  * \brief get close token for open or complete tokentype
  */
-Tokens::TokenType Tokens::closed(TokenType type)
+Token::TokenType Token::closed(TokenType type)
 {
 	switch (type) {
 	case closeBrace:
@@ -247,7 +247,7 @@ Tokens::TokenType Tokens::closed(TokenType type)
  * \param v
  * \return equal
  */
-bool Tokens::operator ==(const Tokens &v) const
+bool Token::operator ==(const Token &v) const
 {
 	return (this->dlh == v.dlh) && (this->length == v.length) && (this->level == v.level) && (this->type == v.type);
 }
@@ -257,7 +257,7 @@ bool Tokens::operator ==(const Tokens &v) const
  * \brief get text which is represented by the token
  * \return text of token
  */
-QString Tokens::getText()
+QString Token::getText()
 {
 	dlh->lockForRead();
 	QString result = dlh->text().mid(start, length);

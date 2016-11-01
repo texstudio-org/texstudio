@@ -91,7 +91,7 @@ QString findToken(const QString &line, QRegExp &token);
 /// find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line, const QString &token, QString &outName, QString &outArg);
 int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts = 0, int offset = 0, bool parseComment = false);
-int findCommandWithArgsFromTL(const TokenList &tl, Tokens &cmd, TokenList &args, int offset, bool parseComment = false);
+int findCommandWithArgsFromTL(const TokenList &tl, Token &cmd, TokenList &args, int offset, bool parseComment = false);
 
 
 /// generate multiple times used regexpression
@@ -248,17 +248,17 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config = 
 class QDocumentLineHandle;
 
 QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
-QString getArg(const TokenList &tl,Tokens::TokenType type);
-QString findRestArg(QDocumentLineHandle *dlh, Tokens::TokenType type, int count = 10);
+QString getArg(const TokenList &tl,Token::TokenType type);
+QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count = 10);
 CommandDescription extractCommandDef(QString line, QString definition);
 CommandDescription extractCommandDefKeyVal(QString line, QString &key);
-Tokens getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first = false);
+Token getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first = false);
 int getTokenAtCol(TokenList &tl, int pos, bool first = false);
-TokenList getArgContent(Tokens &tk);
+TokenList getArgContent(Token &tk);
 TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention = 10);
 TokenStack getContext(QDocumentLineHandle *dlh, int pos);
-QString getCommandFromToken(Tokens tk); ///< get command name from Token \a tk which is an argument
-Tokens getCommandTokenFromToken(TokenList tl, Tokens tk);
+QString getCommandFromToken(Token tk); ///< get command name from Token \a tk which is an argument
+Token getCommandTokenFromToken(TokenList tl, Token tk);
 TokenList simpleLexLatexLine(QDocumentLineHandle *dlh); ///< first pass lexing of text line
 bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const LatexParser &lp); ///< second pass lexing of text line, uses tokens from first pass
 int getCompleterContext(QDocumentLineHandle *dlh, int column);

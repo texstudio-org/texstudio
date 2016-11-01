@@ -3490,13 +3490,13 @@ void Texstudio::editEraseWordCmdEnv()
 
 	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	int tkPos = getTokenAtCol(tl, cursor.columnNumber());
-	Tokens tk;
+	Token tk;
 	if (tkPos > -1)
 		tk = tl.at(tkPos);
 
 	switch (tk.type) {
 
-	case Tokens::command:
+	case Token::command:
 		command = tk.getText();
 		if (command == "\\begin" || command == "\\end") {
 			value = getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
@@ -3575,10 +3575,10 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 	if (!currentEditorView())	return;
 	if (!c.isValid()) c = currentEditor()->cursor();
 	saveCurrentCursorToHistory();
-	Tokens tk = getTokenAtCol(c.line().handle(), c.columnNumber());
+	Token tk = getTokenAtCol(c.line().handle(), c.columnNumber());
 	switch (tk.type) {
-	case Tokens::labelRef:
-	case Tokens::labelRefList: {
+	case Token::labelRef:
+	case Token::labelRefList: {
 		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), tk.getText());
 		if (!edView) return;
 		if (edView != currentEditorView()) {
@@ -3587,7 +3587,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		edView->gotoToLabel(tk.getText());
 		break;
 	}
-	case Tokens::bibItem: {
+	case Token::bibItem: {
 		QString bibID = trimLeft(tk.getText());
 		// try local \bibitems
 		bool found = currentEditorView()->gotoToBibItem(bibID);
@@ -4470,75 +4470,75 @@ void Texstudio::normalCompletion()
 	QDocumentLineHandle *dlh = c.line().handle();
 	//LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
 	TokenStack ts = getContext(dlh, c.columnNumber());
-	Tokens tk;
+	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
-		if (tk.type == Tokens::word && tk.subtype == Tokens::none && ts.size() > 1) {
+		if (tk.type == Token::word && tk.subtype == Token::none && ts.size() > 1) {
 			// set brace type
 			ts.pop();
 			tk = ts.top();
 		}
 	}
 
-	Tokens::TokenType type = tk.type;
-	if (tk.subtype != Tokens::none)
+	Token::TokenType type = tk.type;
+	if (tk.subtype != Token::none)
 		type = tk.subtype;
-	if (type == Tokens::specialArg) {
-		int df = int(type - Tokens::specialArg);
+	if (type == Token::specialArg) {
+		int df = int(type - Token::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
 		completer->setWorkPath(cmd);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);
 	}
 	switch (type) {
-	case Tokens::command:
-	case Tokens::commandUnknown:
+	case Token::command:
+	case Token::commandUnknown:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
-	case Tokens::env:
-	case Tokens::beginEnv:
+	case Token::env:
+	case Token::beginEnv:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
-	case Tokens::labelRef:
+	case Token::labelRef:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
-	case Tokens::labelRefList:
+	case Token::labelRefList:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF | LatexCompleter::CF_FORCE_REFLIST);
 		break;
-	case Tokens::bibItem:
+	case Token::bibItem:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
 		break;
-	case Tokens::width:
+	case Token::width:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_LENGTH);
 		break;
-	case Tokens::imagefile: {
+	case Token::imagefile: {
 		QString fn = documents.getCompileFileName();
 		QFileInfo fi(fn);
 		completer->setWorkPath(fi.absolutePath());
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
 	}
 	break;
-	case Tokens::file: {
+	case Token::file: {
 		QString fn = documents.getCompileFileName();
 		QFileInfo fi(fn);
 		completer->setWorkPath(fi.absolutePath());
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
 	}
 	break;
-	case Tokens::color:
+	case Token::color:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		completer->setWorkPath("%color");
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION); //TODO: complete support for special opt
 		break;
-	case Tokens::keyValArg:
-	case Tokens::keyVal_key:
-	case Tokens::keyVal_val: {
+	case Token::keyValArg:
+	case Token::keyVal_key:
+	case Token::keyVal_val: {
 		QString word = c.line().text();
 		int col = c.columnNumber();
 		command = getCommandFromToken(tk);
@@ -4549,16 +4549,16 @@ void Texstudio::normalCompletion()
 			// command/arg structure ? (yathesis)
 			TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 			QString subcommand;
-			int add = (type == Tokens::keyVal_val) ? 2 : 1;
-			if (tk.type == Tokens::braces || tk.type == Tokens::squareBracket)
+			int add = (type == Token::keyVal_val) ? 2 : 1;
+			if (tk.type == Token::braces || tk.type == Token::squareBracket)
 				add = 0;
 			for (int k = tl.indexOf(tk) + 1; k < tl.length(); k++) {
-				Tokens tk_elem = tl.at(k);
+				Token tk_elem = tl.at(k);
 				if (tk_elem.level > tk.level - add)
 					continue;
 				if (tk_elem.level < tk.level - add)
 					break;
-				if (tk_elem.type == Tokens::braces) {
+				if (tk_elem.type == Token::braces) {
 					subcommand = word.mid(tk_elem.start + 1, tk_elem.length - 2);
 					break;
 				}
@@ -4580,8 +4580,8 @@ void Texstudio::normalCompletion()
 			}
 		} else {
 			if (ts.size() > 1) {
-				Tokens elem = ts.at(ts.size() - 2);
-				if (elem.type == Tokens::keyVal_key && elem.level == tk.level - 1) {
+				Token elem = ts.at(ts.size() - 2);
+				if (elem.type == Token::keyVal_key && elem.level == tk.level - 1) {
 					command = command + "/" + elem.getText();
 					completer->setWorkPath(command);
 					existValues = completer->existValues();
@@ -4593,7 +4593,7 @@ void Texstudio::normalCompletion()
 			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
 	}
 	break;
-	case Tokens::beamertheme: {
+	case Token::beamertheme: {
 		QString preambel = "beamertheme";
 		currentPackageList.clear();
 		foreach (QString elem, latexPackageList) {
@@ -4604,7 +4604,7 @@ void Texstudio::normalCompletion()
 	completer->setPackageList(&currentPackageList);
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
 	break;
-	case Tokens::package:
+	case Token::package:
 		completer->setPackageList(&latexPackageList);
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
 		break;
@@ -4662,8 +4662,8 @@ void Texstudio::insertTextCompletion()
         TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
         QString txt;
         for(int k=0;k<tl.size();k++) {
-            Tokens tk=tl.at(k);
-            if(!txt.isEmpty() || (tk.type==Tokens::word && (tk.subtype==Tokens::none || tk.subtype==Tokens::text || tk.subtype==Tokens::generalArg || tk.subtype==Tokens::title || tk.subtype==Tokens::todo))){
+            Token tk=tl.at(k);
+            if(!txt.isEmpty() || (tk.type==Token::word && (tk.subtype==Token::none || tk.subtype==Token::text || tk.subtype==Token::generalArg || tk.subtype==Token::title || tk.subtype==Token::todo))){
                 txt+=tk.getText();
                 if(txt.startsWith(word)){
                     if(word.length()<txt.length()){
@@ -4675,9 +4675,9 @@ void Texstudio::insertTextCompletion()
                     }
                     // add more variants for variable-name like constructions
                     if(k+2<tl.size()){
-                        Tokens tk2=tl.at(k+1);
-                        Tokens tk3=tl.at(k+2);
-                        if(tk2.length==1 && tk2.start==tk.start+tk.length && tk2.type==Tokens::punctuation&&tk3.start==tk2.start+tk2.length){
+                        Token tk2=tl.at(k+1);
+                        Token tk3=tl.at(k+2);
+                        if(tk2.length==1 && tk2.start==tk.start+tk.length && tk2.type==Token::punctuation&&tk3.start==tk2.start+tk2.length){
                             // next token is directly adjacent and of length 1
                             QString txt2=tk2.getText();
                             if(txt2=="_" || txt2=="-"){
@@ -4685,14 +4685,14 @@ void Texstudio::insertTextCompletion()
                                 k++;
                                 continue;
                             }
-                            if(txt2=="'" && tk3.type==Tokens::word){ // e.g. don't but not abc''
+                            if(txt2=="'" && tk3.type==Token::word){ // e.g. don't but not abc''
                                 txt.append(txt2);
                                 k++;
                                 continue;
                             }
                         }
                         // combine abc\_def
-                        if(tk2.length==2 && tk2.start==tk.start+tk.length && (tk2.type==Tokens::command||tk2.type==Tokens::commandUnknown)&&tk3.start==tk2.start+tk2.length){
+                        if(tk2.length==2 && tk2.start==tk.start+tk.length && (tk2.type==Token::command||tk2.type==Token::commandUnknown)&&tk3.start==tk2.start+tk2.length){
                             // next token is directly adjacent and of length 1
                             QString txt2=tk2.getText();
                             if(txt2=="\\_" ){
@@ -4702,8 +4702,8 @@ void Texstudio::insertTextCompletion()
                             }
                         }
                         // previous was an already appended command, check if argument is present
-                        if(tk.type==Tokens::command){
-                            if(tk2.level==tk.level && tk2.subtype!=Tokens::none){
+                        if(tk.type==Token::command){
+                            if(tk2.level==tk.level && tk2.subtype!=Token::none){
                                 txt.append(tk2.getText());
                                 words<<txt;
                                 k++;
@@ -8011,14 +8011,14 @@ void Texstudio::previewLatex()
 	if (!previewc.hasSelection()) {
 		// in environment delimiter (\begin{env} or \end{env})
 		QString command;
-		Tokens tk = getTokenAtCol(c.line().handle(), c.columnNumber());
-		if (tk.type != Tokens::none)
+		Token tk = getTokenAtCol(c.line().handle(), c.columnNumber());
+		if (tk.type != Token::none)
 			command = tk.getText();
-		if (tk.type == Tokens::env || tk.type == Tokens::beginEnv ) {
+		if (tk.type == Token::env || tk.type == Token::beginEnv ) {
 			c.setColumnNumber(tk.start);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
-		if (tk.type == Tokens::command && (command == "\\begin" || command == "\\end")) {
+		if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
 			c.setColumnNumber(tk.start + tk.length + 1);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
@@ -9120,9 +9120,9 @@ bool Texstudio::generateMirror(bool setCur)
 	QDocumentCursor oldCursor = cursor;
 	QString line = cursor.line().text();
 	QString command, value;
-	Tokens tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
+	Token tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
 
-	if (tk.type == Tokens::env || tk.type == Tokens::beginEnv) {
+	if (tk.type == Token::env || tk.type == Token::beginEnv) {
 		if (tk.length > 0) {
 			value = tk.getText();
 			command = getCommandFromToken(tk);
