@@ -15,9 +15,9 @@ public:
 	int bracketArgs; ///< number of () arguments
 	int args; ///< number of mandatory arguments (in braces)
 	int level;
-	QList<Tokens::TokenType> argTypes; ///< define argument type as token
-	QList<Tokens::TokenType> optTypes; ///< define argument type as token
-	QList<Tokens::TokenType> bracketTypes; ///< define argument type as token
+	QList<Token::TokenType> argTypes; ///< define argument type as token
+	QList<Token::TokenType> optTypes; ///< define argument type as token
+	QList<Token::TokenType> bracketTypes; ///< define argument type as token
     QString optionalCommandName; ///< stores optionally command name. It is used for processing command description during lexing
 	QString toDebugString() const; ///< debug function to get easier information on command description
     bool operator==(const CommandDescription &v) const; ///< compare two command descriptions

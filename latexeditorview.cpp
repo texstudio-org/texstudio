@@ -442,18 +442,18 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		QDocumentLineHandle *dlh = cursor.line().handle();
 		TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		int i = getTokenAtCol(tl, cursor.columnNumber());
-		Tokens tk;
+		Token tk;
 		if (i >= 0)
 			tk = tl.at(i);
 
-		if ( tk.type == Tokens::file) {
+		if ( tk.type == Token::file) {
 			QAction *act = new QAction(LatexEditorView::tr("Open %1").arg(tk.getText()), contextMenu);
 			act->setData(tk.getText());
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(openExternalFile()));
 			contextMenu->addAction(act);
 		}
 		// bibliography command
-		if ( tk.type == Tokens::bibfile) {
+		if ( tk.type == Token::bibfile) {
 			QAction *act = new QAction(LatexEditorView::tr("Open Bibliography"), contextMenu);
 			QString bibFile;
 			bibFile = tk.getText() + ".bib";
@@ -462,7 +462,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		//package help
-        if ( tk.type == Tokens::package || tk.type == Tokens::documentclass) {
+        if ( tk.type == Token::package || tk.type == Token::documentclass) {
 			QAction *act = new QAction(LatexEditorView::tr("Open package documentation"), contextMenu);
 			QString packageName = tk.getText();
 			act->setText(act->text().append(QString(" (%1)").arg(packageName)));
@@ -471,7 +471,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			contextMenu->addAction(act);
 		}
 		// help for any "known" command
-		if ( tk.type == Tokens::command) {
+		if ( tk.type == Token::command) {
 			ctxCommand = tk.getText();
 			QString command = ctxCommand;
 			if (ctxCommand == "\\begin" || ctxCommand == "\\end")
@@ -486,20 +486,20 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 				contextMenu->addAction(act);
 			}
 		}
-		if (/* tk.type==Tokens::bibRef || TODO: bibliography references not yet handled by token system */ tk.type == Tokens::labelRef) {
+		if (/* tk.type==Tokens::bibRef || TODO: bibliography references not yet handled by token system */ tk.type == Token::labelRef) {
 			QAction *act = new QAction(LatexEditorView::tr("Go to Definition"), contextMenu);
 			act->setData(QVariant().fromValue<QDocumentCursor>(cursor));
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitGotoDefinitionFromAction()));
 			contextMenu->addAction(act);
 		}
-		if (tk.type == Tokens::label || tk.type == Tokens::labelRef || tk.type == Tokens::labelRefList) {
+		if (tk.type == Token::label || tk.type == Token::labelRef || tk.type == Token::labelRefList) {
 			QAction *act = new QAction(LatexEditorView::tr("Find Usages"), contextMenu);
 			act->setData(tk.getText());
 			act->setProperty("doc", QVariant::fromValue<LatexDocument *>(edView->document));
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(emitFindLabelUsagesFromAction()));
 			contextMenu->addAction(act);
 		}
-		if (tk.type == Tokens::word) {
+		if (tk.type == Token::word) {
 			QAction *act = new QAction(LatexEditorView::tr("Thesaurus..."), contextMenu);
 			act->setData(QPoint(cursor.anchorLineNumber(), cursor.anchorColumnNumber()));
 			edView->connect(act, SIGNAL(triggered()), edView, SLOT(triggeredThesaurus()));
@@ -870,19 +870,19 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 	if (validPosition) {
 		QDocumentLineHandle *dlh = cursor.line().handle();
 
-		Tokens tk = getTokenAtCol(dlh, cursor.columnNumber());
+		Token tk = getTokenAtCol(dlh, cursor.columnNumber());
 
-		if (tk.type == Tokens::labelRef || tk.type == Tokens::labelRefList) {
+		if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
 			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::RefOverlay));
-		} else if (tk.type == Tokens::file) {
+		} else if (tk.type == Token::file) {
 			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::FileOverlay));
-		} else if (tk.type == Tokens::url) {
+		} else if (tk.type == Token::url) {
 			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UrlOverlay));
-		} else if (tk.type == Tokens::package) {
+		} else if (tk.type == Token::package) {
 			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::UsepackageOverlay));
-		} else if (tk.type == Tokens::bibfile) {
+		} else if (tk.type == Token::bibfile) {
 			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::BibFileOverlay));
-		} else if (tk.type == Tokens::bibItem) {
+		} else if (tk.type == Token::bibItem) {
 			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::CiteOverlay));
 		} else {
 			if (linkOverlay.isValid()) removeLinkOverlay();
@@ -1763,22 +1763,22 @@ void LatexEditorView::mayNeedToOpenCompleter()
 	if (!dlh)
 		return;
 	TokenStack ts = getContext(dlh, c.columnNumber());
-	Tokens tk;
+	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
-		if (tk.type == Tokens::word && tk.subtype == Tokens::none && ts.size() > 1) {
+		if (tk.type == Token::word && tk.subtype == Token::none && ts.size() > 1) {
 			// set brace type
 			ts.pop();
 			tk = ts.top();
 		}
 	}
 
-	Tokens::TokenType type = tk.type;
-	if (tk.subtype != Tokens::none)
+	Token::TokenType type = tk.type;
+	if (tk.subtype != Token::none)
 		type = tk.subtype;
 
-	QList<Tokens::TokenType> lst;
-	lst << Tokens::package << Tokens::keyValArg << Tokens::keyVal_val << Tokens::keyVal_key << Tokens::bibItem << Tokens::labelRefList;
+	QList<Token::TokenType> lst;
+	lst << Token::package << Token::keyValArg << Token::keyVal_val << Token::keyVal_key << Token::bibItem << Token::labelRefList;
 	if (lst.contains(type))
 		emit openCompleter();
 	if (ts.isEmpty())
@@ -1852,14 +1852,14 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
             // blank irrelevant content, i.e. commands, non-text, comments, verbatim
             QDocumentLineHandle *dlh = line.handle();
             TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-            foreach(Tokens tk,tl){
-                if(tk.type==Tokens::word && (tk.subtype==Tokens::none||tk.subtype==Tokens::text))
+            foreach(Token tk,tl){
+                if(tk.type==Token::word && (tk.subtype==Token::none||tk.subtype==Token::text))
                     continue;
-                if(tk.type==Tokens::punctuation && (tk.subtype==Tokens::none||tk.subtype==Tokens::text))
+                if(tk.type==Token::punctuation && (tk.subtype==Token::none||tk.subtype==Token::text))
                     continue;
-                if(tk.type==Tokens::symbol && (tk.subtype==Tokens::none||tk.subtype==Tokens::text))
+                if(tk.type==Token::symbol && (tk.subtype==Token::none||tk.subtype==Token::text))
                     continue; // don't blank symbol like '~'
-                if(tk.type==Tokens::braces && tk.subtype==Tokens::text){
+                if(tk.type==Token::braces && tk.subtype==Token::text){
                     //remove braces around text argument
                     temp.text.replace(tk.start,1,QString(' '));
                     temp.text.replace(tk.start+tk.length-1,1,QString(' '));
@@ -1929,28 +1929,28 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 		QDocumentLineHandle *dlh = line.handle();
 		TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 		for (int tkNr = 0; tkNr < tl.length(); tkNr++) {
-			Tokens tk = tl.at(tkNr);
-			if (tk.subtype == Tokens::verbatim)
+			Token tk = tl.at(tkNr);
+			if (tk.subtype == Token::verbatim)
 				continue;
-			if (tk.type == Tokens::comment)
+			if (tk.type == Token::comment)
 				break;
 			if (latexLikeChecking) {
-				if (tk.subtype == Tokens::title && tk.type == Tokens::braces) {
+				if (tk.subtype == Token::title && tk.type == Token::braces) {
 					line.addOverlay(QFormatRange(tk.start + 1, tk.length - 2, structureFormat));
 					addedOverlayStructure = true;
 				}
-				if (tk.subtype == Tokens::todo && tk.type == Tokens::braces) {
+				if (tk.subtype == Token::todo && tk.type == Token::braces) {
 					line.addOverlay(QFormatRange(tk.start + 1, tk.length - 2, todoFormat));
 					addedOverlayTodo = true;
 				}
-				if (tk.type == Tokens::env || tk.type == Tokens::beginEnv) {
+				if (tk.type == Token::env || tk.type == Token::beginEnv) {
 					line.addOverlay(QFormatRange(tk.start, tk.length, environmentFormat));
 					addedOverlayEnvironment = true;
 				}
-				if ((tk.type == Tokens::package || tk.type == Tokens::beamertheme || tk.type == Tokens::documentclass) && config->inlinePackageChecking) {
+				if ((tk.type == Token::package || tk.type == Token::beamertheme || tk.type == Token::documentclass) && config->inlinePackageChecking) {
 					// package
 					QString preambel;
-					if (tk.type == Tokens::beamertheme) { // special treatment for  \usetheme
+					if (tk.type == Token::beamertheme) { // special treatment for  \usetheme
 						preambel = "beamertheme";
 					}
 					QString text = dlh->text();
@@ -1965,7 +1965,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 					addedOverlayPackage = true;
 				}
-				if ((tk.type == Tokens::labelRef || tk.type == Tokens::labelRefList) && config->inlineReferenceChecking) {
+				if ((tk.type == Token::labelRef || tk.type == Token::labelRefList) && config->inlineReferenceChecking) {
 					QDocumentLineHandle *dlh = tk.dlh;
 					QString ref = dlh->text().mid(tk.start, tk.length);
 					if (ref.contains('#')) continue;  // don't highlight refs in definitions e.g. in \newcommand*{\FigRef}[1]{figure~\ref{#1}}
@@ -1976,7 +1976,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					else dlh->addOverlay(QFormatRange(tk.start, tk.length, referenceMissingFormat));
 					addedOverlayReference = true;
 				}
-				if (tk.type == Tokens::label && config->inlineReferenceChecking) {
+				if (tk.type == Token::label && config->inlineReferenceChecking) {
 					QDocumentLineHandle *dlh = tk.dlh;
 					QString ref = dlh->text().mid(tk.start, tk.length);
 					int cnt = document->countLabels(ref);
@@ -1988,7 +1988,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 					document->updateRefsLabels(ref);
 					addedOverlayReference = true;
 				}
-				if (tk.type == Tokens::bibItem && config->inlineCitationChecking) {
+				if (tk.type == Token::bibItem && config->inlineCitationChecking) {
 					QDocumentLineHandle *dlh = tk.dlh;
 					QString text = dlh->text().mid(tk.start, tk.length);
 					if (text.contains('#')) continue; // don't highlight cite in definitions e.g. in \newcommand*{\MyCite}[1]{see~\cite{#1}}
@@ -2002,12 +2002,12 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				}
 			}// if latexLineCheking
             int tkLength=tk.length;
-			if (tk.type == Tokens::word && (tk.subtype == Tokens::text || tk.subtype == Tokens::title || tk.subtype == Tokens::todo || tk.subtype == Tokens::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
+			if (tk.type == Token::word && (tk.subtype == Token::text || tk.subtype == Token::title || tk.subtype == Token::todo || tk.subtype == Token::none)  && config->inlineSpellChecking && tk.length >= 3 && speller) {
 				QString word = tk.getText();
                 if(tkNr+1 < tl.length()){
                     //check if next token is . or -
-                    Tokens tk1 = tl.at(tkNr+1);
-                    if(tk1.type==Tokens::punctuation && tk1.start==(tk.start+tk.length)){
+                    Token tk1 = tl.at(tkNr+1);
+                    if(tk1.type==Token::punctuation && tk1.start==(tk.start+tk.length)){
                         QString add=tk1.getText();
                         if(add=="."||add=="-"){
                             word+=add;
@@ -2016,8 +2016,8 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                         }
                         if(add=="'"){
                             if(tkNr+2 < tl.length()){
-                                Tokens tk2 = tl.at(tkNr+2);
-                                if(tk2.type==Tokens::word && tk2.start==(tk1.start+tk1.length)){
+                                Token tk2 = tl.at(tkNr+2);
+                                if(tk2.type==Token::word && tk2.start==(tk1.start+tk1.length)){
                                     add+=tk2.getText();
                                     word+=add;
                                     tkNr+=2;
@@ -2281,7 +2281,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 
 	//Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
 	TokenStack ts = getContext(dlh, cursor.columnNumber());
-	Tokens tk;
+	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
 	}
@@ -2289,9 +2289,9 @@ void LatexEditorView::mouseHovered(QPoint pos)
 	LatexParser &lp = LatexParser::getInstance();
 	QString command, value;
 	bool handled = false;
-	if (tk.type != Tokens::none) {
+	if (tk.type != Token::none) {
 		int tkPos = tl.indexOf(tk);
-		if (tk.type == Tokens::command || tk.type == Tokens::commandUnknown) {
+		if (tk.type == Token::command || tk.type == Token::commandUnknown) {
 			handled = true;
 			command = line.mid(tk.start, tk.length);
 			CommandDescription cd = lp.commandDefs.value(command);
@@ -2305,7 +2305,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 		}
 		value = tk.getText();
-		if (tk.type == Tokens::env || tk.type == Tokens::beginEnv) {
+		if (tk.type == Token::env || tk.type == Token::beginEnv) {
 			handled = true;
 			if (config->toolTipPreview && showMathEnvPreview(cursor, "\\begin", value, pos)) {
 				; // action is already performed as a side effect
@@ -2314,7 +2314,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				if (!topic.isEmpty()) QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), topic);
 			}
 		}
-		if (tk.type == Tokens::labelRef || tk.type == Tokens::labelRefList) {
+		if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
 			handled = true;
 			int cnt = document->countLabels(value);
 			QString mText = "";
@@ -2336,7 +2336,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), mText);
 		}
-		if (tk.type == Tokens::label) {
+		if (tk.type == Token::label) {
 			handled = true;
 			if (document->countLabels(value) > 1) {
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tr("label multiple times defined!"));
@@ -2345,11 +2345,11 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tr("%n reference(s) to this label", "", cnt));
 			}
 		}
-		if (tk.type == Tokens::package || tk.type == Tokens::beamertheme || tk.type == Tokens::documentclass) {
+		if (tk.type == Token::package || tk.type == Token::beamertheme || tk.type == Token::documentclass) {
 			handled = true;
-			QString type = (tk.type == Tokens::documentclass) ? tr("Class") : tr("Package");
+			QString type = (tk.type == Token::documentclass) ? tr("Class") : tr("Package");
 			QString preambel;
-			if (tk.type == Tokens::beamertheme) { // special treatment for  \usetheme
+			if (tk.type == Token::beamertheme) { // special treatment for  \usetheme
 				preambel = "beamertheme";
 				type = tr("Beamer Theme");
 				type.replace(' ', "&nbsp;");
@@ -2364,7 +2364,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
 			}
 		}
-		if (tk.subtype == Tokens::color) {
+		if (tk.subtype == Token::color) {
 			QString text;
 			if (ts.size() > 1) {
 				ts.pop();
@@ -2374,7 +2374,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			m_point = editor->mapToGlobal(editor->mapFromFrame(pos));
 			emit showPreview(text);
 		}
-		if (tk.type == Tokens::bibItem) {
+		if (tk.type == Token::bibItem) {
 			handled = true;
 			QString tooltip(tr("Citation correct (reading ...)"));
 			QString bibID;
@@ -2422,7 +2422,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 			QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), tooltip);
 		}
-		if (tk.type == Tokens::imagefile && config->imageToolTip) {
+		if (tk.type == Token::imagefile && config->imageToolTip) {
 			handled = true;
 			QStringList imageExtensions = QStringList() << "" << "png" << "pdf" << "jpg" << "jpeg";
 			QString fname;

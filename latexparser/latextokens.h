@@ -30,10 +30,10 @@ class QDocument;
  \endverbatim
  The level is encoded via the level-property. The list is actually still linear.
  */
-class Tokens
+class Token
 {
 public:
-	Tokens(): start(-1), length(-1), level(-1), dlh(0), type(none), subtype(none), argLevel(0) {}
+	Token(): start(-1), length(-1), level(-1), dlh(0), type(none), subtype(none), argLevel(0) {}
 	int start;
 	int length;
 	int level;
@@ -61,14 +61,14 @@ public:
 	static QSet<TokenType> tkSingleArg();
 	static TokenType opposite(TokenType type);
 	static TokenType closed(TokenType type);
-	bool operator==(const Tokens &v) const;
+	bool operator==(const Token &v) const;
 	QString getText();
 };
-QDebug operator<<(QDebug dbg, Tokens::TokenType tk);
-QDebug operator<<(QDebug dbg, Tokens tk);
+QDebug operator<<(QDebug dbg, Token::TokenType tk);
+QDebug operator<<(QDebug dbg, Token tk);
 
-typedef QList<Tokens> TokenList;
-typedef QStack<Tokens> TokenStack;
+typedef QList<Token> TokenList;
+typedef QStack<Token> TokenStack;
 
 Q_DECLARE_METATYPE(TokenList);
 Q_DECLARE_METATYPE(TokenStack);

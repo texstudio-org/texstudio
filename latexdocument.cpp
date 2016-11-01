@@ -386,7 +386,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	if (linenr > 0) {
 		QDocumentLineHandle *previous = line(linenr - 1).handle();
 		remainder = previous->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-		if (!remainder.isEmpty() && remainder.top().subtype != Tokens::none) {
+		if (!remainder.isEmpty() && remainder.top().subtype != Token::none) {
 			QDocumentLineHandle *lh = remainder.top().dlh;
 			lineNrStart = lh->document()->indexOf(lh);
 			if (linenr - lineNrStart > 10) // limit search depth
@@ -602,14 +602,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 
 		for (int j = 0; j < tl.length(); j++) {
-			Tokens tk = tl.at(j);
+			Token tk = tl.at(j);
 			// break at comment start
-			if (tk.type == Tokens::comment)
+			if (tk.type == Token::comment)
 				break;
 			// work special args
 			////Ref
 			//for reference counting (can be placed in command options as well ...
-			if (tk.type == Tokens::labelRef || tk.type == Tokens::labelRefList) {
+			if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
 				ReferencePair elem;
 				elem.name = tk.getText();
 				elem.start = tk.start;
@@ -617,7 +617,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 
 			//// label ////
-			if (tk.type == Tokens::label && tk.length > 0) {
+			if (tk.type == Token::label && tk.length > 0) {
 				ReferencePair elem;
 				elem.name = tk.getText();
 				elem.start = tk.start;
@@ -637,7 +637,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				iter_label.insert(newLabel);
 			}
 			//// newtheorem ////
-			if (tk.type == Tokens::newTheorem && tk.length > 0) {
+			if (tk.type == Token::newTheorem && tk.length > 0) {
 				completerNeedsUpdate = true;
 				QStringList lst;
 				QString firstArg = tk.getText();
@@ -652,7 +652,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				continue;
 			}
 			/// bibitem ///
-			if (tk.type == Tokens::newBibItem && tk.length > 0) {
+			if (tk.type == Token::newBibItem && tk.length > 0) {
 				ReferencePair elem;
 				elem.name = tk.getText();
 				elem.start = tk.start;
@@ -661,9 +661,9 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				continue;
 			}
 			// work on general commands
-			if (tk.type != Tokens::command && tk.type != Tokens::commandUnknown)
+			if (tk.type != Token::command && tk.type != Token::commandUnknown)
 				continue; // not a command
-			Tokens tkCmd;
+			Token tkCmd;
 			TokenList args;
 			QString cmd;
 			int cmdStart = findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
@@ -695,16 +695,16 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
 				completerNeedsUpdate = true;
 				//Tokens cmdName;
-				QString cmdName = getArg(args, Tokens::def);
+				QString cmdName = getArg(args, Token::def);
 				bool isDefWidth = true;
 				if (cmdName.isEmpty())
-					cmdName = getArg(args, Tokens::defWidth);
+					cmdName = getArg(args, Token::defWidth);
 				else
 					isDefWidth = false;
 				//int optionCount = getArg(args, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
-				int optionCount = getArg(args, Tokens::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
+				int optionCount = getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-				bool def = !getArg(args, Tokens::optionalArgDefinition).isEmpty();
+				bool def = !getArg(args, Token::optionalArgDefinition).isEmpty();
 
 				ltxCommands.possibleCommands["user"].insert(cmdName);
 
@@ -823,19 +823,19 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				if (!args.isEmpty() ) {
 					completerNeedsUpdate = true;
 					QString definition = ltxCommands.specialDefCommands.value(cmd);
-					Tokens::TokenType type = Tokens::braces;
+					Token::TokenType type = Token::braces;
 					if (definition.startsWith('(')) {
 						definition.chop(1);
 						definition = definition.mid(1);
-						type = Tokens::bracket;
+						type = Token::bracket;
 					}
 					if (definition.startsWith('[')) {
 						definition.chop(1);
 						definition = definition.mid(1);
-						type = Tokens::squareBracket;
+						type = Token::squareBracket;
 					}
 
-					foreach (Tokens mTk, args) {
+					foreach (Token mTk, args) {
 						if (mTk.type != type)
 							continue;
 						QString elem = mTk.getText();
@@ -997,7 +997,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (cmd.endsWith("*"))
 				cmd = cmd.left(cmd.length() - 1);
 			int level = lp.structureCommandLevel(cmd);
-			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Tokens::none) {
+			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
 				StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
 				if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
 				if (mBeyondEnd && indexOf(mBeyondEnd) < i) newSection->setContext(StructureEntry::BeyondEnd);
@@ -1013,14 +1013,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
                         /// auto user command for \symbol_...
                         if(j+2<tl.length()){
-                            Tokens tk2=tl.at(j+1);
+                            Token tk2=tl.at(j+1);
                             if(tk2.getText()=="_"){
                                 QString txt=cmd+"_";
                                 tk2=tl.at(j+2);
                                 txt.append(tk2.getText());
-                                if(tk2.type==Tokens::command && j+3<tl.length()){
-                                       Tokens tk3=tl.at(j+3);
-                                       if(tk3.level==tk2.level && tk.subtype!=Tokens::none)
+                                if(tk2.type==Token::command && j+3<tl.length()){
+                                       Token tk3=tl.at(j+3);
+                                       if(tk3.level==tk2.level && tk.subtype!=Token::none)
                                            txt.append(tk3.getText());
                                 }
                                 CodeSnippet cs(txt);

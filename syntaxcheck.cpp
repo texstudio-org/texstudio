@@ -650,7 +650,7 @@ void SyntaxCheck::markUnclosedEnv(Environment env)
 bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 {
 	for (int i = 0; i < stack.size(); i++) {
-		if (stack[i].subtype == Tokens::definition)
+		if (stack[i].subtype == Token::definition)
 			return true;
 	}
 	return false;
@@ -676,12 +676,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 	// check command-words
 	for (int i = 0; i < tl.length(); i++) {
-		Tokens tk = tl.at(i);
+		Token tk = tl.at(i);
 		// ignore commands in definition arguments e.g. \newcommand{cmd}{definition}
 		if (stackContainsDefinition(stack)) {
-			Tokens top = stack.top();
+			Token top = stack.top();
 			if (top.dlh != tk.dlh) {
-				if (tk.type == Tokens::closeBrace) {
+				if (tk.type == Token::closeBrace) {
 					stack.pop();
 				} else
 					continue;
@@ -692,11 +692,11 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					stack.pop();
 			}
 		}
-		if (tk.subtype == Tokens::definition && (tk.type == Tokens::braces || tk.type == Tokens::openBrace)) {
+		if (tk.subtype == Token::definition && (tk.type == Token::braces || tk.type == Token::openBrace)) {
 			stack.push(tk);
 			continue;
 		}
-        if (tk.type == Tokens::punctuation || tk.type == Tokens::symbol) {
+        if (tk.type == Token::punctuation || tk.type == Token::symbol) {
             QString word = line.mid(tk.start, tk.length);
             QStringList forbiddenSymbols;
             forbiddenSymbols<<"^"<<"_";
@@ -707,7 +707,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 newRanges.append(elem);
             }
         }
-		if (tk.type == Tokens::commandUnknown) {
+		if (tk.type == Token::commandUnknown) {
 			QString word = line.mid(tk.start, tk.length);
 			if (word.contains('@')) {
 				continue; //ignore commands containg @
@@ -757,7 +757,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				continue;
 			}
 		}
-		if (tk.type == Tokens::env) {
+		if (tk.type == Token::env) {
 			QString env = line.mid(tk.start, tk.length);
 			// corresponds \end{env}
 			if (!activeEnv.isEmpty()) {
@@ -789,7 +789,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			}
 		}
 
-		if (tk.type == Tokens::beginEnv) {
+		if (tk.type == Token::beginEnv) {
 			QString env = line.mid(tk.start, tk.length);
 			// corresponds \begin{env}
 			Environment tp;
@@ -805,24 +805,24 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				QString option;
 				if ((env == "tabu") || (env == "longtabu")) { // special treatment as the env is rather not latex standard
 					for (int k = i + 1; k < tl.length(); k++) {
-						Tokens elem = tl.at(k);
+						Token elem = tl.at(k);
 						if (elem.level < tk.level - 1)
 							break;
 						if (elem.level >= tk.level)
 							continue;
-						if (elem.type == Tokens::braces) { // take the first mandatory argument at the correct level -> TODO: put colDef also for tabu correctly in lexer
+						if (elem.type == Token::braces) { // take the first mandatory argument at the correct level -> TODO: put colDef also for tabu correctly in lexer
 							option = line.mid(elem.start + 1, elem.length - 2); // strip {}
 						}
 					}
 				} else {
 
 					for (int k = i + 1; k < tl.length(); k++) {
-						Tokens elem = tl.at(k);
+						Token elem = tl.at(k);
 						if (elem.level < tk.level - 1)
 							break;
 						if (elem.level >= tk.level)
 							continue;
-						if (elem.subtype == Tokens::colDef) {
+						if (elem.subtype == Token::colDef) {
 							option = line.mid(elem.start + 1, elem.length - 2); // strip {}
 							break;
 						}
@@ -836,12 +836,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 		}
 
 
-		if (tk.type == Tokens::command) {
+		if (tk.type == Token::command) {
 			QString word = line.mid(tk.start, tk.length);
 
 			if (word == "\\begin" || word == "\\end") {
 				// check complete expression e.g. \begin{something}
-				if (tl.length() > i + 1 && tl.at(i + 1).type == Tokens::braces) {
+				if (tl.length() > i + 1 && tl.at(i + 1).type == Token::braces) {
 					word = word + line.mid(tl.at(i + 1).start, tl.at(i + 1).length);
 				}
 			}
@@ -935,9 +935,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				newRanges.append(elem);
 			}
 		}
-        if (tk.type == Tokens::specialArg) {
+        if (tk.type == Token::specialArg) {
 			QString value = line.mid(tk.start, tk.length);
-			QString special = ltxCommands->mapSpecialArgs.value(int(tk.type - Tokens::specialArg));
+			QString special = ltxCommands->mapSpecialArgs.value(int(tk.type - Token::specialArg));
 			if (!ltxCommands->possibleCommands[special].contains(value)) {
 				Error elem;
 				elem.range = QPair<int, int>(tk.start, tk.length);
@@ -945,7 +945,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				newRanges.append(elem);
 			}
         }
-		if (tk.type == Tokens::keyVal_key) {
+		if (tk.type == Token::keyVal_key) {
 			// special treatment for key val checking
 			QString command = tk.optionalCommandName;
 			QString value = line.mid(tk.start, tk.length);
@@ -960,12 +960,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					// now find mandatory argument
 					QString subcommand;
 					for (int k = i + 1; k < tl.length(); k++) {
-						Tokens tk_elem = tl.at(k);
+						Token tk_elem = tl.at(k);
 						if (tk_elem.level > tk.level - 1)
 							continue;
 						if (tk_elem.level < tk.level - 1)
 							break;
-						if (tk_elem.type == Tokens::braces) {
+						if (tk_elem.type == Token::braces) {
 							subcommand = line.mid(tk_elem.start + 1, tk_elem.length - 2);
 							if (elem == "key%" + command + "/" + subcommand) {
 								break;
@@ -1008,18 +1008,18 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				}
 			}
 		}
-		if (tk.subtype == Tokens::keyVal_val) {
+		if (tk.subtype == Token::keyVal_val) {
 			//figure out keyval
 			QString word = line.mid(tk.start, tk.length);
 			// first get command
-			Tokens cmd = getCommandTokenFromToken(tl, tk);
+			Token cmd = getCommandTokenFromToken(tl, tk);
 			QString command = line.mid(cmd.start, cmd.length);
 			// figure out key
 			QString key;
 			for (int k = i - 1; k >= 0; k--) {
-				Tokens elem = tl.at(k);
+				Token elem = tl.at(k);
 				if (elem.level == tk.level - 1) {
-					if (elem.type == Tokens::keyVal_key) {
+					if (elem.type == Token::keyVal_key) {
 						key = line.mid(elem.start, elem.length);
 					}
 					break;
@@ -1035,12 +1035,12 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					// now find mandatory argument
 					QString subcommand;
 					for (int k = i + 1; k < tl.length(); k++) {
-						Tokens tk_elem = tl.at(k);
+						Token tk_elem = tl.at(k);
 						if (tk_elem.level > tk.level - 2)
 							continue;
 						if (tk_elem.level < tk.level - 2)
 							break;
-						if (tk_elem.type == Tokens::braces) {
+						if (tk_elem.type == Token::braces) {
 							subcommand = line.mid(tk_elem.start + 1, tk_elem.length - 2);
 							if (elem == "key%" + command + "/" + subcommand) {
 								break;

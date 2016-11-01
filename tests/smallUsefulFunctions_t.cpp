@@ -11,7 +11,7 @@
 #include <QtTest/QtTest>
 
 // shortcuts and semantic types
-typedef Tokens::TokenType T;
+typedef Token::TokenType T;
 typedef QList<int> TTypes;
 typedef QList<int> STypes;
 typedef QList<int> Length;
@@ -53,7 +53,7 @@ void SmallUsefulFunctionsTest::test_simpleLexing_data() {
 									  << (Starts() << 0 << 10 << 11 << 14)
 									  << (Length() << 10 << 1 << 3 << 1);
     QTest::newRow("command with optional arg") << " \\bummerang  [abc  ]"
-											   << (TTypes() << Tokens::command << 8 << 1 << 11)
+											   << (TTypes() << Token::command << 8 << 1 << 11)
 											   << (Starts() << 1 << 13 << 14 << 19)
 											   << (Length() << 10 << 1 << 3 << 1);
     QTest::newRow("punctation") << "bummerang."
@@ -104,7 +104,7 @@ void SmallUsefulFunctionsTest::test_simpleLexing() {
     simpleLexLatexLine(dlh);
     TokenList tl = dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
     for(int i=0; i<tl.length(); i++) {
-        Tokens tk = tl.at(i);
+        Token tk = tl.at(i);
         int type = types.value(i, 0);
         int start = starts.value(i, 0);
         int length = lengths.value(i, 0);
@@ -269,7 +269,7 @@ void SmallUsefulFunctionsTest::test_latexLexing() {
         tl.append(dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>());
     }
     for(int i=0; i<tl.length(); i++){
-        Tokens tk = tl.at(i);
+        Token tk = tl.at(i);
         int type = types.value(i, 0);
         int subtype = subtypes.value(i, 0);
         int start = starts.value(i, 0);
