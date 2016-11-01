@@ -493,6 +493,8 @@ isEmpty(USE_SYSTEM_HUNSPELL){
 
 include(qcodeedit/qcodeedit.pri)
 
+include(latexparser/latexparser.pri)
+
 isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC
   include(quazip/quazip/quazip.pri)
