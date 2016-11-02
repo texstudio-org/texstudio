@@ -11,7 +11,7 @@
 #include <QtTest/QtTest>
 
 // shortcuts and semantic types
-typedef Token::TokenType T;
+typedef Token T;
 typedef QList<int> TTypes;
 typedef QList<int> STypes;
 typedef QList<int> Length;
@@ -25,7 +25,7 @@ void SmallUsefulFunctionsTest::test_simpleLexing_data() {
     QTest::addColumn<Length>("lengths");
 
     QTest::newRow("simple") << "bummerang"
-							<< (TTypes() << T::word)
+                            << (TTypes() << T::word)
 							<< (Starts() << 0)
 							<< (Length() << 9);
     QTest::newRow("command") << "\\bummerang"
