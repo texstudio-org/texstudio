@@ -17,7 +17,6 @@
 #include "testutil.h"
 #include "smallUsefulFunctions.h"
 #include <QtTest/QtTest>
-Q_DECLARE_METATYPE(QList<int>);
 
 QDocumentLineTest::QDocumentLineTest()
 {

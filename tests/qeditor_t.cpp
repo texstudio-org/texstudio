@@ -6,7 +6,6 @@
 #include "smallUsefulFunctions.h"
 #include "qdocument_p.h"
 #include <QtTest/QtTest>
-Q_DECLARE_METATYPE(QList<int>);
 
 QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
 {
