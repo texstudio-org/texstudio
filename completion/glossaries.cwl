@@ -480,10 +480,6 @@
 \isodd#S
 \isundefined#S
 \lengthtest#S
-\makeglossary#S
-\newacronym#S
-\newglossary#S
-\protect#S
 \showglodesc#S
 \showglofirst#S
 \showglosymbol#S
@@ -520,3 +516,4 @@
 \Ac{label}#r
 \acp{label}#r
 \Acp#*
+\newacronym#S
