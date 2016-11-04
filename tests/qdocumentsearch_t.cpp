@@ -35,7 +35,6 @@ CM SN(int line, int anchorOffset, int cursorOffset,const QString &replaceText="\
 	
 Q_DECLARE_METATYPE(CM);
 Q_DECLARE_METATYPE(QList<CM>);
-Q_DECLARE_METATYPE(QList<int>);
 
 
 void QDocumentSearchTest::next_sameText_data(){
