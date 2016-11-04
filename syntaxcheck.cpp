@@ -291,8 +291,6 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
                 }// ignore mismatching mathstop commands
 				continue;
 			}
-			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
-				continue;
 
 			//tabular checking
 			if (topEnv("tabular", activeEnv) != 0) {
@@ -347,6 +345,10 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			// ignore commands containing @
 			if (word.contains('@'))
 				continue;
+
+            // don't highlight custom commands
+            if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
+                continue;
 
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
@@ -712,8 +714,6 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			if (word.contains('@')) {
 				continue; //ignore commands containg @
 			}
-			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
-				continue;
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
 				env.name = "math";
@@ -749,6 +749,8 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				activeEnv.top().excessCol = 0;
 				continue;
 			}
+            if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
+                continue;
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
 				elem.range = QPair<int, int>(tk.start, tk.length);
@@ -846,9 +848,6 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				}
 			}
 
-			if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
-				continue;
-
 			if (ltxCommands->mathStartCommands.contains(word) && (activeEnv.isEmpty() || activeEnv.top().name != "math")) {
 				Environment env;
 				env.name = "math";
@@ -920,6 +919,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				}
 
 			}
+
+            if (ltxCommands->possibleCommands["user"].contains(word) || ltxCommands->customCommands.contains(word))
+                continue;
 
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
