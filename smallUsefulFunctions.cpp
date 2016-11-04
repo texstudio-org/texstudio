@@ -1462,6 +1462,15 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
                         // the lower numer of mandatory arguments is handled only (however not an command with zero arguments)
                         // this leads to incomplete handling e.g. for hyperref (which disregards any standards and distinguishes command based on the presence of an optional argument)
 					}
+                    if (cd_old.args > cd.args){
+                        if(cd.args>0){
+                            qDebug()<<"inconsistent command arguments:"<<cmd<<fileName;
+                            // commands with different numbers of mandatory arguments are not distinguished by the parser and lead to unreliable results.
+                            // the lower numer of mandatory arguments is handled only (however not an command with zero arguments)
+                            // this leads to incomplete handling e.g. for hyperref (which disregards any standards and distinguishes command based on the presence of an optional argument)
+                        }
+                        cd=cd_old;
+                    }
 
 				}
 				package.commandDescriptions.insert(cmd, cd);
