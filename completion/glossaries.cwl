@@ -516,4 +516,3 @@
 \Ac{label}#r
 \acp{label}#r
 \Acp#*
-\newacronym#S
