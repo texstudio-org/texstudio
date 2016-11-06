@@ -1,5 +1,5 @@
 # mode: yathesis.cls
-# denisbitouze, 16.05.2014
+# denisbitouze, 30.10.2016
 #
 #include:class-book
 #include:latex-document
@@ -8,7 +8,7 @@
 #include:pgfopts
 #include:etoolbox
 #include:xpatch
-#include:morewrites
+#include:morewrites%
 #include:filehook
 #include:hopatch
 #include:xifthen
@@ -21,14 +21,12 @@
 #include:xstring
 #include:textcase
 #include:translator
-#include:fixltx2e
 #include:iftex
 #include:epigraph
 #include:tcolorbox
 #include:marvosym
 #include:setspace
-#include:shorttoc
-#include:tocvsec2
+#include:etoc
 #include:tocbibind
 #include:nonumonpart
 #include:xcolor
@@ -55,6 +53,10 @@ sepcorpaffilfrench=
 sepcorpaffilenglish=
 version=#inprogress,inprogress*,submitted,submitted*,final,draft
 output=#screen,paper,paper*
+localtocs
+localtocs/depth=#section,subsection,subsubsection,paragraph,subparagraph
+localbibs
+localbibs*
 10pt
 11pt
 12pt
@@ -109,9 +111,11 @@ datetime
 \speciality{%<spécialité%>}#n
 \subject{%<sujet%>}#n
 \date{%<jour%>}{%<mois%>}{%<année%>}#n
+\submissiondate{%<jour%>}{%<mois%>}{%<année%>}#n
 #
 # Institute and entities
 \pres{%<nom du PRES%>}#n
+\comue{%<nom de la ComUE%>}#n
 \institute{%<nom de l'institut%>}#n
 \coinstitute{%<nom de l'institut de cotutelle%>}#n
 \company{%<nom de l'entreprise%>}#n
@@ -119,6 +123,7 @@ datetime
 \laboratory{%<nom du laboratoire%>}{adresse du laboratoire%>}#n
 #
 \pres[%<précision(s)%>]{%<nom du PRES%>}#n
+\comue[%<précision(s)%>]{%<nom de la ComUE%>}#n
 \institute[%<précision(s)%>]{%<nom de l'institut%>}#n
 \coinstitute[%<précision(s)%>]{%<nom de l'institut de cotutelle%>}#n
 \company[%<précision(s)%>]{%<nom de l'entreprise%>}#n
@@ -126,6 +131,11 @@ datetime
 \laboratory[%<précision(s)%>]{%<nom du laboratoire%>}{%<adresse du laboratoire%>}#n
 #
 #keyvals:\pres
+logo=
+logoheight=
+url=
+#endkeyvals
+#keyvals:\comue
 logo=
 logoheight=
 url=
@@ -183,6 +193,8 @@ professor
 seniorresearcher
 mcf
 mcf*
+associateprofessor
+associateprofessor*
 juniorresearcher
 juniorresearcher*
 #endkeyvals
@@ -192,6 +204,8 @@ professor
 seniorresearcher
 mcf
 mcf*
+associateprofessor
+associateprofessor*
 juniorresearcher
 juniorresearcher*
 #endkeyvals
@@ -201,6 +215,8 @@ professor
 seniorresearcher
 mcf
 mcf*
+associateprofessor
+associateprofessor*
 juniorresearcher
 juniorresearcher*
 #endkeyvals
@@ -210,6 +226,8 @@ professor
 seniorresearcher
 mcf
 mcf*
+associateprofessor
+associateprofessor*
 juniorresearcher
 juniorresearcher*
 #endkeyvals
@@ -219,6 +237,8 @@ professor
 seniorresearcher
 mcf
 mcf*
+associateprofessor
+associateprofessor*
 juniorresearcher
 juniorresearcher*
 #endkeyvals
@@ -228,6 +248,8 @@ professor
 seniorresearcher
 mcf
 mcf*
+associateprofessor
+associateprofessor*
 juniorresearcher
 juniorresearcher*
 #endkeyvals
@@ -237,6 +259,8 @@ professor
 seniorresearcher
 mcf
 mcf*
+associateprofessor
+associateprofessor*
 juniorresearcher
 juniorresearcher*
 #endkeyvals
@@ -244,9 +268,8 @@ juniorresearcher*
 # Misc
 \ordernumber[%<numéro d'ordre%>]#n
 \ordernumber#n*
-\submissiondate{%<jour%>}{%<mois%>}{%<année%>}#n
 #
-# Preliminary pages
+# Preliminary part
 #
 \disclaimer{%<clause%>}#n
 \makedisclaimer#n
@@ -321,13 +344,20 @@ depth=#part,chapter,section,subsection,subsubsection,paragraph,subparagraph
 name=
 #endkeyvals
 #
-# Main pages
+# Main part
 #
-# Appendix pages
+# Appendix part
 #
-# Back matter pages
+# Back matter part
 #
 \makebackcover
+#
+# All parts
+#
+\startlocaltocs
+\stoplocaltocs
+\nextwithlocaltoc
+\nextwithoutlocaltoc
 #
 # Customization
 #
