@@ -205,6 +205,8 @@ void Bookmarks::updateBookmarks(LatexEditorView *edView)
 	QList<QListWidgetItem *> lst = bookmarksWidget->findItems(text, Qt::MatchStartsWith);
 	foreach (QListWidgetItem *item, lst) {
 		QDocumentLineHandle *dlh = qvariant_cast<QDocumentLineHandle *>(item->data(DocLineHandle));
+        if(!dlh)
+            continue;
         if(text.isEmpty()){
             if(dlh->document() == doc){
                 int row = bookmarksWidget->row(item);
