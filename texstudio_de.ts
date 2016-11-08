@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="de">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -176,7 +178,7 @@
         <location filename="bibtexdialog.cpp" line="19"/>
         <location filename="bibtexdialog.cpp" line="76"/>
         <source>Article in &amp;Journal</source>
-        <translation>&amp;Journalartikel</translation>
+        <translation>&amp;Zeitschriftenartikel</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="22"/>
@@ -211,7 +213,7 @@
         <location filename="bibtexdialog.cpp" line="40"/>
         <location filename="bibtexdialog.cpp" line="140"/>
         <source>Book&amp;let</source>
-        <translation>&amp;Heft</translation>
+        <translation>&amp;Broschüre</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="43"/>
@@ -269,22 +271,22 @@
     <message>
         <location filename="bibtexdialog.cpp" line="148"/>
         <source>Single-volume Collection</source>
-        <translation>Einbändige Sammlung</translation>
+        <translation>Einbändiger Sammelband</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="156"/>
         <source>Multi-volume Collection</source>
-        <translation>Mehrbändige Sammlung</translation>
+        <translation>Mehrbändiger Sammelband</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="173"/>
         <source>Supplemental Material in a Collection</source>
-        <translation>Ergänzungsmaterial in einer Sammlung</translation>
+        <translation>Ergänzungsmaterial in einem Sammelband</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="198"/>
         <source>Online Resource</source>
-        <translation>Online Quelle</translation>
+        <translation>Internetseite</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="210"/>
@@ -304,27 +306,27 @@
     <message>
         <location filename="bibtexdialog.cpp" line="260"/>
         <source>Multi-volume Proceedings Entry</source>
-        <translation>Eintrag in mehrbändigem Tagungsband</translation>
+        <translation>Mehrbändiger Tagungsband</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="276"/>
         <source>Reference</source>
-        <translation>Referenz</translation>
+        <translation>Lexikon</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="285"/>
         <source>Multi-volume Reference Entry</source>
-        <translation>Eintrag in mehrbändiger Referenz</translation>
+        <translation>Mehrbändiges Lexikon</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="296"/>
         <source>Article in a Reference</source>
-        <translation>Artikel in einer &amp;Referenz</translation>
+        <translation>Lexikonartikel</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="304"/>
         <source>&amp;Report</source>
-        <translation>&amp;Report</translation>
+        <translation>&amp;Forschungsbericht</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="313"/>
@@ -898,7 +900,7 @@ Soll TeXstudio die Befehlspfade von /usr/texbin nach /Library/TeX/texbin anpasse
         <location filename="configdialog.ui" line="523"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Definiert die Art der Aktualisierungbenachrichtung:
 - Stabile Versionen: Wähle diese, wenn Stabilität das wichtigste ist.
@@ -1101,7 +1103,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     </message>
     <message>
         <location filename="configdialog.ui" line="1049"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -2492,8 +2494,8 @@ hier erzwungen werden.</translation>
         <location filename="configdialog.ui" line="4106"/>
         <location filename="configdialog.ui" line="4193"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Die Zeichenmethode, die von der PDF-Bibliothek poppler verwendet wird.
 &apos;Splash&apos; ist der Standard und üblicherweise ausreichend.
@@ -4119,7 +4121,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Platzierungsvorgaben für das Bild
@@ -4230,7 +4232,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1576"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
@@ -4401,14 +4403,17 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="latexeditorview.cpp" line="2323"/>
         <location filename="latexeditorview.cpp" line="2395"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2336"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n Referenz zu diesem Label</numerusform><numerusform>%n Referenzen zu diesem Label</numerusform></translation>
+        <translation>
+            <numerusform>%n Referenz zu diesem Label</numerusform>
+            <numerusform>%n Referenzen zu diesem Label</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2341"/>
@@ -6342,7 +6347,7 @@ fehlgeschlagen.</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1085"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
         <translation>Die Originaldatei wurde beim Speichern vernichtet.
 Eine Kopie findet sich unter
@@ -10651,7 +10656,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5699"/>
-        <source>Can't detect the file name.
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
 Sie müssen ein neu erstelltes Dokument abspeichern, bevor Sie es erzeugen können.</translation>
