@@ -69,7 +69,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio utiliza flowlayout dos exemplos Qt5.6.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -1683,17 +1683,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2207"/>
         <source>1 minute</source>
-        <translation type="unfinished"/>
+        <translation>1 minuto</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2212"/>
         <source>2 minutes</source>
-        <translation type="unfinished"/>
+        <translation>2 minutos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2271"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"/>
+        <translation>Monitorar arquivos abertos para mudanças externas</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2302"/>
@@ -3332,7 +3332,7 @@ os ajustes mais comuns.</translation>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation* (amsmath)</source>
         <oldsource>env equation*</oldsource>
-        <translation type="unfinished"/>
+        <translation>ambiente equation* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
@@ -3378,13 +3378,13 @@ os ajustes mais comuns.</translation>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multline (amsmath)</source>
         <oldsource>env multiline (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>ambiente multline (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multline* (amsmath)</source>
         <oldsource>env multiline* (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>ambiente multline* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
@@ -3394,7 +3394,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>env split (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>ambiente split (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
@@ -3758,7 +3758,7 @@ Deseja removê-las?</translation>
     <message>
         <location filename="editors.cpp" line="365"/>
         <source>Move all to other view</source>
-        <translation type="unfinished"/>
+        <translation>Mover tudo para outra visualização</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="370"/>
@@ -4916,7 +4916,7 @@ Você deseja substituí-lo?</translation>
         <location filename="pdfviewer/PDFDocks.cpp" line="893"/>
         <source>Set Interval...</source>
         <oldsource>Set interval</oldsource>
-        <translation type="unfinished"/>
+        <translation>Definir Intervalo...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="896"/>
@@ -4936,12 +4936,12 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="968"/>
         <source>%1 sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 seg</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="970"/>
         <source>%1 min</source>
-        <translation type="unfinished"/>
+        <translation>%1 min</translation>
     </message>
 </context>
 <context>
@@ -5158,7 +5158,7 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="327"/>
         <source>Ctrl+Alt+X</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+X</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="335"/>
@@ -6172,7 +6172,7 @@ Recomeçar do início?</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="603"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Inverter &amp;Comentário</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="608"/>
@@ -6290,7 +6290,9 @@ Pressione &quot;Ignorar&quot; para ignorar este aviso.</translation>
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+Poderá não ser escrito. Erro (%2): %3.
+Se o arquivo já existia no disco, ele não foi modificado por esta operação.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1001"/>
@@ -6299,7 +6301,10 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation>Impossível obter permissão de escrita no arquivo
+%1.
+
+Talvez ele seja somente leitura ou foi aberto por outro programa?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1031"/>
@@ -9485,7 +9490,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="texstudio.cpp" line="899"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Inverter &amp;Comentário</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="900"/>
@@ -10087,7 +10092,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="texstudio.cpp" line="1122"/>
         <source>Statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Barra de estatus</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1126"/>
@@ -10325,12 +10330,12 @@ não pode ser removido.</translation>
     <message>
         <location filename="texstudio.cpp" line="1390"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"/>
+        <translation>Conectado à ferramenta de Idioma em %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1394"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"/>
+        <translation>Servidor para Ferramenta de Idioma não encontrado em %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1399"/>

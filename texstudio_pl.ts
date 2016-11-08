@@ -1676,17 +1676,17 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="configdialog.ui" line="2207"/>
         <source>1 minute</source>
-        <translation type="unfinished"/>
+        <translation>1 minuta</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2212"/>
         <source>2 minutes</source>
-        <translation type="unfinished"/>
+        <translation>2 minuty</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2271"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"/>
+        <translation>Monitoruj zewnętrzne zmiany w otwartych plikach</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2302"/>
@@ -1696,7 +1696,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="configdialog.ui" line="2308"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"/>
+        <translation>Oznaczaj elementy struktury za znacznikiem \end{document}</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2315"/>
@@ -2253,7 +2253,7 @@ zaznaczając je tu.</translation>
     <message>
         <location filename="configdialog.ui" line="3535"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>Argumenty LT:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3605"/>
@@ -3752,12 +3752,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="370"/>
         <source>Split Vertically</source>
-        <translation type="unfinished"/>
+        <translation>Podziel pionowo</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="370"/>
         <source>Split Horizontally</source>
-        <translation type="unfinished"/>
+        <translation>Podziel poziomo</translation>
     </message>
 </context>
 <context>
@@ -4916,12 +4916,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="968"/>
         <source>%1 sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 sek</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="970"/>
         <source>%1 min</source>
-        <translation type="unfinished"/>
+        <translation>%1 min</translation>
     </message>
 </context>
 <context>
@@ -5138,7 +5138,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="327"/>
         <source>Ctrl+Alt+X</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+X</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="335"/>
@@ -5389,7 +5389,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="682"/>
         <source>&amp;Print...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Drukuj...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="685"/>
@@ -5524,7 +5524,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2368"/>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2418"/>
@@ -5545,7 +5545,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2499"/>
         <source>Scale</source>
-        <translation type="unfinished"/>
+        <translation>Skaluj</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2517"/>
@@ -5670,7 +5670,7 @@ Możesz wprowadzić hasło:</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3895"/>
         <source>Print</source>
-        <translation type="unfinished"/>
+        <translation>Drukuj</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="4061"/>
@@ -6227,7 +6227,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="727"/>
         <source>Dos/Windows</source>
-        <translation type="unfinished"/>
+        <translation>Dos/Windows</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="728"/>
@@ -6293,7 +6293,7 @@ result in data loss.
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1056"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>Ostrzeżenie</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1057"/>
@@ -6352,7 +6352,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1319"/>
         <source>Print Source Code</source>
-        <translation type="unfinished"/>
+        <translation>Drukuj kod źródłowy</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1450"/>
@@ -6362,7 +6362,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1451"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>Wy&amp;szukaj</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1453"/>
@@ -6504,62 +6504,62 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4578"/>
         <source>Select to document start</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz do początku dokumentu</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4579"/>
         <source>Select to document end</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz do końca dokumentu</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4581"/>
         <source>Select page up</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz stronę wyżej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4582"/>
         <source>Select page down</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz stronę niżej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4586"/>
         <source>Delete left character</source>
-        <translation type="unfinished"/>
+        <translation>Usuń znak po lewej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4587"/>
         <source>Delete right character</source>
-        <translation type="unfinished"/>
+        <translation>Usuń znak po prawej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4588"/>
         <source>Delete left word</source>
-        <translation type="unfinished"/>
+        <translation>Usuń słowo po lewej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4589"/>
         <source>Delete right word</source>
-        <translation type="unfinished"/>
+        <translation>Usuń słowo po prawej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4590"/>
         <source>New line</source>
-        <translation type="unfinished"/>
+        <translation>Nowa linia</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4592"/>
         <source>Change overwrite mode</source>
-        <translation type="unfinished"/>
+        <translation>Zmień tryb nadpisywania</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4593"/>
         <source>Undo</source>
-        <translation type="unfinished"/>
+        <translation>Cofnij</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4594"/>
         <source>Redo</source>
-        <translation type="unfinished"/>
+        <translation>Ponów</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4595"/>
@@ -6569,7 +6569,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4596"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Wklej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4597"/>
@@ -6579,12 +6579,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4598"/>
         <source>Print</source>
-        <translation type="unfinished"/>
+        <translation>Drukuj</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4599"/>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Zaznacz wszystko</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4600"/>
@@ -6609,12 +6609,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4605"/>
         <source>Create cursor mirror up</source>
-        <translation type="unfinished"/>
+        <translation>Utwórz klon kursora powyżej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4606"/>
         <source>Create cursor mirror down</source>
-        <translation type="unfinished"/>
+        <translation>Utwórz klon kursora poniżej</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4607"/>
@@ -10019,7 +10019,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="texstudio.cpp" line="1119"/>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1122"/>
