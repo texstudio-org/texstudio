@@ -408,6 +408,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void gotoLine();
 		
+	protected:
+		void insertTab(const QDocumentCursor &cur, bool replaceTabs);
+	public:
 		void tabOrIndentSelection();
 		void insertTab();
 		void indentSelection();
