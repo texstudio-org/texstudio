@@ -2593,11 +2593,25 @@ static void removeFromStart(const QDocumentCursor& cur, const QString& txt)
 }
 
 /*!
- * \brief inserts a tab at given cursor position. If replaceTabs,
- * spaces up to the next tab stop are inserted, otherwise '\t' is inserted.
+ * \brief inserts a tab at given cursor position. Depending on the context and the
+ * flags ReplaceIndentTabs and ReplaceTextTabs, this inserts spaces up to the next
+ * tab stop, otherwise '\t' is inserted.
  */
-void QEditor::insertTab(const QDocumentCursor &cur, bool replaceTabs)
+void QEditor::insertTab(const QDocumentCursor &cur)
 {
+	bool replaceTabs = flag(ReplaceIndentTabs);
+	if (flag(ReplaceIndentTabs) != flag(ReplaceTextTabs)) {
+		// need to check if cursor is in indent or in text
+		QDocumentCursor cur(m_cursor);
+		while (!cur.atLineStart()) {
+			if (!cur.previousChar().isSpace()) {
+				replaceTabs = flag(ReplaceTextTabs);
+				break;
+			}
+			cur.movePosition(1, QDocumentCursor::PreviousCharacter);
+		}
+	}
+
 	if (replaceTabs) {
 		int tabStop = m_doc->tabStop();
 		int spaceCount = tabStop - cur.columnNumber() % tabStop;
@@ -2609,32 +2623,21 @@ void QEditor::insertTab(const QDocumentCursor &cur, bool replaceTabs)
 
 void QEditor::tabOrIndentSelection()
 {
-    if(m_cursor.hasSelection()){
-        indentSelection();
-    }else{
-		QDocumentCursor cur(m_cursor);
-		// insert \t only if there is non-space before the cursor, otherwise indent
-		while (!cur.atLineStart()) {
-			if (!cur.previousChar().isSpace()) {
-				insertTab();
-				return;
-			}
-			cur.movePosition(1, QDocumentCursor::PreviousCharacter);
-		}
+	if (m_cursor.hasSelection()) {
 		indentSelection();
+	} else {
+		insertTab();
 	}
 }
 
 void QEditor::insertTab()
 {
-	bool replaceTabs = flag(ReplaceTextTabs);
-
 	bool macroing = m_mirrors.count();
 	if (macroing) m_doc->beginMacro();
 
-	insertTab(m_cursor, replaceTabs);
+	insertTab(m_cursor);
 	for ( int i = 0; i < m_mirrors.count(); ++i ) {
-		insertTab(m_mirrors[i], replaceTabs);
+		insertTab(m_mirrors[i]);
 	}
 
 	if (macroing) m_doc->endMacro();
