@@ -2592,6 +2592,21 @@ static void removeFromStart(const QDocumentCursor& cur, const QString& txt)
 	c.removeSelectedText();
 }
 
+/*!
+ * \brief inserts a tab at given cursor position. If replaceTabs,
+ * spaces up to the next tab stop are inserted, otherwise '\t' is inserted.
+ */
+void QEditor::insertTab(const QDocumentCursor &cur, bool replaceTabs)
+{
+	if (replaceTabs) {
+		int tabStop = m_doc->tabStop();
+		int spaceCount = tabStop - cur.columnNumber() % tabStop;
+		cur.insertText(QString(spaceCount, ' '));
+	} else {
+		insertText(cursor, "\t");
+	}
+}
+
 void QEditor::tabOrIndentSelection()
 {
     if(m_cursor.hasSelection()){
@@ -2612,35 +2627,17 @@ void QEditor::tabOrIndentSelection()
 
 void QEditor::insertTab()
 {
-	if (flag(ReplaceTextTabs)) {
-		int tabStop = m_doc->tabStop();
+	bool replaceTabs = flag(ReplaceTextTabs);
 
-		bool macroing = m_mirrors.count();
-		if (macroing) m_doc->beginMacro();
+	bool macroing = m_mirrors.count();
+	if (macroing) m_doc->beginMacro();
 
-		int spaceCount = tabStop - m_cursor.columnNumber() % tabStop;
-		m_cursor.insertText(QString(spaceCount, ' '));
-
-		for ( int i = 0; i < m_mirrors.count(); ++i ) {
-			spaceCount = tabStop - m_mirrors[i].columnNumber() % tabStop;
-			m_mirrors[i].insertText(QString(spaceCount, ' '));
-		}
-
-		if (macroing) m_doc->endMacro();
-
-	} else {
-
-		bool macroing = m_mirrors.count();
-		if (macroing) m_doc->beginMacro();
-
-		insertText(m_cursor, "\t");
-
-		for ( int i = 0; i < m_mirrors.count(); ++i )
-			insertText(m_mirrors[i], "\t");
-
-		if (macroing) m_doc->endMacro();
-
+	insertTab(m_cursor, replaceTabs);
+	for ( int i = 0; i < m_mirrors.count(); ++i ) {
+		insertTab(m_mirrors[i], replaceTabs);
 	}
+
+	if (macroing) m_doc->endMacro();
 }
 
 /*!
