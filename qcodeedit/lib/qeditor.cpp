@@ -2568,7 +2568,7 @@ static bool unindent(const QDocumentCursor& cur)
 	return true;
 }
 
-static void insert(const QDocumentCursor& cur, const QString& txt)
+static void insertAtLineStart(const QDocumentCursor& cur, const QString& txt)
 {
 	QDocumentCursor c(cur);
 	c.setSilent(true);
@@ -2657,17 +2657,18 @@ void QEditor::indentSelection()
 		m_doc->beginMacro();
 
 		if ( !protectedCursor(m_cursor) )
-			insert(m_cursor, txt);
+			insertAtLineStart(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
 			if ( !protectedCursor(m) )
-				insert(m, txt);
+				insertAtLineStart(m, txt);
 
 		m_doc->endMacro();
 
 	} else if ( !protectedCursor(m_cursor) ) {
 		if ( !m_cursor.hasSelection() )
-			insert(m_cursor, txt);
+
+			insertAtLineStart(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
 			if ( s.end == 0 && s.startLine < s.endLine )
@@ -2749,18 +2750,18 @@ void QEditor::commentSelection()
 		m_definition->clearMatches(m_doc);  // Matches are not handled inside comments. We have to remove them. Otherwise they will stay forever in the comment line.
 
 		if ( !protectedCursor(m_cursor) )
-		insert(m_cursor, txt);
+		insertAtLineStart(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
 			if ( !protectedCursor(m) )
-				insert(m, txt);
+				insertAtLineStart(m, txt);
 
 		m_doc->endMacro();
 
 	} else if ( !protectedCursor(m_cursor) ) {
 		m_definition->clearMatches(m_doc);  // Matches are not handled inside comments. We have to remove them. Otherwise they will stay forever in the comment line.
 		if ( !m_cursor.hasSelection() )
-			insert(m_cursor, txt);
+			insertAtLineStart(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
 			if ( s.end == 0 && s.startLine < s.endLine )
