@@ -2597,7 +2597,7 @@ static void removeFromStart(const QDocumentCursor& cur, const QString& txt)
  * flags ReplaceIndentTabs and ReplaceTextTabs, this inserts spaces up to the next
  * tab stop, otherwise '\t' is inserted.
  */
-void QEditor::insertTab(const QDocumentCursor &cur)
+void QEditor::insertTab(QDocumentCursor &cur)
 {
 	bool replaceTabs = flag(ReplaceIndentTabs);
 	if (flag(ReplaceIndentTabs) != flag(ReplaceTextTabs)) {
@@ -2617,7 +2617,7 @@ void QEditor::insertTab(const QDocumentCursor &cur)
 		int spaceCount = tabStop - cur.columnNumber() % tabStop;
 		cur.insertText(QString(spaceCount, ' '));
 	} else {
-		insertText(cursor, "\t");
+		insertText(cur, "\t");
 	}
 }
 
