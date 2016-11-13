@@ -1821,14 +1821,11 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 
             if (tkTypes.contains(tk.type)) {
                 QString result;
-                if (Token::tkBraces().contains(tk.type)) {
-                    result = line.mid(tk.start + 1, tk.length - 2);
-                }
-                if (Token::tkOpen().contains(tk.type)) {
-                    result = line.mid(tk.start + 1, tk.length) + findRestArg(dlh, Token::opposite(tk.type), RUNAWAYLIMIT);
-                }
-                if (Token::tkClose().contains(tk.type)) {
-                    result = line.mid(tk.start + 1, tk.length);
+                if (Token::tkBraces().contains(tk.type) || Token::tkOpen().contains(tk.type) || Token::tkClose().contains(tk.type)) {
+                    result = line.mid(tk.innerStart(), tk.innerLength());
+                    if (Token::tkOpen().contains(tk.type)) {
+                        result += line.mid(tk.innerStart(), tk.innerLength()) + findRestArg(dlh, Token::opposite(tk.type), RUNAWAYLIMIT);
+                    }
                 }
                 if (result.isEmpty()) {
                     result = line.mid(tk.start, tk.length);
