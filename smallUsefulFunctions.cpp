@@ -530,6 +530,9 @@ int findCommandWithArgsFromTL(const TokenList &tl, Token &cmd, TokenList &args, 
 			return -1;
 		if (i < offset)
 			continue;
+        if (cmd.type == Token::commandUnknown){
+            return i;
+        }
 		if (cmd.type != Token::command)
 			continue;
 		// Token is command
