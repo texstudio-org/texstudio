@@ -52,6 +52,8 @@ public:
 	/// subtype is used to determine the type of argument
 	TokenType subtype;
 	int argLevel; ///< number of argument (>0) or option (<0, =-numberOfOption)
+	static const QHash<TokenType, int> leftDelimWidth;  ///< width of the left delimiter in the token (if applicable)
+	static const QHash<TokenType, int> rightDelimWidth;  ///< width of the right delimiter in the token (if applicable)
 	static QSet<TokenType> tkArg();
 	static QSet<TokenType> tkOption();
 	static QSet<TokenType> tkBraces();
@@ -62,6 +64,8 @@ public:
 	static TokenType opposite(TokenType type);
 	static TokenType closed(TokenType type);
 	bool operator==(const Token &v) const;
+	int innerStart();
+	int innerLength();
 	QString getText();
 	QString getInnerText();
 };

@@ -661,7 +661,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				continue;
 			}
 			/// todo ///
-			if (tk.type == Token::braces && tk.subtype == Token::todo) {
+			if (tk.subtype == Token::todo && (tk.type == Token::braces || tk.type == Token::openBrace)) {
 				bool reuse = false;
 				StructureEntry *newTodo;
 				if (MapOfTodo.contains(dlh)) {

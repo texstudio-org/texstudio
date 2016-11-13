@@ -2,6 +2,24 @@
 #include "qdocument_p.h"
 
 
+/// defines the delimiter widths of token types containing delimiters (e.g. braces).
+/// non-delimiter types or types with zero delimiter width need not be defined explicitly
+const QHash<Token::TokenType, int> Token::leftDelimWidth = QHash<TokenType, int>({{Token::braces, 1},
+                                                                                  {Token::bracket, 1},
+                                                                                  {Token::squareBracket, 1},
+                                                                                  {Token::openBrace, 1},
+                                                                                  {Token::openBracket, 1},
+                                                                                  {Token::openSquare, 1},
+                                                                                  });
+const QHash<Token::TokenType, int> Token::rightDelimWidth = QHash<TokenType, int>({{Token::braces, 1},
+                                                                                   {Token::bracket, 1},
+                                                                                   {Token::squareBracket, 1},
+                                                                                   {Token::closeBrace, 1},
+                                                                                   {Token::closeBracket, 1},
+                                                                                   {Token::closeSquareBracket, 1},
+                                                                                   });
+
+
 /// display tokentype for debugging
 QDebug operator<<(QDebug dbg, Token::TokenType tk) {
 	dbg << "TokenType(" << qPrintable(Token::tokenTypeName(tk)) << ")";
@@ -252,6 +270,24 @@ bool Token::operator ==(const Token &v) const
 	return (this->dlh == v.dlh) && (this->length == v.length) && (this->level == v.level) && (this->type == v.type);
 }
 
+/*!
+ * \brief returns the starting position of the inner part of the token
+ * (currently only applies to all forms of braces)
+ */
+int Token::innerStart()
+{
+	return start + leftDelimWidth.value(type, 0);
+}
+
+/*!
+ * \brief returns the starting position of the inner part of the token
+ * (currently only applies to all forms of braces)
+ */
+int Token::innerLength()
+{
+	return length - leftDelimWidth.value(type, 0) - rightDelimWidth.value(type, 0);
+}
+
 
 /*!
  * \brief get text which is represented by the token
@@ -271,8 +307,5 @@ QString Token::getText()
 QString Token::getInnerText()
 {
 	QString text = getText();
-	if (tkBraces().contains(type) && text.length() >= 2) {
-		return text.mid(1, text.length() - 2);
-	}
-	return text;
+	return text.mid(leftDelimWidth.value(type, 0), innerLength());
 }
