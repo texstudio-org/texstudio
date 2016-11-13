@@ -1935,7 +1935,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 			if (tk.type == Token::comment)
 				break;
 			if (latexLikeChecking) {
-				if (tk.subtype == Token::title && tk.type == Token::braces) {
+				if (tk.subtype == Token::title && tk.type == Token::braces || tk.type == Token::openBrace) {
 					line.addOverlay(QFormatRange(tk.innerStart(), tk.innerLength(), structureFormat));
 					addedOverlayStructure = true;
 				}
