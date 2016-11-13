@@ -410,7 +410,7 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		
 	protected:
 		void insertTab(QDocumentCursor &cur);
-	public:
+    public slots:
 		void tabOrIndentSelection();
 		void insertTab();
 		void indentSelection();
