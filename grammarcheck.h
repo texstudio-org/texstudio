@@ -3,7 +3,7 @@
 
 #include "mostQtHeaders.h"
 
-#include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
 //TODO: move this away
 #include "grammarcheck_config.h"
 

@@ -15,6 +15,7 @@
 
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexparser.h"
+#include "latexparser/latexreader.h"
 
 
 PlacementValidator::PlacementValidator(QObject *parent)

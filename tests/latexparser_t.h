@@ -4,7 +4,7 @@
 
 #include "mostQtHeaders.h"
 #include "latexparser/latexparser.h"
-#include "smallUsefulFunctions.h"  // for LatexReader
+#include "latexparser/latexreader.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
 

@@ -1,6 +1,8 @@
 #include "syntaxcheck.h"
 #include "latexdocument.h"
 #include "tablemanipulation.h"
+#include "latexparser/latexreader.h"
+
 /*! \class SyntaxCheck
  *
  * asynchrnous thread which checks latex syntax of the text lines

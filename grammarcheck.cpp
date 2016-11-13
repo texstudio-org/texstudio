@@ -1,5 +1,6 @@
 #include "grammarcheck.h"
-#include "latexparser/latexparser.h"
+#include "smallUsefulFunctions.h"
+#include "latexparser/latexreader.h"
 #include "QThread"
 GrammarError::GrammarError(): offset(0), length(0), error(GET_UNKNOWN) {}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error, const QString &message): offset(offset), length(length), error(error), message(message) {}
