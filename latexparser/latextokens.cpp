@@ -264,3 +264,15 @@ QString Token::getText()
 	dlh->unlock();
 	return result;
 }
+
+/*!
+ * \brief Returns the text without braces if the token is a braced type () or {} or []. Returns the complete text otherwise.
+ */
+QString Token::getInnerText()
+{
+	QString text = getText();
+	if (tkBraces().contains(type) && text.length() >= 2) {
+		return text.mid(1, text.length() - 2);
+	}
+	return text;
+}
