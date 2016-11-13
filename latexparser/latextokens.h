@@ -63,6 +63,7 @@ public:
 	static TokenType closed(TokenType type);
 	bool operator==(const Token &v) const;
 	QString getText();
+	QString getInnerText();
 };
 QDebug operator<<(QDebug dbg, Token::TokenType tk);
 QDebug operator<<(QDebug dbg, Token tk);

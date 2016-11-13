@@ -660,6 +660,25 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				bibItemsChanged = true;
 				continue;
 			}
+			/// todo ///
+			if (tk.type == Token::braces && tk.subtype == Token::todo) {
+				bool reuse = false;
+				StructureEntry *newTodo;
+				if (MapOfTodo.contains(dlh)) {
+					newTodo = MapOfTodo.value(dlh);
+					newTodo->type = StructureEntry::SE_TODO;
+					MapOfTodo.remove(dlh, newTodo);
+					reuse = true;
+				} else {
+					newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
+				}
+				newTodo->title = tk.getInnerText();
+				newTodo->setLine(line(i).handle(), i);
+				newTodo->parent = todoList;
+				if (!reuse) emit addElement(todoList, todoList->children.size()); //todo: why here but not in label?
+				iter_todo.insert(newTodo);
+			}
+
 			// work on general commands
 			if (tk.type != Token::command && tk.type != Token::commandUnknown)
 				continue; // not a command
@@ -671,25 +690,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			cmd = curLine.mid(tkCmd.start, tkCmd.length);
 
 			QString firstArg = getArg(args, dlh, 0, ArgumentList::Mandatory);
-
-			if (lp.possibleCommands["%todo"].contains(cmd)) {
-				bool reuse = false;
-				StructureEntry *newTodo;
-				if (MapOfTodo.contains(dlh)) {
-					newTodo = MapOfTodo.value(dlh);
-					//parent->add(newTodo);
-					newTodo->type = StructureEntry::SE_TODO;
-					MapOfTodo.remove(dlh, newTodo);
-					reuse = true;
-				} else {
-					newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
-				}
-				newTodo->title = firstArg;
-				newTodo->setLine(line(i).handle(), i);
-				newTodo->parent = todoList;
-				if (!reuse) emit addElement(todoList, todoList->children.size()); //todo: why here but not in label?
-				iter_todo.insert(newTodo);
-			}
 
 			//// newcommand ////
 			if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
