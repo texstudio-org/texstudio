@@ -1936,11 +1936,11 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				break;
 			if (latexLikeChecking) {
 				if (tk.subtype == Token::title && tk.type == Token::braces) {
-					line.addOverlay(QFormatRange(tk.start + 1, tk.length - 2, structureFormat));
+					line.addOverlay(QFormatRange(tk.innerStart(), tk.innerLength(), structureFormat));
 					addedOverlayStructure = true;
 				}
-				if (tk.subtype == Token::todo && tk.type == Token::braces) {
-					line.addOverlay(QFormatRange(tk.start + 1, tk.length - 2, todoFormat));
+				if (tk.subtype == Token::todo && (tk.type == Token::braces || tk.type == Token::openBrace)) {
+					line.addOverlay(QFormatRange(tk.innerStart(), tk.innerLength(), todoFormat));
 					addedOverlayTodo = true;
 				}
 				if (tk.type == Token::env || tk.type == Token::beginEnv) {
