@@ -1,23 +1,42 @@
 #include "latextokens.h"
 #include "qdocument_p.h"
 
+const int MAKE_HASH_VA_GUARDIAN = 0xAFE235FA;
+
+template<typename K, typename T> QHash<K,T> makeQHash(int paircount, ...){
+    va_list ap;
+    va_start(ap, paircount);
+    QHash<K,T> tmp;
+    for (int i=0;i<paircount;i++) {
+        K k = (K)(va_arg(ap, int));
+        tmp.insert(k, (T)(va_arg(ap, int)));
+    }
+    Q_ASSERT(va_arg(ap, int) == MAKE_HASH_VA_GUARDIAN);
+    va_end(ap);
+    return tmp;
+}
+
 
 /// defines the delimiter widths of token types containing delimiters (e.g. braces).
 /// non-delimiter types or types with zero delimiter width need not be defined explicitly
-const QHash<Token::TokenType, int> Token::leftDelimWidth = QHash<TokenType, int>({{Token::braces, 1},
-                                                                                  {Token::bracket, 1},
-                                                                                  {Token::squareBracket, 1},
-                                                                                  {Token::openBrace, 1},
-                                                                                  {Token::openBracket, 1},
-                                                                                  {Token::openSquare, 1},
-                                                                                  });
-const QHash<Token::TokenType, int> Token::rightDelimWidth = QHash<TokenType, int>({{Token::braces, 1},
-                                                                                   {Token::bracket, 1},
-                                                                                   {Token::squareBracket, 1},
-                                                                                   {Token::closeBrace, 1},
-                                                                                   {Token::closeBracket, 1},
-                                                                                   {Token::closeSquareBracket, 1},
-                                                                                   });
+const QHash<Token::TokenType, int> Token::leftDelimWidth = makeQHash<TokenType, int>(6,
+                                                                                  Token::braces, 1,
+                                                                                  Token::bracket, 1,
+                                                                                  Token::squareBracket, 1,
+                                                                                  Token::openBrace, 1,
+                                                                                  Token::openBracket, 1,
+                                                                                  Token::openSquare, 1,
+                                                                                  MAKE_HASH_VA_GUARDIAN
+                                                                                  );
+const QHash<Token::TokenType, int> Token::rightDelimWidth = makeQHash<TokenType, int>(6,
+                                                                                   Token::braces, 1,
+                                                                                   Token::bracket, 1,
+                                                                                   Token::squareBracket, 1,
+                                                                                   Token::closeBrace, 1,
+                                                                                   Token::closeBracket, 1,
+                                                                                   Token::closeSquareBracket, 1,
+                                                                                   MAKE_HASH_VA_GUARDIAN
+                                                                                   );
 
 
 /// display tokentype for debugging
