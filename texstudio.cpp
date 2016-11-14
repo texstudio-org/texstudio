@@ -9764,11 +9764,25 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 
 void Texstudio::updateTexQNFA()
 {
-	QLanguageFactory::LangData m_lang = m_languages->languageData("(La)TeX");
+	updateTexLikeQNFA("(La)TeX", "tex.qnfa");
+	updateTexLikeQNFA("Sweave", "sweave.qnfa");
+	updateTexLikeQNFA("Pweave", "pweave.qnfa");
+	updateUserMacros(false); //update macro triggers for languages
+}
 
-	QFile f(configManager.configBaseDir + "languages/tex.qnfa");
+/*!
+ * \brief Extends the given Language with dynamic information
+ * \param languageName - the language name as specified in the language attribute of the <QNFA> tag.
+ * \param filename - the filename for the language. This is just the filename without a path.
+ * the file is searched for in the user language directory and as a fallback in the builtin language files.
+ */
+void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
+{
+	QLanguageFactory::LangData m_lang = m_languages->languageData(languageName);
+
+	QFile f(configManager.configBaseDir + "languages/" + filename);
 	if (!f.exists()) {
-		f.setFileName(findResourceFile("qxs/tex.qnfa"));
+		f.setFileName(findResourceFile("qxs/" + filename));
 	}
 	QDomDocument doc;
 	doc.setContent(&f);
@@ -9790,15 +9804,16 @@ void Texstudio::updateTexQNFA()
 	// structure commands
 	addStructureCommandsToDom(doc, latexParser.possibleCommands);
 
-	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
-	oldLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX);
+	QLanguageDefinition *oldLangDef = 0, *newLangDef = 0;
+	oldLangDef = m_lang.d;
+	Q_ASSERT(oldLangDef);
 
+	// update editors using the language
 	QNFADefinition::load(doc, &m_lang, m_formats);
 	m_languages->addLanguage(m_lang);
 
-	newLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX != newLaTeX);
+	newLangDef = m_lang.d;
+	Q_ASSERT(oldLangDef != newLangDef);
 
 	if (editors) {
 		documents.enablePatch(false);
@@ -9806,15 +9821,14 @@ void Texstudio::updateTexQNFA()
             LatexEditorView *edView=doc->getEditorView();
             if(edView){
                 QEditor *ed = edView->editor;
-                if (ed->languageDefinition() == oldLaTeX) {
-                    ed->setLanguageDefinition(newLaTeX);
+                if (ed->languageDefinition() == oldLangDef) {
+                    ed->setLanguageDefinition(newLangDef);
                     ed->highlight();
                 }
             }
 		}
 		documents.enablePatch(true);
 	}
-	updateUserMacros(false); //update macro triggers depending on the language to newLatex
 }
 
 /// Updates the highlighting of environments specified via environmentAliases

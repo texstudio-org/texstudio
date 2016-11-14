@@ -602,6 +602,7 @@ protected slots:
 	void moveDocumentToEnd();
 
 	void updateTexQNFA();
+	void updateTexLikeQNFA(QString languageName, QString filename);
 	void updateHighlighting();
 
 	void toggleGrammar(int type);
