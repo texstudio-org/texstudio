@@ -47,6 +47,8 @@ private:
 	InsertGraphicsConfig getConfig() const;
 	void setConfig(const InsertGraphicsConfig &conf);
 	bool parseCode(const QString &code, InsertGraphicsConfig &conf);
+	bool fileNeedsInputCommand(const QString &filename) const;
+	QString getFormattedFilename(const QString filename) const;
 	QString getCaptionLabelString(const InsertGraphicsConfig &conf) const;
 
 	QString generateLabel(QString fname);
@@ -73,6 +75,7 @@ signals:
 private slots:
 	void chooseFile();
 	void includeOptionChanged();
+	void leFileChanged(const QString &filename);
 	void labelChanged(const QString &label);
 	void updateLabel(const QString &fname);
 	void togglePlacementCheckboxes(bool forceHide = false);
