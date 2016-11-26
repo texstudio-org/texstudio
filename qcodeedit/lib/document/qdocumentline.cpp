@@ -536,20 +536,20 @@ QList<QFormatRange> QDocumentLine::getOverlays(int preferredFormat){
 }
 QFormatRange QDocumentLine::getOverlayAt(int index, int preferredFormat){
 	if ( !m_handle )
-		return QFormatRange(0,0,0);
+		return QFormatRange();
 	
 	return m_handle->getOverlayAt(index,preferredFormat);
 }
 
 QFormatRange QDocumentLine::getFirstOverlayBetween(int start, int end, int preferredFormat){
 	if ( !m_handle )
-		return QFormatRange(0,0,0);
+		return QFormatRange();
 	
 	return m_handle->getFirstOverlayBetween(start,end,preferredFormat);
 }
 QFormatRange QDocumentLine::getLastOverlayBetween(int start, int end, int preferredFormat){
 	if ( !m_handle )
-		return QFormatRange(0,0,0);
+		return QFormatRange();
 	
 	return m_handle->getLastOverlayBetween(start,end,preferredFormat);
 }
