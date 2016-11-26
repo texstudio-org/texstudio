@@ -23,6 +23,7 @@ static const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-v
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
+bool BuildManager::showLogInCaseOfCompileError = true;
 bool BuildManager::m_replaceEnvironmentVariables = true;
 bool BuildManager::m_supportShellStyleLiteralQuotes = true;
 bool BuildManager::singleViewerInstance = false;

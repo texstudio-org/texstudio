@@ -6234,7 +6234,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
 	loadLog();
 	REQUIRE(result);
 	if (hasLatexErrors()) {
-		viewLog();
+		onCompileError();
 		*result = LCR_ERROR;
 	} else {
 		*result = LCR_NORMAL;
@@ -6262,6 +6262,15 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
 }
 
 ////////////////////////// ERRORS /////////////////////////////
+
+void Texstudio::onCompileError()
+{
+	if (configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
+		viewLog();
+	} else {
+		setLogMarksVisible(true);
+	}
+}
 
 // changes visibilita of log markers in all editors
 void Texstudio::setLogMarksVisible(bool visible)
