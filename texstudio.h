@@ -544,6 +544,7 @@ protected slots:
 	void gotoLine(int line, int col = 0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation, bool setFocus = true); // line is 0 based
 	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
+	QDocumentCursor getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry);
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id = -1);
 	QList<int> findOccurencesApproximate(QString checkLine, const QString &guessedWord);

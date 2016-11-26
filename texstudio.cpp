@@ -7510,7 +7510,8 @@ bool Texstudio::gotoLine(int line, const QString &fileName)
 void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
 {
 	if (logEntryNumber < 0 || logEntryNumber >= outputView->getLogWidget()->getLogModel()->count()) return;
-	QString fileName = outputView->getLogWidget()->getLogModel()->at(logEntryNumber).file;
+	LatexLogEntry entry = outputView->getLogWidget()->getLogModel()->at(logEntryNumber);
+	QString fileName = entry.file;
 	if (!activateEditorForFile(fileName, true))
 		if (!load(fileName)) return;
 	if (currentEditorView()->logEntryToLine.isEmpty()) {
@@ -7520,10 +7521,77 @@ void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
 		setLogMarksVisible(true);
 	}
 	//get line
-	QDocumentLineHandle *lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
-	if (!lh) return;
+	QDocumentLineHandle *dlh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
+	if (!dlh) return;
 	//goto
-	gotoLine(currentEditor()->document()->indexOf(lh));
+	gotoLine(currentEditor()->document()->indexOf(dlh));
+	QDocumentCursor c = getLogEntryContextCursor(dlh, entry);
+	if (c.isValid()) {
+		currentEditorView()->editor->setCursor(c, false);
+	}
+}
+
+/*!
+ * Returns a cursor marking the part of the line which the log entry is referring to.
+ * This assumes that the cursor was already set to the correct line before calling the function.
+ */
+QDocumentCursor Texstudio::getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry)
+{
+	QRegExp rxUndefinedControlSequence("^Undefined\\ control\\ sequence.*(\\\\\\w+)$");
+	QRegExp rxEnvironmentUndefined("^Environment (\\w+) undefined\\.");
+	QRegExp rxReferenceMissing("^Reference `(\\w+)' on page (\\d+) undefined");
+	QRegExp rxCitationMissing("^Citation `(\\w+)' on page (\\d+) undefined");
+	if (entry.message.indexOf(rxUndefinedControlSequence) == 0) {
+		QString cmd = rxUndefinedControlSequence.cap(1);
+		int startCol = dlh->text().indexOf(cmd);
+		if (startCol >= 0) {
+			QDocumentCursor cursor = currentEditorView()->editor->cursor();
+			cursor.selectColumns(startCol, startCol + cmd.length());
+			return cursor;
+		}
+	} else if (entry.message.indexOf(rxEnvironmentUndefined) == 0) {
+		QString env = rxEnvironmentUndefined.cap(1);
+		int startCol = dlh->text().indexOf("\\begin{" + env + "}");
+		if (startCol >= 0) {
+			startCol += 7;  // length of \begin{
+			QDocumentCursor cursor = currentEditorView()->editor->cursor();
+			cursor.selectColumns(startCol, startCol + env.length());
+			return cursor;
+		}
+	} else if (entry.message.indexOf(rxReferenceMissing) == 0) {
+		int fid = currentEditorView()->document->getFormatId("referenceMissing");
+		foreach (const QFormatRange &fmtRange, dlh->getOverlays(fid)) {
+			if (dlh->text().mid(fmtRange.offset, fmtRange.length) == rxReferenceMissing.cap(1)) {
+				QDocumentCursor cursor = currentEditorView()->editor->cursor();
+				cursor.selectColumns(fmtRange.offset, fmtRange.offset + fmtRange.length);
+				return cursor;
+			}
+		}
+	} else if (entry.message.indexOf(rxCitationMissing) == 0) {
+		int fid = currentEditorView()->document->getFormatId("citationMissing");
+		foreach (const QFormatRange &fmtRange, dlh->getOverlays(fid)) {
+			if (dlh->text().mid(fmtRange.offset, fmtRange.length) == rxCitationMissing.cap(1)) {
+				QDocumentCursor cursor = currentEditorView()->editor->cursor();
+				cursor.selectColumns(fmtRange.offset, fmtRange.offset + fmtRange.length);
+				return cursor;
+			}
+		}
+	} else {
+		// error messages that are followed by the context; e.g. Too many }'s. \textit{}}
+		QStringList messageStarts = QStringList() << "Too many }'s. " << "Missing $ inserted. ";
+		foreach (const QString &messageStart, messageStarts) {
+			if (entry.message.startsWith(messageStart)) {
+				QString context = entry.message.mid(messageStart.length());
+				int startCol = dlh->text().indexOf(context);
+				if (startCol >= 0) {
+					QDocumentCursor cursor = currentEditorView()->editor->cursor();
+					cursor.setColumnNumber(startCol += context.length());
+					return cursor;
+				}
+			}
+		}
+	}
+	return QDocumentCursor();
 }
 
 bool Texstudio::gotoLogEntryAt(int newLineNumber)
