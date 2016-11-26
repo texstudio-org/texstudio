@@ -9584,8 +9584,8 @@ void Texstudio::findNextWordRepetion()
 	QPushButton *mButton = qobject_cast<QPushButton *>(sender());
 	bool backward = mButton->objectName() == "prev";
 	if (!currentEditorView()) return;
-	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int);
-	OverlaySearch overlaySearch = backward ? &QDocumentLine::getLastOverlayBetween : &QDocumentLine::getFirstOverlayBetween;
+	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int) const;
+	OverlaySearch overlaySearch = backward ? &QDocumentLine::getLastOverlay : &QDocumentLine::getFirstOverlay;
 	QComboBox *kind = mButton->parent()->findChild<QComboBox *>("kind");
 	int overlayType = currentEditorView()->document->getFormatId(kind ? kind->currentText() : "wordRepetition");
 	QDocumentCursor cur = currentEditor()->cursor();
