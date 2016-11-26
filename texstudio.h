@@ -483,6 +483,7 @@ protected slots:
 	void generateRandomText();
 
 	bool loadLog();
+	void onCompileError();
 	void setLogMarksVisible(bool visible);
 	void clearLogEntriesInEditors();
 	void updateLogEntriesInEditors();

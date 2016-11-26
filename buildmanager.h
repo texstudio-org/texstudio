@@ -223,6 +223,7 @@ private:
 	QStringList latexCommands, rerunnableCommands, pdfCommands, stdoutCommands, viewerCommands;
 public:
 	static int autoRerunLatex;
+	static bool showLogInCaseOfCompileError;
 	static bool m_replaceEnvironmentVariables;
 	static bool m_supportShellStyleLiteralQuotes;
 	static bool singleViewerInstance;
