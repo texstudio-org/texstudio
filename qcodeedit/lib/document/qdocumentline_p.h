@@ -111,8 +111,8 @@ public:
 		bool hasOverlay(int id);
 		QList<QFormatRange> getOverlays(int preferredFormat) const;
 		QFormatRange getOverlayAt(int index, int preferredFormat) const;
-		QFormatRange getFirstOverlayBetween(int start, int end, int preferredFormat = -1) const;
-		QFormatRange getLastOverlayBetween(int start, int end, int preferredFormat = -1) const;
+		QFormatRange getFirstOverlay(int start = 0, int end = -1, int preferredFormat = -1) const;
+		QFormatRange getLastOverlay(int start = 0, int end = -1, int preferredFormat = -1) const;
 		
 		void shiftOverlays(int position, int offset);
 		
