@@ -3049,7 +3049,7 @@ bool QDocumentLineHandle::hasOverlay(int id){
     return false;
 }
 
-QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
+QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat) const {
 	QReadLocker locker(&mLock);
 	QList<QFormatRange> result;
 	if (preferredFormat==-1) {
@@ -3062,10 +3062,10 @@ QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
 	return result;
 }
 
-QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
+QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat) const {
     QReadLocker locker(&mLock);
 
-    QFormatRange best(0,0,0);
+    QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (best.length<fr.length) best=fr;
@@ -3073,19 +3073,19 @@ QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
     return best;
 }
 
-QFormatRange QDocumentLineHandle::getFirstOverlayBetween(int start, int end, int preferredFormat){
+QFormatRange QDocumentLineHandle::getFirstOverlayBetween(int start, int end, int preferredFormat) const {
     QReadLocker locker(&mLock);
 
-    QFormatRange best(0,0,0);
+    QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset<best.offset || best.length==0) best=fr;
 
     return best;
 }
-QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int preferredFormat){
+QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int preferredFormat) const {
     QReadLocker locker(&mLock);
-    QFormatRange best(0,0,0);
+    QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset>best.offset|| best.length==0) best=fr;
