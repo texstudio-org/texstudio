@@ -3073,21 +3073,21 @@ QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat) c
     return best;
 }
 
-QFormatRange QDocumentLineHandle::getFirstOverlayBetween(int start, int end, int preferredFormat) const {
+QFormatRange QDocumentLineHandle::getFirstOverlay(int start, int end, int preferredFormat) const {
     QReadLocker locker(&mLock);
 
     QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
-        if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
+        if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset<best.offset || best.length==0) best=fr;
 
     return best;
 }
-QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int preferredFormat) const {
+QFormatRange QDocumentLineHandle::getLastOverlay(int start, int end, int preferredFormat) const {
     QReadLocker locker(&mLock);
     QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
-        if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
+        if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset>best.offset|| best.length==0) best=fr;
 
     return best;
