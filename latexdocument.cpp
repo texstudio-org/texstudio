@@ -1698,6 +1698,11 @@ Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex &index ) const
 
 QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 {
+	static const QColor beyondEndColor(255, 170, 0);
+	static const QColor inAppendixColor(200, 230, 200);
+	static const QColor missingFileColor(Qt::red);
+	static const QColor activeItemColor(QPalette().color(QPalette::Base));
+
 	if (!index.isValid()) return QVariant();
 	StructureEntry *entry = (StructureEntry *) index.internalPointer();
 	if (!entry) return QVariant();
@@ -1719,18 +1724,34 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 	case Qt::ToolTipRole:
 		//qDebug("data %x",entry);
 		if (!entry->tooltip.isNull()) {
+			qDebug() << entry->tooltip;
 			return QVariant(entry->tooltip);
 		}
 		if (entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
 			return QVariant(QDir::toNativeSeparators(entry->document->getFileName()));
 		}
 		if (entry->type == StructureEntry::SE_SECTION) {
-			QString tooltip(entry->title);
+			QString htmlTitle = entry->title.toHtmlEscaped().replace(' ', "&nbsp;");  // repleacement: prevent line break
+			QString tooltip("<html><b>" + htmlTitle + "</b>");
 			if (entry->getCachedLineNumber() > -1)
-				tooltip.append("\n" + tr("Line") + QString(": %1").arg(entry->getRealLineNumber() + 1));
+				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
 			StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
 			if (se)
-				tooltip.append("\n" + tr("Label") + ": " + se->title);
+				tooltip.append("<br><i>" + tr("Label") + "</i>: " + se->title);
+			if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
+				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
+			if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
+				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+			tooltip.append("</html>");
+			return QVariant(tooltip);
+		}
+		if (entry->type == StructureEntry::SE_INCLUDE) {
+			QString htmlTitle = entry->title.toHtmlEscaped().replace(' ', "&nbsp;").replace('-', "&#8209;");  // repleacement: prevent line break
+			QString tooltip("<html><b>" + htmlTitle + "</b>");
+			if (entry->getCachedLineNumber() > -1)
+				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+			if (!entry->valid)
+				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(missingFileColor.name(), tr("File not found.")));
 			return QVariant(tooltip);
 		}
 		if (entry->getCachedLineNumber() > -1)
@@ -1762,13 +1783,13 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 			return QVariant();
 		}
 	case Qt::BackgroundRole:
-		if (index == mHighlightIndex) return QVariant(QColor(Qt::lightGray));
-		if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd)) return QVariant(QColor(255, 170, 0));
-		if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix)) return QVariant(QColor(200, 230, 200));
+		if (index == mHighlightIndex) return QVariant(activeItemColor);
+		if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd)) return QVariant(beyondEndColor);
+		if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix)) return QVariant(inAppendixColor);
 		return QVariant();
 	case Qt::ForegroundRole:
 		if (entry->type == StructureEntry::SE_INCLUDE) {
-			return entry->valid ? QVariant() : QVariant(QColor(Qt::red)); // not found files marked red, else black (green is not easily readable)
+			return entry->valid ? QVariant() : QVariant(missingFileColor); // not found files marked red, else black (green is not easily readable)
 		} else return QVariant();
 	case Qt::FontRole:
 		if (entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
