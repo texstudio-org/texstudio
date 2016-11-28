@@ -1731,11 +1731,12 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 			return QVariant(QDir::toNativeSeparators(entry->document->getFileName()));
 		}
 		if (entry->type == StructureEntry::SE_SECTION) {
-#if QT_VERSION<0x050000
-            QString htmlTitle = entry->title;
+#if QT_VERSION < 0x050000
+			QString htmlTitle = entry->title;
 #else
-			QString htmlTitle = entry->title.toHtmlEscaped().replace(' ', "&nbsp;");  // repleacement: prevent line break
+			QString htmlTitle = entry->title.toHtmlEscaped();
 #endif
+			htmlTitle.replace(' ', "&nbsp;");  // repleacement: prevent line break
 			QString tooltip("<html><b>" + htmlTitle + "</b>");
 			if (entry->getCachedLineNumber() > -1)
 				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
@@ -1750,11 +1751,12 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 			return QVariant(tooltip);
 		}
 		if (entry->type == StructureEntry::SE_INCLUDE) {
-#if QT_VERSION<0x050000
-            QString htmlTitle = entry->title;
+#if QT_VERSION < 0x050000
+			QString htmlTitle = entry->title;
 #else
-			QString htmlTitle = entry->title.toHtmlEscaped().replace(' ', "&nbsp;").replace('-', "&#8209;");  // repleacement: prevent line break
+			QString htmlTitle = entry->title.toHtmlEscaped();
 #endif
+			htmlTitle.replace(' ', "&nbsp;").replace('-', "&#8209;");  // repleacement: prevent line break
 			QString tooltip("<html><b>" + htmlTitle + "</b>");
 			if (entry->getCachedLineNumber() > -1)
 				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
