@@ -758,7 +758,7 @@ QString getTeXLiveWinBinPathInternal()
 	foreach (const QString &baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
 		QSettings reg(baseKey + "\\Software", QSettings::NativeFormat);
 		QString uninstall;
-		for (int v = 2014; v > 2008; v--) {
+		for (int v = 2017; v > 2008; v--) {
 			uninstall = reg.value(QString("microsoft/windows/currentversion/uninstall/TeXLive%1/UninstallString").arg(v), "").toString();
 			if (!uninstall.isEmpty()) {
 				int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);
