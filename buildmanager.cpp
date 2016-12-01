@@ -597,31 +597,17 @@ QString BuildManager::extractOutputRedirection(const QString &commandLine, QStri
 	return commandLine.left(indexMin(stdErrStart, stdOutStart)).trimmed();
 }
 
+QString addPathDelimeter(const QString &a)
+{
+	return ((a.endsWith("/") || a.endsWith("\\")) ? a : (a + "\\"));
+}
+
 QString BuildManager::findFileInPath(QString fileName)
 {
-	/*#ifdef Q_OS_MAC
-		QProcess *myProcess = new QProcess();
-		myProcess->start("bash -l -c \"echo $PATH\"");
-		myProcess->waitForFinished(3000);
-		if(myProcess->exitStatus()==QProcess::CrashExit) return "";
-		QByteArray res=myProcess->readAllStandardOutput();
-		delete myProcess;
-		QString path(res);
-	#else*/
-	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-	QString path = env.value("PATH");
-	if (path.isNull()) return "";
-//#endif
-#ifdef Q_OS_WIN32
-	if (!fileName.contains('.')) fileName += ".exe";
-	QStringList paths = path.split(";"); //windows
-#else
-	QStringList paths = path.split(":"); //linux
-#endif
-	foreach (const QString &p, paths)
-		if (p.endsWith("/") && QFileInfo(p + fileName).exists()) return (p + fileName);
-		else if (p.endsWith("\\") && QFileInfo(p + fileName).exists()) return (p + fileName);
-		else if (QFileInfo(p + "/" + fileName).exists()) return (p + "\\" + fileName);
+	foreach (QString path, getEnvironmentPathList()) {
+		path = addPathDelimeter(path);
+		if (QFileInfo(path + fileName).exists()) return (path + fileName);
+	}
 	return "";
 }
 
@@ -648,11 +634,6 @@ QString W32_FileAssociation(QString ext)
 	}
 	FreeLibrary(mod);
 	return result;
-}
-
-QString addPathDelimeter(const QString &a)
-{
-	return ((a.endsWith("/") || a.endsWith("\\")) ? a : (a + "\\"));
 }
 
 QStringList getProgramFilesPaths()
