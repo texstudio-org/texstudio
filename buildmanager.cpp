@@ -668,25 +668,89 @@ QStringList getProgramFilesPaths()
 	return res;
 }
 
+/*!
+ * \return the Uninstall string of the program from the registry
+ *
+ * Note: This won't get the path of 64bit installations when TXS running as a 32bit app due to wow6432 regristry redirection
+ * http://www.qtcentre.org/threads/36966-QSettings-on-64bit-Machine
+ * http://stackoverflow.com/questions/25392251/qsettings-registry-and-redirect-on-regedit-64bit-wow6432
+ * No workaround known, except falling back to the native Windows API. For the moment we'll rely on alternative detection methods.
+ */
+QString getUninstallString(const QString &program) {
+	foreach (const QString &baseKey, QStringList() << "HKEY_LOCAL_MACHINE" << "HKEY_CURRENT_USER") {
+		QSettings base(baseKey, QSettings::NativeFormat);
+		QString s = base.value("Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + program + "\\UninstallString").toString();
+		if (!s.isEmpty())
+			return s;
+	}
+	return QString();
+}
+
+/*!
+ * \return an existing subdir of the from path\subDirFilter\subSubDir.
+ *
+ * Example:
+ * QStringList searchPaths = QStringList() << "C:\\" << "D:\\"
+ * findSubdir(searchPaths, "*miktex*", "miktex\\bin\\")
+ * will work for "C:\\MikTeX\\miktex\\bin\\" or "D:\\MikTeX 2.9\\miktex\\bin"
+ */
+QString findSubDir(const QStringList &searchPaths, const QString &subDirFilter, const QString &subSubDir) {
+	qDebug() << searchPaths;
+	foreach (const QString &path, searchPaths) {
+		foreach (const QString &dir, QDir(path).entryList(QStringList(subDirFilter), QDir::AllDirs, QDir::Time)) {
+			QDir fullPath(addPathDelimeter(path) + addPathDelimeter(dir) + subSubDir);
+			if (fullPath.exists())
+				return fullPath.absolutePath();
+		}
+	}
+	return QString();
+}
+
 static QString miktexpath = "<search>";
 QString getMiKTeXBinPathReal()
 {
-	QSettings reg("HKEY_CURRENT_USER\\Software", QSettings::NativeFormat);
-	QString mikPath = reg.value("MiK/MikTeX/CurrentVersion/MiKTeX/Install Root", "").toString();
-	if (!mikPath.isEmpty())
-		return addPathDelimeter(mikPath) + "miktex\\bin\\";
-	foreach (const QString &d, getProgramFilesPaths())
-		foreach (const QString &p, QDir(d).entryList(QStringList(), QDir::AllDirs, QDir::Time))
-			if (p.toLower().contains("miktex") && QDir(d + addPathDelimeter(p) + "miktex\\bin\\").exists())
-				return d + addPathDelimeter(p) + "miktex\\bin\\";
-	static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin"
-														<< "C:\\tex\\texmf\\miktex\\bin"
-														<< "C:\\miktex\\bin"
-														<< QString(getenv("LOCALAPPDATA")) + "\\Programs\\MiKTeX 2.9\\miktex\\bin";
+	// search the registry
+	QString mikPath = getUninstallString("MiKTeX 2.9");
+	// Note: this does currently not work for MikTeX 64bit because of registry redirection (also we would have to parse the
+	// uninstall string there for the directory). For the moment we'll fall back to other detection methods.
+	if (!mikPath.isEmpty() && QDir(addPathDelimeter(mikPath) + "miktex\\bin\\").exists()) {
+		mikPath = addPathDelimeter(mikPath) + "miktex\\bin\\";
+	}
 
-	foreach (const QString &d, candidates)
-		if (QDir(d).exists())
-			return d + "\\";
+	// search the PATH
+	if (mikPath.isEmpty()) {
+		foreach (QString path, getEnvironmentPathList()) {
+			path = addPathDelimeter(path);
+			if ((path.endsWith("\\miktex\\bin\\x64\\") || path.endsWith("\\miktex\\bin\\")) && QDir(path).exists())
+				return path;
+		 }
+	}
+
+	// search all program file paths
+	if (!mikPath.isEmpty()) {
+		mikPath = QDir::toNativeSeparators(findSubDir(getProgramFilesPaths(), "*miktex*", "miktex\\bin\\"));
+	}
+
+	// search a fixed list of additional locations
+	if (mikPath.isEmpty()) {
+		static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin"
+															<< "C:\\tex\\texmf\\miktex\\bin"
+															<< "C:\\miktex\\bin"
+															<< QString(qgetenv("LOCALAPPDATA")) + "\\Programs\\MiKTeX 2.9\\miktex\\bin";
+		foreach (const QString &path, candidates)
+			if (QDir(path).exists()) {
+				mikPath = path;
+				break;
+			}
+	}
+
+	// post-process to detect 64bit installation
+	if (!mikPath.isEmpty()) {
+		if (QDir(mikPath + "x64\\").exists())
+			return mikPath + "x64\\";
+		else
+			return mikPath;
+	}
 	return "";
 }
 
