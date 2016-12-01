@@ -791,10 +791,9 @@ QString getTeXLiveWinBinPath()
 QString findGhostscriptDLL()   //called dll, may also find an exe
 {
 	//registry
-	for (int type = 0; type <= 1; type++)
-		for (int pos = 0; pos <= 1; pos++) {
-			QString regBase = QString(pos == 0 ? "HKEY_CURRENT_USER" : "HKEY_LOCAL_MACHINE") + "\\Software\\" + QString(type == 0 ? "GPL" : "AFPL") + " Ghostscript";
-			QSettings reg(regBase, QSettings::NativeFormat);
+	foreach (QString program, QStringList() << "GPL Ghostscript" << "AFPL Ghostscript")
+		foreach(QString hkeyBase, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
+			QSettings reg(hkeyBase + "\\Software\\" + program, QSettings::NativeFormat);
 			QStringList version = reg.childGroups();
 			if (version.empty()) continue;
 			version.sort();
