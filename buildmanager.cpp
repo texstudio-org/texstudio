@@ -687,8 +687,11 @@ QString findSubDir(const QStringList &searchPaths, const QString &subDirFilter, 
 	return QString();
 }
 
-static QString miktexpath = "<search>";
-QString getMiKTeXBinPathReal()
+/*!
+ * Returns the MikTeX bin path.
+ * This should not be called directly but only through getMiKTeXBinPath() to prevent multiple searches.
+ */
+QString getMiKTeXBinPathInternal()
 {
 	// search the registry
 	QString mikPath = getUninstallString("MiKTeX 2.9");
@@ -735,10 +738,14 @@ QString getMiKTeXBinPathReal()
 	return "";
 }
 
+static QString miktexBinPath = "<search>";
+/*!
+ * \return the MikTeX bin path. This uses caching so that the search is only performed once per session.
+ */
 QString getMiKTeXBinPath()
 {
-	if (miktexpath == "<search>") miktexpath = getMiKTeXBinPathReal();
-	return miktexpath;
+	if (miktexBinPath == "<search>") miktexBinPath = getMiKTeXBinPathInternal();
+	return miktexBinPath;
 }
 
 /*!
