@@ -741,7 +741,11 @@ QString getMiKTeXBinPath()
 	return miktexpath;
 }
 
-QString getTeXLiveBinPath()
+/*!
+ * Returns the TeXlive bin path.
+ * This should not be called directly but only through getTeXLiveWinBinPath() to prevent multiple searches.
+ */
+QString getTeXLiveWinBinPathInternal()
 {
 	//check for uninstall entry
 	foreach (const QString &baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
@@ -765,6 +769,17 @@ QString getTeXLiveBinPath()
 	if (!QFileInfo(path + "\\release-texlive.txt").exists()) return "";
 	return path + "\\bin\\win32\\";
 }
+
+static QString texliveWinBinPath = "<search>";
+/*!
+ * \return the TeXlive bin path on windows. This uses caching so that the search is only performed once per session.
+ */
+QString getTeXLiveWinBinPath()
+{
+	if (texliveWinBinPath == "<search>") texliveWinBinPath = getTeXLiveWinBinPathInternal();
+	return texliveWinBinPath;
+}
+
 
 QString findGhostscriptDLL()   //called dll, may also find an exe
 {
@@ -812,7 +827,7 @@ QString searchBaseCommand(const QString &cmd, QString options)
 			if (!mikPath.isEmpty() && QFileInfo(mikPath + fileName).exists())
 				return "\"" + mikPath + fileName + "\" " + options; //found
 			//Windows TeX Live
-			QString livePath = getTeXLiveBinPath();
+			QString livePath = getTeXLiveWinBinPath();
 			if (!livePath.isEmpty() && QFileInfo(livePath + fileName).exists())
 				return "\"" + livePath + fileName + "\" " + options; //found
 #endif
@@ -1098,7 +1113,7 @@ QString getCommandLineViewPs()
 	if (!def.isEmpty())
 		return def;
 
-	QString livePath = getTeXLiveBinPath();
+	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty())
 		if (QFileInfo(livePath + "psv.exe").exists())
 			return "\"" + livePath + "psv.exe\"  \"?am.ps\"";
@@ -1139,7 +1154,7 @@ QString getCommandLineViewPdfExternal()
 QString getCommandLineGhostscript()
 {
 	const QString gsArgs = " \"?am.ps\"";
-	QString livePath = getTeXLiveBinPath();
+	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty()) {
 		if (QFileInfo(livePath + "rungs.exe").exists())
 			return "\"" + livePath + "rungs.exe\"" + gsArgs;
