@@ -80,12 +80,25 @@ private:
 };
 
 
-class CustomWidgetList: public QDockWidget
+/*!
+ * Subclassed TitledPanel to get a reasonable default width
+ */
+class SidePanel: public TitledPanel
 {
 	Q_OBJECT
 
 public:
-	CustomWidgetList(QWidget *p = 0);
+	SidePanel(QWidget *parent = 0) : TitledPanel(parent) { setFrameStyle(QFrame::NoFrame); }
+	QSize sizeHint() const { return QSize(280, 0); }
+};
+
+
+class CustomWidgetList: public QWidget
+{
+	Q_OBJECT
+
+public:
+	CustomWidgetList(QWidget *parent = 0);
 	void addWidget(QWidget *widget, const QString &id, const QString &text, const QString &iconName);
 	void setWidgetText(const QString &id, const QString &text);
 	void setWidgetText(QWidget *widget, const QString &text);
@@ -102,6 +115,7 @@ public:
 
 signals:
 	void widgetContextMenuRequested(QWidget *widget, const QPoint &globalPosition);
+	void titleChanged(const QString &);
 
 public slots:
 	void showWidgets();
@@ -124,7 +138,6 @@ private:
 	QList<QWidget *> widgets;
 
 	//new layout
-	QFrame *frame;
 	QStackedWidget *stack;
 	QToolBar *toolbar;
 

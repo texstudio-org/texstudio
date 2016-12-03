@@ -186,6 +186,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setIconSize(QSize(iconSize, iconSize));
 
 	leftPanel = 0;
+	sidePanel = 0;
 	structureTreeView = 0;
 	outputView = 0;
 
@@ -289,10 +290,13 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralVSplitter->addWidget(centralFrame);
 	centralVSplitter->setStretchFactor(0, 1);  // all stretch goes to the editor (0th widget)
 
+	sidePanelSplitter = new MiniSplitter(Qt::Horizontal, this);
+	setCentralWidget(sidePanelSplitter);
+
 	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);
 	mainHSplitter->addWidget(centralVSplitter);
 	mainHSplitter->setChildrenCollapsible(false);
-	setCentralWidget(mainHSplitter);
+	sidePanelSplitter->addWidget(mainHSplitter);
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -544,21 +548,28 @@ void Texstudio::setupDockWidgets()
 {
 	//to allow retranslate this function must be able to be called multiple times
 
+	if (!sidePanel) {
+		sidePanel = new SidePanel(this);
+		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
+		addAction(sidePanel->toggleViewAction());
+
+		sidePanelSplitter->insertWidget(0, sidePanel);
+		sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
+		sidePanelSplitter->setStretchFactor(1, 1);
+	}
+
 	//Structure panel
 	if (!leftPanel) {
 		leftPanel = new CustomWidgetList(this);
-		leftPanel->setWindowTitle(tr("Structure"));
 		leftPanel->setObjectName("leftPanel");
-		leftPanel->setAllowedAreas(Qt::AllDockWidgetAreas);
-		leftPanel->setFeatures(QDockWidget::DockWidgetClosable);
-		addDockWidget(Qt::LeftDockWidgetArea, leftPanel);
+		TitledPanelPage *page = new TitledPanelPage(leftPanel, "leftPanel", "TODO");
+		sidePanel->appendPage(page);
 		if (hiddenLeftPanelWidgets != "") {
 			leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
 			hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
 		}
-
 		connect(leftPanel, SIGNAL(widgetContextMenuRequested(QWidget *, QPoint)), this, SLOT(symbolGridContextMenu(QWidget *, QPoint)));
-		addAction(leftPanel->toggleViewAction());
+		connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
 	}
 
 	if (!structureTreeView) {
@@ -1119,7 +1130,7 @@ void Texstudio::setupMenus()
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "show", tr("Show"));
-	newManagedAction(submenu, "structureview", leftPanel->toggleViewAction());
+	newManagedAction(submenu, "structureview", sidePanel->toggleViewAction());
 	newManagedAction(submenu, "outputview", outputView->toggleViewAction());
 	act = newManagedAction(submenu, "statusbar", tr("Statusbar"), SLOT(showStatusbar()));
 	act->setCheckable(true);
