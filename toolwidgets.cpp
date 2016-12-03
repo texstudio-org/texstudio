@@ -271,10 +271,9 @@ void OutputViewWidget::changeEvent(QEvent *event)
 
 Q_DECLARE_METATYPE(QAction *)
 
-CustomWidgetList::CustomWidgetList(QWidget *p):
-	QDockWidget(p), frame(0), stack(0), toolbar(0)
+CustomWidgetList::CustomWidgetList(QWidget *parent):
+	QWidget(parent), stack(0), toolbar(0)
 {
-	toggleViewAction()->setIcon(getRealIcon("sidebar"));
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
 }
@@ -286,6 +285,8 @@ void CustomWidgetList::addWidget(QWidget *widget, const QString &id, const QStri
 	widget->setProperty("Name", text);
 	widget->setProperty("iconName", iconName);
 	widget->setProperty("StructPos", widgets.size());
+	QFrame *asFrame = qobject_cast<QFrame *>(widget);
+	if (asFrame) asFrame->setFrameShape(QFrame::NoFrame);
 
 	QAction *Act = new QAction(text, this);
 	Act->setCheckable(true);
@@ -325,9 +326,9 @@ void CustomWidgetList::showPageFromAction()
 	if (!act) return;
 	QWidget *wid = widget(act->data().toString());
 	stack->setCurrentWidget(wid);
-	setWindowTitle(act->toolTip());
 	foreach (QAction *a, toolbar->actions())
 		a->setChecked(a == act);
+	emit titleChanged(act->toolTip());
 }
 
 void CustomWidgetList::toggleWidgetFromAction(bool on)
@@ -364,12 +365,6 @@ void CustomWidgetList::showWidgets()
 		delete stack;
 	}
 	if (toolbar) delete toolbar;
-	if (frame) delete frame;
-
-	frame = new QFrame(this);
-	frame->setLineWidth(0);
-	frame->setFrameShape(QFrame::Box);
-	frame->setFrameShadow(QFrame::Plain);
 
 	toolbar = new QToolBar("LogToolBar", this);
 	toolbar->setFloatable(false);
@@ -379,6 +374,7 @@ void CustomWidgetList::showWidgets()
 	setToolbarIconSize(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
 
 	stack = new QStackedWidget(this);
+	stack->setFrameShape(QFrame::NoFrame);
 
 	for (int i = 0; i < widgets.size(); i++)
 		if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
@@ -391,16 +387,14 @@ void CustomWidgetList::showWidgets()
 			widgets[i]->setProperty("associatedAction", QVariant::fromValue<QAction *>(act));
 		} else widgets[i]->hide();
 
-	QHBoxLayout *hlayout = new QHBoxLayout(frame);
+	QHBoxLayout *hlayout = new QHBoxLayout(this);
 	hlayout->setSpacing(0);
 	hlayout->setMargin(0);
 	hlayout->addWidget(toolbar);
 	hlayout->addWidget(stack);
 
-	setWidget(frame);
-
 	if (!widgets.empty()) //name after active (first) widget
-		setWindowTitle(widgets.first()->property("Name").toString());
+		emit titleChanged(widgets.first()->property("Name").toString());
 }
 
 void CustomWidgetList::setToolbarIconSize(int sz)
