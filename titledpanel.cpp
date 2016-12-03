@@ -291,6 +291,7 @@ void TitledPanel::updateTopbar()
 
 	if (visiblePageCount == 1) {
 		lbTopbarLabel = new QLabel(firstVisiblePage->m_title);
+		lbTopbarLabel->setIndent(4);
 		topbar->addWidget(lbTopbarLabel);
 	} else if (visiblePageCount > 1) {
 		switch (selectorStyle) {
