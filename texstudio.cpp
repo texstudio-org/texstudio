@@ -551,6 +551,7 @@ void Texstudio::setupDockWidgets()
 	if (!sidePanel) {
 		sidePanel = new SidePanel(this);
 		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
+		sidePanel->toggleViewAction()->setText(tr("Side Panel"));
 		addAction(sidePanel->toggleViewAction());
 
 		sidePanelSplitter->insertWidget(0, sidePanel);
