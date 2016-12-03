@@ -552,7 +552,6 @@ void Texstudio::setupDockWidgets()
 		leftPanel->setAllowedAreas(Qt::AllDockWidgetAreas);
 		leftPanel->setFeatures(QDockWidget::DockWidgetClosable);
 		addDockWidget(Qt::LeftDockWidgetArea, leftPanel);
-		connect(&configManager, SIGNAL(newLeftPanelLayoutChanged(bool)), leftPanel,  SLOT(showWidgets(bool)));
 		if (hiddenLeftPanelWidgets != "") {
 			leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
 			hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
@@ -606,7 +605,7 @@ void Texstudio::setupDockWidgets()
 	addTagList("tikz", getRealIconFile("tikz"), tr("Tikz Commands"), "tikz_tags.xml");
 	addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
 
-	leftPanel->showWidgets(configManager.newLeftPanelLayout);
+	leftPanel->showWidgets();
 
 	// update MostOftenUsed
 	mostUsedSymbolsTriggered(true);

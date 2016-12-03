@@ -272,7 +272,7 @@ void OutputViewWidget::changeEvent(QEvent *event)
 Q_DECLARE_METATYPE(QAction *)
 
 CustomWidgetList::CustomWidgetList(QWidget *p):
-	QDockWidget(p), newStyle(false), toolbox(0), frame(0), stack(0), toolbar(0)
+	QDockWidget(p), frame(0), stack(0), toolbar(0)
 {
 	toggleViewAction()->setIcon(getRealIcon("sidebar"));
 	setContextMenuPolicy(Qt::CustomContextMenu);
@@ -304,8 +304,7 @@ void CustomWidgetList::setWidgetText(QWidget *widget, const QString &text)
 	int pos = widgets.indexOf(widget);
 	if (pos < 0) return;
 	widget->setProperty("Name", text);
-	if (newStyle) actions()[pos]->setToolTip(text);
-	else toolbox->setItemText(pos, text);
+	actions()[pos]->setToolTip(text);
 }
 
 void CustomWidgetList::setWidgetIcon(const QString &id, const QString &icon)
@@ -331,12 +330,6 @@ void CustomWidgetList::showPageFromAction()
 		a->setChecked(a == act);
 }
 
-void CustomWidgetList::currentWidgetChanged(int i)
-{
-	Q_ASSERT(newStyle == false);
-	setWindowTitle(toolbox->itemText(i));
-}
-
 void CustomWidgetList::toggleWidgetFromAction(bool on)
 {
 	QAction *act = qobject_cast<QAction *>(sender());
@@ -345,7 +338,7 @@ void CustomWidgetList::toggleWidgetFromAction(bool on)
 		hiddenWidgetsIds.removeAll(act->data().toString());
 	else if (!hiddenWidgetsIds.contains(act->data().toString()))
 		hiddenWidgetsIds.append(act->data().toString());
-	showWidgets(newStyle);
+	showWidgets();
 }
 
 void CustomWidgetList::customContextMenuRequested(const QPoint &localPosition)
@@ -360,15 +353,9 @@ void CustomWidgetList::customContextMenuRequested(const QPoint &localPosition)
 	}
 }
 
-void CustomWidgetList::showWidgets(bool newLayoutStyle)
+void CustomWidgetList::showWidgets()
 {
-	if (toolbox) {
-		for (int i = 0; i < widgets.count(); i++) {
-			toolbox->removeItem(toolbox->indexOf(widgets[i]));
-			widgets[i]->setParent(this);//otherwise it will be deleted
-		}
-		delete toolbox;
-	}
+	// TODO: is this still needed when there is no need to switch between old and new style
 	if (stack) {
 		for (int i = 0; i < widgets.count(); i++) {
 			stack->removeWidget(widgets[i]);
@@ -378,54 +365,40 @@ void CustomWidgetList::showWidgets(bool newLayoutStyle)
 	}
 	if (toolbar) delete toolbar;
 	if (frame) delete frame;
-	newStyle = newLayoutStyle;
-	if (newLayoutStyle) {
-		toolbox = 0;
-		frame = new QFrame(this);
-		frame->setLineWidth(0);
-		frame->setFrameShape(QFrame::Box);
-		frame->setFrameShadow(QFrame::Plain);
 
-		toolbar = new QToolBar("LogToolBar", this);
-		toolbar->setFloatable(false);
-		toolbar->setOrientation(Qt::Vertical);
-		toolbar->setMovable(false);
+	frame = new QFrame(this);
+	frame->setLineWidth(0);
+	frame->setFrameShape(QFrame::Box);
+	frame->setFrameShadow(QFrame::Plain);
 
-		setToolbarIconSize(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
+	toolbar = new QToolBar("LogToolBar", this);
+	toolbar->setFloatable(false);
+	toolbar->setOrientation(Qt::Vertical);
+	toolbar->setMovable(false);
 
-		stack = new QStackedWidget(this);
+	setToolbarIconSize(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
 
-		for (int i = 0; i < widgets.size(); i++)
-			if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
-				stack->addWidget(widgets[i]);
-				QAction *act = toolbar->addAction(QIcon(widgets[i]->property("iconName").toString()), widgets[i]->property("Name").toString());
-				act->setCheckable(true);
-				if (i == 0) act->setChecked(true);
-				act->setData(widgetId(widgets[i]));
-				connect(act, SIGNAL(triggered()), this, SLOT(showPageFromAction()));
-				widgets[i]->setProperty("associatedAction", QVariant::fromValue<QAction *>(act));
-			} else widgets[i]->hide();
+	stack = new QStackedWidget(this);
 
-		QHBoxLayout *hlayout = new QHBoxLayout(frame);
-		hlayout->setSpacing(0);
-		hlayout->setMargin(0);
-		hlayout->addWidget(toolbar);
-		hlayout->addWidget(stack);
+	for (int i = 0; i < widgets.size(); i++)
+		if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
+			stack->addWidget(widgets[i]);
+			QAction *act = toolbar->addAction(QIcon(widgets[i]->property("iconName").toString()), widgets[i]->property("Name").toString());
+			act->setCheckable(true);
+			if (i == 0) act->setChecked(true);
+			act->setData(widgetId(widgets[i]));
+			connect(act, SIGNAL(triggered()), this, SLOT(showPageFromAction()));
+			widgets[i]->setProperty("associatedAction", QVariant::fromValue<QAction *>(act));
+		} else widgets[i]->hide();
 
-		setWidget(frame);
-	} else {
-		frame = 0;
-		toolbar = 0;
-		stack = 0;
-		toolbox = new QToolBox(this);
-		for (int i = 0; i < widgets.size(); i++)
-			if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
-				toolbox->addItem(widgets[i], QIcon(widgets[i]->property("iconName").toString()), widgets[i]->property("Name").toString());
-			} else widgets[i]->hide();
-		connect(toolbox, SIGNAL(currentChanged(int)), SLOT(currentWidgetChanged(int)));
-		setWidget(toolbox);
+	QHBoxLayout *hlayout = new QHBoxLayout(frame);
+	hlayout->setSpacing(0);
+	hlayout->setMargin(0);
+	hlayout->addWidget(toolbar);
+	hlayout->addWidget(stack);
 
-	}
+	setWidget(frame);
+
 	if (!widgets.empty()) //name after active (first) widget
 		setWindowTitle(widgets.first()->property("Name").toString());
 }
@@ -479,24 +452,15 @@ QList<QWidget *> CustomWidgetList::getWidgets() const
 
 void CustomWidgetList::setCurrentWidget(QWidget *widget)
 {
-	if (newStyle) {
-		stack->setCurrentWidget(widget);
-		QAction *act = widget->property("associatedAction").value<QAction *>();
-		foreach (QAction *a, toolbar->actions())
-			a->setChecked(a == act);
-	} else {
-		toolbox->setCurrentWidget(widget);
-	}
-}
-QWidget *CustomWidgetList::currentWidget() const
-{
-	if (newStyle) return stack->currentWidget();
-	else return toolbox->currentWidget();
+	stack->setCurrentWidget(widget);
+	QAction *act = widget->property("associatedAction").value<QAction *>();
+	foreach (QAction *a, toolbar->actions())
+		a->setChecked(a == act);
 }
 
-bool CustomWidgetList::isNewLayoutStyleEnabled() const
+QWidget *CustomWidgetList::currentWidget() const
 {
-	return newStyle;
+	return stack->currentWidget();
 }
 
 QString CustomWidgetList::widgetId(QWidget *widget) const

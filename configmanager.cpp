@@ -648,7 +648,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
 	registerOption("Interface/Config Riddled", &configRiddled, false);
-	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
 	registerOption("Interface/MRU Document Chooser", &mruDocumentChooser, false, &pseudoDialog->checkBoxMRUDocumentChooser);
 
 	//language
@@ -1405,8 +1404,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
 
-	confDlg->ui.checkBoxTabbedStructureView->setChecked(!newLeftPanelLayout);
-
 	confDlg->fmConfig->setBasePointSize( editorConfig->fontSize );
 	confDlg->fmConfig->addScheme("", QDocument::defaultFormatScheme());
 
@@ -1689,11 +1686,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 			if (interfaceStyle == tr("default")) interfaceStyle = "";
 			setInterfaceStyle();
 		}
-		// read checkbox and set logViewer accordingly
-		if (newLeftPanelLayout != !confDlg->ui.checkBoxTabbedStructureView->isChecked()) {
-			newLeftPanelLayout = !confDlg->ui.checkBoxTabbedStructureView->isChecked();
-			emit newLeftPanelLayoutChanged(newLeftPanelLayout);
-		}
+
 		//language
 		if (language == tr("default")) language = "";
 		if (language != lastLanguage) loadTranslations(language);
