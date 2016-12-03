@@ -116,7 +116,6 @@
 \ifboolexpr{true}{false}#*
 \ifcsltxprotect{true}{false}#*
 \ifcsstring{true}{false}#*
-\ifdef{true}{false}#*
 \ifdefltxprotect{true}{false}#*
 \ifdefstrequal{command%plain}{command%plain}{true}{false}#*
 \ifdefstring{command%plain}{string}{true}{false}#*
