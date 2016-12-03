@@ -1175,7 +1175,6 @@ void Texstudio::setupMenus()
 	newManagedEditorAction(submenu, "zoomOut", tr("Zoom Out"), "zoomOut", Qt::CTRL + Qt::Key_Minus);
 	newManagedEditorAction(submenu, "resetZoom", tr("Reset Zoom"), "resetZoom");
 
-	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 #if QT_VERSION>=0x050000
 	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Full &Screen"), 0, QKeySequence::FullScreen);
 #else
@@ -7013,34 +7012,6 @@ void Texstudio::setFullScreenMode()
 		showFullScreen();
 		restoreState(stateFullScreen, 1);
 	}
-}
-
-void Texstudio::viewAlignWindows()
-{
-	QWidgetList windows = QApplication::topLevelWidgets();
-#ifndef NO_POPPLER_PREVIEW
-	// find first pdf viewer window
-	PDFDocument *pdfViewer = 0;
-	foreach (QWidget *w, windows) {
-		pdfViewer = qobject_cast<PDFDocument *>(w);
-		if (pdfViewer) break;
-	}
-
-	int splitXpos = frameGeometry().right();
-	int frameWidth = frameGeometry().width() - width();
-	int frameHeight = frameGeometry().height() - height();
-
-	// main window "full size" to the left
-	QRect screen = QApplication::desktop()->availableGeometry(this);
-	move(screen.topLeft());
-	resize(splitXpos - screen.left() - frameWidth, screen.height() - frameHeight);
-
-	// pdfViewer "full size" to the left
-	if (pdfViewer) {
-		pdfViewer->move(splitXpos, screen.top());
-		pdfViewer->resize(screen.right() - frameGeometry().right() - frameWidth, screen.height() - frameHeight);
-	}
-#endif
 }
 
 void Texstudio::viewSetHighlighting(QAction *act)

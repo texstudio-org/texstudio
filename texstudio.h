@@ -521,7 +521,6 @@ protected slots:
 	void showStatusbar();
 	void viewCloseSomething();
 	void setFullScreenMode();
-	void viewAlignWindows();
 	void viewSetHighlighting(QAction *act);
 	void showHighlightingMenu();
 
