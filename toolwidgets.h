@@ -99,18 +99,16 @@ public:
 	QList<QWidget *> getWidgets() const;
 	void setCurrentWidget(QWidget *widget);
 	QWidget *currentWidget() const;
-	bool isNewLayoutStyleEnabled() const;
 
 signals:
 	void widgetContextMenuRequested(QWidget *widget, const QPoint &globalPosition);
 
 public slots:
-	void showWidgets(bool newLayoutStyle);
+	void showWidgets();
 	void setToolbarIconSize(int sz);
 
 private slots:
 	void showPageFromAction();
-	void currentWidgetChanged(int i);
 	void toggleWidgetFromAction(bool on);
 	void customContextMenuRequested(const QPoint &localPosition);
 
@@ -124,10 +122,6 @@ private:
 
 	QStringList hiddenWidgetsIds;
 	QList<QWidget *> widgets;
-	bool newStyle;
-
-	//old layout
-	QToolBox *toolbox;
 
 	//new layout
 	QFrame *frame;
