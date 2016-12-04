@@ -99,35 +99,35 @@ datetime
 \author[%<email%>]{%<prénom%>}{%<nom%>}#n
 #
 # Title, etc.
-\title[%<titre dans la langue secondaire%>]{%<titre dans la langue principale%>}#n
-\subtitle[%<sous-titre dans la langue secondaire%>]{%<sous-titre dans la langue principale%>}#n
-\academicfield[%<discipline dans la langue secondaire%>]{%<discipline dans la langue principale%>}#n
-\speciality[%<spécialité dans la langue secondaire%>]{%<spécialité dans la langue principale%>}#n
-\subject[%<sujet dans la langue secondaire%>]{%<sujet dans la langue principale%>}#n
+\title[titre dans la langue secondaire%text]{titre dans la langue principale%text}#n
+\subtitle[sous-titre dans la langue secondaire%text]{sous-titre dans la langue principale%text}#n
+\academicfield[discipline dans la langue secondaire%text]{discipline dans la langue principale%text}#n
+\speciality[spécialité dans la langue secondaire%text]{spécialité dans la langue principale%text}#n
+\subject[sujet dans la langue secondaire%text]{sujet dans la langue principale%text}#n
 #
-\title{%<titre%>}#n
-\subtitle{%<sous-titre%>}#n
-\academicfield{%<discipline%>}#n
-\speciality{%<spécialité%>}#n
-\subject{%<sujet%>}#n
+\title{titre%text}#n
+\subtitle{sous-titre%text}#n
+\academicfield{discipline%text}#n
+\speciality{spécialité%text}#n
+\subject{sujet%text}#n
 \date{%<jour%>}{%<mois%>}{%<année%>}#n
 \submissiondate{%<jour%>}{%<mois%>}{%<année%>}#n
 #
 # Institute and entities
 \pres{%<nom du PRES%>}#n
 \comue{%<nom de la ComUE%>}#n
-\institute{%<nom de l'institut%>}#n
-\coinstitute{%<nom de l'institut de cotutelle%>}#n
+\institute{nom de l'institut%text}#n
+\coinstitute{nom de l'institut de cotutelle%text}#n
 \company{%<nom de l'entreprise%>}#n
-\doctoralschool{%<nom de l'école doctorale%>}#n
-\laboratory{%<nom du laboratoire%>}{adresse du laboratoire%>}#n
+\doctoralschool{nom de l'école doctorale%text}#n
+\laboratory{%<nom du laboratoire%>}{%<adresse du laboratoire%>}#n
 #
 \pres[%<précision(s)%>]{%<nom du PRES%>}#n
 \comue[%<précision(s)%>]{%<nom de la ComUE%>}#n
-\institute[%<précision(s)%>]{%<nom de l'institut%>}#n
-\coinstitute[%<précision(s)%>]{%<nom de l'institut de cotutelle%>}#n
+\institute[%<précision(s)%>]{nom de l'institut%text}#n
+\coinstitute[%<précision(s)%>]{nom de l'institut de cotutelle%text}#n
 \company[%<précision(s)%>]{%<nom de l'entreprise%>}#n
-\doctoralschool[%<précision(s)%>]{%<nom de l'école doctorale%>}#n
+\doctoralschool[%<précision(s)%>]{nom de l'école doctorale%text}#n
 \laboratory[%<précision(s)%>]{%<nom du laboratoire%>}{%<adresse du laboratoire%>}#n
 #
 #keyvals:\pres
@@ -271,19 +271,19 @@ juniorresearcher*
 #
 # Preliminary part
 #
-\disclaimer{%<clause%>}#n
+\disclaimer{clause%text}#n
 \makedisclaimer#n
 \makedisclaimer*#n
-\keywords{%<mots clés dans la langue principale%>}{%<mots clés dans la langue secondaire%>}#n
+\keywords{mots clés dans la langue principale%text}{mots clés dans la langue secondaire%text}#n
 \makekeywords#n
 \makekeywords*#n
 \makelaboratory#n
 \makelaboratory*#n
-\dedication{%<dédicace%>}#n
+\dedication{dédicace%text}#n
 \makededications#n
 \makededications*#n
-\frontepigraph{%<épigraphe%>}{%<auteur%>}
-\frontepigraph[%<langue%>]{%<épigraphe%>}{%<auteur%>}
+\frontepigraph{épigraphe%text}{%<auteur%>}
+\frontepigraph[%<langue%>]{épigraphe%text}{%<auteur%>}
 #keyvals:\frontepigraph
 afrikaans
 bahasa
@@ -331,11 +331,11 @@ welsh
 \makefrontepigraphs#n
 \makefrontepigraphs*#n
 \begin{abstract}#n
-\begin{abstract}[%<intitulé alternatif%>]#n*
+\begin{abstract}[intitulé alternatif%text]#n*
 \end{abstract}#n
 \makeabstract#n
-\newglssymbol{%<label%>}{%<symbole%>}{%<nom%>}{%<description%>}#n
-\newglssymbol[%<classement%>]{%<label%>}{%<symbole%>}{%<nom%>}{%<description%>}#n
+\newglssymbol{%<label%>}{%<symbole%>}{%<nom%>}{description%text}#n
+\newglssymbol[%<classement%>]{%<label%>}{%<symbole%>}{%<nom%>}{description%text}#n
 \tableofcontents#n*
 \tableofcontents[%<précision(s)%>]#n*
 #
@@ -345,6 +345,33 @@ name=
 #endkeyvals
 #
 # Main part
+#
+\chapter{titre%title}#L1
+\chapter*{titre%title}#L1
+\chapter[titre alt. pour TdM et entête%short title]{titre%title}#L1
+\chapter*[titre alt. pour TdM et entête%short title]{titre%title}#L1
+\chapter[titre alt. pour TdM%short title][titre alt. pour entête%short title]{titre%title}#L1
+\chapter*[titre alt. pour TdM%short title][titre alt. pour entête%short title]{titre%title}#L1
+\section{titre%title}#L2
+\section*{titre%title}#L2
+\section[titre alt. pour TdM et entête%short title]{titre%title}#L2
+\section*[titre alt. pour TdM et entête%short title]{titre%title}#L2
+\section[titre alt. pour TdM%short title][titre alt. pour entête%short title]{titre%title}#L2
+\section*[titre alt. pour TdM%short title][titre alt. pour entête%short title]{titre%title}#L2
+\subsection{titre%title}#L3
+\subsection*{titre%title}#L3
+\subsection[titre alt. pour TdM et entête%short title]{titre%title}#L3
+\subsection*[titre alt. pour TdM et entête%short title]{titre%title}#L3
+\subsubsection{titre%title}#L4
+\subsubsection*{titre%title}#L4
+\subsubsection[titre alt. pour TdM et entête%short title]{titre%title}#L4
+\subsubsection*[titre alt. pour TdM et entête%short title]{titre%title}#L4
+\paragraph{titre%title}#L5
+\paragraph*{titre%title}#L5
+\paragraph[titre alt. pour TdM et entête%short title]{titre%title}#L5
+\paragraph*[titre alt. pour TdM et entête%short title]{titre%title}#L5
+\subparagraph{titre%title}#L6
+\subparagraph[titre alt. pour TdM et entête%short title]{titre%title}#L6
 #
 # Appendix part
 #
@@ -361,4 +388,4 @@ name=
 #
 # Customization
 #
-\expression{%<label%>}{%<valeur (en français)%>}{%<valeur (en anglais)%>}#n*
+\expression{%<label%>}{valeur (en français)%text}{valeur (en anglais)%text}#n*
