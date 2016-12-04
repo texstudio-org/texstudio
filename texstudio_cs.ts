@@ -69,7 +69,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio používá vývojové rozvržení z příkladů Qt 5.6.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -1679,22 +1679,22 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="2139"/>
         <source>Default Log Encoding</source>
-        <translation>Výchozí kódování logu</translation>
+        <translation>Výchozí kódování zápisu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2207"/>
         <source>1 minute</source>
-        <translation type="unfinished"/>
+        <translation>1 minuta</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2212"/>
         <source>2 minutes</source>
-        <translation type="unfinished"/>
+        <translation>2 minuty</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2271"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"/>
+        <translation>Sledovat u otevřených souborů vnější změny</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2302"/>
@@ -2181,12 +2181,12 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="configdialog.ui" line="3348"/>
         <source>Url to connect to LanguageTool. </source>
-        <translation>Adresa (URL) pro spojení s nástrojem pro jazyk.</translation>
+        <translation>Adresa (URL) pro spojení s LanguageTool (jazykovým nástrojem).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3355"/>
         <source>Start LanguageTool if not running</source>
-        <translation>Spustit nástroj pro jazyk, pokud neběží</translation>
+        <translation>Spustit LanguageTool (jazykový nástroj), pokud neběží</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3341"/>
@@ -2196,7 +2196,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="configdialog.ui" line="3334"/>
         <source>Path containing the LanguageTool java archive.</source>
-        <translation>Cesta obsahující archiv Java s nástrojem pro jazyk.</translation>
+        <translation>Cesta obsahující archiv Java s LanguageTool (jazykovým nástrojem).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3393"/>
@@ -2206,7 +2206,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="configdialog.ui" line="3369"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
-        <translation>Čárkou oddělený seznam pravidel nástroje pro jazyk, která nebudou zvýrazněna jako chyby.</translation>
+        <translation>Čárkou oddělený seznam pravidel pro LanguageTool (jazykového nástroje), která nebudou zvýrazněna jako chyby.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3494"/>
@@ -2216,7 +2216,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
     <message>
         <location filename="configdialog.ui" line="3518"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation>Spustitelný soubor Java, používaný pro spuštění nástroje pro jazyk, pokud tento neběží.</translation>
+        <translation>Spustitelný soubor Java, používaný pro spuštění LanguageTool (jazykového nástroje), pokud tento neběží.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3400"/>
@@ -2224,7 +2224,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
         <location filename="configdialog.ui" line="3420"/>
         <location filename="configdialog.ui" line="3450"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation>Čárkou oddělený seznam pravidel nástroje pro jazyk, která budou zvýrazněna ve zvláštním formátu.</translation>
+        <translation>Čárkou oddělený seznam pravidel LanguageTool (jazykového nástroje), která budou zvýrazněna ve zvláštním formátu.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3440"/>
@@ -2255,7 +2255,7 @@ můžete jejich použití vynutim jejich zaškrtnutím zde.</translation>
         <location filename="configdialog.ui" line="3525"/>
         <location filename="configdialog.ui" line="3532"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation>Argumenty, které se předávají při startu LanguageTool. Tato volba funguje pouze v případě, že se LanguageTool spouští přímo z TexStudia (tedy například neplatí pro již běžící server).</translation>
+        <translation>Argumenty, které se předávají při spuštění LanguageTool. Tato volba pracuje pouze v případě, že se LanguageTool spouští přímo z TexStudia (tedy například neplatí pro již běžící server).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3535"/>
@@ -2765,7 +2765,7 @@ chcete nastavit?</translation>
     <message>
         <location filename="configdialog.cpp" line="654"/>
         <source>Select the LanguageTool jar</source>
-        <translation>Spustit jar nástroj pro jazyk</translation>
+        <translation>Vybrat jar LanguageTool</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="659"/>
@@ -3332,7 +3332,7 @@ vidět jen nejběžnější nastavení.</translation>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation* (amsmath)</source>
         <oldsource>env equation*</oldsource>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;equation*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
@@ -3378,13 +3378,13 @@ vidět jen nejběžnější nastavení.</translation>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multline (amsmath)</source>
         <oldsource>env multiline (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;multiline*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multline* (amsmath)</source>
         <oldsource>env multiline* (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;multiline*&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
@@ -3394,7 +3394,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>env split (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>Prostředí &quot;split&quot; (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
@@ -3758,7 +3758,7 @@ hcete je odstranit?</translation>
     <message>
         <location filename="editors.cpp" line="365"/>
         <source>Move all to other view</source>
-        <translation type="unfinished"/>
+        <translation>Přesunout vše do jiného pohledu</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="370"/>
@@ -4913,7 +4913,7 @@ Chcete ji přepsat?</translation>
         <location filename="pdfviewer/PDFDocks.cpp" line="893"/>
         <source>Set Interval...</source>
         <oldsource>Set interval</oldsource>
-        <translation type="unfinished"/>
+        <translation>Nastavit období...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="896"/>
@@ -4933,12 +4933,12 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="968"/>
         <source>%1 sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 s</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="970"/>
         <source>%1 min</source>
-        <translation type="unfinished"/>
+        <translation>%1 min</translation>
     </message>
 </context>
 <context>
@@ -5155,7 +5155,7 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="327"/>
         <source>Ctrl+Alt+X</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+X</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="335"/>
@@ -6169,7 +6169,7 @@ Má se dále hledat od začátku?</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="603"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Přepnout &amp;poznámku</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="608"/>
@@ -6288,7 +6288,9 @@ Klepněte na &quot;Nevšímat si&quot; pro přehlížení tohoto upozornění.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+Nepodařilo se zapsat. Chyba (%2): %3.
+Pokud již soubor na disku byl, nebyl změněn touto operací.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1001"/>
@@ -6297,7 +6299,10 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation>Nepodařilo se získat oprávnění pro zápis do souboru
+%1.
+
+Možná je pouze pro čtení nebo je otevřen v jiném programu?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1031"/>
@@ -6879,7 +6884,7 @@ Chcete uchovat datum znovunahráním souboru?
     <message>
         <location filename="additionaltranslations.cpp" line="172"/>
         <source>picture-keyword</source>
-        <translation type="unfinished"/>
+        <translation>Obrázkové klíčové slovo</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="173"/>
@@ -7500,7 +7505,7 @@ jako první znak na řádku, \t = zarážka, \\ = \</translation>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation type="unfinished"/>
+        <translation>Zprava doleva</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
@@ -9486,7 +9491,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="899"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>Přepnout &amp;poznámku</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="900"/>
@@ -10088,7 +10093,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="1122"/>
         <source>Statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Stavový řádek</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1126"/>
@@ -10326,12 +10331,12 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="1390"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"/>
+        <translation>Spojeno s LanguageTool (jazykovým nástrojem) na %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1394"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"/>
+        <translation>Na %1 nenalezen žádný server LanguageTool</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1399"/>
