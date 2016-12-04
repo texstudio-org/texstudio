@@ -98,7 +98,7 @@ private:
 };
 
 #ifdef PHONON
-#include <Phonon/VideoPlayer>
+#include <phonon/VideoPlayer>
 
 class PDFMovie: public Phonon::VideoPlayer
 {
