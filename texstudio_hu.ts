@@ -69,7 +69,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="37"/>
         <source>TeXstudio uses flowlayout from Qt5.6 examples.</source>
-        <translation type="unfinished"/>
+        <translation>A TeXstudio a flowlayout Qt5.6 példákat használja.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
@@ -1687,17 +1687,17 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2207"/>
         <source>1 minute</source>
-        <translation type="unfinished"/>
+        <translation>1 perc</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2212"/>
         <source>2 minutes</source>
-        <translation type="unfinished"/>
+        <translation>2 perc</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2271"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"/>
+        <translation>Nyitott fájlok külső változtatásainak figyelése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2302"/>
@@ -3328,7 +3328,7 @@ options again to only view the most common settings.</source>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation* (amsmath)</source>
         <oldsource>env equation*</oldsource>
-        <translation type="unfinished"/>
+        <translation>env equation* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
@@ -3374,13 +3374,13 @@ options again to only view the most common settings.</source>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multline (amsmath)</source>
         <oldsource>env multiline (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>env multline (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multline* (amsmath)</source>
         <oldsource>env multiline* (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>env multline* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
@@ -3390,7 +3390,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>env split (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env split (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
@@ -3754,7 +3754,7 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <location filename="editors.cpp" line="365"/>
         <source>Move all to other view</source>
-        <translation type="unfinished"/>
+        <translation>Az összes mozgatása másik nézethez</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="370"/>
@@ -4910,7 +4910,7 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocks.cpp" line="893"/>
         <source>Set Interval...</source>
         <oldsource>Set interval</oldsource>
-        <translation type="unfinished"/>
+        <translation>Intervallum beállítása…</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="896"/>
@@ -4930,12 +4930,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="968"/>
         <source>%1 sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 mp</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="970"/>
         <source>%1 min</source>
-        <translation type="unfinished"/>
+        <translation>%1 p</translation>
     </message>
 </context>
 <context>
@@ -5152,7 +5152,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="327"/>
         <source>Ctrl+Alt+X</source>
-        <translation type="unfinished"/>
+        <translation>Ctrl+Alt+X</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.ui" line="335"/>
@@ -6166,7 +6166,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="603"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Megjegyzés bekapcsolása</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="608"/>
@@ -6285,7 +6285,9 @@ Nyomja a &quot;Mellőz&quot; gombot a figyelmeztetés mellőzéséhez.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+Nem írható. Hiba (%2): %3.
+Ha a fájl már létezett a lemezen, akkor nem módosította ez a művelet.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1001"/>
@@ -6294,7 +6296,10 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation>Nem kérhető írási engedély a fájlon
+%1.
+
+Talán írásvédett vagy egy másik program használja?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1031"/>
@@ -6872,7 +6877,7 @@ Szeretné újratölteni a dokumentumot?
     <message>
         <location filename="additionaltranslations.cpp" line="172"/>
         <source>picture-keyword</source>
-        <translation type="unfinished"/>
+        <translation>kép kulcsszó</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="173"/>
@@ -7491,7 +7496,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation type="unfinished"/>
+        <translation>RTL</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
@@ -9475,7 +9480,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="899"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Megjegyzés bekapcsolása</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="900"/>
@@ -10077,7 +10082,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="1122"/>
         <source>Statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Állapotsáv</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1126"/>
@@ -10315,12 +10320,12 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="1390"/>
         <source>Connected to LanguageTool at %1</source>
-        <translation type="unfinished"/>
+        <translation>Kapcsolódva a LanguageToolhoz itt: %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1394"/>
         <source>No LanguageTool server found at %1</source>
-        <translation type="unfinished"/>
+        <translation>Nem található LanguageTool kiszolgáló itt: %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1399"/>
