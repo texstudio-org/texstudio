@@ -225,7 +225,6 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					foreach (QTreeWidgetItem *twi, li) {
 						if (twi and twi->text(2) == value) twi->setText(2, "");
-						else if (twi and twi->text(2) == value) twi->setText(2, "");
 					}
 				} else {
 					return;
