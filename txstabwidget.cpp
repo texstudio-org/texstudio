@@ -40,7 +40,7 @@ void TxsTabWidget::moveTab(int from, int to)
 	if (cur == from) setCurrentIndex(to);
 	else if (from < to && cur >= from && cur < to)
 		setCurrentIndex(cur - 1);
-	else if (to > from && cur >= from && cur < to)
+	else if (to < from && to && cur >= to && cur < from)
 		setCurrentIndex(cur + 1);
 }
 
