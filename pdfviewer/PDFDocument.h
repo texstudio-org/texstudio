@@ -145,7 +145,7 @@ public:
 	void resetMagnifier();
 	Q_INVOKABLE int normalizedPageIndex(int pageIndex);
 	Q_INVOKABLE void goToPageDirect(int pageIndex, bool sync);
-	Q_INVOKABLE void setHighlightPath(const int pageIndex, const QPainterPath &path);
+    Q_INVOKABLE void setHighlightPath(const int pageIndex, const QPainterPath &path, const bool dontRemove=false);
 	Q_INVOKABLE int getHighlightPage() const;
 	Q_INVOKABLE void goToDestination(const QString &destName);
 	Q_INVOKABLE void goToPageRelativePosition(int page, float xinpage, float yinpage);
@@ -457,6 +457,7 @@ private slots:
 	void jumpToPage();
 
 	void search(bool backward, bool incremental);
+    void clearHightlight(bool visible);
 public:
 	void search(const QString &searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
 	void search();

@@ -637,7 +637,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				painter.setRenderHint(QPainter::Antialiasing);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
-				painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+                painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 				painter.drawPath(highlightPath);
 			}
 			if (currentTool == kPresentation)
@@ -1433,7 +1433,7 @@ void PDFWidget::setResolution(int res)
 	resetMagnifier();
 }
 
-void PDFWidget::setHighlightPath(const int page, const QPainterPath &path)
+void PDFWidget::setHighlightPath(const int page, const QPainterPath &path, const bool dontRemove)
 {
 	highlightRemover.stop();
 	highlightPath = path;
@@ -1444,7 +1444,7 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath &path)
 	PDFScrollArea *scrollArea = getScrollArea();
 	if (scrollArea)
 		scrollArea->ensureVisiblePageAbsolutePos(page, highlightPath.boundingRect().center());
-	if (globalConfig->highlightDuration > 0)
+    if (globalConfig->highlightDuration > 0 && !dontRemove)
 		highlightRemover.start(globalConfig->highlightDuration);
 }
 
@@ -2699,6 +2699,7 @@ void PDFDocument::init(bool embedded)
 	if (embedded)
 		dw->hide();
 	connect(dwSearch, SIGNAL(search(bool, bool)),  SLOT(search(bool, bool)));
+    connect(dwSearch, SIGNAL(visibilityChanged(bool)),  SLOT(clearHightlight(bool)));
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 
@@ -3186,6 +3187,10 @@ void PDFDocument::updateToolBarForOrientation(Qt::Orientation orientation)
 	}
 }
 
+void PDFDocument::clearHightlight(bool ){
+    pdfWidget->setHighlightPath(-1, QPainterPath());
+}
+
 void PDFDocument::search(bool backwards, bool incremental)
 {
 	if (!dwSearch) return;
@@ -3283,7 +3288,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
-				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p);
+                pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p,true);
 				//scroll horizontally
 				//scrollArea->ensureVisiblePageAbsolutePos(lastSearchResult.pageIdx, lastSearchResult.selRect.topLeft());
 				pdfWidget->update();
