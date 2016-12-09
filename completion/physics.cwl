@@ -218,7 +218,6 @@
 \pderivative{expression}#*m
 \pdv*{f}{x}#m
 \pdv[power]{function}{expression}#m
-\pdv{expression1}(expression2)#m
 \pdv{expression}#m
 \pdv{function}{expression}#m
 \pdv{f}{x}{y}#m
