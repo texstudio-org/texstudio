@@ -635,6 +635,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			painter.drawPixmap(event->rect(), image, QRect(source.left() * overScale, source.top() * overScale, source.width() * overScale, source.height() * overScale));
 			if (pageNr == highlightPage && !highlightPath.isEmpty() ) {
 				painter.setRenderHint(QPainter::Antialiasing);
+                painter.setCompositionMode(QPainter::CompositionMode_Multiply);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
                 painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
@@ -699,6 +700,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 						//QPainterPath path=highlightPath;
 						//path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
+                        painter.setCompositionMode(QPainter::CompositionMode_Multiply);
 						painter.drawPath(highlightPath);
 						painter.restore();
 					}
