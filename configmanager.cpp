@@ -519,7 +519,14 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/TexDoc Help Internal", &editorConfig->texdocHelpInInternalViewer, true , &pseudoDialog->checkBoxTexDocInternal);
 	registerOption("Editor/MonitorFilesForExternalChanges", &editorConfig->monitorFilesForExternalChanges, true, &pseudoDialog->checkBoxMonitorFilesForExternalChanges);
 	registerOption("Editor/SilentReload", &editorConfig->silentReload, false, &pseudoDialog->checkBoxSilentReload);
+#ifdef Q_OS_WIN
+	// QSaveFile does not work with dropbox on windows: https://sourceforge.net/p/texstudio/bugs/1933/, https://bugreports.qt.io/browse/QTBUG-57299
+	// We disable usage of QSaveFile and revert to our own file saving mechanism until the problem gets fixed.
+	// Note: When deleting this, also delete ui.checkBoxUseQSaveWrite->setVisible(false);
+	editorConfig->useQSaveFile = false;
+#else
 	registerOption("Editor/UseQSaveFile", &editorConfig->useQSaveFile, true, &pseudoDialog->checkBoxUseQSaveWrite);
+#endif
 
 	registerOption("Editor/Replace Quotes", &replaceQuotes, 0 , &pseudoDialog->comboBoxReplaceQuotes);
 

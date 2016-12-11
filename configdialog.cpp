@@ -372,6 +372,10 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxSwitchLanguagesMath->setDisabled(true);
 #endif
 
+#ifdef Q_OS_WIN
+	ui.checkBoxUseQSaveWrite->setVisible(false);
+#endif
+
 	ui.contentsWidget->setIconSize(QSize(32, 32));
 	//ui.contentsWidget->setViewMode(QListView::ListMode);
 	//ui.contentsWidget->setMovement(QListView::Static);
