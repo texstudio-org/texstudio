@@ -136,6 +136,9 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     bCount->setIcon(getRealIconCached("count"));
     flowLayout->addWidget(bCount);
 
+	QLabel *spacer = new QLabel("  ");
+	flowLayout->addWidget(spacer);
+
     //cbCase = new QCheckBox();
     cbCase = new QToolButton(this);
     cbCase->setCheckable(true);
@@ -257,6 +260,9 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bReplaceAll->setMaximumSize(buttonSize);
     bReplaceAll->setIcon(getRealIconCached("replaceall"));
     flowLayout2->addWidget(bReplaceAll);
+
+	QLabel *spacer2 = new QLabel("  ");
+	flowLayout2->addWidget(spacer2);
 
     cbPrompt = new QToolButton(this);
     cbPrompt->setCheckable(true);
