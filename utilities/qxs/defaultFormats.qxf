@@ -120,7 +120,6 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <background>#ffff7f</background>
-        <foreground>#c00000</foreground>
     </format>
     <format id="braceMismatch" >
         <bold>true</bold>
