@@ -1,4 +1,4 @@
-TeXstudio 2.11.3
+TeXstudio 2.12.0
 ----------------
 - improved user interface: optimized layout, some new icons, some changes of color
 - warn if file-saving fails
@@ -18,9 +18,11 @@ TeXstudio 2.11.3
 - improved highlighting for pweave and sweave
 - improved tooltips on structure entries
 - improved text completion: support compound words, apostrophe, subscript in braces, words with underscores
-- option to deactivate all reactions to external file changes
-- option to disable safe writing of files (using QSaveFile)
+- don't clear highlights of search in pdf after timeout
+- revert to pre 2.11.0 save method on windows because the new QSaveFile has problems with Dropbox folders
+- option to disable safe writing of files (using QSaveFile) - non-Windows only
 - option to disable showing logfile/error list in case of compile errors
+- option to deactivate all reactions to external file changes
 - portable version does now store all settings in a subfolder "config"
 - improved automatic handling of hg version information (relevant when building from source tar)
 - improved handling of cwl dublets
@@ -31,7 +33,8 @@ TeXstudio 2.11.3
 - remove old toolbox style of side panel
 - fix crash (newenv without any arguments)
 - fix freeze when parsing incorrect \texorpdfstring with incorrect arguments (bug 1948)
-- fix label detection in glossaries.cwl
+- fix label detection in glossaries.cwl (bug 1963)
+- fix: automatically run bibliography if there is no bbl file
 - fix: "Close last open environment" works now also for environments opened on the same line (bug 1957)
 - fix: hg version comparision assumed 'larger' if the version could not be determined
 - fix: do not lose focus to editor for "Find in PDF"
@@ -42,6 +45,7 @@ TeXstudio 2.11.3
 - fix math hover preview in subfile
 - fix "Tab or Indent Selection"
 - fix detection of MikTeX 64bit
+- fix build with phonon
 - improved some cwl files
 
 
