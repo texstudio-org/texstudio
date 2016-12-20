@@ -276,6 +276,20 @@ CustomWidgetList::CustomWidgetList(QWidget *parent):
 {
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customContextMenuRequested(QPoint)));
+
+	QHBoxLayout *hlayout = new QHBoxLayout(this);
+	hlayout->setSpacing(0);
+	hlayout->setMargin(0);
+
+	toolbar = new QToolBar("LogToolBar", this);
+	toolbar->setFloatable(false);
+	toolbar->setOrientation(Qt::Vertical);
+	toolbar->setMovable(false);
+	hlayout->addWidget(toolbar);
+
+	stack = new QStackedWidget(this);
+	stack->setFrameShape(QFrame::NoFrame);
+	hlayout->addWidget(stack);
 }
 
 void CustomWidgetList::addWidget(QWidget *widget, const QString &id, const QString &text, const QString &iconName)
@@ -356,25 +370,13 @@ void CustomWidgetList::customContextMenuRequested(const QPoint &localPosition)
 
 void CustomWidgetList::showWidgets()
 {
-	// TODO: is this still needed when there is no need to switch between old and new style
-	if (stack) {
-		for (int i = 0; i < widgets.count(); i++) {
-			stack->removeWidget(widgets[i]);
-			widgets[i]->setParent(this);//otherwise it will be deleted
-		}
-		delete stack;
-	}
-	if (toolbar) delete toolbar;
-
-	toolbar = new QToolBar("LogToolBar", this);
-	toolbar->setFloatable(false);
-	toolbar->setOrientation(Qt::Vertical);
-	toolbar->setMovable(false);
-
 	setToolbarIconSize(ConfigManagerInterface::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
 
-	stack = new QStackedWidget(this);
-	stack->setFrameShape(QFrame::NoFrame);
+	// TODO: is this still needed when there is no need to switch between old and new style
+	for (int i = 0; i < widgets.count(); i++) {
+		stack->removeWidget(widgets[i]);
+		widgets[i]->setParent(this); //otherwise it will be deleted
+	}
 
 	for (int i = 0; i < widgets.size(); i++)
 		if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
@@ -386,12 +388,6 @@ void CustomWidgetList::showWidgets()
 			connect(act, SIGNAL(triggered()), this, SLOT(showPageFromAction()));
 			widgets[i]->setProperty("associatedAction", QVariant::fromValue<QAction *>(act));
 		} else widgets[i]->hide();
-
-	QHBoxLayout *hlayout = new QHBoxLayout(this);
-	hlayout->setSpacing(0);
-	hlayout->setMargin(0);
-	hlayout->addWidget(toolbar);
-	hlayout->addWidget(stack);
 
 	if (!widgets.empty()) //name after active (first) widget
 		emit titleChanged(widgets.first()->property("Name").toString());
