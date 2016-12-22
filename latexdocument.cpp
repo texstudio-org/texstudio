@@ -749,9 +749,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 								else name.append(QString("{%<arg%1%>}").arg(j));
 						} else {
 							QStringList args = optionStr.split('#'); //#1;#2#3:#4 => ["",1;,2,3:,4]
-							args.removeAt(0);
 							bool hadSeparator = true;
-							for (int i = 0; i < args.length(); i++) {
+                            for (int i = 1; i < args.length(); i++) {
 								if (args[i].length() == 0) continue; //invalid
 								bool hasSeparator = (args[i].length() != 1); //only single digit variables allowed. last arg also needs a sep
 								if (!hadSeparator || !hasSeparator)
@@ -760,7 +759,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 									args[i] = "%<arg" + args[i][0] + "%>" + args[i].mid(1); //no need to use {} for arguments that are separated anyways
 								hadSeparator  = hasSeparator;
 							}
-							name.append(" ");
 							name.append(args.join(""));
 						}
 					}
