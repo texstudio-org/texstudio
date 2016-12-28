@@ -91,7 +91,9 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		{
 			WordUnderCursor,
 			WordOrCommandUnderCursor,
-			LineUnderCursor
+			LineUnderCursor,
+			ParenthesesInner,
+			ParenthesesOuter
 		};
 		
 		explicit QDocumentCursor(QDocument *doc);
