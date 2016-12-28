@@ -5888,6 +5888,30 @@ void QDocumentCursorHandle::select(QDocumentCursor::SelectionType t)
 
 		movePosition(1, QDocumentCursor::StartOfWordOrCommand, QDocumentCursor::MoveAnchor);
 		movePosition(1, QDocumentCursor::EndOfWordOrCommand, QDocumentCursor::KeepAnchor);
+
+	} else if ( t == QDocumentCursor::ParenthesesInner || t == QDocumentCursor::ParenthesesOuter ) {
+
+		bool maximal = (t == QDocumentCursor::ParenthesesOuter);
+		QDocumentCursor orig, to;
+		getMatchingPair(orig, to, maximal);
+		if (!orig.isValid() || !to.isValid()) {
+			if (movePosition(1, QDocumentCursor::StartOfParenthesis, QDocumentCursor::MoveAnchor)) {
+				getMatchingPair(orig, to, false);
+			}
+		}
+
+		if (orig.isValid() && to.isValid()) {
+			QDocumentCursor::sort(orig, to);
+			if (maximal) {
+				if (orig.hasSelection()) orig = orig.selectionStart();
+				if (to.hasSelection()) to = to.selectionEnd();
+			} else {
+				if (orig.hasSelection()) orig = orig.selectionEnd();
+				if (to.hasSelection()) to = to.selectionStart();
+			}
+			select(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber());
+		}
+
 	}
 }
 
