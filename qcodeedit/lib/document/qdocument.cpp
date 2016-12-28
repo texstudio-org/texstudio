@@ -5377,6 +5377,45 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 		}
 		
+	case QDocumentCursor::StartOfParenthesis :
+	{
+		QStringList possibleOpeningParentheses = QStringList() << "{" << "(" << "[";
+		QStringList possibleClosingParentheses = QStringList() << "}" << ")" << "]";
+
+		QString text = m_doc->line(line).text();
+		QStringList closingParenthesesStack;
+		bool found = false;
+		for (int i = offset; i >= 0; i--) {
+			foreach(const QString &closing, possibleClosingParentheses) {
+				if (text.midRef(i).startsWith(closing) && (i+closing.length() < offset)) {
+					closingParenthesesStack.prepend(closing);
+					break;
+				}
+			}
+			foreach(const QString &opening, possibleOpeningParentheses) {
+				if (text.midRef(i).startsWith(opening)) {
+					if (closingParenthesesStack.isEmpty()) {
+						offset = i;
+						found = true;
+						break;
+					} else {
+						QString matchingClosingForOpening = possibleClosingParentheses.at(possibleOpeningParentheses.indexOf(opening));
+						if (closingParenthesesStack.first() == matchingClosingForOpening) {
+							closingParenthesesStack.removeFirst();
+						} else {
+							return false;  // unmatched inner parentheses
+						}
+					}
+				}
+			}
+			if (found) break;
+		}
+		if (!found) return false;  // not within parentheses
+
+		refreshColumnMemory();
+
+		break;
+	}
 		
 		default:
 			qWarning("Unhandled move operation...");

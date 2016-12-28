@@ -81,6 +81,7 @@ public:
 
 	virtual int parenthesisWeight(int id) const;
 	virtual const QStringList& openingParenthesis() const;
+	virtual const QStringList closingParentheses() const;
 	//virtual const QHash<int, QString> & closingParenthesis() const;
 	virtual QString getClosingParenthesis(const QString& opening) const;
 	virtual bool possibleEndingOfOpeningParenthesis(const QString& text) const;
