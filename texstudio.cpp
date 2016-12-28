@@ -9323,7 +9323,12 @@ void Texstudio::selectBracket()
 	REQUIRE(sender() && currentEditor()->document());
 	if (!currentEditor()->document()->languageDefinition()) return;
 	QDocumentCursor orig, to;
-	currentEditor()->cursor().getMatchingPair(orig, to, !sender()->property("minimal").toBool());
+	QDocumentCursor cur = currentEditor()->cursor();
+	cur.getMatchingPair(orig, to, !sender()->property("minimal").toBool());
+	if (!orig.isValid() && !to.isValid()) {
+		if (cur.movePosition(1, QDocumentCursor::StartOfParenthesis))
+			cur.getMatchingPair(orig, to, !sender()->property("minimal").toBool());
+	}
 	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 
 	if (sender()->property("line").toBool()) {
