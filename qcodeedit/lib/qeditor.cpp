@@ -321,8 +321,10 @@ QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0), m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-	mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_wrapAfterNumChars(0),m_scrollAnimation(0)
+	m_doc(0), m_definition(0),
+	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::LineUnderCursor),
+	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -339,8 +341,10 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
+	m_doc(0), m_definition(0),
+	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::ParenthesesOuter),
+	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -3653,7 +3657,7 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 			m_multiClickCursor = m_cursor;
 			m_multiClickCursor.clearSelection();  // just store the click position
 			m_multiClickCursor.setProperty("isTripleClick", true);
-			m_cursor.select(QDocumentCursor::LineUnderCursor);
+			m_cursor.select(m_tripleClickSelectionType);
 			m_click.stop();
 		} else {
 			QDocumentCursor cursor = cursorForPosition(p);
