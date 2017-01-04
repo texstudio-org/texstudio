@@ -735,11 +735,13 @@ void Texstudio::setupMenus()
 	//TODO: correct somewhen
 
 	configManager.menuParent = this;
+    if(configManager.menuParents.isEmpty())
+        configManager.menuParents.append(this);
 	configManager.menuParentsBar = menuBar();
 
 	//file
 	QMenu *menu = newManagedMenu("main/file", tr("&File"));
-	getManagedMenu("main/file");
+    //getManagedMenu("main/file");
 	newManagedAction(menu, "new", tr("&New"), SLOT(fileNew()), QKeySequence::New, "document-new");
 	newManagedAction(menu, "newfromtemplate", tr("New From &Template..."), SLOT(fileNewFromTemplate()));
 	newManagedAction(menu, "open", tr("&Open..."), SLOT(fileOpen()), QKeySequence::Open, "document-open");
@@ -6435,6 +6437,16 @@ void Texstudio::generalOptions()
 	QString additionalBibPaths = configManager.additionalBibPaths;
 	QStringList loadFiles = configManager.completerConfig->getLoadedFiles();
 
+    // init pdf shortcuts if pdfviewer is not open
+#ifndef NO_POPPLER_PREVIEW
+    PDFDocument *pdfviewerWindow=NULL;
+    if(PDFDocument::documentList().isEmpty()){
+        pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, false);
+        pdfviewerWindow->hide();
+    }
+#endif
+
+
 #if QT_VERSION<0x050000
 	if (configManager.possibleMenuSlots.isEmpty()) {
 		for (int i = 0; i < staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append(staticMetaObject.method(i).signature());
@@ -6582,6 +6594,10 @@ void Texstudio::generalOptions()
 	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
 		viewer->reloadSettings();
 	}
+    if(pdfviewerWindow){
+        pdfviewerWindow->close();
+        delete pdfviewerWindow;
+    }
 #endif
 }
 

@@ -1304,10 +1304,25 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 	//menu shortcuts
 	QTreeWidgetItem *menuShortcuts = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << QString(tr("Menus")));
-	foreach (QMenu *menu, managedMenus)
-		managedMenuToTreeWidget(menuShortcuts, menu);
+    foreach (QMenu *menu, managedMenus){
+        if(menu->objectName().startsWith("main"))
+            managedMenuToTreeWidget(menuShortcuts, menu);
+    }
 	confDlg->ui.shortcutTree->addTopLevelItem(menuShortcuts);
 	menuShortcuts->setExpanded(true);
+
+    QTreeWidgetItem *menuShortcutsPDF = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << QString(tr("Menus PDF-Viewer")));
+    QSet<QString> usedMenus;
+    foreach (QMenu *menu, managedMenus){
+        if(usedMenus.contains(menu->objectName()))
+            continue; //avoid dublets
+        if(menu->objectName().startsWith("pdf")){
+            usedMenus.insert(menu->objectName());
+            managedMenuToTreeWidget(menuShortcutsPDF, menu);
+        }
+    }
+    confDlg->ui.shortcutTree->addTopLevelItem(menuShortcutsPDF);
+    menuShortcutsPDF->setExpanded(true);
 
 	QTreeWidgetItem *editorItem = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << ConfigDialog::tr("Editor"));
 	QTreeWidgetItem *editorKeys = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Basic Key Mapping"));
@@ -1671,6 +1686,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		specialShortcuts.clear();
 #endif
 		treeWidgetToManagedMenuTo(menuShortcuts);
+        treeWidgetToManagedMenuTo(menuShortcutsPDF);
 		treeWidgetToManagedLatexMenuTo();
 
 		// custom toolbar
@@ -1897,6 +1913,29 @@ QMenu *ConfigManager::newManagedMenu(const QString &id, const QString &text)
 	return menu;
 }
 
+QMenu *ConfigManager::newManagedMenu(QWidget *menuParent,QMenuBar *menuParentsBar,const QString &id, const QString &text)
+{
+    //if (!menuParentsBar) qFatal("No menu parent bar!");
+    if (!menuParent) qFatal("No menu parent!");
+    //check if an old menu with this id exists and update it (for retranslation)
+    if(!menuParents.contains(menuParent) && menuParentsBar)
+        menuParents.append(menuParent);
+    QMenu *old = menuParent->findChild<QMenu *>(id);
+    if (old) {
+        old->setTitle(text);
+        return old;
+    }
+    //create new
+    QMenu *menu = new QMenu(qobject_cast<QWidget *>(menuParent));
+    if(menuParentsBar){
+        menuParentsBar->addMenu(menu);
+    }
+    menu->setTitle(text);
+    menu->setObjectName(id);
+    managedMenus.append(menu);
+    return menu;
+}
+
 QMenu *ConfigManager::newManagedMenu(QMenu *menu, const QString &id, const QString &text)
 {
 	if (!menu) return newManagedMenu(id, text);
@@ -1953,6 +1992,52 @@ QAction *ConfigManager::newManagedAction(QWidget *menu, const QString &id, const
 	return act;
 }
 
+QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const QString &id, const QString &text, QObject *obj,const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile)
+{
+    if (!obj) qFatal("No menu parent!");
+    REQUIRE_RET(menu, 0);
+    QString menuId = menu->objectName();
+    QString completeId = menu->objectName() + "/" + id;
+
+    QAction *old = menu->findChild<QAction *>(completeId);
+    if (old) {
+        old->setText(text);
+        if (!iconFile.isEmpty()) old->setIcon(getRealIcon(iconFile));
+        if (watchedMenus.contains(menuId))
+            emit watchedMenuChanged(menuId);
+        //don't set shortcut and slot!
+        return old;
+    }
+
+    QAction *act;
+    if (iconFile.isEmpty()) act = new QAction(text, rootMenu);
+    else act = new QAction(getRealIcon(iconFile), text, rootMenu);
+
+    act->setObjectName(completeId);
+    act->setShortcuts(shortCuts);
+#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+    // workaround for osx not being able to use alt+key/esc as shortcut
+    for (int i = 0; i < shortCuts.size(); i++)
+        specialShortcuts.insert(shortCuts[i], act);
+#endif
+    if (slotName) {
+        if(QString(slotName).contains("(bool)")){
+            act->setCheckable(true);
+            connect(act, SIGNAL(triggered(bool)), obj, slotName);
+        }else{
+            connect(act, SIGNAL(triggered()), obj, slotName);
+        }
+        act->setProperty("primarySlot", QString::fromLocal8Bit(slotName));
+
+    }
+    menu->addAction(act);
+    for (int i = 0; i < shortCuts.size(); i++)
+        managedMenuShortcuts.insert(act->objectName() + QString::number(i), shortCuts[i]);
+    if (watchedMenus.contains(menuId))
+        emit watchedMenuChanged(menuId);
+    return act;
+}
+
 //creates a new action or reuses an existing one (an existing one that is currently not in any menu, but has been in the given menu)
 QAction *ConfigManager::newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts, const QString &iconFile)
 {
@@ -1985,9 +2070,32 @@ QAction *ConfigManager::newManagedAction(QWidget *menu, const QString &id, QActi
 QAction *ConfigManager::getManagedAction(const QString &id)
 {
 	QAction *act = 0;
-	if (menuParent) act = menuParent->findChild<QAction *>(id);
+    if(menuParents.count()>0){
+        for(int i=0;i<menuParents.count();i++){
+            QObject *obj=menuParents.at(i);
+            act = obj->findChild<QAction *>(id);
+            if(act)
+                break;
+        }
+    }
 	if (act == 0) qWarning("Can't find internal action %s", id.toLatin1().data());
 	return act;
+}
+
+QList<QAction *>ConfigManager::getManagedActions(const QString &id)
+{
+    QList<QAction *>actions;
+    QAction *act = 0;
+    if(menuParents.count()>0){
+        for(int i=0;i<menuParents.count();i++){
+            QObject *obj=menuParents.at(i);
+            act = obj->findChild<QAction *>(id);
+            if(act)
+                actions.append(act);
+        }
+    }
+    if (actions.isEmpty()) qWarning("Can't find internal action %s", id.toLatin1().data());
+    return actions;
 }
 
 QList<QAction *> ConfigManager::getManagedActions(const QStringList &ids, const QString &commonPrefix)
@@ -2223,18 +2331,22 @@ void ConfigManager::modifyMenuContent(QStringList &ids, const QString &id)
 
 }
 
-void ConfigManager::modifyManagedShortcuts()
+void ConfigManager::modifyManagedShortcuts(QString startsWith)
 {
 	//modify shortcuts
 	for (int i = 0; i < managedMenuNewShortcuts.size(); i++) {
 		QString id = managedMenuNewShortcuts[i].first;
+        if(!startsWith.isEmpty() && !id.startsWith(startsWith))
+            continue;
 		int num = -1;
 		if (managedMenuNewShortcuts[i].first.endsWith("~0")) num = 0;
 		else if (managedMenuNewShortcuts[i].first.endsWith("~1")) num = 1;
 		else { } //backward compatibility
 		if (num != -1) id.chop(2);
-		QAction *act = getManagedAction(id);
-		if (act) setManagedShortCut(act, num, QKeySequence(managedMenuNewShortcuts[i].second));
+        QList<QAction *>actions=getManagedActions(id);
+        foreach(QAction *act,actions){
+            if (act) setManagedShortCut(act, num, QKeySequence(managedMenuNewShortcuts[i].second));
+        }
 	}
 }
 

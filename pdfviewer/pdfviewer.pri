@@ -27,7 +27,6 @@ SOURCES += \
     pdfviewer/pdfannotation.cpp
 
 FORMS += \
-    pdfviewer/PDFDocument.ui \
     pdfviewer/pdfannotationdlg.ui
 
 

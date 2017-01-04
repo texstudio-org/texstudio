@@ -2239,6 +2239,13 @@ PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
 PDFDocument::~PDFDocument()
 {
 	globalConfig->windowMaximized = isMaximized();
+
+    ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+    configManager->menuParents.removeAll(menuroot);
+    foreach (QMenu *menu, menus) {
+        configManager->managedMenus.removeAll(menu);
+    }
+
 	docList.removeAll(this);
 	emit documentClosed();
 	if (scanner != NULL)
@@ -2247,100 +2254,156 @@ PDFDocument::~PDFDocument()
 		delete renderManager;
 }
 
-void PDFDocument::setupMenus()
+void PDFDocument::setupToolBar(){
+    toolBar = new QToolBar(this);
+    toolBar->setObjectName(QStringLiteral("toolBar"));
+    toolBar->setIconSize(QSize(24, 24));
+    addToolBar(Qt::TopToolBarArea, toolBar);
+
+    toolBar->addAction(actionTypeset);
+    toolBar->addSeparator();
+    toolBar->addAction(actionExternalViewer);
+    toolBar->addSeparator();
+    toolBar->addAction(actionMagnify);
+    toolBar->addAction(actionScroll);
+    toolBar->addSeparator();
+    toolBar->addAction(actionBack);
+    toolBar->addAction(actionForward);
+    toolBar->addSeparator();
+    toolBar->addAction(actionFirst_Page);
+    toolBar->addAction(actionPrevious_Page);
+    toolBar->addAction(actionNext_Page);
+    toolBar->addAction(actionLast_Page);
+    toolBar->addSeparator();
+    toolBar->addAction(actionActual_Size);
+    toolBar->addAction(actionFit_to_Width);
+    toolBar->addAction(actionFit_to_Text_Width);
+    toolBar->addAction(actionFit_to_Window);
+    toolBar->addSeparator();
+    toolBar->addAction(actionEnlargeViewer);
+    toolBar->addAction(actionShrinkViewer);
+    toolBar->addAction(actionToggleEmbedded);
+    toolBar->addAction(actionClose);
+
+    statusbar = new QStatusBar(this);
+    statusbar->setObjectName(QStringLiteral("statusbar"));
+    setStatusBar(statusbar);
+}
+
+void PDFDocument::setupMenus(bool embedded)
 {
+    ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+    menuroot=new QMenu(this);
 
 	menubar = new QMenuBar(this);
 	menubar->setObjectName(QString::fromUtf8("menubar"));
 	menubar->setGeometry(QRect(0, 0, 1197, 21));
-	menuHelp = new QMenu(menubar);
-	menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
-	menuFile = new QMenu(menubar);
-	menuFile->setObjectName(QString::fromUtf8("menuFile"));
-	menuEdit = new QMenu(menubar);
-	menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
-	menuView = new QMenu(menubar);
-	menuView->setObjectName(QString::fromUtf8("menuView"));
-	menuGrid = new QMenu(menuView);
-	menuGrid->setObjectName(QString::fromUtf8("menuGrid"));
-	menuWindow = new QMenu(menubar);
-	menuWindow->setObjectName(QString::fromUtf8("menuWindow"));
 
-	menuEdit_2 = new QMenu(menubar);
-	menuEdit_2->setObjectName(QString::fromUtf8("menuEdit_2"));
-	setMenuBar(menubar);
 
-	menubar->addAction(menuFile->menuAction());
-	menubar->addAction(menuEdit_2->menuAction());
-	menubar->addAction(menuView->menuAction());
-	menubar->addAction(menuWindow->menuAction());
-	menubar->addAction(menuEdit->menuAction());
-	menubar->addAction(menuHelp->menuAction());
-	menuHelp->addAction(actionUserManual);
+
+    menuFile=configManager->newManagedMenu(menuroot,menubar,"pdf/file",QApplication::translate("PDFDocument", "&File"));
+    menuEdit_2=configManager->newManagedMenu(menuroot,menubar,"pdf/edit",QApplication::translate("PDFDocument", "&Edit"));
+    menuView=configManager->newManagedMenu(menuroot,menubar,"pdf/view",QApplication::translate("PDFDocument", "&View"));
+    menuGrid=configManager->newManagedMenu(menuView,NULL,"pdf/view/grid",QApplication::translate("PDFDocument", "Grid"));
+    menuWindow=configManager->newManagedMenu(menuroot,menubar,"pdf/window",QApplication::translate("PDFDocument", "&Window"));
+    menuEdit=configManager->newManagedMenu(menuroot,menubar,"pdf/config",QApplication::translate("PDFDocument", "&Configure"));
+    menuHelp=configManager->newManagedMenu(menuroot,menubar,"pdf/help",QApplication::translate("PDFDocument", "&Help"));
+    menus<<menuFile<<menuEdit<<menuEdit_2<<menuGrid<<menuHelp<<menuWindow<<menuView; // housekeeping for later removal
+
+    if(!embedded)
+        setMenuBar(menubar);
+
+    actionUserManual=configManager->newManagedAction(menuroot,menuHelp, "help", tr("User &Manual..."), this,SIGNAL(triggeredManual()), QList<QKeySequence>());
 	menuHelp->addSeparator();
-	menuHelp->addAction(actionAbout_TW);
-	menuFile->addAction(actionFileOpen);
-	menuFile->addAction(actionSplitMerge);
-	//menuFile->addAction(action_Print); //disable incomplete print support
-	menuFile->addAction(actionClose);
+
+    configManager->newManagedAction(menuroot,menuHelp, "about", tr("About"), this,SIGNAL(triggeredAbout()), QList<QKeySequence>() << Qt::CTRL + Qt::SHIFT + Qt::ALT + Qt::Key_A);
+    configManager->newManagedAction(menuroot,menuFile, "open", tr("&Open..."), this,SLOT(fileOpen()), QList<QKeySequence>(),"document-open" );
+    configManager->newManagedAction(menuroot,menuFile, "split", tr("Split && Merge..."), this,SLOT(splitMergeTool()), QList<QKeySequence>() );
+    actionClose=configManager->newManagedAction(menuroot,menuFile, "close", tr("&Close"), this,SLOT(close()), QList<QKeySequence>()<< Qt::CTRL + Qt::Key_W ,"close");
 	menuFile->addSeparator();
-	menuFile->addAction(actionQuit_TeXworks);
-	menuEdit->addAction(actionPreferences);
+    configManager->newManagedAction(menuroot,menuFile, "quit", tr("&Quit TeXstudio"), this,SIGNAL(triggeredQuit()), QList<QKeySequence>());
+    actionPreferences=configManager->newManagedAction(menuroot,menuEdit, "preferences", tr("&Configure TeXstudio"), this, SIGNAL(triggeredConfigure()), QList<QKeySequence>());
 	menuEdit->addSeparator();
-	menuEdit->addAction(actionScrolling_follows_cursor);
-	menuEdit->addAction(actionCursor_follows_scrolling);
-	menuEdit->addAction(actionSynchronize_multiple_views);
+    actionScrolling_follows_cursor=configManager->newManagedAction(menuroot,menuEdit, "followCursor", tr("Scrolling follows cursor"), this, "", QList<QKeySequence>());
+    actionScrolling_follows_cursor->setCheckable(true);
+    actionCursor_follows_scrolling=configManager->newManagedAction(menuroot,menuEdit, "followScroll", tr("Cursor follows scrolling"), this, "", QList<QKeySequence>());
+    actionCursor_follows_scrolling->setCheckable(true);
+    actionSynchronize_multiple_views=configManager->newManagedAction(menuroot,menuEdit, "syncViews", tr("Synchronize multiple views"), this, "", QList<QKeySequence>());
+    actionSynchronize_multiple_views->setCheckable(true);
 	menuEdit->addSeparator();
-	menuEdit->addAction(actionInvertColors);
-	menuEdit->addAction(actionGrayscale);
-	menuView->addAction(actionFirst_Page);
-	menuView->addAction(actionBack);
-	menuView->addAction(actionPrevious_Page);
-	menuView->addAction(actionNext_Page);
-	menuView->addAction(actionForward);
-	menuView->addAction(actionLast_Page);
+    actionInvertColors=configManager->newManagedAction(menuroot,menuEdit, "invertColors", tr("Invert Colors"), pdfWidget, SLOT(update()), QList<QKeySequence>());
+    actionInvertColors->setCheckable(true);
+    actionGrayscale=configManager->newManagedAction(menuroot,menuEdit, "grayscale", tr("Grayscale"), pdfWidget, SLOT(update()), QList<QKeySequence>());
+    actionGrayscale->setCheckable(true);
+
+    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>(),"magnifier-button");
+    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>(),"hand");
+    menuView->addSeparator();
+    actionFirst_Page=configManager->newManagedAction(menuroot,menuView, "firstPage", tr("&First Page"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>()<<Qt::Key_Home,"go-first");
+    actionBack=configManager->newManagedAction(menuroot,menuView, "back", tr("Back"), pdfWidget, SLOT(goBack()), QList<QKeySequence>()<< Qt::AltModifier + Qt::Key_L,"back");
+    actionPrevious_Page=configManager->newManagedAction(menuroot,menuView, "previous", tr("&Previous Page"), pdfWidget, SLOT(goPrev()), QList<QKeySequence>(),"go-previous");
+    actionNext_Page=configManager->newManagedAction(menuroot,menuView, "next", tr("&Next Page"), pdfWidget, SLOT(goNext()), QList<QKeySequence>(),"go-next");
+    actionForward=configManager->newManagedAction(menuroot,menuView, "forward", tr("Forward"), pdfWidget, SLOT(goForward()), QList<QKeySequence>()<< Qt::AltModifier + Qt::Key_R,"forward");
+    actionLast_Page=configManager->newManagedAction(menuroot,menuView, "last", tr("&Last Page"), pdfWidget, SLOT(goLast()), QList<QKeySequence>()<< Qt::Key_End,"go-last");
 	menuView->addSeparator();
-	menuView->addAction(actionGo_to_Page);
+    actionGo_to_Page=configManager->newManagedAction(menuroot,menuView, "goto", tr("&Go to Page..."), pdfWidget, SLOT(doPageDialog()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_J);
 	menuView->addSeparator();
-	menuView->addAction(actionZoom_In);
-	menuView->addAction(actionZoom_Out);
-	menuView->addAction(actionActual_Size);
-	menuView->addAction(actionFit_to_Width);
-	menuView->addAction(actionFit_to_Text_Width);
-	menuView->addAction(actionFit_to_Window);
-	menuView->addAction(actionContinuous);
+    actionZoom_In=configManager->newManagedAction(menuroot,menuView, "zoomIn", tr("Zoom &In"), pdfWidget, SLOT(zoomIn()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_Plus,"zoom-in");
+    actionZoom_Out=configManager->newManagedAction(menuroot,menuView, "zoomOut", tr("Zoom &Out"), pdfWidget, SLOT(zoomOut()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_Minus,"zoom-out");
+    actionActual_Size=configManager->newManagedAction(menuroot,menuView, "actualSize", tr("&Actual Size"), pdfWidget, SLOT(fixedScale()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_1,"zoom-original");
+    actionFit_to_Width=configManager->newManagedAction(menuroot,menuView, "fitToWidth", tr("Fit to Wi&dth"), this, "", QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_2,"zoom-fit-width");
+    actionFit_to_Width->setCheckable(true);
+    actionFit_to_Text_Width=configManager->newManagedAction(menuroot,menuView, "fitToTextWidth", tr("Fit to &Text Width"), this, "", QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_4,"zoom-fit-text-width");
+    actionFit_to_Text_Width->setCheckable(true);
+    actionFit_to_Window=configManager->newManagedAction(menuroot,menuView, "fitToWindow", tr("Fit to &Window"), this, "", QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_3,"zoom-fit-best");
+    actionFit_to_Window->setCheckable(true);
+    actionContinuous=configManager->newManagedAction(menuroot,menuView, "continuous", tr("&Continuous"), this, "", QList<QKeySequence>());
+    actionContinuous->setCheckable(true);
+    actionContinuous->setChecked(true);
 	menuView->addAction(menuGrid->menuAction());
 	menuView->addSeparator();
-	menuView->addAction(actionFull_Screen);
-	menuView->addAction(actionPresentation);
-	menuGrid->addAction(actionGrid11);
-	menuGrid->addAction(actionGrid21);
-	menuGrid->addAction(actionGrid12);
-	menuGrid->addAction(actionGrid22);
-	menuGrid->addAction(actionCustom);
-	menuGrid->addSeparator();
-	menuGrid->addAction(actionSinglePageStep);
-	menuWindow->addAction(menuShow->menuAction());
-	menuWindow->addAction(actionCloseSomething);
-	menuWindow->addSeparator();
-	menuWindow->addAction(actionStack);
-	menuWindow->addAction(actionTile);
-	menuWindow->addAction(actionSide_by_Side);
-	menuWindow->addSeparator();
-	menuWindow->addAction(actionGo_to_Source);
-	menuWindow->addAction(actionFocus_Editor);
-	menuWindow->addSeparator();
-	menuWindow->addAction(actionNew_Window);
-	menuEdit_2->addAction(actionFind_2);
-	menuEdit_2->addAction(actionFind_again);
+    actionFull_Screen=configManager->newManagedAction(menuroot,menuView, "fullscreen", tr("Full &Screen"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::ControlModifier+Qt::ShiftModifier+Qt::Key_F);
+    actionPresentation=configManager->newManagedAction(menuroot,menuView, "presentation", tr("Presentation"), this, SLOT(toggleFullScreen(bool)), QList<QKeySequence>()<<Qt::Key_F5);
+    actionExternalViewer=configManager->newManagedAction(menuroot,menuView, "external", tr("External Viewer"), this, SLOT(runExternalViewer()), QList<QKeySequence>()<<QKeySequence("CTRL+ALT+X"),"acroread");
+    actionEnlargeViewer=configManager->newManagedAction(menuroot,menuView, "enlarge", tr("Enlarge Viewer"), this, SLOT(enlarge()), QList<QKeySequence>(),"enlarge-viewer");
+    actionShrinkViewer=configManager->newManagedAction(menuroot,menuView, "shrink", tr("Shrink Viewer"), this, SLOT(shrink()), QList<QKeySequence>(),"shrink-viewer");
+    actionToggleEmbedded=configManager->newManagedAction(menuroot,menuView, "toggle", tr("Windowed/Embedded"), this, SLOT(toggleEmbedded()), QList<QKeySequence>());
 
-	menuHelp->setTitle(QApplication::translate("PDFDocument", "&Help"));
-	menuFile->setTitle(QApplication::translate("PDFDocument", "&File"));
-	menuEdit->setTitle(QApplication::translate("PDFDocument", "&Configure"));
-	menuView->setTitle(QApplication::translate("PDFDocument", "&View"));
-	menuGrid->setTitle(QApplication::translate("PDFDocument", "Grid"));
-	menuWindow->setTitle(QApplication::translate("PDFDocument", "&Window"));
-	menuEdit_2->setTitle(QApplication::translate("PDFDocument", "&Edit"));
+    /*actionGrid11=configManager->newManagedAction(menuroot,menuGrid, "grid11", tr("1x1"), this, SLOT(setGrid()), QList<QKeySequence>());
+    actionGrid11->setProperty("grid","1x1");
+    actionGrid21=configManager->newManagedAction(menuroot,menuGrid, "grid21", tr("2x1"), this, SLOT(setGrid()), QList<QKeySequence>());
+    actionGrid21->setProperty("grid","2x1");
+    actionGrid12=configManager->newManagedAction(menuroot,menuGrid, "grid12", tr("1x2"), this, SLOT(setGrid()), QList<QKeySequence>());
+    actionGrid12->setProperty("grid","1x2");
+    actionGrid22=configManager->newManagedAction(menuroot,menuGrid, "grid22", tr("2x2"), this, SLOT(setGrid()), QList<QKeySequence>());
+    actionGrid22->setProperty("grid","2x2");*/
+    static QStringList sl;
+    configManager->registerOption("Preview/Possible Grid Sizes", &sl, QStringList() << "1x1" << "2x1" << "1x2" << "2x2" << "3x1" << "3x2" << "3x3");
+    foreach (const QString &gs, sl) {
+        QAction *a = configManager->newManagedAction(menuroot,menuGrid, "grid"+gs, gs, this, SLOT(setGrid()), QList<QKeySequence>());
+        a->setProperty("grid", gs);
+    }
+    actionCustom=configManager->newManagedAction(menuroot,menuGrid, "gridCustom", tr("Custom..."), this, SLOT(setGrid()), QList<QKeySequence>());
+    actionCustom->setProperty("grid","xx");
+	menuGrid->addSeparator();
+    actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
+	menuWindow->addAction(menuShow->menuAction());
+    actionCloseSomething=configManager->newManagedAction(menuroot,menuWindow, "closeSomething", tr("&Close something"), this, SLOT(closeSomething()), QList<QKeySequence>()<<Qt::Key_Escape);
+	menuWindow->addSeparator();
+    actionSide_by_Side=configManager->newManagedAction(menuroot,menuWindow, "stack", tr("Stac&k"), this, SLOT(stackWindows()), QList<QKeySequence>());
+    actionTile=configManager->newManagedAction(menuroot,menuWindow, "tile", tr("&Tile"), this, SLOT(tileWindows()), QList<QKeySequence>());
+    actionSide_by_Side=configManager->newManagedAction(menuroot,menuWindow, "sideBySide", tr("&Side by Side"), this, SLOT(sideBySide()), QList<QKeySequence>());
+	menuWindow->addSeparator();
+    actionGo_to_Source=configManager->newManagedAction(menuroot,menuWindow, "gotoSource", tr("&Go to Source"), this, SLOT(goToSource()), QList<QKeySequence>()<<Qt::ControlModifier+Qt::Key_Apostrophe);
+    actionFocus_Editor=configManager->newManagedAction(menuroot,menuWindow, "focusEditor", tr("Focus Editor"), this, SIGNAL(focusEditor()), QList<QKeySequence>()<<Qt::ControlModifier+Qt::AltModifier+Qt::Key_Left);
+	menuWindow->addSeparator();
+    actionNew_Window=configManager->newManagedAction(menuroot,menuWindow, "newWindow", tr("New Window"), this, SIGNAL(triggeredClone()), QList<QKeySequence>());
+    actionFind=configManager->newManagedAction(menuroot,menuEdit_2, "find", tr("&Find"), this, SLOT(doFindDialog()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_F);
+    actionFind_Again=configManager->newManagedAction(menuroot,menuEdit_2, "findAgain", tr("Find &again"), this, SLOT(doFindAgain()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_M<< Qt::Key_F3);
+    menuEdit_2->addSeparator();
+    actionTypeset=configManager->newManagedAction(menuroot,menuEdit_2, "build", tr("Quick Build"), this, SLOT(runQuickBuild()), QList<QKeySequence>()<< Qt::ControlModifier + Qt::Key_T,"build");
+
+    configManager->modifyManagedShortcuts("pdf");
 }
 
 // the shortcuts will only be triggered if this widget has focus (used in embedded mode)
@@ -2363,13 +2426,19 @@ void PDFDocument::init(bool embedded)
 
 	docList.append(this);
 
-	setupUi(this);
+    //setupUi(this);
 
 	menuShow = new QMenu(this);
 	menuShow->setObjectName(QString::fromUtf8("menuShow"));
 	menuShow->setTitle(QApplication::translate("PDFDocument", "Show"));
-	if (!embedded)
-		setupMenus();
+
+    pdfWidget = new PDFWidget(embedded); // needs to be initialized before setup menu
+    pdfWidget->setPDFDocument(this);
+
+    //if (!embedded)
+    setupMenus(embedded);
+
+    setupToolBar();
 
 
 	setAttribute(Qt::WA_DeleteOnClose, true);
@@ -2378,35 +2447,35 @@ void PDFDocument::init(bool embedded)
 	//load icons
 	setWindowIcon(QIcon(":/images/previewicon.png"));
 
-	actionBack->setIcon(getRealIcon("back"));
-	actionForward->setIcon(getRealIcon("forward"));
-	actionFirst_Page->setIcon(getRealIcon("go-first"));
-	actionPrevious_Page->setIcon(getRealIcon("go-previous"));
-	actionNext_Page->setIcon(getRealIcon("go-next"));
-	actionLast_Page->setIcon(getRealIcon("go-last"));
-	actionZoom_In->setIcon(getRealIcon("zoom-in"));
-	actionZoom_Out->setIcon(getRealIcon("zoom-out"));
-	actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
-	actionActual_Size->setIcon(getRealIcon("zoom-original"));
-	actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
-	actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
-	actionNew->setIcon(getRealIcon("docuemtn-new"));
-	actionFileOpen->setIcon(getRealIcon("document-open"));
-	actionClose->setIcon(getRealIcon("close"));
-	action_Print->setIcon(getRealIcon("fileprint"));
+    //actionBack->setIcon(getRealIcon("back"));
+    //actionForward->setIcon(getRealIcon("forward"));
+    //actionFirst_Page->setIcon(getRealIcon("go-first"));
+    //actionPrevious_Page->setIcon(getRealIcon("go-previous"));
+    //actionNext_Page->setIcon(getRealIcon("go-next"));
+    //actionLast_Page->setIcon(getRealIcon("go-last"));
+    //actionZoom_In->setIcon(getRealIcon("zoom-in"));
+    //actionZoom_Out->setIcon(getRealIcon("zoom-out"));
+    //actionFit_to_Window->setIcon(getRealIcon("zoom-fit-best"));
+    //actionActual_Size->setIcon(getRealIcon("zoom-original"));
+    //actionFit_to_Width->setIcon(getRealIcon("zoom-fit-width"));
+    //actionFit_to_Text_Width->setIcon(getRealIcon("zoom-fit-text-width"));
+    //actionNew->setIcon(getRealIcon("docuemtn-new"));
+    //actionFileOpen->setIcon(getRealIcon("document-open"));
+    //actionClose->setIcon(getRealIcon("close"));
+    //action_Print->setIcon(getRealIcon("fileprint"));
 #ifdef Q_OS_WIN32
 	//action_Print->setVisible(false);
 #endif
-	actionUndo->setIcon(getRealIcon("edit-undo"));
+    /*actionUndo->setIcon(getRealIcon("edit-undo"));
 	actionRedo->setIcon(getRealIcon("edit-redo"));
 	actionCut->setIcon(getRealIcon("edit-cut"));
-	actionCopy->setIcon(getRealIcon("edit-copy"));
-	actionPaste->setIcon(getRealIcon("edit-paste"));
-	actionMagnify->setIcon(getRealIcon("magnifier-button"));
-	actionScroll->setIcon(getRealIcon("hand"));
-	actionTypeset->setIcon(getRealIcon("build"));
-	actionEnlargeViewer->setIcon(getRealIcon("enlarge-viewer"));
-	actionShrinkViewer->setIcon(getRealIcon("shrink-viewer"));
+    actionCopy->setIcon(getRealIcon("edit-copy"));
+    actionPaste->setIcon(getRealIcon("edit-paste"));*/
+    //actionMagnify->setIcon(getRealIcon("magnifier-button"));
+    //actionScroll->setIcon(getRealIcon("hand"));
+    //actionTypeset->setIcon(getRealIcon("build"));
+    //actionEnlargeViewer->setIcon(getRealIcon("enlarge-viewer"));
+    //actionShrinkViewer->setIcon(getRealIcon("shrink-viewer"));
 
 	QIcon icon = getRealIcon("syncSource-off");
 	icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
@@ -2434,9 +2503,6 @@ void PDFDocument::init(bool embedded)
 	}
 
 	setContextMenuPolicy(Qt::NoContextMenu);
-
-	pdfWidget = new PDFWidget(embedded);
-	pdfWidget->setPDFDocument(this);
 
 	toolButtonGroup = new QButtonGroup(toolBar);
 	toolButtonGroup->addButton(qobject_cast<QAbstractButton *>(toolBar->widgetForAction(actionMagnify)), kMagnifier);
@@ -2575,19 +2641,19 @@ void PDFDocument::init(bool embedded)
 
 	connect(scrollArea, SIGNAL(resized()), pdfWidget, SLOT(windowResized()));
 
-	connect(actionAbout_TW, SIGNAL(triggered()), SIGNAL(triggeredAbout()));
-	connect(actionUserManual, SIGNAL(triggered()), SIGNAL(triggeredManual()));
+    //connect(actionAbout_TW, SIGNAL(triggered()), SIGNAL(triggeredAbout()));
+    //connect(actionUserManual, SIGNAL(triggered()), SIGNAL(triggeredManual()));
 	connect(actionEnlargeViewer, SIGNAL(triggered()), this , SLOT(enlarge()));
 	connect(actionShrinkViewer, SIGNAL(triggered()), this , SLOT(shrink()));
 
-	connect(actionQuit_TeXworks, SIGNAL(triggered()), SIGNAL(triggeredQuit()));
+    //connect(actionQuit_TeXworks, SIGNAL(triggered()), SIGNAL(triggeredQuit()));
 
-	connect(actionFind_2, SIGNAL(triggered()), this, SLOT(doFindDialog()));
-	connect(actionFind_again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
+    //connect(actionFind_2, SIGNAL(triggered()), this, SLOT(doFindDialog()));
+    //connect(actionFind_again, SIGNAL(triggered()), this, SLOT(doFindAgain()));
 
-	connect(actionFirst_Page, SIGNAL(triggered()), pdfWidget, SLOT(goFirst()));
-	connect(actionBack, SIGNAL(triggered()), pdfWidget, SLOT(goBack()));
-	connect(actionPrevious_Page, SIGNAL(triggered()), pdfWidget, SLOT(goPrev()));
+    //connect(actionFirst_Page, SIGNAL(triggered()), pdfWidget, SLOT(goFirst()));
+    //connect(actionBack, SIGNAL(triggered()), pdfWidget, SLOT(goBack()));
+    /*connect(actionPrevious_Page, SIGNAL(triggered()), pdfWidget, SLOT(goPrev()));
 	connect(actionForward, SIGNAL(triggered()), pdfWidget, SLOT(goForward()));
 	connect(actionNext_Page, SIGNAL(triggered()), pdfWidget, SLOT(goNext()));
 	connect(actionLast_Page, SIGNAL(triggered()), pdfWidget, SLOT(goLast()));
@@ -2598,34 +2664,27 @@ void PDFDocument::init(bool embedded)
 	connect(action_Print, SIGNAL(triggered()), this, SLOT(printPDF()));
 
 	connect(actionActual_Size, SIGNAL(triggered()), pdfWidget, SLOT(fixedScale()));
+    */
 	connect(actionFit_to_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWidth(bool)));
 	connect(actionFit_to_Text_Width, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitTextWidth(bool)));
 	connect(actionFit_to_Window, SIGNAL(triggered(bool)), pdfWidget, SLOT(fitWindow(bool)));
 
 
-	connect(actionGrid11, SIGNAL(triggered()), SLOT(setGrid()));
+    /*connect(actionGrid11, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionGrid12, SIGNAL(triggered()), SLOT(setGrid()));
 	connect(actionGrid21, SIGNAL(triggered()), SLOT(setGrid()));
-	connect(actionGrid22, SIGNAL(triggered()), SLOT(setGrid()));
+    connect(actionGrid22, SIGNAL(triggered()), SLOT(setGrid()));*/
+
 
 	if (!embedded) {
-		static QStringList sl;
-		conf->registerOption("Preview/Grid Sizes", &sl, QStringList() << "3x1" << "3x2" << "3x3");
-		foreach (const QString &gs, sl) {
-			QAction *a = new QAction(gs, this);
-			a->setProperty("grid", gs);
-			menuGrid->insertAction(actionCustom, a);
-			connect(a, SIGNAL(triggered()), SLOT(setGrid()));
-		}
-		connect(actionCustom, SIGNAL(triggered()), SLOT(setGrid()));
 		conf->registerOption("Preview/GridX", &globalConfig->gridx, 1);
 		conf->registerOption("Preview/GridY", &globalConfig->gridy, 1);
 		pdfWidget->setGridSize(globalConfig->gridx, globalConfig->gridy, true);
 
-		connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
+        //connect(actionSinglePageStep, SIGNAL(toggled(bool)), pdfWidget, SLOT(setSinglePageStep(bool)));
 		conf->registerOption("Preview/Single Page Step", &globalConfig->singlepagestep, true);
 		conf->linkOptionToObject(&globalConfig->singlepagestep, actionSinglePageStep, 0);
-		connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
+        connect(actionContinuous, SIGNAL(toggled(bool)), scrollArea, SLOT(setContinuous(bool)));
 		conf->registerOption("Preview/Continuous", &globalConfig->continuous, true);
 		conf->linkOptionToObject(&globalConfig->continuous, actionContinuous, 0);
 	} else {
@@ -2634,10 +2693,10 @@ void PDFDocument::init(bool embedded)
 		scrollArea->setContinuous(true);
 	}
 
-	connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
-	connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
-	connect(actionFull_Screen, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
-	connect(actionPresentation, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
+    //connect(actionZoom_In, SIGNAL(triggered()), pdfWidget, SLOT(zoomIn()));
+    //connect(actionZoom_Out, SIGNAL(triggered()), pdfWidget, SLOT(zoomOut()));
+    //connect(actionFull_Screen, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
+    //connect(actionPresentation, SIGNAL(triggered(bool)), this, SLOT(toggleFullScreen(bool)));
 	connect(pdfWidget, SIGNAL(changedZoom(qreal)), this, SLOT(enableZoomActions(qreal)));
 	connect(pdfWidget, SIGNAL(changedScaleOption(autoScaleOption)), this, SLOT(adjustScaleActions(autoScaleOption)));
 	connect(pdfWidget, SIGNAL(syncClick(int, const QPointF &, bool)), this, SLOT(syncClick(int, const QPointF &, bool)));
@@ -2648,7 +2707,7 @@ void PDFDocument::init(bool embedded)
 		new QShortcut(QKeySequence("Ctrl+0"), pdfWidget, SLOT(fixedScale()));
 
 
-	connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
+    /*connect(actionTypeset, SIGNAL(triggered()), SLOT(runQuickBuild()));
 
 	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
 	connect(actionToggleEmbedded, SIGNAL(triggered()), SLOT(toggleEmbedded()));
@@ -2660,6 +2719,7 @@ void PDFDocument::init(bool embedded)
 	connect(actionGo_to_Source, SIGNAL(triggered()), this, SLOT(goToSource()));
 	connect(actionFocus_Editor, SIGNAL(triggered()), this, SIGNAL(focusEditor()));
 	connect(actionNew_Window, SIGNAL(triggered()), SIGNAL(triggeredClone()));
+    */
 
 	conf->registerOption("Preview/Scrolling Follows Cursor", &globalConfig->followFromCursor, false);
 	conf->linkOptionToObject(&globalConfig->followFromCursor, actionScrolling_follows_cursor);
@@ -2669,12 +2729,12 @@ void PDFDocument::init(bool embedded)
 	conf->linkOptionToObject(&globalConfig->syncViews, actionSynchronize_multiple_views);
 	conf->registerOption("Preview/Invert Colors", &globalConfig->invertColors, false);
 	conf->linkOptionToObject(&globalConfig->invertColors, actionInvertColors);
-	connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
+    //connect(actionInvertColors, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 	conf->registerOption("Preview/Grayscale", &globalConfig->grayscale, false);
 	conf->linkOptionToObject(&globalConfig->grayscale, actionGrayscale);
-	connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
+    //connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
-	connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
+    //connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
 	menuShow->addAction(toolBar->toggleViewAction());
 	menuShow->addSeparator();
 
@@ -2755,20 +2815,11 @@ void PDFDocument::init(bool embedded)
 		                      << actionFit_to_Width
 		                      << actionFit_to_Text_Width
 		                      << actionClose
-		                      << actionUndo
-		                      << actionRedo
-		                      << actionCut
-		                      << actionCopy
-		                      << actionPaste
-		                      << actionClear
 		                      << actionGo_to_Source
-		                      << actionFind
-		                      << actionFind_Again
-		                      << actionFind_2
-		                      << actionFind_again
-		                      << action_Print
+                              << actionFind
+                              << actionFind_Again
 		                     );
-		actionNew->setShortcut(QKeySequence());
+        /*actionNew->setShortcut(QKeySequence());
 		actionOpen->setShortcut(QKeySequence());
 		actionTypeset->setShortcut(QKeySequence());
 		actionNew_from_Template->setShortcut(QKeySequence());
@@ -2776,7 +2827,7 @@ void PDFDocument::init(bool embedded)
 		actionQuit_TeXworks->setShortcut(QKeySequence());
 		actionCloseSomething->setShortcut(QKeySequence());
 		actionPresentation->setShortcut(QKeySequence());
-		actionFileOpen->setShortcut(QKeySequence());
+        actionFileOpen->setShortcut(QKeySequence());*/
 	}
 }
 
@@ -2791,7 +2842,7 @@ void PDFDocument::changeEvent(QEvent *event)
 {
 	if (event->type() == QEvent::LanguageChange) {
 		QString title = windowTitle();
-		retranslateUi(this);
+        //retranslateUi(this);
 		setWindowTitle(title);
 		if (pdfWidget && pdfWidget->isVisible())
 			pdfWidget->updateStatusBar();

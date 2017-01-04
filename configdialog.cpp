@@ -211,6 +211,18 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 			QList<QTreeWidgetItem *> li2 = treeWidget->findItems(value, Qt::MatchRecursive | Qt::MatchFixedString, 3);
 			if (!li2.empty() && li2[0] && li2[0]->text(0) == model->data(model->index(index.row(), 0, index.parent()))) li2.removeFirst();
 			li << li2;
+            // filter out elements which belong to other window i.e. pdfviewer <-> editor
+            QModelIndex idx=model->index(index.row(),0,index.parent());
+            QString id=idx.data(Qt::UserRole).toString();
+            QStringList ids=id.split("/");
+            QString progType=ids.value(0);
+            for(int k=(li.size()-1);k>=0;k--){
+                QTreeWidgetItem *item=li.at(k);
+                QString id = item->data(0, Qt::UserRole).toString();
+                QStringList ids=id.split("/");
+                if(ids.value(0,"")!=progType)
+                    li.removeAll(item);
+            }
 			REQUIRE(treeWidget->topLevelItem(1));
 			REQUIRE(treeWidget->topLevelItem(1)->childCount() >= 1);
 			QTreeWidgetItem *editorKeys = treeWidget->topLevelItem(1)->child(0);
