@@ -1,0 +1,31 @@
+<!DOCTYPE QNFA>
+<QNFA language="TXS Test Results" extensions="incredibleComplicatedFileExtensionNoOneIsGoingToUse_TODO_DONTuseEMPTYextensionSTRINGasDEFAULTlang" defaultLineMark="">
+
+	<context id="rule" format="txs-test" >
+		<start>\*\*\*\*\*\*\*\*\* Start</start>
+		<stop>\*\*\*\*\*\*\*\*\*</stop>
+	</context>
+
+	<context id="test/failed" format="txs-test-summary" stayOnLine="true" >
+		<start>Totals:</start>
+		<stop exclusive="false">\n</stop>
+		<word id="test/skippedsummary" format="txs-test-warn">[1-9][0-9]* skipped</word>
+		<word id="test/failedsummary" format="txs-test-fail">[1-9][0-9]* failed</word>
+	</context>
+
+	<context id="test/failed" format="txs-test-warn" stayOnLine="true" >
+		<start>XFAIL</start>
+		<stop exclusive="false">\n</stop>
+		</context>
+
+	<context id="test/failed" format="txs-test-fail" stayOnLine="true" >
+		<start>FAIL</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+
+	<word id="test/failedmessage" format="txs-test-fail">\*\*\* THERE SEEM TO BE FAILED TESTS! \*\*\*</word>
+	<word id="test/passed" format="txs-test-pass">PASS</word>
+	<word id="test/debug" format="txs-test-qdebug">QDEBUG</word>
+	<word id="test/warn" format="txs-test-warn">WARNING</word>
+
+</QNFA>
