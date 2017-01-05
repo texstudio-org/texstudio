@@ -776,7 +776,11 @@ void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
     if(config.languageToolURL.endsWith("/v2/check")){
         server = config.languageToolURL;
     }else{
-        server = config.languageToolURL+"v2/check";
+        QString url = config.languageToolURL;
+        if(!config.languageToolURL.endsWith("/"))
+            url += "/";
+        url += "v2/check";
+        server=url;
     }
 
     ltPath = config.languageToolAutorun ? config.languageToolPath : "";
