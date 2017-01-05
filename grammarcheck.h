@@ -144,4 +144,40 @@ private:
 	QSet<QString> languagesCodesFail;
 };
 
+class GrammarCheckLanguageToolJSON: public GrammarCheckBackend
+{
+    Q_OBJECT
+
+public:
+    GrammarCheckLanguageToolJSON(QObject *parent = 0);
+    ~GrammarCheckLanguageToolJSON();
+    virtual void init(const GrammarCheckerConfig &config);
+    virtual bool isAvailable();
+    virtual QString url();
+    virtual void check(uint ticket, int subticket, const QString &language, const QString &text);
+    virtual void shutdown();
+private slots:
+    void finished(QNetworkReply *reply);
+private:
+    QNetworkAccessManager *nam;
+    QUrl server;
+
+    enum Availability {Terminated = -2, Broken = -1, Unknown = 0, WorkedAtLeastOnce = 1};
+    Availability connectionAvailability;
+
+    bool triedToStart;
+    bool firstRequest;
+    QPointer<QProcess> javaProcess;
+
+    QString ltPath, javaPath, ltArguments;
+    QSet<QString> ignoredRules;
+    QList<QSet<QString> >  specialRules;
+    uint startTime;
+    void tryToStart();
+
+    QList<CheckRequestBackend> delayedRequests;
+
+    QSet<QString> languagesCodesFail;
+};
+
 #endif // GRAMMARCHECK_H
