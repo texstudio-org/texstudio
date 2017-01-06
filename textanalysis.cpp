@@ -1,6 +1,7 @@
 #include "textanalysis.h"
 
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexreader.h"
 #include "latexdocument.h"
 
 #include "qeditor.h"

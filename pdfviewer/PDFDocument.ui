@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1179</width>
+    <width>1486</width>
     <height>600</height>
    </rect>
   </property>
@@ -36,9 +36,6 @@
    </attribute>
    <addaction name="actionTypeset"/>
    <addaction name="separator"/>
-   <addaction name="actionEnlargeViewer"/>
-   <addaction name="actionShrinkViewer"/>
-   <addaction name="actionToggleEmbedded"/>
    <addaction name="actionExternalViewer"/>
    <addaction name="separator"/>
    <addaction name="actionMagnify"/>
@@ -57,6 +54,9 @@
    <addaction name="actionFit_to_Text_Width"/>
    <addaction name="actionFit_to_Window"/>
    <addaction name="separator"/>
+   <addaction name="actionEnlargeViewer"/>
+   <addaction name="actionShrinkViewer"/>
+   <addaction name="actionToggleEmbedded"/>
    <addaction name="actionClose"/>
   </widget>
   <action name="actionAbout_TW">
@@ -322,6 +322,9 @@
    </property>
    <property name="iconText">
     <string>External Viewer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+X</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>

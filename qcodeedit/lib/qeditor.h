@@ -292,8 +292,12 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		bool displayModifyTime() const;
 		void setDisplayModifyTime(bool flag) {mDisplayModifyTime=flag;}
 
+		bool ignoreExternalChanges() const {return mIgnoreExternalChanges;}
+		void setIgnoreExternalChanges(bool flag) {mIgnoreExternalChanges=flag;}
+
 		bool silentReloadOnExternalChanges() const {return mSilentReloadOnExternalChanges;}
 		void setSilentReloadOnExternalChanges(bool flag) {mSilentReloadOnExternalChanges=flag;}
+		void setUseQSaveFile(bool flag) {m_useQSaveFile=flag;}
 
 		inline int horizontalOffset() const
         {
@@ -404,6 +408,9 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 
 		void gotoLine();
 		
+	protected:
+		void insertTab(QDocumentCursor &cur);
+    public slots:
 		void tabOrIndentSelection();
 		void insertTab();
 		void indentSelection();
@@ -586,7 +593,8 @@ public slots:
 
 		void setFlag(EditFlag f, bool b);
 		void setDoubleClickSelectionType(QDocumentCursor::SelectionType type) {m_doubleClickSelectionType = type;}
-		
+		void setTripleClickSelectionType(QDocumentCursor::SelectionType type) {m_tripleClickSelectionType = type;}
+
 	public slots:
 		void pageUp(QDocumentCursor::MoveMode moveMode);
 		void pageDown(QDocumentCursor::MoveMode moveMode);
@@ -669,6 +677,7 @@ public slots:
 		
 		QDocumentCursor m_cursor, m_multiClickCursor, m_dragAndDrop;
 		QDocumentCursor::SelectionType m_doubleClickSelectionType;
+		QDocumentCursor::SelectionType m_tripleClickSelectionType;
 		int m_cursorLinesFromViewTop;
 		int m_cursorMirrorBlockAnchor;
 		
@@ -688,7 +697,9 @@ public slots:
 		QBasicTimer m_blink, m_click, m_drag;
 
 		bool mDisplayModifyTime;
+		bool mIgnoreExternalChanges;
 		bool mSilentReloadOnExternalChanges;
+		bool m_useQSaveFile;
 		
 		static QReliableFileWatch* watcher();
 		

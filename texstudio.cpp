@@ -38,6 +38,7 @@
 #include "usertooldialog.h"
 #include "aboutdialog.h"
 #include "encodingdialog.h"
+#include "encoding.h"
 #include "randomtextgenerator.h"
 #include "webpublishdialog.h"
 #include "thesaurusdialog.h"
@@ -56,6 +57,10 @@
 #include "fileselector.h"
 #include "utilsUI.h"
 #include "utilsSystem.h"
+#include "minisplitter.h"
+#include "latexparser/latextokens.h"
+#include "latexparser/latexparser.h"
+
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -181,11 +186,12 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	setIconSize(QSize(iconSize, iconSize));
 
 	leftPanel = 0;
+	sidePanel = 0;
 	structureTreeView = 0;
 	outputView = 0;
 
 	qRegisterMetaType<LatexParser>();
-	latexParser.importCwlAliases();
+	latexParser.importCwlAliases(findResourceFile("completion/cwlAliases.dat"));
 
 	m_formatsOldDefault = QDocument::defaultFormatScheme();
 	QDocument::setDefaultFormatScheme(m_formats);
@@ -209,7 +215,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(0);
 	else QDocument::setDefaultCodec(configManager.newFileEncoding);
 	if (configManager.autoDetectEncodingFromLatex)
-		QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding); // encodingcallbacks before restoer session !!!
+		QDocument::addGuessEncodingCallback(&Encoding::guessEncoding); // encodingcallbacks before restoer session !!!
 	if (configManager.autoDetectEncodingFromChars)
 		QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
@@ -279,15 +285,18 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralLayout->addWidget(centralToolBar);
 	centralLayout->addWidget(editors);
 
-	centralVSplitter = new QSplitter(Qt::Vertical, this);
+	centralVSplitter = new MiniSplitter(Qt::Vertical, this);
 	centralVSplitter->setChildrenCollapsible(false);
 	centralVSplitter->addWidget(centralFrame);
-	centralVSplitter->setStretchFactor(0, 1);
+	centralVSplitter->setStretchFactor(0, 1);  // all stretch goes to the editor (0th widget)
 
-	mainHSplitter = new QSplitter(Qt::Horizontal, this);
+	sidePanelSplitter = new MiniSplitter(Qt::Horizontal, this);
+	setCentralWidget(sidePanelSplitter);
+
+	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);
 	mainHSplitter->addWidget(centralVSplitter);
 	mainHSplitter->setChildrenCollapsible(false);
-	setCentralWidget(mainHSplitter);
+	sidePanelSplitter->addWidget(mainHSplitter);
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -539,22 +548,29 @@ void Texstudio::setupDockWidgets()
 {
 	//to allow retranslate this function must be able to be called multiple times
 
+	if (!sidePanel) {
+		sidePanel = new SidePanel(this);
+		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
+		sidePanel->toggleViewAction()->setText(tr("Side Panel"));
+		addAction(sidePanel->toggleViewAction());
+
+		sidePanelSplitter->insertWidget(0, sidePanel);
+		sidePanelSplitter->setStretchFactor(0, 0);  // panel does not get rescaled
+		sidePanelSplitter->setStretchFactor(1, 1);
+	}
+
 	//Structure panel
 	if (!leftPanel) {
 		leftPanel = new CustomWidgetList(this);
-		leftPanel->setWindowTitle(tr("Structure"));
 		leftPanel->setObjectName("leftPanel");
-		leftPanel->setAllowedAreas(Qt::AllDockWidgetAreas);
-		leftPanel->setFeatures(QDockWidget::DockWidgetClosable);
-		addDockWidget(Qt::LeftDockWidgetArea, leftPanel);
-		connect(&configManager, SIGNAL(newLeftPanelLayoutChanged(bool)), leftPanel,  SLOT(showWidgets(bool)));
+		TitledPanelPage *page = new TitledPanelPage(leftPanel, "leftPanel", "TODO");
+		sidePanel->appendPage(page);
 		if (hiddenLeftPanelWidgets != "") {
 			leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
 			hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
 		}
-
 		connect(leftPanel, SIGNAL(widgetContextMenuRequested(QWidget *, QPoint)), this, SLOT(symbolGridContextMenu(QWidget *, QPoint)));
-		addAction(leftPanel->toggleViewAction());
+		connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
 	}
 
 	if (!structureTreeView) {
@@ -601,7 +617,7 @@ void Texstudio::setupDockWidgets()
 	addTagList("tikz", getRealIconFile("tikz"), tr("Tikz Commands"), "tikz_tags.xml");
 	addTagList("asymptote", getRealIconFile("asymptote"), tr("Asymptote Commands"), "asymptote_tags.xml");
 
-	leftPanel->showWidgets(configManager.newLeftPanelLayout);
+	leftPanel->showWidgets();
 
 	// update MostOftenUsed
 	mostUsedSymbolsTriggered(true);
@@ -919,17 +935,17 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "parens", tr("Parenthesis"));
 	newManagedAction(submenu, "jump", tr("Jump to Match"), SLOT(jumpToBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_J));
-	newManagedAction(submenu, "selectBracketInner", tr("Select Inner"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_I))->setProperty("minimal", true);
-	newManagedAction(submenu, "selectBracketOuter", tr("Select Outer"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_O))->setProperty("minimal", false);
-	newManagedAction(submenu, "selectBracketCommand", tr("Select Command"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_C))->setProperty("backslash", true);
-	newManagedAction(submenu, "selectBracketLine", tr("Select Line"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_L))->setProperty("line", true);
+	newManagedAction(submenu, "selectBracketInner", tr("Select Inner"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_I))->setProperty("type", "inner");
+	newManagedAction(submenu, "selectBracketOuter", tr("Select Outer"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_O))->setProperty("type", "outer");
+	newManagedAction(submenu, "selectBracketCommand", tr("Select Command"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_C))->setProperty("type", "command");
+	newManagedAction(submenu, "selectBracketLine", tr("Select Line"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_L))->setProperty("type", "line");
 	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select Inverting"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_S));
 
 	submenu->addSeparator();
 	newManagedAction(submenu, "findMissingBracket", tr("Find Mismatch"), SLOT(findMissingBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_M));
 
 	submenu = newManagedMenu(menu, "complete", tr("Complete"));
-	newManagedAction(submenu, "normal", tr("Normal"), SLOT(normalCompletion()), Qt::CTRL + Qt::Key_Space);
+	newManagedAction(submenu, "normal", tr("Normal"), SLOT(normalCompletion()), MAC_OTHER(Qt::META + Qt::Key_Space, Qt::CTRL + Qt::Key_Space));
 	newManagedAction(submenu, "environment", tr("\\begin{ Completion"), SLOT(insertEnvironmentCompletion()), Qt::CTRL + Qt::ALT + Qt::Key_Space);
 	newManagedAction(submenu, "text", tr("Normal Text"), SLOT(insertTextCompletion()), Qt::SHIFT + Qt::ALT + Qt::Key_Space);
 	newManagedAction(submenu, "closeEnvironment", tr("Close latest open environment"), SLOT(closeEnvironment()), Qt::ALT + Qt::Key_Return);
@@ -1115,7 +1131,7 @@ void Texstudio::setupMenus()
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "show", tr("Show"));
-	newManagedAction(submenu, "structureview", leftPanel->toggleViewAction());
+	newManagedAction(submenu, "structureview", sidePanel->toggleViewAction());
 	newManagedAction(submenu, "outputview", outputView->toggleViewAction());
 	act = newManagedAction(submenu, "statusbar", tr("Statusbar"), SLOT(showStatusbar()));
 	act->setCheckable(true);
@@ -1160,7 +1176,6 @@ void Texstudio::setupMenus()
 	newManagedEditorAction(submenu, "zoomOut", tr("Zoom Out"), "zoomOut", Qt::CTRL + Qt::Key_Minus);
 	newManagedEditorAction(submenu, "resetZoom", tr("Reset Zoom"), "resetZoom");
 
-	newManagedAction(menu, "alignwindows", tr("Align Windows"), SLOT(viewAlignWindows()));
 #if QT_VERSION>=0x050000
 	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Full &Screen"), 0, QKeySequence::FullScreen);
 #else
@@ -1385,11 +1400,11 @@ void Texstudio::updateLanguageToolStatus()
 	switch (grammarCheck->languageToolStatus()) {
 		case GrammarCheck::LTS_Working:
 			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize));
-			statusLabelLanguageTool->setToolTip(tr("LanguageTool is running"));
+			statusLabelLanguageTool->setToolTip(QString(tr("Connected to LanguageTool at %1")).arg(grammarCheck->serverUrl()));
 			break;
 		case GrammarCheck::LTS_Error:
 			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
-			statusLabelLanguageTool->setToolTip(tr("No LanguageTool server found"));
+			statusLabelLanguageTool->setToolTip(QString(tr("No LanguageTool server found at %1")).arg(grammarCheck->serverUrl()));
 			break;
 		case GrammarCheck::LTS_Unknown:
 		default:
@@ -1988,7 +2003,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 				QFile f(f_real + ".recover.bak~");
 				if (f.open(QFile::ReadOnly)) {
 					QByteArray ba = f.readAll();
-					QString recovered = QTextCodec::codecForMib(MIB_UTF8)->toUnicode(ba); //TODO: chunk loading?
+					QString recovered = QTextCodec::codecForName("UTF-8")->toUnicode(ba); //TODO: chunk loading?
 					edit->document->setText(recovered, true);
 				} else txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
 			}
@@ -2310,7 +2325,7 @@ void Texstudio::fileNewFromTemplate()
 		QString mTemplate;
 		bool loadAsSnippet = false;
 		QTextStream in(&file);
-		in.setCodec(QTextCodec::codecForMib(MIB_UTF8));
+		in.setCodec(QTextCodec::codecForName("UTF-8"));
 		QString line = in.readLine();
 		if (line.contains(QRegExp("^%\\s*!TXS\\s+template"))) {
 			loadAsSnippet = true;
@@ -3485,13 +3500,13 @@ void Texstudio::editEraseWordCmdEnv()
 
 	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	int tkPos = getTokenAtCol(tl, cursor.columnNumber());
-	Tokens tk;
+	Token tk;
 	if (tkPos > -1)
 		tk = tl.at(tkPos);
 
 	switch (tk.type) {
 
-	case Tokens::command:
+	case Token::command:
 		command = tk.getText();
 		if (command == "\\begin" || command == "\\end") {
 			value = getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
@@ -3570,10 +3585,10 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 	if (!currentEditorView())	return;
 	if (!c.isValid()) c = currentEditor()->cursor();
 	saveCurrentCursorToHistory();
-	Tokens tk = getTokenAtCol(c.line().handle(), c.columnNumber());
+	Token tk = getTokenAtCol(c.line().handle(), c.columnNumber());
 	switch (tk.type) {
-	case Tokens::labelRef:
-	case Tokens::labelRefList: {
+	case Token::labelRef:
+	case Token::labelRefList: {
 		LatexEditorView *edView = editorViewForLabel(qobject_cast<LatexDocument *>(c.document()), tk.getText());
 		if (!edView) return;
 		if (edView != currentEditorView()) {
@@ -3582,7 +3597,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 		edView->gotoToLabel(tk.getText());
 		break;
 	}
-	case Tokens::bibItem: {
+	case Token::bibItem: {
 		QString bibID = trimLeft(tk.getText());
 		// try local \bibitems
 		bool found = currentEditorView()->gotoToBibItem(bibID);
@@ -4465,75 +4480,75 @@ void Texstudio::normalCompletion()
 	QDocumentLineHandle *dlh = c.line().handle();
 	//LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
 	TokenStack ts = getContext(dlh, c.columnNumber());
-	Tokens tk;
+	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
-		if (tk.type == Tokens::word && tk.subtype == Tokens::none && ts.size() > 1) {
+		if (tk.type == Token::word && tk.subtype == Token::none && ts.size() > 1) {
 			// set brace type
 			ts.pop();
 			tk = ts.top();
 		}
 	}
 
-	Tokens::TokenType type = tk.type;
-	if (tk.subtype != Tokens::none)
+	Token::TokenType type = tk.type;
+	if (tk.subtype != Token::none)
 		type = tk.subtype;
-	if (type == Tokens::specialArg) {
-		int df = int(type - Tokens::specialArg);
+	if (type == Token::specialArg) {
+		int df = int(type - Token::specialArg);
 		QString cmd = latexParser.mapSpecialArgs.value(df);
 		if (mCompleterNeedsUpdate) updateCompleter();
 		completer->setWorkPath(cmd);
         currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION);
 	}
 	switch (type) {
-	case Tokens::command:
-	case Tokens::commandUnknown:
+	case Token::command:
+	case Token::commandUnknown:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
-	case Tokens::env:
-	case Tokens::beginEnv:
+	case Token::env:
+	case Token::beginEnv:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST);
 		break;
-	case Tokens::labelRef:
+	case Token::labelRef:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF);
 		break;
-	case Tokens::labelRefList:
+	case Token::labelRefList:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_REF | LatexCompleter::CF_FORCE_REFLIST);
 		break;
-	case Tokens::bibItem:
+	case Token::bibItem:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_CITE);
 		break;
-	case Tokens::width:
+	case Token::width:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_LENGTH);
 		break;
-	case Tokens::imagefile: {
+	case Token::imagefile: {
 		QString fn = documents.getCompileFileName();
 		QFileInfo fi(fn);
 		completer->setWorkPath(fi.absolutePath());
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
 	}
 	break;
-	case Tokens::file: {
+	case Token::file: {
 		QString fn = documents.getCompileFileName();
 		QFileInfo fi(fn);
 		completer->setWorkPath(fi.absolutePath());
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_GRAPHIC);
 	}
 	break;
-	case Tokens::color:
+	case Token::color:
 		if (mCompleterNeedsUpdate) updateCompleter();
 		completer->setWorkPath("%color");
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_SPECIALOPTION); //TODO: complete support for special opt
 		break;
-	case Tokens::keyValArg:
-	case Tokens::keyVal_key:
-	case Tokens::keyVal_val: {
+	case Token::keyValArg:
+	case Token::keyVal_key:
+	case Token::keyVal_val: {
 		QString word = c.line().text();
 		int col = c.columnNumber();
 		command = getCommandFromToken(tk);
@@ -4544,16 +4559,16 @@ void Texstudio::normalCompletion()
 			// command/arg structure ? (yathesis)
 			TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 			QString subcommand;
-			int add = (type == Tokens::keyVal_val) ? 2 : 1;
-			if (tk.type == Tokens::braces || tk.type == Tokens::squareBracket)
+			int add = (type == Token::keyVal_val) ? 2 : 1;
+			if (tk.type == Token::braces || tk.type == Token::squareBracket)
 				add = 0;
 			for (int k = tl.indexOf(tk) + 1; k < tl.length(); k++) {
-				Tokens tk_elem = tl.at(k);
+				Token tk_elem = tl.at(k);
 				if (tk_elem.level > tk.level - add)
 					continue;
 				if (tk_elem.level < tk.level - add)
 					break;
-				if (tk_elem.type == Tokens::braces) {
+				if (tk_elem.type == Token::braces) {
 					subcommand = word.mid(tk_elem.start + 1, tk_elem.length - 2);
 					break;
 				}
@@ -4575,8 +4590,8 @@ void Texstudio::normalCompletion()
 			}
 		} else {
 			if (ts.size() > 1) {
-				Tokens elem = ts.at(ts.size() - 2);
-				if (elem.type == Tokens::keyVal_key && elem.level == tk.level - 1) {
+				Token elem = ts.at(ts.size() - 2);
+				if (elem.type == Token::keyVal_key && elem.level == tk.level - 1) {
 					command = command + "/" + elem.getText();
 					completer->setWorkPath(command);
 					existValues = completer->existValues();
@@ -4588,7 +4603,7 @@ void Texstudio::normalCompletion()
 			currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_KEYVAL);
 	}
 	break;
-	case Tokens::beamertheme: {
+	case Token::beamertheme: {
 		QString preambel = "beamertheme";
 		currentPackageList.clear();
 		foreach (QString elem, latexPackageList) {
@@ -4599,7 +4614,7 @@ void Texstudio::normalCompletion()
 	completer->setPackageList(&currentPackageList);
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
 	break;
-	case Tokens::package:
+	case Token::package:
 		completer->setPackageList(&latexPackageList);
 		currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_FORCE_PACKAGE);
 		break;
@@ -4647,7 +4662,71 @@ void Texstudio::insertTextCompletion()
 	for (; col > 0 && !eow.contains(line[col - 1]); col-- )
 		;
 
-	QString my_text = currentEditorView()->editor->text();
+    QString word = line.mid(col, c.columnNumber() - col);
+    QSet<QString> words;
+
+    QDocument *doc=currentEditor()->document();
+
+    for(int i=0;i<doc->lineCount();i++){
+        QDocumentLineHandle *dlh=doc->line(i).handle();
+        TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+        QString txt;
+        for(int k=0;k<tl.size();k++) {
+            Token tk=tl.at(k);
+            if(!txt.isEmpty() || (tk.type==Token::word && (tk.subtype==Token::none || tk.subtype==Token::text || tk.subtype==Token::generalArg || tk.subtype==Token::title || tk.subtype==Token::todo))){
+                txt+=tk.getText();
+                if(txt.startsWith(word)){
+                    if(word.length()<txt.length()){
+                        words<<txt;
+                    }
+                    // advance k if tk comprehends several sub-tokens (braces)
+                    while(k+1<tl.size() && tl.at(k+1).start<(tk.start+tk.length)){
+                        k++;
+                    }
+                    // add more variants for variable-name like constructions
+                    if(k+2<tl.size()){
+                        Token tk2=tl.at(k+1);
+                        Token tk3=tl.at(k+2);
+                        if(tk2.length==1 && tk2.start==tk.start+tk.length && tk2.type==Token::punctuation&&tk3.start==tk2.start+tk2.length){
+                            // next token is directly adjacent and of length 1
+                            QString txt2=tk2.getText();
+                            if(txt2=="_" || txt2=="-"){
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                            if(txt2=="'" && tk3.type==Token::word){ // e.g. don't but not abc''
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                        }
+                        // combine abc\_def
+                        if(tk2.length==2 && tk2.start==tk.start+tk.length && (tk2.type==Token::command||tk2.type==Token::commandUnknown)&&tk3.start==tk2.start+tk2.length){
+                            // next token is directly adjacent and of length 1
+                            QString txt2=tk2.getText();
+                            if(txt2=="\\_" ){
+                                txt.append(txt2);
+                                k++;
+                                continue;
+                            }
+                        }
+                        // previous was an already appended command, check if argument is present
+                        if(tk.type==Token::command){
+                            if(tk2.level==tk.level && tk2.subtype!=Token::none){
+                                txt.append(tk2.getText());
+                                words<<txt;
+                                k++;
+                            }
+                        }
+                    }
+                }
+            }
+            txt.clear();
+        }
+
+    }
+    /*QString my_text = currentEditorView()->editor->text();
 	int end = 0;
 	int k = 0; // number of occurences of search word.
 	QString word = line.mid(col, c.columnNumber() - col);
@@ -4659,13 +4738,43 @@ void Texstudio::insertTextCompletion()
 	while ((i = my_text.indexOf(QRegExp("\\b" + word), end)) > 0) {
 		end = my_text.indexOf(QRegExp("\\b"), i + 1);
 		if (end > i) {
-			if (word == my_text.mid(i, end - i)) {
-				k = k + 1;
-				if (k == 2) words << my_text.mid(i, end - i);
-			} else {
-				if (!words.contains(my_text.mid(i, end - i)))
-					words << my_text.mid(i, end - i);
-			}
+            bool addVar=false;
+            do {
+                addVar=false;
+                if (word == my_text.mid(i, end - i)) {
+                    k = k + 1;
+                    if (k == 2) words << my_text.mid(i, end - i);
+                } else {
+                    QString txt=my_text.mid(i, end - i);
+                    if(txt.endsWith("_")){
+                        if(my_text.mid(end,1)=="\\"||my_text.mid(end,1)=="{"){
+                            // special handling for abc_\cmd{dsfsdf}
+                            QRegExp rx("(\\\\[a-zA-Z]+)?(\\{\\w+\\})?"); // better solution would be employing tokens ...
+                            int zw=rx.indexIn(my_text,end);
+                            if(zw==end){
+                                txt.append(rx.cap());
+                                words << txt;
+                            }
+                        }
+                    }else{
+                        if (!words.contains(txt))
+                            words << txt;
+                    }
+                }
+                // add more variants if word boundary is \_ \- or -
+                if(my_text.length()>end+1){
+                    addVar|=(my_text.mid(end,2)=="\\_");
+                    addVar|=(my_text.mid(end,2)=="\\-");
+                    if(addVar)
+                        end++;
+                }
+                if(my_text.mid(end,1)=="-")
+                    addVar=true;
+                if(addVar){
+                    end = my_text.indexOf(QRegExp("\\b"), end+2);
+                    addVar=(end>i);
+                }
+            } while(addVar);
 		} else {
 			if (word == my_text.mid(i, end - i)) {
 				k = k + 1;
@@ -4676,7 +4785,7 @@ void Texstudio::insertTextCompletion()
 			}
 		}
 	}
-
+    */
 	completer->setAdditionalWords(words, CT_NORMALTEXT);
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 }
@@ -5239,7 +5348,7 @@ void Texstudio::quickDocument()
 		}
 		Q_ASSERT(currentEditor());
 		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
-		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
+		QTextCodec *codec = Encoding::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
 			updateCaption();
@@ -5261,7 +5370,7 @@ void Texstudio::quickBeamer()
 		}
 		Q_ASSERT(currentEditor());
 		currentEditorView()->insertSnippet(startDlg->getNewDocumentText());
-		QTextCodec *codec = LatexParser::QTextCodecForLatexName(startDlg->document_encoding);
+		QTextCodec *codec = Encoding::QTextCodecForLatexName(startDlg->document_encoding);
 		if (codec && codec != currentEditor()->document()->codec()) {
 			currentEditor()->document()->setCodec(codec);
 			updateCaption();
@@ -5793,7 +5902,7 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 				}
 			}
 			if (!bibFilesChanged) return;
-		} else return;
+		}
 	} else rootDoc->lastCompiledBibTeXFiles = bibFiles;
 
 	runBibliographyIfNecessaryEntered = true;
@@ -6135,7 +6244,7 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
 	loadLog();
 	REQUIRE(result);
 	if (hasLatexErrors()) {
-		viewLog();
+		onCompileError();
 		*result = LCR_ERROR;
 	} else {
 		*result = LCR_NORMAL;
@@ -6163,6 +6272,15 @@ void Texstudio::viewLogOrReRun(LatexCompileResult *result)
 }
 
 ////////////////////////// ERRORS /////////////////////////////
+
+void Texstudio::onCompileError()
+{
+	if (configManager.getOption("Tools/ShowLogInCaseOfCompileError").toBool()) {
+		viewLog();
+	} else {
+		setLogMarksVisible(true);
+	}
+}
 
 // changes visibilita of log markers in all editors
 void Texstudio::setLogMarksVisible(bool visible)
@@ -6353,9 +6471,9 @@ void Texstudio::generalOptions()
 		if (configManager.autoDetectEncodingFromLatex || configManager.autoDetectEncodingFromChars) QDocument::setDefaultCodec(0);
 		else QDocument::setDefaultCodec(configManager.newFileEncoding);
 		QDocument::removeGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
-		QDocument::removeGuessEncodingCallback(&LatexParser::guessEncoding);
+		QDocument::removeGuessEncodingCallback(&Encoding::guessEncoding);
 		if (configManager.autoDetectEncodingFromLatex)
-			QDocument::addGuessEncodingCallback(&LatexParser::guessEncoding);
+			QDocument::addGuessEncodingCallback(&Encoding::guessEncoding);
 		if (configManager.autoDetectEncodingFromChars)
 			QDocument::addGuessEncodingCallback(&ConfigManager::getDefaultEncoding);
 
@@ -6471,7 +6589,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 {
 	// parse command line
 	QStringList filesToLoad;
-	bool activateMasterMode = false;
+	bool hasExplicitRoot = false;
 
 	int line = -1;
 	int col = 0;
@@ -6484,7 +6602,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		if (args[i] == "") continue;
 		if (args[i][0] != '-')  filesToLoad << args[i];
 		//-form is for backward compatibility
-		if (args[i] == "--master") activateMasterMode = true;
+		if (args[i] == "--root" || args[i] == "--master") hasExplicitRoot = true;
 		if (args[i] == "--line" && i + 1 < args.size()) {
 			QStringList lineCol = args[++i].split(":");
 			line = lineCol.at(0).toInt() - 1;
@@ -6526,11 +6644,11 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 				if (ftl.suffix() == Session::fileExtension()) {
 					loadSession(ftl.filePath());
 				} else {
-					load(fileToLoad, activateMasterMode);
+					load(fileToLoad, hasExplicitRoot);
 				}
 			} else if (ftl.absoluteDir().exists()) {
 				fileNew(ftl.absoluteFilePath());
-				if (activateMasterMode) {
+				if (hasExplicitRoot) {
 					setExplicitRootDocument(currentEditorView()->getDocument());
 				}
 				//return ;
@@ -6895,34 +7013,6 @@ void Texstudio::setFullScreenMode()
 		showFullScreen();
 		restoreState(stateFullScreen, 1);
 	}
-}
-
-void Texstudio::viewAlignWindows()
-{
-	QWidgetList windows = QApplication::topLevelWidgets();
-#ifndef NO_POPPLER_PREVIEW
-	// find first pdf viewer window
-	PDFDocument *pdfViewer = 0;
-	foreach (QWidget *w, windows) {
-		pdfViewer = qobject_cast<PDFDocument *>(w);
-		if (pdfViewer) break;
-	}
-
-	int splitXpos = frameGeometry().right();
-	int frameWidth = frameGeometry().width() - width();
-	int frameHeight = frameGeometry().height() - height();
-
-	// main window "full size" to the left
-	QRect screen = QApplication::desktop()->availableGeometry(this);
-	move(screen.topLeft());
-	resize(splitXpos - screen.left() - frameWidth, screen.height() - frameHeight);
-
-	// pdfViewer "full size" to the left
-	if (pdfViewer) {
-		pdfViewer->move(splitXpos, screen.top());
-		pdfViewer->resize(screen.right() - frameGeometry().right() - frameWidth, screen.height() - frameHeight);
-	}
-#endif
 }
 
 void Texstudio::viewSetHighlighting(QAction *act)
@@ -7402,7 +7492,8 @@ bool Texstudio::gotoLine(int line, const QString &fileName)
 void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
 {
 	if (logEntryNumber < 0 || logEntryNumber >= outputView->getLogWidget()->getLogModel()->count()) return;
-	QString fileName = outputView->getLogWidget()->getLogModel()->at(logEntryNumber).file;
+	LatexLogEntry entry = outputView->getLogWidget()->getLogModel()->at(logEntryNumber);
+	QString fileName = entry.file;
 	if (!activateEditorForFile(fileName, true))
 		if (!load(fileName)) return;
 	if (currentEditorView()->logEntryToLine.isEmpty()) {
@@ -7412,10 +7503,77 @@ void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
 		setLogMarksVisible(true);
 	}
 	//get line
-	QDocumentLineHandle *lh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
-	if (!lh) return;
+	QDocumentLineHandle *dlh = currentEditorView()->logEntryToLine.value(logEntryNumber, 0);
+	if (!dlh) return;
 	//goto
-	gotoLine(currentEditor()->document()->indexOf(lh));
+	gotoLine(currentEditor()->document()->indexOf(dlh));
+	QDocumentCursor c = getLogEntryContextCursor(dlh, entry);
+	if (c.isValid()) {
+		currentEditorView()->editor->setCursor(c, false);
+	}
+}
+
+/*!
+ * Returns a cursor marking the part of the line which the log entry is referring to.
+ * This assumes that the cursor was already set to the correct line before calling the function.
+ */
+QDocumentCursor Texstudio::getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry)
+{
+	QRegExp rxUndefinedControlSequence("^Undefined\\ control\\ sequence.*(\\\\\\w+)$");
+	QRegExp rxEnvironmentUndefined("^Environment (\\w+) undefined\\.");
+	QRegExp rxReferenceMissing("^Reference `(\\w+)' on page (\\d+) undefined");
+	QRegExp rxCitationMissing("^Citation `(\\w+)' on page (\\d+) undefined");
+	if (entry.message.indexOf(rxUndefinedControlSequence) == 0) {
+		QString cmd = rxUndefinedControlSequence.cap(1);
+		int startCol = dlh->text().indexOf(cmd);
+		if (startCol >= 0) {
+			QDocumentCursor cursor = currentEditorView()->editor->cursor();
+			cursor.selectColumns(startCol, startCol + cmd.length());
+			return cursor;
+		}
+	} else if (entry.message.indexOf(rxEnvironmentUndefined) == 0) {
+		QString env = rxEnvironmentUndefined.cap(1);
+		int startCol = dlh->text().indexOf("\\begin{" + env + "}");
+		if (startCol >= 0) {
+			startCol += 7;  // length of \begin{
+			QDocumentCursor cursor = currentEditorView()->editor->cursor();
+			cursor.selectColumns(startCol, startCol + env.length());
+			return cursor;
+		}
+	} else if (entry.message.indexOf(rxReferenceMissing) == 0) {
+		int fid = currentEditorView()->document->getFormatId("referenceMissing");
+		foreach (const QFormatRange &fmtRange, dlh->getOverlays(fid)) {
+			if (dlh->text().mid(fmtRange.offset, fmtRange.length) == rxReferenceMissing.cap(1)) {
+				QDocumentCursor cursor = currentEditorView()->editor->cursor();
+				cursor.selectColumns(fmtRange.offset, fmtRange.offset + fmtRange.length);
+				return cursor;
+			}
+		}
+	} else if (entry.message.indexOf(rxCitationMissing) == 0) {
+		int fid = currentEditorView()->document->getFormatId("citationMissing");
+		foreach (const QFormatRange &fmtRange, dlh->getOverlays(fid)) {
+			if (dlh->text().mid(fmtRange.offset, fmtRange.length) == rxCitationMissing.cap(1)) {
+				QDocumentCursor cursor = currentEditorView()->editor->cursor();
+				cursor.selectColumns(fmtRange.offset, fmtRange.offset + fmtRange.length);
+				return cursor;
+			}
+		}
+	} else {
+		// error messages that are followed by the context; e.g. Too many }'s. \textit{}}
+		QStringList messageStarts = QStringList() << "Too many }'s. " << "Missing $ inserted. ";
+		foreach (const QString &messageStart, messageStarts) {
+			if (entry.message.startsWith(messageStart)) {
+				QString context = entry.message.mid(messageStart.length());
+				int startCol = dlh->text().indexOf(context);
+				if (startCol >= 0) {
+					QDocumentCursor cursor = currentEditorView()->editor->cursor();
+					cursor.setColumnNumber(startCol += context.length());
+					return cursor;
+				}
+			}
+		}
+	}
+	return QDocumentCursor();
 }
 
 bool Texstudio::gotoLogEntryAt(int newLineNumber)
@@ -7524,8 +7682,13 @@ QList<int> Texstudio::findOccurencesApproximate(QString line, const QString &gue
 
 void Texstudio::syncFromViewer(const QString &fileName, int line, bool activate, const QString &guessedWord)
 {
-	if (!activateEditorForFile(fileName, true, activate))
-		if (!load(fileName)) return;
+	if (!activateEditorForFile(fileName, true, activate)) {
+		QWidget *w = focusWidget();
+		bool success = load(fileName);
+		if (!activate)
+			w->setFocus();  // restore focus
+		if (!success) return;
+	}
 	shrinkEmbeddedPDFViewer();
 
 	QDocumentLine l = currentEditorView()->document->lineFromLineSnapshot(line);
@@ -7907,14 +8070,14 @@ void Texstudio::previewLatex()
 	if (!previewc.hasSelection()) {
 		// in environment delimiter (\begin{env} or \end{env})
 		QString command;
-		Tokens tk = getTokenAtCol(c.line().handle(), c.columnNumber());
-		if (tk.type != Tokens::none)
+		Token tk = getTokenAtCol(c.line().handle(), c.columnNumber());
+		if (tk.type != Token::none)
 			command = tk.getText();
-		if (tk.type == Tokens::env || tk.type == Tokens::beginEnv ) {
+		if (tk.type == Token::env || tk.type == Token::beginEnv ) {
 			c.setColumnNumber(tk.start);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
-		if (tk.type == Tokens::command && (command == "\\begin" || command == "\\end")) {
+		if (tk.type == Token::command && (command == "\\begin" || command == "\\end")) {
 			c.setColumnNumber(tk.start + tk.length + 1);
 			previewc = currentEditorView()->parenthizedTextSelection(c);
 		}
@@ -9016,9 +9179,9 @@ bool Texstudio::generateMirror(bool setCur)
 	QDocumentCursor oldCursor = cursor;
 	QString line = cursor.line().text();
 	QString command, value;
-	Tokens tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
+	Token tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
 
-	if (tk.type == Tokens::env || tk.type == Tokens::beginEnv) {
+	if (tk.type == Token::env || tk.type == Token::beginEnv) {
 		if (tk.length > 0) {
 			value = tk.getText();
 			command = getCommandFromToken(tk);
@@ -9159,28 +9322,45 @@ void Texstudio::selectBracket()
 	if (!currentEditor()) return;
 	REQUIRE(sender() && currentEditor()->document());
 	if (!currentEditor()->document()->languageDefinition()) return;
-	QDocumentCursor orig, to;
-	currentEditor()->cursor().getMatchingPair(orig, to, !sender()->property("minimal").toBool());
-	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 
-	if (sender()->property("line").toBool()) {
+	QDocumentCursor cursor = currentEditor()->cursor();
+	QString type = sender()->property("type").toString();
+	if (type == "inner") {
+		cursor.select(QDocumentCursor::ParenthesesInner);
+	} else if (type == "outer") {
+		cursor.select(QDocumentCursor::ParenthesesOuter);
+	} else if (type == "command") {
+		Token tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
+		if (tk.type == Token::command) {
+			cursor.setColumnNumber(tk.start + tk.length);
+			cursor.select(QDocumentCursor::ParenthesesOuter);
+			cursor.setAnchorColumnNumber(tk.start);
+		} else {
+			cursor.select(QDocumentCursor::ParenthesesOuter);
+			if (cursor.anchorColumnNumber() > 0) {
+				tk = getTokenAtCol(cursor.line().handle(), cursor.anchorColumnNumber() - 1);
+				if (tk.type == Token::command) {
+					cursor.setAnchorColumnNumber(tk.start);
+				}
+			}
+		}
+	} else if (type == "line") {
+		QDocumentCursor orig, to;
+		cursor.getMatchingPair(orig, to, true);
+		if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
+
 		if (to < orig) to.setColumnNumber(0);
 		else to.setColumnNumber(to.line().length());
-	}
-	QDocumentCursor::sort(orig, to);
-	if (sender()->property("minimal").toBool()) {
-		if (orig.hasSelection()) orig = orig.selectionEnd();
-		if (to.hasSelection()) to = to.selectionStart();
-	} else {
+
+		QDocumentCursor::sort(orig, to);
 		if (orig.hasSelection()) orig = orig.selectionStart();
 		if (to.hasSelection()) to = to.selectionEnd();
-	}
-	if (sender()->property("backslash").toBool()) {
-		int backslash = orig.line().text().lastIndexOf('\\', orig.columnNumber());
-		if (backslash >= 0) orig.setColumnNumber(backslash);
-	}
 
-	currentEditor()->setCursor(currentEditor()->document()->cursor(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber()));
+		cursor.select(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber());
+	} else {
+		qWarning("Unhandled selectBracket() type");
+	}
+	currentEditor()->setCursor(cursor);
 }
 
 void Texstudio::findMissingBracket()
@@ -9471,8 +9651,8 @@ void Texstudio::findNextWordRepetion()
 	QPushButton *mButton = qobject_cast<QPushButton *>(sender());
 	bool backward = mButton->objectName() == "prev";
 	if (!currentEditorView()) return;
-	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int);
-	OverlaySearch overlaySearch = backward ? &QDocumentLine::getLastOverlayBetween : &QDocumentLine::getFirstOverlayBetween;
+	typedef QFormatRange (QDocumentLine::*OverlaySearch) (int, int, int) const;
+	OverlaySearch overlaySearch = backward ? &QDocumentLine::getLastOverlay : &QDocumentLine::getFirstOverlay;
 	QComboBox *kind = mButton->parent()->findChild<QComboBox *>("kind");
 	int overlayType = currentEditorView()->document->getFormatId(kind ? kind->currentText() : "wordRepetition");
 	QDocumentCursor cur = currentEditor()->cursor();
@@ -9660,11 +9840,25 @@ void Texstudio::simulateKeyPress(const QString &shortcut)
 
 void Texstudio::updateTexQNFA()
 {
-	QLanguageFactory::LangData m_lang = m_languages->languageData("(La)TeX");
+	updateTexLikeQNFA("(La)TeX", "tex.qnfa");
+	updateTexLikeQNFA("Sweave", "sweave.qnfa");
+	updateTexLikeQNFA("Pweave", "pweave.qnfa");
+	updateUserMacros(false); //update macro triggers for languages
+}
 
-	QFile f(configManager.configBaseDir + "languages/tex.qnfa");
+/*!
+ * \brief Extends the given Language with dynamic information
+ * \param languageName - the language name as specified in the language attribute of the <QNFA> tag.
+ * \param filename - the filename for the language. This is just the filename without a path.
+ * the file is searched for in the user language directory and as a fallback in the builtin language files.
+ */
+void Texstudio::updateTexLikeQNFA(QString languageName, QString filename)
+{
+	QLanguageFactory::LangData m_lang = m_languages->languageData(languageName);
+
+	QFile f(configManager.configBaseDir + "languages/" + filename);
 	if (!f.exists()) {
-		f.setFileName(findResourceFile("qxs/tex.qnfa"));
+		f.setFileName(findResourceFile("qxs/" + filename));
 	}
 	QDomDocument doc;
 	doc.setContent(&f);
@@ -9686,15 +9880,16 @@ void Texstudio::updateTexQNFA()
 	// structure commands
 	addStructureCommandsToDom(doc, latexParser.possibleCommands);
 
-	QLanguageDefinition *oldLaTeX = 0, *newLaTeX = 0;
-	oldLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX);
+	QLanguageDefinition *oldLangDef = 0, *newLangDef = 0;
+	oldLangDef = m_lang.d;
+	Q_ASSERT(oldLangDef);
 
+	// update editors using the language
 	QNFADefinition::load(doc, &m_lang, m_formats);
 	m_languages->addLanguage(m_lang);
 
-	newLaTeX = m_lang.d;
-	Q_ASSERT(oldLaTeX != newLaTeX);
+	newLangDef = m_lang.d;
+	Q_ASSERT(oldLangDef != newLangDef);
 
 	if (editors) {
 		documents.enablePatch(false);
@@ -9702,15 +9897,14 @@ void Texstudio::updateTexQNFA()
             LatexEditorView *edView=doc->getEditorView();
             if(edView){
                 QEditor *ed = edView->editor;
-                if (ed->languageDefinition() == oldLaTeX) {
-                    ed->setLanguageDefinition(newLaTeX);
+                if (ed->languageDefinition() == oldLangDef) {
+                    ed->setLanguageDefinition(newLangDef);
                     ed->highlight();
                 }
             }
 		}
 		documents.enablePatch(true);
 	}
-	updateUserMacros(false); //update macro triggers depending on the language to newLatex
 }
 
 /// Updates the highlighting of environments specified via environmentAliases
@@ -10484,7 +10678,7 @@ void Texstudio::openInternalDocViewer(QString package, const QString command)
  * \brief close a latex environment
  *
  * If the cursor is after a \begin{env} which is not closed by the end of the document, \end{env} is inserted.
- * This only works on a succeding line of the \begin{env} statement, not in the same line.
+ *
  * This function uses information which is generated by the syntax checker.
  * As the syntaxchecker works asynchronously, a small delay between typing and functioning of this action is mandatory though that delay is probably too small for any user to notice.
  */
@@ -10497,6 +10691,35 @@ void Texstudio::closeEnvironment()
 	if (!m_edit)
 		return;
 	QDocumentCursor cursor = m_edit->cursor();
+
+	// handle current line -- based on text parsing of current line
+	// the below method is not exact and will fail on certain edge cases
+	// for the time being this is good enough. An alternative approach may use the token system:
+	//   QDocumentLineHandle *dlh = edView->document->line(cursor.lineNumber()).handle();
+	//   TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+	if (cursor.columnNumber() > 0) {
+		QString text = cursor.line().text();
+		QRegExp rxBegin = QRegExp("\\\\begin\\{([^}]+)\\}");
+		int beginCol = text.lastIndexOf(rxBegin, cursor.columnNumber()-1);
+		while (beginCol >= 0) {
+			QDocumentCursor from, to;
+			QDocumentCursor c = cursor.clone(false);
+			c.setColumnNumber(beginCol);
+			c.getMatchingPair(from, to);
+			QString endText = "\\end{" + rxBegin.cap(1) + "}";
+			if (!to.isValid() || to.selectedText() != endText) {
+				cursor.insertText(endText);
+				return;
+			}
+			beginCol -= 6;
+			if (beginCol < 0) break;
+			beginCol = text.lastIndexOf(rxBegin, beginCol);
+		}
+	}
+
+	// handle previous lines -- based on StackEnvironment / syntax checker
+	// This only works on a succeding line of the \begin{env} statement, not in the same line.
+	// Therefore the above separate handling of the current line.
 	StackEnvironment env;
 	LatexDocument *doc = edView->document;
 	doc->getEnv(cursor.lineNumber(), env);

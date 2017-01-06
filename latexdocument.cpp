@@ -386,7 +386,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	if (linenr > 0) {
 		QDocumentLineHandle *previous = line(linenr - 1).handle();
 		remainder = previous->getCookieLocked(QDocumentLine::LEXER_REMAINDER_COOKIE).value<TokenStack >();
-		if (!remainder.isEmpty() && remainder.top().subtype != Tokens::none) {
+		if (!remainder.isEmpty() && remainder.top().subtype != Token::none) {
 			QDocumentLineHandle *lh = remainder.top().dlh;
 			lineNrStart = lh->document()->indexOf(lh);
 			if (linenr - lineNrStart > 10) // limit search depth
@@ -602,14 +602,14 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 		}
 
 		for (int j = 0; j < tl.length(); j++) {
-			Tokens tk = tl.at(j);
+			Token tk = tl.at(j);
 			// break at comment start
-			if (tk.type == Tokens::comment)
+			if (tk.type == Token::comment)
 				break;
 			// work special args
 			////Ref
 			//for reference counting (can be placed in command options as well ...
-			if (tk.type == Tokens::labelRef || tk.type == Tokens::labelRefList) {
+			if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
 				ReferencePair elem;
 				elem.name = tk.getText();
 				elem.start = tk.start;
@@ -617,7 +617,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 
 			//// label ////
-			if (tk.type == Tokens::label && tk.length > 0) {
+			if (tk.type == Token::label && tk.length > 0) {
 				ReferencePair elem;
 				elem.name = tk.getText();
 				elem.start = tk.start;
@@ -637,7 +637,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				iter_label.insert(newLabel);
 			}
 			//// newtheorem ////
-			if (tk.type == Tokens::newTheorem && tk.length > 0) {
+			if (tk.type == Token::newTheorem && tk.length > 0) {
 				completerNeedsUpdate = true;
 				QStringList lst;
 				QString firstArg = tk.getText();
@@ -652,7 +652,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				continue;
 			}
 			/// bibitem ///
-			if (tk.type == Tokens::newBibItem && tk.length > 0) {
+			if (tk.type == Token::newBibItem && tk.length > 0) {
 				ReferencePair elem;
 				elem.name = tk.getText();
 				elem.start = tk.start;
@@ -660,10 +660,29 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				bibItemsChanged = true;
 				continue;
 			}
+			/// todo ///
+			if (tk.subtype == Token::todo && (tk.type == Token::braces || tk.type == Token::openBrace)) {
+				bool reuse = false;
+				StructureEntry *newTodo;
+				if (MapOfTodo.contains(dlh)) {
+					newTodo = MapOfTodo.value(dlh);
+					newTodo->type = StructureEntry::SE_TODO;
+					MapOfTodo.remove(dlh, newTodo);
+					reuse = true;
+				} else {
+					newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
+				}
+				newTodo->title = tk.getInnerText();
+				newTodo->setLine(line(i).handle(), i);
+				newTodo->parent = todoList;
+				if (!reuse) emit addElement(todoList, todoList->children.size()); //todo: why here but not in label?
+				iter_todo.insert(newTodo);
+			}
+
 			// work on general commands
-			if (tk.type != Tokens::command && tk.type != Tokens::commandUnknown)
+			if (tk.type != Token::command && tk.type != Token::commandUnknown)
 				continue; // not a command
-			Tokens tkCmd;
+			Token tkCmd;
 			TokenList args;
 			QString cmd;
 			int cmdStart = findCommandWithArgsFromTL(tl, tkCmd, args, j, parent->showCommentedElementsInStructure);
@@ -672,39 +691,20 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 			QString firstArg = getArg(args, dlh, 0, ArgumentList::Mandatory);
 
-			if (lp.possibleCommands["%todo"].contains(cmd)) {
-				bool reuse = false;
-				StructureEntry *newTodo;
-				if (MapOfTodo.contains(dlh)) {
-					newTodo = MapOfTodo.value(dlh);
-					//parent->add(newTodo);
-					newTodo->type = StructureEntry::SE_TODO;
-					MapOfTodo.remove(dlh, newTodo);
-					reuse = true;
-				} else {
-					newTodo = new StructureEntry(this, StructureEntry::SE_TODO);
-				}
-				newTodo->title = firstArg;
-				newTodo->setLine(line(i).handle(), i);
-				newTodo->parent = todoList;
-				if (!reuse) emit addElement(todoList, todoList->children.size()); //todo: why here but not in label?
-				iter_todo.insert(newTodo);
-			}
-
 			//// newcommand ////
 			if (lp.possibleCommands["%definition"].contains(cmd) || ltxCommands.possibleCommands["%definition"].contains(cmd)) {
 				completerNeedsUpdate = true;
 				//Tokens cmdName;
-				QString cmdName = getArg(args, Tokens::def);
+				QString cmdName = getArg(args, Token::def);
 				bool isDefWidth = true;
 				if (cmdName.isEmpty())
-					cmdName = getArg(args, Tokens::defWidth);
+					cmdName = getArg(args, Token::defWidth);
 				else
 					isDefWidth = false;
 				//int optionCount = getArg(args, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
-				int optionCount = getArg(args, Tokens::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
+				int optionCount = getArg(args, Token::defArgNumber).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
-				bool def = !getArg(args, Tokens::optionalArgDefinition).isEmpty();
+				bool def = !getArg(args, Token::optionalArgDefinition).isEmpty();
 
 				ltxCommands.possibleCommands["user"].insert(cmdName);
 
@@ -749,9 +749,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 								else name.append(QString("{%<arg%1%>}").arg(j));
 						} else {
 							QStringList args = optionStr.split('#'); //#1;#2#3:#4 => ["",1;,2,3:,4]
-							args.removeAt(0);
 							bool hadSeparator = true;
-							for (int i = 0; i < args.length(); i++) {
+                            for (int i = 1; i < args.length(); i++) {
 								if (args[i].length() == 0) continue; //invalid
 								bool hasSeparator = (args[i].length() != 1); //only single digit variables allowed. last arg also needs a sep
 								if (!hadSeparator || !hasSeparator)
@@ -760,7 +759,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 									args[i] = "%<arg" + args[i][0] + "%>" + args[i].mid(1); //no need to use {} for arguments that are separated anyways
 								hadSeparator  = hasSeparator;
 							}
-							name.append(" ");
 							name.append(args.join(""));
 						}
 					}
@@ -776,6 +774,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (envTokens.contains(cmd)) {
 				completerNeedsUpdate = true;
 				TokenList argsButFirst = args;
+                                if(argsButFirst.isEmpty())
+                                    continue; // no arguments present
 				argsButFirst.removeFirst();
 				int optionCount = getArg(argsButFirst, dlh, 0, ArgumentList::Optional).toInt(); // results in 0 if there is no optional argument or conversion fails
 				if (optionCount > 9 || optionCount < 0) optionCount = 0; // limit number of options
@@ -821,19 +821,19 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				if (!args.isEmpty() ) {
 					completerNeedsUpdate = true;
 					QString definition = ltxCommands.specialDefCommands.value(cmd);
-					Tokens::TokenType type = Tokens::braces;
+					Token::TokenType type = Token::braces;
 					if (definition.startsWith('(')) {
 						definition.chop(1);
 						definition = definition.mid(1);
-						type = Tokens::bracket;
+						type = Token::bracket;
 					}
 					if (definition.startsWith('[')) {
 						definition.chop(1);
 						definition = definition.mid(1);
-						type = Tokens::squareBracket;
+						type = Token::squareBracket;
 					}
 
-					foreach (Tokens mTk, args) {
+					foreach (Token mTk, args) {
 						if (mTk.type != type)
 							continue;
 						QString elem = mTk.getText();
@@ -995,7 +995,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (cmd.endsWith("*"))
 				cmd = cmd.left(cmd.length() - 1);
 			int level = lp.structureCommandLevel(cmd);
-			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Tokens::none) {
+			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
 				StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
 				if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
 				if (mBeyondEnd && indexOf(mBeyondEnd) < i) newSection->setContext(StructureEntry::BeyondEnd);
@@ -1007,7 +1007,36 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				newSection->setLine(line(i).handle(), i);
 				newSection->columnNumber = cmdStart;
 				flatStructure << newSection;
+                                continue;
 			}
+                        /// auto user command for \symbol_...
+                        if(j+2<tl.length()){
+                            Token tk2=tl.at(j+1);
+                            if(tk2.getText()=="_"){
+                                QString txt=cmd+"_";
+                                tk2=tl.at(j+2);
+                                txt.append(tk2.getText());
+                                if(tk2.type==Token::command && j+3<tl.length()){
+                                       Token tk3=tl.at(j+3);
+                                       if(tk3.level==tk2.level && tk.subtype!=Token::none)
+                                           txt.append(tk3.getText());
+                                }
+                                CodeSnippet cs(txt);
+                                mUserCommandList.insert(line(i).handle(), cs);
+                            }
+                        }
+                        /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
+                        if(j+2<tl.length() && !firstArg.isEmpty() && lp.possibleCommands["math"].contains(cmd) ){
+                            if (lp.commandDefs.contains(cmd)) {
+                                    CommandDescription cd = lp.commandDefs.value(cmd);
+                                    if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
+                                        QString txt=cmd+"{"+firstArg+"}";
+                                        CodeSnippet cs(txt);
+                                        mUserCommandList.insert(line(i).handle(), cs);
+                                    }
+                            }
+                        }
+
 		} // while(findCommandWithArgs())
 
 		if (!oldBibs.isEmpty())
@@ -1667,6 +1696,11 @@ Qt::ItemFlags LatexDocumentsModel::flags ( const QModelIndex &index ) const
 
 QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 {
+	static const QColor beyondEndColor(255, 170, 0);
+	static const QColor inAppendixColor(200, 230, 200);
+	static const QColor missingFileColor(Qt::red);
+	static const QColor activeItemColor(QPalette().color(QPalette::Base));
+
 	if (!index.isValid()) return QVariant();
 	StructureEntry *entry = (StructureEntry *) index.internalPointer();
 	if (!entry) return QVariant();
@@ -1688,18 +1722,44 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 	case Qt::ToolTipRole:
 		//qDebug("data %x",entry);
 		if (!entry->tooltip.isNull()) {
+			qDebug() << entry->tooltip;
 			return QVariant(entry->tooltip);
 		}
 		if (entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
 			return QVariant(QDir::toNativeSeparators(entry->document->getFileName()));
 		}
 		if (entry->type == StructureEntry::SE_SECTION) {
-			QString tooltip(entry->title);
+#if QT_VERSION < 0x050000
+			QString htmlTitle = entry->title;
+#else
+			QString htmlTitle = entry->title.toHtmlEscaped();
+#endif
+			htmlTitle.replace(' ', "&nbsp;");  // repleacement: prevent line break
+			QString tooltip("<html><b>" + htmlTitle + "</b>");
 			if (entry->getCachedLineNumber() > -1)
-				tooltip.append("\n" + tr("Line") + QString(": %1").arg(entry->getRealLineNumber() + 1));
+				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
 			StructureEntry *se = LatexDocumentsModel::labelForStructureEntry(entry);
 			if (se)
-				tooltip.append("\n" + tr("Label") + ": " + se->title);
+				tooltip.append("<br><i>" + tr("Label") + "</i>: " + se->title);
+			if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd))
+				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(beyondEndColor.darker(120).name(), tr("Beyond end of document.")));
+			if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix))
+				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(inAppendixColor.darker(120).name(), tr("In Appendix.")));
+			tooltip.append("</html>");
+			return QVariant(tooltip);
+		}
+		if (entry->type == StructureEntry::SE_INCLUDE) {
+#if QT_VERSION < 0x050000
+			QString htmlTitle = entry->title;
+#else
+			QString htmlTitle = entry->title.toHtmlEscaped();
+#endif
+			htmlTitle.replace(' ', "&nbsp;").replace('-', "&#8209;");  // repleacement: prevent line break
+			QString tooltip("<html><b>" + htmlTitle + "</b>");
+			if (entry->getCachedLineNumber() > -1)
+				tooltip.append("<br><i>" + tr("Line") + QString("</i>: %1").arg(entry->getRealLineNumber() + 1));
+			if (!entry->valid)
+				tooltip.append(QString("<br><font color=\"%1\">%2</font>").arg(missingFileColor.name(), tr("File not found.")));
 			return QVariant(tooltip);
 		}
 		if (entry->getCachedLineNumber() > -1)
@@ -1731,13 +1791,13 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 			return QVariant();
 		}
 	case Qt::BackgroundRole:
-		if (index == mHighlightIndex) return QVariant(QColor(Qt::lightGray));
-		if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd)) return QVariant(QColor(255, 170, 0));
-		if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix)) return QVariant(QColor(200, 230, 200));
+		if (index == mHighlightIndex) return QVariant(activeItemColor);
+		if (documents.markStructureElementsBeyondEnd && entry->hasContext(StructureEntry::BeyondEnd)) return QVariant(beyondEndColor);
+		if (documents.markStructureElementsInAppendix && entry->hasContext(StructureEntry::InAppendix)) return QVariant(inAppendixColor);
 		return QVariant();
 	case Qt::ForegroundRole:
 		if (entry->type == StructureEntry::SE_INCLUDE) {
-			return entry->valid ? QVariant() : QVariant(QColor(Qt::red)); // not found files marked red, else black (green is not easily readable)
+			return entry->valid ? QVariant() : QVariant(missingFileColor); // not found files marked red, else black (green is not easily readable)
 		} else return QVariant();
 	case Qt::FontRole:
 		if (entry->type == StructureEntry::SE_DOCUMENT_ROOT) {

@@ -103,13 +103,12 @@ environments in smallUsefulFunctions.cpp)
 		<start>%</start>
 		<stop exclusive="false">\n</stop>
 	</context>
-		
+	
 	<context id="comment/env" format="comment">
 		<start parenthesis="commentenv:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword" >\\begin{comment}</start>
 		<stop parenthesis="commentenv:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword" >\\end{comment}</stop>
 	</context>
 
- 
 	
 	<!-- ========================= MATH MODE ====================== -->
 
@@ -221,28 +220,6 @@ environments in smallUsefulFunctions.cpp)
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
 
-	<context id="comment/todocmd" format="commentTodo">
-		<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
-		<start parenthesis="todo:open" prenthesisweight="12">\\todo[a-zA-Z]*\{</start>
-		<start parenthesis="todo:open" prenthesisweight="12">\\missingfigure\{</start>
-
-		<!-- need to track inner curly braces for matching to allow a correct matching of the outer curly brace.
-		     Apparently simple sequences (as in other contexts in which we don't have the ambiguous stop delimiter)
-			 don't work here. As a workaround we define inner contexts. But the disadvantage is that these have to
-			 be defined explicitly per nesting level. Here we define two nesting levels, which should be sufficient
-			 in most cases.
-		-->
-		<context id="innercurly" format="commentTodo">
-		<start parenthesis="innercurly:open" parenthesisWeight="10">\{</start>
-		<stop parenthesis="innercurly:close" parenthesisWeight="10">\}</stop>
-
-			<context id="innercurly2" format="commentTodo">
-			<start parenthesis="innercurly2:open" parenthesisWeight="10">\{</start>
-			<stop parenthesis="innercurly2:close" parenthesisWeight="10">\}</stop>
-			</context>
-		</context>
-	</context>
-	
 	<!-- ========================= PICTURES ====================== -->
 	<foreach loopVar="$env">
 		<e>tikzpicture</e> <e>pspicture</e> <e>pspicture\*</e> <e>picture</e> <e>picture\*</e>
@@ -262,11 +239,10 @@ environments in smallUsefulFunctions.cpp)
 		<start parenthesis="asy:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{asy}</start>
 		<stop parenthesis="asy:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{asy}</stop>
 		<embed target="Asymptote" />
-	</context>        
+	</context>
 
-	
 	<!-- ========================= GENERAL BLOCKS ====================== -->
-		
+	
 	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
 	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
 <!--
@@ -297,7 +273,7 @@ environments in smallUsefulFunctions.cpp)
 
 	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
 	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z@]+</sequence>
-	
+
 </QNFA>
 
 

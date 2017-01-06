@@ -1257,9 +1257,12 @@ Changes during an edit session will only take effect when you reopen the file.
 </ul>
 <h2 id="SECTION38">4.11 Synopsis of the TeXstudio command</h2>
 <p>
-<code>texstudio file [--master] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy]</code><br><br>
+<code>texstudio file [--config DIR] [--root] [--line xx[:cc]] [--insert-cite citation] [--start-always] [--pdf-viewer-only] [--page yy] [--no-session]</code><br><br>
 <table>
-<tr><td><code>--master</code></td><td>defines the document as <i>explicit root document</i> (formerly called <i>master document</i>).</td></tr>
+<tr><td><code>--config DIR</code></td><td>use the specified settings directory.</td></tr>
+<tr><td><code>--ini-file FILE</code></td><td><i>deprecated</i>:use <code>--config</code> instead.</td></tr>
+<tr><td><code>--root</code></td><td>defines the document as <i>explicit root document</i> (formerly called <i>master document</i>).</td></tr>
+<tr><td><code>--master</code></td><td><i>deprecated</i>:use <code>--root</code> instead.</td></tr>
 <tr><td><code>--line xx[:cc]</code></td><td>position the cursor at line LINE and column COL, e.g. "--line 2:5" will jump to column 5 in line 2.</td></tr>
 <tr><td><code>--insert-cite citation</code></td><td>pushes a bibtex key to TeXstudio, that will be inserted at the cursor position. This is intended as an interface for external bibliography managers to push citations to TeXstudio. You may either pass an (also custom) command like \mycite{key} or just the key. In the latter case, it is expanded to \cite{key}. Also comma separated keylists are supported. TeXstudio recognizes, if the cursor is already within a citation macro. If so, only the key is inserted at an appropriate position, otherwise the full citation command is inserted.</td></tr>
 <tr><td><code>--start-always</code></td><td>start a new instance, even if TXS is already running. This allows using of multiple instances.</td></tr>
@@ -1452,6 +1455,7 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <li><code>URL</code>:URL</li>
   <li><code>options</code>:package options, e.g. \usepackage[options]</li>
   <li><code>imagefile</code>:file name of an image</li>
+  <li>ends with <code>%todo</code>: The argument is highlighted as todo. Note: To add the element to the todo list in the structure panel, you have to additionally add the classifier <code>D</code>. See todonotes.cwl for an example.</li>
   <li><code>key</code>:label/ref key</li>
   <li><code>label</code> with option <code>#r</code> or key ending with <code>%ref</code>:ref key</li>
   <li><code>label</code> with option <code>#l</code> or key ending with <code>%labeldef</code>:defines a label</li>
@@ -1486,7 +1490,8 @@ Each line of a cwl file defines a command. Comment lines are possible and start 
   <tr><td>u</td><td>this command declares an used package like "\usepackage{package}"</td></tr>
   <tr><td>b</td><td>this command declares a bibliography like "\bibliography{bib}"</td></tr>
   <tr><td>U</td><td>this command declares a url command like "\url{URL}, where URL is not checked"</td></tr>
-  <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel)</td></tr>
+  <tr><td>D</td><td>this command declares a todo item (will be added to the todo list in the side panel). Note: To highlight the item in the editor, you have to additionally add the suffix <code>%todo</code>. See todonotes.cwl for an example.</li>
+</td></tr>
   <tr><td>B</td><td>this command declares a color (will be used for color completion only, no syntax checking)</td></tr>
   <tr><td>s</td><td>this command declares a special definition, the definition class is given after a "#". The class name needs a preceding %. (e.g. %color), also see the examples below.</td></tr>
   <tr><td>V</td><td>this command declares a verbatim-like environment "\begin{Verbatim}"</td></tr>

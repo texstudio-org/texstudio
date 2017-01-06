@@ -890,7 +890,7 @@ PDFClockDock::PDFClockDock(PDFDocument *parent): PDFDock(parent)
 	timer->start(2000);
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
-	QAction *act = new QAction(tr("Set interval"), this);
+	QAction *act = new QAction(tr("Set Interval..."), this);
 	connect(act, SIGNAL(triggered()), SLOT(setInterval()));
 	addAction(act);
 	act = new QAction(tr("Restart"), this);
@@ -948,18 +948,39 @@ void PDFClockDock::paintEvent(QPaintEvent *event)
 		PDFDock::paintEvent(event);
 		return;
 	}
+	QBrush backgroundBrush = palette().window();  //QColor::fromRgb(96, 96, 96));
+	QColor textColor = palette().text().color();
+	if (style()->property("manhattanstyle").toBool()) {
+		backgroundBrush = QBrush(QColor::fromRgb(96, 96, 96));
+		textColor = QColor(Qt::white);
+	}
+	QColor timeBarColor = QColor::fromRgb(175, 0, 175);
+	QColor pagesBarColor = QColor::fromRgb(0, 122, 217);
+
 	QPainter p(this);
 	QRect r = rect();
-	p.fillRect(r, QColor::fromRgb(0, 0, 0));
-	p.fillRect(0, 0, r.width() * (start.secsTo(QDateTime::currentDateTime())) / qMax(qint64(start.secsTo(end)), qint64(1) ),  r.height() * 3 / 4,  QColor::fromRgb(255, 0, 0));
-	p.fillRect(0, r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages() - 1),  r.height() / 4, QColor::fromRgb(0, 0, 255));
+	p.fillRect(r, backgroundBrush);
+
+	// text
+	qint64 remainingSeconds = QDateTime::currentDateTime().secsTo(end);
+	QString text;
+	if (remainingSeconds <= 60)
+		text = tr("%1 sec").arg(qMax(qint64(0), remainingSeconds));
+	else
+		text = tr("%1 min").arg(remainingSeconds / 60);
 	QFont f = p.font();
 	f.setPixelSize(r.height());
-	QFontMetrics met(f);
-	QString rem = tr("%1min").arg(qMax(qint64(0), qint64(QDateTime::currentDateTime().secsTo(end) / 60)));
 	p.setFont(f);
-	p.setPen(QColor::fromRgb(255, 255, 255));
-	p.drawText(r, Qt::AlignRight | Qt::AlignVCenter, rem);
+	p.setPen(textColor);
+	int labelWidth = p.fontMetrics().width("9999 min");
+	QRect textRect = rect();
+	textRect.setWidth(labelWidth);
+	p.drawText(textRect, Qt::AlignHCenter | Qt::AlignVCenter, text);
+
+	// progress bar
+	r.adjust(labelWidth, 0, 0, 0);
+	p.fillRect(r.x(), 0, r.width() * start.secsTo(QDateTime::currentDateTime()) / qMax(qint64(start.secsTo(end)), qint64(1)), r.height() * 3 / 4, timeBarColor);
+	p.fillRect(r.x(), r.height() * 3 / 4, r.width() * document->widget()->getPageIndex() / qMax(1, document->widget()->realNumPages() - 1),  r.height() / 4, pagesBarColor);
 }
 
 

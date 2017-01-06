@@ -1,5 +1,6 @@
 #include "grammarcheck.h"
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexreader.h"
 #include "QThread"
 GrammarError::GrammarError(): offset(0), length(0), error(GET_UNKNOWN) {}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error, const QString &message): offset(offset), length(length), error(error), message(message) {}
@@ -48,6 +49,10 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 	languageMapping.insert("it-IT", "it");
 	languageMapping.insert("nl-NL", "nl");
 	languageMapping.insert("sv-SV", "sv");
+}
+
+QString GrammarCheck::serverUrl() {
+	return backend->url();
 }
 
 /*!
@@ -540,6 +545,15 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 bool GrammarCheckLanguageToolSOAP::isAvailable()
 {
 	return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
+}
+
+QString GrammarCheckLanguageToolSOAP::url()
+{
+#if QT_VERSION < 0x050000
+    return server.toString();
+#else
+	return server.toDisplayString();
+#endif
 }
 
 QString quoteSpaces(const QString &s)

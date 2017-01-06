@@ -336,12 +336,25 @@ QString QNFADefinition::singleLineComment() const
 	return m_singleLineComment;
 }
 
-const QStringList& QNFADefinition::openingParenthesis() const{
+const QStringList& QNFADefinition::openingParenthesis() const
+{
 	return m_openingParenthesisList;
 }
-QString QNFADefinition::getClosingParenthesis(const QString& opening) const{
+
+const QStringList QNFADefinition::closingParentheses() const
+{
+	// TODO: this may be precalculated once when m_openingParenthesisList is set up.
+	QStringList closings;
+	foreach (const QString &opening, openingParenthesis())
+		closings << getClosingParenthesis(opening);
+	return closings;
+}
+
+QString QNFADefinition::getClosingParenthesis(const QString& opening) const
+{
 	return m_closingParenthesis.value(m_openingParenthesis.value(opening, -1), "");
 }
+
 bool QNFADefinition::possibleEndingOfOpeningParenthesis(const QString& text) const{
 	if (text.isEmpty()) return false;
 	QChar last = text.at(text.length()-1);

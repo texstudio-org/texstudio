@@ -1,11 +1,13 @@
 #include "searchresultwidget.h"
 #include "latexdocument.h"
+#include "configmanagerinterface.h"
 
 
 SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query(0)
 {
 	query = new SearchQuery("", "", SearchQuery::NoFlags);
-	SearchTreeDelegate *searchDelegate = new SearchTreeDelegate(this);
+	QString editorFontFamily = ConfigManagerInterface::getInstance()->getOption("Editor/Font Family").toString();
+	SearchTreeDelegate *searchDelegate = new SearchTreeDelegate(editorFontFamily, this);
 
 	QHBoxLayout *hLayout = new QHBoxLayout;
 	hLayout->setContentsMargins(4, 2, 4, 2);
@@ -145,7 +147,7 @@ SearchQuery::Scope SearchResultWidget::searchScope() const
 //====================================================================
 // CustomDelegate for search results
 //====================================================================
-SearchTreeDelegate::SearchTreeDelegate(QObject *parent): QItemDelegate(parent)
+SearchTreeDelegate::SearchTreeDelegate(QString editorFontFamily, QObject *parent): QItemDelegate(parent), m_editorFontFamily(editorFontFamily)
 {
 	;
 }
@@ -158,13 +160,16 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 	/*if( cg == QPalette::Normal && !(option.state & QStyle::State_Active) )
 	    cg = QPalette::Inactive;*/
 
+	painter->save();
 	if (option.state & QStyle::State_Selected) {
 		painter->fillRect(option.rect, option.palette.brush(cg, QPalette::Highlight));
 		painter->setPen(option.palette.color(cg, QPalette::HighlightedText));
 	} else {
 		painter->setPen(option.palette.color(cg, QPalette::Text));
 	}
+	QRect r = option.rect;  // active area. Will be moved during drawing actions
 
+	// draw checkbox
 	QSize size;
 	if (index.data(Qt::CheckStateRole).isValid()) {
 #if QT_VERSION >= 0x050200  /* QItemDelegate::check is an internal function which has been renamed (maybe already in Qt5.2?) */
@@ -175,22 +180,39 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		QRect checkboxRect(option.rect.x(), option.rect.y(), size.width(), size.height());
 		QItemDelegate::drawCheck(painter, option, checkboxRect, (Qt::CheckState) index.data(Qt::CheckStateRole).toInt());
 	}
-
-	if (index.data().toString().isEmpty()) {
-		return;
-	}
-	painter->save();
-
-	QRect r = option.rect;
 	int spacing = 2;
 	r.adjust(size.width() + spacing, 0, 0, 0);
+
+	if (index.data().toString().isEmpty()) {
+		painter->restore();
+		return;
+	}
+
+	// draw filename line
+	bool isFileName = !index.parent().isValid();
+	if (isFileName) {
+		QString text = index.data().toString();
+		QFont font = painter->font();
+		font.setBold(true);
+		painter->setFont(font);
+		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, text);
+		painter->restore();
+		return;
+	}
+
+	// draw regular line
 	bool isSelected = option.state & QStyle::State_Selected;
+	if (!m_editorFontFamily.isEmpty()) {
+		QFont font = painter->font();
+		font.setFamily(m_editorFontFamily);
+		painter->setFont(font);
+	}
 
 	// draw line number
 	QVariant vLineNumber = index.data(SearchResultModel::LineNumberRole);
 	if (vLineNumber.isValid()) {
 		int hPadding = 1;
-		int lwidth = option.fontMetrics.width("00000") + 2 * hPadding;
+		int lwidth = painter->fontMetrics().width("00000") + 2 * hPadding;
 		QRect lineNumberRect = QRect(r.left(), r.top(), lwidth, r.height());
 		if (!isSelected) {
 			painter->fillRect(lineNumberRect, option.palette.window());
@@ -198,24 +220,40 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 		painter->drawText(lineNumberRect.adjusted(hPadding, 0, -hPadding, 0), Qt::AlignRight | Qt::AlignTop | Qt::TextSingleLine, vLineNumber.toString());
 		r.adjust(lwidth + spacing, 0, 0, 0);
 	}
+
 	// draw text
 	QString text = index.data().toString();
-	QStringList textList = text.split("|");
-	for (int i = 0; i < textList.size(); i++) {
-		QString temp = textList.at(i);
-		int w = option.fontMetrics.width(temp);
-		if (i % 2 && !isSelected) {
-			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(Qt::yellow));
+	bool inHighlight = false;
+	int nextStart = 0;
+	while (nextStart >= 0 && nextStart < text.length()) {
+		int start = nextStart;
+		int end = (inHighlight) ? text.indexOf("|>", start) : text.indexOf("<|", start);
+		if (end < 0)
+			end = text.length();
+		nextStart = end + 2;
+		QString temp = text.mid(start, end-start);
+		int w = painter->fontMetrics().width(temp);
+		if (inHighlight) {
+			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
+			painter->save();
+			painter->setPen(option.palette.color(cg, QPalette::Text));
+			painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
+			painter->restore();
+		} else {
+			painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 		}
-		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 		r.setLeft(r.left() + w + 1);
+		inHighlight = !inHighlight;
 	}
+
 	painter->restore();
 }
 
 QSize SearchTreeDelegate::sizeHint(const QStyleOptionViewItem &option,
                                    const QModelIndex &index) const
 {
+	// TODO: the size hint is not exact because the with of the checkbox is missing and
+	// result lines do not use option.font but m_editorFontFamily
 	QFontMetrics fontMetrics = option.fontMetrics;
 	QRect rect = fontMetrics.boundingRect(index.data().toString());
 	return QSize(rect.width(), rect.height());

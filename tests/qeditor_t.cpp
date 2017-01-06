@@ -6,7 +6,6 @@
 #include "smallUsefulFunctions.h"
 #include "qdocument_p.h"
 #include <QtTest/QtTest>
-Q_DECLARE_METATYPE(QList<int>);
 
 QEditorTest::QEditorTest(QEditor* ed, bool executeAllTests):allTests(executeAllTests)
 {
@@ -59,15 +58,6 @@ void QEditorTest::loadSave_data(){
 					<< endings[j]
 					<< false;
 		}
-	Q_ASSERT(QTextCodec::codecForName("UTF-8")==QTextCodec::codecForMib(MIB_UTF8));
-	Q_ASSERT(QTextCodec::codecForName("UTF-16LE")==QTextCodec::codecForMib(MIB_UTF16LE));
-	Q_ASSERT(QTextCodec::codecForName("UTF-16BE")==QTextCodec::codecForMib(MIB_UTF16BE));
-	Q_ASSERT(QTextCodec::codecForName("ISO-8859-1")==QTextCodec::codecForMib(MIB_LATIN1));
-
-	Q_ASSERT(QTextCodec::codecForMib(MIB_UTF8)->mibEnum() == MIB_UTF8);
-	Q_ASSERT(QTextCodec::codecForMib(MIB_UTF16LE)->mibEnum() == MIB_UTF16LE);
-	Q_ASSERT(QTextCodec::codecForMib(MIB_UTF16BE)->mibEnum() == MIB_UTF16BE);
-	Q_ASSERT(QTextCodec::codecForMib(MIB_LATIN1)->mibEnum() == MIB_LATIN1);
 }
 //checks if load/saving preserves encoding and line endings
 void QEditorTest::loadSave(){

@@ -98,13 +98,13 @@ private:
 };
 
 #ifdef PHONON
-#include <Phonon/VideoPlayer>
+#include <phonon/VideoPlayer>
 
 class PDFMovie: public Phonon::VideoPlayer
 {
 	Q_OBJECT
 public:
-	PDFMovie(PDFWidget *parent, Poppler::MovieAnnotation *annot, int page);
+	PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> annot, int page);
 	void place();
 protected:
 	void contextMenuEvent(QContextMenuEvent *);
@@ -145,7 +145,7 @@ public:
 	void resetMagnifier();
 	Q_INVOKABLE int normalizedPageIndex(int pageIndex);
 	Q_INVOKABLE void goToPageDirect(int pageIndex, bool sync);
-	Q_INVOKABLE void setHighlightPath(const int pageIndex, const QPainterPath &path);
+    Q_INVOKABLE void setHighlightPath(const int pageIndex, const QPainterPath &path, const bool dontRemove=false);
 	Q_INVOKABLE int getHighlightPage() const;
 	Q_INVOKABLE void goToDestination(const QString &destName);
 	Q_INVOKABLE void goToPageRelativePosition(int page, float xinpage, float yinpage);
@@ -207,6 +207,7 @@ protected slots: //not private, so scripts have access
 	void pageDownOrNext();
 
 	void clearHighlight();
+	void openAnnotationDialog(const PDFAnnotation *annon);
 
 public slots:
 	void setSinglePageStep(bool step);
@@ -456,6 +457,7 @@ private slots:
 	void jumpToPage();
 
 	void search(bool backward, bool incremental);
+    void clearHightlight(bool visible);
 public:
 	void search(const QString &searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
 	void search();

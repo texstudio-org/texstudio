@@ -327,7 +327,7 @@ QString SearchResultModel::prepareResultText(const QString &text) const
 		int first = placements.at(i).first;
 		result.append(text.mid(second, first - second)); // add normal text
 		second = placements.at(i).second;
-		result.append("|" + text.mid(first, second - first) + "|"); // add highlighted text
+		result.append("<|" + text.mid(first, second - first) + "|>"); // add highlighted text
 	}
 	result.append(text.mid(placements.last().second));
 	return result;

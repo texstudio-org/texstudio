@@ -42,13 +42,16 @@ public:
 	bool imageToolTip;
 	int maxImageTooltipWidth;
 	bool texdocHelpInInternalViewer;
+	bool monitorFilesForExternalChanges;
 	bool silentReload;
+	bool useQSaveFile;
 
 	bool autoInsertLRM, visualColumnMode, switchLanguagesDirection, switchLanguagesMath;
 
 	bool overwriteOpeningBracketFollowedByPlaceholder;
 	bool overwriteClosingBracketFollowingPlaceholder;
 	bool doubleClickSelectionIncludeLeadingBackslash;
+	int tripleClickSelectionIndex;
 	int contextMenuSpellcheckingEntryLocation;
 	int contextMenuKeyboardModifiers;  // actually this is a Qt::KeyboardModifiers flag (but we don't want to import the whole qt namespace here)
 

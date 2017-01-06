@@ -28,6 +28,9 @@ static const QString nameSeparator = "separator";
 
 ShortcutComboBox::ShortcutComboBox(QWidget *parent): QComboBox(parent)
 {
+	const Qt::Key SpecialKeys[]  = {Qt::Key_Tab, Qt::Key_Backspace, Qt::Key_Delete};
+	const int SpecialKeysCount = 3;
+
 	setObjectName("ShortcutComboBox");
 	setMaxVisibleItems(15);
 	addItem(tr("<default>"));
@@ -52,7 +55,10 @@ ShortcutComboBox::ShortcutComboBox(QWidget *parent): QComboBox(parent)
 								addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META + k).toString(SHORTCUT_FORMAT));
 						}
 					}
-					addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META + Qt::Key_Tab).toString(SHORTCUT_FORMAT));
+					for (int ik = 0; ik < SpecialKeysCount; ik++)
+						addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META
+														  + SpecialKeys[ik]).toString(SHORTCUT_FORMAT));
+					//addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META + Qt::Key_Tab).toString(SHORTCUT_FORMAT));
 				}
 	setEditable(true);
 }
@@ -225,7 +231,6 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					foreach (QTreeWidgetItem *twi, li) {
 						if (twi and twi->text(2) == value) twi->setText(2, "");
-						else if (twi and twi->text(2) == value) twi->setText(2, "");
 					}
 				} else {
 					return;
@@ -371,6 +376,10 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	ui.checkBoxSwitchLanguagesDirection->setDisabled(true);
 	ui.checkBoxSwitchLanguagesMath->setChecked(false);
 	ui.checkBoxSwitchLanguagesMath->setDisabled(true);
+#endif
+
+#ifdef Q_OS_WIN
+	ui.checkBoxUseQSaveWrite->setVisible(false);
 #endif
 
 	ui.contentsWidget->setIconSize(QSize(32, 32));

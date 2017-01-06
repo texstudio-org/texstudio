@@ -25,7 +25,6 @@
 \GlsAddXdyAttribute{arg1}#S
 \GlsAddXdyCounters{arg1}#S
 \GlsAddXdyLocation{arg1}{arg2}#S
-\GlsAddXdyLocation{arg1}{arg2}{arg3}#S
 \GlsAddXdyStyle{arg1}#S
 \GlsSetXdyCodePage{arg1}#S
 \GlsSetXdyFirstLetterAfterDigits{arg1}#S
@@ -242,7 +241,7 @@
 \newglossaryentry{%<label%>}{name={%<name%>},description={%<description%>}}#l
 \longnewglossaryentry{%<label%>}{name={%<name%>}}{%<long description%>}#l
 \newacronym{%<label%>}{%<short%>}{%<long%>}#l
-\newacronym[options]{%<label%>}{%<short%>}}{%<long%>}}#l
+\newacronym[options]{%<label%>}{%<short%>}{%<long%>}#l
 \newglossary[log-ext]{name}{in-ext}{out-ext}{title}#*
 \newglossarystyle{arg1}{arg2}#*
 \noist#S
@@ -480,10 +479,6 @@
 \isodd#S
 \isundefined#S
 \lengthtest#S
-\makeglossary#S
-\newacronym#S
-\newglossary#S
-\protect#S
 \showglodesc#S
 \showglofirst#S
 \showglosymbol#S

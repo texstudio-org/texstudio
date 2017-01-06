@@ -15,6 +15,7 @@
 
 #include "latexeditorview.h"
 #include "spellerutility.h"
+#include "latexparser/latexreader.h"
 
 #include "ui_spellerdialog.h"
 

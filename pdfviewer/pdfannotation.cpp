@@ -7,15 +7,10 @@
 /*
  * Wraps a Poppler::Annotation. This Object takes ownership of the referenced annotation
  */
-PDFAnnotation::PDFAnnotation(Poppler::Annotation *ann, int pageNum, QObject *parent)
+PDFAnnotation::PDFAnnotation(QSharedPointer<Poppler::Annotation> ann, int pageNum, QObject *parent)
 	: QObject(parent), m_popplerAnnotation(ann), m_pageNum(pageNum)
 {
 
-}
-
-PDFAnnotation::~PDFAnnotation()
-{
-	delete m_popplerAnnotation;
 }
 
 QString PDFAnnotation::subTypeText() const
@@ -120,7 +115,7 @@ void PDFAnnotations::update()
 				delete pa;
 				continue;
 			}
-			PDFAnnotation *ann = new PDFAnnotation(pa, pageNum, this);
+			PDFAnnotation *ann = new PDFAnnotation(QSharedPointer<Poppler::Annotation>(pa), pageNum, this);
 			m_annotations.append(ann);
 			annInPage.append(ann);
 		}
@@ -268,12 +263,19 @@ PDFAnnotationTableView::PDFAnnotationTableView(QWidget *parent)
 	setFrameShape(QFrame::NoFrame);
 
 	connect(this, SIGNAL(clicked(QModelIndex)), SLOT(onClick(QModelIndex)));
+	connect(this, SIGNAL(doubleClicked(QModelIndex)), SLOT(onDoubleClick(QModelIndex)));
 }
 
 void PDFAnnotationTableView::onClick(const QModelIndex &index)
 {
 	PDFAnnotationModel *annModel = qobject_cast<PDFAnnotationModel *>(model());
 	emit annotationClicked(annModel->itemForIndex(index));
+}
+
+void PDFAnnotationTableView::onDoubleClick(const QModelIndex &index)
+{
+	PDFAnnotationModel *annModel = qobject_cast<PDFAnnotationModel *>(model());
+	emit annotationDoubleClicked(annModel->itemForIndex(index));
 }
 
 #endif

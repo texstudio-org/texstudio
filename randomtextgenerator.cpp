@@ -1,7 +1,7 @@
 #include "randomtextgenerator.h"
-#include "smallUsefulFunctions.h"
+#include "latexparser/latexreader.h"
+#include "utilsUI.h"
 #include "ui_randomtextgenerator.h"
-#include <QDateTime>
 
 RandomTextGenerator::RandomTextGenerator(QWidget *parent, const QStringList &textLines):
 	QDialog(parent),

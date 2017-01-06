@@ -52,6 +52,7 @@ protected slots:
 	void tabBarContextMenu(const QPoint &point);
 	void onEditorChangeByTabClick(LatexEditorView *from, LatexEditorView *to);
 	void moveToOtherTabGroup();
+	void moveAllToOtherTabGroup();
 	void moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int targetIndex);
 	void changeSplitOrientation();
 

@@ -127,8 +127,12 @@ QStringList parseArguments(const QStringList &args, bool &outStartAlways)
 				cmdLine << "--page" << args[i];
 			else if ((cmdArgument == "-insert-cite" || cmdArgument == "--insert-cite") && (++i < args.count()))
 				cmdLine << "--insert-cite" << args[i];
-			else if (cmdArgument == "--ini-file" && (++i < args.count()))
-				ConfigManager::iniFileOverride = args[i];
+			else if (cmdArgument == "--ini-file" && (++i < args.count())) {
+				// deprecated: use --config instead
+				ConfigManager::configDirOverride = QFileInfo(args[i]).absolutePath();
+			}
+			else if (cmdArgument == "--config" && (++i < args.count()))
+				ConfigManager::configDirOverride = args[i];
 			else if (cmdArgument.startsWith("-"))
 				cmdLine << cmdArgument;
 		} else
@@ -143,7 +147,7 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 		QTextStream(stdout) << "Usage: texstudio [options] [file]\n"
 							<< "\n"
 							<< "Options:\n"
-							<< "  --ini-file FILE         use the specified config file\n"
+							<< "  --config DIR            use the specified settings directory\n"
 							<< "  --master                define the document as explicit root document\n"
 							<< "  --line LINE[:COL]       position the cursor at line LINE and column COL\n"
 							<< "  --insert-cite CITATION  inserts the given citation\n"

@@ -38,6 +38,7 @@
 
 #include "qreliablefilewatch.h"
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
 #include <QDrag>
 
 #include "libqmarkedscrollbar/src/markedscrollbar.h"
@@ -320,8 +321,10 @@ QEditor::QEditor(QWidget *p)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0), m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-	mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_wrapAfterNumChars(0),m_scrollAnimation(0)
+	m_doc(0), m_definition(0),
+	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::LineUnderCursor),
+	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -338,8 +341,10 @@ QEditor::QEditor(bool actions, QWidget *p,QDocument *doc)
  : QAbstractScrollArea(p),
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
-	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-		mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
+	m_doc(0), m_definition(0),
+	m_doubleClickSelectionType(QDocumentCursor::WordOrCommandUnderCursor), m_tripleClickSelectionType(QDocumentCursor::ParenthesesOuter),
+	m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
+	mDisplayModifyTime(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_wrapAfterNumChars(0), m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -382,7 +387,7 @@ QEditor::QEditor(const QString& s, bool actions, QWidget *p)
 	pMenu(0), m_lineEndingsMenu(0), m_lineEndingsActions(0),
 	m_bindingsMenu(0), aDefaultBinding(0), m_bindingsActions(0),
 	m_doc(0), m_definition(0), m_curPlaceHolder(-1), m_placeHolderSynchronizing(false), m_state(defaultFlags()),
-	mDisplayModifyTime(true),m_blockKey(false),m_disableAccentHack(false),m_LineWidth(0),m_scrollAnimation(0)
+	mDisplayModifyTime(true), m_useQSaveFile(true), m_blockKey(false), m_disableAccentHack(false), m_LineWidth(0), m_scrollAnimation(0)
 {
 	m_editors << this;
 
@@ -444,6 +449,7 @@ void QEditor::init(bool actions,QDocument *doc)
 
 	setAcceptDrops(true);
 	//setDragEnabled(true);
+	setFrameStyle(QFrame::NoFrame);
 	setFrameShadow(QFrame::Plain);
 	setFocusPolicy(Qt::WheelFocus);
 	setAttribute(Qt::WA_KeyCompression, true);
@@ -982,13 +988,27 @@ bool QEditor::saveCopy(const QString& filename){
 	QByteArray data =  m_doc->codec() ? m_doc->codec()->fromUnicode(txt) : txt.toLocal8Bit();
 
 #if QT_VERSION >= 0x050100
-	QSaveFile file(filename);
-	if (file.open(QIODevice::WriteOnly)) {
-		file.write(data);
-		return file.commit();
+	if (m_useQSaveFile) {
+		QSaveFile file(filename);
+		if (file.open(QIODevice::WriteOnly)) {
+			file.write(data);
+			bool success = file.commit();
+			if (!success) {
+				QMessageBox::warning(this, tr("Saving failed"),
+									 tr("%1\nCould not be written. Error (%2): %3.\n"
+										"If the file already existed on disk, it was not modified by this operation.")
+										.arg(QDir::toNativeSeparators(filename))
+										.arg(file.error())
+										.arg(file.errorString()),
+									 QMessageBox::Ok);
+			}
+			return success;
+		}
+		QMessageBox::warning(this, tr("Saving failed"), tr("Could not get write permissions on file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(QDir::toNativeSeparators(filename)), QMessageBox::Ok);
+		return false;
+	} else {
+		return writeToFile(filename, data);
 	}
-	QMessageBox::warning(this, tr("Saving failed"), tr("Could not get write permissions on file\n%1.\n\nPerhaps it is read-only or opened in another program?").arg(QDir::toNativeSeparators(filename)), QMessageBox::Ok);
-	return false;
 #else
 	return writeToFile(filename, data);
 #endif
@@ -1176,7 +1196,7 @@ void QEditor::reconnectWatcher()
 */
 void QEditor::fileChanged(const QString& file)
 {
-	if ( (file != fileName()) || (m_saveState == Saving) )
+	if ( (file != fileName()) || (m_saveState == Saving) || mIgnoreExternalChanges )
 		return;
 	
 	/*
@@ -2552,7 +2572,7 @@ static bool unindent(const QDocumentCursor& cur)
 	return true;
 }
 
-static void insert(const QDocumentCursor& cur, const QString& txt)
+static void insertAtLineStart(const QDocumentCursor& cur, const QString& txt)
 {
 	QDocumentCursor c(cur);
 	c.setSilent(true);
@@ -2576,55 +2596,55 @@ static void removeFromStart(const QDocumentCursor& cur, const QString& txt)
 	c.removeSelectedText();
 }
 
-void QEditor::tabOrIndentSelection()
+/*!
+ * \brief inserts a tab at given cursor position. Depending on the context and the
+ * flags ReplaceIndentTabs and ReplaceTextTabs, this inserts spaces up to the next
+ * tab stop, otherwise '\t' is inserted.
+ */
+void QEditor::insertTab(QDocumentCursor &cur)
 {
-    if(m_cursor.hasSelection()){
-        indentSelection();
-    }else{
+	bool replaceTabs = flag(ReplaceIndentTabs);
+	if (flag(ReplaceIndentTabs) != flag(ReplaceTextTabs)) {
+		// need to check if cursor is in indent or in text
 		QDocumentCursor cur(m_cursor);
-		// insert \t only if there is non-space before the cursor, otherwise indent
 		while (!cur.atLineStart()) {
 			if (!cur.previousChar().isSpace()) {
-				insertTab();
-				return;
+				replaceTabs = flag(ReplaceTextTabs);
+				break;
 			}
 			cur.movePosition(1, QDocumentCursor::PreviousCharacter);
 		}
+	}
+
+	if (replaceTabs) {
+		int tabStop = m_doc->tabStop();
+		int spaceCount = tabStop - cur.columnNumber() % tabStop;
+		cur.insertText(QString(spaceCount, ' '));
+	} else {
+		insertText(cur, "\t");
+	}
+}
+
+void QEditor::tabOrIndentSelection()
+{
+	if (m_cursor.hasSelection()) {
 		indentSelection();
+	} else {
+		insertTab();
 	}
 }
 
 void QEditor::insertTab()
 {
-	if (flag(ReplaceTextTabs)) {
-		int tabStop = m_doc->tabStop();
+	bool macroing = m_mirrors.count();
+	if (macroing) m_doc->beginMacro();
 
-		bool macroing = m_mirrors.count();
-		if (macroing) m_doc->beginMacro();
-
-		int spaceCount = tabStop - m_cursor.columnNumber() % tabStop;
-		m_cursor.insertText(QString(spaceCount, ' '));
-
-		for ( int i = 0; i < m_mirrors.count(); ++i ) {
-			spaceCount = tabStop - m_mirrors[i].columnNumber() % tabStop;
-			m_mirrors[i].insertText(QString(spaceCount, ' '));
-		}
-
-		if (macroing) m_doc->endMacro();
-
-	} else {
-
-		bool macroing = m_mirrors.count();
-		if (macroing) m_doc->beginMacro();
-
-		insertText(m_cursor, "\t");
-
-		for ( int i = 0; i < m_mirrors.count(); ++i )
-			insertText(m_mirrors[i], "\t");
-
-		if (macroing) m_doc->endMacro();
-
+	insertTab(m_cursor);
+	for ( int i = 0; i < m_mirrors.count(); ++i ) {
+		insertTab(m_mirrors[i]);
 	}
+
+	if (macroing) m_doc->endMacro();
 }
 
 /*!
@@ -2641,17 +2661,18 @@ void QEditor::indentSelection()
 		m_doc->beginMacro();
 
 		if ( !protectedCursor(m_cursor) )
-			insert(m_cursor, txt);
+			insertAtLineStart(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
 			if ( !protectedCursor(m) )
-				insert(m, txt);
+				insertAtLineStart(m, txt);
 
 		m_doc->endMacro();
 
 	} else if ( !protectedCursor(m_cursor) ) {
 		if ( !m_cursor.hasSelection() )
-			insert(m_cursor, txt);
+
+			insertAtLineStart(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
 			if ( s.end == 0 && s.startLine < s.endLine )
@@ -2733,18 +2754,18 @@ void QEditor::commentSelection()
 		m_definition->clearMatches(m_doc);  // Matches are not handled inside comments. We have to remove them. Otherwise they will stay forever in the comment line.
 
 		if ( !protectedCursor(m_cursor) )
-		insert(m_cursor, txt);
+		insertAtLineStart(m_cursor, txt);
 
 		foreach ( const QDocumentCursor& m, m_mirrors )
 			if ( !protectedCursor(m) )
-				insert(m, txt);
+				insertAtLineStart(m, txt);
 
 		m_doc->endMacro();
 
 	} else if ( !protectedCursor(m_cursor) ) {
 		m_definition->clearMatches(m_doc);  // Matches are not handled inside comments. We have to remove them. Otherwise they will stay forever in the comment line.
 		if ( !m_cursor.hasSelection() )
-			insert(m_cursor, txt);
+			insertAtLineStart(m_cursor, txt);
 		else {
 			QDocumentSelection s = m_cursor.selection();
 			if ( s.end == 0 && s.startLine < s.endLine )
@@ -3636,7 +3657,7 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 			m_multiClickCursor = m_cursor;
 			m_multiClickCursor.clearSelection();  // just store the click position
 			m_multiClickCursor.setProperty("isTripleClick", true);
-			m_cursor.select(QDocumentCursor::LineUnderCursor);
+			m_cursor.select(m_tripleClickSelectionType);
 			m_click.stop();
 		} else {
 			QDocumentCursor cursor = cursorForPosition(p);

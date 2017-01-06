@@ -2,6 +2,8 @@
 #include "testmanager.h"
 //hel 
 #include "smallUsefulFunctions_t.h"
+#include "latexparser_t.h"
+#include "encoding_t.h"
 #include "buildmanager_t.h"
 #include "codesnippet_t.h"
 #include "qdocumentcursor_t.h"
@@ -67,6 +69,8 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 	QString tr;
 	QList<QObject*> tests=QList<QObject*>()
         << new SmallUsefulFunctionsTest()
+        << new LatexParserTest()
+        << new EncodingTest()
         << new LatexOutputFilterTest()
 		<< new BuildManagerTest(buildManager)
 		<< new CodeSnippetTest(editor)

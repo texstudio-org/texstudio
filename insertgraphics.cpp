@@ -14,6 +14,8 @@
 #include "insertgraphics_config.h"
 
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
+#include "latexparser/latexreader.h"
 
 
 PlacementValidator::PlacementValidator(QObject *parent)
@@ -50,7 +52,7 @@ InsertGraphics::InsertGraphics(QWidget *parent, InsertGraphicsConfig *conf)
 	ui.fileSelectButton->setIcon(getRealIcon("document-open"));
 	ui.pbSaveDefault->setIcon(getRealIcon("document-save"));
 
-	connect(ui.leFile, SIGNAL(textChanged(const QString &)), this, SIGNAL(fileNameChanged(const QString &)));
+	connect(ui.leFile, SIGNAL(textChanged(const QString &)), this, SLOT(leFileChanged(QString)));
 	connect(ui.fileSelectButton, SIGNAL(clicked()), this, SLOT(chooseFile()));
 	connect(ui.rbWidthHeight, SIGNAL(toggled(bool)), this, SLOT(includeOptionChanged()));
 	connect(ui.rbUser, SIGNAL(toggled(bool)), this, SLOT(includeOptionChanged()));
@@ -301,6 +303,13 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 				conf.file = LatexParser::removeOptionBrackets(args.at(0));
 			}
 			includeParsed = true;
+		} else if (lr.word == "\\input") {
+			conf.includeOptions = "";
+			conf.file = LatexParser::removeOptionBrackets(args.at(0));
+			if (QFileInfo(conf.file).suffix().isEmpty()) {
+				conf.file.append(".tex");  // need to add .tex to distinguish from image files
+			}
+			includeParsed = true;
 		} else {
 			txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support command ") + lr.word);
 			return false;
@@ -309,6 +318,35 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 	return true;
 }
 
+bool InsertGraphics::fileNeedsInputCommand(const QString &filename) const
+{
+	QString suffix = QFileInfo(filename).suffix().toLower();
+	return (suffix == "pgf" || suffix == "tex");
+}
+
+/*!
+ * \brief Returns formatted filename that is relative and escaped if necessary
+ */
+QString InsertGraphics::getFormattedFilename(const QString filename) const
+{
+	QString result = filename;
+	QFileInfo fi(filename);
+	if (fi.isAbsolute()) {
+		bool keepSuffix = fi.suffix().toLower() == "pgf";
+		QFileInfo texFileInfo = masterTexFile.exists() ? masterTexFile : texFile;
+		result = getRelativeBaseNameToPath(fi.filePath(), texFileInfo.absolutePath(), false, keepSuffix);
+		if (result.startsWith("./")) result.remove(0, 2);
+	}
+#ifdef Q_OS_WIN
+	//restore native separators if original filename contains native separators
+	if (filename.contains(QDir::separator())) {
+		result = QDir::toNativeSeparators(result);
+	}
+#endif
+	if (result.contains(' ') && !(result.length() > 1 && result[0] == '"' && result[result.length() - 1] == '"'))
+		result = '"' + result + '"';
+	return result;
+}
 
 QString InsertGraphics::getCaptionLabelString(const InsertGraphicsConfig &conf) const
 {
@@ -346,24 +384,14 @@ QString InsertGraphics::getCode() const
 	} else {
 		if (conf.center) insert.append("\\begin{center}\n");
 	}
-	insert.append("\\includegraphics");
-	if (!conf.includeOptions.isEmpty()) insert.append("[" + conf.includeOptions + "]");
 	QString fname = conf.file;
-	QFileInfo info(fname);
-	if (info.isAbsolute()) {
-		QFileInfo texFileInfo = masterTexFile.exists() ? masterTexFile : texFile;
-		fname = getRelativeBaseNameToPath(info.filePath(), texFileInfo.absolutePath());
-		if (fname.startsWith("./")) fname.remove(0, 2);
+	if (fileNeedsInputCommand(fname)) {
+		insert.append(QString("\\input{%1}\n").arg(getFormattedFilename(fname)));
+	} else {
+		QString options;
+		if (!conf.includeOptions.isEmpty()) options = "[" + conf.includeOptions + "]";
+		insert.append(QString("\\includegraphics%1{%2}\n").arg(options, getFormattedFilename(fname)));
 	}
-#ifdef Q_OS_WIN
-	//restore native separators if original filename contains native separators
-	if (conf.file.contains(QDir::separator())) {
-		fname = QDir::toNativeSeparators(fname);
-	}
-#endif
-	if (fname.contains(' ') && !(fname.length() > 1 && fname[0] == '"' && fname[fname.length() - 1] == '"'))
-		fname = '"' + fname + '"';
-	insert.append("{" + fname + "}\n");
 	if (conf.useFigure) {
 		if (conf.captionBelow) insert.append(getCaptionLabelString(conf));
 		if (conf.spanTwoCols) {
@@ -385,6 +413,7 @@ void InsertGraphics::chooseFile()
 		exts.append("*." + fmt);
 	};
 	QString filter = tr("Images") + " (" + exts.join(" ") + ")";
+	filter += QString(";;PGF/TikZ (*.pgf *.tex)");
 	fn = QFileDialog::getOpenFileName(this, tr("Select a File", "Wizard"), texFile.absolutePath(), filter);
 	if (!fn.isEmpty()) {
 		ui.leFile->setText(fn);
@@ -420,6 +449,13 @@ void InsertGraphics::includeOptionChanged()
 		}
 		ui.leScale->setText(opts);
 	}
+}
+
+void InsertGraphics::leFileChanged(const QString &filename)
+{
+	bool optionsActive = !fileNeedsInputCommand(filename);
+	ui.groupBoxOptions->setEnabled(optionsActive);
+	emit fileNameChanged(filename);
 }
 
 void InsertGraphics::labelChanged(const QString &label)

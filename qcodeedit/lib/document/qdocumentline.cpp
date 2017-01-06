@@ -528,30 +528,49 @@ bool QDocumentLine::hasOverlay(int id){
     if ( !m_handle ) return false;
     return m_handle->hasOverlay(id);
 }
-QList<QFormatRange> QDocumentLine::getOverlays(int preferredFormat){
+
+/*!
+ * \brief Returns all QFormatRanges of the given \a preferredFormat.
+ * Any format will match for \a preferredFormat == -1.
+ */
+QList<QFormatRange> QDocumentLine::getOverlays(int preferredFormat) const {
 	if ( !m_handle )
 		return QList<QFormatRange>();
 	
 	return m_handle->getOverlays(preferredFormat);
 }
-QFormatRange QDocumentLine::getOverlayAt(int index, int preferredFormat){
+
+/*!
+ * \brief Returns the QFormatRange for the given \a preferredFormat at the given column number (\a index).
+ * Any format will match for \a preferredFormat == -1.
+ */
+QFormatRange QDocumentLine::getOverlayAt(int index, int preferredFormat) const {
 	if ( !m_handle )
-		return QFormatRange(0,0,0);
+		return QFormatRange();
 	
 	return m_handle->getOverlayAt(index,preferredFormat);
 }
 
-QFormatRange QDocumentLine::getFirstOverlayBetween(int start, int end, int preferredFormat){
+/*!
+ * \brief Returns the first QFormatRange between columns \a start and \a end for the given \a preferredFormat.
+ * Any format will match for \a preferredFormat == -1.
+ */
+QFormatRange QDocumentLine::getFirstOverlay(int start, int end, int preferredFormat) const {
 	if ( !m_handle )
-		return QFormatRange(0,0,0);
+		return QFormatRange();
 	
-	return m_handle->getFirstOverlayBetween(start,end,preferredFormat);
+	return m_handle->getFirstOverlay(start,end,preferredFormat);
 }
-QFormatRange QDocumentLine::getLastOverlayBetween(int start, int end, int preferredFormat){
+
+/*!
+ * \brief Returns the last QFormatRange between columns \a start and \a end for the given \a preferredFormat.
+ * Any format will match for \a preferredFormat == -1.
+ */
+QFormatRange QDocumentLine::getLastOverlay(int start, int end, int preferredFormat) const {
 	if ( !m_handle )
-		return QFormatRange(0,0,0);
+		return QFormatRange();
 	
-	return m_handle->getLastOverlayBetween(start,end,preferredFormat);
+	return m_handle->getLastOverlay(start,end,preferredFormat);
 }
 
 
