@@ -1506,6 +1506,12 @@ void LatexEditorView::updateSettings()
 	editor->setFlag(QEditor::AutoCloseChars, config->parenComplete);
 	editor->setFlag(QEditor::ShowPlaceholders, config->showPlaceholders);
 	editor->setDoubleClickSelectionType(config->doubleClickSelectionIncludeLeadingBackslash ? QDocumentCursor::WordOrCommandUnderCursor : QDocumentCursor::WordUnderCursor);
+	editor->setTripleClickSelectionType((QList<QDocumentCursor::SelectionType>()
+										<< QDocumentCursor::WordUnderCursor
+										<< QDocumentCursor::WordOrCommandUnderCursor
+										<< QDocumentCursor::ParenthesesInner
+										<< QDocumentCursor::ParenthesesOuter
+										<< QDocumentCursor::LineUnderCursor).at(qMax(0, qMin(4, config->tripleClickSelectionIndex))));
 	editor->setIgnoreExternalChanges(!config->monitorFilesForExternalChanges);
 	editor->setSilentReloadOnExternalChanges(config->silentReload);
 	editor->setUseQSaveFile(config->useQSaveFile);

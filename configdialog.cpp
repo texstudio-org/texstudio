@@ -28,6 +28,9 @@ static const QString nameSeparator = "separator";
 
 ShortcutComboBox::ShortcutComboBox(QWidget *parent): QComboBox(parent)
 {
+	const Qt::Key SpecialKeys[]  = {Qt::Key_Tab, Qt::Key_Backspace, Qt::Key_Delete};
+	const int SpecialKeysCount = 3;
+
 	setObjectName("ShortcutComboBox");
 	setMaxVisibleItems(15);
 	addItem(tr("<default>"));
@@ -52,7 +55,10 @@ ShortcutComboBox::ShortcutComboBox(QWidget *parent): QComboBox(parent)
 								addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META + k).toString(SHORTCUT_FORMAT));
 						}
 					}
-					addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META + Qt::Key_Tab).toString(SHORTCUT_FORMAT));
+					for (int ik = 0; ik < SpecialKeysCount; ik++)
+						addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META
+														  + SpecialKeys[ik]).toString(SHORTCUT_FORMAT));
+					//addItem(QKeySequence(c * Qt::CTRL + s * Qt::SHIFT + a * Qt::ALT + m * Qt::META + Qt::Key_Tab).toString(SHORTCUT_FORMAT));
 				}
 	setEditable(true);
 }

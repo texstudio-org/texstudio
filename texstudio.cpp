@@ -937,10 +937,10 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "parens", tr("Parenthesis"));
 	newManagedAction(submenu, "jump", tr("Jump to Match"), SLOT(jumpToBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_J));
-	newManagedAction(submenu, "selectBracketInner", tr("Select Inner"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_I))->setProperty("minimal", true);
-	newManagedAction(submenu, "selectBracketOuter", tr("Select Outer"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_O))->setProperty("minimal", false);
-	newManagedAction(submenu, "selectBracketCommand", tr("Select Command"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_C))->setProperty("backslash", true);
-	newManagedAction(submenu, "selectBracketLine", tr("Select Line"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_L))->setProperty("line", true);
+	newManagedAction(submenu, "selectBracketInner", tr("Select Inner"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_I))->setProperty("type", "inner");
+	newManagedAction(submenu, "selectBracketOuter", tr("Select Outer"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_O))->setProperty("type", "outer");
+	newManagedAction(submenu, "selectBracketCommand", tr("Select Command"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_C))->setProperty("type", "command");
+	newManagedAction(submenu, "selectBracketLine", tr("Select Line"), SLOT(selectBracket()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_L))->setProperty("type", "line");
 	newManagedAction(submenu, "generateInvertedBracketMirror", tr("Select Inverting"), SLOT(generateBracketInverterMirror()), QKeySequence(Qt::SHIFT + Qt::CTRL + Qt::Key_P, Qt::Key_S));
 
 	submenu->addSeparator();
@@ -9338,28 +9338,45 @@ void Texstudio::selectBracket()
 	if (!currentEditor()) return;
 	REQUIRE(sender() && currentEditor()->document());
 	if (!currentEditor()->document()->languageDefinition()) return;
-	QDocumentCursor orig, to;
-	currentEditor()->cursor().getMatchingPair(orig, to, !sender()->property("minimal").toBool());
-	if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
 
-	if (sender()->property("line").toBool()) {
+	QDocumentCursor cursor = currentEditor()->cursor();
+	QString type = sender()->property("type").toString();
+	if (type == "inner") {
+		cursor.select(QDocumentCursor::ParenthesesInner);
+	} else if (type == "outer") {
+		cursor.select(QDocumentCursor::ParenthesesOuter);
+	} else if (type == "command") {
+		Token tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
+		if (tk.type == Token::command) {
+			cursor.setColumnNumber(tk.start + tk.length);
+			cursor.select(QDocumentCursor::ParenthesesOuter);
+			cursor.setAnchorColumnNumber(tk.start);
+		} else {
+			cursor.select(QDocumentCursor::ParenthesesOuter);
+			if (cursor.anchorColumnNumber() > 0) {
+				tk = getTokenAtCol(cursor.line().handle(), cursor.anchorColumnNumber() - 1);
+				if (tk.type == Token::command) {
+					cursor.setAnchorColumnNumber(tk.start);
+				}
+			}
+		}
+	} else if (type == "line") {
+		QDocumentCursor orig, to;
+		cursor.getMatchingPair(orig, to, true);
+		if (!orig.isValid() && !to.isValid()) return;  // no matching pair found
+
 		if (to < orig) to.setColumnNumber(0);
 		else to.setColumnNumber(to.line().length());
-	}
-	QDocumentCursor::sort(orig, to);
-	if (sender()->property("minimal").toBool()) {
-		if (orig.hasSelection()) orig = orig.selectionEnd();
-		if (to.hasSelection()) to = to.selectionStart();
-	} else {
+
+		QDocumentCursor::sort(orig, to);
 		if (orig.hasSelection()) orig = orig.selectionStart();
 		if (to.hasSelection()) to = to.selectionEnd();
-	}
-	if (sender()->property("backslash").toBool()) {
-		int backslash = orig.line().text().lastIndexOf('\\', orig.columnNumber());
-		if (backslash >= 0) orig.setColumnNumber(backslash);
-	}
 
-	currentEditor()->setCursor(currentEditor()->document()->cursor(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber()));
+		cursor.select(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber());
+	} else {
+		qWarning("Unhandled selectBracket() type");
+	}
+	currentEditor()->setCursor(cursor);
 }
 
 void Texstudio::findMissingBracket()
