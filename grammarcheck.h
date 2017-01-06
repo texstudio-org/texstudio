@@ -3,7 +3,7 @@
 
 #include "mostQtHeaders.h"
 
-#include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
 //TODO: move this away
 #include "grammarcheck_config.h"
 
@@ -60,6 +60,7 @@ public:
 	~GrammarCheck();
 	enum LTStatus {LTS_Unknown, LTS_Working, LTS_Error};
 	LTStatus languageToolStatus() { return ltstatus; }
+	QString serverUrl();
 signals:
 	void checked(const void *doc, const void *line, int lineNr, QList<GrammarError> errors);
 	void languageToolStatusChanged();
@@ -98,6 +99,7 @@ public:
 	GrammarCheckBackend(QObject *parent);
 	virtual void init(const GrammarCheckerConfig &config) = 0;
 	virtual bool isAvailable() = 0;
+	virtual QString url() = 0;
 	virtual void check(uint ticket, int subticket, const QString &language, const QString &text) = 0;
 	virtual void shutdown() = 0;
 signals:
@@ -115,6 +117,7 @@ public:
 	~GrammarCheckLanguageToolSOAP();
 	virtual void init(const GrammarCheckerConfig &config);
 	virtual bool isAvailable();
+	virtual QString url();
 	virtual void check(uint ticket, int subticket, const QString &language, const QString &text);
 	virtual void shutdown();
 private slots:

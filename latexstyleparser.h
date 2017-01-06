@@ -1,7 +1,7 @@
 #ifndef LATEXSTYLEPARSER_H
 #define LATEXSTYLEPARSER_H
 #include "mostQtHeaders.h"
-#include "smallUsefulFunctions.h"
+#include "utilsSystem.h"
 #include <QThread>
 #include <QSemaphore>
 #include <QMutex>

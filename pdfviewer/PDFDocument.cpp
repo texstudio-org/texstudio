@@ -40,6 +40,7 @@
 #include "configmanagerinterface.h"
 #include "pdfannotationdlg.h"
 #include "pdfannotation.h"
+#include "minisplitter.h"
 #include "titledpanel.h"
 
 #include "pdfsplittool.h"
@@ -359,7 +360,7 @@ QPixmap &PDFMagnifier::getConvertedImage()
 }
 
 #ifdef PHONON
-PDFMovie::PDFMovie(PDFWidget *parent, Poppler::MovieAnnotation *annot, int page): VideoPlayer(parent), page(page)
+PDFMovie::PDFMovie(PDFWidget *parent, QSharedPointer<Poppler::MovieAnnotation> annot, int page): VideoPlayer(parent), page(page)
 {
 	REQUIRE(parent && annot && parent->getPDFDocument());
 	REQUIRE(annot->subType() == Poppler::Annotation::AMovie);
@@ -634,9 +635,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			painter.drawPixmap(event->rect(), image, QRect(source.left() * overScale, source.top() * overScale, source.width() * overScale, source.height() * overScale));
 			if (pageNr == highlightPage && !highlightPath.isEmpty() ) {
 				painter.setRenderHint(QPainter::Antialiasing);
+                painter.setCompositionMode(QPainter::CompositionMode_Multiply);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
-				painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+                painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 				painter.drawPath(highlightPath);
 			}
 			if (currentTool == kPresentation)
@@ -698,6 +700,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 						//QPainterPath path=highlightPath;
 						//path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
+                        painter.setCompositionMode(QPainter::CompositionMode_Multiply);
 						painter.drawPath(highlightPath);
 						painter.restore();
 					}
@@ -861,7 +864,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 	case Poppler::Annotation::AMovie: {
 #ifdef PHONON
 		if (movie) delete movie;
-		movie = new PDFMovie(this, dynamic_cast<Poppler::MovieAnnotation *>(annotation), page);
+		movie = new PDFMovie(this, qSharedPointerDynamicCast<Poppler::MovieAnnotation>(annotation), page);
 		movie->place();
 		movie->show();
 		movie->play();
@@ -882,6 +885,13 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 	default:
 		;
 	}
+}
+
+void PDFWidget::openAnnotationDialog(const PDFAnnotation *annon)
+{
+	PDFAnnotationDlg *dlg = new PDFAnnotationDlg(annon->popplerAnnotation(), this);
+	//qDebug() << annon->popplerAnnotation()->revisionType() << annon->popplerAnnotation()->revisions().count();
+	dlg->show();
 }
 
 void PDFWidget::mouseReleaseEvent(QMouseEvent *event)
@@ -1425,7 +1435,7 @@ void PDFWidget::setResolution(int res)
 	resetMagnifier();
 }
 
-void PDFWidget::setHighlightPath(const int page, const QPainterPath &path)
+void PDFWidget::setHighlightPath(const int page, const QPainterPath &path, const bool dontRemove)
 {
 	highlightRemover.stop();
 	highlightPath = path;
@@ -1436,7 +1446,7 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath &path)
 	PDFScrollArea *scrollArea = getScrollArea();
 	if (scrollArea)
 		scrollArea->ensureVisiblePageAbsolutePos(page, highlightPath.boundingRect().center());
-	if (globalConfig->highlightDuration > 0)
+    if (globalConfig->highlightDuration > 0 && !dontRemove)
 		highlightRemover.start(globalConfig->highlightDuration);
 }
 
@@ -2392,11 +2402,11 @@ void PDFDocument::init(bool embedded)
 	actionCut->setIcon(getRealIcon("edit-cut"));
 	actionCopy->setIcon(getRealIcon("edit-copy"));
 	actionPaste->setIcon(getRealIcon("edit-paste"));
-	actionMagnify->setIcon(getRealIcon("zoom-in"));
+	actionMagnify->setIcon(getRealIcon("magnifier-button"));
 	actionScroll->setIcon(getRealIcon("hand"));
 	actionTypeset->setIcon(getRealIcon("build"));
-	actionEnlargeViewer->setIcon(getRealIcon("view-left-close"));
-	actionShrinkViewer->setIcon(getRealIcon("embedded-viewer"));
+	actionEnlargeViewer->setIcon(getRealIcon("enlarge-viewer"));
+	actionShrinkViewer->setIcon(getRealIcon("shrink-viewer"));
 
 	QIcon icon = getRealIcon("syncSource-off");
 	icon.addFile(getRealIconFile("syncSource"), QSize(), QIcon::Normal, QIcon::On);
@@ -2443,11 +2453,9 @@ void PDFDocument::init(bool embedded)
 
 	int sz = qMax(16, ConfigManager::getInstance()->getOption("GUI/SecondaryToobarIconSize").toInt());
 	toolBar->setIconSize(QSize(sz, sz));
-	if (embedded) {
-		QWidget *spacer = new QWidget(toolBar);
-		spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-		toolBar->insertWidget(actionClose, spacer);
-	}
+	QWidget *spacer = new QWidget(toolBar);
+	spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	toolBar->insertWidget(actionEnlargeViewer, spacer);
 	addAction(toolBar->toggleViewAction());
 
 	leCurrentPage = new QLineEdit(toolBar);
@@ -2531,13 +2539,16 @@ void PDFDocument::init(bool embedded)
 	statusBar()->addPermanentWidget(buttonZoomIn);
 	connect(buttonZoomIn, SIGNAL(clicked()), actionZoom_In, SLOT(trigger()));
 
-	QSplitter *vSplitter = new QSplitter(Qt::Vertical);
+	QSplitter *vSplitter = new MiniSplitter(Qt::Vertical);
 
 	// TODO: Make Frame around Label and Scroll area
 	scrollArea = new PDFScrollArea;
 	scrollArea->setBackgroundRole(QPalette::Dark);
 	//scrollArea->setAlignment(Qt::AlignCenter);
 	scrollArea->setPDFWidget(pdfWidget);
+	if (embedded) {
+		scrollArea->setFrameStyle(QFrame::NoFrame);
+	}
 
 	QWidget *container = new QWidget;
 	QVBoxLayout *layout = new QVBoxLayout;
@@ -2551,6 +2562,7 @@ void PDFDocument::init(bool embedded)
 	vSplitter->addWidget(container);
 
 	annotationPanel = new TitledPanel();
+	annotationPanel->setFrameShape(QFrame::NoFrame);
 	annotationPanel->toggleViewAction()->setText(tr("Annotations"));
 	annotationPanel->setVisible(globalConfig->annotationPanelVisible);
 	annotationTable = new PDFAnnotationTableView();
@@ -2689,6 +2701,7 @@ void PDFDocument::init(bool embedded)
 	if (embedded)
 		dw->hide();
 	connect(dwSearch, SIGNAL(search(bool, bool)),  SLOT(search(bool, bool)));
+    connect(dwSearch, SIGNAL(visibilityChanged(bool)),  SLOT(clearHightlight(bool)));
 	addDockWidget(Qt::BottomDockWidgetArea, dw);
 	menuShow->addAction(dw->toggleViewAction());
 
@@ -2950,6 +2963,7 @@ retryNow:
 		annotationTable->resizeColumnsToContents();
 		annotationTable->resizeRowsToContents();
 		connect(annotationTable, SIGNAL(annotationClicked(const PDFAnnotation *)), SLOT(gotoAnnotation(const PDFAnnotation *)));
+		connect(annotationTable, SIGNAL(annotationDoubleClicked(const PDFAnnotation *)), pdfWidget, SLOT(openAnnotationDialog(const PDFAnnotation *)));
 
 		if (!embeddedMode)
 			pdfWidget->setFocus();
@@ -3175,6 +3189,10 @@ void PDFDocument::updateToolBarForOrientation(Qt::Orientation orientation)
 	}
 }
 
+void PDFDocument::clearHightlight(bool ){
+    pdfWidget->setHighlightPath(-1, QPainterPath());
+}
+
 void PDFDocument::search(bool backwards, bool incremental)
 {
 	if (!dwSearch) return;
@@ -3272,7 +3290,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
-				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p);
+                pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p,true);
 				//scroll horizontally
 				//scrollArea->ensureVisiblePageAbsolutePos(lastSearchResult.pageIdx, lastSearchResult.selRect.topLeft());
 				pdfWidget->update();

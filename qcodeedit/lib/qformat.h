@@ -178,6 +178,9 @@ struct QFormatRange
 	inline bool operator != (const QFormatRange& o) const
 	{ return (offset != o.offset) || (length != o.length) || (format != o.format); }
 	
+	inline bool isValid() const
+	{ return offset != 0 || length != 0 || format != 0; }
+
 	int offset;
 	int length;
 	int format;

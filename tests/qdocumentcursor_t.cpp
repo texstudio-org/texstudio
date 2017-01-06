@@ -613,6 +613,18 @@ void QDocumentCursorTest::movePosition_data(){
 	QTest::newRow("right across line") << text << 0 << 8 << 3 << (int)QDocumentCursor::Right << 1 << 1 << true;
 	QTest::newRow("right across multi line") << text << 0 << 8 << 13 << (int)QDocumentCursor::Right << 2 << 1 << true;
 	QTest::newRow("right across empty line") << "0123 5678\n\n0123 5678" << 0 << 8 << 4 << (int)QDocumentCursor::Right << 2 << 1 << true;
+
+	QTest::newRow("StartOfParenthesis no parens") << "012 456" << 0 << 4 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << false;
+	QTest::newRow("StartOfParenthesis4") << "012 {567} 0" << 0 << 4 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
+	QTest::newRow("StartOfParenthesis5") << "012 {567} 0" << 0 << 5 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
+	QTest::newRow("StartOfParenthesis6") << "012 {567} 0" << 0 << 6 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
+	QTest::newRow("StartOfParenthesis7") << "012 {567} 0" << 0 << 7 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
+	QTest::newRow("StartOfParenthesis8") << "012 {567} 0" << 0 << 8 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
+	QTest::newRow("StartOfParenthesis9") << "012 {567} 0" << 0 << 9 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
+	QTest::newRow("StartOfParenthesis10") << "012 {567} 0" << 0 << 10 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 10 << false;
+
+	QTest::newRow("StartOfParenthesis nested same") << "012 {456 {901} 456}" << 0 << 15 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
+	QTest::newRow("StartOfParenthesis nested other") << "012 {456 [901] 456}" << 0 << 15 << 1 << (int)QDocumentCursor::StartOfParenthesis << 0 << 4 << true;
 }
 void QDocumentCursorTest::movePosition(){
 	QFETCH(QString, text);

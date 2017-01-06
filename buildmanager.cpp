@@ -23,6 +23,7 @@ static const QString DEPRECACTED_TMX_INTERNAL_PDF_VIEWER = "tmx://internal-pdf-v
 const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 
 int BuildManager::autoRerunLatex = 5;
+bool BuildManager::showLogInCaseOfCompileError = true;
 bool BuildManager::m_replaceEnvironmentVariables = true;
 bool BuildManager::m_supportShellStyleLiteralQuotes = true;
 bool BuildManager::singleViewerInstance = false;
@@ -596,31 +597,17 @@ QString BuildManager::extractOutputRedirection(const QString &commandLine, QStri
 	return commandLine.left(indexMin(stdErrStart, stdOutStart)).trimmed();
 }
 
+QString addPathDelimeter(const QString &a)
+{
+	return ((a.endsWith("/") || a.endsWith("\\")) ? a : (a + "\\"));
+}
+
 QString BuildManager::findFileInPath(QString fileName)
 {
-	/*#ifdef Q_OS_MAC
-		QProcess *myProcess = new QProcess();
-		myProcess->start("bash -l -c \"echo $PATH\"");
-		myProcess->waitForFinished(3000);
-		if(myProcess->exitStatus()==QProcess::CrashExit) return "";
-		QByteArray res=myProcess->readAllStandardOutput();
-		delete myProcess;
-		QString path(res);
-	#else*/
-	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-	QString path = env.value("PATH");
-	if (path.isNull()) return "";
-//#endif
-#ifdef Q_OS_WIN32
-	if (!fileName.contains('.')) fileName += ".exe";
-	QStringList paths = path.split(";"); //windows
-#else
-	QStringList paths = path.split(":"); //linux
-#endif
-	foreach (const QString &p, paths)
-		if (p.endsWith("/") && QFileInfo(p + fileName).exists()) return (p + fileName);
-		else if (p.endsWith("\\") && QFileInfo(p + fileName).exists()) return (p + fileName);
-		else if (QFileInfo(p + "/" + fileName).exists()) return (p + "\\" + fileName);
+	foreach (QString path, getEnvironmentPathList()) {
+		path = addPathDelimeter(path);
+		if (QFileInfo(path + fileName).exists()) return (path + fileName);
+	}
 	return "";
 }
 
@@ -649,11 +636,6 @@ QString W32_FileAssociation(QString ext)
 	return result;
 }
 
-QString addPathDelimeter(const QString &a)
-{
-	return ((a.endsWith("/") || a.endsWith("\\")) ? a : (a + "\\"));
-}
-
 QStringList getProgramFilesPaths()
 {
 	QStringList res;
@@ -667,41 +649,116 @@ QStringList getProgramFilesPaths()
 	return res;
 }
 
-static QString miktexpath = "<search>";
-QString getMiKTeXBinPathReal()
-{
-	QSettings reg("HKEY_CURRENT_USER\\Software", QSettings::NativeFormat);
-	QString mikPath = reg.value("MiK/MikTeX/CurrentVersion/MiKTeX/Install Root", "").toString();
-	if (!mikPath.isEmpty())
-		return addPathDelimeter(mikPath) + "miktex\\bin\\";
-	foreach (const QString &d, getProgramFilesPaths())
-		foreach (const QString &p, QDir(d).entryList(QStringList(), QDir::AllDirs, QDir::Time))
-			if (p.toLower().contains("miktex") && QDir(d + addPathDelimeter(p) + "miktex\\bin\\").exists())
-				return d + addPathDelimeter(p) + "miktex\\bin\\";
-	static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin"
-														<< "C:\\tex\\texmf\\miktex\\bin"
-														<< "C:\\miktex\\bin"
-														<< QString(getenv("LOCALAPPDATA")) + "\\Programs\\MiKTeX 2.9\\miktex\\bin";
+/*!
+ * \return the Uninstall string of the program from the registry
+ *
+ * Note: This won't get the path of 64bit installations when TXS running as a 32bit app due to wow6432 regristry redirection
+ * http://www.qtcentre.org/threads/36966-QSettings-on-64bit-Machine
+ * http://stackoverflow.com/questions/25392251/qsettings-registry-and-redirect-on-regedit-64bit-wow6432
+ * No workaround known, except falling back to the native Windows API. For the moment we'll rely on alternative detection methods.
+ */
+QString getUninstallString(const QString &program) {
+	foreach (const QString &baseKey, QStringList() << "HKEY_LOCAL_MACHINE" << "HKEY_CURRENT_USER") {
+		QSettings base(baseKey, QSettings::NativeFormat);
+		QString s = base.value("Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\" + program + "\\UninstallString").toString();
+		if (!s.isEmpty())
+			return s;
+	}
+	return QString();
+}
 
-	foreach (const QString &d, candidates)
-		if (QDir(d).exists())
-			return d + "\\";
+/*!
+ * \return an existing subdir of the from path\subDirFilter\subSubDir.
+ *
+ * Example:
+ * QStringList searchPaths = QStringList() << "C:\\" << "D:\\"
+ * findSubdir(searchPaths, "*miktex*", "miktex\\bin\\")
+ * will work for "C:\\MikTeX\\miktex\\bin\\" or "D:\\MikTeX 2.9\\miktex\\bin"
+ */
+QString findSubDir(const QStringList &searchPaths, const QString &subDirFilter, const QString &subSubDir) {
+	qDebug() << searchPaths;
+	foreach (const QString &path, searchPaths) {
+		foreach (const QString &dir, QDir(path).entryList(QStringList(subDirFilter), QDir::AllDirs, QDir::Time)) {
+			QDir fullPath(addPathDelimeter(path) + addPathDelimeter(dir) + subSubDir);
+			if (fullPath.exists())
+				return fullPath.absolutePath();
+		}
+	}
+	return QString();
+}
+
+/*!
+ * Returns the MikTeX bin path.
+ * This should not be called directly but only through getMiKTeXBinPath() to prevent multiple searches.
+ */
+QString getMiKTeXBinPathInternal()
+{
+	// search the registry
+	QString mikPath = getUninstallString("MiKTeX 2.9");
+	// Note: this does currently not work for MikTeX 64bit because of registry redirection (also we would have to parse the
+	// uninstall string there for the directory). For the moment we'll fall back to other detection methods.
+	if (!mikPath.isEmpty() && QDir(addPathDelimeter(mikPath) + "miktex\\bin\\").exists()) {
+		mikPath = addPathDelimeter(mikPath) + "miktex\\bin\\";
+	}
+
+	// search the PATH
+	if (mikPath.isEmpty()) {
+		foreach (QString path, getEnvironmentPathList()) {
+			path = addPathDelimeter(path);
+			if ((path.endsWith("\\miktex\\bin\\x64\\") || path.endsWith("\\miktex\\bin\\")) && QDir(path).exists())
+				return path;
+		 }
+	}
+
+	// search all program file paths
+	if (!mikPath.isEmpty()) {
+		mikPath = QDir::toNativeSeparators(findSubDir(getProgramFilesPaths(), "*miktex*", "miktex\\bin\\"));
+	}
+
+	// search a fixed list of additional locations
+	if (mikPath.isEmpty()) {
+		static const QStringList candidates = QStringList() << "C:\\miktex\\miktex\\bin"
+															<< "C:\\tex\\texmf\\miktex\\bin"
+															<< "C:\\miktex\\bin"
+															<< QString(qgetenv("LOCALAPPDATA")) + "\\Programs\\MiKTeX 2.9\\miktex\\bin";
+		foreach (const QString &path, candidates)
+			if (QDir(path).exists()) {
+				mikPath = path;
+				break;
+			}
+	}
+
+	// post-process to detect 64bit installation
+	if (!mikPath.isEmpty()) {
+		if (QDir(mikPath + "x64\\").exists())
+			return mikPath + "x64\\";
+		else
+			return mikPath;
+	}
 	return "";
 }
 
+static QString miktexBinPath = "<search>";
+/*!
+ * \return the MikTeX bin path. This uses caching so that the search is only performed once per session.
+ */
 QString getMiKTeXBinPath()
 {
-	if (miktexpath == "<search>") miktexpath = getMiKTeXBinPathReal();
-	return miktexpath;
+	if (miktexBinPath == "<search>") miktexBinPath = getMiKTeXBinPathInternal();
+	return miktexBinPath;
 }
 
-QString getTeXLiveBinPath()
+/*!
+ * Returns the TeXlive bin path.
+ * This should not be called directly but only through getTeXLiveWinBinPath() to prevent multiple searches.
+ */
+QString getTeXLiveWinBinPathInternal()
 {
 	//check for uninstall entry
 	foreach (const QString &baseKey, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
 		QSettings reg(baseKey + "\\Software", QSettings::NativeFormat);
 		QString uninstall;
-		for (int v = 2014; v > 2008; v--) {
+		for (int v = 2017; v > 2008; v--) {
 			uninstall = reg.value(QString("microsoft/windows/currentversion/uninstall/TeXLive%1/UninstallString").arg(v), "").toString();
 			if (!uninstall.isEmpty()) {
 				int p = uninstall.indexOf("\\tlpkg\\", 0, Qt::CaseInsensitive);
@@ -720,13 +777,23 @@ QString getTeXLiveBinPath()
 	return path + "\\bin\\win32\\";
 }
 
+static QString texliveWinBinPath = "<search>";
+/*!
+ * \return the TeXlive bin path on windows. This uses caching so that the search is only performed once per session.
+ */
+QString getTeXLiveWinBinPath()
+{
+	if (texliveWinBinPath == "<search>") texliveWinBinPath = getTeXLiveWinBinPathInternal();
+	return texliveWinBinPath;
+}
+
+
 QString findGhostscriptDLL()   //called dll, may also find an exe
 {
 	//registry
-	for (int type = 0; type <= 1; type++)
-		for (int pos = 0; pos <= 1; pos++) {
-			QString regBase = QString(pos == 0 ? "HKEY_CURRENT_USER" : "HKEY_LOCAL_MACHINE") + "\\Software\\" + QString(type == 0 ? "GPL" : "AFPL") + " Ghostscript";
-			QSettings reg(regBase, QSettings::NativeFormat);
+	foreach (QString program, QStringList() << "GPL Ghostscript" << "AFPL Ghostscript")
+		foreach(QString hkeyBase, QStringList() << "HKEY_CURRENT_USER" << "HKEY_LOCAL_MACHINE") {
+			QSettings reg(hkeyBase + "\\Software\\" + program, QSettings::NativeFormat);
 			QStringList version = reg.childGroups();
 			if (version.empty()) continue;
 			version.sort();
@@ -766,7 +833,7 @@ QString searchBaseCommand(const QString &cmd, QString options)
 			if (!mikPath.isEmpty() && QFileInfo(mikPath + fileName).exists())
 				return "\"" + mikPath + fileName + "\" " + options; //found
 			//Windows TeX Live
-			QString livePath = getTeXLiveBinPath();
+			QString livePath = getTeXLiveWinBinPath();
 			if (!livePath.isEmpty() && QFileInfo(livePath + fileName).exists())
 				return "\"" + livePath + fileName + "\" " + options; //found
 #endif
@@ -1052,7 +1119,7 @@ QString getCommandLineViewPs()
 	if (!def.isEmpty())
 		return def;
 
-	QString livePath = getTeXLiveBinPath();
+	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty())
 		if (QFileInfo(livePath + "psv.exe").exists())
 			return "\"" + livePath + "psv.exe\"  \"?am.ps\"";
@@ -1093,7 +1160,7 @@ QString getCommandLineViewPdfExternal()
 QString getCommandLineGhostscript()
 {
 	const QString gsArgs = " \"?am.ps\"";
-	QString livePath = getTeXLiveBinPath();
+	QString livePath = getTeXLiveWinBinPath();
 	if (!livePath.isEmpty()) {
 		if (QFileInfo(livePath + "rungs.exe").exists())
 			return "\"" + livePath + "rungs.exe\"" + gsArgs;

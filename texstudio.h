@@ -150,11 +150,13 @@ private:
 
 	//gui
 	Editors *editors;
+	QSplitter *sidePanelSplitter;
 	QSplitter *mainHSplitter;
 	QSplitter *centralVSplitter;
 	QFrame *centralFrame;
 	QToolBar *centralToolBar;
 	CustomWidgetList *leftPanel;
+	TitledPanel *sidePanel;
 	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
 	QString hiddenLeftPanelWidgets;
 
@@ -483,6 +485,7 @@ protected slots:
 	void generateRandomText();
 
 	bool loadLog();
+	void onCompileError();
 	void setLogMarksVisible(bool visible);
 	void clearLogEntriesInEditors();
 	void updateLogEntriesInEditors();
@@ -518,7 +521,6 @@ protected slots:
 	void showStatusbar();
 	void viewCloseSomething();
 	void setFullScreenMode();
-	void viewAlignWindows();
 	void viewSetHighlighting(QAction *act);
 	void showHighlightingMenu();
 
@@ -543,6 +545,7 @@ protected slots:
 	void gotoLine(int line, int col = 0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation, bool setFocus = true); // line is 0 based
 	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name
 	void gotoLogEntryEditorOnly(int logEntryNumber);
+	QDocumentCursor getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry);
 	bool gotoLogEntryAt(int newLineNumber);
 	bool gotoMark(bool backward, int id = -1);
 	QList<int> findOccurencesApproximate(QString checkLine, const QString &guessedWord);
@@ -602,6 +605,7 @@ protected slots:
 	void moveDocumentToEnd();
 
 	void updateTexQNFA();
+	void updateTexLikeQNFA(QString languageName, QString filename);
 	void updateHighlighting();
 
 	void toggleGrammar(int type);

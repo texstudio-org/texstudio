@@ -120,7 +120,6 @@
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
         <background>#ffff7f</background>
-        <foreground>#c00000</foreground>
     </format>
     <format id="braceMismatch" >
         <bold>true</bold>
@@ -139,7 +138,7 @@
         <underline>false</underline>
         <strikeout>false</strikeout>
         <waveUnderline>false</waveUnderline>
-		<background>#ffff40</background>
+		<background>#FFEF0B</background>
 		<foreground>#000000</foreground>
     </format>
     <format id="numbers" >
@@ -303,7 +302,7 @@
 		<background>#EEEEFF</background>
 	</format>
 	<format id="selection" >
-		<background>#AAFFFF</background>
+		<background>#B2D8FF</background>
 		<wrapAround>true</wrapAround>
 	</format>
 	<format id="replacement" >

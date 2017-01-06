@@ -1,4 +1,4 @@
-# alias file to assign pacjages to documentclasses
+# alias file to assign packages to documentclasses
 article:
 latex-document
 latex-mathsymbols

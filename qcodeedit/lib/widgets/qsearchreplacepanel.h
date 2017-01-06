@@ -87,8 +87,6 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void cFind_textEdited(const QString& text);
 		void cReplace_textEdited(const QString& text);
 		
-		void on_cbReplace_toggled(bool on);
-		
 		void on_cbCase_toggled(bool on);
 		void on_cbWords_toggled(bool on);
 		void on_cbRegExp_toggled(bool on);
@@ -137,6 +135,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
         QToolButton *cbSelection;
         QToolButton *bExtend;
 		// replace
+		QWidget *replaceWidget;
 		QCheckBox *cbReplace;
 		QComboBox *cReplace;
 		QToolButton *bReplaceNext;

@@ -21,6 +21,8 @@
  */
 
 #include "smallUsefulFunctions.h"
+#include "encoding.h"
+#include "latexparser/latexparser.h"
 
 // returns the number of chars/columns from column to the next tab location
 // for a given tabstop periodicity
@@ -734,7 +736,7 @@ void QDocument::setText(const QString& s, bool allowUndo)
 QTextCodec* guessEncoding(const QByteArray& data){
 	QTextCodec* guess = 0;
 	int sure = 1;
-	guess = guessEncodingBasic(data, &sure);
+	guess = Encoding::guessEncodingBasic(data, &sure);
 	if (!guessEncodingCallbacks.empty())
 		foreach (const GuessEncodingCallback& callback, guessEncodingCallbacks)
 			callback(data, guess, sure);
@@ -3047,7 +3049,7 @@ bool QDocumentLineHandle::hasOverlay(int id){
     return false;
 }
 
-QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
+QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat) const {
 	QReadLocker locker(&mLock);
 	QList<QFormatRange> result;
 	if (preferredFormat==-1) {
@@ -3060,10 +3062,10 @@ QList<QFormatRange> QDocumentLineHandle::getOverlays(int preferredFormat){
 	return result;
 }
 
-QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
+QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat) const {
     QReadLocker locker(&mLock);
 
-    QFormatRange best(0,0,0);
+    QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
         if (fr.offset<=index && fr.offset+fr.length>=index && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (best.length<fr.length) best=fr;
@@ -3071,21 +3073,21 @@ QFormatRange QDocumentLineHandle::getOverlayAt(int index, int preferredFormat){
     return best;
 }
 
-QFormatRange QDocumentLineHandle::getFirstOverlayBetween(int start, int end, int preferredFormat){
+QFormatRange QDocumentLineHandle::getFirstOverlay(int start, int end, int preferredFormat) const {
     QReadLocker locker(&mLock);
 
-    QFormatRange best(0,0,0);
+    QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
-        if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
+        if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset<best.offset || best.length==0) best=fr;
 
     return best;
 }
-QFormatRange QDocumentLineHandle::getLastOverlayBetween(int start, int end, int preferredFormat){
+QFormatRange QDocumentLineHandle::getLastOverlay(int start, int end, int preferredFormat) const {
     QReadLocker locker(&mLock);
-    QFormatRange best(0,0,0);
+    QFormatRange best;
     foreach (QFormatRange fr, m_overlays)
-        if (fr.offset<=end && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
+        if ((end==-1 || fr.offset<=end) && fr.offset+fr.length>=start && (fr.format==preferredFormat || (preferredFormat==-1)))
             if (fr.offset>best.offset|| best.length==0) best=fr;
 
     return best;
@@ -5375,6 +5377,45 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 		}
 		
+	case QDocumentCursor::StartOfParenthesis :
+	{
+		QStringList possibleOpeningParentheses = QStringList() << "{" << "(" << "[";
+		QStringList possibleClosingParentheses = QStringList() << "}" << ")" << "]";
+
+		QString text = m_doc->line(line).text();
+		QStringList closingParenthesesStack;
+		bool found = false;
+		for (int i = offset; i >= 0; i--) {
+			foreach(const QString &closing, possibleClosingParentheses) {
+				if (text.midRef(i).startsWith(closing) && (i+closing.length() < offset)) {
+					closingParenthesesStack.prepend(closing);
+					break;
+				}
+			}
+			foreach(const QString &opening, possibleOpeningParentheses) {
+				if (text.midRef(i).startsWith(opening)) {
+					if (closingParenthesesStack.isEmpty()) {
+						offset = i;
+						found = true;
+						break;
+					} else {
+						QString matchingClosingForOpening = possibleClosingParentheses.at(possibleOpeningParentheses.indexOf(opening));
+						if (closingParenthesesStack.first() == matchingClosingForOpening) {
+							closingParenthesesStack.removeFirst();
+						} else {
+							return false;  // unmatched inner parentheses
+						}
+					}
+				}
+			}
+			if (found) break;
+		}
+		if (!found) return false;  // not within parentheses
+
+		refreshColumnMemory();
+
+		break;
+	}
 		
 		default:
 			qWarning("Unhandled move operation...");
@@ -5498,7 +5539,7 @@ QChar QDocumentCursorHandle::nextChar() const
 
 	QDocumentLine l = m_doc->line(m_begLine);
 
-	if ( !l.isValid() )
+	if ( !l.isValid() || m_begOffset < 0 )
 		return QChar();
 
 	return m_begOffset < l.length() ? l.text().at(m_begOffset) : (atEnd()?QLatin1Char('\0'):QLatin1Char('\n'));
@@ -5847,6 +5888,30 @@ void QDocumentCursorHandle::select(QDocumentCursor::SelectionType t)
 
 		movePosition(1, QDocumentCursor::StartOfWordOrCommand, QDocumentCursor::MoveAnchor);
 		movePosition(1, QDocumentCursor::EndOfWordOrCommand, QDocumentCursor::KeepAnchor);
+
+	} else if ( t == QDocumentCursor::ParenthesesInner || t == QDocumentCursor::ParenthesesOuter ) {
+
+		bool maximal = (t == QDocumentCursor::ParenthesesOuter);
+		QDocumentCursor orig, to;
+		getMatchingPair(orig, to, maximal);
+		if (!orig.isValid() || !to.isValid()) {
+			if (movePosition(1, QDocumentCursor::StartOfParenthesis, QDocumentCursor::MoveAnchor)) {
+				getMatchingPair(orig, to, false);
+			}
+		}
+
+		if (orig.isValid() && to.isValid()) {
+			QDocumentCursor::sort(orig, to);
+			if (maximal) {
+				if (orig.hasSelection()) orig = orig.selectionStart();
+				if (to.hasSelection()) to = to.selectionEnd();
+			} else {
+				if (orig.hasSelection()) orig = orig.selectionEnd();
+				if (to.hasSelection()) to = to.selectionStart();
+			}
+			select(orig.lineNumber(), orig.columnNumber(), to.lineNumber(), to.columnNumber());
+		}
+
 	}
 }
 

@@ -40,7 +40,7 @@ void TxsTabWidget::moveTab(int from, int to)
 	if (cur == from) setCurrentIndex(to);
 	else if (from < to && cur >= from && cur < to)
 		setCurrentIndex(cur - 1);
-	else if (to > from && cur >= from && cur < to)
+	else if (to < from && to && cur >= to && cur < from)
 		setCurrentIndex(cur + 1);
 }
 
@@ -100,10 +100,11 @@ LatexEditorView *TxsTabWidget::editorAt(QPoint p) {
 void TxsTabWidget::setActive(bool active) {
 	if (active == m_active) return;
 	m_active = active;
+	QString baseStyle = "QTabBar::close-button {image: url(:/images-ng/close-tab.svgz)} QTabBar::close-button:hover {image: url(:/images-ng/close-tab-hover.svgz)}";
 	if (active) {
-		setStyleSheet("QTabBar {font-weight: bold;} QTabBar::tab:!selected {font-weight: normal;}");
+		setStyleSheet(baseStyle);// + " QTabBar {font-weight: bold;} QTabBar::tab:!selected {font-weight: normal;}");
 	} else {
-		setStyleSheet(QString());
+		setStyleSheet(baseStyle + " QTabBar {color: darkgrey;}");
 	}
 }
 

@@ -3,6 +3,7 @@
 
 #include "mostQtHeaders.h"
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
 #include "qdocumentline_p.h"
 #include <QThread>
 #include <QSemaphore>

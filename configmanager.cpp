@@ -9,7 +9,7 @@
 #include "insertgraphics_config.h"
 #include "grammarcheck_config.h"
 #include "PDFDocument_config.h"
-#include "smallUsefulFunctions.h"
+#include "encoding.h"
 #include "codesnippet.h"
 #include "updatechecker.h"
 
@@ -333,7 +333,7 @@ bool ManagedProperty::readFromObject(const QObject *w)
 #undef READ_FROM_OBJECT
 
 QTextCodec *ConfigManager::newFileEncoding = 0;
-QString ConfigManager::iniFileOverride;
+QString ConfigManager::configDirOverride;
 bool ConfigManager::dontRestoreSession=false;
 
 QString getText(QWidget *w)
@@ -346,7 +346,12 @@ QString getText(QWidget *w)
 void setText(QWidget *w, const QString &t)
 {
 	if (qobject_cast<QLineEdit *>(w)) qobject_cast<QLineEdit *>(w)->setText(t);
-	else if (qobject_cast<QComboBox *>(w)) qobject_cast<QComboBox *>(w)->setEditText(t);
+    else if (qobject_cast<QComboBox *>(w)) {
+        QComboBox * cb=qobject_cast<QComboBox *>(w);
+        if(!cb->isEditable())
+            cb->setEditable(true);
+        cb->setEditText(t);
+    }
 	else REQUIRE(false);
 }
 
@@ -512,11 +517,20 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/ContextMenuSpellcheckingEntryLocation", &editorConfig->contextMenuSpellcheckingEntryLocation, 0, &pseudoDialog->comboBoxContextMenuSpellcheckingEntryLocation);
 
 	registerOption("Editor/TexDoc Help Internal", &editorConfig->texdocHelpInInternalViewer, true , &pseudoDialog->checkBoxTexDocInternal);
+	registerOption("Editor/MonitorFilesForExternalChanges", &editorConfig->monitorFilesForExternalChanges, true, &pseudoDialog->checkBoxMonitorFilesForExternalChanges);
 	registerOption("Editor/SilentReload", &editorConfig->silentReload, false, &pseudoDialog->checkBoxSilentReload);
+#ifdef Q_OS_WIN
+	// QSaveFile does not work with dropbox on windows: https://sourceforge.net/p/texstudio/bugs/1933/, https://bugreports.qt.io/browse/QTBUG-57299
+	// We disable usage of QSaveFile and revert to our own file saving mechanism until the problem gets fixed.
+	// Note: When deleting this, also delete ui.checkBoxUseQSaveWrite->setVisible(false);
+	editorConfig->useQSaveFile = false;
+#else
+	registerOption("Editor/UseQSaveFile", &editorConfig->useQSaveFile, true, &pseudoDialog->checkBoxUseQSaveWrite);
+#endif
 
 	registerOption("Editor/Replace Quotes", &replaceQuotes, 0 , &pseudoDialog->comboBoxReplaceQuotes);
 
-	registerOption("Editor/Close Search Replace Together", &editorConfig->closeSearchAndReplace, false, &pseudoDialog->checkBoxCloseSearchReplaceTogether);
+	registerOption("Editor/Close Search Replace Together", &editorConfig->closeSearchAndReplace, true, &pseudoDialog->checkBoxCloseSearchReplaceTogether);
 	registerOption("Editor/Use Line For Search", &editorConfig->useLineForSearch, true, &pseudoDialog->checkBoxUseLineForSearch);
 	registerOption("Editor/Search Only In Selection", &editorConfig->searchOnlyInSelection, true, &pseudoDialog->checkBoxSearchOnlyInSelection);
 	registerOption("Editor/Auto Replace Commands", &CodeSnippet::autoReplaceCommands, true, &pseudoDialog->checkBoxAutoReplaceCommands);
@@ -558,6 +572,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Overwrite Opening Bracket Followed By Placeholder", &editorConfig->overwriteOpeningBracketFollowedByPlaceholder, true, &pseudoDialog->checkOverwriteOpeningBracketFollowedByPlaceholder);
 	registerOption("Editor/Overwrite Closing Bracket Following Placeholder", &editorConfig->overwriteClosingBracketFollowingPlaceholder, true, &pseudoDialog->checkOverwriteClosingBracketFollowingPlaceholder);
 	registerOption("Editor/Double-click Selection Includes Leading Backslash", &editorConfig->doubleClickSelectionIncludeLeadingBackslash, true, &pseudoDialog->checkBoxDoubleClickSelectionIncludeLeadingBackslash);
+	registerOption("Editor/TripleClickSelection", &editorConfig->tripleClickSelectionIndex, 4, &pseudoDialog->comboBoxTripleClickSelection);
 
 	//table autoformating
 	registerOption("TableAutoformat/Special Commands", &tableAutoFormatSpecialCommands, "\\hline,\\cline,\\intertext,\\shortintertext,\\toprule,\\midrule,\\bottomrule", &pseudoDialog->leTableFormatingSpecialCommands);
@@ -598,6 +613,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Show Messages When Compiling", &showMessagesWhenCompiling, true, &pseudoDialog->checkBoxShowMessagesOnCompile);
 	registerOption("Tools/Show Stdout", &showStdoutOption, 1, &pseudoDialog->comboBoxShowStdout);
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
+	registerOption("Tools/ShowLogInCaseOfCompileError", &BuildManager::showLogInCaseOfCompileError, true, &pseudoDialog->checkBoxShowLogInCaseOfCompileError);
 	registerOption("Tools/ReplaceEnvironmentVariables", &BuildManager::m_replaceEnvironmentVariables, true, &pseudoDialog->checkBoxReplaceEnvironmentVariables);
 	registerOption("Tools/SupportShellStyleLiteralQuotes", &BuildManager::m_supportShellStyleLiteralQuotes, true);
 
@@ -640,7 +656,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 
 	registerOption("Interface/Config Show Advanced Options", &configShowAdvancedOptions, false, &pseudoDialog->checkBoxShowAdvancedOptions);
 	registerOption("Interface/Config Riddled", &configRiddled, false);
-	registerOption("Interface/New Left Panel Layout", &newLeftPanelLayout, true);
 	registerOption("Interface/MRU Document Chooser", &mruDocumentChooser, false, &pseudoDialog->checkBoxMRUDocumentChooser);
 
 	//language
@@ -704,22 +719,21 @@ ConfigManager::~ConfigManager()
 QString ConfigManager::iniPath()
 {
 	if (!persistentConfig) {
-		QString ini = iniFileOverride;
-		if (ini.isEmpty()) ini = QCoreApplication::applicationDirPath() + "/texstudio.ini";
-		return ini;
+		QString configDir = configDirOverride;
+		if (configDir.isEmpty()) configDir = portableConfigDir();
+		return configDir + "/texstudio.ini";
 	}
 	return configFileName;
 }
 
-bool ConfigManager::isUsbMode()
+QString ConfigManager::portableConfigDir()
 {
-	bool usbMode = false;
-	if (!persistentConfig) {
-		usbMode = !iniFileOverride.isEmpty() || isExistingFileRealWritable(iniPath());
-	} else {
-		usbMode = (QDir(QCoreApplication::applicationDirPath()) == QDir(configBaseDir));
-	}
-	return usbMode;
+	return QCoreApplication::applicationDirPath() + "/config";
+}
+
+bool ConfigManager::isPortableMode()
+{
+	return QDir(portableConfigDir()).exists();
 }
 
 /*!
@@ -727,7 +741,7 @@ bool ConfigManager::isUsbMode()
  */
 QSettings *ConfigManager::newQSettings()
 {
-	if (isUsbMode()) {
+	if (isPortableMode()) {
 		return new QSettings(iniPath(), QSettings::IniFormat);
 	} else {
 		return new QSettings(QSettings::IniFormat, QSettings::UserScope, "texstudio", "texstudio");
@@ -738,7 +752,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 {
 	//load config
 	QSettings *config = persistentConfig;
-	bool usbMode = isUsbMode();
+	bool portableMode = isPortableMode();
 	if (!config) {
 		config = newQSettings();
 		configFileName = config->fileName();
@@ -807,7 +821,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 		QFileInfo fi(dic);
 		if (fi.exists()) {
 			spellDictDir = QDir::toNativeSeparators(fi.absolutePath());
-			if (usbMode) {
+			if (portableMode) {
 				spellDictDir = reverseParseDir(spellDictDir);
 			}
 			spellLanguage = fi.baseName();
@@ -1398,8 +1412,6 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	confDlg->ui.comboBoxInterfaceStyle->setCurrentIndex(confDlg->ui.comboBoxInterfaceStyle->findText(displayedInterfaceStyle));
 	confDlg->ui.comboBoxInterfaceStyle->setEditText(displayedInterfaceStyle);
 
-	confDlg->ui.checkBoxTabbedStructureView->setChecked(!newLeftPanelLayout);
-
 	confDlg->fmConfig->setBasePointSize( editorConfig->fontSize );
 	confDlg->fmConfig->addScheme("", QDocument::defaultFormatScheme());
 
@@ -1560,7 +1572,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 				if (cb && !configShowAdvancedOptions) {
 					// the display text has to be mappend to the actual command in case of the non-advanced dialog
 					int i = cb->findText(text);
-					text = it.value().metaSuggestionList.value(i);
+                    if(i>=0)
+                        text = it.value().metaSuggestionList.value(i);
 				}
 				it.value().commandLine = text;
 			}
@@ -1681,11 +1694,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 			if (interfaceStyle == tr("default")) interfaceStyle = "";
 			setInterfaceStyle();
 		}
-		// read checkbox and set logViewer accordingly
-		if (newLeftPanelLayout != !confDlg->ui.checkBoxTabbedStructureView->isChecked()) {
-			newLeftPanelLayout = !confDlg->ui.checkBoxTabbedStructureView->isChecked();
-			emit newLeftPanelLayoutChanged(newLeftPanelLayout);
-		}
+
 		//language
 		if (language == tr("default")) language = "";
 		if (language != lastLanguage) loadTranslations(language);
@@ -3159,6 +3168,8 @@ void ConfigManager::getDefaultEncoding(const QByteArray &, QTextCodec *&guess, i
 {
 	if (sure >= 100) return;
 	if (!newFileEncoding) return;
+
+	using namespace Encoding;
 	//guess is utf-8 or latin1, no latex encoding definition detected
 	if (guess && guess->mibEnum() == MIB_UTF8) return; //trust utf8 detection
 	//guess is latin1, no latex encoding definition detected

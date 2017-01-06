@@ -80,12 +80,25 @@ private:
 };
 
 
-class CustomWidgetList: public QDockWidget
+/*!
+ * Subclassed TitledPanel to get a reasonable default width
+ */
+class SidePanel: public TitledPanel
 {
 	Q_OBJECT
 
 public:
-	CustomWidgetList(QWidget *p = 0);
+	SidePanel(QWidget *parent = 0) : TitledPanel(parent) { setFrameStyle(QFrame::NoFrame); }
+	QSize sizeHint() const { return QSize(280, 0); }
+};
+
+
+class CustomWidgetList: public QWidget
+{
+	Q_OBJECT
+
+public:
+	CustomWidgetList(QWidget *parent = 0);
 	void addWidget(QWidget *widget, const QString &id, const QString &text, const QString &iconName);
 	void setWidgetText(const QString &id, const QString &text);
 	void setWidgetText(QWidget *widget, const QString &text);
@@ -99,18 +112,17 @@ public:
 	QList<QWidget *> getWidgets() const;
 	void setCurrentWidget(QWidget *widget);
 	QWidget *currentWidget() const;
-	bool isNewLayoutStyleEnabled() const;
 
 signals:
 	void widgetContextMenuRequested(QWidget *widget, const QPoint &globalPosition);
+	void titleChanged(const QString &);
 
 public slots:
-	void showWidgets(bool newLayoutStyle);
+	void showWidgets();
 	void setToolbarIconSize(int sz);
 
 private slots:
 	void showPageFromAction();
-	void currentWidgetChanged(int i);
 	void toggleWidgetFromAction(bool on);
 	void customContextMenuRequested(const QPoint &localPosition);
 
@@ -124,13 +136,8 @@ private:
 
 	QStringList hiddenWidgetsIds;
 	QList<QWidget *> widgets;
-	bool newStyle;
-
-	//old layout
-	QToolBox *toolbox;
 
 	//new layout
-	QFrame *frame;
 	QStackedWidget *stack;
 	QToolBar *toolbar;
 

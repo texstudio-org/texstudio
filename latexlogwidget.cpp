@@ -1,6 +1,7 @@
 #include "latexlogwidget.h"
-#include "smallUsefulFunctions.h"
+#include "encoding.h"
 #include "configmanager.h"
+#include "minisplitter.h"
 
 /*
  * row heights of tables are quite large by default. Experimentally detect the
@@ -65,7 +66,7 @@ LatexLogWidget::LatexLogWidget(QWidget *parent) :
 	log->setFrameShape(QFrame::NoFrame);
 	connect(log, SIGNAL(clickOnLogLine(int)), this, SLOT(gotoLogLine(int)));
 
-	QSplitter *splitter = new QSplitter(Qt::Vertical, this);
+	QSplitter *splitter = new MiniSplitter(Qt::Vertical, this);
 	splitter->setChildrenCollapsible(false);
 	splitter->addWidget(errorTable);
 	splitter->addWidget(log);
@@ -132,7 +133,7 @@ bool LatexLogWidget::loadLogFile(const QString &logname, const QString &compiled
 		f.close();
 
 		int sure;
-		QTextCodec *codec = guessEncodingBasic(fullLog, &sure);
+		QTextCodec *codec = Encoding::guessEncodingBasic(fullLog, &sure);
 		if (sure < 2 || !codec) codec = fallbackCodec ? fallbackCodec : QTextCodec::codecForLocale();
 
 		log->setPlainText(codec->toUnicode(fullLog));

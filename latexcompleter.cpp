@@ -764,21 +764,13 @@ void CompletionListModel::filterList(const QString &word, int mostUsed, bool fet
 		QString test = word.left(i) + "{@}";
 		if (wordsCitationCommands.contains(CompletionWord(test))) {
 			QString citeStart = word.mid(i + 1);
-			if (wordsCitations.isEmpty()) {
-				CompletionWord cw(test);
-				cw.word.replace("@", "bibid");
-				cw.sortWord.replace("@", "bibid");
-				cw.lines[0].replace("@", "bibid");
-				words.append(cw);
-			} else {
-				foreach (const CompletionWord id, wordsCitations) {
-					if (id.word.startsWith(citeStart)) {
-						CompletionWord cw(test);
-						cw.word.replace("@", id.word);
-						cw.sortWord.replace("@", id.word);
-						cw.lines[0].replace("@", id.word);
-						words.append(cw);
-					}
+			foreach (const CompletionWord id, wordsCitations) {
+				if (id.word.startsWith(citeStart)) {
+					CompletionWord cw(test);
+					cw.word.replace("@", id.word);
+					cw.sortWord.replace("@", id.word);
+					cw.lines[0].replace("@", id.word);
+					words.append(cw);
 				}
 			}
 		}

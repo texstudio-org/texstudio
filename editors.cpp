@@ -3,6 +3,7 @@
 #include "mostQtHeaders.h"
 #include "utilsSystem.h"
 #include "latexeditorview.h"
+#include "minisplitter.h"
 
 
 /*!
@@ -31,10 +32,8 @@
 Editors::Editors(QWidget *parent) :
 	QWidget(parent), splitter(0), currentGroupIndex(-1)
 {
-	splitter = new QSplitter();
-	splitter->setOrientation(Qt::Horizontal);
+	splitter = new MiniSplitter(Qt::Horizontal);
 	splitter->setChildrenCollapsible(false);
-	splitter->setHandleWidth(0);
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
 	layout->setContentsMargins(0, 0, 0, 0);
@@ -363,6 +362,11 @@ void Editors::tabBarContextMenu(const QPoint &point)
 	if (!editorUnderCursor) act->setEnabled(false);
 	connect(act, SIGNAL(triggered()), SLOT(moveToOtherTabGroup()));
 
+	act = menu.addAction(tr("Move all to other view"));
+	act->setData(QVariant::fromValue<TxsTabWidget *>(tabGroup));
+	if (!editorUnderCursor) act->setEnabled(false);
+	connect(act, SIGNAL(triggered()), SLOT(moveAllToOtherTabGroup()));
+
 	act = menu.addAction((splitter->orientation() == Qt::Horizontal) ? tr("Split Vertically") : tr("Split Horizontally"));
 	connect(act, SIGNAL(triggered()), SLOT(changeSplitOrientation()));
 	menu.exec(tabGroup->mapToGlobal(point));
@@ -390,6 +394,18 @@ void Editors::moveToOtherTabGroup()
 	// NOTE: This code assumes exactly two tabGroups
 	int otherGroupIndex = (tabGroups[0] == tabWidgetFromEditor(edView)) ? 1 : 0;
 	moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);
+}
+
+void Editors::moveAllToOtherTabGroup() {
+	QAction *act = qobject_cast<QAction *>(sender());
+	REQUIRE(act);
+	TxsTabWidget *tabGroup = act->data().value<TxsTabWidget *>();
+	if (!tabGroup) return;
+
+	// NOTE: This code assumes exactly two tabGroups
+	int otherGroupIndex = (tabGroups[0] == tabGroup) ? 1 : 0;
+	foreach (LatexEditorView *edView, tabGroup->editors())
+		moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);
 }
 
 /*!

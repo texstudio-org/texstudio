@@ -22,8 +22,6 @@
 \pgfmathdeclareoperator{arg1}#*
 \pgfmathdeclarefunction#*
 \pgfmathredeclarefunction{arg1}#*
-\noexpand{arg1}#*
-\noexpand{arg1}{arg2}#*
 \expandafter#*
 \pgfmathdeclarepseudoconstant{arg1}#*
 \pgfmathredeclarepseudoconstant{arg1}#*

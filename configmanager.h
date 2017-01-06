@@ -38,7 +38,8 @@ public:
 	~ConfigManager();
 
 	QString iniPath();
-	bool isUsbMode();
+	static QString portableConfigDir();
+	bool isPortableMode();
 
 	QSettings *newQSettings();
 	QSettings *readSettings(bool reread = false);
@@ -81,7 +82,6 @@ public:
 	int guiSecondaryToolbarIconSize;
 	bool useTexmakerPalette;
 	int interfaceFontSize;
-	bool newLeftPanelLayout;
 	bool mruDocumentChooser;
 	bool configShowAdvancedOptions, configRiddled;
 	bool centralVisible;
@@ -221,7 +221,7 @@ public:
 	void removeManagedMenus();
 	void triggerManagedAction(const QString &id);
 
-	static QString iniFileOverride;
+	static QString configDirOverride;
     static bool dontRestoreSession;
 private:
 	void setupDirectoryStructure();
@@ -252,7 +252,6 @@ public:
 	void populateCustomActions(QListWidget *parent, QMenu *menu, bool go = false);
 
 signals:
-	void newLeftPanelLayoutChanged(bool newValue);
 	void watchedMenuChanged(const QString &menuId);
 	void iconSizeChanged(int value);
 	void secondaryIconSizeChanged(int value);

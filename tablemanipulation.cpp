@@ -2,6 +2,7 @@
 #include "qdocumentcursor.h"
 #include "qdocumentline.h"
 #include "smallUsefulFunctions.h"
+#include "latexparser/latexparser.h"
 #include "scriptengine.h"
 #include "configmanager.h"
 
