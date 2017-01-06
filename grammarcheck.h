@@ -144,6 +144,7 @@ private:
 	QSet<QString> languagesCodesFail;
 };
 
+#if QT_VERSION_MAJOR>4
 class GrammarCheckLanguageToolJSON: public GrammarCheckBackend
 {
     Q_OBJECT
@@ -179,5 +180,6 @@ private:
 
     QSet<QString> languagesCodesFail;
 };
+#endif
 
 #endif // GRAMMARCHECK_H
