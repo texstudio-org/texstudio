@@ -5387,13 +5387,13 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 		bool found = false;
 		for (int i = offset; i >= 0; i--) {
 			foreach(const QString &closing, possibleClosingParentheses) {
-				if (text.midRef(i).startsWith(closing) && (i+closing.length() < offset)) {
+                if (text.mid(i).startsWith(closing) && (i+closing.length() < offset)) {
 					closingParenthesesStack.prepend(closing);
 					break;
 				}
 			}
 			foreach(const QString &opening, possibleOpeningParentheses) {
-				if (text.midRef(i).startsWith(opening)) {
+                if (text.mid(i).startsWith(opening)) {
 					if (closingParenthesesStack.isEmpty()) {
 						offset = i;
 						found = true;
