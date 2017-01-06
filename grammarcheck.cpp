@@ -2,8 +2,10 @@
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexreader.h"
 #include "QThread"
+#if QT_VERSION_MAJOR>4
 #include <QJsonDocument>
 #include <QJsonArray>
+#endif
 GrammarError::GrammarError(): offset(0), length(0), error(GET_UNKNOWN) {}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error, const QString &message): offset(offset), length(length), error(error), message(message) {}
 GrammarError::GrammarError(int offset, int length, const GrammarErrorType &error, const QString &message, const QStringList &corrections): offset(offset), length(length), error(error), message(message), corrections(corrections) {}
@@ -32,14 +34,15 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 {
 	*latexParser = lp;
 	this->config = config;
-    /*if (!backend) {
-		backend = new GrammarCheckLanguageToolSOAP(this);
-		connect(backend, SIGNAL(checked(uint, int, QList<GrammarError>)), this, SLOT(backendChecked(uint, int, QList<GrammarError>)));
-    }*/
+
     if (!backend) {
+#if QT_VERSION_MAJOR>4
             backend = new GrammarCheckLanguageToolJSON(this);
+#else
+            backend = new GrammarCheckLanguageToolSOAP(this);
+#endif
             connect(backend, SIGNAL(checked(uint, int, QList<GrammarError>)), this, SLOT(backendChecked(uint, int, QList<GrammarError>)));
-        }
+    }
 	backend->init(config);
 
 	if (floatingEnvs.isEmpty())
@@ -495,6 +498,7 @@ struct CheckRequestBackend {
 	CheckRequestBackend(int ti, int st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
 };
 
+#if QT_VERSION_MAJOR>4
 GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
 {
 
@@ -1030,3 +1034,4 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
             check(cr.ticket, cr.subticket, cr.language, cr.text);
     }
 }
+#endif
