@@ -18,11 +18,14 @@ TeXstudio 2.12.0
 - improved highlighting for pweave and sweave
 - improved tooltips on structure entries
 - improved text completion: support compound words, apostrophe, subscript in braces, words with underscores
+- Parenthesis -> Select Inner/Outer work also when the cursor is not next to a parenthesis but inside
 - don't clear highlights of search in pdf after timeout
 - revert to pre 2.11.0 save method on windows because the new QSaveFile has problems with Dropbox folders
 - option to disable safe writing of files (using QSaveFile) - non-Windows only
 - option to disable showing logfile/error list in case of compile errors
 - option to deactivate all reactions to external file changes
+- option to control the triple click behavior
+- additional shortcuts with Tab, Backspace, Del in shortcut options
 - portable version does now store all settings in a subfolder "config"
 - improved automatic handling of hg version information (relevant when building from source tar)
 - improved handling of cwl dublets

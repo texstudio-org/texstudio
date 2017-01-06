@@ -71,6 +71,7 @@ class QCE_EXPORT QDocumentCursor : public QObject
 			StartOfBlock = StartOfLine,
 			StartOfWord,
 			StartOfWordOrCommand,
+			StartOfParenthesis,
 			PreviousBlock,
 			PreviousLine = PreviousBlock,
 			PreviousWord,
@@ -90,7 +91,9 @@ class QCE_EXPORT QDocumentCursor : public QObject
 		{
 			WordUnderCursor,
 			WordOrCommandUnderCursor,
-			LineUnderCursor
+			LineUnderCursor,
+			ParenthesesInner,
+			ParenthesesOuter
 		};
 		
 		explicit QDocumentCursor(QDocument *doc);
