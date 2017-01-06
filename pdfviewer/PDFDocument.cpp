@@ -2256,7 +2256,7 @@ PDFDocument::~PDFDocument()
 
 void PDFDocument::setupToolBar(){
     toolBar = new QToolBar(this);
-    toolBar->setObjectName(QStringLiteral("toolBar"));
+    toolBar->setObjectName(QString("toolBar"));
     toolBar->setIconSize(QSize(24, 24));
     addToolBar(Qt::TopToolBarArea, toolBar);
 
@@ -2286,7 +2286,7 @@ void PDFDocument::setupToolBar(){
     toolBar->addAction(actionClose);
 
     statusbar = new QStatusBar(this);
-    statusbar->setObjectName(QStringLiteral("statusbar"));
+    statusbar->setObjectName(QString("statusbar"));
     setStatusBar(statusbar);
 }
 

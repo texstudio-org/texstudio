@@ -2,7 +2,7 @@
 #include "smallUsefulFunctions.h"
 #include "latexparser/latexreader.h"
 #include "QThread"
-#if QT_VERSION_MAJOR>4
+#if QT_VERSION >= 0x050000
 #include <QJsonDocument>
 #include <QJsonArray>
 #endif
@@ -36,7 +36,7 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 	this->config = config;
 
     if (!backend) {
-#if QT_VERSION_MAJOR>4
+#if QT_VERSION >= 0x050000
             backend = new GrammarCheckLanguageToolJSON(this);
 #else
             backend = new GrammarCheckLanguageToolSOAP(this);
@@ -498,7 +498,6 @@ struct CheckRequestBackend {
 	CheckRequestBackend(int ti, int st, const QString &la, const QString &te): ticket(ti), subticket(st), language(la), text(te) {}
 };
 
-#if QT_VERSION_MAJOR>4
 GrammarCheckLanguageToolSOAP::GrammarCheckLanguageToolSOAP(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
 {
 
@@ -760,7 +759,7 @@ void GrammarCheckLanguageToolSOAP::finished(QNetworkReply *nreply)
 	}
 }
 
-
+#if QT_VERSION >= 0x050000
 GrammarCheckLanguageToolJSON::GrammarCheckLanguageToolJSON(QObject *parent): GrammarCheckBackend(parent), nam(0), connectionAvailability(Unknown), triedToStart(false), firstRequest(true)
 {
 
