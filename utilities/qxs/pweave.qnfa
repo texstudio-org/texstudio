@@ -1,0 +1,278 @@
+<!DOCTYPE QNFA>
+<QNFA language="Pweave" extensions="Pnw" defaultLineMark="">
+<!-- Note: languages name is used to determine on-line checking. If changed also sources have to be adapted (latexeditorview.cpp) -->
+
+	<context id="pweave" format="pweave-block" transparency="true">	
+		<start parenthesis="pweave:open@nocomplete" parenthesisWeight="50" fold="1" format="pweave-delimiter">&lt;%</start>
+		<stop parenthesis="pweave:close@nocomplete" parenthesisWeight="50" fold="1" format="pweave-delimiter">%&gt;</stop>
+	</context>
+	
+	<context id="pweave" format="pweave-block" transparency="true">	
+		<start parenthesis="sweave:open@nocomplete" parenthesisWeight="30" fold="1" format="pweave-delimiter">&lt;&lt;[^>]*>>=</start>
+		<stop parenthesis="sweave:close@nocomplete" parenthesisWeight="30" fold="1" format="pweave-delimiter">@</stop>
+	</context>
+
+
+	<!-- *********************************************************************************************************************
+	     TODO: everything below is just copied from tex.qnfa. So it would be better to use <embed target="(La)TeX">
+	     However there seems to be a bug that the pweave context is not propagated into other contexts when they are embedded.
+		 This results in  $sqrt{2} = <%= sqrt(2) %>$ partly being highlighted as comment.
+		 Temporary workaround: It works correctly if we copy the the code.
+		 *********************************************************************************************************************-->
+	
+	<sequence parenthesis="round:open" parenthesisWeight="00">\(</sequence>
+	<sequence parenthesis="round:close" parenthesisWeight="00">\)</sequence>
+	<sequence parenthesis="texcurly:open" parenthesisWeight="00">\\{</sequence>
+	<sequence parenthesis="texcurly:close" parenthesisWeight="00">\\}</sequence>
+	<sequence parenthesis="square:open" parenthesisWeight="00">\[</sequence>
+	<sequence parenthesis="square:close" parenthesisWeight="00">\]</sequence>
+
+	<sequence parenthesis="foldcomment:open" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*BEGIN_FOLD</sequence>
+	<sequence parenthesis="foldcomment:close" parenthesisWeight="15" fold="true" format="magicComment">%[\ \t]*END_FOLD</sequence>
+	
+	<!-- ========================= VERBATIM ====================== -->
+	
+	<foreach loopVar="$v">
+		<e>verbatim</e> <e>verbatim\*</e> <e>lstlisting</e> <e>Verbatim</e> <e>BVerbatim</e> <e>Verbatim\*</e> <e>BVerbatim\*</e>
+		<body>
+			<context id="$v" format="verbatim">
+				<start parenthesis="$v:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{$v}</start>
+				<stop parenthesis="$v:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{$v}</stop>
+
+				<sequence parenthesis="curly:open" parenthesisWeight="10">\{</sequence>
+		 		<sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
+			</context>
+		</body>
+	</foreach>
+
+	<!-- ========================= LUA ====================== -->
+
+	<context id="directlua" format="lua" transparency="true">	
+		<start parenthesis="directlua:open" parenthesisWeight="30" fold="1" format="keyword">\\directlua{</start>
+		<stop parenthesis="directlua:close" parenthesisWeight="30" fold="1" format="keyword">}</stop>
+		<embed target="Lua" />
+	</context>
+	<context id="latelua" format="lua" transparency="true">	
+		<start parenthesis="latelua:open" parenthesisWeight="30" fold="1" format="keyword">\\latelua{</start>
+		<stop parenthesis="latelua:close" parenthesisWeight="30" fold="1" format="keyword">}</stop>
+		<embed target="Lua" />
+	</context>
+	<!--                           (keywords)                      -->
+
+	<word id="keywords/single" ambiguous="true" format="keyword">\\[\\%&amp;\$]</word>
+	<sequence parenthesis="curly:open" parenthesisWeight="10" indent="1" fold="1">\{</sequence>
+	<sequence parenthesis="curly:close" parenthesisWeight="10" indent="1" fold="1">\}</sequence>
+
+	<foreach loopVar="$i">
+		<e>$</e> <e>+</e> <e>-</e> <e>1</e> <e>!</e> <e>.</e> <e>@</e> <e>#</e> <e>|</e> <e>/</e> <e>\</e> <e>_</e> <e>=</e> <e>x</e>
+		<body>
+	  	<context id="verb$i" format="verbatim">
+			<start parenthesis="verb$i:open" parenthesisWeight="20" format="keyword">\\verb\$i</start>
+			<stop parenthesis="verb$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
+		<context id="verb*$i" format="verbatim">
+			<start parenthesis="verb*$i:open" parenthesisWeight="20" format="keyword">\\verb\*\$i</start>
+			<stop parenthesis="verb*$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
+		<context id="lstinline$i" format="verbatim">
+			<start parenthesis="lstinline$i:open" parenthesisWeight="20" format="keyword">\\lstinline\$i</start>
+			<stop parenthesis="lstinline$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
+		<context id="lstinlineOption$i" format="verbatim">
+			<start parenthesis="lstinlineOption$i:open" parenthesisWeight="20" format="keyword">\\lstinline\[[^\]]*\]\$i</start>
+			<stop parenthesis="lstinlineOption$i:close" parenthesisWeight="20" format="keyword">\$i</stop>
+		</context>
+		</body>
+	</foreach>
+
+	<!-- ========================= COMMAND ====================== -->
+
+	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
+		<start>%TODO</start>
+		<start>%todo</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+
+	<context id="comment/magic" format="magicComment" stayOnLine="true" >
+		<start>%\ ?!T[eE]X</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	
+	<context id="comment/single" format="comment" stayOnLine="true" ambiguous="true">
+		<start>%</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	
+	<context id="comment/env" format="comment">
+		<start parenthesis="commentenv:open@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword" >\\begin{comment}</start>
+		<stop parenthesis="commentenv:close@nocomplete" parenthesisWeight="40" fold="1" format="extra-keyword" >\\end{comment}</stop>
+	</context>
+
+	
+	<!-- ========================= MATH MODE ====================== -->
+
+	<sequence id="keywords/single" format="align-ampersand">&amp;</sequence>
+	
+	<context id="mathmode$$" format="numbers" transparency="true">
+		<start parenthesis="math:open$$" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</start>
+		<stop parenthesis="math:close$$" parenthesisWeight="50" fold="1" format="math-delimiter" >\$\$</stop>
+
+		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
+		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
+		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
+		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
+		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
+		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
+		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
+		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
+		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
+		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
+		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
+		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
+		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
+
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+	</context>
+
+	<context id="mathmode$" format="numbers" transparency="true">
+		<start parenthesis="math:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</start>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\$</stop>
+		<stop parenthesis="math:close" parenthesisWeight="40" fold="1" format="magicComment" >%\$</stop><!-- can be used as a workaround for closing math at the end of the line, if highlighting misinterprets a $ sign, e.g. \path{$PATH} %$ -->
+
+		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
+		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
+		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
+		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
+		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
+		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
+		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
+		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
+		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
+		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
+		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
+		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
+		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
+
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+	</context>
+
+	<context id="mathmodeNormal" format="numbers" transparency="true">
+		<start parenthesis="mathN2:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\(</start>
+		<stop parenthesis="mathN2:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\)</stop>
+
+		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
+		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
+		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
+		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
+		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
+		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
+		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
+		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
+		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
+		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
+		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
+		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
+		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
+
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+
+	</context>
+	
+	<context id="mathmodeDisplay" format="numbers" transparency="true">
+		<start parenthesis="mathD2:open" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\[</start>
+		<stop parenthesis="mathD2:close" parenthesisWeight="40" fold="1" format="math-delimiter" >\\\]</stop>
+
+		<sequence parenthesis="leftright(:open" parenthesisWeight="0" format="math-keyword">\\left\(</sequence>
+		<sequence parenthesis="leftright(:close" parenthesisWeight="0" format="math-keyword">\\right\)</sequence>
+		<sequence parenthesis="leftright[:open" parenthesisWeight="0" format="math-keyword">\\left\[</sequence>
+		<sequence parenthesis="leftright[:close" parenthesisWeight="0" format="math-keyword">\\right\]</sequence>
+		<sequence parenthesis="leftright{:open" parenthesisWeight="0" format="math-keyword">\\left\\\{</sequence>
+		<sequence parenthesis="leftright{:close" parenthesisWeight="0" format="math-keyword">\\right\\\}</sequence>
+		<sequence parenthesis="leftright&lt;:open" parenthesisWeight="0" format="math-keyword">\\left\&lt;</sequence>
+		<sequence parenthesis="leftright&lt;:close" parenthesisWeight="0" format="math-keyword">\\right\&gt;</sequence>
+		<sequence parenthesis="leftright|:open" parenthesisWeight="0" format="math-keyword">\\left|</sequence>
+		<sequence parenthesis="leftright|:close" parenthesisWeight="0" format="math-keyword">\\right|</sequence>
+		<sequence parenthesis="leftright||:open" parenthesisWeight="0" format="math-keyword">\\left\|</sequence>
+		<sequence parenthesis="leftright||:close" parenthesisWeight="0" format="math-keyword">\\right\|</sequence>
+		<sequence parenthesis="ceil:open" parenthesisWeight="0" format="math-keyword">\\lceil</sequence>
+		<sequence parenthesis="ceil:close" parenthesisWeight="0" format="math-keyword">\\rceil</sequence>
+		<sequence parenthesis="floor:open" parenthesisWeight="0" format="math-keyword">\\lfloor</sequence>
+		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
+		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
+		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
+
+		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+	</context>
+
+	<!-- ========================= PICTURES ====================== -->
+	<foreach loopVar="$env">
+		<e>tikzpicture</e> <e>pspicture</e> <e>pspicture\*</e> <e>picture</e> <e>picture\*</e>
+		<body>
+		<context id="$env" format="picture" transparency="true">	
+			<start parenthesis="$env:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{$env}</start>
+			<stop parenthesis="$env:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{$env}</stop>
+			<!-- transparency does not work for subsequent commands. Therefore keywords/single is not matched. Anyway, let's define a picture keyword. -->
+			<sequence id="$env/keyword" ambiguous="true" format="picture-keyword">\\[a-zA-Z@]+</sequence>
+		</context>        
+		</body>
+	</foreach>
+	
+	<!-- ========================= Asymptote ===================== -->
+
+	<context id="asy" format="asymptote:block" transparency="false">	
+		<start parenthesis="asy:open@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\begin{asy}</start>
+		<stop parenthesis="asy:close@nocomplete" parenthesisWeight="30" fold="1" format="extra-keyword">\\end{asy}</stop>
+		<embed target="Asymptote" />
+	</context>
+
+	<!-- ========================= GENERAL BLOCKS ====================== -->
+	
+	<word parenthesis="block:open@nocomplete" parenthesisWeight="30" fold="1" indent="1" ambiguous="true" format="extra-keyword">\\begin{[^}]*}</word>
+	<word parenthesis="block:close@nocomplete" parenthesisWeight="30" fold="1" indent="1" format="extra-keyword" >\\end{[^}]*}</word>
+<!--
+        <context id="env" format="normal" transparency="true">
+                <start parenthesis="env:open@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\begin{[^}]*}</start>
+                <stop parenthesis="env:close@nocomplete" parenthesisWeight="30" fold="true" format="extra-keyword">\\end{[^}]*}</stop>
+
+                <sequence parenthesis="curly:open" parenthesisWeight="10">\{</sequence>
+                <sequence parenthesis="curly:close" parenthesisWeight="10">\}</sequence>
+        </context>
+-->
+
+	<!-- ========================= SECTIONS ====================== -->
+
+	<list id="keywords/structure" format="extra-keyword">
+	<!-- will be dynamically generated at runtime
+		<word parenthesis="part:boundary@nomatch" parenthesisWeight="8" fold="true">\\part</word>
+		<word parenthesis="chapter:boundary@nomatch" parenthesisWeight="7" fold="true">\\chapter</word>
+		<word parenthesis="section:boundary@nomatch" parenthesisWeight="6" fold="true">\\section</word>
+		<word parenthesis="subsection:boundary@nomatch" parenthesisWeight="5" fold="true">\\subsection</word>
+		<word parenthesis="subsubsection:boundary@nomatch" parenthesisWeight="4" fold="true">\\subsubsection</word>
+		<word parenthesis="paragraph:boundary@nomatch" parenthesisWeight="3" fold="true" >\\paragraph</word>
+		<word parenthesis="subparagraph:boundary@nomatch" parenthesisWeight="2" fold="true" >\\subparagraph</word>
+	-->	
+	</list>
+	
+	<!-- ========================= GENERAL COMMANDS ====================== -->
+
+	<!--sequence instead of word so things like \abc434 are correctly highlighted -->
+	<sequence id="keywords/single" ambiguous="true" format="keyword">\\[a-zA-Z@]+</sequence>
+
+</QNFA>
+
+
