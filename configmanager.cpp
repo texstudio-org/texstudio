@@ -2021,7 +2021,7 @@ QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const 
     for (int i = 0; i < shortCuts.size(); i++)
         specialShortcuts.insert(shortCuts[i], act);
 #endif
-    if (slotName) {
+    if (slotName && !QString(slotName).isEmpty()) {
         if(QString(slotName).contains("(bool)")){
             act->setCheckable(true);
             connect(act, SIGNAL(triggered(bool)), obj, slotName);
