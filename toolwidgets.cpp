@@ -378,6 +378,9 @@ void CustomWidgetList::showWidgets()
 		widgets[i]->setParent(this); //otherwise it will be deleted
 	}
 
+	foreach(QAction *act, toolbar->actions()) {
+		toolbar->removeAction(act);
+	}
 	for (int i = 0; i < widgets.size(); i++)
 		if (!hiddenWidgetsIds.contains(widgetId(widgets[i]))) {
 			stack->addWidget(widgets[i]);
