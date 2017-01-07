@@ -2169,7 +2169,8 @@ PDFScrollArea *PDFWidget::getScrollArea()
 QList<PDFDocument *> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
-	: renderManager(0), curFileSize(0), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0), syncFromSourceBlock(false), syncToSourceBlock(false)
+    : renderManager(0), curFileSize(0), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
+      syncFromSourceBlock(false), syncToSourceBlock(false),menubar(NULL)
 {
 	REQUIRE(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -2252,6 +2253,8 @@ PDFDocument::~PDFDocument()
 		synctex_scanner_free(scanner);
 	if (renderManager)
 		delete renderManager;
+
+    delete menubar;
 }
 
 void PDFDocument::setupToolBar(){
@@ -2295,7 +2298,7 @@ void PDFDocument::setupMenus(bool embedded)
     ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
     menuroot=new QMenu(this);
 
-	menubar = new QMenuBar(this);
+    menubar = new QMenuBar(0);
 	menubar->setObjectName(QString::fromUtf8("menubar"));
 	menubar->setGeometry(QRect(0, 0, 1197, 21));
 
