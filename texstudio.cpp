@@ -7016,7 +7016,11 @@ void Texstudio::setFullScreenMode()
 {
 	if (!fullscreenModeAction->isChecked()) {
 		stateFullScreen = saveState(1);
-		showNormal();
+        if(tobemaximized){
+            showMaximized();
+        }else{
+            showNormal();
+        }
 		restoreState(windowstate, 0);
 #if QT_VERSION < 0x040701
 		setUnifiedTitleAndToolBarOnMac(true);
@@ -7026,6 +7030,7 @@ void Texstudio::setFullScreenMode()
 #if QT_VERSION < 0x040701
 		setUnifiedTitleAndToolBarOnMac(false); //prevent crash, see https://bugreports.qt-project.org/browse/QTBUG-16274?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
 #endif
+        tobemaximized=isMaximized();
 		showFullScreen();
 		restoreState(stateFullScreen, 1);
 	}
