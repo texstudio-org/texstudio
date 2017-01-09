@@ -552,6 +552,7 @@ void Texstudio::setupDockWidgets()
 		sidePanel = new SidePanel(this);
 		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
 		sidePanel->toggleViewAction()->setText(tr("Side Panel"));
+		sidePanel->toggleViewAction()->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
 		addAction(sidePanel->toggleViewAction());
 
 		sidePanelSplitter->insertWidget(0, sidePanel);
@@ -4204,6 +4205,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
+		config->setValue("GUI/sidePanel/visible", sidePanel->isVisible());
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
