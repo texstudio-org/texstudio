@@ -1,3 +1,12 @@
+TeXstudio 2.12.2 RC
+-------------------
+- PDF shortcuts are now changable
+- Support LanguageTool json API (needed for LanguageTool > 3.5)
+- slightly improved layout of config dialog
+- improved detection of stdout and stderr redirection (bug 2019)
+- fix: duplicate side panel icons
+- fix: togglefullscreen from maximised and in reverse
+
 TeXstudio 2.12.0
 ----------------
 - improved user interface: optimized layout, some new icons, some changes of color
