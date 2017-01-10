@@ -1,10 +1,6 @@
 #ifndef DEBUGHELPER_H
 #define DEBUGHELPER_H
 
-#ifndef __GLIBC__
-#define NO_CRASH_HANDLER
-#endif
-
 #include "modifiedQObject.h"
 #include "smallUsefulFunctions.h"
 
