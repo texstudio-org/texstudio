@@ -120,6 +120,9 @@ QString removePathDelim(const QString &s);
 QString removeAccents(const QString &s);
 QString makeLatexLabel(const QString &s);
 
+QStringList tokenizeCommandLine(const QString &commandLine);
+QStringList extractOutputRedirection(const QStringList &commandArgs, QString &stdOut, QString &stdErr);
+
 uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate);
 
 /*! encode image as text for html

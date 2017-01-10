@@ -582,19 +582,12 @@ QStringList BuildManager::parseExtendedCommandLine(QString str, const QFileInfo 
  */
 QString BuildManager::extractOutputRedirection(const QString &commandLine, QString &stdOut, QString &stdErr)
 {
-	static QRegExp rxStdOut("[^2]>\\s*(\\S+)");
-	static QRegExp rxStdErr("2>\\s*(\\S+)");
-
-	int stdErrStart = rxStdErr.indexIn(commandLine);
-	if (stdErrStart >= 0) {
-		stdErr = rxStdErr.cap(1);
+	QStringList args = ::extractOutputRedirection(tokenizeCommandLine(commandLine), stdOut, stdErr);
+	if (stdOut.isEmpty() && stdErr.isEmpty()) {
+		return commandLine;
+	} else {
+		return args.join(" ");
 	}
-	int stdOutStart = rxStdOut.indexIn(commandLine);
-	if (stdOutStart >= 0) {
-		stdOutStart += 1;
-		stdOut = rxStdOut.cap(1);
-	}
-	return commandLine.left(indexMin(stdErrStart, stdOutStart)).trimmed();
 }
 
 QString addPathDelimeter(const QString &a)

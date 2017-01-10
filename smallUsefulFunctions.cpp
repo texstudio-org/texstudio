@@ -969,6 +969,80 @@ QString makeLatexLabel(const QString &s) {
 	return sNorm;
 }
 
+/*! Splits a command string into the command an arguments.
+ *  This respects quoted arguments. Output redirection operators are separate tokens
+ */
+QStringList tokenizeCommandLine(const QString &commandLine) {
+#define FLUSH(x) { if (!x.isEmpty()) { result << x; } x = ""; }
+	QStringList result;
+	QString currentToken = "";
+	currentToken.reserve(30);
+	bool inQuote = false;
+	bool escape= false;
+
+	foreach (const QChar &c, commandLine) {
+		if (c.isSpace()) {
+			if (inQuote) {
+				currentToken.append(c);
+			} else {
+				FLUSH(currentToken)
+			}
+		} else if (c == '\\') {
+			escape = !escape;
+			currentToken.append(c);
+			continue;
+		} else if (c == '"') {
+			if (!escape) inQuote = !inQuote;
+			currentToken.append(c);
+		} else if (c == '>') {
+			if (inQuote) {
+				currentToken.append(c);
+			} else if (currentToken == "2"){
+				currentToken.append(c);
+				FLUSH(currentToken);
+			} else {
+				FLUSH(currentToken)
+				currentToken = c;
+				FLUSH(currentToken)
+			}
+		} else {
+			currentToken.append(c);
+		}
+		escape = false;
+	}
+	FLUSH(currentToken)
+
+	return result;
+#undef FLUSH
+}
+
+QStringList extractOutputRedirection(const QStringList &commandArgs, QString &stdOut, QString &stdErr) {
+	QStringList extracted;
+	bool extracted_finished = false;
+	for (int i=0; i<commandArgs.length(); i++) {
+		if (commandArgs[i] == ">" && i < commandArgs.length()-1) {
+			stdOut = commandArgs[i+1];
+			i += 1;
+			extracted_finished = true;
+		} else if (commandArgs[i].startsWith(">")) {
+			stdOut = commandArgs[i].mid(1);
+			extracted_finished = true;
+		} else if (commandArgs[i] == "2>" && i < commandArgs.length()-1) {
+			stdErr = commandArgs[i+1];
+			i += 1;
+			extracted_finished = true;
+		} else if (commandArgs[i].startsWith("2>")) {
+			stdErr = commandArgs[i].mid(2);
+			extracted_finished = true;
+		} else {
+			if (!extracted_finished)
+				extracted << commandArgs[i];
+		}
+	}
+	return extracted;
+}
+
+
 uint joinUnicodeSurrogate(const QChar &highSurrogate, const QChar &lowSurrogate)
 {
 	uint uhigh = highSurrogate.unicode();
