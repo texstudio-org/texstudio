@@ -194,6 +194,58 @@ private slots:
 		QFETCH(int, out);
 		QEQUAL(getSimplifiedSVNVersion(versionString), out);
     }*/
+
+	void test_tokenizeCommandLine_data(){
+		QTest::addColumn<QString>("cmdLine");
+		QTest::addColumn<QStringList>("args");
+
+		QTest::newRow("empty") << "" << QStringList();
+		QTest::newRow("cmd") << "cmd" << (QStringList() << "cmd");
+		QTest::newRow("cmd arg") << "cmd arg" << (QStringList() << "cmd" << "arg");
+		QTest::newRow("cmd arg arg2") << "cmd arg arg2" << (QStringList() << "cmd" << "arg" << "arg2");
+		QTest::newRow("\"enquoted cmd\" arg") << "\"enquoted cmd\" arg" << (QStringList() << "\"enquoted cmd\"" << "arg");
+		QTest::newRow("cmd \"enquouted arg\"") << "cmd \"enquoted arg\"" << (QStringList() << "cmd" << "\"enquoted arg\"");
+		QTest::newRow("redirect") << "cmd > file" << (QStringList() << "cmd" << ">" << "file");
+		QTest::newRow("redirect nospace") << "cmd>file" << (QStringList() << "cmd" << ">" << "file");
+		QTest::newRow("redirect stderr") << "cmd 2> file" << (QStringList() << "cmd" << "2>" << "file");
+		QTest::newRow("redirect quote") << "cmd \\C \"type file1.txt > file2.txt\"" << (QStringList() << "cmd" << "\\C" << "\"type file1.txt > file2.txt\"");
+	}
+	void test_tokenizeCommandLine(){
+		QFETCH(QString, cmdLine);
+		QFETCH(QStringList, args);
+
+		QStringList result = tokenizeCommandLine(cmdLine);
+		QEQUAL(result.join("|||"), args.join("|||"));
+	}
+
+	void test_extractOutputRedirection_data(){
+		QTest::addColumn<QStringList>("commandArgs");
+		QTest::addColumn<QStringList>("extracted");
+		QTest::addColumn<QString>("stdOut");
+		QTest::addColumn<QString>("stdErr");
+
+		QTest::newRow("empty") << QStringList() << QStringList() << QString() << QString();
+		QTest::newRow("cmd arg") << QString("cmd arg").split(' ') << QString("cmd arg").split(' ') << QString() << QString();
+		QTest::newRow("stdout") << QString("cmd > file").split(' ') << (QStringList() << "cmd") << "file" << QString();
+		QTest::newRow("stdout2") << QString("cmd >file").split(' ') << (QStringList() << "cmd") << "file" << QString();
+		QTest::newRow("stderr") << QString("cmd 2> file").split(' ') << (QStringList() << "cmd") << QString() << "file";
+		QTest::newRow("stderr2") << QString("cmd 2>file").split(' ') << (QStringList() << "cmd") << QString() << "file";
+		QTest::newRow("stdout stderr") << QString("cmd > out 2> err").split(' ') << (QStringList() << "cmd") << "out" << "err";
+	}
+	void test_extractOutputRedirection(){
+		QFETCH(QStringList, commandArgs);
+		QFETCH(QStringList, extracted);
+		QFETCH(QString, stdOut);
+		QFETCH(QString, stdErr);
+
+		QString resultStdOut;
+		QString resultStdErr;
+		QStringList result = extractOutputRedirection(commandArgs, resultStdOut, resultStdErr);
+		QEQUAL(result.join("|||"), extracted.join("|||"));
+		QEQUAL(resultStdOut, stdOut);
+		QEQUAL(resultStdErr, stdErr);
+	}
+
 	void test_minimalJsonParse_data(){
 		QTest::addColumn<QString>("jsonData");
 		QTest::addColumn<bool>("retVal");
