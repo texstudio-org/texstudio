@@ -1101,7 +1101,7 @@ Linux, OS X:
     <message>
         <location filename="configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>Показати журнал у випадку помилки компіляції</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1027"/>
@@ -1701,37 +1701,37 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2284"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Цей параметр використовує QSaveFile для уникнення втрати наявних даних, коли операція запису зазнала невдачі. Як недолік, поточний користувач стає власником файлу і втрачаються розширені атрибути файлу. Крім того, можуть появитися проблеми цього методу з теками dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2287"/>
         <source>Safe writing of files</source>
-        <translation type="unfinished"/>
+        <translation>Безпечний запис файлів</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2294"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>Виділення потрійним клацанням:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2302"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Виділити слово</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2307"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Виділити слово чи команду</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Виділити вміст у дужках</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2317"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Виділити дужки</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2322"/>
@@ -3598,7 +3598,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="configmanager.cpp" line="1315"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Меню PDF-переглядача</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1350"/>
@@ -4371,17 +4371,17 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="1745"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Після кінця документа.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1747"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"/>
+        <translation>У додаток.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1762"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>Файл не знайдено.</translation>
     </message>
 </context>
 <context>
@@ -5259,17 +5259,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2319"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Про програму</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2339"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>З&amp;більшити</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2340"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Прокрутити</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2401"/>
@@ -8627,7 +8627,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="554"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Бічна панель</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="588"/>

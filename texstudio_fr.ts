@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -840,10 +838,6 @@ Voulez-vous que TeXstudio remplace tous les chemins des commandes de
         <translation>Utiliser les icônes du thème du système</translation>
     </message>
     <message>
-        <source>Tabbed Structure/Symbol View</source>
-        <translation type="obsolete">Affichage de structure/symboles par onglets</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="347"/>
         <source>MRU Document Chooser</source>
         <translation>Sélection des documents les plus récemment utilisés</translation>
@@ -907,7 +901,7 @@ Voulez-vous que TeXstudio remplace tous les chemins des commandes de
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Définit les types de notifications de mises à jour que vous recevrez :
 - versions stables : à choisir si la stabilité est le plus important pour vous ;
@@ -1118,7 +1112,7 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     </message>
     <message>
         <location filename="configdialog.ui" line="1034"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1388,7 +1382,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Package csquotes: \enquote{  }</source>
         <translation>Package csquotes : \enquote{  }</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="configdialog.ui" line="1684"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -2549,8 +2543,8 @@ leur usage en les activant ici.</translation>
         <location filename="configdialog.ui" line="4137"/>
         <location filename="configdialog.ui" line="4224"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Le moteur de rendu utilisé par la bibliothèque PDF poppler.
 « Splash ».est celui par défaut et convient dans la plupart des cas.
@@ -4183,7 +4177,7 @@ Continuer tout de même ?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Préférences d&apos;emplacement pour la figure (flottante) :
@@ -4294,7 +4288,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1568"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
@@ -4481,17 +4475,14 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="latexeditorview.cpp" line="2338"/>
         <location filename="latexeditorview.cpp" line="2410"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2351"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n référence à cette étiquette</numerusform>
-            <numerusform>%n références à cette étiquette</numerusform>
-        </translation>
+        <translation><numerusform>%n référence à cette étiquette</numerusform><numerusform>%n références à cette étiquette</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2356"/>
@@ -5017,18 +5008,6 @@ Voulez-vous l&apos;écraser ?</translation>
 <context>
     <name>PDFDocument</name>
     <message>
-        <source>untitled.pdf[*]</source>
-        <translation type="obsolete">sans_nom.pdf[*]</translation>
-    </message>
-    <message>
-        <source>Toolbar</source>
-        <translation type="obsolete">Barre d&apos;outils</translation>
-    </message>
-    <message>
-        <source>&amp;About TeXstudio...</source>
-        <translation type="obsolete">À &amp;propos de TeXstudio...</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2342"/>
         <source>&amp;First Page</source>
         <translation>Pre&amp;mière page</translation>
@@ -5054,17 +5033,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>&amp;Atteindre la page...</translation>
     </message>
     <message>
-        <source>Ctrl+J</source>
-        <translation type="obsolete">Ctrl+J</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2351"/>
         <source>Zoom &amp;In</source>
         <translation>Zoom a&amp;vant</translation>
-    </message>
-    <message>
-        <source>Ctrl++</source>
-        <translation type="obsolete">Ctrl++</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2352"/>
@@ -5072,17 +5043,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Zoom &amp;arrière</translation>
     </message>
     <message>
-        <source>Ctrl+-</source>
-        <translation type="obsolete">Ctrl+-</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2358"/>
         <source>Fit to &amp;Window</source>
         <translation>Ajuster à la &amp;fenêtre</translation>
-    </message>
-    <message>
-        <source>Ctrl+3</source>
-        <translation type="obsolete">Ctrl+3</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2353"/>
@@ -5090,37 +5053,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Dim&amp;ensions en cours</translation>
     </message>
     <message>
-        <source>Ctrl+1</source>
-        <translation type="obsolete">Ctrl+1</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2354"/>
         <source>Fit to Wi&amp;dth</source>
         <translation>Ajuster à la &amp;largeur</translation>
-    </message>
-    <message>
-        <source>Ctrl+2</source>
-        <translation type="obsolete">Ctrl+2</translation>
-    </message>
-    <message>
-        <source>New</source>
-        <translation type="obsolete">Nouveau</translation>
-    </message>
-    <message>
-        <source>Ctrl+N</source>
-        <translation type="obsolete">Ctrl+N</translation>
-    </message>
-    <message>
-        <source>Open...</source>
-        <translation type="obsolete">Ouvrir...</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation type="obsolete">Ctrl+O</translation>
-    </message>
-    <message>
-        <source>Open Recent</source>
-        <translation type="obsolete">Ouvrir fichiers &amp;récemment utilisés</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2322"/>
@@ -5128,75 +5063,14 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <source>Ctrl+W</source>
-        <translation type="obsolete">Ctrl+W</translation>
-    </message>
-    <message>
-        <source>&amp;Undo</source>
-        <translation type="obsolete">&amp;Annuler</translation>
-    </message>
-    <message>
-        <source>Ctrl+Z</source>
-        <translation type="obsolete">Ctrl+Z</translation>
-    </message>
-    <message>
-        <source>&amp;Redo</source>
-        <translation type="obsolete">&amp;Rétablir</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+Z</source>
-        <translation type="obsolete">Ctrl+Shift+Z</translation>
-    </message>
-    <message>
-        <source>C&amp;ut</source>
-        <translation type="obsolete">Co&amp;uper</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation type="obsolete">Ctrl+X</translation>
-    </message>
-    <message>
-        <source>&amp;Copy</source>
-        <translation type="obsolete">&amp;Copier</translation>
-    </message>
-    <message>
-        <source>Ctrl+C</source>
-        <translation type="obsolete">Ctrl+C</translation>
-    </message>
-    <message>
-        <source>&amp;Paste</source>
-        <translation type="obsolete">C&amp;oller</translation>
-    </message>
-    <message>
-        <source>Ctrl+V</source>
-        <translation type="obsolete">Ctrl+V</translation>
-    </message>
-    <message>
-        <source>C&amp;lear</source>
-        <translation type="obsolete">&amp;Effacer</translation>
-    </message>
-    <message>
-        <source>Ctrl+Backspace</source>
-        <translation type="obsolete">Ctrl+Espace</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2404"/>
         <source>Quick Build</source>
         <translation>Production rapide</translation>
     </message>
     <message>
-        <source>Ctrl+T</source>
-        <comment>action</comment>
-        <translation type="obsolete">Ctrl+T</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2367"/>
         <source>External Viewer</source>
         <translation>Afficheur externe</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+X</source>
-        <translation type="obsolete">Ctrl+Alt+X</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2325"/>
@@ -5219,41 +5093,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>&amp;Aller au fichier source</translation>
     </message>
     <message>
-        <source>Ctrl+&apos;</source>
-        <translation type="obsolete">Ctrl+&apos;</translation>
-    </message>
-    <message>
-        <source>New from Template...</source>
-        <translation type="obsolete">Nouveau à partir d&apos;un modèle...</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+N</source>
-        <translation type="obsolete">Ctrl+Shift+N</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2365"/>
         <source>Full &amp;Screen</source>
         <translation>&amp;Plein Écran</translation>
-    </message>
-    <message>
-        <source>Ctrl+Shift+F</source>
-        <translation type="obsolete">Ctrl+Shift+F</translation>
-    </message>
-    <message>
-        <source>Magnify</source>
-        <translation type="obsolete">Agrandir</translation>
-    </message>
-    <message>
-        <source>Scroll</source>
-        <translation type="obsolete">Défiler</translation>
-    </message>
-    <message>
-        <source>Select Text</source>
-        <translation type="obsolete">Sélectionner le texte</translation>
-    </message>
-    <message>
-        <source>Select Image</source>
-        <translation type="obsolete">Sélectionner l&apos;image</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2316"/>
@@ -5261,21 +5103,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>&amp;Manuel...</translation>
     </message>
     <message>
-        <source>Email to the mailing list</source>
-        <translation type="obsolete">Envoyer un courriel à la mailing list</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2395"/>
         <source>&amp;Side by Side</source>
         <translation>&amp;Côte à Côte</translation>
-    </message>
-    <message>
-        <source>Place on Left</source>
-        <translation type="obsolete">Placer à gauche</translation>
-    </message>
-    <message>
-        <source>Place on Right</source>
-        <translation type="obsolete">Placer à droite</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2324"/>
@@ -5283,53 +5113,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>&amp;Quitter TeXstudio</translation>
     </message>
     <message>
-        <source>Ctrl+Q</source>
-        <translation type="obsolete">Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Find...</source>
-        <translation type="obsolete">Chercher...</translation>
-    </message>
-    <message>
-        <source>Ctrl+F</source>
-        <translation type="obsolete">Ctrl+F</translation>
-    </message>
-    <message>
-        <source>Find Again</source>
-        <translation type="obsolete">Poursuivre la recherche</translation>
-    </message>
-    <message>
-        <source>Ctrl+G</source>
-        <translation type="obsolete">Ctrl+G</translation>
-    </message>
-    <message>
-        <source>Reload Script List</source>
-        <translation type="obsolete">Recharger la liste de scripts</translation>
-    </message>
-    <message>
-        <source>Manage Scripts</source>
-        <translation type="obsolete">Gérer les scripts</translation>
-    </message>
-    <message>
-        <source>Show Scripts Folder</source>
-        <translation type="obsolete">Montrer le dossier de scripts</translation>
-    </message>
-    <message>
-        <source>About Scripts...</source>
-        <translation type="obsolete">À propos des scripts...</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="obsolete">s</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2391"/>
         <source>&amp;Close something</source>
         <translation>&amp;Fermer quelque chose</translation>
-    </message>
-    <message>
-        <source>Esc</source>
-        <translation type="obsolete">Échap</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2327"/>
@@ -5342,46 +5128,14 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Le curseur suit le défilement</translation>
     </message>
     <message>
-        <source>&amp;Find...</source>
-        <translation type="obsolete">&amp;Rechercher...</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2402"/>
         <source>Find &amp;again</source>
         <translation>Poursuivre la &amp;recherche</translation>
     </message>
     <message>
-        <source>Ctrl+M, F3</source>
-        <translation type="obsolete">Ctrl+M, F3</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2400"/>
         <source>New Window</source>
         <translation>Nouvelle fenêtre</translation>
-    </message>
-    <message>
-        <source>1x1</source>
-        <translation type="obsolete">1x1</translation>
-    </message>
-    <message>
-        <source>2x1</source>
-        <translation type="obsolete">2x1</translation>
-    </message>
-    <message>
-        <source>1x2</source>
-        <translation type="obsolete">1x2</translation>
-    </message>
-    <message>
-        <source>2x2</source>
-        <translation type="obsolete">2x2</translation>
-    </message>
-    <message>
-        <source>2x3</source>
-        <translation type="obsolete">2x3</translation>
-    </message>
-    <message>
-        <source>3x3</source>
-        <translation type="obsolete">3x3</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2386"/>
@@ -5404,21 +5158,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Présentation</translation>
     </message>
     <message>
-        <source>F5</source>
-        <translation type="obsolete">F5</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2360"/>
         <source>&amp;Continuous</source>
         <translation>&amp;Continu</translation>
-    </message>
-    <message>
-        <source>&amp;Print...</source>
-        <translation type="obsolete">&amp;Imprimer...</translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation type="obsolete">Ctrl+P</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2320"/>
@@ -5431,25 +5173,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Arrière</translation>
     </message>
     <message>
-        <source>Previously shown page</source>
-        <translation type="obsolete">Page précédemment visitée</translation>
-    </message>
-    <message>
-        <source>Alt+Left</source>
-        <translation type="obsolete">Alt+Gauche</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2346"/>
         <source>Forward</source>
         <translation>Avant</translation>
-    </message>
-    <message>
-        <source>Next shown page</source>
-        <translation type="obsolete">Page visitée suivante</translation>
-    </message>
-    <message>
-        <source>Alt+Right</source>
-        <translation type="obsolete">Alt+Droite</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2370"/>
@@ -5477,21 +5203,9 @@ Voulez-vous l&apos;écraser ?</translation>
         <translation>Focus sur l&apos;éditeur</translation>
     </message>
     <message>
-        <source>Ctrl+Alt+Left</source>
-        <translation type="obsolete">Ctrl+Alt+←</translation>
-    </message>
-    <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2356"/>
         <source>Fit to &amp;Text Width</source>
         <translation>Ajuster à la largeur du &amp;texte</translation>
-    </message>
-    <message>
-        <source>Fit to Text Width</source>
-        <translation type="obsolete">Ajuster à la largeur du texte</translation>
-    </message>
-    <message>
-        <source>Ctrl+4</source>
-        <translation type="obsolete">Ctrl+4</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2336"/>
@@ -6372,7 +6086,7 @@ a échoué.</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Le fichier original sur le disque a été détruit lors de l&apos;opération de sauvegarde.
 Une copie est disponible ici :
@@ -10210,10 +9924,6 @@ n&apos;a pas pu être supprimé.</translation>
         <translation>&amp;Réinitialiser le zoom</translation>
     </message>
     <message>
-        <source>Align Windows</source>
-        <translation type="obsolete">Aligner les &amp;fenêtres</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="1182"/>
         <location filename="texstudio.cpp" line="1184"/>
         <source>Full &amp;Screen</source>
@@ -10696,7 +10406,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5714"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nom de fichier introuvable
 Vous devez enregistrer le document avant de le compiler.</translation>

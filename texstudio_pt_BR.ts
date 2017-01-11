@@ -1099,7 +1099,7 @@ Variáveis são escritas como: $MYVAR. Elas são sensíveis à caixa (case-sensi
     <message>
         <location filename="configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar log caso haja erro de compilação</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1027"/>
@@ -1698,37 +1698,37 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2284"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uso de QSaveFile para evitar perda de dados existentes caso haja falha ao escrever o arquivo. Como consequência, o usuário torna-se o proprietário do arquivo e atributos estendidos são perdidos. Também, este método pode ter problemas com pastas dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2287"/>
         <source>Safe writing of files</source>
-        <translation type="unfinished"/>
+        <translation>Escrita segura de arquivos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2294"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>Seleção triplo-clique:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2302"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar palavra</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2307"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar palavra ou Comando</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar conteúdo de parênteses</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2317"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Selecionar parênteses</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2322"/>
@@ -3594,7 +3594,7 @@ os ajustes mais comuns.</translation>
     <message>
         <location filename="configmanager.cpp" line="1315"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Menus do visualizador de PDF</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1350"/>
@@ -4367,17 +4367,17 @@ O assistente não suporta comandos</translation>
     <message>
         <location filename="latexdocument.cpp" line="1745"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Além do final do documento.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1747"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"/>
+        <translation>No Apêndice.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1762"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>Arquivo não encontrado.</translation>
     </message>
 </context>
 <context>
@@ -5255,17 +5255,17 @@ Você deseja substituí-lo?</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2319"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2339"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>A&amp;mpliação</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2340"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>Rolagem</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2401"/>
@@ -6618,7 +6618,7 @@ Você deseja atualizar recarregando o arquivo?
     <message>
         <location filename="additionaltranslations.cpp" line="172"/>
         <source>picture-keyword</source>
-        <translation type="unfinished"/>
+        <translation>picture-keyword</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="173"/>
@@ -8621,7 +8621,7 @@ não pode ser removido.</translation>
     <message>
         <location filename="texstudio.cpp" line="554"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Painel Lateral</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="588"/>
