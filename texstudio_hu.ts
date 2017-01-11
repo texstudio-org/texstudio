@@ -1102,7 +1102,7 @@ A változókat $MYVAR-ként kell megadni. Kis-nagybetű érzékeny.
     <message>
         <location filename="configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>Napló megjelenítése fordítási hiba esetén</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1027"/>
@@ -1717,22 +1717,22 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2302"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Szó kiválasztása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2307"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Szó vagy parancs kiválasztása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Zárójelezett rész kiválasztása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2317"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Zárójelpárok kiválasztása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2322"/>
@@ -4362,17 +4362,17 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="latexdocument.cpp" line="1745"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>A dokumentum vége után.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1747"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"/>
+        <translation>A függelékben.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1762"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>A fájl nem található.</translation>
     </message>
 </context>
 <context>
@@ -5249,17 +5249,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2319"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Névjegy</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2339"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Nagyítás</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2340"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Görgetés</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2401"/>
@@ -8611,7 +8611,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="554"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Oldalpanel</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="588"/>
