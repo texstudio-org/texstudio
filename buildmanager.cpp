@@ -592,7 +592,7 @@ QString BuildManager::extractOutputRedirection(const QString &commandLine, QStri
 
 QString addPathDelimeter(const QString &a)
 {
-	return ((a.endsWith("/") || a.endsWith("\\")) ? a : (a + "\\"));
+    return ((a.endsWith("/") || a.endsWith("\\")) ? a : (a + QDir::separator()));
 }
 
 QString BuildManager::findFileInPath(QString fileName)
