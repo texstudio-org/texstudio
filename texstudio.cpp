@@ -10524,6 +10524,10 @@ void Texstudio::checkLatexInstall()
 	// run pdflatex
 	statusLabelProcess->setText(QString("check pdflatex"));
 	QString buffer;
+    // create result editor here in order to avoid empty editor
+    fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
+    m_languages->setLanguageFromName(currentEditor(), "Plain text");
+
 	CommandInfo cmdInfo = buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
 	QString cmd = cmdInfo.getBaseName();
 	int index = cmdInfo.commandLine.indexOf(cmd);
@@ -10574,8 +10578,8 @@ void Texstudio::checkLatexInstall()
 	result += "    Log: " + buildManager.additionalLogPaths + "\n";
 	result += "    Pdf: " + buildManager.additionalPdfPaths + "\n";
 
-	fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
-	m_languages->setLanguageFromName(currentEditor(), "Plain text");
+    //fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
+    //m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(result, false);
 }
 /*!
