@@ -5908,7 +5908,7 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 				}
 			}
 			if (!bibFilesChanged) return;
-		}
+        }
 	} else rootDoc->lastCompiledBibTeXFiles = bibFiles;
 
 	runBibliographyIfNecessaryEntered = true;
