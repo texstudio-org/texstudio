@@ -1,11 +1,14 @@
-TeXstudio 2.12.2 RC
--------------------
+TeXstudio 2.12.2
+----------------
 - PDF shortcuts are now changable
 - Support LanguageTool json API (needed for LanguageTool > 3.5)
 - slightly improved layout of config dialog
 - improved detection of stdout and stderr redirection (bug 2019)
-- fix: duplicate side panel icons
-- fix: togglefullscreen from maximised and in reverse
+- fix: duplicate side panel icons (bug 2016)
+- fix: togglefullscreen from maximised and in reverse (bug 2021)
+- fix: don't try to call bibtex/biber if there are no bibtex-files (bug 2025)
+- fix: detection of programs (bug 2037)
+- fix: avoid problems if check latex is called without open documents
 
 TeXstudio 2.12.0
 ----------------
