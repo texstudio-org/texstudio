@@ -40,7 +40,7 @@
 #endif
 #include "synctex_parser.h"
 
-#include "ui_PDFDocument.h"
+//#include "ui_PDFDocument.h"
 #include "pdfrendermanager.h"
 
 
@@ -339,7 +339,7 @@ struct PDFDocumentConfig;
 class PDFDock;
 class PDFSearchDock;
 class PDFScrollArea;
-class PDFDocument : public QMainWindow, private Ui::PDFDocument
+class PDFDocument : public QMainWindow
 {
 	Q_OBJECT
 
@@ -491,7 +491,8 @@ signals:
 
 private:
 	void init(bool embedded = false);
-	void setupMenus();
+    void setupMenus(bool embedded);
+    void setupToolBar();
 	void setCurrentFile(const QString &fileName);
 	void loadSyncData();
 
@@ -514,12 +515,93 @@ private:
 	PDFAnnotationTableView *annotationTable;
 
 	QMenuBar *menubar;
+    QMenu *menuroot;
 	QMenu *menuHelp;
 	QMenu *menuFile;
 	QMenu *menuEdit;
 	QMenu *menuView;
 	QMenu *menuGrid;
 	QMenu *menuWindow;
+    QList<QMenu *>menus;
+
+    QAction *actionAbout_TW;
+    QAction *actionFirst_Page;
+    QAction *actionPrevious_Page;
+    QAction *actionNext_Page;
+    QAction *actionLast_Page;
+    QAction *actionGo_to_Page;
+    QAction *actionZoom_In;
+    QAction *actionZoom_Out;
+    QAction *actionFit_to_Window;
+    QAction *actionActual_Size;
+    QAction *actionFit_to_Width;
+    QAction *actionNew;
+    QAction *actionOpen;
+    QAction *actionOpen_Recent;
+    QAction *actionClose;
+    QAction *actionUndo;
+    QAction *actionRedo;
+    QAction *actionCut;
+    QAction *actionCopy;
+    QAction *actionPaste;
+    QAction *actionClear;
+    QAction *actionTypeset;
+    QAction *actionExternalViewer;
+    QAction *actionPreferences;
+    QAction *actionStack;
+    QAction *actionTile;
+    QAction *actionGo_to_Source;
+    QAction *actionNew_from_Template;
+    QAction *actionFull_Screen;
+    QAction *actionMagnify;
+    QAction *actionScroll;
+    QAction *actionSelect_Text;
+    QAction *actionSelect_Image;
+    QAction *actionUserManual;
+    QAction *actionWriteToMailingList;
+    QAction *actionSide_by_Side;
+    QAction *actionPlace_on_Left;
+    QAction *actionPlace_on_Right;
+    QAction *actionQuit_TeXworks;
+    QAction *actionFind;
+    QAction *actionFind_Again;
+    QAction *actionUpdate_Scripts;
+    QAction *actionManage_Scripts;
+    QAction *actionShow_Scripts_Folder;
+    QAction *actionAbout_Scripts;
+    QAction *actionS;
+    QAction *actionCloseSomething;
+    QAction *actionScrolling_follows_cursor;
+    QAction *actionCursor_follows_scrolling;
+    QAction *actionFind_2;
+    QAction *actionFind_again;
+    QAction *actionNew_Window;
+    QAction *actionGrid11;
+    QAction *actionGrid21;
+    QAction *actionGrid12;
+    QAction *actionGrid22;
+    QAction *actionGrid23;
+    QAction *actionGrid33;
+    QAction *actionCustom;
+    QAction *actionSinglePageStep;
+    QAction *actionSynchronize_multiple_views;
+    QAction *actionPresentation;
+    QAction *actionContinuous;
+    QAction *action_Print;
+    QAction *actionFileOpen;
+    QAction *actionBack;
+    QAction *actionForward;
+    QAction *actionToggleEmbedded;
+    QAction *actionEnlargeViewer;
+    QAction *actionShrinkViewer;
+    QAction *actionInvertColors;
+    QAction *actionFocus_Editor;
+    QAction *actionFit_to_Text_Width;
+    QAction *actionGrayscale;
+    QAction *actionSplitMerge;
+
+    QStatusBar *statusbar;
+    QToolBar *toolBar;
 public:
 	QMenu *menuShow;
 private:

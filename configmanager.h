@@ -45,7 +45,7 @@ public:
 	QSettings *readSettings(bool reread = false);
 	QSettings *saveSettings(const QString &saveName = "");
 
-	bool execConfigDialog(QWidget *parentToDialog);
+    bool execConfigDialog(QWidget *parentToDialog);
 
 //public configuration
 
@@ -200,7 +200,8 @@ public:
 	bool insertUTF;
 
 	//menus
-	QObject *menuParent; //lets assume there is only one
+    QObjectList menuParents;
+    QObject *menuParent; //lets assume there is only one
 	QMenuBar *menuParentsBar; //that's ugly, but faster as long as there is only one (both values could be extracted from the action's name)
 	QList<QMenu *> managedMenus;
 	QHash<QString, QKeySequence> managedMenuShortcuts;
@@ -212,10 +213,13 @@ public:
 
 	QMenu *newManagedMenu(const QString &id, const QString &text);
 	QMenu *newManagedMenu(QMenu *menu, const QString &id, const QString &text);
+    QMenu *newManagedMenu(QWidget *menuParent,QMenuBar *menuParentsBar,const QString &id, const QString &text);
 	QAction *newManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString &iconFile = "");
+    QAction *newManagedAction(QObject *rootMenu,QWidget *menu, const QString &id, const QString &text, QObject *obj,const char *slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString &iconFile = "");
 	QAction *newManagedAction(QWidget *menu, const QString &id, QAction *act);
 	QAction *newOrLostOldManagedAction(QWidget *menu, const QString &id, const QString &text, const char *slotName, const QList<QKeySequence> &shortCuts = QList<QKeySequence>(), const QString &iconFile = "");
 	QAction *getManagedAction(const QString &id);
+    QList<QAction *> getManagedActions(const QString &id);
 	QList<QAction *> getManagedActions(const QStringList &ids, const QString &commonPrefix = "");
 	QMenu *getManagedMenu(const QString &id);
 	void removeManagedMenus();
@@ -231,7 +235,7 @@ private:
 	void modifyMenuContent(QStringList &ids, const QString &id);
 public:
 	void modifyMenuContents();
-	void modifyManagedShortcuts();
+    void modifyManagedShortcuts(QString startsWith="");
 	void setManagedShortCut(QAction *act, int num, const QKeySequence &key);
 	void loadManagedMenu(QMenu *parent, const QDomElement &f);
 	void loadManagedMenus(const QString &f);

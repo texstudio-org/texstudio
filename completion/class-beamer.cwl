@@ -2,6 +2,60 @@
 # added most/all beamer commands
 # be sure to use an up to date kile svn version, only that will work properly with the strange syntax here
 # 11/24/2006 added missing commands, thanks to  Marco Bertolini
+#
+# denisbitouze, 2017-01-13
+# 2017-01-13: Dependencies to packages added.
+#
+#include:etoolbox
+#include:ifpdf
+#include:keyval
+#include:geometry
+#include:graphicx
+#include:graphics
+#include:infwarerr
+#include:ltxcmds
+#include:pgfsys
+#include:pgfrcs
+#include:everyshi
+#include:xcolor
+#include:xxcolor
+#include:atbegshi
+#include:hyperref
+#include:ifluatex
+#include:intcalc
+#include:etexcmds
+#include:kvsetkeys
+#include:kvdefinekeys
+#include:pdftexcmds
+#include:pdfescape
+#include:bigintcalc
+#include: bitset
+#include:uniquecounter
+#include:letltxmacro
+#include:hopatch
+#include:xcolor-patch
+#include:atveryend
+#include:refcount
+#include:hycolor
+#include:auxhook
+#include:kvoptions
+#include:url
+#include:rerunfilecheck
+#include:amssymb
+#include:amsfonts
+#include:sansmathaccent
+#include:filehook
+#include:translator
+#include:amsmath
+#include:amstext
+#include:amsgen
+#include:amsbsy
+#include:amsopn
+#include:amsthm
+#include:epstopdf-base
+#include:grfext
+#include:nameref
+#include:gettitlestring
 \begin{frame}
 \begin{frame}<overlay specification>
 \begin{frame}<overlay specification>[<default overlay specification>]

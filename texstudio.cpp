@@ -552,6 +552,7 @@ void Texstudio::setupDockWidgets()
 		sidePanel = new SidePanel(this);
 		sidePanel->toggleViewAction()->setIcon(getRealIcon("sidebar"));
 		sidePanel->toggleViewAction()->setText(tr("Side Panel"));
+		sidePanel->toggleViewAction()->setChecked(configManager.getOption("GUI/sidePanel/visible", true).toBool());
 		addAction(sidePanel->toggleViewAction());
 
 		sidePanelSplitter->insertWidget(0, sidePanel);
@@ -735,11 +736,13 @@ void Texstudio::setupMenus()
 	//TODO: correct somewhen
 
 	configManager.menuParent = this;
+    if(configManager.menuParents.isEmpty())
+        configManager.menuParents.append(this);
 	configManager.menuParentsBar = menuBar();
 
 	//file
 	QMenu *menu = newManagedMenu("main/file", tr("&File"));
-	getManagedMenu("main/file");
+    //getManagedMenu("main/file");
 	newManagedAction(menu, "new", tr("&New"), SLOT(fileNew()), QKeySequence::New, "document-new");
 	newManagedAction(menu, "newfromtemplate", tr("New From &Template..."), SLOT(fileNewFromTemplate()));
 	newManagedAction(menu, "open", tr("&Open..."), SLOT(fileOpen()), QKeySequence::Open, "document-open");
@@ -4202,6 +4205,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
+		config->setValue("GUI/sidePanel/visible", sidePanel->isVisible());
 
 		if (!ConfigManager::dontRestoreSession) { // don't save session when using --no-restore as this is used for single doc handling
 			Session s = getCurrentSession();
@@ -5888,6 +5892,8 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 	foreach (const LatexDocument *doc, docs)
 		foreach (const FileNamePair &bf, doc->mentionedBibTeXFiles())
 			bibFiles.insert(bf.absolute);
+    if(bibFiles.isEmpty())
+        return; // don't try to compile bibtex files if there none
 	if (bibFiles == rootDoc->lastCompiledBibTeXFiles) {
 		QFileInfo bbl(BuildManager::parseExtendedCommandLine("?am.bbl", documents.getTemporaryCompileFileName()).first());
 		if (bbl.exists()) {
@@ -5902,7 +5908,7 @@ void Texstudio::runBibliographyIfNecessary(const QFileInfo &mainFile)
 				}
 			}
 			if (!bibFilesChanged) return;
-		}
+        }
 	} else rootDoc->lastCompiledBibTeXFiles = bibFiles;
 
 	runBibliographyIfNecessaryEntered = true;
@@ -6435,6 +6441,16 @@ void Texstudio::generalOptions()
 	QString additionalBibPaths = configManager.additionalBibPaths;
 	QStringList loadFiles = configManager.completerConfig->getLoadedFiles();
 
+    // init pdf shortcuts if pdfviewer is not open
+#ifndef NO_POPPLER_PREVIEW
+    PDFDocument *pdfviewerWindow=NULL;
+    if(PDFDocument::documentList().isEmpty()){
+        pdfviewerWindow = new PDFDocument(configManager.pdfDocumentConfig, false);
+        pdfviewerWindow->hide();
+    }
+#endif
+
+
 #if QT_VERSION<0x050000
 	if (configManager.possibleMenuSlots.isEmpty()) {
 		for (int i = 0; i < staticMetaObject.methodCount(); i++) configManager.possibleMenuSlots.append(staticMetaObject.method(i).signature());
@@ -6582,6 +6598,10 @@ void Texstudio::generalOptions()
 	foreach (PDFDocument *viewer, PDFDocument::documentList()) {
 		viewer->reloadSettings();
 	}
+    if(pdfviewerWindow){
+        pdfviewerWindow->close();
+        delete pdfviewerWindow;
+    }
 #endif
 }
 
@@ -7000,7 +7020,11 @@ void Texstudio::setFullScreenMode()
 {
 	if (!fullscreenModeAction->isChecked()) {
 		stateFullScreen = saveState(1);
-		showNormal();
+        if(tobemaximized){
+            showMaximized();
+        }else{
+            showNormal();
+        }
 		restoreState(windowstate, 0);
 #if QT_VERSION < 0x040701
 		setUnifiedTitleAndToolBarOnMac(true);
@@ -7010,6 +7034,7 @@ void Texstudio::setFullScreenMode()
 #if QT_VERSION < 0x040701
 		setUnifiedTitleAndToolBarOnMac(false); //prevent crash, see https://bugreports.qt-project.org/browse/QTBUG-16274?page=com.atlassian.jira.plugin.system.issuetabpanels:all-tabpanel
 #endif
+        tobemaximized=isMaximized();
 		showFullScreen();
 		restoreState(stateFullScreen, 1);
 	}
@@ -10499,6 +10524,10 @@ void Texstudio::checkLatexInstall()
 	// run pdflatex
 	statusLabelProcess->setText(QString("check pdflatex"));
 	QString buffer;
+    // create result editor here in order to avoid empty editor
+    fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
+    m_languages->setLanguageFromName(currentEditor(), "Plain text");
+
 	CommandInfo cmdInfo = buildManager.getCommandInfo(BuildManager::CMD_PDFLATEX);
 	QString cmd = cmdInfo.getBaseName();
 	int index = cmdInfo.commandLine.indexOf(cmd);
@@ -10549,8 +10578,8 @@ void Texstudio::checkLatexInstall()
 	result += "    Log: " + buildManager.additionalLogPaths + "\n";
 	result += "    Pdf: " + buildManager.additionalPdfPaths + "\n";
 
-	fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
-	m_languages->setLanguageFromName(currentEditor(), "Plain text");
+    //fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
+    //m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(result, false);
 }
 /*!

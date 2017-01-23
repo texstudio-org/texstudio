@@ -7,7 +7,7 @@
 
 QString print_backtrace(const QString &message);
 
-void recover(); //defined in texmaker.cpp
+void recover(); //defined in texstudio.cpp
 
 void initCrashHandler(int mode);
 QString getLastCrashInformation(bool &wasLoop);
