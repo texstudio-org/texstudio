@@ -1,0 +1,39 @@
+<!DOCTYPE QNFA>
+<QNFA language="Asymptote" extensions="asy" defaultLineMark="">
+<!-- Note: languages name is used to determine on-line checking. If changed also sources have to be adapted (latexeditorview.cpp) -->
+
+	<sequence parenthesis="asy-round:open" parenthesisWeight="00">\(</sequence>
+	<sequence parenthesis="asy-round:close" parenthesisWeight="00">\)</sequence>
+	<sequence parenthesis="asy-texcurly:open" parenthesisWeight="00">{</sequence>
+	<sequence parenthesis="asy-texcurly:close" parenthesisWeight="00">}</sequence>
+	
+	<list id="asy/type" format="asymptote:type">
+		<word>bool</word>
+		<word>bool3</word>
+		<word>int</word>
+		<word>pair</word>
+		<word>real</word>
+		<word>string</word>
+		<word>triple</word>
+	</list>
+	<list id="asy/keyword" format="asymptote:keyword">
+		<word>new</word>
+		<word>true</word>
+		<word>false</word>
+		<word>return</word>
+		<word>typedef</word>
+	</list>
+	<sequence format="asymptote:numbers">$d+</sequence>
+	<!-- special id comment/single reqired for Idefix -> Comment to work --> 
+	<context id="comment/single" format="asymptote:comment" stayOnLine="true">
+		<start>//</start>
+		<stop exclusive="false">\n</stop>
+	</context>
+	<context id="asy/string" format="asymptote:string" stayOnLine="true">
+		<start>"</start>
+		<stop>"</stop>
+	</context>
+	
+</QNFA>
+
+
