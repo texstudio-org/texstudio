@@ -48,7 +48,7 @@
 \ifthispagewasodd..\else..\fi#*
 \linespread{factor}#*
 \lowertitleback{text}
-\maketitle{pagenumber}
+\maketitle[pagenumber]
 \marginline{text}
 \markboth#*
 \markleft#*
