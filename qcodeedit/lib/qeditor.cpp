@@ -3370,8 +3370,13 @@ void QEditor::keyPressEvent(QKeyEvent *e)
                 break;
 #endif
 #endif
-            if ( text.isEmpty() || !(text.at(0).isPrint() || (text.at(0) == '\t')) )
+            if ( text.isEmpty())
 				break;
+            QChar c=text.at(0);
+            if(!c.isPrint() && !(c.category()==QChar::Other_Format))
+                break;
+            if(c==QChar('\t'))
+                break;
 		}
 
 		bool prot = protectedCursor(m_cursor);
