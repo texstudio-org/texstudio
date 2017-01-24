@@ -1579,7 +1579,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2249"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
-        <translation>Вибір подвійним клацанням: включати попередню обернену скісну риску</translation>
+        <translation>Вибір подвійним клацанням: включати передню обернену скісну риску</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2134"/>

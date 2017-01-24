@@ -8553,7 +8553,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="texstudio.cpp" line="554"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Panel boczny</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="588"/>
@@ -9759,7 +9759,7 @@ nie powiodło się.</translation>
     <message>
         <location filename="texstudio.cpp" line="1138"/>
         <source>Statusbar</source>
-        <translation type="unfinished"/>
+        <translation>Pasek statusu</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1142"/>
