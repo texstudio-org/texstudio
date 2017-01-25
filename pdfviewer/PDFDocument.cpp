@@ -3167,8 +3167,10 @@ bool PDFDocument::closeSomething()
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
 	else {
-		actionClose->trigger();
-		return true;
+        if(isVisible()){ // avoid crash on osx where esc key is passed to hidden window
+            actionClose->trigger();
+            return true;
+        }
 	}
 	return false;
 }
