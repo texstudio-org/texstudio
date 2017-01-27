@@ -1373,7 +1373,7 @@ void BuildManager::readSettings(QSettings &settings)
 			settings.remove(QString("User/ToolName%1").arg(i));
 		}
 	}
-	int md = reinterpret_cast<int &>(dvi2pngMode);
+    int md = dvi2pngMode;
 #ifdef NO_POPPLER_PREVIEW
 	if (md == DPM_EMBEDDED_PDF)
 		md = -1;
