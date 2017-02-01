@@ -2039,6 +2039,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				if (!speller->check(word) ) {
 					if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
 						continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
+                    if(word.endsWith('.')){
+                        tkLength--; // don't take point into misspelled word
+                    }
                     line.addOverlay(QFormatRange(tk.start, tkLength, SpellerUtility::spellcheckErrorFormat));
 					addedOverlaySpellCheckError = true;
 				}
