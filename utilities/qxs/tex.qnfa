@@ -164,7 +164,14 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
+		<context id="sexpr" format="sweave-block" transparency="false">
+		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
+			<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
+			<start parenthesis="todo:open" prenthesisweight="12">\\Sexpr\{</start>
+		</context>
+
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+
 	</context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
@@ -190,6 +197,12 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
+		<context id="sexpr" format="sweave-block" transparency="false">
+		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
+			<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
+			<start parenthesis="todo:open" prenthesisweight="12">\\Sexpr\{</start>
+		</context>
+		
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 
 	</context>
@@ -216,6 +229,12 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
+
+		<context id="sexpr" format="sweave-block" transparency="false">
+		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
+			<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
+			<start parenthesis="todo:open" prenthesisweight="12">\\Sexpr\{</start>
+		</context>
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>
