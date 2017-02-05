@@ -1,70 +1,70 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="el" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr_TR" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="aboutdialog.ui" line="14"/>
         <source>About TeXstudio</source>
-        <translation>Σχετικά με το TeXstudio</translation>
+        <translation>TeXstudio Hakkında</translation>
     </message>
     <message>
         <location filename="aboutdialog.ui" line="81"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="21"/>
         <source>&lt;b&gt;This is a development version.&lt;/b&gt;&lt;br&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Bu bir geliştirme sürümüdür.&lt;/b&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="22"/>
         <source>Using Qt Version %1, compiled with Qt %2 %3</source>
-        <translation>Χρησιμοποιεί την βιβλιοθήκη Qt έκδοση %1, μεταγλωττίστηκε με την Qt %2 %3</translation>
+        <translation>Qt sürüm %1 kullanılıyor, Qt %2 %3 ile derlenmiş</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="27"/>
         <source>html conversion: </source>
-        <translation>μετατροπέας σε html:</translation>
+        <translation>html dönüştürme:</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="28"/>
         <source>TeXstudio contains code from Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) and SyncTeX (by Jerome Laurens).</source>
-        <translation>Το TeXstudio περιέχει κώδικα από τα Hunspell (GPL), QtCreator (GPL, Copyright (C) Nokia), KILE (GPL) και SyncTeX (του Jerome Laurens).</translation>
+        <translation>TeXstudio&apos;nun kodları yazılırken Hunspell (GPL), QtCreator (GPL, Telif Hakkı (C) Nokia), KILE (GPL) ve SyncTeX (Jerome Laurens) yazılımlarından yararlanılmıştır.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="29"/>
         <source>TeXstudio uses the PDF viewer of TeXworks.</source>
-        <translation>Το TeXstudio χρησιμοποιεί το συστατικό προβολής PDF του TeXworks.</translation>
+        <translation>TeXstudio, TeXworks&apos;ün PDF görüntüleyicisini kullanmaktadır.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="30"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation>Το TeXstudio χρησιμοποιεί την κλάση DSingleApplication (Συγγραφέας: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Άδεια: GPL).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="31"/>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation>Το TeXstudio χρησιμοποιεί το TexTablet (Άδεια MIT, Copyright (c) 2012 Steven Lovegrove).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="32"/>
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation>Το TeXstudio χρησιμοποιεί το QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov και συνεισφέροντες).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="33"/>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation>Το TeXstudio χρησιμοποιεί το To Title Case (Άδεια MIT, Copyright (c) 2008-2013 David Gouch).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="34"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
-        <translation>Το TeXstudio περιέχει μία εικόνα από τον Alexander Klink.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="35"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation>Το TeXstudio χρησιμοποιεί εικονίδια από το Crystal Project (LGPL) και το θέμα εικονιδίων Oxygen (CC-BY-SA 3.0).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="36"/>
@@ -74,17 +74,17 @@
     <message>
         <location filename="aboutdialog.cpp" line="38"/>
         <source>Thanks to </source>
-        <translation>Ευχαριστίες στους </translation>
+        <translation>Teşekkürler</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="39"/>
         <source>Project home site:</source>
-        <translation>Ιστόχωρος έργου:</translation>
+        <translation>Proje sayfası :</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="40"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation>Αυτό το πρόγραμμα σας παρέχεται υπό τους όρους της άδειας GNU General Public License Version 2 όπως δημοσιεύεται από το Free Software Foundation.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -92,52 +92,52 @@
     <message>
         <location filename="arraydialog.ui" line="30"/>
         <source>Num of Columns</source>
-        <translation>Πλήθος στηλών</translation>
+        <translation>Sütun Sayısı</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="47"/>
         <source>Columns Alignment</source>
-        <translation>Στοίχιση στηλών</translation>
+        <translation>Sütun Hizalama</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="61"/>
         <source>Environment</source>
-        <translation>Περιβάλλον</translation>
+        <translation>Ortam</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="81"/>
         <source>Num of Rows</source>
-        <translation>Πλήθος γραμμών</translation>
+        <translation>Satır Sayısı</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="114"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="arraydialog.ui" line="121"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="31"/>
         <source>Center</source>
-        <translation>Κέντρο</translation>
+        <translation>Orta</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="32"/>
         <source>Left</source>
-        <translation>Αριστερά</translation>
+        <translation>Sol</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="33"/>
         <source>Right</source>
-        <translation>Δεξιά</translation>
+        <translation>Sağ</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="41"/>
         <source>Quick Array</source>
-        <translation>Γρήγορο Array</translation>
+        <translation>Kolay Dizi</translation>
     </message>
 </context>
 <context>
@@ -145,206 +145,206 @@
     <message>
         <location filename="bibtexdialog.ui" line="20"/>
         <source>Insert in File:</source>
-        <translation type="unfinished"/>
+        <translation>Dosyaya ekle :</translation>
     </message>
     <message>
         <location filename="bibtexdialog.ui" line="27"/>
         <source>Entry Type:</source>
-        <translation>Τύπος εγγραφής:</translation>
+        <translation>Girdi Tipi :</translation>
     </message>
     <message>
         <location filename="bibtexdialog.ui" line="50"/>
         <source>Fields:</source>
-        <translation>Πεδία:</translation>
+        <translation>Alanlar :</translation>
     </message>
     <message>
         <location filename="bibtexdialog.ui" line="67"/>
         <source>Field</source>
-        <translation>Πεδίο</translation>
+        <translation>Alan</translation>
     </message>
     <message>
         <location filename="bibtexdialog.ui" line="72"/>
         <source>Value</source>
-        <translation>Τιμή</translation>
+        <translation>Değer</translation>
     </message>
     <message>
         <location filename="bibtexdialog.ui" line="80"/>
         <source>Insert Empty, Optional Fields</source>
-        <translation>Εισαγωγή κενών, προαιρετικών πεδίων</translation>
+        <translation>Boş, Opsiyonel Alan Ekle</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="19"/>
         <location filename="bibtexdialog.cpp" line="76"/>
         <source>Article in &amp;Journal</source>
-        <translation>Άρθρο σε επιστημονικό &amp;περιοδικό</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="22"/>
         <location filename="bibtexdialog.cpp" line="269"/>
         <source>Article in Conference &amp;Proceedings</source>
-        <translation>Άρθρο σε πρακτικά &amp;συνεδρίου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="25"/>
         <location filename="bibtexdialog.cpp" line="165"/>
         <source>Article in a &amp;Collection</source>
-        <translation>Άρθρο σε συ&amp;λλογή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="28"/>
         <source>Chapter or &amp;Pages in a Book</source>
-        <translation>Κε&amp;φάλαιο ή σελίδες βιβλίου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="31"/>
         <location filename="bibtexdialog.cpp" line="251"/>
         <source>Conference Pr&amp;oceedings</source>
-        <translation>Πρακτικά συνε&amp;δρίου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="36"/>
         <location filename="bibtexdialog.cpp" line="90"/>
         <source>&amp;Book</source>
-        <translation>&amp;Βιβλίο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="40"/>
         <location filename="bibtexdialog.cpp" line="140"/>
         <source>Book&amp;let</source>
-        <translation>Μικρό βιβλί&amp;ο χωρίς εκδότη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="43"/>
         <source>PhD. &amp;Thesis</source>
-        <translation>&amp;Διδακτορική διατριβή</translation>
+        <translation>Doktora &amp;Tezi</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="47"/>
         <source>&amp;Master&apos;s Thesis</source>
-        <translation>&amp;Μεταπτυχιακή διατριβή</translation>
+        <translation>&amp;Yüksek Lisans Tezi</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="51"/>
         <source>Technical &amp;Report</source>
-        <translation>Τεχνική &amp;αναφορά</translation>
+        <translation>Teknik &amp;Rapor</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="55"/>
         <location filename="bibtexdialog.cpp" line="182"/>
         <source>Technical Ma&amp;nual</source>
-        <translation>Τεχνικό &amp;εγχειρίδιο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="59"/>
         <location filename="bibtexdialog.cpp" line="320"/>
         <source>&amp;Unpublished</source>
-        <translation>Αδ&amp;ημοσίευτο</translation>
+        <translation>&amp;Yayınlanmamış</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="62"/>
         <location filename="bibtexdialog.cpp" line="188"/>
         <source>Miscellan&amp;eous</source>
-        <translation>Διά&amp;φορα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="99"/>
         <source>&amp;Multi-volume Book</source>
-        <translation>Βιβλίο πολλών &amp;τόμων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="107"/>
         <source>Part of a Book With Its Own Title</source>
-        <translation>Μέρος βιβλίου με τον δικό του τίτλο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="115"/>
         <source>Book in Book</source>
-        <translation>Βιβλίο σε βιβλίο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="123"/>
         <source>Supplemental Material in a Book</source>
-        <translation>Συμπληρωματικό υλικό σε βιβλίο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="148"/>
         <source>Single-volume Collection</source>
-        <translation>Συλλογή σε έναν τόμο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="156"/>
         <source>Multi-volume Collection</source>
-        <translation>Συλλογή σε πολλούς τόμους</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="173"/>
         <source>Supplemental Material in a Collection</source>
-        <translation>Συμπληρωματικό υλικό σε συλλογή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="198"/>
         <source>Online Resource</source>
-        <translation>Πηγή στο διαδίκτυο</translation>
+        <translation>Çevirimiçi Kaynak</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="210"/>
         <source>Patent</source>
-        <translation>Πατέντα</translation>
+        <translation>Patent</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="222"/>
         <source>Complete Issue of a Periodical</source>
-        <translation>Πλήρες τεύχος περιοδικού</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="233"/>
         <source>Supplemental Material in a Periodical</source>
-        <translation>Συμπληρωματικό υλικό σε περιοδικό</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="260"/>
         <source>Multi-volume Proceedings Entry</source>
-        <translation>Πρακτικά συνεδρίου σε πολλούς τόμους</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="276"/>
         <source>Reference</source>
-        <translation>Έργο αναφοράς</translation>
+        <translation>Referans</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="285"/>
         <source>Multi-volume Reference Entry</source>
-        <translation>Έργο αναφοράς σε πολλούς τόμους</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="296"/>
         <source>Article in a Reference</source>
-        <translation>Άρθρο σε έργο αναφοράς</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="304"/>
         <source>&amp;Report</source>
-        <translation>Αναφορά</translation>
+        <translation>&amp;Rapor</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="313"/>
         <source>&amp;Thesis</source>
-        <translation>Διατριβή</translation>
+        <translation>&amp;Tez</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="338"/>
         <source>&lt;New File&gt;</source>
-        <translation>&lt;Νέο αρχείο&gt;</translation>
+        <translation>&lt;Yeni Dosya&gt;</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="362"/>
         <source>New BibLaTeX Entry</source>
-        <translation>Νέα εγγραφή BibLaTeX</translation>
+        <translation>Yeni BibLaTeX Girdisi</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="364"/>
         <source>New BibTeX Entry</source>
-        <translation>Νέα εγγραφή BibTeX</translation>
+        <translation>Yeni BibTeX Girdisi</translation>
     </message>
 </context>
 <context>
@@ -352,22 +352,22 @@
     <message>
         <location filename="bookmarks.cpp" line="66"/>
         <source>Move Up</source>
-        <translation>Μετακίνηση πάνω</translation>
+        <translation>Yukarı Taşı</translation>
     </message>
     <message>
         <location filename="bookmarks.cpp" line="69"/>
         <source>Move Down</source>
-        <translation>Μετακίνηση κάτω</translation>
+        <translation>Aşağı Taşı</translation>
     </message>
     <message>
         <location filename="bookmarks.cpp" line="72"/>
         <source>Remove</source>
-        <translation>Αφαίρεση</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="bookmarks.cpp" line="75"/>
         <source>Remove All</source>
-        <translation>Αφαίρεση όλων</translation>
+        <translation>Hepsini Kaldır</translation>
     </message>
 </context>
 <context>
@@ -377,83 +377,83 @@
         <location filename="buildmanager.cpp" line="96"/>
         <location filename="buildmanager.cpp" line="1882"/>
         <source>&lt;unknown&gt;</source>
-        <translation>&lt;άγνωστο&gt;</translation>
+        <translation>&lt;bilinmeyen&gt;</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="264"/>
         <source>Stop Compile</source>
-        <translation>Διακοπή μεταγλώττισης</translation>
+        <translation>Derlemeyi Durdur</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="288"/>
         <location filename="buildmanager.cpp" line="315"/>
         <source>DVI Viewer</source>
-        <translation type="unfinished"/>
+        <translation>DVI Görüntüleyici</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="289"/>
         <location filename="buildmanager.cpp" line="315"/>
         <source>PS Viewer</source>
-        <translation type="unfinished"/>
+        <translation>PS Görüntüleyici</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="290"/>
         <location filename="buildmanager.cpp" line="315"/>
         <location filename="buildmanager.cpp" line="318"/>
         <source>External PDF Viewer</source>
-        <translation>Εξωτερικό πρόγραμμα προβολής PDF</translation>
+        <translation>Harici PDF Görüntüleyici</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <source>Compile &amp; View</source>
-        <translation>Μεταγλώττιση και προβολή</translation>
+        <translation>Derle ve Görüntüle</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <location filename="buildmanager.cpp" line="330"/>
         <source>PS Chain</source>
-        <translation>Αλυσίδα PS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <location filename="buildmanager.cpp" line="331"/>
         <source>DVI Chain</source>
-        <translation>Αλυσίδα DVI</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <location filename="buildmanager.cpp" line="332"/>
         <source>PDF Chain</source>
-        <translation>Αλυσίδα PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <location filename="buildmanager.cpp" line="333"/>
         <source>DVI-&gt;PDF Chain</source>
-        <translation>Αλυσίδα DVI-&gt;PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <location filename="buildmanager.cpp" line="334"/>
         <source>DVI-&gt;PS-&gt;PDF Chain</source>
-        <translation>Αλυσίδα DVI-&gt;PS-&gt;PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <location filename="buildmanager.cpp" line="335"/>
         <source>Asymptote DVI Chain</source>
-        <translation>Αλυσίδα Asymptote DVI</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="308"/>
         <location filename="buildmanager.cpp" line="336"/>
         <source>Asymptote PDF Chain</source>
-        <translation>Αλυσίδα Asymptote PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="309"/>
         <source>Build &amp; View</source>
-        <translation>Δημιουργία και προβολή</translation>
+        <translation>Yapılandır ve Görüntüle</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="312"/>
@@ -473,7 +473,7 @@
     <message>
         <location filename="buildmanager.cpp" line="312"/>
         <source>LuaLaTeX</source>
-        <translation>LuaLaTeX</translation>
+        <translation>LuaLaTex</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="312"/>
@@ -483,30 +483,30 @@
     <message>
         <location filename="buildmanager.cpp" line="313"/>
         <source>Default Compiler</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan Derleyici</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="315"/>
         <location filename="buildmanager.cpp" line="319"/>
         <source>PDF Viewer</source>
-        <translation type="unfinished"/>
+        <translation>PDF Görüntüleyici</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="315"/>
         <location filename="buildmanager.cpp" line="318"/>
         <source>Internal PDF Viewer (Windowed)</source>
-        <translation type="unfinished"/>
+        <translation>Dahili PDF Görüntüleyici (Windowed)</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="315"/>
         <location filename="buildmanager.cpp" line="318"/>
         <source>Internal PDF Viewer (Embedded)</source>
-        <translation type="unfinished"/>
+        <translation>Dahili PDF Görüntüleyici (Embedded)</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="316"/>
         <source>Default Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan Görüntüleyici</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="321"/>
@@ -529,37 +529,37 @@
     <message>
         <location filename="buildmanager.cpp" line="322"/>
         <source>Default Bibliography Tool</source>
-        <translation>Προεπιλεγμένο πρόγραμμα βιβλιογραφίας</translation>
+        <translation>Varsayılan Kaynakça Aracı</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="325"/>
         <source>Default Index Tool</source>
-        <translation>Προεπιλεγμένο πρόγραμμα ευρετηρίου</translation>
+        <translation>Varsayılan İndeks Aracı</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="327"/>
         <source>Makeglossaries</source>
-        <translation>Makeglossaries</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="328"/>
         <source>Default Glossary Tool</source>
-        <translation>Προεπιλεγμένο πρόγραμμα γλωσσαρίου</translation>
+        <translation>Varsayılan Sözlük Aracı</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="338"/>
         <source>Precompile</source>
-        <translation type="unfinished"/>
+        <translation>Önderleme</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="339"/>
         <source>Internal Precompile</source>
-        <translation type="unfinished"/>
+        <translation>Dahili Önderleme</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="340"/>
         <source>Recompile Bibliography</source>
-        <translation type="unfinished"/>
+        <translation>Kaynakçayı Yeniden Derle</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="373"/>
@@ -584,7 +584,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="395"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation>Κάποιες από τις εντολές σας αναφέρονται σε θέσεις στο /usr/texbin/</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="873"/>
@@ -600,12 +600,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <location filename="buildmanager.cpp" line="934"/>
         <location filename="buildmanager.cpp" line="935"/>
         <source>Command %1 not defined</source>
-        <translation>Η εντολή %1 δεν είναι ορισμένη</translation>
+        <translation>%1 komutu tanımlı değil</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1008"/>
         <source>Failed to understand command %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 komutu bilinmiyor</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1426"/>
@@ -615,37 +615,37 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="1430"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
-        <translation>Δημοφιλείς διανομές LaTeX στα Windows είναι οι %1 και %2.</translation>
+        <translation>%1 ve %2 Windows üzerindeki popüler LaTeX dağıtımlarıdır.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1432"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
-        <translation type="unfinished"/>
+        <translation>Eğer LaTeX ile çalışmak istiyorsanız, şunlardan birini yüklemeniz gerekmektedir.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1435"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
-        <translation>Μία δημοφιλής διανομή LaTeX στο OSX είναι η %1.</translation>
+        <translation>%1, OSX üzerindeki popüler LaTeX dağıtımlarından biridir.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1437"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
-        <translation type="unfinished"/>
+        <translation>Eğer LaTeX ile çalışmak istiyorsanız, bunu yüklemeniz gerekmektedir.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1440"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
-        <translation type="unfinished"/>
+        <translation>Eğer LaTeX ile çalışmak istiyorsanız, bir LaTeX dağıtımı yüklemeniz gerekmektedir.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1450"/>
         <source>Error: No command given</source>
-        <translation>Σφάλμα: δεν δόθηκε εντολή</translation>
+        <translation>Hata : Verilmiş bir komut yok</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1481"/>
         <source>Error: No command expanded</source>
-        <translation type="unfinished"/>
+        <translation>Hata : Genişletilmiş bir komut yok</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1483"/>
@@ -656,7 +656,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="1492"/>
         <source>Error: One command expansion invalid.</source>
-        <translation type="unfinished"/>
+        <translation>Hata : Bir komut genişletilmesi geçersiz.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1493"/>
@@ -671,7 +671,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="1851"/>
         <source>Internal Pdf Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Dahili Pdf Görüntüleyici</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2081"/>
@@ -684,57 +684,57 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="cleandialog.ui" line="14"/>
         <source>Clean</source>
-        <translation>Καθαρισμός</translation>
+        <translation>Temizle</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="20"/>
         <source>Scope</source>
-        <translation type="unfinished"/>
+        <translation>Kapsam</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="30"/>
         <source>File Extensions</source>
-        <translation>Επεκτάσεις αρχείων</translation>
+        <translation>Dosya Uzantıları</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="42"/>
         <source>Restore default</source>
-        <translation>Επαναφορά προκαθορισμένου</translation>
+        <translation>Varsayılana Çevir</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="58"/>
         <source>Delete the auxiliary files generated by LaTeX:</source>
-        <translation>Διαγραφή των βοηθητικών αρχείων που παράγονται από το LaTeX:</translation>
+        <translation>LaTeX tarafından oluşturulan yardımcı dosyaları sil :</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="88"/>
         <source>Files to Delete</source>
-        <translation>Αρχεία που θα διαγραφούν</translation>
+        <translation>Silinecek Dosyalar</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="55"/>
         <source>Project (Master file folder and all subfolders)</source>
-        <translation type="unfinished"/>
+        <translation>Proje (Ana dosya klasörü ve bütün alt klasörler)</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="61"/>
         <source>Current File</source>
-        <translation>Τρέχον αρχείο</translation>
+        <translation>Geçerli Dosya</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="63"/>
         <source>Current File Folder</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli Dosya Klasörü</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="71"/>
         <source>Open Files</source>
-        <translation>Ανοικτά αρχεία</translation>
+        <translation>Dosyayı Aç</translation>
     </message>
     <message>
         <location filename="cleandialog.cpp" line="108"/>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
-        <translation>Για την ασφάλειά σας, ο καθαρισμός δεν θα διαγράψει τα αρχεία με τις ακόλουθες επεκτάσεις:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -757,33 +757,33 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="14"/>
         <source>Configure TeXstudio</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio&apos;yu Yapılandır</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="38"/>
         <source>Show Advanced Options</source>
-        <translation type="unfinished"/>
+        <translation>İleri Seçenekleri Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="84"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="94"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="208"/>
         <location filename="configdialog.ui" line="1851"/>
         <source>Appearance</source>
-        <translation>Εμφάνιση</translation>
+        <translation>Görünüm</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="330"/>
         <source>Color Scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Renk Şeması : </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="337"/>
@@ -794,63 +794,63 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <location filename="configdialog.ui" line="220"/>
         <location filename="configdialog.ui" line="3501"/>
         <source>Language:</source>
-        <translation>Γλώσσα:</translation>
+        <translation>Dil:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="233"/>
         <source>Font:</source>
-        <translation>Γραμματοσειρά:</translation>
+        <translation>Yazı türü:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="256"/>
         <location filename="configdialog.ui" line="1631"/>
         <source>Font Size:</source>
-        <translation>Μέγεθος γραμματοσειράς:</translation>
+        <translation>Yazı boyutu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="283"/>
         <source>Style:</source>
-        <translation>Στυλ:</translation>
+        <translation>Biçim:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="264"/>
         <source>Classic</source>
-        <translation>Κλασικό</translation>
+        <translation>Klasik</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="269"/>
         <source>Modern</source>
-        <translation>Μοντέρνο</translation>
+        <translation>Çağdaş</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="300"/>
         <source>Use System Theme Icons</source>
-        <translation type="unfinished"/>
+        <translation>Sistem Tema Simgelerini Kullan</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="347"/>
         <source>MRU Document Chooser</source>
-        <translation type="unfinished"/>
+        <translation>MRU Belge Seçici</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="360"/>
         <source>Files</source>
-        <translation>Αρχεία</translation>
+        <translation>Dosyalar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="375"/>
         <source>Max. Recent Documents:</source>
-        <translation type="unfinished"/>
+        <translation>Maks. Son Belge:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="401"/>
         <source>Max. Recent Master Documents:</source>
-        <translation type="unfinished"/>
+        <translation>Maks. Son Ana Belge:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="421"/>
         <source>Always Show Structure of Master Document</source>
-        <translation type="unfinished"/>
+        <translation>Ana Belgenin Yapısını Her Zaman Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="431"/>
@@ -860,12 +860,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="444"/>
         <source>Session</source>
-        <translation>Συνεδρία</translation>
+        <translation>Oturum</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="453"/>
         <source>Restore Previous Session at Startup</source>
-        <translation>Αποκατάσταση προηγούμενης συνεδρίας στην εκκίνηση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="460"/>
@@ -875,17 +875,17 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="473"/>
         <source>Startup</source>
-        <translation type="unfinished"/>
+        <translation>Başlangıç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="479"/>
         <source>Check LaTeX Configuration</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX Yapılandırmasını Kontrol Et</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="489"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Güncelle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="501"/>
@@ -898,47 +898,47 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="configdialog.ui" line="508"/>
         <source>Stable Releases</source>
-        <translation type="unfinished"/>
+        <translation>Kararlı Sürümler</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="513"/>
         <source>Release Candidates</source>
-        <translation type="unfinished"/>
+        <translation>Aday Sürümler</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="518"/>
         <source>Development Versions</source>
-        <translation type="unfinished"/>
+        <translation>Geliştirme Versiyonu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="539"/>
         <source>Check Now</source>
-        <translation>Έλεγχος τώρα</translation>
+        <translation>Şimdi Kontrol Et</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="566"/>
         <source>Last Checked:</source>
-        <translation>Τελευταίος έλεγχος:</translation>
+        <translation>Son Kontrol:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="573"/>
         <source> days</source>
-        <translation>ημέρες</translation>
+        <translation>gün</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="586"/>
         <source>Automatically check every</source>
-        <translation>Αυτόματος έλεγχος κάθε</translation>
+        <translation>Otomatik olarak kontrol et her</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="593"/>
         <source>Update Level:</source>
-        <translation type="unfinished"/>
+        <translation>Güncelleme Seviyesi:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="648"/>
         <source>Commands (%: filename without extension - @: line number - ?: extended filename options)</source>
-        <translation type="unfinished"/>
+        <translation>Komutlar (%: genişletme harici dosya adı - @: satır numarası - ?: genişletilmiş dosya adı seçenekleri)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="655"/>
@@ -975,12 +975,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="746"/>
         <source>User Commands</source>
-        <translation>Εντολές χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="756"/>
         <source>Build Options</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırma Seçenekleri</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="768"/>
@@ -990,12 +990,12 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="771"/>
         <source>Check and update bibliography before compiling</source>
-        <translation type="unfinished"/>
+        <translation>Derlemeden önce kaynakçayı kontrol et ve güncelle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="778"/>
         <source>Show messages when starting compiling</source>
-        <translation type="unfinished"/>
+        <translation>Derlemeye başlarken mesajları göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="803"/>
@@ -1005,24 +1005,24 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="810"/>
         <source>Show stdout:</source>
-        <translation type="unfinished"/>
+        <translation>stdout Göster:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="824"/>
         <location filename="configdialog.ui" line="2156"/>
         <location filename="configdialog.ui" line="3734"/>
         <source>Never</source>
-        <translation>Ποτέ</translation>
+        <translation>Asla</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="829"/>
         <source>Only For User Commands</source>
-        <translation type="unfinished"/>
+        <translation>Sadece Kullanıcı Komutları İçin</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="834"/>
         <source>Always (If not redirected &gt; /dev/null)</source>
-        <translation type="unfinished"/>
+        <translation>Her Zaman (Yönlendirilmemişse &gt; /dev/null)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="842"/>
@@ -1032,27 +1032,27 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="845"/>
         <source>Maximum Compile Repetitions:</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum Derleme Tekrarı:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="915"/>
         <source>Commands ($PATH)</source>
-        <translation>Εντολές ($PATH)</translation>
+        <translation>Komutlar ($PATH)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="922"/>
         <source>PDF File</source>
-        <translation>Αρχείο PDF</translation>
+        <translation>PDF Dosyası</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="966"/>
         <source>Log File</source>
-        <translation>Αρχείο Log</translation>
+        <translation>Log Dosyası</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="977"/>
         <source>Additional Search Paths:</source>
-        <translation type="unfinished"/>
+        <translation>Ek Arama Yolları:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="984"/>
@@ -1069,18 +1069,18 @@ Variables are written as: $MYVAR. They are case-sensitive.
     <message>
         <location filename="configdialog.ui" line="994"/>
         <source>Replace Environment Variables</source>
-        <translation type="unfinished"/>
+        <translation>Ortam Değişkenlerini Değiştir</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1001"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>Derleme hatası durumunda log göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1027"/>
         <location filename="configdialog.cpp" line="484"/>
         <source>Shortcuts</source>
-        <translation>Συντομεύσεις</translation>
+        <translation>Kısayollar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1034"/>
@@ -1115,13 +1115,13 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1074"/>
         <source>Close Log-View with Esc-Key</source>
-        <translation type="unfinished"/>
+        <translation>Esc tuşuyla Log görünümünü kapat</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1097"/>
         <location filename="configdialog.cpp" line="485"/>
         <source>Menus</source>
-        <translation>Μενού</translation>
+        <translation>Menüler</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1104"/>
@@ -1131,18 +1131,18 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1117"/>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>İsim</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1122"/>
         <location filename="configdialog.cpp" line="477"/>
         <source>Command</source>
-        <translation>Εντολή</translation>
+        <translation>Komut</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1127"/>
         <source>Slot</source>
-        <translation type="unfinished"/>
+        <translation>Yuva</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1135"/>
@@ -1152,12 +1152,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1138"/>
         <source>Show All</source>
-        <translation>Εμφάνιση όλων</translation>
+        <translation>Hepsini Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1161"/>
         <source>Toolbar Customization</source>
-        <translation>Διαμόρφωση γραμμών εργαλείων</translation>
+        <translation>Araç Çubuğu Özelleştirme</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1170"/>
@@ -1177,12 +1177,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1238"/>
         <source>Here you can choose a toolbar to modify.</source>
-        <translation type="unfinished"/>
+        <translation>Burada değiştirmek için bir araç çubuğu seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1245"/>
         <source>Here you can choose a list of commands that can be mapped to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Burada araç çubuğuna eşlenebilecek bir komut listesi seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1252"/>
@@ -1192,29 +1192,29 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1291"/>
         <source>Scaling</source>
-        <translation>Κλιμάκωση</translation>
+        <translation>Ölçekleme</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1300"/>
         <source>Secondary Toolbars</source>
-        <translation>Δευτερεύουσες γραμμές εργαλείων</translation>
+        <translation>İkincil Araç Çubuğu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1307"/>
         <location filename="configdialog.ui" line="1314"/>
         <location filename="configdialog.ui" line="1321"/>
         <source>Reset</source>
-        <translation>Επαναφορά</translation>
+        <translation>Sıfırla</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1328"/>
         <source>Symbol Grid</source>
-        <translation>Πλέγμα συμβόλων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1335"/>
         <source>Main Toolbar</source>
-        <translation>Κύρια γραμμή εργαλείων</translation>
+        <translation>Ana Araç Çubuğu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1342"/>
@@ -1229,24 +1229,24 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1411"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation>Α</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1468"/>
         <location filename="configdialog.cpp" line="488"/>
         <location filename="configmanager.cpp" line="1328"/>
         <source>Editor</source>
-        <translation type="unfinished"/>
+        <translation>Editör</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1481"/>
         <source>Font Family:</source>
-        <translation type="unfinished"/>
+        <translation>Yazı Tipi Ailesi:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1488"/>
         <source>Replace Double Quotes:</source>
-        <translation>Αντικατάσταση διπλών εισαγωγικών:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1501"/>
@@ -1256,7 +1256,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1517"/>
         <source>Default Font Encoding:</source>
-        <translation>Προεπιλεγμένη κωδικοποίηση χαρακτήρων:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1524"/>
@@ -1271,7 +1271,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1541"/>
         <source>Folding</source>
-        <translation>Αναδίπλωση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1548"/>
@@ -1286,12 +1286,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1568"/>
         <source>Automatic Encoding Detection:</source>
-        <translation>Αυτόματη ανίχνευση κωδικοποίησης:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1578"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
-        <translation>Ανάλυση του LaTeX (% !TeX encoding, inputenc, inputenx)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1585"/>
@@ -1301,7 +1301,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1588"/>
         <source>Analyze Characters</source>
-        <translation>Ανάλυση χαρακτήρων</translation>
+        <translation>Karakterleri Analiz Et</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1612"/>
@@ -1313,62 +1313,62 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1638"/>
         <source>Line Spacing:</source>
-        <translation>Απόσταση γραμμών:</translation>
+        <translation>Satır Boşluğu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1649"/>
         <source>No Replacement</source>
-        <translation>Καμία αντικατάσταση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1654"/>
         <source>English Quotes:  `` &apos;&apos;</source>
-        <translation>Αγγλικά εισαγωγικά:  `` &apos;&apos;</translation>
+        <translation>İngilizce Alıntılar: `` &apos;&apos;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1659"/>
         <source>French Quotes:  &quot;&lt; &quot;&gt;</source>
-        <translation>Γαλλικά εισαγωγικά:  &quot;&lt; &quot;&gt;</translation>
+        <translation>Fransızca Alıntılar: &quot;&lt; &quot;&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1664"/>
         <source>German Quotes:  &quot;` &quot;&apos;</source>
-        <translation>Γερμανικά εισαγωγικά:  &quot;` &quot;&apos;</translation>
+        <translation>Almanca Alıntılar: &quot;` &quot;&apos;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1669"/>
         <source>French Quotes (babel): \og \fg{}</source>
-        <translation>Γαλλικά εισαγωγικά (babel): \og \fg{}</translation>
+        <translation>Fransızca Alıntılar (babel): \og \fg{}</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1674"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
-        <translation>Ανάποδα γαλλικά εισαγωγικά: &quot;&gt; &quot;&lt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1679"/>
         <source>Package csquotes: \enquote{  }</source>
-        <translation>Πακέτο csquotes: \enquote{  }</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1684"/>
         <source>English Quotes (unicode): “ ”</source>
-        <translation>Αγγλικά εισαγωγικά (unicode): “ ”</translation>
+        <translation>İngilizce Alıntılar (unicode): “ ”</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1692"/>
         <source>Show Only Monospaced Fonts</source>
-        <translation>Εμφάνιση μόνο γραμματοσειρών σταθερού πλάτους</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1703"/>
         <source>Ignore Indentation</source>
-        <translation type="unfinished"/>
+        <translation>Girintiyi Önemseme</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1708"/>
         <source>Keep Indentation</source>
-        <translation type="unfinished"/>
+        <translation>Girintiyi Koru</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1713"/>
@@ -1383,32 +1383,32 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1743"/>
         <source>Spelling</source>
-        <translation>Ορθογραφικός έλεγχος</translation>
+        <translation>İmla</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1750"/>
         <source>Grammar</source>
-        <translation>Γραμματική</translation>
+        <translation>Gramer</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1757"/>
         <source>Citations</source>
-        <translation type="unfinished"/>
+        <translation>Alıntılar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1764"/>
         <source>References</source>
-        <translation type="unfinished"/>
+        <translation>Referanslar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1771"/>
         <source>Syntax</source>
-        <translation>Σύνταξη</translation>
+        <translation>Sözdizimi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1778"/>
         <source>Package</source>
-        <translation>Πακέτο</translation>
+        <translation>Paket</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1788"/>
@@ -1423,42 +1423,42 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1798"/>
         <source>Replace Tab in Text by Spaces</source>
-        <translation>Αντικατάσταση χαρακτήρα tab με διαστήματα στο κείμενο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1859"/>
         <source>Show Line Numbers:</source>
-        <translation>Εμφάνιση αριθμών γραμμών:</translation>
+        <translation>Satır Numaralarını Göster:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1870"/>
         <source>No Line Numbers</source>
-        <translation>Καθόλου αριθμοί γραμμών</translation>
+        <translation>Satır Numarası Yok</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1875"/>
         <source>All Line Numbers</source>
-        <translation>Όλοι οι αριθμοί γραμμών</translation>
+        <translation>Tüm Satır Numaraları</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1880"/>
         <source>Only Important Line Numbers</source>
-        <translation>Μόνο σημαντικοί αριθμοί γραμμών</translation>
+        <translation>Sadece Önemli Satır Numaraları</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1903"/>
         <source>Show State Panel</source>
-        <translation type="unfinished"/>
+        <translation>Durum Panelini Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1915"/>
         <source>Tab Width:</source>
-        <translation>Πλάτος εσοχών:</translation>
+        <translation>Sekme Genişliği:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1950"/>
         <source>Show Whitespace</source>
-        <translation>Εμφάνιση χαρακτήρων κενού</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="1963"/>
@@ -1468,17 +1468,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1973"/>
         <source>Draw cursor as a thick line</source>
-        <translation type="unfinished"/>
+        <translation>İmleci kalın bir çizgi şeklinde çiz</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1976"/>
         <source>Bold Cursor</source>
-        <translation type="unfinished"/>
+        <translation>Kalın İmleç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1992"/>
         <source>Search Panel</source>
-        <translation type="unfinished"/>
+        <translation>Arama Paneli</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1998"/>
@@ -1498,52 +1498,52 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2028"/>
         <source>Special options</source>
-        <translation>Ειδικές επιλογές</translation>
+        <translation>Özel seçenekler</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2194"/>
         <source>Auto Save All Files:</source>
-        <translation>Αυτόματη αποθήκευση όλων των αρχείων:</translation>
+        <translation>Tüm Dosyaları Otomatikman Kaydet:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2204"/>
         <source>Auto Complete Parentheses</source>
-        <translation>Αυτόματη συμπλήρωση παρενθέσεων</translation>
+        <translation>Parantezleri Otomatikman Tamamla</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2211"/>
         <source>Mouse Wheel Zoom</source>
-        <translation type="unfinished"/>
+        <translation>Fare Tekerleği Yakınlaştırması</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2171"/>
         <source>5 minutes</source>
-        <translation>5 λεπτά</translation>
+        <translation>5 dakika</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2176"/>
         <source>10 minutes</source>
-        <translation>10 λεπτά</translation>
+        <translation>10 dakika</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2181"/>
         <source>20 minutes</source>
-        <translation>20 λεπτά</translation>
+        <translation>20 dakika</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2186"/>
         <source>60 minutes</source>
-        <translation>60 λεπτά</translation>
+        <translation>60 dakika</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2225"/>
         <source>Line Wrapping:</source>
-        <translation>Αναδίπλωση γραμμών:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2218"/>
         <source>Smooth Scrolling</source>
-        <translation>Ομαλή κύλιση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2249"/>
@@ -1558,7 +1558,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2141"/>
         <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;Esc&gt; tuşuna basınca tam ekran modunu kapatma</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2232"/>
@@ -1598,12 +1598,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2079"/>
         <source>Maximal Characters:</source>
-        <translation type="unfinished"/>
+        <translation>En Fazla Karakter:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2072"/>
         <source>Go to error when displaying log</source>
-        <translation type="unfinished"/>
+        <translation>Log gösterirken hataya git</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2037"/>
@@ -1614,7 +1614,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2041"/>
         <source>Insert Symbol as Unicode</source>
-        <translation>Εισαγωγή συμβόλου ως Unicode</translation>
+        <translation>Sembolleri Unicode Olarak Gir</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2127"/>
@@ -1649,22 +1649,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2148"/>
         <source>Default Log Encoding</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan Log Kodlaması</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2161"/>
         <source>1 minute</source>
-        <translation>1 λεπτό</translation>
+        <translation>1 dakika</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2166"/>
         <source>2 minutes</source>
-        <translation>2 λεπτά</translation>
+        <translation>2 dakika</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2277"/>
         <source>Monitor open files for external changes</source>
-        <translation>Παρακολούθηση ανοικτών αρχείων για εξωτερικές αλλαγές</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="2284"/>
@@ -1674,42 +1674,42 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2287"/>
         <source>Safe writing of files</source>
-        <translation>Ασφαλής αποθήκευση των αρχείων</translation>
+        <translation>Güvenli dosya yazma</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2294"/>
         <source>Triple-Click Selection:</source>
-        <translation>Επιλογή με τριπλό κλικ:</translation>
+        <translation>Üç-tıklama Seçimi:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2302"/>
         <source>Select Word</source>
-        <translation>Επιλογή λέξης</translation>
+        <translation>Kelime Seç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2307"/>
         <source>Select Word or Command</source>
-        <translation>Επιλογή λέξης ή εντολής</translation>
+        <translation>Kelime veya Komut Seç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Select Parentheses Content</source>
-        <translation>Επιλογή περιεχομένου παρενθέσεων</translation>
+        <translation>Parantez İçeriğini Seç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2317"/>
         <source>Select Parentheses</source>
-        <translation>Επιλογή παρενθέσεων</translation>
+        <translation>Parantez Seç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2322"/>
         <source>Select Line</source>
-        <translation>Επιλογή γραμμής</translation>
+        <translation>Satır Seç</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
         <source>Structure Panel</source>
-        <translation type="unfinished"/>
+        <translation>Yapı Paneli</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2339"/>
@@ -1739,17 +1739,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2386"/>
         <source>Bibliography</source>
-        <translation>Βιβλιογραφία</translation>
+        <translation>Kaynakça</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2392"/>
         <source>bib File Encoding:</source>
-        <translation>Κωδικοποίηση αρχείου bib:</translation>
+        <translation>bib Dosya Kodlaması:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2399"/>
         <source>Parse BibTeX</source>
-        <translation type="unfinished"/>
+        <translation>BibTeX Ayrıştır</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2412"/>
@@ -1759,7 +1759,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2418"/>
         <source>One Line Per Cell</source>
-        <translation type="unfinished"/>
+        <translation>Hücre Başına Bir Satır</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2426"/>
@@ -1769,12 +1769,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2431"/>
         <source>Separate Line (No Indent)</source>
-        <translation type="unfinished"/>
+        <translation>Satır Ayır (Girinti Yok)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2436"/>
         <source>Separate Line (Indented to First Column)</source>
-        <translation type="unfinished"/>
+        <translation>Satır Ayır (İlk Sütuna Göre Girinti)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2444"/>
@@ -1784,32 +1784,32 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2454"/>
         <source>Special Commands:</source>
-        <translation type="unfinished"/>
+        <translation>Özel Komutlar:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2464"/>
         <source>Additional Search Paths</source>
-        <translation type="unfinished"/>
+        <translation>Ek Arama Yolları</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2473"/>
         <source>Bib Files:</source>
-        <translation>Αρχεία bib:</translation>
+        <translation>Bib Dosyaları:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2486"/>
         <source>Image Files:</source>
-        <translation>Αρχεία εικόνων:</translation>
+        <translation>Görüntü Dosyaları:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2524"/>
         <source>Bi-Di</source>
-        <translation type="unfinished"/>
+        <translation>Bi-Di</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2530"/>
         <source>Automatically insert LRM characters</source>
-        <translation type="unfinished"/>
+        <translation>LRM karakterlerini otomatik olarak gir</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2537"/>
@@ -1849,12 +1849,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2599"/>
         <source>Render Mode:</source>
-        <translation type="unfinished"/>
+        <translation>Render Modu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2607"/>
         <source>QCE (recommended)</source>
-        <translation>QCE (συνιστώμενο)</translation>
+        <translation>QCE (tavsiye edilen)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2612"/>
@@ -1864,7 +1864,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2617"/>
         <source>Single Letter</source>
-        <translation type="unfinished"/>
+        <translation>Tek Harf</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2625"/>
@@ -1894,7 +1894,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2712"/>
         <source>Formats</source>
-        <translation type="unfinished"/>
+        <translation>Biçimler</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2735"/>
@@ -1904,12 +1904,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2749"/>
         <source>Custom Environment</source>
-        <translation type="unfinished"/>
+        <translation>Özelleştirilmiş Ortam</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2754"/>
         <source>Type of Environment</source>
-        <translation type="unfinished"/>
+        <translation>Ortam Tipi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2764"/>
@@ -1920,29 +1920,29 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2767"/>
         <location filename="configdialog.ui" line="2814"/>
         <source>Add Line</source>
-        <translation>Προσθήκη γραμμής</translation>
+        <translation>Satır Ekle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2774"/>
         <location filename="configdialog.ui" line="2821"/>
         <source>Remove Line</source>
-        <translation>Αφαίρεση γραμμής</translation>
+        <translation>Satır Sil</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2804"/>
         <source>Additional Commands</source>
-        <translation>Επιπρόσθετες εντολές</translation>
+        <translation>Ek Komutlar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2859"/>
         <location filename="configdialog.cpp" line="492"/>
         <source>Completion</source>
-        <translation>Συμπλήρωση</translation>
+        <translation>Tamamlama</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2865"/>
         <source>Insert Arguments</source>
-        <translation type="unfinished"/>
+        <translation>Argümanları Gir</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2875"/>
@@ -1987,7 +1987,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2923"/>
         <source>Tab Bar Size</source>
-        <translation type="unfinished"/>
+        <translation>Sekme Çubuğu Boyutu</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2933"/>
@@ -2039,12 +2039,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="3022"/>
         <source>Most Used</source>
-        <translation type="unfinished"/>
+        <translation>En Çok Kullanılan</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3027"/>
         <source>All</source>
-        <translation type="unfinished"/>
+        <translation>Tüm</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3053"/>
@@ -2065,22 +2065,22 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3129"/>
         <source>Spell Check</source>
-        <translation>Ορθογραφικός έλεγχος</translation>
+        <translation>İmla Kontrolü</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3135"/>
         <source>Default Language:</source>
-        <translation>Προεπιλεγμένη γλώσσα:</translation>
+        <translation>Öntanımlı Dil:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3162"/>
         <source>Spelling Dictionary Directories:</source>
-        <translation>Φάκελοι ορθογραφικών λεξικών:</translation>
+        <translation>İmla Sözlükleri Dizinleri:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3169"/>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
-        <translation>Ένας ή περισσότεροι φάκελοι όπου γίνεται αναζήτηση για λεξικά. Οι διαδρομές διαχωρίζονται με ελληνικό ερωτηματικό. Μπορούν να χρησιμοποιηθούν οι ειδικές λέξεις-κλειδιά [txs-settings-dir] και [txs-app-dir], οι οποίες αναλύονται στους αντίστοιχους φακέλους.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3179"/>
@@ -2090,7 +2090,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3186"/>
         <source>Thesaurus Database:</source>
-        <translation type="unfinished"/>
+        <translation>Eş Anlamlılar Sözlüğü Veritabanı:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3216"/>
@@ -2100,27 +2100,27 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3229"/>
         <source>Import Dictionary...</source>
-        <translation>Εισαγωγή λεξικού</translation>
+        <translation>Sözlük Ekle...</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3239"/>
         <source>Internal Grammar Check</source>
-        <translation type="unfinished"/>
+        <translation>Dahili Gramer Kontrolü</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3245"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
-        <translation>Λέξεις που επαναλαμβάνονται σε μία παράγραφο θα επισημαίνονται.</translation>
+        <translation>Bir paragraf içerisinde tekrarlanan sözcükler vurgulanacak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3248"/>
         <source>Check for Word Repetitions</source>
-        <translation>Έλεγχος για επαναλήψεις λέξεων</translation>
+        <translation>Kelime Tekrarlarını Kontrol Et</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3255"/>
         <source>Words Between Repetitions:</source>
-        <translation>Λέξεις μεταξύ επαναλήψεων:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3265"/>
@@ -2150,7 +2150,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3315"/>
         <source>Wordlist Directory:</source>
-        <translation type="unfinished"/>
+        <translation>Kelime Listesi Dizini:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3322"/>
@@ -2160,7 +2160,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3325"/>
         <source>Check for Bad Words</source>
-        <translation type="unfinished"/>
+        <translation>Kötü Sözcükleri Kontrol Et</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3332"/>
@@ -2170,12 +2170,12 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3359"/>
         <source>LanguageTool</source>
-        <translation>LanguageTool</translation>
+        <translation>Dil Aracı</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3393"/>
         <source>Server URL: </source>
-        <translation type="unfinished"/>
+        <translation>Sunucu URL&apos;si:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3379"/>
@@ -2190,7 +2190,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3372"/>
         <source>LT Path:</source>
-        <translation type="unfinished"/>
+        <translation>LT Yolu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3365"/>
@@ -2200,7 +2200,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3424"/>
         <source>Ignored Rules:</source>
-        <translation type="unfinished"/>
+        <translation>Önemsenmeyen Kurallar:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3400"/>
@@ -2215,7 +2215,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3549"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation>Εκτελέσιμο της Java, χρησιμοποιείται για να εκκινηθεί το LanguageTool, αν δεν τρέχει.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3431"/>
@@ -2228,22 +2228,22 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3471"/>
         <source>Special Rules 2:</source>
-        <translation>Ειδικοί κανόνες 2:</translation>
+        <translation>Özel Kural 2:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3491"/>
         <source>Special Rules 1:</source>
-        <translation>Ειδικοί κανόνες 1:</translation>
+        <translation>Özel Kural 1:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3461"/>
         <source>Special Rules 3:</source>
-        <translation>Ειδικοί κανόνες 3:</translation>
+        <translation>Özel Kural 3:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3508"/>
         <source>Special Rules 4:</source>
-        <translation>Ειδικοί κανόνες 4:</translation>
+        <translation>Özel Kural 4:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3518"/>
@@ -2259,22 +2259,22 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3566"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>LT Argümanları:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3636"/>
         <source>Segment Preview</source>
-        <translation>Προεπισκόπηση τμήματος</translation>
+        <translation>Kısım Önizleme:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3642"/>
         <source>Command:</source>
-        <translation>Εντολή:</translation>
+        <translation>Komut:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3653"/>
         <source>Preview with dvipng</source>
-        <translation>Προεπισκόπηση με το dvipng</translation>
+        <translation>dvipng ile önizleme</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3658"/>
@@ -2284,17 +2284,17 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3663"/>
         <source>Preview with dvips/ghostscript</source>
-        <translation>Προεπισκόπηση με το dvips/ghostscript</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="3668"/>
         <source>Preview with pdflatex</source>
-        <translation>Προεπισκόπηση με το pdflatex</translation>
+        <translation>pdflatex ile önizleme</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3676"/>
         <source>Display Mode:</source>
-        <translation type="unfinished"/>
+        <translation>Görüntü Modu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3690"/>
@@ -2314,7 +2314,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3705"/>
         <source>Always show both</source>
-        <translation type="unfinished"/>
+        <translation>Her zaman her ikisini de göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3710"/>
@@ -2325,7 +2325,7 @@ them here.</source>
         <location filename="configdialog.ui" line="3715"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
-        <translation type="unfinished"/>
+        <translation>Gömülü izleyicide göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3723"/>
@@ -2335,17 +2335,17 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3726"/>
         <source>Auto Update:</source>
-        <translation type="unfinished"/>
+        <translation>Otomatik Güncelleme:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3739"/>
         <source>Previously previewed text</source>
-        <translation type="unfinished"/>
+        <translation>Önceki önizlenmiş yazı</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3747"/>
         <source>Auto Update Delay:</source>
-        <translation type="unfinished"/>
+        <translation>Otomatik Güncelleme Gecikmesi:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3770"/>
@@ -2366,88 +2366,88 @@ them here.</source>
         <location filename="configdialog.ui" line="3806"/>
         <location filename="configdialog.ui" line="3977"/>
         <source>Scaling:</source>
-        <translation>Κλιμάκωση:</translation>
+        <translation>Ölçekleme:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3901"/>
         <location filename="configdialog.cpp" line="495"/>
         <source>Internal PDF Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Dahili PDF Görüntüleyici</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3908"/>
         <source>Original Size</source>
-        <translation>Αρχικό μέγεθος</translation>
+        <translation>Orijinal Boyut</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3913"/>
         <source>Fit to Window Width</source>
-        <translation type="unfinished"/>
+        <translation>Pencere Genişliğine Sığdır</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3918"/>
         <source>Fit to Window Size</source>
-        <translation type="unfinished"/>
+        <translation>Pencere Boyutuna Sığdır</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3923"/>
         <source>Scaled Size</source>
-        <translation type="unfinished"/>
+        <translation>Ölçeklenmiş Boyut</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3928"/>
         <source>Fit to Text Width</source>
-        <translation type="unfinished"/>
+        <translation>Yazı Genişliğine Sığdır</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3936"/>
         <source>Infinite</source>
-        <translation type="unfinished"/>
+        <translation>Sonsuz</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3984"/>
         <source>Scale Option:</source>
-        <translation type="unfinished"/>
+        <translation>Ölçekleme Seçenekleri:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3991"/>
         <source>Highlight Duration</source>
-        <translation type="unfinished"/>
+        <translation>Vurgulama Süresi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4002"/>
         <source>Square</source>
-        <translation>Τετράγωνο</translation>
+        <translation>Kare</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4007"/>
         <source>Circle</source>
-        <translation>Κύκλος</translation>
+        <translation>Çember</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4015"/>
         <source> dpi</source>
-        <translation> dpi</translation>
+        <translation>dpi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4025"/>
         <source>Magnifier Size:</source>
-        <translation type="unfinished"/>
+        <translation>Büyütücü Boyutu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4032"/>
         <source>Screen Resolution:</source>
-        <translation>Ανάλυση οθόνης:</translation>
+        <translation>Ekran Çözünürlüğü</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4039"/>
         <source>Magnifier Shape:</source>
-        <translation type="unfinished"/>
+        <translation>Büyütücü Şekli:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4046"/>
         <source>Border</source>
-        <translation>Περιθώριο</translation>
+        <translation>Kenar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4053"/>
@@ -2457,12 +2457,12 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4076"/>
         <source>Highlight Color</source>
-        <translation type="unfinished"/>
+        <translation>Vurgu Rengi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4086"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
-        <translation type="unfinished"/>
+        <translation>Gömülü Modda Araç Çubuklarını Otomatik Olarak Gizle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4093"/>
@@ -2472,7 +2472,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4096"/>
         <source>\#HHHHHHHH;_</source>
-        <translation>\#HHHHHHHH;_</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4109"/>
@@ -2506,7 +2506,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4160"/>
         <source> px</source>
-        <translation> px</translation>
+        <translation>px</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4182"/>
@@ -2516,12 +2516,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4192"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4214"/>
         <source>Load Strategy:</source>
-        <translation type="unfinished"/>
+        <translation>Yükleme Stratejisi:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4230"/>
@@ -2531,7 +2531,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4240"/>
         <source>Synchronized Files Types:</source>
-        <translation type="unfinished"/>
+        <translation>Eşzamanlanmış Dosya Tipleri:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4250"/>
@@ -2581,7 +2581,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.cpp" line="195"/>
         <source>The shortcut you entered is invalid.</source>
-        <translation type="unfinished"/>
+        <translation>Girdiğiniz kısayol geçersiz.</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="201"/>
@@ -2593,7 +2593,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="242"/>
         <source>The shortcut &lt;%1&gt; is already assigned to the command:</source>
-        <translation type="unfinished"/>
+        <translation>&lt;%1&gt; kısayolu şu komuta atanmış:</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="242"/>
@@ -2603,12 +2603,12 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="299"/>
         <source>Do you really want to delete this row?</source>
-        <translation type="unfinished"/>
+        <translation>Bu satırı gerçekten silmek istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="440"/>
         <source>Download additional dictionaries from %1 or %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 veya %2 &apos;den ek sözlükler indir</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="455"/>
@@ -2618,53 +2618,53 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="456"/>
         <source>Basic highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Basit vurgulama</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="457"/>
         <source>LaTeX checking</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX kontrolü</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="458"/>
         <source>Language checking</source>
-        <translation type="unfinished"/>
+        <translation>Dil kontrolü</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="459"/>
         <source>Line highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Satır vurgulama</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="460"/>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation>Bul</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="461"/>
         <source>Diff</source>
-        <translation>Διαφορές</translation>
+        <translation>Diff</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="462"/>
         <location filename="configdialog.cpp" line="494"/>
         <source>Preview</source>
-        <translation>Προεπισκόπηση</translation>
+        <translation>Önizleme</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="463"/>
         <source>DTX files</source>
-        <translation>Αρχεία DTX</translation>
+        <translation>DTX dosyaları</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="464"/>
         <source>Sweave / Pweave</source>
-        <translation>Sweave / Pweave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.cpp" line="465"/>
         <source>Asymptote</source>
-        <translation>Asymptote</translation>
+        <translation>Asimptot</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="466"/>
@@ -2674,67 +2674,67 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="467"/>
         <source>QtScript</source>
-        <translation>QtScript</translation>
+        <translation>OtScript</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="477"/>
         <source>Default Shortcut</source>
-        <translation>Προεπιλεγμένη συντόμευση</translation>
+        <translation>Varsayılan Kısayol</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="477"/>
         <source>Current Shortcut</source>
-        <translation>Τρέχουσα συντόμευση</translation>
+        <translation>Geçerli Kısayol</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="477"/>
         <source>Additional Shortcut</source>
-        <translation>Πρόσθετη συντόμευση</translation>
+        <translation>Ek Kısayol</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="481"/>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation>Genel</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="482"/>
         <source>Commands</source>
-        <translation>Εντολές</translation>
+        <translation>Komutlar</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="483"/>
         <source>Build</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandır</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="486"/>
         <source>Toolbars</source>
-        <translation>Γραμμές εργαλείων</translation>
+        <translation>Araç Çubuğu</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="487"/>
         <source>GUI Scaling</source>
-        <translation type="unfinished"/>
+        <translation>GUI Ölçekleme</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="489"/>
         <source>Adv. Editor</source>
-        <translation type="unfinished"/>
+        <translation>Adv. Editörü</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="490"/>
         <source>Syntax Highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Sözdizimi Vurgulama</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="491"/>
         <source>Custom Highlighting</source>
-        <translation type="unfinished"/>
+        <translation>Özelleşmiş Vurgulama</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="493"/>
         <source>Language Checking</source>
-        <translation type="unfinished"/>
+        <translation>Dil Kontrolü</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="496"/>
@@ -2744,12 +2744,12 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="537"/>
         <source>(option filter)</source>
-        <translation type="unfinished"/>
+        <translation>(seçenek süzgeci)</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="665"/>
         <source>Select thesaurus database</source>
-        <translation type="unfinished"/>
+        <translation>Eş anlamlılar sözlüğü veritabanı seç</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="670"/>
@@ -2769,7 +2769,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="685"/>
         <source>Select dictionary directory</source>
-        <translation type="unfinished"/>
+        <translation>Sözlük dizini seç</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="690"/>
@@ -2799,12 +2799,12 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="756"/>
         <source>&lt;unknown&gt;</source>
-        <translation>&lt;άγνωστο&gt;</translation>
+        <translation>&lt;unknown&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="982"/>
         <source>Load Other Icon</source>
-        <translation type="unfinished"/>
+        <translation>Diğer Simgeyi Yükle</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="983"/>
@@ -2819,22 +2819,22 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="994"/>
         <source>Select a File</source>
-        <translation>Επιλέξτε ένα αρχείο</translation>
+        <translation>Dosya Seç</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="994"/>
         <source>Images</source>
-        <translation>Εικόνες</translation>
+        <translation>Görüntüler</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="1052"/>
         <source>Import Dictionary</source>
-        <translation>Εισαγωγή λεξικού</translation>
+        <translation>Sözlük Gir</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="1052"/>
         <source>OpenOffice Dictionary</source>
-        <translation>Λεξικό του OpenOffice</translation>
+        <translation>OpenOffıce Sözlüğü</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="1063"/>
@@ -2866,7 +2866,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="29"/>
         <source>AMS packages</source>
-        <translation>Πακέτα AMS</translation>
+        <translation>AMS paketleri</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="30"/>
@@ -2876,12 +2876,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="11"/>
         <source>&amp;Sectioning</source>
-        <translation>&amp;Ενότητες</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="22"/>
         <source>&amp;Math</source>
-        <translation>&amp;Μαθηματικά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
@@ -2891,12 +2891,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="24"/>
         <source>Math &amp;Functions</source>
-        <translation>Μαθηματικές &amp;Συναρτήσεις</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>Math Font St&amp;yles</source>
-        <translation>Τύποι γραμματοσειράς &amp;μαθηματικών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
@@ -2986,7 +2986,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="12"/>
         <source>&amp;Environments</source>
-        <translation>&amp;Περιβάλλοντα</translation>
+        <translation>&amp;Environments</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="45"/>
@@ -3046,7 +3046,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="13"/>
         <source>&amp;List Environments</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ortam Listesi</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="56"/>
@@ -3071,7 +3071,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="14"/>
         <source>Boxes</source>
-        <translation type="unfinished"/>
+        <translation>Boxes</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="60"/>
@@ -3131,62 +3131,62 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="71"/>
         <source>rule</source>
-        <translation type="unfinished"/>
+        <translation>rule</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="15"/>
         <source>Font St&amp;yles</source>
-        <translation>Τύποι &amp;γραμματοσειράς</translation>
+        <translation>Yazı Stilleri</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="72"/>
         <source>Emphasis - \emph</source>
-        <translation>Έμφαση - \emph</translation>
+        <translation>Vurgu - \emph</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="73"/>
         <source>Italics - \textit</source>
-        <translation>Πλάγια - \textit</translation>
+        <translation>İtalik - \textit</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="74"/>
         <source>Slanted - \textsl</source>
-        <translation>Κεκλιμένα - \textsl</translation>
+        <translation>Eğimli - \textsl</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="75"/>
         <source>Boldface - \textbf</source>
-        <translation>Έντονα - \textbf</translation>
+        <translation>Kalın - \textbf</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="76"/>
         <source>Typewriter - \texttt</source>
-        <translation>Γραφομηχανής - \texttt</translation>
+        <translation>Daktilo - \texttt</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="77"/>
         <source>Small Caps - \textsc</source>
-        <translation>Μικρά κεφαλαία - \textsc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="78"/>
         <source>Sans Serif - \textsf</source>
-        <translation type="unfinished"/>
+        <translation>Sans Serif - \textsf</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="79"/>
         <source>Underline - \underline</source>
-        <translation>Υπογραμμισμένα - \underline</translation>
+        <translation>Alt çizgi - \underline</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="16"/>
         <source>Font Sizes</source>
-        <translation>Μεγέθη γραμματοσειράς</translation>
+        <translation>Yazı Boyutu</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="80"/>
         <source>tiny</source>
-        <translation>tiny</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="81"/>
@@ -3236,17 +3236,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="17"/>
         <source>&amp;Tabular Environment</source>
-        <translation>Περιβάλλον &amp;Tabular</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="90"/>
         <source>\begin{tabbing}</source>
-        <translation>\begin{tabbing}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="91"/>
         <source>\begin{tabular}</source>
-        <translation>\begin{tabular}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="18"/>
@@ -3256,27 +3256,27 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="92"/>
         <source>New line - \\</source>
-        <translation>Αλλαγή γραμμής - \\</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="19"/>
         <source>International &amp;Accents</source>
-        <translation>Πλάτος εσοχών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="93"/>
         <source>\includegraphics{file}</source>
-        <translation>\includegraphics{file}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="94"/>
         <source>\include{file}</source>
-        <translation>\include{file}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
         <source>\input{file}</source>
-        <translation>\input{file}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="20"/>
@@ -3286,7 +3286,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="96"/>
         <source>label</source>
-        <translation>label</translation>
+        <translation>etiket</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="100"/>
@@ -3301,17 +3301,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="102"/>
         <source>Subscript - _{}</source>
-        <translation>Δείκτης - _{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>Superscript - ^{}</source>
-        <translation>Εκθέτης - ^{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="108"/>
         <source>\begin{array}</source>
-        <translation>\begin{array}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="109"/>
@@ -3389,17 +3389,17 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
         <source>Roman - \mathrm{}</source>
-        <translation>Όρθια - \mathrm{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="124"/>
         <source>Italic - \mathit{}</source>
-        <translation>Πλάγια - \mathit{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="125"/>
         <source>Bold - \mathbf{}</source>
-        <translation>Έντονα - \mathbf{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="126"/>
@@ -3409,12 +3409,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="127"/>
         <source>Typewriter - \mathtt{}</source>
-        <translation>Γραφομηχανής - \mathtt{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="128"/>
         <source>Calligraphic - \mathcal{}</source>
-        <translation>Καλλιγραφικά - \mathcal{}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
@@ -3429,82 +3429,82 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="131"/>
         <source>\overset (amsmath)</source>
-        <translation>\overset (amsmath)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="132"/>
         <source>\underset (amsmath)</source>
-        <translation>\underset (amsmath)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="133"/>
         <source>Negative - \!</source>
-        <translation>Αρνητικό - \!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="134"/>
         <source>Thin - \,</source>
-        <translation>Λεπτό - \,</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="135"/>
         <source>Medium - \:</source>
-        <translation>Μεσαίο - \:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="136"/>
         <source>Thick - \;</source>
-        <translation>Παχύ - \;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="137"/>
         <source>Interword - \ </source>
-        <translation>Διάστημα λέξεων - \ </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="138"/>
         <source>One quad - \quad</source>
-        <translation>Ένα quad - \quad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="139"/>
         <source>Two quads - \qquad</source>
-        <translation>Δύο quads - \qquad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="140"/>
         <source>ref</source>
-        <translation>ref</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="141"/>
         <source>eqref</source>
-        <translation>eqref</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="142"/>
         <source>pageref</source>
-        <translation>pageref</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="97"/>
         <source>index</source>
-        <translation>index</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="98"/>
         <source>cite</source>
-        <translation>cite</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="99"/>
         <source>footnote</source>
-        <translation>footnote</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="21"/>
         <source>Bibliography</source>
-        <translation>Βιβλιογραφία</translation>
+        <translation>Kaynakça</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="961"/>
@@ -3518,13 +3518,13 @@ options again to only view the most common settings.</source>
         <location filename="configmanager.cpp" line="961"/>
         <location filename="configmanager.cpp" line="983"/>
         <source>before word</source>
-        <translation>πριν τη λέξη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configmanager.cpp" line="967"/>
         <location filename="configmanager.cpp" line="988"/>
         <source>after word</source>
-        <translation>μετά τη λέξη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1250"/>
@@ -3539,7 +3539,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="configmanager.cpp" line="1307"/>
         <source>Menus</source>
-        <translation>Μενού</translation>
+        <translation>Menüler</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1315"/>
@@ -3550,7 +3550,7 @@ options again to only view the most common settings.</source>
         <location filename="configmanager.cpp" line="1350"/>
         <location filename="configmanager.cpp" line="2468"/>
         <source>&lt;none&gt;</source>
-        <translation>&lt;κανένα&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1396"/>
@@ -3570,7 +3570,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="configmanager.cpp" line="1418"/>
         <source>All menus</source>
-        <translation>Όλα τα μενού</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1419"/>
@@ -3596,7 +3596,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="1787"/>
         <source>Recent File %1</source>
-        <translation>Πρόσφατο αρχείο %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1788"/>
@@ -3611,7 +3611,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="1790"/>
         <source>&amp;* Open all files</source>
-        <translation>&amp;* Άνοιγμα όλων των αρχείων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1800"/>
@@ -3621,7 +3621,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="2469"/>
         <source>&lt;default&gt;</source>
-        <translation>&lt;προεπιλεγμένο&gt;</translation>
+        <translation>&lt;varsayılan&gt;</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2634"/>
@@ -3631,7 +3631,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="2641"/>
         <source>Select Program</source>
-        <translation>Επιλογή προγράμματος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2648"/>
@@ -3646,7 +3646,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="2741"/>
         <source>Add</source>
-        <translation>Προσθήκη</translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="2804"/>
@@ -3659,7 +3659,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="23"/>
         <source>Font</source>
-        <translation>Γραμματοσειρά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="79"/>
@@ -3669,17 +3669,17 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="114"/>
         <source>Tabulators &amp;&amp; Whitespaces</source>
-        <translation>Εσοχές και κενά διαστήματα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="131"/>
         <source>Tab width</source>
-        <translation>Πλάτος εσοχών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="163"/>
         <source>Show leading whitespaces</source>
-        <translation>Εμφάνιση κενών στην αρχή της γραμμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="173"/>
@@ -3689,7 +3689,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="183"/>
         <source>Show trailing whitespaces</source>
-        <translation>Εμφάνιση κενών στο τέλος της γραμμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="193"/>
@@ -3699,42 +3699,42 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="203"/>
         <source>Load &amp;&amp; Save</source>
-        <translation>Φόρτωση και αποθήκευση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="209"/>
         <source>Default encoding</source>
-        <translation>Προεπιλεγμένη κωδικοποίηση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="219"/>
         <source>Preserve line endings</source>
-        <translation>Διατήρηση τύπου τέλους γραμμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="233"/>
         <source>Local</source>
-        <translation>Τοπικό</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="238"/>
         <source>Unix/Linux</source>
-        <translation>Unix/Linux</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="243"/>
         <source>DOS/Windows</source>
-        <translation>DOS/Windows</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="248"/>
         <source>Old Mac</source>
-        <translation>Παλαιού Mac</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="256"/>
         <source>Remove trailing spaces</source>
-        <translation>Αφαίρεση κενών στο τέλος της γραμμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="266"/>
@@ -3770,7 +3770,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="encodingdialog.ui" line="14"/>
         <source>Select File Encoding</source>
-        <translation>Επιλογή κωδικοποίησης αρχείου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="20"/>
@@ -3790,7 +3790,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="encodingdialog.ui" line="41"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="48"/>
@@ -3800,12 +3800,12 @@ Do you want to remove them?</source>
     <message>
         <location filename="encodingdialog.ui" line="90"/>
         <source>File Encoding</source>
-        <translation>Κωδικοποίηση αρχείου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="95"/>
         <source>inputenc Parameter</source>
-        <translation>Παράμετρος inputenc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="98"/>
@@ -3816,7 +3816,7 @@ You have to make sure yourself that the file encoding and the value passed to th
     <message>
         <location filename="encodingdialog.cpp" line="33"/>
         <source>Select Encoding for</source>
-        <translation>Επιλέξτε κωδικοποίηση για</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="encodingdialog.cpp" line="50"/>
@@ -3837,22 +3837,22 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="filechooser.ui" line="55"/>
         <source>File</source>
-        <translation>Αρχείο</translation>
+        <translation>Dosya</translation>
     </message>
     <message>
         <location filename="filechooser.ui" line="130"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="filechooser.ui" line="137"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="filechooser.cpp" line="48"/>
         <source>Select a File</source>
-        <translation>Επιλέξτε ένα αρχείο</translation>
+        <translation>Dosya Seç</translation>
     </message>
 </context>
 <context>
@@ -3873,17 +3873,17 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/gotolinedialog.ui" line="19"/>
         <source>Goto line ...</source>
-        <translation>Πήγαινε στη γραμμή...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/gotolinedialog.ui" line="31"/>
         <source>Select the line you want to go to :</source>
-        <translation>Επιλέξτε τη γραμμή στην οποία θέλετε να πάτε:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/gotolinedialog.ui" line="57"/>
         <source>line </source>
-        <translation>γραμμή</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3896,12 +3896,12 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/gotoline.ui" line="27"/>
         <source>&amp;Go to line :</source>
-        <translation>&amp;Πήγαινε στη γραμμή:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/gotoline.ui" line="53"/>
         <source>G&amp;o</source>
-        <translation>Πή&amp;γαινε</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3909,12 +3909,12 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="grammarcheck.cpp" line="390"/>
         <source>Word repetition</source>
-        <translation>Επανάληψη λέξεων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="grammarcheck.cpp" line="400"/>
         <source>Word repetition. Distance %1</source>
-        <translation>Επανάληψη λέξεων. Απόσταση %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="grammarcheck.cpp" line="402"/>
@@ -3935,7 +3935,7 @@ Are you sure you want to undo all changes?</source>
         <location filename="help.cpp" line="110"/>
         <location filename="help.cpp" line="161"/>
         <source>texdoc not found.</source>
-        <translation>Δεν βρέθηκε το texdoc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="help.cpp" line="55"/>
@@ -3945,7 +3945,7 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="help.cpp" line="134"/>
         <source>texdoc did not respond to query on package:</source>
-        <translation>Το texdoc δεν ανταποκρίθηκε στο ερώτημα για το πακέτο:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3953,38 +3953,38 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="insertgraphics.ui" line="40"/>
         <source>File</source>
-        <translation>Αρχείο</translation>
+        <translation>Dosya</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="94"/>
         <location filename="insertgraphics.ui" line="160"/>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Ορίζει τις επιλογές για το \includegraphics[options]{file}.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="97"/>
         <source>Graphics Options</source>
-        <translation>Επιλογές γραφικών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="103"/>
         <source>Width/Height</source>
-        <translation>Πλάτος/Ύψος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="113"/>
         <source>Width</source>
-        <translation>Πλάτος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="123"/>
         <source>0.7</source>
-        <translation>0.7</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="140"/>
         <source>Height</source>
-        <translation>Ύψος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="167"/>
@@ -4039,27 +4039,27 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="insertgraphics.ui" line="299"/>
         <source>Position</source>
-        <translation>Θέση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="327"/>
         <source>Top</source>
-        <translation>Πάνω (t)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="334"/>
         <source>Bottom</source>
-        <translation>Κάτω (b)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="341"/>
         <source>Page</source>
-        <translation>Σε σελίδα (p)</translation>
+        <translation>Sayfa</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="348"/>
         <source>Here</source>
-        <translation>Εδώ (h)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="355"/>
@@ -4094,12 +4094,12 @@ Are you sure you want to undo all changes?</source>
     <message>
         <location filename="insertgraphics.ui" line="460"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="470"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="49"/>
@@ -4158,13 +4158,13 @@ The wizard does not support command </source>
     <message>
         <location filename="insertgraphics.cpp" line="415"/>
         <source>Images</source>
-        <translation>Εικόνες</translation>
+        <translation>Görüntüler</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="417"/>
         <source>Select a File</source>
         <comment>Wizard</comment>
-        <translation>Επιλέξτε ένα αρχείο</translation>
+        <translation>Dosya Seç</translation>
     </message>
 </context>
 <context>
@@ -4233,27 +4233,27 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="32"/>
         <source>MAGIC_COMMENTS</source>
-        <translation>MAGIC_COMMENTS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="33"/>
         <source>LABELS</source>
-        <translation>LABELS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="34"/>
         <source>TODO</source>
-        <translation>TODO</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="35"/>
         <source>BIBLIOGRAPHY</source>
-        <translation>BIBLIOGRAPHY</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="36"/>
         <source>BLOCKS</source>
-        <translation>BLOCKS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="2813"/>
@@ -4282,13 +4282,13 @@ The wizard does not support command </source>
         <location filename="latexdocument.cpp" line="1717"/>
         <location filename="latexdocument.cpp" line="1766"/>
         <source> (Line %1)</source>
-        <translation> (Γραμμή %1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1740"/>
         <location filename="latexdocument.cpp" line="1760"/>
         <source>Line</source>
-        <translation>Γραμμή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1743"/>
@@ -4321,7 +4321,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="421"/>
         <source>Spelling</source>
-        <translation>Ορθογραφικός έλεγχος</translation>
+        <translation>İmla</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="435"/>
@@ -4384,12 +4384,12 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2118"/>
         <source>Delete</source>
-        <translation>Διαγραφή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2151"/>
         <source>Add to Dictionary</source>
-        <translation>Προσθήκη στο λεξικό</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2328"/>
@@ -4412,7 +4412,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2351"/>
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2356"/>
@@ -4422,7 +4422,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2356"/>
         <source>Package</source>
-        <translation>Πακέτο</translation>
+        <translation>Paket</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2360"/>
@@ -4432,7 +4432,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2369"/>
         <source>not found</source>
-        <translation type="unfinished"/>
+        <translation>bulunamadı</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2385"/>
@@ -4447,7 +4447,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2394"/>
         <source>Warning:</source>
-        <translation>Προειδοποίηση:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2394"/>
@@ -4462,22 +4462,22 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2758"/>
         <source>Images</source>
-        <translation>Εικόνες</translation>
+        <translation>Görüntüler</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2888"/>
         <source>Remove Bookmark</source>
-        <translation>Αφαίρεση σελιδοδείκτη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2896"/>
         <source>Unnamed Bookmark</source>
-        <translation>Ανώνυμος σελιδοδείκτης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2901"/>
         <source>Bookmark</source>
-        <translation>Σελιδοδείκτης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2928"/>
@@ -4516,13 +4516,13 @@ The wizard does not support command </source>
         <location filename="latexlog.cpp" line="36"/>
         <location filename="latexlog.cpp" line="176"/>
         <source>error</source>
-        <translation>σφάλμα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlog.cpp" line="38"/>
         <location filename="latexlog.cpp" line="178"/>
         <source>warning</source>
-        <translation>προειδοποίηση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlog.cpp" line="40"/>
@@ -4533,27 +4533,27 @@ The wizard does not support command </source>
     <message>
         <location filename="latexlog.cpp" line="47"/>
         <source>line</source>
-        <translation>γραμμή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlog.cpp" line="63"/>
         <source>File</source>
-        <translation>Αρχείο</translation>
+        <translation>Dosya</translation>
     </message>
     <message>
         <location filename="latexlog.cpp" line="65"/>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlog.cpp" line="67"/>
         <source>Line</source>
-        <translation>Γραμμή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlog.cpp" line="69"/>
         <source>Message</source>
-        <translation>Μήνυμα</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4561,17 +4561,17 @@ The wizard does not support command </source>
     <message>
         <location filename="latexlogwidget.cpp" line="51"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Αντιγραφή</translation>
+        <translation>&amp;Kopyala</translation>
     </message>
     <message>
         <location filename="latexlogwidget.cpp" line="54"/>
         <source>&amp;Copy All</source>
-        <translation>&amp;Αντιγραφή όλων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlogwidget.cpp" line="57"/>
         <source>&amp;Copy All With Line Numbers</source>
-        <translation>&amp;Αντιγραφή όλων με αριθμούς γραμμών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlogwidget.cpp" line="74"/>
@@ -4586,17 +4586,17 @@ The wizard does not support command </source>
     <message>
         <location filename="latexlogwidget.cpp" line="88"/>
         <source>Log File</source>
-        <translation>Αρχείο Log</translation>
+        <translation>Log Dosyası</translation>
     </message>
     <message>
         <location filename="latexlogwidget.cpp" line="91"/>
         <source>Show Error</source>
-        <translation>Εμφάνιση σφάλματος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlogwidget.cpp" line="95"/>
         <source>Show Warning</source>
-        <translation>Εμφάνιση προειδοποίσης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="latexlogwidget.cpp" line="99"/>
@@ -4630,32 +4630,32 @@ The wizard does not support command </source>
     <message>
         <location filename="letterdialog.ui" line="56"/>
         <source>Encoding</source>
-        <translation>Κωδικοποίηση</translation>
+        <translation>Kodlama</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="63"/>
         <source>AMS Packages</source>
-        <translation>Πακέτα AMS</translation>
+        <translation>AMS Paketleri</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="84"/>
         <source>Paper Size</source>
-        <translation>Μέγεθος χαρτιού</translation>
+        <translation>Sayfa Boyutu</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="114"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="121"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="letterdialog.cpp" line="53"/>
         <source>Quick Letter</source>
-        <translation>Γρήγορη επιστολή</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4678,32 +4678,32 @@ The wizard does not support command </source>
     <message>
         <location filename="maketemplatedialog.ui" line="33"/>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>İsim</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="43"/>
         <source>Author</source>
-        <translation>Συγγραφέας</translation>
+        <translation>Yazar</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="53"/>
         <source>Version</source>
-        <translation>Έκδοση</translation>
+        <translation>Sürüm</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="63"/>
         <source>Description</source>
-        <translation>Περιγραφή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="77"/>
         <source>License</source>
-        <translation>Άδεια</translation>
+        <translation>Lisans</translation>
     </message>
     <message>
         <location filename="maketemplatedialog.ui" line="126"/>
         <source>LaTeX Project Public License (LPPL)</source>
-        <translation>LaTeX Project Public License (LPPL)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="maketemplatedialog.cpp" line="43"/>
@@ -4717,7 +4717,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="mathassistant.cpp" line="25"/>
         <source>TexTablet not found.</source>
-        <translation>Δεν βρέθηκε το TexTablet.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="mathassistant.cpp" line="27"/>
@@ -4742,7 +4742,7 @@ Do you want to overwrite it?</source>
         <location filename="toolwidgets.cpp" line="162"/>
         <location filename="toolwidgets.cpp" line="238"/>
         <source>Messages</source>
-        <translation>Μηνύματα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="167"/>
@@ -4754,7 +4754,7 @@ Do you want to overwrite it?</source>
         <location filename="toolwidgets.cpp" line="173"/>
         <location filename="toolwidgets.cpp" line="240"/>
         <source>Preview</source>
-        <translation>Προεπισκόπηση</translation>
+        <translation>Önizleme</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="180"/>
@@ -4768,12 +4768,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="30"/>
         <source>Text</source>
-        <translation>Κείμενο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="32"/>
         <source>Line</source>
-        <translation>Γραμμή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="34"/>
@@ -4813,12 +4813,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="48"/>
         <source>Sound</source>
-        <translation>Ήχος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="50"/>
         <source>Movie</source>
-        <translation>Ταινία</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4834,17 +4834,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="228"/>
         <source>Author</source>
-        <translation>Συγγραφέας</translation>
+        <translation>Yazar</translation>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="230"/>
         <source>Text</source>
-        <translation>Κείμενο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="232"/>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="234"/>
@@ -4859,7 +4859,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/pdfannotation.cpp" line="238"/>
         <source>Page</source>
-        <translation>Σε σελίδα (p)</translation>
+        <translation>Sayfa</translation>
     </message>
 </context>
 <context>
@@ -4867,7 +4867,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="416"/>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation>Bul</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="482"/>
@@ -4939,37 +4939,37 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2342"/>
         <source>&amp;First Page</source>
-        <translation>&amp;Πρώτη σελίδα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2344"/>
         <source>&amp;Previous Page</source>
-        <translation>Π&amp;ροηγούμενη σελίδα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2345"/>
         <source>&amp;Next Page</source>
-        <translation>&amp;Επόμενη σελίδα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2347"/>
         <source>&amp;Last Page</source>
-        <translation>&amp;Τελευταία σελίδα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2349"/>
         <source>&amp;Go to Page...</source>
-        <translation>Πή&amp;γαινε στη σελίδα...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2351"/>
         <source>Zoom &amp;In</source>
-        <translation>Μεγέθυνση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2352"/>
         <source>Zoom &amp;Out</source>
-        <translation>Σμίκρυνση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2358"/>
@@ -4989,7 +4989,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2322"/>
         <source>&amp;Close</source>
-        <translation>&amp;Κλείσιμο</translation>
+        <translation>&amp;Kapat</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2404"/>
@@ -5059,12 +5059,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2402"/>
         <source>Find &amp;again</source>
-        <translation>Εύρεση &amp;ξανά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2400"/>
         <source>New Window</source>
-        <translation>Νέο παράθυρο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2386"/>
@@ -5084,7 +5084,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2366"/>
         <source>Presentation</source>
-        <translation>Παρουσίαση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2360"/>
@@ -5094,17 +5094,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2320"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Άνοιγμα</translation>
+        <translation>&amp;Aç...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2343"/>
         <source>Back</source>
-        <translation>Πίσω</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2346"/>
         <source>Forward</source>
-        <translation>Εμπρός</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2370"/>
@@ -5124,7 +5124,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2334"/>
         <source>Invert Colors</source>
-        <translation>Αντιστροφή χρωμάτων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2398"/>
@@ -5149,12 +5149,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2310"/>
         <source>&amp;Help</source>
-        <translation>&amp;Βοήθεια</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2304"/>
         <source>&amp;File</source>
-        <translation>&amp;Αρχείο</translation>
+        <translation>&amp;Dosya</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2309"/>
@@ -5169,17 +5169,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2307"/>
         <source>Grid</source>
-        <translation>Πλέγμα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2308"/>
         <source>&amp;Window</source>
-        <translation>&amp;Παράθυρο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2305"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Επεξεργασία</translation>
+        <translation>&amp;Düzenle</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2319"/>
@@ -5220,27 +5220,27 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocument.cpp" line="2544"/>
         <source>of</source>
         <comment>separator for page number: 1 of 3</comment>
-        <translation>από</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2567"/>
         <source>Scale</source>
-        <translation>Κλίμακα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2585"/>
         <source>Zoom Out</source>
-        <translation>Σμίκρυνση</translation>
+        <translation>Uzaklaştır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2595"/>
         <source>Zoom</source>
-        <translation>Αλλαγή κλίμακας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2604"/>
         <source>Zoom In</source>
-        <translation>Μεγέθυνση</translation>
+        <translation>Yakınlaştır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2632"/>
@@ -5267,7 +5267,7 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocument.cpp" line="2966"/>
         <location filename="pdfviewer/PDFDocument.cpp" line="4118"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation>Kapat</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2969"/>
@@ -5324,32 +5324,32 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3439"/>
         <source>SyncTeX: &quot;%1&quot;</source>
-        <translation>SyncTeX: &quot;%1&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3569"/>
         <source>%1[*] - %2</source>
-        <translation>%1[*] - %2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3647"/>
         <source>Page %1 of %2</source>
-        <translation>Σελίδα %1 από %2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3648"/>
         <source>Pages %1 to %2 of %3</source>
-        <translation>Σελίδες %1 ως %2 από %3</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3673"/>
         <source>Open PDF</source>
-        <translation>Άνοιγμα PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3953"/>
         <source>Print</source>
-        <translation>Εκτύπωση</translation>
+        <translation>Yazdır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="4119"/>
@@ -5362,22 +5362,22 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="364"/>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>İsim</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="364"/>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="364"/>
         <source>Subset</source>
-        <translation>Υποσύνολο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="364"/>
         <source>File</source>
-        <translation>Αρχείο</translation>
+        <translation>Dosya</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="381"/>
@@ -5387,12 +5387,12 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="386"/>
         <source>yes</source>
-        <translation>ναι</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="386"/>
         <source>no</source>
-        <translation>όχι</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="387"/>
@@ -5402,7 +5402,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.h" line="203"/>
         <source>Fonts</source>
-        <translation>Γραμματοσειρές</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5410,7 +5410,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.h" line="145"/>
         <source>PDF Info</source>
-        <translation>Πληροφορίες PDF</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5418,17 +5418,17 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="372"/>
         <source>File %1 does not exists</source>
-        <translation>Το αρχείο %1 δεν υπάρχει</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="378"/>
         <source>&amp;Play</source>
-        <translation>&amp;Αναπαραγωγή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="379"/>
         <source>P&amp;ause</source>
-        <translation>Π&amp;αύση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="380"/>
@@ -5438,7 +5438,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="382"/>
         <source>S&amp;eek</source>
-        <translation>Ανα&amp;ζήτηση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="383"/>
@@ -5490,12 +5490,12 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.cpp" line="41"/>
         <source>Save PDF</source>
-        <translation>Αποθήκευση PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="52"/>
         <source>Open PDF</source>
-        <translation>Άνοιγμα PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="124"/>
@@ -5510,12 +5510,12 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.cpp" line="247"/>
         <source>From:</source>
-        <translation>Από:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="252"/>
         <source>To:</source>
-        <translation>Έως:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -5538,7 +5538,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.ui" line="87"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="96"/>
@@ -5556,17 +5556,17 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="521"/>
         <source>Zoom In</source>
-        <translation>Μεγέθυνση</translation>
+        <translation>Yakınlaştır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="523"/>
         <source>Zoom Out</source>
-        <translation>Σμίκρυνση</translation>
+        <translation>Uzaklaştır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="526"/>
         <source>Actual Size</source>
-        <translation type="unfinished"/>
+        <translation>Gerçek Boyut</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="529"/>
@@ -5581,27 +5581,27 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1024"/>
         <source>Error</source>
-        <translation>Σφάλμα</translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1024"/>
         <source>Could not open link:</source>
-        <translation type="unfinished"/>
+        <translation>Şu link açılamadı:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1135"/>
         <source>Go to Source</source>
-        <translation type="unfinished"/>
+        <translation>Kaynağa Git</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1774"/>
         <source>Go to Page</source>
-        <translation type="unfinished"/>
+        <translation>Sayfaya Git</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1775"/>
         <source>Page number:</source>
-        <translation>Αριθμός σελίδας:</translation>
+        <translation>Sayfa numarası:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2103"/>
@@ -5611,7 +5611,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2103"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
 </context>
 <context>
@@ -5619,27 +5619,27 @@ You can now enter the password:</source>
     <message>
         <location filename="toolwidgets.cpp" line="125"/>
         <source>Zoom In</source>
-        <translation>Μεγέθυνση</translation>
+        <translation>Yakınlaştır</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="126"/>
         <source>Zoom Out</source>
-        <translation>Σμίκρυνση</translation>
+        <translation>Uzaklaştır</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="127"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"/>
+        <translation>Büyütmeyi Sıfırla</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="128"/>
         <source>Fit</source>
-        <translation type="unfinished"/>
+        <translation>Sığdır</translation>
     </message>
     <message>
         <location filename="toolwidgets.cpp" line="132"/>
         <source>Center</source>
-        <translation>Κέντρο</translation>
+        <translation>Orta</translation>
     </message>
 </context>
 <context>
@@ -5657,12 +5657,12 @@ You can now enter the password:</source>
     <message>
         <location filename="buildmanager.cpp" line="2357"/>
         <source>Process started: %1</source>
-        <translation type="unfinished"/>
+        <translation>İşlem başladı: %1</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2363"/>
         <source>Error: Could not start the command: %1</source>
-        <translation type="unfinished"/>
+        <translation>Hata: %1 komutu çalıştırılamadı</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2366"/>
@@ -5690,7 +5690,7 @@ You can now enter the password:</source>
     <message>
         <location filename="codesnippet.cpp" line="311"/>
         <source>Select a File</source>
-        <translation>Επιλέξτε ένα αρχείο</translation>
+        <translation>Dosya Seç</translation>
     </message>
     <message>
         <location filename="utilsUI.cpp" line="94"/>
@@ -5744,7 +5744,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="778"/>
         <source>Failure</source>
-        <translation>Αποτυχία</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="798"/>
@@ -5787,13 +5787,13 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="524"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1429"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Αναίρεση</translation>
+        <translation>&amp;Geri al</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="535"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1430"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Επανάληψη</translation>
+        <translation>&amp;İleri al</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="550"/>
@@ -5805,13 +5805,13 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="561"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1433"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Αντιγραφή</translation>
+        <translation>&amp;Kopyala</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="572"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1434"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Επικόλληση</translation>
+        <translation>&amp;Yapıştır</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="588"/>
@@ -5896,12 +5896,12 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="730"/>
         <source>Local</source>
-        <translation>Τοπικό</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="731"/>
         <source>Unix/Linux</source>
-        <translation>Unix/Linux</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="732"/>
@@ -5911,7 +5911,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="733"/>
         <source>Old Mac</source>
-        <translation>Παλαιού Mac</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="918"/>
@@ -5997,7 +5997,7 @@ You'll find a copy at
         <location filename="qcodeedit/lib/qeditor.cpp" line="1221"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1225"/>
         <source>File deleted</source>
-        <translation type="unfinished"/>
+        <translation>Dosya siliindi</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1221"/>
@@ -6036,49 +6036,49 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1459"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Επεξεργασία</translation>
+        <translation>&amp;Düzenle</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1460"/>
         <source>&amp;Search</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1462"/>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1463"/>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation>Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1585"/>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1587"/>
         <source>Unix</source>
-        <translation type="unfinished"/>
+        <translation>Unix</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4559"/>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Yok</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4560"/>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4562"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4578"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4594"/>
         <source>Internal</source>
-        <translation type="unfinished"/>
+        <translation>Dahili</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4564"/>
@@ -6223,7 +6223,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4600"/>
         <source>New line</source>
-        <translation type="unfinished"/>
+        <translation>Yeni satır</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4602"/>
@@ -6233,57 +6233,57 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4603"/>
         <source>Undo</source>
-        <translation type="unfinished"/>
+        <translation>Geri Al</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4604"/>
         <source>Redo</source>
-        <translation type="unfinished"/>
+        <translation>İleri Al</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4605"/>
         <source>Copy</source>
-        <translation>Αντιγραφή</translation>
+        <translation>Kopyala</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4606"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Yapıştır</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4607"/>
         <source>Cut</source>
-        <translation>Αποκοπή</translation>
+        <translation>Kes</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4608"/>
         <source>Print</source>
-        <translation>Εκτύπωση</translation>
+        <translation>Yazdır</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4609"/>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Hepsini Seç</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4610"/>
         <source>Find</source>
-        <translation type="unfinished"/>
+        <translation>Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4611"/>
         <source>Find next</source>
-        <translation>Εύρεση επόμενου</translation>
+        <translation>Sonrakini Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4612"/>
         <source>Find previous</source>
-        <translation>Εύρεση προηγούμενου</translation>
+        <translation>Öncekini Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4613"/>
         <source>Replace</source>
-        <translation>Αντικατάσταση</translation>
+        <translation>Değiştir</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4615"/>
@@ -6348,7 +6348,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4629"/>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen</translation>
     </message>
 </context>
 <context>
@@ -6365,17 +6365,17 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="143"/>
         <source>background</source>
-        <translation type="unfinished"/>
+        <translation>arkaplan</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="144"/>
         <source>line:error</source>
-        <translation type="unfinished"/>
+        <translation>satır:hata</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="145"/>
         <source>line:warning</source>
-        <translation type="unfinished"/>
+        <translation>satır:uyarı</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="146"/>
@@ -6385,57 +6385,57 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="147"/>
         <source>line:bookmark</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="148"/>
         <source>line:bookmark0</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi0</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="149"/>
         <source>line:bookmark1</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi1</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="150"/>
         <source>line:bookmark2</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi2</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="151"/>
         <source>line:bookmark3</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi3</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="152"/>
         <source>line:bookmark4</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi4</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="153"/>
         <source>line:bookmark5</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi5</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="154"/>
         <source>line:bookmark6</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi6</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="155"/>
         <source>line:bookmark7</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi7</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="156"/>
         <source>line:bookmark8</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi8</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="157"/>
         <source>line:bookmark9</source>
-        <translation type="unfinished"/>
+        <translation>satır:yer imi9</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="158"/>
@@ -6450,27 +6450,27 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="160"/>
         <source>comment</source>
-        <translation type="unfinished"/>
+        <translation>yorum</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="161"/>
         <source>keyword</source>
-        <translation type="unfinished"/>
+        <translation>anahtar kelime</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="162"/>
         <source>extra-keyword</source>
-        <translation type="unfinished"/>
+        <translation>ekstra-anahtar kelime</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="163"/>
         <source>math-keyword</source>
-        <translation type="unfinished"/>
+        <translation>mat-anahtar kelime</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="164"/>
         <source>link</source>
-        <translation type="unfinished"/>
+        <translation>bağlantı</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="165"/>
@@ -6505,7 +6505,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="171"/>
         <source>picture</source>
-        <translation type="unfinished"/>
+        <translation>resim</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="172"/>
@@ -6525,22 +6525,22 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="175"/>
         <source>search</source>
-        <translation>αναζήτηση</translation>
+        <translation>arama</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="176"/>
         <source>numbers</source>
-        <translation type="unfinished"/>
+        <translation>numaralar</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="177"/>
         <source>math-delimiter</source>
-        <translation type="unfinished"/>
+        <translation>mat-sınırlayıcı</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="178"/>
         <source>text</source>
-        <translation type="unfinished"/>
+        <translation>yazı</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="179"/>
@@ -6570,7 +6570,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="184"/>
         <source>grammarMistake</source>
-        <translation type="unfinished"/>
+        <translation>gramerHatası</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="185"/>
@@ -6605,7 +6605,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="191"/>
         <source>environment</source>
-        <translation type="unfinished"/>
+        <translation>ortam</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="192"/>
@@ -6645,17 +6645,17 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="199"/>
         <source>structure</source>
-        <translation type="unfinished"/>
+        <translation>yapı</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="200"/>
         <source>current</source>
-        <translation type="unfinished"/>
+        <translation>geçerli</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="201"/>
         <source>selection</source>
-        <translation type="unfinished"/>
+        <translation>seçim</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="202"/>
@@ -6815,7 +6815,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="233"/>
         <source>normal</source>
-        <translation type="unfinished"/>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="57"/>
@@ -6825,22 +6825,22 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="58"/>
         <source>Bold</source>
-        <translation type="unfinished"/>
+        <translation>Kalın</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="60"/>
         <source>Italic</source>
-        <translation type="unfinished"/>
+        <translation>İtalik</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="62"/>
         <source>Underline</source>
-        <translation type="unfinished"/>
+        <translation>Altıçizili</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="64"/>
         <source>Overline</source>
-        <translation type="unfinished"/>
+        <translation>Üstüçizili</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="66"/>
@@ -6855,12 +6855,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="70"/>
         <source>Text color (aka foreground)</source>
-        <translation type="unfinished"/>
+        <translation>Yazı rengi (Önplan)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="72"/>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Arkaplan rengi</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="74"/>
@@ -6870,12 +6870,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="76"/>
         <source>Font Family</source>
-        <translation type="unfinished"/>
+        <translation>Yazı Tipi Ailesi</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="77"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>Boyut</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="78"/>
@@ -6899,12 +6899,12 @@ Note: If the size is larger that the line spacing, characters may be clipped.</s
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="322"/>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="553"/>
         <source>&lt;default&gt;</source>
-        <translation>&lt;προεπιλεγμένο&gt;</translation>
+        <translation>&lt;varsayılan&gt;</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="591"/>
         <source>Unsaved changes</source>
-        <translation type="unfinished"/>
+        <translation>Kaydedilmeyen değişiklikler</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qformatconfig.cpp" line="592"/>
@@ -6923,7 +6923,7 @@ Do you want them to be saved?</source>
     <message>
         <location filename="qcodeedit/lib/qlanguagefactory.cpp" line="88"/>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>Tüm dosyalar (*)</translation>
     </message>
 </context>
 <context>
@@ -6934,7 +6934,7 @@ Do you want them to be saved?</source>
         <location filename="tests/codesnippet_t.cpp" line="56"/>
         <location filename="tests/codesnippet_t.cpp" line="358"/>
         <source>*environment-name*</source>
-        <translation type="unfinished"/>
+        <translation>*ortam-adı*</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="239"/>
@@ -6942,17 +6942,17 @@ Do you want them to be saved?</source>
         <location filename="tests/codesnippet_t.cpp" line="140"/>
         <location filename="tests/codesnippet_t.cpp" line="437"/>
         <source>content...</source>
-        <translation type="unfinished"/>
+        <translation>içerik...</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="263"/>
         <source>label</source>
-        <translation>label</translation>
+        <translation>etiket</translation>
     </message>
     <message>
         <location filename="codesnippet.cpp" line="263"/>
         <source>description</source>
-        <translation>περιγραφή</translation>
+        <translation>tanım</translation>
     </message>
     <message>
         <location filename="latexoutputfilter.cpp" line="49"/>
@@ -6962,12 +6962,12 @@ Do you want them to be saved?</source>
     <message>
         <location filename="latexoutputfilter.cpp" line="52"/>
         <source>Warning: </source>
-        <translation>Προειδοποίηση:</translation>
+        <translation>Uyarı:</translation>
     </message>
     <message>
         <location filename="latexoutputfilter.cpp" line="55"/>
         <source>Error: </source>
-        <translation>Σφάλμα:</translation>
+        <translation>Hata:</translation>
     </message>
 </context>
 <context>
@@ -7035,12 +7035,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="305"/>
         <source>Find next</source>
-        <translation>Εύρεση επόμενου</translation>
+        <translation>Sonrakini Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="306"/>
         <source>Find previous</source>
-        <translation>Εύρεση προηγούμενου</translation>
+        <translation>Öncekini Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="307"/>
@@ -7050,38 +7050,38 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="308"/>
         <source>Replacement text</source>
-        <translation>Κείμενο αντικατάστασης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="309"/>
         <source>Replace and find next</source>
-        <translation>Αντικατάσταση και εύρεση επόμενου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="310"/>
         <source>Replace and find previous</source>
-        <translation>Αντικατάσταση και εύρεση προηγούμενου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="311"/>
         <source>Replace all</source>
-        <translation>Αντικατάσταση όλων</translation>
+        <translation>Tümünü değiştir</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="313"/>
         <source>Find:</source>
-        <translation>Αναζήτηση:</translation>
+        <translation>Bul:</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="314"/>
         <source>Replace:</source>
-        <translation>Αντικατάσταση:</translation>
+        <translation>Değiştir:</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="557"/>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="562"/>
         <source>Count result</source>
-        <translation type="unfinished"/>
+        <translation>Sonucu say</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="557"/>
@@ -7099,39 +7099,39 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="128"/>
         <source>Line: %1</source>
-        <translation>Γραμμή: %1</translation>
+        <translation>Satır: %1</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="129"/>
         <source>Column: %1</source>
-        <translation>Στήλη: %1</translation>
+        <translation>Sütun: %1</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="133"/>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="139"/>
         <source>Selected: %1</source>
-        <translation type="unfinished"/>
+        <translation>Seçili: %1</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="140"/>
         <source>Lines: %1</source>
-        <translation>Γραμμές: %1</translation>
+        <translation>Satırlar: %1</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation type="unfinished"/>
+        <translation>RTL</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
         <source>(%1 min %2 s ago)</source>
-        <translation>(%1 λεπτά %2 δευτ. πριν)</translation>
+        <translation>(%1 dk %2 sn önce)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="172"/>
         <source>OVERWRITE</source>
-        <translation type="unfinished"/>
+        <translation>ÜSTÜNE YAZ</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="172"/>
@@ -7193,17 +7193,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickbeamerdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Diyalog</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="22"/>
         <source>AMS Packages</source>
-        <translation>Πακέτα AMS</translation>
+        <translation>AMS Paketleri</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="29"/>
         <source>Encoding</source>
-        <translation>Κωδικοποίηση</translation>
+        <translation>Kodlama</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="39"/>
@@ -7213,32 +7213,32 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickbeamerdialog.ui" line="46"/>
         <source>babel Package</source>
-        <translation>Πακέτο babel</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="59"/>
         <source>graphicx Package</source>
-        <translation>Πακέτο graphicx</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="66"/>
         <source>Title</source>
-        <translation>Τίτλος</translation>
+        <translation>Başlık</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="79"/>
         <source>Author</source>
-        <translation>Συγγραφέας</translation>
+        <translation>Yazar</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="86"/>
         <source>Theme</source>
-        <translation>Θέμα εμφάνισης</translation>
+        <translation>Tema</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.cpp" line="27"/>
         <source>Quick Beamer Presentation</source>
-        <translation>Γρήγορη παρουσίαση Beamer</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7246,42 +7246,42 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickdocumentdialog.ui" line="44"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="51"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="64"/>
         <source>Class Options</source>
-        <translation type="unfinished"/>
+        <translation>Sınıf Seçenekleri</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="84"/>
         <source>Other Options</source>
-        <translation>Άλλες επιλογές</translation>
+        <translation>Diğer Seçenekler</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="97"/>
         <source>Author</source>
-        <translation>Συγγραφέας</translation>
+        <translation>Yazar</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="124"/>
         <source>Document Class</source>
-        <translation type="unfinished"/>
+        <translation>Belge Sınıfı</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="154"/>
         <source>Title</source>
-        <translation>Τίτλος</translation>
+        <translation>Başlık</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="161"/>
         <source>AMS Packages</source>
-        <translation>Πακέτα AMS</translation>
+        <translation>AMS Paketleri</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="191"/>
@@ -7291,37 +7291,37 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickdocumentdialog.ui" line="221"/>
         <source>Encoding</source>
-        <translation>Κωδικοποίηση</translation>
+        <translation>Kodlama</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="237"/>
         <source>Paper Size</source>
-        <translation>Μέγεθος χαρτιού</translation>
+        <translation>Sayfa Boyutu</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="246"/>
         <source>makeidx Package</source>
-        <translation>Πακέτο makeidx</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="253"/>
         <source>graphicx Package</source>
-        <translation>Πακέτο graphicx</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="265"/>
         <source>Geometry</source>
-        <translation>Γεωμετρία</translation>
+        <translation>Geometri</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="293"/>
         <source>Page</source>
-        <translation>Σε σελίδα (p)</translation>
+        <translation>Sayfa</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="299"/>
         <source>Width:</source>
-        <translation>Πλάτος:</translation>
+        <translation>Genişlik:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="309"/>
@@ -7377,42 +7377,42 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="quickdocumentdialog.ui" line="562"/>
         <location filename="quickdocumentdialog.ui" line="624"/>
         <source>in</source>
-        <translation>in</translation>
+        <translation>inç</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="396"/>
         <source>Height:</source>
-        <translation>Ύψος:</translation>
+        <translation>Yükseklik:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="406"/>
         <source>Margins</source>
-        <translation>Περιθώρια</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="412"/>
         <source>Left:</source>
-        <translation>Αριστερά:</translation>
+        <translation>Sol:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="467"/>
         <source>Right:</source>
-        <translation>Δεξιά:</translation>
+        <translation>Sağ:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="570"/>
         <source>Top:</source>
-        <translation>Πάνω:</translation>
+        <translation>Üst:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="577"/>
         <source>Bottom:</source>
-        <translation>Κάτω:</translation>
+        <translation>Alt:</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.cpp" line="55"/>
         <source>Quick Start</source>
-        <translation>Γρήγορη εκκίνηση</translation>
+        <translation>Hızlı Başlangıç</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.cpp" line="403"/>
@@ -7420,7 +7420,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
         <location filename="quickdocumentdialog.cpp" line="425"/>
         <location filename="quickdocumentdialog.cpp" line="436"/>
         <source>New:</source>
-        <translation type="unfinished"/>
+        <translation>Yeni:</translation>
     </message>
 </context>
 <context>
@@ -7428,12 +7428,12 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="randomtextgenerator.ui" line="14"/>
         <source>Random Text Generator</source>
-        <translation type="unfinished"/>
+        <translation>Rastgele Yazı Üreteci</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="20"/>
         <source>Options</source>
-        <translation>Επιλογές</translation>
+        <translation>Özellikler</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="26"/>
@@ -7453,17 +7453,17 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="randomtextgenerator.ui" line="66"/>
         <source>Length:</source>
-        <translation type="unfinished"/>
+        <translation>Uzunluk:</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="86"/>
         <source>Generate</source>
-        <translation type="unfinished"/>
+        <translation>Üret</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="93"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation>Kapat</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="113"/>
@@ -7494,7 +7494,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="randomtextgenerator.ui" line="201"/>
         <source>Punctation</source>
-        <translation>Στίξη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="randomtextgenerator.ui" line="208"/>
@@ -7504,7 +7504,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="randomtextgenerator.ui" line="218"/>
         <source>Save to:</source>
-        <translation>Αποθήκευση σε:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="44"/>
@@ -7596,7 +7596,7 @@ Do you trust this script?</source>
         <location filename="searchquery.cpp" line="7"/>
         <location filename="searchquery.cpp" line="14"/>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation>Bul</translation>
     </message>
 </context>
 <context>
@@ -7604,12 +7604,12 @@ Do you trust this script?</source>
     <message>
         <location filename="searchresultmodel.cpp" line="211"/>
         <source>File closed</source>
-        <translation>Το αρχείο έκλεισε</translation>
+        <translation>Dosya kapatıldı</translation>
     </message>
     <message>
         <location filename="searchresultmodel.cpp" line="386"/>
         <source>Results</source>
-        <translation>Αποτελέσματα</translation>
+        <translation>Sonuçlar</translation>
     </message>
 </context>
 <context>
@@ -7617,17 +7617,17 @@ Do you trust this script?</source>
     <message>
         <location filename="searchresultwidget.cpp" line="18"/>
         <source>Current Doc</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli Belge</translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="19"/>
         <source>All Docs</source>
-        <translation type="unfinished"/>
+        <translation>Tüm Belgeler</translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="20"/>
         <source>Project</source>
-        <translation>Έργο</translation>
+        <translation>Proje</translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="28"/>
@@ -7637,12 +7637,12 @@ Do you trust this script?</source>
     <message>
         <location filename="searchresultwidget.cpp" line="31"/>
         <source>Replace all</source>
-        <translation>Αντικατάσταση όλων</translation>
+        <translation>Tümünü değiştir</translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="38"/>
         <source>Replace by:</source>
-        <translation>Αντικατάσταση από:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="59"/>
@@ -7657,7 +7657,7 @@ Do you trust this script?</source>
     <message>
         <location filename="searchresultwidget.cpp" line="65"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Temizle</translation>
     </message>
 </context>
 <context>
@@ -7665,12 +7665,12 @@ Do you trust this script?</source>
     <message>
         <location filename="configdialog.cpp" line="36"/>
         <source>&lt;default&gt;</source>
-        <translation>&lt;προεπιλεγμένο&gt;</translation>
+        <translation>&lt;varsayılan&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="37"/>
         <source>&lt;none&gt;</source>
-        <translation>&lt;κανένα&gt;</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7688,17 +7688,17 @@ Do you trust this script?</source>
     <message>
         <location filename="configdialog.cpp" line="190"/>
         <source>&lt;none&gt;</source>
-        <translation>&lt;κανένα&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.cpp" line="268"/>
         <source>delete row</source>
-        <translation>διαγραφή γραμμής</translation>
+        <translation>satır sil</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="274"/>
         <source>add row</source>
-        <translation>προσθήκη γραμμής</translation>
+        <translation>satır ekle</translation>
     </message>
 </context>
 <context>
@@ -7706,38 +7706,38 @@ Do you trust this script?</source>
     <message>
         <location filename="spellerdialog.ui" line="14"/>
         <source>Check Spelling</source>
-        <translation>Ορθογραφικός έλεγχος</translation>
+        <translation>İmla Kontrolü</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="43"/>
         <source>Unknown Word</source>
-        <translation>Άγνωστη λέξη</translation>
+        <translation>Bilinmeyen Kelime</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="60"/>
         <source>Replace with</source>
-        <translation>Αντικατάσταση με</translation>
+        <translation>Şununla değiştir</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="67"/>
         <source>Suggested Words</source>
-        <translation>Προτεινόμενες λέξεις</translation>
+        <translation>Önerilen Kelimeler</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="77"/>
         <source>Replace</source>
-        <translation>Αντικατάσταση</translation>
+        <translation>Değiştir</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="87"/>
         <source>Ignore</source>
-        <translation type="unfinished"/>
+        <translation>Önemseme</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="94"/>
         <location filename="spellerdialog.ui" line="123"/>
         <source>Add</source>
-        <translation>Προσθήκη</translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="108"/>
@@ -7747,12 +7747,12 @@ Do you trust this script?</source>
     <message>
         <location filename="spellerdialog.ui" line="134"/>
         <source>Remove</source>
-        <translation>Αφαίρεση</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="154"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation>Kapat</translation>
     </message>
     <message>
         <location filename="spellerdialog.ui" line="176"/>
@@ -7788,7 +7788,7 @@ Do you trust this script?</source>
         <location filename="spellerdialog.cpp" line="245"/>
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
-        <translation>&lt;νέο&gt;</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -7823,22 +7823,22 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolgridwidget.cpp" line="232"/>
         <source>Command: </source>
-        <translation>Εντολή:</translation>
+        <translation>Komut:</translation>
     </message>
     <message>
         <location filename="symbolgridwidget.cpp" line="245"/>
         <source>Package: </source>
-        <translation>Πακέτο:</translation>
+        <translation>Paket:</translation>
     </message>
     <message>
         <location filename="symbolgridwidget.cpp" line="247"/>
         <source>Packages: </source>
-        <translation>Πακέτα:</translation>
+        <translation>Paketler:</translation>
     </message>
     <message>
         <location filename="symbolgridwidget.cpp" line="258"/>
         <source>Unicode Character: </source>
-        <translation>Χαρακτήρας Unicode:</translation>
+        <translation>Unicode Karakter:</translation>
     </message>
 </context>
 <context>
@@ -7846,17 +7846,17 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="493"/>
         <source>no error</source>
-        <translation>κανένα σφάλμα</translation>
+        <translation>hata yok</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="493"/>
         <source>unrecognized command</source>
-        <translation type="unfinished"/>
+        <translation>bilinmeyen komut</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="493"/>
         <source>unrecognized math command</source>
-        <translation type="unfinished"/>
+        <translation>bilinmeyen mat komutu</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="493"/>
@@ -7891,7 +7891,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>\\ missing</source>
-        <translation>λείπει \\</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
@@ -7901,7 +7901,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>environment not closed</source>
-        <translation type="unfinished"/>
+        <translation>ortam kapatılmadı</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
@@ -7916,7 +7916,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>bilinmeyen</translation>
     </message>
 </context>
 <context>
@@ -7924,77 +7924,77 @@ Do you trust this script?</source>
     <message>
         <location filename="tabdialog.ui" line="37"/>
         <source>Num of Columns</source>
-        <translation>Πλήθος στηλών</translation>
+        <translation>Sütun Sayısı</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="78"/>
         <source>Columns</source>
-        <translation type="unfinished"/>
+        <translation>Sütunlar</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="86"/>
         <source>Column :</source>
-        <translation type="unfinished"/>
+        <translation>Sütun :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="113"/>
         <source>Alignment :</source>
-        <translation>Στοίχιση:</translation>
+        <translation>Hizalama :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="127"/>
         <source>Left Border :</source>
-        <translation type="unfinished"/>
+        <translation>Sol Kenar :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="167"/>
         <source>Apply to all columns</source>
-        <translation type="unfinished"/>
+        <translation>Tüm sütunlara uygula</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="194"/>
         <source>Right Border (last column) :</source>
-        <translation type="unfinished"/>
+        <translation>Sağ Kenar (son sütun) :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="232"/>
         <source>Num of Rows</source>
-        <translation>Πλήθος γραμμών</translation>
+        <translation>Satır Sayısı</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="263"/>
         <source>Rows</source>
-        <translation type="unfinished"/>
+        <translation>Satırlar</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="271"/>
         <source>Row :</source>
-        <translation type="unfinished"/>
+        <translation>Satır :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="296"/>
         <source>Top Border</source>
-        <translation type="unfinished"/>
+        <translation>Üst Kenar</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="305"/>
         <source>Merge columns :</source>
-        <translation type="unfinished"/>
+        <translation>Sütunları Birleştir :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="321"/>
         <source>-&gt;</source>
-        <translation type="unfinished"/>
+        <translation>-&gt;</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="364"/>
         <source>Apply to all rows</source>
-        <translation type="unfinished"/>
+        <translation>Tüm satırlara uygula</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="389"/>
         <source>Bottom Border (last row)</source>
-        <translation type="unfinished"/>
+        <translation>Alt Kenar (son satır)</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="396"/>
@@ -8005,19 +8005,19 @@ Do you trust this script?</source>
         <location filename="tabdialog.cpp" line="55"/>
         <source>Center</source>
         <comment>tabular alignment</comment>
-        <translation>Κέντρο</translation>
+        <translation>Orta</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="56"/>
         <source>Left</source>
         <comment>tabular alignment</comment>
-        <translation>Αριστερά</translation>
+        <translation>Sol</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="57"/>
         <source>Right</source>
         <comment>tabular alignment</comment>
-        <translation>Δεξιά</translation>
+        <translation>Sağ</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="58"/>
@@ -8047,7 +8047,7 @@ Do you trust this script?</source>
         <location filename="tabdialog.cpp" line="66"/>
         <source>None</source>
         <comment>tabular left border</comment>
-        <translation type="unfinished"/>
+        <translation>Yok</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="67"/>
@@ -8059,7 +8059,7 @@ Do you trust this script?</source>
         <location filename="tabdialog.cpp" line="72"/>
         <source>None</source>
         <comment>tabular right border</comment>
-        <translation type="unfinished"/>
+        <translation>Yok</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="73"/>
@@ -8070,7 +8070,7 @@ Do you trust this script?</source>
     <message>
         <location filename="tabdialog.cpp" line="109"/>
         <source>Quick Tabular</source>
-        <translation>Γρήγορο Tabular</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8078,32 +8078,32 @@ Do you trust this script?</source>
     <message>
         <location filename="tabbingdialog.ui" line="43"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="tabbingdialog.ui" line="50"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="tabbingdialog.ui" line="75"/>
         <source>Spacing</source>
-        <translation type="unfinished"/>
+        <translation>Boşluk</translation>
     </message>
     <message>
         <location filename="tabbingdialog.ui" line="90"/>
         <source>Num of Rows</source>
-        <translation>Πλήθος γραμμών</translation>
+        <translation>Satır Sayısı</translation>
     </message>
     <message>
         <location filename="tabbingdialog.ui" line="105"/>
         <source>Num of Columns</source>
-        <translation>Πλήθος στηλών</translation>
+        <translation>Sütun Sayısı</translation>
     </message>
     <message>
         <location filename="tabbingdialog.cpp" line="26"/>
         <source>Quick Tabbing</source>
-        <translation>Γρήγορο Tabbing</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8157,7 +8157,7 @@ failed.</source>
         <location filename="templatemanager.cpp" line="146"/>
         <location filename="templatemanager.cpp" line="223"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı</translation>
     </message>
     <message>
         <location filename="templatemanager.cpp" line="148"/>
@@ -8191,7 +8191,7 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="34"/>
         <source>No Preview</source>
-        <translation type="unfinished"/>
+        <translation>Ön İzleme Yok</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="85"/>
@@ -8201,7 +8201,7 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="150"/>
         <source>Select Target Folder</source>
-        <translation type="unfinished"/>
+        <translation>Hedef Dosyayı Seç</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="180"/>
@@ -8211,17 +8211,17 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="183"/>
         <source>Date</source>
-        <translation>Ημερομηνία</translation>
+        <translation>Tarih</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="184"/>
         <source>Version</source>
-        <translation>Έκδοση</translation>
+        <translation>Sürüm</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="185"/>
         <source>License</source>
-        <translation>Άδεια</translation>
+        <translation>Lisans</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="219"/>
@@ -8236,7 +8236,7 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="221"/>
         <source>Remove</source>
-        <translation>Αφαίρεση</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="224"/>
@@ -8253,7 +8253,7 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="265"/>
         <source>Please Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen Doğrulayın</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="265"/>
@@ -8287,12 +8287,12 @@ failed.</source>
     <message>
         <location filename="texdocdialog.ui" line="77"/>
         <source>Package:</source>
-        <translation>Πακέτο:</translation>
+        <translation>Paket:</translation>
     </message>
     <message>
         <location filename="texdocdialog.ui" line="113"/>
         <source>Description:</source>
-        <translation>Περιγραφή:</translation>
+        <translation>Tanım:</translation>
     </message>
     <message>
         <location filename="texdocdialog.cpp" line="93"/>
@@ -8305,54 +8305,54 @@ failed.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="234"/>
         <source>Custom</source>
-        <translation type="unfinished"/>
+        <translation>Özel</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="235"/>
         <source>File</source>
-        <translation>Αρχείο</translation>
+        <translation>Dosya</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="236"/>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="237"/>
         <source>Tools</source>
-        <translation>Εργαλεία</translation>
+        <translation>Araçlar</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="238"/>
         <source>Math</source>
-        <translation>Μαθηματικά</translation>
+        <translation>Mat</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="239"/>
         <source>Format</source>
-        <translation>Μορφοποίηση</translation>
+        <translation>Biçim</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="240"/>
         <source>Table</source>
-        <translation>Πίνακας</translation>
+        <translation>Tablo</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="241"/>
         <source>Diff</source>
-        <translation>Διαφορές</translation>
+        <translation>Diff</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="242"/>
         <location filename="texstudio.cpp" line="256"/>
         <source>Central</source>
-        <translation type="unfinished"/>
+        <translation>Merkez</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="243"/>
         <source>Asymptote</source>
         <comment>Format name of language definition </comment>
-        <translation>Asymptote</translation>
+        <translation>Asimptot</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="244"/>
@@ -8364,19 +8364,19 @@ failed.</source>
         <location filename="additionaltranslations.cpp" line="245"/>
         <source>Binary</source>
         <comment>Format name of language definition </comment>
-        <translation>Δυαδικό</translation>
+        <translation>İkili</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="246"/>
         <source>TeX dtx file</source>
         <comment>Format name of language definition </comment>
-        <translation>Αρχείο TeX dtx</translation>
+        <translation>TeX dtx dosyası</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="247"/>
         <source>Homespring</source>
         <comment>Format name of language definition </comment>
-        <translation>Homespring</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="248"/>
@@ -8388,25 +8388,25 @@ failed.</source>
         <location filename="additionaltranslations.cpp" line="249"/>
         <source>Pweave</source>
         <comment>Format name of language definition </comment>
-        <translation>Pweave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="250"/>
         <source>QtScript</source>
         <comment>Format name of language definition </comment>
-        <translation>QtScript</translation>
+        <translation>OtScript</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="251"/>
         <source>Sweave</source>
         <comment>Format name of language definition </comment>
-        <translation>Sweave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="252"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation>(La)TeX</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="253"/>
@@ -8424,7 +8424,7 @@ failed.</source>
         <location filename="additionaltranslations.cpp" line="255"/>
         <source>Plain text</source>
         <comment>Format name of language definition </comment>
-        <translation>Απλό κείμενο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="256"/>
@@ -8441,161 +8441,161 @@ failed.</source>
         <location filename="texstudio.cpp" line="331"/>
         <location filename="texstudio.cpp" line="6031"/>
         <source>Ready</source>
-        <translation type="unfinished"/>
+        <translation>Hazır</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="377"/>
         <source>TeX files</source>
-        <translation>Αρχεία TeX</translation>
+        <translation>TeX dosyaları</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="378"/>
         <source>LilyPond files</source>
-        <translation>Αρχεία LilyPond</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="379"/>
         <source>Plaintext files</source>
-        <translation>Αρχεία απλού κειμένου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="380"/>
         <source>Pweave files</source>
-        <translation>Αρχεία Pweave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="381"/>
         <source>Sweave files</source>
-        <translation>Αρχεία Sweave</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="382"/>
         <source>Asymptote files</source>
-        <translation>Αρχεία Asymptote</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="383"/>
         <source>PDF files</source>
-        <translation>Αρχεία PDF</translation>
+        <translation>PDF dosyaları</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="384"/>
         <location filename="texstudio.cpp" line="9448"/>
         <location filename="texstudio.cpp" line="9458"/>
         <source>All files</source>
-        <translation>Όλα τα αρχεία</translation>
+        <translation>Tüm dosyalar</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="554"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Yan Panel</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="588"/>
         <location filename="texstudio.cpp" line="589"/>
         <source>Structure</source>
-        <translation>Δομή</translation>
+        <translation>Yapı</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="594"/>
         <location filename="texstudio.cpp" line="595"/>
         <source>Bookmarks</source>
-        <translation>Σελιδοδείκτες</translation>
+        <translation>Yer İmleri</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="598"/>
         <source>Operator symbols</source>
-        <translation>Σύμβολα τελεστών</translation>
+        <translation>Operatör sembolleri</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="599"/>
         <source>Relation symbols</source>
-        <translation>Σύμβολα σχέσεων</translation>
+        <translation>İlişkisel semboller</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="600"/>
         <source>Arrow symbols</source>
-        <translation>Βέλη</translation>
+        <translation>Ok sembolleri</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="601"/>
         <source>Delimiters</source>
-        <translation>Διαχωριστικά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="602"/>
         <source>Greek letters</source>
-        <translation>Ελληνικά γράμματα</translation>
+        <translation>Yunan harfleri</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="603"/>
         <source>Cyrillic letters</source>
-        <translation>Κυριλλικά γράμματα</translation>
+        <translation>Kiril harfleri</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="604"/>
         <source>Miscellaneous math symbols</source>
-        <translation>Διάφορα μαθηματικά σύμβολα</translation>
+        <translation>Çeşitli mat sembolleri</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="605"/>
         <source>Miscellaneous text symbols</source>
-        <translation>Διάφορα σύμβολα κειμένου</translation>
+        <translation>Çeşitli yazı sembolleri</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="606"/>
         <source>Miscellaneous text symbols (wasysym)</source>
-        <translation>Διάφορα σύμβολα κειμένου (wasysym)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="607"/>
         <source>Accented letters</source>
-        <translation>Τονισμένα γράμματα</translation>
+        <translation>Vurgulu harfler</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="609"/>
         <source>Most used symbols</source>
-        <translation type="unfinished"/>
+        <translation>Sık kullanılan semboller</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="611"/>
         <source>Favorites</source>
-        <translation type="unfinished"/>
+        <translation>Beğenilenler</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="614"/>
         <source>Left/Right Brackets</source>
-        <translation>Αριστερές/Δεξιές παρενθέσεις</translation>
+        <translation>Sol/Sağ Parantezler</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="615"/>
         <source>Pstricks Commands</source>
-        <translation>Εντολές Pstricks</translation>
+        <translation>Pstricks Komutları</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="616"/>
         <source>MetaPost Commands</source>
-        <translation>Εντολές MetaPost</translation>
+        <translation>MetaPost Komutları</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="617"/>
         <source>Tikz Commands</source>
-        <translation>Εντολές Tikz</translation>
+        <translation>Tikz Komutları</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="618"/>
         <source>Asymptote Commands</source>
-        <translation>Εντολές Asymptote</translation>
+        <translation>Asimptot Komutları</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="743"/>
         <source>&amp;File</source>
-        <translation>&amp;Αρχείο</translation>
+        <translation>&amp;Dosya</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="745"/>
         <source>&amp;New</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yeni</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="746"/>
@@ -8605,7 +8605,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="747"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Άνοιγμα</translation>
+        <translation>&amp;Aç...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="749"/>
@@ -8615,37 +8615,37 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="751"/>
         <source>Session</source>
-        <translation>Συνεδρία</translation>
+        <translation>Oturum</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="752"/>
         <source>Load Session...</source>
-        <translation type="unfinished"/>
+        <translation>Oturumu Yükle...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="753"/>
         <source>Save Session...</source>
-        <translation type="unfinished"/>
+        <translation>Oturumu Kaydet...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="754"/>
         <source>Restore Previous Session</source>
-        <translation type="unfinished"/>
+        <translation>Önceki Oturumu Yenile</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="763"/>
         <source>&amp;Save</source>
-        <translation>&amp;Αποθήκευση</translation>
+        <translation>&amp;Kaydet</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="764"/>
         <source>Save &amp;As...</source>
-        <translation>Αποθήκευση &amp;ως...</translation>
+        <translation>&amp;Farklı kaydet...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="765"/>
         <source>Save A&amp;ll</source>
-        <translation>Αποθήκευση &amp;όλων</translation>
+        <translation>Tümünü kaydet...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="766"/>
@@ -8655,7 +8655,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="769"/>
         <source>Fifi&amp;x</source>
-        <translation>Fifi&amp;x</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="770"/>
@@ -8670,7 +8670,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="772"/>
         <source>&amp;Delete file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Dosyayı sil</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="773"/>
@@ -8695,7 +8695,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="780"/>
         <source>S&amp;VN...</source>
-        <translation>S&amp;VN...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="781"/>
@@ -8771,12 +8771,12 @@ failed.</source>
         <location filename="texstudio.cpp" line="797"/>
         <location filename="texstudio.cpp" line="9649"/>
         <source>&amp;Close</source>
-        <translation>&amp;Κλείσιμο</translation>
+        <translation>&amp;Kapat</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="798"/>
         <source>Clos&amp;e All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tümünü kapat</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="801"/>
@@ -8786,22 +8786,22 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="804"/>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Çıkış</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="807"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Επεξεργασία</translation>
+        <translation>&amp;Düzenle</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="808"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Αναίρεση</translation>
+        <translation>&amp;Geri al</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="809"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Επανάληψη</translation>
+        <translation>&amp;İleri al</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="811"/>
@@ -8811,27 +8811,27 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="814"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Αντιγραφή</translation>
+        <translation>&amp;Kopyala</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="815"/>
         <source>C&amp;ut</source>
-        <translation>Α&amp;ποκοπή</translation>
+        <translation>&amp;Kes</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="816"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Επικόλληση</translation>
+        <translation>&amp;Yapıştır</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="818"/>
         <source>&amp;Selection</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Seçim</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="819"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tümünü Seç</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="820"/>
@@ -8956,12 +8956,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="851"/>
         <source>Replace Next</source>
-        <translation>Αντικατάσταση επόμενου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="852"/>
         <source>Replace Prev</source>
-        <translation>Αντικατάσταση προηγούμενου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="853"/>
@@ -8976,78 +8976,78 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="858"/>
         <source>Line</source>
-        <translation>Γραμμή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="859"/>
         <source>Previous Change</source>
-        <translation>Προηγούμενη αλλαγή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="860"/>
         <source>Next Change</source>
-        <translation>Επόμενη αλλαγή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="862"/>
         <source>Previous mark</source>
-        <translation>Προηγούμενο σημάδι</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="863"/>
         <source>Next mark</source>
-        <translation>Επόμενο σημάδι</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="866"/>
         <source>Go Back</source>
-        <translation>Πήγαινε πίσω</translation>
+        <translation>Geri Git</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="867"/>
         <source>Go Forward</source>
-        <translation>Πήγαινε εμπρός</translation>
+        <translation>İleri Git</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="870"/>
         <source>Goto Bookmark</source>
-        <translation>Πήγαινε σε σελιδοδείκτη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="873"/>
         <location filename="texstudio.cpp" line="879"/>
         <source>Bookmark %1</source>
-        <translation>Σελιδοδείκτης %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="876"/>
         <source>Toggle Bookmark</source>
-        <translation>Εναλλαγή σελιδοδείκτη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="877"/>
         <source>Unnamed Bookmark</source>
-        <translation>Ανώνυμος σελιδοδείκτης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="883"/>
         <source>Line Ending</source>
-        <translation>Τέλος γραμμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="885"/>
         <source>DOS/Windows (CR LF)</source>
-        <translation>DOS/Windows (CR LF)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="889"/>
         <source>Unix (LF)</source>
-        <translation>Unix (LF)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="893"/>
         <source>Old Mac (CR)</source>
-        <translation>Παλαιού Mac (CR)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="899"/>
@@ -9057,7 +9057,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="900"/>
         <source>Insert Unicode Character...</source>
-        <translation>Εισαγωγή χαρακτήρα Unicode...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="905"/>
@@ -9097,12 +9097,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="916"/>
         <source>&amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yorum yap</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="917"/>
         <source>&amp;Uncomment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yorumu sil</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="918"/>
@@ -9132,34 +9132,34 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="926"/>
         <source>Previous Error</source>
-        <translation>Προηγούμενο σφάλμα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="926"/>
         <location filename="texstudio.cpp" line="927"/>
         <source>No LaTeX errors detected !</source>
-        <translation>Δεν ανιχνεύτηκαν σφάλματα LaTeX!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="927"/>
         <source>Next Error</source>
-        <translation>Επόμενο σφάλμα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="928"/>
         <source>Previous Warning</source>
-        <translation>Προηγούμενη προειδοποίηση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="928"/>
         <location filename="texstudio.cpp" line="929"/>
         <source>No LaTeX warnings detected !</source>
-        <translation>Δεν ανιχνεύτηκαν προειδοποιήσεις LaTeX!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="929"/>
         <source>Next Warning</source>
-        <translation>Επόμενη προειδοποίηση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="930"/>
@@ -9180,7 +9180,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="933"/>
         <source>Definition</source>
-        <translation>Ορισμός</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="936"/>
@@ -9190,7 +9190,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="938"/>
         <source>Parenthesis</source>
-        <translation>Παρένθεση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="939"/>
@@ -9215,7 +9215,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="943"/>
         <source>Select Line</source>
-        <translation>Επιλογή γραμμής</translation>
+        <translation>Satır Seç</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="944"/>
@@ -9240,12 +9240,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="951"/>
         <source>\begin{ Completion</source>
-        <translation>Συμπλήρωση \begin{</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="952"/>
         <source>Normal Text</source>
-        <translation>Απλό κείμενο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="953"/>
@@ -9296,7 +9296,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="969"/>
         <source>Stop Compile</source>
-        <translation>Διακοπή μεταγλώττισης</translation>
+        <translation>Derlemeyi Durdur</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="971"/>
@@ -9329,7 +9329,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="978"/>
         <source>&amp;Latexmk</source>
-        <translation>&amp;Latexmk</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="980"/>
@@ -9340,22 +9340,22 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="981"/>
         <source>&amp;PDFLaTeX</source>
-        <translation>&amp;PDFLaTeX</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="985"/>
         <source>DVI-&gt;PS</source>
-        <translation>DVI-&gt;PS</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="986"/>
         <source>P&amp;S-&gt;PDF</source>
-        <translation>P&amp;S-&gt;PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="987"/>
         <source>DV&amp;I-&gt;PDF</source>
-        <translation>DV&amp;I-&gt;PDF</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="989"/>
@@ -9375,42 +9375,42 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="993"/>
         <source>&amp;Bibtex</source>
-        <translation>&amp;Bibtex</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="994"/>
         <source>&amp;Bibtex 8-Bit</source>
-        <translation>&amp;Bibtex 8-Bit</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="995"/>
         <source>Bibe&amp;r</source>
-        <translation>Bibe&amp;r</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="997"/>
         <source>&amp;MakeIndex</source>
-        <translation>&amp;MakeIndex</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="998"/>
         <source>&amp;TexIndy</source>
-        <translation>&amp;TexIndy</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="999"/>
         <source>&amp;Makeglossaries</source>
-        <translation>&amp;Makeglossaries</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1001"/>
         <source>&amp;MetaPost</source>
-        <translation>&amp;MetaPost</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1002"/>
         <source>&amp;Asymptote</source>
-        <translation>&amp;Asymptote</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1004"/>
@@ -9493,49 +9493,49 @@ failed.</source>
         <location filename="texstudio.cpp" line="1033"/>
         <source>Add Row</source>
         <comment>table</comment>
-        <translation>Προσθήκη γραμμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1034"/>
         <source>Add Column</source>
         <comment>table</comment>
-        <translation>Προσθήκη στήλης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1035"/>
         <source>Remove Row</source>
         <comment>table</comment>
-        <translation>Αφαίρεση γραμμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1036"/>
         <source>Remove Column</source>
         <comment>table</comment>
-        <translation>Αφαίρεση στήλης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1037"/>
         <source>Cut Column</source>
         <comment>table</comment>
-        <translation>Αποκοπή στήλης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1038"/>
         <source>Paste Column</source>
         <comment>table</comment>
-        <translation>Επικόληση στήλης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1039"/>
         <source>Add \hline</source>
         <comment>table</comment>
-        <translation>Προσθήκη \hline</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1040"/>
         <source>Remove \hline</source>
         <comment>table</comment>
-        <translation>Αφαίρεση \hline</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1041"/>
@@ -9546,7 +9546,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1042"/>
         <source>Align Columns</source>
-        <translation>Στοίχιση στηλών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1043"/>
@@ -9572,7 +9572,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1048"/>
         <source>&amp;Math</source>
-        <translation>&amp;Μαθηματικά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1052"/>
@@ -9582,32 +9582,32 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1053"/>
         <source>Quick &amp;Start...</source>
-        <translation>Γρήγορη &amp;εκκίνηση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1054"/>
         <source>Quick &amp;Beamer Presentation...</source>
-        <translation>Γρήγορη &amp;παρουσίαση Beamer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1055"/>
         <source>Quick &amp;Letter...</source>
-        <translation>Γρήγορη &amp;επιστολή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1058"/>
         <source>Quick &amp;Tabular...</source>
-        <translation>Γρήγορο &amp;Tabular</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1059"/>
         <source>Quick T&amp;abbing...</source>
-        <translation>Γρήγορο T&amp;abbing</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1060"/>
         <source>Quick &amp;Array...</source>
-        <translation>Γρήγορο A&amp;rray</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1061"/>
@@ -9622,7 +9622,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1093"/>
         <source>&amp;Clean</source>
-        <translation>Καθαρισμός</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1095"/>
@@ -9632,7 +9632,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1097"/>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1101"/>
@@ -9644,7 +9644,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="1106"/>
         <location filename="texstudio.cpp" line="1112"/>
         <source>BibLaTeX</source>
-        <translation>BibLaTeX</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1119"/>
@@ -9664,7 +9664,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1127"/>
         <source>Open Documents</source>
-        <translation type="unfinished"/>
+        <translation>Belge Aç</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1128"/>
@@ -9777,17 +9777,17 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1177"/>
         <source>Zoom In</source>
-        <translation>Μεγέθυνση</translation>
+        <translation>Yakınlaştır</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1178"/>
         <source>Zoom Out</source>
-        <translation>Σμίκρυνση</translation>
+        <translation>Uzaklaştır</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1179"/>
         <source>Reset Zoom</source>
-        <translation type="unfinished"/>
+        <translation>Büyütmeyi Sıfırla</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1182"/>
@@ -9850,7 +9850,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1239"/>
         <source>&amp;Help</source>
-        <translation>&amp;Βοήθεια</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1240"/>
@@ -9880,32 +9880,32 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1247"/>
         <source>About TeXstudio...</source>
-        <translation>Σχετικά με το TeXstudio...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1266"/>
         <location filename="texstudio.cpp" line="2719"/>
         <location filename="texstudio.cpp" line="7901"/>
         <source>Copy</source>
-        <translation>Αντιγραφή</translation>
+        <translation>Kopyala</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1267"/>
         <location filename="texstudio.cpp" line="7902"/>
         <source>Cut</source>
-        <translation>Αποκοπή</translation>
+        <translation>Kes</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1268"/>
         <location filename="texstudio.cpp" line="7903"/>
         <source>Paste Before</source>
-        <translation>Επικόλληση πριν</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1269"/>
         <location filename="texstudio.cpp" line="7904"/>
         <source>Paste After</source>
-        <translation>Επικόλληση μετά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1273"/>
@@ -9942,7 +9942,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1469"/>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1481"/>
@@ -9951,12 +9951,12 @@ failed.</source>
         <location filename="texstudio.cpp" line="5680"/>
         <location filename="texstudio.cpp" line="5681"/>
         <source>Encoding</source>
-        <translation>Κωδικοποίηση</translation>
+        <translation>Kodlama</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1504"/>
         <source>More Encodings...</source>
-        <translation>Περισσότερες κωδικοποιήσεις...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1512"/>
@@ -10011,7 +10011,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="6386"/>
         <location filename="texstudio.cpp" line="10158"/>
         <source>Error</source>
-        <translation>Σφάλμα</translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1944"/>
@@ -10062,7 +10062,7 @@ Otherwise there might be random errors and crashes.</source>
         <location filename="texstudio.cpp" line="2498"/>
         <location filename="texstudio.cpp" line="9988"/>
         <source>Open Files</source>
-        <translation>Ανοικτά αρχεία</translation>
+        <translation>Dosyayı Aç</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2532"/>
@@ -10135,7 +10135,7 @@ this other file before you can overwrite it.</source>
         <location filename="texstudio.cpp" line="2820"/>
         <location filename="texstudio.cpp" line="2877"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2961"/>
@@ -10230,12 +10230,12 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="texstudio.cpp" line="5342"/>
         <source>Quick Start</source>
-        <translation>Γρήγορη εκκίνηση</translation>
+        <translation>Hızlı Başlangıç</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5364"/>
         <source>Quick Beamer Presentation</source>
-        <translation>Γρήγορη παρουσίαση Beamer</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5401"/>
@@ -10323,7 +10323,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="6037"/>
         <source>Error:</source>
-        <translation>Σφάλμα:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6082"/>
@@ -10338,7 +10338,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="6103"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6128"/>
@@ -10447,13 +10447,13 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="7874"/>
         <source>Insert</source>
-        <translation>Εισαγωγή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="7875"/>
         <location filename="texstudio.cpp" line="7876"/>
         <source>Insert as %1</source>
-        <translation>Εισαγωγή ως %1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="7878"/>
@@ -10474,34 +10474,34 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="7897"/>
         <source>Create Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiket Oluştur</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8554"/>
         <location filename="texstudio.cpp" line="8565"/>
         <source>Add to favorites</source>
-        <translation type="unfinished"/>
+        <translation>Beğenilenlere ekle</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8555"/>
         <location filename="texstudio.cpp" line="8603"/>
         <source>Remove</source>
-        <translation>Αφαίρεση</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8556"/>
         <source>Remove all</source>
-        <translation>Αφαίρεση όλων</translation>
+        <translation>Hepsini sil</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8560"/>
         <source>Remove from favorites</source>
-        <translation type="unfinished"/>
+        <translation>Beğenilenlerden sil</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8561"/>
         <source>Remove all favorites</source>
-        <translation type="unfinished"/>
+        <translation>Tüm beğenilenleri sil</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8766"/>
@@ -10532,7 +10532,7 @@ Do you want to create it?</source>
     <message>
         <location filename="texstudio.cpp" line="9448"/>
         <source>Save Profile</source>
-        <translation type="unfinished"/>
+        <translation>Profili Kaydet</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9448"/>
@@ -10554,7 +10554,7 @@ Do you want to create it?</source>
     <message>
         <location filename="texstudio.cpp" line="9631"/>
         <source>Problem</source>
-        <translation type="unfinished"/>
+        <translation>Problem</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9631"/>
@@ -10564,17 +10564,17 @@ Do you want to create it?</source>
     <message>
         <location filename="texstudio.cpp" line="9636"/>
         <source>Find Word Repetitions</source>
-        <translation type="unfinished"/>
+        <translation>Sözcük Tekrarlarını Bul</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9645"/>
         <source>&amp;Find Next</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sonrakini Bul</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9647"/>
         <source>&amp;Find Previous</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Öncekini Bul</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9698"/>
@@ -10591,7 +10591,7 @@ Do you want to create it?</source>
         <location filename="texstudio.cpp" line="10197"/>
         <location filename="texstudio.cpp" line="10200"/>
         <source>LaTeX Files (*.tex);;All Files (*)</source>
-        <translation>Αρχεία LaTeX (*.tex);;Όλα τα αρχεία (*)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10158"/>
@@ -10661,14 +10661,14 @@ Please provide this file if you send a bug report.
     <message>
         <location filename="texstudio.cpp" line="10401"/>
         <source>Yes, try to recover</source>
-        <translation type="unfinished"/>
+        <translation>Evet, kurtarmaya çalış</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10402"/>
         <location filename="texstudio.cpp" line="10407"/>
         <location filename="texstudio.cpp" line="10486"/>
         <source>No, kill the program</source>
-        <translation type="unfinished"/>
+        <translation>Hayır, kapanmaya zorla</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10404"/>
@@ -10680,12 +10680,12 @@ Please provide this file if you send a bug report.
     <message>
         <location filename="texstudio.cpp" line="10405"/>
         <source>Yes, stop the loop and try to recover</source>
-        <translation type="unfinished"/>
+        <translation>Evet, döngüyü durdur ve kurtarmayı dene</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10406"/>
         <source>Yes, continue the loop</source>
-        <translation type="unfinished"/>
+        <translation>Evet, döngüye devam et</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10485"/>
@@ -10697,7 +10697,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="texstudio.cpp" line="10486"/>
         <source>Yes</source>
-        <translation>Ναι</translation>
+        <translation>Evet</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10490"/>
@@ -10707,7 +10707,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="texstudio.cpp" line="10568"/>
         <source>System Report</source>
-        <translation type="unfinished"/>
+        <translation>Sistem Raporu</translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>
@@ -10722,7 +10722,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="utilsSystem.cpp" line="545"/>
         <source>Show in Explorer</source>
-        <translation type="unfinished"/>
+        <translation>Tarayıcıda Göster</translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="547"/>
@@ -10738,7 +10738,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="utilsUI.cpp" line="41"/>
         <source>Do not warn again.</source>
         <comment>General warning dialog</comment>
-        <translation type="unfinished"/>
+        <translation>Tekrar uyarma.</translation>
     </message>
 </context>
 <context>
@@ -10773,7 +10773,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="47"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation>Kapat</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="57"/>
@@ -10783,7 +10783,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="63"/>
         <source>Total lines</source>
-        <translation>Σύνολο γραμμών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="textanalysis.ui" line="70"/>
@@ -10793,12 +10793,12 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="textanalysis.ui" line="126"/>
         <location filename="textanalysis.ui" line="140"/>
         <source>?</source>
-        <translation type="unfinished"/>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="77"/>
         <source>Text lines</source>
-        <translation>Γραμμές κειμένου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="textanalysis.ui" line="84"/>
@@ -10808,7 +10808,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="91"/>
         <source>Comment lines</source>
-        <translation>Γραμμές σχολίων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="textanalysis.ui" line="119"/>
@@ -10823,7 +10823,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="166"/>
         <source>Options</source>
-        <translation>Επιλογές</translation>
+        <translation>Özellikler</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="172"/>
@@ -10922,7 +10922,7 @@ If only maximum is selected, words at the beginning are also taken. (e.g.  &quot
     <message>
         <location filename="textanalysis.ui" line="332"/>
         <source>Source:</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak:</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="351"/>
@@ -10933,7 +10933,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="textanalysis.ui" line="355"/>
         <source>.;:?!</source>
-        <translation type="unfinished"/>
+        <translation>.;:?!</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="362"/>
@@ -10974,7 +10974,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="textanalysis.ui" line="417"/>
         <source>Filter</source>
-        <translation type="unfinished"/>
+        <translation>Süzgeç</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="430"/>
@@ -10984,17 +10984,17 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="textanalysis.ui" line="437"/>
         <source>Whole document</source>
-        <translation type="unfinished"/>
+        <translation>Tüm belge</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="442"/>
         <source>Selection</source>
-        <translation>Επιλογή</translation>
+        <translation>Seçim</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="62"/>
         <source>Word/Phrase</source>
-        <translation type="unfinished"/>
+        <translation>Sözcük/Sözcük Grubu</translation>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="63"/>
@@ -11010,12 +11010,12 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="textanalysis.cpp" line="446"/>
         <source>CSV file</source>
-        <translation>Αρχείο CSV</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="textanalysis.cpp" line="446"/>
         <source>All files</source>
-        <translation>Όλα τα αρχεία</translation>
+        <translation>Tüm dosyalar</translation>
     </message>
 </context>
 <context>
@@ -11023,7 +11023,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="thesaurusdialog.cpp" line="134"/>
         <source>Replace</source>
-        <translation>Αντικατάσταση</translation>
+        <translation>Değiştir</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="135"/>
@@ -11033,17 +11033,17 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="thesaurusdialog.cpp" line="136"/>
         <source>Starts With ...</source>
-        <translation>Αρχίζει με ...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="137"/>
         <source>Contains ...</source>
-        <translation>Περιέχει ...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="138"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="139"/>
@@ -11058,24 +11058,24 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="thesaurusdialog.cpp" line="180"/>
         <source>Thesaurus</source>
-        <translation type="unfinished"/>
+        <translation>Eş Anlamlılar Sözlüğü</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="246"/>
         <source>&lt;all&gt;</source>
-        <translation>&lt;όλα&gt;</translation>
+        <translation>&lt;all&gt;</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="358"/>
         <location filename="thesaurusdialog.cpp" line="394"/>
         <source>New Word:</source>
-        <translation>Νέα λέξη:</translation>
+        <translation>Yeni Sözcük:</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="359"/>
         <location filename="thesaurusdialog.cpp" line="395"/>
         <source>Category:</source>
-        <translation>Κατηγορία:</translation>
+        <translation>Kategori:</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="378"/>
@@ -11088,7 +11088,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="titledpanel.cpp" line="125"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation>Kapat</translation>
     </message>
 </context>
 <context>
@@ -11105,12 +11105,12 @@ included document in %1</source>
     <message>
         <location filename="scriptengine.cpp" line="639"/>
         <source>Invalid default value: %1</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz varsayılan değer: %1</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="685"/>
         <source>Unknown variable %1</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen değişken %1</translation>
     </message>
 </context>
 <context>
@@ -11119,7 +11119,7 @@ included document in %1</source>
         <location filename="updatechecker.cpp" line="28"/>
         <source>Never</source>
         <comment>last update</comment>
-        <translation>Ποτέ</translation>
+        <translation>Asla</translation>
     </message>
     <message>
         <location filename="updatechecker.cpp" line="62"/>
@@ -11179,33 +11179,33 @@ included document in %1</source>
     <message>
         <location filename="usermenudialog.ui" line="65"/>
         <source>Add</source>
-        <translation>Προσθήκη</translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="82"/>
         <source>Remove</source>
-        <translation>Αφαίρεση</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="118"/>
         <source>Up</source>
-        <translation>Πάνω</translation>
+        <translation>Yukarı</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="141"/>
         <source>Down</source>
-        <translation>Κάτω</translation>
+        <translation>Aşağı</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="158"/>
         <location filename="usermenudialog.cpp" line="231"/>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>İsim</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="175"/>
         <source>Abbreviation</source>
-        <translation type="unfinished"/>
+        <translation>Kısaltma</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="187"/>
@@ -11232,7 +11232,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="usermenudialog.ui" line="297"/>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="306"/>
@@ -11242,7 +11242,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="usermenudialog.ui" line="313"/>
         <source>Environment</source>
-        <translation>Περιβάλλον</translation>
+        <translation>Ortam</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="326"/>
@@ -11262,12 +11262,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="usermenudialog.ui" line="380"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="usermenudialog.ui" line="387"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="usermenudialog.cpp" line="232"/>
@@ -11295,7 +11295,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="userquickdialog.ui" line="42"/>
         <source>Add</source>
-        <translation>Προσθήκη</translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="userquickdialog.ui" line="70"/>
@@ -11305,24 +11305,24 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="userquickdialog.ui" line="80"/>
         <source>Up</source>
-        <translation>Πάνω</translation>
+        <translation>Yukarı</translation>
     </message>
     <message>
         <location filename="userquickdialog.ui" line="91"/>
         <source>Down</source>
-        <translation>Κάτω</translation>
+        <translation>Aşağı</translation>
     </message>
     <message>
         <location filename="userquickdialog.ui" line="102"/>
         <source>Delete</source>
-        <translation>Διαγραφή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="userquickdialog.cpp" line="37"/>
         <location filename="userquickdialog.cpp" line="41"/>
         <location filename="userquickdialog.cpp" line="55"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı</translation>
     </message>
 </context>
 <context>
@@ -11335,32 +11335,32 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="usertooldialog.ui" line="31"/>
         <source>Add</source>
-        <translation>Προσθήκη</translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <location filename="usertooldialog.ui" line="48"/>
         <source>Remove</source>
-        <translation>Αφαίρεση</translation>
+        <translation>Kaldır</translation>
     </message>
     <message>
         <location filename="usertooldialog.ui" line="78"/>
         <source>Up</source>
-        <translation>Πάνω</translation>
+        <translation>Yukarı</translation>
     </message>
     <message>
         <location filename="usertooldialog.ui" line="98"/>
         <source>Down</source>
-        <translation>Κάτω</translation>
+        <translation>Aşağı</translation>
     </message>
     <message>
         <location filename="usertooldialog.ui" line="135"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Tamam</translation>
     </message>
     <message>
         <location filename="usertooldialog.ui" line="142"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation>Vazgeç</translation>
     </message>
     <message>
         <location filename="usertooldialog.ui" line="169"/>
@@ -11398,12 +11398,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="webpublishdialog.ui" line="14"/>
         <location filename="webpublishdialog.cpp" line="23"/>
         <source>Convert to Html</source>
-        <translation>Μετατροπή σε HTML</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="60"/>
         <source>LaTeX options</source>
-        <translation>Επιλογές LaTeX</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="98"/>
@@ -11478,7 +11478,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="259"/>
         <source>Alignment :</source>
-        <translation>Στοίχιση:</translation>
+        <translation>Hizalama :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="266"/>
@@ -11518,7 +11518,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="371"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation>Kapat</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="378"/>
@@ -11543,37 +11543,37 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.cpp" line="26"/>
         <source>Left</source>
-        <translation>Αριστερά</translation>
+        <translation>Sol</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="27"/>
         <source>Center</source>
-        <translation>Κέντρο</translation>
+        <translation>Orta</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="28"/>
         <source>Right</source>
-        <translation>Δεξιά</translation>
+        <translation>Sağ</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="29"/>
         <source>Icons</source>
-        <translation>Εικονίδια</translation>
+        <translation>Simgeler</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="30"/>
         <source>Page numbers</source>
-        <translation>Αριθμοί σελίδων</translation>
+        <translation>Sayfa numaraları</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="31"/>
         <source>Yes</source>
-        <translation>Ναι</translation>
+        <translation>Evet</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="32"/>
         <source>No</source>
-        <translation>Όχι</translation>
+        <translation>Hayır</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="125"/>
@@ -11591,13 +11591,13 @@ The html files are located in the %1 directory.</source>
         <location filename="webpublishdialog.cpp" line="169"/>
         <location filename="webpublishdialog.cpp" line="183"/>
         <source>Error</source>
-        <translation>Σφάλμα</translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="137"/>
         <location filename="webpublishdialog.cpp" line="169"/>
         <source>could not start the command</source>
-        <translation type="unfinished"/>
+        <translation>komut çalıştırılamadı</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="142"/>
@@ -11632,7 +11632,7 @@ The html files are located in the %1 directory.</source>
         <location filename="webpublishdialog.cpp" line="759"/>
         <location filename="webpublishdialog.cpp" line="825"/>
         <source>not found</source>
-        <translation type="unfinished"/>
+        <translation>bulunamadı</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="510"/>
@@ -11652,7 +11652,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="665"/>
         <source>of</source>
-        <translation>από</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="738"/>
@@ -11662,22 +11662,22 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="804"/>
         <source>Fatal error : </source>
-        <translation type="unfinished"/>
+        <translation>Ölümcül hata :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="836"/>
         <source>LaTeX errors detected.</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX hataları tespit edildi.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="851"/>
         <source>Open File</source>
-        <translation>Άνοιγμα αρχείου</translation>
+        <translation>Dosyayı Aç</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="851"/>
         <source>TeX files (*.tex);;All files (*.*)</source>
-        <translation>Αρχεία TeX (*.tex);;Όλα τα αρχεία (*.*)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -11685,12 +11685,12 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="findGlobalDialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Diyalog</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="30"/>
         <source>Find:</source>
-        <translation>Αναζήτηση:</translation>
+        <translation>Bul:</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="40"/>
@@ -11715,22 +11715,22 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="findGlobalDialog.ui" line="85"/>
         <source>Open Documents</source>
-        <translation type="unfinished"/>
+        <translation>Belge Aç</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="90"/>
         <source>Current Document</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli Belge</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="95"/>
         <source>Current Project</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli Proje</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="103"/>
         <source>Replace:</source>
-        <translation>Αντικατάσταση:</translation>
+        <translation>Değiştir:</translation>
     </message>
 </context>
 <context>
@@ -11743,7 +11743,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="scriptengine.cpp" line="573"/>
         <source>File Chooser</source>
-        <translation type="unfinished"/>
+        <translation>Dosya Seçici</translation>
     </message>
     <message>
         <location filename="scriptengine.cpp" line="590"/>
@@ -11767,12 +11767,12 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="templateselector.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"/>
+        <translation>Diyalog</translation>
     </message>
     <message>
         <location filename="templateselector.ui" line="66"/>
         <source>Author:</source>
-        <translation>Συγγραφέας:</translation>
+        <translation>Yazar:</translation>
     </message>
     <message>
         <location filename="templateselector.ui" line="173"/>
