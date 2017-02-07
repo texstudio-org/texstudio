@@ -123,10 +123,10 @@
 \begin{columns}[options]
 \begin{columns}
 \end{columns}
-\begin{column}[placement]{column width}
-\begin{column}{column width}
-\end{column}
-\column[placement]{column width}
+\begin{column}[placement]{column width}#/columns
+\begin{column}{column width}#/columns
+\end{column}#/columns
+\column[placement]{column width}#/columns
 \begin{semiverbatim}
 \end{semiverbatim}
 \begin{abstract}<action specification>

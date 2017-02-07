@@ -63,7 +63,8 @@ public:
 		ERR_closingUnopendEnv, ///< end{env} without corrresponding begin{env}
 		ERR_EnvNotClosed, ///< end{env} missing
 		ERR_unrecognizedKey, ///< in key/value argument, an unknown key is used
-		ERR_unrecognizedKeyValues ///< in key/value argument, an unknown value is used for a key
+        ERR_unrecognizedKeyValues, ///< in key/value argument, an unknown value is used for a key
+        ERR_commandOutsideEnv ///< command used outside of designated environment (similar math command outside math)
 	};
     /*!
      * \brief info which is queued for syntaxchecking

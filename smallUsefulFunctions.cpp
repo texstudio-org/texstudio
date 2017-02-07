@@ -1524,8 +1524,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 							package.possibleCommands[elem] << cmd;
 					} else {
 						QString cmd = rxCom.cap(1);
+                        QString envName = rxCom.cap(3);
 						if (cmd == "\\begin" || cmd == "\\end") {
-							cmd = line.simplified();
+                            cmd += "{"+envName+"}";
 						}
 						foreach (const QString &elem, env)
 							package.possibleCommands[elem] << cmd;
