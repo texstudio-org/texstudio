@@ -1301,52 +1301,52 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					if (valid.contains("L0")) {
 						valid.remove("L0");
 						if (res > -1) {
-							package.possibleCommands["%structure0"] << rxCom.cap(1);
+                            package.possibleCommands["%structure0"] << cmd;
 						}
 					} else if (valid.contains("L1")) {
 						valid.remove("L1");
 						if (res > -1) {
-							package.possibleCommands["%structure1"] << rxCom.cap(1);
+                            package.possibleCommands["%structure1"] << cmd;
 						}
 					} else if (valid.contains("L2")) {
 						valid.remove("L2");
 						if (res > -1) {
-							package.possibleCommands["%structure2"] << rxCom.cap(1);
+                            package.possibleCommands["%structure2"] << cmd;
 						}
 					} else if (valid.contains("L3")) {
 						valid.remove("L3");
 						if (res > -1) {
-							package.possibleCommands["%structure3"] << rxCom.cap(1);
+                            package.possibleCommands["%structure3"] << cmd;
 						}
 					} else if (valid.contains("L4")) {
 						valid.remove("L4");
 						if (res > -1) {
-							package.possibleCommands["%structure4"] << rxCom.cap(1);
+                            package.possibleCommands["%structure4"] << cmd;
 						}
 					} else if (valid.contains("L5")) {
 						valid.remove("L5");
 						if (res > -1) {
-							package.possibleCommands["%structure5"] << rxCom.cap(1);
+                            package.possibleCommands["%structure5"] << cmd;
 						}
 					}else if (valid.contains("L6")) {
 						valid.remove("L6");
 						if (res > -1) {
-							package.possibleCommands["%structure6"] << rxCom.cap(1);
+                            package.possibleCommands["%structure6"] << cmd;
 						}
 					}else if (valid.contains("L7")) {
 						valid.remove("L7");
 						if (res > -1) {
-							package.possibleCommands["%structure7"] << rxCom.cap(1);
+                            package.possibleCommands["%structure7"] << cmd;
 						}
 					}else if (valid.contains("L8")) {
 						valid.remove("L8");
 						if (res > -1) {
-							package.possibleCommands["%structure8"] << rxCom.cap(1);
+                            package.possibleCommands["%structure8"] << cmd;
 						}
 					}else if (valid.contains("L9")) {
 						valid.remove("L9");
 						if (res > -1) {
-							package.possibleCommands["%structure9"] << rxCom.cap(1);
+                            package.possibleCommands["%structure9"] << cmd;
 						}
 					}
 				}
@@ -1863,7 +1863,7 @@ QString getArg(const TokenList &tl, Token::TokenType type){
     return QString();
 }
 
-QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type)
+QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type,bool enableMultiLineSearch)
 {
 	// argNumber 0 -> first argument
     QDocument *doc=dlh->document();
@@ -1878,9 +1878,13 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 		tkTypes.append(Token::number);
 		tkTypes.append(Token::openBrace);
 	} else {
-		tkTypes.append(Token::squareBracket);
-		tkTypes.append(Token::openSquare);
-	}
+        if(type == ArgumentList::MandatoryWithBraces){
+            tkTypes.append(Token::braces);
+        }else{
+            tkTypes.append(Token::squareBracket);
+            tkTypes.append(Token::openSquare);
+        }
+    }
     int cnt=0;
 	int k = 0;
     int level=0;
@@ -1914,6 +1918,8 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 					return QString(); //optional argument can't follow mandatory one
 			}
         }
+        if(!enableMultiLineSearch)
+            break;
         lineNr++;
         dlh=doc->line(lineNr).handle();
         if(dlh)

@@ -143,7 +143,7 @@ class ArgumentList : public QStringList
 {
 public:
 	inline ArgumentList() {}
-	enum ArgType {Optional, Mandatory};
+    enum ArgType {Optional, Mandatory, MandatoryWithBraces};
 	QString argContent(int index) const;
 	QString argContent(int index, ArgType type) const;
 	ArgType argType(int index) const;
@@ -187,7 +187,7 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config = 
 
 class QDocumentLineHandle;
 
-QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type);
+QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type, bool enableMultiLineSearch=true);
 QString getArg(const TokenList &tl,Token::TokenType type);
 QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count = 10);
 CommandDescription extractCommandDef(QString line, QString definition);
