@@ -995,6 +995,10 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			if (cmd.endsWith("*"))
 				cmd = cmd.left(cmd.length() - 1);
 			int level = lp.structureCommandLevel(cmd);
+            if(level<0 && cmd=="\\begin"){
+                // special treatment for \begin{frame}{title}
+                level=lp.structureCommandLevel(cmd+"{"+firstArg+"}");
+            }
 			if (level > -1 && !firstArg.isEmpty() && tkCmd.subtype == Token::none) {
 				StructureEntry *newSection = new StructureEntry(this, StructureEntry::SE_SECTION);
 				if (mAppendixLine && indexOf(mAppendixLine) < i) newSection->setContext(StructureEntry::InAppendix);
@@ -1002,42 +1006,51 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				QString firstOptArg = getArg(args, dlh, 0, ArgumentList::Optional);
 				if (!firstOptArg.isEmpty() && firstOptArg != "[]") // workaround, actually getArg should return "" for "[]"
 					firstArg = firstOptArg;
+                if(cmd=="\\begin"){
+                    // special treatment for \begin{frame}{title}
+                    firstArg = getArg(args, dlh, 1, ArgumentList::MandatoryWithBraces,false);
+                    if(firstArg.isEmpty()){
+                        // empty frame title, maybe \frametitle is used ?
+                        delete newSection;
+                        continue;
+                    }
+                }
 				newSection->title = latexToText(firstArg).trimmed();
 				newSection->level = level;
 				newSection->setLine(line(i).handle(), i);
 				newSection->columnNumber = cmdStart;
 				flatStructure << newSection;
                                 continue;
-			}
-                        /// auto user command for \symbol_...
-                        if(j+2<tl.length()){
-                            Token tk2=tl.at(j+1);
-                            if(tk2.getText()=="_"){
-                                QString txt=cmd+"_";
-                                tk2=tl.at(j+2);
-                                txt.append(tk2.getText());
-                                if(tk2.type==Token::command && j+3<tl.length()){
-                                       Token tk3=tl.at(j+3);
-                                       if(tk3.level==tk2.level && tk.subtype!=Token::none)
-                                           txt.append(tk3.getText());
-                                }
-                                CodeSnippet cs(txt);
-                                mUserCommandList.insert(line(i).handle(), cs);
-                            }
-                        }
-                        /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
-                        if(j+2<tl.length() && !firstArg.isEmpty() && lp.possibleCommands["math"].contains(cmd) ){
-                            if (lp.commandDefs.contains(cmd)) {
-                                    CommandDescription cd = lp.commandDefs.value(cmd);
-                                    if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
-                                        QString txt=cmd+"{"+firstArg+"}";
-                                        CodeSnippet cs(txt);
-                                        mUserCommandList.insert(line(i).handle(), cs);
-                                    }
-                            }
-                        }
+            }
+            /// auto user command for \symbol_...
+            if(j+2<tl.length()){
+                Token tk2=tl.at(j+1);
+                if(tk2.getText()=="_"){
+                    QString txt=cmd+"_";
+                    tk2=tl.at(j+2);
+                    txt.append(tk2.getText());
+                    if(tk2.type==Token::command && j+3<tl.length()){
+                        Token tk3=tl.at(j+3);
+                        if(tk3.level==tk2.level && tk.subtype!=Token::none)
+                            txt.append(tk3.getText());
+                    }
+                    CodeSnippet cs(txt);
+                    mUserCommandList.insert(line(i).handle(), cs);
+                }
+            }
+            /// auto user commands of \mathcmd{one arg} e.g. \mathsf{abc} or \overbrace{abc}
+            if(j+2<tl.length() && !firstArg.isEmpty() && lp.possibleCommands["math"].contains(cmd) ){
+                if (lp.commandDefs.contains(cmd)) {
+                    CommandDescription cd = lp.commandDefs.value(cmd);
+                    if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
+                        QString txt=cmd+"{"+firstArg+"}";
+                        CodeSnippet cs(txt);
+                        mUserCommandList.insert(line(i).handle(), cs);
+                    }
+                }
+            }
 
-		} // while(findCommandWithArgs())
+        } // while(findCommandWithArgs())
 
 		if (!oldBibs.isEmpty())
 			bibTeXFilesNeedsUpdate = true; //file name removed

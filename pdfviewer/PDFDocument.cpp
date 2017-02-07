@@ -2169,8 +2169,8 @@ PDFScrollArea *PDFWidget::getScrollArea()
 QList<PDFDocument *> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
-    : renderManager(0), curFileSize(0), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
-      syncFromSourceBlock(false), syncToSourceBlock(false),menubar(NULL)
+    : renderManager(0), curFileSize(0), menubar(NULL), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
+      syncFromSourceBlock(false), syncToSourceBlock(false)
 {
 	REQUIRE(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
