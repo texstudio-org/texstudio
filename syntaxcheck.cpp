@@ -491,7 +491,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 
 	QStringList messages;
 	messages << tr("no error") << tr("unrecognized command") << tr("unrecognized math command") << tr("unrecognized tabular command") << tr("tabular command outside tabular env") << tr("math command outside math env") << tr("tabbing command outside tabbing env") << tr("more cols in tabular than specified") << tr("cols in tabular missing")
-	         << tr("\\\\ missing") << tr("closing environment which has not been opened") << tr("environment not closed") << tr("unrecognized key in key option") << tr("unrecognized value in key option");
+             << tr("\\\\ missing") << tr("closing environment which has not been opened") << tr("environment not closed") << tr("unrecognized key in key option") << tr("unrecognized value in key option") << tr("command outside suitable env");
 	return messages.value(int(result), tr("unknown"));
 }
 /*!
@@ -936,6 +936,22 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					elem.type = ERR_TabularCommandOutsideTab;
 				if (ltxCommands->possibleCommands["tabbing"].contains(word))
 					elem.type = ERR_TabbingCommandOutside;
+                if(elem.type== ERR_unrecognizedCommand){
+                    // try to find command in unspecified envs
+                    QStringList keys=ltxCommands->possibleCommands.keys();
+                    keys.removeAll("math");
+                    keys.removeAll("tabular");
+                    keys.removeAll("tabbing");
+                    keys.removeAll("normal");
+                    foreach (QString key, keys) {
+                        if(key.contains("%"))
+                            continue;
+                        if(ltxCommands->possibleCommands[key].contains(word)){
+                            elem.type = ERR_commandOutsideEnv;
+                            break;
+                        }
+                    }
+                }
 				newRanges.append(elem);
 			}
 		}
