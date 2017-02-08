@@ -1930,6 +1930,19 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 			}
 		}
+        // handle % TODO
+        QLineFormatAnalyzer lineFormatAnaylzer(line.getFormats());
+        int col = lineFormatAnaylzer.firstCol(commentFormat);
+        if(col>=0){
+            QString curLine=line.text();
+            QString text = curLine.mid(col, lineFormatAnaylzer.formatLength(col));
+            QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
+            QRegExp rx(regularExpression);
+            if (rx.indexIn(text)==0) {
+                line.addOverlay(QFormatRange(col, lineFormatAnaylzer.formatLength(col), todoFormat));
+                addedOverlayTodo = true;
+            }
+        }
 
 		// alternative context detection
 		QDocumentLineHandle *dlh = line.handle();

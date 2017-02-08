@@ -574,6 +574,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Double-click Selection Includes Leading Backslash", &editorConfig->doubleClickSelectionIncludeLeadingBackslash, true, &pseudoDialog->checkBoxDoubleClickSelectionIncludeLeadingBackslash);
 	registerOption("Editor/TripleClickSelection", &editorConfig->tripleClickSelectionIndex, 4, &pseudoDialog->comboBoxTripleClickSelection);
 
+    registerOption("Editor/todo comment regExp", &editorConfig->regExpTodoComment, "%\\s*(TODO|todo)",&pseudoDialog->leRegExpTODO);
+
 	//table autoformating
 	registerOption("TableAutoformat/Special Commands", &tableAutoFormatSpecialCommands, "\\hline,\\cline,\\intertext,\\shortintertext,\\toprule,\\midrule,\\bottomrule", &pseudoDialog->leTableFormatingSpecialCommands);
 	registerOption("TableAutoformat/Special Command Position", &tableAutoFormatSpecialCommandPos, 0, &pseudoDialog->cbTableFormatingSpecialCommandPos);
