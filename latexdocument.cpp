@@ -514,10 +514,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 		int col;
 		//// TODO marker
-		col = lineFormatAnaylzer.firstCol(getFormatId("commentTodo"));
+		col = lineFormatAnaylzer.firstCol(getFormatId("comment"));
 		if (col >= 0) {
 			QString text = curLine.mid(col, lineFormatAnaylzer.formatLength(col));
-			if (text.startsWith("%")) {  // other todos like \todo are handled by the tokenizer below.
+			QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
+			QRegExp rx(regularExpression);
+			if (rx.indexIn(text)==0) {  // other todos like \todo are handled by the tokenizer below.
 				bool reuse = false;
 				StructureEntry *newTodo;
 				if (MapOfTodo.contains(dlh)) {
