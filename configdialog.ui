@@ -2309,7 +2309,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
               <item row="5" column="0">
                <widget class="QLabel" name="label_83">
                 <property name="text">
-                 <string>Regular expression  for TODO comment: </string>
+                 <string>Regular expression for TODO comment: </string>
                 </property>
                </widget>
               </item>
