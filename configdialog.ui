@@ -2282,13 +2282,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="0" column="0" colspan="3">
-               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
-                <property name="text">
-                 <string>Keep indentation of includes in structure tree</string>
-                </property>
-               </widget>
-              </item>
               <item row="6" column="0">
                <widget class="QCheckBox" name="checkBoxShowCommentedElementsInStructure">
                 <property name="text">
@@ -2303,9 +2296,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
-              <item row="4" column="1" colspan="2">
-               <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
-              </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_83">
                 <property name="text">
@@ -2313,8 +2303,18 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
                 </property>
                </widget>
               </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
+              </item>
               <item row="5" column="1">
                <widget class="QLineEdit" name="leRegExpTODO"/>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
+                <property name="text">
+                 <string>Keep indentation of includes in structure tree</string>
+                </property>
+               </widget>
               </item>
              </layout>
              <zorder>checkBoxIndentIncludesInStructureTree</zorder>
