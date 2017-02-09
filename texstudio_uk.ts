@@ -1771,7 +1771,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Regular expression  for TODO comment: </source>
-        <translation type="unfinished"/>
+        <translation>Регулярний вираз для коментаря щодо справ:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -8051,7 +8051,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>команда зовні відповідного оточення</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>

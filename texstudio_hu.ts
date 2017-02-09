@@ -1707,12 +1707,12 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2222"/>
         <source>Safe writing of files</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok biztonságos írása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2229"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>Tripla kattintásos kiválasztás:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2237"/>
@@ -1772,7 +1772,7 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Regular expression  for TODO comment: </source>
-        <translation type="unfinished"/>
+        <translation>Reguláris kifejezés a TODO megjegyzéshez:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
