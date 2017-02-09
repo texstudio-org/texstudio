@@ -2339,8 +2339,8 @@ void PDFDocument::setupMenus(bool embedded)
     actionGrayscale=configManager->newManagedAction(menuroot,menuEdit, "grayscale", tr("Grayscale"), pdfWidget, SLOT(update()), QList<QKeySequence>());
     actionGrayscale->setCheckable(true);
 
-    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>(),"magnifier-button");
-    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>(),"hand");
+    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), this, "", QList<QKeySequence>(),"magnifier-button");
+    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), this, "", QList<QKeySequence>(),"hand");
     menuView->addSeparator();
     actionFirst_Page=configManager->newManagedAction(menuroot,menuView, "firstPage", tr("&First Page"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>()<<Qt::Key_Home,"go-first");
     actionBack=configManager->newManagedAction(menuroot,menuView, "back", tr("Back"), pdfWidget, SLOT(goBack()), QList<QKeySequence>()<< Qt::AltModifier + Qt::Key_L,"back");
