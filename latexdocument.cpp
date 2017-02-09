@@ -771,6 +771,22 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				continue;
 			}
 
+			// special treatment \newcount
+			if (cmd == "\\newcount") {
+				QString remainder = curLine.mid(cmdStart + cmd.length());
+				completerNeedsUpdate = true;
+				QRegExp rx("^\\s*(\\\\[A-Za-z]+)");
+				if (rx.indexIn(remainder) > -1) {
+					QString name = rx.cap(1);
+					ltxCommands.possibleCommands["user"].insert(name);
+					if (!removedUserCommands.removeAll(name)) addedUserCommands << name;
+					mUserCommandList.insert(line(i).handle(), name);
+					// remove obsolete Overlays (maybe this can be refined
+					//updateSyntaxCheck=true;
+				}
+				continue;
+			}
+
 			//// newenvironment ////
 			static const QStringList envTokens = QStringList() << "\\newenvironment" << "\\renewenvironment";
 			if (envTokens.contains(cmd)) {
