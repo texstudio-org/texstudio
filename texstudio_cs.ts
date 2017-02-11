@@ -1099,7 +1099,7 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     <message>
         <location filename="configdialog.ui" line="936"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>V případě, že při sestavování dojde k chybě, ukázat záznam</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="962"/>
@@ -1704,32 +1704,32 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="2222"/>
         <source>Safe writing of files</source>
-        <translation type="unfinished"/>
+        <translation>Bezpečný zápis souborů</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2229"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>Výběr trojitým klepnutím:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2237"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat slovo</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2242"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat slovo nebo příkaz</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2247"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat obsah závorek</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2252"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Vybrat závorky</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2257"/>
@@ -1769,7 +1769,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Regular expression  for TODO comment: </source>
-        <translation type="unfinished"/>
+        <translation>Regulární výraz pro poznámku CO SE MÁ UDĚLAT:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -3599,7 +3599,7 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="configmanager.cpp" line="1317"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Nabídky prohlížeče PDF</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1352"/>
@@ -4370,17 +4370,17 @@ Průvodce nepodporuje příkaz </translation>
     <message>
         <location filename="latexdocument.cpp" line="1760"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Za konec dokumentu.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1762"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"/>
+        <translation>V dodatku.</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="1777"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>Soubor nebyl nalezen.</translation>
     </message>
 </context>
 <context>
@@ -5257,17 +5257,17 @@ Chcete ji přepsat?</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2322"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>O</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2342"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Zvětšit</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2343"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Projíždět</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2404"/>
@@ -8044,7 +8044,7 @@ Důvěřujete tomuto skriptu?</translation>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz vně vhodného prostředí</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>
@@ -8632,7 +8632,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="554"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Postranní panel</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="589"/>
