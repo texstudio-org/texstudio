@@ -149,7 +149,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	readSettings();
 
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	QCoreApplication::instance()->installEventFilter(this);
 #endif
 
@@ -7253,7 +7253,7 @@ void Texstudio::resizeEvent(QResizeEvent *e)
 	QMainWindow::resizeEvent(e);
 }
 
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 // workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
 bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 {
