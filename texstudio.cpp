@@ -7257,7 +7257,7 @@ void Texstudio::resizeEvent(QResizeEvent *e)
 // workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
 bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 {
-	if (obj->objectName() == "ConfigDialogWindow" || obj->objectName() == "ShortcutComboBox")
+    if (obj->objectName() == "ConfigDialogWindow" || obj->objectName() == "ShortcutComboBox" || obj->objectName() == "QPushButton" || obj->objectName().startsWith("QMessageBox"))
 		return false; // don't handle keys from shortcutcombo (config)
 	if (event->type() == QEvent::KeyPress) {
 		//qDebug()<<obj->objectName();
@@ -7282,10 +7282,13 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 			return false; // no need to handle these
 
 		if (configManager.specialShortcuts.contains(result)) {
-			QAction *act = configManager.specialShortcuts.value(result);
-			if (act)
-				act->trigger();
-			return true;
+            QList<QAction *>acts = configManager.specialShortcuts.values(result);
+            foreach(QAction *act,acts){
+                if (act && act->parent()->children().contains(obj)){
+                    act->trigger();
+                    return true;
+                }
+            }
 		}
 		return false;
 	}
