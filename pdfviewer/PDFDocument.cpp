@@ -2243,7 +2243,7 @@ PDFDocument::~PDFDocument()
 
     ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
 
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
     QList<QKeySequence> keys=configManager->specialShortcuts.keys();
     foreach(QKeySequence key,keys){
 	QList<QAction *>acts=configManager->specialShortcuts.values(key);

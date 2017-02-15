@@ -624,7 +624,7 @@ protected:
 	void dropEvent(QDropEvent *event);
 	virtual void changeEvent(QEvent *e);
 	virtual void resizeEvent(QResizeEvent *e);
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	bool eventFilter(QObject *obj, QEvent *event);
 #endif
 
