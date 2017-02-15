@@ -208,7 +208,7 @@ public:
 	QList<QPair<QString, QString> > managedMenuNewShortcuts;
 #if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
 	//workaround that osx/qt does not support alt+key/esc as shortcuts
-	QMap<QKeySequence, QAction *> specialShortcuts;
+    QMultiMap<QKeySequence, QAction *> specialShortcuts;
 #endif
 
 	QMenu *newManagedMenu(const QString &id, const QString &text);
