@@ -5938,23 +5938,23 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
 		*result = magic;
 		return;
 	}
-	if (cmdId != "quick" && cmdId != "compile" && cmdId != "view") return;
 	QString program = rootDoc->getMagicComment("program");
 	if (program.isEmpty()) program = rootDoc->getMagicComment("TS-program");
 	if (program.isEmpty()) return;
-	if (program == "pdflatex" || program == "latex" || program == "xelatex" || program == "luatex"  || program == "lualatex") {
-		//TODO: don't replicate build logic here
-		QString viewer = BuildManager::CMD_VIEW_PDF;
-		QString compiler = BuildManager::CMD_PDFLATEX;
-		if (program == "latex") viewer = BuildManager::CMD_VIEW_DVI, compiler = BuildManager::CMD_LATEX;
-		else if (program == "xelatex") compiler = BuildManager::CMD_XELATEX;
-		else if (program == "luatex" || program == "lualatex") compiler = BuildManager::CMD_LUALATEX;
-		//else {} // pdflatex (default)
 
-		if (cmdId == "quick") *result = BuildManager::chainCommands(compiler, viewer);
-		else if (cmdId == "compile") *result = compiler;
-		else if (cmdId == "view") *result = viewer;
-	} else if (cmdId == "quick" && checkProgramPermission(program, cmdId, rootDoc)) *result = program;
+	if (cmdId == "quick") {
+		QString compiler = buildManager.guessCompilerFromProgramMagicComment(program);
+		QString viewer = buildManager.guessViewerFromProgramMagicComment(program);
+		if (!viewer.isEmpty() && !compiler.isEmpty()) {
+			*result = BuildManager::chainCommands(compiler, viewer);
+		} else if (checkProgramPermission(program, cmdId, rootDoc)) {  // directly execute whatever program is.
+			*result = program;
+		}
+	} else if (cmdId == "compile") {
+		*result = buildManager.guessCompilerFromProgramMagicComment(program);
+	} else if (cmdId == "view") {
+		*result = buildManager.guessViewerFromProgramMagicComment(program);
+	}
 }
 
 void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
