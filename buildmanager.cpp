@@ -25,6 +25,7 @@ const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 int BuildManager::autoRerunLatex = 5;
 bool BuildManager::showLogInCaseOfCompileError = true;
 bool BuildManager::m_replaceEnvironmentVariables = true;
+bool BuildManager::m_interpetCommandDefinitionInMagicComment = true;
 bool BuildManager::m_supportShellStyleLiteralQuotes = true;
 bool BuildManager::singleViewerInstance = false;
 QString BuildManager::autoRerunCommands;
