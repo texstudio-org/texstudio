@@ -88,7 +88,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -801,7 +801,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>198</width>
+               <width>1056</width>
                <height>76</height>
               </rect>
              </property>
@@ -934,6 +934,16 @@ Variables are written as: $MYVAR. They are case-sensitive.
            <widget class="QCheckBox" name="checkBoxShowLogInCaseOfCompileError">
             <property name="text">
              <string>Show log in case of compile error</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="checkBoxInterpetCommandDefinitionInMagicComment">
+            <property name="toolTip">
+             <string>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</string>
+            </property>
+            <property name="text">
+             <string>Interpret command definition in magic comments</string>
             </property>
            </widget>
           </item>
@@ -1765,7 +1775,7 @@ Then you can select a new shortcut by one of the following ways:
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-140</y>
+            <y>0</y>
             <width>1059</width>
             <height>1415</height>
            </rect>

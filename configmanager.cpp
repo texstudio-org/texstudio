@@ -617,6 +617,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
 	registerOption("Tools/ShowLogInCaseOfCompileError", &BuildManager::showLogInCaseOfCompileError, true, &pseudoDialog->checkBoxShowLogInCaseOfCompileError);
 	registerOption("Tools/ReplaceEnvironmentVariables", &BuildManager::m_replaceEnvironmentVariables, true, &pseudoDialog->checkBoxReplaceEnvironmentVariables);
+	registerOption("Tools/InterpetCommandDefinitionInMagicComment", &BuildManager::m_interpetCommandDefinitionInMagicComment, true, &pseudoDialog->checkBoxInterpetCommandDefinitionInMagicComment);
 	registerOption("Tools/SupportShellStyleLiteralQuotes", &BuildManager::m_supportShellStyleLiteralQuotes, true);
 
 	//Paths
