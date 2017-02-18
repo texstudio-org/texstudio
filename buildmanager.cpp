@@ -1895,6 +1895,31 @@ void BuildManager::setAllCommands(const CommandMapping &cmds, const QStringList 
 	}
 }
 
+/*!
+ * Returns a best guess compiler for a string given in "% !TeX TS-program = [program]" \ "% !TeX program = [program]"
+ */
+QString BuildManager::guessCompilerFromProgramMagicComment(const QString &program)
+{
+	if (program == "latex") return BuildManager::CMD_LATEX;
+	else if (program == "pdflatex") return BuildManager::CMD_PDFLATEX;
+	else if (program == "xelatex") return BuildManager::CMD_XELATEX;
+	else if (program == "luatex" || program == "lualatex") return BuildManager::CMD_LUALATEX;
+	return QString();
+
+}
+
+/*!
+ * Returns a best guess viewer for a string given in "% !TeX TS-program = [program]" \ "% !TeX program = [program]"
+ */
+QString BuildManager::guessViewerFromProgramMagicComment(const QString &program)
+{
+	if (program == "latex") return BuildManager::CMD_VIEW_DVI;
+	else if (program == "pdflatex" || program == "xelatex" || program == "luatex" || program == "lualatex") {
+		return CMD_VIEW_PDF;
+	}
+	return QString();
+}
+
 void BuildManager::singleInstanceCompleted(int status)
 {
 	Q_UNUSED(status);

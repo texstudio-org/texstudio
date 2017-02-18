@@ -169,6 +169,8 @@ public:
 	CommandMapping getAllCommands();
 	QStringList getCommandsOrder();
 	void setAllCommands(const CommandMapping &commands, const QStringList &userOrder);
+	QString guessCompilerFromProgramMagicComment(const QString &program);
+	QString guessViewerFromProgramMagicComment(const QString &program);
 
 	int maxExpandingNestingDeep;
 
