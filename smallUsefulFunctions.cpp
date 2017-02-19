@@ -7,7 +7,7 @@
 #include "latexparser/latexparser.h"
 
 
-const int RUNAWAYLIMIT=10; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the arbument is unclosed
+const int RUNAWAYLIMIT=30; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the arbument is unclosed
 
 
 /*
@@ -2727,7 +2727,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }else{
                 if(tk.type==Token::openBrace){ // check braces within arguments, not brackets/squareBrackets
                     tk.level = level;
-                    tk.argLevel = 0; // run-away prevention, reduced if no command is used
+                    tk.argLevel = RUNAWAYLIMIT; // run-away prevention, needs to be >0 as otherwise closing barces are misinterpreted
                     stack.push(tk);
                     lexed << tk;
                     level++;
