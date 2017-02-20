@@ -6,7 +6,7 @@
 #include "scriptengine.h"
 #include "configmanager.h"
 
-QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu";
+QStringList LatexTables::tabularNames = QStringList() << "tabular" << "array" << "longtable" << "supertabular" << "tabu" << "longtabu" << "IEEEeqnarray";
 QStringList LatexTables::tabularNamesWithOneOption = QStringList() << "tabular*" << "tabularx" << "tabulary";
 QStringList LatexTables::mathTables = QStringList() << "align" << "align*" << "array" << "matrix" << "matrix*" << "bmatrix" << "bmatrix*"
                                       << "Bmatrix" << "Bmatrix*" << "pmatrix" << "pmatrix*" << "vmatrix" << "vmatrix*"
