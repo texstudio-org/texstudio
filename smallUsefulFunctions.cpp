@@ -1869,22 +1869,28 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
     QDocument *doc=dlh->document();
     int lineNr=doc->indexOf(dlh);
 
-	QList<Token::TokenType> tkTypes;
+	// do only create the relevant token sets once and keep them around for later use for speedup.
+	static const QSet<Token::TokenType> tokensForMandatoryArg = QSet<Token::TokenType>()
+														  << Token::braces
+														  << Token::word
+														  << Token::command
+														  << Token::commandUnknown
+														  << Token::number
+														  << Token::openBrace;
+	static const QSet<Token::TokenType> tokensForMandatoryBraceArg = QSet<Token::TokenType>() << Token::braces;
+	static const QSet<Token::TokenType> tokensForOptionalArg = QSet<Token::TokenType>() << Token::squareBracket << Token::openSquare;
+
+	const QSet<Token::TokenType> *searchTokens = 0;
+
 	if (type == ArgumentList::Mandatory) {
-		tkTypes.append(Token::braces);
-		tkTypes.append(Token::word);
-		tkTypes.append(Token::command);
-		tkTypes.append(Token::commandUnknown);
-		tkTypes.append(Token::number);
-		tkTypes.append(Token::openBrace);
+		searchTokens = &tokensForMandatoryArg;
+	} else if (type == ArgumentList::MandatoryWithBraces) {
+		searchTokens = &tokensForMandatoryBraceArg;
 	} else {
-        if(type == ArgumentList::MandatoryWithBraces){
-            tkTypes.append(Token::braces);
-        }else{
-            tkTypes.append(Token::squareBracket);
-            tkTypes.append(Token::openSquare);
-        }
-    }
+		searchTokens = &tokensForOptionalArg;
+	}
+	REQUIRE_RET(searchTokens, QString());
+
     int cnt=0;
 	int k = 0;
     int level=0;
@@ -1898,7 +1904,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
             if(tk.level>level)
                 continue; //only use tokens from the same option-level
 
-            if (tkTypes.contains(tk.type)) {
+            if (searchTokens->contains(tk.type)) {
                 QString result;
                 if (Token::tkBraces().contains(tk.type) || Token::tkOpen().contains(tk.type) || Token::tkClose().contains(tk.type)) {
                     result = line.mid(tk.innerStart(), tk.innerLength());
