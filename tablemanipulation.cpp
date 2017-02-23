@@ -941,7 +941,7 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 	int endCol = findRowBreak(text, startCol);
 	if (endCol < 0) {
 		line = text.mid(startCol).trimmed();
-		endCol = text.length();
+        //endCol = text.length();
 	} else {
 		line = text.mid(startCol, endCol - startCol).trimmed();
 		endCol += 2; // now behind "\\"
@@ -977,12 +977,15 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 		}
 	}
 
-	startCol = endCol;
-
 	LatexTableLine *ltl = new LatexTableLine(this);
 	if (!pre.isEmpty()) ltl->setMetaLine(pre);
-	if (!line.isEmpty()) ltl->setColLine(line);
+    if (!line.isEmpty() || endCol>startCol) ltl->setColLine(line); // allow empty columns
 	if (!lineBreakOption.isEmpty()) ltl->setLineBreakOption(lineBreakOption);
+
+    startCol = endCol;
+    if(startCol<0)
+        startCol=text.length();
+
 	return ltl;
 }
 
@@ -1154,7 +1157,7 @@ void LatexTableLine::setColLine(const QString line)
 			if (i < line.length()) start = i + 1;
 		}
 	}
-	if (start < line.length()) appendCol(line.mid(start));
+    if (start <= line.length()) appendCol(line.mid(start));
 }
 
 QString LatexTableLine::colText(int col, int width, const QChar &alignment)
