@@ -1126,10 +1126,12 @@ QStringList LatexTableModel::getAlignedLines(const QStringList alignment, const 
 
 	}
 	if (!ret.isEmpty()) {
-		// no break at final line, except for cases like "\\ \hline"
+        // no break at final line, except for cases like "\\ \hline" and empty column
 		QString &last = ret.last();
 		if (last.endsWith("\\\\")) {
-			last = trimRight(last.left(last.length() - 2));
+            QString zw=trimRight(last.left(last.length() - 2));
+            if(!zw.isEmpty())
+                last = zw;
 		}
 	}
 
