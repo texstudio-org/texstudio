@@ -1100,7 +1100,7 @@ Linux, OS X:
     <message>
         <location filename="configdialog.ui" line="936"/>
         <source>Show log in case of compile error</source>
-        <translation type="unfinished"/>
+        <translation>若编译错误则显示 log 日志</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="962"/>
@@ -1685,17 +1685,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2096"/>
         <source>1 minute</source>
-        <translation type="unfinished"/>
+        <translation>1 分钟</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2101"/>
         <source>2 minutes</source>
-        <translation type="unfinished"/>
+        <translation>2 分钟</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2212"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"/>
+        <translation>监控打开的文件是否被外部修改</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2219"/>
@@ -1710,17 +1710,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2229"/>
         <source>Triple-Click Selection:</source>
-        <translation type="unfinished"/>
+        <translation>三连击选择：</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2237"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>选择单词</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2242"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>选择单词或命令</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2247"/>
@@ -3177,7 +3177,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="69"/>
         <source>parbox</source>
-        <translation>raisebox</translation>
+        <translation>parbox</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="70"/>
@@ -3378,7 +3378,7 @@ options again to only view the most common settings.</source>
         <location filename="additionaltranslations.cpp" line="110"/>
         <source>env equation* (amsmath)</source>
         <oldsource>env equation*</oldsource>
-        <translation type="unfinished"/>
+        <translation>equation* 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="111"/>
@@ -3424,13 +3424,13 @@ options again to only view the most common settings.</source>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env multline (amsmath)</source>
         <oldsource>env multiline (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>multline 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env multline* (amsmath)</source>
         <oldsource>env multiline* (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>multline* 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
@@ -3440,7 +3440,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>env split (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>split 环境 (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
@@ -4380,7 +4380,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="1777"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>未找到文件。</translation>
     </message>
 </context>
 <context>
@@ -5000,12 +5000,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="968"/>
         <source>%1 sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 秒</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="970"/>
         <source>%1 min</source>
-        <translation type="unfinished"/>
+        <translation>%1 分</translation>
     </message>
 </context>
 <context>
@@ -5258,17 +5258,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2322"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>关于</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2342"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>放大(&amp;M)</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2343"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>滚动(&amp;S)</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2404"/>
@@ -5906,7 +5906,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="608"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>注释或取消注释(&amp;C)</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="613"/>
@@ -7230,7 +7230,7 @@ r* 将会找到任意数量的r, r+等于rr*, a？ 将会匹配a或者不匹配�
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation type="unfinished"/>
+        <translation>从右向左</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
@@ -9224,7 +9224,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="916"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>注释或取消注释(&amp;C)</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="917"/>
