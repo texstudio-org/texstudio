@@ -291,12 +291,12 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralVSplitter->setStretchFactor(0, 1);  // all stretch goes to the editor (0th widget)
 
 	sidePanelSplitter = new MiniSplitter(Qt::Horizontal, this);
-	setCentralWidget(sidePanelSplitter);
+	sidePanelSplitter->addWidget(centralVSplitter);
 
 	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);
-	mainHSplitter->addWidget(centralVSplitter);
+	mainHSplitter->addWidget(sidePanelSplitter);
 	mainHSplitter->setChildrenCollapsible(false);
-	sidePanelSplitter->addWidget(mainHSplitter);
+	setCentralWidget(mainHSplitter);
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -654,6 +654,7 @@ void Texstudio::setupDockWidgets()
 		temp->setSeparator(true);
 		addAction(temp);
 	}
+	sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
 }
 
 void Texstudio::updateToolBarMenu(const QString &menuName)
@@ -4203,6 +4204,7 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("Geometries/MainwindowX", x());
 		config->setValue("Geometries/MainwindowY", y());
 
+		config->setValue("GUI/sidePanelSplitter/state", sidePanelSplitter->saveState());
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 		config->setValue("GUI/sidePanel/visible", sidePanel->isVisible());
