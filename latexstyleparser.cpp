@@ -351,12 +351,17 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 	}
 	if (rxRequireStart.indexIn(line) > -1) {
 		QString arg = rxRequireStart.cap(1);
+		int requireEnd = arg.indexOf('}');
+		if (requireEnd >= 0) {
+			arg = arg.left(requireEnd);
+		} else {
+			inRequirePackage = true;
+		}
 		foreach (QString elem, arg.split(',')) {
 			QString package = elem.remove(' ');
 			if (!package.isEmpty())
 				results << "#include:" + package;
 		}
-		inRequirePackage = true;
 	}
 	if (rxLoadClass.indexIn(line) > -1) {
 		QString arg = rxLoadClass.cap(1);
