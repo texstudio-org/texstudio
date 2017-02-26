@@ -10807,7 +10807,7 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 	PDFDocument *viewer = oldPDFs.first();
 	if (!viewer->embeddedMode)
 		return;
-	centralVSplitter->hide();
+	sidePanelSplitter->hide();
 	configManager.viewerEnlarged = true;
 	viewer->setStateEnlarged(true);
 #endif
@@ -10819,7 +10819,7 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 {
 #ifndef NO_POPPLER_PREVIEW
-	centralVSplitter->show();
+	sidePanelSplitter->show();
 	if (!preserveConfig)
 		configManager.viewerEnlarged = false;
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();
