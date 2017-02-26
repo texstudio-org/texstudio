@@ -75,6 +75,7 @@
 \setpartpreamble[pos][width]{text}#*
 \setpartpreamble{text}#*
 \subject{text}
+\subtitle{text}
 \textsubscript{text}
 \textsuperscript{text}
 \titlehead{head}
