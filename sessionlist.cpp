@@ -41,7 +41,9 @@ void SessionList::updateMostRecentMenu()
 		} else {
 			sessionAct = actions[i];
 		}
-		sessionAct->setText(QDir::toNativeSeparators(file));
+        QString temp=QDir::toNativeSeparators(file);
+        temp.replace("&","&&");
+        sessionAct->setText(temp);
 		sessionAct->setData("session:" + file);
 		sessionAct->setVisible(true);
 		connectUnique(sessionAct, SIGNAL(triggered()), this, SLOT(menuActionTriggered()));
