@@ -2751,8 +2751,10 @@ void PDFDocument::init(bool embedded)
     //connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
     //connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
-	menuShow->addAction(toolBar->toggleViewAction());
-	menuShow->addSeparator();
+    if(!embedded){
+        menuShow->addAction(toolBar->toggleViewAction());
+        menuShow->addSeparator();
+    }
 
 	menuShow->addAction(annotationPanel->toggleViewAction());
 
