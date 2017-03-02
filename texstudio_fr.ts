@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0" language="fr">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -898,7 +900,7 @@ Voulez-vous que TeXstudio remplace tous les chemins des commandes de
         <location filename="configdialog.ui" line="436"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Définit les types de notifications de mises à jour que vous recevrez :
 - versions stables : à choisir si la stabilité est le plus important pour vous ;
@@ -1104,12 +1106,12 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location filename="configdialog.ui" line="943"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Ceci permet de redéfinir des commandes utilisant des commentaires de la forme &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; et &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt; Pour plus de détails, voir le manuel.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="946"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation>Interpréter les définitions de commandes dans les commentaires magiques</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="972"/>
@@ -1119,7 +1121,7 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     </message>
     <message>
         <location filename="configdialog.ui" line="979"/>
-        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
+        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1389,7 +1391,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Package csquotes: \enquote{  }</source>
         <translation>Package csquotes : \enquote{  }</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="configdialog.ui" line="1629"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -1780,7 +1782,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
         <location filename="configdialog.ui" line="2312"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation type="unfinished"/>
+        <translation>Expression régulière pour commentaires « TODO » :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2343"/>
@@ -2556,8 +2558,8 @@ leur usage en les activant ici.</translation>
         <location filename="configdialog.ui" line="4094"/>
         <location filename="configdialog.ui" line="4181"/>
         <source>The Render Backend used by the PDF library poppler.
-'Splash' is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative 'Arthur' backend.
+&apos;Splash&apos; is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Le moteur de rendu utilisé par la bibliothèque PDF poppler.
 « Splash ».est celui par défaut et convient dans la plupart des cas.
@@ -4190,7 +4192,7 @@ Continuer tout de même ?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good' float positions.
+[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Préférences d&apos;emplacement pour la figure (flottante) :
@@ -4301,7 +4303,7 @@ l&apos;assistant ne supporte pas la commande</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1568"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
@@ -4488,14 +4490,17 @@ l&apos;assistant ne supporte pas la commande</translation>
     <message>
         <location filename="latexeditorview.cpp" line="2354"/>
         <location filename="latexeditorview.cpp" line="2426"/>
-        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Nom de fichier : %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2367"/>
         <source>%n reference(s) to this label</source>
-        <translation><numerusform>%n référence à cette étiquette</numerusform><numerusform>%n références à cette étiquette</numerusform></translation>
+        <translation>
+            <numerusform>%n référence à cette étiquette</numerusform>
+            <numerusform>%n références à cette étiquette</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2372"/>
@@ -6099,7 +6104,7 @@ a échoué.</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You'll find a copy at
+You&apos;ll find a copy at
 %1</source>
         <translation>Le fichier original sur le disque a été détruit lors de l&apos;opération de sauvegarde.
 Une copie est disponible ici :
@@ -8053,7 +8058,7 @@ Faites-vous confiance à ce script ?</translation>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>Commande en dehors de l&apos;environnement adéquat</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>
@@ -10424,7 +10429,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5718"/>
-        <source>Can't detect the file name.
+        <source>Can&apos;t detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Nom de fichier introuvable
 Vous devez enregistrer le document avant de le compiler.</translation>
