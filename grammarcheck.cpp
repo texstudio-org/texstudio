@@ -204,6 +204,7 @@ void GrammarCheck::process(int reqId)
 		LatexReader lr(*latexParser, cr.inlines[l].text);
 		int type;
 		while ((type = lr.nextWord(false))) {
+			qDebug() << lr.word << type;
 			if (type == LatexReader::NW_ENVIRONMENT) {
 				if (lr.word == "figure") { //config.floatingEnvs.contains(lr.word)) {
 					if (lr.lastCommand == "\\begin") {
@@ -266,6 +267,14 @@ void GrammarCheck::process(int reqId)
 					lr.word = "'";  // replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
 				} else if (lr.word == "~") {
 					lr.word =  "\u00A0";  // rewrite LaTeX non-breaking space to unicode non-braking space
+				} else if (punctuationNotPreceededBySpace.contains(lr.word) && !tb.words.isEmpty() && tb.words.last() == "\u00A0") {
+					// rewrite non-breaking space followed by punctuation to punctuation only. e.g. "figure~\ref{abc}." -> "figure."
+					// \ref{} is dropped by the reader and an erronous would leave "figure\u00A0."
+					// As a heuristic no space before punctuation takes precedence over non-breaking space.
+					// This is the best we can do for now. A complete handling of all cases is only possible with a full tokenization.
+					tb.words.last() = lr.word;
+					tb.endindices.last() = lr.index;
+					continue;
 				}
 				tb.words << lr.word;
 			}
