@@ -204,7 +204,6 @@ void GrammarCheck::process(int reqId)
 		LatexReader lr(*latexParser, cr.inlines[l].text);
 		int type;
 		while ((type = lr.nextWord(false))) {
-			qDebug() << lr.word << type;
 			if (type == LatexReader::NW_ENVIRONMENT) {
 				if (lr.word == "figure") { //config.floatingEnvs.contains(lr.word)) {
 					if (lr.lastCommand == "\\begin") {
