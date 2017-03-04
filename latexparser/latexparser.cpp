@@ -5,7 +5,7 @@ const QString CommonEOW = QString("~!#$%^&*()_+{}|:\"\\<>?,./;[]-= \t\n\r`'") +
 						  QChar(160);  /* non-breaking Space */
 
 
-QString getCommonEOW()
+const QString & getCommonEOW()
 {
 	return CommonEOW;
 }
