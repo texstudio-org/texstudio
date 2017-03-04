@@ -150,13 +150,20 @@ void GrammarCheck::processLoop()
 }
 
 const QString uselessPunctation = "!:?,.;-"; //useful: \"(
-const QString noSpacePunctation = "!:?,.;)";
+const QString punctuationNotPreceededBySpace = "!:?,.;)";
+const QString punctuationNotFollowedBySpace = "(\"";
 
+
+/* Determine if words[i] should be preceeded by a space in the context of words.
+ * If not continue.
+ * If i > words.length() break;
+ * This does always increase i by one. (Note: the checks below are written based on i++)
+ * This is used in loops for selectively joining words with spaces. */
 #define CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words) i++; \
-  if (i >= (words).length()) break; \
-  if ((words)[i].length() == 1 && noSpacePunctation.contains((words)[i][0])) continue; \
-  if ((words)[i-1].length() == 1 && ((words)[i-1] == "(" || (words)[i-1] == "\"")) continue; \
-  if ((words)[i-1].length() == 2 && (words)[i-1][1] == '.' && (words)[i].length() == 2 && (words)[i][1] == '.') continue; /* abbeviations like "e.g." */ \
+  if (i >= words.length()) break; \
+  if (words[i].length() == 1 && punctuationNotPreceededBySpace.contains(words[i][0])) continue; \
+  if (words[i-1].length() == 1 && punctuationNotFollowedBySpace.contains(words[i-1][0])) continue; \
+  if (words[i-1].length() == 2 && words[i-1][1] == '.' && words[i].length() == 2 && words[i][1] == '.') continue; /* abbeviations like "e.g." */ \
 
 void GrammarCheck::process(int reqId)
 {
