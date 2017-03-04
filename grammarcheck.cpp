@@ -150,8 +150,8 @@ void GrammarCheck::processLoop()
 }
 
 const QString uselessPunctation = "!:?,.;-"; //useful: \"(
-const QString punctuationNotPreceededBySpace = "!:?,.;)";
-const QString punctuationNotFollowedBySpace = "(\"";
+const QString punctuationNotPreceededBySpace = "!:?,.;)\u00A0";  // \u00A0 is non-breaking space: assuming it is not surrounded by natural space (wouldn't make sense)
+const QString punctuationNotFollowedBySpace = "(\"\u00A0";
 
 
 /* Determine if words[i] should be preceeded by a space in the context of words.
@@ -244,7 +244,7 @@ void GrammarCheck::process(int reqId)
 
 			if (type == LatexReader::NW_TEXT) tb.words << lr.word;
 			else if (type == LatexReader::NW_PUNCTATION) {
-                if ((lr.word == "-" || lr.word == "~" )&& !tb.words.isEmpty()) {
+				if ((lr.word == "-") && !tb.words.isEmpty()) {
 					//- can either mean a word-separator or a sentence -- separator
 					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
 					if (lr.wordStartIndex == tb.endindices.last()) {
@@ -262,8 +262,11 @@ void GrammarCheck::process(int reqId)
 						tb.endindices.last() = lr.index;
 						continue;
 					}
-				} else if (lr.word == "\"")
-					lr.word = "'"; //replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
+				} else if (lr.word == "\"") {
+					lr.word = "'";  // replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
+				} else if (lr.word == "~") {
+					lr.word =  "\u00A0";  // rewrite LaTeX non-breaking space to unicode non-braking space
+				}
 				tb.words << lr.word;
 			}
 
