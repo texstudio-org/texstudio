@@ -28,4 +28,6 @@ QColor colorFromRGBAstr(const QString &hex, QColor fallback = QColor());
 
 QWidget *windowForObject(QObject *obj, QWidget *fallback);
 
+void updateToolTipWithShortcut(QAction *action, bool showShortcut);
+
 #endif // UTILSUI_H

@@ -539,6 +539,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
 	registerOption("Editor/Line Spacing Percent", &editorConfig->lineSpacingPercent, 100, &pseudoDialog->spinBoxLineSpacingPercent);
 	registerOption("Editor/Esc for closing log", &useEscForClosingLog, false, &pseudoDialog->cb_CloseLogByEsc);
+	registerOption("Editor/ShowShortcutsInTooltips", &showShortcutsInTooltips, true, &pseudoDialog->checkBoxShowShortcutsInTooltips);
 
 	registerOption("Editor/Mouse Wheel Zoom", &editorConfig->mouseWheelZoom, true, &pseudoDialog->checkBoxMouseWheelZoom);
 	registerOption("Editor/Smooth Scrolling", &editorConfig->smoothScrolling, true, &pseudoDialog->checkBoxSmoothScrolling);

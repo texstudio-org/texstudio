@@ -88,7 +88,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -120,8 +120,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>547</width>
-            <height>563</height>
+            <width>1076</width>
+            <height>803</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1020,6 +1020,13 @@ Then you can select a new shortcut by one of the following ways:
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxShowShortcutsInTooltips">
+         <property name="text">
+          <string>Show Shortcuts in Tooltips</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="pageLatexMenus">
@@ -1776,7 +1783,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1059</width>
+            <width>665</width>
             <height>1415</height>
            </rect>
           </property>
