@@ -1331,6 +1331,7 @@ void Texstudio::setupToolBars()
 					//Case 3: A normal QAction
 					if (act->icon().isNull())
 						act->setIcon(QIcon(APPICON));
+					updateToolTipWithShortcut(act, configManager.showShortcutsInTooltips);
 					mtb.toolbar->addAction(act);
 				} else {
 					QMenu *menu = qobject_cast<QMenu *>(obj);
