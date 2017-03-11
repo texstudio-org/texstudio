@@ -145,7 +145,7 @@
   fileChooser.setFilter(&quot;(TeX files (*.tex);;All files (*.*)&quot;);
   fileChooser.exec();
   fn=fileChooser.fileName();
-  fnAbs=documentManager.getAbsoluteFilePath(fn,fnOld,&quot;&quot;)
+  fnAbs=documentManager.getAbsoluteFilePath(fn,&quot;tex&quot;,&quot;&quot;)
   fe=fileExists(fnAbs);
   fnRel=app.getRelativeFileName(fnAbs,fnOld);
   txt=cursor.selectedText();
