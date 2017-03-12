@@ -1103,12 +1103,12 @@ Linux, OS X:
     <message>
         <location filename="configdialog.ui" line="943"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Це дозволяє перевизначити команди за допомогою коментаря з стилем &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; та &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. За подробицями див. цей посібник.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="946"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation>Інтерпретувати означення команди у чарівних коментарях</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="972"/>
@@ -1779,7 +1779,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2312"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation type="unfinished"/>
+        <translation>Регулярні вирази для коментаря СПРАВИ: </translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2343"/>
