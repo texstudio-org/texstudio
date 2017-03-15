@@ -248,7 +248,7 @@
 \index{entry}
 \inputlineno#*
 \it#*
-\item
+\item %|
 \item[%<label%>] %<description%>
 \iterate#*
 \itshape
