@@ -25,6 +25,7 @@ void setSubtreeExpanded(QTreeView *view, QModelIndex idx, bool expand);
 bool browse(QWidget *w, const QString &title, const QString &extension, const QString &startPath = QDir::homePath(), bool list = false);
 
 QColor colorFromRGBAstr(const QString &hex, QColor fallback = QColor());
+QColor mediumLightColor(QColor color, int factor = 150);
 
 QWidget *windowForObject(QObject *obj, QWidget *fallback);
 
