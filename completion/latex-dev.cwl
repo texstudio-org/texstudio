@@ -27,7 +27,9 @@
 \DeclareOldFontCommand{cmd}{text-switch}{math-switch}#*
 \DeclareOption*{code}#*
 \DeclareOption{option}{code}#*
-\DeclareRobustCommand#*d
+\DeclareRobustCommand{cmd}[args][default]{def}#*d
+\DeclareRobustCommand{cmd}[args]{def}#*
+\DeclareRobustCommand{cmd}{def}#*
 \DeclareSizeFunction{name}{code}#*
 \DeclareSymbolFont{sym-font}{encoding}{family}{series}{shape}#*
 \DeclareSymbolFontAlphabet{math-alph}{sym-font}#*
