@@ -182,6 +182,25 @@ QColor colorFromRGBAstr(const QString &hex, QColor fallback)
 }
 
 /*!
+  Return a color with a more medium value. The amount of change is determined by factor. I.e. for a factor > 100
+  a dark color becomes lighter, a light color becomes darker. The reverse is true for factors < 100;
+  This is a generalization of QColor.lighter()/darker() which should provide a reasonable change in dark as well
+  as light contexts.
+ */
+QColor mediumLightColor(QColor color, int factor) {
+	if (color.value() == 0) {  // special handling for black because lighter() does not work there [QTBUG-9343].
+		factor = qMax(0, factor - 100);
+		return QColor(factor, factor, factor);  // i.e. QColor(50, 50, 50) for factor 150
+	}
+	if (color.value() < 128) {
+		return color.lighter(factor);
+	} else {
+		qDebug() << "darker" << factor;
+		return color.darker(factor);
+	}
+}
+
+/*!
  * return the window to which an object belongs or the given fallback widget
  * Note: the signature is intentionally for a gerneric QObject, so that we can
  * simply call windowForObject(sender()).
