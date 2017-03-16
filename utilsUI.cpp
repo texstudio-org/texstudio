@@ -195,7 +195,6 @@ QColor mediumLightColor(QColor color, int factor) {
 	if (color.value() < 128) {
 		return color.lighter(factor);
 	} else {
-		qDebug() << "darker" << factor;
 		return color.darker(factor);
 	}
 }
