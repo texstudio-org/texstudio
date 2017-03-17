@@ -48,7 +48,7 @@ public:
 	int usageCount; ///< usage count for favourite detection
 	uint index; ///< hash index for usage count identification
 	int snippetLength; ///< number of characters
-	enum Type {none, length};
+    enum Type {none, length,userConstruct};
 	Type type;
 
 	QString expandCode(const QString &code);

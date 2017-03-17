@@ -378,7 +378,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 	QDocumentLineHandle *oldLine = mAppendixLine; // to detect a change in appendix position
 	QDocumentLineHandle *oldLineBeyond = mBeyondEnd; // to detect a change in end document position
-
 	// get remainder
 	TokenStack remainder;
 	int lineNrStart = linenr;
@@ -393,7 +392,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				lineNrStart = linenr;
 		}
 	}
-
 	bool updateSyntaxCheck = false;
 	QList<StructureEntry *> flatStructure;
 
@@ -449,7 +447,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	findStructureEntryBefore(iter_bibTeX, MapOfBibtex, lineNrStart, newCount);
 
 	bool isLatexLike = languageIsLatexLike();
-
 	//updateSubsequentRemaindersLatex(this,linenr,count,lp);
 	// force command from all line of which the actual line maybe subsequent lines (multiline commands)
 	for (int i = lineNrStart; i < linenr + count; i++) {
@@ -480,6 +477,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			int i = elem.indexOf("{");
 			if (i >= 0) elem = elem.left(i);
 			ltxCommands.possibleCommands["user"].remove(elem);
+            if(cs.type==CodeSnippet::userConstruct)
+                continue;
 			removedUserCommands << elem;
 			//updateSyntaxCheck=true;
 		}
@@ -1053,6 +1052,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                             txt.append(tk3.getText());
                     }
                     CodeSnippet cs(txt);
+                    cs.type=CodeSnippet::userConstruct;
                     mUserCommandList.insert(line(i).handle(), cs);
                 }
             }
@@ -1063,6 +1063,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
                     if(cd.args==1 && cd.bracketArgs==0 && cd.optionalArgs==0){
                         QString txt=cmd+"{"+firstArg+"}";
                         CodeSnippet cs(txt);
+                        cs.type=CodeSnippet::userConstruct;
                         mUserCommandList.insert(line(i).handle(), cs);
                     }
                 }
@@ -1141,14 +1142,12 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 
 	foreach (se, MapOfMagicComments.values())
 		delete se;
-
 	bool updateLtxCommands = false;
 	if (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty() || !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty()) {
 		bool forceUpdate = !addedUserCommands.isEmpty() || !removedUserCommands.isEmpty();
 		updateLtxCommands = updateCompletionFiles(forceUpdate, false, true);
 		reRunSuggested = (count > 1) && (!addedUsepackages.isEmpty() || !removedUsepackages.isEmpty());
 	}
-
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
 
@@ -1161,19 +1160,15 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 				elem->edView->updateCitationFormats();
 		}
 	}
-
 	if (completerNeedsUpdate || bibTeXFilesNeedsUpdate)
 		emit updateCompleter();
 
-
 	if ((!recheck && updateSyntaxCheck) || updateLtxCommands) {
-		this->updateLtxCommands(true);
+        this->updateLtxCommands(true);
 	}
-
 	//update view
 	if (edView)
 		edView->documentContentChanged(linenr, count);
-
 
 #ifndef QT_NO_DEBUG
 	if (!isHidden())
@@ -1185,7 +1180,6 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 	//qDebug()<<"leave"<< QTime::currentTime().toString("HH:mm:ss:zzz");
 	if (reRunSuggested && !recheck)
 		patchStructure(0, -1, true); // expensive solution for handling changed packages (and hence command definitions)
-
 	return reRunSuggested;
 }
 
