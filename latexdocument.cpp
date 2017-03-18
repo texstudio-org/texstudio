@@ -1725,7 +1725,6 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 	static const QColor inAppendixColor(200, 230, 200);
 	static const QColor missingFileColor(Qt::red);
 	static const QColor activeItemColor(mediumLightColor(QPalette().color(QPalette::Highlight), 50));
-	qDebug() << mediumLightColor(QPalette().color(QPalette::AlternateBase)).value() << QPalette().color(QPalette::AlternateBase).value();
 
 	if (!index.isValid()) return QVariant();
 	StructureEntry *entry = (StructureEntry *) index.internalPointer();
@@ -1746,9 +1745,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 		}
 		return QVariant(result);
 	case Qt::ToolTipRole:
-		//qDebug("data %x",entry);
 		if (!entry->tooltip.isNull()) {
-			qDebug() << entry->tooltip;
 			return QVariant(entry->tooltip);
 		}
 		if (entry->type == StructureEntry::SE_DOCUMENT_ROOT) {
