@@ -163,7 +163,7 @@
 	                                                     newEditor.write(txt);
 	                                                     newEditor.save(fnAbs);
                                                          }"/>
-      <insert id="includeonly" text="\includeonly{file(s)}" insert="\includeonly{%&lt;list of TeX file(s)%>}"/>
+      <insert id="includeonly" text="\includeonly{filelist}" insert="\includeonly{%&lt;filelist%>}"/>
       <separator/>
       <insert id="includegraphics" text="\includegraphics{file}" insert="\includegraphics{%(Graphic files (*.eps *.pdf *.jpg *.png);;All files (*.*)%)}"/>
   </menu>
