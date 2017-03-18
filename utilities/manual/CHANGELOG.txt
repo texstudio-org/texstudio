@@ -1,5 +1,5 @@
-TeXstudio 2.12.3 (development snapshot)
-----------------
+TeXstudio 2.12.4 RC
+-------------------
 - detect definition of tex counts using \newcount
 - improve config dialog layout
 - make todo comment detection configurable
@@ -17,9 +17,11 @@ TeXstudio 2.12.3 (development snapshot)
 - pass non-breaking space to grammar check (fixes bug 2040)
 - \item completion no adds a space (feature request 994)
 - fix highlighting of current section in structure (bug 2103)
+- fix delays when typing _abc
+- fix bug in log parser: wrong filename if empty brackets () occur in text
 - fix word repetition erro on non-breaking space (~)
 - fix file detection in latex/include file
-- fix: save width of side panel (bug 2083)
+- fix width of side panel not saved (bug 2083)
 - fix ampersand in in recent session names
 - fix parsing of \RequirePackage in style files if the argument is completed on the same line
 - fix misinterpretation of closing brace if extra opening brace is used over multilines
