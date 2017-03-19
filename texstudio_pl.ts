@@ -1718,22 +1718,22 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="configdialog.ui" line="2254"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz słowo</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2259"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz słowo lub polecenie</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2264"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz treść między nawiasami</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2269"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz nawiasy</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2274"/>
@@ -1774,7 +1774,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
         <location filename="configdialog.ui" line="2319"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation type="unfinished"/>
+        <translation>Wyrażenia regularne dla komentarzy TODO:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2350"/>
@@ -1874,7 +1874,7 @@ musi je wyrenderować. Unicode nie jest bezpośrednio wspierany przez LaTeX, st�
     <message>
         <location filename="configdialog.ui" line="2532"/>
         <source>Hacks/Workarounds</source>
-        <translation type="unfinished"/>
+        <translation>Hacki/Obejścia</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2538"/>
@@ -2583,7 +2583,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4204"/>
         <source>Synchronized Files Types:</source>
-        <translation type="unfinished"/>
+        <translation>Synchronizowane typy plików</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4214"/>
@@ -3344,7 +3344,7 @@ opcji spowoduje wyświetlanie tylko tych podstawowych.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="30"/>
         <source>T&amp;itle</source>
-        <translation type="unfinished"/>
+        <translation>T&amp;ytuł</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
@@ -4410,7 +4410,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="435"/>
         <source>New BibTeX Entry %1</source>
-        <translation type="unfinished"/>
+        <translation>Nowy wpis BibTeX %1</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="450"/>
@@ -4433,12 +4433,12 @@ The wizard does not support command </source>
         <location filename="texstudio.cpp" line="7934"/>
         <location filename="texstudio.cpp" line="7941"/>
         <source>Go to Definition</source>
-        <translation type="unfinished"/>
+        <translation>Idź do definicji</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="496"/>
         <source>Find Usages</source>
-        <translation type="unfinished"/>
+        <translation>Znajdź wystąpienia</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="503"/>
@@ -4501,7 +4501,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2372"/>
         <source>Class</source>
-        <translation type="unfinished"/>
+        <translation>Klasa</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2372"/>
@@ -4511,7 +4511,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2376"/>
         <source>Beamer Theme</source>
-        <translation type="unfinished"/>
+        <translation>Styl Beamera</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2385"/>
@@ -6418,7 +6418,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4629"/>
         <source>Insert tab</source>
-        <translation type="unfinished"/>
+        <translation>Wstaw tabulator</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4630"/>
@@ -6433,7 +6433,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4634"/>
         <source>Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Nieznany</translation>
     </message>
 </context>
 <context>
@@ -6450,7 +6450,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="146"/>
         <source>background</source>
-        <translation type="unfinished"/>
+        <translation>Tło</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="147"/>
@@ -10567,7 +10567,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="7894"/>
         <source>Find Usages</source>
-        <translation type="unfinished"/>
+        <translation>Znajdź wystąpienia</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="7905"/>

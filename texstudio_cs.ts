@@ -1101,12 +1101,12 @@ Proměnné jsou zapsány jako: $MYVAR. Rozlišuje se velikost písmen.
     <message>
         <location filename="configdialog.ui" line="943"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Toto umožní nově vymezit příkazy pomocí poznámek ve stylu &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. Na podrobnosti se podívejte do příručky.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="946"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation>Vyložit vymezení příkazu v kouzelných poznámkách</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="972"/>
@@ -1156,7 +1156,7 @@ Potom můžete vybrat novou klávesovou zkratku jedním z následujících způs
     <message>
         <location filename="configdialog.ui" line="1026"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Ukázat zkratky v nástrojových radách</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1049"/>
@@ -1711,7 +1711,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="2236"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Toto používá QSaveFile k zabránění ztrátě stávajících datpokud dojde k selhání při operaci zápisu. Nevýhodou je, že se nynější uživatel stane vlastníkem souboru a rozšířené vlastnosti souboru jsou ztraceny. Také se zdá, že jsou s tímto způsobem potíže u složek dropbox.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2239"/>
@@ -1782,7 +1782,7 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
         <location filename="configdialog.ui" line="2319"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation type="unfinished"/>
+        <translation>Regulární výraz pro poznámku CO SE MÁ UDĚLAT:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2350"/>
@@ -2110,7 +2110,7 @@ are not shown here. Checking additional packages here is usually not
 necessary. However if automatic detection fails or you want to include
 specfic user completion files, you can enforce their usage by activating
 them here.</source>
-        <translation>TXS se pokouší o automatické nahrání doplňovacích seznamy slov (souborů) k balíčkům,
+        <translation>TXS se pokouší o automatické nahrání doplňovacích seznamů slov (souborů) k balíčkům,
 pokud je nalezen příkaz \usepackage{}. Tyto automaticky zahrnuté soubory
 zde nejsou zobrazeny Zaškrtnutí dalších balíčků zde není nutné. Pokud ale automatické
 určení selže nebo chcete zahrnout zvláštní uživatelské doplňovací soubory,
@@ -3119,17 +3119,17 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="58"/>
         <source>\begin{itemize}</source>
-        <translation>Po&amp;ložkový seznam - \begin{itemize}</translation>
+        <translation>Položkový seznam - \begin{itemize}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="59"/>
         <source>\begin{enumerate}</source>
-        <translation>&amp;Výčtový seznam - \begin{enumerate}</translation>
+        <translation>Výčtový seznam - \begin{enumerate}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="60"/>
         <source>\begin{description}</source>
-        <translation>&amp;Popisový seznam - \begin{description}</translation>
+        <translation>Popisový seznam - \begin{description}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="61"/>
@@ -3334,17 +3334,17 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="95"/>
         <source>\includegraphics{file}</source>
-        <translation>\includegraphics{〈soubor〉}</translation>
+        <translation>\includegraphics{file}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="96"/>
         <source>\include{file}</source>
-        <translation>\include{〈soubor〉}</translation>
+        <translation>\include{file}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="98"/>
         <source>\input{file}</source>
-        <translation>\input{〈soubor〉}</translation>
+        <translation>\input{file}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="20"/>
@@ -3354,17 +3354,17 @@ vidět jen nejběžnější nastavení.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="30"/>
         <source>T&amp;itle</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Název</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"/>
+        <translation>Vstupní/Zahrnuté &amp;soubory</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="97"/>
         <source>\includeonly{file(s)}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{file(s)}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="99"/>
