@@ -11,9 +11,9 @@
 #ifndef CURSORHISTORY_H
 #define CURSORHISTORY_H
 
-#include <QObject>
 #include "mostQtHeaders.h"
 #include "latexdocument.h"
+#include "cursorposition.h"
 
 typedef QLinkedList<CursorPosition> CursorPosList;
 

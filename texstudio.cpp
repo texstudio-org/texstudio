@@ -60,6 +60,7 @@
 #include "minisplitter.h"
 #include "latexparser/latextokens.h"
 #include "latexparser/latexparser.h"
+#include "latexstructure.h"
 
 
 #ifndef QT_NO_DEBUG

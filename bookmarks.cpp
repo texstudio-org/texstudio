@@ -1,5 +1,6 @@
 #include "bookmarks.h"
 #include "latexdocument.h"
+#include "latexeditorview.h"
 
 
 Bookmark::Bookmark() : lineNumber(0), bookmarkNumber(-1) {}
