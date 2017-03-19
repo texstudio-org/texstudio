@@ -148,7 +148,8 @@ HEADERS += texstudio.h \
     minisplitter.h \
     encoding.h \
     tests/latexparser_t.h \
-    tests/encoding_t.h
+    tests/encoding_t.h \
+    latexstructure.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -248,7 +249,8 @@ SOURCES += main.cpp \
     minisplitter.cpp \
     encoding.cpp \
     tests/latexparser_t.cpp \
-    tests/encoding_t.cpp
+    tests/encoding_t.cpp \
+    latexstructure.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
