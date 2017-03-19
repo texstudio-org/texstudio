@@ -4,11 +4,9 @@
   <insert id="usepackage" text="\usepackage{}" insert="\usepackage[%&lt;options%>]{%&lt;package%|%>}"/>
   <insert id="amspackages" text="AMS packages" insert="\usepackage{amsmath}%\\usepackage{amsfonts}%\\usepackage{amssymb}" info="The main American Mathematical Society packages"/>
   <insert id="document" text="\begin{document}" insert="\begin{document}%\%|%\\end{document}" info="Text is allowed only between \begin{document} and \end{document}."/>
-  <!-- <insert id="author" text="\author{}" insert="\author{%&lt;names%|%>}" info="The \author command declares the author(s), where names is a list of authors separated by \and commands."/> -->
-  <insert id="title" text="T&amp;itle"
-          insert="\title{%&lt;title%|%>}%\\author{%&lt;name(s)%|%>}%\% \date{%&lt;date%|%>}%\\maketitle"
-          info="All the title commands in one go."/>
-  <!-- <insert id="maketitle" text="\maketitle" insert="\maketitle" info="This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page."/> -->
+  <insert id="author" text="\author{}" insert="\author{%&lt;names%|%>}" info="The \author command declares the author(s), where names is a list of authors separated by \and commands."/>
+  <insert id="title" text="\title{}" insert="\title{%&lt;title%|%>}" info="The \title command declares text to be the title."/>
+  <insert id="maketitle" text="\maketitle" insert="\maketitle" info="This command generates a title on a separate title page%n- except in the article class, where the title normally goes at the top of the first page."/>
   <insert id="tableofcontents" text="\tableofcontents" insert="\tableofcontents" info="Put this command where you want the table of contents to go"/>
   
   
