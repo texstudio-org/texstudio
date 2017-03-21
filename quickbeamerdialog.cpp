@@ -131,9 +131,7 @@ void QuickBeamerDialog::Init()
 	ui.listWidgetBabel->addItem("english" );
 	ui.listWidgetBabel->addItem("farsi" );
 	ui.listWidgetBabel->addItem("finnish" );
-	ui.listWidgetBabel->addItem("francais" );
 	ui.listWidgetBabel->addItem("french" );
-	ui.listWidgetBabel->addItem("frenchb" );
 	ui.listWidgetBabel->addItem("ngerman" );
 	ui.listWidgetBabel->addItem("greek" );
 	ui.listWidgetBabel->addItem("icelandic" );
@@ -181,9 +179,7 @@ QString QuickBeamerDialog::getNewDocumentText()
 				if ((babelItems.at(i)->text() == "arabic") && fontenc.isEmpty()) fontenc = "LAE,LFE";
 				else if ((babelItems.at(i)->text() == "russian") && fontenc.isEmpty()) fontenc = "OT1";
 				else if ((babelItems.at(i)->text() == "slovak") && fontenc.isEmpty()) fontenc = "IL2";
-				else if ((babelItems.at(i)->text() == "francais") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "french") && fontenc.isEmpty()) fontenc = "T1";
-				else if ((babelItems.at(i)->text() == "frenchb") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "portuguese") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "icelandic") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "czech") && fontenc.isEmpty()) fontenc = "T1";
