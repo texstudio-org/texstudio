@@ -1,5 +1,5 @@
 /***************************************************************************
- *   copyright       : (C) 2003-2013 by Pascal Brachet                     *
+ *   copyright       : (C) 2003-2013, 2017 by Pascal Brachet                     *
  *   http://www.xm1math.net/texmaker/                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -226,7 +226,7 @@ QString QuickBeamerDialog::getNewDocumentText()
     tag += QString("%%\\subject{}\n");
     tag += QString("%%\\setbeamercovered{transparent}\n");
     tag += QString("%%\\setbeamertemplate{navigation symbols}{}\n");
-    tag += QString("\\frame[plain]{\\maketitle}\n\n\\begin{frame}\n\t\\frametitle{%|}\n\\end{frame}\n");
+    tag += QString("\\begin{frame}[plain]\n\t\\maketitle\n\\end{frame}\n\n\\begin{frame}\n\t\\frametitle{%|}\n\\end{frame}\n");
 	tag += QString("\\end{document}");
 	return tag;
 }
