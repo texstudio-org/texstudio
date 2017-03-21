@@ -1,5 +1,5 @@
 /***************************************************************************
- *   copyright       : (C) 2003-2013 by Pascal Brachet                     *
+ *   copyright       : (C) 2003-2013, 2017 by Pascal Brachet                     *
  *   http://www.xm1math.net/texmaker/                                      *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -131,9 +131,7 @@ void QuickBeamerDialog::Init()
 	ui.listWidgetBabel->addItem("english" );
 	ui.listWidgetBabel->addItem("farsi" );
 	ui.listWidgetBabel->addItem("finnish" );
-	ui.listWidgetBabel->addItem("francais" );
 	ui.listWidgetBabel->addItem("french" );
-	ui.listWidgetBabel->addItem("frenchb" );
 	ui.listWidgetBabel->addItem("ngerman" );
 	ui.listWidgetBabel->addItem("greek" );
 	ui.listWidgetBabel->addItem("icelandic" );
@@ -181,9 +179,7 @@ QString QuickBeamerDialog::getNewDocumentText()
 				if ((babelItems.at(i)->text() == "arabic") && fontenc.isEmpty()) fontenc = "LAE,LFE";
 				else if ((babelItems.at(i)->text() == "russian") && fontenc.isEmpty()) fontenc = "OT1";
 				else if ((babelItems.at(i)->text() == "slovak") && fontenc.isEmpty()) fontenc = "IL2";
-				else if ((babelItems.at(i)->text() == "francais") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "french") && fontenc.isEmpty()) fontenc = "T1";
-				else if ((babelItems.at(i)->text() == "frenchb") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "portuguese") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "icelandic") && fontenc.isEmpty()) fontenc = "T1";
 				else if ((babelItems.at(i)->text() == "czech") && fontenc.isEmpty()) fontenc = "T1";
@@ -226,7 +222,7 @@ QString QuickBeamerDialog::getNewDocumentText()
     tag += QString("%%\\subject{}\n");
     tag += QString("%%\\setbeamercovered{transparent}\n");
     tag += QString("%%\\setbeamertemplate{navigation symbols}{}\n");
-    tag += QString("\\frame[plain]{\\maketitle}\n\n\\begin{frame}\n\t\\frametitle{%|}\n\\end{frame}\n");
+    tag += QString("\\begin{frame}[plain]\n\t\\maketitle\n\\end{frame}\n\n\\begin{frame}\n\t\\frametitle{%|}\n\\end{frame}\n");
 	tag += QString("\\end{document}");
 	return tag;
 }
