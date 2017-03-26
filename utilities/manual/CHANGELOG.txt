@@ -1,5 +1,5 @@
-TeXstudio 2.12.4 RC
--------------------
+TeXstudio 2.12.4
+----------------
 - detect definition of tex counts using \newcount
 - improve config dialog layout
 - make todo comment detection configurable
