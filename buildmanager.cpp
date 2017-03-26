@@ -25,6 +25,7 @@ const QString BuildManager::TXS_CMD_PREFIX = "txs:///";
 int BuildManager::autoRerunLatex = 5;
 bool BuildManager::showLogInCaseOfCompileError = true;
 bool BuildManager::m_replaceEnvironmentVariables = true;
+bool BuildManager::m_interpetCommandDefinitionInMagicComment = true;
 bool BuildManager::m_supportShellStyleLiteralQuotes = true;
 bool BuildManager::singleViewerInstance = false;
 QString BuildManager::autoRerunCommands;
@@ -312,8 +313,8 @@ void BuildManager::initDefaultCommandNames()
 	descriptionList << tr("PdfLaTeX") << tr("LaTeX") << tr("XeLaTeX") << tr("LuaLaTeX") << tr("Latexmk");
 	registerCommand("compile", tr("Default Compiler"), QStringList() << "txs:///pdflatex" << "txs:///latex" << "txs:///xelatex" << "txs:///lualatex" << "txs:///latexmk", "", true, descriptionList);
 	descriptionList.clear();
-	descriptionList << tr("PDF Viewer") << tr("DVI Viewer") << tr("PS Viewer") << tr("Internal PDF Viewer (Windowed)") << tr("Internal PDF Viewer (Embedded)") << tr("External PDF Viewer");
-	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps" << "txs:///view-pdf-internal" << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-external", "", true, descriptionList);
+	descriptionList << tr("PDF Viewer") << tr("DVI Viewer") << tr("PS Viewer");
+	registerCommand("view", tr("Default Viewer"), QStringList() << "txs:///view-pdf" << "txs:///view-dvi" << "txs:///view-ps", "", true, descriptionList);
 	descriptionList.clear();
 	descriptionList << tr("Internal PDF Viewer (Embedded)") << tr("Internal PDF Viewer (Windowed)")  << tr("External PDF Viewer");
 	registerCommand("view-pdf", tr("PDF Viewer"), QStringList() << "txs:///view-pdf-internal --embedded" << "txs:///view-pdf-internal" << "txs:///view-pdf-external", "", true, descriptionList);
@@ -1373,7 +1374,7 @@ void BuildManager::readSettings(QSettings &settings)
 			settings.remove(QString("User/ToolName%1").arg(i));
 		}
 	}
-	int md = reinterpret_cast<int &>(dvi2pngMode);
+    int md = dvi2pngMode;
 #ifdef NO_POPPLER_PREVIEW
 	if (md == DPM_EMBEDDED_PDF)
 		md = -1;
@@ -1893,6 +1894,31 @@ void BuildManager::setAllCommands(const CommandMapping &cmds, const QStringList 
 			(*sl)[i] = getCommandInfo((*sl)[i]).commandLine.trimmed();
 		}
 	}
+}
+
+/*!
+ * Returns a best guess compiler for a string given in "% !TeX TS-program = [program]" \ "% !TeX program = [program]"
+ */
+QString BuildManager::guessCompilerFromProgramMagicComment(const QString &program)
+{
+	if (program == "latex") return BuildManager::CMD_LATEX;
+	else if (program == "pdflatex") return BuildManager::CMD_PDFLATEX;
+	else if (program == "xelatex") return BuildManager::CMD_XELATEX;
+	else if (program == "luatex" || program == "lualatex") return BuildManager::CMD_LUALATEX;
+	return QString();
+
+}
+
+/*!
+ * Returns a best guess viewer for a string given in "% !TeX TS-program = [program]" \ "% !TeX program = [program]"
+ */
+QString BuildManager::guessViewerFromProgramMagicComment(const QString &program)
+{
+	if (program == "latex") return BuildManager::CMD_VIEW_DVI;
+	else if (program == "pdflatex" || program == "xelatex" || program == "luatex" || program == "lualatex") {
+		return CMD_VIEW_PDF;
+	}
+	return QString();
 }
 
 void BuildManager::singleInstanceCompleted(int status)

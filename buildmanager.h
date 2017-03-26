@@ -169,6 +169,8 @@ public:
 	CommandMapping getAllCommands();
 	QStringList getCommandsOrder();
 	void setAllCommands(const CommandMapping &commands, const QStringList &userOrder);
+	QString guessCompilerFromProgramMagicComment(const QString &program);
+	QString guessViewerFromProgramMagicComment(const QString &program);
 
 	int maxExpandingNestingDeep;
 
@@ -225,6 +227,7 @@ public:
 	static int autoRerunLatex;
 	static bool showLogInCaseOfCompileError;
 	static bool m_replaceEnvironmentVariables;
+	static bool m_interpetCommandDefinitionInMagicComment;
 	static bool m_supportShellStyleLiteralQuotes;
 	static bool singleViewerInstance;
 	static QString autoRerunCommands;

@@ -131,6 +131,7 @@ public:
 	int tabstop;
 
 	bool useEscForClosingLog;
+	bool showShortcutsInTooltips;
 	int replaceQuotes; //0: none, 1: ``..'', 2: \"< \"> 3: \"`..\"' , 4: \\og..\\fg{} 5: \"> \"<
 
 	// table autoformat
@@ -206,9 +207,9 @@ public:
 	QList<QMenu *> managedMenus;
 	QHash<QString, QKeySequence> managedMenuShortcuts;
 	QList<QPair<QString, QString> > managedMenuNewShortcuts;
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	//workaround that osx/qt does not support alt+key/esc as shortcuts
-	QMap<QKeySequence, QAction *> specialShortcuts;
+    QMultiMap<QKeySequence, QAction *> specialShortcuts;
 #endif
 
 	QMenu *newManagedMenu(const QString &id, const QString &text);

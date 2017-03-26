@@ -1,3 +1,44 @@
+TeXstudio 2.12.4
+----------------
+- detect definition of tex counts using \newcount
+- improve config dialog layout
+- make todo comment detection configurable
+- show frame titles in structure view
+- support table alignment in IEEEeqnarray, xtabular and mpxtabular
+- table alignment: fix aligning of empty cols
+- table alignment: place \\ if last columns is empty 
+- warn if \begin{column} is used outside columns-env
+- workaround for not interpreting $ inside sweave \Sexpr{}
+- option to deactivate interperation of command definition in magic comments
+- remove pdf viewer subtypes from "Default Viewer" config. PDF viewer subtypes should be selected in "PDF Viewer".
+- increase the maximal resolution for pdf rendering (bug 2003)
+- toolbar for embedded viewer can not turned-off anymore
+- show shortcuts in tooltips (can be deactivated in the options)
+- pass non-breaking space to grammar check (fixes bug 2040)
+- \item completion no adds a space (feature request 994)
+- fix highlighting of current section in structure (bug 2103)
+- fix delays when typing _abc
+- fix bug in log parser: wrong filename if empty brackets () occur in text
+- fix word repetition erro on non-breaking space (~)
+- fix file detection in latex/include file
+- fix width of side panel not saved (bug 2083)
+- fix ampersand in in recent session names
+- fix parsing of \RequirePackage in style files if the argument is completed on the same line
+- fix misinterpretation of closing brace if extra opening brace is used over multilines
+- fix jumping to first page when changing magnifier/hand in pdfviewer
+- fix spelling error on words followed by
+- show option --version when calling with --help
+- fix link to LibreOffice dictionaries
+- fix crash on pressing Esc in options
+- fix entering persian half-space letter
+- fix \maketitle completion
+- fix shortcut context on OSX
+- fix robustcommand definition
+- use $* instead of $@ in BUILD.sh (bug 2042)
+- add needspace.cwl
+- update some cwls
+- add turkish translation
+
 TeXstudio 2.12.2
 ----------------
 - PDF shortcuts are now changable

@@ -17,7 +17,13 @@
 #include <QtCore/qmath.h>
 
 const int kMaxPageZoom = 1000000;
-const qreal kMaxDpiForFullPage = isRetinaMac() ? 1000.0 : 500.0;
+
+// maximal resolution for rendering
+// example: 192dpi with 4x magnification requires 768dpi rendering resolution
+// rendering at high resolutions may be slow. On the other hand, we expect
+// that users with high resolution screens have reasonable cpu power.
+const qreal kMaxDpiForFullPage = 1000.0;
+
 
 PDFQueue::PDFQueue(QObject *parent): QObject(parent), stopped(true), num_renderQueues(1)
 {

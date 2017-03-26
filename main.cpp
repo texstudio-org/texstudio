@@ -154,7 +154,8 @@ bool handleCommandLineOnly(const QStringList &cmdLine) {
 							<< "  --start-always          start a new instance, even if TXS is already running\n"
 							<< "  --pdf-viewer-only       run as a standalone pdf viewer without an editor\n"
 							<< "  --page PAGENUM          display a certain page in the pdf viewer\n"
-							<< "  --no-session            do not load/save the session at startup/close\n";
+                            << "  --no-session            do not load/save the session at startup/close\n"
+                            << "  --version               show version number\n";
 		return true;
 	}
 

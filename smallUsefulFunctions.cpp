@@ -7,7 +7,7 @@
 #include "latexparser/latexparser.h"
 
 
-const int RUNAWAYLIMIT=10; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the arbument is unclosed
+const int RUNAWAYLIMIT=30; // limit lines to process multi-line arguments in order to prevent processing to the end of document if the arbument is unclosed
 
 
 /*
@@ -1301,52 +1301,52 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					if (valid.contains("L0")) {
 						valid.remove("L0");
 						if (res > -1) {
-							package.possibleCommands["%structure0"] << rxCom.cap(1);
+                            package.possibleCommands["%structure0"] << cmd;
 						}
 					} else if (valid.contains("L1")) {
 						valid.remove("L1");
 						if (res > -1) {
-							package.possibleCommands["%structure1"] << rxCom.cap(1);
+                            package.possibleCommands["%structure1"] << cmd;
 						}
 					} else if (valid.contains("L2")) {
 						valid.remove("L2");
 						if (res > -1) {
-							package.possibleCommands["%structure2"] << rxCom.cap(1);
+                            package.possibleCommands["%structure2"] << cmd;
 						}
 					} else if (valid.contains("L3")) {
 						valid.remove("L3");
 						if (res > -1) {
-							package.possibleCommands["%structure3"] << rxCom.cap(1);
+                            package.possibleCommands["%structure3"] << cmd;
 						}
 					} else if (valid.contains("L4")) {
 						valid.remove("L4");
 						if (res > -1) {
-							package.possibleCommands["%structure4"] << rxCom.cap(1);
+                            package.possibleCommands["%structure4"] << cmd;
 						}
 					} else if (valid.contains("L5")) {
 						valid.remove("L5");
 						if (res > -1) {
-							package.possibleCommands["%structure5"] << rxCom.cap(1);
+                            package.possibleCommands["%structure5"] << cmd;
 						}
 					}else if (valid.contains("L6")) {
 						valid.remove("L6");
 						if (res > -1) {
-							package.possibleCommands["%structure6"] << rxCom.cap(1);
+                            package.possibleCommands["%structure6"] << cmd;
 						}
 					}else if (valid.contains("L7")) {
 						valid.remove("L7");
 						if (res > -1) {
-							package.possibleCommands["%structure7"] << rxCom.cap(1);
+                            package.possibleCommands["%structure7"] << cmd;
 						}
 					}else if (valid.contains("L8")) {
 						valid.remove("L8");
 						if (res > -1) {
-							package.possibleCommands["%structure8"] << rxCom.cap(1);
+                            package.possibleCommands["%structure8"] << cmd;
 						}
 					}else if (valid.contains("L9")) {
 						valid.remove("L9");
 						if (res > -1) {
-							package.possibleCommands["%structure9"] << rxCom.cap(1);
+                            package.possibleCommands["%structure9"] << cmd;
 						}
 					}
 				}
@@ -1524,8 +1524,9 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 							package.possibleCommands[elem] << cmd;
 					} else {
 						QString cmd = rxCom.cap(1);
+                        QString envName = rxCom.cap(3);
 						if (cmd == "\\begin" || cmd == "\\end") {
-							cmd = line.simplified();
+                            cmd += "{"+envName+"}";
 						}
 						foreach (const QString &elem, env)
 							package.possibleCommands[elem] << cmd;
@@ -1862,24 +1863,34 @@ QString getArg(const TokenList &tl, Token::TokenType type){
     return QString();
 }
 
-QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type)
+QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type,bool enableMultiLineSearch)
 {
 	// argNumber 0 -> first argument
     QDocument *doc=dlh->document();
     int lineNr=doc->indexOf(dlh);
 
-	QList<Token::TokenType> tkTypes;
+	// do only create the relevant token sets once and keep them around for later use for speedup.
+	static const QSet<Token::TokenType> tokensForMandatoryArg = QSet<Token::TokenType>()
+														  << Token::braces
+														  << Token::word
+														  << Token::command
+														  << Token::commandUnknown
+														  << Token::number
+														  << Token::openBrace;
+	static const QSet<Token::TokenType> tokensForMandatoryBraceArg = QSet<Token::TokenType>() << Token::braces;
+	static const QSet<Token::TokenType> tokensForOptionalArg = QSet<Token::TokenType>() << Token::squareBracket << Token::openSquare;
+
+	const QSet<Token::TokenType> *searchTokens = 0;
+
 	if (type == ArgumentList::Mandatory) {
-		tkTypes.append(Token::braces);
-		tkTypes.append(Token::word);
-		tkTypes.append(Token::command);
-		tkTypes.append(Token::commandUnknown);
-		tkTypes.append(Token::number);
-		tkTypes.append(Token::openBrace);
+		searchTokens = &tokensForMandatoryArg;
+	} else if (type == ArgumentList::MandatoryWithBraces) {
+		searchTokens = &tokensForMandatoryBraceArg;
 	} else {
-		tkTypes.append(Token::squareBracket);
-		tkTypes.append(Token::openSquare);
+		searchTokens = &tokensForOptionalArg;
 	}
+	REQUIRE_RET(searchTokens, QString());
+
     int cnt=0;
 	int k = 0;
     int level=0;
@@ -1893,7 +1904,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
             if(tk.level>level)
                 continue; //only use tokens from the same option-level
 
-            if (tkTypes.contains(tk.type)) {
+            if (searchTokens->contains(tk.type)) {
                 QString result;
                 if (Token::tkBraces().contains(tk.type) || Token::tkOpen().contains(tk.type) || Token::tkClose().contains(tk.type)) {
                     result = line.mid(tk.innerStart(), tk.innerLength());
@@ -1913,6 +1924,8 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 					return QString(); //optional argument can't follow mandatory one
 			}
         }
+        if(!enableMultiLineSearch)
+            break;
         lineNr++;
         dlh=doc->line(lineNr).handle();
         if(dlh)
@@ -2720,7 +2733,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
             }else{
                 if(tk.type==Token::openBrace){ // check braces within arguments, not brackets/squareBrackets
                     tk.level = level;
-                    tk.argLevel = 0; // run-away prevention, reduced if no command is used
+                    tk.argLevel = RUNAWAYLIMIT; // run-away prevention, needs to be >0 as otherwise closing barces are misinterpreted
                     stack.push(tk);
                     lexed << tk;
                     level++;

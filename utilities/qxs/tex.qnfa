@@ -80,12 +80,6 @@ environments in smallUsefulFunctions.cpp)
 
 	<!-- ========================= COMMAND ====================== -->
 
-	<context id="comment/todo" format="commentTodo" stayOnLine="true" >
-		<start>%$s?[A-Z][A-Z_\-]+</start>
-		<start>%todo</start>
-		<stop exclusive="false">\n</stop>
-	</context>
-
 	<context id="comment/magic" format="magicComment" stayOnLine="true" >
 		<start>%\ ?!T[eE]X</start>
 		<stop exclusive="false">\n</stop>
@@ -164,7 +158,14 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
+		<context id="sexpr" format="sweave-block" transparency="false">
+		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
+			<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
+			<start parenthesis="todo:open" prenthesisweight="12">\\Sexpr\{</start>
+		</context>
+
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
+
 	</context>
 
 	<context id="mathmodeNormal" format="numbers" transparency="true">
@@ -190,6 +191,12 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
 
+		<context id="sexpr" format="sweave-block" transparency="false">
+		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
+			<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
+			<start parenthesis="todo:open" prenthesisweight="12">\\Sexpr\{</start>
+		</context>
+		
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 
 	</context>
@@ -216,6 +223,12 @@ environments in smallUsefulFunctions.cpp)
 		<sequence parenthesis="floor:close" parenthesisWeight="0" format="math-keyword">\\rfloor</sequence>
 		<sequence parenthesis="angle:open" parenthesisWeight="0" format="math-keyword">\\langle</sequence>
 		<sequence parenthesis="angle:close" parenthesisWeight="0" format="math-keyword">\\rangle</sequence>
+
+		<context id="sexpr" format="sweave-block" transparency="false">
+		    <!-- workaround for not interpreting anything inside sweave \Sexpr{} --> 
+			<stop parenthesis="todo:close" prenthesisweight="12" >\}</stop>
+			<start parenthesis="todo:open" prenthesisweight="12">\\Sexpr\{</start>
+		</context>
 
 		<sequence id="keywords/single" format="math-keyword">\\[a-zA-Z]+</sequence>
 	</context>

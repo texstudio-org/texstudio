@@ -150,13 +150,20 @@ void GrammarCheck::processLoop()
 }
 
 const QString uselessPunctation = "!:?,.;-"; //useful: \"(
-const QString noSpacePunctation = "!:?,.;)";
+const QString punctuationNotPreceededBySpace = "!:?,.;)\u00A0";  // \u00A0 is non-breaking space: assuming it is not surrounded by natural space (wouldn't make sense)
+const QString punctuationNotFollowedBySpace = "(\"\u00A0";
 
+
+/* Determine if words[i] should be preceeded by a space in the context of words.
+ * If not continue.
+ * If i > words.length() break;
+ * This does always increase i by one. (Note: the checks below are written based on i++)
+ * This is used in loops for selectively joining words with spaces. */
 #define CHECK_FOR_SPACE_AND_CONTINUE_LOOP(i, words) i++; \
-  if (i >= (words).length()) break; \
-  if ((words)[i].length() == 1 && noSpacePunctation.contains((words)[i][0])) continue; \
-  if ((words)[i-1].length() == 1 && ((words)[i-1] == "(" || (words)[i-1] == "\"")) continue; \
-  if ((words)[i-1].length() == 2 && (words)[i-1][1] == '.' && (words)[i].length() == 2 && (words)[i][1] == '.') continue; /* abbeviations like "e.g." */ \
+  if (i >= words.length()) break; \
+  if (words[i].length() == 1 && punctuationNotPreceededBySpace.contains(words[i][0])) continue; \
+  if (words[i-1].length() == 1 && punctuationNotFollowedBySpace.contains(words[i-1][0])) continue; \
+  if (words[i-1].length() == 2 && words[i-1][1] == '.' && words[i].length() == 2 && words[i][1] == '.') continue; /* abbeviations like "e.g." */ \
 
 void GrammarCheck::process(int reqId)
 {
@@ -236,8 +243,8 @@ void GrammarCheck::process(int reqId)
 
 
 			if (type == LatexReader::NW_TEXT) tb.words << lr.word;
-			else { /*if (type == LatexReader::NW_PUNCTATION) */
-                if ((lr.word == "-" || lr.word == "~" )&& !tb.words.isEmpty()) {
+			else if (type == LatexReader::NW_PUNCTATION) {
+				if ((lr.word == "-") && !tb.words.isEmpty()) {
 					//- can either mean a word-separator or a sentence -- separator
 					// => if no space, join the words at both sides of the - (this could be easier handled in nextToken, but spell checking usually doesn't support - within words)
 					if (lr.wordStartIndex == tb.endindices.last()) {
@@ -255,8 +262,19 @@ void GrammarCheck::process(int reqId)
 						tb.endindices.last() = lr.index;
 						continue;
 					}
-				} else if (lr.word == "\"")
-					lr.word = "'"; //replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
+				} else if (lr.word == "\"") {
+					lr.word = "'";  // replace " by ' because " is encoded as &quot; and screws up the (old) LT position calculation
+				} else if (lr.word == "~") {
+					lr.word =  "\u00A0";  // rewrite LaTeX non-breaking space to unicode non-braking space
+				} else if (punctuationNotPreceededBySpace.contains(lr.word) && !tb.words.isEmpty() && tb.words.last() == "\u00A0") {
+					// rewrite non-breaking space followed by punctuation to punctuation only. e.g. "figure~\ref{abc}." -> "figure."
+					// \ref{} is dropped by the reader and an erronous would leave "figure\u00A0."
+					// As a heuristic no space before punctuation takes precedence over non-breaking space.
+					// This is the best we can do for now. A complete handling of all cases is only possible with a full tokenization.
+					tb.words.last() = lr.word;
+					tb.endindices.last() = lr.index;
+					continue;
+				}
 				tb.words << lr.word;
 			}
 

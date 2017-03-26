@@ -88,7 +88,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -120,8 +120,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>547</width>
-            <height>563</height>
+            <width>1076</width>
+            <height>803</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -801,7 +801,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>198</width>
+               <width>1056</width>
                <height>76</height>
               </rect>
              </property>
@@ -937,6 +937,16 @@ Variables are written as: $MYVAR. They are case-sensitive.
             </property>
            </widget>
           </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="checkBoxInterpetCommandDefinitionInMagicComment">
+            <property name="toolTip">
+             <string>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</string>
+            </property>
+            <property name="text">
+             <string>Interpret command definition in magic comments</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1007,6 +1017,13 @@ Then you can select a new shortcut by one of the following ways:
         <widget class="QCheckBox" name="cb_CloseLogByEsc">
          <property name="text">
           <string>Close Log-View with Esc-Key</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxShowShortcutsInTooltips">
+         <property name="text">
+          <string>Show Shortcuts in Tooltips</string>
          </property>
         </widget>
        </item>
@@ -1766,8 +1783,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1059</width>
-            <height>1389</height>
+            <width>665</width>
+            <height>1415</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2268,41 +2285,51 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
               <string>Structure Panel</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_2">
-              <item row="3" column="0">
+              <item row="7" column="0">
                <widget class="QCheckBox" name="checkBoxMarkStructureElementsBeyondEnd">
                 <property name="text">
                  <string>Mark structure elements beyond \end{document}</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="label_64">
                 <property name="text">
                  <string>Reference commands in context menu:</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
-              </item>
-              <item row="0" column="0" colspan="2">
-               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
-                <property name="text">
-                 <string>Keep indentation of includes in structure tree</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
+              <item row="6" column="0">
                <widget class="QCheckBox" name="checkBoxShowCommentedElementsInStructure">
                 <property name="text">
                  <string>Show elements in comments</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="8" column="0">
                <widget class="QCheckBox" name="checkBoxMarkStructureElementsInAppendix">
                 <property name="text">
                  <string>Mark structure elements in appendix</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_83">
+                <property name="text">
+                 <string>Regular expression for TODO comment: </string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="leReferenceCommandsInContextMenu"/>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="leRegExpTODO"/>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QCheckBox" name="checkBoxIndentIncludesInStructureTree">
+                <property name="text">
+                 <string>Keep indentation of includes in structure tree</string>
                 </property>
                </widget>
               </item>
@@ -2313,6 +2340,8 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
              <zorder>checkBoxShowCommentedElementsInStructure</zorder>
              <zorder>checkBoxMarkStructureElementsBeyondEnd</zorder>
              <zorder>checkBoxMarkStructureElementsInAppendix</zorder>
+             <zorder>label_83</zorder>
+             <zorder>leRegExpTODO</zorder>
             </widget>
            </item>
            <item>

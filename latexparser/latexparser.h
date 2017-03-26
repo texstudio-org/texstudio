@@ -62,7 +62,7 @@ public:
 Q_DECLARE_METATYPE(LatexParser)
 
 
-QString getCommonEOW();
+const QString & getCommonEOW();
 /// closing bracket (opening and closing bracket considered correctly)
 int findClosingBracket(const QString &word, int &start, QChar oc = QChar('{'), QChar cc = QChar('}'));
 /// opening bracket (opening and closing bracket considered correctly), start at "start"

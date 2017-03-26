@@ -412,6 +412,14 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< "./test.tex";
+	QTest::newRow("expecting filename")
+			<< (QStringList() << "(test.tex some (")
+			<< short (LatexOutputFilter::ExpectingFileName)
+			<< "test.tex";
+	QTest::newRow("empty brackets")
+			<< (QStringList() << "(test.tex" << "some ()")
+			<< short (LatexOutputFilter::Start)
+			<< "test.tex";
 	QTest::newRow("continued 1")
 			<< (QStringList() << "foo bar blub            *** this line has 78 chars ***             (/some/path/w"
 				)

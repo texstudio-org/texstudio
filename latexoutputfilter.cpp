@@ -396,7 +396,10 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 			}
 			break;
 		case ExpectingFileName:
-			if (c == '"') {
+			if (c == ')') {
+				dwCookie = Start;
+				continue;
+			} else if (c == '"') {
 				dwCookie = InQuotedFileName;
 				fnStart = i + 1;
 				continue;
