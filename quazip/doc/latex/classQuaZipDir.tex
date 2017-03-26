@@ -1,0 +1,413 @@
+\section{QuaZipDir Class Reference}
+\label{classQuaZipDir}\index{QuaZipDir@{QuaZipDir}}
+
+
+Provides ZIP archive navigation.  
+
+
+
+
+{\ttfamily \#include $<$quazipdir.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf QuaZipDir} (const {\bf QuaZipDir} \&that)\label{classQuaZipDir_a6c9cc8b74c52d3fe997b753370566690}
+
+\begin{DoxyCompactList}\small\item\em The copy constructor. \end{DoxyCompactList}\item 
+{\bf QuaZipDir} ({\bf QuaZip} $\ast$zip, const QString \&dir=QString())
+\begin{DoxyCompactList}\small\item\em Constructs a \doxyref{QuaZipDir}{p.}{classQuaZipDir} instance pointing to the specified directory. \end{DoxyCompactList}\item 
+{\bf $\sim$QuaZipDir} ()\label{classQuaZipDir_ae95d60e2c23e611723371bf8fff2b095}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool {\bf operator==} (const {\bf QuaZipDir} \&that)\label{classQuaZipDir_a4a2e07484c7159a3f469922ba2383547}
+
+\begin{DoxyCompactList}\small\item\em The assignment operator. \end{DoxyCompactList}\item 
+bool {\bf operator!=} (const {\bf QuaZipDir} \&that)
+\begin{DoxyCompactList}\small\item\em operator!= \end{DoxyCompactList}\item 
+{\bf QuaZipDir} \& {\bf operator=} (const {\bf QuaZipDir} \&that)
+\begin{DoxyCompactList}\small\item\em operator== \end{DoxyCompactList}\item 
+QString {\bf operator[$\,$]} (int pos) const \label{classQuaZipDir_a9e37ef5318c44a4575c58d66110e535a}
+
+\begin{DoxyCompactList}\small\item\em Returns the name of the entry at the specified position. \end{DoxyCompactList}\item 
+{\bf QuaZip::CaseSensitivity} {\bf caseSensitivity} () const \label{classQuaZipDir_ad7ab403a8d36a3b6149da86ea37178f8}
+
+\begin{DoxyCompactList}\small\item\em Returns the current case sensitivity mode. \end{DoxyCompactList}\item 
+bool {\bf cd} (const QString \&dirName)
+\begin{DoxyCompactList}\small\item\em Changes the 'current' directory. \end{DoxyCompactList}\item 
+bool {\bf cdUp} ()\label{classQuaZipDir_a62306db3f4c0866930fa35c7348b84b3}
+
+\begin{DoxyCompactList}\small\item\em Goes up. \end{DoxyCompactList}\item 
+uint {\bf count} () const \label{classQuaZipDir_aa3f14665e3991351f4ef94ab8e0ab29d}
+
+\begin{DoxyCompactList}\small\item\em Returns the number of entries in the directory. \end{DoxyCompactList}\item 
+QString {\bf dirName} () const 
+\begin{DoxyCompactList}\small\item\em Returns the current directory name. \end{DoxyCompactList}\item 
+QList$<$ {\bf QuaZipFileInfo} $>$ {\bf entryInfoList} (const QStringList \&nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory. \end{DoxyCompactList}\item 
+QList$<$ {\bf QuaZipFileInfo} $>$ {\bf entryInfoList} (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory. \end{DoxyCompactList}\item 
+QList$<$ {\bf QuaZipFileInfo64} $>$ {\bf entryInfoList64} (const QStringList \&nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory with zip64 support. \end{DoxyCompactList}\item 
+QList$<$ {\bf QuaZipFileInfo64} $>$ {\bf entryInfoList64} (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entries in the directory with zip64 support. \end{DoxyCompactList}\item 
+QStringList {\bf entryList} (const QStringList \&nameFilters, QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entry names in the directory. \end{DoxyCompactList}\item 
+QStringList {\bf entryList} (QDir::Filters filters=QDir::NoFilter, QDir::SortFlags sort=QDir::NoSort) const 
+\begin{DoxyCompactList}\small\item\em Returns the list of the entry names in the directory. \end{DoxyCompactList}\item 
+bool {\bf exists} (const QString \&fileName) const 
+\begin{DoxyCompactList}\small\item\em Returns {\ttfamily true} if the entry with the specified name exists. \end{DoxyCompactList}\item 
+bool {\bf exists} () const \label{classQuaZipDir_a22c8f63ce874f5c0e958ae5f42e6d004}
+
+\begin{DoxyCompactList}\small\item\em Return {\ttfamily true} if the directory pointed by this \doxyref{QuaZipDir}{p.}{classQuaZipDir} exists. \end{DoxyCompactList}\item 
+QString {\bf filePath} (const QString \&fileName) const 
+\begin{DoxyCompactList}\small\item\em Returns the full path to the specified file. \end{DoxyCompactList}\item 
+QDir::Filters {\bf filter} ()\label{classQuaZipDir_abeee1810c7c1c1af93364081dbf70d38}
+
+\begin{DoxyCompactList}\small\item\em Returns the default filter. \end{DoxyCompactList}\item 
+bool {\bf isRoot} () const 
+\begin{DoxyCompactList}\small\item\em Returns if the \doxyref{QuaZipDir}{p.}{classQuaZipDir} points to the root of the archive. \end{DoxyCompactList}\item 
+QStringList {\bf nameFilters} () const \label{classQuaZipDir_a00f18e23abb8cac04f975e7f31553f2e}
+
+\begin{DoxyCompactList}\small\item\em Return the default name filter. \end{DoxyCompactList}\item 
+QString {\bf path} () const 
+\begin{DoxyCompactList}\small\item\em Returns the path to the current dir. \end{DoxyCompactList}\item 
+QString {\bf relativeFilePath} (const QString \&fileName) const 
+\begin{DoxyCompactList}\small\item\em Returns the path to the specified file relative to the current dir. \end{DoxyCompactList}\item 
+void {\bf setCaseSensitivity} ({\bf QuaZip::CaseSensitivity} caseSensitivity)\label{classQuaZipDir_ad53c720975bb0c49a823355f7d518793}
+
+\begin{DoxyCompactList}\small\item\em Sets the default case sensitivity mode. \end{DoxyCompactList}\item 
+void {\bf setFilter} (QDir::Filters filters)\label{classQuaZipDir_a779a43641f0f3802678e39c9acd1fddb}
+
+\begin{DoxyCompactList}\small\item\em Sets the default filter. \end{DoxyCompactList}\item 
+void {\bf setNameFilters} (const QStringList \&nameFilters)\label{classQuaZipDir_abcf208bfd6136e14f36725ae79dce2be}
+
+\begin{DoxyCompactList}\small\item\em Sets the default name filter. \end{DoxyCompactList}\item 
+void {\bf setPath} (const QString \&path)
+\begin{DoxyCompactList}\small\item\em Goes to the specified path. \end{DoxyCompactList}\item 
+void {\bf setSorting} (QDir::SortFlags sort)\label{classQuaZipDir_ae43e9d717e3c4b1c0d4790cf558e7451}
+
+\begin{DoxyCompactList}\small\item\em Sets the default sorting mode. \end{DoxyCompactList}\item 
+QDir::SortFlags {\bf sorting} () const \label{classQuaZipDir_a4000523c961ab9e0cad08641ff10e3fa}
+
+\begin{DoxyCompactList}\small\item\em Returns the default sorting mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides ZIP archive navigation. 
+
+This class is modelled after QDir, and is designed to provide similar features for ZIP archives.
+
+The only significant difference from QDir is that the root path is not '/', but an empty string since that's how the file paths are stored in the archive. However, \doxyref{QuaZipDir}{p.}{classQuaZipDir} understands the paths starting with '/'. It is important in a few places:
+
+
+\begin{DoxyItemize}
+\item In the \doxyref{cd()}{p.}{classQuaZipDir_aa829afc0243f1d307302f1167edecc7b} function.
+\item In the constructor.
+\item In the \doxyref{exists()}{p.}{classQuaZipDir_aacb488fec6e951ac80e5d473534fee97} function.
+\item In the relativePath() function.
+\end{DoxyItemize}
+
+Note that since ZIP uses '/' on all platforms, the '$\backslash$' separator is not supported. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{QuaZipDir@{QuaZipDir}!QuaZipDir@{QuaZipDir}}
+\index{QuaZipDir@{QuaZipDir}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{QuaZipDir}]{\setlength{\rightskip}{0pt plus 5cm}QuaZipDir::QuaZipDir (
+\begin{DoxyParamCaption}
+\item[{{\bf QuaZip} $\ast$}]{zip, }
+\item[{const QString \&}]{dir = {\ttfamily QString()}}
+\end{DoxyParamCaption}
+)}\label{classQuaZipDir_a19e5e3a54f322ce03e7f7606a87a2ba1}
+
+
+Constructs a \doxyref{QuaZipDir}{p.}{classQuaZipDir} instance pointing to the specified directory. 
+
+If {\itshape dir\/} is not specified, points to the root of the archive. The same happens if the {\itshape dir\/} is "/". 
+
+\subsection{Member Function Documentation}
+\index{QuaZipDir@{QuaZipDir}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool QuaZipDir::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf QuaZipDir} \&}]{that}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  [inline]}}\label{classQuaZipDir_a6e60d858d05774c958215ee7741eceed}
+
+
+operator!= 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if either this and {\itshape that\/} use different \doxyref{QuaZip}{p.}{classQuaZip} instances or if they point to different directories. 
+\end{DoxyReturn}
+\index{QuaZipDir@{QuaZipDir}!operator=@{operator=}}
+\index{operator=@{operator=}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf QuaZipDir} \& QuaZipDir::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf QuaZipDir} \&}]{that}
+\end{DoxyParamCaption}
+)}\label{classQuaZipDir_aa603c69be0c1597add5951b19f8bc961}
+
+
+operator== 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if both this and {\itshape that\/} use the same \doxyref{QuaZip}{p.}{classQuaZip} instance and point to the same directory. 
+\end{DoxyReturn}
+\index{QuaZipDir@{QuaZipDir}!cd@{cd}}
+\index{cd@{cd}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{cd}]{\setlength{\rightskip}{0pt plus 5cm}bool QuaZipDir::cd (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{dirName}
+\end{DoxyParamCaption}
+)}\label{classQuaZipDir_aa829afc0243f1d307302f1167edecc7b}
+
+
+Changes the 'current' directory. 
+
+If the path starts with '/', it is interpreted as an absolute path from the root of the archive. Otherwise, it is interpreted as a path relative to the current directory as was set by the previous \doxyref{cd()}{p.}{classQuaZipDir_aa829afc0243f1d307302f1167edecc7b} or the constructor.
+
+Note that the subsequent \doxyref{path()}{p.}{classQuaZipDir_a68ac82ad605c0b10f9ee1a2d6d474f52} call will not return a path starting with '/' in all cases. 
+
+References cd(), dirName(), exists(), isRoot(), and path().
+
+
+
+Referenced by cd(), and cdUp().
+
+\index{QuaZipDir@{QuaZipDir}!dirName@{dirName}}
+\index{dirName@{dirName}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{dirName}]{\setlength{\rightskip}{0pt plus 5cm}QString QuaZipDir::dirName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_afd2f76410f7728a7166b7598926fbf96}
+
+
+Returns the current directory name. 
+
+The name doesn't include the path. 
+
+Referenced by cd().
+
+\index{QuaZipDir@{QuaZipDir}!entryInfoList@{entryInfoList}}
+\index{entryInfoList@{entryInfoList}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryInfoList}]{\setlength{\rightskip}{0pt plus 5cm}QList$<$ {\bf QuaZipFileInfo} $>$ QuaZipDir::entryInfoList (
+\begin{DoxyParamCaption}
+\item[{const QStringList \&}]{nameFilters, }
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_aef966735a146fc10c9527c236aa89261}
+
+
+Returns the list of the entries in the directory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nameFilters} & The list of file patterns to list, uses the same syntax as QDir. \\
+\hline
+{\em filters} & The entry type filters, only Files and Dirs are accepted. \\
+\hline
+{\em sort} & Sorting mode.\\
+\hline
+\end{DoxyParams}
+
+
+Referenced by entryInfoList().
+
+\index{QuaZipDir@{QuaZipDir}!entryInfoList@{entryInfoList}}
+\index{entryInfoList@{entryInfoList}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryInfoList}]{\setlength{\rightskip}{0pt plus 5cm}QList$<$ {\bf QuaZipFileInfo} $>$ QuaZipDir::entryInfoList (
+\begin{DoxyParamCaption}
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_abec530f15597ddf8c8d1f340a333f7aa}
+
+
+Returns the list of the entries in the directory. 
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. The same as entryInfoList(QStringList(), filters, sort). 
+
+References entryInfoList().
+
+\index{QuaZipDir@{QuaZipDir}!entryInfoList64@{entryInfoList64}}
+\index{entryInfoList64@{entryInfoList64}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryInfoList64}]{\setlength{\rightskip}{0pt plus 5cm}QList$<$ {\bf QuaZipFileInfo64} $>$ QuaZipDir::entryInfoList64 (
+\begin{DoxyParamCaption}
+\item[{const QStringList \&}]{nameFilters, }
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_ae2b5a4b251db7aeb165c6656da0e3431}
+
+
+Returns the list of the entries in the directory with zip64 support. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nameFilters} & The list of file patterns to list, uses the same syntax as QDir. \\
+\hline
+{\em filters} & The entry type filters, only Files and Dirs are accepted. \\
+\hline
+{\em sort} & Sorting mode. \\
+\hline
+\end{DoxyParams}
+
+
+Referenced by entryInfoList64().
+
+\index{QuaZipDir@{QuaZipDir}!entryInfoList64@{entryInfoList64}}
+\index{entryInfoList64@{entryInfoList64}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryInfoList64}]{\setlength{\rightskip}{0pt plus 5cm}QList$<$ {\bf QuaZipFileInfo64} $>$ QuaZipDir::entryInfoList64 (
+\begin{DoxyParamCaption}
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_a8c38ec214c300049685cbf71486636d5}
+
+
+Returns the list of the entries in the directory with zip64 support. 
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. The same as entryInfoList64(QStringList(), filters, sort). 
+
+References entryInfoList64().
+
+\index{QuaZipDir@{QuaZipDir}!entryList@{entryList}}
+\index{entryList@{entryList}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryList}]{\setlength{\rightskip}{0pt plus 5cm}QStringList QuaZipDir::entryList (
+\begin{DoxyParamCaption}
+\item[{const QStringList \&}]{nameFilters, }
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_a4a32faa77c4120cd3c6db4b683fa16d9}
+
+
+Returns the list of the entry names in the directory. 
+
+The same as entryInfoList(nameFilters, filters, sort), but only returns entry names. 
+
+Referenced by count(), entryList(), exists(), and operator[$\,$]().
+
+\index{QuaZipDir@{QuaZipDir}!entryList@{entryList}}
+\index{entryList@{entryList}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{entryList}]{\setlength{\rightskip}{0pt plus 5cm}QStringList QuaZipDir::entryList (
+\begin{DoxyParamCaption}
+\item[{QDir::Filters}]{filters = {\ttfamily QDir::NoFilter}, }
+\item[{QDir::SortFlags}]{sort = {\ttfamily QDir::NoSort}}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_ab20e9d3de675b74fcacc98accbc1d766}
+
+
+Returns the list of the entry names in the directory. 
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. The same as entryList(QStringList(), filters, sort). 
+
+References entryList().
+
+\index{QuaZipDir@{QuaZipDir}!exists@{exists}}
+\index{exists@{exists}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{exists}]{\setlength{\rightskip}{0pt plus 5cm}bool QuaZipDir::exists (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{fileName}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_aacb488fec6e951ac80e5d473534fee97}
+
+
+Returns {\ttfamily true} if the entry with the specified name exists. 
+
+The ".." is considered to exist if the current directory is not root. The "." and "/" are considered to always exist. Paths starting with "/" are relative to the archive root, other paths are relative to the current dir. 
+
+References QuaZip::convertCaseSensitivity(), entryList(), filePath(), and isRoot().
+
+\index{QuaZipDir@{QuaZipDir}!filePath@{filePath}}
+\index{filePath@{filePath}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{filePath}]{\setlength{\rightskip}{0pt plus 5cm}QString QuaZipDir::filePath (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{fileName}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_ae8b576a150f8d62c902067603cbc97ae}
+
+
+Returns the full path to the specified file. 
+
+Doesn't check if the file actually exists. 
+
+Referenced by exists().
+
+\index{QuaZipDir@{QuaZipDir}!isRoot@{isRoot}}
+\index{isRoot@{isRoot}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{isRoot}]{\setlength{\rightskip}{0pt plus 5cm}bool QuaZipDir::isRoot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_a598fdf23f1b37e1876476e5969040a32}
+
+
+Returns if the \doxyref{QuaZipDir}{p.}{classQuaZipDir} points to the root of the archive. 
+
+Not that the root path is the empty string, not '/'. 
+
+Referenced by cd(), and exists().
+
+\index{QuaZipDir@{QuaZipDir}!path@{path}}
+\index{path@{path}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}QString QuaZipDir::path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_a68ac82ad605c0b10f9ee1a2d6d474f52}
+
+
+Returns the path to the current dir. 
+
+The path never starts with '/', and the root path is an empty string. 
+
+Referenced by cd(), and setPath().
+
+\index{QuaZipDir@{QuaZipDir}!relativeFilePath@{relativeFilePath}}
+\index{relativeFilePath@{relativeFilePath}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{relativeFilePath}]{\setlength{\rightskip}{0pt plus 5cm}QString QuaZipDir::relativeFilePath (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{fileName}
+\end{DoxyParamCaption}
+) const}\label{classQuaZipDir_a2ae89c2b85786a0168656fc7a3faaf01}
+
+
+Returns the path to the specified file relative to the current dir. 
+
+This function is mostly useless, provided only for the sake of completeness.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fileName} & The path to the file, should start with "/" if relative to the archive root. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Path relative to the current dir. 
+\end{DoxyReturn}
+\index{QuaZipDir@{QuaZipDir}!setPath@{setPath}}
+\index{setPath@{setPath}!QuaZipDir@{QuaZipDir}}
+\subsubsection[{setPath}]{\setlength{\rightskip}{0pt plus 5cm}void QuaZipDir::setPath (
+\begin{DoxyParamCaption}
+\item[{const QString \&}]{path}
+\end{DoxyParamCaption}
+)}\label{classQuaZipDir_ae82d06e43856414c30583205d337c111}
+
+
+Goes to the specified path. 
+
+The difference from \doxyref{cd()}{p.}{classQuaZipDir_aa829afc0243f1d307302f1167edecc7b} is that this function never checks if the path actually exists and doesn't use relative paths, so it's possible to go to the root directory with setPath("").
+
+Note that this function still chops the trailing and/or leading '/' and treats a single '/' as the root path (\doxyref{path()}{p.}{classQuaZipDir_a68ac82ad605c0b10f9ee1a2d6d474f52} will still return an empty string). 
+
+References path().
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+quazip/quazipdir.h\item 
+quazip/quazipdir.cpp\end{DoxyCompactItemize}
