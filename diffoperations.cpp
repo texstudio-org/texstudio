@@ -1,5 +1,6 @@
 #include "diffoperations.h"
 #include "latexdocument.h"
+#include "latexeditorview.h"
 #include "smallUsefulFunctions.h"
 DiffOp::DiffOp(): start(0), length(0), type(Insert), lineWasModified(false), dlh(0) {}
 

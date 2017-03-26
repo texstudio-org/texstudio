@@ -148,7 +148,8 @@ HEADERS += texstudio.h \
     minisplitter.h \
     encoding.h \
     tests/latexparser_t.h \
-    tests/encoding_t.h
+    tests/encoding_t.h \
+    latexstructure.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -248,7 +249,8 @@ SOURCES += main.cpp \
     minisplitter.cpp \
     encoding.cpp \
     tests/latexparser_t.cpp \
-    tests/encoding_t.cpp
+    tests/encoding_t.cpp \
+    latexstructure.cpp
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
@@ -292,6 +294,7 @@ TRANSLATIONS += texstudio_cs.ts \
     texstudio_ru_RU.ts \
     texstudio_vi.ts \
     texstudio_nl.ts \
+    texstudio_tr_TR.ts \
     texstudio_zh_CN.ts
 
 # ###############################
@@ -368,6 +371,7 @@ unix {
         texstudio_vi.qm \
         texstudio_nl.qm \
         texstudio_zh_CN.qm \
+	texstudio_tr_TR.qm \
         qt_cs.qm \
         qt_de.qm \
         qt_ja.qm \
@@ -615,8 +619,8 @@ exists(./.hg2) | exists(./.hg) {
 }
 
 #QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
-QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline -Wstrict-aliasing
-
+QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline
+QMAKE_CXXFLAGS += -std=c++0x
 !win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
 else {
   QMAKE_CXXFLAGS += -gstabs -g

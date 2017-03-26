@@ -66,13 +66,10 @@
 \begin{frame}[<default overlay specification>][options]
 \begin{frame}[<default overlay specification>][options]{title}
 \begin{frame}[<default overlay specification>][options]{title}{subtitle}
-\begin{frame}[<default overlay specification>][options]{title}{subtitle}
 \begin{frame}[options]
 \begin{frame}[options]{title}
 \begin{frame}[options]{title}{subtitle}
-\begin{frame}[options]{title}{subtitle}
-\begin{frame}{title}
-\begin{frame}{subtitle}
+\begin{frame}{title}#L7
 \end{frame}
 \begin{thebibliography}{longest label text}
 \end{thebibliography}
@@ -123,10 +120,10 @@
 \begin{columns}[options]
 \begin{columns}
 \end{columns}
-\begin{column}[placement]{column width}
-\begin{column}{column width}
-\end{column}
-\column[placement]{column width}
+\begin{column}[placement]{column width}#/columns
+\begin{column}{column width}#/columns
+\end{column}#/columns
+\column[placement]{column width}#/columns
 \begin{semiverbatim}
 \end{semiverbatim}
 \begin{abstract}<action specification>
@@ -314,7 +311,7 @@
 \frametitle<overlay specification>[short frame title]{title}
 \frametitle<overlay specification>{title}
 \frametitle[short frame title]{title}
-\frametitle{title}
+\frametitle{title}#L7
 \framesubtitle<overlay specification>{frame subtitle text}
 \framesubtitle{frame subtitle text}
 \setbeamersize{options}

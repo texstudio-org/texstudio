@@ -118,6 +118,7 @@
 <file>completion/multirow.cwl</file>
 <file>completion/nameref.cwl</file>
 <file>completion/natbib.cwl</file>
+<file>completion/needspace.cwl</file>
 <file>completion/newclude.cwl</file>
 <file>completion/ngerman.cwl</file>
 <file>completion/nicefrac.cwl</file>

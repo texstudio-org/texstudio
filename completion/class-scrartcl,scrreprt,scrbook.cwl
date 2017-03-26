@@ -48,7 +48,7 @@
 \ifthispagewasodd..\else..\fi#*
 \linespread{factor}#*
 \lowertitleback{text}
-\maketitle{pagenumber}
+\maketitle[pagenumber]
 \marginline{text}
 \markboth#*
 \markleft#*
@@ -75,6 +75,7 @@
 \setpartpreamble[pos][width]{text}#*
 \setpartpreamble{text}#*
 \subject{text}
+\subtitle{text}
 \textsubscript{text}
 \textsuperscript{text}
 \titlehead{head}

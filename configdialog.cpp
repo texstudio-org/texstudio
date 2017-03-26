@@ -437,7 +437,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.comboBoxThesaurusFileName, SIGNAL(highlighted(QString)), this, SLOT(comboBoxWithPathHighlighted(QString)));
 
 
-	ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>").arg("<a href=\"http://extensions.libreoffice.org/extension-center?getCategories=Dictionary\">LibreOffice</a>"));
+	ui.labelGetDic->setText(tr("Download additional dictionaries from %1 or %2").arg("<a href=\"http://extensions.openoffice.org/de/search?f[0]=field_project_tags%3A157\">OpenOffice</a>").arg("<a href=\"https://extensions.libreoffice.org/extensions?getCategories=Dictionary&getCompatibility=any\">LibreOffice</a>"));
 	ui.labelGetDic->setOpenExternalLinks(true);
 	//page custom environment
 	connect(ui.pbAddLine, SIGNAL(clicked()), this, SLOT(custEnvAddLine()));

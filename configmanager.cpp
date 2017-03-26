@@ -539,6 +539,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
 	registerOption("Editor/Line Spacing Percent", &editorConfig->lineSpacingPercent, 100, &pseudoDialog->spinBoxLineSpacingPercent);
 	registerOption("Editor/Esc for closing log", &useEscForClosingLog, false, &pseudoDialog->cb_CloseLogByEsc);
+	registerOption("Editor/ShowShortcutsInTooltips", &showShortcutsInTooltips, true, &pseudoDialog->checkBoxShowShortcutsInTooltips);
 
 	registerOption("Editor/Mouse Wheel Zoom", &editorConfig->mouseWheelZoom, true, &pseudoDialog->checkBoxMouseWheelZoom);
 	registerOption("Editor/Smooth Scrolling", &editorConfig->smoothScrolling, true, &pseudoDialog->checkBoxSmoothScrolling);
@@ -573,6 +574,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Overwrite Closing Bracket Following Placeholder", &editorConfig->overwriteClosingBracketFollowingPlaceholder, true, &pseudoDialog->checkOverwriteClosingBracketFollowingPlaceholder);
 	registerOption("Editor/Double-click Selection Includes Leading Backslash", &editorConfig->doubleClickSelectionIncludeLeadingBackslash, true, &pseudoDialog->checkBoxDoubleClickSelectionIncludeLeadingBackslash);
 	registerOption("Editor/TripleClickSelection", &editorConfig->tripleClickSelectionIndex, 4, &pseudoDialog->comboBoxTripleClickSelection);
+
+    registerOption("Editor/todo comment regExp", &editorConfig->regExpTodoComment, "%\\s*(TODO|todo)",&pseudoDialog->leRegExpTODO);
 
 	//table autoformating
 	registerOption("TableAutoformat/Special Commands", &tableAutoFormatSpecialCommands, "\\hline,\\cline,\\intertext,\\shortintertext,\\toprule,\\midrule,\\bottomrule", &pseudoDialog->leTableFormatingSpecialCommands);
@@ -615,6 +618,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Tools/Automatic Rerun Times", &BuildManager::autoRerunLatex, 5, &pseudoDialog->spinBoxRerunLatex);
 	registerOption("Tools/ShowLogInCaseOfCompileError", &BuildManager::showLogInCaseOfCompileError, true, &pseudoDialog->checkBoxShowLogInCaseOfCompileError);
 	registerOption("Tools/ReplaceEnvironmentVariables", &BuildManager::m_replaceEnvironmentVariables, true, &pseudoDialog->checkBoxReplaceEnvironmentVariables);
+	registerOption("Tools/InterpetCommandDefinitionInMagicComment", &BuildManager::m_interpetCommandDefinitionInMagicComment, true, &pseudoDialog->checkBoxInterpetCommandDefinitionInMagicComment);
 	registerOption("Tools/SupportShellStyleLiteralQuotes", &BuildManager::m_supportShellStyleLiteralQuotes, true);
 
 	//Paths
@@ -1683,7 +1687,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 
 		//menus
 		managedMenuNewShortcuts.clear();
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 		specialShortcuts.clear();
 #endif
 		treeWidgetToManagedMenuTo(menuShortcuts);
@@ -1976,7 +1980,7 @@ QAction *ConfigManager::newManagedAction(QWidget *menu, const QString &id, const
 
 	act->setObjectName(completeId);
 	act->setShortcuts(shortCuts);
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	// workaround for osx not being able to use alt+key/esc as shortcut
 	for (int i = 0; i < shortCuts.size(); i++)
 		specialShortcuts.insert(shortCuts[i], act);
@@ -2016,7 +2020,7 @@ QAction *ConfigManager::newManagedAction(QObject *rootMenu,QWidget *menu, const 
 
     act->setObjectName(completeId);
     act->setShortcuts(shortCuts);
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
     // workaround for osx not being able to use alt+key/esc as shortcut
     for (int i = 0; i < shortCuts.size(); i++)
         specialShortcuts.insert(shortCuts[i], act);
@@ -2372,8 +2376,18 @@ void ConfigManager::setManagedShortCut(QAction *act, int num, const QKeySequence
 	if (num < shortcuts.size()) shortcuts[num] = ks;
 	else shortcuts << ks;
 	act->setShortcuts(shortcuts);
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	// workaround for osx not being able to use alt+key/esc as shortcut
+    // remove old shortcuts
+    QString name=act->objectName();
+    QMutableMapIterator<QKeySequence,QAction *> it(specialShortcuts);
+    while (it.hasNext()) {
+          it.next();
+          if(it.value()==act){
+            it.remove();
+          }
+      }
+    // add new ones
 	for (int i = 0; i < shortcuts.size(); i++)
 		specialShortcuts.insert(shortcuts[i], act);
 #endif

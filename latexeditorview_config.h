@@ -55,6 +55,8 @@ public:
 	int contextMenuSpellcheckingEntryLocation;
 	int contextMenuKeyboardModifiers;  // actually this is a Qt::KeyboardModifiers flag (but we don't want to import the whole qt namespace here)
 
+    QString regExpTodoComment;
+
 	void settingsChanged();
 
 private:

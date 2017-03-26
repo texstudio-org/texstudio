@@ -1930,6 +1930,19 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 
 			}
 		}
+        // handle % TODO
+        QLineFormatAnalyzer lineFormatAnaylzer(line.getFormats());
+        int col = lineFormatAnaylzer.firstCol(commentFormat);
+        if(col>=0){
+            QString curLine=line.text();
+            QString text = curLine.mid(col, lineFormatAnaylzer.formatLength(col));
+            QString regularExpression=ConfigManagerInterface::getInstance()->getOption("Editor/todo comment regExp").toString();
+            QRegExp rx(regularExpression);
+            if (rx.indexIn(text)==0) {
+                line.addOverlay(QFormatRange(col, lineFormatAnaylzer.formatLength(col), todoFormat));
+                addedOverlayTodo = true;
+            }
+        }
 
 		// alternative context detection
 		QDocumentLineHandle *dlh = line.handle();
@@ -2039,6 +2052,9 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
 				if (!speller->check(word) ) {
 					if (word.endsWith('-') && speller->check(word.left(word.length() - 1)))
 						continue; // word ended with '-', without that letter, word is correct (e.g. set-up / german hypehantion)
+                    if(word.endsWith('.')){
+                        tkLength--; // don't take point into misspelled word
+                    }
                     line.addOverlay(QFormatRange(tk.start, tkLength, SpellerUtility::spellcheckErrorFormat));
 					addedOverlaySpellCheckError = true;
 				}

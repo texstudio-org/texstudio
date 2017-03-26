@@ -60,6 +60,7 @@
 #include "minisplitter.h"
 #include "latexparser/latextokens.h"
 #include "latexparser/latexparser.h"
+#include "latexstructure.h"
 
 
 #ifndef QT_NO_DEBUG
@@ -149,7 +150,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	readSettings();
 
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	QCoreApplication::instance()->installEventFilter(this);
 #endif
 
@@ -291,12 +292,12 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	centralVSplitter->setStretchFactor(0, 1);  // all stretch goes to the editor (0th widget)
 
 	sidePanelSplitter = new MiniSplitter(Qt::Horizontal, this);
-	setCentralWidget(sidePanelSplitter);
+	sidePanelSplitter->addWidget(centralVSplitter);
 
 	mainHSplitter = new MiniSplitter(Qt::Horizontal, this);
-	mainHSplitter->addWidget(centralVSplitter);
+	mainHSplitter->addWidget(sidePanelSplitter);
 	mainHSplitter->setChildrenCollapsible(false);
-	sidePanelSplitter->addWidget(mainHSplitter);
+	setCentralWidget(mainHSplitter);
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -654,6 +655,7 @@ void Texstudio::setupDockWidgets()
 		temp->setSeparator(true);
 		addAction(temp);
 	}
+	sidePanelSplitter->restoreState(configManager.getOption("GUI/sidePanelSplitter/state").toByteArray());
 }
 
 void Texstudio::updateToolBarMenu(const QString &menuName)
@@ -1330,6 +1332,7 @@ void Texstudio::setupToolBars()
 					//Case 3: A normal QAction
 					if (act->icon().isNull())
 						act->setIcon(QIcon(APPICON));
+					updateToolTipWithShortcut(act, configManager.showShortcutsInTooltips);
 					mtb.toolbar->addAction(act);
 				} else {
 					QMenu *menu = qobject_cast<QMenu *>(obj);
@@ -4203,6 +4206,7 @@ void Texstudio::saveSettings(const QString &configName)
 		config->setValue("Geometries/MainwindowX", x());
 		config->setValue("Geometries/MainwindowY", y());
 
+		config->setValue("GUI/sidePanelSplitter/state", sidePanelSplitter->saveState());
 		config->setValue("centralVSplitterState", centralVSplitter->saveState());
 		config->setValue("GUI/outputView/visible", outputView->isVisible());
 		config->setValue("GUI/sidePanel/visible", sidePanel->isVisible());
@@ -5930,6 +5934,7 @@ void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile
 
 void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool *)
 {
+	if (!buildManager.m_interpetCommandDefinitionInMagicComment) return;
 	LatexDocument *rootDoc = documents.getRootDocumentForDoc();
 	if (!rootDoc) return;
 	QString magic = rootDoc->getMagicComment("TXS-program:" + cmdId);
@@ -5938,23 +5943,23 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
 		*result = magic;
 		return;
 	}
-	if (cmdId != "quick" && cmdId != "compile" && cmdId != "view") return;
 	QString program = rootDoc->getMagicComment("program");
 	if (program.isEmpty()) program = rootDoc->getMagicComment("TS-program");
 	if (program.isEmpty()) return;
-	if (program == "pdflatex" || program == "latex" || program == "xelatex" || program == "luatex"  || program == "lualatex") {
-		//TODO: don't replicate build logic here
-		QString viewer = BuildManager::CMD_VIEW_PDF;
-		QString compiler = BuildManager::CMD_PDFLATEX;
-		if (program == "latex") viewer = BuildManager::CMD_VIEW_DVI, compiler = BuildManager::CMD_LATEX;
-		else if (program == "xelatex") compiler = BuildManager::CMD_XELATEX;
-		else if (program == "luatex" || program == "lualatex") compiler = BuildManager::CMD_LUALATEX;
-		//else {} // pdflatex (default)
 
-		if (cmdId == "quick") *result = BuildManager::chainCommands(compiler, viewer);
-		else if (cmdId == "compile") *result = compiler;
-		else if (cmdId == "view") *result = viewer;
-	} else if (cmdId == "quick" && checkProgramPermission(program, cmdId, rootDoc)) *result = program;
+	if (cmdId == "quick") {
+		QString compiler = buildManager.guessCompilerFromProgramMagicComment(program);
+		QString viewer = buildManager.guessViewerFromProgramMagicComment(program);
+		if (!viewer.isEmpty() && !compiler.isEmpty()) {
+			*result = BuildManager::chainCommands(compiler, viewer);
+		} else if (checkProgramPermission(program, cmdId, rootDoc)) {  // directly execute whatever program is.
+			*result = program;
+		}
+	} else if (cmdId == "compile") {
+		*result = buildManager.guessCompilerFromProgramMagicComment(program);
+	} else if (cmdId == "view") {
+		*result = buildManager.guessViewerFromProgramMagicComment(program);
+	}
 }
 
 void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool pdf, bool async)
@@ -7253,11 +7258,11 @@ void Texstudio::resizeEvent(QResizeEvent *e)
 	QMainWindow::resizeEvent(e);
 }
 
-#if (QT_VERSION > 0x050000) && (defined(Q_OS_MAC))
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 // workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
 bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 {
-	if (obj->objectName() == "ConfigDialogWindow" || obj->objectName() == "ShortcutComboBox")
+    if (obj->objectName() == "ConfigDialogWindow" || obj->objectName() == "ShortcutComboBox" || obj->objectName() == "QPushButton" || obj->objectName().startsWith("QMessageBox"))
 		return false; // don't handle keys from shortcutcombo (config)
 	if (event->type() == QEvent::KeyPress) {
 		//qDebug()<<obj->objectName();
@@ -7282,10 +7287,13 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 			return false; // no need to handle these
 
 		if (configManager.specialShortcuts.contains(result)) {
-			QAction *act = configManager.specialShortcuts.value(result);
-			if (act)
-				act->trigger();
-			return true;
+            QList<QAction *>acts = configManager.specialShortcuts.values(result);
+            foreach(QAction *act,acts){
+                if (act && act->parent()->children().contains(obj)){
+                    act->trigger();
+                    return true;
+                }
+            }
 		}
 		return false;
 	}
@@ -10801,7 +10809,7 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 	PDFDocument *viewer = oldPDFs.first();
 	if (!viewer->embeddedMode)
 		return;
-	centralVSplitter->hide();
+	sidePanelSplitter->hide();
 	configManager.viewerEnlarged = true;
 	viewer->setStateEnlarged(true);
 #endif
@@ -10813,7 +10821,7 @@ void Texstudio::enlargeEmbeddedPDFViewer()
 void Texstudio::shrinkEmbeddedPDFViewer(bool preserveConfig)
 {
 #ifndef NO_POPPLER_PREVIEW
-	centralVSplitter->show();
+	sidePanelSplitter->show();
 	if (!preserveConfig)
 		configManager.viewerEnlarged = false;
 	QList<PDFDocument *> oldPDFs = PDFDocument::documentList();

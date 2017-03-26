@@ -2169,8 +2169,8 @@ PDFScrollArea *PDFWidget::getScrollArea()
 QList<PDFDocument *> PDFDocument::docList;
 
 PDFDocument::PDFDocument(PDFDocumentConfig *const pdfConfig, bool embedded)
-    : renderManager(0), curFileSize(0), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
-      syncFromSourceBlock(false), syncToSourceBlock(false),menubar(NULL)
+    : renderManager(0), curFileSize(0), menubar(NULL), exitFullscreen(0), watcher(NULL), reloadTimer(NULL), scanner(NULL), dwClock(0), dwOutline(0), dwFonts(0), dwInfo(0), dwOverview(0), dwSearch(0),
+      syncFromSourceBlock(false), syncToSourceBlock(false)
 {
 	REQUIRE(pdfConfig);
 	Q_ASSERT(!globalConfig || (globalConfig == pdfConfig));
@@ -2242,6 +2242,19 @@ PDFDocument::~PDFDocument()
 	globalConfig->windowMaximized = isMaximized();
 
     ConfigManager *configManager=dynamic_cast<ConfigManager *>(ConfigManager::getInstance());
+
+#if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
+    QList<QKeySequence> keys=configManager->specialShortcuts.keys();
+    foreach(QKeySequence key,keys){
+	QList<QAction *>acts=configManager->specialShortcuts.values(key);
+	foreach(QAction *act,acts){
+	    if(act->objectName().startsWith("pdf")){
+		configManager->specialShortcuts.remove(key,act);
+	    }
+	}
+    }
+#endif
+
     configManager->menuParents.removeAll(menuroot);
     foreach (QMenu *menu, menus) {
         configManager->managedMenus.removeAll(menu);
@@ -2339,8 +2352,8 @@ void PDFDocument::setupMenus(bool embedded)
     actionGrayscale=configManager->newManagedAction(menuroot,menuEdit, "grayscale", tr("Grayscale"), pdfWidget, SLOT(update()), QList<QKeySequence>());
     actionGrayscale->setCheckable(true);
 
-    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>(),"magnifier-button");
-    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>(),"hand");
+    actionMagnify=configManager->newManagedAction(menuroot,menuView, "magnify", tr("&Magnify"), this, "", QList<QKeySequence>(),"magnifier-button");
+    actionScroll=configManager->newManagedAction(menuroot,menuView, "scroll", tr("&Scroll"), this, "", QList<QKeySequence>(),"hand");
     menuView->addSeparator();
     actionFirst_Page=configManager->newManagedAction(menuroot,menuView, "firstPage", tr("&First Page"), pdfWidget, SLOT(goFirst()), QList<QKeySequence>()<<Qt::Key_Home,"go-first");
     actionBack=configManager->newManagedAction(menuroot,menuView, "back", tr("Back"), pdfWidget, SLOT(goBack()), QList<QKeySequence>()<< Qt::AltModifier + Qt::Key_L,"back");
@@ -2738,8 +2751,10 @@ void PDFDocument::init(bool embedded)
     //connect(actionGrayscale, SIGNAL(triggered()), pdfWidget, SLOT(update()));
 
     //connect(actionPreferences, SIGNAL(triggered()), SIGNAL(triggeredConfigure()));
-	menuShow->addAction(toolBar->toggleViewAction());
-	menuShow->addSeparator();
+    if(!embedded){
+        menuShow->addAction(toolBar->toggleViewAction());
+        menuShow->addSeparator();
+    }
 
 	menuShow->addAction(annotationPanel->toggleViewAction());
 
@@ -3167,8 +3182,10 @@ bool PDFDocument::closeSomething()
 	else if (dwOutline && dwOutline->isVisible()) dwOutline->hide();
 	else if (dwOverview && dwOverview->isVisible()) dwOverview->hide();
 	else {
-		actionClose->trigger();
-		return true;
+        if(isVisible()){ // avoid crash on osx where esc key is passed to hidden window
+            actionClose->trigger();
+            return true;
+        }
 	}
 	return false;
 }
