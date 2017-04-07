@@ -1101,8 +1101,11 @@ QSettings *ConfigManager::readSettings(bool reread)
 		if (x11desktop_env() == 0) { //no-kde
 			if (QStyleFactory::keys().contains("GTK+")) interfaceStyle = "GTK+"; //gtkstyle
 			else interfaceStyle = "Cleanlooks";
-		} else if ((x11desktop_env() == 4) && (QStyleFactory::keys().contains("Oxygen"))) interfaceStyle = "Oxygen"; //kde4+oxygen
-		else interfaceStyle = "Plastique"; //others
+		} else if ((x11desktop_env() == 5) && (QStyleFactory::keys().contains("Breeze"))) {
+			interfaceStyle = "Breeze"; //kde5+breeze
+		} else if ((x11desktop_env() == 4) && (QStyleFactory::keys().contains("Oxygen"))) {
+			interfaceStyle = "Oxygen"; //kde4+oxygen
+		} else interfaceStyle = "Plastique"; //others
 	}
 #endif
 

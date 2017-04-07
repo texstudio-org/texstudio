@@ -581,10 +581,12 @@ QString getTerminalCommand()
 
 int x11desktop_env()
 {
-	// 0 : no kde ; 3: kde ; 4 : kde4 ;
+	// 0 : no kde ; 3: kde ; 4 : kde4 ; 5 : kde5 ;
 	QString kdesession = ::getenv("KDE_FULL_SESSION");
 	QString kdeversion = ::getenv("KDE_SESSION_VERSION");
-	if (!kdeversion.isEmpty()) return 4;
+	if (!kdeversion.isEmpty()) {
+		return kdeversion.toInt();
+	}
 	if (!kdesession.isEmpty()) return 3;
 	return 0;
 }
