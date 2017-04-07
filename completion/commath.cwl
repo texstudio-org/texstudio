@@ -1,6 +1,8 @@
 # created by sungmin817
 #include:amsmath
 #include:ifthen
+\abs{arg1}#m
+\abs[size]{arg1}#m
 \appref{arg1}#r
 \assref{arg1}#r
 \cbr{arg1}#m
