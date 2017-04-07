@@ -2272,6 +2272,7 @@ PDFDocument::~PDFDocument()
 
 void PDFDocument::setupToolBar(){
     toolBar = new QToolBar(this);
+    toolBar->setWindowTitle(tr("Toolbar"));
     toolBar->setObjectName(QString("toolBar"));
     toolBar->setIconSize(QSize(24, 24));
     addToolBar(Qt::TopToolBarArea, toolBar);
