@@ -1318,7 +1318,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
     }
 	confDlg->ui.shortcutTree->addTopLevelItem(menuShortcuts);
 	menuShortcuts->setExpanded(true);
-
+#ifndef NO_POPPLER_PREVIEW
     QTreeWidgetItem *menuShortcutsPDF = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << QString(tr("Menus PDF-Viewer")));
     QSet<QString> usedMenus;
     foreach (QMenu *menu, managedMenus){
@@ -1331,6 +1331,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
     }
     confDlg->ui.shortcutTree->addTopLevelItem(menuShortcutsPDF);
     menuShortcutsPDF->setExpanded(true);
+#endif
 
 	QTreeWidgetItem *editorItem = new QTreeWidgetItem((QTreeWidget *)0, QStringList() << ConfigDialog::tr("Editor"));
 	QTreeWidgetItem *editorKeys = new QTreeWidgetItem(editorItem, QStringList() << ConfigDialog::tr("Basic Key Mapping"));
@@ -1694,7 +1695,9 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		specialShortcuts.clear();
 #endif
 		treeWidgetToManagedMenuTo(menuShortcuts);
+#ifndef NO_POPPLER_PREVIEW
         treeWidgetToManagedMenuTo(menuShortcutsPDF);
+#endif
 		treeWidgetToManagedLatexMenuTo();
 
 		// custom toolbar

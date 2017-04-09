@@ -314,10 +314,15 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem *item, int column)
 
 bool ShortcutDelegate::isBasicEditorKey(const QModelIndex &index) const
 {
+#ifdef NO_POPPLER_PREVIEW
+    const int cRow=1;
+#else
+    const int cRow=2;
+#endif
 	return index.parent().isValid() && index.parent().parent().isValid() &&
 	       !index.parent().parent().parent().isValid() &&
 	       index.parent().row() == 0 &&
-	       index.parent().parent().row() == 1;
+           index.parent().parent().row() == cRow;
 }
 
 
