@@ -5828,8 +5828,9 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 		int pg = viewer->syncFromSource(getCurrentFileName(), ln, displayPolicy);
 		viewer->fillRenderCache(pg);
         if (viewer->embeddedMode && configManager.viewerEnlarged) {
+            sidePanelSplitter->hide();
 			viewer->setStateEnlarged(true);
-            centralVSplitter->hide();
+            //centralVSplitter->hide();
 		}
 
 		if (preserveDuplicates) break;
