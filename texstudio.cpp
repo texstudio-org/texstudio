@@ -5957,9 +5957,15 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
 			*result = program;
 		}
 	} else if (cmdId == "compile") {
-		*result = buildManager.guessCompilerFromProgramMagicComment(program);
+        QString compiler = buildManager.guessCompilerFromProgramMagicComment(program);
+        if(!compiler.isEmpty()){
+            *result = compiler;
+        }
 	} else if (cmdId == "view") {
-		*result = buildManager.guessViewerFromProgramMagicComment(program);
+        QString viewer = buildManager.guessViewerFromProgramMagicComment(program);
+        if(!viewer.isEmpty()){
+            *result = viewer;
+        }
 	}
 }
 
