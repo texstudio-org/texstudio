@@ -641,6 +641,7 @@ void Texstudio::setupDockWidgets()
 
 		connect(&buildManager, SIGNAL(previewAvailable(const QString &, const PreviewSource &)), this, SLOT(previewAvailable(const QString &, const PreviewSource &)));
 		connect(&buildManager, SIGNAL(processNotification(QString)), SLOT(processNotification(QString)));
+        connect(&buildManager, SIGNAL(clearLogs()), SLOT(clearLogs()));
 
 		connect(&buildManager, SIGNAL(beginRunningCommands(QString, bool, bool, bool)), SLOT(beginRunningCommand(QString, bool, bool, bool)));
 		connect(&buildManager, SIGNAL(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)), SLOT(beginRunningSubCommand(ProcessX *, QString, QString, RunCommandFlags)));
@@ -5953,13 +5954,16 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
 		QString viewer = buildManager.guessViewerFromProgramMagicComment(program);
 		if (!viewer.isEmpty() && !compiler.isEmpty()) {
 			*result = BuildManager::chainCommands(compiler, viewer);
-		} else if (checkProgramPermission(program, cmdId, rootDoc)) {  // directly execute whatever program is.
+        } else if (checkProgramPermission(program, cmdId, rootDoc)) {  // directly execute whatever program is. Why does quick behave differently from compile ?
 			*result = program;
 		}
 	} else if (cmdId == "compile") {
         QString compiler = buildManager.guessCompilerFromProgramMagicComment(program);
         if(!compiler.isEmpty()){
             *result = compiler;
+        }else{
+            // warn about unused magic comment
+            outputView->insertMessageLine("!TeX program not recognized!");
         }
 	} else if (cmdId == "view") {
         QString viewer = buildManager.guessViewerFromProgramMagicComment(program);
@@ -5988,12 +5992,12 @@ void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool
 			}
 		}
 	}
+    //outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 	if (latex) {
-		outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);//log to old (whenever latex is called)
 		foreach (LatexEditorView *edView, editors->editors()) {
 			edView->document->saveLineSnapshot();
 		}
-	} else outputView->resetMessages(!configManager.showMessagesWhenCompiling);
+    }
 	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
 
@@ -6053,6 +6057,10 @@ void Texstudio::processNotification(const QString &message)
 	if (message.startsWith(tr("Error:")))
 		outputView->showPage(outputView->MESSAGES_PAGE);
 	outputView->insertMessageLine(message + "\n");
+}
+
+void Texstudio::clearLogs(){
+    outputView->resetMessagesAndLog(!configManager.showMessagesWhenCompiling);
 }
 
 void Texstudio::openTerminal()

@@ -473,6 +473,7 @@ private slots:
 	bool runCommand(const QString &commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
 protected slots:
 	void processNotification(const QString &message);
+    void clearLogs();
 	void openTerminal(); ///< open external terminal
 	void cleanAll();
 	void checkShortcutChangeNotification(QAction *act);
