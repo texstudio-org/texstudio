@@ -1440,6 +1440,9 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 bool BuildManager::runCommand(const QString &unparsedCommandLine, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine, QString *buffer, QTextCodec *codecForBuffer )
 {
 	if (waitingForProcess()) return false;
+
+    emit clearLogs();
+
 	if (unparsedCommandLine.isEmpty()) {
 		emit processNotification(tr("Error: No command given"));
 		return false;
