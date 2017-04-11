@@ -151,7 +151,7 @@ public:
 	//creates a process object with the given command line (after it is changed by an implcit call to parseExtendedCommandLine)
 	//ProcessX* newProcess(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
 	//QList<ProcessX*> newProcesses(const QString &unparsedCommandLine, const QString &mainFile, const QString &currentFile, int currentLine=0, bool singleInstance = false);
-	Q_INVOKABLE ProcessX *firstProcessOfDirectExpansion(const QString &command, const QFileInfo &mainfile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0);
+    Q_INVOKABLE ProcessX *firstProcessOfDirectExpansion(const QString &command, const QFileInfo &mainfile, const QFileInfo &currentFile = QFileInfo(), int currentLine = 0, bool nonstop=false);
 
 	Q_INVOKABLE ProcessX *newProcessInternal(const QString &fullCommandLine, const QFileInfo &mainFile, bool singleInstance = false);
 public:
