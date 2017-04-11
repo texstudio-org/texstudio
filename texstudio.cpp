@@ -5961,9 +5961,11 @@ void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool
         QString compiler = buildManager.guessCompilerFromProgramMagicComment(program);
         if(!compiler.isEmpty()){
             *result = compiler;
+            // notify used magic comment
+            outputView->insertMessageLine(tr("%!TeX program used: %1").arg(program));
         }else{
             // warn about unused magic comment
-            outputView->insertMessageLine("!TeX program not recognized!");
+            outputView->insertMessageLine(tr("%!TeX program not recognized! (%1). Using default.").arg(program));
         }
 	} else if (cmdId == "view") {
         QString viewer = buildManager.guessViewerFromProgramMagicComment(program);
