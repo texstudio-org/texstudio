@@ -1574,13 +1574,23 @@ void BuildManager::emitEndRunningSubCommandFromProcessX(int)
 }
 
 
-ProcessX *BuildManager::firstProcessOfDirectExpansion(const QString &command, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine)
+ProcessX *BuildManager::firstProcessOfDirectExpansion(const QString &command, const QFileInfo &mainFile, const QFileInfo &currentFile, int currentLine,bool nonstop)
 {
 	ExpandingOptions options(mainFile, currentFile, currentLine);
+    if(nonstop){
+        options.nestingDeep=1; // tweak to avoid pop-up error messages
+    }
 	ExpandedCommands expansion = expandCommandLine(command, options);
 	if (options.canceled) return 0;
 
 	if (expansion.commands.isEmpty()) return 0;
+
+    foreach(CommandToRun elem,expansion.commands){
+        if(elem.command.isEmpty()){
+            return 0; // error in command expansion
+        }
+
+    }
 
 	return newProcessInternal(expansion.commands.first().command, mainFile);
 }
@@ -1954,7 +1964,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		// dvi -> png
-		ProcessX *p2 = firstProcessOfDirectExpansion(CMD_DVIPNG, p1->getFile());
+        ProcessX *p2 = firstProcessOfDirectExpansion(CMD_DVIPNG, p1->getFile(),QFileInfo(),0,true);
 		if (!p2) return; //dvipng does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
@@ -1965,7 +1975,7 @@ void BuildManager::latexPreviewCompleted(int status)
 		ProcessX *p1 = qobject_cast<ProcessX *> (sender());
 		if (!p1) return;
 		// dvi -> ps
-		ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvips/[-E]", p1->getFile());
+        ProcessX *p2 = firstProcessOfDirectExpansion("txs:///dvips/[-E]", p1->getFile(),QFileInfo(),0,true);
 		if (!p2) return; //dvips does not work
 		//REQUIRE(p2);
 		if (!p1->overrideEnvironment().isEmpty()) p2->setOverrideEnvironment(p1->overrideEnvironment());
@@ -1996,8 +2006,8 @@ void BuildManager::dvi2psPreviewCompleted(int status)
 	if (!p2) return;
 	// ps -> png, ghostscript is quite, safe, will create 24-bit png
 	QString filePs = parseExtendedCommandLine("?am.ps", p2->getFile()).first();
-	ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]", filePs);
-	REQUIRE(p3);
+    ProcessX *p3 = firstProcessOfDirectExpansion("txs:///gs/[-q][-dSAFER][-dBATCH][-dNOPAUSE][-sDEVICE=png16m][-dEPSCrop][-sOutputFile=\"?am)1.png\"]", filePs,QFileInfo(),0,true);
+    if (!p3) return; //gs does not work
 	if (!p2->overrideEnvironment().isEmpty()) p3->setOverrideEnvironment(p2->overrideEnvironment());
 	connect(p3, SIGNAL(finished(int)), this, SLOT(conversionPreviewCompleted(int)));
 	p3->startCommand();
