@@ -8203,7 +8203,7 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_TOOLTIP ||
-            //source.atCursor || // respect preview setting
+            (source.atCursor && configManager.previewMode == ConfigManager::PM_INLINE)  || // respect preview setting, except for INLINE
 	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
             (source.fromLine < 0 && !source.atCursor)) { // completer preview
 		QPoint p;
