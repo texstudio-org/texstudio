@@ -8203,9 +8203,9 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 	}
 	if (configManager.previewMode == ConfigManager::PM_BOTH ||
 	        configManager.previewMode == ConfigManager::PM_TOOLTIP ||
-	        source.atCursor ||
+            //source.atCursor || // respect preview setting
 	        (configManager.previewMode == ConfigManager::PM_TOOLTIP_AS_FALLBACK && !outputView->isPreviewPanelVisible()) ||
-	        (source.fromLine < 0)) {
+            (source.fromLine < 0 && !source.atCursor)) { // completer preview
 		QPoint p;
 		if (source.atCursor)
 			p = currentEditorView()->getHoverPosistion();
