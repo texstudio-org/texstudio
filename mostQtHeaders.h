@@ -174,6 +174,10 @@
 #include <QDomElement>
 #include <QDomNode>
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QScroller>
+#endif
+
 #endif
 
 #endif
