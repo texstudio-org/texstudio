@@ -698,6 +698,7 @@ public slots:
 	void iamalive();
 	void checkLatexInstall();
 	void checkCWLs();
+    void checkLanguageTool();
 
 	void slowOperationStarted();
 	void slowOperationEnded();
