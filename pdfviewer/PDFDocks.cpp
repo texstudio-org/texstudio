@@ -22,6 +22,7 @@
 #ifndef NO_POPPLER_PREVIEW
 
 #include "mostQtHeaders.h"
+
 // Based on code by Pino Toscano from Poppler / qt4 / Demos, released under GPL 2 or later
 /*! \class PDFDock
  *  \file PDFDocks.cpp
@@ -699,6 +700,17 @@ void PDFScrollArea::ensureVisiblePageAbsolutePos(int page, const QPointF &pos, i
 	if (pdf->pageRect(page).isNull()) goToPage(page);  // pageRect is null if the page is not displayed.
 	QPoint scaled = (pdf->totalScaleFactor() * pos).toPoint() + pdf->pageRect(page).topLeft();
 	ensureVisible(scaled.x(), scaled.y(), xmargin, ymargin);
+}
+
+void PDFScrollArea::setTouchPanGestureActive(bool active)
+{
+# if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+	if (active) {
+		QScroller::grabGesture(viewport(), QScroller::TouchGesture);
+	} else {
+		QScroller::ungrabGesture(viewport());
+	}
+#endif
 }
 
 bool PDFScrollArea::event(QEvent *e)
