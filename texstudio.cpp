@@ -1248,6 +1248,7 @@ void Texstudio::setupMenus()
 	menu->addSeparator();
 	newManagedAction(menu, "checkinstall", tr("Check LaTeX Installation"), SLOT(checkLatexInstall()));
 	newManagedAction(menu, "checkcwls", tr("Check Active Completion Files"), SLOT(checkCWLs()));
+    newManagedAction(menu, "checklt", tr("Check LanguageTool"), SLOT(checkLanguageTool()));
 	newManagedAction(menu, "appinfo", tr("About TeXstudio..."), SLOT(helpAbout()), 0, APPICON)->setMenuRole(QAction::AboutRole);
 
 	//additional elements for development
@@ -10677,6 +10678,83 @@ void Texstudio::checkCWLs()
 	m_languages->setLanguageFromName(currentEditor(), "Plain text");
 	currentEditorView()->editor->setText(res.join("\n"), false);
 
+}
+/*!
+ * \brief check if Language tool is set-up correctly and running
+ */
+void Texstudio::checkLanguageTool()
+{
+
+    QString result;
+    // run java
+    statusLabelProcess->setText(QString("check java"));
+    QString buffer;
+    // create result editor here in order to avoid empty editor
+    fileNew(QFileInfo(QDir::temp(), tr("LT Report") + ".txt").absoluteFilePath());
+    m_languages->setLanguageFromName(currentEditor(), "Plain text");
+
+    QString cmd=configManager.grammarCheckerConfig->languageToolJavaPath;
+
+    // where is pdflatex located
+#ifdef Q_OS_WIN
+    runCommand("where " + cmd, &buffer);
+    result = "where java: " + buffer + "\n\n";
+#else
+    runCommand("which " + cmd, &buffer);
+    result = "which java: " + buffer + "\n\n";
+#endif
+    buffer.clear();
+    cmd += " -version";
+    // run pdflatex
+    QProcess *javaProcess = new QProcess();
+
+    result += "JAVA: " + cmd + "\n";
+    javaProcess->start(cmd);
+    javaProcess->waitForFinished(500);
+    int code=javaProcess->exitCode();
+    switch (code) {
+    case 0:
+        buffer=javaProcess->readAllStandardError();
+        break;
+    case -2:
+        buffer+=tr("process failed to start\n");
+        break;
+    default:
+        buffer+=tr("process crashed\n");
+        break;
+    }
+
+    delete javaProcess;
+
+    result += buffer;
+    result += "\n";
+
+    if(configManager.grammarCheckerConfig->languageToolAutorun){
+        result +=tr("Tries to start automatically.\n\n");
+    }else{
+        result +=tr("Autostart disabled.\n\n");
+    }
+
+    GrammarCheck::LTStatus st=grammarCheck->languageToolStatus();
+
+    result +=tr("LT current status: ");
+    switch (st) {
+    case GrammarCheck::LTS_Working:
+        result +=tr("working");
+        break;
+    case GrammarCheck::LTS_Error:
+        result +=tr("error");
+        break;
+    case GrammarCheck::LTS_Unknown:
+        result +=tr("unknown");
+        break;
+    default:
+        break;
+    }
+    result += "\n\n";
+    result +=tr("LT-URL: %1\n").arg(grammarCheck->serverUrl());
+
+    currentEditorView()->editor->setText(result, false);
 }
 /*!
  * \brief load document hidden
