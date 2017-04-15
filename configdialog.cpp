@@ -390,6 +390,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 	// activate panning by single-finger touch gesture
 	QScroller::grabGesture(ui.scrollAreaGeneral, QScroller::TouchGesture);
+	QScroller::grabGesture(ui.scrollAreaBuild, QScroller::TouchGesture);
 	ui.menuTree->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 	QScroller::grabGesture(ui.menuTree, QScroller::TouchGesture);
 	QScroller::grabGesture(ui.scrollAreaAdvancedEditor, QScroller::TouchGesture);
