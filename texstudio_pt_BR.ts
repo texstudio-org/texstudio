@@ -10502,12 +10502,12 @@ Voce deseja permitir e executar o novo comando?
     <message>
         <location filename="texstudio.cpp" line="5965"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation>programa %!TeX utilizado: %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5968"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"/>
+        <translation>program %!TeX não reconhecido! (%1). Usando padrão.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6029"/>

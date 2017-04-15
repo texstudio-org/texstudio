@@ -10508,12 +10508,12 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5965"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation>Програма %!TeX використала: %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5968"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"/>
+        <translation>Не розпізнана програма %!TeX! (%1). Використовується типова.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6029"/>

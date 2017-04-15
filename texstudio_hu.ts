@@ -117,7 +117,7 @@
     <message>
         <location filename="arraydialog.ui" line="121"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="arraydialog.cpp" line="31"/>
@@ -781,7 +781,7 @@ támogatott.</translation>
     <message>
         <location filename="configdialog.ui" line="4390"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="143"/>
@@ -3867,7 +3867,7 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <location filename="encodingdialog.ui" line="41"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="48"/>
@@ -3928,7 +3928,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="filechooser.ui" line="137"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="filechooser.cpp" line="48"/>
@@ -4180,7 +4180,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
     <message>
         <location filename="insertgraphics.ui" line="470"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="49"/>
@@ -4745,7 +4745,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="letterdialog.ui" line="121"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="letterdialog.cpp" line="53"/>
@@ -5640,7 +5640,7 @@ Most megadhatja a jelszót:</translation>
     <message>
         <location filename="pdfsplittool.ui" line="87"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="96"/>
@@ -5713,7 +5713,7 @@ Most megadhatja a jelszót:</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2103"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
 </context>
 <context>
@@ -7392,7 +7392,7 @@ A \1-től \9-ig terjedő kifejezések szövegrészeket helyettesíthetnek.</tran
     <message>
         <location filename="quickdocumentdialog.ui" line="51"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="64"/>
@@ -8237,7 +8237,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="tabbingdialog.ui" line="50"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="tabbingdialog.ui" line="75"/>
@@ -10307,7 +10307,7 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
         <location filename="texstudio.cpp" line="2825"/>
         <location filename="texstudio.cpp" line="2882"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2966"/>
@@ -10492,12 +10492,12 @@ Beleegyezik a cserébe?
     <message>
         <location filename="texstudio.cpp" line="5965"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation>Használt %!TeX program: %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5968"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"/>
+        <translation>Nem felismert %!TeX program! (%1). Alapértelmezett használata.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6029"/>
@@ -10507,7 +10507,7 @@ Beleegyezik a cserébe?
     <message>
         <location filename="texstudio.cpp" line="6031"/>
         <source>Could not start %1.</source>
-        <translation>%1 nem tudott elindulni.</translation>
+        <translation>A(z) %1 nem indítható el.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6059"/>
@@ -10811,8 +10811,8 @@ Press &quot;Cancel&quot;to do nothing.
 </source>
         <translation>%1
 módosításra került egy másik alkalmazás által.
-Kattintson az &quot;OK&quot; gombra a különbségek megjelenítéséhez.
-Ha nem kíváncsi az eltérésekre, nyomja meg a &quot;Mégsem&quot; gombot.
+Kattintson az „OK” gombra a különbségek megjelenítéséhez.
+Egyébként, nyomja meg a „Mégse” gombot.
 </translation>
     </message>
     <message>
@@ -10826,11 +10826,9 @@ Ha nem kíváncsi az eltérésekre, nyomja meg a &quot;Mégsem&quot; gombot.
 Press &quot;OK&quot; to show differences instead of the generated source by subversion
 Press &quot;Cancel&quot;to do nothing.
 </source>
-        <translation>%1
-ütközik a tárolóval.
-Kattintson az &quot;OK&quot; gombra a különbségek megjelenítéséhez. Ekkor a subversion
-nem hozza létre a kódot
-Egyébként nyomja meg a &quot;Mégsem&quot; gombot.</translation>
+        <translation>A(z) %1 ütközik a tárolóval.
+Kattintson az „OK” gombra a különbségek megjelenítéséhez, a subversion által előállított forráskód helyett.
+Egyébként nyomja meg a „Mégse” gombot.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10427"/>
@@ -11265,7 +11263,7 @@ Ha nem, a végkarakterek mellőzve lesznek.</translation>
     <message>
         <location filename="thesaurusdialog.cpp" line="138"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="thesaurusdialog.cpp" line="139"/>
@@ -11496,7 +11494,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="usermenudialog.ui" line="387"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="usermenudialog.cpp" line="232"/>
@@ -11589,7 +11587,7 @@ míg a (?&lt;=\s|^) jeleket csak szavak előtt használhatjuk.</translation>
     <message>
         <location filename="usertooldialog.ui" line="142"/>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation>Mégse</translation>
     </message>
     <message>
         <location filename="usertooldialog.ui" line="169"/>

@@ -629,7 +629,7 @@ Soll TeXstudio die Befehlspfade von /usr/texbin nach /Library/TeX/texbin anpasse
     <message>
         <location filename="buildmanager.cpp" line="1431"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
-        <translation>Wenn Sie mit LaTeX arbeiten wollen, sollten sie eine diese installieren.</translation>
+        <translation>Wenn Sie mit LaTeX arbeiten wollen, sollten sie dies installieren.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1434"/>
@@ -1329,7 +1329,7 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="configdialog.ui" line="1537"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
-        <translation>Kann nur zwischen utf-16/utf-8 und ISO-8859-1 unterscheiden !</translation>
+        <translation>Kann nur zwischen utf-16/utf-8 und ISO-8859-1 unterscheiden!</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1540"/>
@@ -1596,12 +1596,12 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
     <message>
         <location filename="configdialog.ui" line="2184"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation>LaTeX-Hilfe (texdoc) im internen PDF-Betrachter anzeigen</translation>
+        <translation>LaTeX-Hilfe zu Befehlen im internen PDF-Betrachter anzeigen (texdoc)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2213"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation>Stilles Laden von gespeicherten Dateien, wenn sie extern verändert wurden. (Undo/Redo wird zurückgesetzt)</translation>
+        <translation>Stilles Laden von gespeicherten Dateien, wenn sie extern verändert wurden (Undo/Redo wird zurückgesetzt)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2058"/>
