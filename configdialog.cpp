@@ -387,6 +387,19 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	setModal(true);
 	ui.setupUi(this);
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+	// activate panning by single-finger touch gesture
+	QScroller::grabGesture(ui.scrollAreaGeneral, QScroller::TouchGesture);
+	ui.menuTree->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+	QScroller::grabGesture(ui.menuTree, QScroller::TouchGesture);
+	QScroller::grabGesture(ui.scrollAreaAdvancedEditor, QScroller::TouchGesture);
+	QScroller::grabGesture(ui.twHighlighEnvirons, QScroller::TouchGesture);
+	QScroller::grabGesture(ui.twCustomSyntax, QScroller::TouchGesture);
+	QScroller::grabGesture(ui.scrollAreaGrammar, QScroller::TouchGesture);
+	QScroller::grabGesture(ui.scrollAreaPreview, QScroller::TouchGesture);
+	QScroller::grabGesture(ui.scrollAreaPDFviewer, QScroller::TouchGesture);
+#endif
+
 #ifdef Q_OS_MAC
 	ui.labelSwitchKeyboardLayout->setDisabled(true);
 	ui.checkBoxSwitchLanguagesDirection->setChecked(false);

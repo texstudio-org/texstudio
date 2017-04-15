@@ -47,6 +47,8 @@ QFormatConfig::QFormatConfig(QWidget *w)
 
 	m_frame->hide();
 
+	m_table->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+	QScroller::grabGesture(m_table, QScroller::TouchGesture);
 	m_table->verticalHeader()->hide();
 
 	m_table->setColumnCount(13);
