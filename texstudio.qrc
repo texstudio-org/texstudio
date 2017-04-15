@@ -31,7 +31,7 @@
         <file>images/egg.png</file>
         <file>images/splash.png</file>
         <file>images/splash_large.png</file>
-		<file alias="appicon">images/appicon.png</file>
+        <file alias="appicon">images/appicon.png</file>
         <file>images/previewicon.png</file>
         <file>images/include.png</file>
         <file>tags/asymptote_tags.xml</file>
@@ -74,5 +74,6 @@
         <file>images/beamer/Singapore.png</file>
         <file>images/beamer/Szeged.png</file>
         <file>images/beamer/Warsaw.png</file>
+        <file>tags/beamer_tags.xml</file>
     </qresource>
 </RCC>
