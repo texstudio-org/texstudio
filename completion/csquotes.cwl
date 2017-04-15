@@ -18,8 +18,8 @@
 \foreigntextquote*{language}{text}#*
 \foreigntextquote{language}[manual citation]{text}
 \foreigntextquote*{language}[manual citation]{text}#*
-\foreigntextquote{language}[][punct]{text}#*
-\foreigntextquote*{language}[][punct]{text}#*
+\foreigntextquote{language}[manual citation][punct]{text}#*
+\foreigntextquote*{language}[manual citation][punct]{text}#*
 \foreigntextquote{language}[manual citation][punct]{text}#*
 \foreigntextquote*{language}[manual citation][punct]{text}#*
 
@@ -27,22 +27,22 @@
 \hyphentextquote*{language}{text}#*
 \hyphentextquote{language}[manual citation]{text}#*
 \hyphentextquote*{language}[manual citation]{text}#*
-\hyphentextquote{language}[][punct]{text}#*
-\hyphentextquote*{language}[][punct]{text}#*
+\hyphentextquote{language}[manual citation][punct]{text}#*
+\hyphentextquote*{language}[manual citation][punct]{text}#*
 \hyphentextquote{language}[manual citation][punct]{text}#*
 \hyphentextquote*{language}[manual citation][punct]{text}#*
 
 \blockquote{text}
 \blockquote[manual citation]{text}
-\blockquote[][punct]{text}#*
+\blockquote[manual citation][punct]{text}#*
 \blockquote[manual citation][punct]{text}#*
 
 \foreignblockquote{language}{text}
 \foreignblockquote*{language}{text}#*
 \foreignblockquote{language}[manual citation]{text}
 \foreignblockquote*{language}[manual citation]{text}#*
-\foreignblockquote{language}[][punct]{text}#*
-\foreignblockquote*{language}[][punct]{text}#*
+\foreignblockquote{language}[manual citation][punct]{text}#*
+\foreignblockquote*{language}[manual citation][punct]{text}#*
 \foreignblockquote{language}[manual citation][punct]{text}#*
 \foreignblockquote*{language}[manual citation][punct]{text}#*
 
@@ -50,8 +50,8 @@
 \hyphenblockquote*{language}{text}#*
 \hyphenblockquote{language}[manual citation]{text}#*
 \hyphenblockquote*{language}[manual citation]{text}#*
-\hyphenblockquote{language}[][punct]{text}#*
-\hyphenblockquote*{language}[][punct]{text}#*
+\hyphenblockquote{language}[manual citation][punct]{text}#*
+\hyphenblockquote*{language}[manual citation][punct]{text}#*
 \hyphenblockquote{language}[manual citation][punct]{text}#*
 \hyphenblockquote*{language}[manual citation][punct]{text}#*
 
@@ -59,8 +59,8 @@
 \hybridblockquote*{language}{text}#*
 \hybridblockquote{language}[manual citation]{text}#*
 \hybridblockquote*{language}[manual citation]{text}#*
-\hybridblockquote{language}[][punct]{text}#*
-\hybridblockquote*{language}[][punct]{text}#*
+\hybridblockquote{language}[manual citation][punct]{text}#*
+\hybridblockquote*{language}[manual citation][punct]{text}#*
 \hybridblockquote{language}[manual citation][punct]{text}#*
 \hybridblockquote*{language}[manual citation][punct]{text}#*
 
