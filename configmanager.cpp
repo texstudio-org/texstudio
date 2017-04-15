@@ -1394,24 +1394,24 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 	foreach (QMenu *menu, managedMenus) {
 		QTreeWidgetItem *menuLatex = managedLatexMenuToTreeWidget(0, menu);
 		if (menuLatex) {
-			confDlg->ui.latexTree->addTopLevelItem(menuLatex);
+			confDlg->ui.menuTree->addTopLevelItem(menuLatex);
 			menuLatex->setExpanded(true);
 		}
 	}
 	connect(confDlg->ui.checkBoxShowAllMenus, SIGNAL(toggled(bool)), SLOT(toggleVisibleTreeItems(bool)));
 	toggleVisibleTreeItems(false);
-	connect(confDlg->ui.latexTree, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(latexTreeItemChanged(QTreeWidgetItem *, int)));
-	QAction *act = new QAction(tr("Insert New Menu Item (before)"), confDlg->ui.latexTree);
-	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewItem()));
-	confDlg->ui.latexTree->addAction(act);
-	act = new QAction(tr("Insert New Sub Menu (before)"), confDlg->ui.latexTree);
-	connect(act, SIGNAL(triggered()), SLOT(latexTreeNewMenuItem()));
-	confDlg->ui.latexTree->addAction(act);
-	confDlg->ui.latexTree->setContextMenuPolicy(Qt::ActionsContextMenu);
+	connect(confDlg->ui.menuTree, SIGNAL(itemChanged(QTreeWidgetItem *, int)), this, SLOT(menuTreeItemChanged(QTreeWidgetItem *, int)));
+	QAction *act = new QAction(tr("Insert New Menu Item (before)"), confDlg->ui.menuTree);
+	connect(act, SIGNAL(triggered()), SLOT(menuTreeNewItem()));
+	confDlg->ui.menuTree->addAction(act);
+	act = new QAction(tr("Insert New Sub Menu (before)"), confDlg->ui.menuTree);
+	connect(act, SIGNAL(triggered()), SLOT(menuTreeNewMenuItem()));
+	confDlg->ui.menuTree->addAction(act);
+	confDlg->ui.menuTree->setContextMenuPolicy(Qt::ActionsContextMenu);
 
-	ComboBoxDelegate *cbd = new ComboBoxDelegate(confDlg->ui.latexTree);
+	ComboBoxDelegate *cbd = new ComboBoxDelegate(confDlg->ui.menuTree);
 	cbd->defaultItems = possibleMenuSlots;
-	confDlg->ui.latexTree->setItemDelegate(cbd);
+	confDlg->ui.menuTree->setItemDelegate(cbd);
 
 	// custom toolbars
 	confDlg->customizableToolbars.clear();
@@ -2744,6 +2744,7 @@ void ConfigManager::createCommandList(QGroupBox *box, const QStringList &order, 
 	QVBoxLayout *verticalLayout = new QVBoxLayout(box);
 	QScrollArea *scrollAreaCommands = new QScrollArea(box);
 	scrollAreaCommands->setWidgetResizable(true);
+	QScroller::grabGesture(scrollAreaCommands, QScroller::TouchGesture);
 	QWidget *scrollAreaWidgetContents = new QWidget();
 	QGridLayout *gl = new QGridLayout(scrollAreaWidgetContents);
 	gl->setVerticalSpacing(2);
@@ -3084,7 +3085,7 @@ QTreeWidgetItem *ConfigManager::managedLatexMenuToTreeWidget(QTreeWidgetItem *pa
 	return menuitem;
 }
 
-void ConfigManager::latexTreeItemChanged(QTreeWidgetItem *item, int )
+void ConfigManager::menuTreeItemChanged(QTreeWidgetItem *item, int )
 {
 	if ((item->flags() & Qt::ItemIsEditable) && !changedItemsList.contains(item)) {
 		QFont f = item->font(0);
@@ -3094,7 +3095,7 @@ void ConfigManager::latexTreeItemChanged(QTreeWidgetItem *item, int )
 	}
 }
 
-void ConfigManager::latexTreeNewItem(bool menu)
+void ConfigManager::menuTreeNewItem(bool menu)
 {
 	QAction *a = qobject_cast<QAction *>(sender());
 	REQUIRE(a);
@@ -3116,7 +3117,7 @@ void ConfigManager::latexTreeNewItem(bool menu)
 	twi->setData(0, Qt::UserRole + 1, old->data(0, Qt::UserRole).toString());
 	old->parent()->insertChild(old->parent()->indexOfChild(old), twi);
 	manipulatedMenuTree.insert(newId, twi);
-	latexTreeItemChanged(twi, 0);
+	menuTreeItemChanged(twi, 0);
 	if (menu) {
 		QTreeWidgetItem *filler = new QTreeWidgetItem(twi, QStringList() << QString("temporary menu end") << "");
 		filler->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
@@ -3124,9 +3125,9 @@ void ConfigManager::latexTreeNewItem(bool menu)
 	}
 }
 
-void ConfigManager::latexTreeNewMenuItem()
+void ConfigManager::menuTreeNewMenuItem()
 {
-	latexTreeNewItem(true);
+	menuTreeNewItem(true);
 }
 
 void ConfigManager::toggleVisibleTreeItems(bool show)
