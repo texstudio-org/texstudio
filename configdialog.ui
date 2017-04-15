@@ -88,7 +88,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -108,7 +108,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QScrollArea" name="scrollArea">
+        <widget class="QScrollArea" name="scrollAreaGeneral">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
@@ -1051,7 +1051,7 @@ Then you can select a new shortcut by one of the following ways:
         </widget>
        </item>
        <item>
-        <widget class="QTreeWidget" name="latexTree">
+        <widget class="QTreeWidget" name="menuTree">
          <property name="toolTip">
           <string>Here the menu items are listed and can be hidden or edited.</string>
          </property>
@@ -1771,7 +1771,7 @@ Then you can select a new shortcut by one of the following ways:
         <number>0</number>
        </property>
        <item>
-        <widget class="QScrollArea" name="scrollArea_2">
+        <widget class="QScrollArea" name="scrollAreaAdvancedEditor">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
@@ -1783,7 +1783,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>665</width>
+            <width>1059</width>
             <height>1415</height>
            </rect>
           </property>
@@ -3070,7 +3070,7 @@ them here.</string>
         <number>0</number>
        </property>
        <item>
-        <widget class="QScrollArea" name="scrollArea_3">
+        <widget class="QScrollArea" name="scrollAreaGrammar">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
          </property>
@@ -3082,8 +3082,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>494</width>
-            <height>670</height>
+            <width>1076</width>
+            <height>803</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3580,8 +3580,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>344</width>
-            <height>241</height>
+            <width>1076</width>
+            <height>803</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3842,8 +3842,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>490</width>
-            <height>407</height>
+            <width>1076</width>
+            <height>803</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4396,7 +4396,7 @@ Note: Changing this setting will only affect documents that are opened afterward
   </layout>
  </widget>
  <tabstops>
-  <tabstop>scrollArea</tabstop>
+  <tabstop>scrollAreaGeneral</tabstop>
   <tabstop>comboBoxInterfaceStyle</tabstop>
   <tabstop>comboBoxInterfaceModernStyle</tabstop>
   <tabstop>checkBoxUseTexmakerPalette</tabstop>
@@ -4413,7 +4413,7 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>spinBoxRerunLatex</tabstop>
   <tabstop>shortcutTree</tabstop>
   <tabstop>cb_CloseLogByEsc</tabstop>
-  <tabstop>latexTree</tabstop>
+  <tabstop>menuTree</tabstop>
   <tabstop>checkBoxShowAllMenus</tabstop>
   <tabstop>comboBoxToolbars</tabstop>
   <tabstop>listCustomToolBar</tabstop>

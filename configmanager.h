@@ -329,9 +329,9 @@ private slots:
 	void moveDownCommand();
 	void moveCommand(int dir, int atRow = -1);
 
-	void latexTreeItemChanged(QTreeWidgetItem *item, int l);
-	void latexTreeNewItem(bool menu = false);
-	void latexTreeNewMenuItem();
+	void menuTreeItemChanged(QTreeWidgetItem *item, int l);
+	void menuTreeNewItem(bool menu = false);
+	void menuTreeNewMenuItem();
 	void toggleVisibleTreeItems(bool show);
 	void activateInternalViewer(bool activated);
 
