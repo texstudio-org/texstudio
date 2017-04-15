@@ -226,7 +226,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="51"/>
         <source>Technical &amp;Report</source>
-        <translation>Технический о&amp;тчет</translation>
+        <translation>Технический о&amp;тчёт</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="55"/>
@@ -1097,12 +1097,15 @@ Variables are written as: $MYVAR. They are case-sensitive.
     <message>
         <location filename="configdialog.ui" line="936"/>
         <source>Show log in case of compile error</source>
-        <translation>Показывать лог при ошибке компиляции</translation>
+        <translation>Показывать лог-файл при ошибке компиляции</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="943"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>Это позволяет переопределить команды с помощью комментариев следующего вида:
+&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; и
+&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;.
+Подробности см. в руководстве пользователя.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="946"/>
@@ -1152,7 +1155,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1019"/>
         <source>Close Log-View with Esc-Key</source>
-        <translation>Закрывать просмотр лога с помощью клавиши Escape</translation>
+        <translation>Закрывать просмотр лог-файла с помощью клавиши Escape</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1026"/>
@@ -1555,7 +1558,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2163"/>
         <source>Mouse Wheel Zoom</source>
-        <translation>Масштаб с помощью колесика мыши</translation>
+        <translation>Масштаб с помощью колёсика мыши</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2123"/>
@@ -1663,7 +1666,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2079"/>
         <source>Show log markers when clicking log entry</source>
-        <translation>Показать метки лога при нажатии на элемент лога</translation>
+        <translation>Показать метки лог-файла при нажатии на элемент лог-файла</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2222"/>
@@ -1708,12 +1711,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2229"/>
         <source>Monitor open files for external changes</source>
-        <translation>Отслеживать изменения открытых файлов извне</translation>
+        <translation>Отслеживать внешние изменения открытых файлов</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2236"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Используется QSaveFile для предотвращения потери существующих данны, если не увенчается успехом процедура записи. Побочный эффект: текущий пользователь становится владельцем файла, а расширенные атрибуты файла теряются. Кроме того, возникают проблемы при работе с содержимым папок Dropbox’а.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2239"/>
@@ -1728,22 +1731,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2254"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Выделить слово</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2259"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Выделить слово или команду</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2264"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Выделить содержимое скобок</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2269"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Выделить скобки</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2274"/>
@@ -2960,32 +2963,32 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="23"/>
         <source>Math Equations</source>
-        <translation>Математические уравнения</translation>
+        <translation>Матем. уравнения</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="24"/>
         <source>Math &amp;Functions</source>
-        <translation>Математические &amp;функции</translation>
+        <translation>Матем. &amp;функции</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="25"/>
         <source>Math Font St&amp;yles</source>
-        <translation>На&amp;чертание математических шрифтов</translation>
+        <translation>На&amp;чертания матем. шрифтов</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="26"/>
         <source>Math Stacking symbols</source>
-        <translation>Математические символы с размещением</translation>
+        <translation>Многоуровневые матем. символы</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="27"/>
         <source>Math &amp;Accents</source>
-        <translation>Математические &amp;акценты</translation>
+        <translation>Матем. &amp;акценты</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="28"/>
         <source>Math S&amp;paces</source>
-        <translation>Математические п&amp;робелы</translation>
+        <translation>Матем. п&amp;робелы</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="37"/>
@@ -3360,12 +3363,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="31"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"/>
+        <translation>Включить &amp;файлы через input/Include</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <source>\includeonly{file(s)}</source>
-        <translation type="unfinished"/>
+        <translation>\includeonly{файл(ы)}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
@@ -3628,7 +3631,7 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="configmanager.cpp" line="1322"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Меню просмотрщика PDF</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1358"/>
@@ -4400,17 +4403,17 @@ The wizard does not support command </source>
     <message>
         <location filename="latexstructure.cpp" line="202"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>За пределами документа.</translation>
     </message>
     <message>
         <location filename="latexstructure.cpp" line="204"/>
         <source>In Appendix.</source>
-        <translation type="unfinished"/>
+        <translation>В Приложении.</translation>
     </message>
     <message>
         <location filename="latexstructure.cpp" line="219"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>Файл не найден.</translation>
     </message>
 </context>
 <context>
@@ -5292,17 +5295,17 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2336"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>О...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2356"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Увеличить</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2357"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Прокрутить</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2418"/>
@@ -8078,7 +8081,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"/>
+        <translation>команда вне подходящего окружения</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>
@@ -8663,7 +8666,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="555"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Боковая панель</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="590"/>
@@ -9441,7 +9444,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="962"/>
         <source>Force an update of the dynamic language model used for highlighting and folding. Likely, you do not need to call this because updates are usually automatic.</source>
-        <translation>Принудительное обновлять динамической модели языка, используемой для подсветки и выделения. Скорее всего, вам не придётся вызывать этот пункт, потому что обычно обновления происходят автоматически.</translation>
+        <translation>Принудительно обновлять динамическую модель языка, используемую для подсветки и выделения. Скорее всего, вам не придётся вызывать этот пункт, потому что обычно обновления происходят автоматически.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="963"/>
@@ -9606,12 +9609,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1014"/>
         <source>View &amp;Log</source>
-        <translation>Просмотр &amp;лога</translation>
+        <translation>Просмотр &amp;лог-файла</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1015"/>
         <source>Show Log Markers</source>
-        <translation>Показать метки лога</translation>
+        <translation>Показать метки лог-файла</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1019"/>
@@ -10506,12 +10509,12 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="5965"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"/>
+        <translation>%!Используемая TeX-программа: %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5968"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"/>
+        <translation>%!Программа TeX не обнаружена (%1)! Используется значение по умолчанию.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6029"/>
