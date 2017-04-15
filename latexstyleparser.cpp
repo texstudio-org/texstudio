@@ -71,12 +71,14 @@ void LatexStyleParser::run()
 
 		QStringList results, parsedPackages;
 		results = readPackage(fullName, parsedPackages); // parse package(s)
+		results = results.toSet().toList();  // remove duplicates
 		results.sort();
 
 		if (texdefMode) {
 			QStringList appendList;
 			//QStringList texdefResults=readPackageTexDef(fn); // parse package(s) by texdef as well for indirectly defined commands
 			QStringList texdefResults = readPackageTracing(fn);
+			texdefResults = texdefResults.toSet().toList();  // remove duplicates
 			texdefResults.sort();
 			// add only additional commands to results
 			if ( !results.isEmpty() && !texdefResults.isEmpty()) {
