@@ -256,7 +256,7 @@ int QDocumentLine::previousNonSpaceChar(int pos) const
 /*!
 	\brief Converts a cursor position (column) to a document position (unconstrained viewport)
 	
-	\deprecated Use cursorToDocOffset() instead
+	\deprecated Use cursorToDocumentOffset() instead
 	
 	This function is kept for compatribility only. It dates back to the time before line wrapping
 	was implemented. Due to the limitation of its design (i.e signature) it works in a somewhat
@@ -272,7 +272,7 @@ int QDocumentLine::cursorToX(int cpos) const
 /*!
 	\brief Converts a document position (unconstrained viewport) to a cursor position (column)
 	
-	\deprecated Use cursorToDocOffset() instead
+	\deprecated Use cursorToDocumentOffset() instead
 	
 	\see cursorToX() for more informations about this function
 */

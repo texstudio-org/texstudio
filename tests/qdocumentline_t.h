@@ -17,7 +17,7 @@ private:
 	QDocument* doc;
 
 	bool savedFixedPitch;
-	int savedSpaceWidth, savedLeftMargin;
+	int savedSpaceWidth, savedLeftPadding;
 	bool savedWorkAroundFPM, savedWorkAroundFSCD, savedWorkAroundFQTL;
 private slots:
 	void initTestCase();

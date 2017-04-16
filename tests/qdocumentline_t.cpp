@@ -29,7 +29,7 @@ QDocumentLineTest::~QDocumentLineTest(){
 void QDocumentLineTest::initTestCase(){
 	savedFixedPitch = QDocumentPrivate::m_fixedPitch;
 	savedSpaceWidth = QDocumentPrivate::m_spaceWidth;
-	savedLeftMargin = QDocumentPrivate::m_leftMargin;
+	savedLeftPadding = QDocumentPrivate::m_leftPadding;
 
 	savedWorkAroundFPM = doc->hasWorkAround(QDocument::DisableFixedPitchMode);
 	savedWorkAroundFSCD = doc->hasWorkAround(QDocument::ForceSingleCharacterDrawing);
@@ -40,14 +40,14 @@ void QDocumentLineTest::initTestCase(){
 	doc->setWorkAround(QDocument::ForceSingleCharacterDrawing, false);
 	doc->setWorkAround(QDocument::ForceQTextLayout, false);
 	QDocumentPrivate::m_fixedPitch = true;
-	QDocumentPrivate::m_leftMargin = 0;
+	QDocumentPrivate::m_leftPadding = 0;
 	QDocumentPrivate::m_spaceWidth = 5;
 }
 
 void QDocumentLineTest::cleanupTestCase(){
 	QDocumentPrivate::m_fixedPitch = savedFixedPitch;
 	QDocumentPrivate::m_spaceWidth = savedSpaceWidth;
-	QDocumentPrivate::m_leftMargin = savedLeftMargin;
+	QDocumentPrivate::m_leftPadding = savedLeftPadding;
 	doc->setWorkAround(QDocument::DisableFixedPitchMode, savedWorkAroundFPM);
 	doc->setWorkAround(QDocument::ForceSingleCharacterDrawing, savedWorkAroundFSCD);
 	doc->setWorkAround(QDocument::ForceQTextLayout, savedWorkAroundFQTL);
