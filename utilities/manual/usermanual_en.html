@@ -139,6 +139,9 @@ Alternatively a command can be directly selected through the file system.
 <p>Every txs-command is a list of external programs/latex-commands and other txs-commands to call. An external program can be called with its usual command line, while a txs-command with id "foobar" is called by txs:///foobar. <br>
 The commands in the list are separated by |, which is just a separator (i.e. it will <i>not</i> pass the stdout from one program to the stdin of the next).
 
+<p>Note: Use command lists only for the meta and user commands listed at <code>Options -> Build</code>. Do not use then at <code>Options -> Commands</code>. The latter should just be single commands 
+(i.e. do not use | there). While it's currently working in some cases, generally we do not guarantee this behavior. It can have surprising side effects such abortion of compilation in some cases. Also, the use of | at <code>Commands</code> may be prohibited completely without further notice in the future.</p>
+
 <p>Each of these txs-command has a unique id, which is shown as tooltip of the displayed name for "normal" commands and in the edit box for user commands. Some important commands are usual: txs:///quick (Build & View, the old quickbuild), txs:///compile (Default compiler), txs:///view (Default viewer), txs:///latex (latex), txs:///pdflatex (pdflatex), txs:///view-pdf (Default Pdf Viewer), txs:///view-pdf-external (External pdf viewer).
 
 <p>For example, in a typical build configuration you might call txs:///quick by pressing F1, which calls txs:///compile, which first calls txs:///pdflatex that calls the actual pdflatey, and then calls txs:///view, which calls txs:///view-pdf, which calls txs:///view-pdf-internal, which displays the pdf.
