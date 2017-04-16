@@ -19,6 +19,7 @@ public:
 	int showlinemultiples;
 	int cursorSurroundLines;
 	bool boldCursor;
+	bool centerDocumentInEditor;
 	bool folding, showlinestate, showcursorstate, realtimeChecking;
 	bool inlineSpellChecking, inlineCitationChecking, inlineReferenceChecking, inlineSyntaxChecking, inlineGrammarChecking, inlinePackageChecking;
 	bool inlineCheckNonTeXFiles;
