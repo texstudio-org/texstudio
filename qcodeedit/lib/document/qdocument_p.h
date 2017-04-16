@@ -181,6 +181,10 @@ public:
 			return m_width;
 		}
 
+		int leftMarginAndPadding() const {
+			return m_leftMargin + m_leftPadding;
+		}
+
 		QHash<QDocumentLineHandle*, QPair<int, int> > getStatus(){
 		    return m_status;
 		}
@@ -246,6 +250,7 @@ public:
 		
 		bool m_constrained;
 		bool m_hardLineWrap,m_lineWidthConstraint;
+		int m_leftMargin;
 		int m_width, m_height;
 		
 		int m_tabStop;
