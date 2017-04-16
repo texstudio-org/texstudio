@@ -1292,6 +1292,11 @@ void QDocument::setLineSpacingFactor(double scale)
 	//	d->emitFormatsChanged();
 }
 
+void QDocument::setCenterDocumentInEditor(bool center)
+{
+	QDocumentPrivate::m_centerDocumentInEditor = center;
+}
+
 /*!
 	\return The default tab stop common to ALL documents
 
@@ -6447,6 +6452,7 @@ QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 bool QDocumentPrivate::m_fixedPitch;
 QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=0;
 double QDocumentPrivate::m_lineSpacingFactor = 1.0;
+bool QDocumentPrivate::m_centerDocumentInEditor;
 int QDocumentPrivate::m_staticCachesLogicalDpiY = -1;// resolution for which the caches are valid (depends on OS gui scaling)
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
@@ -6711,7 +6717,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	}
 
 	m_leftMargin = 0;
-	if (m_doc->widthConstraint())
+	if (m_centerDocumentInEditor && m_doc->widthConstraint())
 		m_leftMargin = qMax(0, (cxt.width - m_doc->width()) / 2);
 	//qDebug("QDocumentPrivate::draw, leftMargin=%i", m_leftMargin);
 	p->translate(m_leftMargin, 0);  // for simplicity, all drawing of lines is shifted by the leftMargin,

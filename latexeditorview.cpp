@@ -1529,6 +1529,7 @@ void LatexEditorView::updateSettings()
 	QDocument::setShowSpaces(config->showWhitespace ? (QDocument::ShowTrailing | QDocument::ShowLeading | QDocument::ShowTabs) : QDocument::ShowNone);
 	QDocument::setTabStop(config->tabStop);
 	QDocument::setLineSpacingFactor(config->lineSpacingPercent / 100.0);
+	QDocument::setCenterDocumentInEditor(config->centerDocumentInEditor);
 
 	editor->m_preEditFormat = preEditFormat;
 

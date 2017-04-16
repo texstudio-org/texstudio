@@ -88,7 +88,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>8</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -120,8 +120,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1076</width>
-            <height>803</height>
+            <width>547</width>
+            <height>563</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -1827,7 +1827,7 @@ Then you can select a new shortcut by one of the following ways:
             <x>0</x>
             <y>0</y>
             <width>1059</width>
-            <height>1415</height>
+            <height>1438</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1975,6 +1975,16 @@ Then you can select a new shortcut by one of the following ways:
                 </property>
                 <property name="advancedOption" stdset="0">
                  <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="checkBoxCenterDocumentInEditor">
+                <property name="toolTip">
+                 <string>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</string>
+                </property>
+                <property name="text">
+                 <string>Center Document in Editor</string>
                 </property>
                </widget>
               </item>
@@ -3125,8 +3135,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1076</width>
-            <height>803</height>
+            <width>494</width>
+            <height>670</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3623,8 +3633,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1076</width>
-            <height>803</height>
+            <width>344</width>
+            <height>241</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3885,8 +3895,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1076</width>
-            <height>803</height>
+            <width>490</width>
+            <height>407</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">

@@ -257,6 +257,7 @@ public:
 		static int m_defaultTabStop;
 
 		static double m_lineSpacingFactor;
+		static bool m_centerDocumentInEditor;
 
         static QFont *m_baseFont;  // original font associated with the document
         static QFont *m_font;      // current font, pointSize = m_baseFont.pointSize + m_fontSizeModifier

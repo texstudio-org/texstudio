@@ -490,6 +490,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Line Number Multiples", &editorConfig->showlinemultiples, 0);
 	registerOption("Editor/Cursor Surrounding Lines", &editorConfig->cursorSurroundLines, 5);
 	registerOption("Editor/BoldCursor", &editorConfig->boldCursor, true, &pseudoDialog->checkBoxBoldCursor);
+	registerOption("Editor/CenterDocumentInEditor", &editorConfig->centerDocumentInEditor, true, &pseudoDialog->checkBoxCenterDocumentInEditor);
 	registerOption("Editor/Auto Indent", &editorConfig->autoindent, true);
 	registerOption("Editor/Weak Indent", &editorConfig->weakindent, false);
 	registerOption("Editor/Indent with Spaces", &editorConfig->replaceIndentTabs, false, &pseudoDialog->checkBoxReplaceIndentTabByWhitespace);
