@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texmakertags title="Beamer">
+<section title="New Slides">
+<item txt="empty slide" tag="\\begin{frame}"/>
+</section>
+</texmakertags>
