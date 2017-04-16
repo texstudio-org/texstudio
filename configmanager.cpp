@@ -1717,6 +1717,8 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 			QApplication::setFont(QFont(interfaceFontFamily, interfaceFontSize));
 		}
 		if (changedProperties.contains(&interfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&useTexmakerPalette)) {
+			if (changedProperties.contains(&modernStyle))
+				txsInformation("Some elements cannot be adapted to the new style while the application is running. Please restart to get a consistent experience.");
 			if (interfaceStyle == tr("default")) interfaceStyle = "";
 			setInterfaceStyle();
 		}
