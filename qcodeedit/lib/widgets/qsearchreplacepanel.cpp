@@ -147,7 +147,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbCase->setMinimumSize(buttonSize);
     cbCase->setMaximumSize(buttonSize);
     cbCase->setIcon(getRealIconCached("case"));
-    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, true, "Search/Case Sensitive", cbCase);
+    CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, false, "Search/Case Sensitive", cbCase);
     flowLayout->addWidget(cbCase);
 
     cbWords = new QToolButton(this);
