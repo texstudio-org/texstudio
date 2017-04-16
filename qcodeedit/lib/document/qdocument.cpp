@@ -1366,7 +1366,8 @@ void QDocument::setEditCursor(QDocumentCursor *c)
 /*!
 	\return the width of the document, in pixels
 
-	The width of the document is that of longest text line.
+	The width of the document is that of longest text line,
+	or the maximal width if a width constraint is set.
 */
 int QDocument::width() const
 {
@@ -2613,7 +2614,9 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 
 	if ( m_layout )
 	{
-		int xoff = QDocumentPrivate::m_leftPadding, coff = 0, line = m_frontiers.count();
+		int xoff = m_doc->impl()->leftMarginAndPadding();
+		int coff = 0;
+		int line = m_frontiers.count();
 
 		for ( int i = 0; i < m_frontiers.count(); ++i )
 		{
@@ -2642,7 +2645,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	{
 		int result=QDocument::screenColumn(m_text.constData(), cpos, tabStop)
 				* QDocumentPrivate::m_spaceWidth
-				+ QDocumentPrivate::m_leftPadding;
+				+ m_doc->impl()->leftMarginAndPadding();
 		return result;
 	}
 
@@ -2657,7 +2660,7 @@ int QDocumentLineHandle::cursorToXNoLock(int cpos) const
 	    }
 
 	int idx = 0, column = 0, cwidth;
-	int screenx = QDocumentPrivate::m_leftPadding;
+	int screenx = m_doc->impl()->leftMarginAndPadding();
 
 	while ( idx < cpos )
 	{
@@ -2690,7 +2693,9 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 	QReadLocker locker(&mLock);
 	if ( m_layout )
 	{
-		int xoff = QDocumentPrivate::m_leftPadding, coff = 0, line = m_frontiers.count();
+		int xoff = m_doc->impl()->leftMarginAndPadding();
+		int coff = 0;
+		int line = m_frontiers.count();
 
 		for ( int i = 0; i < m_frontiers.count(); ++i )
 		{
@@ -2745,14 +2750,13 @@ int QDocumentLineHandle::xToCursor(int xpos) const
 		}
 		return idx;
 	} else {
-		if ( screenx <= QDocumentPrivate::m_leftPadding ){
-			return 0;
-		    }
 
 		QVector<int> composited = compose();
 
 		int idx = 0, x = 0, column = 0, cwidth;
-		screenx -= QDocumentPrivate::m_leftPadding;
+		screenx -= m_doc->impl()->leftMarginAndPadding();
+		if (screenx < 0)
+			return 0;
 
 		while ( idx < m_text.length() )
 		{
@@ -2809,9 +2813,21 @@ int QDocumentLineHandle::wrappedLineForCursorNoLock(int cpos) const
 	return wrap;
 }
 
+/*! \return the cursor column in the given line associated with
+ * the given document coordinates.
+ * The vertical coordinates start at y=0 (top)
+ * The horizonal coorindates are including leftMargin and leftPadding,
+ * i.e. x = leftMargin + leftPadding + charWidth results in column 1
+ * Positions smaller than leftMargin + leftPadding always result in column 0
+ */
 int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 {
+	//qDebug("documentOffsetToCursor(%i, %i)", x, y);
 	QReadLocker locker(&mLock);
+	QDocumentPrivate *d = m_doc->impl();
+
+	x -= d->leftMarginAndPadding();  // remove margin and padding
+
 	int wrap = y / QDocumentPrivate::m_lineSpacing;
 
 	if ( wrap > m_frontiers.count() )
@@ -2827,8 +2843,6 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 		//qDebug("(%i, %i) : %i", x, y, wrap);
 		x = qMin(x, m_doc->widthConstraint());
 	}
-
-	x -= QDocumentPrivate::m_leftPadding;
 
 	if ( m_layout )
 	{
@@ -2854,8 +2868,6 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 	int rx = 0, column = 0;
 	QList<RenderRange> ranges;
 	splitAtFormatChanges(&ranges, 0, cpos, max);
-
-	QDocumentPrivate *d = m_doc->impl();
 
 	int lastCharacterWidth = QDocumentPrivate::m_spaceWidth;
 
@@ -2927,6 +2939,8 @@ int QDocumentLineHandle::documentOffsetToCursor(int x, int y) const
 void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 {
 	QReadLocker locker(&mLock);
+	QDocumentPrivate *d = m_doc->impl();
+
 	if ( cpos > m_text.length() )
 		cpos = m_text.length();
 	else if ( cpos < 0 )
@@ -2935,7 +2949,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 	int idx = 0;
 	int wrap = wrappedLineForCursorNoLock(cpos);
 
-	x = QDocumentPrivate::m_leftPadding;
+	x = d->leftMarginAndPadding();
 	y = wrap * QDocumentPrivate::m_lineSpacing;
 
 	if ( wrap )
@@ -2958,8 +2972,6 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 		QList<RenderRange> ranges;
 		splitAtFormatChanges(&ranges, 0, idx, qMin(text().length(), cpos));
 
-		QDocumentPrivate *d = m_doc->impl();
-
 		int column=0;
 		foreach (const RenderRange& r, ranges) {
 			int tempFmts[FORMAT_MAX_COUNT]; QFormat tempFormats[FORMAT_MAX_COUNT]; int newFont;
@@ -2969,6 +2981,7 @@ void QDocumentLineHandle::cursorToDocumentOffset(int cpos, int& x, int& y) const
 			column += columnDelta;
 		}
 	}
+	//qDebug("cursorToDocumentOffset(%i) -> (%i, %i)", cpos, x, y);
 }
 
 QPoint QDocumentLineHandle::cursorToDocumentOffset(int cpos) const
@@ -6453,6 +6466,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	m_constrained(false),
 	m_hardLineWrap(false),
 	m_lineWidthConstraint(false),
+	m_leftMargin(0),
 	m_width(0),
 	m_height(0),
 	m_tabStop(m_defaultTabStop),
@@ -6695,6 +6709,14 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		}
 	}
 
+	m_leftMargin = 0;
+	if (m_doc->widthConstraint())
+		m_leftMargin = qMax(0, (cxt.width - m_doc->width()) / 2);
+	//qDebug("QDocumentPrivate::draw, leftMargin=%i", m_leftMargin);
+	p->translate(m_leftMargin, 0);  // for simplicity, all drawing of lines is shifted by the leftMargin,
+	                                // so that the painter x coordinate starts at the edge of the document.
+	                                // leftPadding is still included, because here the background has to be drawn
+
 	for ( ; realln <= lastLine; ++i )
 	{
 		if ( i >= m_lines.count() )
@@ -6837,7 +6859,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			h->lineHasSelection=QDocumentLineHandle::noSel;
 		}
 
-		p->save();
+		p->save();  // every line get's its own standard pointer to prevent leaking of pointer state
 
 		// simplify line drawing
 		p->translate(0, pos);
@@ -6986,6 +7008,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		p->restore();
         //qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
+	p->translate(-m_leftMargin, 0);
 
     //qDebug("painting done in %i ms...", t.elapsed());
 
@@ -7061,6 +7084,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			}
 		}
 	}
+	//qDebug("QDocumentPrivate::draw finished");
 }
 
 QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS, int maxLineWidth, int maxWrap) const{

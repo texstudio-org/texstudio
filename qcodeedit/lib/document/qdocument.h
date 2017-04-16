@@ -127,7 +127,7 @@ class QCE_EXPORT QDocument : public QObject
 		{
 			int width;
 			int height;
-			int xoffset;
+			int xoffset;  // draw content from position x+xoffset at position x (used for horizontal scrolling).
 			int yoffset;
 			QPalette palette;
 			bool blinkingCursor;
