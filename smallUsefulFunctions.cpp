@@ -1907,9 +1907,10 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
             if (searchTokens->contains(tk.type)) {
                 QString result;
                 if (Token::tkBraces().contains(tk.type) || Token::tkOpen().contains(tk.type) || Token::tkClose().contains(tk.type)) {
-                    result = line.mid(tk.innerStart(), tk.innerLength());
                     if (Token::tkOpen().contains(tk.type)) {
-                        result += line.mid(tk.innerStart(), tk.innerLength()) + findRestArg(dlh, Token::opposite(tk.type), RUNAWAYLIMIT);
+                        result = line.mid(tk.innerStart(), tk.innerLength()) + findRestArg(dlh, Token::opposite(tk.type), RUNAWAYLIMIT);
+                    }else{
+                        result = line.mid(tk.innerStart(), tk.innerLength());
                     }
                 }
                 if (result.isEmpty()) {
