@@ -2,5 +2,9 @@
 <texmakertags title="Beamer">
 <section title="New Slides">
 <item txt="empty slide" tag="\\begin{frame}"/>
+<item txt="slide with enumerate" tag="\\begin{frame}%\\\\begin{enumerate}%\\\\item %|%\\\\end{enumerate}%\\\\end{frame}"/>
+<item txt="slide with itemize" tag="\\begin{frame}%\\\\begin{itemize}%\\\\item %|%\\\\end{itemize}%\\\\end{frame}"/>
+<item txt="slide with graphic" tag="\\begin{frame}%\\\\includegraphics[width=\\linewidth]{%|}%\\\\end{frame}"/>
+
 </section>
 </texmakertags>
