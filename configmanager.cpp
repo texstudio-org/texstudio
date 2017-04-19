@@ -2747,7 +2747,9 @@ void ConfigManager::createCommandList(QGroupBox *box, const QStringList &order, 
 	QVBoxLayout *verticalLayout = new QVBoxLayout(box);
 	QScrollArea *scrollAreaCommands = new QScrollArea(box);
 	scrollAreaCommands->setWidgetResizable(true);
+#if (QT_VERSION > 0x050000)
 	QScroller::grabGesture(scrollAreaCommands, QScroller::TouchGesture);
+#endif
 	QWidget *scrollAreaWidgetContents = new QWidget();
 	QGridLayout *gl = new QGridLayout(scrollAreaWidgetContents);
 	gl->setVerticalSpacing(2);
