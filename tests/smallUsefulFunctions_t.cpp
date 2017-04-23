@@ -514,39 +514,39 @@ void SmallUsefulFunctionsTest::test_getArg2_data() {
     QTest::newRow("text command, embedded ,open") << "\\textbf{  te\\textit{xt} bg"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  te\\textit{xt} bg");
+                                            << (QStringList() <<"  te\\textit{xt} bg ");
     QTest::newRow("text command, multi-line") << "\\textbf{  te\nasdasd}"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd");
+                                            << (QStringList() <<"  te asdasd");
     QTest::newRow("text command, multi-line2") << "\\textbf{  te\nasdasd"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd");
+                                            << (QStringList() <<"  te asdasd ");
     QTest::newRow("text command, multi-line3") << "\\textbf{  te\nasdasd\n op\n\n}"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd op");
+                                            << (QStringList() <<"  te asdasd  op ");
     QTest::newRow("text command, multi-line4") << "\\textbf{  te\nasdasd\n op\n\ndd}"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd opdd");
+                                            << (QStringList() <<"  te asdasd  op dd");
     QTest::newRow("text command, multi-line5") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd opdd");
+                                            << (QStringList() <<"  te asdasd  op dd");
     QTest::newRow("text command, multi-line6") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd op");
+                                            << (QStringList() <<"  te asdasd  op ");
     QTest::newRow("text command, multi-line7") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}" // runawaylimit=30 assumed
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd op");
+                                            << (QStringList() <<"  te asdasd  op ");
     QTest::newRow("text command, multi-line,runaway") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}" // runawaylimit=30 assumed
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd op");
+                                            << (QStringList() <<"  te asdasd  op ");
     QTest::newRow("optional argument") << "\\section[ab]{text}"
                                             << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional<<ArgumentList::MandatoryWithBraces)
                                             << (QList<int>()<<0<<0<<0)
@@ -554,7 +554,7 @@ void SmallUsefulFunctionsTest::test_getArg2_data() {
     QTest::newRow("optional argument2") << "\\section[ab\ncd]{text}"
                                             << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
                                             << (QList<int>()<<0<<0)
-                                            << (QStringList() <<"text"<<"abcd");
+                                            << (QStringList() <<"text"<<"ab cd");
     QTest::newRow("optional argument, with comment") << "\\section[ab% sdfg\ncd]{text}"
                                             << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
                                             << (QList<int>()<<0<<0)
@@ -570,8 +570,12 @@ void SmallUsefulFunctionsTest::test_getArg2_data() {
     QTest::newRow("multi-line") << "\\textbf\n\n{  te\nasdasd}"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
-                                            << (QStringList() <<"  teasdasd");
+                                            << (QStringList() <<"  te asdasd");
     QTest::newRow("text command, multi-line with comment") << "\\textbf{  te % Hello\nasdasd}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  te asdasd");
+    QTest::newRow("text command, multi-line with comment2") << "\\textbf{  te % Hello\nasda% sdfsdf\nsd}"
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
                                             << (QStringList() <<"  te asdasd");
