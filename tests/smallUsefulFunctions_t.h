@@ -481,6 +481,12 @@ private slots:
     void test_simpleLexing();
     void test_latexLexing_data();
     void test_latexLexing();
+    void test_findCommandWithArgsFromTL_data();
+    void test_findCommandWithArgsFromTL();
+    void test_getArg_data();
+    void test_getArg();
+    void test_getArg2_data();
+    void test_getArg2();
 };
 
 

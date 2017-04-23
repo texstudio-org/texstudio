@@ -1941,7 +1941,7 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
 QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count)
 {
 	// dlh is current line, next line will be checked here!!!
-	if (count < 0)
+    if (count <= 0)
 		return QString(); // limit search depth
 	QDocument *document = dlh->document();
 	int index = document->indexOf(dlh);
@@ -2993,11 +2993,11 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 		}
 	}
 	{
-		// change length of openBrace (length to end of line)
+        // change length of openBrace/openBracket (length to end of line)
 		QMutableListIterator<Token> i(lexed);
 		while (i.hasNext()) {
 			Token &tk = i.next();
-			if (tk.type == Token::openBrace && tk.dlh == dlh) {
+            if ((tk.type == Token::openBrace || tk.type == Token::openSquare ) && tk.dlh == dlh) {
 				// set length to whole line after brace
 				tk.length = line.length() - tk.start;
 			}

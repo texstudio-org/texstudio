@@ -18,6 +18,8 @@ typedef QList<int> Length;
 typedef QList<int> Starts;
 typedef QList<int> Levels;
 
+typedef QList<int> ATypes;
+
 void SmallUsefulFunctionsTest::test_simpleLexing_data() {
     QTest::addColumn<QString>("line");
     QTest::addColumn<TTypes>("types");
@@ -154,6 +156,18 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
                                      << (Starts() << 0 << 8 << 9)
                                      << (Length() << 8 << 6 << 4)
                                      << (Levels() << 0 << 0 << 1);
+    QTest::newRow("section command, multi-line") << "\\section{text\ntest}"
+                                     << (TTypes() << T::command << T::openBrace << T::word<< T::word<<T::closeBrace)
+                                     << (STypes() << T::none << T::title << T::title<<T::title<<T::none)
+                                     << (Starts() << 0 << 8 << 9<< 0 << 4)
+                                     << (Length() << 8 << 5 << 4<< 4 << 1)
+                                     << (Levels() << 0 << 0 << 1<< 1 << 0);
+    QTest::newRow("section command, multi-line optional") << "\\section[ab\ncd]{text\ntest}"
+                                     << (TTypes() << T::command << T::openSquare << T::word<< T::word<<T::closeSquareBracket<< T::openBrace << T::word<< T::word<<T::closeBrace)
+                                     << (STypes() << T::none <<T::title << T::title<<T::title<<T::none << T::title << T::title<<T::title<<T::none)
+                                     << (Starts() << 0 << 8 << 9 << 0 << 2 << 3 << 4 << 0 << 4)
+                                     << (Length() << 8 << 3 << 2 << 2 << 1 << 5 << 4 << 4 << 1)
+                                     << (Levels() << 0 << 0 << 1 << 1 << 0 << 0 << 1 << 1 << 0);
     QTest::newRow("usepackage command") << "\\usepackage{text}"
                                         << (TTypes() << T::command << T::braces << T::package)
                                         << (STypes() << T::none << T::package << T::none)
@@ -282,6 +296,298 @@ void SmallUsefulFunctionsTest::test_latexLexing() {
         QVERIFY2(tk.level == level, QString("incorrect level  (%1)").arg(i).toLatin1().constData());
     }
     QVERIFY2(tl.length() == types.length(), "missing tokens");
+    delete doc;
+}
+
+void SmallUsefulFunctionsTest::test_findCommandWithArgsFromTL_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<TTypes>("types");
+    QTest::addColumn<STypes>("subtypes");
+    QTest::addColumn<Starts>("starts");
+    QTest::addColumn<Length>("lengths");
+    QTest::addColumn<Levels>("levels");
+
+
+    QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
+                                        << (TTypes() << T::braces << T::braces)
+                                        << (STypes() <<  T::def <<  T::definition )
+                                        << (Starts() <<  11 <<  17 )
+                                        << (Length() <<  6 << 6 )
+                                        << (Levels() << 0 << 0 );
+    QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
+                                         << (TTypes() << T::braces << T::braces)
+                                         << (STypes() <<  T::def <<  T::definition )
+                                         << (Starts() <<  11 <<  17 )
+                                         << (Length() <<  6 << 6 )
+                                         << (Levels() << 0 << 0 );
+    QTest::newRow("newcommand command3") << "\\newcommand{\\paragraph}{test}"
+                                         << (TTypes() << T::braces << T::braces)
+                                         << (STypes() <<  T::def <<  T::definition )
+                                         << (Starts() <<  11 <<  23 )
+                                         << (Length() <<  12 << 6 )
+                                         << (Levels() << 0 << 0 );
+    QTest::newRow("newcommand command, no braces") << "\\newcommand text {test}"
+                                        << (TTypes() << T::word << T::braces)
+                                        << (STypes() <<  T::def <<  T::definition )
+                                        << (Starts() <<  12 <<  17 )
+                                        << (Length() <<  4 << 6 )
+                                        << (Levels() << 0 << 0 );
+    QTest::newRow("newcommand command, no braces2") << "\\newcommand text test"
+                                        << (TTypes() << T::word << T::word)
+                                        << (STypes() <<  T::def <<  T::definition )
+                                        << (Starts() <<  12 <<  17 )
+                                        << (Length() <<  4 << 4 )
+                                        << (Levels() << 0 << 0 );
+    QTest::newRow("documentclass command") << "\\documentclass{text}"
+                                           << (TTypes() << T::braces )
+                                           << (STypes() <<  T::documentclass )
+                                           << (Starts() <<  14 )
+                                           << (Length() <<  6 )
+                                           << (Levels() << 0 );
+    QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}"
+                                            << (TTypes() << T::braces )
+                                            << (STypes() <<  T::text )
+                                            << (Starts() <<  7 )
+                                            << (Length() <<  18 )
+                                            << (Levels() << 0 );
+    QTest::newRow("text command, embedded ,open") << "\\textbf{te\\textit{xt} bg"
+                                            << (TTypes() << T::openBrace )
+                                            << (STypes() <<  T::text )
+                                            << (Starts() <<  7 )
+                                            << (Length() <<  17 )
+                                            << (Levels() << 0 );
+
+}
+
+void SmallUsefulFunctionsTest::test_findCommandWithArgsFromTL() {
+    LatexParser lp = LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(TTypes, types);
+    QFETCH(STypes, subtypes);
+    QFETCH(Starts, starts);
+    QFETCH(Length, lengths);
+    QFETCH(Levels, levels);
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+    // first token is command
+    Token tkCmd;
+    TokenList args;
+    int cmdStart = findCommandWithArgsFromTL(tl, tkCmd, args, 0, false);
+    QVERIFY(cmdStart==0);
+    for(int i=0; i<args.length(); i++){
+        Token tk = args.at(i);
+        int type = types.value(i, 0);
+        int subtype = subtypes.value(i, 0);
+        int start = starts.value(i, 0);
+        int length = lengths.value(i, 0);
+        int level = levels.value(i, 0);
+        QVERIFY2(int(tk.type) == type, QString("incorrect type %1 != %2").arg(int(tk.type)).arg(type).toLatin1().constData());
+        QVERIFY2(int(tk.subtype) == subtype, QString("incorrect subtype %1 != %2").arg(int(tk.subtype)).arg(subtype).toLatin1().constData());
+        QVERIFY2(tk.start == start, QString("incorrect start (%1)").arg(i).toLatin1().constData());
+        QVERIFY2(tk.length == length, QString("incorrect length (%1)").arg(i).toLatin1().constData());
+        QVERIFY2(tk.level == level, QString("incorrect level  (%1)").arg(i).toLatin1().constData());
+    }
+    QVERIFY2(args.length() == types.length(), "missing tokens");
+    delete doc;
+}
+
+void SmallUsefulFunctionsTest::test_getArg_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<STypes>("types");
+    QTest::addColumn<QStringList>("desiredResults");
+
+
+    QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
+                                        << (STypes() <<T::def << T::definition)
+                                        << (QStringList() <<"text" <<"test");
+    QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
+                                         <<  (STypes() <<T::def << T::definition)
+                                         << (QStringList() <<"\\ext"<<"test");
+    QTest::newRow("newcommand command, no braces") << "\\newcommand text {test}"
+                                        <<  (STypes() <<T::def<< T::definition)
+                                        << (QStringList() <<"text"<<"test");
+    QTest::newRow("newcommand command, no braces2") << "\\newcommand text test"
+                                        <<  (STypes() <<T::def<< T::definition) << (QStringList() <<"text"<< "test");
+    QTest::newRow("documentclass command") << "\\documentclass{text}"
+                                           <<  (STypes() << T::documentclass )<< (QStringList() <<"text");
+    QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}"
+                                            << (STypes() <<T::text) << (QStringList() <<"te\\textit{xt} bg");
+    QTest::newRow("text command, embedded ,open") << "\\textbf{  te\\textit{xt} bg"
+                                            <<   (STypes() <<T::text) << (QStringList() <<"  te\\textit{xt} bg");
+
+}
+
+void SmallUsefulFunctionsTest::test_getArg() {
+    LatexParser lp = LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(STypes, types);
+    QFETCH(QStringList, desiredResults);
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+    // first token is command
+    Token tkCmd;
+    TokenList args;
+    findCommandWithArgsFromTL(tl, tkCmd, args, 0, false);
+    for(int i=0;i<types.length();i++){
+        T::TokenType type=T::TokenType(types.at(i));
+        QString result=getArg(args,type);
+        QVERIFY(desiredResults.at(i)==result);
+    }
+    delete doc;
+}
+
+void SmallUsefulFunctionsTest::test_getArg2_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<ATypes>("types");
+    QTest::addColumn<QList<int> >("nr");
+    QTest::addColumn<QStringList>("desiredResults");
+
+
+    QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
+                                        << (ATypes() <<ArgumentList::Mandatory << ArgumentList::Mandatory<<ArgumentList::MandatoryWithBraces<<ArgumentList::MandatoryWithBraces)
+                                        << (QList<int>()<<0<<1<<0<<1)
+                                        << (QStringList() <<"text" <<"test"<<"text"<<"test");
+    QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
+                                         <<  (ATypes() <<ArgumentList::Mandatory << ArgumentList::Mandatory)
+                                         << (QList<int>()<<0<<1)
+                                         << (QStringList() <<"\\ext"<<"test");
+    QTest::newRow("newcommand command, no braces") << "\\newcommand text {test}"
+                                        <<  (ATypes() <<ArgumentList::Mandatory<< ArgumentList::Mandatory<<ArgumentList::MandatoryWithBraces<< ArgumentList::MandatoryWithBraces)
+                                        << (QList<int>()<<0<<1<<0<<1)
+                                        << (QStringList() <<"text"<<"test"<<"text"<<"test");
+    QTest::newRow("newcommand command, no braces2") << "\\newcommand text test"
+                                        <<  (ATypes() <<ArgumentList::Mandatory<< ArgumentList::Mandatory)
+                                        << (QList<int>()<<0<<1)
+                                        << (QStringList() <<"text"<< "test");
+    QTest::newRow("documentclass command") << "\\documentclass{text}"
+                                           <<  (ATypes() << ArgumentList::Mandatory )
+                                           << (QList<int>()<<0)
+                                           << (QStringList() <<"text");
+    QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"te\\textit{xt} bg");
+    QTest::newRow("text command, embedded ,open") << "\\textbf{  te\\textit{xt} bg"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  te\\textit{xt} bg");
+    QTest::newRow("text command, multi-line") << "\\textbf{  te\nasdasd}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd");
+    QTest::newRow("text command, multi-line2") << "\\textbf{  te\nasdasd"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd");
+    QTest::newRow("text command, multi-line3") << "\\textbf{  te\nasdasd\n op\n\n}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd op");
+    QTest::newRow("text command, multi-line4") << "\\textbf{  te\nasdasd\n op\n\ndd}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd opdd");
+    QTest::newRow("text command, multi-line5") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd opdd");
+    QTest::newRow("text command, multi-line6") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd op");
+    QTest::newRow("text command, multi-line7") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}" // runawaylimit=30 assumed
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd op");
+    QTest::newRow("text command, multi-line,runaway") << "\\textbf{  te\nasdasd\n op\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndd}" // runawaylimit=30 assumed
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd op");
+    QTest::newRow("optional argument") << "\\section[ab]{text}"
+                                            << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
+                                            << (QList<int>()<<0<<0)
+                                            << (QStringList() <<"text"<<"ab");
+    QTest::newRow("optional argument2") << "\\section[ab\ncd]{text}"
+                                            << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
+                                            << (QList<int>()<<0<<0)
+                                            << (QStringList() <<"text"<<"abcd");
+    QTest::newRow("optional argument3") << "\\section[]{text}"
+                                            << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
+                                            << (QList<int>()<<0<<0)
+                                            << (QStringList() <<"text"<<"[]");
+    QTest::newRow("optional argument4") << "\\section{text}"
+                                            << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
+                                            << (QList<int>()<<0<<0)
+                                            << (QStringList() <<"text"<<"");
+    QTest::newRow("multi-line") << "\\textbf\n\n{  te\nasdasd}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  teasdasd");
+
+}
+
+void SmallUsefulFunctionsTest::test_getArg2() {
+    LatexParser lp = LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(ATypes, types);
+    QFETCH(QList<int>, nr);
+    QFETCH(QStringList, desiredResults);
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+    // first token is command
+    Token tkCmd;
+    TokenList args;
+    findCommandWithArgsFromTL(tl, tkCmd, args, 0, false);
+    for(int i=0;i<types.length();i++){
+        ArgumentList::ArgType type=ArgumentList::ArgType(types.at(i));
+        QString result=getArg(args,dlh,nr.at(i),type);
+        QVERIFY(desiredResults.at(i)==result);
+    }
     delete doc;
 }
 
