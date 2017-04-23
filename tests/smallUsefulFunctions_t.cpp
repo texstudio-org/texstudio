@@ -548,9 +548,9 @@ void SmallUsefulFunctionsTest::test_getArg2_data() {
                                             << (QList<int>()<<0)
                                             << (QStringList() <<"  teasdasd op");
     QTest::newRow("optional argument") << "\\section[ab]{text}"
-                                            << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
-                                            << (QList<int>()<<0<<0)
-                                            << (QStringList() <<"text"<<"ab");
+                                            << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional<<ArgumentList::MandatoryWithBraces)
+                                            << (QList<int>()<<0<<0<<0)
+                                            << (QStringList() <<"text"<<"ab"<<"text");
     QTest::newRow("optional argument2") << "\\section[ab\ncd]{text}"
                                             << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
                                             << (QList<int>()<<0<<0)
