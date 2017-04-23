@@ -2457,6 +2457,7 @@ TokenList simpleLexLatexLine(QDocumentLineHandle *dlh)
 			}
 			present.type = Token::comment;
 			present.length = 1;
+            present.start = i;
 			lexed.append(present);
 			present.type = Token::none;
 			continue;
@@ -2574,6 +2575,8 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 	int lastEqual = -1e6;
 	QString keyName;
 
+    int lineLength=line.length();
+
 	for (int i = 0; i < tl.length(); i++) {
 		Token &tk = tl[i];
 		/* parse tokenlist
@@ -2624,8 +2627,10 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 				continue;
 		}
 		// non-verbatim handling
-		if (tk.type == Token::comment)
+        if (tk.type == Token::comment){
+            lineLength=tk.start; // limit linelength to comment start
 			break; // stop at comment start
+        }
 		if (tk.type == Token::command) {
 			QString command = line.mid(tk.start, tk.length);
 			if (tl.length() > i + 1 && tl.at(i + 1).type == Token::punctuation && line.mid(tl.at(i + 1).start, 1) == "*") {
@@ -2988,7 +2993,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 				i.remove();
 			} else if ((tk.type == Token::openBrace || tk.type == Token::openSquare ) && tk.dlh == dlh) {
 				// set length to whole line after brace
-				tk.length = line.length() - tk.start;
+                tk.length = lineLength - tk.start;
 			}
 		}
 	}
@@ -2999,7 +3004,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 			Token &tk = i.next();
             if ((tk.type == Token::openBrace || tk.type == Token::openSquare ) && tk.dlh == dlh) {
 				// set length to whole line after brace
-				tk.length = line.length() - tk.start;
+                tk.length = lineLength - tk.start;
 			}
 		}
 	}

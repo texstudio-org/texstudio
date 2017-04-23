@@ -94,6 +94,10 @@ void SmallUsefulFunctionsTest::test_simpleLexing_data() {
 										   << (TTypes() << T::command << T::openBracket << T::word << T::punctuation << T::word << T::closeBracket)
 										   << (Starts() << 0 << 11 << 12 << 15 << 16 << 20)
 										   << (Length() << 10 << 1 << 3 << 1 << 4 << 1);
+    QTest::newRow("comments") << "abc % \\text"
+                              << (TTypes() << T::word << T::comment << T::command )
+                              << (Starts() << 0 << 4 << 6 )
+                              << (Length() << 3 << 1 << 5 );
 }
 
 void SmallUsefulFunctionsTest::test_simpleLexing() {
@@ -216,6 +220,12 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
                                             << (Starts() << 0 << 7 << 8 << 10 << 17 << 18 << 22)
                                             << (Length() << 7 << 18 << 2 << 7 << 4 << 2 << 2)
                                             << (Levels() << 0 << 0 << 1 << 1 << 1 << 2 << 1);
+    QTest::newRow("text command with comment") << "\\textbf{te % bg}"
+                                            << (TTypes() << T::command << T::openBrace << T::word )
+                                            << (STypes() << T::none << T::text << T::text )
+                                            << (Starts() << 0 << 7 << 8 )
+                                            << (Length() << 7 << 4 << 2 )
+                                            << (Levels() << 0 << 0 << 1 );
     QTest::newRow("graphics command") << "\\includegraphics{file}"
                                       << (TTypes() << T::command << T::braces << T::imagefile)
                                       << (STypes() << T::none << T::imagefile << T::none)
@@ -545,6 +555,10 @@ void SmallUsefulFunctionsTest::test_getArg2_data() {
                                             << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
                                             << (QList<int>()<<0<<0)
                                             << (QStringList() <<"text"<<"abcd");
+    QTest::newRow("optional argument, with comment") << "\\section[ab% sdfg\ncd]{text}"
+                                            << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
+                                            << (QList<int>()<<0<<0)
+                                            << (QStringList() <<"text"<<"abcd");
     QTest::newRow("optional argument3") << "\\section[]{text}"
                                             << (ATypes() <<ArgumentList::Mandatory<<ArgumentList::Optional)
                                             << (QList<int>()<<0<<0)
@@ -557,6 +571,10 @@ void SmallUsefulFunctionsTest::test_getArg2_data() {
                                             << (ATypes() <<ArgumentList::Mandatory)
                                             << (QList<int>()<<0)
                                             << (QStringList() <<"  teasdasd");
+    QTest::newRow("text command, multi-line with comment") << "\\textbf{  te % Hello\nasdasd}"
+                                            << (ATypes() <<ArgumentList::Mandatory)
+                                            << (QList<int>()<<0)
+                                            << (QStringList() <<"  te asdasd");
 
 }
 
