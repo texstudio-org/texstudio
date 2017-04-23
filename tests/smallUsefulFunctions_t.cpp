@@ -484,11 +484,15 @@ void SmallUsefulFunctionsTest::test_getArg2_data() {
     QTest::newRow("newcommand command, no braces") << "\\newcommand text {test}"
                                         <<  (ATypes() <<ArgumentList::Mandatory<< ArgumentList::Mandatory<<ArgumentList::MandatoryWithBraces<< ArgumentList::MandatoryWithBraces)
                                         << (QList<int>()<<0<<1<<0<<1)
-                                        << (QStringList() <<"text"<<"test"<<"text"<<"test");
+                                        << (QStringList() <<"text"<<"test"<<""<<"");
     QTest::newRow("newcommand command, no braces2") << "\\newcommand text test"
                                         <<  (ATypes() <<ArgumentList::Mandatory<< ArgumentList::Mandatory)
                                         << (QList<int>()<<0<<1)
                                         << (QStringList() <<"text"<< "test");
+    QTest::newRow("newcommand command, no braces3") << "\\newcommand{text} test"
+                                        <<  (ATypes() <<ArgumentList::Mandatory<< ArgumentList::Mandatory<<ArgumentList::MandatoryWithBraces<< ArgumentList::MandatoryWithBraces)
+                                        << (QList<int>()<<0<<1<<0<<1)
+                                        << (QStringList() <<"text"<< "test"<<"text"<< "");
     QTest::newRow("documentclass command") << "\\documentclass{text}"
                                            <<  (ATypes() << ArgumentList::Mandatory )
                                            << (QList<int>()<<0)

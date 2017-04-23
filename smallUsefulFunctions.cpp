@@ -1921,8 +1921,8 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
                 else
                     k++;
 			} else {
-				if (type == ArgumentList::Optional)
-					return QString(); //optional argument can't follow mandatory one
+                if ((type == ArgumentList::Optional)||(type==ArgumentList::MandatoryWithBraces))
+                    return QString(); //optional argument can't follow mandatory one, mandatorywithbraces can't have other arguments either
 			}
         }
         if(!enableMultiLineSearch)
