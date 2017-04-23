@@ -1908,7 +1908,15 @@ QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentLi
                 QString result;
                 if (Token::tkBraces().contains(tk.type) || Token::tkOpen().contains(tk.type) || Token::tkClose().contains(tk.type)) {
                     if (Token::tkOpen().contains(tk.type)) {
-                        result = line.mid(tk.innerStart(), tk.innerLength()) + findRestArg(dlh, Token::opposite(tk.type), RUNAWAYLIMIT);
+                        int len=tk.innerStart()+ tk.innerLength();
+                        if(len<line.length()){
+                            // comment ends line
+                            result=line.mid(tk.innerStart(), tk.innerLength());
+                        }else{
+                            // line break acts as space in latex
+                            result=line.mid(tk.innerStart(), tk.innerLength())+" ";
+                        }
+                        result.append(findRestArg(dlh, Token::opposite(tk.type), RUNAWAYLIMIT));
                     }else{
                         result = line.mid(tk.innerStart(), tk.innerLength());
                     }
@@ -1954,6 +1962,14 @@ QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count)
 	dlh = document->line(index + 1).handle();
 	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 	QString result = dlh->text();
+    if(!tl.isEmpty()){
+        int len=tl.last().start+tl.last().length;
+        if(len<result.length()){// comment present
+            result=result.left(len); // avoid comments
+        }else{
+            result.append(" "); // in case of multiline arguments, linebreak is considered as space in latex
+        }
+    }
 	for (int i = 0; i < tl.length(); i++) {
 		Token tk = tl.at(i);
 		if (tk.type == type) {
