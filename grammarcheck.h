@@ -99,6 +99,7 @@ public:
 	GrammarCheckBackend(QObject *parent);
 	virtual void init(const GrammarCheckerConfig &config) = 0;
 	virtual bool isAvailable() = 0;
+    virtual bool isWorking() = 0;
 	virtual QString url() = 0;
 	virtual void check(uint ticket, int subticket, const QString &language, const QString &text) = 0;
 	virtual void shutdown() = 0;
@@ -117,6 +118,7 @@ public:
 	~GrammarCheckLanguageToolSOAP();
 	virtual void init(const GrammarCheckerConfig &config);
 	virtual bool isAvailable();
+    virtual bool isWorking();
 	virtual QString url();
 	virtual void check(uint ticket, int subticket, const QString &language, const QString &text);
 	virtual void shutdown();
@@ -154,6 +156,7 @@ public:
     ~GrammarCheckLanguageToolJSON();
     virtual void init(const GrammarCheckerConfig &config);
     virtual bool isAvailable();
+    virtual bool isWorking();
     virtual QString url();
     virtual void check(uint ticket, int subticket, const QString &language, const QString &text);
     virtual void shutdown();
