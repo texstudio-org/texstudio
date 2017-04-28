@@ -303,7 +303,7 @@ void GrammarCheck::process(int reqId)
 	}
 
 	bool backendAvailable = backend->isAvailable();
-	LTStatus newstatus = backendAvailable ? LTS_Working : LTS_Error;
+    LTStatus newstatus = backend->isWorking() ? LTS_Working : LTS_Error;
 	if (newstatus != ltstatus) {
 		ltstatus = newstatus;
 		emit languageToolStatusChanged();
@@ -572,6 +572,15 @@ void GrammarCheckLanguageToolSOAP::init(const GrammarCheckerConfig &config)
 bool GrammarCheckLanguageToolSOAP::isAvailable()
 {
 	return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
+}
+
+/*!
+ * \brief GrammarCheckLanguageToolSOAP::isWorking
+ * \return LanguageTool is known to work
+ */
+bool GrammarCheckLanguageToolSOAP::isWorking()
+{
+    return connectionAvailability == WorkedAtLeastOnce;
 }
 
 QString GrammarCheckLanguageToolSOAP::url()
@@ -844,6 +853,15 @@ void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
 bool GrammarCheckLanguageToolJSON::isAvailable()
 {
     return connectionAvailability == Unknown || connectionAvailability == WorkedAtLeastOnce;
+}
+
+/*!
+ * \brief GrammarCheckLanguageToolJSON::isWorking
+ * \return LanguageTool is available and *known* to work
+ */
+bool GrammarCheckLanguageToolJSON::isWorking()
+{
+    return connectionAvailability == WorkedAtLeastOnce;
 }
 
 QString GrammarCheckLanguageToolJSON::url()
