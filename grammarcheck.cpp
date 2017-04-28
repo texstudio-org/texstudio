@@ -794,15 +794,17 @@ GrammarCheckLanguageToolJSON::~GrammarCheckLanguageToolJSON()
  */
 void GrammarCheckLanguageToolJSON::init(const GrammarCheckerConfig &config)
 {
-    if(config.languageToolURL.endsWith("/v2/check")){
-        server = config.languageToolURL;
-    }else{
-        QString url = config.languageToolURL;
+    QString url = config.languageToolURL;
+    if(!url.endsWith("/v2/check")){
         if(!config.languageToolURL.endsWith("/"))
             url += "/";
         url += "v2/check";
-        server=url;
     }
+    if(!url.contains("://")){
+        //protocol missing, set to default
+        url.prepend("http://");
+    }
+    server=url;
 
     ltPath = config.languageToolAutorun ? config.languageToolPath : "";
     if (!ltPath.endsWith("jar")) {
