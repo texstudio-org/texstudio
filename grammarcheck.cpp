@@ -42,6 +42,7 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
             backend = new GrammarCheckLanguageToolSOAP(this);
 #endif
             connect(backend, SIGNAL(checked(uint, int, QList<GrammarError>)), this, SLOT(backendChecked(uint, int, QList<GrammarError>)));
+            connect(backend, SIGNAL(errorMessage(QString)),this,SIGNAL(errorMessage(QString)));
     }
 	backend->init(config);
 
@@ -987,6 +988,8 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
         //qDebug()<<error<<":"<<nreply->errorString();
         if(error==1){
             tryToStart();
+        }else{
+            emit errorMessage(nreply->errorString());
         }
         if (connectionAvailability == Broken) {
             if (delayedRequests.size()) delayedRequests.clear();

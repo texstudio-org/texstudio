@@ -374,6 +374,8 @@ protected slots:
 
 	void moveCursorTodlh();
 
+    void LTErrorMessage(QString message);
+
 private slots:
 	void readSettings(bool reread = false); ///< read configured/default settings from ini
 	void saveSettings(const QString &configName = ""); ///< save all setting to ini

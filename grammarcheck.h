@@ -64,6 +64,7 @@ public:
 signals:
 	void checked(const void *doc, const void *line, int lineNr, QList<GrammarError> errors);
 	void languageToolStatusChanged();
+    void errorMessage(QString message);
 public slots:
 	void init(const LatexParser &lp, const GrammarCheckerConfig &config);
 	void check(const QString &language, const void *doc, const QList<LineInfo> &lines, int firstLineNr);
@@ -105,6 +106,7 @@ public:
 	virtual void shutdown() = 0;
 signals:
 	void checked(uint ticket, int subticket, const QList<GrammarError> &errors);
+    void errorMessage(QString message);
 };
 
 class QNetworkAccessManager;

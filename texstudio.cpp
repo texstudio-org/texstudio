@@ -207,6 +207,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	grammarCheck->moveToThread(&grammarCheckThread);
 	GrammarCheck::staticMetaObject.invokeMethod(grammarCheck, "init", Qt::QueuedConnection, Q_ARG(LatexParser, latexParser), Q_ARG(GrammarCheckerConfig, *configManager.grammarCheckerConfig));
 	connect(grammarCheck, SIGNAL(checked(const void *, const void *, int, QList<GrammarError>)), &documents, SLOT(lineGrammarChecked(const void *, const void *, int, QList<GrammarError>)));
+    connect(grammarCheck, SIGNAL(errorMessage(QString)),this,SLOT(LTErrorMessage(QString)));
 	if (configManager.autoLoadChildren)
 		connect(&documents, SIGNAL(docToLoad(QString)), this, SLOT(addDocToLoad(QString)));
 	connect(&documents, SIGNAL(updateQNFA()), this, SLOT(updateTexQNFA()));
@@ -11019,6 +11020,17 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 			list->setSymbolSize(value);
 		}
 	}
+}
+/*!
+ * \brief displays error messages from network replies which are used to communicate with LT
+ * \param message
+ */
+
+void Texstudio::LTErrorMessage(QString message){
+    QIcon icon = getRealIconCached("languagetool");
+    QSize iconSize = QSize(configManager.guiSecondaryToolbarIconSize, configManager.guiSecondaryToolbarIconSize);
+    statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
+    statusLabelLanguageTool->setToolTip(QString(tr("Error when communicating with LT: %1")).arg(message));
 }
 
 /*! @} */
