@@ -236,6 +236,7 @@
 \istfilename#S
 \languageattribute#S
 \loadglsentries{file}#i
+\loadglsentries[type]{file}#i
 \makeglossaries#n
 \newacronymhook#S
 \newglossaryentry{%<label%>}{name={%<name%>},description={%<description%>}}#l
