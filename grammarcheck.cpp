@@ -965,7 +965,11 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
     if (status == 0) {
         //no response
         connectionAvailability = Broken; //assume no backend
-        tryToStart();
+        int error=nreply->error();
+        //qDebug()<<error<<":"<<nreply->errorString();
+        if(error==1){
+            tryToStart();
+        }
         if (connectionAvailability == Broken) {
             if (delayedRequests.size()) delayedRequests.clear();
             nam->deleteLater(); // shutdown unnecessary network manager (Bug 1717/1738)
