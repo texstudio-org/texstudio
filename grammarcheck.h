@@ -73,6 +73,7 @@ private slots:
 	void processLoop();
 	void process(int reqId);
 	void backendChecked(uint ticket, int subticket, const QList<GrammarError> &errors, bool directCall = false);
+    void updateLTStatus();
 private:
 	QString languageFromHunspellToLanguageTool(QString language);
 	QString languageFromLanguageToolToHunspell(QString language);
@@ -106,6 +107,7 @@ public:
 	virtual void shutdown() = 0;
 signals:
 	void checked(uint ticket, int subticket, const QList<GrammarError> &errors);
+    void languageToolStatusChanged();
     void errorMessage(QString message);
 };
 
