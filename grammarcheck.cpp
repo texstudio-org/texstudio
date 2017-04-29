@@ -43,6 +43,7 @@ void GrammarCheck::init(const LatexParser &lp, const GrammarCheckerConfig &confi
 #endif
             connect(backend, SIGNAL(checked(uint, int, QList<GrammarError>)), this, SLOT(backendChecked(uint, int, QList<GrammarError>)));
             connect(backend, SIGNAL(errorMessage(QString)),this,SIGNAL(errorMessage(QString)));
+            connect(backend, SIGNAL(languageToolStatusChanged()),this,SLOT(updateLTStatus()));
     }
 	backend->init(config);
 
@@ -477,6 +478,14 @@ void GrammarCheck::backendChecked(uint crticket, int subticket, const QList<Gram
 
 		requests.removeAt(reqId);
 	}
+}
+
+void GrammarCheck::updateLTStatus(){
+    LTStatus newstatus = backend->isWorking() ? LTS_Working : LTS_Error;
+    if (newstatus != ltstatus) {
+        ltstatus = newstatus;
+        emit languageToolStatusChanged();
+    }
 }
 
 /*!
@@ -1015,7 +1024,10 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
         return;
     }
 
-    connectionAvailability = WorkedAtLeastOnce;
+    if(connectionAvailability!=WorkedAtLeastOnce){
+        connectionAvailability = WorkedAtLeastOnce;
+        emit languageToolStatusChanged();
+    }
 
     QJsonDocument jsonDoc=QJsonDocument::fromJson(reply);
     QJsonObject dd=jsonDoc.object();
