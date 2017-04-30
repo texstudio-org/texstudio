@@ -1421,6 +1421,10 @@ void Texstudio::updateLanguageToolStatus()
 			statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
 			statusLabelLanguageTool->setToolTip(tr("LanguageTool status unknown"));
 	}
+    if (!configManager.editorConfig->realtimeChecking || !configManager.editorConfig->inlineGrammarChecking) {
+        statusLabelLanguageTool->setPixmap(icon.pixmap(iconSize, QIcon::Disabled));
+        statusLabelLanguageTool->setToolTip(tr("Inline grammar checking disabled by user!"));
+    }
 }
 
 /*! \brief set-up status bar
@@ -10731,6 +10735,16 @@ void Texstudio::checkLanguageTool()
     result += buffer;
     result += "\n";
 
+    if (configManager.editorConfig->realtimeChecking){
+        result +=tr("Real-time checking is enabled.\n");
+    }else{
+        result +=tr("Real-time checking is disabled!!!\n");
+    }
+    if(configManager.editorConfig->inlineGrammarChecking) {
+        result +=tr("Grammar checking is enabled.\n\n");
+    }else{
+        result +=tr("Grammar checking is disabled!!!\n\n");
+    }
     if(configManager.grammarCheckerConfig->languageToolAutorun){
         result +=tr("Tries to start automatically.\n\n");
     }else{
