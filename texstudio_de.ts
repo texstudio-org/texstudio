@@ -603,10 +603,13 @@ Soll TeXstudio die Befehlspfade von /usr/texbin nach /Library/TeX/texbin anpasse
     </message>
     <message>
         <location filename="buildmanager.cpp" line="980"/>
-        <source>The command %1 is expected to be atomic. However, it's currentlydefined as a command chain containing %2 commands. This is beyond the specification and may lead to surpising side-effects.
+        <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</source>
-        <translation type="unfinished"/>
+        <oldsource>The command %1 is expected to be atomic. However, it's currentlydefined as a command chain containing %2 commands. This is beyond the specification and may lead to surpising side-effects.
+
+Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
+        <translation>Der Befehl %1 sollte ein Basisbefehl sein. Allerdings ist es momentan als Kette von %2 Befehlen definiert. Dies liegt außerhalb der Spezifikation und kann zu unerwarteten Nebeneffekten führen.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1013"/>
@@ -901,7 +904,7 @@ Please change your configuration and define command lists only at Options -&gt; 
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Definiert die Art der Aktualisierungbenachrichtung:
 - Stabile Versionen: Wähle diese, wenn Stabilität das wichtigste ist.
-- Releases-Kandidaten: Entwicklundsstand kurz vor der Veröffentlichung. Wähle diese um eine Vorschau zu erhalten und uns beim Testen zu helfen (Stabile Versionen werden ebenfalls angezeigt) 
+- Releases-Kandidaten: Entwicklungsstand kurz vor der Veröffentlichung. Wähle diese um eine Vorschau zu erhalten und uns beim Testen zu helfen (Stabile Versionen werden ebenfalls angezeigt) 
 - Entwickler Versionen: Enthalten die neuesten Funktionen, aber könnten instabil sein. (Stabile Versionen und Release-Kandidaten werden ebenfalls angezeigt) </translation>
     </message>
     <message>
