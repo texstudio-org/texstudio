@@ -1277,7 +1277,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="configdialog.ui" line="1337"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation>Ceci change la mise à l&apos;échelle des barres de d&apos;outils horizontales (pour les affichages à haute résolution).</translation>
+        <translation>Ceci change la mise à l&apos;échelle des barres d&apos;outils horizontales (pour les affichages à haute résolution).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1362"/>
@@ -1287,7 +1287,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="configdialog.ui" line="1406"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation>Ceci change la mise à l&apos;échelle des barres de d&apos;outils verticales (pour les affichages à haute résolution).</translation>
+        <translation>Ceci change la mise à l&apos;échelle des barres d&apos;outils verticales (pour les affichages à haute résolution).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1463"/>
