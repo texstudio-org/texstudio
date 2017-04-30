@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<TS version="2.0" language="fr">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -619,7 +619,9 @@ Please change your configuration and define command lists only at Options -&gt; 
         <oldsource>The command %1 is expected to be atomic. However, it&apos;s currentlydefined as a command chain containing %2 commands. This is beyond the specification and may lead to surpising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>La commande %1 est supposée être atomique. Cependant, elle est actuellement définie comme une chaîne contenant %2 commandes. Cela dépasse ce qui est prévu et peut conduire à des résultats inattendus.
+
+Veuillez modifier la configuration et ne définir les listes de commandes que dans le menu Options → Production et pas dans le menu Options → Compilations.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1013"/>
@@ -1116,12 +1118,12 @@ Les variables sont de la forme : $MYVAR. Elles sont sensibles à la casse.</tran
     <message>
         <location filename="configdialog.ui" line="982"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci permet de redéfinir des commandes utilisant des commentaires de la forme &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; et &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt; Pour plus de détails, voir le manuel.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="985"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Interpréter les définitions de commandes dans les commentaires magiques</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1015"/>
@@ -1171,7 +1173,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="configdialog.ui" line="1069"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les raccourcis claviers dans les info-bulles</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1092"/>
@@ -1253,7 +1255,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="configdialog.ui" line="1295"/>
         <source>Secondary Toolbars</source>
-        <translation>Barre d&apos;outils secondaire</translation>
+        <translation>Barres d&apos;outils secondaires</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1302"/>
@@ -1275,7 +1277,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="configdialog.ui" line="1337"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation>Ceci change la mise à l&apos;échelle de la barre de tâches horizontale (pour les affichages à haute résolution).</translation>
+        <translation>Ceci change la mise à l&apos;échelle des barres de d&apos;outils horizontales (pour les affichages à haute résolution).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1362"/>
@@ -1285,7 +1287,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="configdialog.ui" line="1406"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation>Ceci change la mise à l&apos;échelle de la barre de tâches verticale (pour les affichages à haute résolution).</translation>
+        <translation>Ceci change la mise à l&apos;échelle des barres de d&apos;outils verticales (pour les affichages à haute résolution).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1463"/>
@@ -1406,7 +1408,7 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
         <source>Package csquotes: \enquote{  }</source>
         <translation>Package csquotes : \enquote{  }</translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="configdialog.ui" line="1679"/>
         <source>English Quotes (unicode): “ ”</source>
         <translation>Guillemets anglais (unicode) : “ ”</translation>
@@ -1634,22 +1636,22 @@ Ensuite, vous pouvez sélectionner un nouveau raccourci par l&apos;une des trois
     <message>
         <location filename="configdialog.ui" line="2054"/>
         <source>No Line Wrap</source>
-        <translation>Pas de coupure de ligne</translation>
+        <translation>Pas de retour à la ligne automatique</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2059"/>
         <source>Soft Line Wrap at Window Edge</source>
-        <translation>Coupure de ligne douce en bord de fenêtre</translation>
+        <translation>Retour à la ligne automatique « doux » en bord de fenêtre</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2064"/>
         <source>Soft Line Wrap after max. Characters</source>
-        <translation>Coupure de ligne douce après un maximum de caractères</translation>
+        <translation>Retour à la ligne automatique « doux » après un nombre maximal de caractères</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2069"/>
         <source>Hard Line Wrap after max. Characters</source>
-        <translation>Coupure de ligne brutale après un maximum de caractères</translation>
+        <translation>Retour à la ligne automatique « dur » après un nombre maximal de caractères</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2084"/>
@@ -1791,12 +1793,12 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
     <message>
         <location filename="configdialog.ui" line="1984"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceci n&apos;a d&apos;effet que si la largeur du document dans l&apos;éditeur est limitée par des retours à la ligne automatiques.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1987"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Centrer le document dans l&apos;éditeur</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2365"/>
@@ -1807,7 +1809,7 @@ Comme Unicode n&apos;est pas nativement pris en charge par LaTeX, vous devez cha
         <location filename="configdialog.ui" line="2372"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Expression régulière pour commentaires « TODO » :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2403"/>
@@ -2145,7 +2147,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="configdialog.ui" line="3078"/>
         <source>Permanently active completion files:</source>
-        <translation>Activer de façon permanente les fichiers de complétion actifs</translation>
+        <translation>Activer de façon permanente les fichiers de complétion</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3146"/>
@@ -2344,7 +2346,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="configdialog.ui" line="3583"/>
         <source>LT Arguments:</source>
-        <translation>Arguments LT !</translation>
+        <translation>Arguments LT :</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3653"/>
@@ -2435,7 +2437,7 @@ leur usage en les activant ici.</translation>
     <message>
         <location filename="configdialog.ui" line="3787"/>
         <source>Replace beamer class by article</source>
-        <translation>Remplacer la classe beamer par la classe article</translation>
+        <translation>Remplacer la classe `beamer&apos; par la classe `article&apos;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3800"/>
@@ -2797,7 +2799,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="505"/>
         <source>Toolbars</source>
-        <translation>Barre d&apos;outils</translation>
+        <translation>Barres d&apos;outils</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="506"/>
@@ -3085,7 +3087,7 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="51"/>
         <source>\begin{&lt;environment&gt;}</source>
-        <translation>G&amp;énérique - \begin{〈environnement〉}</translation>
+        <translation>G&amp;énérique - \begin{environnement}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="52"/>
@@ -3360,17 +3362,17 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="99"/>
         <source>\includegraphics{file}</source>
-        <translation>\include&amp;graphics{〈fichier〉}</translation>
+        <translation>\include&amp;graphics{fichier}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="100"/>
         <source>\include{file}</source>
-        <translation>\in&amp;clude{〈fichier〉}</translation>
+        <translation>\in&amp;clude{fichier}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="102"/>
         <source>\input{file}</source>
-        <translation>\in&amp;put{〈fichier〉}</translation>
+        <translation>\in&amp;put{fichier}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="20"/>
@@ -3378,19 +3380,23 @@ de base, il suffit de désactiver ces options avancées.</translation>
         <translation>&amp;Références croisées</translation>
     </message>
     <message>
+        <source>T&amp;itle</source>
+        <translation type="obsolete">&amp;Titre</translation>
+    </message>
+    <message>
         <location filename="additionaltranslations.cpp" line="31"/>
         <source>Input/Include &amp;Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Importation/inclusion de &amp;fichiers</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="101"/>
         <source>\includeonly{file(s)}</source>
-        <translation type="unfinished"></translation>
+        <translation>\include&amp;only{fichier(s)}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="103"/>
         <source>label</source>
-        <translation>\&amp;label{〈clé〉}</translation>
+        <translation>\&amp;label{label}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="107"/>
@@ -3578,32 +3584,32 @@ de base, il suffit de désactiver ces options avancées.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="147"/>
         <source>ref</source>
-        <translation>\&amp;ref{〈clé〉}</translation>
+        <translation>\&amp;ref{label}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="148"/>
         <source>eqref</source>
-        <translation>\&amp;eqref{〈clé〉}</translation>
+        <translation>\&amp;eqref{label}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="149"/>
         <source>pageref</source>
-        <translation>\&amp;pageref{〈clé〉}</translation>
+        <translation>\&amp;pageref{label}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="104"/>
         <source>index</source>
-        <translation>\&amp;index{〈entrée〉}</translation>
+        <translation>\&amp;index{entrée}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="105"/>
         <source>cite</source>
-        <translation>\&amp;cite{〈clé〉}</translation>
+        <translation>\&amp;cite{clé}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="106"/>
         <source>footnote</source>
-        <translation>\&amp;footnote{〈texte〉}</translation>
+        <translation>\&amp;footnote{texte}</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="21"/>
@@ -4068,7 +4074,7 @@ Continuer tout de même ?</translation>
         <location filename="insertgraphics.ui" line="94"/>
         <location filename="insertgraphics.ui" line="160"/>
         <source>Defines the options for \includegraphics[options]{file}.</source>
-        <translation>Définit les options pour \includegraphics[〈options〉]{〈fichier〉}.</translation>
+        <translation>Définit les options pour \includegraphics[options]{fichier}.</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="97"/>
@@ -5032,7 +5038,7 @@ Voulez-vous l&apos;écraser ?</translation>
         <location filename="pdfviewer/PDFDocks.cpp" line="905"/>
         <source>Set Interval...</source>
         <oldsource>Set interval</oldsource>
-        <translation>Fixer l&apos;intervalle</translation>
+        <translation>Fixer l&apos;intervalle...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="908"/>
@@ -5270,7 +5276,7 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2340"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation>Séparer &amp;&amp; fusionner</translation>
+        <translation>Séparer &amp;&amp; fusionner...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2329"/>
@@ -5320,12 +5326,12 @@ Voulez-vous l&apos;écraser ?</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2358"/>
         <source>&amp;Magnify</source>
-        <translation>Agrandir</translation>
+        <translation>&amp;Agrandir</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2359"/>
         <source>&amp;Scroll</source>
-        <translation>Défiler</translation>
+        <translation>&amp;Défiler</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2420"/>
@@ -5666,7 +5672,7 @@ Vous pouvez maintenant saisir le mot de passe :</translation>
     <message>
         <location filename="pdfsplittool.ui" line="47"/>
         <source>Backend:</source>
-        <translation>Méthode ;</translation>
+        <translation>Méthode :</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="87"/>
@@ -5896,7 +5902,7 @@ Reprendre depuis le début ?</translation>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="800"/>
         <source>Do you want to continue replacing from the beginning?</source>
-        <translation>Continer à remplacer à partir du début ?</translation>
+        <translation>Continuer à remplacer depuis le début ?</translation>
     </message>
 </context>
 <context>
@@ -7297,7 +7303,8 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="144"/>
         <source>RTL</source>
         <comment>Abbreviation for Right-To-Left used in status bar.</comment>
-        <translation>Abréviation utilisée dans la barre d&apos;état pour l&apos;écriture de droite à gauche.</translation>
+        <translatorcomment>Abréviation utilisée dans la barre d&apos;état pour l&apos;écriture de droite à gauche.</translatorcomment>
+        <translation>RTL</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qstatuspanel.cpp" line="156"/>
@@ -7697,7 +7704,7 @@ Vous pouvez utiliser \1 à \9 dans le texte de remplacement pour insérer une so
     <message>
         <location filename="randomtextgenerator.cpp" line="82"/>
         <source>The current document contains no words, but we need some phrases as a base to create the random text from</source>
-        <translation>Le document ne contient aucun mot, alors que du texte est nécessaire à la génération aléatoire.</translation>
+        <translation>Le document ne contient aucun mot, alors que du texte est nécessaire à la génération de texte aléatoire.</translation>
     </message>
     <message>
         <location filename="randomtextgenerator.cpp" line="106"/>
@@ -8100,7 +8107,7 @@ Faites-vous confiance à ce script ?</translation>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>command outside suitable env</source>
-        <translation type="unfinished"></translation>
+        <translation>Commande en dehors de l&apos;environnement adéquat</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>
@@ -8242,7 +8249,7 @@ Faites-vous confiance à ce script ?</translation>
         <location filename="tabdialog.cpp" line="67"/>
         <source>@{text}</source>
         <comment>tabular left border</comment>
-        <translation>@{〈texte〉}</translation>
+        <translation>@{texte}</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="72"/>
@@ -8254,7 +8261,7 @@ Faites-vous confiance à ce script ?</translation>
         <location filename="tabdialog.cpp" line="73"/>
         <source>@{text}</source>
         <comment>tabular right border</comment>
-        <translation>@{〈texte〉}</translation>
+        <translation>@{texte}</translation>
     </message>
     <message>
         <location filename="tabdialog.cpp" line="109"/>
@@ -8769,27 +8776,27 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="texstudio.cpp" line="618"/>
         <source>Pstricks Commands</source>
-        <translation>Macros PSTricks</translation>
+        <translation>Commandes PSTricks</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="619"/>
         <source>MetaPost Commands</source>
-        <translation>Macros Metapost</translation>
+        <translation>Commandes Metapost</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="620"/>
         <source>Tikz Commands</source>
-        <translation>Macros TikZ</translation>
+        <translation>Commandes TikZ</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="621"/>
         <source>Asymptote Commands</source>
-        <translation>Macros Asymptote</translation>
+        <translation>Commandes Asymptote</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="622"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Commandes Beamer</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="749"/>
@@ -9321,12 +9328,12 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="texstudio.cpp" line="926"/>
         <source>Hard Line &amp;Break...</source>
-        <translation>&amp;Retours à la ligne...</translation>
+        <translation>&amp;Retours à la ligne « durs » automatiques...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="927"/>
         <source>R&amp;epeat Hard Line Break</source>
-        <translation>Répét&amp;er les changements de lignes</translation>
+        <translation>Répét&amp;er les retours à la ligne « durs » automatiques</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="930"/>
@@ -10084,7 +10091,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="texstudio.cpp" line="1253"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier LanguageTool</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1254"/>
@@ -10151,7 +10158,7 @@ n&apos;a pas pu être supprimé.</translation>
     <message>
         <location filename="texstudio.cpp" line="1426"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"></translation>
+        <translation>Correcteur grammatical en ligne désactivé par l&apos;utilisateur !</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1481"/>
@@ -10415,7 +10422,7 @@ ou fermer cet autre fichier avant de pouvoir l&apos;écraser.</translation>
     <message>
         <location filename="texstudio.cpp" line="3644"/>
         <source>Insert hard line breaks after so many characters:</source>
-        <translation>Forcer des changements de ligne après le nombre de caractères suivant:</translation>
+        <translation>Forcer des retiours à la ligne automatiques « durs » après le nombre de caractères suivant:</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="3645"/>
@@ -10543,12 +10550,12 @@ Acceptez-vous de lancer la nouvelle compilation à la place de l&apos;ancienne ?
     <message>
         <location filename="texstudio.cpp" line="5972"/>
         <source>%!TeX program used: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%!TeX programme utilisé : %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5975"/>
         <source>%!TeX program not recognized! (%1). Using default.</source>
-        <translation type="unfinished"></translation>
+        <translation>%!TeX programme non reconnu (%1). Utilisation de celui par défaut.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6036"/>
@@ -10790,7 +10797,7 @@ Voulez-vous le créer ?</translation>
     <message>
         <location filename="texstudio.cpp" line="9549"/>
         <source>Failed to read profile file %1.</source>
-        <translation>La lecture du fichier de profile %1 a échoué.</translation>
+        <translation>La lecture du fichier de profil %1 a échoué.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9672"/>
@@ -10966,69 +10973,71 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
     <message>
         <location filename="texstudio.cpp" line="10699"/>
         <source>LT Report</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapport LT</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10726"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"></translation>
+        <translation>échec de démarrage du processus</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10729"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"></translation>
+        <translation>processus brutalement arrêté</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10739"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Vérification en temps réel activée.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10741"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Vérification en temps réel désactivée !!!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10744"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Correcteur grammatical activé.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10746"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Correcteur grammatical désactivé !!!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10749"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Tentative de démarrage automatique.
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10751"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrage automatique désactivé.
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10756"/>
         <source>LT current status: </source>
-        <translation type="unfinished"></translation>
+        <translation>Statut actuel LT : </translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10759"/>
         <source>working</source>
-        <translation type="unfinished"></translation>
+        <translation>en cours</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10762"/>
@@ -11044,12 +11053,12 @@ Voulez-vous le laisser ouvert ? Cela peut causer une perte de données.</transla
         <location filename="texstudio.cpp" line="10771"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"></translation>
+        <translation>URL LT : %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="11047"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur lors de la communication avec LT : %1</translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>
