@@ -3654,6 +3654,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
             p->save();
 			p->setPen(Qt::lightGray);
+			if (m_doc->impl()->m_leftMargin > 0)
+				p->drawLine(0, yStart, 0, yEnd);  // left border line
 			p->drawLine(m_doc->impl()->width(), yStart, m_doc->impl()->width(), yEnd);
             p->restore();
 		}
@@ -4148,6 +4150,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 
         if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
             p->setPen(Qt::lightGray);
+            if (m_doc->impl()->m_leftMargin > 0)
+               p->drawLine(0, yStart, 0, yEnd);  // left border line
             p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
         }
 	}
