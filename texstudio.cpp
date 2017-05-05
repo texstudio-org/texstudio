@@ -10198,6 +10198,7 @@ LatexDocument *Texstudio::diffLoadDocHidden(QString f)
 	QFile file(f_real);
 	if (!file.open(QIODevice::ReadOnly)) {
 		QMessageBox::warning(this, tr("Error"), tr("You do not have read permission to this file."));
+        delete doc;
 		return 0;
 	}
 	file.close();
