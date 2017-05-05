@@ -5075,7 +5075,7 @@ void Texstudio::quickTabular()
 	QString el = "";
 	QString tag;
 	TabDialog *quickDlg = new TabDialog(this, "Tabular");
-	QTableWidgetItem *item = new QTableWidgetItem();
+    QTableWidgetItem *item=0;
 	if ( quickDlg->exec() ) {
 		int y = quickDlg->ui.spinBoxRows->value();
 		int x = quickDlg->ui.spinBoxColumns->value();
@@ -8477,7 +8477,8 @@ void Texstudio::showPreview(const QDocumentCursor &previewc, bool addToList)
 QStringList Texstudio::makePreviewHeader(const LatexDocument *rootDoc)
 {
 	LatexEditorView *edView = rootDoc->getEditorView();
-	if (!edView) QStringList();
+    if (!edView)
+        return QStringList();
 	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
 	if (m_endingLine < 0) return QStringList(); // can't create header
 	QStringList header;
