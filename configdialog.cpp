@@ -468,6 +468,8 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	connect(ui.pushButtonGrammarWordlists, SIGNAL(clicked()), this, SLOT(browseGrammarWordListsDir()));
 	connect(ui.pushButtonGrammarLTPath, SIGNAL(clicked()), this, SLOT(browseGrammarLTPath()));
 	connect(ui.pushButtonGrammarLTJava, SIGNAL(clicked()), this, SLOT(browseGrammarLTJavaPath()));
+    connect(ui.pushButtonResetLTURL, SIGNAL(clicked()), this, SLOT(resetLTURL()));
+    connect(ui.pushButtonResetLTArgs, SIGNAL(clicked()), this, SLOT(resetLTArgs()));
 
 
 	fmConfig = new QFormatConfig(ui.formatConfigBox);
@@ -697,6 +699,14 @@ void ConfigDialog::browseGrammarLTPath()
 void ConfigDialog::browseGrammarLTJavaPath()
 {
 	browse(ui.lineEditGrammarLTJava, tr("Select java"), "Java (*)");
+}
+
+void ConfigDialog::resetLTArgs(){
+    ui.lineEditGrammarLTArguments->setText("org.languagetool.server.HTTPServer -p 8081");
+}
+
+void ConfigDialog::resetLTURL(){
+    ui.lineEditGrammarLTUrl->setText("http://localhost:8081/");
 }
 
 void ConfigDialog::browseDictDir()
