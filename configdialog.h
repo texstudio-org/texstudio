@@ -114,6 +114,8 @@ private slots:
 	void browseGrammarLTPath();
 	void browseGrammarLTJavaPath();
 	void browseGrammarWordListsDir();
+    void resetLTURL();
+    void resetLTArgs();
 	void browseDictDir();
 	void updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault = QString());
 	void browsePathLog();
