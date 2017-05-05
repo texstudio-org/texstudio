@@ -468,12 +468,12 @@ public:
         if(completer)
             editor->setFlag(QEditor::AutoCloseChars, completer->editorAutoCloseChars);
 		editor->setInputBinding(oldBinding);
-		if (completer && completer->widget && completer->widget->isVisible())
+        if (completer && completer->widget && completer->widget->isVisible()){
+            completer->widget->hide();
 			editor->setFocus();
+        }
 		if (completer) {
-			completer->widget->hide();
 			completer->disconnect(editor, SIGNAL(cursorPositionChanged()), completer, SLOT(cursorPositionChanged()));
-
 		}
 		active = false;
 		//editor=0; this leads to a crash, as the editor is still in use after reseting the cursor
