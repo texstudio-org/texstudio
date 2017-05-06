@@ -2322,7 +2322,7 @@ Token getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first)
 		Token elem = tl.at(i);
 		if (elem.start > pos)
 			break;
-		if (elem.start + elem.length > pos) {
+		if (elem.start + elem.length >= pos) {
 			tk = elem; // get deepest element at col
 			if (first)
 				break;
@@ -2349,7 +2349,7 @@ int getTokenAtCol(TokenList &tl, int pos, bool first)
 		Token elem = tl.at(i);
 		if (elem.start > pos)
 			break;
-		if (elem.start + elem.length > pos) {
+		if (elem.start + elem.length >= pos) {
 			result = i; // get deepest element at col
 			if (first)
 				break;
