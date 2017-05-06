@@ -688,51 +688,76 @@ void SmallUsefulFunctionsTest::test_getTokenAtCol() {
 void SmallUsefulFunctionsTest::test_getCommandFromToken_data() {
     QTest::addColumn<QString>("lines");
     QTest::addColumn<int >("nr");
+    QTest::addColumn<int >("lineNr");
     QTest::addColumn<QString>("desiredResult");
 
 
     QTest::newRow("simple") << "bummerang  \\test"
-                            << 0
+                            << 0 << 0
                             << "";
 
     QTest::newRow("simple2") << "bummerang  \\section{abc}"
-                            << 3
+                            << 3 << 0
                             << "\\section";
 
     QTest::newRow("simple3") << "bummerang  \\section{abc cde}"
-                            << 4
+                            << 4 << 0
                             << "\\section";
 
     QTest::newRow("simple4") << "bummerang  \\section{abc cde}"
-                            << 2
+                            << 2 << 0
                             << "\\section";
+    QTest::newRow("simple5") << "bummerang  \\section abc cde"
+                            << 2 << 0
+                            << "\\section";
+    QTest::newRow("simple6") << "bummerang  \\section abc cde"
+                            << 3 << 0
+                            << "";
     QTest::newRow("optonal") << "bummerang  \\section[ab ab]{abc cde}"
-                            << 2
+                            << 2 << 0
                             << "\\section";
     QTest::newRow("optonal2") << "bummerang  \\section[ab ab]{abc cde}"
-                            << 3
+                            << 3 << 0
                             << "\\section";
     QTest::newRow("optonal3") << "bummerang  \\section[ab ab]{abc cde}"
-                            << 4
+                            << 4 << 0
                             << "\\section";
     QTest::newRow("optonal4") << "bummerang  \\section[ab ab]{abc cde}"
-                            << 5
+                            << 5 << 0
                             << "\\section";
     QTest::newRow("optonal5") << "bummerang  \\section[ab ab]{abc cde}"
-                            << 6
+                            << 6 << 0
                             << "\\section";
     QTest::newRow("nested") << "bummerang  \\section{abc \\textbf{cde}}"
-                            << 3
+                            << 3 << 0
                             << "\\section";
     QTest::newRow("nested1") << "bummerang  \\section{abc \\textbf{cde}}"
-                            << 4
+                            << 4 << 0
                             << "\\section";
     QTest::newRow("nested2") << "bummerang  \\section{abc \\textbf{cde}}"
-                            << 5
+                            << 5 << 0
                             << "\\textbf";
     QTest::newRow("nested3") << "bummerang  \\section{abc \\textbf{cde}}"
-                            << 6
+                            << 6 << 0
                             << "\\textbf";
+    QTest::newRow("multi arg") << "bummerang  \\newcommand{abc}{def}"
+                            << 2 << 0
+                            << "\\newcommand";
+    QTest::newRow("multi arg2") << "bummerang  \\newcommand{abc}{def}"
+                            << 3 << 0
+                            << "\\newcommand";
+    QTest::newRow("multi arg3") << "bummerang  \\newcommand{abc}{def}"
+                            << 4 << 0
+                            << "\\newcommand";
+    QTest::newRow("multi arg4") << "bummerang  \\newcommand{abc}{def} werd"
+                            << 5 << 0
+                            << "\\newcommand";
+    QTest::newRow("multi arg5") << "bummerang  \\newcommand{abc}{def} werd"
+                            << 6 << 0
+                            << "";
+    QTest::newRow("multi arg6") << "bummerang  \\newcommand{abc} def werd"
+                            << 4 << 0
+                            << "\\newcommand";
 
 
 }
@@ -743,6 +768,7 @@ void SmallUsefulFunctionsTest::test_getCommandFromToken() {
     lp.commandDefs.unite(pkg_graphics.commandDescriptions);
     QFETCH(QString,lines);
     QFETCH(int, nr);
+    QFETCH(int, lineNr);
     QFETCH(QString, desiredResult);
 
     QDocument *doc = new QDocument();
@@ -757,7 +783,7 @@ void SmallUsefulFunctionsTest::test_getCommandFromToken() {
             QDocumentLineHandle *dlh = doc->line(i).handle();
             latexDetermineContexts2(dlh, stack, commandStack, lp);
     }
-    QDocumentLineHandle *dlh = doc->line(0).handle();
+    QDocumentLineHandle *dlh = doc->line(lineNr).handle();
     TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
     QString result=getCommandFromToken(tl.at(nr));
