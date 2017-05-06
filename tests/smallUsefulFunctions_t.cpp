@@ -685,6 +685,88 @@ void SmallUsefulFunctionsTest::test_getTokenAtCol() {
     delete doc;
 }
 
+void SmallUsefulFunctionsTest::test_getCommandFromToken_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<int >("nr");
+    QTest::addColumn<QString>("desiredResult");
+
+
+    QTest::newRow("simple") << "bummerang  \\test"
+                            << 0
+                            << "";
+
+    QTest::newRow("simple2") << "bummerang  \\section{abc}"
+                            << 3
+                            << "\\section";
+
+    QTest::newRow("simple3") << "bummerang  \\section{abc cde}"
+                            << 4
+                            << "\\section";
+
+    QTest::newRow("simple4") << "bummerang  \\section{abc cde}"
+                            << 2
+                            << "\\section";
+    QTest::newRow("optonal") << "bummerang  \\section[ab ab]{abc cde}"
+                            << 2
+                            << "\\section";
+    QTest::newRow("optonal2") << "bummerang  \\section[ab ab]{abc cde}"
+                            << 3
+                            << "\\section";
+    QTest::newRow("optonal3") << "bummerang  \\section[ab ab]{abc cde}"
+                            << 4
+                            << "\\section";
+    QTest::newRow("optonal4") << "bummerang  \\section[ab ab]{abc cde}"
+                            << 5
+                            << "\\section";
+    QTest::newRow("optonal5") << "bummerang  \\section[ab ab]{abc cde}"
+                            << 6
+                            << "\\section";
+    QTest::newRow("nested") << "bummerang  \\section{abc \\textbf{cde}}"
+                            << 3
+                            << "\\section";
+    QTest::newRow("nested1") << "bummerang  \\section{abc \\textbf{cde}}"
+                            << 4
+                            << "\\section";
+    QTest::newRow("nested2") << "bummerang  \\section{abc \\textbf{cde}}"
+                            << 5
+                            << "\\textbf";
+    QTest::newRow("nested3") << "bummerang  \\section{abc \\textbf{cde}}"
+                            << 6
+                            << "\\textbf";
+
+
+}
+
+void SmallUsefulFunctionsTest::test_getCommandFromToken() {
+    LatexParser lp = LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(int, nr);
+    QFETCH(QString, desiredResult);
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+
+    QString result=getCommandFromToken(tl.at(nr));
+
+    QVERIFY(result==desiredResult);
+
+    delete doc;
+}
+
 #endif
 
 
