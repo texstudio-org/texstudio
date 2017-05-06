@@ -487,6 +487,8 @@ private slots:
     void test_getArg();
     void test_getArg2_data();
     void test_getArg2();
+    void test_getTokenAtCol_data();
+    void test_getTokenAtCol();
 };
 
 

@@ -617,6 +617,74 @@ void SmallUsefulFunctionsTest::test_getArg2() {
     delete doc;
 }
 
+void SmallUsefulFunctionsTest::test_getTokenAtCol_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<QList<int> >("nr");
+    QTest::addColumn<TTypes>("desiredResults");
+    QTest::addColumn<TTypes>("desiredResults2"); // with option first=true
+
+
+    QTest::newRow("simple") << "bummerang  \\test"
+                            << (QList<int>()<<0<<4<<9<<10<<11<<12<<16)
+                            << (TTypes() << T::word << T::word << T::word << T::none << T::commandUnknown << T::commandUnknown << T::commandUnknown)
+                            << (TTypes() << T::word << T::word << T::word << T::none << T::commandUnknown << T::commandUnknown << T::commandUnknown)
+                            ;
+
+    QTest::newRow("simple2") << "abc\\test"
+                            << (QList<int>()<<3)
+                            << (TTypes() << T::commandUnknown )
+                            << (TTypes() << T::word )
+                            ;
+    QTest::newRow("nested1") << "\\textbf{abc}"
+                            << (QList<int>()<<3<<7<<8<<11<<12)
+                            << (TTypes() << T::command << T::braces  << T::word   << T::word   << T::braces )
+                            << (TTypes() << T::command << T::command << T::braces << T::braces << T::braces )
+                            ;
+    QTest::newRow("nested2") << "\\section[abc\\textbf{abc}]{abc}"
+                            << (QList<int>()<<3<<8<<14<<20<<21)
+                            << (TTypes() << T::command << T::squareBracket  << T::command       << T::word          << T::word )
+                            << (TTypes() << T::command << T::command        << T::squareBracket << T::squareBracket << T::squareBracket )
+                            ;
+
+}
+
+void SmallUsefulFunctionsTest::test_getTokenAtCol() {
+    LatexParser lp = LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(QList<int>, nr);
+    QFETCH(TTypes, desiredResults);
+    QFETCH(TTypes, desiredResults2); // with option first=true
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+
+    for(int i=0;i<nr.length();i++){
+        int p=getTokenAtCol(tl,nr.at(i));
+        Token tk=getTokenAtCol(dlh,nr.at(i));
+        QVERIFY(tl.value(p)==tk); // cross check the two almost identical functions
+        QVERIFY(desiredResults.at(i)==tk.type);
+        p=getTokenAtCol(tl,nr.at(i),true);
+        tk=getTokenAtCol(dlh,nr.at(i),true);
+        QVERIFY(tl.value(p)==tk); // cross check the two almost identical functions
+        QVERIFY(desiredResults2.at(i)==tk.type);
+    }
+    delete doc;
+}
+
 #endif
 
 
