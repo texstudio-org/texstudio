@@ -1704,12 +1704,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2166"/>
         <source>1 minute</source>
-        <translation type="unfinished"/>
+        <translation>1 minuto</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2171"/>
         <source>2 minutes</source>
-        <translation type="unfinished"/>
+        <translation>2 minutos</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2282"/>
@@ -1734,22 +1734,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2307"/>
         <source>Select Word</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar Palabra</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2312"/>
         <source>Select Word or Command</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar Palabra u Orden</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2317"/>
         <source>Select Parentheses Content</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar Contenido de Paréntesis</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2322"/>
         <source>Select Parentheses</source>
-        <translation type="unfinished"/>
+        <translation>Seleccionar Paréntesis</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2327"/>
@@ -1759,7 +1759,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2338"/>
         <source>Structure Panel</source>
-        <translation>Estructura del Panel</translation>
+        <translation>Panel de la Estructura</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2344"/>
@@ -1789,7 +1789,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1987"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Centrar Documento en el Editor</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2365"/>
@@ -2344,7 +2344,7 @@ aquí.</translation>
     <message>
         <location filename="configdialog.ui" line="3552"/>
         <source>LT Arguments:</source>
-        <translation type="unfinished"/>
+        <translation>Argumentos de LT:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3679"/>
@@ -3420,75 +3420,75 @@ comunes.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="116"/>
         <source>env equation</source>
-        <translation type="unfinished"/>
+        <translation>env equation</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="117"/>
         <source>env equation* (amsmath)</source>
         <oldsource>env equation*</oldsource>
-        <translation type="unfinished"/>
+        <translation>env equation* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="118"/>
         <source>env align (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env align (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="119"/>
         <source>env align* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env align* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="120"/>
         <source>env alignat (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env alignat (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="121"/>
         <source>env alignat* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env alignat* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="122"/>
         <source>env flalign (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env flalign (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="123"/>
         <source>env flalign* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env flalign* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="124"/>
         <source>env gather (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env gather (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="125"/>
         <source>env gather* (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env gather* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="126"/>
         <source>env multline (amsmath)</source>
         <oldsource>env multiline (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>env multline (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="127"/>
         <source>env multline* (amsmath)</source>
         <oldsource>env multiline* (amsmath)</oldsource>
-        <translation type="unfinished"/>
+        <translation>env multline* (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="128"/>
         <source>env cases (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env cases (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="129"/>
         <source>env split (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>env split (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="130"/>
@@ -3533,7 +3533,7 @@ comunes.</translation>
     <message>
         <location filename="additionaltranslations.cpp" line="138"/>
         <source>\overset (amsmath)</source>
-        <translation type="unfinished"/>
+        <translation>\overset (amsmath)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="139"/>
@@ -3648,7 +3648,7 @@ comunes.</translation>
     <message>
         <location filename="configmanager.cpp" line="1323"/>
         <source>Menus PDF-Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Menu de Visor de PDF</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1359"/>
@@ -4430,7 +4430,7 @@ El asistente no admite órdenes </translation>
     <message>
         <location filename="latexstructure.cpp" line="219"/>
         <source>File not found.</source>
-        <translation type="unfinished"/>
+        <translation>Archivo no encontrado.</translation>
     </message>
 </context>
 <context>
@@ -5029,7 +5029,7 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocks.cpp" line="905"/>
         <source>Set Interval...</source>
         <oldsource>Set interval</oldsource>
-        <translation type="unfinished"/>
+        <translation>Establezca el intervalo...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="908"/>
@@ -5049,12 +5049,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="980"/>
         <source>%1 sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 segundos</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="982"/>
         <source>%1 min</source>
-        <translation type="unfinished"/>
+        <translation>%1 minutos</translation>
     </message>
 </context>
 <context>
@@ -5322,7 +5322,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2359"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Desplazamiento</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2420"/>
@@ -8679,7 +8679,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="556"/>
         <source>Side Panel</source>
-        <translation type="unfinished"/>
+        <translation>Panel al lado</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="591"/>
@@ -8781,7 +8781,7 @@ no pudo ser eliminado.</translation>
     <message>
         <location filename="texstudio.cpp" line="622"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Órdenes de Beamer</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="749"/>
@@ -10964,7 +10964,7 @@ El mensaje ha sido detenido.
     <message>
         <location filename="texstudio.cpp" line="10699"/>
         <source>LT Report</source>
-        <translation type="unfinished"/>
+        <translation>Informe sobre LT</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10726"/>
@@ -10976,7 +10976,8 @@ El mensaje ha sido detenido.
         <location filename="texstudio.cpp" line="10729"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"/>
+        <translation>proceso ha fallado
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10739"/>
@@ -11021,12 +11022,12 @@ El mensaje ha sido detenido.
     <message>
         <location filename="texstudio.cpp" line="10756"/>
         <source>LT current status: </source>
-        <translation type="unfinished"/>
+        <translation>Estado actual de LT:</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10759"/>
         <source>working</source>
-        <translation type="unfinished"/>
+        <translation>funcionando</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10762"/>
@@ -11042,7 +11043,8 @@ El mensaje ha sido detenido.
         <location filename="texstudio.cpp" line="10771"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"/>
+        <translation>LT-URL: %1
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="11047"/>

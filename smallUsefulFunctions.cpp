@@ -3000,6 +3000,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
 			// unknown arg, stop handling this command
 			commandStack.pop();
 		    }
+		    //tk.level++; // needs tk level be increased
 		}
 		lexed << tk;
 	    }
