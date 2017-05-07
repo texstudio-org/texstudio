@@ -422,6 +422,7 @@ public slots:
 	void setAutoHideToolbars(bool enabled);
 	void hideToolbars();
 	void showToolbars();
+	void showToolbarsDelayed();
 	void setToolbarIconSize(int sz);
 	void showMessage(const QString &text);
 
@@ -602,6 +603,7 @@ private:
 
     QStatusBar *statusbar;
     QToolBar *toolBar;
+    QTimer *toolBarTimer;
 public:
 	QMenu *menuShow;
 private:
