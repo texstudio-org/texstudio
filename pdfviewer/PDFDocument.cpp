@@ -2278,6 +2278,9 @@ void PDFDocument::setupToolBar(){
     toolBar->setObjectName(QString("toolBar"));
     toolBar->setIconSize(QSize(24, 24));
     addToolBar(Qt::TopToolBarArea, toolBar);
+    toolBarTimer = new QTimer(this);
+    toolBarTimer->setSingleShot(true);
+    connect(toolBarTimer, SIGNAL(timeout()), this, SLOT(showToolbars()));
 
     toolBar->addAction(actionTypeset);
     toolBar->addSeparator();
@@ -3916,7 +3919,7 @@ void PDFDocument::enterEvent(QEvent *event)
 	if (event->type() == QEvent::Enter
 	        && embeddedMode
 	        && globalConfig->autoHideToolbars) {
-		showToolbars();
+		showToolbarsDelayed();
 	}
 }
 
@@ -3934,7 +3937,7 @@ void PDFDocument::mouseMoveEvent(QMouseEvent *event)
 	if (embeddedMode && globalConfig->autoHideToolbars) {
 		int h = toolBar->height() + 5;
 		if (event->pos().y() < h || event->pos().y() > this->height() - h) {
-			showToolbars();
+			showToolbarsDelayed();
 		} else {
 			hideToolbars();
 		}
@@ -4102,6 +4105,7 @@ void PDFDocument::setAutoHideToolbars(bool enabled)
 //   we have to compensate the change of scrollArea position by scrolling its content
 void PDFDocument::hideToolbars()
 {
+	toolBarTimer->stop();
 	if (toolBar->isVisible()) {
 		setToolbarsVisible(false);
 		// workaround: the method of checking the change in globalPos of the scrollArea (as in enterEvent)
@@ -4122,6 +4126,12 @@ void PDFDocument::showToolbars()
 		QPoint posChange = scrollArea->mapToGlobal(QPoint(0, 0)) - widgetPos;
 		scrollArea->verticalScrollBar()->setValue(scrollArea->verticalScrollBar()->value() + posChange.y());
 	}
+}
+
+void PDFDocument::showToolbarsDelayed()
+{
+	if (!toolBarTimer->isActive())
+		toolBarTimer->start(200);
 }
 
 void PDFDocument::setToolbarIconSize(int sz)
