@@ -43,6 +43,8 @@ signals:
 public slots:
 	void setCurrentEditorFromAction();
 	void setCurrentEditorFromSender();
+	void closeEditorFromAction();
+	void closeOtherEditorsFromAction();
 	bool activateNextEditor();
 	bool activatePreviousEditor();
 
