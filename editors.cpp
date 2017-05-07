@@ -273,6 +273,29 @@ void Editors::setCurrentEditorFromSender()
 	setCurrentEditor(edView);
 }
 
+void Editors::closeEditorFromAction()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	REQUIRE(act);
+	LatexEditorView *edView = act->data().value<LatexEditorView *>();
+	requestCloseEditor(edView);
+}
+
+void Editors::closeOtherEditorsFromAction()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	REQUIRE(act);
+	LatexEditorView *editorToKeep = act->data().value<LatexEditorView *>();
+
+	foreach (TxsTabWidget *tabWidget, tabGroups) {
+		foreach (LatexEditorView *edView, tabWidget->editors()) {
+			if (edView != editorToKeep) {
+				requestCloseEditor(edView);
+			}
+		}
+	}
+}
+
 bool Editors::activateNextEditor()
 {
 	if (currentGroupIndex < 0) return false;
@@ -369,6 +392,16 @@ void Editors::tabBarContextMenu(const QPoint &point)
 
 	act = menu.addAction((splitter->orientation() == Qt::Horizontal) ? tr("Split Vertically") : tr("Split Horizontally"));
 	connect(act, SIGNAL(triggered()), SLOT(changeSplitOrientation()));
+
+	if (editorUnderCursor) {
+		menu.addSeparator();
+		act = menu.addAction(tr("Close"));
+		act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
+		connect(act, SIGNAL(triggered()), SLOT(closeEditorFromAction()));
+		act = menu.addAction(tr("Close All Other Documents"));
+		act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
+		connect(act, SIGNAL(triggered()), SLOT(closeOtherEditorsFromAction()));
+	}
 	menu.exec(tabGroup->mapToGlobal(point));
 }
 
