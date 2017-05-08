@@ -793,6 +793,74 @@ void SmallUsefulFunctionsTest::test_getCommandFromToken() {
     delete doc;
 }
 
+void SmallUsefulFunctionsTest::test_getContext_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<int >("nr");
+    QTest::addColumn<TTypes>("desiredResults");
+    QTest::addColumn<STypes>("types");
+
+    QTest::newRow("simple") << "bummerang"
+                            << 2
+                            << (TTypes() << T::word)
+                            << (STypes() << T::none);
+    QTest::newRow("command") << "\\section{abc}"
+                            << 10
+                            << (TTypes() << T::braces<<T::word)
+                            << (STypes() << T::title<<T::title);
+    QTest::newRow("command with optional arg") << "\\section[fds]{abc}"
+                            << 10
+                            << (TTypes() << T::squareBracket<<T::word)
+                            << (STypes() << T::title<<T::title);
+    QTest::newRow("command with keyval") << "\\includegraphics[width=4cm]{abc}"
+                            << 18
+                            << (TTypes() << T::squareBracket<<T::keyVal_key)
+                            << (STypes() << T::keyValArg<<T::none);
+    QTest::newRow("command with keyval2") << "\\includegraphics[width=4cm]{abc}"
+                            << 24
+                            << (TTypes() << T::squareBracket<<T::keyVal_key<<T::word)
+                            << (STypes() << T::keyValArg<<T::none<<T::width);
+    QTest::newRow("command with keyval3") << "\\includegraphics[width=4cm,rotate]{abc}"
+                            << 28
+                            << (TTypes() << T::squareBracket<<T::keyVal_key)
+                            << (STypes() << T::keyValArg<<T::none);
+
+
+}
+
+void SmallUsefulFunctionsTest::test_getContext() {
+    LatexParser lp = LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(int, nr);
+    QFETCH(TTypes, desiredResults);
+    QFETCH(STypes, types);
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    //TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+
+    TokenStack result=getContext(dlh,nr);
+
+    for(int k=0;k<result.length();k++){
+        QVERIFY(result.at(k).type==desiredResults.at(k));
+        QVERIFY(result.at(k).subtype==types.at(k));
+    }
+
+    delete doc;
+}
+
 #endif
 
 
