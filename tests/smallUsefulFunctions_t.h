@@ -491,6 +491,8 @@ private slots:
     void test_getTokenAtCol();
     void test_getCommandFromToken_data();
     void test_getCommandFromToken();
+    void test_getContext_data();
+    void test_getContext();
 
 };
 
