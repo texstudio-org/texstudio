@@ -807,6 +807,10 @@ void SmallUsefulFunctionsTest::test_getContext_data() {
                             << 10
                             << (TTypes() << T::braces<<T::word)
                             << (STypes() << T::title<<T::title);
+    QTest::newRow("command without braces") << "\\section abc"
+                            << 10
+                            << (TTypes() << T::word)
+                            << (STypes() << T::title);
     QTest::newRow("command with optional arg") << "\\section[fds]{abc}"
                             << 10
                             << (TTypes() << T::squareBracket<<T::word)
