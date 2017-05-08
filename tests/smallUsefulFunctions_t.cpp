@@ -865,6 +865,68 @@ void SmallUsefulFunctionsTest::test_getContext() {
     delete doc;
 }
 
+void SmallUsefulFunctionsTest::test_getCompleterContext_data() {
+    QTest::addColumn<QString>("lines");
+    QTest::addColumn<int >("nr");
+    QTest::addColumn<int >("desiredResult");
+
+    QTest::newRow("simple") << "bummerang"
+                            << 2
+                            <<  0;
+    QTest::newRow("command") << "\\section{abc}"
+                            << 10
+                            << 0;
+    QTest::newRow("command without braces") << "\\section abc"
+                            << 10
+                            << 0;
+    QTest::newRow("command with optional arg") << "\\section[fds]{abc}"
+                            << 10
+                            << 0;
+    QTest::newRow("command with keyval") << "\\includegraphics[width=4cm]{abc}"
+                            << 18
+                            << 0;
+    QTest::newRow("command with keyval2") << "\\includegraphics[width=4cm]{abc}"
+                            << 24
+                            << 512;
+    QTest::newRow("length") << "\\hspace{4cm}"
+                            << 9
+                            << 512;
+
+
+
+}
+
+void SmallUsefulFunctionsTest::test_getCompleterContext() {
+    LatexParser lp = LatexParser::getInstance();
+    LatexPackage pkg_graphics = loadCwlFile("graphicx.cwl");
+    lp.commandDefs.unite(pkg_graphics.commandDescriptions);
+    QFETCH(QString,lines);
+    QFETCH(int, nr);
+    QFETCH(int, desiredResult);
+
+
+    QDocument *doc = new QDocument();
+    doc->setText(lines, false);
+    for(int i=0; i<doc->lines(); i++){
+        QDocumentLineHandle *dlh = doc->line(i).handle();
+        simpleLexLatexLine(dlh);
+    }
+    TokenStack stack;
+    CommandStack commandStack;
+    for(int i=0; i<doc->lines(); i++){
+            QDocumentLineHandle *dlh = doc->line(i).handle();
+            latexDetermineContexts2(dlh, stack, commandStack, lp);
+    }
+    QDocumentLineHandle *dlh = doc->line(0).handle();
+    //TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
+
+    int result=getCompleterContext(dlh,nr);
+
+    QVERIFY(result==desiredResult);
+
+    delete doc;
+}
+
 #endif
 
 
