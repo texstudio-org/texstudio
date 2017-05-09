@@ -151,7 +151,7 @@ public:
 	}
 	Q_INVOKABLE QString getMagicComment(const QString &name) const;
 	Q_INVOKABLE StructureEntry *getMagicCommentEntry(const QString &name) const;
-	Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting = false);
+    Q_INVOKABLE void updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting = false, QString prefix="!TeX");
 
 	void updateMagicCommentScripts();
 	static bool splitMagicComment(const QString &comment, QString &name, QString &val);

@@ -2742,9 +2742,9 @@ StructureEntry *LatexDocument::getMagicCommentEntry(const QString &name) const
 /*!
   replaces the value of the magic comment
  */
-void LatexDocument::updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting)
+void LatexDocument::updateMagicComment(const QString &name, const QString &val, bool createIfNonExisting,QString prefix)
 {
-	QString line(QString("% !TeX %1 = %2").arg(name).arg(val));
+    QString line(QString("% %1 %2 = %3").arg(prefix).arg(name).arg(val));
 
 	StructureEntry *se = getMagicCommentEntry(name);
 	QDocumentLineHandle *dlh = se ? se->getLineHandle() : NULL;

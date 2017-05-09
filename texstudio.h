@@ -441,6 +441,8 @@ protected slots:
 	void updateStatusBarEncoding();
 	void addMagicRoot();
 	void addMagicCoding();
+    void addMagicBibliography();
+    void addMagicProgram();
 
 	void quickTabular(); ///< start quick tabular wizard
 	void quickArray(); ///< start quick array wizard

@@ -1050,6 +1050,8 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "addMagicRoot", tr("Insert root document name as TeX comment"), SLOT(addMagicRoot()));
 	newManagedAction(submenu, "addMagicLang", tr("Insert language as TeX comment"), SLOT(insertSpellcheckMagicComment()));
 	newManagedAction(submenu, "addMagicCoding", tr("Insert document coding as TeX comment"), SLOT(addMagicCoding()));
+    newManagedAction(submenu, "addMagicProgram", tr("Insert program as TeX comment"), SLOT(addMagicProgram()));
+    newManagedAction(submenu, "addMagicBibliography", tr("Insert bibliography tool as TeX comment"), SLOT(addMagicBibliography()));
 
 	menu = newManagedMenu("main/math", tr("&Math"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(insertFromAction())));
@@ -5713,6 +5715,20 @@ void Texstudio::addMagicCoding()
 		QString name = currentEditor()->getFileCodec()->name();
 		currentEditorView()->document->updateMagicComment("encoding", name, true);
 	}
+}
+
+void Texstudio::addMagicBibliography()
+{
+    if (currentEditorView()) {
+        currentEditorView()->document->updateMagicComment("TS-program", "", true,"!BIB");
+    }
+}
+
+void Texstudio::addMagicProgram()
+{
+    if (currentEditorView()) {
+        currentEditorView()->document->updateMagicComment("TS-program", "", true);
+    }
 }
 
 ///////////////TOOLS////////////////////
