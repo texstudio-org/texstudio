@@ -857,7 +857,7 @@ void SmallUsefulFunctionsTest::test_getContext() {
 
     TokenStack result=getContext(dlh,nr);
 
-    for(int k=0;k<result.length();k++){
+    for(int k=0;k<result.size();k++){
         QVERIFY(result.at(k).type==desiredResults.at(k));
         QVERIFY(result.at(k).subtype==types.at(k));
     }
