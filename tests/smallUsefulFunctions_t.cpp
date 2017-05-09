@@ -758,6 +758,15 @@ void SmallUsefulFunctionsTest::test_getCommandFromToken_data() {
     QTest::newRow("multi arg6") << "bummerang  \\newcommand{abc} def werd"
                             << 4 << 0
                             << "\\newcommand";
+    QTest::newRow("keyval") << "bummerang  \\includegraphics[width=4cm]{abc} def werd"
+                            << 3 << 0
+                            << "\\includegraphics";
+    QTest::newRow("keyval2") << "bummerang  \\includegraphics[width=4cm]{abc} def werd"
+                            << 4 << 0
+                            << "\\includegraphics";
+    QTest::newRow("multi-line") << "bummerang  \\section{abc\n cde}"
+                            << 0 << 1
+                            << "\\section";
 
 
 }
