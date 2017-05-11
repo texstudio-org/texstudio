@@ -2873,6 +2873,12 @@ void Texstudio::fileExit()
 		qApp->quit();
 }
 
+void Texstudio::fileExitWithError()
+{
+    if (canCloseNow())
+        qApp->exit(1);
+}
+
 bool Texstudio::saveAllFilesForClosing()
 {
 	return saveFilesForClosing(editors->editors());
@@ -6697,7 +6703,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 			if (page != -1) viewer->goToPage(page);
 		}
 		hide();
-		return;
+        return;
 	}
 #endif
 
@@ -6733,15 +6739,23 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 #ifndef QT_NO_DEBUG
 	//execute test after command line is known
 	if (realCmdLine) { //only at start
-		executeTests(args);
+        bool result=executeTests(args);
 
 		if (args.contains("--update-translations")) {
 			generateAddtionalTranslations();
 		}
+        if (args.contains("--auto-tests")) {
+            if(result){
+                QTimer::singleShot(1000, this, SLOT(fileExitWithError()));
+            }else{
+                QTimer::singleShot(1000, this, SLOT(fileExit()));
+            }
+        }
 	}
 #endif
 
 	if (realCmdLine) Guardian::summon();
+    return;
 }
 
 void Texstudio::hideSplash()
@@ -6749,33 +6763,58 @@ void Texstudio::hideSplash()
 	if (splashscreen) splashscreen->hide();
 }
 
-void Texstudio::executeTests(const QStringList &args)
+bool Texstudio::executeTests(const QStringList &args)
 {
 	QFileInfo myself(QCoreApplication::applicationFilePath());
-	if (args.contains("--disable-tests")) return;
+    if (args.contains("--disable-tests")) return true; // pass
 #if !defined(QT_NO_DEBUG) && !defined(NO_TESTS)
+    bool testResult=true; // pass, false -> fail
+    bool autoTests = args.contains("--auto-tests");
 	bool allTests = args.contains("--execute-all-tests")
 	                //execute all tests once a week or if command paramter is set
 	                || (configManager.debugLastFullTestRun.daysTo(myself.lastModified()) > 6);
-	if (args.contains("--execute-tests") || myself.lastModified() != configManager.debugLastFileModification || allTests) {
+    if (args.contains("--execute-tests") || myself.lastModified() != configManager.debugLastFileModification || allTests || autoTests) {
 		fileNew();
-		if (!currentEditorView() || !currentEditorView()->editor)
-			QMessageBox::critical(0, "wtf?", "test failed", QMessageBox::Ok);
+        if (!currentEditorView() || !currentEditorView()->editor){
+            if(autoTests){
+                qDebug()<<"Autotest execution failed!";
+                return false;
+            }else{
+                QMessageBox::critical(0, "wtf?", "test failed", QMessageBox::Ok);
+            }
+        }
 		if (allTests) configManager.debugLastFullTestRun = myself.lastModified();
 
 		TestManager testManager;
 		connect(&testManager, SIGNAL(newMessage(QString)), this, SLOT(showTestProgress(QString)));
 		QString result = testManager.execute(allTests ? TestManager::TL_ALL : TestManager::TL_FAST, currentEditorView(), currentEditorView()->codeeditor, currentEditorView()->editor, &buildManager);
-		m_languages->setLanguageFromName(currentEditorView()->editor, "TXS Test Results");
-		currentEditorView()->editor->setText(result, false);
-		if (result.startsWith("*** THERE SEEM TO BE FAILED TESTS! ***")) {
-			QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(currentEditorView()->codeeditor->panels("Search")[0]);
-			if (searchpanel) {
-				searchpanel->find("FAIL!", false, false, false, false, true);
-			}
-		}
+        if(autoTests){
+            currentEditorView()->close();
+            QStringList lines=result.split("\n");
+            int cnt=0;
+            foreach(const QString line,lines){
+                qDebug()<<line;
+                if(line.startsWith("FAIL")){
+                    cnt++;
+                }
+            }
+            if(cnt>0){
+                qDebug()<<QString("%1 tests failed!").arg(cnt);
+                return false;
+            }
+        }else{
+            m_languages->setLanguageFromName(currentEditorView()->editor, "TXS Test Results");
+            currentEditorView()->editor->setText(result, false);
+            if (result.startsWith("*** THERE SEEM TO BE FAILED TESTS! ***")) {
+                QSearchReplacePanel *searchpanel = qobject_cast<QSearchReplacePanel *>(currentEditorView()->codeeditor->panels("Search")[0]);
+                if (searchpanel) {
+                    searchpanel->find("FAIL!", false, false, false, false, true);
+                }
+            }
+        }
 		configManager.debugLastFileModification = QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 	}
+    return testResult; // pass
 #endif
 }
 
