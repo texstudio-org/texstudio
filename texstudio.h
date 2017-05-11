@@ -91,7 +91,7 @@ public:
 
 public slots:
 	LatexEditorView *load(const QString &f , bool asProject = false, bool hidden = false, bool recheck = true, bool dontAsk = false);
-	void executeCommandLine(const QStringList &args, bool realCmdLine);
+    void executeCommandLine(const QStringList &args, bool realCmdLine);
 	void hideSplash(); ///< hide splash screen
 	void startupCompleted();
 	void onOtherInstanceMessage(const QString &);  ///< For messages for the single instance
@@ -123,7 +123,7 @@ private slots:
 	void updateToolBarMenu(const QString &menuName);
 	void showTestProgress(const QString &message);
 private:
-	void executeTests(const QStringList &args); ///< execute self-tests. Only works for debug-builds.
+    bool executeTests(const QStringList &args); ///< execute self-tests. Only works for debug-builds.
 	void generateAddtionalTranslations();
 	void setupMenus();
 	void setupDockWidgets();
@@ -252,6 +252,7 @@ protected slots:
 	void fileClose(); ///< close current editor
 	void fileCloseAll(); ///< close all open editors
 	void fileExit(); ///< exit application
+    void fileExitWithError(); ///< exit application with error code, used for auto-tests
 private:
 	void centerFileSelector();
 protected slots:
