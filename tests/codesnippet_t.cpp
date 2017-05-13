@@ -586,7 +586,7 @@ void CodeSnippetTest::insertPlaceholderModes() {
 	ed->setText("", false);
 	QDocumentCursor cur = ed->cursor();
 
-	qDebug() << expectedText;
+    //qDebug() << expectedText;
 
 	CodeSnippet(insertText).insertAt(ed, &cur, phMode);
 	QEQUAL(ed->text(), expectedText);
