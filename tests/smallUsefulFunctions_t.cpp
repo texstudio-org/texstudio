@@ -153,115 +153,127 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
                                   << (STypes() << T::none << T::text << T::text)
                                   << (Starts() << 0 << 7 << 8)
                                   << (Length() << 7 << 6 << 4)
-                                  << (Levels() << 0 << 0 << 1);
+                                  << (Levels() << 0 << 1 << 1);
+    QTest::newRow("text command with nested braces") << "\\textbf{text {abc}}"
+                                  << (TTypes() << T::command << T::braces << T::word << T::braces << T::word)
+                                  << (STypes() << T::none << T::text << T::text << T::text << T::text)
+                                  << (Starts() << 0 << 7 << 8 << 13 << 14)
+                                  << (Length() << 7 << 12 << 4 << 5 << 3)
+                                  << (Levels() << 0 << 1 << 1 << 1 << 1);
+    QTest::newRow("text command with nested square brackets") << "\\textbf{text [abc]}"
+                                  << (TTypes() << T::command << T::braces << T::word << T::word)
+                                  << (STypes() << T::none << T::text << T::text << T::text)
+                                  << (Starts() << 0 << 7 << 8 << 14)
+                                  << (Length() << 7 << 12 << 4 << 3)
+                                  << (Levels() << 0 << 1 << 1 << 1 );
     QTest::newRow("section command") << "\\section{text}"
                                      << (TTypes() << T::command << T::braces << T::word)
                                      << (STypes() << T::none << T::title << T::title)
                                      << (Starts() << 0 << 8 << 9)
                                      << (Length() << 8 << 6 << 4)
-                                     << (Levels() << 0 << 0 << 1);
+                                     << (Levels() << 0 << 1 << 1);
     QTest::newRow("section command, multi-line") << "\\section{text\ntest}"
                                      << (TTypes() << T::command << T::openBrace << T::word<< T::word<<T::closeBrace)
-                                     << (STypes() << T::none << T::title << T::title<<T::title<<T::none)
+                                     << (STypes() << T::none << T::title << T::title<<T::title<<T::title)
                                      << (Starts() << 0 << 8 << 9<< 0 << 4)
                                      << (Length() << 8 << 5 << 4<< 4 << 1)
-                                     << (Levels() << 0 << 0 << 1<< 1 << 0);
+                                     << (Levels() << 0 << 1 << 1<< 1 << 1);
     QTest::newRow("section command, multi-line optional") << "\\section[ab\ncd]{text\ntest}"
                                      << (TTypes() << T::command << T::openSquare << T::word<< T::word<<T::closeSquareBracket<< T::openBrace << T::word<< T::word<<T::closeBrace)
-                                     << (STypes() << T::none <<T::title << T::title<<T::title<<T::none << T::title << T::title<<T::title<<T::none)
+                                     << (STypes() << T::none <<T::title << T::title<<T::title<<T::title << T::title << T::title<<T::title<<T::title)
                                      << (Starts() << 0 << 8 << 9 << 0 << 2 << 3 << 4 << 0 << 4)
                                      << (Length() << 8 << 3 << 2 << 2 << 1 << 5 << 4 << 4 << 1)
-                                     << (Levels() << 0 << 0 << 1 << 1 << 0 << 0 << 1 << 1 << 0);
+                                     << (Levels() << 0 << 1 << 1 << 1 << 1 << 1 << 1 << 1 << 1);
     QTest::newRow("usepackage command") << "\\usepackage{text}"
                                         << (TTypes() << T::command << T::braces << T::package)
                                         << (STypes() << T::none << T::package << T::none)
                                         << (Starts() << 0 << 11 << 12)
                                         << (Length() << 11 << 6 << 4)
-                                        << (Levels() << 0 << 0 << 1);
+                                        << (Levels() << 0 << 1 << 1);
     QTest::newRow("usepackage command2") << "\\usepackage{text,text}"
                                          << (TTypes() << T::command << T::braces << T::package << T::package)
                                          << (STypes() << T::none << T::package << T::none << T::none)
                                          << (Starts() << 0 << 11 << 12 << 17)
                                          << (Length() << 11 << 11 << 4 << 4)
-                                         << (Levels() << 0 << 0 << 1 << 1);
+                                         << (Levels() << 0 << 1 << 1 << 1);
     QTest::newRow("usepackage command3") << "\\usepackage{text,\ntext}"
                                          << (TTypes() << T::command << T::openBrace << T::package << T::package << T::closeBrace)
-                                         << (STypes() << T::none << T::package << T::none << T::none << T::none)
+                                         << (STypes() << T::none << T::package << T::none << T::none << T::package)
                                          << (Starts() << 0 << 11 << 12 << 0 << 4)
                                          << (Length() << 11 << 6 << 4 << 4 << 1)
-                                         << (Levels() << 0 << 0 << 1 << 1 << 0);
+                                         << (Levels() << 0 << 1 << 1 << 1 << 1);
     QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
                                         << (TTypes() << T::command << T::braces << T::def << T::braces << T::word)
                                         << (STypes() << T::none << T::def << T::none << T::definition << T::definition)
                                         << (Starts() << 0 << 11 << 12 << 17 << 18)
                                         << (Length() << 11 << 6 << 4 << 6 << 4)
-                                        << (Levels() << 0 << 0 << 1 << 0 << 1);
+                                        << (Levels() << 0 << 1 << 1 << 1 << 1);
     QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
                                          << (TTypes() << T::command << T::braces << T::def << T::braces << T::word)
                                          << (STypes() << T::none << T::def << T::none << T::definition << T::definition)
                                          << (Starts() << 0 << 11 << 12 << 17 << 18)
                                          << (Length() << 11 << 6 << 4 << 6 << 4)
-                                         << (Levels() << 0 << 0 << 1 << 0 << 1);
+                                         << (Levels() << 0 << 1 << 1 << 1 << 1);
     QTest::newRow("newcommand command3") << "\\newcommand{\\paragraph}{test}"
                                          << (TTypes() << T::command << T::braces << T::def << T::braces << T::word)
                                          << (STypes() << T::none << T::def << T::none << T::definition << T::definition)
                                          << (Starts() << 0 << 11 << 12 << 23 << 24)
                                          << (Length() << 11 << 12 << 10 << 6 << 4)
-                                         << (Levels() << 0 << 0 << 1 << 0 << 1);
+                                         << (Levels() << 0 << 1 << 1 << 1 << 1);
     QTest::newRow("documentclass command") << "\\documentclass{text}"
                                            << (TTypes() << T::command << T::braces << T::documentclass)
                                            << (STypes() << T::none << T::documentclass << T::none)
                                            << (Starts() << 0 << 14 << 15)
                                            << (Length() << 14 << 6 << 4)
-                                           << (Levels() << 0 << 0 << 1);
+                                           << (Levels() << 0 << 1 << 1);
     QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}"
                                             << (TTypes() << T::command << T::braces << T::word << T::command << T::braces << T::word << T::word)
                                             << (STypes() << T::none << T::text << T::text << T::text << T::text << T::text << T::text)
                                             << (Starts() << 0 << 7 << 8 << 10 << 17 << 18 << 22)
                                             << (Length() << 7 << 18 << 2 << 7 << 4 << 2 << 2)
-                                            << (Levels() << 0 << 0 << 1 << 1 << 1 << 2 << 1);
+                                            << (Levels() << 0 << 1 << 1 << 1 << 2 << 2 << 1);
     QTest::newRow("text command with comment") << "\\textbf{te % bg}"
                                             << (TTypes() << T::command << T::openBrace << T::word )
                                             << (STypes() << T::none << T::text << T::text )
                                             << (Starts() << 0 << 7 << 8 )
                                             << (Length() << 7 << 4 << 2 )
-                                            << (Levels() << 0 << 0 << 1 );
+                                            << (Levels() << 0 << 1 << 1 );
     QTest::newRow("graphics command") << "\\includegraphics{file}"
                                       << (TTypes() << T::command << T::braces << T::imagefile)
                                       << (STypes() << T::none << T::imagefile << T::none)
                                       << (Starts() << 0 << 16 << 17)
                                       << (Length() << 16 << 6 << 4)
-                                      << (Levels() << 0 << 0 << 1);
+                                      << (Levels() << 0 << 1 << 1);
     QTest::newRow("graphics command with option") << "\\includegraphics[opt]{file}"
                                                   << (TTypes() << T::command << T::squareBracket << 21 << T::braces << T::imagefile)
                                                   << (STypes() << T::none << T::keyValArg << T::none << T::imagefile << T::none)
                                                   << (Starts() << 0 << 16 << 17 << 21 << 22)
                                                   << (Length() << 16 << 5 << 3 << 6 << 4)
-                                                  << (Levels() << 0 << 0 << 1 << 0 << 1);
+                                                  << (Levels() << 0 << 1 << 1 << 1 << 1);
     QTest::newRow("graphics command with keyval") << "\\includegraphics[opt,opt=text]{file}"
                                                   << (TTypes() << T::command << T::squareBracket << T::keyVal_key << T::keyVal_key << T::word << T::braces << T::imagefile)
                                                   << (STypes() << T::none << T::keyValArg << T::none << T::none << T::keyVal_val << T::imagefile << T::none)
                                                   << (Starts() << 0 << 16 << 17 << 21 << 25 << 30 << 31)
                                                   << (Length() << 16 << 14 << 3 << 3 << 4 << 6 << 4)
-                                                  << (Levels() << 0 << 0 << 1 << 1 << 2 << 0 << 1);
+                                                  << (Levels() << 0 << 1 << 1 << 1 << 2 << 1 << 1);
     QTest::newRow("include command") << "\\include{text dsf}"
                                      << (TTypes() << T::command << T::braces << T::file)
                                      << (STypes() << T::none << T::file << T::none)
                                      << (Starts() << 0 << 8 << 9)
                                      << (Length() << 8 << 10 << 8)
-                                     << (Levels() << 0 << 0 << 1);
+                                     << (Levels() << 0 << 1 << 1);
     QTest::newRow("include command2") << "\\include{text/dsf}"
                                       << (TTypes() << T::command << T::braces << T::file)
                                       << (STypes() << T::none << T::file << T::none)
                                       << (Starts() << 0 << 8 << 9)
                                       << (Length() << 8 << 10 << 8)
-                                      << (Levels() << 0 << 0 << 1);
+                                      << (Levels() << 0 << 1 << 1);
     QTest::newRow("include command3") << "\\include{text\\dsf}"
                                       << (TTypes() << T::command << T::braces << T::file)
                                       << (STypes() << T::none << T::file << T::none)
                                       << (Starts() << 0 << 8 << 9)
                                       << (Length() << 8 << 10 << 8)
-                                      << (Levels() << 0 << 0 << 1);
+                                      << (Levels() << 0 << 1 << 1);
 }
 
 void SmallUsefulFunctionsTest::test_latexLexing() {
@@ -323,49 +335,49 @@ void SmallUsefulFunctionsTest::test_findCommandWithArgsFromTL_data() {
                                         << (STypes() <<  T::def <<  T::definition )
                                         << (Starts() <<  11 <<  17 )
                                         << (Length() <<  6 << 6 )
-                                        << (Levels() << 0 << 0 );
+                                        << (Levels() << 1 << 1 );
     QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
                                          << (TTypes() << T::braces << T::braces)
                                          << (STypes() <<  T::def <<  T::definition )
                                          << (Starts() <<  11 <<  17 )
                                          << (Length() <<  6 << 6 )
-                                         << (Levels() << 0 << 0 );
+                                         << (Levels() << 1 << 1 );
     QTest::newRow("newcommand command3") << "\\newcommand{\\paragraph}{test}"
                                          << (TTypes() << T::braces << T::braces)
                                          << (STypes() <<  T::def <<  T::definition )
                                          << (Starts() <<  11 <<  23 )
                                          << (Length() <<  12 << 6 )
-                                         << (Levels() << 0 << 0 );
+                                         << (Levels() << 1 << 1 );
     QTest::newRow("newcommand command, no braces") << "\\newcommand text {test}"
                                         << (TTypes() << T::word << T::braces)
                                         << (STypes() <<  T::def <<  T::definition )
                                         << (Starts() <<  12 <<  17 )
                                         << (Length() <<  4 << 6 )
-                                        << (Levels() << 0 << 0 );
+                                        << (Levels() << 1 << 1 );
     QTest::newRow("newcommand command, no braces2") << "\\newcommand text test"
                                         << (TTypes() << T::word << T::word)
                                         << (STypes() <<  T::def <<  T::definition )
                                         << (Starts() <<  12 <<  17 )
                                         << (Length() <<  4 << 4 )
-                                        << (Levels() << 0 << 0 );
+                                        << (Levels() << 1 << 1 );
     QTest::newRow("documentclass command") << "\\documentclass{text}"
                                            << (TTypes() << T::braces )
                                            << (STypes() <<  T::documentclass )
                                            << (Starts() <<  14 )
                                            << (Length() <<  6 )
-                                           << (Levels() << 0 );
+                                           << (Levels() << 1 );
     QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}"
                                             << (TTypes() << T::braces )
                                             << (STypes() <<  T::text )
                                             << (Starts() <<  7 )
                                             << (Length() <<  18 )
-                                            << (Levels() << 0 );
+                                            << (Levels() << 1 );
     QTest::newRow("text command, embedded ,open") << "\\textbf{te\\textit{xt} bg"
                                             << (TTypes() << T::openBrace )
                                             << (STypes() <<  T::text )
                                             << (Starts() <<  7 )
                                             << (Length() <<  17 )
-                                            << (Levels() << 0 );
+                                            << (Levels() << 1 );
 
 }
 
@@ -820,28 +832,32 @@ void SmallUsefulFunctionsTest::test_getContext_data() {
                             << (STypes() << T::none);
     QTest::newRow("command") << "\\section{abc}"
                             << 10
-                            << (TTypes() << T::braces<<T::word)
-                            << (STypes() << T::title<<T::title);
+                            << (TTypes() << T::command <<T::braces<<T::word)
+                            << (STypes() << T::none << T::title<<T::title);
     QTest::newRow("command without braces") << "\\section abc"
                             << 10
-                            << (TTypes() << T::word)
-                            << (STypes() << T::title);
+                            << (TTypes() << T::command << T::word)
+                            << (STypes() << T::none << T::title);
     QTest::newRow("command with optional arg") << "\\section[fds]{abc}"
                             << 10
-                            << (TTypes() << T::squareBracket<<T::word)
-                            << (STypes() << T::title<<T::title);
+                            << (TTypes() << T::command << T::squareBracket<<T::word)
+                            << (STypes() << T::none << T::title<<T::title);
     QTest::newRow("command with keyval") << "\\includegraphics[width=4cm]{abc}"
                             << 18
-                            << (TTypes() << T::squareBracket<<T::keyVal_key)
-                            << (STypes() << T::keyValArg<<T::none);
+                            << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
+                            << (STypes() << T::none << T::keyValArg<<T::none);
     QTest::newRow("command with keyval2") << "\\includegraphics[width=4cm]{abc}"
+                            << 23
+                            << (TTypes() << T::command << T::squareBracket<<T::keyVal_key<<T::width)
+                            << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
+    QTest::newRow("command with keyval3") << "\\includegraphics[width=4cm]{abc}"
                             << 24
-                            << (TTypes() << T::squareBracket<<T::keyVal_key<<T::word)
-                            << (STypes() << T::keyValArg<<T::none<<T::width);
-    QTest::newRow("command with keyval3") << "\\includegraphics[width=4cm,rotate]{abc}"
+                            << (TTypes() << T::command << T::squareBracket<<T::keyVal_key<<T::width)
+                            << (STypes() << T::none << T::keyValArg<<T::none<<T::keyVal_val);
+    QTest::newRow("command with keyval4") << "\\includegraphics[width=4cm,rotate]{abc}"
                             << 28
-                            << (TTypes() << T::squareBracket<<T::keyVal_key)
-                            << (STypes() << T::keyValArg<<T::none);
+                            << (TTypes() << T::command << T::squareBracket<<T::keyVal_key)
+                            << (STypes() << T::none << T::keyValArg<<T::none);
 
 
 }

@@ -810,9 +810,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				if ((env == "tabu") || (env == "longtabu")) { // special treatment as the env is rather not latex standard
 					for (int k = i + 1; k < tl.length(); k++) {
 						Token elem = tl.at(k);
-						if (elem.level < tk.level - 1)
+                        if (elem.level < tk.level)
 							break;
-						if (elem.level >= tk.level)
+                        if (elem.level > tk.level)
 							continue;
 						if (elem.type == Token::braces) { // take the first mandatory argument at the correct level -> TODO: put colDef also for tabu correctly in lexer
 							option = line.mid(elem.start + 1, elem.length - 2); // strip {}
@@ -822,9 +822,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 					for (int k = i + 1; k < tl.length(); k++) {
 						Token elem = tl.at(k);
-						if (elem.level < tk.level - 1)
+                        if (elem.level < tk.level)
 							break;
-						if (elem.level >= tk.level)
+                        if (elem.level > tk.level)
 							continue;
 						if (elem.subtype == Token::colDef) {
 							option = line.mid(elem.start + 1, elem.length - 2); // strip {}
@@ -981,9 +981,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					QString subcommand;
 					for (int k = i + 1; k < tl.length(); k++) {
 						Token tk_elem = tl.at(k);
-						if (tk_elem.level > tk.level - 1)
+                        if (tk_elem.level > tk.level)
 							continue;
-						if (tk_elem.level < tk.level - 1)
+                        if (tk_elem.level < tk.level)
 							break;
 						if (tk_elem.type == Token::braces) {
 							subcommand = line.mid(tk_elem.start + 1, tk_elem.length - 2);
