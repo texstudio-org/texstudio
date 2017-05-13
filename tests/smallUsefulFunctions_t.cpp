@@ -713,6 +713,12 @@ void SmallUsefulFunctionsTest::test_getCommandFromToken_data() {
     QTest::newRow("simple6") << "bummerang  \\section abc cde"
                             << 3 << 0
                             << "";
+    QTest::newRow("simple7") << "bummerang  \\section{abc {cde}}"
+                            << 3 << 0
+                            << "\\section";
+    QTest::newRow("simple8") << "bummerang  \\section{abc {cde}}"
+                            << 4 << 0
+                            << "\\section";
     QTest::newRow("optonal") << "bummerang  \\section[ab ab]{abc cde}"
                             << 2 << 0
                             << "\\section";
