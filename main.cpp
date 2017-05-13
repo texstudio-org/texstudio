@@ -79,7 +79,9 @@ void TexstudioApp::init(QStringList &cmdLine)
 
 	if (!delayedFileLoad.isEmpty()) cmdLine << delayedFileLoad;
 	mw->executeCommandLine(cmdLine, true);
-	mw->startupCompleted();
+    if(!cmdLine.contains("--auto-tests")){
+        mw->startupCompleted();
+    }
 }
 
 TexstudioApp::~TexstudioApp()

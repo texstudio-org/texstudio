@@ -2869,14 +2869,15 @@ void Texstudio::fileCloseAll()
 
 void Texstudio::fileExit()
 {
-	if (canCloseNow())
-		qApp->quit();
+    if (canCloseNow())
+	qApp->quit();
 }
 
 void Texstudio::fileExitWithError()
 {
-    if (canCloseNow())
+    if (canCloseNow()){
         qApp->exit(1);
+    }
 }
 
 bool Texstudio::saveAllFilesForClosing()
@@ -6741,14 +6742,14 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 	if (realCmdLine) { //only at start
         bool result=executeTests(args);
 
-		if (args.contains("--update-translations")) {
-			generateAddtionalTranslations();
-		}
+	if (args.contains("--update-translations")) {
+	    generateAddtionalTranslations();
+	}
         if (args.contains("--auto-tests")) {
             if(result){
-                QTimer::singleShot(1000, this, SLOT(fileExit()));
+                QTimer::singleShot(4000, this, SLOT(fileExit()));
             }else{
-                QTimer::singleShot(1000, this, SLOT(fileExitWithError()));
+                QTimer::singleShot(4000, this, SLOT(fileExitWithError()));
             }
         }
 	}
@@ -6773,6 +6774,8 @@ bool Texstudio::executeTests(const QStringList &args)
 	bool allTests = args.contains("--execute-all-tests")
 	                //execute all tests once a week or if command paramter is set
 	                || (configManager.debugLastFullTestRun.daysTo(myself.lastModified()) > 6);
+    if(autoTests)
+        allTests=false;
     if (args.contains("--execute-tests") || myself.lastModified() != configManager.debugLastFileModification || allTests || autoTests) {
 		fileNew();
         if (!currentEditorView() || !currentEditorView()->editor){
