@@ -247,7 +247,7 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 				break;
 			optionCount++;
 		}
-		qDebug() << line << rxDef.capturedTexts() << optionCount;
+        //qDebug() << line << rxDef.capturedTexts() << optionCount;
 		name += makeArgString(optionCount) + "#S";
 		if (!results.contains(name))
 			results << name;
