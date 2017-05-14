@@ -2307,7 +2307,7 @@ void LatexDocument::parseMagicComment(const QString &name, const QString &val, S
 		se->valid = true;
 	} else if (lowerName == "txs-script") {
 		se->valid = true;
-	} else if (lowerName == "program" || lowerName.startsWith("txs-program:")) {
+	} else if (lowerName == "program" || lowerName == "ts-program" || lowerName.startsWith("txs-program:")) {
 		se->valid = true;
 	} else if (lowerName == "-job-name") {
 		if (!val.isEmpty()) {
