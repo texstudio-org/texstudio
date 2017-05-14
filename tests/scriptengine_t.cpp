@@ -134,7 +134,6 @@ void ScriptEngineTest::script(){
 	eng.setScript(script);
 	eng.run();
 
-    edView->editor->document()->setLineEnding(QDocument::Local);
 	QEQUAL(edView->editor->document()->text(), newText);	
 }
 #endif
