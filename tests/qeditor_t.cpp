@@ -93,7 +93,7 @@ void QEditorTest::loadSave(){
 	editor->setText(editor->document()->text()+"Save test", false);
 	editor->save();
     QFile tf2(tfn);
-    tf2.open(QIODevice::ReadOnly | QIODevice::Text);
+    tf2.open(QIODevice::ReadOnly);
     QString writtenText=outCodec->toUnicode( tf2.readAll());
     tf2.close();
 
