@@ -1386,11 +1386,9 @@ void LatexCompleter::complete(QEditor *newEditor, const CompletionFlags &flags)
 				start = start + lastIndex + 1;
 			if (fn.isEmpty())
 				fn = workingDir + QDir::separator();
-			QDir oldCurrent = QDir::current();
-			QDir::setCurrent(workingDir);
-			QFileInfo fi(fn);
+
+            QFileInfo fi(QDir(workingDir),fn);
 			path = fi.absolutePath();
-			QDir::setCurrent(oldCurrent.dirName()); //restore old current path
 		}
 		completerInputBinding->bindTo(editor, this, true, start);
 		adjustWidget();
