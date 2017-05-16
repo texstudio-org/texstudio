@@ -3,7 +3,7 @@
 # By astroscion: 2012-02-15
 \titlelabel{label-format}
 \titleformat*{command%plain}{format}
-\titleformat{command%plain}[shape]{format}{label}{sep%l}{before-code}{after-code}
+\titleformat{command%plain}[shape]{format}{label}{sep%l}{before-code}[after-code]
 \chaptertitlename
 \titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}
 \titlespacing{command%plain}{left%l}{before-sep%l}{after-sep%l}[right-sep%l]
