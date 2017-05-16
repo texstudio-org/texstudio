@@ -255,7 +255,7 @@ public:
 	{
 		Q_ASSERT (completer && completer->listModel);
 		if (!completer || !completer->listModel) return false;
-		if (event->key() == Qt::Key_Shift || event->key() == Qt::Key_Alt || event->key() == Qt::Key_AltGr || event->key() == Qt::Key_Control)
+        if (event->key() == Qt::Key_Shift || event->key() == Qt::Key_Alt || event->key() == Qt::Key_AltGr || event->key() == Qt::Key_Control || event->key() == Qt::Key_CapsLock)
 			return false;
 		if (!active) return false; //we should never have been called
 		bool handled = false;
