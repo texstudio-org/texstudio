@@ -284,7 +284,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="198"/>
         <source>Online Resource</source>
-        <translation type="unfinished"/>
+        <translation>منابع آنلاین</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="210"/>
@@ -905,7 +905,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="443"/>
         <source>Stable Releases</source>
-        <translation type="unfinished"/>
+        <translation>نسخه‌ی پایدار</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="448"/>
@@ -1159,7 +1159,7 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="configdialog.ui" line="1117"/>
         <location filename="configdialog.cpp" line="498"/>
         <source>Command</source>
-        <translation type="unfinished"/>
+        <translation>دستور</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1122"/>
@@ -2713,7 +2713,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="487"/>
         <source>Lua</source>
-        <translation type="unfinished"/>
+        <translation>لوا</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="488"/>
@@ -2758,7 +2758,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="508"/>
         <source>GUI Scaling</source>
-        <translation type="unfinished"/>
+        <translation>مقیاس بندی رابط کاربری تصویری</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="510"/>
@@ -5286,7 +5286,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2586"/>
         <source>Scale</source>
-        <translation type="unfinished"/>
+        <translation>مقیاس</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2604"/>
@@ -6294,12 +6294,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4608"/>
         <source>Undo</source>
-        <translation type="unfinished"/>
+        <translation>برگردان</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4609"/>
         <source>Redo</source>
-        <translation type="unfinished"/>
+        <translation>دوباره انجام بده</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4610"/>
@@ -6511,7 +6511,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="167"/>
         <source>comment</source>
-        <translation type="unfinished"/>
+        <translation>توضیح</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="168"/>
@@ -7070,7 +7070,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="204"/>
         <source>Extended Search</source>
-        <translation type="unfinished"/>
+        <translation>جست و جوی گسترش یافته</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="269"/>
@@ -7126,7 +7126,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="311"/>
         <source>Replace all</source>
-        <translation type="unfinished"/>
+        <translation>همه را جایگزین کن</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="313"/>
@@ -7372,7 +7372,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickdocumentdialog.ui" line="265"/>
         <source>Geometry</source>
-        <translation type="unfinished"/>
+        <translation>هندسه</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="293"/>
@@ -7688,7 +7688,7 @@ Do you trust this script?</source>
     <message>
         <location filename="searchresultwidget.cpp" line="20"/>
         <source>Project</source>
-        <translation type="unfinished"/>
+        <translation>پروژه</translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="28"/>
@@ -7698,7 +7698,7 @@ Do you trust this script?</source>
     <message>
         <location filename="searchresultwidget.cpp" line="31"/>
         <source>Replace all</source>
-        <translation type="unfinished"/>
+        <translation>همه را جایگزین کن</translation>
     </message>
     <message>
         <location filename="searchresultwidget.cpp" line="38"/>
@@ -8448,7 +8448,7 @@ failed.</source>
         <location filename="additionaltranslations.cpp" line="255"/>
         <source>Lua</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>لوا</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="256"/>
@@ -8472,7 +8472,7 @@ failed.</source>
         <location filename="additionaltranslations.cpp" line="259"/>
         <source>(La)TeX</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>(لا)تکس</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="260"/>
@@ -9803,12 +9803,12 @@ failed.</source>
         <location filename="texstudio.cpp" line="1158"/>
         <location filename="texstudio.cpp" line="1163"/>
         <source>Level %1</source>
-        <translation type="unfinished"/>
+        <translation>سطح %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1159"/>
         <source>Expand</source>
-        <translation type="unfinished"/>
+        <translation>گسترش بده</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1165"/>
@@ -10645,7 +10645,7 @@ Do you want to create it?</source>
     <message>
         <location filename="texstudio.cpp" line="9672"/>
         <source>Problem</source>
-        <translation type="unfinished"/>
+        <translation>مشکل</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="9672"/>
@@ -11692,7 +11692,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="350"/>
         <source>Input File :</source>
-        <translation type="unfinished"/>
+        <translation>فایل ورودی :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="371"/>
@@ -11702,7 +11702,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="378"/>
         <source>Browser :</source>
-        <translation type="unfinished"/>
+        <translation>مرورگر :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="390"/>
@@ -11737,7 +11737,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.cpp" line="29"/>
         <source>Icons</source>
-        <translation type="unfinished"/>
+        <translation>آیکن</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="30"/>

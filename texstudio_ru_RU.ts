@@ -617,7 +617,9 @@ Please change your configuration and define command lists only at Options -&gt; 
         <oldsource>The command %1 is expected to be atomic. However, it's currentlydefined as a command chain containing %2 commands. This is beyond the specification and may lead to surpising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Предполагается, что команда %1 атомарная, однако на самом деле она определена как цепочка из %2 команд. Это не предусмотрено спецификацией и может привести к неожиданным эффектам.
+
+Пожалуйста, измените конфигурацию и определите очереди команд через меню Конфигурация — Компиляция, а не Конфигурация — Команды.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1013"/>
@@ -1736,7 +1738,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2299"/>
         <source>Triple-Click Selection:</source>
-        <translation>Выбор тройным щелчком</translation>
+        <translation>Выбор тройным щелчком:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2307"/>
@@ -1791,12 +1793,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1984"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Имеет силу только в случае, если ширина документа ограничена мягким или жёстким переносом строк.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1987"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Центрировать документ в редакторе</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2365"/>
@@ -1807,7 +1809,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
         <location filename="configdialog.ui" line="2372"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation>Регулярное выражение для комментариев TODO</translation>
+        <translation>Регулярное выражение для комментариев TODO:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2403"/>
@@ -8794,7 +8796,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="622"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Команды Beamer</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="749"/>
@@ -10089,7 +10091,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1253"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>Проверить LanguageTool</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1254"/>
@@ -10156,7 +10158,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1426"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"/>
+        <translation>Внутристрочная проверка грамматики отключена пользователем!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1481"/>
@@ -10977,69 +10979,81 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="texstudio.cpp" line="10699"/>
         <source>LT Report</source>
-        <translation type="unfinished"/>
+        <translation>Отчёт LT</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10726"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"/>
+        <translation>процессу не удалось запуститься
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10729"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"/>
+        <translation>процесс оборвался
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10739"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"/>
+        <translation>Проверка в реальном времени включена.
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10741"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"/>
+        <translation>Проверка в реальном времени выключена!!!
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10744"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Проверка грамматики включена.
+
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10746"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Проверка грамматики выключена!!!
+
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10749"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Попытка автоматического запуска.
+
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10751"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Автозапуск отключён.
+
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10756"/>
         <source>LT current status: </source>
-        <translation type="unfinished"/>
+        <translation>Текущий статус LT:</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10759"/>
         <source>working</source>
-        <translation type="unfinished"/>
+        <translation>работает</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10762"/>
@@ -11055,12 +11069,13 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="texstudio.cpp" line="10771"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"/>
+        <translation>URL LT: %1
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="11047"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"/>
+        <translation>Ошибка при обмене данными с LT: %1</translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>
