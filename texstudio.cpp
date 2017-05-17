@@ -6790,7 +6790,11 @@ bool Texstudio::executeTests(const QStringList &args)
 
 		TestManager testManager;
 		connect(&testManager, SIGNAL(newMessage(QString)), this, SLOT(showTestProgress(QString)));
-		QString result = testManager.execute(allTests ? TestManager::TL_ALL : TestManager::TL_FAST, currentEditorView(), currentEditorView()->codeeditor, currentEditorView()->editor, &buildManager);
+        TestManager::TestLevel testLevel=allTests ? TestManager::TL_ALL : TestManager::TL_FAST;
+        if(autoTests){
+            testLevel=TestManager::TL_AUTO;
+        }
+        QString result = testManager.execute(testLevel, currentEditorView(), currentEditorView()->codeeditor, currentEditorView()->editor, &buildManager);
         if(autoTests){
             currentEditorView()->close();
             QStringList lines=result.split("\n");

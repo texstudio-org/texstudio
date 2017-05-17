@@ -9,8 +9,11 @@ class QDocument;
 class QDocumentCursor;
 class QDocumentCursorTest: public QObject{
 	Q_OBJECT
+public:
+        QDocumentCursorTest(bool autoTests):m_autoTests(autoTests){}
 	private:
 		QDocument *doc;
+        bool m_autoTests;
 		QDocumentCursor str2cur(const QString &s);
 	private slots:
 		void initTestCase();
