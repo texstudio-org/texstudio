@@ -8246,17 +8246,25 @@ void Texstudio::previewAvailable(const QString &imageFile, const PreviewSource &
 			document->setRenderHint(Poppler::Document::TextAntialiasing);
 			float c = 1.25;  // empirical correction factor because pdf images are smaller than dvipng images. TODO: is logicalDpiX correct?
 			pixmap = QPixmap::fromImage(page->renderToImage(logicalDpiX() * scale * c, logicalDpiY() * scale * c));
+            previewCache.insert(source.text,pixmap);
 			delete page;
 			delete document;
 		}
 	}
 #endif
 	if (!fromPDF) {
-		pixmap.load(imageFile);
-		if (scale < 0.99 || 1.01 < scale) {
-			// TODO: this does scale the pixmaps, but it would be better to render higher resolution images directly in the compilation process.
-			pixmap = pixmap.scaledToWidth(pixmap.width() * scale, Qt::SmoothTransformation);
-		}
+        if(imageFile.isEmpty()){
+            // cached
+            previewCache.find(source.text,&pixmap);
+            fromPDF=true;
+        }else{
+            pixmap.load(imageFile);
+            previewCache.insert(source.text,pixmap);
+            if (scale < 0.99 || 1.01 < scale) {
+                // TODO: this does scale the pixmaps, but it would be better to render higher resolution images directly in the compilation process.
+                pixmap = pixmap.scaledToWidth(pixmap.width() * scale, Qt::SmoothTransformation);
+            }
+        }
 	}
 #if QT_VERSION >= 0x050000
 	if (devPixelRatio != 1) {
@@ -8467,6 +8475,12 @@ void Texstudio::showPreview(const QString &text)
 	if (!edView) return;
 	int m_endingLine = edView->editor->document()->findLineContaining("\\begin{document}", 0, Qt::CaseSensitive);
 	if (m_endingLine < 0) return; // can't create header
+    // use cache if available
+    QPixmap pm;
+    if(previewCache.find(text,&pm)){
+        previewAvailable("",PreviewSource(text, -1, -1, true));
+        return;
+    }
 	QStringList header;
 	for (int l = 0; l < m_endingLine; l++)
 		header << edView->editor->document()->line(l).text();
