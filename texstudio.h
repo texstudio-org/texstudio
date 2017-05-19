@@ -675,6 +675,7 @@ protected:
 	void restoreBookmarks(LatexEditorView *edView);
 
 	bool completerPreview;
+    QPixmapCache previewCache;
 
 	bool recheckLabels;
 
