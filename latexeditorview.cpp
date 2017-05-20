@@ -2031,7 +2031,7 @@ void LatexEditorView::documentContentChanged(int linenr, int count)
                 if(tkNr+1 < tl.length()){
                     //check if next token is . or -
                     Token tk1 = tl.at(tkNr+1);
-                    if(tk1.type==Token::punctuation && tk1.start==(tk.start+tk.length)){
+                    if(tk1.type==Token::punctuation && tk1.start==(tk.start+tk.length) && !word.endsWith("\"")){
                         QString add=tk1.getText();
                         if(add=="."||add=="-"){
                             word+=add;
