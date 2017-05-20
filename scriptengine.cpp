@@ -549,7 +549,9 @@ void scriptengine::run()
 		engine->globalObject().setProperty("editorView", engine->newQObject(m_editorView));
 
 	if (m_editor) {
-		engine->globalObject().setProperty("editor", engine->newQObject(m_editor));
+		QScriptValue editorValue = engine->newQObject(m_editor);
+		editorValue.setProperty("cutBuffer", m_editor->cutBuffer, QScriptValue::ReadOnly);
+		engine->globalObject().setProperty("editor", editorValue);
 
 		cursorValue = engine->newQObject(&c);
 		engine->globalObject().setProperty("cursor", cursorValue);

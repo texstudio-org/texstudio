@@ -113,7 +113,10 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 			if (c.hasSelection() || realMatchLen > 1)
 				block = true;
 			if (block) editor->document()->beginMacro();
-			if (c.hasSelection()) c.removeSelectedText();
+			if (c.hasSelection()) {
+				editor->cutBuffer = c.selectedText();
+				c.removeSelectedText();
+			}
 			if (m.triggerRegex.matchedLength() > 1) {
 				c.movePosition(realMatchLen - 1, QDocumentCursor::PreviousCharacter, QDocumentCursor::KeepAnchor);
 				c.removeSelectedText();
@@ -124,6 +127,7 @@ bool DefaultInputBinding::runMacros(QKeyEvent *event, QEditor *editor)
 			REQUIRE_RET(view, true);
 			emit view->execMacro(m, MacroExecContext(Macro::ST_REGEX, r.capturedTexts()));
 			if (block) editor->document()->endMacro();
+			editor->cutBuffer.clear();
 			editor->emitCursorPositionChanged(); //prevent rogue parenthesis highlightations
 			/*			if (editor->languageDefinition())
 			editor->languageDefinition()->clearMatches(editor->document());
