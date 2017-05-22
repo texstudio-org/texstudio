@@ -1095,6 +1095,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						break;
 				}
 				if (iterator != lst.end() && !options.isEmpty()) {
+                    if(options.startsWith("#")){
+                        continue; // ignore type keys, like width#L
+                    }
 					QStringList l = options.split(",");
 					if (!l.contains(word)) {
 						Error elem;
