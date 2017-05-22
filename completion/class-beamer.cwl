@@ -312,8 +312,8 @@
 \frametitle<overlay specification>{title}
 \frametitle[short frame title]{title}
 \frametitle{title}#L7
-\framesubtitle<overlay specification>{frame subtitle text}
-\framesubtitle{frame subtitle text}
+\framesubtitle<overlay specification>{title}
+\framesubtitle{title}#L8
 \setbeamersize{options}
 \titlepage
 \maketitle
