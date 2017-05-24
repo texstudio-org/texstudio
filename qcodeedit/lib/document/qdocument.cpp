@@ -6916,7 +6916,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 #if QT_VERSION >= 0x050000
 					int pixelRatio = p->device()->devicePixelRatio();
 					image = new QImage(pixelRatio * m_lineCacheWidth, pixelRatio * ht, QImage::Format_RGB888);
-					pixmap->setDevicePixelRatio(pixelRatio);
 #else
 					image = new QImage(m_lineCacheWidth, ht, QImage::Format_RGB888);
 #endif
