@@ -2242,22 +2242,36 @@ void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se
 		return;
 	}
 	int oldPos, newPos;
+	LessThanRealLineNumber compare;
 	if (se->parent == newParent) {
-		oldPos = se->getRealParentRow();
-		newPos = oldPos;
 		//the construction somehow ensures that in this case
 		//se is already at the correct position regarding line numbers.
 		//but not necessarily regarding the column position
+		int oldPos = se->getRealParentRow();
+		newPos = oldPos;		
+		if ((oldPos == 0 || compare(newParent->children[oldPos - 1], se )) &&
+				(oldPos == newParent->children.size() - 1 || compare(se, newParent->children[oldPos + 1] ))
+			)
+			newPos = oldPos;
+		else {
+			newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
+			while (newPos > 0
+				 && newParent->children[newPos-1]->getRealLineNumber() == se->getRealLineNumber()
+				 && newParent->children[newPos-1]->columnNumber == se->columnNumber
+			)
+				newPos--; //upperbound always returns the position after se if it is in newParent->children
+		}
 	} else {
 		oldPos = -1;
-		newPos = newParent->children.size();
+		if (newParent->children.size() > 0 &&
+				newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber())
+			newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, compare) - newParent->children.begin();
+		else
+			newPos = newParent->children.size();
 	}
 
-	if (newParent->children.size() > 0 &&
-					newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber())
-		newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, LessThanRealLineNumber()) - newParent->children.begin();
 
-	//qDebug() << "auto insert at " << newPos;
+	//qDebug() << "auto insert " << se->title <<" at " << newPos;
 	if (se->parent) {
 		if (newPos != oldPos)
 			document->moveElementWithSignal(se, newParent, newPos);
