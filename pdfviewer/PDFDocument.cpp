@@ -303,7 +303,7 @@ void PDFMagnifier::reshape()
 
 	switch (globalConfig->magnifierShape) {
 	case 1: { //circular
-		int side = qMin(width(), height());
+	        int side = qMin(width(), height());
 		QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
 		setMask(maskedRegion);
 		break;
@@ -328,16 +328,38 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	drawFrame(&painter);
-	QRect tmpRect(event->rect().x()*overScale, event->rect().y()*overScale, event->rect().width()*overScale, event->rect().height()*overScale);
+	QRect tmpRect(event->rect().x()*overScale, event->rect().y()*overScale, (event->rect().width()-20)*overScale, event->rect().height()*overScale);
+	int side = qMin(width(), height()) ;
+	QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 
-	painter.drawPixmap(event->rect(), getConvertedImage(), tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
+	if(globalConfig->magnifierShape==1){
+	    // circular magnifier, add transparent shadow
+	    const int padding=10;
+
+	    QRadialGradient gradient(outline.center(), outline.width() / 2.0 , outline.center());
+	    QColor color(Qt::black);
+	    color.setAlpha(0);
+	    gradient.setColorAt(1.0, color);
+	    color.setAlpha(64);
+	    gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
+
+	    painter.fillRect(outline, gradient);
+	    qDebug()<<outline;
+	    outline.adjust(padding,padding,-padding,-padding);
+	    qDebug()<<outline<<event->rect();
+	    QRegion maskedRegion(outline, QRegion::Ellipse);
+	    painter.setClipRegion(maskedRegion);
+	}
+
+	painter.drawPixmap(outline, getConvertedImage(), tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
 
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
 		switch (globalConfig->magnifierShape) {
 		case 1: { //circular
-			int side = qMin(width(), height()) ;
-			painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
+		        //int side = qMin(width(), height()) ;
+		        //painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
+		        painter.drawEllipse(outline);
 			break;
 		}
 		default:
