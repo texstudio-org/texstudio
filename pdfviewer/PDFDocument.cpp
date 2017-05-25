@@ -328,7 +328,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	drawFrame(&painter);
-	QRect tmpRect(event->rect().x()*overScale, event->rect().y()*overScale, (event->rect().width()-20)*overScale, event->rect().height()*overScale);
+	QRect tmpRect(event->rect().x()*overScale, event->rect().y()*overScale, event->rect().width()*overScale, event->rect().height()*overScale);
 	int side = qMin(width(), height()) ;
 	QRect outline(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 
@@ -349,7 +349,51 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	    painter.setClipRegion(maskedRegion);
 	}
 
-	painter.drawPixmap(outline, getConvertedImage(), tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
+	// draw highlight if necessary
+	QPixmap px=getConvertedImage();
+	{
+	    PDFWidget *parent = qobject_cast<PDFWidget *>(parentWidget());
+	    if (parent != NULL) {
+		if(page == parent->highlightPage){
+		    if (!parent->highlightPath.isEmpty()) {
+			    QPainter p(&px);
+			    p.setRenderHint(QPainter::Antialiasing);
+			    p.translate(-imageLoc*overScale);
+			    p.scale(imageDpi/72.0, imageDpi/72.0);
+
+			    p.setPen(QColor(0, 0, 0, 0));
+			    p.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+			    p.setCompositionMode(QPainter::CompositionMode_Multiply);
+
+			    p.drawPath(parent->highlightPath);
+		    }
+		}
+	    }
+	}
+
+	painter.drawPixmap(event->rect(), px, tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
+
+	// draw highlight if necessary
+	/*{
+	    PDFWidget *parent = qobject_cast<PDFWidget *>(parentWidget());
+	    if (parent != NULL) {
+		if(page == parent->highlightPage){
+		    if (!parent->highlightPath.isEmpty()) {
+			    painter.save();
+			    painter.setRenderHint(QPainter::Antialiasing);
+			    painter.translate(-kMagFactor * overScale * pos() +QPoint(0,height()/2));
+			    painter.scale(kMagFactor * overScale, kMagFactor * overScale);
+			    painter.setPen(QColor(0, 0, 0, 0));
+			    painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+			    //QPainterPath path=highlightPath;
+			    //path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
+			    painter.setCompositionMode(QPainter::CompositionMode_Multiply);
+			    painter.drawPath(parent->highlightPath);
+			    painter.restore();
+		    }
+		}
+	    }
+	}*/
 
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
@@ -655,10 +699,10 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 			painter.drawPixmap(event->rect(), image, QRect(source.left() * overScale, source.top() * overScale, source.width() * overScale, source.height() * overScale));
 			if (pageNr == highlightPage && !highlightPath.isEmpty() ) {
 				painter.setRenderHint(QPainter::Antialiasing);
-                painter.setCompositionMode(QPainter::CompositionMode_Multiply);
+				painter.setCompositionMode(QPainter::CompositionMode_Multiply);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
-                painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+				painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 				painter.drawPath(highlightPath);
 			}
 			if (currentTool == kPresentation)
@@ -720,7 +764,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 						//QPainterPath path=highlightPath;
 						//path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
-                        painter.setCompositionMode(QPainter::CompositionMode_Multiply);
+						painter.setCompositionMode(QPainter::CompositionMode_Multiply);
 						painter.drawPath(highlightPath);
 						painter.restore();
 					}
@@ -1460,6 +1504,7 @@ void PDFWidget::setResolution(int res)
 void PDFWidget::setHighlightPath(const int page, const QPainterPath &path, const bool dontRemove)
 {
 	highlightRemover.stop();
+
 	highlightPath = path;
 	highlightPage = page;
 	if (path.isEmpty()) return;
@@ -1467,9 +1512,9 @@ void PDFWidget::setHighlightPath(const int page, const QPainterPath &path, const
 
 	PDFScrollArea *scrollArea = getScrollArea();
 	if (scrollArea)
-		scrollArea->ensureVisiblePageAbsolutePos(page, highlightPath.boundingRect().center());
-    if (globalConfig->highlightDuration > 0 && !dontRemove)
-		highlightRemover.start(globalConfig->highlightDuration);
+	    scrollArea->ensureVisiblePageAbsolutePos(page, highlightPath.boundingRect().center());
+	if (globalConfig->highlightDuration > 0 && !dontRemove)
+	    highlightRemover.start(globalConfig->highlightDuration);
 }
 
 double PDFWidget::totalScaleFactor() const
@@ -3387,7 +3432,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 					emit syncClick(pageIdx, lastSearchResult.selRect.center(), false);
 
 
-                pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p,true);
+				pdfWidget->setHighlightPath(lastSearchResult.pageIdx, p,true);
 				//scroll horizontally
 				//scrollArea->ensureVisiblePageAbsolutePos(lastSearchResult.pageIdx, lastSearchResult.selRect.topLeft());
 				pdfWidget->update();
