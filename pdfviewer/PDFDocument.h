@@ -247,6 +247,8 @@ protected:
 	void tapEvent(QTapGesture *gesture);
 
 private:
+    friend class PDFMagnifier;
+
 	void init();
 	void adjustSize();
 	void updateCursor();
