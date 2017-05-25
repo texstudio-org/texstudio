@@ -2199,31 +2199,38 @@ public:
 	}
 };
 
-StructureEntry *LatexDocument::moveToAppropiatePositionWithSignal(QVector<StructureEntry *> &parent_level, StructureEntry *se)
+void LatexDocument::moveToAppropiatePositionWithSignal(QVector<StructureEntry *> &parent_level, StructureEntry *se)
 {
-	REQUIRE_RET(se, 0);
+	REQUIRE(se);
 	StructureEntry *newParent = parent_level.value(se->level, 0);
 	if (!newParent) {
 		qDebug("structure update failed!");
-		return 0; // avoid crash
+		return;
 	}
+	int oldPos, newPos;
 	if (se->parent == newParent) {
-		updateParentVector(parent_level, se);
-		return 0;
+		oldPos = se->getRealParentRow();
+		newPos = oldPos;
+		//the construction somehow ensures that in this case
+		//se is already at the correct position regarding line numbers.
+		//but not necessarily regarding the column position
+	} else {
+		oldPos = -1;
+		newPos = newParent->children.size();
 	}
 
-	int newPos = newParent->children.size();
 	if (newParent->children.size() > 0 &&
-	        newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber())
+					newParent->children.last()->getRealLineNumber() >= se->getRealLineNumber())
 		newPos = qUpperBound(newParent->children.begin(), newParent->children.end(), se, LessThanRealLineNumber()) - newParent->children.begin();
 
-
 	//qDebug() << "auto insert at " << newPos;
-	if (se->parent) moveElementWithSignal(se, newParent, newPos);
-	else insertElementWithSignal(newParent, newPos, se);
+	if (se->parent) {
+		if (newPos != oldPos)
+			moveElementWithSignal(se, newParent, newPos);
+	} else insertElementWithSignal(newParent, newPos, se);
 
 	updateParentVector(parent_level, se);
-	return newParent;
+	return;
 }
 
 /*!

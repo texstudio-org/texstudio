@@ -230,7 +230,7 @@ private:
 	void moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos);
 
 	void updateParentVector(QVector<StructureEntry *> &parent_level, StructureEntry *se);
-	StructureEntry *moveToAppropiatePositionWithSignal(QVector<StructureEntry *> &parent_level, StructureEntry *se);
+	void moveToAppropiatePositionWithSignal(QVector<StructureEntry *> &parent_level, StructureEntry *se);
 
 	void addMagicComment(const QString &text, int lineNr, QMultiHash<QDocumentLineHandle *, StructureEntry *> &MapOfMagicComments, QMutableListIterator<StructureEntry *> &iter_magicComment);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
