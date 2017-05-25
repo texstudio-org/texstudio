@@ -344,9 +344,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	    gradient.setColorAt(1.0 - padding * 2.0 / (outline.width()), color);
 
 	    painter.fillRect(outline, gradient);
-	    qDebug()<<outline;
 	    outline.adjust(padding,padding,-padding,-padding);
-	    qDebug()<<outline<<event->rect();
 	    QRegion maskedRegion(outline, QRegion::Ellipse);
 	    painter.setClipRegion(maskedRegion);
 	}
