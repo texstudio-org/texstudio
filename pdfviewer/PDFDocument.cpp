@@ -350,39 +350,19 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 	}
 
 	// draw highlight if necessary
-	QPixmap px=getConvertedImage();
-	{
-	    PDFWidget *parent = qobject_cast<PDFWidget *>(parentWidget());
-	    if (parent != NULL) {
-		if(page == parent->highlightPage){
-		    if (!parent->highlightPath.isEmpty()) {
-			    QPainter p(&px);
-			    p.setRenderHint(QPainter::Antialiasing);
-			    p.translate(-imageLoc*overScale);
-			    p.scale(imageDpi/72.0, imageDpi/72.0);
 
-			    p.setPen(QColor(0, 0, 0, 0));
-			    p.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
-			    p.setCompositionMode(QPainter::CompositionMode_Multiply);
-
-			    p.drawPath(parent->highlightPath);
-		    }
-		}
-	    }
-	}
-
-	painter.drawPixmap(event->rect(), px, tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
+	painter.drawPixmap(event->rect(), getConvertedImage(), tmpRect.translated(kMagFactor * overScale * pos() + mouseTranslate * overScale));
 
 	// draw highlight if necessary
-	/*{
+	{
 	    PDFWidget *parent = qobject_cast<PDFWidget *>(parentWidget());
 	    if (parent != NULL) {
 		if(page == parent->highlightPage){
 		    if (!parent->highlightPath.isEmpty()) {
 			    painter.save();
 			    painter.setRenderHint(QPainter::Antialiasing);
-			    painter.translate(-kMagFactor * overScale * pos() +QPoint(0,height()/2));
-			    painter.scale(kMagFactor * overScale, kMagFactor * overScale);
+			    painter.translate(-kMagFactor * overScale * pos()- mouseTranslate * overScale -imageLoc*overScale);
+			    painter.scale(imageDpi/72.0, imageDpi/72.0);
 			    painter.setPen(QColor(0, 0, 0, 0));
 			    painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 			    //QPainterPath path=highlightPath;
@@ -393,7 +373,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 		    }
 		}
 	    }
-	}*/
+	}
 
 	if (globalConfig->magnifierBorder) {
 		painter.setPen(QPalette().mid().color());
