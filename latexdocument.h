@@ -70,6 +70,8 @@ public:
 	QList<Macro> localMacros;
 
 	friend class SyntaxCheckTest;
+	friend class LatexStructureMerger;
+	friend class LatexStructureMergerMerge;
 
 private:
 	static QStringList someItems(const QMultiHash<QDocumentLineHandle *, ReferencePair> &list);
@@ -222,15 +224,12 @@ private:
 	void setContextForLines(StructureEntry *se, int startLine, int endLine, StructureEntry::Context context, bool state);
 
 	void findStructureEntryBefore(QMutableListIterator<StructureEntry *> &iter, QMultiHash<QDocumentLineHandle *, StructureEntry *> &MapOfElemnts, int linenr, int count);
-	void mergeStructure(StructureEntry *se, QVector<StructureEntry *> &parent_level, QList<StructureEntry *> &flatStructure, const int linenr, const int count);
 
+	void updateElementWithSignal(StructureEntry *se){ emit updateElement(se); }
 	void removeElementWithSignal(StructureEntry *se);
 	void addElementWithSignal(StructureEntry *parent, StructureEntry *se);
 	void insertElementWithSignal(StructureEntry *parent, int pos, StructureEntry *se);
 	void moveElementWithSignal(StructureEntry *se, StructureEntry *parent, int pos);
-
-	void updateParentVector(QVector<StructureEntry *> &parent_level, StructureEntry *se);
-	void moveToAppropiatePositionWithSignal(QVector<StructureEntry *> &parent_level, StructureEntry *se);
 
 	void addMagicComment(const QString &text, int lineNr, QMultiHash<QDocumentLineHandle *, StructureEntry *> &MapOfMagicComments, QMutableListIterator<StructureEntry *> &iter_magicComment);
 	void parseMagicComment(const QString &name, const QString &val, StructureEntry *se);
