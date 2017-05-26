@@ -26,14 +26,9 @@ QT_TRANSLATE_NOOP("ConfigManager", "Math Font St&yles"),
 QT_TRANSLATE_NOOP("ConfigManager", "Math Stacking symbols"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math &Accents"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Math S&paces"), 
-<<<<<<< local
 QT_TRANSLATE_NOOP("ConfigManager", "AMS packages"), 
 QT_TRANSLATE_NOOP("ConfigManager", "Input/Include &Files"),
 QT_TRANSLATE_NOOP("ConfigManager", "\\begin{document}"), 
-=======
-QT_TRANSLATE_NOOP("ConfigManager", "AMS packages"), 
-QT_TRANSLATE_NOOP("ConfigManager", "\\begin{document}"), 
->>>>>>> other
 QT_TRANSLATE_NOOP("ConfigManager", "part"), 
 QT_TRANSLATE_NOOP("ConfigManager", "chapter"), 
 QT_TRANSLATE_NOOP("ConfigManager", "section"), 
