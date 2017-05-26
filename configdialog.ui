@@ -88,7 +88,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>12</number>
+      <number>14</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -3579,7 +3579,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset theme="edit-undo"/>
+                 <iconset theme="edit-undo">
+                  <normaloff>.</normaloff>.</iconset>
                 </property>
                </widget>
               </item>
@@ -3606,7 +3607,8 @@ them here.</string>
                  <string/>
                 </property>
                 <property name="icon">
-                 <iconset theme="edit-undo"/>
+                 <iconset theme="edit-undo">
+                  <normaloff>.</normaloff>.</iconset>
                 </property>
                </widget>
               </item>
@@ -3659,8 +3661,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>414</width>
-            <height>255</height>
+            <width>1076</width>
+            <height>803</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3921,8 +3923,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>593</width>
-            <height>425</height>
+            <width>1076</width>
+            <height>803</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4048,6 +4050,11 @@ them here.</string>
                 <item>
                  <property name="text">
                   <string>Circle</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Circle without shadow</string>
                  </property>
                 </item>
                </widget>
