@@ -2689,7 +2689,6 @@ bool LatexDocument::updateCompletionFiles(bool forceUpdate, bool forceLabelUpdat
 			bool update = !latexParser.possibleCommands[elem].contains(cmd);
 			if (update) {
 				latexParser.possibleCommands[elem] << cmd;
-				qDebug() <<  "level addition" << i << " " << ltxCommands.possibleCommands[elem] << " !=  " << latexParser.possibleCommands[elem];
 				//only update QNFA for added commands. When the default commands are not in ltxCommands.possibleCommands[elem], ltxCommands.possibleCommands[elem] and latexParser.possibleCommands[elem] will always differ and regenerate the QNFA needlessly after every key press
 				needQNFAupdate = true;
 			}
