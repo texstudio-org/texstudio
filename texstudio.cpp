@@ -6822,6 +6822,8 @@ bool Texstudio::executeTests(const QStringList &args)
 		configManager.debugLastFileModification = QFileInfo(QCoreApplication::applicationFilePath()).lastModified();
 	}
     return testResult; // pass
+#else
+	return false;  // trying to execute tests, but tests are not available.
 #endif
 }
 
