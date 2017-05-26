@@ -302,6 +302,7 @@ void PDFMagnifier::reshape()
 	if (!globalConfig || globalConfig->magnifierShape == oldshape) return;
 
 	switch (globalConfig->magnifierShape) {
+	case 2: ;
 	case 1: { //circular
 	        int side = qMin(width(), height());
 		QRegion maskedRegion(width() / 2 - side / 2, height() / 2 - side / 2, side, side, QRegion::Ellipse);
@@ -382,6 +383,11 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 		        //int side = qMin(width(), height()) ;
 		        //painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 		        painter.drawEllipse(outline);
+			break;
+		}
+		case 2: { //circular without shadow
+		        int side = qMin(width(), height()) ;
+			painter.drawEllipse(width() / 2 - side / 2 + 1, height() / 2 - side / 2 + 1, side - 2, side - 2);
 			break;
 		}
 		default:
