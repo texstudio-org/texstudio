@@ -288,7 +288,7 @@ void PDFMagnifier::setPage(int pageNr, qreal scale, const QRect &visibleRect)
 				imageLoc = loc;
 				imageSize = size;
 
-				mouseTranslate = rect().center() - imageLoc - (visibleRect.topLeft() /*- offset*/) * kMagFactor;
+				mouseTranslate = rect().center() - imageLoc  - (visibleRect.topLeft() /*- offset*/) * kMagFactor;
 
 			}
 		}
@@ -362,7 +362,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 		    if (!parent->highlightPath.isEmpty()) {
 			    painter.save();
 			    painter.setRenderHint(QPainter::Antialiasing);
-			    painter.translate(-kMagFactor * overScale * pos()- mouseTranslate * overScale -imageLoc*overScale);
+			    painter.translate(-kMagFactor  * pos()- mouseTranslate -imageLoc );
 			    painter.scale(imageDpi/72.0, imageDpi/72.0);
 			    painter.setPen(QColor(0, 0, 0, 0));
 			    painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
