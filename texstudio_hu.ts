@@ -619,7 +619,9 @@ Please change your configuration and define command lists only at Options -&gt; 
         <oldsource>The command %1 is expected to be atomic. However, it's currentlydefined as a command chain containing %2 commands. This is beyond the specification and may lead to surpising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"/>
+        <translation>A(z) %1 parancs atomi kellene legyen. Viszont jelenleg egy %2 parancsból álló láncként van megadva. Ez nincs a specifikációban, és meglepő mellékhatásai lehetnek.
+
+Módosítsa a beállításait és csak a Beállítások -&gt; Fordítás lapon definiálja a parancslistákat, ne a Beállítás -&gt; Parancsok alatt.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1013"/>
@@ -1789,12 +1791,12 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="1984"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Csak akkor van hatása, ha a dokumentum szélességet sortörés korlátozza.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1987"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Dokumentum középre helyezése a szerkesztőben</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2365"/>
@@ -1915,7 +1917,7 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2598"/>
         <source>Try to automatically choose best display options</source>
-        <translation>Automatikusan megpróbálja a legjobb megjelenítési opciót választani</translation>
+        <translation>Automatikusan megpróbálja a legjobb megjelenítési beállításokat választani</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2616"/>
@@ -1940,12 +1942,12 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2642"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation>Ha a rederelt sorok tárolója be van üzemelve, azokat nem kell újrarenderelni. Ez sebességnövekedést eredményez (különösen Mac-en), nagyobb memóriahasználat árán.</translation>
+        <translation>Ha a renderelt sorok gyorsítótára be van kapcsolva, akkor azokat nem kell újrarenderelni. Ez sebességnövekedést eredményez (különösen Macen), nagyobb memóriahasználat árán.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2645"/>
         <source>Disable cache of rendered lines</source>
-        <translation>A rederelt sorok tárolójának kiiktatása</translation>
+        <translation>A renderelt sorok gyorsítótárának kikapcsolása</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2652"/>
@@ -2053,17 +2055,17 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2937"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
-        <translation>A tab bar mérete a kiegészítő alján vagy tetején</translation>
+        <translation>A lapsor mérete a kiegészítő alján vagy tetején</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2940"/>
         <source>Tab Bar Size</source>
-        <translation>A tab bar mérete</translation>
+        <translation>A lapsor mérete</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2950"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
-        <translation>A parancsállító tabok mérete a kiegészítő alján vagy tetején</translation>
+        <translation>A parancskészlet fülek mérete a kiegészítő alján vagy tetején</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2984"/>
@@ -2300,7 +2302,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="configdialog.ui" line="3535"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
-        <translation>A LanguageTool indítására használt Java program.</translation>
+        <translation>A LanguageTool indítására használt Java program, ha az nem fut.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3441"/>
@@ -2308,7 +2310,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
         <location filename="configdialog.ui" line="3461"/>
         <location filename="configdialog.ui" line="3491"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
-        <translation>Vesszővel elválasztott LanguageTool szabályok, melyek különleges formátumban ki leszenek emelve.</translation>
+        <translation>Vesszővel elválasztott LanguageTool szabályok, melyek különleges formátumban lesznek kiemelve.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3481"/>
@@ -10074,7 +10076,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="1253"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>LanguageTool ellenőrzése</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1254"/>
@@ -10141,7 +10143,7 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="1426"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"/>
+        <translation>A soron belüli nyelvi ellenőrzést kikapcsolta a felhasználó!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1481"/>
@@ -10958,7 +10960,7 @@ Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
     <message>
         <location filename="texstudio.cpp" line="10699"/>
         <source>LT Report</source>
-        <translation type="unfinished"/>
+        <translation>LT jelentés</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10726"/>
@@ -11027,7 +11029,7 @@ Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
     <message>
         <location filename="texstudio.cpp" line="10756"/>
         <source>LT current status: </source>
-        <translation type="unfinished"/>
+        <translation>LT jelenlegi állapota:</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10759"/>
@@ -11048,12 +11050,13 @@ Biztosan futtani akarja a TeXstudio-t? Adatok veszhetnek el.</translation>
         <location filename="texstudio.cpp" line="10771"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"/>
+        <translation>LT-URL: %1
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="11047"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"/>
+        <translation>Hiba az LT kommunikációban: %1</translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>
