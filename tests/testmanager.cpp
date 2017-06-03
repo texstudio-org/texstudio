@@ -20,6 +20,7 @@
 #include "tablemanipulation_t.h"
 #include "syntaxcheck_t.h"
 #include "updatechecker_t.h"
+#include "utilsui_t.h"
 #include "utilsversion_t.h"
 #include "help_t.h"
 #include "latexoutputfilter_t.h"
@@ -88,6 +89,7 @@ QString TestManager::execute(TestLevel level, LatexEditorView* edView, QCodeEdit
 		<< new TableManipulationTest(editor)
 		<< new SyntaxCheckTest(edView)
 		<< new UpdateCheckerTest(level==TL_ALL)
+		<< new UtilsUITest(level==TL_ALL)
         << new VersionTest(level==TL_ALL)
         << new HelpTest();
 	bool allPassed=true;

@@ -149,7 +149,8 @@ HEADERS += texstudio.h \
     encoding.h \
     tests/latexparser_t.h \
     tests/encoding_t.h \
-    latexstructure.h
+    latexstructure.h \
+    tests/utilsui_t.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \

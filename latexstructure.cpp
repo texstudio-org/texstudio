@@ -158,7 +158,7 @@ QVariant LatexDocumentsModel::data ( const QModelIndex &index, int role) const
 	static const QColor beyondEndColor(255, 170, 0);
 	static const QColor inAppendixColor(200, 230, 200);
 	static const QColor missingFileColor(Qt::red);
-	static const QColor activeItemColor(mediumLightColor(QPalette().color(QPalette::Highlight), 50));
+	static const QColor activeItemColor(mediumLightColor(QPalette().color(QPalette::Highlight), 75));
 
 	if (!index.isValid()) return QVariant();
 	StructureEntry *entry = (StructureEntry *) index.internalPointer();
