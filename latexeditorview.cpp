@@ -224,11 +224,15 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 
 void DefaultInputBinding::postKeyPressEvent(QKeyEvent *event, QEditor *editor)
 {
-	if (event->text() == ",") {
+    QString txt=event->text();
+    if(txt.length()!=1)
+        return;
+    QChar c=txt.at(0);
+    if ( c== ',' || c.isLetter()) {
 		LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
 		Q_ASSERT(view);
 		if (completerConfig && completerConfig->enabled)
-			view->mayNeedToOpenCompleter();
+            view->mayNeedToOpenCompleter(c!=',');
 	}
 }
 
@@ -1767,7 +1771,7 @@ void LatexEditorView::clearOverlays()
 	Therefore, typing a colon will trigger this function. It's checked in here
 	if the context is a citation.
  */
-void LatexEditorView::mayNeedToOpenCompleter()
+void LatexEditorView::mayNeedToOpenCompleter(bool fromSingleChar)
 {
 	QDocumentCursor c = editor->cursor();
 	QDocumentLineHandle *dlh = c.line().handle();
@@ -1777,12 +1781,17 @@ void LatexEditorView::mayNeedToOpenCompleter()
 	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
+        if(fromSingleChar && tk.length!=1){
+            return; // only open completer on first char
+        }
 		if (tk.type == Token::word && tk.subtype == Token::none && ts.size() > 1) {
 			// set brace type
 			ts.pop();
 			tk = ts.top();
 		}
-	}
+    }else{
+        return; // no context available
+    }
 
 	Token::TokenType type = tk.type;
 	if (tk.subtype != Token::none)
@@ -1790,9 +1799,12 @@ void LatexEditorView::mayNeedToOpenCompleter()
 
 	QList<Token::TokenType> lst;
 	lst << Token::package << Token::keyValArg << Token::keyVal_val << Token::keyVal_key << Token::bibItem << Token::labelRefList;
+    if(fromSingleChar){
+        lst << Token::labelRef;
+    }
 	if (lst.contains(type))
 		emit openCompleter();
-	if (ts.isEmpty())
+    if (ts.isEmpty() || fromSingleChar)
 		return;
 	ts.pop();
 	if (!ts.isEmpty()) { // check next level if 1. check fails (e.g. key vals are set to real value)
