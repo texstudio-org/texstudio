@@ -236,7 +236,7 @@ public slots:
 	Q_INVOKABLE void zoomOut();
 	Q_INVOKABLE void resetZoom();
 
-	void mayNeedToOpenCompleter();
+    void mayNeedToOpenCompleter(bool fromSingleChar=false);
 	void documentContentChanged(int linenr, int count);
 
 private slots:
