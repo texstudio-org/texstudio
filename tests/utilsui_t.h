@@ -27,8 +27,8 @@ private slots:
 		QTest::newRow("black") << rgb(0, 0, 0) << 150 << rgb(50, 50, 50);
 		QTest::newRow("white") << rgb(255, 255, 255) << 150 << rgb(170, 170, 170);
 
-		QTest::newRow("factor150") << rgbf(.2, .6, 1.) << 150 << rgb(34, 102, 213);
-		QTest::newRow("factor120") << rgbf(.2, .6, 1.) << 120 << rgb(42, 127, 170);
+		QTest::newRow("factor150") << rgbf(.2, .6, 1.) << 150 << rgb(34, 102, 170);
+		QTest::newRow("factor120") << rgbf(.2, .6, 1.) << 120 << rgb(42, 127, 213);
 		QTest::newRow("factor100") << rgbf(.2, .6, 1.) << 100 << rgb(51, 153, 255);
 		QTest::newRow("factor90") << rgbf(.2, .6, 1.) << 90 << rgb(79, 167, 255);
 		QTest::newRow("factor80") << rgbf(.2, .6, 1.) << 80 << rgb(115, 185, 255);
