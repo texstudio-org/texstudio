@@ -208,13 +208,13 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 	static const QRegExp rxComNoBrace("\\\\(newcommand|providecommand|DeclareRobustCommand)\\*?\\s*(\\\\\\w+)\\s*\\[?(\\d+)?\\]?(?:\\s*\\[([^\\]]+)\\])?");
 	static const QRegExp rxEnv("\\\\newenvironment\\s*\\{(\\w+)\\}\\s*\\[?(\\d+)?\\]?");
 	static const QRegExp rxInput("\\\\input\\s*\\{?([\\w._]+)");
-	static QRegExp rxRequire("\\\\RequirePackage\\s*\\{(\\S+)\\}");
+    static QRegExp rxRequire("\\\\(RequirePackage|RequirePackageWithOptions)\\s*\\{(\\S+)\\}");
 	rxRequire.setMinimal(true);
-	static const QRegExp rxRequireStart("\\\\RequirePackage\\s*\\{(.+)");
+    static const QRegExp rxRequireStart("\\\\(RequirePackage|RequirePackageWithOptions)\\s*\\{(.+)");
 	static const QRegExp rxDecMathSym("\\\\DeclareMathSymbol\\s*\\{\\\\(\\w+)\\}");
 	static const QRegExp rxNewLength("\\\\newlength\\s*\\{\\\\(\\w+)\\}");
 	static const QRegExp rxNewCounter("\\\\newcounter\\s*\\{(\\w+)\\}");
-	static const QRegExp rxLoadClass("\\\\LoadClass\\s*\\{(\\w+)\\}");
+    static const QRegExp rxLoadClass("\\\\(LoadClass|LoadClassWithOptions)\\s*\\{(\\w+)\\}");
 	QStringList results;
 	if (line.startsWith("\\endinput"))
 		return results;
@@ -343,7 +343,7 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 		return results;
 	}
 	if (rxRequire.indexIn(line) > -1) {
-		QString arg = rxRequire.cap(1);
+        QString arg = rxRequire.cap(2);
 		foreach (QString elem, arg.split(',')) {
 			QString package = elem.remove(' ');
 			if (!package.isEmpty())
@@ -352,7 +352,7 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 		return results;
 	}
 	if (rxRequireStart.indexIn(line) > -1) {
-		QString arg = rxRequireStart.cap(1);
+        QString arg = rxRequireStart.cap(2);
 		int requireEnd = arg.indexOf('}');
 		if (requireEnd >= 0) {
 			arg = arg.left(requireEnd);
@@ -366,7 +366,7 @@ QStringList LatexStyleParser::parseLine(const QString &line, bool &inRequirePack
 		}
 	}
 	if (rxLoadClass.indexIn(line) > -1) {
-		QString arg = rxLoadClass.cap(1);
+        QString arg = rxLoadClass.cap(2);
 		if (!arg.isEmpty()) {
 			if (mPackageAliases.contains(arg))
 				foreach (QString elem, mPackageAliases.values(arg)) {
