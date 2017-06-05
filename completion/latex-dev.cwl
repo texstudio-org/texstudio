@@ -45,8 +45,9 @@
 \LastDeclaredEncoding#*
 \LoadClass[optionlist]{class}#*
 \LoadClass[optionlist]{class}[release]#*
-\LoadClass{class}#*
+\LoadClass{class}#u*
 \LoadClass{class}[release]#*
+\LoadClassWithOptions{class}#u*
 \NeedsTeXFormat{format}#*
 \NeedsTeXFormat{format}[release]#*
 \OptionNotUsed#*
@@ -69,6 +70,7 @@
 \RequirePackage[optionlist]{package}[release]#*
 \RequirePackage{package}#u
 \RequirePackage{package}[release]#*
+\RequirePackageWithOptions{package}#u*
 # counter, lengths and dimens
 \setcounter{counter}{value}#*
 \setlanguage{language}#*
