@@ -3507,12 +3507,12 @@ options again to only view the most common settings.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="136"/>
         <source>Blackboard Bold - \mathbb{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Έντονα χοντρά - \mathbb{} (amssymb)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="137"/>
         <source>Fraktur - \mathfrak{} (amssymb)</source>
-        <translation type="unfinished"/>
+        <translation>Fraktur - \mathfrak{} (amssymb)</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="138"/>
@@ -4439,7 +4439,7 @@ The wizard does not support command </source>
         <location filename="texstudio.cpp" line="7959"/>
         <location filename="texstudio.cpp" line="7966"/>
         <source>Go to Definition</source>
-        <translation type="unfinished"/>
+        <translation>Πήγαινε στον Ορισμό</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="496"/>
@@ -10932,7 +10932,8 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
         <location filename="texstudio.cpp" line="10771"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"/>
+        <translation>LT-URL: %1
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="11047"/>
@@ -11895,7 +11896,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="804"/>
         <source>Fatal error : </source>
-        <translation type="unfinished"/>
+        <translation>Κρίσιμο σφάλμα:</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="836"/>
@@ -12020,7 +12021,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="templateselector.ui" line="238"/>
         <source>Target folder not empty.</source>
-        <translation type="unfinished"/>
+        <translation>Ο φάκελος προορισμού δεν είναι κενός.</translation>
     </message>
 </context>
 </TS>
