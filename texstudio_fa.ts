@@ -3775,7 +3775,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="238"/>
         <source>Unix/Linux</source>
-        <translation type="unfinished"/>
+        <translation>یونکس/لینوکس</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="243"/>
@@ -5947,7 +5947,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="722"/>
         <source>Line endings</source>
-        <translation type="unfinished"/>
+        <translation>انتهای خطوط</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="729"/>
@@ -5962,7 +5962,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="731"/>
         <source>Unix/Linux</source>
-        <translation type="unfinished"/>
+        <translation>یونکس/لینوکس</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="732"/>
@@ -6189,17 +6189,17 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4578"/>
         <source>Move cursor to document end</source>
-        <translation type="unfinished"/>
+        <translation>اشاره گر را به انتهای سند ببر</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4580"/>
         <source>Move cursor one page up</source>
-        <translation type="unfinished"/>
+        <translation>اشاره گر را یک صفحه بالا ببر</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4581"/>
         <source>Move cursor one page down</source>
-        <translation type="unfinished"/>
+        <translation>اشاره گر را یک صفحه پایین ببر</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4585"/>
@@ -6516,7 +6516,7 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="additionaltranslations.cpp" line="168"/>
         <source>keyword</source>
-        <translation type="unfinished"/>
+        <translation>کلمه ی کلیدی</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="169"/>
@@ -8358,12 +8358,12 @@ failed.</source>
     <message>
         <location filename="texdocdialog.ui" line="113"/>
         <source>Description:</source>
-        <translation type="unfinished"/>
+        <translation>توضیح:</translation>
     </message>
     <message>
         <location filename="texdocdialog.cpp" line="93"/>
         <source>No Documentation Available</source>
-        <translation type="unfinished"/>
+        <translation>هیچ سندی موجود نیست</translation>
     </message>
 </context>
 <context>
@@ -8371,7 +8371,7 @@ failed.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="241"/>
         <source>Custom</source>
-        <translation type="unfinished"/>
+        <translation>سفارشی</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="242"/>
@@ -8396,7 +8396,7 @@ failed.</source>
     <message>
         <location filename="additionaltranslations.cpp" line="246"/>
         <source>Format</source>
-        <translation type="unfinished"/>
+        <translation>نوع</translation>
     </message>
     <message>
         <location filename="additionaltranslations.cpp" line="247"/>
@@ -9067,7 +9067,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="869"/>
         <source>Next mark</source>
-        <translation type="unfinished"/>
+        <translation>نشانه‌ی بعدی</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="872"/>
@@ -9077,7 +9077,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="873"/>
         <source>Go Forward</source>
-        <translation type="unfinished"/>
+        <translation> جلو برو</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="876"/>
