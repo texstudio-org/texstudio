@@ -453,14 +453,7 @@ void LatexDocumentsModel::resetHighlight()
 void LatexDocumentsModel::structureUpdated(LatexDocument *document, StructureEntry *highlight)
 {
 	Q_UNUSED(document);
-	//resetAll();
-	if (highlight) {
-		mHighlightIndex = index(highlight);
-	} else {
-		mHighlightIndex = QModelIndex();
-	}
-	emit layoutChanged();
-	//emit resetAll();
+    setHighlightedEntry(highlight);
 }
 void LatexDocumentsModel::structureLost(LatexDocument *document)
 {
