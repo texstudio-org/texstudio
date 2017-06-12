@@ -1158,7 +1158,7 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 		}
 
-		emit structureUpdated(this, newSection);
+        emit structureUpdated(this, newSection);
 	}
 	StructureEntry *se;
 	foreach (se, MapOfTodo.values())
