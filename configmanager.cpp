@@ -558,7 +558,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	Q_ASSERT(sizeof(int) == sizeof(LatexCompleterConfig::CaseSensitive));
 	registerOption("Editor/Completion Case Sensitive", (int *)&completerConfig->caseSensitive, 2);
 	registerOption("Editor/Completion Complete Common Prefix", &completerConfig->completeCommonPrefix, true, &pseudoDialog->checkBoxCompletePrefix);
-	registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, true, &pseudoDialog->checkBoxEOWCompletes);
+    registerOption("Editor/Completion EOW Completes", &completerConfig->eowCompletes, false, &pseudoDialog->checkBoxEOWCompletes);
 	registerOption("Editor/Completion Enable Tooltip Help", &completerConfig->tooltipHelp, true, &pseudoDialog->checkBoxToolTipHelp);
 	registerOption("Editor/Completion Enable Tooltip Preview", &completerConfig->tooltipPreview, true, &pseudoDialog->checkBoxToolTipCompletePreview);
 	registerOption("Editor/Completion Use Placeholders", &completerConfig->usePlaceholders, true, &pseudoDialog->checkBoxUsePlaceholders);
