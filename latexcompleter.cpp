@@ -434,6 +434,108 @@ public:
 		return handled;
 	}
 
+    virtual bool inputMethodEvent(QInputMethodEvent* event, QEditor *editor)
+    {
+        Q_ASSERT (completer && completer->listModel);
+        if (!completer || !completer->listModel) return false;
+        if(event->commitString().isEmpty()){
+                return false;
+        }
+
+        bool handled=false;
+        QString text=event->commitString();
+        if (text.length() != 1 || text == " ") {
+            resetBinding();
+            return false;
+        }
+
+        QChar written = text.at(0);
+        if (written == '\\') {
+            if (getCurWord() == "\\") {
+                resetBinding();
+                return false;
+            } else if (getCurWord() == "") {
+                maxWritten = curStart + 1;
+            } else {
+                if (LatexCompleter::config && LatexCompleter::config->eowCompletes) {
+                    insertCompletedWord();
+                }
+                QDocumentCursor edc = editor->cursor();
+                if (edc.hasSelection()) {
+                    edc.removeSelectedText();
+                    editor->setCursor(edc);
+                }
+                curStart = edc.columnNumber();
+                maxWritten = curStart + 1;
+            }
+            bool autoOverride = editor->isAutoOverrideText("\\");
+            if (!autoOverride) editor->cursor().insertText(written);
+            else {
+                QDocumentCursor c = editor->cursor();
+                editor->document()->beginMacro();
+                c.deleteChar();
+                c.insertText("\\");
+                editor->document()->endMacro();
+                autoOverridenText = "\\";
+            }
+            //editor->insertText(written); <- can't use that since it may break the completer by auto closing brackets
+            handled = true;
+        } else if (completer->acceptChar(written, editor->cursor().columnNumber() - curStart)) {
+            insertText(written);
+            handled = true;
+        } else if (getCommonEOW().contains(written) ) {
+            QString curWord = getCurWord();
+
+            if (curWord == "\\" || !LatexCompleter::config || !LatexCompleter::config->eowCompletes) {
+                resetBinding();
+                simpleRestoreAutoOverride(written);
+                return false;
+            }
+            const QList<CompletionWord> &words = completer->listModel->getWords();
+            QString newWord;
+            int eowchars = 10000;
+            foreach (const CodeSnippet &w, words) {
+                if (!w.word.startsWith(curWord)) continue;
+                if (w.word.length() == curWord.length()) {
+                    newWord = w.word;
+                    break;
+                }
+                int newoffset = w.lines.first().indexOf(written, curWord.length());
+                if (newoffset < 0) continue;
+                int neweowchars = 0;
+                for (int i = curWord.length(); i < newoffset; i++)
+                    if (getCommonEOW().contains(w.lines.first()[i]))
+                        neweowchars++;
+                if (neweowchars < eowchars) {
+                    newWord = w.word;
+                    eowchars = neweowchars;
+                    if (eowchars == 1) break;
+                }
+            }
+
+            if (!newWord.isEmpty() && newWord.length() != curWord.length()) {
+                QString insertion = newWord.mid(curWord.length(), newWord.indexOf(written, curWord.length()) - curWord.length() + 1); //choose text until written eow character
+                insertText(insertion);
+                //insertText(written);
+                handled = true;
+            }
+
+            if (!handled) {
+                insertCompletedWord();
+                if (newWord.isEmpty())
+                    simpleRestoreAutoOverride(written);
+                //insertText(written);
+                resetBinding();
+                return false;//oldBinding->keyPressEvent(event,editor); //call old input binding for long words (=> key replacements after completions, but the user can still write \")
+            }
+        }
+
+        completer->filterList(getCurWord(), showMostUsed);
+        if (!completer->list->currentIndex().isValid())
+            select(completer->list->model()->index(0, 0, QModelIndex()));
+        return handled;
+    }
+
 	void cursorPositionChanged(QEditor *edit)
 	{
 		if (edit != editor) return; //should never happen
