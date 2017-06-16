@@ -12,6 +12,7 @@
 #include "encoding.h"
 #include "codesnippet.h"
 #include "updatechecker.h"
+#include "utilsVersion.h"
 
 #include <QDomElement>
 
@@ -768,9 +769,18 @@ QSettings *ConfigManager::readSettings(bool reread)
 		persistentConfig = config;
 		setupDirectoryStructure();
 		moveCwls();
-
 	}
+
+	int hg_revision = Version::parseHgRevisionNumber(config->value("version/written_by_TXS_hg_revision").toString());
+
 	config->beginGroup("texmaker");
+
+	if (hg_revision < 6610)
+		// workaround for bug 2175: crash when loading some old config. Likely a Qt bug because restoreState() should simply
+		// return false for invalid input. Assuming that some change in the layout of the splitter is incompatible with
+		// a previous state. We don't know exactly what this caused and it's not worth digging into this. Therefore we just
+		// reset this option when loading any old config.
+		config->remove("centralVSplitterState");
 
 	if (config->contains("Files/Auto Detect Encoding Of Loaded Files")) { // import old setting
 		bool b = config->value("Files/Auto Detect Encoding Of Loaded Files").toBool();
@@ -778,6 +788,8 @@ QSettings *ConfigManager::readSettings(bool reread)
 		if (!config->contains("Files/AutoDetectEncodingFromLatex")) config->setValue("Files/AutoDetectEncodingFromLatex", b);
 		config->remove("Files/Auto Detect Encoding Of Loaded Files");
 	}
+
+
 
 	//----------managed properties--------------------
 	for (int i = 0; i < managedProperties.size(); i++)

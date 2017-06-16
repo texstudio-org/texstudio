@@ -35,6 +35,16 @@ bool Version::versionNumberIsValid(const QString &versionNumber)
 	return (parseVersionNumber(versionNumber).length() == 3);
 }
 
+
+/*!
+ * Return the revision number from a hg revision string, e.g. "1234:asassdasd" -> 1234.
+ * Returns 0 if the input string is not a vailid hg revision string.
+ */
+int Version::parseHgRevisionNumber(const QString &revision)
+{
+	return revision.split(':')[0].remove('+').toInt();
+}
+
 // compares two versions strings
 // Meaning of result: v1 [result] v2, e.g. v1 Older than v2
 Version::VersionCompareResult Version::compareStringVersion(const QString &v1, const QString &v2)
