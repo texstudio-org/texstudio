@@ -28,6 +28,7 @@ public:
 	static VersionCompareResult compareIntVersion(const QList<int> &v1, const QList<int> &v2);
 	static QList<int> parseVersionNumber(const QString &versionNumber);
 	static bool versionNumberIsValid(const QString &versionNumber);
+	static int parseHgRevisionNumber(const QString &revision);
 
 	Version() : revision(0) {}
 	Version(QString number, int rev = 0) : versionNumber(number), revision(rev) {}
