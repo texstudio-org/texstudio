@@ -343,7 +343,8 @@ void LatexDocument::patchStructureRemoval(QDocumentLineHandle *dlh)
 		}
 	}
 
-	emit structureUpdated(this, newSection);
+    //emit structureUpdated(this, newSection);
+    emit setHighlightedEntry(newSection);
 
 	if (bibTeXFilesNeedsUpdate)
 		emit updateBibTeXFiles();
@@ -1158,7 +1159,8 @@ bool LatexDocument::patchStructure(int linenr, int count, bool recheck)
 			}
 		}
 
-        emit structureUpdated(this, newSection);
+        //emit structureUpdated(this, newSection);
+        emit setHighlightedEntry(newSection);
 	}
 	StructureEntry *se;
 	foreach (se, MapOfTodo.values())
@@ -1640,6 +1642,7 @@ void LatexDocuments::addDocument(LatexDocument *document, bool hidden)
 	connect(document, SIGNAL(updateBibTeXFiles()), SLOT(bibTeXFilesNeedUpdate()));
 	connect(document, SIGNAL(structureLost(LatexDocument *)), model, SLOT(structureLost(LatexDocument *)));
 	connect(document, SIGNAL(structureUpdated(LatexDocument *, StructureEntry *)), model, SLOT(structureUpdated(LatexDocument *, StructureEntry *)));
+    connect(document, SIGNAL(ssetHighlightedEntry(StructureEntry *)), model, SLOT(setHighlightedEntry(StructureEntry *)));
 	connect(document, SIGNAL(toBeChanged()), model, SIGNAL(layoutAboutToBeChanged()));
 	connect(document, SIGNAL(removeElement(StructureEntry *, int)), model, SLOT(removeElement(StructureEntry *, int)));
 	connect(document, SIGNAL(removeElementFinished()), model, SLOT(removeElementFinished()));
