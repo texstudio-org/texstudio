@@ -260,6 +260,7 @@ public slots:
 signals:
 	void hasBeenIncluded(const LatexDocument &newMasterDocument);
 	void structureUpdated(LatexDocument *document, StructureEntry *highlight = 0);
+    void setHighlightedEntry(StructureEntry *highlight);
 	void structureLost(LatexDocument *document);
 	void removeElement(StructureEntry *se, int row);
 	void removeElementFinished();

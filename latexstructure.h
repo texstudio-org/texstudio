@@ -107,13 +107,15 @@ public:
 	static LatexDocument *indexToDocument(const QModelIndex &index );
 	static StructureEntry *labelForStructureEntry(const StructureEntry *entry);
 	QModelIndex highlightedEntry();
-	void setHighlightedEntry(StructureEntry *entry);
 
 	void resetAll();
 	void resetHighlight();
 	void setSingleDocMode(bool singleMode);
 	bool getSingleDocMode();
 	void moveDocs(int from, int to);
+
+public slots:
+    void setHighlightedEntry(StructureEntry *entry);
 
 private slots:
 	void structureUpdated(LatexDocument *document, StructureEntry *highlight = 0);
