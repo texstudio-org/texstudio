@@ -771,17 +771,16 @@ QSettings *ConfigManager::readSettings(bool reread)
 		moveCwls();
 	}
 
-	int hg_revision = Version::parseHgRevisionNumber(config->value("version/written_by_TXS_hg_revision").toString());
-
-	config->beginGroup("texmaker");
-
-	if (hg_revision < 6610)
-		// workaround for bug 2175: crash when loading some old config. Likely a Qt bug because restoreState() should simply
+	if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0) && (config->value("version/written_by_Qt_version").toInt()) < QT_VERSION_CHECK(5, 9, 0)) {
+		// workaround for bug 2175: crash when loading some old config that was created with Qt < 5.9 and now reading with Qt 5.9.
+		// Likely a Qt bug because restoreState() should simply.
 		// return false for invalid input. Assuming that some change in the layout of the splitter is incompatible with
 		// a previous state. We don't know exactly what this caused and it's not worth digging into this. Therefore we just
 		// reset this option when loading any old config.
-		config->remove("centralVSplitterState");
+		config->remove("texmaker/centralVSplitterState");
+	}
 
+	config->beginGroup("texmaker");
 	if (config->contains("Files/Auto Detect Encoding Of Loaded Files")) { // import old setting
 		bool b = config->value("Files/Auto Detect Encoding Of Loaded Files").toBool();
 		if (!config->contains("Files/AutoDetectEncodingFromChars")) config->setValue("Files/AutoDetectEncodingFromChars", b);
@@ -1148,11 +1147,14 @@ QSettings *ConfigManager::saveSettings(const QString &saveName)
 	// updated on every access
 	config->setValue("written_by_TXS_version", TXSVERSION);
 	config->setValue("written_by_TXS_hg_revision", TEXSTUDIO_HG_REVISION);
+	config->setValue("written_by_Qt_version", QT_VERSION);
 	// written just the very first time
 	if (!config->value("created_by_TXS_version").isValid())
 		config->setValue("created_by_TXS_version", TXSVERSION);
 	if (!config->value("created_by_TXS_hg_revision").isValid())
 		config->setValue("created_by_TXS_hg_revision", TEXSTUDIO_HG_REVISION);
+	if (!config->value("created_by_Qt_version").isValid())
+		config->setValue("created_by_Qt_version", QT_VERSION);
 	config->endGroup();
 
 	config->beginGroup("texmaker");
