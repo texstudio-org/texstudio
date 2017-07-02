@@ -252,6 +252,9 @@ SOURCES += main.cpp \
     tests/latexparser_t.cpp \
     tests/encoding_t.cpp \
     latexstructure.cpp
+win32: SOURCES += utilssystem_win.cpp
+else: SOURCES += utilssystem_unix.cpp
+
 RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
