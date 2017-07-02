@@ -96,8 +96,6 @@ HEADERS += texstudio.h \
     mostQtHeaders.h \
     tablemanipulation.h \
     syntaxcheck.h \
-    tests/latexcompleter_t.h \
-    tests/qdocumentline_t.h \
     userquickdialog.h \
     latexstyleparser.h \
     scriptobject.h \
@@ -113,7 +111,6 @@ HEADERS += texstudio.h \
     updatechecker.h \
     usermacro.h \
     dblclickmenubar.h \
-    tests/updatechecker_t.h \
     mathassistant.h \
     cursorhistory.h \
     maketemplatedialog.h \
@@ -129,28 +126,21 @@ HEADERS += texstudio.h \
     utilsVersion.h \
     latexpackages.h \
     cursorposition.h \
-    tests/help_t.h \
     titledpanel.h \
     latexlogwidget.h \
     kpathseaParser.h \
-    tests/latexoutputfilter_t.h \
     sessionlist.h \
     pdfsplittool.h \
     searchresultwidget.h \
     searchquery.h \
     bidiextender.h \
-    tests/utilsversion_t.h \
     unixutils.h \
     editors.h \
     libqmarkedscrollbar/src/markedscrollbar.h \
     flowlayout.h \
-    tests/latexstyleparser_t.h \
     minisplitter.h \
     encoding.h \
-    tests/latexparser_t.h \
-    tests/encoding_t.h \
-    latexstructure.h \
-    tests/utilsui_t.h
+    latexstructure.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -203,8 +193,6 @@ SOURCES += main.cpp \
     additionaltranslations.cpp \
     tablemanipulation.cpp \
     syntaxcheck.cpp \
-    tests/latexcompleter_t.cpp \
-    tests/qdocumentline_t.cpp \
     userquickdialog.cpp \
     latexstyleparser.cpp \
     scriptobject.cpp \
@@ -236,11 +224,9 @@ SOURCES += main.cpp \
     titledpanel.cpp \
     latexlogwidget.cpp \
     kpathseaParser.cpp \
-    tests/latexoutputfilter_t.cpp \
     sessionlist.cpp \
     pdfsplittool.cpp \
     searchresultwidget.cpp \
-    tests/smallUsefulFunctions_t.cpp \
     searchquery.cpp \
     bidiextender.cpp \
     unixutils.cpp \
@@ -249,8 +235,6 @@ SOURCES += main.cpp \
     flowlayout.cpp \
     minisplitter.cpp \
     encoding.cpp \
-    tests/latexparser_t.cpp \
-    tests/encoding_t.cpp \
     latexstructure.cpp
 win32: SOURCES += utilssystem_win.cpp
 else: SOURCES += utilssystem_unix.cpp
@@ -534,33 +518,49 @@ CONFIG(debug, debug|release) {
     SOURCES += tests/testmanager.cpp \
         tests/testutil.cpp \
         tests/qcetestutil.cpp \
-        tests/codesnippet_t.cpp \
-        tests/scriptengine_t.cpp \
         tests/qdocumentcursor_t.cpp \
+        tests/qdocumentline_t.cpp \
         tests/qdocumentsearch_t.cpp \
         tests/qsearchreplacepanel_t.cpp \
         tests/qeditor_t.cpp \
+        tests/codesnippet_t.cpp \
+        tests/encoding_t.cpp \
+        tests/latexcompleter_t.cpp \
         tests/latexeditorview_t.cpp \
         tests/latexeditorview_bm.cpp \
+        tests/latexoutputfilter_t.cpp \
+        tests/latexparser_t.cpp \
         tests/tablemanipulation_t.cpp \
+        tests/scriptengine_t.cpp \
+        tests/smallUsefulFunctions_t.cpp \
         tests/structureview_t.cpp \
         tests/syntaxcheck_t.cpp
     HEADERS += tests/testmanager.h \
         tests/testutil.h \
         tests/qcetestutil.h \
-        tests/smallUsefulFunctions_t.h \
-	tests/buildmanager_t.h \
-        tests/codesnippet_t.h \
-        tests/scriptengine_t.h \
         tests/qdocumentcursor_t.h \
+        tests/qdocumentline_t.h \
         tests/qdocumentsearch_t.h \
         tests/qsearchreplacepanel_t.h \
         tests/qeditor_t.h \
+        tests/buildmanager_t.h \
+        tests/codesnippet_t.h \
+        tests/encoding_t.h \
+        tests/help_t.h \
+        tests/latexcompleter_t.h \
         tests/latexeditorview_t.h \
         tests/latexeditorview_bm.h \
-        tests/tablemanipulation_t.h \
+        tests/latexoutputfilter_t.h \
+        tests/latexparser_t.h \
+        tests/latexstyleparser_t.h \
+        tests/scriptengine_t.h \
+        tests/smallUsefulFunctions_t.h \
         tests/structureview_t.h \
-        tests/syntaxcheck_t.h
+        tests/syntaxcheck_t.h \
+        tests/tablemanipulation_t.h \
+        tests/updatechecker_t.h \
+        tests/utilsui_t.h \
+        tests/utilsversion_t.h
     !greaterThan(QT_MAJOR_VERSION, 4) {
         win32:LIBS += -lQtTestd4
     } else {
