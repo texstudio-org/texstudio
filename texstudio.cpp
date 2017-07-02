@@ -6102,17 +6102,9 @@ void Texstudio::openTerminal()
 		workdir = currentEditor()->fileInfo().absolutePath();
 	else
 		workdir = getUserDocumentFolder();
-	QString command = getTerminalCommand();
-	if (command.isEmpty()) {
-		txsCritical("Unable to detect a terminal application.");
-		return;
-	}
-	QStringList args;
-	args = command.split(' ');
-	command = args.takeFirst();
-	QProcess proc;
+
+	startTerminalEmulator(workdir);
 	// maybe some visual feedback here ?
-	proc.startDetached(command, args, workdir);
 }
 
 void Texstudio::commandFromAction()
