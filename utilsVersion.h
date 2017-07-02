@@ -2,7 +2,7 @@
 #define UTILSVERSION_H
 
 #define TEXSTUDIO "TeXstudio"
-#define TXSVERSION "2.12.5"
+#define TXSVERSION "2.12.6 Release Candidate"
 
 #define TXSVERSION_NUMERIC 0x021205
 
