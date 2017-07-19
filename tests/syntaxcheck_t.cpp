@@ -91,6 +91,15 @@ void SyntaxCheckTest::checktabular_data(){
 			<< 1 << 26
 			<< "cols in tabular missing";
 
+    QTest::newRow("tabu")
+            << "\\usepackage{tabu}\\begin{tabu}{lll}\n\\multicolumn{2}{c}{Hallo}\\\\c&d&e&f\\\\\n\\end{tabu}\n"
+            << 1 << 26
+            << "cols in tabular missing";
+    QTest::newRow("tabu2")
+            << "\\usepackage{tabu}\\begin{tabu}to \\linewidth {lll}\n\\multicolumn{2}{c}{Hallo}\\\\c&d&e&f\\\\\n\\end{tabu}\n"
+            << 1 << 26
+            << "cols in tabular missing";
+
     if (globalExecuteAllTests) {
          QTest::newRow("no error 3 cols")
                    << "\\begin{tabular}{lll}\n&&\\\\c&d&e&f\\\\\n\\end{tabular}\n"
