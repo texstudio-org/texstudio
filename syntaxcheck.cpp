@@ -812,7 +812,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 						Token elem = tl.at(k);
                         if (elem.level < tk.level-1)
 							break;
-                        if (elem.level > tk.level-1)
+                        if (elem.level > tk.level)
 							continue;
 						if (elem.type == Token::braces) { // take the first mandatory argument at the correct level -> TODO: put colDef also for tabu correctly in lexer
 							option = line.mid(elem.start + 1, elem.length - 2); // strip {}
