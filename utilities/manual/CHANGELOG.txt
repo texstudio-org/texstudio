@@ -1,11 +1,11 @@
-TeXstudio 2.12.6-RC
--------------------
+TeXstudio 2.12.6
+----------------
 - use Breeze window theme on KDE Plasma 5 (thanks to Alexander Wilms)
+- support single-finger panning gesture on most config dialog components
+- support single-finger panning touch gesture on log viewer
 - pdf viewer scroll tool: support single-finger panning gesture
 - center width-constrained documents in the editor (optional)
 - add document tab context menu entries "Close" and "Close All Other Documents"
-- support single-finger panning gesture on most config dialog components
-- support single-finger panning touch gesture on log viewer
 - improved layout of config build page
 - add system check for language tool
 - change search defaults to case-insensitive (feature-requests#1254)
@@ -25,7 +25,7 @@ TeXstudio 2.12.6-RC
 - capslock does not close completer any more
 - alternative approach for determine directories from complete texts
 - use cache for previews
-- auto open completer when starting to type in references,packages etc.
+- auto open completer when starting to type in references, packages etc.
 - scripting: editor.cutBuffer
 - subframetitle in structure view
 - enable inputMethod (e.g. ^) in completer
@@ -43,6 +43,7 @@ TeXstudio 2.12.6-RC
 - fix crash when restoring centralVSplitterState (bug 2175)
 - fix highlighting of current entry in structure
 - fix Open Terminal not working on windows QTBUG-57687 (bug 2178)
+- fix column detection for tabu/longtabu
 
 
 TeXstudio 2.12.4
@@ -86,6 +87,7 @@ TeXstudio 2.12.4
 - update some cwls
 - add turkish translation
 
+
 TeXstudio 2.12.2
 ----------------
 - PDF shortcuts are now changable
@@ -97,6 +99,7 @@ TeXstudio 2.12.2
 - fix: don't try to call bibtex/biber if there are no bibtex-files (bug 2025)
 - fix: detection of programs (bug 2037)
 - fix: avoid problems if check latex is called without open documents
+
 
 TeXstudio 2.12.0
 ----------------
