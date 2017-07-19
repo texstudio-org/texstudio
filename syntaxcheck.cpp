@@ -810,9 +810,9 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 				if ((env == "tabu") || (env == "longtabu")) { // special treatment as the env is rather not latex standard
 					for (int k = i + 1; k < tl.length(); k++) {
 						Token elem = tl.at(k);
-                        if (elem.level < tk.level)
+                        if (elem.level < tk.level-1)
 							break;
-                        if (elem.level > tk.level)
+                        if (elem.level > tk.level-1)
 							continue;
 						if (elem.type == Token::braces) { // take the first mandatory argument at the correct level -> TODO: put colDef also for tabu correctly in lexer
 							option = line.mid(elem.start + 1, elem.length - 2); // strip {}
