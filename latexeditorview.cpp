@@ -2197,14 +2197,16 @@ void LatexEditorView::addSpellingActions(QMenu *menu, QString word, bool dedicat
 void LatexEditorView::spellRemoveMarkers(const QString &newIgnoredWord)
 {
 	REQUIRE(editor);
+	QDocument* doc = editor->document();
+	if (!doc) return;
 	//documentContentChanged(editor->cursor().lineNumber(),1);
-	for (int i = 0; i < editor->document()->lines(); i++) {
-		QList<QFormatRange> li = editor->document()->line(i).getOverlays(SpellerUtility::spellcheckErrorFormat);
-		QString curLineText = editor->document()->line(i).text();
+	for (int i = 0; i < doc->lines(); i++) {
+		QList<QFormatRange> li = doc->line(i).getOverlays(SpellerUtility::spellcheckErrorFormat);
+		QString curLineText = doc->line(i).text();
 		for (int j = 0; j < li.size(); j++)
 			if (latexToPlainWord(curLineText.mid(li[j].offset, li[j].length)) == newIgnoredWord) {
-				editor->document()->line(i).removeOverlay(li[j]);
-				editor->document()->line(i).setFlag(QDocumentLine::LayoutDirty, true);
+				doc->line(i).removeOverlay(li[j]);
+				doc->line(i).setFlag(QDocumentLine::LayoutDirty, true);
 			}
 	}
 	editor->viewport()->update();
