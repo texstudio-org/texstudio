@@ -1,0 +1,12 @@
+syntax: glob
+hg_revision.cpp
+texstudio.pro.user
+texstudio
+.ui
+.obj
+.moc
+Makefile
+*.o
+hg_revision.cpp
+qrc_*.cpp
+texstudio.pri
