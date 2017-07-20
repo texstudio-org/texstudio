@@ -617,7 +617,10 @@ Please change your configuration and define command lists only at Options -&gt; 
         <oldsource>The command %1 is expected to be atomic. However, it's currentlydefined as a command chain containing %2 commands. This is beyond the specification and may lead to surpising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Očekává se, že příkaz %1 bude malinký. Nicméně je nyní stanoven jako řetězec příkazů obsahující %2 příkazy.
+To není v jeho přesném vymezení a může vést k překvapivým vedlejším účinkům.
+
+Změňte, prosím, své nastavení a stanovte seznamy příkazů pouze ve Volby → Sestavení, ne ve Volby → Příkazy.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1013"/>
@@ -1786,12 +1789,12 @@ Protože Unicode není LaTeXem v základu podporován, musíte do svého dokumen
     <message>
         <location filename="configdialog.ui" line="1984"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Toto účinkuje, jen pokud je šířka dokumentu omezena měkkým nebo tvrdým zalamováním řádků.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1987"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Zarovnat dokument na střed v editoru</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2365"/>
@@ -8790,7 +8793,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="622"/>
         <source>Beamer Commands</source>
-        <translation type="unfinished"/>
+        <translation>Příkazy Beamer</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="749"/>
@@ -10085,7 +10088,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="1253"/>
         <source>Check LanguageTool</source>
-        <translation type="unfinished"/>
+        <translation>Prověřit jazykový nástroj</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1254"/>
@@ -10152,7 +10155,7 @@ se nepodařilo odstranit.</translation>
     <message>
         <location filename="texstudio.cpp" line="1426"/>
         <source>Inline grammar checking disabled by user!</source>
-        <translation type="unfinished"/>
+        <translation>Ověřování pravopisu při psaní zakázáno uživatelem!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1481"/>
@@ -10966,69 +10969,71 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
     <message>
         <location filename="texstudio.cpp" line="10699"/>
         <source>LT Report</source>
-        <translation type="unfinished"/>
+        <translation>Zpráva LT</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10726"/>
         <source>process failed to start
 </source>
-        <translation type="unfinished"/>
+        <translation>Proces se nepodařilo spustit</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10729"/>
         <source>process crashed
 </source>
-        <translation type="unfinished"/>
+        <translation>Proces spadl</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10739"/>
         <source>Real-time checking is enabled.
 </source>
-        <translation type="unfinished"/>
+        <translation>Ověřování ve skutečném čase je povoleno.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10741"/>
         <source>Real-time checking is disabled!!!
 </source>
-        <translation type="unfinished"/>
+        <translation>Ověřování ve skutečném čase je zakázáno!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10744"/>
         <source>Grammar checking is enabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Ověřování pravopisu je povoleno.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10746"/>
         <source>Grammar checking is disabled!!!
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Ověřování pravopisu je zakázáno!</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10749"/>
         <source>Tries to start automatically.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Pokouší se spustit automaticky.
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10751"/>
         <source>Autostart disabled.
 
 </source>
-        <translation type="unfinished"/>
+        <translation>Automatické spuštění zakázáno.
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10756"/>
         <source>LT current status: </source>
-        <translation type="unfinished"/>
+        <translation>Nynější stav LT: </translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10759"/>
         <source>working</source>
-        <translation type="unfinished"/>
+        <translation>Pracuje</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="10762"/>
@@ -11044,12 +11049,13 @@ Chcete nechat TeXstudio běžet? To může způsobit poškození dat.</translati
         <location filename="texstudio.cpp" line="10771"/>
         <source>LT-URL: %1
 </source>
-        <translation type="unfinished"/>
+        <translation>LT-URL: %1
+</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="11047"/>
         <source>Error when communicating with LT: %1</source>
-        <translation type="unfinished"/>
+        <translation>Chyba při spojení s LT: %1</translation>
     </message>
     <message>
         <location filename="utilsSystem.cpp" line="504"/>

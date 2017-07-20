@@ -44,7 +44,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="31"/>
         <source>TeXstudio uses TexTablet (MIT License, Copyright (c) 2012 Steven Lovegrove).</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio TexTablet (MIT Lisansı, Telif Hakkı (c) 2012 Steven Lovegrove) kullanmaktadır.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="32"/>
@@ -59,7 +59,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="34"/>
         <source>TeXstudio contains an image by Alexander Klink.</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio Alexander Klink&apos;e ait bir görüntü içermektedir. </translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="35"/>
@@ -176,30 +176,30 @@
         <location filename="bibtexdialog.cpp" line="19"/>
         <location filename="bibtexdialog.cpp" line="76"/>
         <source>Article in &amp;Journal</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Dergi Yayını</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="22"/>
         <location filename="bibtexdialog.cpp" line="269"/>
         <source>Article in Conference &amp;Proceedings</source>
-        <translation type="unfinished"/>
+        <translation>Konferans &amp;Kitabı Yayını</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="25"/>
         <location filename="bibtexdialog.cpp" line="165"/>
         <source>Article in a &amp;Collection</source>
-        <translation type="unfinished"/>
+        <translation>Derleme &amp;Yayını</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="28"/>
         <source>Chapter or &amp;Pages in a Book</source>
-        <translation type="unfinished"/>
+        <translation>Kitapta Bölüm veya &amp;Sayfalar</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="31"/>
         <location filename="bibtexdialog.cpp" line="251"/>
         <source>Conference Pr&amp;oceedings</source>
-        <translation type="unfinished"/>
+        <translation>K&amp;onferans Kitabı</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="36"/>
