@@ -3324,10 +3324,10 @@ void PDFDocument::clearHightlight(bool ){
 void PDFDocument::search(bool backwards, bool incremental)
 {
 	if (!dwSearch) return;
-	search(dwSearch->getSearchText(), backwards, incremental, dwSearch->hasFlagCaseSensitive(), dwSearch->hasFlagSync());
+	search(dwSearch->getSearchText(), backwards, incremental, dwSearch->hasFlagCaseSensitive(), dwSearch->hasFlagWholeWords(), dwSearch->hasFlagSync());
 }
 //better use flags for this
-void PDFDocument::search(const QString &searchText, bool backwards, bool incremental, bool caseSensitive, bool sync)
+void PDFDocument::search(const QString &searchText, bool backwards, bool incremental, bool caseSensitive, bool wholeWords, bool sync)
 {
 	if (document.isNull())
 		return;
@@ -3343,6 +3343,8 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 
 	if (!caseSensitive)
 		searchFlags |= Poppler::Page::IgnoreCase;
+	if (wholeWords)
+		searchFlags |= Poppler::Page::WholeWords;
 
 	deltaPage = (backwards ? -1 : +1);
 

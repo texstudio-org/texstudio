@@ -462,7 +462,7 @@ private slots:
 	void search(bool backward, bool incremental);
     void clearHightlight(bool visible);
 public:
-	void search(const QString &searchText, bool backward, bool incremental, bool caseSensitive, bool sync);
+	void search(const QString &searchText, bool backward, bool incremental, bool caseSensitive, bool wholeWords, bool sync);
 	void search();
 	static QString debugSyncTeX(const QString &filename);
 private slots:
