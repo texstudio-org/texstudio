@@ -595,14 +595,27 @@ void PDFBaseSearchDock::on_bPrevious_clicked()
 
 PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc)
 {
+	cbWords = new QCheckBox(this);
+	cbWords->setObjectName("cbWords");
+	cbWords->setText(tr("Words"));
+	cbWords->setToolTip(tr("Only seaches for whole words."));
+
+	gridLayout1->addWidget(cbWords, 0, 2, 1, 1);
+
 	cbSync = new QCheckBox(this);
 	cbSync->setObjectName("cbSync");
 	cbSync->setText(tr("Sync"));
+	cbSync->setToolTip(tr("Synchronize editor when jumping to search results."));
 	cbSync->setChecked(true);
 
 	gridLayout1->addWidget(cbSync, 0, 3, 1, 1);
 
-	listOfWidget << cbSync;
+	listOfWidget << cbWords << cbSync;
+}
+
+bool PDFSearchDock::hasFlagWholeWords() const
+{
+	return cbWords->isChecked();
 }
 
 bool PDFSearchDock::hasFlagSync() const

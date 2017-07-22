@@ -265,9 +265,11 @@ class PDFSearchDock : public PDFBaseSearchDock
 
 public:
 	explicit PDFSearchDock(PDFDocument *doc = 0);
+	bool hasFlagWholeWords() const;
 	bool hasFlagSync() const;
 
 private:
+	QCheckBox *cbWords;
 	QCheckBox *cbSync;
 };
 

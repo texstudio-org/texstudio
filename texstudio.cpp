@@ -10890,7 +10890,7 @@ void Texstudio::openInternalDocViewer(QString package, const QString command)
 		pdf->goToPage(0);
 		pdf->doFindDialog(command);
 		if (!command.isEmpty())
-			pdf->search(command, false, false, false, false);
+			pdf->search(command, false, false, false, false, false);
 	}
 #endif
 }
