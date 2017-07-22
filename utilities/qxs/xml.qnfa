@@ -1,0 +1,54 @@
+<!DOCTYPE QNFA>
+<QNFA language="XML" extensions="xml;qnfa;qxm;qxf;ui;htm;html;php" defaultLineMark="" >
+	<context id="comment" format="comment" >
+		<start parenthesis="xmlcomment:open" parenthesisWeight="30" indent="1" fold="1">&lt;!--</start>
+		<stop parenthesis="xmlcomment:close" parenthesisWeight="30" indent="1" fold="1">--&gt;</stop>
+	</context>
+	
+	<context id="cdata" format="verbatim" >
+		<start parenthesis="xmlcdata:open" parenthesisWeight="30" indent="1" fold="1">&lt;!\[CDATA\[</start>
+		<stop parenthesis="xmlcdata:close" parenthesisWeight="30" indent="1" fold="1">\]\]&gt;</stop>
+	</context>
+	
+	<context id="preprocessor" format="extra-keyword" >
+		<start parenthesis="xmlpreproc:open" parenthesisWeight="30" indent="1" fold="1">&lt;\?xml</start>
+		<stop parenthesis="xmlpreproc:close" parenthesisWeight="30" indent="1" fold="1">\?&gt;</stop>
+	</context>
+
+	<context id="doctype" format="text" >
+		<start parenthesisWeight="30">&lt;!DOCTYPE</start>
+		<stop parenthesisWeight="30">&gt;</stop>
+	</context>
+	
+	<sequence id="entity" format="numbers">&amp;$w+;</sequence>
+	
+	<context id="tag/start" >
+		<start format="keyword" parenthesis="xmltag:open@nomatch" parenthesisWeight="30" indent="1" fold="1" >&lt;[_:A-Za-z][-._:A-Za-z0-9]*</start>
+		<start format="keyword" parenthesis="xmltag:close@nomatch" parenthesisWeight="30" indent="1" fold="1" >&lt;/[_:A-Za-z][-._:A-Za-z0-9]*</start>
+		<stop format="keyword" parenthesisWeight="30">&gt;</stop>
+		
+		<word format="extra-keyword">[_:A-Za-z][-._:A-Za-z0-9]*+=</word>
+		
+		<context id="data/string" format="text" stayOnLine="true" >
+			<start parenthesisWeight="20">&quot;</start>
+			<stop parenthesisWeight="20">&quot;</stop>
+			<escape>\\</escape>
+		</context>
+		
+		<context id="data/chars" format="text" stayOnLine="true" >
+			<start parenthesisWeight="20">'</start>
+			<stop parenthesisWeight="20">'</stop>
+			<escape>\\</escape>
+		</context>
+		
+	</context>
+
+	<sequence parenthesis="round:open">\(</sequence>
+	<sequence parenthesis="round:close">\)</sequence>
+	<sequence parenthesis="curly:open">\{</sequence>
+	<sequence parenthesis="curly:close">\}</sequence>
+	<sequence parenthesis="square:open">\[</sequence>
+	<sequence parenthesis="square:close">\]</sequence>
+	
+	<!-- <sequence id="tag/stop" parenthesis="xmltag:close@nomatch" indent="1" fold="1" format="keyword" >&lt;/[a-zA-Z0-9_:]+&gt;</sequence> -->
+</QNFA>
