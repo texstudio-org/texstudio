@@ -3333,7 +3333,7 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 		return;
 
 	int pageIdx;
-	Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
+	Poppler::Page::SearchFlags searchFlags = 0;
 	Poppler::Page::SearchDirection searchDir; // = Poppler::Page::FromTop;
 	int deltaPage, firstPage, lastPage;
 	int run, runs;
@@ -3341,8 +3341,8 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 	if (searchText.isEmpty())
 		return;
 
-	if (caseSensitive)
-		searchMode = Poppler::Page::CaseSensitive;
+	if (!caseSensitive)
+		searchFlags |= Poppler::Page::IgnoreCase;
 
 	deltaPage = (backwards ? -1 : +1);
 
@@ -3399,14 +3399,14 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 				return;
 
 #if QT_VERSION < 0x050000
-			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchMode)) {
+			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchFlags)) {
 #else
 			double rectLeft, rectTop, rectRight, rectBottom;
 			rectLeft = lastSearchResult.selRect.left();
 			rectTop = lastSearchResult.selRect.top();
 			rectRight = lastSearchResult.selRect.right();
 			rectBottom = lastSearchResult.selRect.bottom();
-			if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchMode)) {
+			if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchFlags)) {
 				lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
 #endif
 				lastSearchResult.doc = this;
