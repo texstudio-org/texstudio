@@ -1,0 +1,28 @@
+<!DOCTYPE QNFA>
+<QNFA language="(La)TeX Macro"  extensions="incredibleComplicatedFileExtensionNoOneIsGoingToUse_TODO_DONTuseEMPTYextensionSTRINGasDEFAULTlang" defaultLineMark="">
+	<sequence id="specialchars" format="escapeseq" >%[()n|]</sequence> <!-- problem: \% is highlighted wrong -->
+	<context id="placeholder" format="numbers" stayOnLine="true">
+          <start parenthesis="placeholder:open" format="escapeseq">%&lt;</start>
+          <stop parenthesis="placeholder:close" format="escapeseq">%&gt;</stop>
+          <context id="placeholderoptions">
+            <start parenthesis="placeholderoption:open@nomatch" format="escapeseq">%:</start>
+            <stop  parenthesis="placeholderoption:close@nomatch" exclusive="false">%&gt;</stop>
+            <word format="keyword">mirror</word>            
+            <sequence format="keyword">id:</sequence>
+            <word format="keyword">multiline</word>
+            <word format="keyword">select</word>
+          </context>
+        </context>        
+ 
+	<embed target="(La-)TeX"/>
+<!-- TODO: doesn't work, because it would be overridden by the comment definiotion of standard LaTeX
+     moving it over the embed, also doesn't work, because then it will override verbatim
+     Possible solutions, copy/paster LaTeX definition in this file (maintaince nightmare), or split LaTeX definition into multiple files (ugly)
+	<context id="comment/single" format="comment" stayOnLine="true" >
+		<start>%%</start>
+		<stop exclusive="false">\n</stop>
+		<stop>%n</stop>
+	</context>
+	-->
+</QNFA>
+
