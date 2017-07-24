@@ -1075,7 +1075,17 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
                 type += j + 1;
                 break;
             }
-        results << GrammarError(realfrom, len, (GrammarErrorType)type, obj["shortMessage"].toString() + " (" + id + ")", cors);
+        // TODO: message is only needed in the tooltip and should be formatted there. We should extend the Grammar error to
+        // contain the raw information.
+        QStringList message;
+        QString title = obj["shortMessage"].toString();
+        if (title.length() > 0)
+            message << "<b>" + title + "</b>";
+        QString description = obj["message"].toString();
+        if (description.length() > 0 && description != title)
+            message << description;
+        message << ("(" + id + ")");
+        results << GrammarError(realfrom, len, (GrammarErrorType)type, message.join("<br>"), cors);
         //qDebug() << realfrom << len;
     }
 
