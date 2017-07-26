@@ -651,6 +651,11 @@ void QSearchReplacePanel::hideEvent(QHideEvent *)
 {
 }
 
+void QSearchReplacePanel::showEvent(QShowEvent *)
+{
+    updateButtonSizes();
+}
+
 
 void QSearchReplacePanel::closeEvent(QCloseEvent *)
 {
@@ -764,8 +769,41 @@ bool QSearchReplacePanel::eventFilter(QObject *o, QEvent *e)
 		default:;
 		}
 	}
-
 	return QWidget::eventFilter(o, e);
+}
+
+void QSearchReplacePanel::updateButtonSizes(){
+    QSize buttonSize(cFind->height(),cFind->height());
+    bNext->setMinimumSize(buttonSize);
+    bNext->setMaximumSize(buttonSize);
+    bNext->setIconSize(buttonSize);
+    bPrevious->setMinimumSize(buttonSize);
+    bPrevious->setMaximumSize(buttonSize);
+    bPrevious->setIconSize(buttonSize);
+    bCount->setMinimumSize(buttonSize);
+    bCount->setMaximumSize(buttonSize);
+    bCount->setIconSize(buttonSize);
+    cbCase->setMinimumSize(buttonSize);
+    cbCase->setMaximumSize(buttonSize);
+    cbCase->setIconSize(buttonSize);
+    cbWords->setMinimumSize(buttonSize);
+    cbWords->setMaximumSize(buttonSize);
+    cbWords->setIconSize(buttonSize);
+    cbCursor->setMinimumSize(buttonSize);
+    cbCursor->setMaximumSize(buttonSize);
+    cbCursor->setIconSize(buttonSize);
+    cbRegExp->setMinimumSize(buttonSize);
+    cbRegExp->setMaximumSize(buttonSize);
+    cbRegExp->setIconSize(buttonSize);
+    cbHighlight->setMinimumSize(buttonSize);
+    cbHighlight->setMaximumSize(buttonSize);
+    cbHighlight->setIconSize(buttonSize);
+    cbSelection->setMinimumSize(buttonSize);
+    cbSelection->setMaximumSize(buttonSize);
+    cbSelection->setIconSize(buttonSize);
+    bExtend->setMinimumSize(buttonSize);
+    bExtend->setMaximumSize(buttonSize);
+    bExtend->setIconSize(buttonSize);
 }
 
 void QSearchReplacePanel::cFind_textEdited(const QString& text)

@@ -79,7 +79,8 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		
 		virtual bool eventFilter(QObject *o, QEvent *e);
 		
-		virtual void hideEvent(QHideEvent *e);
+        virtual void hideEvent(QHideEvent *e);
+        virtual void showEvent(QShowEvent *e);
 		virtual void closeEvent(QCloseEvent *e);
 
 
@@ -113,6 +114,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		void updateSearchOptions(bool replace, bool replaceAll);
 		void on_cFind_returnPressed(bool backward);
 		void on_cReplace_returnPressed(bool backward);
+        void updateButtonSizes();
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
 		int minimum_width;
