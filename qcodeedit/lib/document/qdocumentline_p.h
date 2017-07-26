@@ -116,11 +116,11 @@ public:
 		
 		void shiftOverlays(int position, int offset);
 		
-		void draw(	int lineNr,
+		void draw(int lineNr,
 					QPainter *p,
 					int xOffset,
 					int vWidth,
-					const QVector<int>& sel,
+					const QVector<int>& selectionBoundaries,
 					const QPalette& pal,
 					bool fullSel,
 					int yStart=0,
@@ -183,6 +183,8 @@ public:
 		bool isRTLByText() const;
 		void layout(int lineNr) const; //public for unittests
 	private:
+		void drawBorders(QPainter *p, int yStart, int yEnd) const;
+
 		void applyOverlays() const;
 		void splitAtFormatChanges(QList<RenderRange>* ranges, const QVector<int>* sel = 0, int from = 0, int until = -1) const;
 		

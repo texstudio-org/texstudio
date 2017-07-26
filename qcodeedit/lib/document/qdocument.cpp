@@ -3561,10 +3561,26 @@ int QDocumentLineHandle::getPictureCookieHeight() const{
 }
 
 
+/*!
+ * Draw the left and right border lines if the document has a limited width.
+ */
+void QDocumentLineHandle::drawBorders(QPainter *p, int yStart, int yEnd) const
+{
+	QDocumentPrivate *d = m_doc->impl();
+	if (d->hardLineWrap() || d->lineWidthConstraint()) {
+		p->save();
+		p->setPen(Qt::lightGray);
+		if (d->m_leftMargin > 0)
+			p->drawLine(0, yStart, 0, yEnd);  // left border line
+		p->drawLine(d->width(), yStart, d->width() , yEnd);  // right border line
+		p->restore();
+	}
+}
+
 void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 								int xOffset,
 								int vWidth,
-								const QVector<int>& sel,
+								const QVector<int>& selectionBoundaries,
 								const QPalette& pal,
 								bool fullSel,
 								int yStart,
@@ -3599,15 +3615,15 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			range.length = m_text.length();
 			selections << range;
 		} else {
-			for ( int i = 0; i < sel.count(); ++i )
+			for ( int i = 0; i < selectionBoundaries.count(); ++i )
 			{
-				range.start = sel[i];
+				range.start = selectionBoundaries[i];
 				range.format = fmt;
 
-				if ( (i + 1) < sel.count() )
+				if ( (i + 1) < selectionBoundaries.count() )
 				{
 					// regular selection subset
-					range.length = sel[++i] - range.start;
+					range.length = selectionBoundaries[++i] - range.start;
 
 				} else if ( m_layout->lineCount() ) {
 					// span to end of line, not only text
@@ -3631,7 +3647,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		//m_layout->clearAdditionalFormats();
 	} else if ( m_text.isEmpty() ) {
 		// enforce selection drawing on empty lines
-        if ( sel.count() == 1 ){
+        if ( selectionBoundaries.count() == 1 ){
 			p->fillRect(
 						qMax(xOffset, QDocumentPrivate::m_leftPadding),
 						0,
@@ -3650,19 +3666,11 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
             }
         }
 
-        // draw line width when hard wrapping is activated
-		if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
-            p->save();
-			p->setPen(Qt::lightGray);
-			if (m_doc->impl()->m_leftMargin > 0)
-				p->drawLine(0, yStart, 0, yEnd);  // left border line
-			p->drawLine(m_doc->impl()->width(), yStart, m_doc->impl()->width(), yEnd);
-            p->restore();
-		}
+		drawBorders(p, yStart, yEnd);
 
 	} else {
 		QList<RenderRange> ranges;
-		splitAtFormatChanges(&ranges, &sel);
+		splitAtFormatChanges(&ranges, &selectionBoundaries);
 
 		// find start of trailing whitespaces
 		int last = m_text.length();
@@ -3676,9 +3684,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 		QDocumentPrivate *d = m_doc->impl();
 		const int ts = d->m_tabStop;
 		const int maxWidth = xOffset + vWidth;
-		const bool unbounded = sel.count() & 1;
+		const int maxDocWidth = xOffset + m_doc->width();
+		const bool hasUnboundedSelection = selectionBoundaries.count() & 1;
         // check if wraparound format is active
-        int wrapAroungHighlight = 0;
+        int wrapAroundHighlight = 0;
         int length=m_text.length();
         QList<int> foundFormats;
         if(!fullSel){
@@ -3699,7 +3708,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                         if(fng.offset==0){
                             QFormat format=d->m_formatScheme->format(fng.format);
                             if(format.wrapAround && foundFormats.contains(fng.format) && format.priority>=priority){
-                                wrapAroungHighlight=fng.format;
+                                wrapAroundHighlight=fng.format;
                             }
                         }
                     }
@@ -3748,7 +3757,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 					// finish selection
 					p->fillRect(
 									xpos, ypos,
-									maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
+									maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing,
 									pal.highlight()
 								);
 
@@ -4132,28 +4141,17 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
             p->drawText(mergeXpos, ypos + QDocumentPrivate::m_ascent, mergeText);
         }
 
-		if ( unbounded ){
-		    p->fillRect(
-			    xpos, ypos,
-			    maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
-			    pal.highlight()
-			    );   
+		if (hasUnboundedSelection || wrapAroundHighlight) {
+			// fill the rest of the line because the selection or highlight continues
+			QBrush brush = pal.highlight();
+			if (!hasUnboundedSelection) {
+				QFormat format = m_doc->impl()->m_formatScheme->format(wrapAroundHighlight);
+				brush = QBrush(format.background);
+			}
+			p->fillRect(xpos, ypos, maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing, brush);
 		}
-        if(wrapAroungHighlight && !unbounded){
-            QFormat format=m_doc->impl()->m_formatScheme->format(wrapAroungHighlight);
-            p->fillRect(
-                xpos, ypos,
-                maxWidth - xpos, QDocumentPrivate::m_lineSpacing,
-                format.background
-                );
-        }
 
-        if(m_doc->impl()->hardLineWrap()||m_doc->impl()->lineWidthConstraint()){
-            p->setPen(Qt::lightGray);
-            if (m_doc->impl()->m_leftMargin > 0)
-               p->drawLine(0, yStart, 0, yEnd);  // left border line
-            p->drawLine(m_doc->impl()->width(), yStart,m_doc->impl()->width() , yEnd);
-        }
+        drawBorders(p, yStart, yEnd);
 	}
 }
 
@@ -6901,6 +6899,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 		   && !dlh->hasFlag(QDocumentLine::LayoutDirty)
 		   &&  dlh->hasFlag(QDocumentLine::FormatsApplied)
 		   &&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))) {
+			// cache is activated, available, and up-to-date: simply draw the cached object
 			if (imageCache) {
 				p->drawImage(m_lineCacheXOffset, 0, *m_LineCacheAlternative.object(dlh));
 			} else {
@@ -6947,14 +6946,16 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			} else {
 				pr = p;
 			}
+
+			// draw the background
 			if (useLineCache) {
 				pr->translate(-cxt.xoffset,0);
 				pr->fillRect(0, 0, m_leftPadding, ht, background);
-			} else if (fullSelection){
+			} else if (fullSelection) {
 				pr->fillRect(0, 0, m_leftPadding, ht, background);
-				pr->fillRect(m_leftPadding, 0, qMax(m_width,m_lineCacheWidth), ht, fullSelection ? selectionBackground : background);
+				pr->fillRect(m_leftPadding, 0, m_width - m_leftPadding, ht, fullSelection ? selectionBackground : background);
 			} else
-				pr->fillRect(0, 0, m_lineCacheWidth, ht, background);
+				pr->fillRect(0, 0, m_width, ht, background);
 
 			int y = 0;
 			if (!useLineCache && visiblePos > pos)
