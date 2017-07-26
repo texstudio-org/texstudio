@@ -37,12 +37,12 @@ isEmpty(NO_POPPLER_PREVIEW) {
         !greaterThan(QT_MAJOR_VERSION, 4) { #Qt4
             INCLUDEPATH  += ./pdfviewer/include_win32
             LIBS += ./zlib1.dll ./libpoppler-qt4.dll
-            DEFINES += HAS_POPPLER_24
         } else { # Qt5
             INCLUDEPATH  += ./pdfviewer/include_win32_qt5
             LIBS += ./zlib1.dll ./libpoppler-qt5.dll
-            DEFINES += HAS_POPPLER_24
         }
+        DEFINES += HAS_POPPLER_24
+        DEFINES += HAS_POPPLER_31
         LIBS += -lshlwapi
     } else {
         macx { # PATH to pkgconfig needs to be present in build PATH
@@ -63,6 +63,7 @@ isEmpty(NO_POPPLER_PREVIEW) {
             PKG_CONFIG_EXE = "pkg-config"
         }
         system($${PKG_CONFIG_EXE} --atleast-version=0.24 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_24
+        system($${PKG_CONFIG_EXE} --atleast-version=0.31 $${poppler_qt_pkg}):DEFINES += HAS_POPPLER_31
     }
 } else {
     DEFINES += NO_POPPLER_PREVIEW

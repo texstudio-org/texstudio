@@ -3333,7 +3333,11 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 		return;
 
 	int pageIdx;
-	Poppler::Page::SearchFlags searchFlags = 0;
+#ifdef HAS_POPPLER_31
+    Poppler::Page::SearchFlags searchFlags = 0;
+#else
+    Poppler::Page::SearchMode searchMode = Poppler::Page::CaseInsensitive;
+#endif
 	Poppler::Page::SearchDirection searchDir; // = Poppler::Page::FromTop;
 	int deltaPage, firstPage, lastPage;
 	int run, runs;
@@ -3341,10 +3345,15 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 	if (searchText.isEmpty())
 		return;
 
+#ifdef HAS_POPPLER_31
 	if (!caseSensitive)
 		searchFlags |= Poppler::Page::IgnoreCase;
 	if (wholeWords)
 		searchFlags |= Poppler::Page::WholeWords;
+#else
+    if (caseSensitive)
+            searchMode = Poppler::Page::CaseSensitive;
+#endif
 
 	deltaPage = (backwards ? -1 : +1);
 
@@ -3400,17 +3409,18 @@ void PDFDocument::search(const QString &searchText, bool backwards, bool increme
 			if (!page)
 				return;
 
-#if QT_VERSION < 0x050000
-			if (page->search(searchText, lastSearchResult.selRect, searchDir, searchFlags)) {
+            double rectLeft, rectTop, rectRight, rectBottom;
+            rectLeft = lastSearchResult.selRect.left();
+            rectTop = lastSearchResult.selRect.top();
+            rectRight = lastSearchResult.selRect.right();
+            rectBottom = lastSearchResult.selRect.bottom();
+
+#ifdef HAS_POPPLER_31
+            if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchFlags)) {
 #else
-			double rectLeft, rectTop, rectRight, rectBottom;
-			rectLeft = lastSearchResult.selRect.left();
-			rectTop = lastSearchResult.selRect.top();
-			rectRight = lastSearchResult.selRect.right();
-			rectBottom = lastSearchResult.selRect.bottom();
-			if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchFlags)) {
-				lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
+            if (page->search(searchText, rectLeft, rectTop, rectRight, rectBottom , searchDir, searchMode)) {
 #endif
+				lastSearchResult.selRect = QRectF(rectLeft, rectTop, rectRight - rectLeft, rectBottom - rectTop);
 				lastSearchResult.doc = this;
 				lastSearchResult.pageIdx = pageIdx;
 				QPainterPath p;
