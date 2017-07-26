@@ -107,7 +107,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	cFind->completer()->setCompletionMode(QCompleter::PopupCompletion);
 	cFind->completer()->setCaseSensitivity(Qt::CaseSensitive);
 	cFind->setObjectName(("cFind"));
-	QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	sizePolicy4.setHorizontalStretch(2);
 	cFind->setSizePolicy(sizePolicy4);
 	cFind->setMinimumSize(QSize(120, 22));
@@ -115,11 +115,16 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	conf->linkOptionToObject(&findHistory, cFind, LinkOptions(LO_UPDATE_ALL | LO_DIRECT_OVERRIDE));
     flowLayout->addWidget(cFind);
 
+    buttonSize.setHeight(cFind->height());
+    buttonSize.setWidth(cFind->height());
+
+
 	bNext = new QToolButton(this);
 	bNext->setObjectName(("bNext"));
 	bNext->setMinimumSize(buttonSize);
 	bNext->setMaximumSize(buttonSize);
     bNext->setIcon(getRealIconCached("down"));
+    bNext->setIconSize(buttonSize);
     flowLayout->addWidget(bNext);
 
 	bPrevious = new QToolButton(this);
@@ -127,6 +132,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bPrevious->setMinimumSize(buttonSize);
 	bPrevious->setMaximumSize(buttonSize);
     bPrevious->setIcon(getRealIconCached("up"));
+    bPrevious->setIconSize(buttonSize);
     flowLayout->addWidget(bPrevious);
 
 	bCount = new QToolButton(this);
@@ -134,6 +140,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
 	bCount->setMinimumSize(buttonSize);
 	bCount->setMaximumSize(buttonSize);
     bCount->setIcon(getRealIconCached("count"));
+    bCount->setIconSize(buttonSize);
     flowLayout->addWidget(bCount);
 
 	QLabel *spacer = new QLabel("  ");
@@ -147,6 +154,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbCase->setMinimumSize(buttonSize);
     cbCase->setMaximumSize(buttonSize);
     cbCase->setIcon(getRealIconCached("case"));
+    cbCase->setIconSize(buttonSize);
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, caseConfig, false, "Search/Case Sensitive", cbCase);
     flowLayout->addWidget(cbCase);
 
@@ -157,6 +165,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbWords->setMinimumSize(buttonSize);
     cbWords->setMaximumSize(buttonSize);
     cbWords->setIcon(getRealIconCached("word"));
+    cbWords->setIconSize(buttonSize);
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, wordConfig, false, "Search/Whole Words", cbWords);
     flowLayout->addWidget(cbWords);
 
@@ -167,6 +176,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbRegExp->setMinimumSize(buttonSize);
     cbRegExp->setMaximumSize(buttonSize);
     cbRegExp->setIcon(getRealIconCached("regex"));
+    cbRegExp->setIconSize(buttonSize);
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, regexConfig, false, "Search/Regular Expression", cbRegExp);
     flowLayout->addWidget(cbRegExp);
 
@@ -177,6 +187,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbHighlight->setIcon(getRealIconCached("highlight"));
     cbHighlight->setMinimumSize(buttonSize);
     cbHighlight->setMaximumSize(buttonSize);
+    cbHighlight->setIconSize(buttonSize);
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, highlightConfig, true, "Search/Highlight", cbHighlight);
     flowLayout->addWidget(cbHighlight);
 
@@ -187,6 +198,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbCursor->setMinimumSize(buttonSize);
     cbCursor->setMaximumSize(buttonSize);
     cbCursor->setIcon(getRealIconCached("cursor"));
+    cbCursor->setIconSize(buttonSize);
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, cursorConfig, true, "Search/Cursor", cbCursor);
     flowLayout->addWidget(cbCursor);
 
@@ -197,6 +209,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     cbSelection->setMinimumSize(buttonSize);
     cbSelection->setMaximumSize(buttonSize);
     cbSelection->setIcon(getRealIconCached("selection"));
+    cbSelection->setIconSize(buttonSize);
     CONFIG_DECLARE_OPTION_WITH_OBJECT(conf, bool, selectionConfig, false, "Search/Selection", cbSelection);
     flowLayout->addWidget(cbSelection);
 
@@ -206,6 +219,7 @@ QSearchReplacePanel::QSearchReplacePanel(QWidget *p)
     bExtend->setMinimumSize(buttonSize);
     bExtend->setMaximumSize(buttonSize);
     bExtend->setIcon(getRealIconCached("extend"));
+    bExtend->setIconSize(buttonSize);
     flowLayout->addWidget(bExtend);
     connect(bExtend, SIGNAL(clicked()), this, SIGNAL(showExtendedSearch()));
 
