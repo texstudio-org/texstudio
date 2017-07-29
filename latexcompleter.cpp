@@ -668,26 +668,26 @@ public:
 			firstLine = cw.getName();
 		}
 		if (!drawPlaceholder)
-			painter->drawText(r, Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, firstLine);
+            painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, firstLine);
 		else {
 			QFontMetrics fmn(fNormal);
 			QFontMetrics fmi(fPlHolder);
 			int p = 0;
 			for (int i = 0; i < cw.placeHolders[0].size(); i++) {
 				QString temp = firstLine.mid(p, cw.placeHolders[0][i].offset - p);
-				painter->drawText(r, Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
+                painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 				r.setLeft(r.left() + fmn.width(temp));
 				temp = firstLine.mid(cw.placeHolders[0][i].offset, cw.placeHolders[0][i].length);
 				painter->setFont(fPlHolder);
 				painter->setPen(plHolderColor);
-				painter->drawText(r, Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, temp);
+                painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
 				r.setLeft(r.left() + fmi.width(temp) + 1);
 				p = cw.placeHolders[0][i].offset + cw.placeHolders[0][i].length;
 				painter->setFont(fNormal);
 				painter->setPen(normalColor);
 				if (p > firstLine.length()) break;
 			}
-			painter->drawText(r, Qt::AlignLeft || Qt::AlignTop || Qt::TextSingleLine, firstLine.mid(p));
+            painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, firstLine.mid(p));
 		}
 	}
 };
