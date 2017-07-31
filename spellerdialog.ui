@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SpellerDialog</class>
+ <widget class="QDialog" name="SpellerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>402</width>
+    <height>332</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Check Spelling</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="leftMargin">
+      <number>9</number>
+     </property>
+     <property name="topMargin">
+      <number>9</number>
+     </property>
+     <property name="rightMargin">
+      <number>9</number>
+     </property>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Unknown Word</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="lineEditOriginal">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="lineEditNew"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Replace with</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Suggested Words</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QPushButton" name="pushButtonReplace">
+       <property name="text">
+        <string>Replace</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QPushButton" name="pushButtonIgnore">
+       <property name="text">
+        <string>Ignore</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QPushButton" name="pushButtonAlwaysIgnore">
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QListWidget" name="listSuggestions">
+       <property name="modelColumn">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="labelIgnoredWords">
+       <property name="text">
+        <string>User-added Words</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QListView" name="ignoreListView"/>
+     </item>
+     <item row="8" column="2">
+      <layout class="QVBoxLayout" name="ignoreListButtonLayout">
+       <item>
+        <widget class="QPushButton" name="pushButtonAdd">
+         <property name="text">
+          <string>Add</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>:/images/list-add.png</normaloff>:/images/list-add.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonRemove">
+         <property name="text">
+          <string>Remove</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>:/images/list-remove.png</normaloff>:/images/list-remove.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="labelAsHideableSpacer">
+         <property name="text">
+          <string notr="true"/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="7" column="2">
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>Close</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonIgnoreList">
+         <property name="text">
+          <string>Hide Added Words</string>
+         </property>
+         <property name="icon">
+          <iconset resource="texstudio.qrc">
+           <normaloff>:/images/up-arrow-circle-silver.png</normaloff>:/images/up-arrow-circle-silver.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="dummyStatusBar">
+     <property name="text">
+      <string notr="true">dummyStatusBar</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="texstudio.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SpellerDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>278</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
