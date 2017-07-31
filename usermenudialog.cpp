@@ -159,6 +159,7 @@ UserMenuDialog::UserMenuDialog(QWidget *parent,  QString name, QLanguageFactory 
 	//editor options
 	ui.tagEdit->setLayout(new QVBoxLayout());
 	codeedit = new QCodeEdit(ui.tagEdit);
+    codeedit->editor()->document()->setCenterDocumentInEditor(false);
 	//QLineMarkPanel* lineMarkPanel=new QLineMarkPanel;
 	//QAction* lineMarkPanelAction=codeedit->addPanel(lineMarkPanel, QCodeEdit::West, false);
 	//Q_UNUSED(lineMarkPanelAction)
