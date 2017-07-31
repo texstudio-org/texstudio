@@ -6454,7 +6454,7 @@ QList<QDocumentPrivate*> QDocumentPrivate::m_documents;
 bool QDocumentPrivate::m_fixedPitch;
 QDocument::WorkAroundMode QDocumentPrivate::m_workArounds=0;
 double QDocumentPrivate::m_lineSpacingFactor = 1.0;
-bool QDocumentPrivate::m_centerDocumentInEditor;
+bool QDocumentPrivate::m_centerDocumentInEditor = false;
 int QDocumentPrivate::m_staticCachesLogicalDpiY = -1;// resolution for which the caches are valid (depends on OS gui scaling)
 int QDocumentPrivate::m_ascent;// = m_fontMetrics.ascent();
 int QDocumentPrivate::m_descent;// = m_fontMetrics.descent();
