@@ -329,7 +329,7 @@ class QCE_EXPORT QDocument : public QObject
 		static int screenColumn(const QChar *d, int l, int tabStop, int column = 0);
 		static QString screenable(const QChar *d, int l, int tabStop, int column = 0);
 		
-		inline void markViewDirty() { formatsChanged(); }
+        inline void markViewDirty() { emit formatsChanged(); }
 		
 		bool isClean() const;
 		
