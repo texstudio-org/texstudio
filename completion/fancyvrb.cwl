@@ -4,6 +4,7 @@
 
 \VerbatimFootnotes
 \DefineShortVerb{verb}
+\DefineVerbatimEnvironment{name}{base}{options}
 \UndefineShortVerb{verb}
 \begin{Verbatim}#V
 \begin{Verbatim}[key=value]
