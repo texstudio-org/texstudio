@@ -1050,8 +1050,8 @@ void Texstudio::setupMenus()
 	newManagedAction(submenu, "addMagicRoot", tr("Insert root document name as TeX comment"), SLOT(addMagicRoot()));
 	newManagedAction(submenu, "addMagicLang", tr("Insert language as TeX comment"), SLOT(insertSpellcheckMagicComment()));
 	newManagedAction(submenu, "addMagicCoding", tr("Insert document coding as TeX comment"), SLOT(addMagicCoding()));
-    newManagedAction(submenu, "addMagicProgram", tr("Insert program as TeX comment"), SLOT(addMagicProgram()));
-    newManagedAction(submenu, "addMagicBibliography", tr("Insert bibliography tool as TeX comment"), SLOT(addMagicBibliography()));
+	newManagedAction(submenu, "addMagicProgram", tr("Insert program as TeX comment"), SLOT(addMagicProgram()));
+	newManagedAction(submenu, "addMagicBibliography", tr("Insert bibliography tool as TeX comment"), SLOT(addMagicBibliography()));
 
 	menu = newManagedMenu("main/math", tr("&Math"));
 	menu->setProperty("defaultSlot", QByteArray(SLOT(insertFromAction())));
@@ -1119,9 +1119,6 @@ void Texstudio::setupMenus()
 	act = newManagedAction(bibTypeMenu, "bibtex", tr("BibTeX"), SLOT(setBibTypeFromAction()));
 	act = newManagedAction(bibTypeMenu, "biblatex", tr("BibLaTeX"), SLOT(setBibTypeFromAction()));
 	act->trigger(); // initialize menu for specified type
-
-
-
 
 	//  User
 	menu = newManagedMenu("main/macros", tr("Ma&cros"));
