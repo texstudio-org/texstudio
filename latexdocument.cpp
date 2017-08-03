@@ -2250,7 +2250,7 @@ void LatexStructureMerger::moveToAppropiatePositionWithSignal(StructureEntry *se
 		//the construction somehow ensures that in this case
 		//se is already at the correct position regarding line numbers.
 		//but not necessarily regarding the column position
-		int oldPos = se->getRealParentRow();
+		oldPos = se->getRealParentRow();
 		newPos = oldPos;		
 		if ((oldPos == 0 || compare(newParent->children[oldPos - 1], se )) &&
 				(oldPos == newParent->children.size() - 1 || compare(se, newParent->children[oldPos + 1] ))
