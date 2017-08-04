@@ -23,7 +23,7 @@ LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent)
 	int fontSize = config->getOption("LogView/FontSize").toInt(&ok);
 	if (ok && fontSize > 0) setFontPointSize(fontSize);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)&&!defined(Q_OS_MAC)
 	QScroller::grabGesture(viewport(), QScroller::TouchGesture);
 #endif
 }
