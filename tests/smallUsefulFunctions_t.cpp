@@ -434,7 +434,7 @@ void SmallUsefulFunctionsTest::test_getArg_data() {
     QTest::addColumn<QStringList>("desiredResults");
 
 
-    QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
+    /*QTest::newRow("newcommand command") << "\\newcommand{text}{test}"
                                         << (STypes() <<T::def << T::definition)
                                         << (QStringList() <<"text" <<"test");
     QTest::newRow("newcommand command2") << "\\newcommand{\\ext}{test}"
@@ -450,7 +450,23 @@ void SmallUsefulFunctionsTest::test_getArg_data() {
     QTest::newRow("text command, embedded") << "\\textbf{te\\textit{xt} bg}"
                                             << (STypes() <<T::text) << (QStringList() <<"te\\textit{xt} bg");
     QTest::newRow("text command, embedded ,open") << "\\textbf{  te\\textit{xt} bg"
-                                            <<   (STypes() <<T::text) << (QStringList() <<"  te\\textit{xt} bg");
+                                            <<   (STypes() <<T::text) << (QStringList() <<"  te\\textit{xt} bg");*/
+    QTest::newRow("text command, multi-line") << "\\textbf{  te\n bg}"
+                                            <<   (STypes() <<T::text) << (QStringList() <<"  te bg");
+    QTest::newRow("text command, multi-line, with comment") << "\\textbf{  te%abc\n bg}"
+                                            <<   (STypes() <<T::text) << (QStringList() <<"  te bg");
+    QTest::newRow("text command, multi-lines,with comment") << "\\textbf{  te\n bg%abc\nas}"
+                                            <<   (STypes() <<T::text) << (QStringList() <<"  te bgas");
+    QTest::newRow("text command, multi-lines") << "\\textbf{  te\n bg\nas}"
+                                            <<   (STypes() <<T::text) << (QStringList() <<"  te bg as");
+    QTest::newRow("usepackage command, multiline") << "\\usepackage{siunitx,\ntest2}"
+                                            <<   (STypes() <<T::package) << (QStringList() <<"siunitx,test2");
+    QTest::newRow("usepackage command, multiline with comment") << "\\usepackage{siunitx,%abc\ntest2}"
+                                            <<   (STypes() <<T::package) << (QStringList() <<"siunitx,test2");
+    QTest::newRow("usepackage command, multilines") << "\\usepackage{siunitx,\ntest2,\ntest3}"
+                                            <<   (STypes() <<T::package) << (QStringList() <<"siunitx,test2, test3");
+    QTest::newRow("usepackage command, multilines with comment") << "\\usepackage{siunitx,\ntest2,%abc\ntest3}"
+                                            <<   (STypes() <<T::package) << (QStringList() <<"siunitx,test2,test3");
 
 }
 
