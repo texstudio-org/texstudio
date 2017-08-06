@@ -1973,8 +1973,14 @@ QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count)
 	QString result = dlh->text();
     if(!tl.isEmpty()){
         int len=tl.last().start+tl.last().length;
-        if(len<result.length()){// comment present
-            result=result.left(len); // avoid comments
+        if(len<result.length()){// comment present or untranslated characters (e.g. comma)
+            // make sure it is a comment !!!!
+            int j=result.indexOf("%",len);
+            if(j>=len){
+                result=result.left(j); // avoid comments
+            }else{
+                result.append(" "); // in case of multiline arguments, linebreak is considered as space in latex
+            }
         }else{
             result.append(" "); // in case of multiline arguments, linebreak is considered as space in latex
         }
