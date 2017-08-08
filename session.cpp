@@ -32,6 +32,7 @@ bool Session::load(const QString &file)
 		QString filename = s.value("FileName").toString();
 		if (filename.isEmpty()) continue;
 		f.fileName = QDir::cleanPath(dir.filePath(filename));
+		f.editorGroup = s.value("EditorGroup", 0).toInt();
 		f.cursorLine = s.value("Line", 0).toInt();
 		f.cursorCol = s.value("Col", 0).toInt();
 		f.firstLine = s.value("FirstLine", 0).toInt();
@@ -68,6 +69,7 @@ bool Session::save(const QString &file, bool relPaths) const
 	for (int i = 0; i < m_files.count(); i++) {
 		s.beginGroup(QString("File%1").arg(i));
 		s.setValue("FileName", fmtPath(dir, m_files[i].fileName, relPaths));
+		s.setValue("EditorGroup", m_files[i].editorGroup);
 		s.setValue("Line", m_files[i].cursorLine);
 		s.setValue("Col", m_files[i].cursorCol);
 		s.setValue("FirstLine", m_files[i].firstLine);

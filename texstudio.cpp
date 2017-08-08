@@ -3212,6 +3212,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
 			edView->editor->setCursorPosition(line, col);
 			edView->editor->scrollToFirstLine(f.firstLine);
 			edView->document->foldLines(f.foldedLines);
+			editors->moveToTabGroup(edView, f.editorGroup, -1);
 		} else {
 			missingFiles.append(f.fileName);
 		}
@@ -3253,6 +3254,7 @@ Session Texstudio::getCurrentSession()
 	foreach (LatexEditorView *edView, editors->editors()) {
 		FileInSession f;
 		f.fileName = edView->editor->fileName();
+		f.editorGroup = editors->tabGroupIndexFromEditor(edView);
 		f.cursorLine = edView->editor->cursor().lineNumber();
 		f.cursorCol = edView->editor->cursor().columnNumber();
 		f.firstLine = edView->editor->getFirstVisibleLine();

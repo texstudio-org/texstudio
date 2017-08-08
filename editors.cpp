@@ -441,6 +441,19 @@ void Editors::moveAllToOtherTabGroup() {
 		moveToTabGroup(edView, tabGroups[otherGroupIndex], -1);
 }
 
+
+/*!
+ * Move the editor to the given tabWidget at position targetIndex (if < 0, append).
+ */
+void Editors::moveToTabGroup(LatexEditorView *edView, int groupIndex, int targetIndex)
+{
+	if (groupIndex < 0)
+		groupIndex = 0;
+	if (groupIndex > tabGroups.length() -1)
+		groupIndex = tabGroups.length() -1;
+	moveToTabGroup(edView, tabGroups[groupIndex], targetIndex);
+}
+
 /*!
  * Move the editor to the given tabWidget at position targetIndex (if < 0, append).
  */
@@ -450,8 +463,11 @@ void Editors::moveToTabGroup(LatexEditorView *edView, TxsTabWidget *target, int 
 		// only move within the tab
 		if (target == 0) target = tabWidgetFromEditor(edView);
 		if (targetIndex < 0) targetIndex = qMax(0, target->count() - 1);
-		target->moveTab(target->indexOf(edView), targetIndex);
-		emit editorsReordered();
+		int currentIndex = target->indexOf(edView);
+		if (currentIndex != targetIndex) {  // nothing todo otherwise
+			target->moveTab(target->indexOf(edView), targetIndex);
+			emit editorsReordered();
+		}
 	} else {
 		bool b = changes->block();
 		TxsTabWidget *source = tabWidgetFromEditor(edView);
