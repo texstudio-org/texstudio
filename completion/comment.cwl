@@ -1,0 +1,9 @@
+#comment.cwl
+\begin{comment}#V
+\end{comment}
+\comment#*
+\endcomment#*
+\includecomment{envname}#N
+\excludecoment{envname}#N
+\specialcomment{envname}{begdef}{enddef}#*N
+\processcomment{envname}{def}{begdef}{enddef}#*N

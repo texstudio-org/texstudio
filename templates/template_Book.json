@@ -1,0 +1,9 @@
+{
+"Name" : "Book",
+"Author" : "TXS built-in",
+"Date" : "04.01.2013",
+"Version" : "1.1",
+"Description" : "Default LaTeX class for books using separate files for each chapter.",
+"License" : "Public Domain",
+"FilesToOpen" : "./TeX_files/chapter01.tex;main.tex"
+}
