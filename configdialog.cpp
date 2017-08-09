@@ -387,7 +387,7 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	setModal(true);
 	ui.setupUi(this);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)  && !defined(Q_OS_MAC)
 	// activate panning by single-finger touch gesture
 	QScroller::grabGesture(ui.scrollAreaGeneral, QScroller::TouchGesture);
 	QScroller::grabGesture(ui.scrollAreaBuild, QScroller::TouchGesture);
