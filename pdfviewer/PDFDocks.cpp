@@ -717,7 +717,7 @@ void PDFScrollArea::ensureVisiblePageAbsolutePos(int page, const QPointF &pos, i
 
 void PDFScrollArea::setTouchPanGestureActive(bool active)
 {
-# if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+# if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)&&!defined(Q_OS_MAC)
 	if (active) {
 		QScroller::grabGesture(viewport(), QScroller::TouchGesture);
 	} else {
