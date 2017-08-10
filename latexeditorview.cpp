@@ -3117,7 +3117,7 @@ void LatexEditorView::checkRTLLTRLanguageSwitching()
 				language = IL_LTR;
 			else {
 				int c = cursor.columnNumber();
-				int dir = line.getLayout()->rightCursorPosition(c) - c;
+				int dir = line.rightCursorPosition(c) - c;
 				if (dir < 0) language = IL_RTL;
 				else if (dir > 0) language = IL_LTR;
 			}

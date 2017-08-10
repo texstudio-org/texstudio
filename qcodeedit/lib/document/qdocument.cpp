@@ -4732,7 +4732,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 		switch (op) {
 		case QDocumentCursor::Left:
 			for (int i=0;i<count;i++)
-				tempOffset = l1.getLayout()->leftCursorPosition(tempOffset);
+				tempOffset = l1.leftCursorPosition(tempOffset);
 			count = m_begOffset - tempOffset;
 			if (count < 0) { count = - count; op = QDocumentCursor::NextCharacter; }
 			else if (count == 0) {
@@ -4753,7 +4753,7 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			break;
 		case QDocumentCursor::Right:
 			for (int i=0;i<count;i++)
-				tempOffset = l1.getLayout()->rightCursorPosition(tempOffset);
+				tempOffset = l1.rightCursorPosition(tempOffset);
 			count = tempOffset - m_begOffset;
 			if (count < 0) { count = - count; op = QDocumentCursor::PreviousCharacter; }
 			else if (count == 0) {
@@ -4773,11 +4773,11 @@ bool QDocumentCursorHandle::movePosition(int count, int op, const QDocumentCurso
 			}
 			break;
 		case QDocumentCursor::WordLeft:
-			if (l1.getLayout()->leftCursorPosition(tempOffset) > tempOffset)
+			if (l1.leftCursorPosition(tempOffset) > tempOffset)
 				op = QDocumentCursor::NextWord;
 			break;
 		case QDocumentCursor::WordRight:
-			if (l1.getLayout()->rightCursorPosition(tempOffset) < tempOffset)
+			if (l1.rightCursorPosition(tempOffset) < tempOffset)
 				op = QDocumentCursor::PreviousWord;
 			break;
 		}
