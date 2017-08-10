@@ -40,12 +40,17 @@ public:
 	TexstudioApp(QString &id, int &argc, char **argv);
 	~TexstudioApp();
 	void init(QStringList &cmdLine);   // This function does all the initialization instead of the constructor.
-	/*really slow global event logging:
-	bool notify(QObject* obj, QEvent* event){
-		qWarning(qPrintable(QString("%1 obj %2 named %3 typed %4 child of %5 received %6").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg((long)obj,8,16).arg(obj->objectName()).arg(obj->metaObject()->className()).arg(obj->parent()?obj->parent()->metaObject()->className():"").arg(event->type())));
-		return QApplication::notify(obj,event);
-	}
-	*/
+	/*bool notify(QObject* obj, QEvent* event){
+		//really slow global event logging:
+		//qWarning(qPrintable(QString("%1 obj %2 named %3 typed %4 child of %5 received %6").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg((long)obj,8,16).arg(obj->objectName()).arg(obj->metaObject()->className()).arg(obj->parent()?obj->parent()->metaObject()->className():"").arg(event->type())));
+		try {
+			return QApplication::notify(obj,event);
+		} catch (const std::exception& e){
+			qDebug() << "Catched exception: " << e.what();
+			return false;
+		}
+	}*/
+
 
 protected:
 	bool event(QEvent *event);

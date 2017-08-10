@@ -199,6 +199,8 @@ class QCE_EXPORT QDocumentLine
 		bool isRTLByLayout() const;
 		bool isRTLByText() const;
 		QTextLayout* getLayout() const;
+		int leftCursorPosition(int oldPos) const;
+		int rightCursorPosition(int oldPos) const;
 private:
 		QDocumentLineHandle *m_handle;
 };

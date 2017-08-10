@@ -447,6 +447,35 @@ QTextLayout* QDocumentLine::getLayout() const{
 	return m_handle ? m_handle->m_layout : 0;
 }
 
+int QDocumentLine::leftCursorPosition(int oldPos) const{
+	if (!m_handle) return 0;
+#if QT_VERSION >= 0x040800
+	if (m_handle->m_layout) {
+		QReadLocker locker(&m_handle->mLock); //no idea if this is needed
+		try {
+			return m_handle->m_layout->leftCursorPosition(oldPos);
+		} catch (std::bad_alloc){
+
+		}
+	}
+#endif
+	return qBound(0, oldPos - 1, length());
+}
+int QDocumentLine::rightCursorPosition(int oldPos) const{
+	if (!m_handle) return 0;
+#if QT_VERSION >= 0x040800
+	if (m_handle->m_layout) {
+		QReadLocker locker(&m_handle->mLock); //no idea if this is needed
+		try {
+			return m_handle->m_layout->rightCursorPosition(oldPos);
+		} catch (std::bad_alloc){ //this is sometimes thrown on qt4.8.7 with 7*hex:(d8ba d8b1) 2478 5e32 2409
+
+		}
+	}
+#endif
+	return qBound(0, oldPos + 1, length());
+}
+
 /*!
 	\return whether the line has at least one overlay of a given format id
 */
