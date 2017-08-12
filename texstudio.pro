@@ -140,7 +140,8 @@ HEADERS += texstudio.h \
     flowlayout.h \
     minisplitter.h \
     encoding.h \
-    latexstructure.h
+    latexstructure.h \
+    svn.h
 SOURCES += main.cpp \
     texstudio.cpp \
     buildmanager.cpp \
@@ -235,7 +236,8 @@ SOURCES += main.cpp \
     flowlayout.cpp \
     minisplitter.cpp \
     encoding.cpp \
-    latexstructure.cpp
+    latexstructure.cpp \
+    svn.cpp
 win32: SOURCES += utilssystem_win.cpp
 else: SOURCES += utilssystem_unix.cpp
 

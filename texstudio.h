@@ -47,6 +47,7 @@
 #include "latexstyleparser.h"
 #include "kpathseaParser.h"
 #include "diffoperations.h"
+#include "svn.h"  // only for SVN::Status. to be refactored
 
 #include <QProgressDialog>
 
@@ -58,15 +59,6 @@
 typedef QHash<QString, int> SymbolList;
 
 typedef QSet<QString> StringSet;
-
-enum SVNSTATUS {
-	SVN_Unknown = 0,
-	SVN_Unmanaged,
-	SVN_Modified,
-	SVN_Locked,
-	SVN_CheckedIn,
-	SVN_InConflict
-};
 
 class UserMenuDialog;
 class GrammarCheck;
@@ -286,7 +278,7 @@ private slots:
 	void svnUndo(bool redo = false);
 	void svnPatch(QEditor *ed, QString diff);
 	void svnLock(QString fn);
-	SVNSTATUS svnStatus(QString filename);
+	SVN::Status svnStatus(QString filename);
 	void showOldRevisions();
 	QStringList svnLog();
 	void changeToRevision(QString rev, QString old_rev = "");
@@ -477,6 +469,7 @@ private slots:
 
 	bool runCommand(const QString &commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
 	bool runCommandNoSpecialChars(QString commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
+	QString runSvn(QString action, QString args);
 protected slots:
 	void processNotification(const QString &message);
     void clearLogs();
