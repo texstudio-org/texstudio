@@ -476,6 +476,7 @@ private slots:
 
 
 	bool runCommand(const QString &commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
+	bool runCommandNoSpecialChars(QString commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
 protected slots:
 	void processNotification(const QString &message);
     void clearLogs();
