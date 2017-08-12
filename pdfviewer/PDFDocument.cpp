@@ -1053,10 +1053,19 @@ void PDFWidget::doLink(const QSharedPointer<Poppler::Link> link)
 		const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link.data());
 		Q_ASSERT(go != NULL);
 		if (go->isExternal()) {
-			QString file = go->fileName();
-			break; // FIXME -- we don't handle this yet!
+			QString filename = go->fileName();
+			if (filename.endsWith(".pdf")) {
+				QFileInfo fi(filename);
+				if (fi.isRelative()) {
+					filename = QDir(QFileInfo(pdfdocument->fileName()).absolutePath()).filePath(filename);
+				}
+				pdfdocument->loadFile(filename);
+			} else {
+				txsInformation(tr("Opening external files is currently only supported for PDFs."));
+			}
+		} else {
+			goToDestination(go->destination());
 		}
-		goToDestination(go->destination());
 	}
 	break;
 	case Poppler::Link::Browse: {
@@ -1410,11 +1419,21 @@ void PDFWidget::updateCursor(const QPoint &pos)
 		// poppler's linkArea is relative to the page rect
 		if (link->linkArea().contains(scaledPos)) {
 			setCursor(Qt::PointingHandCursor);
+			QString tooltip;
 			if (link->linkType() == Poppler::Link::Browse) {
 				const Poppler::LinkBrowse *browse = dynamic_cast<const Poppler::LinkBrowse *>(link);
 				Q_ASSERT(browse != NULL);
+				tooltip = browse->url();
+			} else if (link->linkType() == Poppler::Link::Goto) {
+				const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link);
+				Q_ASSERT(browse != NULL);
+				if (go->isExternal()) {
+					tooltip = go->fileName();
+				}
+			}
+			if (!tooltip.isEmpty()) {
 				QRect r = mapPopplerRectToWidget(link->linkArea(), page->pageSizeF());
-				QToolTip::showText(mapToGlobal(pos), browse->url(), this, r);
+				QToolTip::showText(mapToGlobal(pos), tooltip, this, r);
 			}
 			done = true;
 			break;
