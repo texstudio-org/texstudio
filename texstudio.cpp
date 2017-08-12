@@ -1870,7 +1870,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	if (f_real.endsWith(".pdf", Qt::CaseInsensitive)) {
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
-		PDFDocument::documentList().first()->loadFile(f_real, QString(f_real).replace(".pdf", ".tex"));
+		PDFDocument::documentList().first()->loadFile(f_real);
 		PDFDocument::documentList().first()->show();
 		PDFDocument::documentList().first()->setFocus();
 		return 0;
@@ -6688,7 +6688,7 @@ void Texstudio::executeCommandLine(const QStringList &args, bool realCmdLine)
 		if (PDFDocument::documentList().isEmpty())
 			newPdfPreviewer();
 		foreach (PDFDocument *viewer, PDFDocument::documentList()) {
-			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first(), QFileInfo());
+			if (!filesToLoad.isEmpty()) viewer->loadFile(filesToLoad.first());
 			connect(viewer, SIGNAL(destroyed()), SLOT(deleteLater()));
 			viewer->show();
 			viewer->setFocus();

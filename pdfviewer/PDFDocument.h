@@ -419,7 +419,7 @@ public slots:
 	void toggleFullScreen(const bool fullscreen);
 	int syncFromSource(const QString &sourceFile, int lineNo, DisplayFlags displayFlags);  // lineNo is 0-based
 	void syncFromView(const QString &pdfFile, const QFileInfo &masterFile, int page);
-	void loadFile(const QString &fileName, const QFileInfo &masterFile, DisplayFlags displayFlags = DisplayFlagsEnum(Raise | Focus));
+	void loadFile(const QString &fileName, QFileInfo masterFile = QFileInfo(), DisplayFlags displayFlags = DisplayFlagsEnum(Raise | Focus));
 	void printPDF();
 	void setAutoHideToolbars(bool enabled);
 	void hideToolbars();
