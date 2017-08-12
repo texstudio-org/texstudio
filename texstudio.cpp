@@ -5763,6 +5763,18 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 	return buildManager.runCommand(commandline, finame, getCurrentFileName(), ln, buffer, codecForBuffer);
 }
 
+/*!
+ * Workaround method to use runCommand without interpreting special chars in the commandline.
+ * TODO: Maybe these kind of calls should be decoupled from the buildmanager altogether, or
+ * this should become a separate method of the buildmanager.
+ */
+bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, QTextCodec *codecForBuffer) {
+	commandline.replace('@', "@@");
+	commandline.replace('%', "%%");
+	commandline.replace('?', "??");
+	return runCommand(commandline, buffer, codecForBuffer);
+}
+
 void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &options)
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -8868,6 +8880,19 @@ void Texstudio::syncPDFViewer(QDocumentCursor cur, bool inForeground)
 #endif
 }
 
+/*!
+ * Return a filename suitable to pass to an svn command line call. This does:
+ *   1. enquote the filename in double qoutes.
+ *   2. add '@' at the end if the filename contains an @. This prevents the interpretation
+ *      of the contained @ as revision marker. See https://stackoverflow.com/a/757510/2726279
+ */
+QString filenameForSVN(QString filename) {
+	if (filename.contains('@')) {
+		filename += '@';
+	}
+	return quotePath(filename);
+}
+
 void Texstudio::fileCheckin(QString filename)
 {
 	if (!currentEditorView()) return;
@@ -8945,10 +8970,10 @@ void Texstudio::fileUpdate(QString filename)
 	if (!currentEditorView()) return;
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if (fn.isEmpty()) return;
-	QString cmd = BuildManager::CMD_SVN + " up --non-interactive \"" + fn + "\"";
+	QString cmd = BuildManager::CMD_SVN + " up --non-interactive " + filenameForSVN(fn);
 	statusLabelProcess->setText(QString(" svn update "));
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	outputView->insertMessageLine(buffer);
 }
 /*!
@@ -8964,10 +8989,10 @@ void Texstudio::fileUpdateCWD(QString filename)
 	if (fn.isEmpty()) return;
 	QString cmd = BuildManager::CMD_SVN;
 	fn = QFileInfo(fn).path();
-	cmd += " up --non-interactive  \"" + fn + "\"";
+	cmd += " up --non-interactive  " + filenameForSVN(fn);
 	statusLabelProcess->setText(QString(" svn update "));
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	outputView->insertMessageLine(buffer);
 }
 
@@ -8991,9 +9016,9 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 			}
 			// set SVN Properties if desired
 			if (configManager.svnKeywordSubstitution) {
-				QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" \"" + filename + "\"";
+				QString cmd = BuildManager::CMD_SVN + " propset svn:keywords \"Date Author HeadURL Revision\" " + filenameForSVN(filename);
 				statusLabelProcess->setText(QString(" svn propset svn:keywords "));
-				runCommand(cmd, 0);
+				runCommandNoSpecialChars(cmd);
 			}
 		}
 	}
@@ -9003,11 +9028,11 @@ void Texstudio::checkin(QString fn, QString text, bool blocking)
 {
 	Q_UNUSED(blocking)
 	QString cmd = BuildManager::CMD_SVN;
-	cmd += " ci -m \"" + text + "\" \"" + fn + ("\"");
+	cmd += " ci -m \"" + text + "\" " + filenameForSVN(fn);
 	statusLabelProcess->setText(QString(" svn check in "));
 	//TODO: blocking
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	LatexEditorView *edView = getEditorViewFromFileName(fn);
 	if (edView)
 		edView->editor->setProperty("undoRevision", 0);
@@ -9032,20 +9057,20 @@ bool Texstudio::svnadd(QString fn, int stage)
 		}
 	}
 	QString cmd = BuildManager::CMD_SVN;
-	cmd += " add \"" + fn + ("\"");
+	cmd += " add " + filenameForSVN(fn);
 	statusLabelProcess->setText(QString(" svn add "));
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	return true;
 }
 
 void Texstudio::svnLock(QString fn)
 {
 	QString cmd = BuildManager::CMD_SVN;
-	cmd += " lock \"" + fn + ("\"");
+	cmd += " lock " + filenameForSVN(fn);
 	statusLabelProcess->setText(QString(" svn lock "));
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 }
 
 void Texstudio::svncreateRep(QString fn)
@@ -9053,19 +9078,19 @@ void Texstudio::svncreateRep(QString fn)
 	QString cmd = BuildManager::CMD_SVN;
 	QString admin = BuildManager::CMD_SVNADMIN;
 	QString path = QFileInfo(fn).absolutePath();
-	admin += " create \"" + path + "/repo\"";
+	admin += " create " + quotePath(path + "/repo");
 	statusLabelProcess->setText(QString(" svn create repo "));
 	QString buffer;
-	runCommand(admin, &buffer);
+	runCommandNoSpecialChars(admin, &buffer);
 	QString scmd = cmd + " mkdir \"file:///" + path + "/repo/trunk\" -m\"txs auto generate\"";
-	runCommand(scmd, &buffer);
+	runCommandNoSpecialChars(scmd, &buffer);
 	scmd = cmd + " mkdir \"file:///" + path + "/repo/branches\" -m\"txs auto generate\"";
-	runCommand(scmd, &buffer);
+	runCommandNoSpecialChars(scmd, &buffer);
 	scmd = cmd + " mkdir \"file:///" + path + "/repo/tags\" -m\"txs auto generate\"";
-	runCommand(scmd, &buffer);
+	runCommandNoSpecialChars(scmd, &buffer);
 	statusLabelProcess->setText(QString(" svn checkout repo"));
 	cmd += " co \"file:///" + path + "/repo/trunk\" \"" + path + "\"";
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 }
 
 void Texstudio::svnUndo(bool redo)
@@ -9073,9 +9098,9 @@ void Texstudio::svnUndo(bool redo)
 	QString cmd_svn = BuildManager::CMD_SVN;
 	QString fn = currentEditor()->fileName();
 	// get revisions of current file
-	QString cmd = cmd_svn + " log \"" + fn + "\"";
+	QString cmd = cmd_svn + " log " + filenameForSVN(fn);
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	QStringList revisions = buffer.split("\n", QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
@@ -9236,10 +9261,10 @@ void Texstudio::svnDialogClosed()
 SVNSTATUS Texstudio::svnStatus(QString filename)
 {
 	QString cmd = BuildManager::CMD_SVN;
-	cmd += " st \"" + filename + ("\"");
+	cmd += " st " + filenameForSVN(filename);
 	statusLabelProcess->setText(QString(" svn status "));
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	if (buffer.isEmpty()) return SVN_CheckedIn;
 	if (buffer.startsWith("?")) return SVN_Unmanaged;
 	if (buffer.startsWith("M")) return SVN_Modified;
@@ -9251,7 +9276,7 @@ SVNSTATUS Texstudio::svnStatus(QString filename)
 void Texstudio::changeToRevision(QString rev, QString old_rev)
 {
 	QString cmd_svn = BuildManager::CMD_SVN;
-	QString fn = "\"" + currentEditor()->fileName() + "\"";
+	QString filename = currentEditor()->fileName() + "@";
 	// get diff
 	QRegExp rx("^[r](\\d+) \\|");
 	QString old_revision;
@@ -9270,9 +9295,9 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 	if (rx.indexIn(new_revision) > -1) {
 		new_revision = rx.cap(1);
 	} else return;
-	QString cmd = cmd_svn + " diff -r " + old_revision + ":" + new_revision + " " + fn;
+	QString cmd = cmd_svn + " diff -r " + old_revision + ":" + new_revision + " " + filenameForSVN(filename);
 	QString buffer;
-	runCommand(cmd, &buffer, currentEditor()->getFileCodec());
+	runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
 	// patch
 	svnPatch(currentEditor(), buffer);
 	currentEditor()->setProperty("Revision", rev);
@@ -9281,11 +9306,12 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 QStringList Texstudio::svnLog()
 {
 	QString cmd_svn = BuildManager::CMD_SVN;
-	QString fn = "\"" + currentEditor()->fileName() + "\"";
+	QString filename = currentEditor()->fileName();
+
 	// get revisions of current file
-	QString cmd = cmd_svn + " log " + fn;
+	QString cmd = cmd_svn + " log " + filenameForSVN(filename);
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	QStringList revisions = buffer.split("\n", QString::SkipEmptyParts);
 	buffer.clear();
 	QMutableStringListIterator i(revisions);
@@ -10346,7 +10372,7 @@ void Texstudio::declareConflictResolved()
 	cmd += " resolve --accept working \"" + fn + ("\"");
 	statusLabelProcess->setText(QString(" svn resolve conflict "));
 	QString buffer;
-	runCommand(cmd, &buffer);
+	runCommandNoSpecialChars(cmd, &buffer);
 	checkin(fn, "txs: commit after resolve");
 }
 /*!
