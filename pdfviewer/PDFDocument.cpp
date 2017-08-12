@@ -2959,8 +2959,19 @@ void PDFDocument::syncFromView(const QString &pdfFile, const QFileInfo &masterFi
 		scrollArea->goToPage(page, false);
 }
 
-void PDFDocument::loadFile(const QString &fileName, const QFileInfo &masterFile, DisplayFlags displayFlags)
+/*!
+ * \brief PDFDocument::loadFile
+ * \param fileName  the file to load
+ * \param masterFile  tex corresponding .tex source file. If not given, assume it's identical to fileName but
+ *        with extension .tex
+ * \param displayFlags
+ */
+void PDFDocument::loadFile(const QString &fileName, QFileInfo masterFile, DisplayFlags displayFlags)
 {
+	if (masterFile.fileName().isEmpty()) {
+		masterFile.setFile(replaceFileExtension(fileName, ".tex"));
+	}
+
 	// check if the file is already loaded
 	bool fileAlreadyLoaded = (this->masterFile == masterFile);
 	fileAlreadyLoaded = fileAlreadyLoaded && (curFileUnnormalized == fileName);
@@ -3761,7 +3772,7 @@ void PDFDocument::fileOpen()
 {
 	QString newFile = QFileDialog::getOpenFileName(this, tr("Open PDF"), curFile, "PDF (*.pdf);;All files (*)");
 	if (newFile.isEmpty()) return;
-	loadFile(newFile, QString(newFile).replace(".pdf", ".tex"), NoDisplayFlags);
+	loadFile(newFile, QFileInfo(), NoDisplayFlags);
 }
 
 void PDFDocument::enablePageActions(int pageIndex, bool sync)
@@ -3970,7 +3981,7 @@ void PDFDocument::dropEvent(QDropEvent *event)
 		const QList<QUrl> urls = event->mimeData()->urls();
 		foreach (const QUrl &url, urls)
 			if (url.scheme() == "file") {
-				if (url.path().endsWith("pdf")) loadFile(url.toLocalFile(), url.toLocalFile().replace(".pdf", ".tex"));
+				if (url.path().endsWith("pdf")) loadFile(url.toLocalFile());
 				else emit fileDropped(url);
 			}
 		event->acceptProposedAction();
