@@ -68,6 +68,8 @@ class QCE_EXPORT QDocumentPrivate
 		void execute(QDocumentCommand *cmd);
 		
 		void draw(QPainter *p, QDocument::PaintContext& cxt);
+		void drawPlaceholders(QPainter *p, QDocument::PaintContext &cxt);
+		void drawCursors(QPainter *p, const QDocument::PaintContext &cxt);
 
 		QString exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS, int maxLineWidth, int maxWrap) const;
 

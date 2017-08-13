@@ -6684,10 +6684,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	if ( repBackground.isValid() )
 		base.setColor(repBackground);
 
-	QColor repForeground = m_doc->getForeground(); // color for cursor line
-	if ( !repForeground.isValid() )
-		repForeground = cxt.palette.text().color(); // Fallback
-
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
 
@@ -7016,12 +7012,20 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
         //qDebug("drawing line %i in %i ms", i, t.elapsed());
 	}
 	p->translate(-m_leftMargin, 0);
+	//qDebug("painting done in %i ms...", t.elapsed());
 
-    //qDebug("painting done in %i ms...", t.elapsed());
+	drawPlaceholders(p, cxt);
+	drawCursors(p, cxt);
+	//qDebug("QDocumentPrivate::draw finished");
+}
+
+void QDocumentPrivate::drawPlaceholders(QPainter *p, QDocument::PaintContext &cxt)
+{
+	p->save();
 
 	//mark placeholder which will probably be removed
-	if (cxt.lastPlaceHolder >=0 
-	    && cxt.lastPlaceHolder < cxt.placeHolders.count() 
+	if (cxt.lastPlaceHolder >=0
+	    && cxt.lastPlaceHolder < cxt.placeHolders.count()
 	    && cxt.lastPlaceHolder != cxt.curPlaceHolder){
 		const PlaceHolder& ph = cxt.placeHolders.at(cxt.lastPlaceHolder);
 		if (!ph.autoRemove) cxt.lastPlaceHolder = -1;
@@ -7056,12 +7060,24 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	for (int i=0; i < cxt.placeHolders.count(); i++)
 		if (cxt.placeHolders[i].autoOverride && !cxt.placeHolders[i].cursor.line().isHidden())
 			p->drawConvexPolygon(cxt.placeHolders[i].cursor.documentRegion());
-	// draw cursor(s)
-	p->setPen(repForeground);	
-	foreach(QDocumentCursor cur, QList<QDocumentCursorHandle*>() << cxt.cursors << cxt.extra){
+
+	p->restore();
+}
+
+void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &cxt)
+{
+	p->save();
+
+	QColor repForeground = m_doc->getForeground(); // color for cursor line
+	if ( !repForeground.isValid() )
+		repForeground = cxt.palette.text().color(); // Fallback
+	p->setPen(repForeground);
+
+	foreach(QDocumentCursor cur, QList<QDocumentCursorHandle*>() << cxt.cursors << cxt.extra) {
 		if (!cur.line().isHidden()) {
 			if (cxt.blinkingCursor) {
 				if (m_overwrite && !cur.hasSelection()) {
+					// block cursor for overwrite
 					p->setPen(Qt::NoPen);
 					QColor col = repForeground;
 					col.setAlpha(160);
@@ -7080,6 +7096,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 					}
 					p->drawRect(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing-1);
 				}else{
+					// regular line cursor
 					QPoint pt = cur.documentPosition();
 					QPoint curHt(0, QDocumentPrivate::m_lineSpacing-1);
 					p->drawLine(pt, pt + curHt);
@@ -7091,7 +7108,7 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 			}
 		}
 	}
-	//qDebug("QDocumentPrivate::draw finished");
+	p->restore();
 }
 
 QString QDocumentPrivate::exportAsHtml(const QDocumentCursor& range, bool includeHeader, bool simplifyCSS, int maxLineWidth, int maxWrap) const{
