@@ -62,12 +62,31 @@ class QCE_EXPORT QDocumentPrivate
 	friend class QDocumentCursorHandle;
 	
 	public:
+		struct DrawTextLineContext {
+			/*! additional information passed to drawTextLine()
+			 * This has been created as part of extract method drawTextLine.
+			 * Part of the arguments are constants passed to drawTextLine,
+			 * others may be modified during drawTextLine.
+			 * The number of required variables can probably be reduced during
+			 * further refactoring.
+			 */
+			int docLineNr;
+			int editLineNr;
+			int firstLine; /* constant */
+			int pos;  /* vertical position */
+			int visiblePos;
+			bool inSelection;
+			QBrush base; /* constant */
+			QBrush alternate; /* constant */
+		};
+
 		QDocumentPrivate(QDocument *d);
 		~QDocumentPrivate();
 		
 		void execute(QDocumentCommand *cmd);
 		
 		void draw(QPainter *p, QDocument::PaintContext& cxt);
+		void drawTextLine(QPainter *p, QDocument::PaintContext &cxt, DrawTextLineContext &lcxt);
 		void drawPlaceholders(QPainter *p, QDocument::PaintContext &cxt);
 		void drawCursors(QPainter *p, const QDocument::PaintContext &cxt);
 
