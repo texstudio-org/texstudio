@@ -3098,6 +3098,14 @@ void QEditor::paintEvent(QPaintEvent *e)
 		ctx.lastPlaceHolder=m_lastPlaceHolder;
 	}
         //qDebug("elapsed %d ms",tm.elapsed());
+
+	// fill all the background, including areas on which the document does not draw
+	// (e.g. left/right margins and the bottom of the viewport if it is larger than the document)
+	QBrush bg = palette().base();
+	if ( m_doc->getBackground().isValid() )
+		bg.setColor(m_doc->getBackground());
+	p.fillRect(0, 0, qMax(viewport()->width(), m_doc->width()), qMax(viewport()->height(), m_doc->height()), bg);
+
 	p.save();
 	m_doc->draw(&p, ctx);
 	p.restore();
@@ -3116,19 +3124,6 @@ void QEditor::paintEvent(QPaintEvent *e)
 			p.drawConvexPolygon(m.selectionStart().documentRegion());
 	}*/
 	
-	if ( viewport()->height() > m_doc->height() )
-	{
-		QBrush bg = palette().base();
-		if ( m_doc->getBackground().isValid() )
-			bg.setColor(m_doc->getBackground());
-
-		p.fillRect(	0,
-					m_doc->height(),
-					qMax(viewport()->width(), m_doc->width()),
-					viewport()->height() - m_doc->height(),
-					bg
-				);
-	}
 }
 
 /*!
