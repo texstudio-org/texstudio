@@ -6658,13 +6658,11 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 {
     //QTime t;
     //t.start();
-	QDocumentLineHandle *dlh;
 
 	p->setFont(*m_font);
 	updateStaticCaches(p->device());
 	updateInstanceCaches(p->device(), cxt);
 
-	int i, realln, pos = 0, visiblePos = 0;
 	int firstLine = qMax(0, cxt.yoffset / m_lineSpacing);
 	int lastLine = qMax(0, firstLine + (cxt.height / m_lineSpacing));
 
@@ -6676,7 +6674,6 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	if (!scheme) return;
 
 	QBrush base = cxt.palette.base();
-	QBrush selectionBackground = cxt.palette.highlight();
 	//QBrush alternate = QLineMarksInfoCenter::instance()->markType("current").color;
 	QBrush alternate = scheme->format("current").toTextCharFormat().background(); //current line
 
@@ -6687,29 +6684,37 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	if ( !alternate.color().isValid() )
 		alternate = cxt.palette.alternateBase();
 
-	QVector<int> selectionBoundaries(0);
 
 	int wrap = 0;
-	i = textLine(firstLine, &wrap);
+	DrawTextLineContext lcxt = { /* docLineNr */ 0,
+									/* editLineNr */ 0,
+									/* firstLine */ 0,
+									/* pos */ 0,
+									/* visiblePos */ 0,
+									/* inSelection */ false,
+									/* base */ base,
+									/* alternate */ alternate};
+
+	lcxt.docLineNr = textLine(firstLine, &wrap);
 	firstLine -= wrap;
-	realln = firstLine;
+	lcxt.editLineNr = firstLine;
+	lcxt.firstLine = firstLine;
 
 	//qDebug("lines [%i, %i]", firstLine, lastLine);
 
-	pos += firstLine * m_lineSpacing;
-	visiblePos = pos;
-	if (visiblePos < cxt.yoffset) {
-		int n = (cxt.yoffset-visiblePos) / m_lineSpacing;
-		visiblePos = pos + n * m_lineSpacing;
+	lcxt.pos = firstLine * m_lineSpacing;
+	lcxt.visiblePos = lcxt.pos;
+	if (lcxt.visiblePos < cxt.yoffset) {
+		int n = (cxt.yoffset-lcxt.visiblePos) / m_lineSpacing;
+		lcxt.visiblePos = lcxt.pos + n * m_lineSpacing;
 	}
 
 	// adjust first line to take selections into account...
-	bool inSelection = false;
 	foreach ( const QDocumentSelection& s, cxt.selections )
 	{
-		if ( (s.startLine < i) && (s.endLine >= i) )
+		if ( (s.startLine < lcxt.docLineNr) && (s.endLine >= lcxt.docLineNr) )
 		{
-			inSelection = true;
+			lcxt.inSelection = true;
 			break;
 		}
 	}
@@ -6722,294 +6727,15 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	                                // so that the painter x coordinate starts at the edge of the document.
 	                                // leftPadding is still included, because here the background has to be drawn
 
-	for ( ; realln <= lastLine; ++i )
+
+	for ( ; lcxt.editLineNr <= lastLine; ++lcxt.docLineNr )
 	{
-		if ( i >= m_lines.count() )
+		if ( lcxt.docLineNr >= m_lines.count() )
 		{
 			//qDebug("line %i not valid", i);
 			break;
 		}
-
-		dlh = m_lines.at(i);
-
-		// ugly workaround..., disabled 20.12.'09 because it slows down rendering speed on mac considerably and i don't see its function
-		//if( !m_fixedPitch && !h->hasFlag(QDocumentLine::Hidden))
-		//	adjustWidth(i);
-
-		const int wrap = dlh->m_frontiers.count();
-		const bool wrapped = wrap;
-
-		//if ( wrapped )
-		//	qDebug("line %i is wrapped over %i sublines", i, *wit);
-
-		// selections stuff (must do it before whatever the visibility...)
-		bool fullSelection = false;
-		selectionBoundaries.clear();
-		if ( inSelection )
-			selectionBoundaries.prepend(0);
-
-		foreach ( const QDocumentSelection& s, cxt.selections )
-		{
-			if ( i == s.startLine )
-			{
-				if ( !(selectionBoundaries.count() & 1) )
-					selectionBoundaries.append(s.start);
-
-				if ( i == s.endLine )
-				{
-					selectionBoundaries.append(s.end);
-				} else {
-					//++selLevel;
-					inSelection = true;
-					//selEnd = h->m_text.length();
-				}
-			} else if ( inSelection && (i == s.endLine) ) {
-
-				if ( selectionBoundaries.count() % 2 )
-					selectionBoundaries.append(s.end);
-
-				//--selLevel;
-				inSelection = false;
-			}
-		}
-
-
-		if ( inSelection && selectionBoundaries.count() == 1 && selectionBoundaries.at(0) == 0 )
-		{
-			selectionBoundaries.clear();
-			fullSelection = true;
-		}
-
-		if ( dlh->hasFlag(QDocumentLine::Hidden) )
-		{
-			continue;
-		} else
-			++realln;
-
-		if ( wrapped )
-			realln += wrap;
-
-
-		QBrush background = base;
-
-		// cursor(s) stuff
-		bool cursorOnLine = false;
-		bool currentLine=false;
-
-		for (QList<QDocumentCursorHandle*>::iterator cit = cxt.cursors.begin(); cit != cxt.cursors.end() && !currentLine; ++cit)
-			if ( (*cit)->lineNumber() == i )
-			{
-				if ( cxt.blinkingCursor )
-					cursorOnLine = true;
-
-				if ( cxt.fillCursorRect ){
-					if (alternate.color().alpha() != 0) // keep standard background, if alternate is fully transparent
-						background = alternate;
-					currentLine=true;
-				}
-
-				break;
-			}
-
-
-		if ( cxt.blinkingCursor)
-			for (QList<QDocumentCursorHandle*>::iterator cit = cxt.extra.begin(); cit != cxt.extra.end() && !cursorOnLine; ++cit)
-				if ( (*cit)->lineNumber() == i )
-					cursorOnLine = true;
-
-		QList<int> m = marks(dlh);
-
-		// line marks stuff
-		if ( m.count() )
-		{
-			QLineMarksInfoCenter *mic = QLineMarksInfoCenter::instance();
-
-			QColor c = mic->markType(mic->priority(m)).color;
-			if ( c.isValid() && c.alpha()!=0 )
-				background = c;
-
-		}
-
-		if ( realln < firstLine )
-			continue;
-
-		//qDebug("drawing line %i (visual %i)", i, realln);
-		/* not used when caching
-		p->fillRect(qMax(cxt.xoffset, m_leftMargin), pos,
-					cxt.width, m_lineSpacing,
-					fullSel ? selbg : bg);
-
-		if ( wrapped )
-			p->fillRect(qMax(cxt.xoffset, m_leftMargin), pos + m_lineSpacing,
-						cxt.width, m_lineSpacing * wrap, fullSel ? selbg : bg);
-		*/
-
-		//p->fillRect(cxt.xoffset, pos + 1,
-		//			cxt.width, m_lineHeight,
-		//			bg);
-		bool curSelectionState=inSelection || (!selectionBoundaries.empty()) || (cursorOnLine);
-
-		if (fullSelection && dlh->lineHasSelection != QDocumentLineHandle::fullSel) {
-			dlh->setFlag(QDocumentLine::LayoutDirty, true);
-			dlh->lineHasSelection = QDocumentLineHandle::fullSel;
-		}
-		if (!fullSelection && curSelectionState) {
-			dlh->setFlag(QDocumentLine::LayoutDirty, true);
-			dlh->lineHasSelection = QDocumentLineHandle::partialSel;
-		}
-		if (!curSelectionState && dlh->lineHasSelection != QDocumentLineHandle::noSel) {
-			dlh->setFlag(QDocumentLine::LayoutDirty, true);
-			dlh->lineHasSelection = QDocumentLineHandle::noSel;
-		}
-
-		p->save();  // every line get's its own standard pointer to prevent leaking of pointer state
-
-		// simplify line drawing
-		p->translate(0, pos);
-
-		// draw text with caching
-		int pseudoWrap = 0;
-		dlh->lockForRead();
-		if (dlh->hasCookie(QDocumentLine::PICTURE_COOKIE)) {
-			QPixmap pm = dlh->getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>();
-
-			int reservedHeight = dlh->getPictureCookieHeight();
-			dlh->unlock();
-
-			pseudoWrap = reservedHeight / m_lineSpacing;
-			int x = (cxt.width - pm.width()) / 2;
-			int y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2;
-			p->drawPixmap(x, y, pm);
-
-			dlh->lockForWrite();
-			dlh->setCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS, QRect(QPoint(x, y+pos), pm.size())); // +pos : correct for painter translation, saved point is in doc coordinates
-			dlh->unlock();
-		}
-		dlh->unlock();
-
-		bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
-
-		bool imageCache = (m_workArounds & QDocument::QImageCache);
-		
-		if(   useLineCache
-		   && !dlh->hasFlag(QDocumentLine::LayoutDirty)
-		   &&  dlh->hasFlag(QDocumentLine::FormatsApplied)
-		   &&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))) {
-			// cache is activated, available, and up-to-date: simply draw the cached object
-			if (imageCache) {
-				p->drawImage(m_lineCacheXOffset, 0, *m_LineCacheAlternative.object(dlh));
-			} else {
-				p->drawPixmap(m_lineCacheXOffset, 0, *m_LineCache.object(dlh));
-			}
-		} else {
-			int ht = m_lineSpacing*(wrap+1 - pseudoWrap);
-			QImage *image = 0;
-			QPixmap *pixmap = 0;
-			QPainter *pr = 0;
-			if (useLineCache) {
-				if (imageCache) {
-#if QT_VERSION >= 0x050000
-					int pixelRatio = p->device()->devicePixelRatio();
-					image = new QImage(pixelRatio * m_lineCacheWidth, pixelRatio * ht, QImage::Format_RGB888);
-#else
-					image = new QImage(m_lineCacheWidth, ht, QImage::Format_RGB888);
-#endif
-					if (fullSelection) {
-						image->fill(selectionBackground.color().rgb());
-					}else{
-						image->fill(background.color().rgb());
-					}
-					pr = new QPainter(image);
-				} else {
-#if QT_VERSION >= 0x050000
-                    int pixelRatio = p->device()->devicePixelRatio();
-                    pixmap = new QPixmap(pixelRatio * m_lineCacheWidth, pixelRatio * ht);
-                    pixmap->setDevicePixelRatio(pixelRatio);
-                    // TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
-                    // correct drawing on secondary screens with different scaling factors.
-#else
-                    pixmap = new QPixmap(m_lineCacheWidth, ht);
-#endif
-					if (fullSelection) {
-						pixmap->fill(selectionBackground.color());
-					} else {
-						pixmap->fill(background.color());
-					}
-					pr = new QPainter(pixmap);
-				}
-				pr->setRenderHints(p->renderHints());
-				pr->setFont(p->font());
-			} else {
-				pr = p;
-			}
-
-			// draw the background
-			if (useLineCache) {
-				pr->translate(-cxt.xoffset,0);
-				pr->fillRect(0, 0, m_leftPadding, ht, background);
-			} else if (fullSelection) {
-				pr->fillRect(0, 0, m_leftPadding, ht, background);
-				pr->fillRect(m_leftPadding, 0, m_width - m_leftPadding, ht, fullSelection ? selectionBackground : background);
-			} else
-				pr->fillRect(0, 0, m_width, ht, background);
-
-			int y = 0;
-			if (!useLineCache && visiblePos > pos)
-				y = visiblePos - pos;
-			if(!useLineCache && ((pos + ht) > (cxt.yoffset + cxt.height))) {
-				while ((pos + ht) > (cxt.yoffset + cxt.height)) {
-					ht -= m_lineSpacing;
-				}
-				ht += m_lineSpacing;
-			}
-
-			dlh->draw(i, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
-
-			if (useLineCache) {
-				if(imageCache) {
-					p->drawImage(cxt.xoffset, 0, *image);
-					delete pr;
-					m_LineCacheAlternative.insert(dlh, image);
-				}else{
-					p->drawPixmap(cxt.xoffset, 0, *pixmap);
-					delete pr;
-					m_LineCache.insert(dlh, pixmap);
-				}
-			} else {
-				m_LineCache.remove(dlh);
-				m_LineCacheAlternative.remove(dlh);
-			}
-		}
-
-
-		// see above
-		p->translate(0, -pos);
-
-
-		// draw fold rect indicator
-		if ( dlh->hasFlag(QDocumentLine::CollapsedBlockStart) )
-		{
-			p->setBrush(Qt::NoBrush);
-			p->setPen(QPen(Qt::blue, 1, Qt::DotLine));
-
-			//p->drawRect(cxt.xoffset + 2, pos,
-			//			cxt.width - 4, m_lineSpacing - 1);
-
-			p->drawRect(m_leftPadding, pos,
-						cxt.width - 4, m_lineSpacing * (wrap + 1) - 1);
-
-		}
-
-
-		pos += m_lineSpacing;
-
-		if ( wrapped )
-		{
-			pos += m_lineSpacing * wrap;
-		}
-
-		p->restore();
-        //qDebug("drawing line %i in %i ms", i, t.elapsed());
+		drawTextLine(p, cxt, lcxt);
 	}
 	p->translate(-m_leftMargin, 0);
 	//qDebug("painting done in %i ms...", t.elapsed());
@@ -7017,6 +6743,289 @@ void QDocumentPrivate::draw(QPainter *p, QDocument::PaintContext& cxt)
 	drawPlaceholders(p, cxt);
 	drawCursors(p, cxt);
 	//qDebug("QDocumentPrivate::draw finished");
+}
+
+void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, DrawTextLineContext &lcxt)
+{
+	QBrush selectionBackground = cxt.palette.highlight();
+
+	QDocumentLineHandle *dlh = m_lines.at(lcxt.docLineNr);
+
+	// ugly workaround..., disabled 20.12.'09 because it slows down rendering speed on mac considerably and i don't see its function
+	//if( !m_fixedPitch && !h->hasFlag(QDocumentLine::Hidden))
+	//	adjustWidth(i);
+
+	const int wrap = dlh->m_frontiers.count();
+	const bool wrapped = wrap;
+
+	//if ( wrapped )
+	//	qDebug("line %i is wrapped over %i sublines", i, *wit);
+
+	// selections stuff (must do it before whatever the visibility...)
+	bool fullSelection = false;
+	QVector<int> selectionBoundaries(0);
+	if ( lcxt.inSelection )
+		selectionBoundaries.prepend(0);
+
+	foreach ( const QDocumentSelection& s, cxt.selections )
+	{
+		if ( lcxt.docLineNr == s.startLine )
+		{
+			if ( !(selectionBoundaries.count() & 1) )
+				selectionBoundaries.append(s.start);
+
+			if ( lcxt.docLineNr == s.endLine )
+			{
+				selectionBoundaries.append(s.end);
+			} else {
+				//++selLevel;
+				lcxt.inSelection = true;
+				//selEnd = h->m_text.length();
+			}
+		} else if ( lcxt.inSelection && (lcxt.docLineNr == s.endLine) ) {
+
+			if ( selectionBoundaries.count() % 2 )
+				selectionBoundaries.append(s.end);
+
+			//--selLevel;
+			lcxt.inSelection = false;
+		}
+	}
+
+
+	if ( lcxt.inSelection && selectionBoundaries.count() == 1 && selectionBoundaries.at(0) == 0 )
+	{
+		selectionBoundaries.clear();
+		fullSelection = true;
+	}
+
+	if ( dlh->hasFlag(QDocumentLine::Hidden) )
+	{
+		return;
+	} else
+		++lcxt.editLineNr;
+
+	if ( wrapped )
+		lcxt.editLineNr += wrap;
+
+
+	QBrush background = lcxt.base;
+
+	// cursor(s) stuff
+	bool cursorOnLine = false;
+	bool currentLine=false;
+
+	for (QList<QDocumentCursorHandle*>::iterator cit = cxt.cursors.begin(); cit != cxt.cursors.end() && !currentLine; ++cit)
+		if ( (*cit)->lineNumber() == lcxt.docLineNr )
+		{
+			if ( cxt.blinkingCursor )
+				cursorOnLine = true;
+
+			if ( cxt.fillCursorRect ){
+				if (lcxt.alternate.color().alpha() != 0) // keep standard background, if alternate is fully transparent
+					background = lcxt.alternate;
+				currentLine=true;
+			}
+
+			break;
+		}
+
+
+	if ( cxt.blinkingCursor)
+		for (QList<QDocumentCursorHandle*>::iterator cit = cxt.extra.begin(); cit != cxt.extra.end() && !cursorOnLine; ++cit)
+			if ( (*cit)->lineNumber() == lcxt.docLineNr )
+				cursorOnLine = true;
+
+	QList<int> m = marks(dlh);
+
+	// line marks stuff
+	if ( m.count() )
+	{
+		QLineMarksInfoCenter *mic = QLineMarksInfoCenter::instance();
+
+		QColor c = mic->markType(mic->priority(m)).color;
+		if ( c.isValid() && c.alpha()!=0 )
+			background = c;
+
+	}
+
+	if ( lcxt.editLineNr < lcxt.firstLine )  // TODO: can this happen? Otherwise we don't need lineCxt.firstLine at all.
+		return;
+
+	//qDebug("drawing line %i (visual %i)", i, realln);
+	/* not used when caching
+	p->fillRect(qMax(cxt.xoffset, m_leftMargin), pos,
+				cxt.width, m_lineSpacing,
+				fullSel ? selbg : bg);
+
+	if ( wrapped )
+		p->fillRect(qMax(cxt.xoffset, m_leftMargin), pos + m_lineSpacing,
+					cxt.width, m_lineSpacing * wrap, fullSel ? selbg : bg);
+	*/
+
+	//p->fillRect(cxt.xoffset, pos + 1,
+	//			cxt.width, m_lineHeight,
+	//			bg);
+	bool curSelectionState=lcxt.inSelection || (!selectionBoundaries.empty()) || (cursorOnLine);
+
+	if (fullSelection && dlh->lineHasSelection != QDocumentLineHandle::fullSel) {
+		dlh->setFlag(QDocumentLine::LayoutDirty, true);
+		dlh->lineHasSelection = QDocumentLineHandle::fullSel;
+	}
+	if (!fullSelection && curSelectionState) {
+		dlh->setFlag(QDocumentLine::LayoutDirty, true);
+		dlh->lineHasSelection = QDocumentLineHandle::partialSel;
+	}
+	if (!curSelectionState && dlh->lineHasSelection != QDocumentLineHandle::noSel) {
+		dlh->setFlag(QDocumentLine::LayoutDirty, true);
+		dlh->lineHasSelection = QDocumentLineHandle::noSel;
+	}
+
+	p->save();  // every line get's its own standard pointer to prevent leaking of pointer state
+
+	// simplify line drawing
+	p->translate(0, lcxt.pos);
+
+	// draw text with caching
+	int pseudoWrap = 0;
+	dlh->lockForRead();
+	if (dlh->hasCookie(QDocumentLine::PICTURE_COOKIE)) {
+		QPixmap pm = dlh->getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>();
+
+		int reservedHeight = dlh->getPictureCookieHeight();
+		dlh->unlock();
+
+		pseudoWrap = reservedHeight / m_lineSpacing;
+		int x = (cxt.width - pm.width()) / 2;
+		int y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2;
+		p->drawPixmap(x, y, pm);
+
+		dlh->lockForWrite();
+		dlh->setCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS, QRect(QPoint(x, y+lcxt.pos), pm.size())); // +pos : correct for painter translation, saved point is in doc coordinates
+		dlh->unlock();
+	}
+	dlh->unlock();
+
+	bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
+
+	bool imageCache = (m_workArounds & QDocument::QImageCache);
+
+	if(   useLineCache
+	   && !dlh->hasFlag(QDocumentLine::LayoutDirty)
+	   &&  dlh->hasFlag(QDocumentLine::FormatsApplied)
+	   &&  (m_LineCache.contains(dlh) || m_LineCacheAlternative.contains(dlh))) {
+		// cache is activated, available, and up-to-date: simply draw the cached object
+		if (imageCache) {
+			p->drawImage(m_lineCacheXOffset, 0, *m_LineCacheAlternative.object(dlh));
+		} else {
+			p->drawPixmap(m_lineCacheXOffset, 0, *m_LineCache.object(dlh));
+		}
+	} else {
+		int ht = m_lineSpacing*(wrap+1 - pseudoWrap);
+		QImage *image = 0;
+		QPixmap *pixmap = 0;
+		QPainter *pr = 0;
+		if (useLineCache) {
+			if (imageCache) {
+#if QT_VERSION >= 0x050000
+				int pixelRatio = p->device()->devicePixelRatio();
+				image = new QImage(pixelRatio * m_lineCacheWidth, pixelRatio * ht, QImage::Format_RGB888);
+#else
+				image = new QImage(m_lineCacheWidth, ht, QImage::Format_RGB888);
+#endif
+				if (fullSelection) {
+					image->fill(selectionBackground.color().rgb());
+				}else{
+					image->fill(background.color().rgb());
+				}
+				pr = new QPainter(image);
+			} else {
+#if QT_VERSION >= 0x050000
+				int pixelRatio = p->device()->devicePixelRatio();
+				pixmap = new QPixmap(pixelRatio * m_lineCacheWidth, pixelRatio * ht);
+				pixmap->setDevicePixelRatio(pixelRatio);
+				// TODO: The pixmap always has a logicalDpi of the primary screen. This needs to be fixed for
+				// correct drawing on secondary screens with different scaling factors.
+#else
+				pixmap = new QPixmap(m_lineCacheWidth, ht);
+#endif
+				if (fullSelection) {
+					pixmap->fill(selectionBackground.color());
+				} else {
+					pixmap->fill(background.color());
+				}
+				pr = new QPainter(pixmap);
+			}
+			pr->setRenderHints(p->renderHints());
+			pr->setFont(p->font());
+		} else {
+			pr = p;
+		}
+
+		// draw the background
+		if (useLineCache) {
+			pr->translate(-cxt.xoffset,0);
+			pr->fillRect(0, 0, m_leftPadding, ht, background);
+		} else if (fullSelection) {
+			pr->fillRect(0, 0, m_leftPadding, ht, background);
+			pr->fillRect(m_leftPadding, 0, m_width - m_leftPadding, ht, fullSelection ? selectionBackground : background);
+		} else
+			pr->fillRect(0, 0, m_width, ht, background);
+
+		int y = 0;
+		if (!useLineCache && lcxt.visiblePos > lcxt.pos)
+			y = lcxt.visiblePos - lcxt.pos;
+		if(!useLineCache && ((lcxt.pos + ht) > (cxt.yoffset + cxt.height))) {
+			while ((lcxt.pos + ht) > (cxt.yoffset + cxt.height)) {
+				ht -= m_lineSpacing;
+			}
+			ht += m_lineSpacing;
+		}
+
+		dlh->draw(lcxt.docLineNr, pr, cxt.xoffset, m_lineCacheWidth, selectionBoundaries, cxt.palette, fullSelection,y,ht);
+
+		if (useLineCache) {
+			if(imageCache) {
+				p->drawImage(cxt.xoffset, 0, *image);
+				delete pr;
+				m_LineCacheAlternative.insert(dlh, image);
+			}else{
+				p->drawPixmap(cxt.xoffset, 0, *pixmap);
+				delete pr;
+				m_LineCache.insert(dlh, pixmap);
+			}
+		} else {
+			m_LineCache.remove(dlh);
+			m_LineCacheAlternative.remove(dlh);
+		}
+	}
+
+	// draw fold rect indicator
+	if ( dlh->hasFlag(QDocumentLine::CollapsedBlockStart) )
+	{
+		p->setBrush(Qt::NoBrush);
+		p->setPen(QPen(Qt::blue, 1, Qt::DotLine));
+
+		//p->drawRect(cxt.xoffset + 2, pos,
+		//			cxt.width - 4, m_lineSpacing - 1);
+
+		p->drawRect(m_leftPadding, 0,
+					cxt.width - 4, m_lineSpacing * (wrap + 1) - 1);
+
+	}
+
+	// see above
+	p->translate(0, -lcxt.pos);
+	p->restore();
+
+	// shift pos to the end of the line (ready for next line)
+	lcxt.pos += m_lineSpacing;
+	if ( wrapped ) {
+		lcxt.pos += m_lineSpacing * wrap;
+	}
+
+	//qDebug("drawing line %i in %i ms", i, t.elapsed());
+
 }
 
 void QDocumentPrivate::drawPlaceholders(QPainter *p, QDocument::PaintContext &cxt)
