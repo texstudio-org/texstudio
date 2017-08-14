@@ -1140,7 +1140,7 @@ void QDocument::setLineEnding(LineEnding le){
 /*!
 	\brief Set the line ending policy of the document
 */
-void QDocument::setLineEndingDirect(LineEnding le)
+void QDocument::setLineEndingDirect(LineEnding le,bool dontSendEmit)
 {
 	if ( !m_impl )
 		return;
@@ -1187,7 +1187,9 @@ void QDocument::setLineEndingDirect(LineEnding le)
 			break;
 	}
 
-	emit lineEndingChanged(le);
+    if(!dontSendEmit){
+        emit lineEndingChanged(le);
+    }
 }
 
 QTextCodec* QDocument::codec() const{

@@ -199,7 +199,7 @@ class QCE_EXPORT QDocument : public QObject
 		LineEnding originalLineEnding() const;
 		Q_INVOKABLE QString lineEndingString() const;
 		void setLineEnding(LineEnding le);
-		void setLineEndingDirect(LineEnding le);
+        void setLineEndingDirect(LineEnding le,bool dontSendEmit=false);
 		
 		QTextCodec* codec() const;
 		void setCodec(QTextCodec* codec);
