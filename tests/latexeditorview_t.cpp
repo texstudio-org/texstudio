@@ -73,14 +73,14 @@ void LatexEditorViewTest::insertHardLineBreaks(){
 	else 
 		edView->editor->setCursor(edView->editor->document()->cursor(start,0,end+1,0));
 	edView->insertHardLineBreaks(length,false,false);
-    edView->editor->document()->setLineEndingDirect(QDocument::Local);
+    edView->editor->document()->setLineEndingDirect(QDocument::Local,true);
 	QEQUAL(edView->editor->document()->text(), newText);
 	
 	if (start!=end) { //repeat with different cursor position
 		edView->editor->setText(text, false);
 		edView->editor->setCursor(edView->editor->document()->cursor(start,1,end,1));
 		edView->insertHardLineBreaks(length, false, false);
-        edView->editor->document()->setLineEndingDirect(QDocument::Local);
+        edView->editor->document()->setLineEndingDirect(QDocument::Local,true);
 		QEQUAL(edView->editor->document()->text(), newText);
 	}
 }

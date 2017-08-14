@@ -92,7 +92,7 @@ void TableManipulationTest::addCol(){
 	ed->setText(text, false);
 	LatexTables::addColumn(ed->document(),row,col,0);
 
-    ed->document()->setLineEndingDirect(QDocument::Local);
+    ed->document()->setLineEndingDirect(QDocument::Local,true);
 	QEQUAL(ed->document()->text(), newText);
 	
 }
@@ -136,7 +136,7 @@ void TableManipulationTest::addRow(){
 	QDocumentCursor c(ed->cursor());
 	LatexTables::addRow(c,2);
 
-    ed->document()->setLineEndingDirect(QDocument::Local);
+    ed->document()->setLineEndingDirect(QDocument::Local,true);
 	QEQUAL(ed->document()->text(), newText);
 
 }
@@ -642,7 +642,7 @@ void TableManipulationTest::addHLine(){
 	QDocumentCursor c(ed->cursor());
 	LatexTables::addHLine(c,numberOfLines,remove);
 
-    ed->document()->setLineEndingDirect(QDocument::Local);
+    ed->document()->setLineEndingDirect(QDocument::Local,true);
     QString result=ed->document()->text();
     QEQUAL(result, newText);
 
