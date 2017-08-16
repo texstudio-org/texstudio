@@ -163,7 +163,7 @@ bool SpellerUtility::check(QString word)
 	if (word.endsWith('.') && ignoredWords.contains(word.left(word.length() - 1))) return true;
 	if (checkCache.contains(word)) return checkCache.value(word);
     QByteArray encodedString = spellCodec->fromUnicode(word);
-    bool result = pChecker->spell(encodedString.toStdString());
+    bool result = pChecker->spell(QString(encodedString).toStdString());
 	while (checkCacheInsertion.size() > 1000) checkCacheInsertion.removeFirst();
 	checkCache.insert(word, result);
 	checkCacheInsertion.append(word);
@@ -176,12 +176,13 @@ QStringList SpellerUtility::suggest(QString word)
 	if (currentDic == "" || pChecker == 0) return QStringList(); //no speller => everything is correct
     std::vector<std::string> wlst;
     QByteArray encodedString = spellCodec->fromUnicode(word);
-    wlst = pChecker->suggest(encodedString.toStdString());
+    wlst = pChecker->suggest(QString(encodedString).toStdString());
 	QStringList suggestion;
     int ns=wlst.size();
 	if (ns > 0) {
 		for (int i = 0; i < ns; i++) {
-            suggestion << spellCodec->toUnicode(QByteArray::fromStdString(wlst[i]));
+            QString wrd=QString::fromStdString(wlst[i]);
+            suggestion << wrd;//spellCodec->toUnicode(wrd.toUtf8());
 		}
 	}
 	return suggestion;
