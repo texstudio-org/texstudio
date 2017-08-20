@@ -45,6 +45,7 @@ class QCE_EXPORT QFoldPanel : public QPanel
 		void contextMenuRequested(int line, QPoint globalPos);
 
 	protected:
+		void setWidth(int w);
 		virtual void mousePressEvent(QMouseEvent *e);
 		virtual void mouseMoveEvent(QMouseEvent *e);
 		virtual void leaveEvent(QEvent *);
@@ -56,12 +57,16 @@ class QCE_EXPORT QFoldPanel : public QPanel
 
 		QRect drawIcon(QPainter *p, QEditor *e,
 						int x, int y, int iconSize, bool expand, bool highlight);
-		
+
+		virtual void editorChange(QEditor *e);
+
+	protected slots:
+		void setFont_slot(const QFont &font);
+
 	private:
 		QList<QRect> m_rects;
 		QList<int> m_lines;
 		int m_width;
-		int m_iconSize;
 		int m_lastMouseLine;
 };
 
