@@ -212,41 +212,32 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 		if (bVisible) {
 
 			if ( fli.open ) {
-				if ( line.hasFlag(QDocumentLine::CollapsedBlockStart) ) {
-
-					 // line above icon
-					int topLineEnd = yIconOffset-1;
-					if (topLineEnd > 0 && fli.lineNr <= endHighlightLineNr)
-						p->drawLine(xMid, pos, xMid, pos + topLineEnd);
-
-					// draw icon
-					m_lines << fli.lineNr;
-					m_rects << drawIcon(p, e, 2, pos + yIconOffset, true, fli.lineNr == m_lastMouseLine);
-
-					 // line below icon
-					int bottomLineStart = yIconOffset + iconSize + 1;
-					if (bottomLineStart < len && fli.lineNr < endHighlightLineNr)
-						p->drawLine(xMid, pos + bottomLineStart, xMid, pos + len);
-				} else {
-					// line above icon
-					int topLineEnd = yIconOffset;
-					if (topLineEnd > 0 && fli.lineNr <= endHighlightLineNr)
-						p->drawLine(xMid, pos, xMid, pos + topLineEnd);
-
-					// draw icon
-					m_lines << fli.lineNr;
-					m_rects << drawIcon(p, e, 2, pos + yIconOffset, false, fli.lineNr == m_lastMouseLine);
-					if (fli.lineNr == m_lastMouseLine) {
-						QFoldedLineIterator findEnd = fli;
-						findEnd.incrementUntilBlockEnd();
-						endHighlightLineNr = findEnd.lineNr;
-					}
-
-					// line below icon
-					int bottomLineStart = yIconOffset + iconSize;
-					if ( bottomLineStart < len && fli.lineNr < endHighlightLineNr)
-						p->drawLine(xMid, pos + bottomLineStart, xMid, pos + len);
+				bool isCollapsed = line.hasFlag(QDocumentLine::CollapsedBlockStart);
+				int topLineEnd = yIconOffset;
+				int bottomLineStart =yIconOffset + iconSize;
+				if (isCollapsed) {  // a bit more space for collapsed icons
+					topLineEnd -= 1;
+					bottomLineStart += 1;
 				}
+
+				// line above icon
+				if (topLineEnd > 0 && fli.lineNr <= endHighlightLineNr)
+					p->drawLine(xMid, pos, xMid, pos + topLineEnd);
+
+				// draw icon
+				m_lines << fli.lineNr;
+				m_rects << drawIcon(p, e, 2, pos + yIconOffset, isCollapsed, fli.lineNr == m_lastMouseLine);
+
+				if (!isCollapsed && fli.lineNr == m_lastMouseLine) {
+					// found the line with the mouse -> determine end of highlighting
+					QFoldedLineIterator findEnd = fli;
+					findEnd.incrementUntilBlockEnd();
+					endHighlightLineNr = findEnd.lineNr;
+				}
+
+				// line below icon
+				if (bottomLineStart < len && fli.lineNr < endHighlightLineNr)
+					p->drawLine(xMid, pos + bottomLineStart, xMid, pos + len);
 			} else if (fli.lineNr <= endHighlightLineNr) {
 				if ( fli.lineNr == endHighlightLineNr ) {
 					int mid = pos + len - ls / 6;
