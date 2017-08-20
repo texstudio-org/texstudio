@@ -3,6 +3,10 @@
 
 #include "mostQtHeaders.h"
 
+#if QT_VERSION  < 0x050500
+#define Q_NULLPTR NULL
+#endif
+
 class SVN : public QObject
 {
 	Q_OBJECT
