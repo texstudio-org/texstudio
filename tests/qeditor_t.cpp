@@ -101,7 +101,7 @@ void QEditorTest::loadSave(){
 	QVERIFY2(writtenText.contains(outLineEnding), qPrintable("file don't contain right line ending, file"+tfn));
 	
 	editor->setFileName(""); //reset filename so it won't get panically if the file is deleted
-    editor->document()->setLineEndingDirect(QDocument::Local,true); //reset line ending so we won't screw up the other tests
+    editor->document()->setLineEndingDirect(QDocument::Unix,true); //reset line ending so we won't screw up the other tests
 }
 
 void compareLists(const QList<int> actual, const QList<int> exp){
@@ -251,7 +251,7 @@ void QEditorTest::foldedText(){
 	else if (operation=="uncomment") editor->uncommentSelection();
 	else if (operation=="togglecomment") editor->toggleCommentSelection();
 	else qFatal("invalid operation");
-    editor->document()->setLineEndingDirect(QDocument::Local,true);
+    editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), newEditorText);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
@@ -495,7 +495,7 @@ void QEditorTest::activeFolding(){
 	QDocumentCursor editCursor = editor->document()->cursor(cursorAL,cursorAC,cursorL,cursorC);
 	editCursor.insertText(textToInsert);
 
-    editor->document()->setLineEndingDirect(QDocument::Local,true);
+    editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), newEditorText);
 	for (int i=0;i<editor->document()->lines();i++)
 		QVERIFY2(editor->document()->line(i).isHidden() == newHiddenLines.contains(i),qPrintable(QString::number(i)));
@@ -535,7 +535,7 @@ void QEditorTest::insertTab()
 	editor->setText(line);
 	editor->setCursorPosition(0, cursorCol);
 	editor->insertTab();
-    editor->document()->setLineEndingDirect(QDocument::Local,true);
+    editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->text(), resultLine);
 	
 	editor->setFlag(QEditor::ReplaceTextTabs, savedReplaceTextTabs);
@@ -787,7 +787,7 @@ void QEditorTest::indentation(){
     //QEXPECT_FAIL("2 openings and closings per line", "issue 1335", Continue);
     //QEXPECT_FAIL("3 openings and closings per line", "issue 1335", Continue);
     //QEXPECT_FAIL("multiple closings with unindent on a line", "issue 1335", Continue);
-    editor->document()->setLineEndingDirect(QDocument::Local,true);
+    editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), result);
 }
 
@@ -840,7 +840,7 @@ void QEditorTest::autoClosing(){
 	editor->setText(baseText, false);
 	QDocumentCursor c=editor->document()->cursor(line,col);
 	editor->insertText(c, insert);
-    editor->document()->setLineEndingDirect(QDocument::Local,true);
+    editor->document()->setLineEndingDirect(QDocument::Unix,true);
 	QEQUAL(editor->document()->text(), result);
 }
 
