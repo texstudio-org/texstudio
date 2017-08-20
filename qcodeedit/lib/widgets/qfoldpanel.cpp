@@ -47,7 +47,9 @@ QCE_AUTO_REGISTER(QFoldPanel)
 QFoldPanel::QFoldPanel(QWidget *p)
  :	QPanel(p)
 {
-	setFixedWidth(12);
+	m_width = 22;
+	m_iconSize = 9;
+	setFixedWidth(m_width);
 	setObjectName("foldPanel");
 	setMouseTracking(true);
 	m_lastMouseLine = -1;
@@ -165,9 +167,9 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 
-	int xMid = 6,
-		iconSize = 9,
-		yIconOffset = (ls - iconSize) / 2;
+	int xMid = m_width / 2,
+		xIconOffset = (m_width - m_iconSize) / 2,
+		yIconOffset = (ls - m_iconSize) / 2;
 	
 	pos = - contentsY;
 
@@ -214,7 +216,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 			if ( fli.open ) {
 				bool isCollapsed = line.hasFlag(QDocumentLine::CollapsedBlockStart);
 				int topLineEnd = yIconOffset;
-				int bottomLineStart =yIconOffset + iconSize;
+				int bottomLineStart = yIconOffset + m_iconSize;
 				if (isCollapsed) {  // a bit more space for collapsed icons
 					topLineEnd -= 1;
 					bottomLineStart += 1;
@@ -226,7 +228,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 				// draw icon
 				m_lines << fli.lineNr;
-				m_rects << drawIcon(p, e, 2, pos + yIconOffset, isCollapsed, fli.lineNr == m_lastMouseLine);
+				m_rects << drawIcon(p, e, xIconOffset, pos + yIconOffset, m_iconSize, isCollapsed, fli.lineNr == m_lastMouseLine);
 
 				if (!isCollapsed && fli.lineNr == m_lastMouseLine) {
 					// found the line with the mouse -> determine end of highlighting
@@ -310,9 +312,10 @@ int QFoldPanel::mapRectPosToLine(const QPoint& p){
 
 
 QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
-							int x, int y, bool toExpand, bool highlight)
+							int x, int y, int iconSize, bool toExpand, bool highlight)
 {
-	QRect symbolRect(x, y, 9, 9);
+	int margin = 2;
+	QRect symbolRect(x, y, iconSize, iconSize);
 
 	p->save();
 
@@ -321,34 +324,22 @@ QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
 	if (toExpand) {
 		// rightarrow
 		QPainterPath path;
-		path.moveTo(x+2,y);
-		path.lineTo(x+2,y+9);
-		path.lineTo(x+7,y+4.5);
-		path.lineTo(x+2,y);
+		path.moveTo(x+margin, y);
+		path.lineTo(x+margin, y+iconSize);
+		path.lineTo(x+iconSize-margin, y+float(iconSize)/2);
+		path.lineTo(x+margin, y);
 
 		p->fillPath(path,  highlight ? QColor(128,0,128) : QColor(96,96,96));
 	} else {
 		// downarrow
 		QPainterPath path;
-		path.moveTo(x,y+2);
-		path.lineTo(x+9,y+2);
-		path.lineTo(x+4.5,y+7);
-		path.lineTo(x,y+2);
+		path.moveTo(x, y+margin);
+		path.lineTo(x+iconSize, y+margin);
+		path.lineTo(x+float(iconSize)/2, y+iconSize-margin);
+		path.lineTo(x, y+margin);
 
 		p->fillPath(path,  highlight ? QColor(128,0,128) : QColor(160,160,160));
 	}
-	/*
-
-	p->fillRect(symbolRect, highlight ? QColor(128,0,128) : QColor(160,160,160));
-
-	p->setPen(Qt::white);
-	if ( toExpand )
-	{
-		p->drawLine(x + 2, y + 4, x + 6, y + 4);
-		p->drawLine(x + 4, y + 2, x + 4, y + 6);
-	} else {
-		p->drawLine(x + 2, y + 4, x + 6, y + 4);
-	}*/
 
 	p->restore();
 	return symbolRect;
