@@ -45,11 +45,9 @@ QCE_AUTO_REGISTER(QFoldPanel)
 	\brief Constructor
 */
 QFoldPanel::QFoldPanel(QWidget *p)
- :	QPanel(p)
+ :	QPanel(p), m_width(0)
 {
-	m_width = 22;
-	m_iconSize = 9;
-	setFixedWidth(m_width);
+	setWidth(12);
 	setObjectName("foldPanel");
 	setMouseTracking(true);
 	m_lastMouseLine = -1;
@@ -69,6 +67,15 @@ QFoldPanel::~QFoldPanel()
 QString QFoldPanel::type() const
 {
 	return "Fold indicators";
+}
+
+void QFoldPanel::setWidth(int w)
+{
+	w = qMax(w, 5);
+	if (w != m_width) {
+		m_width = w;
+		setFixedWidth(w);
+	}
 }
 
 /*!
@@ -152,7 +159,6 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 	{
 		return true;
 	}
-
 	m_rects.clear();
 	m_lines.clear();
 
@@ -167,9 +173,10 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 		pageBottom = e->viewport()->height(),
 		contentsY = e->verticalOffset();
 
-	int xMid = m_width / 2,
-		xIconOffset = (m_width - m_iconSize) / 2,
-		yIconOffset = (ls - m_iconSize) / 2;
+	int xMid = m_width / 2;
+	int iconSize = (m_width * 3)/ 4;
+	int xIconOffset = (m_width - iconSize) / 2;
+	int yIconOffset = (ls - iconSize) / 2;
 	
 	pos = - contentsY;
 
@@ -177,13 +184,16 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 	p->save();
 	QPen linePen(QColor(128,0,128));
+	int lineWidth = m_width / 5;
+
 #if defined(__MINGW32__) && (QT_VERSION >= 0x050000)
 	// workaround for https://bugreports.qt-project.org/browse/QTBUG-32387
 	// odd line width does not work correctly: when set to 3, the actual width varies between 2 and 4.
-	linePen.setWidth(2);
-#else
-	linePen.setWidth(3);
+	if (lineWidth % 2 == 1) {
+		lineWidth -= 1;  // ensure even width
+	}
 #endif
+	linePen.setWidth(lineWidth);
 	linePen.setCapStyle(Qt::FlatCap);
 	p->setPen(linePen);
 
@@ -216,7 +226,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 			if ( fli.open ) {
 				bool isCollapsed = line.hasFlag(QDocumentLine::CollapsedBlockStart);
 				int topLineEnd = yIconOffset;
-				int bottomLineStart = yIconOffset + m_iconSize;
+				int bottomLineStart = yIconOffset + iconSize;
 				if (isCollapsed) {  // a bit more space for collapsed icons
 					topLineEnd -= 1;
 					bottomLineStart += 1;
@@ -228,7 +238,7 @@ bool QFoldPanel::paint(QPainter *p, QEditor *e)
 
 				// draw icon
 				m_lines << fli.lineNr;
-				m_rects << drawIcon(p, e, xIconOffset, pos + yIconOffset, m_iconSize, isCollapsed, fli.lineNr == m_lastMouseLine);
+				m_rects << drawIcon(p, e, xIconOffset, pos + yIconOffset, iconSize, isCollapsed, fli.lineNr == m_lastMouseLine);
 
 				if (!isCollapsed && fli.lineNr == m_lastMouseLine) {
 					// found the line with the mouse -> determine end of highlighting
@@ -314,7 +324,7 @@ int QFoldPanel::mapRectPosToLine(const QPoint& p){
 QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
 							int x, int y, int iconSize, bool toExpand, bool highlight)
 {
-	int margin = 2;
+	int tailSpacing = iconSize / 4;
 	QRect symbolRect(x, y, iconSize, iconSize);
 
 	p->save();
@@ -323,20 +333,22 @@ QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
 
 	if (toExpand) {
 		// rightarrow
+		p->translate(tailSpacing, 0);
 		QPainterPath path;
-		path.moveTo(x+margin, y);
-		path.lineTo(x+margin, y+iconSize);
-		path.lineTo(x+iconSize-margin, y+float(iconSize)/2);
-		path.lineTo(x+margin, y);
+		path.moveTo(x, y);
+		path.lineTo(x, y+iconSize);
+		path.lineTo(x+float(iconSize)/2, y+float(iconSize)/2);
+		path.lineTo(x, y);
 
 		p->fillPath(path,  highlight ? QColor(128,0,128) : QColor(96,96,96));
 	} else {
 		// downarrow
+		p->translate(0, tailSpacing);
 		QPainterPath path;
-		path.moveTo(x, y+margin);
-		path.lineTo(x+iconSize, y+margin);
-		path.lineTo(x+float(iconSize)/2, y+iconSize-margin);
-		path.lineTo(x, y+margin);
+		path.moveTo(x, y);
+		path.lineTo(x+iconSize, y);
+		path.lineTo(x+float(iconSize)/2, y+float(iconSize)/2);
+		path.lineTo(x, y);
 
 		p->fillPath(path,  highlight ? QColor(128,0,128) : QColor(160,160,160));
 	}
@@ -344,5 +356,27 @@ QRect QFoldPanel::drawIcon(	QPainter *p, QEditor *,
 	p->restore();
 	return symbolRect;
 }
+
+void QFoldPanel::setFont_slot(const QFont &font)
+{
+	setWidth(font.pointSize() + 2);
+	setFont(font);
+}
+
+void QFoldPanel::editorChange(QEditor *e)
+{
+	if ( editor() )
+	{
+		disconnect( editor()->document(), SIGNAL( fontChanged(QFont) ),
+					this	, SLOT  ( setFont_slot(QFont) ) );
+	}
+
+	if ( e )
+	{
+		connect(e->document(), SIGNAL( fontChanged(QFont) ),
+				this, SLOT  ( setFont_slot(QFont) ) );
+	}
+}
+
 
 /*! @} */
