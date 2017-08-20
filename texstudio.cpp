@@ -375,6 +375,9 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	*/
 
+	connect(&svn, SIGNAL(statusMessage(QString)), this, SLOT(setStatusMessageProcess(QString)));
+	connect(&svn, SIGNAL(runCommand(QString,QString*)), this, SLOT(runCommandNoSpecialChars(QString,QString*)));
+
 	QStringList filters;
 	filters << tr("TeX files") + " (*.tex *.bib *.sty *.cls *.mp *.dtx *.cfg *.ins *.ltx *.tikz *.pdf_tex)";
 	filters << tr("LilyPond files") + " (*.lytex)";
@@ -5780,19 +5783,6 @@ void Texstudio::setStatusMessageProcess(const QString &message)
 	statusLabelProcess->setText(message);
 }
 
-/*!
- * Helper function to run an svn command. e.g. runSvn("commit", "-m " + text + " " + filename);
- * This is part of the refactoring of SVN functions and will likely move to the SVN module later.
- */
-QString Texstudio::runSvn(QString action, QString args)
-{
-	QString cmd = SVN::cmd(action, args);
-	setStatusMessageProcess(QString(" svn %1 ").arg(action));
-	QString buffer;
-	runCommandNoSpecialChars(cmd, &buffer);
-	return buffer;
-}
-
 void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &options)
 {
 #ifndef NO_POPPLER_PREVIEW
@@ -6049,7 +6039,7 @@ void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool
 			fi.setFile(fi.path() + "/" + fi.baseName() + ".pdf");
 			if (fi.exists() && !fi.isWritable()) {
 				//pdf not writeable, needs locking ?
-				svnLock(fi.filePath());
+				svn.lock(fi.filePath());
 			}
 		}
 	}
@@ -8916,8 +8906,7 @@ void Texstudio::fileCheckin(QString filename)
 		if (svnadd(fn)) {
 			checkin(fn, text, configManager.svnKeywordSubstitution);
 		} else {
-			//create simple repository
-			svncreateRep(fn);
+			svn.createRepository(fn);
 			svnadd(fn);
 			checkin(fn, text, configManager.svnKeywordSubstitution);
 		}
@@ -8940,7 +8929,7 @@ void Texstudio::fileLockPdf(QString filename)
 	QString path = fi.path();
 	fi.setFile(path + "/" + basename + ".pdf");
 	if (!fi.isWritable()) {
-		svnLock(fi.filePath());
+		svn.lock(fi.filePath());
 	}
 }
 /*!
@@ -8960,7 +8949,7 @@ void Texstudio::fileCheckinPdf(QString filename)
 	QString basename = fi.baseName();
 	QString path = fi.path();
 	QString fn = path + "/" + basename + ".pdf";
-	SVN::Status status = svnStatus(fn);
+	SVN::Status status = svn.status(fn);
 	if (status == SVN::CheckedIn) return;
 	if (status == SVN::Unmanaged)
 		svnadd(fn);
@@ -8975,7 +8964,7 @@ void Texstudio::fileUpdate(QString filename)
 	if (!currentEditorView()) return;
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if (fn.isEmpty()) return;
-	QString output = runSvn("update", "--non-interactive " + SVN::quote(fn));
+	QString output = svn.runSvn("update", "--non-interactive " + SVN::quote(fn));
 	outputView->insertMessageLine(output);
 }
 /*!
@@ -8990,7 +8979,7 @@ void Texstudio::fileUpdateCWD(QString filename)
 	QString fn = filename.isEmpty() ? currentEditor()->fileName() : filename;
 	if (fn.isEmpty()) return;
 	fn = QFileInfo(fn).path();
-	QString output = runSvn("update", "--non-interactive " + SVN::quote(fn));
+	QString output = svn.runSvn("update", "--non-interactive " + SVN::quote(fn));
 	outputView->insertMessageLine(output);
 }
 
@@ -9008,13 +8997,13 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
 			} else {
 				//create simple repository
-				svncreateRep(filename);
+				svn.createRepository(filename);
 				svnadd(filename);
 				checkin(filename, "txs auto checkin", configManager.svnKeywordSubstitution);
 			}
 			// set SVN Properties if desired
 			if (configManager.svnKeywordSubstitution) {
-				runSvn("propset svn:keywords", "\"Date Author HeadURL Revision\" " + SVN::quote(filename));
+				svn.runSvn("propset svn:keywords", "\"Date Author HeadURL Revision\" " + SVN::quote(filename));
 			}
 		}
 	}
@@ -9023,7 +9012,7 @@ void Texstudio::checkinAfterSave(QString filename, int checkIn)
 void Texstudio::checkin(QString fn, QString text, bool blocking)
 {
 	Q_UNUSED(blocking)
-	runSvn("commit", "-m " + enquoteStr(text) + " " + SVN::quote(fn));
+	svn.commit(fn, text);
 	LatexEditorView *edView = getEditorViewFromFileName(fn);
 	if (edView)
 		edView->editor->setProperty("undoRevision", 0);
@@ -9047,41 +9036,15 @@ bool Texstudio::svnadd(QString fn, int stage)
 			return false;
 		}
 	}
-	runSvn("add", SVN::quote(fn));
+	svn.runSvn("add", SVN::quote(fn));
 	return true;
-}
-
-void Texstudio::svnLock(QString fn)
-{
-	runSvn("lock", SVN::quote(fn));
-}
-
-void Texstudio::svncreateRep(QString fn)
-{
-	QString path = QFileInfo(fn).absolutePath();
-	setStatusMessageProcess(QString(" svn create repo "));
-	runCommandNoSpecialChars(BuildManager::CMD_SVNADMIN + " create " + quotePath(path + "/repo"));
-	runCommandNoSpecialChars(SVN::cmd("mkdir", "\"file:///" + path + "/repo/trunk\" -m\"txs auto generate\""));
-	runCommandNoSpecialChars(SVN::cmd("mkdir", "\"file:///" + path + "/repo/branches\" -m\"txs auto generate\""));
-	runCommandNoSpecialChars(SVN::cmd("mkdir", "\"file:///" + path + "/repo/tags\" -m\"txs auto generate\""));
-	runSvn("checkout", "\"file:///" + path + "/repo/trunk\" \"" + path + "\"");
 }
 
 void Texstudio::svnUndo(bool redo)
 {
 	QString fn = currentEditor()->fileName();
 	// get revisions of current file
-	QString buffer;
-	runCommandNoSpecialChars(SVN::cmd("log", SVN::quote(fn)), &buffer);
-	QStringList revisions = buffer.split("\n", QString::SkipEmptyParts);
-	QMutableStringListIterator i(revisions);
-	bool keep = false;
-	QString elem;
-	while (i.hasNext()) {
-		elem = i.next();
-		if (!keep) i.remove();
-		keep = elem.contains(QRegExp("-{60,}"));
-	}
+	QStringList revisions = svn.log(fn);
 
 	QVariant zw = currentEditor()->property("undoRevision");
 	int undoRevision = zw.canConvert<int>() ? zw.toInt() : 0;
@@ -9205,7 +9168,7 @@ void Texstudio::showOldRevisions()
 	}
 	updateCaption();
 
-	QStringList log = svnLog();
+	QStringList log = svn.log(currentEditor()->fileName());
 	if (log.size() < 1) return;
 
 	svndlg = new QDialog(this);
@@ -9229,17 +9192,6 @@ void Texstudio::svnDialogClosed()
 	svndlg = 0;
 }
 
-SVN::Status Texstudio::svnStatus(QString filename)
-{
-	QString output = runSvn("status", SVN::quote(filename));
-	if (output.isEmpty()) return SVN::CheckedIn;
-	if (output.startsWith("?")) return SVN::Unmanaged;
-	if (output.startsWith("M")) return SVN::Modified;
-	if (output.startsWith("C")) return SVN::InConflict;
-	if (output.startsWith("L")) return SVN::Locked;
-	return SVN::Unknown;
-}
-
 void Texstudio::changeToRevision(QString rev, QString old_rev)
 {
 	QString filename = currentEditor()->fileName();
@@ -9261,32 +9213,12 @@ void Texstudio::changeToRevision(QString rev, QString old_rev)
 	if (rx.indexIn(new_revision) > -1) {
 		new_revision = rx.cap(1);
 	} else return;
-	QString cmd = SVN::cmd("diff", "-r " + old_revision + ":" + new_revision + " " + SVN::quote(filename));
+	QString cmd = SVN::makeCmd("diff", "-r " + old_revision + ":" + new_revision + " " + SVN::quote(filename));
 	QString buffer;
 	runCommandNoSpecialChars(cmd, &buffer, currentEditor()->getFileCodec());
 	// patch
 	svnPatch(currentEditor(), buffer);
 	currentEditor()->setProperty("Revision", rev);
-}
-
-QStringList Texstudio::svnLog()
-{
-	QString filename = currentEditor()->fileName();
-
-	// get revisions of current file
-	QString cmd = SVN::cmd("log", SVN::quote(filename));
-	QString output;
-	runCommandNoSpecialChars(cmd, &output);
-	QStringList revisions = output.split("\n", QString::SkipEmptyParts);
-	QMutableStringListIterator i(revisions);
-	bool keep = false;
-	QString elem;
-	while (i.hasNext()) {
-		elem = i.next();
-		if (!keep) i.remove();
-		keep = elem.contains(QRegExp("-{60,}"));
-	}
-	return revisions;
 }
 
 bool Texstudio::generateMirror(bool setCur)
@@ -10391,7 +10323,7 @@ bool Texstudio::checkSVNConflicted(bool substituteContents)
 	QString fn = doc->getFileName();
 	QFileInfo qf(fn + ".mine");
 	if (qf.exists()) {
-		SVN::Status status = svnStatus(fn);
+		SVN::Status status = svn.status(fn);
 		if (status == SVN::InConflict) {
 			int ret = QMessageBox::warning(this,
 			                               tr("SVN Conflict!"),

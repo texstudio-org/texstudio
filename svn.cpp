@@ -2,7 +2,9 @@
 #include "smallUsefulFunctions.h"
 #include "buildmanager.h"
 
-namespace SVN {
+SVN::SVN(QObject *parent) : QObject(parent)
+{
+}
 
 /*!
  * Return a filename suitable to pass to an svn command line call. This does:
@@ -10,16 +12,85 @@ namespace SVN {
  *   2. add '@' at the end if the filename contains an @. This prevents the interpretation
  *      of the contained @ as revision marker. See https://stackoverflow.com/a/757510/2726279
  */
-QString quote(QString filename) {
+QString SVN::quote(QString filename) {
 	if (filename.contains('@')) {
 		filename += '@';
 	}
 	return quotePath(filename);
 }
 
-QString cmd(QString action, QString args)
+QString SVN::makeCmd(QString action, QString args)
 {
 	return BuildManager::CMD_SVN + " " + action + " " + args;
 }
 
+QString SVN::makeAdminCmd(QString action, QString args)
+{
+	return BuildManager::CMD_SVNADMIN + " " + action + " " + args;
 }
+
+
+void SVN::commit(QString filename, QString message) const
+{
+	runSvn("commit", "-m " + enquoteStr(message) + " " + quote(filename));
+}
+
+void SVN::lock(QString filename) const
+{
+	runSvn("lock", quote(filename));
+}
+
+SVN::Status SVN::status(QString filename) const
+{
+	QString output = runSvn("status", quote(filename));
+	if (output.isEmpty()) return SVN::CheckedIn;
+	if (output.startsWith("?")) return SVN::Unmanaged;
+	if (output.startsWith("M")) return SVN::Modified;
+	if (output.startsWith("C")) return SVN::InConflict;
+	if (output.startsWith("L")) return SVN::Locked;
+	return SVN::Unknown;
+}
+
+QStringList SVN::log(QString filename) const
+{
+	QString output = runSvn("log", quote(filename));
+	QStringList revisions = output.split("\n", QString::SkipEmptyParts);
+	QMutableStringListIterator iter(revisions);
+	bool keep = false;
+	QString elem;
+	while (iter.hasNext()) {
+		elem = iter.next();
+		if (!keep) iter.remove();
+		keep = elem.contains(QRegExp("-{60,}"));
+	}
+	return revisions;
+}
+
+void SVN::createRepository(QString filename) const
+{
+	QString path = QFileInfo(filename).absolutePath();
+	//setStatusMessageProcess(QString(" svn create repo "));
+	runSvnAdmin("create", quotePath(path + "/repo"));
+	runSvn("mkdir", "\"file:///" + path + "/repo/trunk\" -m\"txs auto generate\"");
+	runSvn("mkdir", "\"file:///" + path + "/repo/branches\" -m\"txs auto generate\"");
+	runSvn("mkdir", "\"file:///" + path + "/repo/tags\" -m\"txs auto generate\"");
+	runSvn("checkout", "\"file:///" + path + "/repo/trunk\" \"" + path + "\"");
+}
+
+QString SVN::runSvn(QString action, QString args) const
+{
+	QString output;
+	emit statusMessage(QString(" svn %1 ").arg(action));
+	emit runCommand(makeCmd(action, args), &output);
+	return output;
+}
+
+QString SVN::runSvnAdmin(QString action, QString args) const
+{
+	QString output;
+	emit statusMessage(QString(" svn admin %1 ").arg(action));
+	emit runCommand(makeAdminCmd(action, args), &output);
+	return output;
+}
+
+
