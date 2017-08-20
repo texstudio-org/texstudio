@@ -330,7 +330,7 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	completer = 0;
 	updateCaption();
 	updateMasterDocumentCaption();
-	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
+	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 
 	show();
 	if (splash)
@@ -5775,6 +5775,11 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
 	return runCommand(commandline, buffer, codecForBuffer);
 }
 
+void Texstudio::setStatusMessageProcess(const QString &message)
+{
+	statusLabelProcess->setText(message);
+}
+
 /*!
  * Helper function to run an svn command. e.g. runSvn("commit", "-m " + text + " " + filename);
  * This is part of the refactoring of SVN functions and will likely move to the SVN module later.
@@ -5782,7 +5787,7 @@ bool Texstudio::runCommandNoSpecialChars(QString commandline, QString *buffer, Q
 QString Texstudio::runSvn(QString action, QString args)
 {
 	QString cmd = SVN::cmd(action, args);
-	statusLabelProcess->setText(QString(" svn %1 ").arg(action));
+	setStatusMessageProcess(QString(" svn %1 ").arg(action));
 	QString buffer;
 	runCommandNoSpecialChars(cmd, &buffer);
 	return buffer;
@@ -6054,7 +6059,7 @@ void Texstudio::beginRunningCommand(const QString &commandMain, bool latex, bool
 			edView->document->saveLineSnapshot();
 		}
     }
-	statusLabelProcess->setText(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
+	setStatusMessageProcess(QString(" %1 ").arg(buildManager.getCommandInfo(commandMain).displayName));
 }
 
 void Texstudio::connectSubCommand(ProcessX *p, bool showStdoutLocally)
@@ -6069,7 +6074,7 @@ void Texstudio::connectSubCommand(ProcessX *p, bool showStdoutLocally)
 void Texstudio::beginRunningSubCommand(ProcessX *p, const QString &commandMain, const QString &subCommand, const RunCommandFlags &flags)
 {
 	if (commandMain != subCommand)
-		statusLabelProcess->setText(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName).arg(buildManager.getCommandInfo(subCommand).displayName));
+		setStatusMessageProcess(QString(" %1: %2 ").arg(buildManager.getCommandInfo(commandMain).displayName).arg(buildManager.getCommandInfo(subCommand).displayName));
 	if (flags & RCF_COMPILES_TEX)
 		clearLogEntriesInEditors();
 	//outputView->resetMessages();
@@ -6104,7 +6109,7 @@ void Texstudio::endRunningCommand(const QString &commandMain, bool latex, bool p
 			PDFDocument::isCompiling = false;
 #endif
 	}
-	statusLabelProcess->setText(QString(" %1 ").arg(tr("Ready")));
+	setStatusMessageProcess(QString(" %1 ").arg(tr("Ready")));
 	if (latex) emit infoAfterTypeset();
 }
 
@@ -9054,7 +9059,7 @@ void Texstudio::svnLock(QString fn)
 void Texstudio::svncreateRep(QString fn)
 {
 	QString path = QFileInfo(fn).absolutePath();
-	statusLabelProcess->setText(QString(" svn create repo "));
+	setStatusMessageProcess(QString(" svn create repo "));
 	runCommandNoSpecialChars(BuildManager::CMD_SVNADMIN + " create " + quotePath(path + "/repo"));
 	runCommandNoSpecialChars(SVN::cmd("mkdir", "\"file:///" + path + "/repo/trunk\" -m\"txs auto generate\""));
 	runCommandNoSpecialChars(SVN::cmd("mkdir", "\"file:///" + path + "/repo/branches\" -m\"txs auto generate\""));
@@ -10329,7 +10334,7 @@ void Texstudio::declareConflictResolved()
 	QString fn = doc->getFileName();
 	QString cmd = BuildManager::CMD_SVN;
 	cmd += " resolve --accept working \"" + fn + ("\"");
-	statusLabelProcess->setText(QString(" svn resolve conflict "));
+	setStatusMessageProcess(QString(" svn resolve conflict "));
 	QString buffer;
 	runCommandNoSpecialChars(cmd, &buffer);
 	checkin(fn, "txs: commit after resolve");
@@ -10610,7 +10615,7 @@ void Texstudio::checkLatexInstall()
 
 	QString result;
 	// run pdflatex
-	statusLabelProcess->setText(QString("check pdflatex"));
+	setStatusMessageProcess(QString("check pdflatex"));
 	QString buffer;
     // create result editor here in order to avoid empty editor
     fileNew(QFileInfo(QDir::temp(), tr("System Report") + ".txt").absoluteFilePath());
@@ -10749,7 +10754,7 @@ void Texstudio::checkLanguageTool()
 
     QString result;
     // run java
-    statusLabelProcess->setText(QString("check java"));
+    setStatusMessageProcess(QString("check java"));
     QString buffer;
     // create result editor here in order to avoid empty editor
     fileNew(QFileInfo(QDir::temp(), tr("LT Report") + ".txt").absoluteFilePath());
