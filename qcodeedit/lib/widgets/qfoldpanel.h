@@ -54,12 +54,14 @@ class QCE_EXPORT QFoldPanel : public QPanel
 
 		int mapRectPosToLine(const QPoint& p);
 
-		QRect drawIcon(	QPainter *p, QEditor *e,
-						int x, int y, bool expand, bool highlight);
+		QRect drawIcon(QPainter *p, QEditor *e,
+						int x, int y, int iconSize, bool expand, bool highlight);
 		
 	private:
 		QList<QRect> m_rects;
 		QList<int> m_lines;
+		int m_width;
+		int m_iconSize;
 		int m_lastMouseLine;
 };
 
