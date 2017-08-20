@@ -47,7 +47,7 @@
 #include "latexstyleparser.h"
 #include "kpathseaParser.h"
 #include "diffoperations.h"
-#include "svn.h"  // only for SVN::Status. to be refactored
+#include "svn.h"
 
 #include <QProgressDialog>
 
@@ -189,6 +189,7 @@ private:
 	qreal pdfSplitterRel;
 
 	SpellerManager spellerManager;
+	SVN svn;
 	SafeThread grammarCheckThread;
 	GrammarCheck *grammarCheck;
 	Bookmarks *bookmarks;
@@ -274,13 +275,9 @@ private slots:
 	void checkinAfterSave(QString filename, int checkIn = 0);
 	void checkin(QString fn, QString text = "txs auto checkin", bool blocking = false);
 	bool svnadd(QString fn, int stage = 0);
-	void svncreateRep(QString fn);
 	void svnUndo(bool redo = false);
 	void svnPatch(QEditor *ed, QString diff);
-	void svnLock(QString fn);
-	SVN::Status svnStatus(QString filename);
 	void showOldRevisions();
-	QStringList svnLog();
 	void changeToRevision(QString rev, QString old_rev = "");
 	void svnDialogClosed();
 	void fileDiff();
@@ -470,7 +467,6 @@ private slots:
 	bool runCommand(const QString &commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
 	bool runCommandNoSpecialChars(QString commandline, QString *buffer = 0, QTextCodec *codecForBuffer = 0);
 	void setStatusMessageProcess(const QString &message);
-	QString runSvn(QString action, QString args);
 protected slots:
 	void processNotification(const QString &message);
     void clearLogs();
