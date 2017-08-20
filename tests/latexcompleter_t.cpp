@@ -473,7 +473,7 @@ void LatexCompleterTest::keyval(){
             }
         }
         QString text = s.mid(2);
-        edView->editor->document()->setLineEndingDirect(QDocument::Local,true);
+        edView->editor->document()->setLineEndingDirect(QDocument::Unix,true);
         QString ist=edView->editor->text();
         QEQUAL(ist, text);
     }
