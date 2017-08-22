@@ -878,8 +878,12 @@ void Texstudio::setupMenus()
 
 	submenu = newManagedMenu(menu, "gotoBookmark", tr("Goto Bookmark"));
 	QList<int> bookmarkIndicies = QList<int>() << 1 << 2 << 3 << 4 << 5 << 6 << 7 << 8 << 9 << 0;
-	foreach (int i, bookmarkIndicies)
-		newManagedEditorAction(submenu, QString("bookmark%1").arg(i), tr("Bookmark %1").arg(i), "jumpToBookmark", Qt::CTRL + Qt::Key_0 + i, "", QList<QVariant>() << i);
+	foreach (int i, bookmarkIndicies) {
+		QKeySequence shortcut;
+		if (i != 0)
+			shortcut = Qt::CTRL + Qt::Key_0 + i;
+		newManagedEditorAction(submenu, QString("bookmark%1").arg(i), tr("Bookmark %1").arg(i), "jumpToBookmark", shortcut, "", QList<QVariant>() << i);
+	}
 
 
 	submenu = newManagedMenu(menu, "toggleBookmark", tr("Toggle Bookmark"));
@@ -1184,7 +1188,7 @@ void Texstudio::setupMenus()
 	submenu = newManagedMenu(menu, "editorZoom", tr("Editor Zoom"));
 	newManagedEditorAction(submenu, "zoomIn", tr("Zoom In"), "zoomIn", Qt::CTRL + Qt::Key_Plus);
 	newManagedEditorAction(submenu, "zoomOut", tr("Zoom Out"), "zoomOut", Qt::CTRL + Qt::Key_Minus);
-	newManagedEditorAction(submenu, "resetZoom", tr("Reset Zoom"), "resetZoom");
+	newManagedEditorAction(submenu, "resetZoom", tr("Reset Zoom"), "resetZoom", Qt::CTRL + Qt::Key_0);
 
 #if QT_VERSION>=0x050000
 	fullscreenModeAction = newManagedAction(menu, "fullscreenmode", tr("Full &Screen"), 0, QKeySequence::FullScreen);
