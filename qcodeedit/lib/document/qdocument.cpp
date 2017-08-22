@@ -3570,8 +3570,12 @@ void QDocumentLineHandle::drawBorders(QPainter *p, int yStart, int yEnd) const
 {
 	QDocumentPrivate *d = m_doc->impl();
 	if (d->hardLineWrap() || d->lineWidthConstraint()) {
+		QColor linescolor = d->m_formatScheme->format("background").linescolor;
+		if (!linescolor.isValid()) {
+			return;
+		}
 		p->save();
-		p->setPen(Qt::lightGray);
+		p->setPen(linescolor);
 		if (d->m_leftMargin > 0)
 			p->drawLine(0, yStart, 0, yEnd);  // left border line
 		p->drawLine(d->width(), yStart, d->width() , yEnd);  // right border line
