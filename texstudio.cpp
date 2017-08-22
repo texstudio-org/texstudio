@@ -9110,14 +9110,14 @@ void Texstudio::svnPatch(QEditor *ed, QString diff)
 				if (c.line().text() != elem.mid(1))
 					qDebug() << "del:" << c.line().text() << elem;
 				c.eraseLine();
-				if (atDocEnd) c.deletePreviousChar();
+                //if (atDocEnd) c.deletePreviousChar();
 			} else {
 				if (ch == '+') {
-					atDocEnd = (c.lineNumber() == ed->document()->lineCount() - 1);
-					if (atDocEnd) {
+                    //atDocEnd = (c.lineNumber() == ed->document()->lineCount() - 1);
+                    if (atDocEnd) {
 						c.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::MoveAnchor);
 						c.insertLine();
-					}
+                    }
 					c.insertText(elem.mid(1));
 					// if line contains \r, no further line break needed
 					if (!atDocEnd) {
