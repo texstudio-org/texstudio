@@ -205,6 +205,15 @@ inline static bool isDelimiter(QChar c)
 	return delimiters.contains(c);
 }
 
+/*! set the line width without modifying any other properties of the pen
+ */
+inline static void setPainterLineWidth(QPainter *p, int width) {
+	QPen pen = p->pen();
+	pen.setWidth(width);
+	p->setPen(pen);
+}
+
+
 /*! activate a work-around
  *  DisableFixedPitchMode	= 0x01,
  *  DisableWidthCache		= 0x02,
@@ -4005,6 +4014,10 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			const int yin = baseline - p->fontMetrics().strikeOutPos();
 			const int yup = qMax(baseline - p->fontMetrics().overlinePos() + 1, ypos);
 
+
+			p->save();
+			setPainterLineWidth(p, p->fontMetrics().lineWidth());  // TODO: maybe we can do this in tunePainter()?
+
 			if ( formats[0].overline || formats[1].overline || formats[2].overline )
 			{
 				p->drawLine(xspos, yup, xpos, yup);
@@ -4019,6 +4032,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			{
 				p->drawLine(xspos, ydo, xpos, ydo);
 			}
+			p->restore();
 
 			if ( formats[0].waveUnderline || formats[1].waveUnderline || formats[2].waveUnderline )
  			{
