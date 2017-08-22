@@ -1,6 +1,7 @@
 <!DOCTYPE QXF>
 <QXF version="1.0" >
     <format id="background" >
+        <linescolor>#c0c0c0</linescolor>
     </format>
     <format id="line:error">
 		<background>#ffcabf</background>
