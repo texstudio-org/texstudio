@@ -3730,7 +3730,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
                 }
             }
         }
-		const QColor ht = pal.highlightedText().color();
+		const QColor highlightedTextColor = pal.highlightedText().color();
 
 		const bool showTabs = QDocument::showSpaces() & QDocument::ShowTabs,
 				showLeading = QDocument::showSpaces() & QDocument::ShowLeading,
@@ -3874,7 +3874,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			const bool currentSelected = (fullSel || (fmt & FORMAT_SELECTION));
 			if ( currentSelected )
 			{
-                p->setPen(ht);
+                p->setPen(highlightedTextColor);
 
                 p->fillRect(xpos, ypos,
                             rwidth, QDocumentPrivate::m_lineSpacing,
@@ -3985,7 +3985,7 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			} else {
 				if (d->m_workArounds & QDocument::ForceSingleCharacterDrawing ) {
 					QColor color;
-					if (currentSelected) color = ht;
+					if (currentSelected) color = highlightedTextColor;
                     // TODO: somehow this breaks extra highlighting of environment names such as "foo" in \begin{foo}
                     else if (newFont == fmts[0]) color = formats[0].foreground;
 					else if (newFont == fmts[1]) color = formats[1].foreground;
