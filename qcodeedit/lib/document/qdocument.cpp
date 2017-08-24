@@ -6921,7 +6921,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		p->drawPixmap(x, y, pm);
 
 		dlh->lockForWrite();
-		dlh->setCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS, QRect(QPoint(x, y+lcxt.pos), pm.size())); // +pos : correct for painter translation, saved point is in doc coordinates
+		dlh->setCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS, QRect(QPoint(x+m_leftMargin, y+lcxt.pos), pm.size())); // +pos : correct for painter translation, saved point is in doc coordinates
 		dlh->unlock();  // writeLock
 	} else {
 		dlh->unlock();  // readLock
