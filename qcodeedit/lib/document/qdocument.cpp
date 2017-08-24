@@ -3681,8 +3681,6 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
             }
         }
 
-		drawBorders(p, yStart, yEnd);
-
 	} else {
 		QList<RenderRange> ranges;
 		splitAtFormatChanges(&ranges, &selectionBoundaries);
@@ -4170,9 +4168,8 @@ void QDocumentLineHandle::draw(int lineNr,	QPainter *p,
 			}
 			p->fillRect(xpos, ypos, maxDocWidth - xpos, QDocumentPrivate::m_lineSpacing, brush);
 		}
-
-        drawBorders(p, yStart, yEnd);
 	}
+	drawBorders(p, yStart, yEnd);
 }
 
 QString QDocumentLineHandle::exportAsHtml(int fromOffset, int toOffset, int maxLineWidth, int maxWrap) const{
