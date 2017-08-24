@@ -6913,7 +6913,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		QPixmap pm = dlh->getCookie(QDocumentLine::PICTURE_COOKIE).value<QPixmap>();
 
 		int reservedHeight = dlh->getPictureCookieHeight();
-		dlh->unlock();
+		dlh->unlock();  // readLock
 
 		pseudoWrap = reservedHeight / m_lineSpacing;
 		int x = qMax(-m_leftMargin, (m_width - pm.width()) / 2);
@@ -6922,9 +6922,10 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 
 		dlh->lockForWrite();
 		dlh->setCookie(QDocumentLine::PICTURE_COOKIE_DRAWING_POS, QRect(QPoint(x, y+lcxt.pos), pm.size())); // +pos : correct for painter translation, saved point is in doc coordinates
-		dlh->unlock();
+		dlh->unlock();  // writeLock
+	} else {
+		dlh->unlock();  // readLock
 	}
-	dlh->unlock();
 
 	bool useLineCache = !currentLine && !(m_workArounds & QDocument::DisableLineCache);
 
