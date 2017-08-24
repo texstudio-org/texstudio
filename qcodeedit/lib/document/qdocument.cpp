@@ -6916,7 +6916,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		dlh->unlock();
 
 		pseudoWrap = reservedHeight / m_lineSpacing;
-		int x = (cxt.width - pm.width()) / 2;
+		int x = qMax(-m_leftMargin, (m_width - pm.width()) / 2);
 		int y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2;
 		p->drawPixmap(x, y, pm);
 
@@ -7024,13 +7024,14 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 	if ( dlh->hasFlag(QDocumentLine::CollapsedBlockStart) )
 	{
 		p->setBrush(Qt::NoBrush);
-		p->setPen(QPen(Qt::blue, 1, Qt::DotLine));
+		p->setPen(QPen(Qt::gray));
 
 		//p->drawRect(cxt.xoffset + 2, pos,
 		//			cxt.width - 4, m_lineSpacing - 1);
 
-		p->drawRect(m_leftPadding, 0,
-					cxt.width - 4, m_lineSpacing * (wrap + 1) - 1);
+		p->drawLine(0, m_lineSpacing * (wrap + 1) - 1, m_width, m_lineSpacing * (wrap + 1) - 1);
+		//p->drawRect(m_leftPadding, 0,
+		//			cxt.width - 4, m_lineSpacing * (wrap + 1) - 1);
 
 	}
 
