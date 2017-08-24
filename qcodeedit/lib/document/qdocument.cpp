@@ -7025,16 +7025,15 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 	// draw fold rect indicator
 	if ( dlh->hasFlag(QDocumentLine::CollapsedBlockStart) )
 	{
-		p->setBrush(Qt::NoBrush);
-		p->setPen(QPen(Qt::gray));
+		QColor linescolor = m_formatScheme->format("background").linescolor;
+		if (linescolor.isValid()) {
+			p->save();
+			p->setPen(linescolor);
 
-		//p->drawRect(cxt.xoffset + 2, pos,
-		//			cxt.width - 4, m_lineSpacing - 1);
-
-		p->drawLine(0, m_lineSpacing * (wrap + 1) - 1, m_width, m_lineSpacing * (wrap + 1) - 1);
-		//p->drawRect(m_leftPadding, 0,
-		//			cxt.width - 4, m_lineSpacing * (wrap + 1) - 1);
-
+			int y = m_lineSpacing * (wrap + 1) - 1;
+			p->drawLine(0, y, m_width, y);
+			p->restore();
+		}
 	}
 
 	// see above
