@@ -187,7 +187,7 @@ template<typename T> void CacheCache<T>::clear(){
 
 static QList<GuessEncodingCallback> guessEncodingCallbacks;
 
-static int PICTURE_BORDER = 2;
+static int PICTURE_BORDER = 4;
 
 /*! check if character c is a letter or nummber or backslah (part of command)
  */
@@ -6918,6 +6918,7 @@ void QDocumentPrivate::drawTextLine(QPainter *p, QDocument::PaintContext &cxt, D
 		pseudoWrap = reservedHeight / m_lineSpacing;
 		int x = qMax(-m_leftMargin, (m_width - pm.width()) / 2);
 		int y = m_lineSpacing*(wrap+1-pseudoWrap) + (reservedHeight - pm.height()) / 2;
+		p->fillRect(x - PICTURE_BORDER, y - PICTURE_BORDER, pm.width() + 2*PICTURE_BORDER, pm.height() + 2* PICTURE_BORDER, Qt::white);
 		p->drawPixmap(x, y, pm);
 
 		dlh->lockForWrite();
