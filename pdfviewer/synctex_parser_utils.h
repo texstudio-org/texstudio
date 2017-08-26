@@ -1,16 +1,15 @@
 /* 
-Copyright (c) 2008, 2009, 2010, 2011 jerome DOT laurens AT u-bourgogne DOT fr
+ Copyright (c) 2008-2017 jerome DOT laurens AT u-bourgogne DOT fr
+ 
+ This file is part of the __SyncTeX__ package.
+ 
+ [//]: # (Latest Revision: Fri Jul 14 16:20:41 UTC 2017)
+ [//]: # (Version: 1.19)
+ 
+ See `synctex_parser_readme.md` for more details
+ 
+ ## License
 
-This file is part of the SyncTeX package.
-
-Latest Revision: Tue Jun 14 08:23:30 UTC 2011
-
-Version: 1.18
-
-See synctex_parser_readme.txt for more details
-
-License:
---------
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
 files (the "Software"), to deal in the Software without
@@ -44,11 +43,12 @@ authorization from the copyright holder.
  *  The problem mainly comes from file name management: path separator, encoding...
  */
 
-#	define synctex_bool_t int
-#	define synctex_YES -1
+typedef int synctex_bool_t;
+#	define synctex_YES (0==0)
+#	define synctex_NO (0==1)
+
 #	define synctex_ADD_QUOTES -1
 #	define synctex_COMPRESS -1
-#	define synctex_NO 0
 #	define synctex_DONT_ADD_QUOTES 0
 #	define synctex_DONT_COMPRESS 0
 
@@ -85,10 +85,15 @@ extern "C" {
  *  There is no bzero function on windows. */
 void *_synctex_malloc(size_t size);
 
+/*  To balance _synctex_malloc.
+ *  ptr might be NULL.   */
+void _synctex_free(void * ptr);
+
 /*  This is used to log some informational message to the standard error stream.
  *  On Windows, the stderr stream is not exposed and another method is used.
  *	The return value is the number of characters printed.	*/
-int _synctex_error(const char * reason,...);
+    int _synctex_error(const char * reason,...);
+    int _synctex_debug(const char * reason,...);
 
 /*  strip the last extension of the given string, this string is modified!
  *  This function depends on the OS because the path separator may differ.

@@ -8,6 +8,7 @@ HEADERS += \
     pdfviewer/synctex_parser.h \
     pdfviewer/synctex_parser_local.h \
     pdfviewer/synctex_parser_utils.h \
+    pdfviewer/synctex_parser_advanced.h \
     pdfviewer/PDFDocument.h \
     pdfviewer/PDFDocks.h \
     pdfviewer/pdfrenderengine.h \
