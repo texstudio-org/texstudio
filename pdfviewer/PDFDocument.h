@@ -38,7 +38,10 @@
 #else
 #include "poppler-qt5.h"
 #endif
-#include "synctex_parser.h"
+#include <synctex_parser_c-auto.h>
+#include <synctex_parser_local.h>
+#include "synctex_parser_advanced.h"
+#include "synctex_parser_utils.h"
 
 //#include "ui_PDFDocument.h"
 #include "pdfrendermanager.h"
@@ -630,7 +633,7 @@ private:
 	QFileSystemWatcher *watcher;
 	QTimer *reloadTimer;
 
-	synctex_scanner_t scanner;
+    synctex_scanner_p scanner;
 
 	static QList<PDFDocument *> docList;
 
