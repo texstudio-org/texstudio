@@ -69,6 +69,15 @@
 #include <shlwapi.h> /* Use shlwapi.lib */
 #endif
 
+#if SYNCTEX_USE_SYSLOG
+#include <syslog.h>
+#else
+// workaround: add missing values defined in syslog.h
+#define	LOG_ERR		3	/* error conditions */
+#define	LOG_DEBUG	7	/* debug-level messages */
+#endif
+
+
 void *_synctex_malloc(size_t size) {
     void * ptr = malloc(size);
     if(ptr) {
@@ -82,8 +91,6 @@ void _synctex_free(void * ptr) {
         free(ptr);
     }
 }
-
-#   include <syslog.h>
 
 int _synctex_log(int level, const char * prompt, const char * reason,va_list arg) {
 	int result;
