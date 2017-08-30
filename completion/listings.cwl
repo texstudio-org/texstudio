@@ -14,8 +14,8 @@
 \lstlistlistingname
 \lstlistoflistings
 \lstname
-\lstnewenvironment{name}[params][default]{starting code}{ending code}#*
-\lstnewenvironment{name}[params]{starting code}{ending code}#*
-\lstnewenvironment{name}{starting code}{ending code}#*
+\lstnewenvironment{envname}[params][default]{starting code}{ending code}#*N
+\lstnewenvironment{envname}[params]{starting code}{ending code}#*N
+\lstnewenvironment{envname}{starting code}{ending code}#*N
 \lstset{kv-list}#*
 \thelstlisting
