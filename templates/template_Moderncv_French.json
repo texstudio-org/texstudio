@@ -1,0 +1,8 @@
+{
+"Name"        : "Moderncv_French",
+"Author"      : "Denis Bitouzé",
+"Date"        : "2013-03-03",
+"Version"     : "1.0",
+"Description" : "Canevas de CV basé sur la classe moderncv",
+"License"     : "LaTeX Project Public License (LPPL)"
+}
