@@ -1,7 +1,7 @@
 #include "texdocdialog.h"
 #include "ui_texdocdialog.h"
 #include "help.h"
-#include "latexpackages.h"
+#include "latexrepository.h"
 
 TexdocDialog::TexdocDialog(QWidget *parent) :
 	QDialog(parent),
@@ -35,7 +35,7 @@ TexdocDialog::~TexdocDialog()
 
 void TexdocDialog::searchTermChanged(const QString &text)
 {
-	ui->lbShortDescription->setText(LatexPackages::instance()->shortDescription(text));
+	ui->lbShortDescription->setText(LatexRepository::instance()->shortDescription(text));
 	delayedCheckDocAvailable(text);
 }
 

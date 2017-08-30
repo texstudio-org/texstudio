@@ -3,6 +3,7 @@
 
 #include "configdialog.h"
 #include "latexeditorview.h"
+#include "latexpackage.h"
 #include "latexcompleter_config.h"
 #include "latexeditorview_config.h"
 #include "webpublishdialog_config.h"

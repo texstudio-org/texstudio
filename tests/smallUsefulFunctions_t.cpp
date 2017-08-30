@@ -7,6 +7,7 @@
 #include "smallUsefulFunctions.h"
 #include "smallUsefulFunctions_t.h"
 #include "latexparser/latexparser.h"
+#include "latexpackage.h"
 #include "testutil.h"
 #include <QtTest/QtTest>
 
