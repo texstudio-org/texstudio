@@ -489,9 +489,24 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 	}
 	// now generate Error message
 
-	QStringList messages;
-	messages << tr("no error") << tr("unrecognized command") << tr("unrecognized math command") << tr("unrecognized tabular command") << tr("tabular command outside tabular env") << tr("math command outside math env") << tr("tabbing command outside tabbing env") << tr("more cols in tabular than specified") << tr("cols in tabular missing")
-             << tr("\\\\ missing") << tr("closing environment which has not been opened") << tr("environment not closed") << tr("unrecognized key in key option") << tr("unrecognized value in key option") << tr("command outside suitable env");
+	QStringList messages;  // indices have to match ErrorType
+	messages << tr("no error")
+	         << tr("unrecognized environment")
+	         << tr("unrecognized command")
+	         << tr("unrecognized math command")
+	         << tr("unrecognized tabular command")
+	         << tr("tabular command outside tabular env")
+	         << tr("math command outside math env")
+	         << tr("tabbing command outside tabbing env")
+	         << tr("more cols in tabular than specified")
+	         << tr("cols in tabular missing")
+	         << tr("\\\\ missing")
+	         << tr("closing environment which has not been opened")
+	         << tr("environment not closed")
+	         << tr("unrecognized key in key option")
+	         << tr("unrecognized value in key option")
+	         << tr("command outside suitable env");
+	Q_ASSERT(messages.length() == ERR_MAX);
 	return messages.value(int(result), tr("unknown"));
 }
 /*!
@@ -842,11 +857,13 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 		if (tk.type == Token::command) {
 			QString word = line.mid(tk.start, tk.length);
+			Token tkEnvName;
 
 			if (word == "\\begin" || word == "\\end") {
 				// check complete expression e.g. \begin{something}
 				if (tl.length() > i + 1 && tl.at(i + 1).type == Token::braces) {
-					word = word + line.mid(tl.at(i + 1).start, tl.at(i + 1).length);
+					tkEnvName = tl.at(i + 1);
+					word = word + line.mid(tkEnvName.start, tkEnvName.length);
 				}
 			}
 
@@ -927,8 +944,15 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 
 			if (!checkCommand(word, activeEnv)) {
 				Error elem;
-				elem.range = QPair<int, int>(tk.start, tk.length);
-				elem.type = ERR_unrecognizedCommand;
+				if (tkEnvName.type == Token::braces) {
+					Token tkEnvName = tl.at(i+1);
+					elem.range = QPair<int, int>(tkEnvName.innerStart(), tkEnvName.innerLength());
+					elem.type = ERR_unrecognizedEnvironment;
+				} else {
+					elem.range = QPair<int, int>(tk.start, tk.length);
+					elem.type = ERR_unrecognizedCommand;
+				}
+
 
 				if (ltxCommands->possibleCommands["math"].contains(word))
 					elem.type = ERR_MathCommandOutsideMath;
@@ -936,7 +960,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 					elem.type = ERR_TabularCommandOutsideTab;
 				if (ltxCommands->possibleCommands["tabbing"].contains(word))
 					elem.type = ERR_TabbingCommandOutside;
-                if(elem.type== ERR_unrecognizedCommand){
+                if(elem.type== ERR_unrecognizedEnvironment){
                     // try to find command in unspecified envs
                     QStringList keys=ltxCommands->possibleCommands.keys();
                     keys.removeAll("math");

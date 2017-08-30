@@ -51,6 +51,7 @@ public:
      */
 	enum ErrorType {
 		ERR_none, ///< no error
+		ERR_unrecognizedEnvironment, ///< environment unknown
 		ERR_unrecognizedCommand, ///< command unknown
 		ERR_unrecognizedMathCommand, ///< unknown command for math environment
 		ERR_unrecognizedTabularCommand, ///< unknown command for tabular environment
@@ -63,8 +64,9 @@ public:
 		ERR_closingUnopendEnv, ///< end{env} without corrresponding begin{env}
 		ERR_EnvNotClosed, ///< end{env} missing
 		ERR_unrecognizedKey, ///< in key/value argument, an unknown key is used
-        ERR_unrecognizedKeyValues, ///< in key/value argument, an unknown value is used for a key
-        ERR_commandOutsideEnv ///< command used outside of designated environment (similar math command outside math)
+		ERR_unrecognizedKeyValues, ///< in key/value argument, an unknown value is used for a key
+		ERR_commandOutsideEnv, ///< command used outside of designated environment (similar math command outside math)
+		ERR_MAX  // always last
 	};
     /*!
      * \brief info which is queued for syntaxchecking
