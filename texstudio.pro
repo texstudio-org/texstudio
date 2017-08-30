@@ -39,207 +39,211 @@ else:include(qtsingleapplication/qtsingleapplication.pri)
 
 # ##############################
 # precompile_header: PRECOMPILED_HEADER = mostQtHeaders.h
-HEADERS += texstudio.h \
+HEADERS += \
+    aboutdialog.h \
+    arraydialog.h \
+    bibtexdialog.h \
+    bibtexparser.h \
+    bibtexreader.h \
+    bidiextender.h \
+    bookmarks.h \
     buildmanager.h \
-    symbolgridwidget.h \
+    cleandialog.h \
+    codesnippet.h \
+    configdialog.h \
+    configmanager.h \
+    configmanagerinterface.h \
+    cursorhistory.h \
+    cursorposition.h \
+    dblclickmenubar.h \
+    debughelper.h \
+    diff/diff_match_patch.h \
+    diffoperations.h \
+    directoryreader.h \
+    editors.h \
+    encoding.h \
+    encodingdialog.h \
+    filechooser.h \
+    fileselector.h \
+    findGlobalDialog.h \
+    flowlayout.h \
+    grammarcheck.h \
+    grammarcheck_config.h \
+    help.h \
     icondelegate.h \
+    insertgraphics.h \
+    insertgraphics_config.h \
+    kpathseaParser.h \
     latexcompleter.h \
+    latexcompleter_config.h \
+    latexcompleter_p.h \
+    latexdocument.h \
     latexeditorview.h \
     latexeditorview_config.h \
     latexlog.h \
+    latexlogwidget.h \
+    latexoutputfilter.h \
+    latexpackage.h \
+    latexrepository.h \
+    latexstructure.h \
+    latexstyleparser.h \
+    letterdialog.h \
+    libqmarkedscrollbar/src/markedscrollbar.h \
     logeditor.h \
     loghighlighter.h \
-    smallUsefulFunctions.h \
-    encodingdialog.h \
-    filechooser.h \
-    tabbingdialog.h \
-    arraydialog.h \
-    tabdialog.h \
-    letterdialog.h \
-    quickdocumentdialog.h \
-    quickbeamerdialog.h \
-    usermenudialog.h \
-    usertooldialog.h \
-    configmanager.h \
-    configdialog.h \
-    aboutdialog.h \
-    webpublishdialog.h \
-    spellerdialog.h \
-    spellerutility.h \
-    textanalysis.h \
-    toolwidgets.h \
-    latexoutputfilter.h \
-    latexcompleter_config.h \
-    latexcompleter_p.h \
-    codesnippet.h \
-    debughelper.h \
-    thesaurusdialog.h \
-    xmltagslistwidget.h \
-    randomtextgenerator.h \
-    templateselector.h \
-    bibtexdialog.h \
+    maketemplatedialog.h \
     manhattanstyle.h \
-    stylehelper.h \
-    styleanimator.h \
-    webpublishdialog_config.h \
-    findGlobalDialog.h \
-    searchresultmodel.h \
-    bibtexparser.h \
-    latexdocument.h \
-    unicodeinsertion.h \
-    universalinputdialog.h \
-    scriptengine.h \
-    insertgraphics.h \
-    txstabwidget.h \
-    configmanagerinterface.h \
+    mathassistant.h \
+    minisplitter.h \
     modifiedQObject.h \
     mostQtHeaders.h \
-    tablemanipulation.h \
-    syntaxcheck.h \
-    userquickdialog.h \
-    latexstyleparser.h \
-    scriptobject.h \
-    directoryreader.h \
-    insertgraphics_config.h \
-    diff/diff_match_patch.h \
-    diffoperations.h \
-    grammarcheck.h \
-    grammarcheck_config.h \
-    bibtexreader.h \
-    cleandialog.h \
+    pdfsplittool.h \
     qmetautils.h \
-    updatechecker.h \
-    usermacro.h \
-    dblclickmenubar.h \
-    mathassistant.h \
-    cursorhistory.h \
-    maketemplatedialog.h \
+    quickbeamerdialog.h \
+    quickdocumentdialog.h \
+    randomtextgenerator.h \
+    scriptengine.h \
+    scriptobject.h \
+    searchquery.h \
+    searchresultmodel.h \
+    searchresultwidget.h \
+    session.h \
+    sessionlist.h \
+    smallUsefulFunctions.h \
+    spellerdialog.h \
+    spellerutility.h \
+    styleanimator.h \
+    stylehelper.h \
+    svn.h \
+    symbolgridwidget.h \
+    syntaxcheck.h \
+    tabbingdialog.h \
+    tabdialog.h \
+    tablemanipulation.h \
     templatemanager.h \
     templatemanager_p.h \
+    templateselector.h \
     texdocdialog.h \
-    help.h \
-    bookmarks.h \
-    session.h \
-    fileselector.h \
-    utilsUI.h \
-    utilsSystem.h \
-    utilsVersion.h \
-    latexrepository.h \
-    cursorposition.h \
+    texstudio.h \
+    textanalysis.h \
+    thesaurusdialog.h \
     titledpanel.h \
-    latexlogwidget.h \
-    kpathseaParser.h \
-    sessionlist.h \
-    pdfsplittool.h \
-    searchresultwidget.h \
-    searchquery.h \
-    bidiextender.h \
+    toolwidgets.h \
+    txstabwidget.h \
+    unicodeinsertion.h \
+    universalinputdialog.h \
     unixutils.h \
-    editors.h \
-    libqmarkedscrollbar/src/markedscrollbar.h \
-    flowlayout.h \
-    minisplitter.h \
-    encoding.h \
-    latexstructure.h \
-    svn.h \
-    latexpackage.h
-SOURCES += main.cpp \
-    texstudio.cpp \
-    buildmanager.cpp \
-    symbolgridwidget.cpp \
-    icondelegate.cpp \
-    latexcompleter.cpp \
-    latexeditorview.cpp \
-    latexlog.cpp \
-    logeditor.cpp \
-    loghighlighter.cpp \
-    smallUsefulFunctions.cpp \
-    filechooser.cpp \
-    tabbingdialog.cpp \
-    arraydialog.cpp \
-    tabdialog.cpp \
-    letterdialog.cpp \
-    quickdocumentdialog.cpp \
-    quickbeamerdialog.cpp \
-    usermenudialog.cpp \
-    usertooldialog.cpp \
-    configmanager.cpp \
-    configdialog.cpp \
-    debughelper.cpp \
+    updatechecker.h \
+    usermacro.h \
+    usermenudialog.h \
+    userquickdialog.h \
+    usertooldialog.h \
+    utilsSystem.h \
+    utilsUI.h \
+    utilsVersion.h \
+    webpublishdialog.h \
+    webpublishdialog_config.h \
+    xmltagslistwidget.h
+
+SOURCES += \
     aboutdialog.cpp \
-    webpublishdialog.cpp \
-    spellerdialog.cpp \
-    spellerutility.cpp \
-    textanalysis.cpp \
-    latexoutputfilter.cpp \
-    toolwidgets.cpp \
-    codesnippet.cpp \
-    thesaurusdialog.cpp \
-    xmltagslistwidget.cpp \
-    encodingdialog.cpp \
-    randomtextgenerator.cpp \
-    templateselector.cpp \
-    bibtexdialog.cpp \
-    manhattanstyle.cpp \
-    stylehelper.cpp \
-    styleanimator.cpp \
-    findGlobalDialog.cpp \
-    searchresultmodel.cpp \
-    bibtexparser.cpp \
-    latexdocument.cpp \
-    unicodeinsertion.cpp \
-    universalinputdialog.cpp \
-    scriptengine.cpp \
-    insertgraphics.cpp \
-    txstabwidget.cpp \
     additionaltranslations.cpp \
-    tablemanipulation.cpp \
-    syntaxcheck.cpp \
-    userquickdialog.cpp \
-    latexstyleparser.cpp \
-    scriptobject.cpp \
-    directoryreader.cpp \
+    arraydialog.cpp \
+    bibtexdialog.cpp \
+    bibtexparser.cpp \
+    bibtexreader.cpp \
+    bidiextender.cpp \
+    bookmarks.cpp \
+    buildmanager.cpp \
+    cleandialog.cpp \
+    codesnippet.cpp \
+    configdialog.cpp \
+    configmanager.cpp \
+    cursorhistory.cpp \
+    cursorposition.cpp \
+    dblclickmenubar.cpp \
+    debughelper.cpp \
     diff/diff_match_patch.cpp \
     diffoperations.cpp \
+    directoryreader.cpp \
+    editors.cpp \
+    encoding.cpp \
+    encodingdialog.cpp \
+    filechooser.cpp \
+    fileselector.cpp \
+    findGlobalDialog.cpp \
+    flowlayout.cpp \
     grammarcheck.cpp \
-    bibtexreader.cpp \
-    cleandialog.cpp \
-    qmetautils.cpp \
-    updatechecker.cpp \
-    dblclickmenubar.cpp \
-    mathassistant.cpp \
-    cursorhistory.cpp \
+    help.cpp \
+    icondelegate.cpp \
+    insertgraphics.cpp \
+    kpathseaParser.cpp \
+    latexcompleter.cpp \
+    latexdocument.cpp \
+    latexeditorview.cpp \
+    latexlog.cpp \
+    latexlogwidget.cpp \
+    latexoutputfilter.cpp \
+    latexpackage.cpp \
+    latexrepository.cpp \
+    latexstructure.cpp \
+    latexstyleparser.cpp \
+    letterdialog.cpp \
+    libqmarkedscrollbar/src/markedscrollbar.cpp \
+    logeditor.cpp \
+    loghighlighter.cpp \
+    main.cpp \
     maketemplatedialog.cpp \
+    manhattanstyle.cpp \
+    mathassistant.cpp \
+    minisplitter.cpp \
+    pdfsplittool.cpp \
+    qmetautils.cpp \
+    quickbeamerdialog.cpp \
+    quickdocumentdialog.cpp \
+    randomtextgenerator.cpp \
+    scriptengine.cpp \
+    scriptobject.cpp \
+    searchquery.cpp \
+    searchresultmodel.cpp \
+    searchresultwidget.cpp \
+    session.cpp \
+    sessionlist.cpp \
+    smallUsefulFunctions.cpp \
+    spellerdialog.cpp \
+    spellerutility.cpp \
+    styleanimator.cpp \
+    stylehelper.cpp \
+    svn.cpp \
+    symbolgridwidget.cpp \
+    syntaxcheck.cpp \
+    tabbingdialog.cpp \
+    tabdialog.cpp \
+    tablemanipulation.cpp \
     templatemanager.cpp \
     templatemanager_p.cpp \
+    templateselector.cpp \
     texdocdialog.cpp \
-    help.cpp \
-    bookmarks.cpp \
-    session.cpp \
-    fileselector.cpp \
-    utilsUI.cpp \
-    utilsSystem.cpp \
-    utilsVersion.cpp \
-    latexrepository.cpp \
-    cursorposition.cpp \
-    usermacro.cpp \
+    texstudio.cpp \
+    textanalysis.cpp \
+    thesaurusdialog.cpp \
     titledpanel.cpp \
-    latexlogwidget.cpp \
-    kpathseaParser.cpp \
-    sessionlist.cpp \
-    pdfsplittool.cpp \
-    searchresultwidget.cpp \
-    searchquery.cpp \
-    bidiextender.cpp \
+    toolwidgets.cpp \
+    txstabwidget.cpp \
+    unicodeinsertion.cpp \
+    universalinputdialog.cpp \
     unixutils.cpp \
-    editors.cpp \
-    libqmarkedscrollbar/src/markedscrollbar.cpp \
-    flowlayout.cpp \
-    minisplitter.cpp \
-    encoding.cpp \
-    latexstructure.cpp \
-    svn.cpp \
-    latexpackage.cpp
+    updatechecker.cpp \
+    usermacro.cpp \
+    usermenudialog.cpp \
+    userquickdialog.cpp \
+    usertooldialog.cpp \
+    utilsSystem.cpp \
+    utilsUI.cpp \
+    utilsVersion.cpp \
+    webpublishdialog.cpp \
+    xmltagslistwidget.cpp
+
 win32: SOURCES += utilssystem_win.cpp
 else: SOURCES += utilssystem_unix.cpp
 
@@ -247,48 +251,51 @@ RESOURCES += texstudio.qrc \
     symbols.qrc \
     completion.qrc \
     images.qrc
-FORMS += filechooser.ui \
-    insertgraphics.ui \
-    tabbingdialog.ui \
-    arraydialog.ui \
-    tabdialog.ui \
-    letterdialog.ui \
-    quickdocumentdialog.ui \
-    quickbeamerdialog.ui \
-    usermenudialog.ui \
-    usertooldialog.ui \
+
+FORMS += \
     aboutdialog.ui \
-    webpublishdialog.ui \
-    configdialog.ui \
-    spellerdialog.ui \
-    textanalysis.ui \
-    encodingdialog.ui \
-    randomtextgenerator.ui \
-    templateselector.ui \
+    arraydialog.ui \
     bibtexdialog.ui \
-    findGlobalDialog.ui \
-    userquickdialog.ui \
     cleandialog.ui \
+    configdialog.ui \
+    encodingdialog.ui \
+    filechooser.ui \
+    findGlobalDialog.ui \
+    insertgraphics.ui \
+    letterdialog.ui \
     maketemplatedialog.ui \
+    pdfsplittool.ui \
+    quickbeamerdialog.ui \
+    quickdocumentdialog.ui \
+    randomtextgenerator.ui \
+    spellerdialog.ui \
+    tabbingdialog.ui \
+    tabdialog.ui \
+    templateselector.ui \
     texdocdialog.ui \
-    pdfsplittool.ui
+    textanalysis.ui \
+    usermenudialog.ui \
+    userquickdialog.ui \
+    usertooldialog.ui \
+    webpublishdialog.ui
+
 TRANSLATIONS += texstudio_cs.ts \
     texstudio_de.ts \
     texstudio_el.ts \
     texstudio_es.ts \
+    texstudio_fa.ar \
+    texstudio_fa.ts \
     texstudio_fr.ts \
     texstudio_hu.ts \
     texstudio_it.ts \
     texstudio_ja.ts \
+    texstudio_nl.ts \
     texstudio_pl.ts \
     texstudio_pt_BR.ts \
-    texstudio_uk.ts \
     texstudio_ru_RU.ts \
-    texstudio_vi.ts \
-    texstudio_nl.ts \
     texstudio_tr_TR.ts \
-    texstudio_fa.ts \
-    texstudio_fa.ar \
+    texstudio_uk.ts \
+    texstudio_vi.ts \
     texstudio_zh_CN.ts
 
 # ###############################
@@ -332,9 +339,9 @@ unix:!macx {
     icon.path = $${DATADIR}/icons/hicolor/scalable/apps
     icon.files = utilities/texstudio.svg
     isEmpty(NO_APPDATA) {
-      appdata.path = $${DATADIR}/appdata
-      appdata.files = utilities/texstudio.appdata.xml
-      INSTALLS += appdata
+        appdata.path = $${DATADIR}/appdata
+        appdata.files = utilities/texstudio.appdata.xml
+        INSTALLS += appdata
     }
     INSTALLS += applicationmenu 
     INSTALLS += icon
@@ -350,24 +357,24 @@ unix {
     OBJECTS_DIR = .obj
     utilities.files += utilities/latex2e.html \
         utilities/latex2e.css \
-	texstudio_cs.qm \
-	texstudio_de.qm \
-        texstudio_el.qm \
-	texstudio_es.qm \
-	texstudio_fr.qm \
-	texstudio_hu.qm \
-	texstudio_it.qm \
-	texstudio_ja.qm \
-	texstudio_pl.qm \
-	texstudio_pt_BR.qm \
-	texstudio_uk.qm \
-        texstudio_ru_RU.qm \
-        texstudio_vi.qm \
-        texstudio_nl.qm \
-        texstudio_zh_CN.qm \
-	texstudio_tr_TR.qm \
-        texstudio_fa.qm \
         texstudio_ar.qm \
+        texstudio_cs.qm \
+        texstudio_de.qm \
+        texstudio_el.qm \
+        texstudio_es.qm \
+        texstudio_fa.qm \
+        texstudio_fr.qm \
+        texstudio_hu.qm \
+        texstudio_it.qm \
+        texstudio_ja.qm \
+        texstudio_nl.qm \
+        texstudio_pl.qm \
+        texstudio_pt_BR.qm \
+        texstudio_ru_RU.qm \
+        texstudio_tr_TR.qm \
+        texstudio_uk.qm \
+        texstudio_vi.qm \
+        texstudio_zh_CN.qm \
         qt_cs.qm \
         qt_de.qm \
         qt_ja.qm \
@@ -375,75 +382,75 @@ unix {
         qt_hu.qm \
         qt_pl.qm \
         qt_zh.qm \
-	templates/tabletemplate_fullyframed_firstBold.js \
-	templates/tabletemplate_fullyframed_firstBold.png \
-	templates/tabletemplate_fullyframed_longtable.js \
-	templates/tabletemplate_fullyframed_longtable.png \
-	templates/tabletemplate_plain_tabular.js \
-	templates/tabletemplate_plain_tabular.png \
-	templates/tabletemplate_plain_tabularx.js \
-	templates/tabletemplate_plain_tabularx.png \
-	templates/tabletemplate_rowcolors_tabular.js \
-	templates/tabletemplate_rowcolors_tabular.png \
+        templates/tabletemplate_fullyframed_firstBold.js \
+        templates/tabletemplate_fullyframed_firstBold.png \
+        templates/tabletemplate_fullyframed_longtable.js \
+        templates/tabletemplate_fullyframed_longtable.png \
+        templates/tabletemplate_plain_tabular.js \
+        templates/tabletemplate_plain_tabular.png \
+        templates/tabletemplate_plain_tabularx.js \
+        templates/tabletemplate_plain_tabularx.png \
+        templates/tabletemplate_rowcolors_tabular.js \
+        templates/tabletemplate_rowcolors_tabular.png \
+        templates/template_Article.json \
+        templates/template_Article.png \
+        templates/template_Article.tex \
         templates/template_Article_French.json \
         templates/template_Article_French.png \
         templates/template_Article_French.tex \
-	templates/template_Article.json \
-	templates/template_Article.png \
-	templates/template_Article.tex \
-	templates/template_Beamer.json \
-	templates/template_Beamer.tex \
-	templates/template_Book.json \
-	templates/template_Book.png \
-	templates/template_Book.zip \
-	templates/template_HA-prosper.json \
-	templates/template_HA-prosper.tex \
-	templates/template_Letter.json \
-	templates/template_Letter.png \
-	templates/template_Letter.tex \
-        templates/template_Moderncv_French.json \
-        templates/template_Moderncv_French.png \
-        templates/template_Moderncv_French.tex \
+        templates/template_Beamer.json \
+        templates/template_Beamer.tex \
+        templates/template_Book.json \
+        templates/template_Book.png \
+        templates/template_Book.zip \
+        templates/template_HA-prosper.json \
+        templates/template_HA-prosper.tex \
+        templates/template_Letter.json \
+        templates/template_Letter.png \
+        templates/template_Letter.tex \
         templates/template_Moderncv.json \
         templates/template_Moderncv.png \
         templates/template_Moderncv.tex \
-	templates/template_Prosper.json \
-	templates/template_Prosper.tex \
-	templates/template_Report.json \
-	templates/template_Report.png \
-	templates/template_Report.tex \
-	templates/template_Scrartcl.json \
-	templates/template_Scrartcl.png \
-	templates/template_Scrartcl.tex \
-	templates/template_Scrbook.json \
-	templates/template_Scrbook.tex \
-	templates/template_Scrlttr2.json \
-	templates/template_Scrlttr2.tex \
-	templates/template_Scrreprt.json \
-	templates/template_Scrreprt.tex \
-	utilities/dictionaries/en_GB.aff \
-	utilities/dictionaries/en_GB.dic \
-	utilities/dictionaries/en_US.aff \
-	utilities/dictionaries/en_US.dic \
-	utilities/dictionaries/es_ES.aff \
-	utilities/dictionaries/es_ES.dic \
-	utilities/dictionaries/fr_FR.aff \
-	utilities/dictionaries/fr_FR.dic \
-	utilities/dictionaries/de_DE.aff \
-	utilities/dictionaries/de_DE.dic \
-	utilities/dictionaries/hu_HU.aff \
-	utilities/dictionaries/hu_HU.dic \
-	utilities/dictionaries/pt_BR.aff \
-	utilities/dictionaries/pt_BR.dic \
+        templates/template_Moderncv_French.json \
+        templates/template_Moderncv_French.png \
+        templates/template_Moderncv_French.tex \
+        templates/template_Prosper.json \
+        templates/template_Prosper.tex \
+        templates/template_Report.json \
+        templates/template_Report.png \
+        templates/template_Report.tex \
+        templates/template_Scrartcl.json \
+        templates/template_Scrartcl.png \
+        templates/template_Scrartcl.tex \
+        templates/template_Scrbook.json \
+        templates/template_Scrbook.tex \
+        templates/template_Scrlttr2.json \
+        templates/template_Scrlttr2.tex \
+        templates/template_Scrreprt.json \
+        templates/template_Scrreprt.tex \
+        utilities/dictionaries/de_DE.aff \
+        utilities/dictionaries/de_DE.dic \
+        utilities/dictionaries/en_GB.aff \
+        utilities/dictionaries/en_GB.dic \
+        utilities/dictionaries/en_US.aff \
+        utilities/dictionaries/en_US.dic \
+        utilities/dictionaries/es_ES.aff \
+        utilities/dictionaries/es_ES.dic \
+        utilities/dictionaries/fr_FR.aff \
+        utilities/dictionaries/fr_FR.dic \
+        utilities/dictionaries/hu_HU.aff \
+        utilities/dictionaries/hu_HU.dic \
+        utilities/dictionaries/pt_BR.aff \
+        utilities/dictionaries/pt_BR.dic \
         utilities/dictionaries/de_DE.badWords \
         utilities/dictionaries/de_DE.stopWords \
         utilities/dictionaries/de_DE.stopWords.level2 \
         utilities/dictionaries/en_GB.stopWords \
         utilities/dictionaries/en_US.stopWords \
         utilities/dictionaries/fr_FR.stopWords \
-	utilities/dictionaries/th_en_US_v2.dat \
-	utilities/dictionaries/th_fr_FR_v2.dat \
-	utilities/dictionaries/th_de_DE_v2.dat \
+        utilities/dictionaries/th_en_US_v2.dat \
+        utilities/dictionaries/th_fr_FR_v2.dat \
+        utilities/dictionaries/th_de_DE_v2.dat \
         utilities/AUTHORS \
         utilities/COPYING \
         utilities/manual/CHANGELOG.txt
@@ -521,52 +528,54 @@ CONFIG(debug, debug|release) {
     CONFIG -= release
     QT += testlib
 
-    SOURCES += tests/testmanager.cpp \
-        tests/testutil.cpp \
+    SOURCES += \
+        tests/codesnippet_t.cpp \
+        tests/encoding_t.cpp \
+        tests/latexcompleter_t.cpp \
+        tests/latexeditorview_bm.cpp \
+        tests/latexeditorview_t.cpp \
+        tests/latexoutputfilter_t.cpp \
+        tests/latexparser_t.cpp \
         tests/qcetestutil.cpp \
         tests/qdocumentcursor_t.cpp \
         tests/qdocumentline_t.cpp \
         tests/qdocumentsearch_t.cpp \
-        tests/qsearchreplacepanel_t.cpp \
         tests/qeditor_t.cpp \
-        tests/codesnippet_t.cpp \
-        tests/encoding_t.cpp \
-        tests/latexcompleter_t.cpp \
-        tests/latexeditorview_t.cpp \
-        tests/latexeditorview_bm.cpp \
-        tests/latexoutputfilter_t.cpp \
-        tests/latexparser_t.cpp \
-        tests/tablemanipulation_t.cpp \
+        tests/qsearchreplacepanel_t.cpp \
         tests/scriptengine_t.cpp \
         tests/smallUsefulFunctions_t.cpp \
         tests/structureview_t.cpp \
-        tests/syntaxcheck_t.cpp
-    HEADERS += tests/testmanager.h \
-        tests/testutil.h \
-        tests/qcetestutil.h \
+        tests/syntaxcheck_t.cpp \
+        tests/tablemanipulation_t.cpp \
+        tests/testmanager.cpp \
+        tests/testutil.cpp
+    HEADERS += \
+        tests/qsearchreplacepanel_t.h \
+        tests/updatechecker_t.h \
         tests/qdocumentcursor_t.h \
         tests/qdocumentline_t.h \
         tests/qdocumentsearch_t.h \
-        tests/qsearchreplacepanel_t.h \
-        tests/qeditor_t.h \
-        tests/buildmanager_t.h \
         tests/codesnippet_t.h \
-        tests/encoding_t.h \
-        tests/help_t.h \
         tests/latexcompleter_t.h \
-        tests/latexeditorview_t.h \
         tests/latexeditorview_bm.h \
+        tests/latexeditorview_t.h \
         tests/latexoutputfilter_t.h \
         tests/latexparser_t.h \
         tests/latexstyleparser_t.h \
         tests/scriptengine_t.h \
-        tests/smallUsefulFunctions_t.h \
-        tests/structureview_t.h \
-        tests/syntaxcheck_t.h \
+        tests/qeditor_t.h \
+        tests/buildmanager_t.h \
         tests/tablemanipulation_t.h \
-        tests/updatechecker_t.h \
+        tests/smallUsefulFunctions_t.h \
         tests/utilsui_t.h \
-        tests/utilsversion_t.h
+        tests/utilsversion_t.h \
+        tests/encoding_t.h \
+        tests/help_t.h \
+        tests/syntaxcheck_t.h \
+        tests/qcetestutil.h \
+        tests/testmanager.h \
+        tests/testutil.h \
+        tests/structureview_t.h
     !greaterThan(QT_MAJOR_VERSION, 4) {
         win32:LIBS += -lQtTestd4
     } else {
@@ -630,8 +639,8 @@ exists(./.hg2) | exists(./.hg) {
   SOURCES += hg_revision.cpp
 }
 
-#QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra  -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered  -Wempty-body -Wsign-compare -Waddress -Wlogical-op   -Winline
-QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra  -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas  -Wundef  -Wpointer-arith  -Wwrite-strings -Wempty-body -Wsign-compare -Waddress   -Winline
+#QMAKE_CXXFLAGS_DEBUG += -Werror  -Wall -Wextra -Winit-self -Wmain -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wtype-limits -Wwrite-strings -Wclobbered -Wempty-body -Wsign-compare -Waddress -Wlogical-op -Winline
+QMAKE_CXXFLAGS_DEBUG += -Wall -Wextra -Winit-self -Wmissing-include-dirs -Wtrigraphs -Wunused -Wunknown-pragmas -Wundef -Wpointer-arith -Wwrite-strings -Wempty-body -Wsign-compare -Waddress -Winline
 QMAKE_CXXFLAGS += -std=c++0x
 !win32: QMAKE_LFLAGS += -rdynamic # option not supported by mingw
 else {
