@@ -499,6 +499,6 @@ private slots:
 };
 
 
-#endif
-#endif
+#endif  // QT_NO_DEBUG
+#endif  // SMALLUSEFULFUNCTIONS_T_H
 

@@ -59,6 +59,7 @@
 #include "utilsUI.h"
 #include "utilsSystem.h"
 #include "minisplitter.h"
+#include "latexpackage.h"
 #include "latexparser/latextokens.h"
 #include "latexparser/latexparser.h"
 #include "latexstructure.h"
