@@ -726,10 +726,13 @@ QString getMiKTeXBinPathInternal()
 			}
 	}
 
+    if(!mikPath.endsWith("\\")){
+        mikPath.append("\\");
+    }
 	// post-process to detect 64bit installation
 	if (!mikPath.isEmpty()) {
-		if (QDir(mikPath + "x64\\").exists())
-			return mikPath + "x64\\";
+        if (QDir(mikPath + "x64\\").exists())
+            return mikPath + "x64\\";
 		else
 			return mikPath;
 	}
@@ -742,7 +745,7 @@ static QString miktexBinPath = "<search>";
  */
 QString getMiKTeXBinPath()
 {
-	if (miktexBinPath == "<search>") miktexBinPath = getMiKTeXBinPathInternal();
+    if (miktexBinPath == "<search>") miktexBinPath = getMiKTeXBinPathInternal();
 	return miktexBinPath;
 }
 
