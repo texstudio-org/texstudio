@@ -709,7 +709,7 @@ QString getMiKTeXBinPathInternal()
 	}
 
 	// search all program file paths
-	if (!mikPath.isEmpty()) {
+    if (mikPath.isEmpty()) {
 		mikPath = QDir::toNativeSeparators(findSubDir(getProgramFilesPaths(), "*miktex*", "miktex\\bin\\"));
 	}
 
