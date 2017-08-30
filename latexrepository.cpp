@@ -1,30 +1,30 @@
-#include "latexpackages.h"
+#include "latexrepository.h"
 #include <QMutex>
 
-LatexPackages *LatexPackages::m_Instance = 0;
+LatexRepository *LatexRepository::m_Instance = 0;
 
-LatexPackages::LatexPackages() :
+LatexRepository::LatexRepository() :
 	QObject(0), m_dataSource(None)
 {
 	loadStaticPackageList(":/utilities/packageList");
 }
 
-LatexPackages *LatexPackages::instance()
+LatexRepository *LatexRepository::instance()
 {
 	static QMutex mutex;
 	mutex.lock();
 	if (!m_Instance)
-		m_Instance = new LatexPackages();
+		m_Instance = new LatexRepository();
 	mutex.unlock();
 	return m_Instance;
 }
 
-LatexPackages::DataSource LatexPackages::dataSource()
+LatexRepository::DataSource LatexRepository::dataSource()
 {
 	return m_dataSource;
 }
 
-bool LatexPackages::loadStaticPackageList(const QString &file)
+bool LatexRepository::loadStaticPackageList(const QString &file)
 {
 	if (file.isEmpty()) return false;
 	packages.reserve(3000);
@@ -47,12 +47,12 @@ bool LatexPackages::loadStaticPackageList(const QString &file)
 	return true;
 }
 
-bool LatexPackages::packageExists(const QString &name)
+bool LatexRepository::packageExists(const QString &name)
 {
 	return packages.keys().contains(name);
 }
 
-QString LatexPackages::shortDescription(const QString &name)
+QString LatexRepository::shortDescription(const QString &name)
 {
 	return packages[name].shortDescription;
 }
