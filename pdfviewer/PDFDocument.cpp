@@ -3550,7 +3550,7 @@ void PDFDocument::gotoAnnotation(const PDFAnnotation *ann)
 
 void PDFDocument::loadSyncData()
 {
-	scanner = synctex_scanner_new_with_output_file(QFile::encodeName(curFile).data(), NULL, 1);
+    scanner = synctex_scanner_new_with_output_file(QFile::encodeName(curFileUnnormalized).data(), NULL, 1);
 	if (scanner == NULL)
 		statusBar()->showMessage(tr("No SyncTeX data available"), 3000);
 	else {
