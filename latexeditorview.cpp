@@ -38,7 +38,7 @@
 #include "qlinechangepanel.h"
 #include "qstatuspanel.h"
 #include "qsearchreplacepanel.h"
-#include "latexpackages.h"
+#include "latexrepository.h"
 
 #include "latexcompleter_config.h"
 
@@ -2397,7 +2397,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			}
 			QString text = QString("%1:&nbsp;<b>%2</b>").arg(type).arg(value);
 			if (latexPackageList->contains(preambel + value)) {
-				QString description = LatexPackages::instance()->shortDescription(value);
+				QString description = LatexRepository::instance()->shortDescription(value);
 				if (!description.isEmpty()) text += "<br>" + description;
 				QToolTip::showText(editor->mapToGlobal(editor->mapFromFrame(pos)), text);
 			} else {

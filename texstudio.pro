@@ -124,7 +124,7 @@ HEADERS += texstudio.h \
     utilsUI.h \
     utilsSystem.h \
     utilsVersion.h \
-    latexpackages.h \
+    latexrepository.h \
     cursorposition.h \
     titledpanel.h \
     latexlogwidget.h \
@@ -220,7 +220,7 @@ SOURCES += main.cpp \
     utilsUI.cpp \
     utilsSystem.cpp \
     utilsVersion.cpp \
-    latexpackages.cpp \
+    latexrepository.cpp \
     cursorposition.cpp \
     usermacro.cpp \
     titledpanel.cpp \
