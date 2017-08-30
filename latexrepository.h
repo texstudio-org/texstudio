@@ -1,5 +1,5 @@
-#ifndef LATEXPACKAGES_H
-#define LATEXPACKAGES_H
+#ifndef LATEXREPOSITORY_H
+#define LATEXREPOSITORY_H
 
 #include "mostQtHeaders.h"
 
@@ -19,12 +19,12 @@ public:
 };
 Q_DECLARE_METATYPE(LatexPackageInfo)
 
-class LatexPackages : public QObject
+class LatexRepository : public QObject
 {
 	Q_OBJECT
 
 public:
-	static LatexPackages *instance();
+	static LatexRepository *instance();
 
 	enum DataSource { None, Static, Texlive, Miktex };
 
@@ -33,16 +33,16 @@ public:
 	QString shortDescription(const QString &name);
 
 private:
-	LatexPackages();
-	LatexPackages(const LatexPackages &);
-	LatexPackages &operator=(const LatexPackages &);
+	LatexRepository();
+	LatexRepository(const LatexRepository &);
+	LatexRepository &operator=(const LatexRepository &);
 
 	bool loadStaticPackageList(const QString &file);
 
-	static LatexPackages *m_Instance;
+	static LatexRepository *m_Instance;
 
 	QHash<QString, LatexPackageInfo> packages; // name, short description
 	DataSource m_dataSource;
 };
 
-#endif // LATEXPACKAGES_H
+#endif // LATEXREPOSITORY_H
