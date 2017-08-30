@@ -10,6 +10,7 @@
 #include "usermacro.h"
 #include "syntaxcheck.h"
 #include "grammarcheck.h"
+#include "latexpackage.h"
 
 class QDocumentLineHandle;
 class LatexEditorView;
