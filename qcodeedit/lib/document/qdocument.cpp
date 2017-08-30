@@ -7122,7 +7122,7 @@ void QDocumentPrivate::drawCursors(QPainter *p, const QDocument::PaintContext &c
 					if (width == 0) {
 						width = textWidth(0, " ");
 					}
-					p->drawRect(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing-1);
+					p->drawRect(pt.x(), pt.y(), width, QDocumentPrivate::m_lineSpacing);
 				}else{
 					// regular line cursor
 					QPoint pt = cur.documentPosition();
