@@ -154,6 +154,10 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 #if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	QCoreApplication::instance()->installEventFilter(this);
 #endif
+#ifdef Q_OS_WIN
+    // work-around for ´+t bug
+    QCoreApplication::instance()->installEventFilter(this);
+#endif
 
 	latexReference = new LatexReference();
 	latexReference->setFile(findResourceFile("latex2e.html"));
@@ -7361,6 +7365,21 @@ void Texstudio::resizeEvent(QResizeEvent *e)
 	centerFileSelector();
 	QMainWindow::resizeEvent(e);
 }
+#ifdef Q_OS_WIN
+// workaround for ´+t bug
+bool Texstudio::eventFilter(QObject *, QEvent *event)
+{
+    if (event->type() == QEvent::ShortcutOverride) {
+        QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+        QString key = keyEvent->text();
+        if(keyEvent->modifiers()==Qt::NoModifier && (key=="´"||key=="t")){
+            event->accept();
+            return true;
+        }
+    }
+    return false;
+}
+#endif
 
 #if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 // workaround for qt/osx not handling all possible shortcuts esp. alt+key/esc
