@@ -279,11 +279,11 @@ FORMS += \
     usertooldialog.ui \
     webpublishdialog.ui
 
-TRANSLATIONS += texstudio_cs.ts \
+TRANSLATIONS += texstudio_ar.ts \
+    texstudio_cs.ts \
     texstudio_de.ts \
     texstudio_el.ts \
     texstudio_es.ts \
-    texstudio_fa.ar \
     texstudio_fa.ts \
     texstudio_fr.ts \
     texstudio_hu.ts \
