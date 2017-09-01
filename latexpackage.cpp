@@ -257,18 +257,23 @@ LatexPackage loadCwlFile(const QString fileName, LatexCompleterConfig *config, Q
 					}
 					if (cd_old.args < cd.args && cd_old.args > 0) {
 						cd = cd_old;
+#ifndef QT_NO_DEBUG
 						qDebug() << "inconsistent command arguments:" << cmd << fileName;
 						// commands with different numbers of mandatory arguments are not distinguished by the parser and lead to unreliable results.
 						// the lower numer of mandatory arguments is handled only (however not an command with zero arguments)
 						// this leads to incomplete handling e.g. for hyperref (which disregards any standards and distinguishes command based on the presence of an optional argument)
+#endif
 					}
+
 					if (cd_old.args > cd.args) {
+#ifndef QT_NO_DEBUG
 						if (cd.args > 0) {
 							qDebug() << "inconsistent command arguments:" << cmd << fileName;
 							// commands with different numbers of mandatory arguments are not distinguished by the parser and lead to unreliable results.
 							// the lower numer of mandatory arguments is handled only (however not an command with zero arguments)
 							// this leads to incomplete handling e.g. for hyperref (which disregards any standards and distinguishes command based on the presence of an optional argument)
 						}
+#endif
 						cd = cd_old;
 					}
 
