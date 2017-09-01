@@ -47,7 +47,10 @@ void PDFRenderEngine::run()
 			forever {
 				bool leave = false;
 				queue->mCommandsAvailable.acquire();
-				if (queue->stopped) break;
+                if (queue->stopped){
+                    queue->mPriorityLock.unlock();
+                    break;
+                }
 				// get Linedata
 				queue->mQueueLock.lock();
 				command = queue->mCommands.dequeue();
@@ -62,23 +65,6 @@ void PDFRenderEngine::run()
 					queue->mPriorityLock.unlock();
 					break;
 				}
-				/*
-				{ QMutexLocker(&queue->mQueueLock);
-					if(queue->stopped)
-						break;
-					if(!queue->mCommands.isEmpty()){
-						command=queue->mCommands.head();
-						if(command.priority){
-							leave=queue->mCommandsAvailable.tryAcquire();
-							if(leave && !queue->mCommands.isEmpty())
-								queue->mCommands.dequeue();
-						}
-						if(leave){
-							queue->mPriorityLock.unlock();
-							break;
-						}
-					}
-				}*/
 				msleep(1);
 			}
 		} else {
