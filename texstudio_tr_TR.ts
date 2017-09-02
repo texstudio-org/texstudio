@@ -39,7 +39,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="30"/>
         <source>TeXstudio uses the DSingleApplication class (Author: Dima Fedorov Levit - Copyright (C) BioImage Informatics - Licence: GPL).</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio, DSingleApplication sınıfını kullanmaktadır (Yazar: Dima Fedorov Levit - Telif Hakkı (C) BioImage Informatics - Lisans: GPL).</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="31"/>
@@ -49,12 +49,12 @@
     <message>
         <location filename="aboutdialog.cpp" line="32"/>
         <source>TeXstudio uses QuaZip (LGPL, Copyright (C) 2005-2012 Sergey A. Tachenov and contributors).</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio, QuaZip kullamaktadır. (LGPL, Telif Hakkı (C) 2005-2012 Sergey A. Tachenov ve katılımcılar).</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="33"/>
         <source>TeXstudio uses To Title Case (MIT License, Copyright (c) 2008-2013 David Gouch).</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio, To Title Case kullanmaktadır (MIT Lisansı, Telif Hakkı (c) 2008-2013 David Gouch).</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="34"/>
@@ -64,7 +64,7 @@
     <message>
         <location filename="aboutdialog.cpp" line="35"/>
         <source>TeXstudio uses icons from the Crystal Project (LGPL) and the Oxygen icon theme (CC-BY-SA 3.0).</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio, Crystal Project (LGPL) ve Oxygen simge teması (CC-BY-SA 3.0) simgelerini kullanmaktadır.</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="36"/>
@@ -79,12 +79,12 @@
     <message>
         <location filename="aboutdialog.cpp" line="39"/>
         <source>Project home site:</source>
-        <translation>Proje sayfası :</translation>
+        <translation>Proje ana sayfası :</translation>
     </message>
     <message>
         <location filename="aboutdialog.cpp" line="40"/>
         <source>This program is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.</source>
-        <translation type="unfinished"/>
+        <translation>Bu program, Özgür Yazılım Vakfı (Free Software Foundation) tarafından yayınlanan GNU Genel Kamu Lisansı Sürüm 2 şartları uyarınca lisanslanmıştır.</translation>
     </message>
 </context>
 <context>
@@ -211,7 +211,7 @@
         <location filename="bibtexdialog.cpp" line="40"/>
         <location filename="bibtexdialog.cpp" line="140"/>
         <source>Book&amp;let</source>
-        <translation type="unfinished"/>
+        <translation>Kitap&amp;çık</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="43"/>
@@ -232,7 +232,7 @@
         <location filename="bibtexdialog.cpp" line="55"/>
         <location filename="bibtexdialog.cpp" line="182"/>
         <source>Technical Ma&amp;nual</source>
-        <translation type="unfinished"/>
+        <translation>Teknik Kı&amp;lavuz</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="59"/>
@@ -244,42 +244,42 @@
         <location filename="bibtexdialog.cpp" line="62"/>
         <location filename="bibtexdialog.cpp" line="188"/>
         <source>Miscellan&amp;eous</source>
-        <translation type="unfinished"/>
+        <translation>Çeşi&amp;tli</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="99"/>
         <source>&amp;Multi-volume Book</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Çok Ciltli Kitap</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="107"/>
         <source>Part of a Book With Its Own Title</source>
-        <translation type="unfinished"/>
+        <translation>Kendi Başlığına Sahip Bir Kitap Bölümü</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="115"/>
         <source>Book in Book</source>
-        <translation type="unfinished"/>
+        <translation>Kitap içinde Kitap</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="123"/>
         <source>Supplemental Material in a Book</source>
-        <translation type="unfinished"/>
+        <translation>Bir Kitaptaki Ek Materyal</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="148"/>
         <source>Single-volume Collection</source>
-        <translation type="unfinished"/>
+        <translation>Tek Ciltli Koleksiyon</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="156"/>
         <source>Multi-volume Collection</source>
-        <translation type="unfinished"/>
+        <translation>Çok Ciltli Koleksiyon</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="173"/>
         <source>Supplemental Material in a Collection</source>
-        <translation type="unfinished"/>
+        <translation>Bir Koleksiyondaki Ek Materyal</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="198"/>
@@ -294,12 +294,12 @@
     <message>
         <location filename="bibtexdialog.cpp" line="222"/>
         <source>Complete Issue of a Periodical</source>
-        <translation type="unfinished"/>
+        <translation>Süreli Bir Yayının Eksiksiz Sayıları</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="233"/>
         <source>Supplemental Material in a Periodical</source>
-        <translation type="unfinished"/>
+        <translation>Süreli Bir Yayındaki Ek Materyal</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="260"/>
@@ -319,7 +319,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="296"/>
         <source>Article in a Reference</source>
-        <translation type="unfinished"/>
+        <translation>Referanslardaki Makale</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="304"/>
@@ -581,12 +581,12 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="400"/>
         <source>Some of your commands are refering to locations in /usr/texbin/</source>
-        <translation type="unfinished"/>
+        <translation>Bazı komutlarınız /usr/texbin/ dizinindeki yerleri belirtiyor</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="871"/>
         <source>The command has been expanded to %1 levels. Do you want to continue expanding &quot;%2&quot;?</source>
-        <translation type="unfinished"/>
+        <translation>Komut %1 seviyesine genişletildi. %2 seviyesine genişletmeye devam etmek istiyor musunuz? </translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="924"/>
@@ -617,7 +617,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="buildmanager.cpp" line="1431"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
-        <translation type="unfinished"/>
+        <translation>Sisteminizde LaTeX dağıtımı bulunamadı. Sonuç olarak, ilgili komutlar yapılandırılamamıştır. Bu, belgelerinizi istenen çıktı biçimine (ör. pdf) derleyemeyeceğiniz anlamına gelir.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1435"/>
@@ -658,7 +658,7 @@ Please change your configuration and define command lists only at Options -&gt; 
         <location filename="buildmanager.cpp" line="1491"/>
         <location filename="buildmanager.cpp" line="1504"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Bir (La)TeX dağıtımı yüklediğinize&lt;/b&gt;Ör. MiKTeX ya da TeX Live, ve komut yapılandırma sayfasında bu dağıtıma ait doğru yolları ayarladığınıza emin olun.&lt;br&gt;TeXstudio gibi (La)TeX editörü, böyle bir dağıtımın sağladığı (La)TeX komutları olmadan çalışamaz.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1500"/>
@@ -668,12 +668,12 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="buildmanager.cpp" line="1501"/>
         <source>Parent Command</source>
-        <translation type="unfinished"/>
+        <translation>Ana Komut</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1502"/>
         <source>Primary Command</source>
-        <translation type="unfinished"/>
+        <translation>Birincil Komut</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1869"/>
@@ -683,7 +683,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="buildmanager.cpp" line="2124"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
-        <translation type="unfinished"/>
+        <translation>dde:// komutunu kaldırılmış olan iki eğik çizgi ile kullandınız. Lütfen komuta başka bir eğik çizgi ekleyerek üçlü eğik çizgi komutuyla (dde:///) değiştirin.</translation>
     </message>
 </context>
 <context>
@@ -741,7 +741,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="cleandialog.cpp" line="108"/>
         <source>For your own safety clean will not delete the files with the following extensions:</source>
-        <translation type="unfinished"/>
+        <translation>Güvenliğiniz için temizlik şu uzantılara sahip dosyaları silmedi: </translation>
     </message>
 </context>
 <context>
@@ -795,7 +795,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="272"/>
         <source>Ignore Most System Colors</source>
-        <translation type="unfinished"/>
+        <translation>Çoğu Sistem Rengini Yoksay</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="155"/>
@@ -862,7 +862,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="366"/>
         <source>Remember selected file filter in open/save dialog </source>
-        <translation type="unfinished"/>
+        <translation>Aç/Kaydet iletişim kutusunda seçili dosya filtresini hatırla</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="379"/>
@@ -872,12 +872,12 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="388"/>
         <source>Restore Previous Session at Startup</source>
-        <translation type="unfinished"/>
+        <translation>Başlangıçta Önceki Oturumu Geri Yükle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="395"/>
         <source>Store relative paths</source>
-        <translation type="unfinished"/>
+        <translation>Göreceli yolları sakla</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="408"/>
@@ -900,7 +900,10 @@ Please change your configuration and define command lists only at Options -&gt; 
 - Stable Releases: Choose this if stability is most important to you.
 - Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
-        <translation type="unfinished"/>
+        <translation>Alacağınız güncelleme bildirimlerinin türünü tanımlar:
+- Kararlı Sürümler: Kararlılık sizin için çok önemli ise bunu seçin.
+- Aday Sürümler: Özellikler ve kararlılık açısından gelecekteki bir sürümle yakın. Gelecekteki sürümlerin önizlemelerini almak ve sürümün resmi bir sürüm olarak yayınlanmadan önce test edilmesiyle bize yardımcı olmak için bunu seçin. (Kararlı sürümlerde bildirilir)
+- Geliştirme Sürümleri: En son özellikleri içerir, ancak kararsız olabilir. (Kararlı sürümler ve aday sürümlerde bildirilir).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="443"/>
@@ -950,13 +953,14 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="configdialog.ui" line="590"/>
         <source>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Special chars&lt;/span&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Özel karakterler&lt;/span&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="597"/>
         <source>&lt;b&gt;%&lt;/b&gt;: filename without extension; &lt;b&gt;@&lt;/b&gt;: line number; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: formated filename
 </source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%&lt;/b&gt;: uzantısız dosya adı; &lt;b&gt;@&lt;/b&gt;: satır numarası; &lt;b&gt;?[selector][terminating char]&lt;/b&gt;: biçimlendirilmiş dosya adı
+</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="608"/>
@@ -972,17 +976,18 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
         <location filename="configdialog.ui" line="629"/>
         <source>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; and &lt;b&gt;?? &lt;/b&gt; become: %, @ or ?
 </source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%%&lt;/b&gt;, &lt;b&gt;@@&lt;/b&gt; ve &lt;b&gt;?? &lt;/b&gt; haline gelir: %, @ ya da ?
+</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="707"/>
         <source>Meta Commands</source>
-        <translation type="unfinished"/>
+        <translation>Meta Komutları</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="720"/>
         <source>User Commands</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı Komutları</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="730"/>
@@ -992,7 +997,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="742"/>
         <source>Runs txs:///recompile-bibliography, if bib-files were changed.</source>
-        <translation type="unfinished"/>
+        <translation>Bib dosyaları değiştiğinde txs:///recompile-bibliography çalıştırın.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="745"/>
@@ -1007,7 +1012,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="777"/>
         <source>Don&apos;t launch a new instance of the viewer if the dvi/ps/pdf file is already opened</source>
-        <translation type="unfinished"/>
+        <translation>dvi/ps/pdf dosyası zaten açılmışsa, görüntüleyicinin yeni bir örneğini başlatmayın</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="784"/>
@@ -1034,7 +1039,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     <message>
         <location filename="configdialog.ui" line="816"/>
         <source>Some LaTeX constructs (e.g. references) need multiple compilation cycles until they are displayed correctly.</source>
-        <translation type="unfinished"/>
+        <translation>Bazı LaTeX yapılarının (örneğin referanslar) doğru şekilde görüntülenmesi için birden fazla derleme döngüsüne ihtiyacı vardır.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="819"/>
@@ -1071,7 +1076,14 @@ Variables are written as: %MYVAR%. They are case-insensitive.
 Linux, OS X:
 Variables are written as: $MYVAR. They are case-sensitive.
 </source>
-        <translation type="unfinished"/>
+        <translation>Komutlardaki ortam değişkenlerini değiştirir. Davranış işletim sistemine özgüdür.
+
+Windows:
+Değişkenler %MYVAR% şeklinde yazılır. BÜYÜK/küçük harf duyarlı değildir.
+
+Linux, OS X:
+Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harf duyarlıdır.
+</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="968"/>
@@ -1106,7 +1118,11 @@ Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
 (3) type the string of the shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Düzenlemek için, &apos;Geçerli Kısayol&apos; veya &apos;Ek Kısayol&apos; bölümündeki girdilere çift tıklayın.
+Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
+(1) açılır listeden seçim yapın
+(2) kısayol tuş bileşimini kullanın
+(3) kısayolun dizesini yazın</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1039"/>
@@ -1137,7 +1153,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1069"/>
         <source>Show Shortcuts in Tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Kısayolları, Araç İpuçlarında Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1092"/>
@@ -1148,7 +1164,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1099"/>
         <source>Here the menu items are listed and can be hidden or edited.</source>
-        <translation type="unfinished"/>
+        <translation>Burada menü maddeleri listelenir ve gizlenebilir ya da düzenlenebilir.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1112"/>
@@ -1184,17 +1200,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1165"/>
         <source>This shows all actions on the currently edited toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Bu, halihazırda düzenlenmiş araç çubuğundaki tüm işlemleri gösterir.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1190"/>
         <source>This adds an action to the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Bu araç çubuğuna bir eylem ekler.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1204"/>
         <source>This removes an action from the toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Bu araç çubuğundan bir eylem siler.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1233"/>
@@ -1231,7 +1247,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1323"/>
         <source>Symbol Grid</source>
-        <translation type="unfinished"/>
+        <translation>Sembol Izgarası</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1330"/>
@@ -1241,17 +1257,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1337"/>
         <source>This changes the scaling of the horizontal toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Bu, yatay araç çubuklarının ölçeklenmesini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1362"/>
         <source>This changes the scaling of the symbol grid (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Bu simge ızgarasının ölçeklenmesini değiştirir (yüksek çözünürlüklü görüntüler için).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1406"/>
         <source>This changes the scaling of the vertical toolbars (for high resolution displays).</source>
-        <translation type="unfinished"/>
+        <translation>Bu, dikey araç çubuklarının ölçeklenmesini değiştirir (yüksek çözünürlüklü ekranlar için).</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1463"/>
@@ -1268,57 +1284,57 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1483"/>
         <source>Replace Double Quotes:</source>
-        <translation type="unfinished"/>
+        <translation>Çift Tırnakları Değiştir:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1496"/>
         <source>Inline Checking:</source>
-        <translation type="unfinished"/>
+        <translation>Satıriçi Denetleme:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1512"/>
         <source>Default Font Encoding:</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan Yazı Tipi Kodlaması:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1519"/>
         <source>Automatically load included files</source>
-        <translation type="unfinished"/>
+        <translation>Dahil olan dosyaları otomatik olarak yükle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1529"/>
         <source>Indentation Mode:</source>
-        <translation type="unfinished"/>
+        <translation>Girintileme Modu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1536"/>
         <source>Folding</source>
-        <translation type="unfinished"/>
+        <translation>Katlama</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1543"/>
         <source>Hide grammar errors in non-text environments</source>
-        <translation type="unfinished"/>
+        <translation>Metin dışı ortamlarda dilbilgisi hatalarını gizle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1553"/>
         <source>Hide spelling errors in non-text environments</source>
-        <translation type="unfinished"/>
+        <translation>Metin dışı ortamlarda imla hatalarını gizle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1563"/>
         <source>Automatic Encoding Detection:</source>
-        <translation type="unfinished"/>
+        <translation>Otomatik Kodlama Algılama:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1573"/>
         <source>Analyze LaTeX (% !TeX encoding, inputenc, inputenx)</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX&apos;i Analiz Et (% !TeX kodlaması, inputenc, inputenx)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1580"/>
         <source>can only decide between utf16/utf-8 and ISO 8859-1 !</source>
-        <translation type="unfinished"/>
+        <translation>yalnızca utf16/utf-8 ve ISO 8859-1 arasında karar verebilir!</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1583"/>
@@ -1340,7 +1356,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1644"/>
         <source>No Replacement</source>
-        <translation type="unfinished"/>
+        <translation>Değiştirilemez</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1649"/>
@@ -1370,7 +1386,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1674"/>
         <source>Package csquotes: \enquote{  }</source>
-        <translation type="unfinished"/>
+        <translation>csquotes Paketi: \enquote{  }</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1679"/>
@@ -1380,7 +1396,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1687"/>
         <source>Show Only Monospaced Fonts</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca Eş Aralıklı Fontları Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1698"/>
@@ -1400,7 +1416,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1716"/>
         <source>Check non tex files</source>
-        <translation type="unfinished"/>
+        <translation>Tex dosyası olmayan dosyaları kontrol et</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1738"/>
@@ -1435,17 +1451,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1783"/>
         <source>Scan LaTeX distribution for installed packages</source>
-        <translation type="unfinished"/>
+        <translation>Yüklü paketler için LaTeX dağıtımını tara</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1469"/>
         <source>Replace Indentation Tab by Spaces</source>
-        <translation type="unfinished"/>
+        <translation>Tab Girintilerini Boşluklarla Değiştir</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1793"/>
         <source>Replace Tab in Text by Spaces</source>
-        <translation type="unfinished"/>
+        <translation>Metindeki Tab sekmelerini Boşluklarla Değiştir</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1854"/>
@@ -1480,12 +1496,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1945"/>
         <source>Show Whitespace</source>
-        <translation type="unfinished"/>
+        <translation>Boşlukları Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1958"/>
         <source>Show Line Change State</source>
-        <translation type="unfinished"/>
+        <translation>Satır Değişiklik Durumunu Göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1968"/>
@@ -1505,17 +1521,17 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2003"/>
         <source>Close search and replace panel together</source>
-        <translation type="unfinished"/>
+        <translation>Ara ve değiştir panelini beraber kapat</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2013"/>
         <source>Use single line selection as Search Word</source>
-        <translation type="unfinished"/>
+        <translation>Tek satır seçimimini Arama Kelimesi olarak kullan</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2023"/>
         <source>Restrict search scope to an existing selection</source>
-        <translation type="unfinished"/>
+        <translation>Arama kapsamını mevcut bir seçime kısıtla</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2033"/>
@@ -1560,12 +1576,12 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2230"/>
         <source>Line Wrapping:</source>
-        <translation type="unfinished"/>
+        <translation>Satır Kaydırma:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2223"/>
         <source>Smooth Scrolling</source>
-        <translation type="unfinished"/>
+        <translation>Düzgün Kaydırma</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2254"/>
@@ -1575,7 +1591,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2139"/>
         <source>Spellchecking via context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Açılır menü üzerinden yazım denetimi:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2146"/>
@@ -1585,7 +1601,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2237"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
-        <translation type="unfinished"/>
+        <translation>Dahili pdf görüntüleyicide komut yardımlarını göster (texdoc)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2266"/>
@@ -1600,22 +1616,22 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="2054"/>
         <source>No Line Wrap</source>
-        <translation type="unfinished"/>
+        <translation>Satır Kaydırma Yok</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2059"/>
         <source>Soft Line Wrap at Window Edge</source>
-        <translation type="unfinished"/>
+        <translation>Pencere Kenarına göre Yumuşak Satır Kaydırma</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2064"/>
         <source>Soft Line Wrap after max. Characters</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum Karakterden Sonra Yumuşak Satır Kaydırma</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2069"/>
         <source>Hard Line Wrap after max. Characters</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum Karakterden Sonra Sert Satır Kaydırma</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2084"/>
@@ -1631,7 +1647,8 @@ Then you can select a new shortcut by one of the following ways:
         <location filename="configdialog.ui" line="2042"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
-        <translation type="unfinished"/>
+        <translation>Kaynak kodunda unicode karakterleri kullanırken, LaTeX hala
+karakterleri üretmek zorunda. Unicode doğal olarak LaTeX tarafından desteklenmediğinden, belgenize unicode karakterler için uygun paketleri dahil etmeniz gerekir.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2046"/>
@@ -1641,7 +1658,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2132"/>
         <source>Show log markers when clicking log entry</source>
-        <translation type="unfinished"/>
+        <translation>Günlük girişini tıklattığınızda günlük işaretçilerini gösterin</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2275"/>
@@ -1651,22 +1668,22 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2119"/>
         <source>Add Entries Directly To Context  Menu</source>
-        <translation type="unfinished"/>
+        <translation>Girişleri Doğrudan Açılır Menüye Ekle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2124"/>
         <source>Create Dedicated Submenu</source>
-        <translation type="unfinished"/>
+        <translation>Özel Alt Menü Oluştur</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2094"/>
         <source>Show help as tooltip on text in editor</source>
-        <translation type="unfinished"/>
+        <translation>Editördeki metne araç ipucu şeklinde yardım göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2104"/>
         <source>Show image tooltip on image files</source>
-        <translation type="unfinished"/>
+        <translation>Resim dosyalarında resim araç ipucunu göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2153"/>
@@ -1686,12 +1703,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2282"/>
         <source>Monitor open files for external changes</source>
-        <translation type="unfinished"/>
+        <translation>Harici değişiklikler için açık dosyaları izle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2289"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu, yazma işlemi başarısız olursa mevcut verileri kaybetmeyi önlemek için QSaveFile kullanır. Bir dezavantaj olarak, geçerli kullanıcı dosyanın sahibi olur ve genişletilmiş dosya öznitelikleri kaybolur. Ayrıca, bu yöntemin dropbox klasörleri ile sorunları var gibi görünüyor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2292"/>
@@ -1741,17 +1758,17 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2351"/>
         <source>Reference commands in context menu:</source>
-        <translation type="unfinished"/>
+        <translation>Açılır menüdeki referans komutları:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2385"/>
         <source>Keep indentation of includes in structure tree</source>
-        <translation type="unfinished"/>
+        <translation>Yapı ağacındaki içerikler girintisini muhafaza et</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2358"/>
         <source>Show elements in comments</source>
-        <translation type="unfinished"/>
+        <translation>Yorumlarda öğeleri göster</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1984"/>
@@ -1761,18 +1778,18 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1987"/>
         <source>Center Document in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Dökümanı Editörde Ortala</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2365"/>
         <source>Mark structure elements in appendix</source>
-        <translation type="unfinished"/>
+        <translation>Yapı unsurlarını ekte işaretle</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2372"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
-        <translation type="unfinished"/>
+        <translation>TODO yorumu için düzenli ifade:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2403"/>
@@ -1792,7 +1809,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2429"/>
         <source>Table Autoformating</source>
-        <translation type="unfinished"/>
+        <translation>Otomatik Tablo Biçimlendirme</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2435"/>
@@ -1802,7 +1819,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2443"/>
         <source>Behind Line Break</source>
-        <translation type="unfinished"/>
+        <translation>Satır Sonunun Arkasında</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2448"/>
@@ -1817,7 +1834,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2461"/>
         <source>Special Commands Position:</source>
-        <translation type="unfinished"/>
+        <translation>Özel Komutların Pozisyonu:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2471"/>
@@ -1852,37 +1869,37 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2554"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
-        <translation type="unfinished"/>
+        <translation>Görsel sütun imleç modu (diğer bir deyişle, imleci, rtl metnindeki ok tuşlarının yönünde hareket ettirin)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2561"/>
         <source>Automatically switch keyboard layout: </source>
-        <translation type="unfinished"/>
+        <translation>Otomatik olarak klavye düzenini değiştirme:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2568"/>
         <source>depending on character direction</source>
-        <translation type="unfinished"/>
+        <translation>karakter yönüne bağlı olarak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2575"/>
         <source>depending on text/math mode</source>
-        <translation type="unfinished"/>
+        <translation>metin/matematik moduna bağlı olarak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2585"/>
         <source>Hacks/Workarounds</source>
-        <translation type="unfinished"/>
+        <translation>Hackler/Geçici Çözümler</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2591"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
-        <translation type="unfinished"/>
+        <translation>Aksan yazarken geçici çözüm özelliğini devre dışı bırak (yalnızca Mac OS X için)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2598"/>
         <source>Try to automatically choose best display options</source>
-        <translation type="unfinished"/>
+        <translation>En iyi ekran seçeneklerini otomatik olarak seçmeye çalış</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2616"/>
@@ -1907,27 +1924,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2642"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
-        <translation type="unfinished"/>
+        <translation>İşlenmiş satırlar önbelleği etkinleştirilmişse, işlenmiş satırlar bir önbellekte saklanır, böylece yeniden işlenmeleri gerekmez. Bu, daha yüksek bir bellek kullanımına rağmen (özellikle Mac&apos;te) bir hız iyileştirmesine yol açar.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2645"/>
         <source>Disable cache of rendered lines</source>
-        <translation type="unfinished"/>
+        <translation>İşlenmiş satırlar önbelleğini devre dışı bırak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2652"/>
         <source>Disable fixed pitch mode</source>
-        <translation type="unfinished"/>
+        <translation>Sabit adım modunu devre dışı bırak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2659"/>
         <source>Disable cache of character width</source>
-        <translation type="unfinished"/>
+        <translation>Karakter genişliği önbelleğini devre dışı bırak</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2666"/>
         <source>Use QImage as cache type</source>
-        <translation type="unfinished"/>
+        <translation>QImage&apos;i önbellek türü olarak kullanın</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2729"/>
@@ -1937,7 +1954,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2752"/>
         <source>Here the highlighting of custom environments can be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Burada özel ortamların vurgulanması değiştirilebilir.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2766"/>
@@ -1952,7 +1969,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2781"/>
         <source>Here you can add another environment for custom highlighting.</source>
-        <translation type="unfinished"/>
+        <translation>Burada, özel vurgulama için başka bir ortam ekleyebilirsiniz.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2784"/>
@@ -1985,37 +2002,37 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2892"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
-        <translation type="unfinished"/>
+        <translation>Etiketler/bibitem için hedef metin ile renklerin veya resimlerin önizlemesini içeren bir araç ipucu gösterir.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2895"/>
         <source>ToolTip-Preview</source>
-        <translation type="unfinished"/>
+        <translation>Araç İpucu-Önizleme</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2902"/>
         <source>Arguments as Placeholders</source>
-        <translation type="unfinished"/>
+        <translation>Yertutucu olarak Argümanlar</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2912"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen tamamlayıcı komutunun bir açıklaması olan bir araç ipucunu gösterir</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2915"/>
         <source>ToolTip-Help</source>
-        <translation type="unfinished"/>
+        <translation>Araç İpucu-Yardım</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2925"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
-        <translation type="unfinished"/>
+        <translation>&apos;\&apos; yazılır yazılmaz tamamlayıcıyı başlatır. Alternatif olarak, tamamlayıcı, Ctrl+Space tuş bileşimiyle her zaman manuel olarak başlatılabilir.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2928"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
-        <translation type="unfinished"/>
+        <translation>LaTeX komutları yazılırken tamamlayıcıyı otomatik olarak başlat</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2937"/>
@@ -5728,7 +5745,7 @@ You can now enter the password:</source>
     <message>
         <location filename="buildmanager.cpp" line="2409"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Bir (La)TeX dağıtımı yüklediğinize&lt;/b&gt;Ör. MiKTeX ya da TeX Live, ve komut yapılandırma sayfasında bu dağıtıma ait doğru yolları ayarladığınıza emin olun.&lt;br&gt;TeXstudio gibi (La)TeX editörü, böyle bir dağıtımın sağladığı (La)TeX komutları olmadan çalışamaz.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2413"/>
