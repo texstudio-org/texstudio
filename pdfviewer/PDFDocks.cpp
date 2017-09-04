@@ -598,7 +598,7 @@ PDFSearchDock::PDFSearchDock(PDFDocument *doc): PDFBaseSearchDock(doc)
 	cbWords = new QCheckBox(this);
 	cbWords->setObjectName("cbWords");
 	cbWords->setText(tr("Words"));
-	cbWords->setToolTip(tr("Only seaches for whole words."));
+    cbWords->setToolTip(tr("Only searches for whole words."));
 
 	gridLayout1->addWidget(cbWords, 0, 2, 1, 1);
 
