@@ -77,44 +77,45 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		{
 			None			= 0,
 			
-			Overwrite		= 0x001,
-			CursorOn		= 0x002,
-			ReadOnly		= 0x004,
-			MousePressed		= 0x008,
-			MaybeDrag		= 0x010,
-			Selection		= 0x020,
-			EnsureVisible		= 0x040,
-			
-			Internal		= 0x00000fff,
-			
-			LineWrap		= 0x00001000,
-			HardLineWrap		= 0x00002000,
-			LineWidthConstraint	= 0x00004000,
-			// 0x00008000 used by ReplaceTextTabs below
-			
-			CtrlNavigation		= 0x00010000,
-			CursorJumpPastWrap	= 0x00020000,
+			Overwrite		= 0x01,
+			CursorOn		= 0x02,
+			ReadOnly		= 0x04,
+			MousePressed	= 0x08,
+			MaybeDrag		= 0x10,
+			Selection		= 0x20,
+			EnsureVisible	= 0x40,
 
-			SmoothScrolling		= 0x00040000,
-			MouseWheelZoom		= 0x00080000,
-
-			ReplaceIndentTabs		= 0x00100000,
-			ReplaceTextTabs		= 0x00008000,
-			RemoveTrailing		= 0x00200000,
-			PreserveTrailingIndent	= 0x00400000,
-			AdjustIndent		= 0x00800000,
+			Internal		= 0x000000ff,
 			
-			AutoCloseChars		= 0x01000000,
-			AutoIndent		= 0x02000000,
-			WeakIndent		= 0x04000000,
-			AutoInsertLRM		= 0x08000000,
-			BidiVisualColumnMode= 0x10000000,
+			LineWrap			= 0x00000100,
+			HardLineWrap		= 0x00000200,
+			LineWidthConstraint	= 0x00000400,
 
-			ShowPlaceholders = 0x20000000,
-			OverwriteOpeningBracketFollowedByPlaceholder = 0x40000000,
-			OverwriteClosingBracketFollowingPlaceholder = 0x80000000,
+			AllowDragAndDrop	= 0x00000800,
 
-			Accessible		= 0xfffff000
+			CtrlNavigation		= 0x00001000,
+			CursorJumpPastWrap	= 0x00002000,
+
+			SmoothScrolling		= 0x00004000,
+			MouseWheelZoom		= 0x00008000,
+
+			ReplaceIndentTabs		= 0x00010000,
+			ReplaceTextTabs			= 0x00020000,
+			RemoveTrailing			= 0x00040000,
+			PreserveTrailingIndent	= 0x00080000,
+			AdjustIndent			= 0x00100000,
+			
+			AutoCloseChars		= 0x00200000,
+			AutoIndent			= 0x00400000,
+			WeakIndent			= 0x00800000,
+			AutoInsertLRM		= 0x01000000,
+			BidiVisualColumnMode= 0x02000000,
+
+			ShowPlaceholders	= 0x10000000,
+			OverwriteOpeningBracketFollowedByPlaceholder = 0x20000000,
+			OverwriteClosingBracketFollowingPlaceholder = 0x40000000,
+
+			Accessible		= 0xffffff00
 		};
 		Q_DECLARE_FLAGS(State, EditFlag)
 

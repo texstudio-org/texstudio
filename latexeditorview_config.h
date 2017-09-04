@@ -32,6 +32,7 @@ public:
 	bool useLineForSearch, searchOnlyInSelection;
 	static QString translateEditOperation(int key);
 	static QList<int> possibleEditOperations();
+	bool allowDragAndDrop;
 	bool mouseWheelZoom;
 	bool smoothScrolling;
 	bool hackAutoChoose, hackDisableFixedPitch, hackDisableWidthCache, hackDisableLineCache, hackDisableAccentWorkaround, hackQImageCache;

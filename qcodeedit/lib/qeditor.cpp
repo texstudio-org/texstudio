@@ -3722,7 +3722,7 @@ void QEditor::mousePressEvent(QMouseEvent *e)
 						}
 					}
 
-					if ( inSel )
+					if ( inSel && flag(AllowDragAndDrop) )
 					{
 						setFlag(MaybeDrag, true);
 

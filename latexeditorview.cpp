@@ -1504,6 +1504,7 @@ void LatexEditorView::updateSettings()
 	editor->setFlag(QEditor::WeakIndent, config->weakindent);
 	editor->setFlag(QEditor::ReplaceIndentTabs, config->replaceIndentTabs);
 	editor->setFlag(QEditor::ReplaceTextTabs, config->replaceTextTabs);
+	editor->setFlag(QEditor::AllowDragAndDrop, config->allowDragAndDrop);
 	editor->setFlag(QEditor::MouseWheelZoom, config->mouseWheelZoom);
 	editor->setFlag(QEditor::SmoothScrolling, config->smoothScrolling);
 	editor->setFlag(QEditor::AutoInsertLRM, config->autoInsertLRM);
