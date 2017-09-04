@@ -7372,7 +7372,7 @@ bool Texstudio::eventFilter(QObject *, QEvent *event)
     if (event->type() == QEvent::ShortcutOverride) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
         QString key = keyEvent->text();
-        if(keyEvent->modifiers()==Qt::NoModifier && (key=="´"||key=="t")){
+        if(keyEvent->modifiers()==Qt::NoModifier && key.length()==1 && (key=="´"||key.at(0).isLetter())){
             event->accept();
             return true;
         }
