@@ -980,11 +980,12 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			//recurse
 			ExpandedCommands ecNew = expandCommandLine(cmd, options);
 			if (ecNew.commands.length() > 1 && atomicCommands.contains(cmd)) {
-                txsWarning(QString(tr("The command %1 is expected to be atomic. However, it is currently "
-                                      "defined as a command-chain containing %2 commands. This is beyond "
-                                      "the specification and may lead to surprising side-effects.\n\n"
-									  "Please change your configuration and define command lists only at "
-									  "Options -> Build not at Options -> Commands.")).arg(cmd).arg(ecNew.commands.length()));
+				txsWarning(QString(tr("The command %1 is expected to be atomic. However, it is currently "
+				                      "defined as a command-chain containing %2 commands. This is beyond "
+				                      "the specification and may lead to surprising side-effects.\n\n"
+				                      "Please change your configuration and define command lists only at "
+				                      "'Options -> Configure TeXstudio -> Build' not at "
+				                      "'Options -> Configure TeXstudio -> Commands'.")).arg(cmd).arg(ecNew.commands.length()));
 			}
 			QList<CommandToRun> &newPart = ecNew.commands;
 
