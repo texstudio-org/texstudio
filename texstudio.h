@@ -106,7 +106,7 @@ protected:
 	Q_INVOKABLE inline QList<QAction *> getManagedActions(const QStringList &ids, const QString &commonPrefix = "") { return configManager.getManagedActions(ids, commonPrefix); }
 	Q_INVOKABLE QAction *insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName = 0, const QKeySequence &shortCut = 0, const QString &iconFile = "");
 
-	SymbolGridWidget *addSymbolGrid(const QString &SymbolList,  const QString &iconName, const QString &text);
+	SymbolGridWidget *addSymbolGrid(const QString &id, const QString &iconName, const QString &title);
 	void addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile);
 
 	QVariantMap *MapForSymbols;
@@ -395,8 +395,7 @@ protected slots:
 	void insertTag(const QString &Entity, int dx = 0, int dy = 0);
 	void insertCitation(const QString &text);
 	void insertFormula(const QString &formula);
-	void insertSymbol(QTableWidgetItem *item);
-	void insertSymbolPressed(QTableWidgetItem *item);
+	void insertSymbol(const QString &text);
 	void insertXmlTag(QListWidgetItem *item);
 	void insertXmlTagFromToolButtonAction();
 	void callToolButtonAction();
@@ -627,8 +626,6 @@ protected:
 #if (QT_VERSION > 0x050000) && (QT_VERSION <= 0x050700) && (defined(Q_OS_MAC))
 	bool eventFilter(QObject *obj, QEvent *event);
 #endif
-
-	Qt::MouseButtons mb;
 
 	bool mCompleterNeedsUpdate;
 

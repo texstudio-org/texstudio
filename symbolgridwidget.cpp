@@ -12,6 +12,7 @@
 #include "symbolgridwidget.h"
 #include "icondelegate.h"
 #include "smallUsefulFunctions.h"
+#include "configmanagerinterface.h"
 #include "qsvgrenderer.h"
 
 /*! \class SymbolGridWidget
@@ -61,7 +62,10 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 		p.setColor(QPalette::Base, QColor::fromHslF(bc.hslHueF(), bc.hslSaturationF(), minLightness, bc.alphaF()));
 		viewport()->setPalette(p);
 	}
+
+	connect(this, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(onItemClicked(QTableWidgetItem *)));
 }
+
 /*!
  * \brief destructor
  */
@@ -259,6 +263,28 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 		item->setToolTip(label);
 		setItem(i / cols, i % cols, item);
 		listOfItems << item;
+	}
+}
+
+void SymbolGridWidget::onItemClicked(QTableWidgetItem *item)
+{
+	QString code_symbol;
+	if (item) {
+		int cnt = item->data(Qt::UserRole).toInt();
+		if (item->data(Qt::UserRole + 1).isValid()) {
+			item = item->data(Qt::UserRole + 1).value<QTableWidgetItem *>();
+			cnt = item->data(Qt::UserRole).toInt();
+		}
+		bool insertUTF = ConfigManagerInterface::getInstance()->getOption("Tools/Insert Unicode From SymbolGrid").toBool();
+
+		if (insertUTF && item->data(Qt::UserRole + 4).isValid()) {
+			code_symbol = item->data(Qt::UserRole + 4).toString();
+		} else {
+			code_symbol = item->text();
+		}
+		item->setData(Qt::UserRole, cnt + 1);
+		emit insertSymbol(code_symbol);
+		emit symbolUsed(item);
 	}
 }
 

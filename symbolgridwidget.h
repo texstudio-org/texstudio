@@ -29,9 +29,16 @@ public:
 	QString getCurrentSymbol(); //returns category/fileName.png
 	void setSymbolSize(int size);
 
+signals:
+	void insertSymbol(QString symbolText);
+	void symbolUsed(QTableWidgetItem *item);
+
 public slots:
 	void SetUserPage(usercodelist ulist);
 	void loadSymbols(const QStringList &fileNames, QVariantMap *Map = 0);
+
+protected slots:
+	void onItemClicked(QTableWidgetItem *item);
 
 protected:
 	void resizeEvent ( QResizeEvent *event );

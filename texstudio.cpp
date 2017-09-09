@@ -515,18 +515,18 @@ QAction *Texstudio::insertManagedAction(QAction *before, const QString &id, cons
 	return inserted;
 }
 
-SymbolGridWidget *Texstudio::addSymbolGrid(const QString &SymbolList,  const QString &iconName, const QString &text)
+SymbolGridWidget *Texstudio::addSymbolGrid(const QString &id,  const QString &iconName, const QString &title)
 {
-	SymbolGridWidget *list = qobject_cast<SymbolGridWidget *>(leftPanel->widget(SymbolList));
+	SymbolGridWidget *list = qobject_cast<SymbolGridWidget *>(leftPanel->widget(id));
 	if (!list) {
-		list = new SymbolGridWidget(this, SymbolList, MapForSymbols);
+		list = new SymbolGridWidget(this, id, MapForSymbols);
 		list->setSymbolSize(configManager.guiSymbolGridIconSize);
 		list->setProperty("isSymbolGrid", true);
-		connect(list, SIGNAL(itemClicked(QTableWidgetItem *)), this, SLOT(insertSymbol(QTableWidgetItem *)));
-		connect(list, SIGNAL(itemPressed(QTableWidgetItem *)), this, SLOT(insertSymbolPressed(QTableWidgetItem *)));
-		leftPanel->addWidget(list, SymbolList, text, getRealIconFile(iconName));
+		connect(list, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
+		connect(list, SIGNAL(symbolUsed(QTableWidgetItem*)), this, SLOT(setMostUsedSymbols(QTableWidgetItem*)));
+		leftPanel->addWidget(list, id, title, getRealIconFile(iconName));
 	} else {
-		leftPanel->setWidgetText(list, text);
+		leftPanel->setWidgetText(list, title);
 		leftPanel->setWidgetIcon(list, getRealIconFile(iconName));
 	}
 	return list;
@@ -4974,32 +4974,9 @@ void Texstudio::insertFormula(const QString &formula)
 	insertTag(fm, fm.length());
 }
 
-void Texstudio::insertSymbolPressed(QTableWidgetItem *)
+void Texstudio::insertSymbol(const QString &text)
 {
-	mb = QApplication::mouseButtons();
-}
-
-void Texstudio::insertSymbol(QTableWidgetItem *item)
-{
-
-	if (mb == Qt::RightButton) return; // avoid jumping to line if contextmenu is called
-
-	QString code_symbol;
-	if (item) {
-		int cnt = item->data(Qt::UserRole).toInt();
-		if (item->data(Qt::UserRole + 1).isValid()) {
-			item = item->data(Qt::UserRole + 1).value<QTableWidgetItem *>();
-			cnt = item->data(Qt::UserRole).toInt();
-		}
-		if (configManager.insertUTF && item->data(Qt::UserRole + 4).isValid()) {
-			code_symbol = item->data(Qt::UserRole + 4).toString();
-		} else {
-			code_symbol = item->text();
-		}
-		item->setData(Qt::UserRole, cnt + 1);
-		insertTag(code_symbol, code_symbol.length(), 0);
-		setMostUsedSymbols(item);
-	}
+	insertTag(text, text.length());
 }
 
 void Texstudio::insertXmlTag(QListWidgetItem *item)
