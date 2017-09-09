@@ -191,12 +191,15 @@ QString QuickBeamerDialog::getNewDocumentText()
 					optbabel += QString(",") + babelItems.at(i)->text();
 			}
 		}
-		if (!fontenc.isEmpty()) {
-			tag += QString("\\usepackage[" + fontenc + "]{fontenc}\n");
+		if (fontenc.isEmpty()) {
+			fontenc = "T1";
 		}
+		tag += QString("\\usepackage[" + fontenc + "]{fontenc}\n");
+		tag += QString("\\usepackage{lmodern}\n");
 		tag += QString("\\usepackage[" + optbabel + "]{babel}\n");
 	} else {
 		tag += QString("\\usepackage[T1]{fontenc}\n");
+		tag += QString("\\usepackage{lmodern}\n");
 	}
 
 	if (ui.checkBoxAMS->isChecked())
