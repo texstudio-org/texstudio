@@ -24,6 +24,14 @@ class SymbolGridWidget : public QTableWidget
 	Q_OBJECT
 
 public:
+	enum DataRoles {
+		UsageCount = Qt::UserRole,
+		SymbolName,
+		UnicodeText,
+		AssociatedMostUsedItemPointer,  // used in regular items to point to most used item
+		AssociantedRegularItemPointer,  // used in most used items to point to regular item
+	};
+
 	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map = 0);
 	~SymbolGridWidget();
 	QString getCurrentSymbol(); //returns category/fileName.png
