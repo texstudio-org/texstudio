@@ -95,7 +95,7 @@ QString SymbolGridWidget::getCurrentSymbol()
 {
 	QTableWidgetItem *cur = currentItem();
 	if (!cur) return QString();
-	return cur->data(Qt::UserRole + 2).toString();
+	return cur->data(SymbolName).toString();
 }
 
 /*!
@@ -131,7 +131,7 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 		if (fileName.isEmpty())
 			fileName = findResourceFile("symbols/" + iconName);
 		QTableWidgetItem *item = new QTableWidgetItem();
-		QString Command, text, UniCode;
+		QString command, text, unicode;
 
 		if (fileName.endsWith("svg")) {
 			QFile file( fileName );
@@ -165,7 +165,7 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 			QDomNodeList nl = root.elementsByTagName("title");
 			if (!nl.isEmpty()) {
 				QDomNode n = nl.at(0);
-				Command = n.toElement().text();
+				command = n.toElement().text();
 			}
 			nl = root.elementsByTagName("desc");
 			if (!nl.isEmpty()) {
@@ -175,19 +175,19 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 			nl = root.elementsByTagName("additionalInfo");
 			if (!nl.isEmpty()) {
 				QDomNode n = nl.at(0);
-				UniCode = n.toElement().attribute("CommandUnicode");
+				unicode = n.toElement().attribute("CommandUnicode");
 
 			}
 		} else {
 			QImage img = QImage(fileName);
-			Command = img.text("Command");
+			command = img.text("Command");
 			text = img.text("Packages");
-			UniCode = img.text("CommandUnicode");
+			unicode = img.text("CommandUnicode");
 		}
-		if (!UniCode.isEmpty()) {
+		if (!unicode.isEmpty()) {
 			// convert to real unicode
 			QString helper;
-			QStringList listOfChars = UniCode.split(",");
+			QStringList listOfChars = unicode.split(",");
 			for (int i = 0; i < listOfChars.size(); i++) {
 				QString StrCode = listOfChars.value(i, "");
 				StrCode = StrCode.mid(2); // Remove U+
@@ -196,7 +196,7 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 				if (ok)
 					helper += QChar(code);
             }
-			UniCode = helper;
+			unicode = helper;
 
 		}
 #if defined( Q_OS_MAC ) && (QT_VERSION >= 0x050500)
@@ -220,20 +220,20 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 #else
 		item->setIcon(QIcon(fileName));
 #endif
-		item->setText(Command);
+		item->setText(command);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 		if (Map) {
-			item->setData(Qt::UserRole, Map->value(iconName, 0).toInt());
-			Map->insert(Command, 0);
-		} else item->setData(Qt::UserRole, 0);
-		item->setData(Qt::UserRole + 2, iconName);
-		if (!UniCode.isEmpty())
-			item->setData(Qt::UserRole + 4, UniCode);
+			item->setData(UsageCount, Map->value(iconName, 0).toInt());
+			Map->insert(command, 0);
+		} else item->setData(UsageCount, 0);
+		item->setData(SymbolName, iconName);
+		if (!unicode.isEmpty())
+			item->setData(UnicodeText, unicode);
 		QString label;
 		QStringList args, pkgs;
 
-		Command.replace("<", "&lt;");
-		label = tr("Command: ") + "<b>" + Command + "</b>";
+		command.replace("<", "&lt;");
+		label = tr("Command: ") + "<b>" + command + "</b>";
 
 		QRegExp rePkgs("(?:\\[(.*)\\])?\\{(.*)\\}");
 
@@ -258,8 +258,8 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 					label = label + pkgs[j] ;
 			}
 		}
-		if (!UniCode.isEmpty())
-			label += "<br>" + tr("Unicode Character: ") + UniCode;
+		if (!unicode.isEmpty())
+			label += "<br>" + tr("Unicode Character: ") + unicode;
 		item->setToolTip(label);
 		setItem(i / cols, i % cols, item);
 		listOfItems << item;
@@ -268,22 +268,22 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 
 void SymbolGridWidget::onItemClicked(QTableWidgetItem *item)
 {
-	QString code_symbol;
+	QString text;
 	if (item) {
-		int cnt = item->data(Qt::UserRole).toInt();
-		if (item->data(Qt::UserRole + 1).isValid()) {
-			item = item->data(Qt::UserRole + 1).value<QTableWidgetItem *>();
-			cnt = item->data(Qt::UserRole).toInt();
+		int usageCount = item->data(UsageCount).toInt();
+		if (item->data(AssociatedMostUsedItemPointer).isValid()) {
+			item = item->data(AssociatedMostUsedItemPointer).value<QTableWidgetItem *>();
+			usageCount = item->data(UsageCount).toInt();
 		}
 		bool insertUTF = ConfigManagerInterface::getInstance()->getOption("Tools/Insert Unicode From SymbolGrid").toBool();
 
-		if (insertUTF && item->data(Qt::UserRole + 4).isValid()) {
-			code_symbol = item->data(Qt::UserRole + 4).toString();
+		if (insertUTF && item->data(UnicodeText).isValid()) {
+			text = item->data(UnicodeText).toString();
 		} else {
-			code_symbol = item->text();
+			text = item->text();
 		}
-		item->setData(Qt::UserRole, cnt + 1);
-		emit insertSymbol(code_symbol);
+		item->setData(UsageCount, usageCount + 1);
+		emit insertSymbol(text);
 		emit symbolUsed(item);
 	}
 }

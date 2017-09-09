@@ -4251,11 +4251,11 @@ void Texstudio::saveSettings(const QString &configName)
 
 	MapForSymbols->clear();
 	foreach (QTableWidgetItem *elem, symbolMostused) {
-		int cnt = elem->data(Qt::UserRole).toInt();
-		if (cnt < 1) continue;
-		QString text = elem->data(Qt::UserRole + 2).toString();
-		if (MapForSymbols->value(text).toInt() > cnt) cnt = MapForSymbols->value(text).toInt();
-		MapForSymbols->insert(text, cnt);
+		int usageCount = elem->data(SymbolGridWidget::UsageCount).toInt();
+		if (usageCount < 1) continue;
+		QString text = elem->data(SymbolGridWidget::SymbolName).toString();
+		if (MapForSymbols->value(text).toInt() > usageCount) usageCount = MapForSymbols->value(text).toInt();
+		MapForSymbols->insert(text, usageCount);
 	}
 	config->setValue("Symbols/Quantity", *MapForSymbols);
 
@@ -7411,20 +7411,20 @@ void Texstudio::setMostUsedSymbols(QTableWidgetItem *item)
 		//check whether it was loaded as mosteUsed ...
 		for (int i = 0; i < symbolMostused.count(); i++) {
 			QTableWidgetItem *elem = symbolMostused.at(i);
-			if (elem->data(Qt::UserRole + 2) == item->data(Qt::UserRole + 2)) {
+			if (elem->data(SymbolGridWidget::SymbolName) == item->data(SymbolGridWidget::SymbolName)) {
 				index = i;
-				item->setData(Qt::UserRole + 1, QVariant::fromValue(elem));
-				int cnt = elem->data(Qt::UserRole).toInt();
-				elem->setData(Qt::UserRole, cnt + 1);
-				elem->setData(Qt::UserRole + 3, QVariant::fromValue(item)); //reference to original item for removing later
+				item->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant::fromValue(elem));
+				int usageCount = elem->data(SymbolGridWidget::UsageCount).toInt();
+				elem->setData(SymbolGridWidget::UsageCount, usageCount + 1);
+				elem->setData(SymbolGridWidget::AssociantedRegularItemPointer, QVariant::fromValue(item)); //reference to original item for removing later
 				item = elem;
 				break;
 			}
 		}
 		if (index < 0) {
 			QTableWidgetItem *elem = item->clone();
-			item->setData(Qt::UserRole + 1, QVariant::fromValue(elem));
-			elem->setData(Qt::UserRole + 3, QVariant::fromValue(item)); //reference to original item for removing later
+			item->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant::fromValue(elem));
+			elem->setData(SymbolGridWidget::AssociantedRegularItemPointer, QVariant::fromValue(item)); //reference to original item for removing later
 			symbolMostused.append(elem);
 			if (symbolMostused.size() <= 12)
 				changed = true;
@@ -7432,7 +7432,7 @@ void Texstudio::setMostUsedSymbols(QTableWidgetItem *item)
 	}
 	if (index > -1) {
 		symbolMostused.removeAt(index);
-		while (index > 0 && symbolMostused[index - 1]->data(Qt::UserRole).toInt() < item->data(Qt::UserRole).toInt()) {
+		while (index > 0 && symbolMostused[index - 1]->data(SymbolGridWidget::UsageCount).toInt() < item->data(SymbolGridWidget::UsageCount).toInt()) {
 			index--;
 		}
 		symbolMostused.insert(index, item);
@@ -8734,9 +8734,9 @@ void Texstudio::mostUsedSymbolsTriggered(bool direct)
 	}
 	if (direct || action->text() == tr("Remove")) {
 		if (!direct) {
-			if (item->data(Qt::UserRole + 3).isValid()) {
-				QTableWidgetItem *elem = item->data(Qt::UserRole + 3).value<QTableWidgetItem *>();
-				elem->setData(Qt::UserRole + 1, QVariant());
+			if (item->data(SymbolGridWidget::AssociantedRegularItemPointer).isValid()) {
+				QTableWidgetItem *elem = item->data(SymbolGridWidget::AssociantedRegularItemPointer).value<QTableWidgetItem *>();
+				elem->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant());
 			}
 			symbolMostused.removeAll(item);
 			delete item;
@@ -8744,12 +8744,12 @@ void Texstudio::mostUsedSymbolsTriggered(bool direct)
 			symbolMostused.clear();
 			foreach (QTableWidgetItem *elem, MostUsedSymbolWidget->findItems("*", Qt::MatchWildcard)) {
 				if (!elem) continue;
-				int cnt = elem->data(Qt::UserRole).toInt();
+				int usageCount = elem->data(SymbolGridWidget::UsageCount).toInt();
 				if (symbolMostused.isEmpty()) {
 					symbolMostused.append(elem);
 				} else {
 					int index = 0;
-					while (index < symbolMostused.size() && symbolMostused[index]->data(Qt::UserRole).toInt() > cnt) {
+					while (index < symbolMostused.size() && symbolMostused[index]->data(SymbolGridWidget::UsageCount).toInt() > usageCount) {
 						index++;
 					}
 					symbolMostused.insert(index, elem);
@@ -8759,8 +8759,8 @@ void Texstudio::mostUsedSymbolsTriggered(bool direct)
 	} else {
 		for (int i = 0; symbolMostused.count(); i++) {
 			QTableWidgetItem *item = symbolMostused.at(i);
-			QTableWidgetItem *elem = item->data(Qt::UserRole + 3).value<QTableWidgetItem *>();
-			elem->setData(Qt::UserRole + 1, QVariant());
+			QTableWidgetItem *elem = item->data(SymbolGridWidget::AssociantedRegularItemPointer).value<QTableWidgetItem *>();
+			elem->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant());
 			delete item;
 			symbolMostused.clear();
 		}
