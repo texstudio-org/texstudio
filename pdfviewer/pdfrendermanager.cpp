@@ -185,6 +185,11 @@ QSharedPointer<Poppler::Document> PDFRenderManager::loadDocument(const QString &
 	docPtr->setRenderHint(Poppler::Document::Antialiasing);
 	docPtr->setRenderHint(Poppler::Document::TextAntialiasing);
 
+	QColor paperColor = QColor(ConfigManagerInterface::getInstance()->getOption("Preview/PaperColor").toString());
+	if (paperColor.isValid()) {
+		docPtr->setPaperColor(paperColor);
+	}
+
 	document = QSharedPointer<Poppler::Document>(docPtr);
 
 	for (int i = 0; i < queueAdministration->num_renderQueues; i++) {
