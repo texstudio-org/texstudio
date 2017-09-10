@@ -26,16 +26,18 @@
  * However Qt does not offer a complete SVG-renderbackend which causes display errors in some symbols which are to be reoplaced with png version.
  */
 
+
+QVariantMap SymbolGridWidget::globalUsageCountMap;
+
 /*!
  * \brief constructor
  *
  * Set-up the widget. Symbol are not yet loaded as loading is time consuming with 1000+ symbols.
  * \param parent Parent-Widget
  * \param SymbolList Category of symbols which are to be loaderd from images-ng/ * SymbolList *
- * \param Map Usage info of the symbols for most-used category
  */
 
-SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map) : QTableWidget(parent)
+SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList) : QTableWidget(parent)
 {
 	listOfItems.clear();
 	setItemDelegate(new IconDelegate(this));
@@ -46,10 +48,9 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList, QVaria
 	setSelectionMode(QAbstractItemView::SingleSelection);
 	mLoadedSymbols = false;
 	mSymbolList = SymbolList;
-	mMap = Map;
 	countOfItems = 0;
 	if (SymbolList.startsWith("!")) {
-		loadSymbols(QStringList(), mMap);
+		loadSymbols(QStringList(), &globalUsageCountMap);
 	}
 	qreal minLightness = 0.5;
 	if (viewport()->palette().base().color().lightnessF() < minLightness) {
@@ -105,9 +106,9 @@ QString SymbolGridWidget::getCurrentSymbol()
  * It searches images-ng, then images and prefers svg over png.
  * The actual latex-command is extrated from the image-file.
  * \param fileNames list of all symbol-filenames
- * \param Map usage statitics for most-used category
+ * \param map usage statitics for most-used category
  */
-void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Map)
+void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *map)
 {
 	mLoadedSymbols = true;
 	foreach (QTableWidgetItem *elem, listOfItems) {
@@ -222,9 +223,9 @@ void SymbolGridWidget::loadSymbols(const QStringList &fileNames, QVariantMap *Ma
 #endif
 		item->setText(command);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-		if (Map) {
-			item->setData(UsageCount, Map->value(iconName, 0).toInt());
-			Map->insert(command, 0);
+		if (map) {
+			item->setData(UsageCount, map->value(iconName, 0).toInt());
+			map->insert(command, 0);
 		} else item->setData(UsageCount, 0);
 		item->setData(SymbolName, iconName);
 		if (!unicode.isEmpty())
@@ -305,7 +306,7 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent *event )
 		foreach (const QString &partName, files)
 			fullNames << mSymbolList + "/" + partName;
 
-		loadSymbols(fullNames, mMap);
+		loadSymbols(fullNames, &globalUsageCountMap);
 	}
 	QTableWidget::resizeEvent(event);
 	adaptTable();

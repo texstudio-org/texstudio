@@ -109,8 +109,6 @@ protected:
 	SymbolGridWidget *addSymbolGrid(const QString &id, const QString &iconName, const QString &title);
 	void addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile);
 
-	QVariantMap *MapForSymbols;
-
 private slots:
 	void updateToolBarMenu(const QString &menuName);
 	void showTestProgress(const QString &message);
