@@ -126,7 +126,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	splashscreen = splash;
 	programStopped = false;
 	spellLanguageActions = 0;
-	MapForSymbols = 0;
 	currentLine = -1;
 	svndlg = 0;
 	userMacroDialog = 0;
@@ -435,7 +434,7 @@ Texstudio::~Texstudio()
 
 	Guardian::shutdown();
 
-	delete MapForSymbols;
+
 	delete findDlg;
 
 	if (latexStyleParser) latexStyleParser->stop();
@@ -519,7 +518,7 @@ SymbolGridWidget *Texstudio::addSymbolGrid(const QString &id,  const QString &ic
 {
 	SymbolGridWidget *list = qobject_cast<SymbolGridWidget *>(leftPanel->widget(id));
 	if (!list) {
-		list = new SymbolGridWidget(this, id, MapForSymbols);
+		list = new SymbolGridWidget(this, id);
 		list->setSymbolSize(configManager.guiSymbolGridIconSize);
 		list->setProperty("isSymbolGrid", true);
 		connect(list, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
@@ -618,7 +617,7 @@ void Texstudio::setupDockWidgets()
 	addSymbolGrid("special", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Accented letters"));
 
 	MostUsedSymbolWidget = addSymbolGrid("!mostused", getRealIconFile("math6"), tr("Most used symbols"));
-	MostUsedSymbolWidget->loadSymbols(MapForSymbols->keys(), MapForSymbols);
+	MostUsedSymbolWidget->loadSymbols(SymbolGridWidget::globalUsageCountMap.keys(), &SymbolGridWidget::globalUsageCountMap);
 	FavoriteSymbolWidget = addSymbolGrid("!favorite", getRealIconFile("math7"), tr("Favorites"));
 	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
 
@@ -4100,8 +4099,7 @@ void Texstudio::readSettings(bool reread)
 	ThesaurusDialog::setUserPath(configManager.configFileNameBase);
 	ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 
-	MapForSymbols = new QVariantMap;
-	*MapForSymbols = config->value("Symbols/Quantity").toMap();
+	SymbolGridWidget::globalUsageCountMap = config->value("Symbols/Quantity").toMap();
 
 	hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();
 	symbolFavorites = config->value("Symbols/Favorite IDs", QStringList()).toStringList();
@@ -4249,15 +4247,15 @@ void Texstudio::saveSettings(const QString &configName)
 	for (int i = 0; i < struct_level.count(); i++)
 		config->setValue("Structure/Structure Level " + QString::number(i + 1), struct_level[i]);
 
-	MapForSymbols->clear();
+	SymbolGridWidget::globalUsageCountMap.clear();
 	foreach (QTableWidgetItem *elem, symbolMostused) {
 		int usageCount = elem->data(SymbolGridWidget::UsageCount).toInt();
 		if (usageCount < 1) continue;
 		QString text = elem->data(SymbolGridWidget::SymbolName).toString();
-		if (MapForSymbols->value(text).toInt() > usageCount) usageCount = MapForSymbols->value(text).toInt();
-		MapForSymbols->insert(text, usageCount);
+		if (SymbolGridWidget::globalUsageCountMap.value(text).toInt() > usageCount) usageCount = SymbolGridWidget::globalUsageCountMap.value(text).toInt();
+		SymbolGridWidget::globalUsageCountMap.insert(text, usageCount);
 	}
-	config->setValue("Symbols/Quantity", *MapForSymbols);
+	config->setValue("Symbols/Quantity", SymbolGridWidget::globalUsageCountMap);
 
 	config->setValue("Symbols/Favorite IDs", symbolFavorites);
 

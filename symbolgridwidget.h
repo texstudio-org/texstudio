@@ -32,10 +32,12 @@ public:
 		AssociantedRegularItemPointer,  // used in most used items to point to regular item
 	};
 
-	SymbolGridWidget(QWidget *parent, QString SymbolList, QVariantMap *Map = 0);
+	SymbolGridWidget(QWidget *parent, QString SymbolList);
 	~SymbolGridWidget();
 	QString getCurrentSymbol(); //returns category/fileName.png
 	void setSymbolSize(int size);
+
+	static QVariantMap globalUsageCountMap;  // maps the symbol name to its usage count for all symbols
 
 signals:
 	void insertSymbol(QString symbolText);
@@ -43,7 +45,7 @@ signals:
 
 public slots:
 	void SetUserPage(usercodelist ulist);
-	void loadSymbols(const QStringList &fileNames, QVariantMap *Map = 0);
+	void loadSymbols(const QStringList &fileNames, QVariantMap *map = 0);
 
 protected slots:
 	void onItemClicked(QTableWidgetItem *item);
@@ -57,8 +59,8 @@ private:
 	int countOfItems; //not necessary equal to listOfItems.size() while the symbols are added
 
 	bool mLoadedSymbols;
-	QVariantMap *mMap;
 	QString mSymbolList;
+
 };
 
 #endif
