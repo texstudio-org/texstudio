@@ -32,7 +32,7 @@ public:
 		AssociantedRegularItemPointer,  // used in most used items to point to regular item
 	};
 
-	SymbolGridWidget(QWidget *parent, QString SymbolList);
+	SymbolGridWidget(QWidget *parent, QString category);
 	~SymbolGridWidget();
 	QString getCurrentSymbol(); //returns category/fileName.png
 	void setSymbolSize(int size);
@@ -59,7 +59,7 @@ private:
 	int countOfItems; //not necessary equal to listOfItems.size() while the symbols are added
 
 	bool mLoadedSymbols;
-	QString mSymbolList;
+	QString mCategory;
 
 };
 

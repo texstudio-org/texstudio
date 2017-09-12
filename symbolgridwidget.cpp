@@ -34,10 +34,10 @@ QVariantMap SymbolGridWidget::globalUsageCountMap;
  *
  * Set-up the widget. Symbol are not yet loaded as loading is time consuming with 1000+ symbols.
  * \param parent Parent-Widget
- * \param SymbolList Category of symbols which are to be loaderd from images-ng/ * SymbolList *
+ * \param category of symbols which are to be loaded from images-ng/[category]
  */
 
-SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList) : QTableWidget(parent)
+SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString category) : QTableWidget(parent)
 {
 	listOfItems.clear();
 	setItemDelegate(new IconDelegate(this));
@@ -47,9 +47,9 @@ SymbolGridWidget :: SymbolGridWidget(QWidget *parent, QString SymbolList) : QTab
 	setIconSize(QSize(32, 32));
 	setSelectionMode(QAbstractItemView::SingleSelection);
 	mLoadedSymbols = false;
-	mSymbolList = SymbolList;
+	mCategory = category;
 	countOfItems = 0;
-	if (SymbolList.startsWith("!")) {
+	if (category.startsWith("!")) {
 		loadSymbols(QStringList(), &globalUsageCountMap);
 	}
 	qreal minLightness = 0.5;
@@ -296,15 +296,15 @@ void SymbolGridWidget::resizeEvent ( QResizeEvent *event )
 {
 	if (!mLoadedSymbols) {
 		QStringList files;
-		if (!mSymbolList.isEmpty() && !mSymbolList.startsWith("!")) {
-			files = findResourceFiles("symbols-ng/" + mSymbolList, "img*.*");
+		if (!mCategory.isEmpty() && !mCategory.startsWith("!")) {
+			files = findResourceFiles("symbols-ng/" + mCategory, "img*.*");
 			if (files.isEmpty()) // fallback
-				files = findResourceFiles("symbols/" + mSymbolList, "img*.png");
+				files = findResourceFiles("symbols/" + mCategory, "img*.png");
 		}
 
 		QStringList fullNames;
 		foreach (const QString &partName, files)
-			fullNames << mSymbolList + "/" + partName;
+			fullNames << mCategory + "/" + partName;
 
 		loadSymbols(fullNames, &globalUsageCountMap);
 	}
