@@ -63,6 +63,8 @@
 #include "latexparser/latextokens.h"
 #include "latexparser/latexparser.h"
 #include "latexstructure.h"
+#include "symbollistmodel.h"
+#include "symbolwidget.h"
 
 #ifndef QT_NO_DEBUG
 #include "tests/testmanager.h"
@@ -306,7 +308,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 
 	setContextMenuPolicy(Qt::ActionsContextMenu);
 
-	symbolMostused.clear();
 	setupDockWidgets();
 
 	setMenuBar(new DblClickMenuBar());
@@ -514,22 +515,6 @@ QAction *Texstudio::insertManagedAction(QAction *before, const QString &id, cons
 	return inserted;
 }
 
-SymbolGridWidget *Texstudio::addSymbolGrid(const QString &id,  const QString &iconName, const QString &title)
-{
-	SymbolGridWidget *list = qobject_cast<SymbolGridWidget *>(leftPanel->widget(id));
-	if (!list) {
-		list = new SymbolGridWidget(this, id);
-		list->setSymbolSize(configManager.guiSymbolGridIconSize);
-		list->setProperty("isSymbolGrid", true);
-		connect(list, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
-		connect(list, SIGNAL(symbolUsed(QTableWidgetItem*)), this, SLOT(setMostUsedSymbols(QTableWidgetItem*)));
-		leftPanel->addWidget(list, id, title, getRealIconFile(iconName));
-	} else {
-		leftPanel->setWidgetText(list, title);
-		leftPanel->setWidgetIcon(list, getRealIconFile(iconName));
-	}
-	return list;
-}
 /*!
  * \brief add TagList to side panel
  *
@@ -579,7 +564,6 @@ void Texstudio::setupDockWidgets()
 			leftPanel->setHiddenWidgets(hiddenLeftPanelWidgets);
 			hiddenLeftPanelWidgets = ""; //not needed anymore after the first call
 		}
-		connect(leftPanel, SIGNAL(widgetContextMenuRequested(QWidget *, QPoint)), this, SLOT(symbolGridContextMenu(QWidget *, QPoint)));
 		connect(leftPanel, SIGNAL(titleChanged(QString)), page, SLOT(setTitle(QString)));
 	}
 
@@ -604,22 +588,12 @@ void Texstudio::setupDockWidgets()
 		leftPanel->addWidget(bookmarksWidget, "bookmarks", tr("Bookmarks"), getRealIconFile("bookmarks"));
 	} else leftPanel->setWidgetText("bookmarks", tr("Bookmarks"));
 
-	int cnt = modernStyle ? 11 : 1;
-	addSymbolGrid("operators", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Operator symbols"));
-	addSymbolGrid("relation", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Relation symbols"));
-	addSymbolGrid("arrows", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Arrow symbols"));
-	addSymbolGrid("delimiters", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Delimiters"));
-	addSymbolGrid("greek", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Greek letters"));
-	addSymbolGrid("cyrillic", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Cyrillic letters"));
-	addSymbolGrid("misc-math", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Miscellaneous math symbols"));
-	addSymbolGrid("misc-text", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Miscellaneous text symbols"));
-	addSymbolGrid("wasysym", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Miscellaneous text symbols (wasysym)"));
-	addSymbolGrid("special", QString(":/symbols-ng/icons/img0%1icons.png").arg(cnt++, 2, 10, QLatin1Char('0')), tr("Accented letters"));
-
-	MostUsedSymbolWidget = addSymbolGrid("!mostused", getRealIconFile("math6"), tr("Most used symbols"));
-	MostUsedSymbolWidget->loadSymbols(SymbolGridWidget::globalUsageCountMap.keys(), &SymbolGridWidget::globalUsageCountMap);
-	FavoriteSymbolWidget = addSymbolGrid("!favorite", getRealIconFile("math7"), tr("Favorites"));
-	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
+	if (!leftPanel->widget("symbols")) {
+		symbolWidget = new SymbolWidget(symbolListModel, this);
+		symbolWidget->setSymbolSize(configManager.guiSymbolGridIconSize);
+		connect(symbolWidget, SIGNAL(insertSymbol(QString)), this, SLOT(insertSymbol(QString)));
+		leftPanel->addWidget(symbolWidget, "symbols", tr("Symbols"), getRealIconFile("math7"));
+	} else leftPanel->setWidgetText("bookmarks", tr("Symbols"));
 
 	addTagList("brackets", getRealIconFile("leftright"), tr("Left/Right Brackets"), "brackets_tags.xml");
 	addTagList("pstricks", getRealIconFile("pstricks"), tr("Pstricks Commands"), "pstricks_tags.xml");
@@ -630,8 +604,6 @@ void Texstudio::setupDockWidgets()
 
 	leftPanel->showWidgets();
 
-	// update MostOftenUsed
-	mostUsedSymbolsTriggered(true);
 	// OUTPUT WIDGETS
 	if (!outputView) {
 		outputView = new OutputViewWidget(this);
@@ -4099,10 +4071,9 @@ void Texstudio::readSettings(bool reread)
 	ThesaurusDialog::setUserPath(configManager.configFileNameBase);
 	ThesaurusDialog::prepareDatabase(configManager.thesaurus_database);
 
-	SymbolGridWidget::globalUsageCountMap = config->value("Symbols/Quantity").toMap();
-
-	hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();
-	symbolFavorites = config->value("Symbols/Favorite IDs", QStringList()).toStringList();
+	symbolListModel = new SymbolListModel(config->value("Symbols/UsageCount").toMap(),
+	                                      config->value("Symbols/FavoriteIDs").toStringList());
+	hiddenLeftPanelWidgets = config->value("Symbols/hiddenlists", "").toString();  // TODO: still needed?
 
 	configManager.editorKeys = QEditor::getEditOperations(false); //this will also initialize the default keys
 	configManager.editorAvailableOperations = QEditor::getAvailableOperations();
@@ -4247,17 +4218,10 @@ void Texstudio::saveSettings(const QString &configName)
 	for (int i = 0; i < struct_level.count(); i++)
 		config->setValue("Structure/Structure Level " + QString::number(i + 1), struct_level[i]);
 
-	SymbolGridWidget::globalUsageCountMap.clear();
-	foreach (QTableWidgetItem *elem, symbolMostused) {
-		int usageCount = elem->data(SymbolGridWidget::UsageCount).toInt();
-		if (usageCount < 1) continue;
-		QString text = elem->data(SymbolGridWidget::SymbolName).toString();
-		if (SymbolGridWidget::globalUsageCountMap.value(text).toInt() > usageCount) usageCount = SymbolGridWidget::globalUsageCountMap.value(text).toInt();
-		SymbolGridWidget::globalUsageCountMap.insert(text, usageCount);
-	}
 	config->setValue("Symbols/Quantity", SymbolGridWidget::globalUsageCountMap);
-
-	config->setValue("Symbols/Favorite IDs", symbolFavorites);
+	config->setValue("Symbols/UsageCount", symbolWidget->model()->usageCountAsQVariantMap());
+	config->setValue("Symbols/FavoriteIDs", symbolWidget->model()->favorites());
+	// TODO: parse old "Symbols/Favorite IDs"
 
 	config->setValue("Symbols/hiddenlists", leftPanel->hiddenWidgets());
 
@@ -7399,46 +7363,6 @@ bool Texstudio::eventFilter(QObject *obj, QEvent *event)
 }
 #endif
 
-//***********************************
-void Texstudio::setMostUsedSymbols(QTableWidgetItem *item)
-{
-
-	bool changed = false;
-	int index = symbolMostused.indexOf(item);
-	if (index < 0) {
-		//check whether it was loaded as mosteUsed ...
-		for (int i = 0; i < symbolMostused.count(); i++) {
-			QTableWidgetItem *elem = symbolMostused.at(i);
-			if (elem->data(SymbolGridWidget::SymbolName) == item->data(SymbolGridWidget::SymbolName)) {
-				index = i;
-				item->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant::fromValue(elem));
-				int usageCount = elem->data(SymbolGridWidget::UsageCount).toInt();
-				elem->setData(SymbolGridWidget::UsageCount, usageCount + 1);
-				elem->setData(SymbolGridWidget::AssociantedRegularItemPointer, QVariant::fromValue(item)); //reference to original item for removing later
-				item = elem;
-				break;
-			}
-		}
-		if (index < 0) {
-			QTableWidgetItem *elem = item->clone();
-			item->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant::fromValue(elem));
-			elem->setData(SymbolGridWidget::AssociantedRegularItemPointer, QVariant::fromValue(item)); //reference to original item for removing later
-			symbolMostused.append(elem);
-			if (symbolMostused.size() <= 12)
-				changed = true;
-		}
-	}
-	if (index > -1) {
-		symbolMostused.removeAt(index);
-		while (index > 0 && symbolMostused[index - 1]->data(SymbolGridWidget::UsageCount).toInt() < item->data(SymbolGridWidget::UsageCount).toInt()) {
-			index--;
-		}
-		symbolMostused.insert(index, item);
-		changed = true;
-	}
-	if (changed) MostUsedSymbolWidget->SetUserPage(symbolMostused);
-}
-
 void Texstudio::updateCompleter(LatexEditorView *edView)
 {
 	CodeSnippetList words;
@@ -8674,97 +8598,6 @@ void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)
 void Texstudio::editInsertRefToPrevLabel(const QString &refCmd)
 {
 	editInsertRefToNextLabel(refCmd, true);
-}
-
-void Texstudio::symbolGridContextMenu(QWidget *widget, const QPoint &point)
-{
-	if (!widget->property("isSymbolGrid").toBool()) return;
-	if (widget == MostUsedSymbolWidget) {
-		QMenu menu;
-		menu.addAction(tr("Add to favorites"), this, SLOT(symbolAddFavorite()));
-		menu.addAction(tr("Remove"), this, SLOT(mostUsedSymbolsTriggered()));
-		menu.addAction(tr("Remove all"), this, SLOT(mostUsedSymbolsTriggered()));
-		menu.exec(point);
-	} else if (widget == FavoriteSymbolWidget) {
-		QMenu menu;
-		menu.addAction(tr("Remove from favorites"), this, SLOT(symbolRemoveFavorite()));
-		menu.addAction(tr("Remove all favorites"), this, SLOT(symbolRemoveAllFavorites()));
-		menu.exec(point);
-	} else {
-		QMenu menu;
-		menu.addAction(tr("Add to favorites"), this, SLOT(symbolAddFavorite()));
-		menu.exec(point);
-	}
-
-}
-
-void Texstudio::symbolAddFavorite()
-{
-	SymbolGridWidget *grid = qobject_cast<SymbolGridWidget *>(leftPanel->currentWidget());
-	if (!grid) return;
-	QString symbol = grid->getCurrentSymbol();
-	if (symbol.isEmpty()) return;
-	if (!symbolFavorites.contains(symbol)) symbolFavorites.append(symbol);
-	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
-}
-
-void Texstudio::symbolRemoveFavorite()
-{
-	QString symbol = FavoriteSymbolWidget->getCurrentSymbol();
-	if (symbol.isEmpty()) return;
-	symbolFavorites.removeAll(symbol);
-	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
-}
-
-void Texstudio::symbolRemoveAllFavorites()
-{
-	symbolFavorites.clear();
-	FavoriteSymbolWidget->loadSymbols(symbolFavorites);
-}
-
-void Texstudio::mostUsedSymbolsTriggered(bool direct)
-{
-	QAction *action = 0;
-	QTableWidgetItem *item = 0;
-	if (!direct) {
-		action = qobject_cast<QAction *>(sender());
-		item = MostUsedSymbolWidget->currentItem();
-	}
-	if (direct || action->text() == tr("Remove")) {
-		if (!direct) {
-			if (item->data(SymbolGridWidget::AssociantedRegularItemPointer).isValid()) {
-				QTableWidgetItem *elem = item->data(SymbolGridWidget::AssociantedRegularItemPointer).value<QTableWidgetItem *>();
-				elem->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant());
-			}
-			symbolMostused.removeAll(item);
-			delete item;
-		} else {
-			symbolMostused.clear();
-			foreach (QTableWidgetItem *elem, MostUsedSymbolWidget->findItems("*", Qt::MatchWildcard)) {
-				if (!elem) continue;
-				int usageCount = elem->data(SymbolGridWidget::UsageCount).toInt();
-				if (symbolMostused.isEmpty()) {
-					symbolMostused.append(elem);
-				} else {
-					int index = 0;
-					while (index < symbolMostused.size() && symbolMostused[index]->data(SymbolGridWidget::UsageCount).toInt() > usageCount) {
-						index++;
-					}
-					symbolMostused.insert(index, elem);
-				}
-			}
-		}
-	} else {
-		for (int i = 0; symbolMostused.count(); i++) {
-			QTableWidgetItem *item = symbolMostused.at(i);
-			QTableWidgetItem *elem = item->data(SymbolGridWidget::AssociantedRegularItemPointer).value<QTableWidgetItem *>();
-			elem->setData(SymbolGridWidget::AssociatedMostUsedItemPointer, QVariant());
-			delete item;
-			symbolMostused.clear();
-		}
-	}
-	// Update Most Used Symbols Widget
-	MostUsedSymbolWidget->SetUserPage(symbolMostused);
 }
 
 void Texstudio::editFindGlobal()
@@ -11026,6 +10859,7 @@ void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 			list->setSymbolSize(value);
 		}
 	}
+	symbolWidget->setSymbolSize(value);
 }
 /*!
  * \brief displays error messages from network replies which are used to communicate with LT

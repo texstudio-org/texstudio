@@ -115,7 +115,6 @@ HEADERS += \
     styleanimator.h \
     stylehelper.h \
     svn.h \
-    symbolgridwidget.h \
     syntaxcheck.h \
     tabbingdialog.h \
     tabdialog.h \
@@ -215,7 +214,6 @@ SOURCES += \
     styleanimator.cpp \
     stylehelper.cpp \
     svn.cpp \
-    symbolgridwidget.cpp \
     syntaxcheck.cpp \
     tabbingdialog.cpp \
     tabdialog.cpp \
@@ -507,6 +505,8 @@ isEmpty(USE_SYSTEM_HUNSPELL){
 include(qcodeedit/qcodeedit.pri)
 
 include(latexparser/latexparser.pri)
+
+include(symbolpanel/symbolpanel.pri)
 
 isEmpty(USE_SYSTEM_QUAZIP) {
   DEFINES += QUAZIP_STATIC

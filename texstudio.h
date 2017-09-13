@@ -56,14 +56,12 @@
  * \brief Definition for Mainwindow
  */
 
-typedef QHash<QString, int> SymbolList;
-
-typedef QSet<QString> StringSet;
-
 class UserMenuDialog;
 class GrammarCheck;
 class FileSelector;
 class LatexReference;
+class SymbolListModel;
+class SymbolWidget;
 
 Q_DECLARE_METATYPE(QSet<QString>)
 
@@ -147,7 +145,8 @@ private:
 	QToolBar *centralToolBar;
 	CustomWidgetList *leftPanel;
 	TitledPanel *sidePanel;
-	SymbolGridWidget *MostUsedSymbolWidget, *FavoriteSymbolWidget;
+	SymbolListModel *symbolListModel;
+	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
 
 	QTreeView *structureTreeView;
@@ -196,10 +195,6 @@ private:
 	//dialogs
 	TextAnalysisDialog *textAnalysisDlg;
 	SpellerDialog *spellDlg;
-
-	//tools
-	usercodelist symbolMostused;
-	QStringList symbolFavorites;
 
 	Q_INVOKABLE LatexEditorView *currentEditorView() const;
 	Q_INVOKABLE QEditor *currentEditor() const;
@@ -352,11 +347,6 @@ protected slots:
 	void structureContextMenuExpandAllDocuments();
 	void structureContextMenuCollapseAllDocuments();
 	void structureContextMenuShowInGraphicalShell();
-	void symbolGridContextMenu(QWidget *widget, const QPoint &point);
-	void mostUsedSymbolsTriggered(bool direct = false);
-	void symbolAddFavorite();
-	void symbolRemoveFavorite();
-	void symbolRemoveAllFavorites();
 
 	void addDocToLoad(QString filename);
 
@@ -527,8 +517,6 @@ protected slots:
 
 	void masterDocumentChanged(LatexDocument *doc);
 	void aboutToDeleteDocument(LatexDocument *doc);
-
-	void setMostUsedSymbols(QTableWidgetItem *item);
 
 	void updateCompleter(LatexEditorView *edView = 0);
 	void completerNeedsUpdate();
