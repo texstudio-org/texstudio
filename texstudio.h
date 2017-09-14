@@ -27,7 +27,6 @@
 #include "latexeditorview.h"
 #include "latexcompleter.h"
 #include "findGlobalDialog.h"
-#include "symbolgridwidget.h"
 #include "xmltagslistwidget.h"
 #include "spellerdialog.h"
 #include "textanalysis.h"
@@ -104,7 +103,6 @@ protected:
 	Q_INVOKABLE inline QList<QAction *> getManagedActions(const QStringList &ids, const QString &commonPrefix = "") { return configManager.getManagedActions(ids, commonPrefix); }
 	Q_INVOKABLE QAction *insertManagedAction(QAction *before, const QString &id, const QString &text, const char *slotName = 0, const QKeySequence &shortCut = 0, const QString &iconFile = "");
 
-	SymbolGridWidget *addSymbolGrid(const QString &id, const QString &iconName, const QString &title);
 	void addTagList(const QString &id, const QString &iconName, const QString &text, const QString &tagFile);
 
 private slots:

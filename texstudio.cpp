@@ -4218,7 +4218,6 @@ void Texstudio::saveSettings(const QString &configName)
 	for (int i = 0; i < struct_level.count(); i++)
 		config->setValue("Structure/Structure Level " + QString::number(i + 1), struct_level[i]);
 
-	config->setValue("Symbols/Quantity", SymbolGridWidget::globalUsageCountMap);
 	config->setValue("Symbols/UsageCount", symbolWidget->model()->usageCountAsQVariantMap());
 	config->setValue("Symbols/FavoriteIDs", symbolWidget->model()->favorites());
 	// TODO: parse old "Symbols/Favorite IDs"
@@ -10848,16 +10847,8 @@ void Texstudio::changeSecondaryIconSize(int value)
  */
 void Texstudio::changeSymbolGridIconSize(int value, bool changePanel)
 {
-	if (changePanel && !qobject_cast<SymbolGridWidget *>(leftPanel->currentWidget())) {
-		// no symbols visible - make them visible for the life-updates
-		leftPanel->setCurrentWidget(leftPanel->widget("greek"));
-	}
-	QList<QWidget *> lstOfWidgets = leftPanel->getWidgets();
-	foreach (QWidget *wdg, lstOfWidgets) {
-		SymbolGridWidget *list = qobject_cast<SymbolGridWidget *>(wdg);
-		if (list) {
-			list->setSymbolSize(value);
-		}
+	if (changePanel) {
+		leftPanel->setCurrentWidget(leftPanel->widget("symbols"));
 	}
 	symbolWidget->setSymbolSize(value);
 }
