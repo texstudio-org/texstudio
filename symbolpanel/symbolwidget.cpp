@@ -1,7 +1,7 @@
 #include "symbolwidget.h"
 #include "symbollistmodel.h"
 #include "symbollistview.h"
-#include "mostusedproxymodel.h"
+#include "proxymodels.h"
 #include "configmanagerinterface.h"
 #include <QSortFilterProxyModel>
 
