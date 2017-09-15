@@ -177,7 +177,7 @@ QVariant SymbolListModel::data(const QModelIndex &index, int role) const
 	case UsageCountRole:
 		return usageCount.value(symbols[r].id, 0);
 	case FavoriteRole:
-		return favoriteIds.contains(symbols[r].id);
+        return QVariant(favoriteIds.contains(symbols[r].id));
 	}
 	return QVariant();
 }
@@ -187,7 +187,11 @@ void SymbolListModel::incrementUsage(const QString &id)
 	usageCount.insert(id, usageCount.value(id, 0) + 1);
 	for (int i=0; i<symbols.count(); i++) {
 		if (symbols[i].id == id) {
+#if QT_VERSION > 0x050000
 			emit dataChanged(index(i, 0), index(i, 0), (QVector<int>() << UsageCountRole));
+#else
+            emit dataChanged(index(i, 0), index(i, 0));
+#endif
 			break;
 		}
 	}
@@ -199,7 +203,11 @@ void SymbolListModel::addFavorite(const QString &id)
 		favoriteIds.append(id);
 		for (int i=0; i<symbols.count(); i++) {
 			if (symbols[i].id == id) {
+#if QT_VERSION > 0x050000
 				emit dataChanged(index(i, 0), index(i, 0), (QVector<int>() << FavoriteRole));
+#else
+                emit dataChanged(index(i, 0), index(i, 0));
+#endif
 				break;
 			}
 		}
@@ -211,7 +219,11 @@ void SymbolListModel::removeFavorite(const QString &id)
 	if (favoriteIds.removeOne(id)) {
 		for (int i=0; i<symbols.count(); i++) {
 			if (symbols[i].id == id) {
+#if QT_VERSION > 0x050000
 				emit dataChanged(index(i, 0), index(i, 0), (QVector<int>() << FavoriteRole));
+#else
+                emit dataChanged(index(i, 0), index(i, 0));
+#endif
 				break;
 			}
 		}
