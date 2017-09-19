@@ -477,6 +477,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
 	setVisible(visible);
 
     if ( !visible ){
+        m_initialCursorPos.clear();
 		editor()->setFocus();
         bExtend->setChecked(false);
     }
