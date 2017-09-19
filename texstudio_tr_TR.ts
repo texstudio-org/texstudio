@@ -375,7 +375,7 @@
     <message>
         <location filename="buildmanager.cpp" line="79"/>
         <location filename="buildmanager.cpp" line="101"/>
-        <location filename="buildmanager.cpp" line="1903"/>
+        <location filename="buildmanager.cpp" line="1904"/>
         <source>&lt;unknown&gt;</source>
         <translation>&lt;bilinmeyen&gt;</translation>
     </message>
@@ -536,7 +536,7 @@
     <message>
         <location filename="buildmanager.cpp" line="332"/>
         <source>Makeglossaries</source>
-        <translation type="unfinished"/>
+        <translation>Makeglossaries</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="333"/>
@@ -565,7 +565,11 @@ recent versions of MacTeX changed the bin path to /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 %1?</source>
-        <translation type="unfinished"/>
+        <translation>OSX 10.11, uygulamaların orada daha fazla yazmasına izin vermiyor. Bu nedenle,
+MacTeX&apos;in son sürümleri bin yolunu /Library/TeX/texbin/ olarak değiştirdi.
+
+TeXstudio&apos;nun tüm komut yollarını /usr/texbin/adresinden
+% 1 adresine değiştirmesini ister misiniz? </translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="389"/>
@@ -576,7 +580,13 @@ Afterwards, MacTeX programs will be located at /Library/TeX/texbin/
 
 Do you want TeXstudio to change all command paths from /usr/texbin/ to
 /Library/TeX/texbin/?</source>
-        <translation type="unfinished"/>
+        <translation>OSX 10.11, uygulamaların orada daha fazla yazmasına izin vermiyor. MacTeX&apos;i
+2015 versiyonuna güncellemeniz gerekebilir.
+
+Budnan sonra, MacTeX /Library/TeX/texbin/ adresinde olacaktır.
+
+TeXstudio&apos;nun tüm komut yollarını /usr/texbin/adresinden
+% 1 adresine değiştirmesini ister misiniz? </translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="400"/>
@@ -591,7 +601,7 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
     <message>
         <location filename="buildmanager.cpp" line="927"/>
         <source>You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer.</source>
-        <translation type="unfinished"/>
+        <translation>txs:///komut[... veya txs:///komut{... değiştiricilerini kullandınız ancak yalnızca txs:///komut/[... veya txs:///komut/{... biçimindeki eğik çizgi sonekiyle birlikte sözdizimini daha saf tutan değiştiricileri destekliyoruz.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="935"/>
@@ -603,85 +613,87 @@ Do you want TeXstudio to change all command paths from /usr/texbin/ to
         <location filename="buildmanager.cpp" line="983"/>
         <source>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
-Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</source>
-        <oldsource>The command %1 is expected to be atomic. However, it's currentlydefined as a command chain containing %2 commands. This is beyond the specification and may lead to surpising side-effects.
+Please change your configuration and define command lists only at &apos;Options -&gt; Configure TeXstudio -&gt; Build&apos; not at &apos;Options -&gt; Configure TeXstudio -&gt; Commands&apos;.</source>
+        <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished"/>
+        <translation>%1 komutunun atomik olması bekleniyor. Bununla birlikte, şu anda %2 komutlarını içeren bir komut zinciri olarak tanımlanmakta. Bu, tanımlamaların haricinde olup şaşırtıcı yan etkilere neden olabilir.
+
+Lütfen yapılandırmanızı değiştirin ve komut listelerini yalnızca &apos;Seçenekler -&gt; TeXstudio&apos;yu Yapılandır -&gt; Yapılandır&apos; yolundan tanımlayın &apos;Seçenekler -&gt; TeXstudio&apos;yu Yapılandır -&gt; Komutlar&apos; yolundan değil.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1016"/>
+        <location filename="buildmanager.cpp" line="1017"/>
         <source>Failed to understand command %1</source>
         <translation>%1 komutu bilinmiyor</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1434"/>
+        <location filename="buildmanager.cpp" line="1435"/>
         <source>No LaTeX distribution was found on your system. As a result, the corresponding commands are not configured. This means, that you cannot compile your documents to the desired output format (e.g. pdf).</source>
         <translation>Sisteminizde LaTeX dağıtımı bulunamadı. Sonuç olarak, ilgili komutlar yapılandırılamamıştır. Bu, belgelerinizi istenen çıktı biçimine (ör. pdf) derleyemeyeceğiniz anlamına gelir.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1438"/>
+        <location filename="buildmanager.cpp" line="1439"/>
         <source>Popular LaTeX distributions on windows are %1 and %2.</source>
         <translation>%1 ve %2 Windows üzerindeki popüler LaTeX dağıtımlarıdır.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1440"/>
+        <location filename="buildmanager.cpp" line="1441"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install one of those.</source>
         <translation>Eğer LaTeX ile çalışmak istiyorsanız, şunlardan birini yüklemeniz gerekmektedir.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1443"/>
+        <location filename="buildmanager.cpp" line="1444"/>
         <source>A popular LaTeX distribution on OSX is %1.</source>
         <translation>%1, OSX üzerindeki popüler LaTeX dağıtımlarından biridir.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1445"/>
+        <location filename="buildmanager.cpp" line="1446"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install it.</source>
         <translation>Eğer LaTeX ile çalışmak istiyorsanız, bunu yüklemeniz gerekmektedir.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1448"/>
+        <location filename="buildmanager.cpp" line="1449"/>
         <source>If you intend to work with LaTeX, you&apos;ll most certainly want to install a LaTeX distribution.</source>
         <translation>Eğer LaTeX ile çalışmak istiyorsanız, bir LaTeX dağıtımı yüklemeniz gerekmektedir.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1461"/>
+        <location filename="buildmanager.cpp" line="1462"/>
         <source>Error: No command given</source>
         <translation>Hata : Verilmiş bir komut yok</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1492"/>
+        <location filename="buildmanager.cpp" line="1493"/>
         <source>Error: No command expanded</source>
         <translation>Hata : Genişletilmiş bir komut yok</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1494"/>
-        <location filename="buildmanager.cpp" line="1507"/>
+        <location filename="buildmanager.cpp" line="1495"/>
+        <location filename="buildmanager.cpp" line="1508"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Bir (La)TeX dağıtımı yüklediğinize&lt;/b&gt;Ör. MiKTeX ya da TeX Live, ve komut yapılandırma sayfasında bu dağıtıma ait doğru yolları ayarladığınıza emin olun.&lt;br&gt;TeXstudio gibi (La)TeX editörü, böyle bir dağıtımın sağladığı (La)TeX komutları olmadan çalışamaz.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1503"/>
+        <location filename="buildmanager.cpp" line="1504"/>
         <source>Error: One command expansion invalid.</source>
         <translation>Hata : Bir komut genişletilmesi geçersiz.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1504"/>
+        <location filename="buildmanager.cpp" line="1505"/>
         <source>Parent Command</source>
         <translation>Ana Komut</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1505"/>
+        <location filename="buildmanager.cpp" line="1506"/>
         <source>Primary Command</source>
         <translation>Birincil Komut</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="1872"/>
+        <location filename="buildmanager.cpp" line="1873"/>
         <source>Internal Pdf Viewer</source>
         <translation>Dahili Pdf Görüntüleyici</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2127"/>
+        <location filename="buildmanager.cpp" line="2128"/>
         <source>You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash.</source>
         <translation>dde:// komutunu kaldırılmış olan iki eğik çizgili haliyle kullandınız. Lütfen komuta başka bir eğik çizgi daha ekleyerek üçlü eğik çizgi komutuyla (dde:///) değiştirin.</translation>
     </message>
@@ -799,7 +811,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     </message>
     <message>
         <location filename="configdialog.ui" line="220"/>
-        <location filename="configdialog.ui" line="3576"/>
+        <location filename="configdialog.ui" line="3583"/>
         <source>Language:</source>
         <translation>Dil:</translation>
     </message>
@@ -1021,8 +1033,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
     </message>
     <message>
         <location filename="configdialog.ui" line="863"/>
-        <location filename="configdialog.ui" line="2216"/>
-        <location filename="configdialog.ui" line="3844"/>
+        <location filename="configdialog.ui" line="2140"/>
+        <location filename="configdialog.ui" line="3851"/>
         <source>Never</source>
         <translation>Asla</translation>
     </message>
@@ -1103,7 +1115,7 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harf duyarlıdır.
     <message>
         <location filename="configdialog.ui" line="1050"/>
         <source>Interpret command definition in magic comments</source>
-        <translation type="unfinished"/>
+        <translation>Sihirli yorumlardaki komut tanımını yorumlama</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1080"/>
@@ -1272,7 +1284,7 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
     <message>
         <location filename="configdialog.ui" line="1528"/>
         <location filename="configdialog.cpp" line="509"/>
-        <location filename="configmanager.cpp" line="1352"/>
+        <location filename="configmanager.cpp" line="1353"/>
         <source>Editor</source>
         <translation>Editör</translation>
     </message>
@@ -1343,8 +1355,8 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
     </message>
     <message>
         <location filename="configdialog.ui" line="1672"/>
-        <location filename="configdialog.ui" line="3929"/>
-        <location filename="configdialog.ui" line="4074"/>
+        <location filename="configdialog.ui" line="3936"/>
+        <location filename="configdialog.ui" line="4081"/>
         <source>%</source>
         <translation>%</translation>
     </message>
@@ -1381,7 +1393,7 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
     <message>
         <location filename="configdialog.ui" line="1734"/>
         <source>Reverse French Quotes: &quot;&gt; &quot;&lt;</source>
-        <translation type="unfinished"/>
+        <translation>Ters Fransız Tipi Tırnaklar: &quot;&gt; &quot;&lt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1739"/>
@@ -1411,7 +1423,7 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
     <message>
         <location filename="configdialog.ui" line="1773"/>
         <source>Indent and Unindent Automatically</source>
-        <translation type="unfinished"/>
+        <translation>Otomatik Olarak Girintileme Yap ve Girintileri Kaldır</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1781"/>
@@ -1539,523 +1551,528 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
         <translation>Özel seçenekler</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2254"/>
+        <location filename="configdialog.ui" line="2199"/>
         <source>Auto Save All Files:</source>
         <translation>Tüm Dosyaları Otomatik Olarak Kaydet:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2264"/>
+        <location filename="configdialog.ui" line="2178"/>
         <source>Auto Complete Parentheses</source>
         <translation>Parantezleri Otomatik Olarak Tamamla</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2271"/>
+        <location filename="configdialog.ui" line="2192"/>
         <source>Mouse Wheel Zoom</source>
         <translation>Fare Tekerleği Yakınlaştırması</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2231"/>
+        <location filename="configdialog.ui" line="2155"/>
         <source>5 minutes</source>
         <translation>5 dakika</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2236"/>
+        <location filename="configdialog.ui" line="2160"/>
         <source>10 minutes</source>
         <translation>10 dakika</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2241"/>
+        <location filename="configdialog.ui" line="2165"/>
         <source>20 minutes</source>
         <translation>20 dakika</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2246"/>
+        <location filename="configdialog.ui" line="2170"/>
         <source>60 minutes</source>
         <translation>60 dakika</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2285"/>
+        <location filename="configdialog.ui" line="2209"/>
         <source>Line Wrapping:</source>
         <translation>Satır Kaydırma:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2278"/>
+        <location filename="configdialog.ui" line="2185"/>
         <source>Smooth Scrolling</source>
         <translation>Düzgün Kaydırma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2309"/>
+        <location filename="configdialog.ui" line="2216"/>
         <source>Double-Click Selection: Include Leading Backslash</source>
         <translation>Çift Tıklama Seçimi: Baştaki Geribölü İşaretini Dahil Et</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2194"/>
+        <location filename="configdialog.ui" line="2125"/>
         <source>Spellchecking via context menu:</source>
         <translation>Açılır menü üzerinden yazım denetimi:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2201"/>
+        <location filename="configdialog.ui" line="2118"/>
         <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
         <translation>&lt;Esc&gt; tuşuna basınca tam ekran modunu kapatma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2292"/>
+        <location filename="configdialog.ui" line="2247"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>Dahili pdf görüntüleyicide komut yardımlarını göster (texdoc)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2321"/>
+        <location filename="configdialog.ui" line="2238"/>
         <source>Silently reload saved files on external changes (discards undo/redo stack)</source>
-        <translation type="unfinished"/>
+        <translation>Harici değişikliklerce kaydedilen dosyaları sessizce geri yükle (Geri Al/Yinele yığınını siler)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2166"/>
+        <location filename="configdialog.ui" line="2390"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2109"/>
+        <location filename="configdialog.ui" line="2360"/>
         <source>No Line Wrap</source>
         <translation>Satır Kaydırma Yok</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2114"/>
+        <location filename="configdialog.ui" line="2365"/>
         <source>Soft Line Wrap at Window Edge</source>
         <translation>Pencere Kenarına göre Yumuşak Satır Kaydırma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2119"/>
+        <location filename="configdialog.ui" line="2370"/>
         <source>Soft Line Wrap after max. Characters</source>
         <translation>Maksimum Karakterden Sonra Yumuşak Satır Kaydırma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2124"/>
+        <location filename="configdialog.ui" line="2375"/>
         <source>Hard Line Wrap after max. Characters</source>
         <translation>Maksimum Karakterden Sonra Sert Satır Kaydırma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2139"/>
+        <location filename="configdialog.ui" line="2331"/>
         <source>Maximal Characters:</source>
         <translation>En Fazla Karakter:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2132"/>
+        <location filename="configdialog.ui" line="2352"/>
         <source>Go to error when displaying log</source>
         <translation>Günlük gösterirken hataya git</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2097"/>
+        <location filename="configdialog.ui" line="2341"/>
         <source>When using unicode characters in the source code, LaTeX still has
 to render the characters. Since unicode is not natively supported by LaTeX, you have to include appropriate packages for unicode characters in your document.</source>
         <translation>Kaynak kodunda unicode karakterleri kullanılırken, LaTeX hala
 karakterleri üretmek zorunda. Unicode, doğal olarak LaTeX tarafından desteklenmediğinden, belgenize unicode karakterler için uygun paketleri dahil etmeniz gerekir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2101"/>
+        <location filename="configdialog.ui" line="2345"/>
         <source>Insert Symbol as Unicode</source>
         <translation>Sembolleri Unicode Olarak Gir</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2187"/>
+        <location filename="configdialog.ui" line="2097"/>
         <source>Show log markers when clicking log entry</source>
         <translation>Günlük girişini tıklattığınızda günlük işaretçilerini gösterin</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2330"/>
+        <location filename="configdialog.ui" line="2307"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2174"/>
+        <location filename="configdialog.ui" line="2105"/>
         <source>Add Entries Directly To Context  Menu</source>
         <translation>Girişleri Doğrudan Açılır Menüye Ekle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2179"/>
+        <location filename="configdialog.ui" line="2110"/>
         <source>Create Dedicated Submenu</source>
         <translation>Özel Alt Menü Oluştur</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2149"/>
+        <location filename="configdialog.ui" line="2324"/>
         <source>Show help as tooltip on text in editor</source>
         <translation>Editördeki metne araç ipucu şeklinde yardım göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2159"/>
+        <location filename="configdialog.ui" line="2383"/>
         <source>Show image tooltip on image files</source>
         <translation>Resim dosyalarında resim araç ipucunu göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2208"/>
+        <location filename="configdialog.ui" line="2132"/>
         <source>Default Log Encoding</source>
         <translation>Varsayılan Log Kodlaması</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2221"/>
+        <location filename="configdialog.ui" line="2145"/>
         <source>1 minute</source>
         <translation>1 dakika</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2226"/>
+        <location filename="configdialog.ui" line="2150"/>
         <source>2 minutes</source>
         <translation>2 dakika</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2337"/>
+        <location filename="configdialog.ui" line="2254"/>
         <source>Monitor open files for external changes</source>
         <translation>Harici değişiklikler için açık dosyaları izle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2344"/>
+        <location filename="configdialog.ui" line="2297"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This uses QSaveFile to prevent losing existing data if the writing operation fails. As a drawback, the current user becomes the owner of the file and extended file attributes are lost. Also, there appear to be problems of this method with dropbox folders.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bu, yazma işlemi başarısız olursa mevcut verileri kaybetmeyi önlemek için QSaveFile kullanır. Bir dezavantaj olarak, geçerli kullanıcı dosyanın sahibi olur ve genişletilmiş dosya öznitelikleri kaybolur. Ayrıca, bu yöntemin dropbox klasörleri ile sorunları var gibi görünüyor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2347"/>
+        <location filename="configdialog.ui" line="2300"/>
         <source>Safe writing of files</source>
         <translation>Güvenli dosya yazma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2354"/>
+        <location filename="configdialog.ui" line="2261"/>
         <source>Triple-Click Selection:</source>
         <translation>Üç tıklama Seçimi:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2362"/>
+        <location filename="configdialog.ui" line="2269"/>
         <source>Select Word</source>
         <translation>Kelime Seç</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2367"/>
+        <location filename="configdialog.ui" line="2274"/>
         <source>Select Word or Command</source>
         <translation>Kelime veya Komut Seç</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2372"/>
+        <location filename="configdialog.ui" line="2279"/>
         <source>Select Parentheses Content</source>
         <translation>Parantez İçeriğini Seç</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2377"/>
+        <location filename="configdialog.ui" line="2284"/>
         <source>Select Parentheses</source>
         <translation>Parantez Seç</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2382"/>
+        <location filename="configdialog.ui" line="2289"/>
         <source>Select Line</source>
         <translation>Satır Seç</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2403"/>
+        <location filename="configdialog.ui" line="2410"/>
         <source>Structure Panel</source>
         <translation>Yapı Paneli</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2409"/>
+        <location filename="configdialog.ui" line="2416"/>
         <source>Mark structure elements beyond \end{document}</source>
-        <translation type="unfinished"/>
+        <translation> \end{document} ötesindeki yapı ögelerini işaretle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2416"/>
+        <location filename="configdialog.ui" line="2423"/>
         <source>Reference commands in context menu:</source>
         <translation>Açılır menüdeki referans komutları:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2450"/>
+        <location filename="configdialog.ui" line="2457"/>
         <source>Keep indentation of includes in structure tree</source>
         <translation>Yapı ağacındaki içerikler girintisini muhafaza et</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2423"/>
+        <location filename="configdialog.ui" line="2430"/>
         <source>Show elements in comments</source>
         <translation>Yorumlarda öğeleri göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2390"/>
+        <location filename="configdialog.ui" line="2314"/>
         <source>This does only have an effect if the width of the document is limited by soft or hard line wrapping.</source>
-        <translation type="unfinished"/>
+        <translation>Bu, yalnızca doküman genişliğinin yumuşak veya sert satır kesme ile sınırlandırıldığı durumlarda bir etkiye sahiptir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2393"/>
+        <location filename="configdialog.ui" line="2317"/>
         <source>Center Document in Editor</source>
         <translation>Dökümanı Editörde Ortala</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2430"/>
+        <location filename="configdialog.ui" line="2400"/>
+        <source>Allow Drag and Drop</source>
+        <translation>Sürükleme ve Bırakma&apos;yı Etkinleştir</translation>
+    </message>
+    <message>
+        <location filename="configdialog.ui" line="2437"/>
         <source>Mark structure elements in appendix</source>
         <translation>Yapı unsurlarını ekte işaretle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2437"/>
+        <location filename="configdialog.ui" line="2444"/>
         <source>Regular expression for TODO comment: </source>
         <oldsource>Regular expression  for TODO comment: </oldsource>
         <translation>TODO yorumu için düzenli ifade:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2468"/>
+        <location filename="configdialog.ui" line="2475"/>
         <source>Bibliography</source>
         <translation>Kaynakça</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2474"/>
+        <location filename="configdialog.ui" line="2481"/>
         <source>bib File Encoding:</source>
         <translation>bib Dosya Kodlaması:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2481"/>
+        <location filename="configdialog.ui" line="2488"/>
         <source>Parse BibTeX</source>
         <translation>BibTeX Ayrıştır</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2494"/>
+        <location filename="configdialog.ui" line="2501"/>
         <source>Table Autoformating</source>
         <translation>Otomatik Tablo Biçimlendirme</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2500"/>
+        <location filename="configdialog.ui" line="2507"/>
         <source>One Line Per Cell</source>
         <translation>Hücre Başına Bir Satır</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2508"/>
+        <location filename="configdialog.ui" line="2515"/>
         <source>Behind Line Break</source>
         <translation>Satır Sonunun Arkasında</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2513"/>
+        <location filename="configdialog.ui" line="2520"/>
         <source>Separate Line (No Indent)</source>
         <translation>Satır Ayır (Girinti Yok)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2518"/>
+        <location filename="configdialog.ui" line="2525"/>
         <source>Separate Line (Indented to First Column)</source>
         <translation>Satır Ayır (İlk Sütuna Göre Girinti)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2526"/>
+        <location filename="configdialog.ui" line="2533"/>
         <source>Special Commands Position:</source>
         <translation>Özel Komutların Pozisyonu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2536"/>
+        <location filename="configdialog.ui" line="2543"/>
         <source>Special Commands:</source>
         <translation>Özel Komutlar:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2546"/>
+        <location filename="configdialog.ui" line="2553"/>
         <source>Additional Search Paths</source>
         <translation>Ek Arama Yolları</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2555"/>
+        <location filename="configdialog.ui" line="2562"/>
         <source>Bib Files:</source>
         <translation>Bib Dosyaları:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2568"/>
+        <location filename="configdialog.ui" line="2575"/>
         <source>Image Files:</source>
         <translation>Görüntü Dosyaları:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2606"/>
+        <location filename="configdialog.ui" line="2613"/>
         <source>Bi-Di</source>
         <translation>Bi-Di</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2612"/>
+        <location filename="configdialog.ui" line="2619"/>
         <source>Automatically insert LRM characters</source>
         <translation>LRM karakterlerini otomatik olarak gir</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2619"/>
+        <location filename="configdialog.ui" line="2626"/>
         <source>Visual column cursor mode (i.e. move cursor in direction of arrow keys in rtl-text)</source>
         <translation>Görsel sütun imleç modu (diğer bir deyişle, imleci, rtl metnindeki ok tuşlarının yönünde hareket ettirin)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2626"/>
+        <location filename="configdialog.ui" line="2633"/>
         <source>Automatically switch keyboard layout: </source>
         <translation>Otomatik olarak klavye düzenini değiştirme:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2633"/>
+        <location filename="configdialog.ui" line="2640"/>
         <source>depending on character direction</source>
         <translation>karakter yönüne bağlı olarak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2640"/>
+        <location filename="configdialog.ui" line="2647"/>
         <source>depending on text/math mode</source>
         <translation>metin/matematik moduna bağlı olarak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2650"/>
+        <location filename="configdialog.ui" line="2657"/>
         <source>Hacks/Workarounds</source>
         <translation>Hackler/Geçici Çözümler</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2656"/>
+        <location filename="configdialog.ui" line="2663"/>
         <source>Disable work-around on accent typing (Mac OS X only)</source>
         <translation>Aksan yazarken geçici çözüm özelliğini devre dışı bırak (yalnızca Mac OS X için)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2663"/>
+        <location filename="configdialog.ui" line="2670"/>
         <source>Try to automatically choose best display options</source>
         <translation>En iyi ekran seçeneklerini otomatik olarak seçmeye çalış</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2681"/>
+        <location filename="configdialog.ui" line="2688"/>
         <source>Render Mode:</source>
         <translation>Render Modu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2689"/>
+        <location filename="configdialog.ui" line="2696"/>
         <source>QCE (recommended)</source>
         <translation>QCE (tavsiye edilen)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2694"/>
+        <location filename="configdialog.ui" line="2701"/>
         <source>Qt</source>
         <translation>Qt</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2699"/>
+        <location filename="configdialog.ui" line="2706"/>
         <source>Single Letter</source>
         <translation>Tek Harf</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2707"/>
+        <location filename="configdialog.ui" line="2714"/>
         <source>If the cache of rendered lines is enabled, rendered lines are stored in a cache, so they do not have to be rendered again. Leading to a speed improvement (especially on Mac), at the cost of a higher memory usage.</source>
         <translation>İşlenmiş satırlar önbelleği etkinleştirilmişse, işlenmiş satırlar bir önbellekte saklanır, böylece yeniden işlenmeleri gerekmez. Bu, daha yüksek bir bellek kullanımına rağmen (özellikle Mac&apos;te) bir hız iyileştirmesine yol açar.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2710"/>
+        <location filename="configdialog.ui" line="2717"/>
         <source>Disable cache of rendered lines</source>
         <translation>İşlenmiş satırlar önbelleğini devre dışı bırak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2717"/>
+        <location filename="configdialog.ui" line="2724"/>
         <source>Disable fixed pitch mode</source>
         <translation>Sabit adım modunu devre dışı bırak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2724"/>
+        <location filename="configdialog.ui" line="2731"/>
         <source>Disable cache of character width</source>
         <translation>Karakter genişliği önbelleğini devre dışı bırak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2731"/>
+        <location filename="configdialog.ui" line="2738"/>
         <source>Use QImage as cache type</source>
         <translation>QImage&apos;i önbellek türü olarak kullanın</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2794"/>
+        <location filename="configdialog.ui" line="2801"/>
         <source>Formats</source>
         <translation>Biçimler</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2817"/>
+        <location filename="configdialog.ui" line="2824"/>
         <source>Here the highlighting of custom environments can be changed.</source>
         <translation>Burada özel ortamların vurgulanması değiştirilebilir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2831"/>
+        <location filename="configdialog.ui" line="2838"/>
         <source>Custom Environment</source>
         <translation>Özelleştirilmiş Ortam</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2836"/>
+        <location filename="configdialog.ui" line="2843"/>
         <source>Type of Environment</source>
         <translation>Ortam Tipi</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2846"/>
+        <location filename="configdialog.ui" line="2853"/>
         <source>Here you can add another environment for custom highlighting.</source>
         <translation>Burada, özel vurgulama için başka bir ortam ekleyebilirsiniz.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2849"/>
-        <location filename="configdialog.ui" line="2896"/>
+        <location filename="configdialog.ui" line="2856"/>
+        <location filename="configdialog.ui" line="2903"/>
         <source>Add Line</source>
         <translation>Satır Ekle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2856"/>
-        <location filename="configdialog.ui" line="2903"/>
+        <location filename="configdialog.ui" line="2863"/>
+        <location filename="configdialog.ui" line="2910"/>
         <source>Remove Line</source>
         <translation>Satır Sil</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2886"/>
+        <location filename="configdialog.ui" line="2893"/>
         <source>Additional Commands</source>
         <translation>Ek Komutlar</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2941"/>
+        <location filename="configdialog.ui" line="2948"/>
         <location filename="configdialog.cpp" line="513"/>
         <source>Completion</source>
         <translation>Tamamlama</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2947"/>
+        <location filename="configdialog.ui" line="2954"/>
         <source>Insert Arguments</source>
         <translation>Argümanları Gir</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2957"/>
+        <location filename="configdialog.ui" line="2964"/>
         <source>Shows a tooltip with target text for labels/bibitem, previews colors or images</source>
         <translation>Etiketler/bibitem için hedef metin ile renklerin veya resimlerin önizlemesini içeren bir araç ipucu gösterir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2960"/>
+        <location filename="configdialog.ui" line="2967"/>
         <source>ToolTip-Preview</source>
         <translation>Araç İpucu-Önizleme</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2967"/>
+        <location filename="configdialog.ui" line="2974"/>
         <source>Arguments as Placeholders</source>
         <translation>Yertutucu olarak Argümanlar</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2977"/>
+        <location filename="configdialog.ui" line="2984"/>
         <source>Shows a tooltip with a description of the selected completer command</source>
         <translation>Seçilen tamamlayıcı komutunun bir açıklaması olan bir araç ipucunu gösterir</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2980"/>
+        <location filename="configdialog.ui" line="2987"/>
         <source>ToolTip-Help</source>
         <translation>Araç İpucu-Yardım</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2990"/>
+        <location filename="configdialog.ui" line="2997"/>
         <source>Starts the completer as soon as &apos;\&apos; is typed. Alternatively the completer can always be started manually by Ctrl+Space.</source>
         <translation>&apos;\&apos; yazılır yazılmaz tamamlayıcıyı başlatır. Alternatif olarak, tamamlayıcı, Ctrl+Space tuş bileşimiyle her zaman manuel olarak başlatılabilir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="2993"/>
+        <location filename="configdialog.ui" line="3000"/>
         <source>Automatically start completer when typing LaTeX-Commands</source>
         <translation>LaTeX komutları yazılırken tamamlayıcıyı otomatik olarak başlat</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3002"/>
+        <location filename="configdialog.ui" line="3009"/>
         <source>Size of the tab bar at the bottom or top of the completer</source>
         <translation>Tamamlayıcının altındaki ya da üstündeki sekme çubuğunun boyutu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3005"/>
+        <location filename="configdialog.ui" line="3012"/>
         <source>Tab Bar Size</source>
         <translation>Sekme Çubuğu Boyutu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3015"/>
+        <location filename="configdialog.ui" line="3022"/>
         <source>Size of the command set tabs at the bottom or top of the completer</source>
         <translation>Komutun boyutu tamamlayıcının altındaki ya da üstündeki sekmeleri ayarlar.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3049"/>
+        <location filename="configdialog.ui" line="3056"/>
         <source>Complete selected text when non-word character is pressed</source>
         <translation>Sözcük olmayan bir karaktere basıldığında seçili metni tamamla</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3059"/>
+        <location filename="configdialog.ui" line="3066"/>
         <source>Allows in-place substitution of commands. Example:&lt;br&gt;
 &lt;code&gt;\textbf{foo}&lt;/code&gt;
 &lt;ul&gt;
@@ -2074,43 +2091,43 @@ karakterleri üretmek zorunda. Unicode, doğal olarak LaTeX tarafından destekle
 &lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3069"/>
+        <location filename="configdialog.ui" line="3076"/>
         <source>Auto Replace Latex-Commands</source>
         <translation>LaTeX Komutlarını Otomatik Değiştir</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3076"/>
+        <location filename="configdialog.ui" line="3083"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3079"/>
+        <location filename="configdialog.ui" line="3086"/>
         <source>Auto Complete Common Prefix</source>
         <translation>Ortak Öneki Otomatik Tamamla</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3091"/>
+        <location filename="configdialog.ui" line="3098"/>
         <source>Preferred Commands Set:</source>
         <translation>Tercih Edilen Komut Seti:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3099"/>
+        <location filename="configdialog.ui" line="3106"/>
         <source>Typical</source>
         <translation>Tipik</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3104"/>
+        <location filename="configdialog.ui" line="3111"/>
         <source>Most Used</source>
         <translation>En Çok Kullanılan</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3109"/>
+        <location filename="configdialog.ui" line="3116"/>
         <source>All</source>
         <translation>Tüm</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3135"/>
-        <location filename="configdialog.ui" line="3150"/>
+        <location filename="configdialog.ui" line="3142"/>
+        <location filename="configdialog.ui" line="3157"/>
         <source>TXS tries to automatically load completion files for packages if a
 \usepackage{} command is found. These automatically included files
 are not shown here. Checking additional packages here is usually not
@@ -2125,534 +2142,537 @@ dosyalarını eklemek istiyorsanız, burada onları etkinleştirerek kullanımla
 zorlayabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3143"/>
+        <location filename="configdialog.ui" line="3150"/>
         <source>Permanently active completion files:</source>
         <translation>Kalıcı olarak aktif tamamlama dosyaları:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3211"/>
+        <location filename="configdialog.ui" line="3218"/>
         <source>Spell Check</source>
         <translation>İmla Kontrolü</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3217"/>
+        <location filename="configdialog.ui" line="3224"/>
         <source>Default Language:</source>
         <translation>Öntanımlı Dil:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3244"/>
+        <location filename="configdialog.ui" line="3251"/>
         <source>Spelling Dictionary Directories:</source>
         <translation>İmla Sözlükleri Dizinleri:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3251"/>
+        <location filename="configdialog.ui" line="3258"/>
         <source>One or more directories to search for dictionaries. Multiple paths may be separated by semicolon. You can use the special keywords [txs-settings-dir] and [txs-app-dir] which are resolved to the respective directories.</source>
         <translation>Sözlükleri aramak için bir veya daha fazla dizin. Birden fazla yol noktalı virgülle ayrılabilir. İlgili dizinlerde çözümlenen özel anahtar kelimeler olan [txs-settings-dir] ve [txs-app-dir] kullanabilirsiniz.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3261"/>
+        <location filename="configdialog.ui" line="3268"/>
         <source>*.dat</source>
         <translation>*.dat</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3268"/>
+        <location filename="configdialog.ui" line="3275"/>
         <source>Thesaurus Database:</source>
         <translation>Eş Anlamlılar Sözlüğü Veritabanı:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3298"/>
+        <location filename="configdialog.ui" line="3305"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>TextLabel</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3311"/>
+        <location filename="configdialog.ui" line="3318"/>
         <source>Import Dictionary...</source>
         <translation>Sözlük İçe Aktar...</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3321"/>
+        <location filename="configdialog.ui" line="3328"/>
         <source>Internal Grammar Check</source>
         <translation>Dahili Dilbilgisi Kontrolü</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3327"/>
+        <location filename="configdialog.ui" line="3334"/>
         <source>Words repeated within a paragraph will be highlighted.</source>
         <translation>Bir paragraf içerisinde tekrarlanan sözcükler vurgulanacak</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3330"/>
+        <location filename="configdialog.ui" line="3337"/>
         <source>Check for Word Repetitions</source>
         <translation>Kelime Tekrarlarını Kontrol Et</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3337"/>
+        <location filename="configdialog.ui" line="3344"/>
         <source>Words Between Repetitions:</source>
         <translation>Tekrarlar Arası Kelimeler:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3347"/>
+        <location filename="configdialog.ui" line="3354"/>
         <source>Equal words are marked as repetition if there are no more than this number of words between them.</source>
         <translation>Eşit kelimeler, aralarında bu kadar çok kelime bulunmaması halinde tekrar olarak işaretlenir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3357"/>
+        <location filename="configdialog.ui" line="3364"/>
         <source>Equal, longer words are marked as long range repetition if there are no more than this number of words between them.</source>
         <translation>Eşit uzun sözcükler aralarında bu kadar çok sözcük bulunmaması halinde uzun aralıklı tekrar olarak işaretlenir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3367"/>
+        <location filename="configdialog.ui" line="3374"/>
         <source>Only words with have this length are checked for long range repetitions.</source>
         <translation>Uzun aralıklı tekrarlar için yalnızca bu uzunluğa sahip kelimelerin kontrolü yapılır.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3377"/>
+        <location filename="configdialog.ui" line="3384"/>
         <source>Long Range Repetitions:</source>
         <translation>Uzun Aralıklı Tekrarlar:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3387"/>
+        <location filename="configdialog.ui" line="3394"/>
         <source>Min Length of Words with Long Repetition:</source>
         <translation>Uzun Tekrarlı Kelimelerin Minimum Uzunluğu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3397"/>
+        <location filename="configdialog.ui" line="3404"/>
         <source>Wordlist Directory:</source>
         <translation>Kelime Listesi Dizini:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3404"/>
+        <location filename="configdialog.ui" line="3411"/>
         <source>Certain informal or weak words will be highlighted.</source>
         <translation>Belli gayri resmi veya zayıf kelimeler vurgulanır.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3407"/>
+        <location filename="configdialog.ui" line="3414"/>
         <source>Check for Bad Words</source>
         <translation>Kötü Sözcükleri Kontrol Et</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3414"/>
+        <location filename="configdialog.ui" line="3421"/>
         <source>Directory containing the lists which words are &quot;bad&quot; or may be repeated.</source>
         <translation>Sözcüklerin &quot;kötü&quot; olduğu veya tekrarlanabileceği listeleri içeren dizin.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3441"/>
+        <location filename="configdialog.ui" line="3448"/>
         <source>LanguageTool</source>
         <translation>LanguageTool</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3468"/>
+        <location filename="configdialog.ui" line="3475"/>
         <source>Server URL: </source>
         <translation>Sunucu URL&apos;si:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3641"/>
-        <location filename="configdialog.ui" line="3669"/>
+        <location filename="configdialog.ui" line="3648"/>
+        <location filename="configdialog.ui" line="3676"/>
         <source>Restore Default</source>
         <translation>Varsayılana Döndür</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3655"/>
+        <location filename="configdialog.ui" line="3662"/>
         <source>Url to connect to LanguageTool. </source>
         <translation>LanguageTool&apos;a bağlanmak için URL.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3461"/>
+        <location filename="configdialog.ui" line="3468"/>
         <source>Start LanguageTool if not running</source>
         <translation>LanguageTool çalışmıyorsa başlat.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3454"/>
+        <location filename="configdialog.ui" line="3461"/>
         <source>LT Path:</source>
         <translation>LT Yolu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3447"/>
+        <location filename="configdialog.ui" line="3454"/>
         <source>Path containing the LanguageTool java archive.</source>
         <translation>LanguageTool java arşivini içeren yol.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3499"/>
+        <location filename="configdialog.ui" line="3506"/>
         <source>Ignored Rules:</source>
         <translation>Yok Sayılan Kurallar:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3475"/>
+        <location filename="configdialog.ui" line="3482"/>
         <source>Comma separated list of LanguageTool rules which will not be highlighted as errors.</source>
         <translation>Hata olarak vurgulanmayacak olan LanguageTool kurallarının virgülle ayrılmış listesi.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3607"/>
+        <location filename="configdialog.ui" line="3614"/>
         <source>Java:</source>
         <translation>Java:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3600"/>
+        <location filename="configdialog.ui" line="3607"/>
         <source>Java executable, used to start LanguageTool, if it is not running.</source>
         <translation>LanguageTool çalışmıyorsa başlatmak için kullanılacak çalıştılabilir java.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3506"/>
-        <location filename="configdialog.ui" line="3516"/>
-        <location filename="configdialog.ui" line="3526"/>
-        <location filename="configdialog.ui" line="3556"/>
+        <location filename="configdialog.ui" line="3513"/>
+        <location filename="configdialog.ui" line="3523"/>
+        <location filename="configdialog.ui" line="3533"/>
+        <location filename="configdialog.ui" line="3563"/>
         <source>Comma separated list of LanguageTool rules which will highlighted in a special format.</source>
         <translation>Özel bir biçimde vurgulanacak olan LanguageTool kurallarının virgülle ayrılmış listesi.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3546"/>
+        <location filename="configdialog.ui" line="3553"/>
         <source>Special Rules 2:</source>
         <translation>Özel Kural 2:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3566"/>
+        <location filename="configdialog.ui" line="3573"/>
         <source>Special Rules 1:</source>
         <translation>Özel Kural 1:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3536"/>
+        <location filename="configdialog.ui" line="3543"/>
         <source>Special Rules 3:</source>
         <translation>Özel Kural 3:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3583"/>
+        <location filename="configdialog.ui" line="3590"/>
         <source>Special Rules 4:</source>
         <translation>Özel Kural 4:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3593"/>
+        <location filename="configdialog.ui" line="3600"/>
         <source>Will be inferred from the language of the spell checker used in the document.</source>
         <translation>Belgede kullanılan yazım denetleyicisinin dili ile anlam çıkarılır.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3614"/>
-        <location filename="configdialog.ui" line="3662"/>
+        <location filename="configdialog.ui" line="3621"/>
+        <location filename="configdialog.ui" line="3669"/>
         <source>Arguments passed when starting LanguageTool. This option does only have an effect if LanguageTool is started from TeXstudio (i.e. not for an already running server).</source>
-        <translation type="unfinished"/>
+        <translation>Bağımsız değişkenler LanguageTool başlatılırken es geçildi. Bu seçenek yalnızca LanguageTool TeXstudio&apos;dan başlatıldığında (yani zaten çalışmakta olan bir sunucuda olmadığında) bir etkiye sahiptir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3617"/>
+        <location filename="configdialog.ui" line="3624"/>
         <source>LT Arguments:</source>
         <translation>LT Argümanları:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3746"/>
+        <location filename="configdialog.ui" line="3753"/>
         <source>Segment Preview</source>
         <translation>Kısım Önizleme:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3752"/>
+        <location filename="configdialog.ui" line="3759"/>
         <source>Command:</source>
         <translation>Komut:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3763"/>
+        <location filename="configdialog.ui" line="3770"/>
         <source>Preview with dvipng</source>
         <translation>dvipng ile önizle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3768"/>
+        <location filename="configdialog.ui" line="3775"/>
         <source>Preview with dvipng --follow (parallel)</source>
         <translation>dvipng --follow (parallel) ile önizle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3773"/>
+        <location filename="configdialog.ui" line="3780"/>
         <source>Preview with dvips/ghostscript</source>
         <translation>dvips/ghostscript ile önizle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3778"/>
+        <location filename="configdialog.ui" line="3785"/>
         <source>Preview with pdflatex</source>
         <translation>pdflatex ile önizle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3786"/>
+        <location filename="configdialog.ui" line="3793"/>
         <source>Display Mode:</source>
         <translation>Görüntü Modu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3800"/>
+        <location filename="configdialog.ui" line="3807"/>
         <source>Show preview as tooltip if panel is hidden</source>
         <translation>Panel gizliyse önizlemeyi araç ipucu olarak göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3805"/>
+        <location filename="configdialog.ui" line="3812"/>
         <source>Always show preview in preview panel</source>
         <translation>Önizleme panelinde önizlemeyi her zaman göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3810"/>
+        <location filename="configdialog.ui" line="3817"/>
         <source>Always show preview as tool tip</source>
         <translation>Önizlemeyi araç ipucu olarak daima göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3815"/>
+        <location filename="configdialog.ui" line="3822"/>
         <source>Always show both</source>
         <translation>Her zaman her ikisini de göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3820"/>
+        <location filename="configdialog.ui" line="3827"/>
         <source>Inline</source>
         <translation>Sıralı</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3825"/>
+        <location filename="configdialog.ui" line="3832"/>
         <source>Show in embedded viewer</source>
         <extracomment>Only available if pdflatex is used for compilation</extracomment>
         <translation>Gömülü görüntüleyicide göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3833"/>
+        <location filename="configdialog.ui" line="3840"/>
         <source>Update the preview on text change</source>
         <translation>Metin değişikliğinde önizlemeyi güncelle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3836"/>
+        <location filename="configdialog.ui" line="3843"/>
         <source>Auto Update:</source>
         <translation>Otomatik Güncelleme:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3849"/>
+        <location filename="configdialog.ui" line="3856"/>
         <source>Previously previewed text</source>
         <translation>Önceki önizlenmiş yazı</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3857"/>
+        <location filename="configdialog.ui" line="3864"/>
         <source>Auto Update Delay:</source>
         <translation>Otomatik Güncelleme Gecikmesi:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3880"/>
+        <location filename="configdialog.ui" line="3887"/>
         <source>Replace beamer class by article</source>
-        <translation type="unfinished"/>
+        <translation>Beamer sınıfını article ile değiştir</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3893"/>
+        <location filename="configdialog.ui" line="3900"/>
         <source>Precompile Preamble</source>
         <translation>Önceden Biçimlendirilmiş Önsöz</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3906"/>
+        <location filename="configdialog.ui" line="3913"/>
         <source>Show preview as tooltip on formulas in editor</source>
         <translation>Editördeki formüllerde araç ipucu şeklinde önizlemeyi göster</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="3916"/>
-        <location filename="configdialog.ui" line="4087"/>
+        <location filename="configdialog.ui" line="3923"/>
+        <location filename="configdialog.ui" line="4094"/>
         <source>Scaling:</source>
         <translation>Ölçekleme:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4011"/>
+        <location filename="configdialog.ui" line="4018"/>
         <location filename="configdialog.cpp" line="516"/>
         <source>Internal PDF Viewer</source>
         <translation>Dahili PDF Görüntüleyici</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4018"/>
+        <location filename="configdialog.ui" line="4025"/>
         <source>Original Size</source>
         <translation>Orijinal Boyut</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4023"/>
+        <location filename="configdialog.ui" line="4030"/>
         <source>Fit to Window Width</source>
         <translation>Pencere Genişliğine Sığdır</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4028"/>
+        <location filename="configdialog.ui" line="4035"/>
         <source>Fit to Window Size</source>
         <translation>Pencere Boyutuna Sığdır</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4033"/>
+        <location filename="configdialog.ui" line="4040"/>
         <source>Scaled Size</source>
         <translation>Ölçeklenmiş Boyut</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4038"/>
+        <location filename="configdialog.ui" line="4045"/>
         <source>Fit to Text Width</source>
         <translation>Yazı Genişliğine Sığdır</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4046"/>
+        <location filename="configdialog.ui" line="4053"/>
         <source>Infinite</source>
         <translation>Sonsuz</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4094"/>
+        <location filename="configdialog.ui" line="4101"/>
         <source>Scale Option:</source>
         <translation>Ölçekleme Seçenekleri:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4101"/>
+        <location filename="configdialog.ui" line="4108"/>
         <source>Highlight Duration</source>
         <translation>Vurgulama Süresi</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4112"/>
+        <location filename="configdialog.ui" line="4119"/>
         <source>Square</source>
         <translation>Kare</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4117"/>
+        <location filename="configdialog.ui" line="4124"/>
         <source>Circle</source>
         <translation>Çember</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4122"/>
+        <location filename="configdialog.ui" line="4129"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"/>
+        <translation>Gölgesiz daire</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4130"/>
+        <location filename="configdialog.ui" line="4137"/>
         <source> dpi</source>
         <translation>dpi</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4140"/>
+        <location filename="configdialog.ui" line="4147"/>
         <source>Magnifier Size:</source>
         <translation>Büyütücü Boyutu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4147"/>
+        <location filename="configdialog.ui" line="4154"/>
         <source>Screen Resolution:</source>
         <translation>Ekran Çözünürlüğü</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4154"/>
+        <location filename="configdialog.ui" line="4161"/>
         <source>Magnifier Shape:</source>
         <translation>Büyütücü Şekli:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4161"/>
+        <location filename="configdialog.ui" line="4168"/>
         <source>Border</source>
         <translation>Kenar</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4168"/>
+        <location filename="configdialog.ui" line="4175"/>
         <source>Disable horizontal scrolling for &quot;Fit to Text Width&quot;</source>
         <translation>&quot;Yazı Genişliğine Sığdır&quot; için yatay kaydırmayı devre dışı bırakın</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4191"/>
+        <location filename="configdialog.ui" line="4198"/>
         <source>Highlight Color</source>
         <translation>Vurgu Rengi</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4201"/>
+        <location filename="configdialog.ui" line="4208"/>
         <source>Auto-hide Toolbars in Embedded Mode</source>
         <translation>Gömülü Modda Araç Çubuklarını Otomatik Olarak Gizle</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4208"/>
+        <location filename="configdialog.ui" line="4215"/>
         <source>Specify as hexadecimal RGBA value. Note: The transparency is required because the highlighting is drawn on top of the text due to technical limitations.</source>
         <translation>Onaltılık RGBA değeri olarak belirtin. Not: Saydamlık, teknik sınırlamalar yüzünden vurgulamanın metnin üstünde çizilmiş olması nedeniyle gereklidir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4211"/>
+        <location filename="configdialog.ui" line="4218"/>
         <source>\#HHHHHHHH;_</source>
         <translation>\#HHHHHHHH;_</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4224"/>
+        <location filename="configdialog.ui" line="4231"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4234"/>
+        <location filename="configdialog.ui" line="4241"/>
         <source>Buffered</source>
         <translation>Tamponlu</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4239"/>
+        <location filename="configdialog.ui" line="4246"/>
         <source>Direct</source>
         <translation>Direkt</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4244"/>
+        <location filename="configdialog.ui" line="4251"/>
         <source>Hybrid</source>
         <translation>Hibrid</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4252"/>
-        <location filename="configdialog.ui" line="4339"/>
+        <location filename="configdialog.ui" line="4259"/>
+        <location filename="configdialog.ui" line="4346"/>
         <source>The Render Backend used by the PDF library poppler.
 'Splash' is the default and suitable for most situations.
 If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
-        <translation type="unfinished"/>
+        <translation>PDF kütüphanesi Derleyici Arkaplanı olarak poppler kullanıyor.
+Varsayılan ve çoğu durum için &apos;Splash&apos; uygundur.
+Derleme sorunları varsa alternatif &apos;Arthur&apos; arkaplanını deneyebilirsiniz.
+Not: Bu ayarı değiştirmek yalnızca daha sonra açılan dokümanları etkiler.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4275"/>
+        <location filename="configdialog.ui" line="4282"/>
         <source> px</source>
         <translation>px</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4297"/>
+        <location filename="configdialog.ui" line="4304"/>
         <source>Cache Size:</source>
         <translation>Önbellek Boyutu:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4307"/>
+        <location filename="configdialog.ui" line="4314"/>
         <source> MB</source>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4329"/>
+        <location filename="configdialog.ui" line="4336"/>
         <source>Load Strategy:</source>
         <translation>Yükleme Stratejisi:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4345"/>
+        <location filename="configdialog.ui" line="4352"/>
         <source>Render Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Derleyici Arkaplanı:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4355"/>
+        <location filename="configdialog.ui" line="4362"/>
         <source>Synchronized Files Types:</source>
         <translation>Eşzamanlanmış Dosya Tipleri:</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4365"/>
+        <location filename="configdialog.ui" line="4372"/>
         <source>Note: Windowed/embedded mode is configured at Build -&gt; PDF Viewer</source>
         <translation>Not: Pencere/Gömülü modu Yapılandır -&gt; PDF Görüntüleyici menüsünden ayarlanabilir.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4408"/>
+        <location filename="configdialog.ui" line="4415"/>
         <source>Select how txs checks in saved files</source>
         <translation>txs&apos;nin kaydedilmiş dosyaları nasıl kontrol ettiğini seçin</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4412"/>
+        <location filename="configdialog.ui" line="4419"/>
         <source>No automatic check-in after save</source>
         <translation>Kaydettikten sonra otomatik denetleme yapma</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4417"/>
+        <location filename="configdialog.ui" line="4424"/>
         <source>Check-in after File/Save only</source>
         <translation>Sadece Dosya/Kaydet sonrası denetleme yap</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4422"/>
+        <location filename="configdialog.ui" line="4429"/>
         <source>Check-in after all save operations, i.e. also before compiles.</source>
         <translation>Tüm kaydetme işlemlerinin ardından, diğer bir deyişle derlemeden önce denetleme yapın.</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4430"/>
+        <location filename="configdialog.ui" line="4437"/>
         <source>Use SVN revisions to undo before last saved version</source>
         <translation>En son kaydedilen sürümden öncesine geri almak için SVN sürümlerini kullanın</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4437"/>
+        <location filename="configdialog.ui" line="4444"/>
         <source>on svn add executes svn propset svn:keywords &quot;Date Author Revision HeadURL&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4440"/>
+        <location filename="configdialog.ui" line="4447"/>
         <source>Substitute Keywords with Properties (on svn add)</source>
-        <translation type="unfinished"/>
+        <translation>Başka sözcüğün yerine geçen Anahtar sözcükler ve Açıklamaları (svn add esnasında)</translation>
     </message>
     <message>
-        <location filename="configdialog.ui" line="4449"/>
+        <location filename="configdialog.ui" line="4456"/>
         <source>SVN Directory Search Depth: </source>
         <translation>SVN Dizin Araması Derinliği:</translation>
     </message>
@@ -2935,7 +2955,7 @@ yapılandırmanıza izin verir. En yaygın ayarları görüntülemek için
 gelişmiş seçenekleri devre dışı bırakın.</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1353"/>
+        <location filename="configmanager.cpp" line="1354"/>
         <source>Basic Key Mapping</source>
         <translation type="unfinished"/>
     </message>
@@ -3601,150 +3621,150 @@ gelişmiş seçenekleri devre dışı bırakın.</translation>
         <translation>Kaynakça</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="978"/>
-        <location filename="configmanager.cpp" line="984"/>
-        <location filename="configmanager.cpp" line="1000"/>
-        <location filename="configmanager.cpp" line="1005"/>
+        <location filename="configmanager.cpp" line="979"/>
+        <location filename="configmanager.cpp" line="985"/>
+        <location filename="configmanager.cpp" line="1001"/>
+        <location filename="configmanager.cpp" line="1006"/>
         <source>Key replacement: %1 %2</source>
         <translation>Tuş değişimi: %1 %2</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="978"/>
-        <location filename="configmanager.cpp" line="1000"/>
+        <location filename="configmanager.cpp" line="979"/>
+        <location filename="configmanager.cpp" line="1001"/>
         <source>before word</source>
         <translation>kelime öncesi</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="984"/>
-        <location filename="configmanager.cpp" line="1005"/>
+        <location filename="configmanager.cpp" line="985"/>
+        <location filename="configmanager.cpp" line="1006"/>
         <source>after word</source>
         <translation>kelime sonrası</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1273"/>
         <location filename="configmanager.cpp" line="1274"/>
-        <location filename="configmanager.cpp" line="1448"/>
-        <location filename="configmanager.cpp" line="1450"/>
-        <location filename="configmanager.cpp" line="1738"/>
-        <location filename="configmanager.cpp" line="1743"/>
+        <location filename="configmanager.cpp" line="1275"/>
+        <location filename="configmanager.cpp" line="1449"/>
+        <location filename="configmanager.cpp" line="1451"/>
+        <location filename="configmanager.cpp" line="1739"/>
+        <location filename="configmanager.cpp" line="1744"/>
         <source>default</source>
         <translation>varsayılan</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1330"/>
+        <location filename="configmanager.cpp" line="1331"/>
         <source>Menus</source>
         <translation>Menüler</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1338"/>
+        <location filename="configmanager.cpp" line="1339"/>
         <source>Menus PDF-Viewer</source>
         <translation>PDF-Görüntüleyici Menüsü</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1374"/>
-        <location filename="configmanager.cpp" line="2506"/>
+        <location filename="configmanager.cpp" line="1375"/>
+        <location filename="configmanager.cpp" line="2507"/>
         <source>&lt;none&gt;</source>
         <translation>&lt;none&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1420"/>
+        <location filename="configmanager.cpp" line="1421"/>
         <source>Insert New Menu Item (before)</source>
         <translation>Yeni Menü Öğesi Ekle (Önce)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1423"/>
+        <location filename="configmanager.cpp" line="1424"/>
         <source>Insert New Sub Menu (before)</source>
         <translation>Yeni Alt Menü Ekle (Önce)</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1441"/>
+        <location filename="configmanager.cpp" line="1442"/>
         <source>Latex/Math menus</source>
         <translation>LaTeX/Matematik Menüleri</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1442"/>
+        <location filename="configmanager.cpp" line="1443"/>
         <source>All menus</source>
         <translation>Tüm Menüler</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1443"/>
+        <location filename="configmanager.cpp" line="1444"/>
         <source>Special Tags</source>
         <translation>Özel Etiketler</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1549"/>
+        <location filename="configmanager.cpp" line="1550"/>
         <source>You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?&lt;=\s|^) or (?language:latex)(?&lt;=\S) which will override the new quote replacement.
 Do you want to remove them?</source>
         <translation>Otomatik tırnak değiştirmeyi etkinleştirdiniz. Bununla birlikte, yeni tırnak değiştirmeyi geçersiz kılacak tetik dizisi (?language:latex)(?&lt;=\s|^) veya (?language:latex)(?&lt;=\S) olan makrolar var.
 Onları kaldırmak istiyor musunuz?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1797"/>
+        <location filename="configmanager.cpp" line="1798"/>
         <source>To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?</source>
         <translation>Dahili pdf görüntüleyiciyi tüm özellikleriyle kullanabilmek için synctex etkinleştirilmelidir. Bunu TeXstudio şimdi yapsın mı?</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1812"/>
+        <location filename="configmanager.cpp" line="1813"/>
         <source>Recent &apos;Master Document&apos; %1</source>
         <translation>Son &apos;Ana Belge&apos; %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1815"/>
+        <location filename="configmanager.cpp" line="1816"/>
         <source>Recent File %1</source>
         <translation>Son Dosya %1</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1816"/>
+        <location filename="configmanager.cpp" line="1817"/>
         <source>File list</source>
         <translation>Dosya listesi</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1817"/>
+        <location filename="configmanager.cpp" line="1818"/>
         <source>Open first non-open file</source>
         <translation>İlk açık olmayan dosyayı aç</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1818"/>
+        <location filename="configmanager.cpp" line="1819"/>
         <source>&amp;* Open all files</source>
         <translation>&amp;* Bütün dosyaları aç</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1828"/>
+        <location filename="configmanager.cpp" line="1829"/>
         <source>Master Document: </source>
         <translation>Ana Belge:</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2507"/>
+        <location filename="configmanager.cpp" line="2508"/>
         <source>&lt;default&gt;</source>
         <translation>&lt;varsayılan&gt;</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2672"/>
+        <location filename="configmanager.cpp" line="2673"/>
         <source>Configure</source>
         <translation>Yapılandırma</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2679"/>
+        <location filename="configmanager.cpp" line="2680"/>
         <source>Select Program</source>
         <translation>Programı Seç</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2686"/>
+        <location filename="configmanager.cpp" line="2687"/>
         <source>Restore Default</source>
         <translation>Varsayılana Döndür</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2733"/>
+        <location filename="configmanager.cpp" line="2734"/>
         <source>Repeat contained compilation commands</source>
         <translation>Dahil edilen derleme komutlarını tekrarla</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2782"/>
+        <location filename="configmanager.cpp" line="2783"/>
         <source>Add</source>
         <translation>Ekle</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="2845"/>
+        <location filename="configmanager.cpp" line="2846"/>
         <source>Browse program</source>
         <translation>Programa gözat</translation>
     </message>
@@ -3759,7 +3779,7 @@ Onları kaldırmak istiyor musunuz?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="79"/>
         <source>text which &lt;i&gt;should&lt;/i&gt; be a &lt;b&gt;fair&lt;/b&gt; test of the font</source>
-        <translation type="unfinished"/>
+        <translation>yazı tipinin &lt;b&gt;uygun&lt;/b&gt; bir şekilde test edileceği &lt;i&gt;gerekli&lt;/i&gt; metin</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="114"/>
@@ -3867,7 +3887,7 @@ Onları kaldırmak istiyor musunuz?</translation>
     <message>
         <location filename="editors.cpp" line="401"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"/>
+        <translation>Diğer Tüm Belgeleri Kapat</translation>
     </message>
 </context>
 <context>
@@ -3880,7 +3900,7 @@ Onları kaldırmak istiyor musunuz?</translation>
     <message>
         <location filename="encodingdialog.ui" line="20"/>
         <source>TextLabel</source>
-        <translation type="unfinished"/>
+        <translation>TextLabel</translation>
     </message>
     <message>
         <location filename="encodingdialog.ui" line="27"/>
@@ -4142,7 +4162,7 @@ Tüm değişiklikleri geri almak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="insertgraphics.ui" line="292"/>
         <source>Span Two Columns</source>
-        <translation type="unfinished"/>
+        <translation>İki Sütuna Böl</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="299"/>
@@ -4177,7 +4197,7 @@ Tüm değişiklikleri geri almak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="insertgraphics.ui" line="383"/>
         <source>Caption for display in the list of tables</source>
-        <translation type="unfinished"/>
+        <translation>Tablo listesinde görünmesi için başlık</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="390"/>
@@ -4237,31 +4257,36 @@ Note: These placement preferences are just suggestions. If the resulting page la
         <location filename="insertgraphics.cpp" line="257"/>
         <source>Could not parse graphics inclusion code:
 Insufficient number of arguments to </source>
-        <translation type="unfinished"/>
+        <translation>Grafik dahil etme kodu ayrıştırılamadı:
+Yetersiz sayıda argüman</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="274"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support environment </source>
-        <translation type="unfinished"/>
+        <translation>Grafik dahil etme kodu ayrıştırılamadı:
+Sihirbaz, ortamı desteklemiyor</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="283"/>
         <source>Could not parse graphics inclusion code:
 Invalid \caption command.</source>
-        <translation type="unfinished"/>
+        <translation>Grafik dahil etme kodu ayrıştırılamadı:
+Geçersiz \caption komutu.</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="297"/>
         <source>Could not parse graphics inclusion code:
 Missing \includegraphics options.</source>
-        <translation type="unfinished"/>
+        <translation>Grafik dahil etme kodu ayrıştırılamadı:
+\includegraphics seçenekleri kayıp.</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="314"/>
         <source>Could not parse graphics inclusion code:
 The wizard does not support command </source>
-        <translation type="unfinished"/>
+        <translation>Grafik dahil etme kodu ayrıştırılamadı:
+Sihirbaz, komutu desteklemiyor</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="415"/>
@@ -4312,7 +4337,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexcompleter.cpp" line="1323"/>
         <source> (Usertag)</source>
-        <translation type="unfinished"/>
+        <translation>(Kullanıcı etiketi)</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1657"/>
@@ -4342,27 +4367,27 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="34"/>
         <source>MAGIC_COMMENTS</source>
-        <translation type="unfinished"/>
+        <translation>SİHİRLİ_YORUMLAR</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="35"/>
         <source>LABELS</source>
-        <translation type="unfinished"/>
+        <translation>ETİKETLER</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="36"/>
         <source>TODO</source>
-        <translation type="unfinished"/>
+        <translation>YAPILACAK</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="37"/>
         <source>BIBLIOGRAPHY</source>
-        <translation type="unfinished"/>
+        <translation>KAYNAKÇA</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="38"/>
         <source>BLOCKS</source>
-        <translation type="unfinished"/>
+        <translation>BLOKLAR</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="2360"/>
@@ -4377,7 +4402,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="2377"/>
         <source>Unknown magic comment</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen sihirli yorum</translation>
     </message>
 </context>
 <context>
@@ -4407,7 +4432,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexstructure.cpp" line="202"/>
         <source>Beyond end of document.</source>
-        <translation type="unfinished"/>
+        <translation>Belge sonunun ötesinde.</translation>
     </message>
     <message>
         <location filename="latexstructure.cpp" line="204"/>
@@ -4473,12 +4498,12 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="538"/>
         <source>use yours</source>
-        <translation type="unfinished"/>
+        <translation>kendininkileri kullan</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="542"/>
         <source>use other&apos;s</source>
-        <translation type="unfinished"/>
+        <translation>başkalarınınkini kullan</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="558"/>
@@ -4491,121 +4516,121 @@ The wizard does not support command </source>
         <translation>başlıksız</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2151"/>
+        <location filename="latexeditorview.cpp" line="2152"/>
         <source>Delete</source>
         <translation>Sil</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2184"/>
+        <location filename="latexeditorview.cpp" line="2185"/>
         <source>Add to Dictionary</source>
         <translation>Sözlüğe Ekle</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2363"/>
+        <location filename="latexeditorview.cpp" line="2364"/>
         <source>label missing!</source>
         <translation>etiket eksik!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2365"/>
-        <location filename="latexeditorview.cpp" line="2383"/>
+        <location filename="latexeditorview.cpp" line="2366"/>
+        <location filename="latexeditorview.cpp" line="2384"/>
         <source>label multiple times defined!</source>
         <translation>etiket birden çok kez tanımlandı!</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2373"/>
-        <location filename="latexeditorview.cpp" line="2445"/>
+        <location filename="latexeditorview.cpp" line="2374"/>
+        <location filename="latexeditorview.cpp" line="2446"/>
         <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dosya Adı: %1&lt;/b&gt;
 </translation>
     </message>
     <message numerus="yes">
-        <location filename="latexeditorview.cpp" line="2386"/>
+        <location filename="latexeditorview.cpp" line="2387"/>
         <source>%n reference(s) to this label</source>
-        <translation type="unfinished"><numerusform></numerusform></translation>
+        <translation><numerusform>bu etikete %n referans</numerusform></translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2391"/>
+        <location filename="latexeditorview.cpp" line="2392"/>
         <source>Class</source>
         <translation>Sınıf</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2391"/>
+        <location filename="latexeditorview.cpp" line="2392"/>
         <source>Package</source>
         <translation>Paket</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2395"/>
+        <location filename="latexeditorview.cpp" line="2396"/>
         <source>Beamer Theme</source>
         <translation>Beamer Teması</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2404"/>
+        <location filename="latexeditorview.cpp" line="2405"/>
         <source>not found</source>
         <translation>bulunamadı</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2420"/>
+        <location filename="latexeditorview.cpp" line="2421"/>
         <source>Citation correct (reading ...)</source>
         <translation>Doğru alıntı (okuma ...)</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2426"/>
+        <location filename="latexeditorview.cpp" line="2427"/>
         <source>Citation missing</source>
         <translation>Atıf eksik</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2429"/>
+        <location filename="latexeditorview.cpp" line="2430"/>
         <source>Warning:</source>
         <translation>Uyarı:</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2429"/>
+        <location filename="latexeditorview.cpp" line="2430"/>
         <source>BibTeX ID ends with space. Trailing spaces are not ignored by BibTeX.</source>
         <translation>BibTeX kimliği boşlukla bitiyor. Sondaki boşluklar BibTeX tarafından dikkate alınır.</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2793"/>
+        <location filename="latexeditorview.cpp" line="2794"/>
         <source>Save Preview Image</source>
         <translation>Önizleme Görüntüsünü Kaydedin</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2793"/>
+        <location filename="latexeditorview.cpp" line="2794"/>
         <source>Images</source>
         <translation>Görüntüler</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2923"/>
+        <location filename="latexeditorview.cpp" line="2924"/>
         <source>Remove Bookmark</source>
         <translation>Yer İmini Kaldır</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2931"/>
+        <location filename="latexeditorview.cpp" line="2932"/>
         <source>Unnamed Bookmark</source>
         <translation>İsimsiz Yer İmi</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2936"/>
+        <location filename="latexeditorview.cpp" line="2937"/>
         <source>Bookmark</source>
         <translation>Yer İmi</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2963"/>
+        <location filename="latexeditorview.cpp" line="2964"/>
         <source>Collapse All</source>
         <translation>Tümünü Daralt</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2967"/>
+        <location filename="latexeditorview.cpp" line="2968"/>
         <source>Collapse Level %1</source>
         <translation>%1 Seviyesine Daralt</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2972"/>
+        <location filename="latexeditorview.cpp" line="2973"/>
         <source>Expand All</source>
         <translation>Tümünü Genişlet</translation>
     </message>
     <message>
-        <location filename="latexeditorview.cpp" line="2976"/>
+        <location filename="latexeditorview.cpp" line="2977"/>
         <source>Expand Level %1</source>
         <translation>%1 Seviyesine Genişlet</translation>
     </message>
@@ -4988,27 +5013,27 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="494"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished"/>
+        <translation>Aramak için metin veya desen</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="495"/>
         <source>Find next occurence</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki eşleşeni bul</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="496"/>
         <source>Find previous occurence</source>
-        <translation type="unfinished"/>
+        <translation>Önceki eşleşeni bul</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="498"/>
         <source> Find :</source>
-        <translation type="unfinished"/>
+        <translation>Bul :</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="500"/>
         <source>Case</source>
-        <translation type="unfinished"/>
+        <translation>Durum</translation>
     </message>
 </context>
 <context>
@@ -5017,32 +5042,32 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocks.cpp" line="918"/>
         <source>Set Interval...</source>
         <oldsource>Set interval</oldsource>
-        <translation type="unfinished"/>
+        <translation>Aralık Ayarla...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="921"/>
         <source>Restart</source>
-        <translation type="unfinished"/>
+        <translation>Tekrar başlat</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="938"/>
         <source>Clock</source>
-        <translation type="unfinished"/>
+        <translation>Saat</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="958"/>
         <source>New clock interval (in minutes)</source>
-        <translation type="unfinished"/>
+        <translation>Yeni saat aralığı (dakika olarak)</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="993"/>
         <source>%1 sec</source>
-        <translation type="unfinished"/>
+        <translation>%1 saniye</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="995"/>
         <source>%1 min</source>
-        <translation type="unfinished"/>
+        <translation>%1 dakika</translation>
     </message>
 </context>
 <context>
@@ -5050,52 +5075,52 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2434"/>
         <source>&amp;First Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;İlk Sayfa</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2436"/>
         <source>&amp;Previous Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Önceki Sayfa</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2437"/>
         <source>&amp;Next Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sonraki Sayfa</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2439"/>
         <source>&amp;Last Page</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Son Sayfa</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2441"/>
         <source>&amp;Go to Page...</source>
-        <translation type="unfinished"/>
+        <translation>...Sayfaya &amp;Git</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2443"/>
         <source>Zoom &amp;In</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yakınlaştır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2444"/>
         <source>Zoom &amp;Out</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Uzaklaştır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2450"/>
         <source>Fit to &amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pencereye Sığdır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2445"/>
         <source>&amp;Actual Size</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Gerçek Boyut</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2446"/>
         <source>Fit to Wi&amp;dth</source>
-        <translation type="unfinished"/>
+        <translation>Ge&amp;nişliğe Sığdır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2414"/>
@@ -5105,22 +5130,22 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2496"/>
         <source>Quick Build</source>
-        <translation type="unfinished"/>
+        <translation>Hızlı İnşa Et</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2459"/>
         <source>External Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Harici Görüntüleyici</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2417"/>
         <source>&amp;Configure TeXstudio</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio&apos;yu &amp;Yapılandır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2485"/>
         <source>Stac&amp;k</source>
-        <translation type="unfinished"/>
+        <translation>Yığı&amp;n</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2486"/>
@@ -5130,77 +5155,77 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2489"/>
         <source>&amp;Go to Source</source>
-        <translation type="unfinished"/>
+        <translation>Kaynağa &amp;Git</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2457"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"/>
+        <translation>Tam &amp;Ekran</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2408"/>
         <source>User &amp;Manual...</source>
-        <translation type="unfinished"/>
+        <translation>Kullanım &amp;Kılavuzu</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2487"/>
         <source>&amp;Side by Side</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yan Yana</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2416"/>
         <source>&amp;Quit TeXstudio</source>
-        <translation type="unfinished"/>
+        <translation>TeXstudio&apos;dan &amp;Çık</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2483"/>
         <source>&amp;Close something</source>
-        <translation type="unfinished"/>
+        <translation>Birşeyleri &amp;Kapat</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2419"/>
         <source>Scrolling follows cursor</source>
-        <translation type="unfinished"/>
+        <translation>Kaydırma imleci izlesin</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2421"/>
         <source>Cursor follows scrolling</source>
-        <translation type="unfinished"/>
+        <translation>İmleç kaydırmayı izlesin</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2494"/>
         <source>Find &amp;again</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tekrar Bul</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2492"/>
         <source>New Window</source>
-        <translation type="unfinished"/>
+        <translation>Yeni Pencere</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2478"/>
         <source>Custom...</source>
-        <translation type="unfinished"/>
+        <translation>Özel...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2481"/>
         <source>Single Page Step</source>
-        <translation type="unfinished"/>
+        <translation>Tek Sayfa Adımı</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2423"/>
         <source>Synchronize multiple views</source>
-        <translation type="unfinished"/>
+        <translation>Birden çok görünümü senkronize et</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2458"/>
         <source>Presentation</source>
-        <translation type="unfinished"/>
+        <translation>Sunum</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2452"/>
         <source>&amp;Continuous</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sürekli</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2412"/>
@@ -5210,57 +5235,57 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2435"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>Geri</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2438"/>
         <source>Forward</source>
-        <translation type="unfinished"/>
+        <translation>İleri</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2462"/>
         <source>Windowed/Embedded</source>
-        <translation type="unfinished"/>
+        <translation>Pencere/Gömülü</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2460"/>
         <source>Enlarge Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Görüntüleyiciyi Genişlet</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2461"/>
         <source>Shrink Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Görüntüleyiciyi Daralt</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2426"/>
         <source>Invert Colors</source>
-        <translation type="unfinished"/>
+        <translation>Renkleri Ters Çevir</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2490"/>
         <source>Focus Editor</source>
-        <translation type="unfinished"/>
+        <translation>Editöre Odaklan</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2448"/>
         <source>Fit to &amp;Text Width</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yazı Genişliğine Sığdır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2428"/>
         <source>Grayscale</source>
-        <translation type="unfinished"/>
+        <translation>Gri tonlama</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2413"/>
         <source>Split &amp;&amp; Merge...</source>
-        <translation type="unfinished"/>
+        <translation>Böl &amp;&amp; Birleştir...</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2402"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yardım</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2396"/>
@@ -5270,22 +5295,22 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2401"/>
         <source>&amp;Configure</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yapılandırma</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2398"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Görüntüleme</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2399"/>
         <source>Grid</source>
-        <translation type="unfinished"/>
+        <translation>Izgara</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2400"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Pencere</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2397"/>
@@ -5295,42 +5320,42 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2347"/>
         <source>Toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Araç Çubuğu</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2411"/>
         <source>About</source>
-        <translation type="unfinished"/>
+        <translation>Hakkında</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2431"/>
         <source>&amp;Magnify</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Büyüteç</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2432"/>
         <source>&amp;Scroll</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kaydır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2493"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bul</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2525"/>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Göster</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2581"/>
         <source>Windowed Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Pencereli Görüntüleyici</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2584"/>
         <source>Embedded Viewer</source>
-        <translation type="unfinished"/>
+        <translation>Gömülü Görüntüleyici</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2636"/>
@@ -5341,7 +5366,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2659"/>
         <source>Scale</source>
-        <translation type="unfinished"/>
+        <translation>Ölçek</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2677"/>
@@ -5351,7 +5376,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2687"/>
         <source>Zoom</source>
-        <translation type="unfinished"/>
+        <translation>Yakınlaştırma</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2696"/>
@@ -5362,22 +5387,22 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocument.cpp" line="2724"/>
         <location filename="pdfviewer/PDFDocument.cpp" line="2727"/>
         <source>Annotations</source>
-        <translation type="unfinished"/>
+        <translation>Açıklamalar</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2885"/>
         <source>Page Down</source>
-        <translation type="unfinished"/>
+        <translation>Sayfa Aşağı</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2889"/>
         <source>Page Up</source>
-        <translation type="unfinished"/>
+        <translation>Sayfa Yukarı</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3068"/>
         <source>Retry</source>
-        <translation type="unfinished"/>
+        <translation>Tekrar dene</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3071"/>
@@ -5414,53 +5439,54 @@ does not look like a valid PDF document. Either the file is corrupt or it is in 
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3100"/>
         <source>PDF file &quot;%1&quot; is locked.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; PDF dosyası şifreli.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3102"/>
         <source>PDF password</source>
-        <translation type="unfinished"/>
+        <translation>PDF şifresi</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3102"/>
         <source>PDF file &quot;%1&quot; is locked.
 You can now enter the password:</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; PDF dosyası şifreli.
+Artık şifreyi girebilirsiniz:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3436"/>
         <source>Searching for</source>
-        <translation type="unfinished"/>
+        <translation>Arıyor</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3555"/>
         <source>No SyncTeX data available</source>
-        <translation type="unfinished"/>
+        <translation>Kullanılabilir SyncTeX verisi yok</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3558"/>
         <source>SyncTeX: &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>SyncTeX: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3688"/>
         <source>%1[*] - %2</source>
-        <translation type="unfinished"/>
+        <translation>%1[*] - %2</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3766"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"/>
+        <translation>Sayfa %1 / %2</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3767"/>
         <source>Pages %1 to %2 of %3</source>
-        <translation type="unfinished"/>
+        <translation>Sayfa %1 - %2 / %3</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3792"/>
         <source>Open PDF</source>
-        <translation type="unfinished"/>
+        <translation>PDF&apos;yi Aç</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="4072"/>
@@ -5470,7 +5496,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="4245"/>
         <source>Close Message</source>
-        <translation type="unfinished"/>
+        <translation>Mesajı Kapat</translation>
     </message>
 </context>
 <context>
@@ -5488,7 +5514,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="365"/>
         <source>Subset</source>
-        <translation type="unfinished"/>
+        <translation>Alt Küme</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="365"/>
@@ -5498,27 +5524,27 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="382"/>
         <source>[none]</source>
-        <translation type="unfinished"/>
+        <translation>[hiç]</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="387"/>
         <source>yes</source>
-        <translation type="unfinished"/>
+        <translation>evet</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="387"/>
         <source>no</source>
-        <translation type="unfinished"/>
+        <translation>hayır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="388"/>
         <source>[embedded]</source>
-        <translation type="unfinished"/>
+        <translation>[gömülü]</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.h" line="203"/>
         <source>Fonts</source>
-        <translation type="unfinished"/>
+        <translation>Yazı tipleri</translation>
     </message>
 </context>
 <context>
@@ -5526,7 +5552,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.h" line="145"/>
         <source>PDF Info</source>
-        <translation type="unfinished"/>
+        <translation>PDF Bilgisi</translation>
     </message>
 </context>
 <context>
@@ -5534,42 +5560,42 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="422"/>
         <source>File %1 does not exists</source>
-        <translation type="unfinished"/>
+        <translation>%1 dosyası bulunamadı</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="428"/>
         <source>&amp;Play</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Oynat</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="429"/>
         <source>P&amp;ause</source>
-        <translation type="unfinished"/>
+        <translation>D&amp;uraklat</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="430"/>
         <source>&amp;Stop</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Durdur</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="432"/>
         <source>S&amp;eek</source>
-        <translation type="unfinished"/>
+        <translation>A&amp;tla</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="433"/>
         <source>Set &amp;volume</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sesi ayarla</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="476"/>
         <source>Volume:</source>
-        <translation type="unfinished"/>
+        <translation>Ses:</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="485"/>
         <source>Time:</source>
-        <translation type="unfinished"/>
+        <translation>Süre:</translation>
     </message>
 </context>
 <context>
@@ -5577,12 +5603,12 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="160"/>
         <source>No TOC</source>
-        <translation type="unfinished"/>
+        <translation>TOC yok</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.h" line="105"/>
         <source>Contents</source>
-        <translation type="unfinished"/>
+        <translation>İçindekiler</translation>
     </message>
 </context>
 <context>
@@ -5590,7 +5616,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.h" line="327"/>
         <source>Overview</source>
-        <translation type="unfinished"/>
+        <translation>Genel Bakış</translation>
     </message>
 </context>
 <context>
@@ -5598,23 +5624,23 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="600"/>
         <source>Words</source>
-        <translation type="unfinished"/>
+        <translation>Kelimeler</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="601"/>
         <source>Only searches for whole words.</source>
         <oldsource>Only seaches for whole words.</oldsource>
-        <translation type="unfinished"/>
+        <translation>Yalnızca tüm kelimeleri arar.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="607"/>
         <source>Sync</source>
-        <translation type="unfinished"/>
+        <translation>Eşitleme</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"/>
+        <translation>Arama sonucuna atlandığında editörü senkronize et.</translation>
     </message>
 </context>
 <context>
@@ -5622,32 +5648,32 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.cpp" line="41"/>
         <source>Save PDF</source>
-        <translation type="unfinished"/>
+        <translation>PDF&apos;yi Kaydet</translation>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="52"/>
         <source>Open PDF</source>
-        <translation type="unfinished"/>
+        <translation>PDF&apos;yi Aç</translation>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="124"/>
         <source>Input file:</source>
-        <translation type="unfinished"/>
+        <translation>Giriş dosyası:</translation>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="144"/>
         <source>Add page range</source>
-        <translation type="unfinished"/>
+        <translation>Sayfa aralığı ekle</translation>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="247"/>
         <source>From:</source>
-        <translation type="unfinished"/>
+        <translation>Kimden:</translation>
     </message>
     <message>
         <location filename="pdfsplittool.cpp" line="252"/>
         <source>To:</source>
-        <translation type="unfinished"/>
+        <translation>Kime:</translation>
     </message>
 </context>
 <context>
@@ -5655,17 +5681,17 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.ui" line="14"/>
         <source>Split &amp; Merge</source>
-        <translation type="unfinished"/>
+        <translation>Böl &amp; Birleştir</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="40"/>
         <source>Split &amp;&amp; Merge</source>
-        <translation type="unfinished"/>
+        <translation>Böl &amp;&amp; Birleştir</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="47"/>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>Arkaplan:</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="87"/>
@@ -5675,12 +5701,12 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfsplittool.ui" line="96"/>
         <source>Output file:</source>
-        <translation type="unfinished"/>
+        <translation>Çıkış dosyası:</translation>
     </message>
     <message>
         <location filename="pdfsplittool.ui" line="109"/>
         <source>Add input file</source>
-        <translation type="unfinished"/>
+        <translation>Giriş dosyası ekle</translation>
     </message>
 </context>
 <context>
@@ -5703,17 +5729,17 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="579"/>
         <source>Fit to Width</source>
-        <translation type="unfinished"/>
+        <translation>Genişliğe Sığdır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="582"/>
         <source>Fit to Window</source>
-        <translation type="unfinished"/>
+        <translation>Pencereye Sığdır</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"/>
+        <translation>Harici dosyaları açma şu an için yalnızca PDF&apos;ler için desteklenmektedir.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -5743,7 +5769,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2175"/>
         <source>Calculating text width</source>
-        <translation type="unfinished"/>
+        <translation>Metin genişliği hesaplanıyor</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2175"/>
@@ -5782,44 +5808,44 @@ You can now enter the password:</source>
 <context>
     <name>ProcessX</name>
     <message>
-        <location filename="buildmanager.cpp" line="2225"/>
+        <location filename="buildmanager.cpp" line="2226"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2234"/>
+        <location filename="buildmanager.cpp" line="2235"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2403"/>
+        <location filename="buildmanager.cpp" line="2404"/>
         <source>Process started: %1</source>
         <translation>İşlem başladı: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2409"/>
+        <location filename="buildmanager.cpp" line="2410"/>
         <source>Error: Could not start the command: %1</source>
         <translation>Hata: %1 komutu çalıştırılamadı</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2412"/>
+        <location filename="buildmanager.cpp" line="2413"/>
         <source>&lt;b&gt;Make sure that you have installed a (La)TeX distribution&lt;/b&gt; e.g. MiKTeX or TeX Live, and have set the correct paths to this distribution on the command configuration page.&lt;br&gt;A (La)TeX editor like TeXstudio cannot work without the (La)TeX commands provided by such a distribution.</source>
         <translation>&lt;b&gt;Bir (La)TeX dağıtımı yüklediğinize&lt;/b&gt;Ör. MiKTeX ya da TeX Live, ve komut yapılandırma sayfasında bu dağıtıma ait doğru yolları ayarladığınıza emin olun.&lt;br&gt;TeXstudio gibi (La)TeX editörü, böyle bir dağıtımın sağladığı (La)TeX komutları olmadan çalışamaz.</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2416"/>
+        <location filename="buildmanager.cpp" line="2417"/>
         <source>Error: Command crashed: %1</source>
-        <translation type="unfinished"/>
+        <translation>Hata: Komut çöktü: %1</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2423"/>
+        <location filename="buildmanager.cpp" line="2424"/>
         <source>Process exited with error(s)</source>
-        <translation type="unfinished"/>
+        <translation>İşlem hata(lar) ile bitti</translation>
     </message>
     <message>
-        <location filename="buildmanager.cpp" line="2426"/>
+        <location filename="buildmanager.cpp" line="2427"/>
         <source>Process exited normally</source>
-        <translation type="unfinished"/>
+        <translation>İşlem normal bitti</translation>
     </message>
 </context>
 <context>
@@ -5832,7 +5858,7 @@ You can now enter the password:</source>
     <message>
         <location filename="utilsUI.cpp" line="94"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>hiç</translation>
     </message>
 </context>
 <context>
@@ -5841,7 +5867,7 @@ You can now enter the password:</source>
         <location filename="qcodeedit/lib/qcodecompletionengine.cpp" line="35"/>
         <location filename="qcodeedit/lib/qcodecompletionengine.cpp" line="63"/>
         <source>&amp;Trigger completion</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tetiklenmiş tamamlama</translation>
     </message>
 </context>
 <context>
@@ -5849,56 +5875,58 @@ You can now enter the password:</source>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="722"/>
         <source>Replacement prompt</source>
-        <translation type="unfinished"/>
+        <translation>Değiştirme istemi</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="723"/>
         <source>Shall it be replaced?</source>
-        <translation type="unfinished"/>
+        <translation>Değiştirilecek mi?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="728"/>
         <source>Replacing Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Değiştirme İptal Edildi</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="728"/>
         <source>%1 (of %2 found so far) occurences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%1 (şimdiye kadar bulunanların % 2&apos;si) oluşum değiştirildi</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="766"/>
         <source>Start of scope reached with no match.
 Restart from the end?</source>
-        <translation type="unfinished"/>
+        <translation>Kapsamın başlangıcına eşleşme olmadan ulaşıldı.
+Sondan tekrar başlatmak ister misiniz?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="771"/>
         <source>End of scope reached with no match.
 Restart from the beginning?</source>
-        <translation type="unfinished"/>
+        <translation>Kapsamın sonuna eşleşme olmadan ulaşıldı.
+Baştan tekrar başlatmak ister misiniz?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="778"/>
         <source>Failure</source>
-        <translation type="unfinished"/>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="798"/>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="820"/>
         <source>Replacing Finished</source>
-        <translation type="unfinished"/>
+        <translation>Değiştirme Tamamlandı</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="799"/>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="820"/>
         <source>%1 (of %2) occurences have been replaced</source>
-        <translation type="unfinished"/>
+        <translation>%2 oluşumdan %1 &apos;i değiştirildi. </translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="800"/>
         <source>Do you want to continue replacing from the beginning?</source>
-        <translation type="unfinished"/>
+        <translation>Değiştirmeye baştan devam etmek istiyor musunuz?</translation>
     </message>
 </context>
 <context>
@@ -5906,19 +5934,19 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qcodeedit.cpp" line="265"/>
         <source>Panels</source>
-        <translation type="unfinished"/>
+        <translation>Paneller</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qcodeedit.cpp" line="267"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Görüntüleme</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="199"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="704"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1456"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="524"/>
@@ -5936,7 +5964,7 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="550"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1432"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"/>
+        <translation>Ke&amp;s</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="561"/>
@@ -5954,65 +5982,65 @@ Restart from the beginning?</source>
         <location filename="qcodeedit/lib/qeditor.cpp" line="588"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1436"/>
         <source>&amp;Indent</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Girintile</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="596"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1437"/>
         <source>&amp;Unindent</source>
-        <translation type="unfinished"/>
+        <translation>Girintilemeyi &amp;Kaldır</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="608"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yorumlanma Durumunu Değiştir</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="613"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1438"/>
         <source>Co&amp;mment</source>
-        <translation type="unfinished"/>
+        <translation>Yo&amp;ruma Çevir</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="621"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1439"/>
         <source>Unc&amp;omment</source>
-        <translation type="unfinished"/>
+        <translation>Y&amp;orum İşaretini Kaldır</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="633"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1441"/>
         <source>&amp;Select all</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hepsini seç</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="645"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1443"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bul</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="653"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1444"/>
         <source>Fin&amp;d next</source>
-        <translation type="unfinished"/>
+        <translation>Sonrakini Bu&amp;l</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="661"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1445"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Değiştir</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="673"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1447"/>
         <source>&amp;Goto line...</source>
-        <translation type="unfinished"/>
+        <translation>Satıra &amp;git ...</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="685"/>
         <source>Dynamic line wrapping</source>
-        <translation type="unfinished"/>
+        <translation>Dinamik satır kaydırma</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="697"/>
@@ -6023,7 +6051,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="722"/>
         <source>Line endings</source>
-        <translation type="unfinished"/>
+        <translation>Satır sonu</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="729"/>
@@ -6043,7 +6071,7 @@ Restart from the beginning?</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="732"/>
         <source>Dos/Windows</source>
-        <translation type="unfinished"/>
+        <translation>Dos/Windows</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="733"/>
@@ -6072,7 +6100,7 @@ Press &quot;Ignore&quot; to ignore this warning.
         <location filename="qcodeedit/lib/qeditor.cpp" line="1076"/>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1098"/>
         <source>Saving failed</source>
-        <translation type="unfinished"/>
+        <translation>Kaydetme başarısız</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="998"/>
@@ -6152,7 +6180,7 @@ Probably someone else restored it and therefore I&apos;m not going to override t
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1251"/>
         <source>File changed</source>
-        <translation type="unfinished"/>
+        <translation>Dosya değiştirildi</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1252"/>
@@ -7117,7 +7145,7 @@ Do you want them to be saved?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="163"/>
         <source>Only searches for whole words.</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca tüm kelimeleri arar.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="174"/>
@@ -7167,7 +7195,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="318"/>
         <source>Text or pattern to search for</source>
-        <translation type="unfinished"/>
+        <translation>Aramak için metin veya desen</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/qsearchreplacepanel.cpp" line="319"/>
@@ -8580,7 +8608,7 @@ failed.</source>
         <translation>XML</translation>
     </message>
     <message>
-        <location filename="configmanager.cpp" line="1915"/>
+        <location filename="configmanager.cpp" line="1916"/>
         <source>Edit &amp;Macros...</source>
         <translation type="unfinished"/>
     </message>
@@ -9073,7 +9101,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="856"/>
         <source>&amp;Find</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Bul</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="857"/>
@@ -9103,7 +9131,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="864"/>
         <source>&amp;Replace</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Değiştir</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="865"/>
@@ -9244,7 +9272,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="933"/>
         <source>Toggle &amp;Comment</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yorum Durumunu Değiştir</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="934"/>
@@ -9259,7 +9287,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="936"/>
         <source>&amp;Indent</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Girintile</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="937"/>
@@ -9454,7 +9482,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="989"/>
         <location filename="texstudio.cpp" line="1141"/>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Görüntüleme</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="990"/>
@@ -9841,7 +9869,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1148"/>
         <source>Focus Editor</source>
-        <translation type="unfinished"/>
+        <translation>Editöre Odaklan</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1149"/>
@@ -9851,7 +9879,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1152"/>
         <source>Show</source>
-        <translation type="unfinished"/>
+        <translation>Göster</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1155"/>
@@ -9955,7 +9983,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="1199"/>
         <location filename="texstudio.cpp" line="1201"/>
         <source>Full &amp;Screen</source>
-        <translation type="unfinished"/>
+        <translation>Tam &amp;Ekran</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1208"/>
@@ -10012,7 +10040,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1256"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Yardım</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1257"/>
@@ -10089,7 +10117,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1396"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1424"/>
@@ -12030,7 +12058,7 @@ Html dosyalarını % 1 dizininde bulabilirsiniz.</translation>
     <message>
         <location filename="scriptengine.cpp" line="595"/>
         <source>Script-Error</source>
-        <translation type="unfinished"/>
+        <translation>Betik-Hatası</translation>
     </message>
 </context>
 <context>
@@ -12048,12 +12076,12 @@ Html dosyalarını % 1 dizininde bulabilirsiniz.</translation>
     <message>
         <location filename="templateselector.ui" line="173"/>
         <source>Create in Folder:</source>
-        <translation type="unfinished"/>
+        <translation>Klasör içerisinde Oluştur:</translation>
     </message>
     <message>
         <location filename="templateselector.ui" line="205"/>
         <source>Create in Editor</source>
-        <translation type="unfinished"/>
+        <translation>Düzenleyici içerisinde Oluştur:</translation>
     </message>
     <message>
         <location filename="templateselector.ui" line="238"/>
