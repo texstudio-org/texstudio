@@ -431,6 +431,8 @@ void QSearchReplacePanel::display(int mode, bool replace)
 	{
 		bool focusFindEdit = true;
 		if (m_search){
+            // save current cursor position
+            m_initialCursorPos.push(editor()->cursor());
 			if(editor()->cursor().hasSelection()){
                 if(editor()->cursor().anchorLineNumber()!=editor()->cursor().lineNumber() || !useLineForSearch){
 					if (searchOnlyInSelection){
@@ -810,6 +812,18 @@ void QSearchReplacePanel::cFind_textEdited(const QString& text)
 { 
 	if (! m_search) init();
 	
+    if(m_search->searchText().length()==text.length()+1 && m_search->searchText().startsWith(text)){
+        // last letter removed (backspace)
+        QDocumentCursor cur=m_initialCursorPos.top();
+        if(m_initialCursorPos.size()>1){
+            m_initialCursorPos.pop();
+        }
+        m_search->setCursor(cur);
+    }else{
+        if(m_search->searchText()!=text){
+            m_initialCursorPos.push(editor()->cursor());
+        }
+    }
 	m_search->setSearchText(text);
 	
 	if ( text.isEmpty() )

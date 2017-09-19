@@ -17,6 +17,7 @@
 #define _QSEARCH_REPLACE_PANEL_H_
 
 #include "mostQtHeaders.h"
+#include "qdocumentcursor.h"
 
 #include "qpanel.h"
 
@@ -28,7 +29,7 @@
 */
 
 
-class QDocumentCursor;
+//class QDocumentCursor;
 class QDocumentLine;
 class QDocumentSearch;
 
@@ -118,6 +119,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		QDocumentSearch *m_search;
 		bool m_lastDirection;
 		int minimum_width;
+        QStack<QDocumentCursor> m_initialCursorPos;
 
 	protected:
 		QStringList getHistory(bool findHistory = true);
