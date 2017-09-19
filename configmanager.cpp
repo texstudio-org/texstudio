@@ -458,7 +458,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Bibliography/BibFileEncoding", &bibFileEncoding, "UTF-8", &pseudoDialog->comboBoxBibFileEncoding);
 	registerOption("Files/Parse Master", &parseMaster, true, &pseudoDialog->checkBoxParseMaster);
 	registerOption("Files/Autosave", &autosaveEveryMinutes, 0);
-	registerOption("Files/Autoload", &autoLoadChildren, false, &pseudoDialog->checkBoxAutoLoad);
+    registerOption("Files/Autoload", &autoLoadChildren, true, &pseudoDialog->checkBoxAutoLoad);
 	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 	registerOption("Files/Bib Paths", &additionalBibPaths, env.value("BIBINPUTS", ""), &pseudoDialog->lineEditPathBib);
 	registerOption("Files/Image Paths", &additionalImagePaths, env.value("TEXINPUTS", ""), &pseudoDialog->lineEditPathImages);
