@@ -126,7 +126,8 @@ void LogEditor::paintEvent(QPaintEvent *event)
 	rect.setX(0);
 	rect.setWidth(viewport()->width());
 	QPainter painter(viewport());
-	const QBrush brush(QColor("#ececec"));
+	QBrush brush = palette().base();
+	brush.setColor(mediumLightColor(brush.color(), 110));
 	painter.fillRect(rect, brush);
 	painter.end();
 	QTextEdit::paintEvent(event);
