@@ -61,6 +61,7 @@ class FileSelector;
 class LatexReference;
 class SymbolListModel;
 class SymbolWidget;
+class StructureTreeView;
 
 Q_DECLARE_METATYPE(QSet<QString>)
 
@@ -147,7 +148,7 @@ private:
 	SymbolWidget *symbolWidget;
 	QString hiddenLeftPanelWidgets;
 
-	QTreeView *structureTreeView;
+	StructureTreeView *structureTreeView;
 	LatexParser latexParser;
 public:
 	LatexDocuments documents;
@@ -281,7 +282,6 @@ private slots:
 	void fileDiffMerge();
 	void declareConflictResolved();
 protected slots:
-	void openExternalFile();
 	void openExternalFile(QString name, const QString &defaultExt = "tex", LatexDocument *doc = 0); // signaled by latexViewer to open specific file
 
 	void editUndo(); ///< undo changes in text editor
@@ -290,14 +290,6 @@ protected slots:
 	void editCopy(); ///< copy text
 	void editPaste(); ///< paste text
 	void editPasteImage(QImage image);
-	void editSectionCopy();
-	void editSectionCopy(int startingLine, int endLine);
-	void editSectionCut();
-	void editSectionCut(int startingLine, int endLine);
-	void editSectionPasteAfter();
-	void editSectionPasteAfter(int line);
-	void editSectionPasteBefore();
-	void editSectionPasteBefore(int line);
 	void editTextToLowercase();
 	void editTextToUppercase();
 	void editTextToTitlecase(bool smart = false);
@@ -305,9 +297,6 @@ protected slots:
 	void editFind(); ///< open search panel
 	void editPasteLatex();
 	void convertToLatex();
-	void editPasteRef();
-	void editIndentSection();
-	void editUnIndentSection();
 	void editHardLineBreak();
 	void editHardLineBreakRepeat();
 	void editDeleteLine(); ///< delete current line in current text editor
@@ -328,29 +317,15 @@ protected slots:
 	void editInsertRefToPrevLabel(const QString &refCmd = "\\ref");
 	void editFindGlobal();
 	void runSearch(SearchQuery *query);
-	void findLabelUsages();
 	void findLabelUsages(LatexDocument *doc, const QString &labelText);
 	SearchResultWidget *searchResultWidget();
 
 	void findWordRepetions();
 	void findNextWordRepetion();
 
-	void StructureContextMenu(const QPoint &point);
-	void structureContextMenuCloseDocument();
-	void structureContextMenuSwitchMasterDocument();
-	void structureContextMenuOpenAllRelatedDocuments();
-	void structureContextMenuCloseAllRelatedDocuments();
-	void structureContextMenuExpandSubitems();
-	void structureContextMenuCollapseSubitems();
-	void structureContextMenuExpandAllDocuments();
-	void structureContextMenuCollapseAllDocuments();
-	void structureContextMenuShowInGraphicalShell();
-
 	void addDocToLoad(QString filename);
 
-	void moveCursorTodlh();
-
-    void LTErrorMessage(QString message);
+	void LTErrorMessage(QString message);
 
 private slots:
 	void readSettings(bool reread = false); ///< read configured/default settings from ini
@@ -372,12 +347,19 @@ protected slots:
 	void updateStructure(bool initial = false, LatexDocument *doc = 0, bool hidden = false);
 	void showStructure();
 	void clickedOnStructureEntry(const QModelIndex &index);
+	void structureContextMenuCloseDocument(LatexDocument *document);
+	void structureContextMenuToggleMasterDocument(LatexDocument *document);
+	void structureContextMenuOpenAllRelatedDocuments(LatexDocument *document);
+	void structureContextMenuCloseAllRelatedDocuments(LatexDocument *document);
+	void createLabelForStructureEntry(const StructureEntry *entry);
+
 	void editRemovePlaceHolders();
 	void editRemoveCurrentPlaceHolder();
 
 	void normalCompletion(); ///< activate normal completion
 	void insertEnvironmentCompletion(); ///< activate environment completion
 	void insertTextCompletion(); ///< activate normal text completion
+	void insertText(const QString &text);
 	void insertTag(const QString &Entity, int dx = 0, int dy = 0);
 	void insertCitation(const QString &text);
 	void insertFormula(const QString &formula);
@@ -405,7 +387,6 @@ protected slots:
 	void insertRef();
 	void insertEqRef();
 	void insertPageRef();
-	void createLabelFromAction();
 
 	void changeTextCodec();
 	void updateAvailableLanguages();
@@ -524,6 +505,7 @@ protected slots:
 
 	void gotoLine(int line, int col = 0, LatexEditorView *edView = 0, QEditor::MoveFlags mflags = QEditor::Navigation, bool setFocus = true); // line is 0 based
 	bool gotoLine(int line, const QString &fileName);  // line is 0 based, absolute file name
+	void gotoLine(LatexDocument *doc, int line, int col=0);
 	void gotoLogEntryEditorOnly(int logEntryNumber);
 	QDocumentCursor getLogEntryContextCursor(const QDocumentLineHandle *dlh, const LatexLogEntry &entry);
 	bool gotoLogEntryAt(int newLineNumber);
@@ -579,10 +561,6 @@ protected slots:
 	void remHLineCB();
 	void insertTableTemplate();
 	void alignTableCols();
-
-	void latexModelViewMode();
-	void moveDocumentToFront();
-	void moveDocumentToEnd();
 
 	void updateTexQNFA();
 	void updateTexLikeQNFA(QString languageName, QString filename);
@@ -661,9 +639,6 @@ protected:
 	findGlobalDialog *findDlg;
 
 	QMap<QString, QString> *mReplacementList;
-
-	StructureEntry *contextEntry;
-	QModelIndex contextIndex;
 
 public:
 	Q_PROPERTY(QString clipboard READ clipboardText WRITE setClipboardText);

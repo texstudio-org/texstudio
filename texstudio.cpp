@@ -63,6 +63,7 @@
 #include "latexparser/latextokens.h"
 #include "latexparser/latexparser.h"
 #include "latexstructure.h"
+#include "structuretreeview.h"
 #include "symbollistmodel.h"
 #include "symbolwidget.h"
 
@@ -145,7 +146,6 @@ Texstudio::Texstudio(QWidget *parent, Qt::WindowFlags flags, QSplashScreen *spla
 	cursorHistory = 0;
 	recentSessionList = 0;
 	editors = 0;
-	contextEntry = 0;
 	m_languages = 0; //initial state to avoid crash on OSX
 
 	connect(&buildManager, SIGNAL(hideSplash()), this, SLOT(hideSplash()));
@@ -568,16 +568,21 @@ void Texstudio::setupDockWidgets()
 	}
 
 	if (!structureTreeView) {
-		structureTreeView = new QTreeView(this);
-		structureTreeView->header()->hide();
-		if (configManager.indentationInStructure > 0)
-			structureTreeView->setIndentation(configManager.indentationInStructure);
+		structureTreeView = new StructureTreeView(editors, documents, configManager, this);
 		structureTreeView->setModel(documents.model);
+
+		connect(structureTreeView, SIGNAL(requestCloseDocument(LatexDocument*)), this, SLOT(structureContextMenuCloseDocument(LatexDocument*)));
+		connect(structureTreeView, SIGNAL(requestToggleMasterDocument(LatexDocument*)), this, SLOT(structureContextMenuToggleMasterDocument(LatexDocument*)));
+		connect(structureTreeView, SIGNAL(requestOpenAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuOpenAllRelatedDocuments(LatexDocument*)));
+		connect(structureTreeView, SIGNAL(requestCloseAllRelatedDocuments(LatexDocument*)), this, SLOT(structureContextMenuCloseAllRelatedDocuments(LatexDocument*)));
+		connect(structureTreeView, SIGNAL(requestGotoLine(LatexDocument*,int,int)), this, SLOT(gotoLine(LatexDocument*,int,int)));
+		connect(structureTreeView, SIGNAL(requestOpenExternalFile(QString)), this, SLOT(openExternalFile(QString)));
+		connect(structureTreeView, SIGNAL(insertText(QString)), this, SLOT(insertText(QString)));
+		connect(structureTreeView, SIGNAL(findLabelUsages(LatexDocument*,QString)), this, SLOT(findLabelUsages(LatexDocument*,QString)));
+		connect(structureTreeView, SIGNAL(createLabelForStructureEntry(const StructureEntry*)), this, SLOT(createLabelForStructureEntry(const StructureEntry*)));
+
 		//disabled because it also reacts to expand, connect(structureTreeView, SIGNAL(activated(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //enter or double click (+single click on some platforms)
 		connect(structureTreeView, SIGNAL(pressed(const QModelIndex &)), SLOT(clickedOnStructureEntry(const QModelIndex &))); //single click
-		//		connect(structureTreeView, SIGNAL(expanded(const QModelIndex &)), SLOT(treeWidgetChanged()));
-		//		connect(structureTreeView, SIGNAL(collapsed(const QModelIndex &)), SLOT(treeWidgetChanged()));
-		//-- connect( StructureTreeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem *,int )), SLOT(DoubleClickedOnStructure(QTreeWidgetItem *,int))); // qt4 bugs - don't use it ?? also true for view??
 
 		leftPanel->addWidget(structureTreeView, "structureTreeView", tr("Structure"), getRealIconFile("structure"));
 	} else leftPanel->setWidgetText(structureTreeView, tr("Structure"));
@@ -1249,19 +1254,6 @@ void Texstudio::setupMenus()
 		baseContextActions << getManagedActions(QStringList() << "previewLatex" << "removePreviewLatex", "main/edit2/");
 		LatexEditorView::setBaseActions(baseContextActions);
 	}
-
-	structureTreeView->setObjectName("StructureTree");
-	structureTreeView->setContextMenuPolicy(Qt::CustomContextMenu);
-	newManagedAction(structureTreeView, "CopySection", tr("Copy"), SLOT(editSectionCopy()));
-	newManagedAction(structureTreeView, "CutSection", tr("Cut"), SLOT(editSectionCut()));
-	newManagedAction(structureTreeView, "PasteBefore", tr("Paste Before"), SLOT(editSectionPasteBefore()));
-	newManagedAction(structureTreeView, "PasteAfter", tr("Paste After"), SLOT(editSectionPasteAfter()));
-	QAction *sep = new QAction(structureTreeView);
-	sep->setSeparator(true);
-	structureTreeView->addAction(sep);
-	newManagedAction(structureTreeView, "IndentSection", tr("Indent Section"), SLOT(editIndentSection()));
-	newManagedAction(structureTreeView, "UnIndentSection", tr("Unindent Section"), SLOT(editUnIndentSection()));
-	connect(structureTreeView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(StructureContextMenu(QPoint)));
 
 	configManager.updateRecentFiles(true);
 
@@ -3740,165 +3732,6 @@ void Texstudio::editInsertUnicode()
 	uid->setFocus();
 }
 
-void Texstudio::editIndentSection()
-{
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->getEditorView()) return;
-	editors->setCurrentEditor(entry->document->getEditorView());
-	QDocumentSelection sel = entry->document->sectionSelection(entry);
-
-	// replace list
-	QStringList m_replace;
-	m_replace << "\\subparagraph" << "\\paragraph" << "\\subsubsection" << "\\subsection" << "\\section" << "\\chapter";
-	// replace sections
-	QString m_line;
-	QDocumentCursor m_cursor = currentEditorView()->editor->cursor();
-	for (int l = sel.startLine; l < sel.endLine; l++) {
-		currentEditorView()->editor->setCursorPosition(l, 0);
-		m_cursor = currentEditorView()->editor->cursor();
-		m_line = currentEditorView()->editor->cursor().line().text();
-		QString m_old = "";
-		foreach (const QString &elem, m_replace) {
-			if (m_old != "") m_line.replace(elem, m_old);
-			m_old = elem;
-		}
-
-		m_cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-		currentEditor()->setCursor(m_cursor);
-		currentEditor()->insertText(m_line);
-	}
-}
-
-void Texstudio::editUnIndentSection()
-{
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->getEditorView()) return;
-	editors->setCurrentEditor(entry->document->getEditorView());
-	QDocumentSelection sel = entry->document->sectionSelection(entry);
-
-	QStringList m_replace;
-
-	m_replace << "\\chapter" << "\\section" << "\\subsection" << "\\subsubsection" << "\\paragraph" << "\\subparagraph" ;
-
-	// replace sections
-	QString m_line;
-	QDocumentCursor m_cursor = currentEditorView()->editor->cursor();
-	for (int l = sel.startLine; l < sel.endLine; l++) {
-		currentEditorView()->editor->setCursorPosition(l, 0);
-		m_cursor = currentEditorView()->editor->cursor();
-		m_line = currentEditorView()->editor->cursor().line().text();
-		QString m_old = "";
-		foreach (const QString &elem, m_replace) {
-			if (m_old != "") m_line.replace(elem, m_old);
-			m_old = elem;
-		}
-
-		m_cursor.movePosition(1, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-		currentEditor()->setCursor(m_cursor);
-		currentEditor()->insertText(m_line);
-	}
-}
-
-/*!
- * copy in structure-view selected section from text
- */
-void Texstudio::editSectionCopy()
-{
-	// called by action
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->getEditorView()) return;
-	editors->setCurrentEditor(entry->document->getEditorView());
-	QDocumentSelection sel = entry->document->sectionSelection(entry);
-	editSectionCopy(sel.startLine + 1, sel.endLine);
-}
-
-/*!
- * cut in structure-view selected section from text
- */
-void Texstudio::editSectionCut()
-{
-	// called by action
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->getEditorView()) return;
-	editors->setCurrentEditor(entry->document->getEditorView());
-	QDocumentSelection sel = entry->document->sectionSelection(entry);
-	editSectionCut(sel.startLine + 1, sel.endLine);
-	//UpdateStructure();
-}
-
-void Texstudio::editSectionCopy(int startingLine, int endLine)
-{
-	if (!currentEditorView()) return;
-
-	currentEditorView()->editor->setCursorPosition(startingLine - 1, 0);
-	QDocumentCursor m_cursor = currentEditorView()->editor->cursor();
-	//m_cursor.movePosition(1, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
-	m_cursor.setSilent(true);
-	m_cursor.movePosition(endLine - startingLine, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
-	m_cursor.movePosition(0, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-	currentEditorView()->editor->setCursor(m_cursor);
-	currentEditorView()->editor->copy();
-}
-
-void Texstudio::editSectionCut(int startingLine, int endLine)
-{
-	if (!currentEditorView()) return;
-	currentEditorView()->editor->setCursorPosition(startingLine - 1, 0);
-	QDocumentCursor m_cursor = currentEditorView()->editor->cursor();
-	m_cursor.setSilent(true);
-	m_cursor.movePosition(endLine - startingLine, QDocumentCursor::NextLine, QDocumentCursor::KeepAnchor);
-	m_cursor.movePosition(0, QDocumentCursor::EndOfLine, QDocumentCursor::KeepAnchor);
-	currentEditorView()->editor->setCursor(m_cursor);
-	currentEditorView()->editor->cut();
-}
-
-void Texstudio::editSectionPasteBefore()
-{
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->getEditorView()) return;
-	editors->setCurrentEditor(entry->document->getEditorView());
-	editSectionPasteBefore(entry->getRealLineNumber());
-	//UpdateStructure();
-}
-/*!
- * \brief paste clipboard after selected section (in structureview)
- */
-void Texstudio::editSectionPasteAfter()
-{
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || !entry->document->getEditorView()) return;
-	editors->setCurrentEditor(entry->document->getEditorView());
-	QDocumentSelection sel = entry->document->sectionSelection(entry);
-	editSectionPasteAfter(sel.endLine);
-	//UpdateStructure();
-}
-
-void Texstudio::editSectionPasteAfter(int line)
-{
-	REQUIRE(currentEditorView());
-	if (line >= currentEditorView()->editor->document()->lines()) {
-		currentEditorView()->editor->setCursorPosition(line - 1, 0);
-		QDocumentCursor c = currentEditorView()->editor->cursor();
-		c.movePosition(1, QDocumentCursor::End, QDocumentCursor::MoveAnchor);
-		currentEditor()->setCursor(c);
-		currentEditor()->insertText("\n");
-	} else {
-		currentEditor()->setCursorPosition(line, 0);
-		currentEditor()->insertText("\n");
-		currentEditor()->setCursorPosition(line, 0);
-	}
-	currentEditorView()->paste();
-}
-
-void Texstudio::editSectionPasteBefore(int line)
-{
-	REQUIRE(currentEditor());
-	currentEditor()->setCursorPosition(line, 0);
-	currentEditor()->insertText("\n");
-	currentEditor()->setCursorPosition(line, 0);
-	currentEditorView()->paste();
-}
-
 void changeCase(QEditor *editor, QString(*method)(QString))
 {
 	if (!editor) return;
@@ -4453,6 +4286,119 @@ void Texstudio::clickedOnStructureEntry(const QModelIndex &index)
 	}
 }
 
+void Texstudio::structureContextMenuCloseDocument(LatexDocument *document)
+{
+	if (!document) return;
+	if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
+	else if (document == documents.masterDocument) structureContextMenuToggleMasterDocument(document);
+}
+
+void Texstudio::structureContextMenuToggleMasterDocument(LatexDocument *document)
+{
+	if (!document) return;
+	if (document == documents.masterDocument) setAutomaticRootDetection();
+	else setExplicitRootDocument(document);
+}
+
+void Texstudio::structureContextMenuOpenAllRelatedDocuments(LatexDocument *document)
+{
+	if (!document) return;
+
+	QSet<QString> checkedFiles, filesToCheck;
+	filesToCheck.insert(document->getFileName());
+
+	while (!filesToCheck.isEmpty()) {
+		QString f = *filesToCheck.begin();
+		filesToCheck.erase(filesToCheck.begin());
+		if (checkedFiles.contains(f)) continue;
+		checkedFiles.insert(f);
+		document = documents.findDocument(f);
+		if (!document) {
+			LatexEditorView *lev = load(f);
+			document = lev ? lev->document : 0;
+		}
+		if (!document) continue;
+		foreach (const QString &fn, document->includedFilesAndParent()) {
+			QString t = document->findFileName(fn);
+			if (!t.isEmpty()) filesToCheck.insert(t);
+		}
+	}
+}
+
+void Texstudio::structureContextMenuCloseAllRelatedDocuments(LatexDocument *document)
+{
+	if (!document) return;
+
+	QList<LatexDocument *> l = document->getListOfDocs();
+	QList<LatexEditorView *> viewsToClose;
+	foreach (LatexDocument *d, l)
+		if (d->getEditorView())
+			viewsToClose << d->getEditorView();
+	if (!saveFilesForClosing(viewsToClose)) return;
+	foreach (LatexDocument *d, l) {
+		if (documents.documents.contains(d))
+			documents.deleteDocument(d); //this might hide the document
+		if (documents.hiddenDocuments.contains(d))
+			documents.deleteDocument(d, d->isHidden(), d->isHidden());
+	}
+}
+
+void Texstudio::createLabelForStructureEntry(const StructureEntry *entry)
+{
+	if (!entry || !entry->document) return;
+
+	// find editor and line nr
+	int lineNr = entry->getRealLineNumber();
+
+	mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
+	LatexEditorView *edView = entry->document->getEditorView();
+	QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
+	if (!edView) {
+		edView = load(entry->document->getFileName());
+		if (!edView) return;
+		mflags &= ~QEditor::Animated;
+		//entry is now invalid
+	}
+	REQUIRE(edView->getDocument());
+
+	if (lineNr < 0) return; //not found. (document was closed)
+
+	// find column position after structure command
+	QString lineText = edView->getDocument()->line(lineNr).text();
+	int pos = -1;
+	for (int i = 0; i < latexParser.structureDepth(); i++) {
+		foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
+			pos = lineText.indexOf(cmd);
+			if (pos >= 0) {
+				pos += cmd.length();
+				// workaround for starred commands: \section*{Cap}
+				// (may have been matched by unstarred version because there is no order in possibleCommands)
+				if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
+				break;
+			}
+		}
+		if (pos >= 0) break;
+	}
+	if (pos < 0) return; // could not find associated command
+
+	// advance pos behind options, and use title to guess a label
+	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
+	QString label = "sec:";
+	if (args.length() > 0) {
+		QString title(args.at(0).value);
+		if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
+			label += makeLatexLabel(title);
+		}
+	}
+
+	gotoLine(lineNr, pos, edView, mflags);
+
+	insertTag(QString("\\label{%1}").arg(label), 7);
+	QDocumentCursor cur(edView->editor->cursor());
+	cur.movePosition(label.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
+	edView->editor->setCursor(cur);
+}
+
 void Texstudio::editRemovePlaceHolders()
 {
 	if (!currentEditor()) return;
@@ -4787,6 +4733,13 @@ void Texstudio::insertTextCompletion()
 	currentEditorView()->complete(LatexCompleter::CF_FORCE_VISIBLE_LIST | LatexCompleter::CF_NORMAL_TEXT);
 }
 
+void Texstudio::insertText(const QString &text)
+{
+	currentEditor()->write(text);
+	currentEditorView()->setFocus();
+}
+
+/*! TODO: this API and its defaults are a bit weird. Needs refactoring. */
 void Texstudio::insertTag(const QString &Entity, int dx, int dy)
 {
 	if (!currentEditorView()) return;
@@ -5517,65 +5470,6 @@ void Texstudio::insertEqRef()
 void Texstudio::insertPageRef()
 {
 	insertRef("\\pageref");
-}
-
-void Texstudio::createLabelFromAction()
-{
-	QAction *act = qobject_cast<QAction *>(sender());
-	if (!act) return;
-	StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
-	if (!entry || !entry->document) return;
-
-	// find editor and line nr
-	int lineNr = entry->getRealLineNumber();
-
-	mDontScrollToItem = entry->type != StructureEntry::SE_SECTION;
-	LatexEditorView *edView = entry->document->getEditorView();
-	QEditor::MoveFlags mflags = QEditor::NavigationToHeader;
-	if (!edView) {
-		edView = load(entry->document->getFileName());
-		if (!edView) return;
-		mflags &= ~QEditor::Animated;
-		//entry is now invalid
-	}
-	REQUIRE(edView->getDocument());
-
-	if (lineNr < 0) return; //not found. (document was closed)
-
-	// find column position after structure command
-	QString lineText = edView->getDocument()->line(lineNr).text();
-	int pos = -1;
-	for (int i = 0; i < latexParser.structureDepth(); i++) {
-		foreach (const QString &cmd, latexParser.possibleCommands[QString("%structure%1").arg(i)]) {
-			pos = lineText.indexOf(cmd);
-			if (pos >= 0) {
-				pos += cmd.length();
-				// workaround for starred commands: \section*{Cap}
-				// (may have been matched by unstarred version because there is no order in possibleCommands)
-				if ((lineText.length() > pos + 1) && lineText.at(pos) == '*') pos++;
-				break;
-			}
-		}
-		if (pos >= 0) break;
-	}
-	if (pos < 0) return; // could not find associated command
-
-	// advance pos behind options, and use title to guess a label
-	QList<CommandArgument> args = getCommandOptions(lineText, pos, &pos);
-	QString label = "sec:";
-	if (args.length() > 0) {
-		QString title(args.at(0).value);
-		if (!label.contains('\\') && !label.contains('$')) {  // title with these chars are too complicated to extract label
-			label += makeLatexLabel(title);
-		}
-	}
-
-	gotoLine(lineNr, pos, edView, mflags);
-
-	insertTag(QString("\\label{%1}").arg(label), 7);
-	QDocumentCursor cur(edView->editor->cursor());
-	cur.movePosition(label.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
-	edView->editor->setCursor(cur);
 }
 
 void Texstudio::changeTextCodec()
@@ -7543,6 +7437,16 @@ bool Texstudio::gotoLine(int line, const QString &fileName)
 	return true;
 }
 
+void Texstudio::gotoLine(LatexDocument *doc, int line, int col)
+{
+	if (!doc) return;
+
+	LatexEditorView *edView = doc->getEditorView();
+	if (edView) {
+		gotoLine(line, col, edView);
+	}
+}
+
 void Texstudio::gotoLogEntryEditorOnly(int logEntryNumber)
 {
 	if (logEntryNumber < 0 || logEntryNumber >= outputView->getLogWidget()->getLogModel()->count()) return;
@@ -7871,230 +7775,6 @@ void Texstudio::saveEditorCursorToHistory(LatexEditorView *edView)
 {
 	if (!edView) return;
 	cursorHistory->insertPos(edView->editor->cursor());
-}
-
-void Texstudio::StructureContextMenu(const QPoint &point)
-{
-	//StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	contextIndex = structureTreeView->indexAt(point);
-	contextEntry = LatexDocumentsModel::indexToStructureEntry(contextIndex);
-	if (!contextEntry) return;
-	if (contextEntry->type == StructureEntry::SE_DOCUMENT_ROOT) {
-		QMenu menu;
-		if (contextEntry->document != documents.masterDocument) {
-			menu.addAction(tr("Close document"), this, SLOT(structureContextMenuCloseDocument()));
-			menu.addAction(tr("Set as explicit root document"), this, SLOT(structureContextMenuSwitchMasterDocument()));
-			menu.addAction(tr("Open all related documents"), this, SLOT(structureContextMenuOpenAllRelatedDocuments()));
-			menu.addAction(tr("Close all related documents"), this, SLOT(structureContextMenuCloseAllRelatedDocuments()));
-		} else
-			menu.addAction(tr("Remove explicit root document role"), this, SLOT(structureContextMenuSwitchMasterDocument()));
-		if (documents.model->getSingleDocMode()) {
-			menu.addAction(tr("Show all open documents in this tree"), this, SLOT(latexModelViewMode()));
-		} else {
-			menu.addAction(tr("Show only current document in this tree"), this, SLOT(latexModelViewMode()));
-		}
-		menu.addSeparator();
-		menu.addAction(tr("Move document to &front"), this, SLOT(moveDocumentToFront()));
-		menu.addAction(tr("Move document to &end"), this, SLOT(moveDocumentToEnd()));
-		menu.addSeparator();
-		menu.addAction(tr("Expand Subitems"), this, SLOT(structureContextMenuExpandSubitems()));
-		menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
-		menu.addAction(tr("Expand all documents"), this, SLOT(structureContextMenuExpandAllDocuments()));
-		menu.addAction(tr("Collapse all documents"), this, SLOT(structureContextMenuCollapseAllDocuments()));
-		menu.addSeparator();
-		menu.addAction(msgGraphicalShellAction(), this, SLOT(structureContextMenuShowInGraphicalShell()));
-		menu.exec(structureTreeView->mapToGlobal(point));
-		return;
-	}
-	if (!contextEntry->parent) return;
-	if (contextEntry->type == StructureEntry::SE_LABEL) {
-		QMenu menu;
-		menu.addAction(tr("Insert"), this, SLOT(editPasteRef()))->setData(contextEntry->title);
-		menu.addAction(tr("Insert as %1").arg("\\ref{...}"), this, SLOT(editPasteRef()))->setData(QString("\\ref{%1}").arg(contextEntry->title));
-		menu.addAction(tr("Insert as %1").arg("\\pageref{...}"), this, SLOT(editPasteRef()))->setData(QString("\\pageref{%1}").arg(contextEntry->title));
-		menu.addSeparator();
-		QAction *act = menu.addAction(tr("Find Usages"), this, SLOT(findLabelUsages()));
-		act->setData(contextEntry->title);
-		act->setProperty("doc", QVariant::fromValue<LatexDocument *>(contextEntry->document));
-		menu.exec(structureTreeView->mapToGlobal(point));
-		return;
-	}
-	if (contextEntry->type == StructureEntry::SE_SECTION) {
-		QMenu menu(this);
-
-		StructureEntry *labelEntry = LatexDocumentsModel::labelForStructureEntry(contextEntry);
-		if (labelEntry) {
-			menu.addAction(tr("Insert Label"), this, SLOT(editPasteRef()))->setData(labelEntry->title);
-			foreach (QString refCmd, configManager.referenceCommandsInContextMenu.split(",")) {
-				refCmd = refCmd.trimmed();
-				if (!refCmd.startsWith('\\')) continue;
-				menu.addAction(QString(tr("Insert %1 to Label", "autoreplaced, e.g.: Insert \\ref to Label").arg(refCmd)), this, SLOT(editPasteRef()))->setData(QString("%1{%2}").arg(refCmd).arg(labelEntry->title));
-			}
-			menu.addSeparator();
-		} else {
-			menu.addAction(tr("Create Label"), this, SLOT(createLabelFromAction()))->setData(QVariant::fromValue(contextEntry));
-			menu.addSeparator();
-		}
-
-		menu.addAction(tr("Copy"), this, SLOT(editSectionCopy()));
-		menu.addAction(tr("Cut"), this, SLOT(editSectionCut()));
-		menu.addAction(tr("Paste Before"), this, SLOT(editSectionPasteBefore()));
-		menu.addAction(tr("Paste After"), this, SLOT(editSectionPasteAfter()));
-		menu.addSeparator();
-		menu.addAction(tr("Indent Section"), this, SLOT(editIndentSection()));
-		menu.addAction(tr("Unindent Section"), this, SLOT(editUnIndentSection()));
-		if (!contextEntry->children.isEmpty()) {
-			menu.addSeparator();
-			menu.addAction(tr("Expand Subitems"), this, SLOT(structureContextMenuExpandSubitems()));
-			menu.addAction(tr("Collapse Subitems"), this, SLOT(structureContextMenuCollapseSubitems()));
-		}
-		menu.exec(structureTreeView->mapToGlobal(point));
-		return;
-	}
-	if (contextEntry->type == StructureEntry::SE_MAGICCOMMENT) {
-		QMenu menu;
-		menu.addAction(LatexEditorView::tr("Go to Definition"), this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(contextEntry));
-		menu.exec(structureTreeView->mapToGlobal(point));
-		return;
-	}
-	if (contextEntry->type == StructureEntry::SE_INCLUDE) {
-		QMenu menu;
-		menu.addAction(LatexEditorView::tr("Open Document"), this, SLOT(openExternalFile()))->setData(QVariant::fromValue(contextEntry));
-		menu.addAction(LatexEditorView::tr("Go to Definition"), this, SLOT(moveCursorTodlh()))->setData(QVariant::fromValue(contextEntry));
-		menu.exec(structureTreeView->mapToGlobal(point));
-		return;
-	}
-
-}
-
-void Texstudio::openExternalFile()
-{
-	QAction *act = qobject_cast<QAction *>(sender());
-	if (!act) return;
-	StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
-	if (entry) {
-		openExternalFile(entry->title);
-	}
-}
-
-void Texstudio::structureContextMenuCloseDocument()
-{
-	if (!contextEntry)
-		return;
-	LatexDocument *document = contextEntry->document;
-	contextEntry = 0;
-	if (!document) return;
-	if (document->getEditorView()) editors->requestCloseEditor(document->getEditorView());
-	else if (document == documents.masterDocument) structureContextMenuSwitchMasterDocument();
-}
-
-void Texstudio::structureContextMenuSwitchMasterDocument()
-{
-	if (!contextEntry)
-		return;
-	LatexDocument *document = contextEntry->document;
-	contextEntry = 0;
-	if (!document) return;
-	if (document == documents.masterDocument) setAutomaticRootDetection();
-	else setExplicitRootDocument(document);
-}
-
-void Texstudio::structureContextMenuOpenAllRelatedDocuments()
-{
-	if (!contextEntry)
-		return;
-	LatexDocument *document = contextEntry->document;
-	contextEntry = 0;
-	if (!document) return;
-
-	QSet<QString> checkedFiles, filesToCheck;
-	filesToCheck.insert(document->getFileName());
-
-	while (!filesToCheck.isEmpty()) {
-		QString f = *filesToCheck.begin();
-		filesToCheck.erase(filesToCheck.begin());
-		if (checkedFiles.contains(f)) continue;
-		checkedFiles.insert(f);
-		document = documents.findDocument(f);
-		if (!document) {
-			LatexEditorView *lev = load(f);
-			document = lev ? lev->document : 0;
-		}
-		if (!document) continue;
-		foreach (const QString &fn, document->includedFilesAndParent()) {
-			QString t = document->findFileName(fn);
-			if (!t.isEmpty()) filesToCheck.insert(t);
-		}
-	}
-}
-
-void Texstudio::structureContextMenuCloseAllRelatedDocuments()
-{
-	if (!contextEntry)
-		return;
-	LatexDocument *document = contextEntry->document;
-	contextEntry = 0;
-	if (!document) return;
-
-	QList<LatexDocument *> l = document->getListOfDocs();
-	QList<LatexEditorView *> viewsToClose;
-	foreach (LatexDocument *d, l)
-		if (d->getEditorView())
-			viewsToClose << d->getEditorView();
-	if (!saveFilesForClosing(viewsToClose)) return;
-	foreach (LatexDocument *d, l) {
-		if (documents.documents.contains(d))
-			documents.deleteDocument(d); //this might hide the document
-		if (documents.hiddenDocuments.contains(d))
-			documents.deleteDocument(d, d->isHidden(), d->isHidden());
-	}
-}
-
-void Texstudio::structureContextMenuExpandSubitems()
-{
-	if (!contextEntry)
-		return;
-	setSubtreeExpanded(structureTreeView, contextIndex, true);
-	contextEntry = 0;
-}
-
-void Texstudio::structureContextMenuCollapseSubitems()
-{
-	if (!contextEntry)
-		return;
-	setSubtreeExpanded(structureTreeView, contextIndex, false);
-	contextEntry = 0;
-}
-
-void Texstudio::structureContextMenuExpandAllDocuments()
-{
-	setSubtreeExpanded(structureTreeView, structureTreeView->rootIndex(), true);
-}
-
-void Texstudio::structureContextMenuCollapseAllDocuments()
-{
-	setSubtreeExpanded(structureTreeView, structureTreeView->rootIndex(), false);
-}
-
-void Texstudio::structureContextMenuShowInGraphicalShell()
-{
-	if (!contextEntry)
-		return;
-	LatexDocument *document = contextEntry->document;
-	contextEntry = 0;
-	if (!document) return;
-	showInGraphicalShell(this, document->getFileName());
-}
-
-void Texstudio::editPasteRef()
-{
-	if (!currentEditorView()) return;
-
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-
-	currentEditor()->write(action->data().toString());
-	currentEditorView()->setFocus();
 }
 
 void Texstudio::previewLatex()
@@ -8638,17 +8318,6 @@ void Texstudio::runSearch(SearchQuery *query)
 		srw->updateSearchExpr(searchText);
 	}
 	query->run(currentEditorView()->document);
-}
-
-void Texstudio::findLabelUsages()
-{
-	QAction *action = qobject_cast<QAction *>(sender());
-	if (!action) return;
-
-	QString labelText = action->data().toString();
-	LatexDocument *doc = action->property("doc").value<LatexDocument *>();
-
-	findLabelUsages(doc, labelText);
 }
 
 void Texstudio::findLabelUsages(LatexDocument *contextDoc, const QString &labelText)
@@ -9560,26 +9229,6 @@ void Texstudio::findNextWordRepetion()
 		tx = line.length();
 	}
 	txsInformation(backward ? tr("Reached beginning of text.") : tr("Reached end of text."));
-}
-
-void Texstudio::latexModelViewMode()
-{
-	bool mode = documents.model->getSingleDocMode();
-	documents.model->setSingleDocMode(!mode);
-}
-
-void Texstudio::moveDocumentToFront()
-{
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || entry->type != StructureEntry::SE_DOCUMENT_ROOT) return;
-	editors->moveEditor(entry->document->getEditorView(), Editors::AbsoluteFront);
-}
-
-void Texstudio::moveDocumentToEnd()
-{
-	StructureEntry *entry = LatexDocumentsModel::indexToStructureEntry(structureTreeView->currentIndex());
-	if (!entry || entry->type != StructureEntry::SE_DOCUMENT_ROOT) return;
-	editors->moveEditor(entry->document->getEditorView(), Editors::AbsoluteEnd);
 }
 
 void Texstudio::importPackage(QString name)
@@ -10611,21 +10260,6 @@ void Texstudio::addDocToLoad(QString filename)
 	load(filename, false, true, recheckLabels);
 }
 
-void Texstudio::moveCursorTodlh()
-{
-	QAction *act = qobject_cast<QAction *>(sender());
-	if (!act) return;
-	StructureEntry *entry = qvariant_cast<StructureEntry *>(act->data());
-	LatexDocument *doc = entry->document;
-	QDocumentLineHandle *dlh = entry->getLineHandle();
-	LatexEditorView *edView = doc->getEditorView();
-	if (edView) {
-		int lineNr = -1;
-		if ((lineNr = doc->indexOf(dlh)) >= 0) {
-			gotoLine(lineNr, 0, edView);
-		}
-	}
-}
 /*!
  * \brief open pdf documentation of latex packages in the internal viewer
  * \param package package name
