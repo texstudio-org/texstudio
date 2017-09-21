@@ -112,6 +112,7 @@ HEADERS += \
     smallUsefulFunctions.h \
     spellerdialog.h \
     spellerutility.h \
+    structuretreeview.h \
     styleanimator.h \
     stylehelper.h \
     svn.h \
@@ -211,6 +212,7 @@ SOURCES += \
     smallUsefulFunctions.cpp \
     spellerdialog.cpp \
     spellerutility.cpp \
+    structuretreeview.cpp \
     styleanimator.cpp \
     stylehelper.cpp \
     svn.cpp \
