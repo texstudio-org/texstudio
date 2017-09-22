@@ -171,7 +171,7 @@
 <file>images-ng/classic/embedded-viewer.svg</file>
 <file>images-ng/classic/enlarge-viewer.svgz</file>
 <file>images-ng/classic/hand.svgz</file>
-<file>images-ng/classic/hide-toolbars.svg</file>
+<file>images-ng/classic/hide-toolbars.svgz</file>
 <file>images-ng/classic/languagetool.svg</file>
 <file>images-ng/classic/magnifier-button.svgz</file>
 <file>images-ng/classic/mathmode.svg</file>
@@ -191,6 +191,7 @@
 <file>images-ng/modern/enlarge-viewer.svgz</file>
 <file>images-ng/modern/frac.svg</file>
 <file>images-ng/modern/hand.svgz</file>
+<file>images-ng/modern/hide-toolbars.svgz</file>
 <file>images-ng/modern/languagetool.svg</file>
 <file>images-ng/modern/magnifier-button.svgz</file>
 <file>images-ng/modern/magnifier.svgz</file>
