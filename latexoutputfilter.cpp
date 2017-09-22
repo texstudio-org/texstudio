@@ -431,7 +431,7 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 					continue;
 				}
 			}
-			if (c.isSpace()) {
+			if (c.isSpace() || c == '(') {
 				partialFileName += strLine.mid(fnStart, i - fnStart);
 				fnStart = i;
 				// we can only guess if the space is in the filename or terminates it
@@ -447,7 +447,11 @@ void LatexOutputFilter::updateFileStackHeuristic2(const QString &strLine, short 
 					m_stackFile.push(LOFStackItem(partialFileName));
 					PRINT_FILE_STACK("push2", partialFileName);
 					partialFileName.clear();
-					dwCookie = Start;
+					if (c == '(') {
+						dwCookie = ExpectingFileName;
+					} else {
+						dwCookie = Start;
+					}
 					continue;
 				}
 			}

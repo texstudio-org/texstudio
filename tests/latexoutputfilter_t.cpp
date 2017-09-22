@@ -66,7 +66,14 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< QString("C:\\Program Files (x86)\\MiKTeX 2.9\\tex\\latex\\base\\inputenc.sty");
-
+	QTest::newRow("open space bracket")
+			<< (QStringList() << "(./chapter1.tex (")
+			<< short(LatexOutputFilter::ExpectingFileName)
+			<< QString("./chapter1.tex");
+	QTest::newRow("open bracket")
+			<< (QStringList() << "(./chapter1.tex(")
+			<< short(LatexOutputFilter::ExpectingFileName)
+			<< QString("./chapter1.tex");
 	QTest::newRow("open")
 			<< (QStringList() << "(D:\\bugreport\\bug.aux"
 				)
@@ -351,6 +358,18 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< "";
+	QTest::newRow("open followed by bracket 1")
+			<< (QStringList() << "(./chapter1.tex(load luc: C:/Users/Tim/AppData/Local/MiKTeX/2.9/luatex-cache/gen"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "load";
+	QTest::newRow("open followed by bracket 2")
+			<< (QStringList() << "(./chapter1.tex(load luc: C:/Users/Tim/AppData/Local/MiKTeX/2.9/luatex-cache/gen"
+							  << "eric/fonts/otl/lmroman17-regular.luc)"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< "./chapter1.tex";
+
 
 	// synthetic examples
 	// these might overconstrain the filename detection heuristic, if there cannot be found any real-world
