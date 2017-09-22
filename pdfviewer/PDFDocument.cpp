@@ -2372,6 +2372,7 @@ void PDFDocument::setupToolBar(){
     toolBar->addAction(actionFit_to_Text_Width);
     toolBar->addAction(actionFit_to_Window);
     toolBar->addSeparator();
+	toolBar->addAction(actionAutoHideToolbars);
     toolBar->addAction(actionEnlargeViewer);
     toolBar->addAction(actionShrinkViewer);
     toolBar->addAction(actionToggleEmbedded);
@@ -2460,6 +2461,9 @@ void PDFDocument::setupMenus(bool embedded)
     actionEnlargeViewer=configManager->newManagedAction(menuroot,menuView, "enlarge", tr("Enlarge Viewer"), this, SLOT(enlarge()), QList<QKeySequence>(),"enlarge-viewer");
     actionShrinkViewer=configManager->newManagedAction(menuroot,menuView, "shrink", tr("Shrink Viewer"), this, SLOT(shrink()), QList<QKeySequence>(),"shrink-viewer");
     actionToggleEmbedded=configManager->newManagedAction(menuroot,menuView, "toggle", tr("Windowed/Embedded"), this, SLOT(toggleEmbedded()), QList<QKeySequence>());
+	actionAutoHideToolbars=configManager->newManagedAction(menuroot,menuView, "autoHideToolbar", tr("Auto-hide Toolbar"), this, SLOT(toggleAutoHideToolbars()), QList<QKeySequence>(),"hide-toolbars");
+	actionAutoHideToolbars->setCheckable(true);
+	actionAutoHideToolbars->setChecked(globalConfig->autoHideToolbars);
 
     /*actionGrid11=configManager->newManagedAction(menuroot,menuGrid, "grid11", tr("1x1"), this, SLOT(setGrid()), QList<QKeySequence>());
     actionGrid11->setProperty("grid","1x1");
@@ -2590,6 +2594,7 @@ void PDFDocument::init(bool embedded)
 		actionShrinkViewer->setVisible(false);
 	} else {
 		actionClose->setVisible(false);
+		actionAutoHideToolbars->setVisible(false);
 		actionEnlargeViewer->setVisible(false);
 		actionShrinkViewer->setVisible(false);
 	}
@@ -2613,7 +2618,7 @@ void PDFDocument::init(bool embedded)
 	toolBar->setIconSize(QSize(sz, sz));
 	QWidget *spacer = new QWidget(toolBar);
 	spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	toolBar->insertWidget(actionEnlargeViewer, spacer);
+	toolBar->insertWidget(actionAutoHideToolbars, spacer);
 	addAction(toolBar->toggleViewAction());
 
 	leCurrentPage = new QLineEdit(toolBar);
@@ -3188,6 +3193,14 @@ void PDFDocument::toggleEmbedded()
 		emit runCommand("txs:///view-pdf-internal --windowed --close-embedded", masterFile, lastSyncSourceFile, lastSyncLineNumber);
 	else
 		emit runCommand("txs:///view-pdf-internal --embedded --close-windowed", masterFile, lastSyncSourceFile, lastSyncLineNumber);
+}
+
+void PDFDocument::toggleAutoHideToolbars()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	if (act) {
+		globalConfig->autoHideToolbars = act->isChecked();
+	}
 }
 
 void PDFDocument::runQuickBuild()
@@ -4184,6 +4197,7 @@ void PDFDocument::printPDF()
 void PDFDocument::setAutoHideToolbars(bool enabled)
 {
 	setToolbarsVisible(!enabled);
+	actionAutoHideToolbars->setChecked(enabled);
 	// since we want to have the MouseMoveEvent down at the pdfWidget (internally e.g. for magnifier) up to
 	// the window (for toolbar hiding) all widgets in between seem to need MouseTracking enabled. Otherwise
 	// they will swallow the move event.

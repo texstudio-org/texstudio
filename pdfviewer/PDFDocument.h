@@ -446,6 +446,7 @@ private slots:
 	void runExternalViewer();
 	void runInternalViewer();
 	void toggleEmbedded();
+	void toggleAutoHideToolbars();
 	void runQuickBuild();
 
 	void setGrid();
@@ -600,6 +601,7 @@ private:
     QAction *actionToggleEmbedded;
     QAction *actionEnlargeViewer;
     QAction *actionShrinkViewer;
+	QAction *actionAutoHideToolbars;
     QAction *actionInvertColors;
     QAction *actionFocus_Editor;
     QAction *actionFit_to_Text_Width;
