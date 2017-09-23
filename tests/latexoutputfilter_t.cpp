@@ -142,6 +142,12 @@ void LatexOutputFilterTest::run_data() {
 				)
 			<< short(LatexOutputFilter::Start)
 			<< QString("./Tex_settings/LaTeXPackages.tex");
+	QTest::newRow("other brace")
+			<< (QStringList()
+				<< "Defining command \test with sig. 'r()' on line 3"
+				)
+			<< short(LatexOutputFilter::Start)
+			<< QString("");
 	QTest::newRow("multiple closing with open")
 			<< (QStringList()
 				<< "(d:/dummy.tex"
