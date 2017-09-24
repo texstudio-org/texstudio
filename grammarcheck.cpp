@@ -1015,6 +1015,12 @@ void GrammarCheckLanguageToolJSON::finished(QNetworkReply *nreply)
 
     QByteArray reply = nreply->readAll();
 
+    if( status== 400 && reply.startsWith("Error:")){
+        // LT announces error in set-up, probably with the language code
+        // put error message into status symbol
+        emit errorMessage(QString(reply));
+    }
+
     if (status == 500 && reply.contains("language code") && reply.contains("IllegalArgumentException")) {
         QString lang = nreply->request().attribute(AttributeLanguage).toString();
         if (lang.contains('-')) {
