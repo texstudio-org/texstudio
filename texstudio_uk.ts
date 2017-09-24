@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -619,9 +617,9 @@ Please change your configuration and define command lists only at &apos;Options 
         <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished">Очікувалося, що команда %1 буде однопараметричною. Проте в даний час вона визначено командним ланцюжком, що містить %2 команд. Це виходить за рамки специфікації і може призвести до несподіваних побічних ефектів.
+        <translation>Очікувалося, що команда %1 буде однопараметричною. Проте наразі вона визначена командним ланцюжком, що містить %2 команд. Це виходить за рамки специфікації і може призвести до несподіваних побічних ефектів.
 
-Будь ласка, змініть свою конфігурацію і визначте списки команд тільки у Параметри -&gt; Збирання, а не у Параметри -&gt; Команди.</translation>
+Будь ласка, змініть свою конфігурацію і визначте списки команд тільки у Параметри -&gt; Конфігурація TexStudio -&gt; Збирання, а не у Параметри -&gt; Конфігурація TexStudio -&gt; Команди.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1017"/>
@@ -912,7 +910,7 @@ Please change your configuration and define command lists only at Options -&gt; 
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Визначає тип одержуваних сповіщень про оновлення:
  — Стабільні версії: виберіть цей тип, якщо стабільність найважливіша для вас.
@@ -1132,7 +1130,7 @@ Linux, OS X:
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1802,7 +1800,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2400"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"></translation>
+        <translation>Дозволити перетягування</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2437"/>
@@ -2524,7 +2522,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="4152"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Коло без тіні</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4131"/>
@@ -2600,8 +2598,8 @@ them here.</source>
         <location filename="configdialog.ui" line="4269"/>
         <location filename="configdialog.ui" line="4324"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Обробник вимальовування зображення, що використовується PDF-бібліотекою poppler.
 &apos;Splash&apos; використовується типово і підходить в більшості випадків.
@@ -2646,12 +2644,12 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4379"/>
         <source>Paper Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Колір паперу</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4389"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Усталений колір тла. Вказується як шістнадцяткове значення RGB. Примітка: це діятим лише на файли PDF, завантажені після зміни цього параметра. Колір паперу вже відкритого файла  PDF не зміниться.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4441"/>
@@ -3905,7 +3903,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="editors.cpp" line="401"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Закрити решту документів</translation>
     </message>
 </context>
 <context>
@@ -4267,7 +4265,7 @@ Are you sure you want to undo all changes?</source>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Пріоритет розташування малюнка:
@@ -4378,7 +4376,7 @@ The wizard does not support command </source>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1668"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4566,7 +4564,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2374"/>
         <location filename="latexeditorview.cpp" line="2446"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Назва файлу: %1&lt;/b&gt;
 </translation>
@@ -4574,11 +4572,7 @@ The wizard does not support command </source>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2387"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилання на цю мітку</numerusform>
-            <numerusform>%n посилань на цю мітку</numerusform>
-        </translation>
+        <translation><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилання на цю мітку</numerusform><numerusform>%n посилань на цю мітку</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2392"/>
@@ -5672,7 +5666,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"></translation>
+        <translation>Синхронізуйте редактор при переході до результатів пошуку.</translation>
     </message>
 </context>
 <context>
@@ -5771,7 +5765,7 @@ You can now enter the password:</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Відкриття зовнішніх файлів наразі підтримується лише для PDF.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -6210,7 +6204,7 @@ failed.</source>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Оригінальний файл на диску був знищений під час збереження.
 Ви можете знайти копію у
@@ -8067,45 +8061,26 @@ Do you trust this script?</source>
     </message>
 </context>
 <context>
-    <name>SymbolGridWidget</name>
-    <message>
-        <source>Command: </source>
-        <translation type="vanished">Команда: </translation>
-    </message>
-    <message>
-        <source>Package: </source>
-        <translation type="vanished">Пакет: </translation>
-    </message>
-    <message>
-        <source>Packages: </source>
-        <translation type="vanished">Пакети: </translation>
-    </message>
-    <message>
-        <source>Unicode Character: </source>
-        <translation type="vanished">Символ Юнікоду:</translation>
-    </message>
-</context>
-<context>
     <name>SymbolListModel</name>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="267"/>
         <source>Command: </source>
-        <translation type="unfinished">Команда: </translation>
+        <translation>Команда: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="280"/>
         <source>Package: </source>
-        <translation type="unfinished">Пакет: </translation>
+        <translation>Пакет: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="282"/>
         <source>Packages: </source>
-        <translation type="unfinished">Пакети: </translation>
+        <translation>Пакети: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="293"/>
         <source>Unicode Character: </source>
-        <translation type="unfinished">Символ Юнікоду:</translation>
+        <translation>Символ Юнікоду:</translation>
     </message>
 </context>
 <context>
@@ -8113,12 +8088,12 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="38"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Вилучити з обраного</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="42"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Додати до обраного</translation>
     </message>
 </context>
 <context>
@@ -8127,86 +8102,86 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Оператори</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Відношення</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Стрілки</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
         <source>Delimiters</source>
         <comment>Operator category</comment>
-        <translation type="unfinished">Розділювачі</translation>
+        <translation>Розділювачі</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Грецькі букви</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Кирилиця</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Різна матем.</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Різний текст</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="39"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>wasysym</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Спеціальне</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="75"/>
         <source>Favorites</source>
-        <translation type="unfinished">Обрані</translation>
+        <translation>Обрані</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="95"/>
         <source>Most Used</source>
-        <translation type="unfinished">Найвживаніші</translation>
+        <translation>Найвживаніші</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="116"/>
         <source>Search</source>
-        <translation type="unfinished">Пошук</translation>
+        <translation>Пошук</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Категорія</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
         <source>All</source>
-        <translation type="unfinished">Усі</translation>
+        <translation>Усі</translation>
     </message>
 </context>
 <context>
@@ -8219,7 +8194,7 @@ Do you trust this script?</source>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"></translation>
+        <translation>нерозпізнане середовище</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>
@@ -8890,58 +8865,10 @@ failed.</source>
         <translation>Закладки</translation>
     </message>
     <message>
-        <source>Operator symbols</source>
-        <translation type="vanished">Оператори</translation>
-    </message>
-    <message>
-        <source>Relation symbols</source>
-        <translation type="vanished">Відношення</translation>
-    </message>
-    <message>
-        <source>Arrow symbols</source>
-        <translation type="vanished">Стрілки</translation>
-    </message>
-    <message>
-        <source>Delimiters</source>
-        <translation type="vanished">Розділювачі</translation>
-    </message>
-    <message>
-        <source>Greek letters</source>
-        <translation type="vanished">Грецькі літери</translation>
-    </message>
-    <message>
-        <source>Cyrillic letters</source>
-        <translation type="vanished">Символи кирилиці</translation>
-    </message>
-    <message>
-        <source>Miscellaneous math symbols</source>
-        <translation type="vanished">Інші математичні символи</translation>
-    </message>
-    <message>
-        <source>Miscellaneous text symbols</source>
-        <translation type="vanished">Різноманітний текст</translation>
-    </message>
-    <message>
-        <source>Miscellaneous text symbols (wasysym)</source>
-        <translation type="vanished">Різноманітний текст (wasysym)</translation>
-    </message>
-    <message>
-        <source>Accented letters</source>
-        <translation type="vanished">Акцентовані літери</translation>
-    </message>
-    <message>
-        <source>Most used symbols</source>
-        <translation type="vanished">Найуживаніші символи</translation>
-    </message>
-    <message>
-        <source>Favorites</source>
-        <translation type="vanished">Обрані</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="595"/>
         <location filename="texstudio.cpp" line="596"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Символи</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="598"/>
@@ -9958,12 +9885,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1036"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставити програму як коментар TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1037"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставити засіб бібліографії як коментар TeX</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1039"/>
@@ -10680,7 +10607,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5700"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Не вдається виявити назву файлу.
  Ви повинні зберегти документ, перш ніж його компілювати.</translation>
@@ -10907,26 +10834,6 @@ Do you want to allow and run the new, overriding command?
         <location filename="texstudio.cpp" line="7935"/>
         <source>Create Label</source>
         <translation>Нова мітка</translation>
-    </message>
-    <message>
-        <source>Add to favorites</source>
-        <translation type="vanished">Додати до обраного</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="vanished">Видалити</translation>
-    </message>
-    <message>
-        <source>Remove all</source>
-        <translation type="vanished">Видалити усе</translation>
-    </message>
-    <message>
-        <source>Remove from favorites</source>
-        <translation type="vanished">Видалити з обраного</translation>
-    </message>
-    <message>
-        <source>Remove all favorites</source>
-        <translation type="vanished">Видалити усе з обраного</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8728"/>

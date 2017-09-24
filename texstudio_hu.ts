@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="hu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -621,9 +619,9 @@ Please change your configuration and define command lists only at &apos;Options 
         <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished">A(z) %1 parancs atomi kellene legyen. Viszont jelenleg egy %2 parancsból álló láncként van megadva. Ez nincs a specifikációban, és meglepő mellékhatásai lehetnek.
+        <translation>A(z) %1 parancs atomi kellene legyen. Viszont jelenleg egy %2 parancsból álló láncként van megadva. Ez nincs a specifikációban, és meglepő mellékhatásai lehetnek.
 
-Módosítsa a beállításait és csak a Beállítások -&gt; Fordítás lapon definiálja a parancslistákat, ne a Beállítás -&gt; Parancsok alatt.</translation>
+Módosítsa a beállításait és csak a „Beállítások -&gt; TeXstudio beállításai -&gt; Fordítás” lapon definiálja a parancslistákat, ne a „Beállítások -&gt; TeXstudio beállításai -&gt; Parancsok” alatt.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1017"/>
@@ -914,7 +912,7 @@ Módosítsa a beállításait és csak a Beállítások -&gt; Fordítás lapon d
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Meghatározza, hogy milyen frissítési értesítéseket fog kapni:
 – Stabil kiadások: válassza ezt, ha a stabilitás a legfontosabb.
@@ -1133,7 +1131,7 @@ A változókat $MYVAR-ként kell megadni. Kis-nagybetű érzékeny.
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1803,7 +1801,7 @@ le kell renderelnie a karaktereket. Mivel a LaTeX nem támogatja natívan az uni
     <message>
         <location filename="configdialog.ui" line="2400"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"></translation>
+        <translation>Fogd és vidd engedélyezése</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2437"/>
@@ -2521,7 +2519,7 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
     <message>
         <location filename="configdialog.ui" line="4152"/>
         <source>Circle without shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Kör, árnyék nélkül</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4131"/>
@@ -2597,8 +2595,8 @@ További csomagok keresése általában nem szükséges, bár ha felismerésük 
         <location filename="configdialog.ui" line="4269"/>
         <location filename="configdialog.ui" line="4324"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>A poppler PDF-könyvtár által használt renderelési háttérrendszer:
 A „Splash” az alapértelmezett, és a megfelelő a legtöbb helyzetben.
@@ -2643,12 +2641,12 @@ Megjegyzés: a beállítás módosítása csak a jövőben megnyitott dokumentum
     <message>
         <location filename="configdialog.ui" line="4379"/>
         <source>Paper Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4389"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="configdialog.ui" line="4441"/>
@@ -3897,7 +3895,7 @@ Szeretné azokat eltávolítani?</translation>
     <message>
         <location filename="editors.cpp" line="401"/>
         <source>Close All Other Documents</source>
-        <translation type="unfinished"></translation>
+        <translation>Összes többi dokumentum bezárása</translation>
     </message>
 </context>
 <context>
@@ -4259,7 +4257,7 @@ Biztos benne, hogy visszavon minden változást?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Paraméterek az ábrák elhelyezésére
@@ -4369,7 +4367,7 @@ A varázsló nem támogatja a parancsot</translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1668"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
@@ -4557,7 +4555,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message>
         <location filename="latexeditorview.cpp" line="2374"/>
         <location filename="latexeditorview.cpp" line="2446"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Fájlnév: %1&lt;/b&gt;
 </translation>
@@ -4565,9 +4563,7 @@ A varázsló nem támogatja a parancsot</translation>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2387"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n hivatkozás ehhez a címkéhez</numerusform>
-        </translation>
+        <translation><numerusform>%n hivatkozás ehhez a címkéhez</numerusform><numerusform>%n hivatkozás ehhez a címkéhez</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2392"/>
@@ -5660,7 +5656,7 @@ Most megadhatja a jelszót:</translation>
     <message>
         <location filename="pdfviewer/PDFDocks.cpp" line="608"/>
         <source>Synchronize editor when jumping to search results.</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerkesztő szinkronizálása a keresési találatokra ugráskor.</translation>
     </message>
 </context>
 <context>
@@ -5759,7 +5755,7 @@ Most megadhatja a jelszót:</translation>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1064"/>
         <source>Opening external files is currently only supported for PDFs.</source>
-        <translation type="unfinished"></translation>
+        <translation>A külső fájlok megnyitása jelenleg csak PDF-ek esetén támogatott.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="1083"/>
@@ -6191,7 +6187,7 @@ sikertelen.</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Az eredeti fájl a lemezen megsemmisült a mentés művelet során.
 Itt talál egy másolatot:
@@ -8049,45 +8045,26 @@ Megbízik a parancsfájlban?</translation>
     </message>
 </context>
 <context>
-    <name>SymbolGridWidget</name>
-    <message>
-        <source>Command: </source>
-        <translation type="vanished">Parancs: </translation>
-    </message>
-    <message>
-        <source>Package: </source>
-        <translation type="vanished">Csomag: </translation>
-    </message>
-    <message>
-        <source>Packages: </source>
-        <translation type="vanished">Csomagok: </translation>
-    </message>
-    <message>
-        <source>Unicode Character: </source>
-        <translation type="vanished">Unicode karakter:</translation>
-    </message>
-</context>
-<context>
     <name>SymbolListModel</name>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="267"/>
         <source>Command: </source>
-        <translation type="unfinished">Parancs: </translation>
+        <translation>Parancs: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="280"/>
         <source>Package: </source>
-        <translation type="unfinished">Csomag: </translation>
+        <translation>Csomag: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="282"/>
         <source>Packages: </source>
-        <translation type="unfinished">Csomagok: </translation>
+        <translation>Csomagok: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="293"/>
         <source>Unicode Character: </source>
-        <translation type="unfinished">Unicode karakter:</translation>
+        <translation>Unicode karakter:</translation>
     </message>
 </context>
 <context>
@@ -8095,12 +8072,12 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="38"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="42"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -8109,86 +8086,86 @@ Megbízik a parancsfájlban?</translation>
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
         <source>Delimiters</source>
         <comment>Operator category</comment>
-        <translation type="unfinished">Elválasztók</translation>
+        <translation>Elválasztók</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="39"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="75"/>
         <source>Favorites</source>
-        <translation type="unfinished">Kedvencek</translation>
+        <translation>Kedvencek</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="95"/>
         <source>Most Used</source>
-        <translation type="unfinished">Leggyakrabban használt</translation>
+        <translation>Leggyakrabban használt</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="116"/>
         <source>Search</source>
-        <translation type="unfinished">Keresés</translation>
+        <translation>Keresés</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
         <source>All</source>
-        <translation type="unfinished">Mind</translation>
+        <translation>Mind</translation>
     </message>
 </context>
 <context>
@@ -8201,7 +8178,7 @@ Megbízik a parancsfájlban?</translation>
     <message>
         <location filename="syntaxcheck.cpp" line="494"/>
         <source>unrecognized environment</source>
-        <translation type="unfinished"></translation>
+        <translation>ismeretlen környezet</translation>
     </message>
     <message>
         <location filename="syntaxcheck.cpp" line="495"/>
@@ -8872,58 +8849,10 @@ fájlt nem lehet eltávolítani.</translation>
         <translation>Könyvjelzők</translation>
     </message>
     <message>
-        <source>Operator symbols</source>
-        <translation type="vanished">Operátor szimbólumok</translation>
-    </message>
-    <message>
-        <source>Relation symbols</source>
-        <translation type="vanished">Relációs szimbólumok</translation>
-    </message>
-    <message>
-        <source>Arrow symbols</source>
-        <translation type="vanished">Nyílszimbólumok</translation>
-    </message>
-    <message>
-        <source>Delimiters</source>
-        <translation type="vanished">Elválasztók</translation>
-    </message>
-    <message>
-        <source>Greek letters</source>
-        <translation type="vanished">Görög betűk</translation>
-    </message>
-    <message>
-        <source>Cyrillic letters</source>
-        <translation type="vanished">Cirill betűk</translation>
-    </message>
-    <message>
-        <source>Miscellaneous math symbols</source>
-        <translation type="vanished">Vegyes matematikai szimbólumok</translation>
-    </message>
-    <message>
-        <source>Miscellaneous text symbols</source>
-        <translation type="vanished">Vegyes szövegszimbólumok</translation>
-    </message>
-    <message>
-        <source>Miscellaneous text symbols (wasysym)</source>
-        <translation type="vanished">Vegyes szövegszimbólumok (wasysym)</translation>
-    </message>
-    <message>
-        <source>Accented letters</source>
-        <translation type="vanished">Ékezetes betűk</translation>
-    </message>
-    <message>
-        <source>Most used symbols</source>
-        <translation type="vanished">Legtöbbet használt szimbólumok</translation>
-    </message>
-    <message>
-        <source>Favorites</source>
-        <translation type="vanished">Kedvencek</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="595"/>
         <location filename="texstudio.cpp" line="596"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="texstudio.cpp" line="598"/>
@@ -9940,12 +9869,12 @@ fájlt nem lehet eltávolítani.</translation>
     <message>
         <location filename="texstudio.cpp" line="1036"/>
         <source>Insert program as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Program beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1037"/>
         <source>Insert bibliography tool as TeX comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibliográfiai eszköz beszúrása TeX megjegyzésként</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1039"/>
@@ -10661,7 +10590,7 @@ El kellene menteni, vagy be kellene zárni a másik fájlt.
     </message>
     <message>
         <location filename="texstudio.cpp" line="5700"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>A fájlnév nem állapítható meg.
 El kell mentenie a dokumentumot fordítás előtt.</translation>
@@ -10889,26 +10818,6 @@ Beleegyezik a cserébe?
         <location filename="texstudio.cpp" line="7935"/>
         <source>Create Label</source>
         <translation>Címke készítése</translation>
-    </message>
-    <message>
-        <source>Add to favorites</source>
-        <translation type="vanished">Kedvencekhez</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="vanished">Eltávolítás</translation>
-    </message>
-    <message>
-        <source>Remove all</source>
-        <translation type="vanished">Összes eltávolítása</translation>
-    </message>
-    <message>
-        <source>Remove from favorites</source>
-        <translation type="vanished">Eltávolítás a kedvencek közül</translation>
-    </message>
-    <message>
-        <source>Remove all favorites</source>
-        <translation type="vanished">Az összes kedvenc eltávolítása</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8728"/>

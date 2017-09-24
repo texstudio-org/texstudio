@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -611,7 +609,9 @@ Please change your configuration and define command lists only at &apos;Options 
         <oldsource>The command %1 is expected to be atomic. However, it is currently defined as a command-chain containing %2 commands. This is beyond the specification and may lead to surprising side-effects.
 
 Please change your configuration and define command lists only at Options -&gt; Build not at Options -&gt; Commands.</oldsource>
-        <translation type="unfinished">Der Befehl %1 sollte ein Basisbefehl sein. Allerdings ist es momentan als Kette von %2 Befehlen definiert. Dies liegt außerhalb der Spezifikation und kann zu unerwarteten Nebeneffekten führen.</translation>
+        <translation>Der Befehl %1 sollte ein Basisbefehl sein. Allerdings ist es momentan als Kette von %2 Befehlen definiert. Dies liegt außerhalb der Spezifikation und kann zu unerwarteten Nebeneffekten führen.
+
+Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;Optionen-&gt;TeXstudio konfigurieren-&gt;Erzeugen&apos;, nicht in &apos;Optionen-&gt;TeXstudio konfigurieren-&gt;Befehle&apos;.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="1017"/>
@@ -902,7 +902,7 @@ Please change your configuration and define command lists only at Options -&gt; 
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Definiert die Art der Aktualisierungbenachrichtung:
 - Stabile Versionen: Wähle diese, wenn Stabilität das wichtigste ist.
@@ -1120,7 +1120,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1789,7 +1789,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="2400"/>
         <source>Allow Drag and Drop</source>
-        <translation type="unfinished"></translation>
+        <translation>Erlaube &quot;Drag and Drop&quot;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2437"/>
@@ -2588,8 +2588,8 @@ hier erzwungen werden.</translation>
         <location filename="configdialog.ui" line="4269"/>
         <location filename="configdialog.ui" line="4324"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Die Zeichenmethode, die von der PDF-Bibliothek poppler verwendet wird.
 &apos;Splash&apos; ist der Standard und üblicherweise ausreichend.
@@ -2634,12 +2634,12 @@ Achtung: Eine Änderung dieser Einstellung macht sich erst bei Dokumenten bemerk
     <message>
         <location filename="configdialog.ui" line="4379"/>
         <source>Paper Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Papierfarbe</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4389"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard Hintergrundfarbe. Als hexadezimalen RGB-Wert angeben. Hinweis: Dies wirkt sich nur auf PDFs aus, die nach der Änderung geladen werden. Die Hintergrundfarbe von bereits geladenen PDFs wird nicht verändert.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4441"/>
@@ -4250,7 +4250,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Platzierungsvorgaben für das Bild
@@ -4361,7 +4361,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1668"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
@@ -4548,17 +4548,14 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="latexeditorview.cpp" line="2374"/>
         <location filename="latexeditorview.cpp" line="2446"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2387"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n Referenz zu diesem Label</numerusform>
-            <numerusform>%n Referenzen zu diesem Label</numerusform>
-        </translation>
+        <translation><numerusform>%n Referenz zu diesem Label</numerusform><numerusform>%n Referenzen zu diesem Label</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2392"/>
@@ -6188,7 +6185,7 @@ fehlgeschlagen.</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Die Originaldatei wurde beim Speichern vernichtet.
 Eine Kopie findet sich unter
@@ -8043,45 +8040,26 @@ Vertrauen Sie diesem Skript?</translation>
     </message>
 </context>
 <context>
-    <name>SymbolGridWidget</name>
-    <message>
-        <source>Command: </source>
-        <translation type="vanished">Befehl: </translation>
-    </message>
-    <message>
-        <source>Package: </source>
-        <translation type="vanished">Paket: </translation>
-    </message>
-    <message>
-        <source>Packages: </source>
-        <translation type="vanished">Pakete: </translation>
-    </message>
-    <message>
-        <source>Unicode Character: </source>
-        <translation type="vanished">Unicode-Zeichen: </translation>
-    </message>
-</context>
-<context>
     <name>SymbolListModel</name>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="267"/>
         <source>Command: </source>
-        <translation type="unfinished">Befehl: </translation>
+        <translation>Befehl: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="280"/>
         <source>Package: </source>
-        <translation type="unfinished">Paket: </translation>
+        <translation>Paket: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="282"/>
         <source>Packages: </source>
-        <translation type="unfinished">Pakete: </translation>
+        <translation>Pakete: </translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="293"/>
         <source>Unicode Character: </source>
-        <translation type="unfinished">Unicode-Zeichen: </translation>
+        <translation>Unicode-Zeichen: </translation>
     </message>
 </context>
 <context>
@@ -8089,12 +8067,12 @@ Vertrauen Sie diesem Skript?</translation>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="38"/>
         <source>Remove from Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Entferne aus den Favoriten</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistview.cpp" line="42"/>
         <source>Add to Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu Favoriten hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -8103,86 +8081,86 @@ Vertrauen Sie diesem Skript?</translation>
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Operatoren</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Relationen</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
         <source>Arrows</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pfeile</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="34"/>
         <source>Delimiters</source>
         <comment>Operator category</comment>
-        <translation type="unfinished">Klammern</translation>
+        <translation>Klammern</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Griechisch</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
         <source>Cyrillic</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kyrillisch</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="37"/>
         <source>Misc. Math</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Versch. Math.</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="38"/>
         <source>Misc. Text</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Versch. Text</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="39"/>
         <source>wasysym</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>wasysym</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="40"/>
         <source>Special</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Speziell</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="75"/>
         <source>Favorites</source>
-        <translation type="unfinished">Favoriten</translation>
+        <translation>Favoriten</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="95"/>
         <source>Most Used</source>
-        <translation type="unfinished">Meist genutzt</translation>
+        <translation>Meist genutzt</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="116"/>
         <source>Search</source>
-        <translation type="unfinished">Suche</translation>
+        <translation>Suche</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="120"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="131"/>
         <source>All</source>
-        <translation type="unfinished">Alle</translation>
+        <translation>Alle</translation>
     </message>
 </context>
 <context>
@@ -8861,58 +8839,10 @@ failed.</source>
         <translation>Lesezeichen</translation>
     </message>
     <message>
-        <source>Operator symbols</source>
-        <translation type="vanished">Operatoren</translation>
-    </message>
-    <message>
-        <source>Relation symbols</source>
-        <translation type="vanished">Relationen</translation>
-    </message>
-    <message>
-        <source>Arrow symbols</source>
-        <translation type="vanished">Pfeile</translation>
-    </message>
-    <message>
-        <source>Delimiters</source>
-        <translation type="vanished">Klammern</translation>
-    </message>
-    <message>
-        <source>Greek letters</source>
-        <translation type="vanished">Griechische Buchstaben</translation>
-    </message>
-    <message>
-        <source>Cyrillic letters</source>
-        <translation type="vanished">Kyrillische Buchstaben</translation>
-    </message>
-    <message>
-        <source>Miscellaneous math symbols</source>
-        <translation type="vanished">Verschiedene Mathesymbole</translation>
-    </message>
-    <message>
-        <source>Miscellaneous text symbols</source>
-        <translation type="vanished">Verschiedene Textsymbole</translation>
-    </message>
-    <message>
-        <source>Miscellaneous text symbols (wasysym)</source>
-        <translation type="vanished">Verschiedene Textsymbole (wasysym)</translation>
-    </message>
-    <message>
-        <source>Accented letters</source>
-        <translation type="vanished">Buchstaben mit Akzenten</translation>
-    </message>
-    <message>
-        <source>Most used symbols</source>
-        <translation type="vanished">Häufige Symbole</translation>
-    </message>
-    <message>
-        <source>Favorites</source>
-        <translation type="vanished">Favoriten</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="595"/>
         <location filename="texstudio.cpp" line="596"/>
         <source>Symbols</source>
-        <translation type="unfinished"></translation>
+        <translation>Symbole</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="598"/>
@@ -10645,7 +10575,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5700"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
 Sie müssen ein neu erstelltes Dokument abspeichern, bevor Sie es erzeugen können.</translation>
@@ -10875,26 +10805,6 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <location filename="texstudio.cpp" line="7935"/>
         <source>Create Label</source>
         <translation>Generiere Label</translation>
-    </message>
-    <message>
-        <source>Add to favorites</source>
-        <translation type="vanished">Zu Favoriten hinzufügen</translation>
-    </message>
-    <message>
-        <source>Remove</source>
-        <translation type="vanished">Entferne</translation>
-    </message>
-    <message>
-        <source>Remove all</source>
-        <translation type="vanished">Entferne alle</translation>
-    </message>
-    <message>
-        <source>Remove from favorites</source>
-        <translation type="vanished">Entferne aus den Favoriten</translation>
-    </message>
-    <message>
-        <source>Remove all favorites</source>
-        <translation type="vanished">Entferne alle Favoriten</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8728"/>
