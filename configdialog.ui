@@ -1138,6 +1138,13 @@ Then you can select a new shortcut by one of the following ways:
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="checkBoxCloseEmbeddedViewerByEsc">
+            <property name="text">
+             <string>Close Embedded Viewer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QCheckBox" name="checkBoxCloseFullscreenByEsc">
             <property name="text">
              <string>Close Full Screen Mode</string>
@@ -4653,12 +4660,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>283</y>
+     <x>248</x>
+     <y>29</y>
     </hint>
     <hint type="destinationlabel">
-     <x>525</x>
-     <y>283</y>
+     <x>266</x>
+     <y>39</y>
     </hint>
    </hints>
   </connection>
@@ -4669,12 +4676,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>283</y>
+     <x>248</x>
+     <y>29</y>
     </hint>
     <hint type="destinationlabel">
-     <x>749</x>
-     <y>283</y>
+     <x>282</x>
+     <y>39</y>
     </hint>
    </hints>
   </connection>
@@ -4685,12 +4692,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>283</y>
+     <x>248</x>
+     <y>29</y>
     </hint>
     <hint type="destinationlabel">
-     <x>862</x>
-     <y>283</y>
+     <x>290</x>
+     <y>39</y>
     </hint>
    </hints>
   </connection>
@@ -4701,12 +4708,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>283</y>
+     <x>248</x>
+     <y>29</y>
     </hint>
     <hint type="destinationlabel">
-     <x>974</x>
-     <y>283</y>
+     <x>298</x>
+     <y>39</y>
     </hint>
    </hints>
   </connection>
@@ -4717,11 +4724,11 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1070</x>
+     <x>872</x>
      <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1069</x>
+     <x>871</x>
      <y>1357</y>
     </hint>
    </hints>
@@ -4733,11 +4740,11 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1070</x>
+     <x>872</x>
      <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1069</x>
+     <x>871</x>
      <y>1334</y>
     </hint>
    </hints>
@@ -4749,11 +4756,11 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1070</x>
+     <x>872</x>
      <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1069</x>
+     <x>871</x>
      <y>1380</y>
     </hint>
    </hints>
@@ -4765,11 +4772,11 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1070</x>
+     <x>872</x>
      <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1069</x>
+     <x>871</x>
      <y>1429</y>
     </hint>
    </hints>
@@ -4781,12 +4788,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>283</y>
+     <x>248</x>
+     <y>29</y>
     </hint>
     <hint type="destinationlabel">
-     <x>637</x>
-     <y>283</y>
+     <x>274</x>
+     <y>39</y>
     </hint>
    </hints>
   </connection>
@@ -4813,7 +4820,7 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1070</x>
+     <x>872</x>
      <y>1310</y>
     </hint>
     <hint type="destinationlabel">
@@ -4829,7 +4836,7 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>892</x>
+     <x>872</x>
      <y>1310</y>
     </hint>
     <hint type="destinationlabel">

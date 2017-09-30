@@ -6913,6 +6913,7 @@ void Texstudio::viewCloseElement()
 	}
 
 #ifndef NO_POPPLER_PREVIEW
+	// close element in focussed viewer
 	QWidget *w = QApplication::focusWidget();
 	while (w && !qobject_cast<PDFDocument *>(w))
 		w = w->parentWidget();
@@ -6943,11 +6944,14 @@ void Texstudio::viewCloseElement()
 		return;
 	}
 #ifndef NO_POPPLER_PREVIEW
-	foreach (PDFDocument *doc, PDFDocument::documentList())
-		if (doc->embeddedMode) {
-			doc->close();
-			return;
+	if (configManager.useEscForClosingEmbeddedViewer) {
+		foreach (PDFDocument *doc, PDFDocument::documentList()) {
+			if (doc->embeddedMode) {
+				doc->close();
+				return;
+			}
 		}
+	}
 #endif
 	if (windowState() == Qt::WindowFullScreen && configManager.useEscForClosingFullscreen) {
 		stateFullScreen = saveState(1);
@@ -6956,6 +6960,8 @@ void Texstudio::viewCloseElement()
 		fullscreenModeAction->setChecked(false);
 		return;
 	}
+
+	// easter egg
 	QTime ct = QTime::currentTime();
 	if (ct.second() % 5 != 0) return;
 	for (int i = 2; i < 63; i++) if (ct.minute() != i && ct.minute() % i  == 0) return;
