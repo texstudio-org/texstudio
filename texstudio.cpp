@@ -6900,16 +6900,17 @@ void Texstudio::viewCloseElement()
 		fileSelector.data()->deleteLater();
 		return;
 	}
-	if (buildManager.stopBuildAction()->isEnabled()) {
-		buildManager.stopBuildAction()->trigger();
-		return;
-	}
 	if (unicodeInsertionDialog) {
 		unicodeInsertionDialog->close();
 		return;
 	}
-	if (completer && completer->isVisible() && completer->close())
+	if (completer && completer->isVisible() && completer->close()) {
 		return;
+	}
+	if (buildManager.stopBuildAction()->isEnabled()) {
+		buildManager.stopBuildAction()->trigger();
+		return;
+	}
 
 #ifndef NO_POPPLER_PREVIEW
 	QWidget *w = QApplication::focusWidget();
