@@ -541,6 +541,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
 	registerOption("Editor/Line Spacing Percent", &editorConfig->lineSpacingPercent, 100, &pseudoDialog->spinBoxLineSpacingPercent);
 	registerOption("Editor/Esc for closing log", &useEscForClosingLog, false, &pseudoDialog->checkBoxCloseLogByEsc);
+	registerOption("Editor/UseEscForClosingEmbeddedViewer", &useEscForClosingEmbeddedViewer, true, &pseudoDialog->checkBoxCloseEmbeddedViewerByEsc);
 	registerOption("Editor/UseEscForClosingFullscreen", &useEscForClosingFullscreen, true, &pseudoDialog->checkBoxCloseFullscreenByEsc);
 	registerOption("Editor/ShowShortcutsInTooltips", &showShortcutsInTooltips, true, &pseudoDialog->checkBoxShowShortcutsInTooltips);
 

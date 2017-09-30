@@ -131,6 +131,7 @@ public:
 	int tabstop;
 
 	bool useEscForClosingLog;
+	bool useEscForClosingEmbeddedViewer;
 	bool useEscForClosingFullscreen;
 	bool showShortcutsInTooltips;
 	int replaceQuotes; //0: none, 1: ``..'', 2: \"< \"> 3: \"`..\"' , 4: \\og..\\fg{} 5: \"> \"<
