@@ -2505,7 +2505,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 	//QToolTip::showText(editor->mapToGlobal(pos), line);
 }
 
-bool LatexEditorView::closeSomething()
+bool LatexEditorView::closeElement()
 {
 	if (completer->close()) return true;
 	if (gotoLinePanel->isVisible()) {
@@ -2514,7 +2514,7 @@ bool LatexEditorView::closeSomething()
 		return true;
 	}
 	if (searchReplacePanel->isVisible()) {
-		searchReplacePanel->closeSomething(config->closeSearchAndReplace);
+		searchReplacePanel->closeElement(config->closeSearchAndReplace);
 		return true;
 	}
 	return false;

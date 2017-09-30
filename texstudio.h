@@ -482,7 +482,7 @@ protected slots:
 	void shrinkEmbeddedPDFViewer(bool preserveConfig = false);
 
 	void showStatusbar();
-	void viewCloseSomething();
+	void viewCloseElement();
 	void setFullScreenMode();
 	void viewSetHighlighting(QAction *act);
 	void showHighlightingMenu();

@@ -250,7 +250,7 @@ private slots:
 public slots:
 	void spellRemoveMarkers(const QString &newIgnoredWord);
 	void mouseHovered(QPoint pos);
-	bool closeSomething();
+	bool closeElement();
 	void insertHardLineBreaks(int newLength, bool smartScopeSelection, bool joinLines);
 	void viewActivated();
 	void clearOverlays();

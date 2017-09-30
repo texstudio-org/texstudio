@@ -1135,7 +1135,7 @@ void Texstudio::setupMenus()
 	newManagedAction(menu, "enlargePDF", tr("Show embedded PDF large"), SLOT(enlargeEmbeddedPDFViewer()));
 	newManagedAction(menu, "shrinkPDF", tr("Show embedded PDF small"), SLOT(shrinkEmbeddedPDFViewer()));
 
-	newManagedAction(menu, "closesomething", tr("Close Something"), SLOT(viewCloseSomething()), Qt::Key_Escape);
+	newManagedAction(menu, "closeelement", tr("Close Element"), SLOT(viewCloseElement()), Qt::Key_Escape);
 
 	menu->addSeparator();
 	submenu = newManagedMenu(menu, "collapse", tr("Collapse"));
@@ -6894,7 +6894,7 @@ void Texstudio::focusViewer()
 #endif
 }
 
-void Texstudio::viewCloseSomething()
+void Texstudio::viewCloseElement()
 {
 	if (fileSelector) {
 		fileSelector.data()->deleteLater();
@@ -6919,7 +6919,7 @@ void Texstudio::viewCloseSomething()
 	if (qobject_cast<PDFDocument *>(w)) {
 		PDFDocument *focusedPdf = qobject_cast<PDFDocument *>(w);
 		if (focusedPdf->embeddedMode) {
-			bool pdfClosed = focusedPdf->closeSomething();
+			bool pdfClosed = focusedPdf->closeElement();
 			if (pdfClosed) {
 				focusEditor();
 			} else {
@@ -6935,7 +6935,7 @@ void Texstudio::viewCloseSomething()
 		textAnalysisDlg->close();
 		return;
 	}
-	if (currentEditorView() && currentEditorView()->closeSomething())
+	if (currentEditorView() && currentEditorView()->closeElement())
 		return;
 	if (outputView->isVisible() && configManager.useEscForClosingLog) {
 		outputView->hide();

@@ -2990,7 +2990,7 @@ void QEditor::selectAllOccurences()
 	// with the search panel UI.
 	find(text, false, false, isWord && atBoundaries, true);
 	selectAllMatches();
-	relayPanelCommand("Search", "closeSomething", QList<QVariant>() << true);
+	relayPanelCommand("Search", "closeElement", QList<QVariant>() << true);
 
 	emitCursorPositionChanged();
 	viewport()->update();
