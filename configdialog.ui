@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>14</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>547</width>
+            <height>563</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -734,8 +734,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>698</width>
+            <height>549</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -905,7 +905,7 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>851</width>
+                   <width>652</width>
                    <height>76</height>
                   </rect>
                  </property>
@@ -1122,10 +1122,29 @@ Then you can select a new shortcut by one of the following ways:
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="cb_CloseLogByEsc">
-         <property name="text">
-          <string>Close Log-View with Esc-Key</string>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="toolTip">
+          <string>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</string>
          </property>
+         <property name="title">
+          <string>Close Element (Esc)</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QCheckBox" name="checkBoxCloseLogByEsc">
+            <property name="text">
+             <string>Close Log-View</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxCloseFullscreenByEsc">
+            <property name="text">
+             <string>Close Full Screen Mode</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
@@ -1891,7 +1910,7 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>665</width>
             <height>1438</height>
            </rect>
           </property>
@@ -2110,13 +2129,6 @@ Then you can select a new shortcut by one of the following ways:
                   <string>Create Dedicated Submenu</string>
                  </property>
                 </item>
-               </widget>
-              </item>
-              <item row="19" column="2">
-               <widget class="QCheckBox" name="checkBoxDisableEscForClosingfullscreen">
-                <property name="text">
-                 <string>Don't leave full screen mode when pressing &lt;Esc&gt;</string>
-                </property>
                </widget>
               </item>
               <item row="23" column="0">
@@ -3207,7 +3219,7 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>863</width>
+            <width>488</width>
             <height>678</height>
            </rect>
           </property>
@@ -3733,8 +3745,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>344</width>
+            <height>241</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -3995,8 +4007,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>880</width>
-            <height>617</height>
+            <width>490</width>
+            <height>433</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -4531,7 +4543,6 @@ Note: Changing this setting will only affect documents that are opened afterward
   <tabstop>comboBoxShowStdout</tabstop>
   <tabstop>spinBoxRerunLatex</tabstop>
   <tabstop>shortcutTree</tabstop>
-  <tabstop>cb_CloseLogByEsc</tabstop>
   <tabstop>menuTree</tabstop>
   <tabstop>checkBoxShowAllMenus</tabstop>
   <tabstop>comboBoxToolbars</tabstop>
@@ -4610,8 +4621,8 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1019</x>
-     <y>660</y>
+     <x>1024</x>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>307</x>
@@ -4642,12 +4653,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>32</y>
+     <x>403</x>
+     <y>283</y>
     </hint>
     <hint type="destinationlabel">
-     <x>267</x>
-     <y>43</y>
+     <x>525</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
@@ -4658,12 +4669,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>32</y>
+     <x>403</x>
+     <y>283</y>
     </hint>
     <hint type="destinationlabel">
-     <x>282</x>
-     <y>43</y>
+     <x>749</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
@@ -4674,12 +4685,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>32</y>
+     <x>403</x>
+     <y>283</y>
     </hint>
     <hint type="destinationlabel">
-     <x>289</x>
-     <y>43</y>
+     <x>862</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
@@ -4690,12 +4701,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>32</y>
+     <x>403</x>
+     <y>283</y>
     </hint>
     <hint type="destinationlabel">
-     <x>297</x>
-     <y>43</y>
+     <x>974</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
@@ -4706,12 +4717,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1101</x>
-     <y>1313</y>
+     <x>1070</x>
+     <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>909</x>
-     <y>1368</y>
+     <x>1069</x>
+     <y>1357</y>
     </hint>
    </hints>
   </connection>
@@ -4722,12 +4733,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1101</x>
-     <y>1313</y>
+     <x>1070</x>
+     <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>909</x>
-     <y>1341</y>
+     <x>1069</x>
+     <y>1334</y>
     </hint>
    </hints>
   </connection>
@@ -4738,12 +4749,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1101</x>
-     <y>1313</y>
+     <x>1070</x>
+     <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>909</x>
-     <y>1395</y>
+     <x>1069</x>
+     <y>1380</y>
     </hint>
    </hints>
   </connection>
@@ -4754,12 +4765,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1101</x>
-     <y>1313</y>
+     <x>1070</x>
+     <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1100</x>
-     <y>1422</y>
+     <x>1069</x>
+     <y>1429</y>
     </hint>
    </hints>
   </connection>
@@ -4770,12 +4781,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>32</y>
+     <x>403</x>
+     <y>283</y>
     </hint>
     <hint type="destinationlabel">
-     <x>274</x>
-     <y>43</y>
+     <x>637</x>
+     <y>283</y>
     </hint>
    </hints>
   </connection>
@@ -4786,12 +4797,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>438</x>
-     <y>614</y>
+     <x>384</x>
+     <y>524</y>
     </hint>
     <hint type="destinationlabel">
-     <x>522</x>
-     <y>612</y>
+     <x>456</x>
+     <y>526</y>
     </hint>
    </hints>
   </connection>
@@ -4802,12 +4813,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>889</x>
-     <y>1313</y>
+     <x>1070</x>
+     <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>341</x>
-     <y>1422</y>
+     <x>320</x>
+     <y>1429</y>
     </hint>
    </hints>
   </connection>
@@ -4818,12 +4829,12 @@ Note: Changing this setting will only affect documents that are opened afterward
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>656</x>
-     <y>1390</y>
+     <x>892</x>
+     <y>1310</y>
     </hint>
     <hint type="destinationlabel">
-     <x>347</x>
-     <y>1503</y>
+     <x>404</x>
+     <y>1403</y>
     </hint>
    </hints>
   </connection>

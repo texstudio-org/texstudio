@@ -465,7 +465,6 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	
 	registerOption("Session/StoreRelativePaths", &sessionStoreRelativePaths, true, &pseudoDialog->checkBoxSessionStoreRelativePaths);
 
-	registerOption("Editor/UseEscForClosingFullscreen", &disableEscForClosingFullscreen, false, &pseudoDialog->checkBoxDisableEscForClosingfullscreen);
 	registerOption("Editor/GoToErrorWhenDisplayingLog", &goToErrorWhenDisplayingLog , true, &pseudoDialog->checkBoxGoToErrorWhenDisplayingLog);
 	registerOption("Editor/ShowLogMarkersWhenClickingLogEntry", &showLogMarkersWhenClickingLogEntry , true, &pseudoDialog->checkBoxShowLogMarkersWhenClickingLogEntry);
 	registerOption("Editor/LogFileEncoding", &logFileEncoding, "Document", &pseudoDialog->comboBoxLogFileEncoding);
@@ -541,7 +540,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Font Family", &editorConfig->fontFamily, "", &pseudoDialog->comboBoxFont);
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
 	registerOption("Editor/Line Spacing Percent", &editorConfig->lineSpacingPercent, 100, &pseudoDialog->spinBoxLineSpacingPercent);
-	registerOption("Editor/Esc for closing log", &useEscForClosingLog, false, &pseudoDialog->cb_CloseLogByEsc);
+	registerOption("Editor/Esc for closing log", &useEscForClosingLog, false, &pseudoDialog->checkBoxCloseLogByEsc);
+	registerOption("Editor/UseEscForClosingFullscreen", &useEscForClosingFullscreen, true, &pseudoDialog->checkBoxCloseFullscreenByEsc);
 	registerOption("Editor/ShowShortcutsInTooltips", &showShortcutsInTooltips, true, &pseudoDialog->checkBoxShowShortcutsInTooltips);
 
 	registerOption("Editor/AllowDragAndDrop", &editorConfig->allowDragAndDrop, true, &pseudoDialog->checkBoxAllowDragAndDrop);
