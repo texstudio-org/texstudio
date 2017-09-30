@@ -63,7 +63,7 @@ class QCE_EXPORT QSearchReplacePanel : public QPanel //, private Ui::SearchRepla
 		
 	public slots:
 		void display(int mode, bool replace);
-		void closeSomething(bool closeTogether);
+		void closeElement(bool closeTogether);
 		
 		void findNext();
 		void findReplace(bool backward, bool replace=false, bool replaceAll=false, bool countOnly = false);

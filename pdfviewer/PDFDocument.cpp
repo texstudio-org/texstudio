@@ -2484,7 +2484,7 @@ void PDFDocument::setupMenus(bool embedded)
 	menuGrid->addSeparator();
     actionSinglePageStep=configManager->newManagedAction(menuroot,menuGrid, "singlePageStep", tr("Single Page Step"), pdfWidget, SLOT(setSinglePageStep(bool)), QList<QKeySequence>());
 	menuWindow->addAction(menuShow->menuAction());
-    actionCloseSomething=configManager->newManagedAction(menuroot,menuWindow, "closeSomething", tr("&Close something"), this, SLOT(closeSomething()), QList<QKeySequence>()<<Qt::Key_Escape);
+    actionCloseElement=configManager->newManagedAction(menuroot,menuWindow, "closeElement", tr("&Close something"), this, SLOT(closeElement()), QList<QKeySequence>()<<Qt::Key_Escape);
 	menuWindow->addSeparator();
     actionSide_by_Side=configManager->newManagedAction(menuroot,menuWindow, "stack", tr("Stac&k"), this, SLOT(stackWindows()), QList<QKeySequence>());
     actionTile=configManager->newManagedAction(menuroot,menuWindow, "tile", tr("&Tile"), this, SLOT(tileWindows()), QList<QKeySequence>());
@@ -2809,7 +2809,7 @@ void PDFDocument::init(bool embedded)
 	connect(actionExternalViewer, SIGNAL(triggered()), SLOT(runExternalViewer()));
 	connect(actionToggleEmbedded, SIGNAL(triggered()), SLOT(toggleEmbedded()));
 
-	connect(actionCloseSomething, SIGNAL(triggered()), SLOT(closeSomething()));
+	connect(actionCloseElement, SIGNAL(triggered()), SLOT(closeElement()));
 	connect(actionStack, SIGNAL(triggered()), SLOT(stackWindows()));
 	connect(actionTile, SIGNAL(triggered()), SLOT(tileWindows()));
 	connect(actionSide_by_Side, SIGNAL(triggered()), this, SLOT(sideBySide()));
@@ -2924,7 +2924,7 @@ void PDFDocument::init(bool embedded)
 		actionNew_from_Template->setShortcut(QKeySequence());
 		actionFull_Screen->setShortcut(QKeySequence());
 		actionQuit_TeXworks->setShortcut(QKeySequence());
-		actionCloseSomething->setShortcut(QKeySequence());
+		actionCloseElement->setShortcut(QKeySequence());
 		actionPresentation->setShortcut(QKeySequence());
         actionFileOpen->setShortcut(QKeySequence());*/
 	}
@@ -3259,7 +3259,7 @@ void PDFDocument::setStateEnlarged(bool state)
 /*!
  * \return true if the document itself is closed, otherwise false
  */
-bool PDFDocument::closeSomething()
+bool PDFDocument::closeElement()
 {
 	if (actionPresentation->isChecked()) {
 		//restore state of docks
@@ -3898,7 +3898,7 @@ void PDFDocument::toggleFullScreen(bool fullscreen)
 			menuBar()->hide();
 			actionFull_Screen->setChecked(false);
 			actionPresentation->setChecked(true);
-			exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(closeSomething())); //hiding the menubar disables normal shortcut
+			exitFullscreen = new QShortcut(Qt::Key_Escape, this, SLOT(closeElement())); //hiding the menubar disables normal shortcut
 			pdfWidget->setTool(kPresentation);
 			pdfWidget->setContextMenuPolicy(Qt::NoContextMenu);
 			dwOutline->hide();

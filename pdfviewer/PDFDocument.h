@@ -452,7 +452,7 @@ private slots:
 	void setGrid();
 
 public slots:
-	bool closeSomething();
+	bool closeElement();
 private slots:
 	void tileWindows();
 	void stackWindows();
@@ -577,7 +577,7 @@ private:
     QAction *actionShow_Scripts_Folder;
     QAction *actionAbout_Scripts;
     QAction *actionS;
-    QAction *actionCloseSomething;
+    QAction *actionCloseElement;
     QAction *actionScrolling_follows_cursor;
     QAction *actionCursor_follows_scrolling;
     QAction *actionFind_2;

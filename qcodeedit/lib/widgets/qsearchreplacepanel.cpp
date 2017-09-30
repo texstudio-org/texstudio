@@ -483,7 +483,7 @@ void QSearchReplacePanel::display(int mode, bool replace)
     }
 }
 
-void QSearchReplacePanel::closeSomething(bool closeTogether){
+void QSearchReplacePanel::closeElement(bool closeTogether){
 	/*qDebug() << "popup"<< QApplication::activePopupWidget();
 	foreach (QObject* o, cFind->children()) {
 		qDebug()<<"child"<<o;
