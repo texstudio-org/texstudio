@@ -10,7 +10,7 @@ SearchResultWidget::SearchResultWidget(QWidget *parent) : QWidget(parent), query
 	SearchTreeDelegate *searchDelegate = new SearchTreeDelegate(editorFontFamily, this);
 
 	QHBoxLayout *hLayout = new QHBoxLayout;
-	hLayout->setContentsMargins(4, 2, 4, 2);
+	hLayout->setContentsMargins(4, 2, 4, 1);
 	hLayout->setSpacing(8);
 
 	searchScopeBox = new QComboBox;
