@@ -6948,7 +6948,7 @@ void Texstudio::viewCloseElement()
 			return;
 		}
 #endif
-	if (windowState() == Qt::WindowFullScreen && !configManager.disableEscForClosingFullscreen) {
+	if (windowState() == Qt::WindowFullScreen && configManager.useEscForClosingFullscreen) {
 		stateFullScreen = saveState(1);
 		setWindowState(Qt::WindowNoState);
 		restoreState(windowstate, 0);

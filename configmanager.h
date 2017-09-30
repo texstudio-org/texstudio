@@ -131,6 +131,7 @@ public:
 	int tabstop;
 
 	bool useEscForClosingLog;
+	bool useEscForClosingFullscreen;
 	bool showShortcutsInTooltips;
 	int replaceQuotes; //0: none, 1: ``..'', 2: \"< \"> 3: \"`..\"' , 4: \\og..\\fg{} 5: \"> \"<
 
@@ -191,8 +192,6 @@ public:
 	QDateTime debugLastFullTestRun;
 #endif
 
-	// disable usage of esc for closing fullscreen view
-	bool disableEscForClosingFullscreen;
 	bool goToErrorWhenDisplayingLog;
 	bool showLogMarkersWhenClickingLogEntry;
 	bool scanInstalledLatexPackages;
