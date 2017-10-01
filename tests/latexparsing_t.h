@@ -9,7 +9,8 @@
 #include <QtTest/QtTest>
 
 
-class LatexParsingTest: public QObject {
+class LatexParsingTest: public QObject
+{
 	Q_OBJECT
 private slots:
 	void test_simpleLexing_data();
