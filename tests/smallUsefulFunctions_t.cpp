@@ -21,6 +21,39 @@ typedef QList<int> Levels;
 
 typedef QList<int> ATypes;
 
+
+/*!
+ * comparison of Token::TokenType
+ *   actual: Token::TokenType or int
+ *   expected: Token::TokenType or int
+ *   description: const char
+ */
+#define COMPARE_TOKENTYPE(actual, expected, description) \
+do {\
+    Token::TokenType t_actual = (Token::TokenType) actual;\
+    Token::TokenType t_expected = (Token::TokenType) expected;\
+    if (t_actual == t_expected) {\
+        if (!QTest::qVerify(true,\
+                    QString("Token::%1 == Token::%2").arg(Token::tokenTypeName(t_actual)).arg(Token::tokenTypeName(t_expected)).toLatin1().constData(),\
+                    (description), __FILE__, __LINE__))\
+            return;\
+    } else {\
+        if (!QTest::qVerify(false,\
+                    QString("Token::%1 == Token::%2").arg(Token::tokenTypeName(t_actual)).arg(Token::tokenTypeName(t_expected)).toLatin1().constData(),\
+                    (description), __FILE__, __LINE__))\
+            return;\
+    }\
+} while (0)
+
+
+/*! Helper macro to create a formatted const char *.
+ *  This is particularly useful for test macros which expect a const char * as description.
+ */
+#define ARG1(formatstr, arg1) \
+    QString(formatstr).arg(arg1).toLatin1().constData()
+
+
+
 void SmallUsefulFunctionsTest::test_simpleLexing_data() {
     QTest::addColumn<QString>("line");
     QTest::addColumn<TTypes>("types");
@@ -115,7 +148,7 @@ void SmallUsefulFunctionsTest::test_simpleLexing() {
         int type = types.value(i, 0);
         int start = starts.value(i, 0);
         int length = lengths.value(i, 0);
-        QVERIFY2(int(tk.type) == type, QString("incorrect type %1 != %2").arg(int(tk.type)).arg(type).toLatin1().constData());
+        COMPARE_TOKENTYPE(tk.type, type, "incorrect type");
         QVERIFY2(tk.start == start, "incorrect start");
         QVERIFY2(tk.length == length, "incorrect length");
     }
@@ -221,6 +254,12 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
                                          << (Starts() << 0 << 11 << 12 << 23 << 24)
                                          << (Length() << 11 << 12 << 10 << 6 << 4)
                                          << (Levels() << 0 << 1 << 1 << 1 << 1);
+    QTest::newRow("newcommand nobrace") << "\\newcommand\\foo{test}"
+                                        << (TTypes() << T::command << T::def << T::braces << T::word)
+                                        << (STypes() << T::none << T::none << T::definition << T::definition)
+                                        << (Starts() << 0 << 11 << 15 << 16)
+                                        << (Length() << 11 << 4 << 6 << 4)
+                                        << (Levels() << 0 << 0 << 1 << 1);
     QTest::newRow("documentclass command") << "\\documentclass{text}"
                                            << (TTypes() << T::command << T::braces << T::documentclass)
                                            << (STypes() << T::none << T::documentclass << T::none)
@@ -312,11 +351,11 @@ void SmallUsefulFunctionsTest::test_latexLexing() {
         int start = starts.value(i, 0);
         int length = lengths.value(i, 0);
         int level = levels.value(i, 0);
-        QVERIFY2(int(tk.type) == type, QString("incorrect type %1 != %2").arg(int(tk.type)).arg(type).toLatin1().constData());
-        QVERIFY2(int(tk.subtype) == subtype, QString("incorrect subtype %1 != %2").arg(int(tk.subtype)).arg(subtype).toLatin1().constData());
-        QVERIFY2(tk.start == start, QString("incorrect start (%1)").arg(i).toLatin1().constData());
-        QVERIFY2(tk.length == length, QString("incorrect length (%1)").arg(i).toLatin1().constData());
-        QVERIFY2(tk.level == level, QString("incorrect level  (%1)").arg(i).toLatin1().constData());
+        COMPARE_TOKENTYPE(tk.type, type, ARG1("incorrect type at index %1", i));
+        COMPARE_TOKENTYPE(tk.subtype, subtype, ARG1("incorrect subtype at index %1", i));
+        QVERIFY2(tk.start == start, ARG1("incorrect start (at index %1)", i));
+        QVERIFY2(tk.length == length, ARG1("incorrect length (at index %1)", i));
+        QVERIFY2(tk.level == level, ARG1("incorrect level (at index %1)", i));
     }
     QVERIFY2(tl.length() == types.length(), "missing tokens");
     delete doc;
@@ -419,11 +458,11 @@ void SmallUsefulFunctionsTest::test_findCommandWithArgsFromTL() {
         int start = starts.value(i, 0);
         int length = lengths.value(i, 0);
         int level = levels.value(i, 0);
-        QVERIFY2(int(tk.type) == type, QString("incorrect type %1 != %2").arg(int(tk.type)).arg(type).toLatin1().constData());
-        QVERIFY2(int(tk.subtype) == subtype, QString("incorrect subtype %1 != %2").arg(int(tk.subtype)).arg(subtype).toLatin1().constData());
-        QVERIFY2(tk.start == start, QString("incorrect start (%1)").arg(i).toLatin1().constData());
-        QVERIFY2(tk.length == length, QString("incorrect length (%1)").arg(i).toLatin1().constData());
-        QVERIFY2(tk.level == level, QString("incorrect level  (%1)").arg(i).toLatin1().constData());
+        COMPARE_TOKENTYPE(tk.type, type, ARG1("incorrect type at index %1", i));
+        COMPARE_TOKENTYPE(tk.subtype, subtype, ARG1("incorrect subtype at index %1", i));
+        QVERIFY2(tk.start == start, ARG1("incorrect start (at index %1)", i));
+        QVERIFY2(tk.length == length, ARG1("incorrect length (at index %1)", i));
+        QVERIFY2(tk.level == level, ARG1("incorrect level (at index %1)", i));
     }
     QVERIFY2(args.length() == types.length(), "missing tokens");
     delete doc;
@@ -906,8 +945,8 @@ void SmallUsefulFunctionsTest::test_getContext() {
     TokenStack result=getContext(dlh,nr);
 
     for(int k=0;k<result.size();k++){
-        QVERIFY(result.at(k).type==desiredResults.at(k));
-        QVERIFY(result.at(k).subtype==types.at(k));
+        COMPARE_TOKENTYPE(result.at(k).type, desiredResults.at(k), ARG1("incorrect type at index %1", k));
+        COMPARE_TOKENTYPE(result.at(k).type, desiredResults.at(k), ARG1("incorrect subtype at index %1", k));
     }
 
     delete doc;
