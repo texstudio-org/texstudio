@@ -996,6 +996,8 @@ void LatexEditorView::displayLineGrammarErrorsInternal(int lineNr, const QList<G
 			if (grammarFormatsDisabled[index]) continue;
 			f = grammarFormats[index];
 		}
+		qDebug() << f << QDocument::defaultFormatScheme()->id(f) << QDocument::defaultFormatScheme()->format(f).foreground;
+
 		if (config->hideNonTextGrammarErrors && (isNonTextFormat(line.getFormatAt(error.offset)) || isNonTextFormat(line.getFormatAt(error.offset + error.length - 1))))
 			continue;
 		line.addOverlay(QFormatRange(error.offset, error.length, f));
