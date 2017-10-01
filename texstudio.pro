@@ -538,6 +538,7 @@ CONFIG(debug, debug|release) {
         tests/latexeditorview_t.cpp \
         tests/latexoutputfilter_t.cpp \
         tests/latexparser_t.cpp \
+        tests/latexparsing_t.cpp \
         tests/qcetestutil.cpp \
         tests/qdocumentcursor_t.cpp \
         tests/qdocumentline_t.cpp \
@@ -563,6 +564,7 @@ CONFIG(debug, debug|release) {
         tests/latexeditorview_t.h \
         tests/latexoutputfilter_t.h \
         tests/latexparser_t.h \
+        tests/latexparsing_t.h \
         tests/latexstyleparser_t.h \
         tests/scriptengine_t.h \
         tests/qeditor_t.h \
