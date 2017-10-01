@@ -12,6 +12,7 @@ struct SymbolItem {
 	QString unicode;
 	QString packages;
 	QString iconFile;
+	QIcon icon;
 };
 
 

@@ -89,6 +89,7 @@ SymbolItem loadSymbolFromSvg(QString fileName)
 	}
 
 	item.iconFile = fileName;
+	item.icon = QIcon(fileName);
 	return item;
 }
 
@@ -110,6 +111,7 @@ void SymbolListModel::loadSymbols(const QString &category, const QStringList &fi
 			symbolItem.packages = img.text("Packages");
 			symbolItem.unicode = img.text("CommandUnicode");
 			symbolItem.iconFile = fileName;
+			symbolItem.icon = QIcon(fileName);
 		}
 		if (!symbolItem.unicode.isEmpty()) {
 			// convert to real unicode
@@ -252,9 +254,9 @@ QIcon SymbolListModel::getIcon(const SymbolItem &item) const
 		return QIcon(item.iconFile);
 	}
 #else
-	QIcon *icon = new QIcon(item.iconFile);
+	//QIcon *icon = new QIcon(item.iconFile);
 	//qDebug() << item.command << icon.actualSize(QSize(iconSizeHint, iconSizeHint));
-	return *icon;
+	return item.icon;
 #endif
 }
 
