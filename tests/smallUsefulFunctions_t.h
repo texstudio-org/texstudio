@@ -68,39 +68,6 @@ private slots:
         QFETCH(QString, trimmedLine);
         QEQUAL(trimRight(line), trimmedLine);
     }
-	void test_findCommandWithArgs_data(){
-		QTest::addColumn<QString>("line");
-		QTest::addColumn<int>("offset");
-		QTest::addColumn<QString>("cmd");
-		QTest::addColumn<QStringList>("args");
-		QTest::addColumn<int>("col");
-
-		QTest::newRow("cmd") << "\\section{foo}" << 0 << "\\section" << (QStringList() << "{foo}") << 0;
-		QTest::newRow("text before") << "foo \\section{foo}" << 0 << "\\section" << (QStringList() << "{foo}") << 4;
-		QTest::newRow("text remainder") << "\\section{foo} remainder" << 0 << "\\section" << (QStringList() << "{foo}") << 0;
-		QTest::newRow("empty") << "" << 0 << "" << QStringList() << -1;
-		QTest::newRow("no cmd") << "foo bar" << 0 << "" << QStringList() << -1;
-		QTest::newRow("cmd without arg") << "foo \\pm bar" << 0 << "\\pm" << QStringList() << 4;
-		QTest::newRow("cmd with opt") << "\\section[opt1]{foo}" << 0 << "\\section" << (QStringList() << "[opt1]" << "{foo}") << 0;
-		QTest::newRow("cmd two opt") << "\\section[opt1][opt2]{foo}" << 0 << "\\section" << (QStringList() << "[opt1]" << "[opt2]" << "{foo}") << 0;
-		QTest::newRow("cmd with opt without arg") << "\\section[opt1]" << 0 << "\\section" << (QStringList() << "[opt1]") << 0;
-	}
-	void test_findCommandWithArgs(){
-		QFETCH(QString, line);
-		QFETCH(int, offset);
-		QFETCH(QString, cmd);
-		QFETCH(QStringList, args);
-		QFETCH(int, col);
-		QString ret_cmd;
-		QStringList ret_args;
-		int ret_col = findCommandWithArgs(line, ret_cmd, ret_args, 0, offset);
-		QEQUAL(ret_col, col);
-		QEQUAL(ret_cmd, cmd);
-		QEQUAL(ret_args.count(), args.count());
-		for (int i=0; i<args.count(); i++) {
-			QEQUAL2(ret_args[i], args[i], QString("in argument %1").arg(i));
-		}
-	}
 	void test_latexToText_data(){
 		QTest::addColumn<QString>("in");
 		QTest::addColumn<QString>("out");

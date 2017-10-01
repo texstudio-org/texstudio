@@ -486,33 +486,6 @@ bool findTokenWithArg(const QString &line, const QString &token, QString &outNam
 	return false;
 }
 
-/*!
- * Searches for the first latex command in line starting at offset. Comments are ignored.
- *
- * \warning obsolete with lexer-based token system: use Parsing::fincCommandWithArgsFromTL instead
- * \param cmd the command name, e.g. \section
- * \param args a list of the arguments including their brackets, e.g. "[arg1]", "{arg2}"
- * \param argStarts a list of the starting positions of the arguments in line (if not needed, you can pass 0 in)
- *
- * \return Returns the starting position of cmd in line, or -1 if no command was found.
- */
-int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts, int offset, bool parseComment)
-{
-	// true means that a command is found, with or without arguments ...
-	// otherwise a command before the interesting command leads to quiting the loop
-	static QRegExp rxCmd("\\\\\\w+\\*?");
-	static QRegExp rxComment("(^|[^\\\\])%");
-	int cmdStart = rxCmd.indexIn(line, offset);
-	int commentStart = parseComment ? -1 : rxComment.indexIn(line);
-	if (cmdStart == -1 || (commentStart >= 0 && commentStart < cmdStart)) {
-		return -1;  // no command found
-	}
-	cmd = rxCmd.cap(0);
-	LatexParser::resolveCommandOptions(line, cmdStart, args, argStarts);
-	return cmdStart;
-}
-
-
 /*! returns the command at pos (including \) in outCmd. pos may be anywhere in the command name (including \) but
  * not in command options. Return value is the index of the first char after the command (or pos if there was no command
  * \warning obsolete with lexer-based token system
