@@ -75,6 +75,7 @@ QDebug operator<<(QDebug dbg, Token tk);
 typedef QList<Token> TokenList;
 typedef QStack<Token> TokenStack;
 
+Q_DECLARE_METATYPE(Token::TokenType);
 Q_DECLARE_METATYPE(TokenList);
 Q_DECLARE_METATYPE(TokenStack);
 void qDebugTokenList(TokenList tl);
