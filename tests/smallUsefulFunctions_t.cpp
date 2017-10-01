@@ -13,8 +13,8 @@
 
 // shortcuts and semantic types
 typedef Token T;
-typedef QList<int> TTypes;
-typedef QList<int> STypes;
+typedef QList<Token::TokenType> TTypes;
+typedef QList<Token::TokenType> STypes;
 typedef QList<int> Length;
 typedef QList<int> Starts;
 typedef QList<int> Levels;
@@ -89,7 +89,7 @@ void SmallUsefulFunctionsTest::test_simpleLexing_data() {
 									  << (Starts() << 0 << 10 << 11 << 14)
 									  << (Length() << 10 << 1 << 3 << 1);
     QTest::newRow("command with optional arg") << " \\bummerang  [abc  ]"
-											   << (TTypes() << Token::command << 8 << 1 << 11)
+											   << (TTypes() << Token::command << T::openSquare << T::word << T::closeSquareBracket)
 											   << (Starts() << 1 << 13 << 14 << 19)
 											   << (Length() << 10 << 1 << 3 << 1);
     QTest::newRow("punctation") << "bummerang."
@@ -145,12 +145,9 @@ void SmallUsefulFunctionsTest::test_simpleLexing() {
     TokenList tl = dlh->getCookie(QDocumentLine::LEXER_RAW_COOKIE).value<TokenList>();
     for(int i=0; i<tl.length(); i++) {
         Token tk = tl.at(i);
-        int type = types.value(i, 0);
-        int start = starts.value(i, 0);
-        int length = lengths.value(i, 0);
-        COMPARE_TOKENTYPE(tk.type, type, "incorrect type");
-        QVERIFY2(tk.start == start, "incorrect start");
-        QVERIFY2(tk.length == length, "incorrect length");
+        COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
+        QVERIFY2(tk.start == starts.value(i), ARG1("incorrect start at index %1", i));
+        QVERIFY2(tk.length == lengths.value(i), ARG1("incorrect length at index %1", i));
     }
     dlh->deref();
     delete doc;
@@ -285,7 +282,7 @@ void SmallUsefulFunctionsTest::test_latexLexing_data() {
                                       << (Length() << 16 << 6 << 4)
                                       << (Levels() << 0 << 1 << 1);
     QTest::newRow("graphics command with option") << "\\includegraphics[opt]{file}"
-                                                  << (TTypes() << T::command << T::squareBracket << 21 << T::braces << T::imagefile)
+                                                  << (TTypes() << T::command << T::squareBracket << T::keyVal_key << T::braces << T::imagefile)
                                                   << (STypes() << T::none << T::keyValArg << T::none << T::imagefile << T::none)
                                                   << (Starts() << 0 << 16 << 17 << 21 << 22)
                                                   << (Length() << 16 << 5 << 3 << 6 << 4)
@@ -346,16 +343,11 @@ void SmallUsefulFunctionsTest::test_latexLexing() {
     }
     for(int i=0; i<tl.length(); i++){
         Token tk = tl.at(i);
-        int type = types.value(i, 0);
-        int subtype = subtypes.value(i, 0);
-        int start = starts.value(i, 0);
-        int length = lengths.value(i, 0);
-        int level = levels.value(i, 0);
-        COMPARE_TOKENTYPE(tk.type, type, ARG1("incorrect type at index %1", i));
-        COMPARE_TOKENTYPE(tk.subtype, subtype, ARG1("incorrect subtype at index %1", i));
-        QVERIFY2(tk.start == start, ARG1("incorrect start (at index %1)", i));
-        QVERIFY2(tk.length == length, ARG1("incorrect length (at index %1)", i));
-        QVERIFY2(tk.level == level, ARG1("incorrect level (at index %1)", i));
+        COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
+        COMPARE_TOKENTYPE(tk.subtype, subtypes.value(i), ARG1("incorrect subtype at index %1", i));
+        QVERIFY2(tk.start == starts.value(i), ARG1("incorrect start (at index %1)", i));
+        QVERIFY2(tk.length == lengths.value(i), ARG1("incorrect length (at index %1)", i));
+        QVERIFY2(tk.level == levels.value(i), ARG1("incorrect level (at index %1)", i));
     }
     QVERIFY2(tl.length() == types.length(), "missing tokens");
     delete doc;
@@ -453,16 +445,11 @@ void SmallUsefulFunctionsTest::test_findCommandWithArgsFromTL() {
     QVERIFY(cmdStart==0);
     for(int i=0; i<args.length(); i++){
         Token tk = args.at(i);
-        int type = types.value(i, 0);
-        int subtype = subtypes.value(i, 0);
-        int start = starts.value(i, 0);
-        int length = lengths.value(i, 0);
-        int level = levels.value(i, 0);
-        COMPARE_TOKENTYPE(tk.type, type, ARG1("incorrect type at index %1", i));
-        COMPARE_TOKENTYPE(tk.subtype, subtype, ARG1("incorrect subtype at index %1", i));
-        QVERIFY2(tk.start == start, ARG1("incorrect start (at index %1)", i));
-        QVERIFY2(tk.length == length, ARG1("incorrect length (at index %1)", i));
-        QVERIFY2(tk.level == level, ARG1("incorrect level (at index %1)", i));
+        COMPARE_TOKENTYPE(tk.type, types.value(i), ARG1("incorrect type at index %1", i));
+        COMPARE_TOKENTYPE(tk.subtype, subtypes.value(i), ARG1("incorrect subtype at index %1", i));
+        QVERIFY2(tk.start == starts.value(i), ARG1("incorrect start (at index %1)", i));
+        QVERIFY2(tk.length == lengths.value(i), ARG1("incorrect length (at index %1)", i));
+        QVERIFY2(tk.level == levels.value(i), ARG1("incorrect level (at index %1)", i));
     }
     QVERIFY2(args.length() == types.length(), "missing tokens");
     delete doc;
@@ -537,9 +524,8 @@ void SmallUsefulFunctionsTest::test_getArg() {
     TokenList args;
     findCommandWithArgsFromTL(tl, tkCmd, args, 0, false);
     for(int i=0;i<types.length();i++){
-        T::TokenType type=T::TokenType(types.at(i));
-        QString result=getArg(args,type);
-        QVERIFY(desiredResults.at(i)==result);
+        QString result = getArg(args, types.at(i));
+        QCOMPARE(result, desiredResults.at(i));
     }
     delete doc;
 }
@@ -677,10 +663,10 @@ void SmallUsefulFunctionsTest::test_getArg2() {
     Token tkCmd;
     TokenList args;
     findCommandWithArgsFromTL(tl, tkCmd, args, 0, false);
-    for(int i=0;i<types.length();i++){
-        ArgumentList::ArgType type=ArgumentList::ArgType(types.at(i));
-        QString result=getArg(args,dlh,nr.at(i),type);
-        QVERIFY(desiredResults.at(i)==result);
+    for(int i=0; i < types.length(); i++){
+        ArgumentList::ArgType type = ArgumentList::ArgType(types.at(i));
+        QString result = getArg(args, dlh, nr.at(i), type);
+        QCOMPARE(result, desiredResults.at(i));
     }
     delete doc;
 }
@@ -740,15 +726,15 @@ void SmallUsefulFunctionsTest::test_getTokenAtCol() {
     QDocumentLineHandle *dlh = doc->line(0).handle();
     TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
-    for(int i=0;i<nr.length();i++){
-        int p=getTokenAtCol(tl,nr.at(i));
-        Token tk=getTokenAtCol(dlh,nr.at(i));
-        QVERIFY(tl.value(p)==tk); // cross check the two almost identical functions
-        QVERIFY(desiredResults.at(i)==tk.type);
-        p=getTokenAtCol(tl,nr.at(i),true);
-        tk=getTokenAtCol(dlh,nr.at(i),true);
-        QVERIFY(tl.value(p)==tk); // cross check the two almost identical functions
-        QVERIFY(desiredResults2.at(i)==tk.type);
+    for(int i=0; i < nr.length(); i++){
+        int p = getTokenAtCol(tl, nr.at(i));
+        Token tk = getTokenAtCol(dlh, nr.at(i));
+        QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
+        COMPARE_TOKENTYPE(tk.type, desiredResults.at(i), ARG1("incorrect type at index %1", i));
+        p = getTokenAtCol(tl, nr.at(i), true);
+        tk = getTokenAtCol(dlh, nr.at(i), true);
+        QVERIFY(tl.value(p) == tk); // cross check the two almost identical functions
+        COMPARE_TOKENTYPE(tk.type, desiredResults2.at(i), ARG1("incorrect type at index %1", i));
     }
     delete doc;
 }
@@ -869,9 +855,9 @@ void SmallUsefulFunctionsTest::test_getCommandFromToken() {
     QDocumentLineHandle *dlh = doc->line(lineNr).handle();
     TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
-    QString result=getCommandFromToken(tl.at(nr));
+    QString result = getCommandFromToken(tl.at(nr));
 
-    QVERIFY(result==desiredResult);
+    QCOMPARE(result, desiredResult);
 
     delete doc;
 }
@@ -1007,9 +993,9 @@ void SmallUsefulFunctionsTest::test_getCompleterContext() {
     QDocumentLineHandle *dlh = doc->line(0).handle();
     //TokenList tl= dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList >();
 
-    int result=getCompleterContext(dlh,nr);
+    int result = getCompleterContext(dlh,nr);
 
-    QVERIFY(result==desiredResult);
+    QCOMPARE(result, desiredResult);
 
     delete doc;
 }
