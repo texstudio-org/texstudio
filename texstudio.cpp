@@ -8271,15 +8271,13 @@ void Texstudio::editInsertRefToNextLabel(const QString &refCmd, bool backward)
 	int m = currentEditorView()->editor->document()->findLineContaining("\\label", l, Qt::CaseSensitive, backward);
 	if (!backward && m < l) return;
 	if (m < 0) return;
-	QDocumentLine dLine = currentEditor()->document()->line(m);
-	QString mLine = dLine.text();
-	int col = mLine.indexOf("\\label");
-	if (col < 0) return;
-	QString cmd;
-	ArgumentList args;
-	if (findCommandWithArgs(mLine, cmd, args, 0, col) >= 0) {
-		if (cmd != "\\label" || args.count(ArgumentList::Mandatory) < 1) return;
-		currentEditor()->write(refCmd + "{" + args.argContent(0, ArgumentList::Mandatory) + "}");
+	// TODO: The search of the line should also be switched to the token system
+
+	QDocumentLineHandle *dlh = currentEditor()->document()->line(m).handle();
+	TokenList tl = dlh->getCookie(QDocumentLine::LEXER_COOKIE).value<TokenList>();
+	QString label = Parsing::getArg(tl, Token::label);
+	if (!label.isEmpty()) {
+		currentEditor()->write(refCmd + "{" + label + "}");
 	}
 }
 
