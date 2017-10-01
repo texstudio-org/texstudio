@@ -2,6 +2,7 @@
 #include "latexdocument.h"
 #include "tablemanipulation.h"
 #include "latexparser/latexreader.h"
+#include "latexparser/latexparsing.h"
 
 /*! \class SyntaxCheck
  *
@@ -1056,7 +1057,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 			//figure out keyval
 			QString word = line.mid(tk.start, tk.length);
 			// first get command
-			Token cmd = getCommandTokenFromToken(tl, tk);
+			Token cmd = Parsing::getCommandTokenFromToken(tl, tk);
 			QString command = line.mid(cmd.start, cmd.length);
 			// figure out key
 			QString key;

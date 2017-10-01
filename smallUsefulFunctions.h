@@ -26,10 +26,6 @@
 #include "utilsSystem.h"
 #include "utilsVersion.h"
 
-#include "latexparser/latextokens.h"
-#include "latexparser/commanddescription.h"
-class LatexParser;
-
 
 // evaluates to j if i < 0
 //              i if j < 0
@@ -89,7 +85,6 @@ QString findToken(const QString &line, QRegExp &token);
 /// find token (e.g. \label \input \section and return content (\newcommand{name}[arg]), returns true if outName!=""
 bool findTokenWithArg(const QString &line, const QString &token, QString &outName, QString &outArg);
 int findCommandWithArgs(const QString &line, QString &cmd, QStringList &args, QList<int> *argStarts = 0, int offset = 0, bool parseComment = false);
-int findCommandWithArgsFromTL(const TokenList &tl, Token &cmd, TokenList &args, int offset, bool parseComment = false);
 
 
 /// generate multiple times used regexpression
@@ -132,37 +127,4 @@ QString truncateLines(const QString &s, int maxLines);
 
 bool addMostRecent(const QString &item, QStringList &mostRecentList, int maxLength);
 
-/*!
- * \brief The ArgumentList class holds lists of LaTeX command arguments
- *
- * An argument is enclosed either in curly or square brackets (mandatory/optional argument).
- */
-class ArgumentList : public QStringList
-{
-public:
-	inline ArgumentList() {}
-    enum ArgType {Optional, Mandatory, MandatoryWithBraces};
-	QString argContent(int index) const;
-	QString argContent(int index, ArgType type) const;
-	ArgType argType(int index) const;
-	int count(ArgType type) const;
-};
-
-
-
-class QDocumentLineHandle;
-
-QString getArg(TokenList tl, QDocumentLineHandle *dlh, int argNumber, ArgumentList::ArgType type, bool enableMultiLineSearch=true);
-QString getArg(const TokenList &tl,Token::TokenType type);
-QString findRestArg(QDocumentLineHandle *dlh, Token::TokenType type, int count = 10);
-Token getTokenAtCol(QDocumentLineHandle *dlh, int pos, bool first = false);
-int getTokenAtCol(TokenList &tl, int pos, bool first = false);
-TokenList getArgContent(Token &tk);
-TokenList getArgContent(TokenList &tl, int pos, int level, int runAwayPrevention = 10);
-TokenStack getContext(QDocumentLineHandle *dlh, int pos);
-QString getCommandFromToken(Token tk); ///< get command name from Token \a tk which is an argument
-Token getCommandTokenFromToken(TokenList tl, Token tk);
-TokenList simpleLexLatexLine(QDocumentLineHandle *dlh); ///< first pass lexing of text line
-bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, CommandStack &commandStack, const LatexParser &lp); ///< second pass lexing of text line, uses tokens from first pass
-int getCompleterContext(QDocumentLineHandle *dlh, int column);
 #endif

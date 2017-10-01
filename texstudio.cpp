@@ -60,8 +60,10 @@
 #include "utilsSystem.h"
 #include "minisplitter.h"
 #include "latexpackage.h"
+#include "latexparser/argumentlist.h"
 #include "latexparser/latextokens.h"
 #include "latexparser/latexparser.h"
+#include "latexparser/latexparsing.h"
 #include "latexstructure.h"
 #include "structuretreeview.h"
 #include "symbollistmodel.h"
@@ -3496,7 +3498,7 @@ void Texstudio::editEraseWordCmdEnv()
 	}
 
 	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-	int tkPos = getTokenAtCol(tl, cursor.columnNumber());
+	int tkPos = Parsing::getTokenAtCol(tl, cursor.columnNumber());
 	Token tk;
 	if (tkPos > -1)
 		tk = tl.at(tkPos);
@@ -3506,7 +3508,7 @@ void Texstudio::editEraseWordCmdEnv()
 	case Token::command:
 		command = tk.getText();
 		if (command == "\\begin" || command == "\\end") {
-			value = getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
+			value = Parsing::getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
 			//remove environment (surrounding)
 			currentEditorView()->editor->document()->beginMacro();
 			cursor.select(QDocumentCursor::WordOrCommandUnderCursor);
@@ -3582,7 +3584,7 @@ void Texstudio::editGotoDefinition(QDocumentCursor c)
 	if (!currentEditorView())	return;
 	if (!c.isValid()) c = currentEditor()->cursor();
 	saveCurrentCursorToHistory();
-	Token tk = getTokenAtCol(c.line().handle(), c.columnNumber());
+	Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
 	switch (tk.type) {
 	case Token::labelRef:
 	case Token::labelRefList: {
@@ -4422,7 +4424,7 @@ void Texstudio::normalCompletion()
 	QDocumentCursor c = currentEditorView()->editor->cursor();
 	QDocumentLineHandle *dlh = c.line().handle();
 	//LatexParser::ContextType ctx=view->lp.findContext(word, c.columnNumber(), command, value);
-	TokenStack ts = getContext(dlh, c.columnNumber());
+	TokenStack ts = Parsing::getContext(dlh, c.columnNumber());
 	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
@@ -4494,7 +4496,7 @@ void Texstudio::normalCompletion()
 	case Token::keyVal_val: {
 		QString word = c.line().text();
 		int col = c.columnNumber();
-		command = getCommandFromToken(tk);
+		command = Parsing::getCommandFromToken(tk);
 
 		completer->setWorkPath(command);
 		if (!completer->existValues()) {
@@ -7811,7 +7813,7 @@ void Texstudio::previewLatex()
 	if (!previewc.hasSelection()) {
 		// in environment delimiter (\begin{env} or \end{env})
 		QString command;
-		Token tk = getTokenAtCol(c.line().handle(), c.columnNumber());
+		Token tk = Parsing::getTokenAtCol(c.line().handle(), c.columnNumber());
 		if (tk.type != Token::none)
 			command = tk.getText();
 		if (tk.type == Token::env || tk.type == Token::beginEnv ) {
@@ -8735,12 +8737,12 @@ bool Texstudio::generateMirror(bool setCur)
 	QDocumentCursor oldCursor = cursor;
 	QString line = cursor.line().text();
 	QString command, value;
-	Token tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
+	Token tk = Parsing::getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
 
 	if (tk.type == Token::env || tk.type == Token::beginEnv) {
 		if (tk.length > 0) {
 			value = tk.getText();
-			command = getCommandFromToken(tk);
+			command = Parsing::getCommandFromToken(tk);
 			//int l=cursor.lineNumber();
 			if (currentEditor()->currentPlaceHolder() != -1 &&
 			        currentEditor()->getPlaceHolder(currentEditor()->currentPlaceHolder()).cursor.isWithinSelection(cursor))
@@ -8886,7 +8888,7 @@ void Texstudio::selectBracket()
 	} else if (type == "outer") {
 		cursor.select(QDocumentCursor::ParenthesesOuter);
 	} else if (type == "command") {
-		Token tk = getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
+		Token tk = Parsing::getTokenAtCol(cursor.line().handle(), cursor.columnNumber());
 		if (tk.type == Token::command) {
 			cursor.setColumnNumber(tk.start + tk.length);
 			cursor.select(QDocumentCursor::ParenthesesOuter);
@@ -8894,7 +8896,7 @@ void Texstudio::selectBracket()
 		} else {
 			cursor.select(QDocumentCursor::ParenthesesOuter);
 			if (cursor.anchorColumnNumber() > 0) {
-				tk = getTokenAtCol(cursor.line().handle(), cursor.anchorColumnNumber() - 1);
+				tk = Parsing::getTokenAtCol(cursor.line().handle(), cursor.anchorColumnNumber() - 1);
 				if (tk.type == Token::command) {
 					cursor.setAnchorColumnNumber(tk.start);
 				}

@@ -40,6 +40,8 @@
 #include "qsearchreplacepanel.h"
 #include "latexrepository.h"
 
+#include "latexparser/latexparsing.h"
+
 #include "latexcompleter_config.h"
 
 #include "scriptengine.h"
@@ -186,7 +188,7 @@ bool DefaultInputBinding::keyPressEvent(QKeyEvent *event, QEditor *editor)
 			editor->write(event->text());
 		if (autoOverriden) LatexEditorView::completer->complete(editor, LatexCompleter::CF_OVERRIDEN_BACKSLASH);
 		else {
-			int flags = getCompleterContext(editor->cursor().line().handle(), editor->cursor().columnNumber());
+			int flags = Parsing::getCompleterContext(editor->cursor().line().handle(), editor->cursor().columnNumber());
 			LatexEditorView::completer->complete(editor, LatexCompleter::CompletionFlag(flags));
 		}
 		return true;
@@ -449,7 +451,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 		//find context of cursor
 		QDocumentLineHandle *dlh = cursor.line().handle();
 		TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
-		int i = getTokenAtCol(tl, cursor.columnNumber());
+		int i = Parsing::getTokenAtCol(tl, cursor.columnNumber());
 		Token tk;
 		if (i >= 0)
 			tk = tl.at(i);
@@ -483,7 +485,7 @@ bool DefaultInputBinding::contextMenuEvent(QContextMenuEvent *event, QEditor *ed
 			ctxCommand = tk.getText();
 			QString command = ctxCommand;
 			if (ctxCommand == "\\begin" || ctxCommand == "\\end")
-				command = ctxCommand + "{" + getArg(tl.mid(i + 1), dlh, 0, ArgumentList::Mandatory) + "}";
+				command = ctxCommand + "{" + Parsing::getArg(tl.mid(i + 1), dlh, 0, ArgumentList::Mandatory) + "}";
 			QString package = edView->document->parent->findPackageByCommand(command);
 			package.chop(4);
 			if (!package.isEmpty()) {
@@ -878,7 +880,7 @@ void LatexEditorView::checkForLinkOverlay(QDocumentCursor cursor)
 	if (validPosition) {
 		QDocumentLineHandle *dlh = cursor.line().handle();
 
-		Token tk = getTokenAtCol(dlh, cursor.columnNumber());
+		Token tk = Parsing::getTokenAtCol(dlh, cursor.columnNumber());
 
 		if (tk.type == Token::labelRef || tk.type == Token::labelRefList) {
 			setLinkOverlay(LinkOverlay(cursor, LinkOverlay::RefOverlay));
@@ -1778,7 +1780,7 @@ void LatexEditorView::mayNeedToOpenCompleter(bool fromSingleChar)
 	QDocumentLineHandle *dlh = c.line().handle();
 	if (!dlh)
 		return;
-	TokenStack ts = getContext(dlh, c.columnNumber());
+	TokenStack ts = Parsing::getContext(dlh, c.columnNumber());
 	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
@@ -2322,7 +2324,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 	TokenList tl = dlh->getCookieLocked(QDocumentLine::LEXER_COOKIE).value<TokenList>();
 
 	//Tokens tk=getTokenAtCol(dlh,cursor.columnNumber());
-	TokenStack ts = getContext(dlh, cursor.columnNumber());
+	TokenStack ts = Parsing::getContext(dlh, cursor.columnNumber());
 	Token tk;
 	if (!ts.isEmpty()) {
 		tk = ts.top();
@@ -2338,7 +2340,7 @@ void LatexEditorView::mouseHovered(QPoint pos)
 			command = line.mid(tk.start, tk.length);
 			CommandDescription cd = lp.commandDefs.value(command);
 			if (cd.args > 0)
-				value = getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
+				value = Parsing::getArg(tl.mid(tkPos + 1), dlh, 0, ArgumentList::Mandatory);
 			if (config->toolTipPreview && showMathEnvPreview(cursor, command, value, pos)) {
 				; // action is already performed as a side effect
 			} else if (config->toolTipHelp && completer->getLatexReference()) {
