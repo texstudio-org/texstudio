@@ -387,19 +387,15 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	setModal(true);
 	ui.setupUi(this);
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)  && !defined(Q_OS_MAC)
-	// activate panning by single-finger touch gesture
-	QScroller::grabGesture(ui.scrollAreaGeneral, QScroller::TouchGesture);
-	QScroller::grabGesture(ui.scrollAreaBuild, QScroller::TouchGesture);
-	ui.menuTree->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-	QScroller::grabGesture(ui.menuTree, QScroller::TouchGesture);
-	QScroller::grabGesture(ui.scrollAreaAdvancedEditor, QScroller::TouchGesture);
-	QScroller::grabGesture(ui.twHighlighEnvirons, QScroller::TouchGesture);
-	QScroller::grabGesture(ui.twCustomSyntax, QScroller::TouchGesture);
-	QScroller::grabGesture(ui.scrollAreaGrammar, QScroller::TouchGesture);
-	QScroller::grabGesture(ui.scrollAreaPreview, QScroller::TouchGesture);
-	QScroller::grabGesture(ui.scrollAreaPDFviewer, QScroller::TouchGesture);
-#endif
+	enableTouchScrolling(ui.scrollAreaGeneral);
+	enableTouchScrolling(ui.scrollAreaBuild);
+	enableTouchScrolling(ui.menuTree);
+	enableTouchScrolling(ui.scrollAreaAdvancedEditor);
+	enableTouchScrolling(ui.twHighlighEnvirons);
+	enableTouchScrolling(ui.twCustomSyntax);
+	enableTouchScrolling(ui.scrollAreaGrammar);
+	enableTouchScrolling(ui.scrollAreaPreview);
+	enableTouchScrolling(ui.scrollAreaPDFviewer);
 
 #ifdef Q_OS_MAC
 	ui.labelSwitchKeyboardLayout->setDisabled(true);

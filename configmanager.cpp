@@ -14,6 +14,7 @@
 #include "codesnippet.h"
 #include "updatechecker.h"
 #include "utilsVersion.h"
+#include "utilsUI.h"
 
 #include <QDomElement>
 
@@ -2765,9 +2766,8 @@ void ConfigManager::createCommandList(QGroupBox *box, const QStringList &order, 
 	QVBoxLayout *verticalLayout = new QVBoxLayout(box);
 	QScrollArea *scrollAreaCommands = new QScrollArea(box);
 	scrollAreaCommands->setWidgetResizable(true);
-#if (QT_VERSION > 0x050000)&&!defined(Q_OS_MAC)
-	QScroller::grabGesture(scrollAreaCommands, QScroller::TouchGesture);
-#endif
+	enableTouchScrolling(scrollAreaCommands);
+
 	QWidget *scrollAreaWidgetContents = new QWidget();
 	QGridLayout *gl = new QGridLayout(scrollAreaWidgetContents);
 	gl->setVerticalSpacing(2);
