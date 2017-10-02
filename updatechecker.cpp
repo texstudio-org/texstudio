@@ -59,7 +59,7 @@ void UpdateChecker::onRequestError()
 	QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
 	if (!reply) return;
 
-	txsCritical(tr("Update check failed with error:\n") + reply->errorString());
+	UtilsUi::txsCritical(tr("Update check failed with error:\n") + reply->errorString());
 
     networkManager->deleteLater();
     networkManager=0;
@@ -85,7 +85,7 @@ void UpdateChecker::parseData(const QByteArray &data)
 	if (domDocument.setContent(data)) {
 		QDomElement root = domDocument.documentElement();
 		if (root.tagName() != "versions") {
-			if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
+			if (!silent) UtilsUi::txsWarning(tr("Update check failed (invalid update file format)."));
 			return;
 		}
 
@@ -130,13 +130,13 @@ void UpdateChecker::checkForNewVersion()
 	QString downloadAddress = "http://texstudio.sourceforge.net";
 
 	if (!latestStableVersion.isValid()) {
-		if (!silent) txsWarning(tr("Update check failed (invalid update file format)."));
+		if (!silent) UtilsUi::txsWarning(tr("Update check failed (invalid update file format)."));
 		return;
 	}
 	while (true) {  // single control loop, used be able to break the control flow when some new version is detected
 		if (checkReleaseCandidate && !latestReleaseCandidateVersion.isEmpty()) {
 			if (!latestReleaseCandidateVersion.isValid()) {
-				if (!silent) txsWarning(tr("Update check for release candidate failed (invalid update file format)."));
+				if (!silent) UtilsUi::txsWarning(tr("Update check for release candidate failed (invalid update file format)."));
 			}
 			if (latestReleaseCandidateVersion > currentVersion && latestReleaseCandidateVersion > latestStableVersion) {
 				notify(QString(tr(
@@ -156,7 +156,7 @@ void UpdateChecker::checkForNewVersion()
 		}
 		if (checkDevVersions && !latestDevVersion.isEmpty()) {
 			if (!latestDevVersion.isValid()) {
-				if (!silent) txsWarning(tr("Update check for development version failed (invalid update file format)."));
+				if (!silent) UtilsUi::txsWarning(tr("Update check for development version failed (invalid update file format)."));
 			}
 			if (latestDevVersion > currentVersion && latestDevVersion > latestStableVersion) {
 				notify(QString(tr(
@@ -184,7 +184,7 @@ void UpdateChecker::checkForNewVersion()
 			               )).arg(currentVersion.versionNumber).arg(latestStableVersion.versionNumber).arg(downloadAddress)
 			      );
 		} else {
-			if (!silent) txsInformation(tr("TeXstudio is up-to-date."));
+			if (!silent) UtilsUi::txsInformation(tr("TeXstudio is up-to-date."));
 		}
 		break;
 	}

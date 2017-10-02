@@ -240,7 +240,7 @@ bool SpellerManager::isOxtDictionary(const QString &fileName)
 bool SpellerManager::importDictionary(const QString &fileName, const QString &targetDir)
 {
 	if (!isOxtDictionary(fileName)) {
-		bool continueAnyway = txsConfirmWarning(tr("The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?"));
+		bool continueAnyway = UtilsUi::txsConfirmWarning(tr("The selected file does not seem to contain a Hunspell dictionary. Do you want to import it nevertheless?"));
 		if (!continueAnyway) {
 			return false;
 		}
@@ -248,7 +248,7 @@ bool SpellerManager::importDictionary(const QString &fileName, const QString &ta
 	QFileInfo fi(fileName);
 	QStringList extractedFiles = JlCompress::extractDir(fileName, QDir(targetDir).filePath(fi.fileName()));
 	if (extractedFiles.isEmpty()) {
-		txsWarning(tr("Dictionary import failed: No files could be extracted."));
+		UtilsUi::txsWarning(tr("Dictionary import failed: No files could be extracted."));
 	}
 	return !extractedFiles.isEmpty();
 }
@@ -374,7 +374,7 @@ SpellerUtility *SpellerManager::getSpeller(QString name)
 	if (!su) {
 		su = new SpellerUtility(name);
 		if (!su->loadDictionary(dictFiles.value(name), ignoreFilePrefix)) {
-			txsWarning(QString("Loading of dictionary failed:\n%1\n\n%2").arg(dictFiles.value(name)).arg(su->mLastError));
+			UtilsUi::txsWarning(QString("Loading of dictionary failed:\n%1\n\n%2").arg(dictFiles.value(name)).arg(su->mLastError));
 			delete su;
 			return 0;
 		}

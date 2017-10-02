@@ -939,7 +939,7 @@ QSettings *ConfigManager::readSettings(bool reread)
 
 	//build commands
 	if (!buildManager) {
-		txsCritical("No build Manager created! => crash");
+		UtilsUi::txsCritical("No build Manager created! => crash");
 		return 0;
 	}
 	buildManager->readSettings(*config);
@@ -1550,7 +1550,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 					}
 				}
 			if (conflict)
-				if (txsConfirm(tr("You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))) {
+				if (UtilsUi::txsConfirm(tr("You have enabled auto quote replacement. However, there are macros with trigger string (?language:latex)(?<=\\s|^) or (?language:latex)(?<=\\S) which will override the new quote replacement.\nDo you want to remove them?"))) {
 					for (int i = completerConfig->userMacros.count() - 1; i >= 0; i--) {
 						const Macro &m = completerConfig->userMacros.at(i);
 						if (m.trigger == "(?language:latex)(?<=\\s|^)\"" || m.trigger == "(?language:latex)(?<=^)\"" || m.trigger == "(?language:latex)(?<=\\S)\"")
@@ -1738,7 +1738,7 @@ bool ConfigManager::execConfigDialog(QWidget *parentToDialog)
 		}
 		if (changedProperties.contains(&interfaceStyle) || changedProperties.contains(&modernStyle) || changedProperties.contains(&useTexmakerPalette)) {
 			if (changedProperties.contains(&modernStyle))
-				txsInformation("Some elements cannot be adapted to the new style while the application is running. Please restart to get a consistent experience.");
+				UtilsUi::txsInformation("Some elements cannot be adapted to the new style while the application is running. Please restart to get a consistent experience.");
 			if (interfaceStyle == tr("default")) interfaceStyle = "";
 			setInterfaceStyle();
 		}
@@ -1798,7 +1798,7 @@ void ConfigManager::activateInternalViewer(bool activated)
 	QLineEdit *le = pdflatexEdit;
 	REQUIRE(le);
 	if (le->text().contains("synctex")) return;
-	if (!txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?")))
+	if (!UtilsUi::txsConfirm(tr("To fully utilize the internal pdf-viewer, synctex has to be activated. Shall TeXstudio do it now?")))
 		return;
 	QString zw = le->text();
 	zw.replace("pdflatex ", "pdflatex -synctex=1 ", Qt::CaseSensitive);
@@ -2766,7 +2766,7 @@ void ConfigManager::createCommandList(QGroupBox *box, const QStringList &order, 
 	QVBoxLayout *verticalLayout = new QVBoxLayout(box);
 	QScrollArea *scrollAreaCommands = new QScrollArea(box);
 	scrollAreaCommands->setWidgetResizable(true);
-	enableTouchScrolling(scrollAreaCommands);
+	UtilsUi::enableTouchScrolling(scrollAreaCommands);
 
 	QWidget *scrollAreaWidgetContents = new QWidget();
 	QGridLayout *gl = new QGridLayout(scrollAreaWidgetContents);

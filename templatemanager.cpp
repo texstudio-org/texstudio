@@ -63,7 +63,7 @@ void TemplateManager::checkForOldUserTemplates()
 	if (!cfg) return;
 	QStringList userTemplateList = cfg->getOption("User/Templates").toStringList();
 	if (!userTemplateList.isEmpty()) {
-		bool move = txsConfirmWarning(tr("TeXstudio found user templates in deprecated locations.\n"
+		bool move = UtilsUi::txsConfirmWarning(tr("TeXstudio found user templates in deprecated locations.\n"
 		                                 "From now on user templates are hosted at\n%1\n"
 		                                 "Should TeXstudio move the existing user templates there?\n"
 		                                 "If not, they will not be available via the Make Template dialog.").arg(userTemplateDir()));
@@ -76,17 +76,17 @@ void TemplateManager::checkForOldUserTemplates()
 				}
 				QString newName = userTemplateDir() + fi.fileName();
 				if (!QFile::copy(fname, newName)) {
-					txsWarning(tr("Copying template from\n%1\nto\n%2\nfailed.").arg(fname).arg(newName));
+					UtilsUi::txsWarning(tr("Copying template from\n%1\nto\n%2\nfailed.").arg(fname).arg(newName));
 				} else {
 					if (!QFile::remove(fname)) {
-						txsInformation(tr("File\n%1\n could not be removed.").arg(fname));
+						UtilsUi::txsInformation(tr("File\n%1\n could not be removed.").arg(fname));
 					}
 					userTemplateList.removeOne(fname);
 				}
 			}
 		}
 		if (!userTemplateList.isEmpty()) {
-			if (txsConfirmWarning(tr("There are still unmoved templates. Should TeXstudio stop monitoring them?"))) {
+			if (UtilsUi::txsConfirmWarning(tr("There are still unmoved templates. Should TeXstudio stop monitoring them?"))) {
 				userTemplateList.clear();
 			}
 		}

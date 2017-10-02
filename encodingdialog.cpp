@@ -47,7 +47,7 @@ void EncodingDialog::changeEvent(QEvent *e)
 
 void EncodingDialog::on_view_clicked()
 {
-	if (!txsConfirmWarning(tr("If the new and old encodings are incompatible, some characters may be destroyed.\nAre you sure you want accept data loss?"))) {
+	if (!UtilsUi::txsConfirmWarning(tr("If the new and old encodings are incompatible, some characters may be destroyed.\nAre you sure you want accept data loss?"))) {
 		reject();
 		return;
 	}
@@ -64,7 +64,7 @@ void EncodingDialog::on_change_clicked()
 void EncodingDialog::on_reload_clicked()
 {
 	if (edit->isContentModified())
-		if (!txsConfirmWarning(tr("The document has been changed.\nThese changes will be lost, if you reload it with the new encoding.\nAre you sure you want to undo all changes?"))) {
+		if (!UtilsUi::txsConfirmWarning(tr("The document has been changed.\nThese changes will be lost, if you reload it with the new encoding.\nAre you sure you want to undo all changes?"))) {
 			reject();
 			return;
 		}

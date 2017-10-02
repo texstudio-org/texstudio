@@ -42,7 +42,7 @@ private slots:
 		QFETCH(int, factor);
 		QFETCH(unsigned int, expectediRgb);
 
-		QColor resultColor = mediumLightColor(QColor(static_cast<QRgb>(iRgb)), factor);
+		QColor resultColor = UtilsUi::mediumLightColor(QColor(static_cast<QRgb>(iRgb)), factor);
 		QEQUAL(resultColor.red(), qRed(static_cast<QRgb>(expectediRgb)));
 		QEQUAL(resultColor.green(), qGreen(static_cast<QRgb>(expectediRgb)));
 		QEQUAL(resultColor.blue(), qBlue(static_cast<QRgb>(expectediRgb)));

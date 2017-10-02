@@ -5,6 +5,8 @@
 
 extern void hideSplash();
 
+namespace UtilsUi {
+
 bool txsConfirm(const QString &message)
 {
 	hideSplash();
@@ -305,4 +307,7 @@ void enableTouchScrolling(QWidget *widget) {
 	}
 	QScroller::grabGesture(widget, QScroller::TouchGesture);
 #endif
+
 }
+
+}  // namespace UtilsUi

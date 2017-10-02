@@ -49,7 +49,7 @@ bool Template::createInFolder(const QString &path)
 	} else {
 		QStringList entries = dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
 		if (!entries.isEmpty()) {
-			bool ok = txsConfirmWarning(QCoreApplication::translate("TemplateManager", "The target folder is not empty. It is recommended to instantiate "
+			bool ok = UtilsUi::txsConfirmWarning(QCoreApplication::translate("TemplateManager", "The target folder is not empty. It is recommended to instantiate "
 			                            "in new folders. Otherwise existing files may be overwritten. "
 			                            "Do you wish to use this folder anyway?"));
 			if (!ok) return false;
@@ -116,7 +116,7 @@ bool LocalLatexTemplate::readMetaData()
 	}
 
 	if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		txsWarning(TemplateManager::tr("You do not have read permission to this file:") + QString("\n%1").arg(f.fileName()));
+		UtilsUi::txsWarning(TemplateManager::tr("You do not have read permission to this file:") + QString("\n%1").arg(f.fileName()));
 		return false;
 	}
 	QTextStream in(&f);
@@ -154,7 +154,7 @@ bool LocalTableTemplate::readMetaData()
 
 	QFile f(file());
 	if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		txsWarning(TemplateManager::tr("You do not have read permission to this file:") + QString("\n%1").arg(f.fileName()));
+		UtilsUi::txsWarning(TemplateManager::tr("You do not have read permission to this file:") + QString("\n%1").arg(f.fileName()));
 		return false;
 	}
 	jsonData = f.readLine();

@@ -871,7 +871,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 	options.nestingDeep++;
 	if (options.canceled) return ExpandedCommands();
 	if (options.nestingDeep > maxExpandingNestingDeep) {
-		if (!txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\"?").arg(options.nestingDeep).arg(str))) {
+		if (!UtilsUi::txsConfirmWarning(tr("The command has been expanded to %1 levels. Do you want to continue expanding \"%2\"?").arg(options.nestingDeep).arg(str))) {
 			options.canceled = true;
 			return ExpandedCommands();
 		}
@@ -924,7 +924,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			QString modifiers = re.cap(3);
 			QString parameters = re.cap(5);
 			if (slash != "/" && !modifiers.isEmpty()) {
-				txsInformation(tr("You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer."));
+				UtilsUi::txsInformation(tr("You have used txs:///command[... or txs:///command{... modifiers, but we only support modifiers of the form txs:///command/[... or txs:///command/{... with an slash suffix to keep the syntax purer."));
 				modifiers.clear();
 			}
 			if (options.override.removeAll) parameters.clear(), modifiers.clear();
@@ -932,7 +932,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			bool user;
 			QString cmd = getCommandLine(cmdName, &user);
 			if (cmd.isEmpty()) {
-				if (options.nestingDeep == 1) txsWarning(tr("Command %1 not defined").arg(subcmd));
+				if (options.nestingDeep == 1) UtilsUi::txsWarning(tr("Command %1 not defined").arg(subcmd));
 				else if (cmdName != "pre-compile") qDebug() << tr("Command %1 not defined").arg(subcmd); //pre-compile is expecte
 				if (cmdName != "pre-compile") {
 					res.commands << CommandToRun(""); // add empty command to provoke an error on higher level. Otherwise the missing of the command is simply ignoed e.g. txs:/quick without empty pdflatex
@@ -980,7 +980,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 			//recurse
 			ExpandedCommands ecNew = expandCommandLine(cmd, options);
 			if (ecNew.commands.length() > 1 && atomicCommands.contains(cmd)) {
-				txsWarning(QString(tr("The command %1 is expected to be atomic. However, it is currently "
+				UtilsUi::txsWarning(QString(tr("The command %1 is expected to be atomic. However, it is currently "
 				                      "defined as a command-chain containing %2 commands. This is beyond "
 				                      "the specification and may lead to surprising side-effects.\n\n"
 				                      "Please change your configuration and define command lists only at "
@@ -1014,7 +1014,7 @@ ExpandedCommands BuildManager::expandCommandLine(const QString &str, ExpandingOp
 				res.primaryCommand = cmdName;
 
 			res.commands << newPart;
-		} else txsWarning(tr("Failed to understand command %1").arg(subcmd));
+		} else UtilsUi::txsWarning(tr("Failed to understand command %1").arg(subcmd));
 	}
 	options.nestingDeep--;
 	return res;
@@ -1448,7 +1448,7 @@ void BuildManager::checkLatexConfiguration(bool &noWarnAgain)
 		message += "<br><br>"
 		           + tr("If you intend to work with LaTeX, you'll most certainly want to install a LaTeX distribution.");
 #endif
-		txsWarning(message, noWarnAgain);
+		UtilsUi::txsWarning(message, noWarnAgain);
 	}
 }
 
@@ -2125,7 +2125,7 @@ bool BuildManager::executeDDE(QString ddePseudoURL)
 	//parse URL
 	if (ddePseudoURL.startsWith("dde:///")) ddePseudoURL.remove(0, 7);
 	else if (ddePseudoURL.startsWith("dde://")) {
-		txsInformation(tr("You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash."));
+		UtilsUi::txsInformation(tr("You have used a dde:// command with two slashes, which is deprecated. Please change it to a triple slash command dde:/// by adding another slash."));
 		ddePseudoURL.remove(0, 6);
 	} else return false;
 

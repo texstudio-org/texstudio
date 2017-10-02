@@ -40,7 +40,7 @@ void Help::viewTexdoc(QString package)
 		package = act->data().toString();
 	}
 	if (!package.isEmpty()) {
-		if (texdocCommand().isEmpty()) txsWarning(tr("texdoc not found."));
+		if (texdocCommand().isEmpty()) UtilsUi::txsWarning(tr("texdoc not found."));
 		QProcess *proc = new QProcess(this);
 		connect(proc, SIGNAL(finished(int)), this, SLOT(texdocProcessFinished()));
 #ifdef Q_OS_OSX
@@ -52,7 +52,7 @@ void Help::viewTexdoc(QString package)
 #endif
 		proc->start(texdocCommand(), QStringList() << "--view" << package);
 		if (isTexdocExpectedToFinish() && !proc->waitForFinished(2000)) {
-			txsWarning(QString(tr("texdoc took too long to open the documentation for the package:") + "\n%1").arg(package));
+			UtilsUi::txsWarning(QString(tr("texdoc took too long to open the documentation for the package:") + "\n%1").arg(package));
 		}
 	}
 }
@@ -107,7 +107,7 @@ QString Help::packageDocFile(const QString &package, bool silent)
 {
 	QString cmd = texdocCommand();
 	if (cmd.isEmpty()) {
-		if (!silent) txsWarning(tr("texdoc not found."));
+		if (!silent) UtilsUi::txsWarning(tr("texdoc not found."));
 		return QString();
 	}
 	QStringList args;
@@ -131,7 +131,7 @@ QString Help::packageDocFile(const QString &package, bool silent)
 
 	if (!proc.waitForFinished(2000)) {
 		if (!silent) {
-			txsWarning(QString(tr("texdoc did not respond to query on package:") + "\n%1").arg(package));
+			UtilsUi::txsWarning(QString(tr("texdoc did not respond to query on package:") + "\n%1").arg(package));
 		}
 		return QString();
 	}
@@ -202,7 +202,7 @@ void Help::texdocProcessFinished()
 	if (proc) {
 		QString message(proc->readAllStandardError().trimmed());
 		if (!message.isEmpty())
-			txsWarning(message);
+			UtilsUi::txsWarning(message);
 		proc->deleteLater();
 	}
 }

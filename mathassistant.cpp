@@ -66,7 +66,7 @@ void MathAssistant::processFinished(int exitCode, QProcess::ExitStatus exitStatu
 {
 	Q_UNUSED(exitCode);
 	if (exitStatus != QProcess::NormalExit) {
-		txsCritical(tr("TexTablet crashed."));
+		UtilsUi::txsCritical(tr("TexTablet crashed."));
 	}
 	// exit code is always zero for TexTablet
 

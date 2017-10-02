@@ -127,7 +127,7 @@ QWidget *ShortcutDelegate::createEditor(QWidget *parent,
 
 	//menu shortcut key
 	if (index.column() != 2 && index.column() != 3) {
-		txsWarning(tr("To change a shortcut, edit the column \"Current Shortcut\" or \"Additional Shortcut\"."));
+		UtilsUi::txsWarning(tr("To change a shortcut, edit the column \"Current Shortcut\" or \"Additional Shortcut\"."));
 		return 0;
 	}
 	ShortcutComboBox *editor = new ShortcutComboBox(parent);
@@ -177,7 +177,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 	QLineEdit *le = qobject_cast<QLineEdit *>(editor);
 	if (le) {
 		if (le->text().size() != 1 && index.column() == 1) {
-			txsWarning(tr("Only single characters are allowed as key"));
+			UtilsUi::txsWarning(tr("Only single characters are allowed as key"));
 			return;
 		}
 		model->setData(index, le->text(), Qt::EditRole);
@@ -192,13 +192,13 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 	else {
 		value = QKeySequence(box->currentText()).toString(SHORTCUT_FORMAT);
 		if (value == "" || (value.endsWith("+") && !value.endsWith("++"))) { //Alt+wrong=>Alt+
-			txsWarning(ConfigDialog::tr("The shortcut you entered is invalid."));
+			UtilsUi::txsWarning(ConfigDialog::tr("The shortcut you entered is invalid."));
 			return;
 		}
 		QString value_alternative = QKeySequence(box->currentText()).toString(QKeySequence::PortableText);
 		QRegExp rxCharKey("(Shift\\+)?."); // matches all single characters and single characters with shift like "Shift+A", should not match e.g. "F1" or "DEL"
 		if (rxCharKey.exactMatch(value_alternative)) {
-			if (!txsConfirmWarning(ConfigDialog::tr("The shortcut you entered is a standard character key.\n"
+			if (!UtilsUi::txsConfirmWarning(ConfigDialog::tr("The shortcut you entered is a standard character key.\n"
 			                                        "You will not be able to type this character. Do you wish\n"
 			                                        "to set the key anyway?"))) {
 				return;
@@ -239,7 +239,7 @@ void ShortcutDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
 					if (twi) duplicates << twi->text(0);
 				}
 				QString duplicate = duplicates.join("\n");
-				if (txsConfirmWarning(QString(ConfigDialog::tr("The shortcut <%1> is already assigned to the command:")).arg(value) + "\n" + duplicate + "\n\n" + ConfigDialog::tr("Do you wish to remove the old assignment and bind the shortcut to the new command?"))) {
+				if (UtilsUi::txsConfirmWarning(QString(ConfigDialog::tr("The shortcut <%1> is already assigned to the command:")).arg(value) + "\n" + duplicate + "\n\n" + ConfigDialog::tr("Do you wish to remove the old assignment and bind the shortcut to the new command?"))) {
 					//model->setData(mil[0],"",Qt::DisplayRole);
 					foreach (QTreeWidgetItem *twi, li) {
 						if (twi and twi->text(2) == value) twi->setText(2, "");
@@ -296,7 +296,7 @@ void ShortcutDelegate::treeWidgetItemClicked(QTreeWidgetItem *item, int column)
 	       style->drawControl(QStyle::CE_PushButton, &  sob, &p);
 	    }*/
 	if (item->text(0) == deleteRowButton) {
-		if (txsConfirm(ConfigDialog::tr("Do you really want to delete this row?"))) {
+		if (UtilsUi::txsConfirm(ConfigDialog::tr("Do you really want to delete this row?"))) {
 			Q_ASSERT(item->parent());
 			if (!item->parent()) return;
 			item->parent()->removeChild(item);
@@ -387,15 +387,15 @@ ConfigDialog::ConfigDialog(QWidget *parent): QDialog(parent), checkboxInternalPD
 	setModal(true);
 	ui.setupUi(this);
 
-	enableTouchScrolling(ui.scrollAreaGeneral);
-	enableTouchScrolling(ui.scrollAreaBuild);
-	enableTouchScrolling(ui.menuTree);
-	enableTouchScrolling(ui.scrollAreaAdvancedEditor);
-	enableTouchScrolling(ui.twHighlighEnvirons);
-	enableTouchScrolling(ui.twCustomSyntax);
-	enableTouchScrolling(ui.scrollAreaGrammar);
-	enableTouchScrolling(ui.scrollAreaPreview);
-	enableTouchScrolling(ui.scrollAreaPDFviewer);
+	UtilsUi::enableTouchScrolling(ui.scrollAreaGeneral);
+	UtilsUi::enableTouchScrolling(ui.scrollAreaBuild);
+	UtilsUi::enableTouchScrolling(ui.menuTree);
+	UtilsUi::enableTouchScrolling(ui.scrollAreaAdvancedEditor);
+	UtilsUi::enableTouchScrolling(ui.twHighlighEnvirons);
+	UtilsUi::enableTouchScrolling(ui.twCustomSyntax);
+	UtilsUi::enableTouchScrolling(ui.scrollAreaGrammar);
+	UtilsUi::enableTouchScrolling(ui.scrollAreaPreview);
+	UtilsUi::enableTouchScrolling(ui.scrollAreaPDFviewer);
 
 #ifdef Q_OS_MAC
 	ui.labelSwitchKeyboardLayout->setDisabled(true);
@@ -679,22 +679,22 @@ void ConfigDialog::comboBoxWithPathHighlighted(const QString &newText)
 
 void ConfigDialog::browseThesaurus()
 {
-	browse(ui.comboBoxThesaurusFileName, tr("Select thesaurus database"), "Database (*.dat)");
+	UtilsUi::browse(ui.comboBoxThesaurusFileName, tr("Select thesaurus database"), "Database (*.dat)");
 }
 
 void ConfigDialog::browseGrammarWordListsDir()
 {
-	browse(ui.lineEditGrammarWordlists, tr("Select the grammar word lists dir"), "/");
+	UtilsUi::browse(ui.lineEditGrammarWordlists, tr("Select the grammar word lists dir"), "/");
 }
 
 void ConfigDialog::browseGrammarLTPath()
 {
-	browse(ui.lineEditGrammarLTPath, tr("Select the LanguageTool jar"), "Java-Program (*.jar)");
+	UtilsUi::browse(ui.lineEditGrammarLTPath, tr("Select the LanguageTool jar"), "Java-Program (*.jar)");
 }
 
 void ConfigDialog::browseGrammarLTJavaPath()
 {
-	browse(ui.lineEditGrammarLTJava, tr("Select java"), "Java (*)");
+	UtilsUi::browse(ui.lineEditGrammarLTJava, tr("Select java"), "Java (*)");
 }
 
 void ConfigDialog::resetLTArgs(){
@@ -707,32 +707,32 @@ void ConfigDialog::resetLTURL(){
 
 void ConfigDialog::browseDictDir()
 {
-	browse(ui.leDictDir, tr("Select dictionary directory"), "/");
+	UtilsUi::browse(ui.leDictDir, tr("Select dictionary directory"), "/");
 }
 
 void ConfigDialog::browsePathLog()
 {
-	browse(ui.lineEditPathLog, tr("Search Path for Logs"), "/", QDir::currentPath(), true);
+	UtilsUi::browse(ui.lineEditPathLog, tr("Search Path for Logs"), "/", QDir::currentPath(), true);
 }
 
 void ConfigDialog::browsePathBib()
 {
-	browse(ui.lineEditPathBib, tr("Search Path .bib Files"), "/", QDir::currentPath(), true);
+	UtilsUi::browse(ui.lineEditPathBib, tr("Search Path .bib Files"), "/", QDir::currentPath(), true);
 }
 
 void ConfigDialog::browsePathImages()
 {
-	browse(ui.lineEditPathImages, tr("Search Path for Images"), "/", QDir::currentPath(), true);
+	UtilsUi::browse(ui.lineEditPathImages, tr("Search Path for Images"), "/", QDir::currentPath(), true);
 }
 
 void ConfigDialog::browsePathPdf()
 {
-	browse(ui.lineEditPathPDF, tr("Search Path for PDFs"), "/", QDir::currentPath(), true);
+	UtilsUi::browse(ui.lineEditPathPDF, tr("Search Path for PDFs"), "/", QDir::currentPath(), true);
 }
 
 void ConfigDialog::browsePathCommands()
 {
-	browse(ui.lineEditPathCommands, tr("Search Path for Commands"), "/", QDir::rootPath(), true);
+	UtilsUi::browse(ui.lineEditPathCommands, tr("Search Path for Commands"), "/", QDir::rootPath(), true);
 }
 
 void ConfigDialog::updateDefaultDictSelection(const QString &dictPaths, const QString &newDefault)
@@ -1013,7 +1013,7 @@ void ConfigDialog::loadOtherIcon()
 {
 	QListWidgetItem *item = ui.listCustomToolBar->currentItem();
 	if (!item) {
-		txsWarning(tr("You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item."));
+		UtilsUi::txsWarning(tr("You need to add an action to the toolbar (from the list of actions on the right side), before you can load an icon for that item."));
 		return;
 	}
 	QString fn = QFileDialog::getOpenFileName(this, tr("Select a File"), "", tr("Images") + " (*.png *.xpm *.jpg *.jpeg *.bmp *.svg)");
@@ -1085,7 +1085,7 @@ void ConfigDialog::importDictionary()
 	SpellerManager::importDictionary(filename, targetDir);
 
 	if (!config->parseDirList(ui.leDictDir->text()).contains(targetDir)) {
-		if (txsConfirm(tr("The dictionary files have been imported to\n%1.\nHowever this path is not contained in the dictionary path list. Do you want to add it?").arg(targetDir))) {
+		if (UtilsUi::txsConfirm(tr("The dictionary files have been imported to\n%1.\nHowever this path is not contained in the dictionary path list. Do you want to add it?").arg(targetDir))) {
 			ui.leDictDir->setText(ui.leDictDir->text() + ";[txs-settings-dir]/dictionaries");
 		}
 	}
@@ -1194,7 +1194,7 @@ void ConfigDialog::custSyntaxRemoveLine()
 
 bool ConfigDialog::askRiddle()
 {
-	txsInformation(tr("You have enabled the advanced options. This allows one to\n"
+	UtilsUi::txsInformation(tr("You have enabled the advanced options. This allows one to\n"
 	                  "configure TXS in great detail. Disable the advanced\n"
 	                  "options again to only view the most common settings."));
 	return true;

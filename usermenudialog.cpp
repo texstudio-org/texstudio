@@ -294,7 +294,7 @@ void UserMenuDialog::slotAdd()
 
 void UserMenuDialog::slotRemove()
 {
-	if (!txsConfirm(tr("Do you really want to delete the current macro?")))
+	if (!UtilsUi::txsConfirm(tr("Do you really want to delete the current macro?")))
 		return;
 	int index = ui.tableView->currentIndex().row();
 	if (index < 0) return;
@@ -390,5 +390,5 @@ void UserMenuDialog::showTooltip()
 {
 	QWidget *w = qobject_cast<QWidget *>(sender());
 	if (!w) return;
-	txsInformation(w->toolTip());
+	UtilsUi::txsInformation(w->toolTip());
 }

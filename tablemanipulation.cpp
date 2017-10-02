@@ -952,7 +952,7 @@ LatexTableLine *LatexTableModel::parseNextLine(const QString &text, int &startCo
 			int startOpt = endCol;
 			int endOpt = findClosingBracket(text, endCol, '[', ']');
 			if (endOpt < 0) {
-				txsWarning("Could not parse table code: Missing closing bracket: \\[");
+				UtilsUi::txsWarning("Could not parse table code: Missing closing bracket: \\[");
 				return 0;
 			}
 			lineBreakOption = text.mid(startOpt, endOpt - startOpt + 1).trimmed();
