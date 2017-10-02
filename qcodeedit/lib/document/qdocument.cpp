@@ -3329,6 +3329,8 @@ void QDocumentLineHandle::layout(int lineNr) const
 	{
 		//qDebug("layout needed at line %i", this->line());
 
+		setFlag(QDocumentLine::LayoutedByQTextLayout, true);
+
 		if ( !m_layout )
 		{
 			m_layout = new QTextLayout(m_text, QDocument::font());
@@ -3430,7 +3432,12 @@ void QDocumentLineHandle::layout(int lineNr) const
 			delete m_layout;
 
 		m_layout = 0;
-		//updateWrap();
+
+		// fix https://sourceforge.net/p/texstudio/bugs/2255/
+		if (hasFlag(QDocumentLine::LayoutedByQTextLayout)) {
+			setFlag(QDocumentLine::LayoutedByQTextLayout, false);
+			updateWrap(lineNr);
+		}
 	}
 
 	setFlag(QDocumentLine::LayoutDirty, false);
