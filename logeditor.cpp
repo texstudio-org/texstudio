@@ -23,7 +23,7 @@ LogEditor::LogEditor(QWidget *parent) : QTextEdit(parent)
 	int fontSize = config->getOption("LogView/FontSize").toInt(&ok);
 	if (ok && fontSize > 0) setFontPointSize(fontSize);
 
-	enableTouchScrolling(this);
+	UtilsUi::enableTouchScrolling(this);
 }
 
 LogEditor::~LogEditor()
@@ -125,7 +125,7 @@ void LogEditor::paintEvent(QPaintEvent *event)
 	rect.setWidth(viewport()->width());
 	QPainter painter(viewport());
 	QBrush brush = palette().base();
-	brush.setColor(mediumLightColor(brush.color(), 110));
+	brush.setColor(UtilsUi::mediumLightColor(brush.color(), 110));
 	painter.fillRect(rect, brush);
 	painter.end();
 	QTextEdit::paintEvent(event);

@@ -365,7 +365,7 @@ void PDFMagnifier::paintEvent(QPaintEvent *event)
 			    painter.translate(-kMagFactor  * pos()- mouseTranslate -imageLoc );
 			    painter.scale(imageDpi/72.0, imageDpi/72.0);
 			    painter.setPen(QColor(0, 0, 0, 0));
-			    painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+			    painter.setBrush(UtilsUi::colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 			    //QPainterPath path=highlightPath;
 			    //path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
 			    painter.setCompositionMode(QPainter::CompositionMode_Multiply);
@@ -688,7 +688,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 				painter.setCompositionMode(QPainter::CompositionMode_Multiply);
 				painter.scale(totalScaleFactor(), totalScaleFactor());
 				painter.setPen(QColor(0, 0, 0, 0));
-				painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+				painter.setBrush(UtilsUi::colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 				painter.drawPath(highlightPath);
 			}
 			if (currentTool == kPresentation)
@@ -747,7 +747,7 @@ void PDFWidget::paintEvent(QPaintEvent *event)
 						painter.translate(drawGrid.left(), drawGrid.top());
 						painter.scale(totalScaleFactor(), totalScaleFactor());
 						painter.setPen(QColor(0, 0, 0, 0));
-						painter.setBrush(colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
+						painter.setBrush(UtilsUi::colorFromRGBAstr(globalConfig->highlightColor, QColor(255, 255, 0, 63)));
 						//QPainterPath path=highlightPath;
 						//path.translate(drawTo.left()*72.0/dpi/scaleFactor, drawTo.top()*72.0/dpi/scaleFactor);
 						painter.setCompositionMode(QPainter::CompositionMode_Multiply);
@@ -920,7 +920,7 @@ void PDFWidget::annotationClicked(QSharedPointer<Poppler::Annotation> annotation
 		movie->play();
 #else
 		Q_UNUSED(page)
-		txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option PHONON=true");
+		UtilsUi::txsWarning("You clicked on a video, but the video playing mode was disabled by you or the package creator.\nRecompile TeXstudio with the option PHONON=true");
 #endif
 		break;
 	}
@@ -1061,7 +1061,7 @@ void PDFWidget::doLink(const QSharedPointer<Poppler::Link> link)
 				}
 				pdfdocument->loadFile(filename);
 			} else {
-				txsInformation(tr("Opening external files is currently only supported for PDFs."));
+				UtilsUi::txsInformation(tr("Opening external files is currently only supported for PDFs."));
 			}
 		} else {
 			goToDestination(go->destination());
@@ -1426,7 +1426,7 @@ void PDFWidget::updateCursor(const QPoint &pos)
 				tooltip = browse->url();
 			} else if (link->linkType() == Poppler::Link::Goto) {
 				const Poppler::LinkGoto *go = dynamic_cast<const Poppler::LinkGoto *>(link);
-				Q_ASSERT(browse != NULL);
+				Q_ASSERT(UtilsUi::browse != NULL);
 				if (go->isExternal()) {
 					tooltip = go->fileName();
 				}
@@ -2646,9 +2646,9 @@ void PDFDocument::init(bool embedded)
 	connect(toolBar, SIGNAL(orientationChanged(Qt::Orientation)), this, SLOT(updateToolBarForOrientation(Qt::Orientation)));
 	updateToolBarForOrientation(toolBar->orientation());
 
-	QToolButton *tbCursorFollowsScrolling = createToolButtonForAction(actionCursor_follows_scrolling);
+	QToolButton *tbCursorFollowsScrolling = UtilsUi::createToolButtonForAction(actionCursor_follows_scrolling);
 	statusBar()->addPermanentWidget(tbCursorFollowsScrolling);
-	QToolButton *tbScrollingFollowsCursor = createToolButtonForAction(actionScrolling_follows_cursor);
+	QToolButton *tbScrollingFollowsCursor = UtilsUi::createToolButtonForAction(actionScrolling_follows_cursor);
 	statusBar()->addPermanentWidget(tbScrollingFollowsCursor);
 
 	QLabel *lbMessage = new QLabel();

@@ -118,7 +118,7 @@ void RandomTextGenerator::generateText()
 		newWordFound = &RandomTextGenerator::newWordForStream;
 		f.setFileName(ui->exportFileNameLineEdit->text());
 		if (!f.open(QFile::WriteOnly)) {
-			txsWarning(tr("Couldn't create file %1").arg(ui->exportFileNameLineEdit->text()));
+			UtilsUi::txsWarning(tr("Couldn't create file %1").arg(ui->exportFileNameLineEdit->text()));
 			return;
 		}
 		textStream.setDevice(&f);

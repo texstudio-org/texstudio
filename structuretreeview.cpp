@@ -19,7 +19,7 @@ StructureTreeView::StructureTreeView(Editors *edts, const LatexDocuments &docs, 
 	setObjectName("StructureTree");
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
-	enableTouchScrolling(this);
+	UtilsUi::enableTouchScrolling(this);
 
 	if (configManager.indentationInStructure > 0)
 		setIndentation(configManager.indentationInStructure);
@@ -122,7 +122,7 @@ void StructureTreeView::expandSubitems()
 {
 	if (!contextEntry)
 		return;
-	setSubtreeExpanded(this, contextIndex, true);
+	UtilsUi::setSubtreeExpanded(this, contextIndex, true);
 	contextEntry = 0;
 }
 
@@ -130,18 +130,18 @@ void StructureTreeView::collapseSubitems()
 {
 	if (!contextEntry)
 		return;
-	setSubtreeExpanded(this, contextIndex, false);
+	UtilsUi::setSubtreeExpanded(this, contextIndex, false);
 	contextEntry = 0;
 }
 
 void StructureTreeView::expandAllDocuments()
 {
-	setSubtreeExpanded(this, rootIndex(), true);
+	UtilsUi::setSubtreeExpanded(this, rootIndex(), true);
 }
 
 void StructureTreeView::collapseAllDocuments()
 {
-	setSubtreeExpanded(this, rootIndex(), false);
+	UtilsUi::setSubtreeExpanded(this, rootIndex(), false);
 }
 
 LatexDocument *StructureTreeView::contextEntryToDoc()

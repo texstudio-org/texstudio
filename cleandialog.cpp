@@ -26,7 +26,7 @@ CleanDialog::CleanDialog(QWidget *parent) :
 	if (rxValExtensionList->validate(currentExtensions, dummyPos) == QValidator::Acceptable) {
 		ui->leExtensions->setText(currentExtensions);
 	} else {
-		txsWarning("Invalid extension list found. Resetting to default.");
+		UtilsUi::txsWarning("Invalid extension list found. Resetting to default.");
 		currentExtensions = defaultExtensions;
 		ui->leExtensions->setText(currentExtensions);
 	}
@@ -105,7 +105,7 @@ void CleanDialog::updateFilesToRemove() {
 			found << ext;
 	}
 	if (!found.isEmpty()) {
-		txsWarning(tr("For your own safety clean will not delete the files with the following extensions:") + QString("\n") + extList.join(", "));
+		UtilsUi::txsWarning(tr("For your own safety clean will not delete the files with the following extensions:") + QString("\n") + extList.join(", "));
 		foreach (QString ext, found)
 			extList.removeAll(ext);
 	}

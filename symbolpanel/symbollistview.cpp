@@ -8,7 +8,7 @@ SymbolListView::SymbolListView(QWidget *parent) : QListView(parent)
 	setWrapping(true);
 	setResizeMode(QListView::Adjust);
 	setFrameShape(QFrame::NoFrame);
-	enableTouchScrolling(this);
+	UtilsUi::enableTouchScrolling(this);
 }
 
 void SymbolListView::setSymbolSize(int size)

@@ -533,7 +533,7 @@ void Texstudio::addTagList(const QString &id, const QString &iconName, const QSt
 	if (!list) {
 		list = new XmlTagsListWidget(this, ":/tags/" + tagFile);
 		list->setObjectName("tags/" + tagFile.left(tagFile.indexOf("_tags.xml")));
-		enableTouchScrolling(list);
+		UtilsUi::enableTouchScrolling(list);
 		connect(list, SIGNAL(itemClicked(QListWidgetItem *)), this, SLOT(insertXmlTag(QListWidgetItem *)));
 		leftPanel->addWidget(list, id, text, iconName);
 		//(*list)->setProperty("mType",2);
@@ -674,7 +674,7 @@ void Texstudio::updateToolBarMenu(const QString &menuName)
 						}
 
 					//qDebug() << "**" << actionTexts;
-					createComboToolButton(tb.toolbar, actionTexts, actionIcons, -1, this, SLOT(callToolButtonAction()), defaultIndex, combo);
+					UtilsUi::createComboToolButton(tb.toolbar, actionTexts, actionIcons, -1, this, SLOT(callToolButtonAction()), defaultIndex, combo);
 
 					if (menuName == "main/view/documents") {
 						// workaround to select the current document
@@ -1303,7 +1303,7 @@ void Texstudio::setupToolBars()
 					tagsWidget->populate();
 				QStringList list = tagsWidget->tagsTxtFromCategory(actionName.mid(tagCategorySep + 1));
 				if (list.isEmpty()) continue;
-				QToolButton *combo = createComboToolButton(mtb.toolbar, list, QList<QIcon>(), 0, this, SLOT(insertXmlTagFromToolButtonAction()));
+				QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, QList<QIcon>(), 0, this, SLOT(insertXmlTagFromToolButtonAction()));
 				combo->setProperty("tagsID", actionName);
 				mtb.toolbar->addWidget(combo);
 			} else {
@@ -1313,7 +1313,7 @@ void Texstudio::setupToolBars()
 					//Case 3: A normal QAction
 					if (act->icon().isNull())
 						act->setIcon(QIcon(APPICON));
-					updateToolTipWithShortcut(act, configManager.showShortcutsInTooltips);
+					UtilsUi::updateToolTipWithShortcut(act, configManager.showShortcutsInTooltips);
 					mtb.toolbar->addAction(act);
 				} else {
 					QMenu *menu = qobject_cast<QMenu *>(obj);
@@ -1331,7 +1331,7 @@ void Texstudio::setupToolBars()
 							icons.append(act->icon());
 						}
 					//TODO: Is the callToolButtonAction()-slot really needed? Can't we just add the menu itself as the menu of the qtoolbutton, without creating a copy? (should be much faster)
-					QToolButton *combo = createComboToolButton(mtb.toolbar, list, icons, 0, this, SLOT(callToolButtonAction()));
+					QToolButton *combo = UtilsUi::createComboToolButton(mtb.toolbar, list, icons, 0, this, SLOT(callToolButtonAction()));
 					combo->setProperty("menuID", actionName);
 					mtb.toolbar->addWidget(combo);
 				}
@@ -1855,7 +1855,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	}
 	if ((f_real.endsWith(".synctex.gz", Qt::CaseInsensitive) ||
 	        f_real.endsWith(".synctex", Qt::CaseInsensitive))
-	        && txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
+	        && UtilsUi::txsConfirm(tr("Do you want to debug a SyncTeX file?"))) {
 		fileNewInternal();
 		currentEditor()->document()->setText(PDFDocument::debugSyncTeX(f_real), false);
 		return currentEditorView();
@@ -1863,7 +1863,7 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 #endif
 
 	if (f_real.endsWith(".log", Qt::CaseInsensitive) &&
-	        txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
+	        UtilsUi::txsConfirm(QString("Do you want to load file %1 as LaTeX log file?").arg(QFileInfo(f).completeBaseName()))) {
 		outputView->getLogWidget()->loadLogFile(f, documents.getTemporaryCompileFileName(), QTextCodec::codecForName(configManager.logFileEncoding.toLatin1()));
 		setLogMarksVisible(true);
 		return 0;
@@ -1990,13 +1990,13 @@ LatexEditorView *Texstudio::load(const QString &f , bool asProject, bool hidden,
 	if (!hidden) {
 		if (QFile::exists(f_real + ".recover.bak~")
 		        && QFileInfo(f_real + ".recover.bak~").lastModified() > QFileInfo(f_real).lastModified()) {
-			if (txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString()).arg(f_real))) {
+			if (UtilsUi::txsConfirm(tr("A crash recover file from %1 has been found for \"%2\".\nDo you want to restore it?").arg(QFileInfo(f_real + ".recover.bak~").lastModified().toString()).arg(f_real))) {
 				QFile f(f_real + ".recover.bak~");
 				if (f.open(QFile::ReadOnly)) {
 					QByteArray ba = f.readAll();
 					QString recovered = QTextCodec::codecForName("UTF-8")->toUnicode(ba); //TODO: chunk loading?
 					edit->document->setText(recovered, true);
-				} else txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
+				} else UtilsUi::txsWarning(tr("Failed to open recover file \"%1\".").arg(f_real + ".recover.bak~"));
 			}
 		}
 
@@ -2139,7 +2139,7 @@ void Texstudio::autoRunScripts()
 	int major = vers.at(0).toInt();
 	int minor = vers.at(1).toInt();
 	if (!hasAtLeastQt(major, minor))
-		txsWarning(tr("%1 has been compiled with Qt %2, but is running with Qt %3.\nPlease get the correct runtime library (e.g. .dll or .so files).\nOtherwise there might be random errors and crashes.")
+		UtilsUi::txsWarning(tr("%1 has been compiled with Qt %2, but is running with Qt %3.\nPlease get the correct runtime library (e.g. .dll or .so files).\nOtherwise there might be random errors and crashes.")
 		           .arg(TEXSTUDIO).arg(QT_VERSION_STR).arg(qVersion()));
 	runScripts(Macro::ST_TXS_START);
 }
@@ -2226,7 +2226,7 @@ void Texstudio::fileMakeTemplate()
 		//txt.replace("%","%%"); not necessary any more
 		QFile file_txt(fn);
 		if (!file_txt.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			txsInformation(tr("Could not write template data:") + "\n" + fn);
+			UtilsUi::txsInformation(tr("Could not write template data:") + "\n" + fn);
 			return;
 		} else {
 			QTextStream out(&file_txt);
@@ -2252,7 +2252,7 @@ void Texstudio::fileMakeTemplate()
 		fn.append(".json");
 		QFile file(fn);
 		if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-			txsInformation(tr("Could not write template meta data:") + "\n" + fn);
+			UtilsUi::txsInformation(tr("Could not write template meta data:") + "\n" + fn);
 		} else {
 			QTextStream out(&file);
 			out.setCodec("UTF-8");
@@ -2301,11 +2301,11 @@ void Texstudio::fileNewFromTemplate()
 		QString fname = th.file();
 		QFile file(fname);
 		if (!file.exists()) {
-			txsWarning(tr("File not found:") + QString("\n%1").arg(fname));
+			UtilsUi::txsWarning(tr("File not found:") + QString("\n%1").arg(fname));
 			return;
 		}
 		if (!file.open(QIODevice::ReadOnly)) {
-			txsWarning(tr("You do not have read permission to this file:") + QString("\n%1").arg(fname));
+			UtilsUi::txsWarning(tr("You do not have read permission to this file:") + QString("\n%1").arg(fname));
 			return;
 		}
 
@@ -2363,11 +2363,11 @@ void Texstudio::insertTableTemplate()
 		QString fname = tmplMgr.selectedTemplateFile();
 		QFile file(fname);
 		if (!file.exists()) {
-			txsWarning(tr("File not found:") + QString("\n%1").arg(fname));
+			UtilsUi::txsWarning(tr("File not found:") + QString("\n%1").arg(fname));
 			return;
 		}
 		if (!file.open(QIODevice::ReadOnly)) {
-			txsWarning(tr("You do not have read permission to this file:") + QString("\n%1").arg(fname));
+			UtilsUi::txsWarning(tr("You do not have read permission to this file:") + QString("\n%1").arg(fname));
 			return;
 		}
 		QString tableDef = LatexTables::getSimplifiedDef(c);
@@ -2518,7 +2518,7 @@ void Texstudio::fileRestoreSession(bool showProgress, bool warnMissing)
 	Session s;
 	if (f.exists()) {
 		if (!s.load(f.filePath())) {
-			txsCritical(tr("Loading of last session failed."));
+			UtilsUi::txsCritical(tr("Loading of last session failed."));
 		}
 	}
 	restoreSession(s, showProgress, warnMissing);
@@ -2604,7 +2604,7 @@ void Texstudio::fileSaveAs(const QString &fileName, const bool saveSilently)
 			// trying to save with same name as another already existing file
 			LatexEditorView *otherEdView = getEditorViewFromFileName(fn);
 			if (!otherEdView->document->isClean()) {
-				txsWarning(tr("Saving under the name\n"
+				UtilsUi::txsWarning(tr("Saving under the name\n"
 				              "%1\n"
 				              "is currently not possible because a modified version of a file\n"
 				              "with this name is open in TeXstudio. You have to save or close\n"
@@ -2720,7 +2720,7 @@ void Texstudio::fileUtilDelete()
 {
 	QString fn = documents.getCurrentFileName();
 	if (fn.isEmpty()) return;
-	if (txsConfirmWarning(tr("Do you really want to delete the file \"%1\"?").arg(fn)))
+	if (UtilsUi::txsConfirmWarning(tr("Do you really want to delete the file \"%1\"?").arg(fn)))
 		QFile(fn).remove();
 }
 
@@ -2729,7 +2729,7 @@ void Texstudio::fileUtilRevert()
 	if (!currentEditor()) return;
 	QString fn = documents.getCurrentFileName();
 	if (fn.isEmpty()) return;
-	if (txsConfirmWarning(tr("Do you really want to revert the file \"%1\"?").arg(documents.getCurrentFileName())))
+	if (UtilsUi::txsConfirmWarning(tr("Do you really want to revert the file \"%1\"?").arg(documents.getCurrentFileName())))
 		currentEditor()->reload();
 }
 
@@ -2772,7 +2772,7 @@ void Texstudio::fileUtilPermissions()
 						permissionsRaw |= flag;
 						p++;
 					} else if (!QString("rwx").contains(permissions[p])) {
-						txsWarning("invalid character in permission: " + permissions[p]);
+						UtilsUi::txsWarning("invalid character in permission: " + permissions[p]);
 						return;
 					}
 					if (p >= permissions.length()) p = 0; //wrap around
@@ -2954,7 +2954,7 @@ void Texstudio::fileOpenRecent()
 	if (!action) return;
 	QString fn = action->data().toString();
 	if (!QFile::exists(fn)) {
-		if (txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(fn))) {
+		if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(fn))) {
 			if (configManager.recentFilesList.removeAll(fn))
 				configManager.updateRecentFiles();
 			return;
@@ -3006,7 +3006,7 @@ void Texstudio::fileDocumentOpenFromChoosen(const QString &doc, int duplicate, i
 {
 	Q_UNUSED(duplicate);
 	if (!QFile::exists(doc)) {
-		if (txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(doc))) {
+		if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(doc))) {
 			if (configManager.recentFilesList.removeAll(doc) + configManager.recentProjectList.removeAll(doc) > 0)
 				configManager.updateRecentFiles();
 			return;
@@ -3087,7 +3087,7 @@ void Texstudio::fileOpenRecentProject()
 	if (!action) return;
 	QString fn = action->data().toString();
 	if (!QFile::exists(fn)) {
-		if (txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(fn))) {
+		if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist anymore. Do you want to remove it from the recent file list?").arg(fn))) {
 			if (configManager.recentProjectList.removeAll(fn))
 				configManager.updateRecentFiles();
 			return;
@@ -3100,7 +3100,7 @@ void Texstudio::loadSession(const QString &fileName)
 {
 	Session s;
 	if (!s.load(fileName)) {
-		txsCritical(tr("Loading of session failed."));
+		UtilsUi::txsCritical(tr("Loading of session failed."));
 		return;
 	}
 	restoreSession(s);
@@ -3138,7 +3138,7 @@ void Texstudio::fileSaveSession()
 	QString fn = QFileDialog::getSaveFileName(this, tr("Save Session"), openDir, tr("TeXstudio Session") + " (*." + Session::fileExtension() + ")");
 	if (fn.isNull()) return;
 	if (!getCurrentSession().save(fn, configManager.sessionStoreRelativePaths)) {
-		txsCritical(tr("Saving of session failed."));
+		UtilsUi::txsCritical(tr("Saving of session failed."));
 		return;
 	}
 	recentSessionList->addFilenameToList(fn);
@@ -3221,7 +3221,7 @@ void Texstudio::restoreSession(const Session &s, bool showProgress, bool warnMis
 		updateCompleter(currentEditorView());
 
 	if (warnMissing && !missingFiles.isEmpty()) {
-		txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
+		UtilsUi::txsInformation(tr("The following files could not be loaded:") + "\n" + missingFiles.join("\n"));
 	}
 }
 
@@ -3379,7 +3379,7 @@ void Texstudio::editPasteImage(QImage image)
 	filenameSuggestion = filename;
 
 	if (!image.save(filename)) {
-		txsCritical(tr("Could not save the image file."));
+		UtilsUi::txsCritical(tr("Could not save the image file."));
 		return;
 	}
 	quickGraphics(filename);
@@ -3643,13 +3643,13 @@ void Texstudio::editHardLineBreakRepeat()
 void Texstudio::editSpell()
 {
 	if (!currentEditorView()) {
-		txsWarning(tr("No document open"));
+		UtilsUi::txsWarning(tr("No document open"));
 		return;
 	}
 	SpellerUtility *su = spellerManager.getSpeller(currentEditorView()->getSpeller());
 	if (!su) return; // getSpeller already gives a warning message
 	if (su->name() == "<none>") {
-		txsWarning(tr("No dictionary available."));
+		UtilsUi::txsWarning(tr("No dictionary available."));
 		return;
 	}
 	if (!spellDlg) spellDlg = new SpellerDialog(this, su);
@@ -4111,7 +4111,7 @@ void Texstudio::saveSettings(const QString &configName)
 
 void Texstudio::restoreDefaultSettings()
 {
-	if (!txsConfirmWarning("This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.\n\nDo you want to continue?")) {
+	if (!UtilsUi::txsConfirmWarning("This will reset all settings to their defaults. At the end, TeXstudio will be closed. Please start TeXstudio manually anew afterwards.\n\nDo you want to continue?")) {
 		return;
 	}
 	if (canCloseNow(false)) {
@@ -4121,7 +4121,7 @@ void Texstudio::restoreDefaultSettings()
 				f.write("\n");  // delete contents of settings file
 				f.close();
 			} else {
-				txsWarning(tr("Unable to write to settings file %1").arg(QDir::toNativeSeparators(f.fileName())));
+				UtilsUi::txsWarning(tr("Unable to write to settings file %1").arg(QDir::toNativeSeparators(f.fileName())));
 			}
 		}
 		qApp->exit(0);
@@ -4912,7 +4912,7 @@ void Texstudio::insertXmlTagFromToolButtonAction()
 	if (!currentEditorView()) return;
 	QAction *action = qobject_cast<QAction *>(sender());
 	if (!action) return;
-	QToolButton *button = comboToolButtonFromAction(action);
+	QToolButton *button = UtilsUi::comboToolButtonFromAction(action);
 	if (!button) return;
 	button->setDefaultAction(action);
 
@@ -4928,7 +4928,7 @@ void Texstudio::insertXmlTagFromToolButtonAction()
 void Texstudio::callToolButtonAction()
 {
 	QAction *action = qobject_cast<QAction *>(sender());
-	QToolButton *button = comboToolButtonFromAction(action);
+	QToolButton *button = UtilsUi::comboToolButtonFromAction(action);
 	REQUIRE(button && button->defaultAction() && button->menu());
 	button->setDefaultAction(action);
 
@@ -5601,7 +5601,7 @@ bool Texstudio::runCommand(const QString &commandline, QString *buffer, QTextCod
 
 	QString finame = documents.getTemporaryCompileFileName();
 	if (finame == "") {
-		txsWarning(tr("Can't detect the file name"));
+		UtilsUi::txsWarning(tr("Can't detect the file name"));
 		return false;
 	}
 
@@ -5824,7 +5824,7 @@ void Texstudio::runInternalCommand(const QString &cmd, const QFileInfo &mainfile
 	else if (cmd == BuildManager::CMD_VIEW_LOG) {
 		loadLog();
 		viewLog();
-	} else txsWarning(tr("Unknown internal command: %1").arg(cmd));
+	} else UtilsUi::txsWarning(tr("Unknown internal command: %1").arg(cmd));
 }
 
 void Texstudio::commandLineRequested(const QString &cmdId, QString *result, bool *)
@@ -5919,9 +5919,9 @@ void Texstudio::endRunningSubCommand(ProcessX *p, const QString &commandMain, co
 {
 	if (p->exitCode() && (flags & RCF_COMPILES_TEX) && !logExists()) {
 		if (!QFileInfo(QFileInfo(documents.getTemporaryCompileFileName()).absolutePath()).isWritable())
-			txsWarning(tr("You cannot compile the document in a non writable directory."));
+			UtilsUi::txsWarning(tr("You cannot compile the document in a non writable directory."));
 		else
-			txsWarning(tr("Could not start %1.").arg( buildManager.getCommandInfo(commandMain).displayName + ":" + buildManager.getCommandInfo(subCommand).displayName + ":\n" + p->getCommandLine()));
+			UtilsUi::txsWarning(tr("Could not start %1.").arg( buildManager.getCommandInfo(commandMain).displayName + ":" + buildManager.getCommandInfo(subCommand).displayName + ":\n" + p->getCommandLine()));
 	}
 	if ((flags & RCF_CHANGE_PDF)  && !(flags & RCF_WAITFORFINISHED) && (runningPDFAsyncCommands > 0)) {
 		runningPDFAsyncCommands--;
@@ -6036,14 +6036,14 @@ void Texstudio::cleanAll()
 	if (cleanDlg.checkClean(documents)) {
 		cleanDlg.exec();
 	} else {
-		txsInformation(tr("No open project or tex file to clean."));
+		UtilsUi::txsInformation(tr("No open project or tex file to clean."));
 	}
 }
 
 void Texstudio::webPublish()
 {
 	if (!currentEditorView()) {
-		txsWarning(tr("No document open"));
+		UtilsUi::txsWarning(tr("No document open"));
 		return;
 	}
 	if (!currentEditorView()->editor->getFileCodec()) return;
@@ -6072,7 +6072,7 @@ void Texstudio::webPublishSource()
 void Texstudio::analyseText()
 {
 	if (!currentEditorView()) {
-		txsWarning(tr("No document open"));
+		UtilsUi::txsWarning(tr("No document open"));
 		return;
 	}
 	if (!textAnalysisDlg) {
@@ -6097,7 +6097,7 @@ void Texstudio::analyseTextFormDestroyed()
 void Texstudio::generateRandomText()
 {
 	if (!currentEditorView()) {
-		txsWarning(tr("The random text generator constructs new texts from existing words, so you have to open some text files"));
+		UtilsUi::txsWarning(tr("The random text generator constructs new texts from existing words, so you have to open some text files"));
 		return;
 	}
 
@@ -6268,7 +6268,7 @@ bool Texstudio::gotoNearLogEntry(int lt, bool backward, QString notFoundMessage)
 			setLogMarksVisible(true);
 			return gotoMark(backward, outputView->getLogWidget()->getLogModel()->markID((LogType) lt));
 		} else {
-			txsInformation(notFoundMessage);
+			UtilsUi::txsInformation(notFoundMessage);
 		}
 	}
 	return false;
@@ -6325,7 +6325,7 @@ void Texstudio::texdocHelp()
 void Texstudio::helpAbout()
 {
 	// The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
-	QWidget *parentWindow = windowForObject(sender(), this);
+	QWidget *parentWindow = UtilsUi::windowForObject(sender(), this);
 	AboutDialog *abDlg = new AboutDialog(parentWindow);
 	abDlg->exec();
 	delete abDlg;
@@ -6379,7 +6379,7 @@ void Texstudio::generalOptions()
 	connect(&configManager, SIGNAL(symbolGridIconSizeChanged(int)), this, SLOT(changeSymbolGridIconSize(int)));
 
 	// The focus will return to the parent. Therefore we have to provide the correct caller (may be a viewer window).
-	QWidget *parentWindow = windowForObject(sender(), this);
+	QWidget *parentWindow = UtilsUi::windowForObject(sender(), this);
 
 	if (configManager.execConfigDialog(parentWindow)) {
 		QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -6778,7 +6778,7 @@ void Texstudio::setExplicitRootDocument(LatexDocument *doc)
 		fileSave();
 	}
 	if (doc->getFileName().isEmpty()) {
-		txsWarning(tr("You have to save the file before it can be defined as root document."));
+		UtilsUi::txsWarning(tr("You have to save the file before it can be defined as root document."));
 		return;
 	}
 	documents.setMasterDocument(doc);
@@ -6968,7 +6968,7 @@ void Texstudio::viewCloseElement()
 	QTime ct = QTime::currentTime();
 	if (ct.second() % 5 != 0) return;
 	for (int i = 2; i < 63; i++) if (ct.minute() != i && ct.minute() % i  == 0) return;
-	txsInformation("<html><head></head><body><img src=':/images/egg.png'></body></html>");
+	UtilsUi::txsInformation("<html><head></head><body><img src=':/images/egg.png'></body></html>");
 }
 
 void Texstudio::setFullScreenMode()
@@ -8960,9 +8960,9 @@ void Texstudio::openExternalFile(QString name, const QString &defaultExt, LatexD
 		Q_ASSERT(curPaths.count() > 0);
 		QFileInfo fi(getAbsoluteFilePath(curPaths[0] + name, defaultExt));
 		if (fi.exists()) {
-			txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
+			UtilsUi::txsCritical(tr("Unable to open file \"%1\".").arg(fi.fileName()));
 		} else {
-			if (txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
+			if (UtilsUi::txsConfirmWarning(tr("The file \"%1\" does not exist.\nDo you want to create it?").arg(fi.fileName()))) {
 				int lineNr = -1;
 				if (currentEditor()) {
 					lineNr = currentEditor()->cursor().lineNumber();
@@ -9046,7 +9046,7 @@ void Texstudio::loadProfile()
 			updateUserMacros();
 		if (userCommand)
 			updateUserToolMenu();
-	} else txsWarning(tr("Failed to read profile file %1.").arg(fname));
+	} else UtilsUi::txsWarning(tr("Failed to read profile file %1.").arg(fname));
 }
 
 void Texstudio::addRowCB()
@@ -9236,7 +9236,7 @@ void Texstudio::findNextWordRepetion()
 		fx = 0;
 		tx = line.length();
 	}
-	txsInformation(backward ? tr("Reached beginning of text.") : tr("Reached end of text."));
+	UtilsUi::txsInformation(backward ? tr("Reached beginning of text.") : tr("Reached end of text."));
 }
 
 void Texstudio::importPackage(QString name)

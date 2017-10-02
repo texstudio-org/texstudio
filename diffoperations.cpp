@@ -25,7 +25,7 @@ void diffDocs(LatexDocument *doc, LatexDocument *doc2, bool dontAddLines)
 	}
 
 	if (!error.isEmpty()) {
-		txsWarning("Diff: " + error);
+		UtilsUi::txsWarning("Diff: " + error);
 		return;
 	}
 

@@ -3,6 +3,9 @@
 
 #include "mostQtHeaders.h"
 
+
+namespace UtilsUi {
+
 bool txsConfirm(const QString &message);
 bool txsConfirmWarning(const QString &message);
 QMessageBox::StandardButton txsConfirmWarning(const QString &message, QMessageBox::StandardButtons buttons);
@@ -32,5 +35,7 @@ QWidget *windowForObject(QObject *obj, QWidget *fallback);
 void updateToolTipWithShortcut(QAction *action, bool showShortcut);
 
 void enableTouchScrolling(QWidget *w);
+
+}  // namespace UtilsUi
 
 #endif // UTILSUI_H

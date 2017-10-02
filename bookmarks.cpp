@@ -58,7 +58,7 @@ void Bookmarks::initializeWidget()
 	    "color: palette(highlighted-text);"
 	    "background-color: palette(highlight); }");
 	connect(bookmarksWidget, SIGNAL(itemPressed(QListWidgetItem *)), SLOT(clickedOnBookmark(QListWidgetItem *))); //single click
-	enableTouchScrolling(bookmarksWidget);
+	UtilsUi::enableTouchScrolling(bookmarksWidget);
 
 	createContextMenu();
 }

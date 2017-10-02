@@ -147,7 +147,7 @@ void TemplateSelector::hideFolderSelection()
 
 void TemplateSelector::on_btPath_clicked()
 {
-	browse(ui.lePath, tr("Select Target Folder"), "/");
+	UtilsUi::browse(ui.lePath, tr("Select Target Folder"), "/");
 }
 
 void TemplateSelector::checkTargetPath()
@@ -229,13 +229,13 @@ void TemplateSelector::editTemplate()
 {
 	TemplateHandle th = selectedTemplate();
 	if (th.isMultifile()) {
-		txsInformation("Editing of multi-file templates is not supported.\n"
+		UtilsUi::txsInformation("Editing of multi-file templates is not supported.\n"
 		               "Please open the template location and unzip the\n"
 		               "template to edit individual files.");
 		return;
 	}
 	if (!th.isEditable()) {
-		txsCritical(tr("This template cannot be edited."));
+		UtilsUi::txsCritical(tr("This template cannot be edited."));
 		return;
 	}
 	emit editTemplateRequest(th);
@@ -246,7 +246,7 @@ void TemplateSelector::editTemplateInfo()
 {
 	TemplateHandle th = selectedTemplate();
 	if (!th.isEditable()) {
-		txsCritical(tr("This template cannot be edited."));
+		UtilsUi::txsCritical(tr("This template cannot be edited."));
 		return;
 	}
 	emit editTemplateInfoRequest(th);
@@ -257,7 +257,7 @@ void TemplateSelector::removeTemplate()
 {
 	TemplateHandle th = selectedTemplate();
 	if (!th.isEditable()) {
-		txsCritical(tr("This template cannot be edited."));
+		UtilsUi::txsCritical(tr("This template cannot be edited."));
 		return;
 	}
 	QString fname = th.file();
@@ -269,12 +269,12 @@ void TemplateSelector::removeTemplate()
 			currentItem->parent()->removeChild(currentItem);
 		}
 		QFile file(fname);
-		if (!file.remove()) txsCritical(tr("You do not have permission to remove this file.") + "\n" + fname);
+		if (!file.remove()) UtilsUi::txsCritical(tr("You do not have permission to remove this file.") + "\n" + fname);
 		QFileInfo fi(fname);
 		QFileInfo metafi(fi.dir(), fi.baseName() + ".json");
 		if (metafi.exists()) {
 			file.setFileName(metafi.absoluteFilePath());
-			if (!file.remove()) txsCritical(tr("You do not have permission to remove this file.") + "\n" + fname);
+			if (!file.remove()) UtilsUi::txsCritical(tr("You do not have permission to remove this file.") + "\n" + fname);
 		}
 	}
 }
@@ -284,7 +284,7 @@ void TemplateSelector::openTemplateLocation()
 	TemplateHandle th = selectedTemplate();
 	QString url = "file:///" + QFileInfo(th.file()).absolutePath();
 	if (!QDesktopServices::openUrl(QUrl(url))) {
-		txsCritical(tr("Could not open location:") + QString("\n%1").arg(url));
+		UtilsUi::txsCritical(tr("Could not open location:") + QString("\n%1").arg(url));
 	}
 }
 

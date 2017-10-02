@@ -302,7 +302,7 @@ bool DefaultInputBinding::mouseReleaseEvent(QMouseEvent *event, QEditor *editor)
 				return true;
 			case LinkOverlay::UrlOverlay:
 				if (!QDesktopServices::openUrl(lo.text())) {
-					txsWarning(LatexEditorView::tr("Could not open url:") + "\n" + lo.text());
+					UtilsUi::txsWarning(LatexEditorView::tr("Could not open url:") + "\n" + lo.text());
 				}
 				return true;
 			case LinkOverlay::UsepackageOverlay:

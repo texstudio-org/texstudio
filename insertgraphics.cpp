@@ -239,7 +239,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 		argStarts.clear();
 		int nw = lr.nextWord(true);
 		if (nw == LatexReader::NW_COMMENT) {
-			if (!containsComment) txsWarning("Graphics inclusion wizard does not support comments. They will be removed if you edit the code with the wizard.");
+			if (!containsComment) UtilsUi::txsWarning("Graphics inclusion wizard does not support comments. They will be removed if you edit the code with the wizard.");
 			containsComment = true;
 			lr.index = code.indexOf("\n", lr.index);
 			continue;
@@ -254,7 +254,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 		}
 		LatexParser::resolveCommandOptions(code, lr.index, args, &argStarts);
 		if (args.length() == 0) {
-			txsWarning(tr("Could not parse graphics inclusion code:\nInsufficient number of arguments to ") + lr.word);
+			UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nInsufficient number of arguments to ") + lr.word);
 			return false;
 		}
 		lr.index = argStarts.last() + args.last().length();
@@ -271,7 +271,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 				conf.useFigure = false;
 				conf.center = true;
 			} else {
-				txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support environment ") + args.at(0));
+				UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support environment ") + args.at(0));
 				return false;
 			}
 		} else if (lr.word == "\\end") {
@@ -280,7 +280,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 			if (args.at(0).at(0) == '[') {
 				conf.shortCaption = LatexParser::removeOptionBrackets((args.at(0)));
 				if (args.length() < 2) {
-					txsWarning(tr("Could not parse graphics inclusion code:\nInvalid \\caption command."));
+					UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nInvalid \\caption command."));
 				}
 				conf.caption = LatexParser::removeOptionBrackets(args.at(1));
 			} else {
@@ -294,7 +294,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 			if (args.at(0).at(0) == '[') {
 				conf.includeOptions = LatexParser::removeOptionBrackets(args.at(0));
 				if (args.length() < 2) {
-					txsWarning(tr("Could not parse graphics inclusion code:\nMissing \\includegraphics options."));
+					UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nMissing \\includegraphics options."));
 					return false;
 				}
 				conf.file = LatexParser::removeOptionBrackets(args.at(1));
@@ -311,7 +311,7 @@ bool InsertGraphics::parseCode(const QString &code, InsertGraphicsConfig &conf)
 			}
 			includeParsed = true;
 		} else {
-			txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support command ") + lr.word);
+			UtilsUi::txsWarning(tr("Could not parse graphics inclusion code:\nThe wizard does not support command ") + lr.word);
 			return false;
 		}
 	}

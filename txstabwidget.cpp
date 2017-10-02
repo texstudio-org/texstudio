@@ -76,7 +76,7 @@ void TxsTabWidget::setCurrentEditor(LatexEditorView *edView)
 		// TODO: such calls are deprecated as bad practice. We should avoid them in the long run. For the moment the fallback to do nothing is ok.
 		qDebug() << "Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget" << edView;
 #ifndef QT_NO_DEBUG
-		txsWarning("Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget");
+		UtilsUi::txsWarning("Warning (deprecated call): TxsTabWidget::setCurrentEditor: editor not member of TxsTabWidget");
 #endif
 		return;
 	}

@@ -20,32 +20,32 @@ ScriptObject::ScriptObject(const QString &script, BuildManager *buildManager, Te
 
 void ScriptObject::alert(const QString &message)
 {
-	txsInformation(message);
+	UtilsUi::txsInformation(message);
 }
 
 void ScriptObject::information(const QString &message)
 {
-	txsInformation(message);
+	UtilsUi::txsInformation(message);
 }
 
 void ScriptObject::critical(const QString &message)
 {
-	txsCritical(message);
+	UtilsUi::txsCritical(message);
 }
 
 void ScriptObject::warning(const QString &message)
 {
-	txsWarning(message);
+	UtilsUi::txsWarning(message);
 }
 
 bool ScriptObject::confirm(const QString &message)
 {
-	return txsConfirm(message);
+	return UtilsUi::txsConfirm(message);
 }
 
 bool ScriptObject::confirmWarning(const QString &message)
 {
-	return txsConfirmWarning(message);
+	return UtilsUi::txsConfirmWarning(message);
 }
 
 void ScriptObject::debug(const QString &message)
