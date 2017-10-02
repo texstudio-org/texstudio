@@ -3344,7 +3344,13 @@ void QDocumentLineHandle::layout(int lineNr) const
 
 		// Tab width
 		QTextOption opt;
-		opt.setFlags(QTextOption::IncludeTrailingSpaces);
+		if (!m_text.isRightToLeft()) {
+			// We would like to include trailing spaces in the layout, however, QTextLayout does
+			// not process them correctly (QTBUG-48587) which results in false behavior for RTL
+			// text: https://sourceforge.net/p/texstudio/bugs/1503/
+			// therefore we do not include the trailing spaces for RTL text.
+			opt.setFlags(QTextOption::IncludeTrailingSpaces);
+		}
 		opt.setTabStop(m_doc->tabStop() * QDocumentPrivate::m_spaceWidth);
 
 		//opt.setWrapMode(QTextOption::NoWrap);
