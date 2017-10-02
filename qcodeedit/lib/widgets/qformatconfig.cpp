@@ -30,6 +30,7 @@
 
 #include "qsimplecolorpicker.h"
 #include "utilsSystem.h"
+#include "utilsUI.h"
 
 /*!
 	\ingroup dialogs
@@ -45,12 +46,9 @@ QFormatConfig::QFormatConfig(QWidget *w)
 {
 	setupUi(this);
 
-	m_frame->hide();
+	UtilsUi::enableTouchScrolling(m_table);
 
-	m_table->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-#if (QT_VERSION > 0x050000)&&!defined(Q_OS_MAC)
-	QScroller::grabGesture(m_table, QScroller::TouchGesture);
-#endif
+	m_frame->hide();
 	m_table->verticalHeader()->hide();
 
 	m_table->setColumnCount(13);

@@ -34,7 +34,7 @@ QWidget *windowForObject(QObject *obj, QWidget *fallback);
 
 void updateToolTipWithShortcut(QAction *action, bool showShortcut);
 
-void enableTouchScrolling(QWidget *w);
+void enableTouchScrolling(QWidget *w, bool enable = true);
 
 }  // namespace UtilsUi
 

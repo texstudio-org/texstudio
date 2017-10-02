@@ -297,17 +297,20 @@ void updateToolTipWithShortcut(QAction *action, bool showShortcut) {
  * \brief Adds support for a single-finger panning gesture to the widget using a QScroller.
  * \note ItemViews will be switched to ScrollPerPixel scrollMode.
  */
-void enableTouchScrolling(QWidget *widget) {
+void enableTouchScrolling(QWidget *widget, bool enable) {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)  && !defined(Q_OS_MAC)
-	QAbstractItemView *view = qobject_cast<QAbstractItemView *>(widget);
-	if (view) {
-		// QScroller needs per pixel scrolling otherwise distances and speed
-		// are calculated incorrectly.
-		view->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+	if (enable) {
+		QAbstractItemView *view = qobject_cast<QAbstractItemView *>(widget);
+		if (view) {
+			// QScroller needs per pixel scrolling otherwise distances and speed
+			// are calculated incorrectly.
+			view->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+		}
+		QScroller::grabGesture(widget, QScroller::TouchGesture);
+	} else {
+		QScroller::ungrabGesture(widget);
 	}
-	QScroller::grabGesture(widget, QScroller::TouchGesture);
 #endif
-
 }
 
 }  // namespace UtilsUi
