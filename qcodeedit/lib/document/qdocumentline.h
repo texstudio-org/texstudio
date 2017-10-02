@@ -87,7 +87,8 @@ class QCE_EXPORT QDocumentLine
 			CollapsedBlockEnd	= 4,
 			
 			LayoutDirty			= 16,
-			FormatsApplied		= 32
+			FormatsApplied		= 32,
+			LayoutedByQTextLayout	= 64
 		};
 		
 		Q_DECLARE_FLAGS(States, State);
