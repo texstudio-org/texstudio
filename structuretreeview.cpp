@@ -8,6 +8,7 @@
 #include "latexeditorview.h"
 
 
+
 StructureTreeView::StructureTreeView(Editors *edts, const LatexDocuments &docs, const ConfigManager &config, QWidget *parent) :
 	QTreeView(parent),
 	editors(edts),
@@ -18,6 +19,7 @@ StructureTreeView::StructureTreeView(Editors *edts, const LatexDocuments &docs, 
 	setObjectName("StructureTree");
 	setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu(QPoint)));
+	enableTouchScrolling(this);
 
 	if (configManager.indentationInStructure > 0)
 		setIndentation(configManager.indentationInStructure);

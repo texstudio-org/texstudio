@@ -1,5 +1,6 @@
 #include "symbollistview.h"
 #include "symbollistmodel.h"
+#include "utilsUI.h"
 
 SymbolListView::SymbolListView(QWidget *parent) : QListView(parent)
 {
@@ -7,6 +8,7 @@ SymbolListView::SymbolListView(QWidget *parent) : QListView(parent)
 	setWrapping(true);
 	setResizeMode(QListView::Adjust);
 	setFrameShape(QFrame::NoFrame);
+	enableTouchScrolling(this);
 }
 
 void SymbolListView::setSymbolSize(int size)

@@ -3,6 +3,7 @@
 #include "latexeditorview.h"
 
 
+
 Bookmark::Bookmark() : lineNumber(0), bookmarkNumber(-1) {}
 
 Bookmark Bookmark::fromStringList(QStringList slist)
@@ -57,6 +58,8 @@ void Bookmarks::initializeWidget()
 	    "color: palette(highlighted-text);"
 	    "background-color: palette(highlight); }");
 	connect(bookmarksWidget, SIGNAL(itemPressed(QListWidgetItem *)), SLOT(clickedOnBookmark(QListWidgetItem *))); //single click
+	enableTouchScrolling(bookmarksWidget);
+
 	createContextMenu();
 }
 
