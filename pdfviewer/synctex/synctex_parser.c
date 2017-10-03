@@ -533,8 +533,8 @@ typedef struct synctex_reader_t {
     char * current; /*  current location in the buffer */
     char * start;   /*  start of the buffer */
     char * end;     /*  end of the buffer */
-    int min_size;
-    int size;
+    size_t min_size;
+    size_t size;
     int lastv;
     int line_number;
     SYNCTEX_DECLARE_CHAR_OFFSET
