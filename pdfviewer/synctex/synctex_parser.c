@@ -1688,7 +1688,9 @@ static const synctex_data_model_s synctex_data_model_ref = {
     -1, /* width_V */
     -1, /* height_V */
     -1, /* depth_V */
-    synctex_data_ref_thv_max
+    -1, /* name */
+    -1, /* page */
+    synctex_data_ref_thv_max /* size */
 };
 static synctex_class_s synctex_class_ref = {
     NULL,                       /*  No scanner yet */
@@ -6706,7 +6708,7 @@ SYNCTEX_INLINE static synctex_point_s _synctex_data_set_point(synctex_node_p nod
     return old;
 }
 SYNCTEX_INLINE static synctex_box_s _synctex_data_box(synctex_node_p node) {
-    synctex_box_s box = {0,0,0,0};
+    synctex_box_s box = {{0,0},{0,0}};
     int n;
     n = synctex_node_width(node);
     if (n<0) {
@@ -6722,7 +6724,7 @@ SYNCTEX_INLINE static synctex_box_s _synctex_data_box(synctex_node_p node) {
     return box;
 }
 SYNCTEX_INLINE static synctex_box_s _synctex_data_xob(synctex_node_p node) {
-    synctex_box_s box = {0,0,0,0};
+    synctex_box_s box = {{0,0},{0,0}};
     int n;
     n = synctex_node_width(node);
     if (n>0) {
@@ -6738,7 +6740,7 @@ SYNCTEX_INLINE static synctex_box_s _synctex_data_xob(synctex_node_p node) {
     return box;
 }
 SYNCTEX_INLINE static synctex_box_s _synctex_data_box_V(synctex_node_p node) {
-    synctex_box_s box = {0,0,0,0};
+    synctex_box_s box = {{0,0},{0,0}};
     int n;
     n = _synctex_node_width_V(node);
     if (n<0) {
