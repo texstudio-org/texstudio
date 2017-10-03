@@ -50,11 +50,11 @@
 #ifndef __SYNCTEX_PARSER__
 #   define __SYNCTEX_PARSER__
 
+#include "synctex_version.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
-#   define SYNCTEX_VERSION_STRING "1.19"
     
     /*  The main synctex object is a scanner.
      *  Its implementation is considered private.

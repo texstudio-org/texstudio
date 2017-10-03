@@ -287,7 +287,7 @@ extern "C" {
 #   endif
     struct synctex_node_t {
         SYNCTEX_DECLARE_CHARINDEX
-        synctex_class_p class_;
+        synctex_class_p class;
 #ifdef DEBUG
         synctex_data_u data[22];
 #else
