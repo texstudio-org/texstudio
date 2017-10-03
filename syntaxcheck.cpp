@@ -37,6 +37,7 @@ void SyntaxCheck::setErrFormat(int errFormat)
 {
 	syntaxErrorFormat = errFormat;
 }
+
 /*!
  * \brief add line to queue
  * \param dlh linehandle
@@ -63,6 +64,7 @@ void SyntaxCheck::putLine(QDocumentLineHandle *dlh, StackEnvironment previous, T
 	//mResultLock.lock(); not possible under windows
 	mLinesAvailable.release();
 }
+
 /*!
  * \brief stop processing syntax checks
  */
@@ -450,6 +452,7 @@ void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnviron
 		}
 	}
 }
+
 /*!
  * \brief get error description for syntax error in line 'dlh' at column 'pos'
  * \param dlh linehandle
@@ -510,6 +513,7 @@ QString SyntaxCheck::getErrorAt(QDocumentLineHandle *dlh, int pos, StackEnvironm
 	Q_ASSERT(messages.length() == ERR_MAX);
 	return messages.value(int(result), tr("unknown"));
 }
+
 /*!
  * \brief set latex commands which are referenced for syntax checking
  * \param cmds
@@ -522,6 +526,7 @@ void SyntaxCheck::setLtxCommands(const LatexParser &cmds)
 	newLtxCommands = cmds;
 	mLtxCommandLock.unlock();
 }
+
 /*!
  * \brief wait for queue to be empty. Used for self-test only.
  */
@@ -531,6 +536,7 @@ void SyntaxCheck::waitForQueueProcess()
 		wait(1);
 	}
 }
+
 /*!
  * \brief check if queue is empty. Used for self-test only.
  * \return queue is not empty
@@ -539,6 +545,7 @@ bool SyntaxCheck::queuedLines()
 {
 	return mLinesAvailable.available() > 0;
 }
+
 /*!
  * \brief check if top-most environment in 'envs' is `name`
  * \param name environment name which is checked
@@ -565,6 +572,7 @@ int SyntaxCheck::topEnv(const QString &name, const StackEnvironment &envs, const
 	}
 	return 0;
 }
+
 /*!
  * \brief check if the environment stack contains a environment with name `name`
  * \param parser reference to LatexParser. It is used to access environment aliases, e.g. equation is also a math environment
@@ -591,6 +599,7 @@ int SyntaxCheck::containsEnv(const LatexParser &parser, const QString &name, con
 	}
 	return 0;
 }
+
 /*!
  * \brief check if the command is valid in the environment stack
  * \param cmd name of command
@@ -613,6 +622,7 @@ bool SyntaxCheck::checkCommand(const QString &cmd, const StackEnvironment &envs)
 	}
 	return false;
 }
+
 /*!
  * \brief compare two environment stacks
  * \param env1
@@ -631,6 +641,7 @@ bool SyntaxCheck::equalEnvStack(StackEnvironment env1, StackEnvironment env2)
 	}
 	return true;
 }
+
 /*!
  * \brief mark environment start
  *
@@ -662,6 +673,7 @@ void SyntaxCheck::markUnclosedEnv(Environment env)
 	}
 	dlh->unlock();
 }
+
 /*!
  * \brief check if the tokenstack contains a definition-token
  * \param stack tokenstack
@@ -675,6 +687,7 @@ bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
 	}
 	return false;
 }
+
 /*!
  * \brief check one line
  *
@@ -688,7 +701,6 @@ bool SyntaxCheck::stackContainsDefinition(const TokenStack &stack) const
  * \param stack token stack at start of line
  * \param ticket ticket number for current processed line
  */
-
 void SyntaxCheck::checkLine(const QString &line, Ranges &newRanges, StackEnvironment &activeEnv, QDocumentLineHandle *dlh, TokenList tl, TokenStack stack, int ticket)
 {
 	// do syntax check on that line
