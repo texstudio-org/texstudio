@@ -4,11 +4,11 @@
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 
+
+include(synctex/synctex.pri)
+
+
 HEADERS += \
-    pdfviewer/synctex_parser.h \
-    pdfviewer/synctex_parser_local.h \
-    pdfviewer/synctex_parser_utils.h \
-    pdfviewer/synctex_parser_advanced.h \
     pdfviewer/PDFDocument.h \
     pdfviewer/PDFDocks.h \
     pdfviewer/pdfrenderengine.h \
@@ -18,8 +18,6 @@ HEADERS += \
     pdfviewer/pdfannotation.h
 
 SOURCES += \
-    pdfviewer/synctex_parser.c \
-    pdfviewer/synctex_parser_utils.c \
     pdfviewer/PDFDocument.cpp \
     pdfviewer/PDFDocks.cpp \
     pdfviewer/pdfrenderengine.cpp \
