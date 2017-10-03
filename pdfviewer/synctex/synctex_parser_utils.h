@@ -38,10 +38,15 @@ authorization from the copyright holder.
 
 */
 
+#ifndef SYNCTEX_PARSER_UTILS_H
+#define SYNCTEX_PARSER_UTILS_H
+
 /*  The utilities declared here are subject to conditional implementation.
  *  All the operating system special stuff goes here.
  *  The problem mainly comes from file name management: path separator, encoding...
  */
+
+#include "synctex_version.h"
 
 typedef int synctex_bool_t;
 #	define synctex_YES (0==0)
@@ -155,3 +160,4 @@ synctex_bool_t synctex_ignore_leading_dot_slash_in_path(const char ** name);
 #endif
 
 #endif
+#endif /* SYNCTEX_PARSER_UTILS_H */

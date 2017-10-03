@@ -60,7 +60,7 @@
 #define SYNCTEX_OS2 1
 #endif
 
-#ifdef _WIN32_WINNT_WINXP
+#if defined(_WIN32)
 #define SYNCTEX_RECENT_WINDOWS 1
 #endif
 
@@ -68,15 +68,6 @@
 #include <windows.h>
 #include <shlwapi.h> /* Use shlwapi.lib */
 #endif
-
-#if SYNCTEX_USE_SYSLOG
-#include <syslog.h>
-#else
-// workaround: add missing values defined in syslog.h
-#define	LOG_ERR		3	/* error conditions */
-#define	LOG_DEBUG	7	/* debug-level messages */
-#endif
-
 
 void *_synctex_malloc(size_t size) {
     void * ptr = malloc(size);
@@ -91,6 +82,10 @@ void _synctex_free(void * ptr) {
         free(ptr);
     }
 }
+
+#if !defined(_WIN32)
+#   include <syslog.h>
+#endif
 
 int _synctex_log(int level, const char * prompt, const char * reason,va_list arg) {
 	int result;
@@ -142,7 +137,11 @@ int _synctex_error(const char * reason,...) {
     va_list arg;
     int result;
     va_start (arg, reason);
+#if defined(SYNCTEX_RECENT_WINDOWS) /* LOG_ERR is not used */
+    result = _synctex_log(0, "! SyncTeX Error : ", reason, arg);
+#else
     result = _synctex_log(LOG_ERR, "! SyncTeX Error : ", reason, arg);
+#endif
     va_end (arg);
     return result;
 }
@@ -151,7 +150,11 @@ int _synctex_debug(const char * reason,...) {
     va_list arg;
     int result;
     va_start (arg, reason);
+#if defined(SYNCTEX_RECENT_WINDOWS) /* LOG_DEBUG is not used */
+    result = _synctex_log(0, "! SyncTeX Error : ", reason, arg);
+#else
     result = _synctex_log(LOG_DEBUG, "! SyncTeX Error : ", reason, arg);
+#endif
     va_end (arg);
     return result;
 }
@@ -162,8 +165,8 @@ void _synctex_strip_last_path_extension(char * string) {
 		char * last_component = NULL;
 		char * last_extension = NULL;
 #       if defined(SYNCTEX_WINDOWS)
-        last_component = PathFindFileNameA(string);
-        last_extension = PathFindExtensionA(string);
+		last_component = PathFindFileName(string);
+		last_extension = PathFindExtension(string);
 		if(last_extension == NULL)return;
 		if(last_component == NULL)last_component = string;
 		if(last_extension>last_component){/* filter out paths like "my/dir/.hidden" */
