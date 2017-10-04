@@ -619,6 +619,49 @@ void LatexOutputFilter::flushCurrentItem()
 	m_currentItem.clear();
 }
 
+
+/*!
+ * detect a Latex3 info message
+ *
+ * An info message has the following pattern
+ * .................................................
+ * . pkgname info: "message"
+ * .
+ * . Text
+ * .................................................
+ *
+ * \return true if the line could be processed.
+ */
+bool LatexOutputFilter::detectLatex3Info(const QString &strLine, short &dwCookie)
+{
+	switch (dwCookie) {
+	case Start:
+		if (strLine.startsWith("........................................")) {
+			dwCookie = Latex3Info;
+			m_currentItem.message = QString();
+			m_currentItem.logline = GetCurrentOutputLine();
+			m_currentItem.type = LT_INFO;
+			return true;
+		}
+		return false;
+	case Latex3Info:
+		if (strLine.startsWith("........................................") || !strLine.startsWith('.')) {
+			// regular or unexpected end.
+			flushCurrentItem();
+			dwCookie = Start;
+		} else {
+			QString line = strLine.mid(1).trimmed();    // discard first char (which is '.') and spaces
+			if (line.length() > 0) {
+				if (m_currentItem.message.length() > 0)
+					m_currentItem.message.append(' ');
+			}
+		}
+		return true;
+	}
+	qDebug("unhandled cookie state in detectLatex3Info");  // should not happen
+	return false;
+}
+
 bool LatexOutputFilter::detectError(const QString &strLine, short &dwCookie)
 {
 	//KILE_DEBUG() << "==LatexOutputFilter::detectError(" << strLine.length() << ")================" << endl;
@@ -974,6 +1017,8 @@ short LatexOutputFilter::parseLine(const QString &strLine, short dwCookie)
 			break;
 		if (detectWarning(strLine, dwCookie))
 			break;
+		if (detectLatex3Info(strLine, dwCookie))
+			break;
 		if (detectError(strLine, dwCookie))
 			break;
 		updateFileStack(strLine, dwCookie);
@@ -982,6 +1027,10 @@ short LatexOutputFilter::parseLine(const QString &strLine, short dwCookie)
 	case Warning :
 	case Latex3Warning :
 		detectWarning(strLine, dwCookie);
+		break;
+
+	case Latex3Info :
+		detectLatex3Info(strLine, dwCookie);
 		break;
 
 	case Error :
