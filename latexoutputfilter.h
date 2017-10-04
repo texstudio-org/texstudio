@@ -112,7 +112,7 @@ public:
 	//void sendProblems();
 	//void updateInfoLists(const QString &texfilename, int selrow, int docrow);
 
-	enum {Start = 0, FileName, HeuristicSearch, Error, Latex3Error, Latex3ErrorEnd, Warning, MaybeLatex3Warning, Latex3Warning, BadBox, ExpectingBadBoxTextQoute, LineNumber,
+	enum {Start = 0, FileName, HeuristicSearch, Error, Latex3Error, Latex3ErrorEnd, Warning, MaybeLatex3Warning, Latex3Warning, Latex3Info, BadBox, ExpectingBadBoxTextQoute, LineNumber,
 	      // the following states are only used in updateFileStackHeuristic2
 	      ExpectingFileName = 100, InFileName, InQuotedFileName
 	     };
@@ -135,6 +135,7 @@ protected:
 	virtual bool OnPreCreate();
 	virtual short parseLine(const QString &strLine, short dwCookie);
 
+	bool detectLatex3Info(const QString &strLine, short &dwCookie);
 	bool detectError(const QString &strLine, short &dwCookie);
 	bool detectWarning(const QString &strLine, short &dwCookie);
 	bool detectBadBox(const QString &strLine, short &dwCookie);
