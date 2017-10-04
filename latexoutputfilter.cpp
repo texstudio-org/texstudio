@@ -970,9 +970,13 @@ short LatexOutputFilter::parseLine(const QString &strLine, short dwCookie)
 		}
 	// fall-through - no break
 	case Start :
-		if (!(detectBadBox(strLine, dwCookie) || detectWarning(strLine, dwCookie) || detectError(strLine, dwCookie))) {
-			updateFileStack(strLine, dwCookie);
-		}
+		if (detectBadBox(strLine, dwCookie))
+			break;
+		if (detectWarning(strLine, dwCookie))
+			break;
+		if (detectError(strLine, dwCookie))
+			break;
+		updateFileStack(strLine, dwCookie);
 		break;
 
 	case Warning :
