@@ -8943,7 +8943,7 @@ void Texstudio::saveProfile()
 void Texstudio::loadProfile()
 {
 	QString currentDir = configManager.configBaseDir;
-	QString fname = QFileDialog::getOpenFileName(this, tr("Load Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile *.tmxprofile);;" + tr("All files") + " (*)"); //*.tmxprofile for compatibility - may be removed later
+	QString fname = QFileDialog::getOpenFileName(this, tr("Load Profile"), currentDir, tr("TXS Profile", "filter") + "(*.txsprofile);;" + tr("All files") + " (*)");
 	if (fname.isNull())
 		return;
 	if (QFileInfo(fname).isReadable()) {
