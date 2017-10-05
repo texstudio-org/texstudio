@@ -5974,60 +5974,7 @@ void Texstudio::commandFromAction()
 {
 	QAction *act = qobject_cast<QAction *>(sender());
 	if (!act) return;
-	checkShortcutChangeNotification(act);
 	runCommand(act->data().toString());
-}
-
-void Texstudio::checkShortcutChangeNotification(QAction *act)
-{
-	bool showDialog = configManager.getOption("NotifyShortcutChange", true).toBool();
-	if (!showDialog) return;
-	if (act->data().toString() == BuildManager::CMD_QUICK && act->shortcuts().contains(Qt::Key_F1)) {
-		QDialog *dialog = new QDialog();
-		QVBoxLayout *layout = new QVBoxLayout();
-		dialog->setLayout(layout);
-
-		QTextEdit *te = new QTextEdit();
-		te->setReadOnly(true);
-		te->setFocusPolicy(Qt::NoFocus);
-		te->setText(tr("<h4>Change of Default Shortcuts</h4>"
-		               "<p>Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.</p>"
-		               "<p>We've decided to set this right in favor of more a consistent layout:</p>"
-		               "<ul>"
-		               "<li>The shortcut for <code>Build & View</code> will move from F1 to F5.</li>"
-		               "<li>The shortcut for <code>Bibliograpy</code> will move from F11 to F8.</li>"
-		               "<li>The shortcut for <code>Glossary</code> will move from F10 to F9."
-		               "<li>The tool <code>Index</code> won't have a default shortcut anymore (formerly F12) because it's not called very often.</li>"
-		               "</ul>"
-		               "<p>We are sorry, that you have to relearn the most used shortcut for <code>Build & View</code>. For a transition period, both F1 and F5 will work. "
-		               "In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.</p>"
-		              ));
-		layout->addWidget(te);
-		QLabel *image = new QLabel();
-		image->setPixmap(QPixmap(":/images-ng/shortcut_change.svg"));
-		image->setFocusPolicy(Qt::NoFocus);
-		layout->addWidget(image);
-		layout->setAlignment(image, Qt::AlignHCenter);
-		QCheckBox *cbNoShowAgain = new QCheckBox(tr("Do not show this message again."));
-		configManager.getOption("NotifyShortcutChange", true).toBool();
-		layout->addWidget(cbNoShowAgain);
-		QPushButton *okButton = new QPushButton(tr("OK"));
-		okButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-		okButton->setDefault(true);
-		layout->addWidget(okButton);
-		layout->setAlignment(okButton, Qt::AlignHCenter);
-		connect(okButton, SIGNAL(clicked()), dialog, SLOT(close()));
-		dialog->resize(440, 480);
-		dialog->setModal(true);
-		dialog->show();
-		while (dialog->isVisible()) {
-			QApplication::processEvents();
-		}
-		if (cbNoShowAgain->isChecked()) {
-			configManager.setOption("NotifyShortcutChange", false);
-		}
-		delete dialog;
-	}
 }
 
 void Texstudio::cleanAll()

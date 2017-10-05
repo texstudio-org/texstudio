@@ -438,7 +438,6 @@ protected slots:
     void clearLogs();
 	void openTerminal(); ///< open external terminal
 	void cleanAll();
-	void checkShortcutChangeNotification(QAction *act);
 	void commandFromAction();  ///< calls a command given by sender.data, doesn't wait
 
 	void webPublish();
