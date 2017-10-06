@@ -203,6 +203,7 @@ LatexEditorView *TxsTabWidget::editorAt(int index)
 void TxsTabWidget::connectEditor(LatexEditorView *edView)
 {
 	connect(edView->editor, SIGNAL(contentModified(bool)), this, SLOT(updateTabFromSender()));
+	connect(edView->editor, SIGNAL(readOnlyChanged(bool)), this, SLOT(updateTabFromSender()));
 	connect(edView->editor, SIGNAL(titleChanged(QString)), this, SLOT(updateTabFromSender()));
 }
 
@@ -222,6 +223,7 @@ void TxsTabWidget::disconnectEditor(LatexEditorView *edView)
 void TxsTabWidget::updateTab(int index)
 {
 	//cache icons, getRealIcon is *really* slow
+	static QIcon readOnly = getRealIcon("syncSource-off");
 	static QIcon modified = getRealIcon("modified");
 	static QIcon empty = QIcon(":/images/empty.png");
 
@@ -229,7 +231,13 @@ void TxsTabWidget::updateTab(int index)
 	if (!edView) return;
 
 	// update icon
-	setTabIcon(index, edView->editor->isContentModified() ? modified : empty);
+	if (edView->editor->isReadOnly()) {
+		setTabIcon(index, readOnly);
+	} else if ((edView->editor->isContentModified())) {
+		setTabIcon(index, modified);
+	} else {
+		setTabIcon(index, empty);
+	}
 	// update tab text
 	setTabText(index, edView->displayNameForUI());
 	// update tooltip text

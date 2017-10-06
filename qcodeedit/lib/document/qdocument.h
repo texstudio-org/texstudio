@@ -205,6 +205,9 @@ class QCE_EXPORT QDocument : public QObject
 		void setCodec(QTextCodec* codec);
 		void setCodecDirect(QTextCodec* codec);
 
+		bool isReadOnly() const;
+		void setReadOnly(bool b);
+
 		QDateTime lastModified() const;
 		void setLastModified(const QDateTime& d);
 		

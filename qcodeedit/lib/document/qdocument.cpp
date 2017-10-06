@@ -1213,6 +1213,18 @@ void QDocument::setCodecDirect(QTextCodec* codec){
 	m_impl->m_codec=codec;
 }
 
+bool QDocument::isReadOnly() const
+{
+	if (!m_impl) return true;
+	return m_impl->m_readOnly;
+}
+
+void QDocument::setReadOnly(bool b)
+{
+	if (!m_impl) return;
+	m_impl->m_readOnly = b;
+}
+
 
 /*!
 	\return the font used by ALL documents to render their content
@@ -1761,7 +1773,7 @@ QString QDocument::exportAsHtml(const QDocumentCursor& range, bool includeFullHe
 void QDocument::execute(QDocumentCommand *cmd)
 {
 	Q_ASSERT(m_impl || !cmd);
-	if ( m_impl && cmd )
+	if ( m_impl && cmd && !isReadOnly() )
 		m_impl->execute(cmd);
 
 }
@@ -5702,7 +5714,7 @@ void QDocumentCursorHandle::execute(QDocumentCommand *c)
 {
 	Q_ASSERT(m_doc);
 
-	if ( !m_doc )
+	if ( !m_doc || m_doc->isReadOnly() )
 		return; //returning means c will never freed
 
 	if ( isSilent() && !c->isSilent() )
@@ -6518,6 +6530,7 @@ QDocumentPrivate::QDocumentPrivate(QDocument *d)
 	_mac(0),
 	m_lineEnding(m_defaultLineEnding),
 	m_codec(m_defaultCodec),
+	m_readOnly(false),
 	m_lineCacheXOffset(0), m_lineCacheWidth(0),
 	m_instanceCachesLogicalDpiY(-1),
 	m_forceLineWrapCalculation(false),
@@ -6670,7 +6683,7 @@ void QDocumentPrivate::removeMarks(int id){
 
 void QDocumentPrivate::execute(QDocumentCommand *cmd)
 {
-	if ( !cmd )
+	if ( !cmd || m_readOnly)
 		return;
 	
 	m_lastModified = QDateTime::currentDateTime();

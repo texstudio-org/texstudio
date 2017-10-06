@@ -280,7 +280,10 @@ class QCE_EXPORT QEditor : public QAbstractScrollArea
 		Q_INVOKABLE QString name() const;
 		Q_INVOKABLE QString fileName() const;
 		Q_INVOKABLE QFileInfo fileInfo() const;
-		
+
+		Q_INVOKABLE bool isReadOnly() const;
+		Q_INVOKABLE void setReadOnly(bool b);
+
 		Q_INVOKABLE bool isContentModified() const;
 		
 		Q_INVOKABLE bool isInConflict() const;
@@ -500,6 +503,7 @@ public slots:
 		void saved(QEditor *e, const QString& s);
 		
 		void contentModified(bool y);
+		void readOnlyChanged(bool y);
 		void titleChanged(const QString& title);
 		void focusReceived();
 		
