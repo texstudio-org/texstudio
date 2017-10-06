@@ -4291,6 +4291,20 @@ QFileInfo QEditor::fileInfo() const{
 	return m_doc->getFileInfo();
 }
 
+bool QEditor::isReadOnly() const
+{
+	REQUIRE_RET(m_doc, true);
+	return m_doc->isReadOnly();
+}
+
+void QEditor::setReadOnly(bool b)
+{
+	REQUIRE(m_doc);
+	m_doc->setReadOnly(b);
+	emit readOnlyChanged(b);
+}
+
+
 /*!
 	\brief Prevent tab key press to be considered as widget navigation
 */
@@ -5741,7 +5755,7 @@ QMimeData* QEditor::createMimeDataFromSelection() const
 */
 void QEditor::insertFromMimeData(const QMimeData *d)
 {
-	if ( d && m_cursor.isValid() /*&& !d->hasFormat("text/uri-list")*/ )
+	if ( d && m_cursor.isValid() && !isReadOnly() )
 	{
 
 		if ( d->hasFormat("text/column-selection") )

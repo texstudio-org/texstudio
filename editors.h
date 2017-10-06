@@ -47,6 +47,7 @@ public slots:
 	void setCurrentEditorFromSender();
 	void closeEditorFromAction();
 	void closeOtherEditorsFromAction();
+	void toggleReadOnlyFromAction();
 	bool activateNextEditor();
 	bool activatePreviousEditor();
 

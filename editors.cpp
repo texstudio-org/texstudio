@@ -296,6 +296,14 @@ void Editors::closeOtherEditorsFromAction()
 	}
 }
 
+void Editors::toggleReadOnlyFromAction()
+{
+	QAction *act = qobject_cast<QAction *>(sender());
+	REQUIRE(act);
+	LatexEditorView *edView = act->data().value<LatexEditorView *>();
+	edView->editor->setReadOnly(!edView->editor->isReadOnly());
+}
+
 bool Editors::activateNextEditor()
 {
 	if (currentGroupIndex < 0) return false;
@@ -394,6 +402,13 @@ void Editors::tabBarContextMenu(const QPoint &point)
 	connect(act, SIGNAL(triggered()), SLOT(changeSplitOrientation()));
 
 	if (editorUnderCursor) {
+		menu.addSeparator();
+		QString text = tr("Set Read-Only");
+		if (editorUnderCursor->editor->isReadOnly())
+			text = tr("Unset Read-Only");
+		act = menu.addAction(text);
+		act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));
+		connect(act, SIGNAL(triggered()), SLOT(toggleReadOnlyFromAction()));
 		menu.addSeparator();
 		act = menu.addAction(tr("Close"));
 		act->setData(QVariant::fromValue<LatexEditorView *>(editorUnderCursor));

@@ -319,6 +319,7 @@ public:
 		QDocument::LineEnding m_lineEnding;
 		QTextCodec *m_codec;
 
+		bool m_readOnly;
 		QDateTime m_lastModified;
 		QString m_fileName, m_name;
 		QFileInfo m_fileInfo; 
