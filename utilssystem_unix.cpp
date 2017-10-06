@@ -31,7 +31,7 @@ bool startTerminalEmulator(const QString &workingDir)
 {
 	QString command = getTerminalCommand();
 	if (command.isEmpty()) {
-		txsCritical("Unable to detect a terminal application.");
+		UtilsUi::txsCritical("Unable to detect a terminal application.");
 		return false;
 	}
 	QStringList args;
