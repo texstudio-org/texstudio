@@ -5735,7 +5735,7 @@ void Texstudio::runInternalPdfViewer(const QFileInfo &master, const QString &opt
 #endif
 
 #else
-	txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
+    UtilsUi::txsCritical(tr("You have called the command to open the internal pdf viewer.\nHowever, you are using a version of TeXstudio that was compiled without the internal pdf viewer."));
 #endif
 
 }
