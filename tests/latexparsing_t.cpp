@@ -21,6 +21,8 @@ typedef QList<int> Levels;
 
 typedef QList<int> ATypes;
 
+Q_DECLARE_METATYPE(TTypes)
+
 
 /*!
  * comparison of Token::TokenType
