@@ -304,7 +304,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="260"/>
         <source>Multi-volume Proceedings Entry</source>
-        <translation type="unfinished"/>
+        <translation>Çok ciltli Konferans Girdisi</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="276"/>
@@ -314,7 +314,7 @@
     <message>
         <location filename="bibtexdialog.cpp" line="285"/>
         <source>Multi-volume Reference Entry</source>
-        <translation type="unfinished"/>
+        <translation>Çok ciltli Referans Girdisi</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="296"/>
@@ -411,43 +411,43 @@
         <location filename="buildmanager.cpp" line="313"/>
         <location filename="buildmanager.cpp" line="335"/>
         <source>PS Chain</source>
-        <translation type="unfinished"/>
+        <translation>PS Zinciri</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="313"/>
         <location filename="buildmanager.cpp" line="336"/>
         <source>DVI Chain</source>
-        <translation type="unfinished"/>
+        <translation>DVI Zinciri</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="313"/>
         <location filename="buildmanager.cpp" line="337"/>
         <source>PDF Chain</source>
-        <translation type="unfinished"/>
+        <translation>PDF Zinciri</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="313"/>
         <location filename="buildmanager.cpp" line="338"/>
         <source>DVI-&gt;PDF Chain</source>
-        <translation type="unfinished"/>
+        <translation>DVI-&gt;PDF Zinciri</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="313"/>
         <location filename="buildmanager.cpp" line="339"/>
         <source>DVI-&gt;PS-&gt;PDF Chain</source>
-        <translation type="unfinished"/>
+        <translation>DVI-&gt;PS-&gt;PDF Zinciri</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="313"/>
         <location filename="buildmanager.cpp" line="340"/>
         <source>Asymptote DVI Chain</source>
-        <translation type="unfinished"/>
+        <translation>Asimptot DVI Zinciri</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="313"/>
         <location filename="buildmanager.cpp" line="341"/>
         <source>Asymptote PDF Chain</source>
-        <translation type="unfinished"/>
+        <translation>Asimptot PDF Zinciri</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="314"/>
@@ -1110,7 +1110,7 @@ Değişkenler $MYVAR şeklinde yazılır. BÜYÜK/küçük harf duyarlıdır.
     <message>
         <location filename="configdialog.ui" line="1047"/>
         <source>This allows to redefine commands using comment of style &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; and &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt;. For details see the manual.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;program&lt;/code&gt;, &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TS-program&lt;/code&gt; ve &lt;code&gt;%&amp;nbsp;!TeX&amp;nbsp;TXS-program&lt;/code&gt; komut yorum stilleri komutu yeniden tanımlamanıza izin verir. Detaylar için kullanım kılavuzuna bakınız.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1050"/>
@@ -1197,7 +1197,7 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
     <message>
         <location filename="configdialog.ui" line="1195"/>
         <source>This controls if the list above shows all menu items or only commonly changed ones.</source>
-        <translation type="unfinished"/>
+        <translation>Bu, yukarıdaki listenin tüm menü öğelerini ya da yalnızca genel olarak değiştirilen öğeleri gösterip göstermeyeceğini kontrol eder.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1198"/>
@@ -1237,7 +1237,7 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
     <message>
         <location filename="configdialog.ui" line="1312"/>
         <source>This shows available actions to map on a toolbar.</source>
-        <translation type="unfinished"/>
+        <translation>Bu, bir araç çubuğunda planlama yapmak için mevcut işlemleri gösterir.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1351"/>
@@ -1623,7 +1623,7 @@ Ardından aşağıdaki yollardan biriyle yeni bir kısayol seçebilirsiniz:
     <message>
         <location filename="configdialog.ui" line="2390"/>
         <source>Overwrite Opening Bracket Followed by a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Bir Yertutucunun Ardından Açılış Parantezinin Üzerine Yaz</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2360"/>
@@ -1675,7 +1675,7 @@ karakterleri üretmek zorunda. Unicode, doğal olarak LaTeX tarafından destekle
     <message>
         <location filename="configdialog.ui" line="2307"/>
         <source>Overwrite Closing Bracket Following a Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Bir Yertutucuyu Takip Eden Kapanış Parantezinin Üzerine Yaz</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2105"/>
@@ -2098,7 +2098,7 @@ karakterleri üretmek zorunda. Unicode, doğal olarak LaTeX tarafından destekle
     <message>
         <location filename="configdialog.ui" line="3083"/>
         <source>If all completer suggestions have the next characters in common, you can use &lt;Tab&gt; to automatically insert them.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm tamamlayıcı önerilerinde sıradaki karakterler ortaksa bunu &lt;Tab&gt; ile otomatik olarak ekleyebilirsiniz.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3086"/>
@@ -2572,7 +2572,7 @@ zorlayabilirsiniz.</translation>
     <message>
         <location filename="configdialog.ui" line="4231"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines how a PDF is loaded:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Buffered:&lt;/b&gt; Load the file into a buffer and check for completeness. Then pass the data on to poppler. This was primarily introduced as a speedup for old poppler versions (&amp;lt;0.24) which were not thread-safe. It has been reported that poppler may crash when loading large buffers. Therefore this option is deprecated.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direct:&lt;/b&gt; Use native poppler file loading. This is fastest, but does not allow checking for incomplete files.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hybrid (recommended):&lt;/b&gt; First load file into buffer and check for completeness. Use that buffer for small documents (&amp;lt; 50MB). Large files are loaded using native poppler file loading. This combines file-checking while preventing problems with large PDF files.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bir PDF&apos;nin nasıl yüklendiğini tanımlar:&lt;/p&gt;&lt;p&gt;&lt;b&gt;Tamponlu:&lt;/b&gt; Dosyayı bir arabelleğe yükleyin ve eksiksiz olup olmadığını kontrol edin. Ardından verileri Poppler&apos;e iletin. Bu öncelikle, thread-safe olmayan eski Poppler sürümleri için (&amp;lt;0,24) bir hızlandırma olarak sunulmuştur. Büyük arabellekleri yüklerken Poppler&apos;in çökebileceği bildirilmiştir. Dolayısıyla bu seçenek kullanımdan kaldırılmıştır.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Direkt:&lt;/b&gt; Yerli Poppler dosyası yüklemesi kullanın. Bu en hızlısıdır, ancak eksik dosyaları kontrol etmeye izin vermez.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Hibrit (önerilir):&lt;/b&gt; Önce dosyayı arabelleğe yükleyin ve eksiksiz olup olmadığını kontrol edin. Küçük belgeler için bu arabelleği kullanın (&amp;lt; 50MB). Büyük dosyalar, yerli poppler dosyası yüklemesi kullanılarak yüklenir. Bu, dosya kontrolünü ve büyük PDF dosyaları ile ilgili sorunları önleyen bir kombindir. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4241"/>
@@ -2639,12 +2639,12 @@ Not: Bu ayarı değiştirmek yalnızca daha sonra açılan dokümanları etkiler
     <message>
         <location filename="configdialog.ui" line="4379"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>Kağıt Rengi</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4389"/>
         <source>Default background color. Specify as hexadecimal RGB value. Note: This will only affect PDFs loaded after the change of the option. The paper color of already open PDFs is not modified.</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan arka plan rengi. Onaltılık RGB değeri olarak belirtin. Not: Bu, yalnızca seçeneğin değiştirilmesinden sonra yüklenen PDFleri etkiler. Zaten açık PDFlerin kağıt rengi değiştirilmez.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4441"/>
@@ -2967,7 +2967,7 @@ gelişmiş seçenekleri devre dışı bırakın.</translation>
     <message>
         <location filename="configmanager.cpp" line="1355"/>
         <source>Basic Key Mapping</source>
-        <translation type="unfinished"/>
+        <translation>Temel Tuş Haritalaması</translation>
     </message>
 </context>
 <context>
@@ -3809,7 +3809,7 @@ Onları kaldırmak istiyor musunuz?</translation>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="173"/>
         <source>Show tabs which are neither leading nor trailing</source>
-        <translation type="unfinished"/>
+        <translation>Önde gelen veya bitişik olmayan sekmeleri göster</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="183"/>
@@ -4078,7 +4078,7 @@ Tüm değişiklikleri geri almak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="help.cpp" line="55"/>
         <source>texdoc took too long to open the documentation for the package:</source>
-        <translation type="unfinished"/>
+        <translation>texdoc&apos;un paketin belgelerini açması çok uzun sürdü:</translation>
     </message>
     <message>
         <location filename="help.cpp" line="134"/>
@@ -4167,7 +4167,7 @@ Tüm değişiklikleri geri almak istediğinizden emin misiniz?</translation>
     <message>
         <location filename="insertgraphics.ui" line="285"/>
         <source>Identifier, which is used to reference the graphic; e.g. using \ref{thisLabel}</source>
-        <translation type="unfinished"/>
+        <translation>Grafiğe başvurmak için kullanılan tanımlayıcı; örneğin \ref{buEtiket} kullanarak</translation>
     </message>
     <message>
         <location filename="insertgraphics.ui" line="292"/>
@@ -4261,7 +4261,15 @@ Tüm değişiklikleri geri almak istediğinizden emin misiniz?</translation>
 [!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
-        <translation type="unfinished"/>
+        <translation>Şekil için yerleşim tercihleri
+
+[t] Üst: Sayfanın üstünde
+[b] Alt: Sayfanın alt kısmında
+[p] Sayfa: Şekillerle beraber ayrı bir sayfada
+[h] Burada: Metindeki bu konumda
+[!]: LaTeX&apos;in `iyi&apos; yüzer-gezer konumlarını belirlemek için kullandığı dahili parametreleri geçersiz kılın.
+
+Not: Bu yerleşim tercihleri sadece önerilerdir. Ortaya çıkan sayfa düzeni kötü görünüyorsa, LaTeX bunu gözardı edebilir.</translation>
     </message>
     <message>
         <location filename="insertgraphics.cpp" line="257"/>
@@ -4770,7 +4778,7 @@ Sihirbaz, komutu desteklemiyor</translation>
     <message>
         <location filename="letterdialog.ui" line="41"/>
         <source>Typeface Size</source>
-        <translation type="unfinished"/>
+        <translation>Yazı Boyutu</translation>
     </message>
     <message>
         <location filename="letterdialog.ui" line="56"/>
@@ -5160,7 +5168,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2486"/>
         <source>&amp;Tile</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Döşe</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2489"/>
@@ -5424,27 +5432,28 @@ Do you want to overwrite it?</source>
         <location filename="pdfviewer/PDFDocument.cpp" line="3074"/>
         <source>%1
 does not look like a valid PDF document. Either the file is corrupt or it is in the process of creation. Retrying every two seconds.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+geçerli bir PDF dosyası gibi görünmüyor. Dosya bozuk ya da oluşturma sürecinde bozulmuş olabilir. Her iki saniyede bir tekrar deneniyor.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3088"/>
         <source>Failed to find file &quot;%1&quot;; perhaps it has been deleted.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası bulunurken hata oluştu; dosya silinmiş olabilir.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3091"/>
         <source>Failed to load file &quot;%1&quot;; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; dosyası yüklenirken hata oluştu; dosya geçerli bir PDF dökümanı olmayabilir.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3094"/>
         <source>Failed to load file &quot;%1&quot; due to a bad alloc; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>Kötü yerleştirme yüzünden &quot;%1&quot; dosyası yüklenirken hata oluştu; dosya geçerli bir PDF dökümanı olmayabilir.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3097"/>
         <source>Failed to load file &quot;%1&quot; due to an exception; perhaps it is not a valid PDF document.</source>
-        <translation type="unfinished"/>
+        <translation>Bir istisna nedeniyle &quot;%1&quot; dosyası yüklenirken hata oluştu; dosya geçerli bir PDF dökümanı olmayabilir.</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="3100"/>
@@ -5820,12 +5829,12 @@ Artık şifreyi girebilirsiniz:</translation>
     <message>
         <location filename="buildmanager.cpp" line="2226"/>
         <source>The specified stdout redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen stdout yönlendirmesi desteklenmiyor: &quot;%1&quot;. Ayrıntılar için lütfen kılavuza bakınız.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2235"/>
         <source>The specified stderr redirection is not supported: &quot;%1&quot;. Please see the manual for details.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen stderr yönlendirmesi desteklenmiyor: &quot;%1&quot;. Ayrıntılar için lütfen kılavuza bakınız.</translation>
     </message>
     <message>
         <location filename="buildmanager.cpp" line="2404"/>
@@ -6101,7 +6110,12 @@ Press &quot;Save&quot; to overwrite the file on disk
 Press &quot;Reset&quot;to be reload the file from disk.
 Press &quot;Ignore&quot; to ignore this warning.
 </source>
-        <translation type="unfinished"/>
+        <translation>%1
+başka bir uygulama tarafından değiştirildi.
+&quot;Kaydet&quot; ile diskteki dosyanın üzerine yazabilirsiniz.
+&quot;Sıfırla&quot; ile geçerli dosyayı diskteki dosyadan yeniden yükleyebilirsiniz
+&quot;Önemseme&quot; ile bu uyarıyı görmezden gelebilirsiniz.
+</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="997"/>
@@ -6117,7 +6131,9 @@ Press &quot;Ignore&quot; to ignore this warning.
         <source>%1
 Could not be written. Error (%2): %3.
 If the file already existed on disk, it was not modified by this operation.</source>
-        <translation type="unfinished"/>
+        <translation>%1
+yazılamadı. Hata (%2): %3.
+Dosya disk üzerinde zaten varsa, bu işlem tarafından değiştirilmedi.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1007"/>
@@ -6126,7 +6142,10 @@ If the file already existed on disk, it was not modified by this operation.</sou
 %1.
 
 Perhaps it is read-only or opened in another program?</source>
-        <translation type="unfinished"/>
+        <translation>Dosya üzerinde yazma izinleri alınamadı
+%1.
+
+Belki de salt okunurdur ya da başka bir programda açılmıştır?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1040"/>
@@ -6142,7 +6161,18 @@ When ignoring this warning TeXstudio will try save to the specified
 location. However if there is really not enough space, this will
 result in data loss.
 </source>
-        <translation type="unfinished"/>
+        <translation>Dosyayı aşağıdaki konuma kaydetmek için yeterli alan yok gibi görünüyor
+%1
+
+Dosya boyutu: %2 kB
+Boş alan: %3 kB
+
+Bir miktar alan temizleyin ve tekrar deneyin. Alternatif olarak
+kaydetme işlemini iptal edin ve bunun yerine başka bir yere kaydedin.
+Bu uyarıyı görmezden geldiğinizde TeXstudio, belirtilen
+yere kaydetmeye çalışır. Ancak, eğer gerçekten yeterli alan yoksa, bu
+veri kaybına neden olur.
+</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1065"/>
@@ -6152,21 +6182,25 @@ result in data loss.
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1066"/>
         <source>Creating a backup of the file failed. You can still continue saving. However, if the save action fails, you may loose the data in the original file. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation>Dosya yedeklenirken hata oluştu. Kaydetmeye devam edebilirsiniz. Ancak, kaydetme işlemi başarısız olursa, orijinal dosyadaki verileri kaybedebilirsiniz. Devam etmek istiyor musunuz?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1089"/>
         <source>Writing the document to file
 %1
 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Döküman
+%1
+dosyasına yazılamadı.</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
 You'll find a copy at
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Disk üzerindeki orijinal dosya kayıt işlemi sırasında yok edildi.
+Aşağıdaki konumda bir kopyasını bulabilirsiniz
+%1</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1221"/>
@@ -6179,7 +6213,8 @@ You'll find a copy at
         <source>The file %1 has been deleted on disk.
 Should I save the document as it is to restore the file?
 </source>
-        <translation type="unfinished"/>
+        <translation>Diskteki %1 dosyası silindi.
+Dosyayı geri yüklemek için döküman kaydedilsin mi?</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1225"/>
@@ -7383,7 +7418,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickbeamerdialog.ui" line="39"/>
         <source>Typeface Size</source>
-        <translation type="unfinished"/>
+        <translation>Yazı Boyutu</translation>
     </message>
     <message>
         <location filename="quickbeamerdialog.ui" line="46"/>
@@ -7461,7 +7496,7 @@ You can use \1 to \9 in the replace text to insert a submatch.</source>
     <message>
         <location filename="quickdocumentdialog.ui" line="191"/>
         <source>Typeface Size</source>
-        <translation type="unfinished"/>
+        <translation>Yazı Boyutu</translation>
     </message>
     <message>
         <location filename="quickdocumentdialog.ui" line="221"/>
@@ -7963,7 +7998,7 @@ Do you trust this script?</source>
         <location filename="spellerdialog.cpp" line="245"/>
         <source>&lt;new&gt;</source>
         <comment>Placeholder for new added word in ignore list</comment>
-        <translation type="unfinished"/>
+        <translation>&lt;new&gt;</translation>
     </message>
 </context>
 <context>
