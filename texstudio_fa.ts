@@ -216,17 +216,17 @@
     <message>
         <location filename="bibtexdialog.cpp" line="43"/>
         <source>PhD. &amp;Thesis</source>
-        <translation type="unfinished"/>
+        <translation>&amp;پایان‌نامه دکترا</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="47"/>
         <source>&amp;Master&apos;s Thesis</source>
-        <translation type="unfinished"/>
+        <translation>پایان‌نامه &amp;کارشناسی ارشد</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="51"/>
         <source>Technical &amp;Report</source>
-        <translation type="unfinished"/>
+        <translation>&amp;گزارش فنی</translation>
     </message>
     <message>
         <location filename="bibtexdialog.cpp" line="55"/>
@@ -696,7 +696,7 @@ Please change your configuration and define command lists only at Options -&gt; 
     <message>
         <location filename="cleandialog.ui" line="20"/>
         <source>Scope</source>
-        <translation type="unfinished"/>
+        <translation>افق</translation>
     </message>
     <message>
         <location filename="cleandialog.ui" line="30"/>
@@ -1293,7 +1293,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1601"/>
         <source>Folding</source>
-        <translation type="unfinished"/>
+        <translation>جهت تاخوردن</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1608"/>
@@ -1340,7 +1340,7 @@ Then you can select a new shortcut by one of the following ways:
     <message>
         <location filename="configdialog.ui" line="1709"/>
         <source>No Replacement</source>
-        <translation type="unfinished"/>
+        <translation>بدون جایگزین</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1714"/>
@@ -2343,7 +2343,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3793"/>
         <source>Display Mode:</source>
-        <translation type="unfinished"/>
+        <translation>نحوه نمایش:</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3807"/>
@@ -2368,7 +2368,7 @@ them here.</source>
     <message>
         <location filename="configdialog.ui" line="3827"/>
         <source>Inline</source>
-        <translation type="unfinished"/>
+        <translation>در خط</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3832"/>
@@ -2595,7 +2595,7 @@ Note: Changing this setting will only affect documents that are opened afterward
     <message>
         <location filename="configdialog.ui" line="4379"/>
         <source>Paper Color</source>
-        <translation type="unfinished"/>
+        <translation>رنگ کاغذ</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="4389"/>
@@ -2893,7 +2893,7 @@ to set the key anyway?</source>
     <message>
         <location filename="configdialog.cpp" line="1081"/>
         <source>Import Dictionary</source>
-        <translation type="unfinished"/>
+        <translation>لغتنامه را وارد کن</translation>
     </message>
     <message>
         <location filename="configdialog.cpp" line="1081"/>
@@ -3675,7 +3675,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="configmanager.cpp" line="1818"/>
         <source>File list</source>
-        <translation type="unfinished"/>
+        <translation>لیست فایل</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1819"/>
@@ -3778,7 +3778,7 @@ Do you want to remove them?</source>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="209"/>
         <source>Default encoding</source>
-        <translation type="unfinished"/>
+        <translation>رمزینه‌ی پیش فرض</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/widgets/editconfig.ui" line="219"/>
@@ -4327,7 +4327,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexdocument.cpp" line="36"/>
         <source>TODO</source>
-        <translation type="unfinished"/>
+        <translation>کارهای در دست اقدام</translation>
     </message>
     <message>
         <location filename="latexdocument.cpp" line="37"/>
@@ -4551,7 +4551,7 @@ The wizard does not support command </source>
     <message>
         <location filename="latexeditorview.cpp" line="2924"/>
         <source>Remove Bookmark</source>
-        <translation type="unfinished"/>
+        <translation>نشانک را حذف کن</translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2932"/>
@@ -4844,7 +4844,7 @@ Do you want to overwrite it?</source>
         <location filename="toolwidgets.cpp" line="180"/>
         <location filename="toolwidgets.cpp" line="241"/>
         <source>Search Results</source>
-        <translation type="unfinished"/>
+        <translation>نتایج جست‌وجو</translation>
     </message>
 </context>
 <context>
@@ -5033,12 +5033,12 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2437"/>
         <source>&amp;Next Page</source>
-        <translation type="unfinished"/>
+        <translation>صفحه &amp;بعد</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2439"/>
         <source>&amp;Last Page</source>
-        <translation type="unfinished"/>
+        <translation>صفحه &amp;آخر</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2441"/>
@@ -5832,7 +5832,7 @@ You can now enter the password:</source>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="728"/>
         <source>Replacing Canceled</source>
-        <translation type="unfinished"/>
+        <translation>جایگزینی لغو شد</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/document/qdocumentsearch.cpp" line="728"/>
@@ -6223,12 +6223,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4570"/>
         <source>Move cursor to line start</source>
-        <translation type="unfinished"/>
+        <translation>اشاره‌گر را به شروع خط بفرست</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4571"/>
         <source>Move cursor to line end</source>
-        <translation type="unfinished"/>
+        <translation>اشاره‌گر را به پایان خط بفرست</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4572"/>
@@ -6253,12 +6253,12 @@ Do you wish to keep up to date by reloading the file?
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4580"/>
         <source>Select up</source>
-        <translation type="unfinished"/>
+        <translation>بالایی ها را انتخاب کن</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4581"/>
         <source>Select down</source>
-        <translation type="unfinished"/>
+        <translation>پایینی‌ها را انتخاب کن</translation>
     </message>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="4582"/>
@@ -7933,7 +7933,7 @@ Do you trust this script?</source>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="267"/>
         <source>Command: </source>
-        <translation type="unfinished"/>
+        <translation>دستور:</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbollistmodel.cpp" line="280"/>
@@ -7970,13 +7970,13 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="31"/>
         <source>Operators</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>عملگرها</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="32"/>
         <source>Relations</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>روابط</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="33"/>
@@ -7994,7 +7994,7 @@ Do you trust this script?</source>
         <location filename="symbolpanel/symbolwidget.cpp" line="35"/>
         <source>Greek</source>
         <comment>Operator category</comment>
-        <translation type="unfinished"/>
+        <translation>یونانی</translation>
     </message>
     <message>
         <location filename="symbolpanel/symbolwidget.cpp" line="36"/>
@@ -8165,7 +8165,7 @@ Do you trust this script?</source>
     <message>
         <location filename="tabdialog.ui" line="127"/>
         <source>Left Border :</source>
-        <translation type="unfinished"/>
+        <translation>مرز چپ :</translation>
     </message>
     <message>
         <location filename="tabdialog.ui" line="167"/>
@@ -8412,7 +8412,7 @@ failed.</source>
     <message>
         <location filename="templateselector.cpp" line="34"/>
         <source>No Preview</source>
-        <translation type="unfinished"/>
+        <translation>بدون پیش نمایش</translation>
     </message>
     <message>
         <location filename="templateselector.cpp" line="85"/>
@@ -8651,7 +8651,7 @@ failed.</source>
         <location filename="additionaltranslations.cpp" line="258"/>
         <source>XML</source>
         <comment>Format name of language definition </comment>
-        <translation type="unfinished"/>
+        <translation>XML</translation>
     </message>
     <message>
         <location filename="configmanager.cpp" line="1917"/>
@@ -8727,7 +8727,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="595"/>
         <location filename="texstudio.cpp" line="596"/>
         <source>Symbols</source>
-        <translation type="unfinished"/>
+        <translation>سمبل‌ها</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="598"/>
@@ -8948,12 +8948,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="783"/>
         <source>Clos&amp;e All</source>
-        <translation type="unfinished"/>
+        <translation>هم&amp;ه را ببند</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="786"/>
         <source>Print Source Code...</source>
-        <translation type="unfinished"/>
+        <translation>کد منبع را چاپ کن...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="789"/>
@@ -8998,12 +8998,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="803"/>
         <source>&amp;Selection</source>
-        <translation type="unfinished"/>
+        <translation>&amp;انتخاب</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="804"/>
         <source>Select &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;همه را انتخاب کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="805"/>
@@ -9023,7 +9023,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="809"/>
         <source>&amp;Line Operations</source>
-        <translation type="unfinished"/>
+        <translation>عمل‌های &amp;خط</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="810"/>
@@ -9128,12 +9128,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="836"/>
         <source>Replace Next</source>
-        <translation type="unfinished"/>
+        <translation>بعدی را جایگزین کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="837"/>
         <source>Replace Prev</source>
-        <translation type="unfinished"/>
+        <translation>قبلی را جایگزین کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="838"/>
@@ -9183,13 +9183,13 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="855"/>
         <source>Goto Bookmark</source>
-        <translation type="unfinished"/>
+        <translation>برو به نشانک</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="861"/>
         <location filename="texstudio.cpp" line="868"/>
         <source>Bookmark %1</source>
-        <translation type="unfinished"/>
+        <translation>نشانک %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="865"/>
@@ -9372,12 +9372,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="929"/>
         <source>Select Inner</source>
-        <translation type="unfinished"/>
+        <translation>داخلی را انتخاب کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="930"/>
         <source>Select Outer</source>
-        <translation type="unfinished"/>
+        <translation>بیرونی را انتخاب کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="931"/>
@@ -9485,7 +9485,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="962"/>
         <source>&amp;Glossary</source>
-        <translation type="unfinished"/>
+        <translation>&amp;واژه‌نامه</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="963"/>
@@ -9598,12 +9598,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="997"/>
         <source>Open &amp;Terminal</source>
-        <translation type="unfinished"/>
+        <translation>&amp;پایانه را باز کن</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="999"/>
         <source>View &amp;Log</source>
-        <translation type="unfinished"/>
+        <translation>دیدن &amp;گزارش</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1000"/>
@@ -9633,7 +9633,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1010"/>
         <source>Check Spelling...</source>
-        <translation type="unfinished"/>
+        <translation>املا را بررسی کن...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1011"/>
@@ -10017,7 +10017,7 @@ failed.</source>
         <location filename="texstudio.cpp" line="1213"/>
         <source>Root Document</source>
         <comment>menu</comment>
-        <translation type="unfinished"/>
+        <translation>سند پایه</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1216"/>
@@ -10037,7 +10037,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1228"/>
         <source>LaTeX Reference...</source>
-        <translation type="unfinished"/>
+        <translation>مرجع لتک...</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1229"/>
@@ -10158,12 +10158,12 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1520"/>
         <source>Go to bookmark</source>
-        <translation type="unfinished"/>
+        <translation>برو به نشانک</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1565"/>
         <source>Automatic</source>
-        <translation type="unfinished"/>
+        <translation>خودکار</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1566"/>
@@ -10309,7 +10309,7 @@ this other file before you can overwrite it.</source>
         <location filename="texstudio.cpp" line="2812"/>
         <location filename="texstudio.cpp" line="2876"/>
         <source>The document &quot;%1&quot; contains unsaved work. Do you want to save it before closing?</source>
-        <translation type="unfinished"/>
+        <translation>سند &quot;%1&quot; حاوی تغییرات ذخیره نشده است. آیا می خواهید آنها را قبل از بستن ذخیره کنید؟</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="2814"/>
@@ -10437,7 +10437,7 @@ this other file before you can overwrite it.</source>
     <message>
         <location filename="texstudio.cpp" line="5405"/>
         <source>Type: %1</source>
-        <translation type="unfinished"/>
+        <translation>نوع: %1</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5449"/>
@@ -10535,7 +10535,7 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="6114"/>
         <source>Do not show this message again.</source>
-        <translation type="unfinished"/>
+        <translation>این پیام را دوباره نمایش نده.</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="6117"/>
@@ -10649,13 +10649,13 @@ Do you want to allow and run the new, overriding command?
     <message>
         <location filename="texstudio.cpp" line="7912"/>
         <source>Insert</source>
-        <translation type="unfinished"/>
+        <translation>قرار بده</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="7913"/>
         <location filename="texstudio.cpp" line="7914"/>
         <source>Insert as %1</source>
-        <translation type="unfinished"/>
+        <translation>به عنوان %1 قرار بده</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="7916"/>
@@ -11116,7 +11116,7 @@ Do you want to keep TeXstudio running? This may cause data corruption.</source>
     <message>
         <location filename="textanalysis.ui" line="198"/>
         <source>Analyse commands</source>
-        <translation type="unfinished"/>
+        <translation>دستورها را تحلیل کن</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="211"/>
@@ -11196,7 +11196,7 @@ If not, end characters are ignored.</source>
     <message>
         <location filename="textanalysis.ui" line="355"/>
         <source>.;:?!</source>
-        <translation type="unfinished"/>
+        <translation>.؛:؟!</translation>
     </message>
     <message>
         <location filename="textanalysis.ui" line="362"/>
@@ -11546,7 +11546,7 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="usermenudialog.cpp" line="297"/>
         <source>Do you really want to delete the current macro?</source>
-        <translation type="unfinished"/>
+        <translation>آیا واقعا می‌خواهید ماکروی فعلی را پاک کنید؟</translation>
     </message>
 </context>
 <context>
@@ -11662,12 +11662,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
         <location filename="webpublishdialog.ui" line="14"/>
         <location filename="webpublishdialog.cpp" line="23"/>
         <source>Convert to Html</source>
-        <translation type="unfinished"/>
+        <translation>به HTML برگردان</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="60"/>
         <source>LaTeX options</source>
-        <translation type="unfinished"/>
+        <translation>امکانات لتک</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="98"/>
@@ -11677,12 +11677,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="114"/>
         <source>Content name :</source>
-        <translation type="unfinished"/>
+        <translation>نام محتویات :</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="121"/>
         <source>Start Index :</source>
-        <translation type="unfinished"/>
+        <translation>شروع اندیس‌ها</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="128"/>
@@ -11707,12 +11707,12 @@ You can use the special value ?txs-start to start the script at txs start.</sour
     <message>
         <location filename="webpublishdialog.ui" line="174"/>
         <source>Number of compilations :</source>
-        <translation type="unfinished"/>
+        <translation>تعداد کامپایل‌ها</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="186"/>
         <source>Html options</source>
-        <translation type="unfinished"/>
+        <translation>امکانات HTML</translation>
     </message>
     <message>
         <location filename="webpublishdialog.ui" line="224"/>
@@ -11906,7 +11906,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="621"/>
         <source>Scanning files. Please wait...</source>
-        <translation type="unfinished"/>
+        <translation>فایل‌ها در حال بررسی‌اند. لطفا منتظر باشید...</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="665"/>
@@ -11931,7 +11931,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="836"/>
         <source>LaTeX errors detected.</source>
-        <translation type="unfinished"/>
+        <translation>خطاهای لتک پیدا شد.</translation>
     </message>
     <message>
         <location filename="webpublishdialog.cpp" line="851"/>
@@ -11941,7 +11941,7 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="webpublishdialog.cpp" line="851"/>
         <source>TeX files (*.tex);;All files (*.*)</source>
-        <translation type="unfinished"/>
+        <translation>فایل‌های تک(*.tex)؛؛تمام فایل‌ها(*.*)</translation>
     </message>
 </context>
 <context>
@@ -11964,12 +11964,12 @@ The html files are located in the %1 directory.</source>
     <message>
         <location filename="findGlobalDialog.ui" line="47"/>
         <source>Complete Words Only</source>
-        <translation type="unfinished"/>
+        <translation>تنها کلمه‌ها را کامل کن</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="54"/>
         <source>Regular Expression</source>
-        <translation type="unfinished"/>
+        <translation>عبارت‌ معمولی</translation>
     </message>
     <message>
         <location filename="findGlobalDialog.ui" line="74"/>
