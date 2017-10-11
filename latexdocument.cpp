@@ -1401,15 +1401,22 @@ void LatexDocument::replaceItems(QMultiHash<QDocumentLineHandle *, ReferencePair
 		cur->beginEditBlock();
 	}
 	QMultiHash<QDocumentLineHandle *, ReferencePair>::const_iterator it;
+    int oldLineNr=-1;
+    int offset=0;
 	for (it = items.constBegin(); it != items.constEnd(); ++it) {
 		QDocumentLineHandle *dlh = it.key();
 		ReferencePair rp = it.value();
 		int lineNo = indexOf(dlh);
+        if(oldLineNr!=lineNo){
+            offset=0;
+        }
 		if (lineNo >= 0) {
 			cur->setLineNumber(lineNo);
-			cur->setColumnNumber(rp.start);
+            cur->setColumnNumber(rp.start+offset);
 			cur->movePosition(rp.name.length(), QDocumentCursor::NextCharacter, QDocumentCursor::KeepAnchor);
 			cur->replaceSelectedText(newName);
+            offset+=newName.length()-rp.name.length();
+            oldLineNr=lineNo;
 		}
 	}
 	if (!cursor) {
