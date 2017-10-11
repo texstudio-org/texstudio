@@ -273,6 +273,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                     }
 
                 }
+                tk.level = level;
                 if (!commandStack.isEmpty() && commandStack.top().level == level) {
                     //possible command argument without brackets
                     CommandDescription &cd = commandStack.top();
@@ -281,6 +282,7 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                         cd.bracketArgs = 0;
                         cd.args--;
                         tk.subtype = cd.argTypes.takeFirst();
+                        tk.level++;
                     }
                     if (cd.args <= 0) {
                         // unknown arg, stop handling this command
@@ -297,7 +299,6 @@ bool latexDetermineContexts2(QDocumentLineHandle *dlh, TokenStack &stack, Comman
                 } else {
                     tk.type = Token::commandUnknown;
                 }
-                tk.level = level;
                 lexed << tk;
             }
             continue;
