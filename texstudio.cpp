@@ -8266,12 +8266,6 @@ void Texstudio::editFindGlobal()
 void Texstudio::runSearch(SearchQuery *query)
 {
 	if (!currentEditorView() || !query) return;
-	QString searchText = currentEditorView()->getSearchText();
-	query->setExpression(searchText);
-	SearchResultWidget *srw = outputView->getSearchResultWidget();
-	if (srw) {
-		srw->updateSearchExpr(searchText);
-	}
 	query->run(currentEditorView()->document);
 }
 
