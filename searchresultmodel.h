@@ -12,12 +12,17 @@ struct SearchInfo {
 	mutable QList<int> lineNumberHints;
 };
 
+struct SearchMatch {
+	int pos;
+	int length;
+};
+
 class SearchResultModel : public QAbstractItemModel
 {
 	Q_OBJECT
 
 public:
-	static const int LineNumberRole;
+	enum UserRoles {LineNumberRole = Qt::UserRole, MatchesRole};
 
 	SearchResultModel(QObject *parent = 0);
 	~SearchResultModel();
@@ -56,12 +61,11 @@ public:
 
 	void setAllowPartialSelection(bool b) { mAllowPartialSelection = b; }
 
-	QList<QPair<int, int> > getSearchResults(const QString &text) const;
+	QList<SearchMatch> getSearchResults(const QString &text) const;
 
 private:
 	QVariant dataForResultEntry(const SearchInfo &search, int lineIndex, int role) const;
 	QVariant dataForSearchResult(const SearchInfo &search, int role) const;
-	QString prepareResultText(const QString &text) const;
 	QString prepareReplacedText(const QString &text) const;
 
 	QList< SearchInfo > m_searches;
@@ -70,5 +74,8 @@ private:
 	bool mAllowPartialSelection;
 	QFont mLineFont;
 };
+
+Q_DECLARE_METATYPE(SearchMatch);
+Q_DECLARE_METATYPE(QList<SearchMatch>);
 
 #endif // SEARCHRESULTMODEL_H

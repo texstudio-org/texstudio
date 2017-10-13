@@ -223,29 +223,31 @@ void SearchTreeDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
 	// draw text
 	QString text = index.data().toString();
-	bool inHighlight = false;
-	int nextStart = 0;
-	while (nextStart >= 0 && nextStart < text.length()) {
-		int start = nextStart;
-		int end = (inHighlight) ? text.indexOf("|>", start) : text.indexOf("<|", start);
-		if (end < 0)
-			end = text.length();
-		nextStart = end + 2;
-		QString temp = text.mid(start, end-start);
-		int w = painter->fontMetrics().width(temp);
-		if (inHighlight) {
-			painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
-			painter->save();
-			painter->setPen(option.palette.color(cg, QPalette::Text));
-			painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
-			painter->restore();
-		} else {
-			painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, temp);
-		}
-		r.setLeft(r.left() + w + 1);
-		inHighlight = !inHighlight;
-	}
+	QList<SearchMatch> matches = index.data(SearchResultModel::MatchesRole).value<QList<SearchMatch> >();
 
+	int pos = 0;
+	foreach (SearchMatch match, matches) {
+		// text before match
+		QString part = text.mid(pos, match.pos - pos);
+		int w = painter->fontMetrics().width(part);
+		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, part);
+		r.setLeft(r.left() + w + 1);
+		// matched text
+		part = text.mid(match.pos, match.length);
+		w = painter->fontMetrics().width(part);
+		painter->save();
+		painter->fillRect(QRect(r.left(), r.top(), w, r.height()), QBrush(QColor(255, 239, 11)));
+		painter->setPen(option.palette.color(cg, QPalette::Text));
+		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, part);
+		painter->restore();
+		r.setLeft(r.left() + w + 1);
+		pos = match.pos + match.length;
+	}
+	if (pos < text.length()) {
+		// text after last match
+		QString part = text.mid(pos);
+		painter->drawText(r, Qt::AlignLeft | Qt::AlignTop | Qt::TextSingleLine, part);
+	}
 	painter->restore();
 }
 

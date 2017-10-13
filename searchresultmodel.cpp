@@ -3,7 +3,6 @@
 #include "qdocumentsearch.h"
 #include "smallUsefulFunctions.h"
 
-const int SearchResultModel::LineNumberRole = Qt::UserRole;
 
 /* *** internal id (iid) semantics ***
  * the internal id associates QModelIndex with the internal data structure. The iid is structured as followed
@@ -177,16 +176,24 @@ QVariant SearchResultModel::dataForResultEntry(const SearchInfo &search, int lin
 		return lineNo + 1; // internal line number is 0-based
 	}
 	case Qt::DisplayRole:
-	case Qt::ToolTipRole:
+	case Qt::ToolTipRole: {
 		if (!lineIndexValid) return "";
 		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
 		if (search.lineNumberHints[lineIndex] < 0) return "";
 		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
 		if (role == Qt::DisplayRole) {
-			return prepareResultText(ln.text());
+			return ln.text();
 		} else {  // tooltip role
 			return prepareReplacedText(ln.text());
 		}
+		break;
+	}
+	case MatchesRole: {
+		search.lineNumberHints[lineIndex] = search.doc->indexOf(search.lines[lineIndex], search.lineNumberHints[lineIndex]);
+		if (search.lineNumberHints[lineIndex] < 0) return QVariant();
+		QDocumentLine ln = search.doc->line(search.lineNumberHints[lineIndex]);
+		return QVariant::fromValue<QList<SearchMatch> >(getSearchResults(ln.text()));
+	}
 	}
 	return QVariant();
 }
@@ -216,7 +223,7 @@ QVariant SearchResultModel::dataForSearchResult(const SearchInfo &search, int ro
 QVariant SearchResultModel::data(const QModelIndex &index, int role) const
 {
 	if (!index.isValid()) return QVariant();
-	if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole && role != LineNumberRole) return QVariant();
+	if (role != Qt::DisplayRole && role != Qt::CheckStateRole && role != Qt::ToolTipRole && role != LineNumberRole && role != MatchesRole) return QVariant();
 	if (role == Qt::CheckStateRole && !mAllowPartialSelection) return QVariant();
 
 	int iid = index.internalId();
@@ -291,10 +298,9 @@ void SearchResultModel::setSearchExpression(const QString &exp, const bool isCas
 QString SearchResultModel::prepareReplacedText(const QString &text) const
 {
 	QString result = text;
-	QList<QPair<int, int> > placements = getSearchResults(text);
-	QPair<int, int> elem;
+	QList<SearchMatch> placements = getSearchResults(text);
 	int offset = 0;
-	foreach (elem, placements) {
+	foreach (SearchMatch match, placements) {
 		if (mIsRegExp) {
 			QRegExp rx(mExpression, mIsCaseSensitive ? Qt::CaseSensitive : Qt::CaseInsensitive);
 			//QString newText=text.replace(rx,mReplacementText);
@@ -308,49 +314,30 @@ QString SearchResultModel::prepareReplacedText(const QString &text) const
 			/*int lineNr=doc->indexOf(dlh,search.lineNumberHints.value(i,-1));
 			cur->select(lineNr,elem.first,lineNr,elem.second);
 			cur->replaceSelectedText(replaceText);*/
-			result = result.left(elem.first + offset) + "<b>" + mReplacementText + "</b>" + result.mid(elem.second + offset);
-			offset += mReplacementText.length() - elem.second + elem.first + 7;
+			result = result.left(offset + match.pos) + "<b>" + mReplacementText + "</b>" + result.mid(match.pos + match.length + offset);
+			offset += mReplacementText.length() - match.length + 7;  // 7 is the length of the html tags.
 		}
 	}
 	return result;
 }
 
-QString SearchResultModel::prepareResultText(const QString &text) const
+QList<SearchMatch> SearchResultModel::getSearchResults(const QString &text) const
 {
-	QString result;
-	QList<QPair<int, int> > placements = getSearchResults(text);
-	int second;
-	if (placements.size() > 0) {
-		second = 0;
-	} else return text;
-	for (int i = 0; i < placements.size(); i++) {
-		int first = placements.at(i).first;
-		result.append(text.mid(second, first - second)); // add normal text
-		second = placements.at(i).second;
-		result.append("<|" + text.mid(first, second - first) + "|>"); // add highlighted text
-	}
-	result.append(text.mid(placements.last().second));
-	return result;
-}
+	if (mExpression.isEmpty()) return QList<SearchMatch>();
 
-QList<QPair<int, int> > SearchResultModel::getSearchResults(const QString &text) const
-{
-	if (mExpression.isEmpty()) return QList<QPair<int, int> >();
-
-	QRegExp m_regexp = generateRegExp(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
+	QRegExp regexp = generateRegExp(mExpression, mIsCaseSensitive, mIsWord, mIsRegExp);
 
 	int i = 0;
-	QList<QPair<int, int> > result;
-	while (i < text.length() && i > -1) {
-		i = m_regexp.indexIn(text, i);
-		if (i > -1) {
-			if (!result.isEmpty() && result.last().second > i) {
-				result.last().second = m_regexp.matchedLength() + i;
-			} else
-				result << qMakePair(i, m_regexp.matchedLength() + i);
+	QList<SearchMatch> result;
+	while (i < text.length()) {
+		i = regexp.indexIn(text, i);
+		if (i < 0) break;
 
-			i++;
-		}
+		SearchMatch match;
+		match.pos = i;
+		match.length = regexp.matchedLength();
+		result << match;
+		i++;
 	}
 	return result;
 }
