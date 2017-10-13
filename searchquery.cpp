@@ -113,7 +113,7 @@ void SearchQuery::replaceAll()
 	bool isWord, isCase, isReg;
 	mModel->getSearchConditions(isCase, isWord, isReg);
 	foreach (SearchInfo search, searches) {
-                LatexDocument *doc = qobject_cast<LatexDocument *>(search.doc.data());
+		LatexDocument *doc = qobject_cast<LatexDocument *>(search.doc.data());
 		if (!doc) {
 			continue;
 		}
@@ -122,26 +122,24 @@ void SearchQuery::replaceAll()
 			if (search.checked.value(i, false)) {
 				QDocumentLineHandle *dlh = search.lines.value(i, 0);
 				if (dlh) {
-					QList<QPair<int, int> > results = mModel->getSearchResults(dlh->text());
-					if (!results.isEmpty()) {
-						QPair<int, int> elem;
-                        int offset = 0;
-						foreach (elem, results) {
-							if (isReg) {
-								QRegExp rx(searchExpression(), isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);
-                                QString txt = dlh->text();
-                                QString newText = txt;
-                                newText.replace(rx, replaceText);
-								int lineNr = doc->indexOf(dlh, search.lineNumberHints.value(i, -1));
-                                cur->select(lineNr, 0, lineNr, txt.length());
-								cur->replaceSelectedText(newText);
-                                break;
-							} else {
-								// simple replacement
-								int lineNr = doc->indexOf(dlh, search.lineNumberHints.value(i, -1));
-								cur->select(lineNr, elem.first + offset, lineNr, elem.second + offset);
+					if (isReg) {
+						QRegExp rx(searchExpression(), isCase ? Qt::CaseSensitive : Qt::CaseInsensitive);
+						QString txt = dlh->text();
+						QString newText = txt;
+						newText.replace(rx, replaceText);
+						int lineNr = doc->indexOf(dlh, search.lineNumberHints.value(i, -1));
+						cur->select(lineNr, 0, lineNr, txt.length());
+						cur->replaceSelectedText(newText);
+					} else {
+						// simple replacement
+						QList<SearchMatch> results = mModel->getSearchResults(dlh->text());
+						if (!results.isEmpty()) {
+							int lineNr = doc->indexOf(dlh, search.lineNumberHints.value(i, -1));
+							int offset = 0;
+							foreach (const SearchMatch &match, results) {
+								cur->select(lineNr, offset + match.pos, lineNr, offset + match.pos + match.length);
 								cur->replaceSelectedText(replaceText);
-								offset += replaceText.length() - elem.second + elem.first;
+								offset += replaceText.length() - match.length;
 							}
 						}
 					}
