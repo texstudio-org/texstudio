@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -904,7 +902,7 @@ Die Konfiguration sollte geändert werden und Befehllisten sollten nur in &apos;
         <location filename="configdialog.ui" line="501"/>
         <source>Defines the kinds of update notifications you will receive:
 - Stable Releases: Choose this if stability is most important to you.
-- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it&apos;s been published as an official release. (Stable releases are notifed as well)
+- Release Candidates: Are close to a future release in terms of features and stability. Choose this to get previews of future releases and help us by testing the version before it's been published as an official release. (Stable releases are notifed as well)
 - Development Versions: Contain the latest features, but might be unstable. (Stable releases and release candidates are notified as well).</source>
         <translation>Definiert die Art der Aktualisierungbenachrichtung:
 - Stabile Versionen: Wähle diese, wenn Stabilität das wichtigste ist.
@@ -1122,7 +1120,7 @@ Variablen werden geschrieben als $MYVAR. Groß-/Kleinschreibung wird unterschied
     </message>
     <message>
         <location filename="configdialog.ui" line="1087"/>
-        <source>For editing, double-click on the entries in &apos;Current Shortcut&apos; or &apos;Additional Shortcut&apos;.
+        <source>For editing, double-click on the entries in 'Current Shortcut' or 'Additional Shortcut'.
 Then you can select a new shortcut by one of the following ways:
 (1) select from the dropdown list
 (2) hit the shortcut combination
@@ -1153,10 +1151,6 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
         <location filename="configdialog.ui" line="1119"/>
         <source>4</source>
         <translation>4</translation>
-    </message>
-    <message>
-        <source>Close Log-View with Esc-Key</source>
-        <translation type="vanished">Log-Ansicht per ESC-Taste schließen</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1160"/>
@@ -1602,10 +1596,6 @@ Ein neuer Tastenkürzel kann mit einer der drei folgenden Methoden gewählt werd
         <translation>Rechtschreibprüfung über Kontextmenü:</translation>
     </message>
     <message>
-        <source>Don&apos;t leave full screen mode when pressing &lt;Esc&gt;</source>
-        <translation type="vanished">Verlasse nicht den Vollbildmodus, wenn &lt;Esc&gt; gedrückt wird</translation>
-    </message>
-    <message>
         <location filename="configdialog.ui" line="2266"/>
         <source>Show help on commands in internal pdf viewer (texdoc)</source>
         <translation>LaTeX-Hilfe zu Befehlen im internen PDF-Betrachter anzeigen (texdoc)</translation>
@@ -1779,27 +1769,27 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="1127"/>
         <source>Close Element applies to a fixed list of GUI elements (not all shown here). The first visible element will be closed. With this setting you can exclude some elements from being closed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließe ein Element heißt, dass eine festgelegte Liste von Oberflächenelementen nacheinander geschlossen wird (nicht hier angezeigt). Das erste sichtbare Element wird geschlossen. Mit Hilfe dieser Einstellung lassen sich manche Elemente von diesem Verhalten ausschließen.</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1130"/>
         <source>Close Element (Esc)</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließe ein Element (ESC)</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1136"/>
         <source>Close Log-View</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließe Log-Ansicht</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1143"/>
         <source>Close Embedded Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließe integrierten PDF-Betrachter</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="1150"/>
         <source>Close Full Screen Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Schließe Vollbildmodus</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="2333"/>
@@ -2147,12 +2137,12 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
     <message>
         <location filename="configdialog.ui" line="3158"/>
         <source>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn ein Mathebefehl über die Vervollständigung außerhalb einer Matheumgebung eingesetzt wird, so wird automatisch $$ eingefügt</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3161"/>
         <source>Auto Insert Math Delimiters where needed</source>
-        <translation type="unfinished"></translation>
+        <translation>Füge automatische Mathebegrenzer ein, wenn notwendig</translation>
     </message>
     <message>
         <location filename="configdialog.ui" line="3171"/>
@@ -2623,8 +2613,8 @@ hier erzwungen werden.</translation>
         <location filename="configdialog.ui" line="4298"/>
         <location filename="configdialog.ui" line="4353"/>
         <source>The Render Backend used by the PDF library poppler.
-&apos;Splash&apos; is the default and suitable for most situations.
-If there are rendering issues, you may try the alternative &apos;Arthur&apos; backend.
+'Splash' is the default and suitable for most situations.
+If there are rendering issues, you may try the alternative 'Arthur' backend.
 Note: Changing this setting will only affect documents that are opened afterwards.</source>
         <translation>Die Zeichenmethode, die von der PDF-Bibliothek poppler verwendet wird.
 &apos;Splash&apos; ist der Standard und üblicherweise ausreichend.
@@ -3918,12 +3908,12 @@ Diese überscheiben das Ersetzungsverhalten. Sollen diese Benutzer-Makros entfer
     <message>
         <location filename="editors.cpp" line="406"/>
         <source>Set Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Nur lesbar</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="408"/>
         <source>Unset Read-Only</source>
-        <translation type="unfinished"></translation>
+        <translation>Les- und schreibbar</translation>
     </message>
     <message>
         <location filename="editors.cpp" line="413"/>
@@ -4295,7 +4285,7 @@ Wollen Sie wirklich alle Änderungen rückgängig machen?</translation>
 [b] Bottom: At the bottom of the page
 [p] Page: On a separate page with figures
 [h] Here: At this position in the text
-[!]: Override internal parameters LaTeX uses for determining `good&apos; float positions.
+[!]: Override internal parameters LaTeX uses for determining `good' float positions.
 
 Note: These placement preferences are just suggestions. If the resulting page layout would look bad, LaTeX may ignore this.</source>
         <translation>Platzierungsvorgaben für das Bild
@@ -4406,7 +4396,7 @@ Der Assistent unterstützt nicht das Kommando </translation>
     </message>
     <message>
         <location filename="latexcompleter.cpp" line="1692"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
@@ -4591,17 +4581,14 @@ Der Assistent unterstützt nicht das Kommando </translation>
     <message>
         <location filename="latexeditorview.cpp" line="2376"/>
         <location filename="latexeditorview.cpp" line="2448"/>
-        <source>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
+        <source>&lt;p style='white-space:pre'&gt;&lt;b&gt;Filename: %1&lt;/b&gt;
 </source>
         <translation>&lt;p style=&apos;white-space:pre&apos;&gt;&lt;b&gt;Dateiname: %1&lt;/b&gt;</translation>
     </message>
     <message numerus="yes">
         <location filename="latexeditorview.cpp" line="2389"/>
         <source>%n reference(s) to this label</source>
-        <translation>
-            <numerusform>%n Referenz zu diesem Label</numerusform>
-            <numerusform>%n Referenzen zu diesem Label</numerusform>
-        </translation>
+        <translation><numerusform>%n Referenz zu diesem Label</numerusform><numerusform>%n Referenzen zu diesem Label</numerusform></translation>
     </message>
     <message>
         <location filename="latexeditorview.cpp" line="2394"/>
@@ -4687,10 +4674,6 @@ Der Assistent unterstützt nicht das Kommando </translation>
         <location filename="latexeditorview.cpp" line="2979"/>
         <source>Expand Level %1</source>
         <translation>Ebene %1 ausklappen</translation>
-    </message>
-    <message>
-        <source>Open Document</source>
-        <translation type="vanished">Datei öffnen</translation>
     </message>
 </context>
 <context>
@@ -5392,7 +5375,7 @@ Do you want to overwrite it?</source>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2464"/>
         <source>Auto-hide Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Toolbar automatisch ausblenden</translation>
     </message>
     <message>
         <location filename="pdfviewer/PDFDocument.cpp" line="2497"/>
@@ -6235,7 +6218,7 @@ fehlgeschlagen.</translation>
     <message>
         <location filename="qcodeedit/lib/qeditor.cpp" line="1094"/>
         <source>The original file on disk was destroyed during the save operation.
-You&apos;ll find a copy at
+You'll find a copy at
 %1</source>
         <translation>Die Originaldatei wurde beim Speichern vernichtet.
 Eine Kopie findet sich unter
@@ -8094,142 +8077,142 @@ Vertrauen Sie diesem Skript?</translation>
     <message>
         <location filename="structuretreeview.cpp" line="37"/>
         <source>Close document</source>
-        <translation type="unfinished">Schließe Dokument</translation>
+        <translation>Schließe Dokument</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="38"/>
         <source>Set as explicit root document</source>
-        <translation type="unfinished">Explizit als Root-Dokument setzen</translation>
+        <translation>Explizit als Root-Dokument setzen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="39"/>
         <source>Open all related documents</source>
-        <translation type="unfinished">Alle zugehörigen Dokumente öffnen</translation>
+        <translation>Alle zugehörigen Dokumente öffnen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="40"/>
         <source>Close all related documents</source>
-        <translation type="unfinished">Alle zugehörigen Dokumente schließen</translation>
+        <translation>Alle zugehörigen Dokumente schließen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="42"/>
         <source>Remove explicit root document role</source>
-        <translation type="unfinished">Rolle als explizites Root-Dokument aufheben</translation>
+        <translation>Rolle als explizites Root-Dokument aufheben</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="44"/>
         <source>Show all open documents in this tree</source>
-        <translation type="unfinished">Zeige alle offenen Dokumente in diesem Baum</translation>
+        <translation>Zeige alle offenen Dokumente in diesem Baum</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="46"/>
         <source>Show only current document in this tree</source>
-        <translation type="unfinished">Zeige nur das aktuelle Dokument in diesem Baum</translation>
+        <translation>Zeige nur das aktuelle Dokument in diesem Baum</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="49"/>
         <source>Move document to &amp;front</source>
-        <translation type="unfinished">Schiebe Dokument nach &amp;vorne</translation>
+        <translation>Schiebe Dokument nach &amp;vorne</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="50"/>
         <source>Move document to &amp;end</source>
-        <translation type="unfinished">Schiebe Dokument zum &amp;Ende</translation>
+        <translation>Schiebe Dokument zum &amp;Ende</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="52"/>
         <location filename="structuretreeview.cpp" line="100"/>
         <source>Expand Subitems</source>
-        <translation type="unfinished">Subitems ausklappen</translation>
+        <translation>Subitems ausklappen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="53"/>
         <location filename="structuretreeview.cpp" line="101"/>
         <source>Collapse Subitems</source>
-        <translation type="unfinished">Subitems einklappen</translation>
+        <translation>Subitems einklappen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="54"/>
         <source>Expand all documents</source>
-        <translation type="unfinished">Alle Dokumente ausklappen</translation>
+        <translation>Alle Dokumente ausklappen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="55"/>
         <source>Collapse all documents</source>
-        <translation type="unfinished">Alle Dokumente einklappen</translation>
+        <translation>Alle Dokumente einklappen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="64"/>
         <source>Insert</source>
-        <translation type="unfinished">Einfügen</translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="65"/>
         <location filename="structuretreeview.cpp" line="66"/>
         <source>Insert as %1</source>
-        <translation type="unfinished">Einfügen als %1</translation>
+        <translation>Einfügen als %1</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="68"/>
         <source>Find Usages</source>
-        <translation type="unfinished">Finde Nutzungen</translation>
+        <translation>Finde Nutzungen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="79"/>
         <source>Insert Label</source>
-        <translation type="unfinished">Label einfügen</translation>
+        <translation>Label einfügen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="83"/>
         <source>Insert %1 to Label</source>
         <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="unfinished">%1 zu Label einfügen</translation>
+        <translation>%1 zu Label einfügen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="87"/>
         <source>Create Label</source>
-        <translation type="unfinished">Generiere Label</translation>
+        <translation>Generiere Label</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="91"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopieren</translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="92"/>
         <source>Cut</source>
-        <translation type="unfinished">Ausschneiden</translation>
+        <translation>Ausschneiden</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="93"/>
         <source>Paste Before</source>
-        <translation type="unfinished">Vorher einfügen</translation>
+        <translation>Vorher einfügen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="94"/>
         <source>Paste After</source>
-        <translation type="unfinished">Danach einfügen</translation>
+        <translation>Danach einfügen</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="96"/>
         <source>Indent Section</source>
-        <translation type="unfinished">Bereich einrücken</translation>
+        <translation>Bereich einrücken</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="97"/>
         <source>Unindent Section</source>
-        <translation type="unfinished">Bereich ausrücken</translation>
+        <translation>Bereich ausrücken</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="108"/>
         <location filename="structuretreeview.cpp" line="115"/>
         <source>Go to Definition</source>
-        <translation type="unfinished">Springe zur Definition</translation>
+        <translation>Springe zur Definition</translation>
     </message>
     <message>
         <location filename="structuretreeview.cpp" line="114"/>
         <source>Open Document</source>
-        <translation type="unfinished">Datei öffnen</translation>
+        <translation>Datei öffnen</translation>
     </message>
 </context>
 <context>
@@ -10199,11 +10182,7 @@ failed.</source>
     <message>
         <location filename="texstudio.cpp" line="1141"/>
         <source>Close Element</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close Something</source>
-        <translation type="vanished">Schließe etwas</translation>
+        <translation>Schließe ein Element</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1144"/>
@@ -10385,26 +10364,6 @@ failed.</source>
         <location filename="texstudio.cpp" line="2708"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="vanished">Ausschneiden</translation>
-    </message>
-    <message>
-        <source>Paste Before</source>
-        <translation type="vanished">Vorher einfügen</translation>
-    </message>
-    <message>
-        <source>Paste After</source>
-        <translation type="vanished">Danach einfügen</translation>
-    </message>
-    <message>
-        <source>Indent Section</source>
-        <translation type="vanished">Bereich einrücken</translation>
-    </message>
-    <message>
-        <source>Unindent Section</source>
-        <translation type="vanished">Bereich ausrücken</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="1362"/>
@@ -10760,7 +10719,7 @@ this other file before you can overwrite it.</source>
     </message>
     <message>
         <location filename="texstudio.cpp" line="5597"/>
-        <source>Can&apos;t detect the file name.
+        <source>Can't detect the file name.
 You have to save a document before you can compile it.</source>
         <translation>Der Dateiname der tex-Datei zum Erzeugen konnte nicht ermittelt werden.
 Sie müssen ein neu erstelltes Dokument abspeichern, bevor Sie es erzeugen können.</translation>
@@ -10841,18 +10800,6 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <translation>Fehler:</translation>
     </message>
     <message>
-        <source>&lt;h4&gt;Change of Default Shortcuts&lt;/h4&gt;&lt;p&gt;Over the time, the shortcuts for the main tools have become somewhat fragmented. Additionally, they partly overlapped with standard keys. In particular, F1, F3, F10, F11 and F12 have reserved meanings on some systems.&lt;/p&gt;&lt;p&gt;We&apos;ve decided to set this right in favor of more a consistent layout:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt; will move from F1 to F5.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Bibliograpy&lt;/code&gt; will move from F11 to F8.&lt;/li&gt;&lt;li&gt;The shortcut for &lt;code&gt;Glossary&lt;/code&gt; will move from F10 to F9.&lt;li&gt;The tool &lt;code&gt;Index&lt;/code&gt; won&apos;t have a default shortcut anymore (formerly F12) because it&apos;s not called very often.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We are sorry, that you have to relearn the most used shortcut for &lt;code&gt;Build &amp; View&lt;/code&gt;. For a transition period, both F1 and F5 will work. In the end, collecting the most important tools in the central block F5-F8 will increase usability. As usual, you can still fully customize the shortcuts in the options.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;h4&gt;Änderung der Standard-Tastaturkürzel&lt;/h4&gt;&lt;p&gt;Die Shortcuts der wichtigsten Tools lagen bislang unregelmäßig verteilt auf den Funktionstasten. Zusätzlich überlappten diese teilweise mit reservierten Standards einiger Betriebssysteme (insbesondere F1, F3, F10, F11 und F12).&lt;/p&gt;&lt;p&gt;Daher haben wir beschlossen, die Shortcuts zu überarbeiten:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Der Shortcut für &lt;code&gt;Erstellen und Anzeigen&lt;/code&gt; wird geändert von F1 zu F5.&lt;/li&gt;&lt;li&gt;Der Shortcut für &lt;code&gt;Bibliographie&lt;/code&gt; wird geändert von F11 zu F8.&lt;/li&gt;&lt;li&gt;Der Shortcut für &lt;code&gt;Glossary&lt;/code&gt; wird geändert von F10 zu F9.&lt;li&gt;Das Tool &lt;code&gt;Index&lt;/code&gt; hat zukünftig keinen Standard-Shortcut mehr, da es eher selten eingesetzt wird.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Wir entschuldigen uns für die Unannehmlichkeiten der Umstellung. Um die Umstellung zu erleichtern wird das am meisten eingesetzte Tool &lt;code&gt;Erstellen und Anzeigen&lt;/code&gt; für eine Übergangsphase sowohl über F1 als auch über F5 erreichbar sein. Langfristig ehöht das Vereinen der wichtigsten Tools in den Tastenblock F5-F8 die Benutzerfreundlichkeit. Natürlich ist es weiterhin möglich alle Tastaturkürzel in den Einstellungen nach Bedarf frei zu konfigurieren.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Do not show this message again.</source>
-        <translation type="vanished">Nachricht zukünfig nicht mehr anzeigen</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="vanished">OK</translation>
-    </message>
-    <message>
         <location filename="texstudio.cpp" line="5986"/>
         <source>No open project or tex file to clean.</source>
         <translation>Kein geöffnetes Projekt oder Datei zu reinigen.</translation>
@@ -10888,83 +10835,6 @@ Möchten Sie dies erlauben und das neue Kommando ausführen
         <location filename="texstudio.cpp" line="6728"/>
         <source>You have to save the file before it can be defined as root document.</source>
         <translation>Die Datei muss gespeichert werden, bevor sie als Root-Dokument verwendet werden kann.</translation>
-    </message>
-    <message>
-        <source>Close document</source>
-        <translation type="vanished">Schließe Dokument</translation>
-    </message>
-    <message>
-        <source>Set as explicit root document</source>
-        <translation type="vanished">Explizit als Root-Dokument setzen</translation>
-    </message>
-    <message>
-        <source>Open all related documents</source>
-        <translation type="vanished">Alle zugehörigen Dokumente öffnen</translation>
-    </message>
-    <message>
-        <source>Close all related documents</source>
-        <translation type="vanished">Alle zugehörigen Dokumente schließen</translation>
-    </message>
-    <message>
-        <source>Remove explicit root document role</source>
-        <translation type="vanished">Rolle als explizites Root-Dokument aufheben</translation>
-    </message>
-    <message>
-        <source>Show all open documents in this tree</source>
-        <translation type="vanished">Zeige alle offenen Dokumente in diesem Baum</translation>
-    </message>
-    <message>
-        <source>Show only current document in this tree</source>
-        <translation type="vanished">Zeige nur das aktuelle Dokument in diesem Baum</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;front</source>
-        <translation type="vanished">Schiebe Dokument nach &amp;vorne</translation>
-    </message>
-    <message>
-        <source>Move document to &amp;end</source>
-        <translation type="vanished">Schiebe Dokument zum &amp;Ende</translation>
-    </message>
-    <message>
-        <source>Expand Subitems</source>
-        <translation type="vanished">Subitems ausklappen</translation>
-    </message>
-    <message>
-        <source>Collapse Subitems</source>
-        <translation type="vanished">Subitems einklappen</translation>
-    </message>
-    <message>
-        <source>Expand all documents</source>
-        <translation type="vanished">Alle Dokumente ausklappen</translation>
-    </message>
-    <message>
-        <source>Collapse all documents</source>
-        <translation type="vanished">Alle Dokumente einklappen</translation>
-    </message>
-    <message>
-        <source>Insert</source>
-        <translation type="vanished">Einfügen</translation>
-    </message>
-    <message>
-        <source>Insert as %1</source>
-        <translation type="vanished">Einfügen als %1</translation>
-    </message>
-    <message>
-        <source>Find Usages</source>
-        <translation type="vanished">Finde Nutzungen</translation>
-    </message>
-    <message>
-        <source>Insert Label</source>
-        <translation type="vanished">Label einfügen</translation>
-    </message>
-    <message>
-        <source>Insert %1 to Label</source>
-        <comment>autoreplaced, e.g.: Insert \ref to Label</comment>
-        <translation type="vanished">%1 zu Label einfügen</translation>
-    </message>
-    <message>
-        <source>Create Label</source>
-        <translation type="vanished">Generiere Label</translation>
     </message>
     <message>
         <location filename="texstudio.cpp" line="8352"/>
