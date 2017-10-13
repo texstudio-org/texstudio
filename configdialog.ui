@@ -153,7 +153,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>11</number>
      </property>
      <widget class="QWidget" name="pageGeneral">
       <layout class="QVBoxLayout">
@@ -185,8 +185,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>547</width>
-            <height>563</height>
+            <width>632</width>
+            <height>609</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -734,8 +734,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>698</width>
-            <height>549</height>
+            <width>842</width>
+            <height>550</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_17">
@@ -905,8 +905,8 @@ prepend &lt;b&gt;c:&lt;/b&gt; for current file instead of master file (include t
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>652</width>
-                   <height>76</height>
+                   <width>208</width>
+                   <height>70</height>
                   </rect>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_1">
@@ -1917,8 +1917,8 @@ Then you can select a new shortcut by one of the following ways:
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>665</width>
-            <height>1438</height>
+            <width>868</width>
+            <height>1561</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -2966,7 +2966,24 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
          <property name="title">
           <string>Completion</string>
          </property>
-         <layout class="QGridLayout" rowstretch="0,0,0,0,0" columnstretch="1,1">
+         <layout class="QGridLayout" rowstretch="0,0,0,0,0,0" columnstretch="1,1">
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
+            <property name="toolTip">
+             <string>Allows in-place substitution of commands. Example:&lt;br&gt;
+&lt;code&gt;\textbf{foo}&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
+&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
+&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
+&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
+&lt;/ul&gt;</string>
+            </property>
+            <property name="text">
+             <string>Auto Replace Latex-Commands</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
            <widget class="QCheckBox" name="checkBoxUsePlaceholders">
             <property name="text">
@@ -3020,7 +3037,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="4" column="1">
+          <item row="5" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QLabel" name="label_40">
@@ -3079,23 +3096,6 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBoxAutoReplaceCommands">
-            <property name="toolTip">
-             <string>Allows in-place substitution of commands. Example:&lt;br&gt;
-&lt;code&gt;\textbf{foo}&lt;/code&gt;
-&lt;ul&gt;
-&lt;li&gt;Put cursor behind &quot;text&quot;&lt;/li&gt;
-&lt;li&gt;Start completer by Ctrl+Space&lt;/li&gt;
-&lt;li&gt;Select &lt;code&gt;\textrm&lt;/code&gt;&lt;li&gt;
-&lt;li&gt;The result is &lt;code&gt;\textrm{foo}&lt;/code&gt;&lt;li&gt;
-&lt;/ul&gt;</string>
-            </property>
-            <property name="text">
-             <string>Auto Replace Latex-Commands</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QCheckBox" name="checkBoxCompletePrefix">
             <property name="toolTip">
@@ -3109,7 +3109,7 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
             </property>
            </widget>
           </item>
-          <item row="4" column="0">
+          <item row="5" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
              <widget class="QLabel" name="label">
@@ -3151,6 +3151,16 @@ to render the characters. Since unicode is not natively supported by LaTeX, you 
              </spacer>
             </item>
            </layout>
+          </item>
+          <item row="4" column="0">
+           <widget class="QCheckBox" name="checkBoxAutoInsertMathDelimiters">
+            <property name="toolTip">
+             <string>If a math command is inserted via completion outside any math environment, $$ is inserted automatically.</string>
+            </property>
+            <property name="text">
+             <string>Auto Insert Math Delimiters where needed</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -3226,8 +3236,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>488</width>
-            <height>678</height>
+            <width>590</width>
+            <height>682</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -3752,8 +3762,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>344</width>
-            <height>241</height>
+            <width>414</width>
+            <height>255</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -4014,8 +4024,8 @@ them here.</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>490</width>
-            <height>433</height>
+            <width>593</width>
+            <height>452</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_16">

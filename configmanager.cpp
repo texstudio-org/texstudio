@@ -538,6 +538,7 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Search Only In Selection", &editorConfig->searchOnlyInSelection, true, &pseudoDialog->checkBoxSearchOnlyInSelection);
 	registerOption("Editor/Auto Replace Commands", &CodeSnippet::autoReplaceCommands, true, &pseudoDialog->checkBoxAutoReplaceCommands);
 
+
 	registerOption("Editor/Font Family", &editorConfig->fontFamily, "", &pseudoDialog->comboBoxFont);
 	registerOption("Editor/Font Size", &editorConfig->fontSize, -1, &pseudoDialog->spinBoxSize);
 	registerOption("Editor/Line Spacing Percent", &editorConfig->lineSpacingPercent, 100, &pseudoDialog->spinBoxLineSpacingPercent);
@@ -570,6 +571,8 @@ ConfigManager::ConfigManager(QObject *parent): QObject (parent),
 	registerOption("Editor/Completion Show Placeholders", &editorConfig->showPlaceholders, true, &pseudoDialog->checkBoxShowPlaceholders);
 	registerOption("Editor/Completion Prefered Tab", (int *)&completerConfig->preferedCompletionTab, 0, &pseudoDialog->comboBoxPreferedTab);
 	registerOption("Editor/Completion Tab Relative Font Size Percent", &completerConfig->tabRelFontSizePercent, 100, &pseudoDialog->spinBoxTabRelFontSize);
+    registerOption("Editor/Completion Auto Insert Math", &completerConfig->autoInsertMathDelimiters, true, &pseudoDialog->checkBoxAutoInsertMathDelimiters);
+
 
 	registerOption("Editor/Auto Insert LRM", &editorConfig->autoInsertLRM, false, &pseudoDialog->checkBoxAutoLRM);
 	registerOption("Editor/Visual Column Mode", &editorConfig->visualColumnMode, true, &pseudoDialog->checkBoxVisualColumnMode);

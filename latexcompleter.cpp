@@ -151,6 +151,16 @@ public:
 			//cursor.endEditBlock(); //doesn't work and lead to crash when auto indentation is enabled => TODO:figure out why
 			//  cursor.setColumnNumber(curStart);
 			CodeSnippet::PlaceholderMode phMode = (LatexCompleter::config && LatexCompleter::config->usePlaceholders) ? CodeSnippet::PlacehodersActive : CodeSnippet::PlaceholdersRemoved;
+            if(cw.lines.size()==1 && completer->latexParser.possibleCommands["math"].contains(cw.word)){
+                LatexEditorView *view = editor->property("latexEditor").value<LatexEditorView *>();
+                Q_ASSERT(view);
+                bool inMath=view->isInMathHighlighting(cursor);
+                if(!inMath && LatexCompleter::config && LatexCompleter::config->autoInsertMathDelimiters){
+                    // add $$ to mathcommand outsiode math env
+                    cw.lines.first().prepend("$");
+                    cw.lines.first().append("$");
+                }
+            }
 			cw.insertAt(editor, &cursor, phMode, !completer->startedFromTriggerKey, completer->forcedKeyval);
 			editor->document()->endMacro();
 
