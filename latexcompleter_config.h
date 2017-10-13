@@ -23,6 +23,7 @@ public:
 	bool tooltipPreview; // enable ToolTip-Preview during completion
 	bool usePlaceholders;
 	int tabRelFontSizePercent;
+    bool autoInsertMathDelimiters;
 	enum PreferedCompletionTab {CPC_TYPICAL, CPC_MOSTUSED, CPC_ALL};
 	PreferedCompletionTab preferedCompletionTab;
 	CodeSnippetList words;
